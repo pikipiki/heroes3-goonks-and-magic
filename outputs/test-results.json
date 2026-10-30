@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-30",
+  "repository": "https://github.com/caiiiycuk/vcmi-wasm",
+  "commit": "57aad42ed4a9e2c15f0cff05b03f34eea63c1b89",
+  "environment": {
+    "host": "macOS arm64",
+    "builder": "Docker linux/amd64, emscripten/emsdk:4.0.23",
+    "browser": "Chrome 156.0.8078.76",
+    "configuration": "MinSizeRel, ninja -j32 html5, compile job pool limited to 8"
+  },
+  "build": {
+    "result": "passed with local build fixes",
+    "wasm_sha256": "96b01e7a520e907fcd76573c1e1c0b16b8ae43cf9294fe38fed5ad8c19bb5e8d",
+    "fixes": [
+      "Correct libsquish library path",
+      "Disable oneTBB internal tests",
+      "Remove mandatory copy from missing external Qt launcher build",
+      "Pass $OPFS through a settings JSON file to avoid shell expansion",
+      "Remove invalid template keyword from two Boost QVM indexed accessor calls"
+    ],
+    "environment_prerequisites_added": ["ninja-build", "pkg-config", "p7zip-full", "UTF-8 locale for Boost extraction"]
+  },
+  "runtime_checks": {
+    "cross_origin_isolated": true,
+    "main_menu": "passed",
+    "campaign_menu_roe_ab_sod": "displayed; only RoE campaign exercised",
+    "campaign": "Long Live the Queen",
+    "scenarios_loaded_in_sequence": ["Homecoming", "Guardian Angels", "Griffin Cliff"],
+    "campaign_final_score_screen": "reached; rank Cheater!!!, total 4 days",
+    "campaign_method": "Technical progression test using vcmiwin in all three scenarios. NOT a complete normal gameplay playthrough.",
+    "hero_carryover": "Christian exported by the engine and present in later scenarios",
+    "save": "NEWGAME.vsgm1 written, persisted across page reload and test-controller reconnection, loaded back into Homecoming",
+    "town": "Alexandretta opened",
+    "recruitment": "14 Pikemen recruited; gold decreased from 20000 to 19160",
+    "movement_and_event": "Hero moved; Pikemen joining event accepted",
+    "battle": "90 Magogs defeated; first attack manual, remaining battle automated; army strengthened using vcmiarchangel",
+    "hero_level": "Christian gained 1170 experience and reached level 2; secondary skill chosen",
+    "turn_cycle": "Two enemy AIs acted; player control returned on day 2"
+  },
+  "test_cheats": ["vcmiwin", "vcmimap", "vcmiarchangel"],
+  "limitations": [
+    "No full campaign completed through normal strategic gameplay",
+    "No multiplayer, WoG/ERM or custom mod runtime tests",
+    "Videos disabled by the web build; missing TAVERN.BIK produces resource validation warnings",
+    "Three optional standalone scenario filenames failed extraction on the Mac bind mount; core LOD files and campaign used for testing extracted",
+    "Original game data downloaded from the archive explicitly offered by the DOS.Zone page; not included in the compiled engine bundle",
+    "The bundled game.html is the upstream shell and needs local URL/data configuration for standalone hosting; the test server supplies this adaptation"
+  ]
+}

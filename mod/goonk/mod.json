@@ -1,0 +1,20 @@
+{
+  "name": "Château Goonk",
+  "description": "Sept peluches et leurs évolutions : Paingpaing, Bobope, Bubu, La gros maille maille et leurs amis.",
+  "author": "Création personnelle",
+  "version": "0.2.0",
+  "modType": "Town",
+  "compatibility": {
+    "min": "1.7.3"
+  },
+  "factions": [
+    "config/faction.json"
+  ],
+  "creatures": [
+    "config/creatures.json"
+  ],
+  "heroes": [
+    "config/heroes.json"
+  ],
+  "keepDisabled": false
+}

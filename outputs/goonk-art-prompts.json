@@ -1,0 +1,50 @@
+{
+  "description": "Goonk visual assets generated from the user-provided plush photographs. Null prompt means the original prompt was not retained separately.",
+  "prompts": {
+    "pink": {
+      "asset": "goonk-art/pink.png",
+      "prompt": null,
+      "tool": "image_gen.imagegen"
+    },
+    "blue": {
+      "asset": "goonk-art/blue.png",
+      "prompt": null,
+      "tool": "image_gen.imagegen"
+    },
+    "castle": {
+      "asset": "goonk-art/castle.png",
+      "prompt": null,
+      "tool": "image_gen.imagegen"
+    },
+    "fire": {
+      "asset": "goonk-art/fire.png",
+      "prompt": "Use case stylized-concept. Production transparent sprite atlas for a playable fantasy strategy game, faithful to the specifically identified plush in reference photo. The ORANGE plush Goonk at the left side of photo: bright orange round pear body, long drooping orange nose, little mitten arms and feet, googly eyes, small lilac purple fluffy head tuft. This is a FIRE MAGE. No robe or armor, preserve toy identity. Ignore all other toys, people and surroundings. Same charming detailed pre-rendered felt style as classic strategy units. EXACT layout 4 columns x2 rows in image ratio2:1, eight equally sized square cells, one full body character per cell, true transparent background, generous padding, NO text, no labels, no grid lines. All poses face RIGHT in three-quarter side view with consistent camera, scale and ground baseline. TOP ROW: idle; walking left foot forward; walking right foot forward; gathers a small orange fireball between its hands. BOTTOM ROW: extends both hands forward casting a fireball RIGHT; only small flame in palm, keep projectile separate; hurt recoil; lying on side knocked out eyes gently shut; proud idle. Keep props entirely inside each cell. Make silhouette and actions readable at 100-pixel game size.",
+      "tool": "image_gen.imagegen"
+    },
+    "lancer": {
+      "asset": "goonk-art/lancer.png",
+      "prompt": "Use case stylized-concept. Production transparent sprite atlas for a playable fantasy strategy game, faithful to the specifically identified plush in reference photo. The dark VIOLET plush Goonk at upper right of photo: pear-shaped indigo violet soft body, long soft curved nose, googly eyes, tiny feet, mitten hands, no beard and no tall hair. This is a lance-sword warrior holding a short wooden spear with a broad silver sword-shaped blade and simple leather wrist wraps. Ignore all other toys, people and surroundings. Same charming detailed pre-rendered felt style as classic strategy units. EXACT layout 4 columns x2 rows in image ratio2:1, eight equally sized square cells, one full body character per cell, true transparent background, generous padding, NO text, no labels, no grid lines. All poses face RIGHT in three-quarter side view with consistent camera, scale and ground baseline. TOP ROW: idle; walking left foot forward; walking right foot forward; draws spear-sword back for thrust. BOTTOM ROW: thrusts silver spear-sword RIGHT; hurt recoil; lying on side knocked out eyes gently shut; proud idle. Keep props entirely inside each cell. Make silhouette and actions readable at 100-pixel game size.",
+      "tool": "image_gen.imagegen"
+    },
+    "archer": {
+      "asset": "goonk-art/archer.png",
+      "prompt": "Use case stylized-concept. Production transparent sprite atlas for a playable fantasy strategy game, faithful to the specifically identified plush in reference photo. The SECOND plush Goonk from top of photo: bright fuchsia pink small pear body, large ears/mitten arms, long pale pink nose, googly eyes, large fluffy CYAN BLUE hair tuft. This is an ARCHER with a small wooden bow and a pale gold arrow shaped like a jagged lightning bolt, violet electric glint at tip. Ignore all other toys, people and surroundings. Same charming detailed pre-rendered felt style as classic strategy units. EXACT layout 4 columns x2 rows in image ratio2:1, eight equally sized square cells, one full body character per cell, true transparent background, generous padding, NO text, no labels, no grid lines. All poses face RIGHT in three-quarter side view with consistent camera, scale and ground baseline. TOP ROW: idle; walking left foot forward; walking right foot forward; draws bow pointing RIGHT with a lightning-shaped arrow. BOTTOM ROW: releases bowstring aiming RIGHT, no flying arrow in frame; hurt recoil; lying on side knocked out eyes gently shut; proud idle. Keep props entirely inside each cell. Make silhouette and actions readable at 100-pixel game size.",
+      "tool": "image_gen.imagegen"
+    },
+    "fart": {
+      "asset": "goonk-art/fart.png",
+      "prompt": "Use case stylized-concept. Production transparent sprite atlas for a playable fantasy strategy game, faithful to the specifically identified plush in reference photo. The lime GREEN plush Goonk in center foreground of photo: lime green round soft pear body, long green curved nose, googly eyes, tiny feet, three-finger mitten hands, small red-orange fuzzy hair tuft. This is a comedic FART unit, no weapons, preserve plush identity. Ignore all other toys, people and surroundings. Same charming detailed pre-rendered felt style as classic strategy units. EXACT layout 4 columns x2 rows in image ratio2:1, eight equally sized square cells, one full body character per cell, true transparent background, generous padding, NO text, no labels, no grid lines. All poses face RIGHT in three-quarter side view with consistent camera, scale and ground baseline. TOP ROW: idle; walking left foot forward; walking right foot forward; turns torso and rear slightly toward RIGHT, braces hands on belly. BOTTOM ROW: squats with rear toward RIGHT and emits a small harmless translucent pale green cartoon gas puff, keep entire character inside cell; hurt recoil; lying on side knocked out eyes gently shut; proud idle. Keep props entirely inside each cell. Make silhouette and actions readable at 100-pixel game size.",
+      "tool": "image_gen.imagegen"
+    },
+    "vomit": {
+      "asset": "goonk-art/vomit.png",
+      "prompt": "Use case stylized-concept. Production transparent sprite atlas for a playable fantasy strategy game, faithful to the specifically identified plush in reference photo. The PALE LAVENDER mauve plush Goonk at front left, next to lime green one: worn soft pale lavender grey plush pear-shaped round body, large long curved nose, googly eyes, tiny feet and mitten hands. This is a comedic VOMIT unit. No weapons or armor. Ignore all other toys, people and surroundings. Same charming detailed pre-rendered felt style as classic strategy units. EXACT layout 4 columns x2 rows in image ratio2:1, eight equally sized square cells, one full body character per cell, true transparent background, generous padding, NO text, no labels, no grid lines. All poses face RIGHT in three-quarter side view with consistent camera, scale and ground baseline. TOP ROW: idle; walking left foot forward; walking right foot forward; leans forward with hands on belly, puffed cheeks. BOTTOM ROW: leans forward and emits a short bright lime cartoon slime stream toward RIGHT from a tiny mouth just below long nose, silly non-graphic, not realistic bodily fluid; hurt recoil; lying on side knocked out eyes gently shut; proud idle. Keep props entirely inside each cell. Make silhouette and actions readable at 100-pixel game size.",
+      "tool": "image_gen.imagegen"
+    },
+    "evolution": {
+      "asset": "goonk-art/evolution.png",
+      "prompt": "Use case stylized-concept. A clean TRANSPARENT production sprite atlas, exactly FOUR columns by FOUR rows of equally sized square cells. 16 cells total, two final cells empty transparent. Seven evolved plush toy warriors, each takes TWO consecutive cells: idle then attack, full body facing RIGHT, same style as charming 1990s prerendered strategy units, realistic felt texture, mitten hands, googly eyes and long Goonk noses from references. Same full-body scale, feet on consistent baseline, generous transparent padding, no text or labels or grid. ROW1 cells1-2: PAINGPAING, the large bright pink/magenta Goonk with yellow hair tuft, evolved as royal nose-battering knight with blue-violet gold-trim collar and a small gold cap on nose tip; idle then powerful extended-nose headbutt RIGHT. ROW1 cells3-4: BOBOPE, the indigo-purple Goonk with green beard, evolved stone king with stone crown and leather shoulder strap; idle then throwing a large GREY BOULDER right. ROW2 cells1-2: BUBU, lime green Goonk with small red hair tuft, evolved grand fart shaman with small mushroom cap and leaf belt; idle then turns rear right, squatting and emits tiny transparent green gas puff. ROW2 cells3-4: LA GROS MAILLE MAILLE, orange Goonk with purple hair, evolved fire archmage with dark purple embroidered scarf and tiny flame diadem; idle then casts orange fireball right. ROW3 cells1-2: dark violet no-beard spear Goonk with silver broad-blade spear, evolved paladin with little polished breastplate; idle then thrust spear right. ROW3 cells3-4: pink Goonk with large cyan hair tuft carrying bow, evolved storm archer with blue cape and golden lightning-shaped arrow; idle then shoots right. ROW4 cells1-2: pale mauve lavender long-nose Goonk, evolved acid alchemist with emerald bib and a small flask on belt; idle then spits short bright green slime stream right (silly cartoon, non-graphic). ROW4 cells3-4 remain completely transparent. Do not add extra characters; one character per occupied cell. Every character is a Goonk plush not human, not animal. Preserve distinctions and make attacks readable. No large effects escaping cells.",
+      "tool": "image_gen.imagegen"
+    }
+  }
+}

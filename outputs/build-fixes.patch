@@ -1,0 +1,38 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e93e8d3..ceefa07 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -118,6 +118,7 @@ if(EMSCRIPTEN)
+ 				"-G${CMAKE_GENERATOR}"
+ 				"-DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_BINARY_DIR}/tbb"
+ 				"-DBUILD_SHARED_LIBS=false"
++				"-DTBB_TEST=OFF"
+ 				"-DCMAKE_BUILD_TYPE=MinSizeRel"
+ 				"-DCMAKE_CXX_FLAGS=-fwasm-exceptions"
+ 				"-DLINK_FLAGS=-fwasm-exceptions"
+@@ -160,7 +161,7 @@ if(EMSCRIPTEN)
+ 	link_directories("${CMAKE_BINARY_DIR}/boost/lib")
+ 	link_directories("${CMAKE_BINARY_DIR}/tbb/lib")
+ 	link_directories("${CMAKE_BINARY_DIR}/minizip-ng/lib")
+-	link_directories("${CMAKE_BINARY_DIR}/squish-ng/lib")
++	link_directories("${CMAKE_BINARY_DIR}/squish/lib")
+ 
+ 	set("RELEASE_OPT" "-Oz")
+ 	add_compile_options(
+@@ -192,7 +193,7 @@ if(EMSCRIPTEN)
+ 		"${RELEASE_OPT}"
+ 		"--emit-symbol-map"
+ 		"--js-library" "${CMAKE_CURRENT_LIST_DIR}/lib/html5/libopfs.js"
+-		"-sDEFAULT_LIBRARY_FUNCS_TO_INCLUDE=$OPFS"
++		"-sDEFAULT_LIBRARY_FUNCS_TO_INCLUDE=@${CMAKE_CURRENT_LIST_DIR}/lib/html5/runtime-functions.json"
+ 		# for debugging
+ 		# "-O1"
+ 		# "--profiling-funcs"
+@@ -212,7 +213,6 @@ if(EMSCRIPTEN)
+ 	add_custom_target(html5
+ 		COMMAND "rm" "-rf" "html5"
+ 		COMMAND "mkdir" "html5"
+-		COMMAND "cp" "${CMAKE_CURRENT_LIST_DIR}/../vcmi-html5-launcher/emscripten-launcher/html5/*" "html5/"
+ 		COMMAND "cp" "bin/vcmiclient.js" "html5/vcmiclient.js"
+ 		COMMAND "cp" "bin/vcmiclient.js.symbols" "html5/vcmiclient.js.symbols"
+ 		COMMAND "cp" "bin/vcmiclient.wasm" "html5/vcmiclient.wasm"

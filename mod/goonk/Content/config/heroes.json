@@ -1,0 +1,43 @@
+{
+  "gardienGoonk": {
+    "class": "core:knight",
+    "female": false,
+    "special": false,
+    "texts": {
+      "name": "Gardien des Goonks",
+      "biography": "Protecteur du royaume des sept nez.",
+      "specialty": {
+        "name": "Paingpaing",
+        "description": "Renforce les unités Paingpaing.",
+        "tooltip": "{Paingpaing}\nSpécialiste des coups de nez."
+      }
+    },
+    "images": {
+      "large": "goonk/pink-large.png",
+      "small": "goonk/pink-small.png",
+      "specialtySmall": "goonk/pink-small.png",
+      "specialtyLarge": "goonk/pink-large.png"
+    },
+    "army": [
+      {
+        "creature": "paingpaing",
+        "min": 20,
+        "max": 20
+      },
+      {
+        "creature": "bobope",
+        "min": 3,
+        "max": 3
+      }
+    ],
+    "skills": [
+      {
+        "skill": "core:leadership",
+        "level": "basic"
+      }
+    ],
+    "specialty": {
+      "creature": "paingpaing"
+    }
+  }
+}

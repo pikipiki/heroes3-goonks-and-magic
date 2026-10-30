@@ -1,0 +1,11 @@
+# Local dependencies and original Heroes III data
+**/node_modules/
+work/game-data/
+work/chrome-test-profile/
+work/idle-capture/
+work/vcmi-wasm/emscripten/
+**/.DS_Store
+*.log
+.env
+.env.*
+!.env.example

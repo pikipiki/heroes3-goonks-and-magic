@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/caiiiycuk/vcmi-wasm.git",
+  "branch": "vcmi-wasm-1.7.3",
+  "commit": "57aad42ed4a9e2c15f0cff05b03f34eea63c1b89",
+  "localChanges": [
+    "CMake build fixes",
+    "lib/html5/runtime-functions.json",
+    "Battle result interface lifetime guard"
+  ],
+  "license": "VCMI engine: GPL-2.0-or-later; see work/vcmi-wasm/license.txt"
+}

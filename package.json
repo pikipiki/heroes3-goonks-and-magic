@@ -1,0 +1,9 @@
+{
+  "name": "heroes-goonk",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "start": "cd work/browser-tests && node server.mjs",
+    "build:mod": "cd work/browser-tests && node build-goonk.mjs"
+  }
+}

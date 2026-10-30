@@ -1,0 +1,42 @@
+diff --git a/client/battle/BattleResultWindow.cpp b/client/battle/BattleResultWindow.cpp
+index f5a4958..3494f7d 100644
+--- a/client/battle/BattleResultWindow.cpp
++++ b/client/battle/BattleResultWindow.cpp
+@@ -39,6 +39,7 @@
+ 
+ BattleResultWindow::BattleResultWindow(const BattleResult & br, CPlayerInterface & _owner, bool allowReplay)
+ 	: owner(_owner)
++	, battleLifetimeGuard(CPlayerInterface::battleInt)
+ {
+ 	OBJECT_CONSTRUCTION;
+ 
+@@ -250,6 +251,8 @@ void BattleResultWindow::activate()
+ 
+ void BattleResultWindow::buttonPressed(int button)
+ {
++	// Keep BattleWindow::owner and the result callback alive through both closes.
++	auto battleKeepAlive = std::move(battleLifetimeGuard);
+ 	if(resultCallback)
+ 		resultCallback(button);
+ 
+diff --git a/client/battle/BattleResultWindow.h b/client/battle/BattleResultWindow.h
+index 09b133c..45b1a50 100644
+--- a/client/battle/BattleResultWindow.h
++++ b/client/battle/BattleResultWindow.h
+@@ -23,6 +23,7 @@ class CButton;
+ class CAnimImage;
+ class VideoWidget;
+ class CPlayerInterface;
++class BattleInterface;
+ class CTextBox;
+ 
+ struct BattleResultResources
+@@ -45,6 +46,8 @@ private:
+ 	std::shared_ptr<CTextBox> description;
+ 	std::shared_ptr<VideoWidget> videoPlayer;
+ 	CPlayerInterface & owner;
++	// The GUI-thread path cannot wait for this window before battleInt is reset.
++	std::shared_ptr<BattleInterface> battleLifetimeGuard;
+ 
+ 	BattleResultResources getResources(const BattleResult & br);
+ 

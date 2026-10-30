@@ -1,0 +1,41 @@
+{
+ "version":"0.2.0",
+ "status":"Prototype corrigé et testé dans le navigateur",
+ "verified":[
+  "ninja -j32 html5 : compilation réussie après correction de la durée de vie de BattleInterface",
+  "Château original Goonk visible sur la carte d’aventure",
+  "Départ de la carte avec villageHall, tavern, fort et dwellingLvl1 seulement",
+  "Contour jaune sur la silhouette de la Maison des Goonks au survol",
+  "Clic sur cette maison : ouverture du menu de construction",
+  "Cartes de construction utilisant les mêmes sprites que les bâtiments de la ville",
+  "Construction dwellingLvl2 : déduction de 420 or, 5 bois et 5 minerai, apparition du bâtiment et disponibilité de Picpique",
+  "Aperçu de recrutement de Paingpaing observé à plusieurs instants sans débordement",
+  "Portraits d’armée et aperçus sur un fond de château Goonk",
+  "Miniatures de ville aux dimensions natives : 48x32 et 58x64",
+  "Cycles d’attente de 24 images, nouvelles poses des sept créatures de base et respiration des évolutions",
+  "Transitions supplémentaires pour le déplacement et les attaques",
+  "Combat remporté contre 6 Paingpaing et 6 Paingpaing Bélier royal",
+  "Fermeture du résultat : QueryReply accepté et CBattleDialogQuery retirée du serveur",
+  "Déplacement après victoire : héros passé de (13,11,0) à (16,13,0), points de déplacement de 1230 à 848"
+ ],
+ "diagnosticLimits":[
+  "Le journal fourni ne permet pas de prouver la cause exacte du blocage dans la sauvegarde du joueur",
+  "Le correctif protège la durée de vie du combat pendant la fenêtre de résultat ; le scénario contrôlé passe, mais la sauvegarde du joueur reste à retester",
+  "Les avertissements de vidéos de taverne manquantes et les messages de l’IA peuvent encore être présents",
+  "Les bâtiments des sauvegardes anciennes ne sont pas supprimés ; leur progression initiale nécessite une nouvelle partie",
+  "Le décor de siège utilise encore les éléments du Château classique ; le château sur la carte, le décor de ville et ses bâtiments sont personnalisés",
+  "Animations 2D avec interpolation, sans reconstruction 3D ; équilibrage encore provisoire"
+ ],
+ "updateInstructions":[
+  "Sauvegarder la partie avant de recharger la page http://127.0.0.1:8765/",
+  "Recharger ensuite la sauvegarde pour tester le correctif de fin de combat",
+  "Lancer une nouvelle partie pour une ville initialement peu construite et le nouveau modèle de château sur la carte",
+  "La carte 000 - Château Goonk sert de démonstration de la progression de construction"
+ ],
+ "installation":[
+  "Chateau-Goonk-0.2.0.zip contient Mods/goonk et Maps/000-Goonk.vmap pour VCMI 1.7.3",
+  "Le correctif de fin de combat appartient au moteur et non au seul mod ; il est actif sur le serveur local",
+  "vcmi-wasm-goonk-0.2.0-engine.tar.gz contient le moteur web recompilé",
+  "combat-result-lifetime.patch contient la modification C++ correspondante"
+ ]
+}

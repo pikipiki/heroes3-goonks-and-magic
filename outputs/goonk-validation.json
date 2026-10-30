@@ -1,0 +1,34 @@
+{
+  "version": "0.1.0",
+  "status": "prototype jouable",
+  "engine": "VCMI WASM 1.7.3, moteur compilé localement",
+  "verified": [
+    "Chargement de la faction et de ses 14 créatures par le moteur",
+    "Démarrage de la carte native 000-Goonk.vmap",
+    "Ouverture de Goonkbourg avec le décor personnalisé",
+    "Recrutement de 16 Paingpaing : 1120 pièces déduites et troupe présente en garnison",
+    "Recrutement de 3 Bobope, Roi des rochers : 3570 pièces déduites",
+    "Affichage des sept unités dans un combat réel, après ajustement de leur taille",
+    "Attaque de Paingpaing avec son nez : 105 dégâts, 10 piquiers éliminés ; riposte ennemie de 8 dégâts",
+    "Tir de Zinzéclair : 31 dégâts physiques puis Boule de feu à 15 dégâts",
+    "Tir de Glouglou : 53 dégâts",
+    "Tir de Bobope : 51 dégâts avec projectile de Cyclope",
+    "Tir de Bubu : 44 dégâts",
+    "Sort de créature La gros maille maille : Boule de feu à 60 dégâts"
+  ],
+  "limitations": [
+    "Équilibrage provisoire : aucune campagne complète jouée avec cette faction",
+    "Les bonus secondaires, les sept évolutions en combat et le tir de siège ne sont pas tous vérifiés individuellement",
+    "Le décor du château est une image fixe ; les bâtiments utilisent des zones cliquables provisoires",
+    "L'apparence du château sur la carte et le décor de siège proviennent encore du Château classique",
+    "Animations courtes ; les évolutions réutilisent certaines poses de base",
+    "Avertissement non bloquant de validation : vidéo de taverne absente sur cette version web"
+  ],
+  "installation": [
+    "Pour essayer la version locale : ouvrir http://127.0.0.1:8765/ pendant que le serveur est en marche",
+    "New Game > Single Scenario > cliquer SCENARIO NAME pour rafraîchir le tri si nécessaire > 000 - Château Goonk > BEGIN",
+    "Dans cette carte, les sept logements améliorés sont déjà construits ; les deux variantes peuvent être recrutées",
+    "Pour une installation VCMI compatible 1.7.3 : extraire l'archive dans le dossier de données VCMI, en conservant Mods/goonk et Maps/000-Goonk.vmap, puis activer Château Goonk dans le lanceur",
+    "L'archive contient uniquement le mod et la carte ; les données Heroes III restent nécessaires"
+  ]
+}

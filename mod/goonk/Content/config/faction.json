@@ -1,0 +1,1394 @@
+{
+  "goonk": {
+    "nativeTerrain": "grass",
+    "alignment": "good",
+    "creatureBackground": {
+      "120px": "goonk/creature-bg-120.png",
+      "130px": "goonk/creature-bg-130.png"
+    },
+    "boat": "boatCastle",
+    "puzzleMap": {
+      "prefix": "PUZCAS",
+      "pieces": [
+        {
+          "x": 7,
+          "y": 8,
+          "index": 39
+        },
+        {
+          "x": 7,
+          "y": 30,
+          "index": 41
+        },
+        {
+          "x": 7,
+          "y": 102,
+          "index": 1
+        },
+        {
+          "x": 7,
+          "y": 156,
+          "index": 23
+        },
+        {
+          "x": 7,
+          "y": 202,
+          "index": 6
+        },
+        {
+          "x": 7,
+          "y": 320,
+          "index": 13
+        },
+        {
+          "x": 16,
+          "y": 8,
+          "index": 39
+        },
+        {
+          "x": 22,
+          "y": 406,
+          "index": 2
+        },
+        {
+          "x": 70,
+          "y": 301,
+          "index": 22
+        },
+        {
+          "x": 72,
+          "y": 194,
+          "index": 11
+        },
+        {
+          "x": 101,
+          "y": 332,
+          "index": 8
+        },
+        {
+          "x": 106,
+          "y": 8,
+          "index": 9
+        },
+        {
+          "x": 106,
+          "y": 31,
+          "index": 29
+        },
+        {
+          "x": 114,
+          "y": 60,
+          "index": 7
+        },
+        {
+          "x": 126,
+          "y": 329,
+          "index": 17
+        },
+        {
+          "x": 128,
+          "y": 191,
+          "index": 21
+        },
+        {
+          "x": 152,
+          "y": 347,
+          "index": 27
+        },
+        {
+          "x": 154,
+          "y": 239,
+          "index": 31
+        },
+        {
+          "x": 157,
+          "y": 429,
+          "index": 34
+        },
+        {
+          "x": 166,
+          "y": 470,
+          "index": 4
+        },
+        {
+          "x": 185,
+          "y": 127,
+          "index": 30
+        },
+        {
+          "x": 212,
+          "y": 335,
+          "index": 36
+        },
+        {
+          "x": 214,
+          "y": 191,
+          "index": 48
+        },
+        {
+          "x": 217,
+          "y": 226,
+          "index": 43
+        },
+        {
+          "x": 235,
+          "y": 147,
+          "index": 35
+        },
+        {
+          "x": 245,
+          "y": 77,
+          "index": 16
+        },
+        {
+          "x": 266,
+          "y": 384,
+          "index": 42
+        },
+        {
+          "x": 288,
+          "y": 288,
+          "index": 45
+        },
+        {
+          "x": 298,
+          "y": 8,
+          "index": 26
+        },
+        {
+          "x": 321,
+          "y": 177,
+          "index": 46
+        },
+        {
+          "x": 346,
+          "y": 67,
+          "index": 38
+        },
+        {
+          "x": 354,
+          "y": 459,
+          "index": 20
+        },
+        {
+          "x": 355,
+          "y": 397,
+          "index": 25
+        },
+        {
+          "x": 375,
+          "y": 162,
+          "index": 28
+        },
+        {
+          "x": 382,
+          "y": 255,
+          "index": 32
+        },
+        {
+          "x": 408,
+          "y": 32,
+          "index": 37
+        },
+        {
+          "x": 408,
+          "y": 111,
+          "index": 14
+        },
+        {
+          "x": 421,
+          "y": 147,
+          "index": 19
+        },
+        {
+          "x": 422,
+          "y": 466,
+          "index": 12
+        },
+        {
+          "x": 426,
+          "y": 8,
+          "index": 15
+        },
+        {
+          "x": 436,
+          "y": 238,
+          "index": 24
+        },
+        {
+          "x": 458,
+          "y": 336,
+          "index": 44
+        },
+        {
+          "x": 486,
+          "y": 8,
+          "index": 40
+        },
+        {
+          "x": 487,
+          "y": 144,
+          "index": 33
+        },
+        {
+          "x": 517,
+          "y": 145,
+          "index": 18
+        },
+        {
+          "x": 520,
+          "y": 68,
+          "index": 5
+        },
+        {
+          "x": 524,
+          "y": 234,
+          "index": 10
+        },
+        {
+          "x": 525,
+          "y": 327,
+          "index": 3
+        }
+      ]
+    },
+    "town": {
+      "mapObject": {
+        "templates": {
+          "castle": {
+            "animation": "goonk/map-town-v2"
+          },
+          "citadel": {
+            "animation": "goonk/map-town-v2"
+          },
+          "fort": {
+            "animation": "goonk/map-town-v2"
+          },
+          "village": {
+            "animation": "goonk/map-town-v2"
+          },
+          "capitol": {
+            "animation": "goonk/map-town-v2"
+          }
+        }
+      },
+      "structures": {
+        "mageGuild1": {
+          "animation": "goonk/structure-mageGuild1",
+          "x": 145,
+          "y": 73,
+          "z": 193,
+          "border": "goonk/outline-mageGuild1.png",
+          "area": "goonk/hit-mageGuild1.png",
+          "campaignBonus": "goonk/card-mageGuild1.png"
+        },
+        "mageGuild2": {
+          "animation": "goonk/structure-mageGuild2",
+          "x": 145,
+          "y": 68,
+          "z": 193,
+          "border": "goonk/outline-mageGuild2.png",
+          "area": "goonk/hit-mageGuild2.png",
+          "campaignBonus": "goonk/card-mageGuild2.png"
+        },
+        "mageGuild3": {
+          "animation": "goonk/structure-mageGuild3",
+          "x": 145,
+          "y": 63,
+          "z": 193,
+          "border": "goonk/outline-mageGuild3.png",
+          "area": "goonk/hit-mageGuild3.png",
+          "campaignBonus": "goonk/card-mageGuild3.png"
+        },
+        "mageGuild4": {
+          "animation": "goonk/structure-mageGuild4",
+          "x": 145,
+          "y": 58,
+          "z": 193,
+          "border": "goonk/outline-mageGuild4.png",
+          "area": "goonk/hit-mageGuild4.png",
+          "campaignBonus": "goonk/card-mageGuild4.png"
+        },
+        "tavern": {
+          "animation": "goonk/structure-tavern",
+          "x": 12,
+          "y": 172,
+          "z": 257,
+          "border": "goonk/outline-tavern.png",
+          "area": "goonk/hit-tavern.png",
+          "campaignBonus": "goonk/card-tavern.png"
+        },
+        "shipyard": {
+          "animation": "goonk/structure-shipyard",
+          "x": 665,
+          "y": 263,
+          "z": 363,
+          "border": "goonk/outline-shipyard.png",
+          "area": "goonk/hit-shipyard.png",
+          "campaignBonus": "goonk/card-shipyard.png"
+        },
+        "fort": {
+          "animation": "goonk/structure-fort",
+          "x": 430,
+          "y": 74,
+          "z": 206,
+          "border": "goonk/outline-fort.png",
+          "area": "goonk/hit-fort.png",
+          "campaignBonus": "goonk/card-fort.png"
+        },
+        "citadel": {
+          "animation": "goonk/structure-citadel",
+          "x": 420,
+          "y": 62,
+          "z": 206,
+          "border": "goonk/outline-citadel.png",
+          "area": "goonk/hit-citadel.png",
+          "campaignBonus": "goonk/card-citadel.png"
+        },
+        "castle": {
+          "animation": "goonk/structure-castle",
+          "x": 410,
+          "y": 48,
+          "z": 206,
+          "border": "goonk/outline-castle.png",
+          "area": "goonk/hit-castle.png",
+          "campaignBonus": "goonk/card-castle.png"
+        },
+        "villageHall": {
+          "animation": "goonk/structure-villageHall",
+          "x": 112,
+          "y": 215,
+          "z": 321,
+          "border": "goonk/outline-villageHall.png",
+          "area": "goonk/hit-villageHall.png",
+          "campaignBonus": "goonk/card-villageHall.png"
+        },
+        "townHall": {
+          "animation": "goonk/structure-townHall",
+          "x": 112,
+          "y": 215,
+          "z": 321,
+          "border": "goonk/outline-townHall.png",
+          "area": "goonk/hit-townHall.png",
+          "campaignBonus": "goonk/card-townHall.png"
+        },
+        "cityHall": {
+          "animation": "goonk/structure-cityHall",
+          "x": 112,
+          "y": 190,
+          "z": 321,
+          "border": "goonk/outline-cityHall.png",
+          "area": "goonk/hit-cityHall.png",
+          "campaignBonus": "goonk/card-cityHall.png"
+        },
+        "capitol": {
+          "animation": "goonk/structure-capitol",
+          "x": 112,
+          "y": 190,
+          "z": 321,
+          "border": "goonk/outline-capitol.png",
+          "area": "goonk/hit-capitol.png",
+          "campaignBonus": "goonk/card-capitol.png"
+        },
+        "marketplace": {
+          "animation": "goonk/structure-marketplace",
+          "x": 250,
+          "y": 263,
+          "z": 346,
+          "border": "goonk/outline-marketplace.png",
+          "area": "goonk/hit-marketplace.png",
+          "campaignBonus": "goonk/card-marketplace.png"
+        },
+        "resourceSilo": {
+          "animation": "goonk/structure-resourceSilo",
+          "x": 367,
+          "y": 290,
+          "z": 352,
+          "border": "goonk/outline-resourceSilo.png",
+          "area": "goonk/hit-resourceSilo.png",
+          "campaignBonus": "goonk/card-resourceSilo.png"
+        },
+        "blacksmith": {
+          "animation": "goonk/structure-blacksmith",
+          "x": 335,
+          "y": 178,
+          "z": 258,
+          "border": "goonk/outline-blacksmith.png",
+          "area": "goonk/hit-blacksmith.png",
+          "campaignBonus": "goonk/card-blacksmith.png"
+        },
+        "special1": {
+          "animation": "goonk/structure-special1",
+          "x": 708,
+          "y": 210,
+          "z": 270,
+          "border": "goonk/outline-special1.png",
+          "area": "goonk/hit-special1.png",
+          "campaignBonus": "goonk/card-special1.png"
+        },
+        "horde1": {
+          "animation": "goonk/structure-horde1",
+          "x": 30,
+          "y": 86,
+          "z": 166,
+          "border": "goonk/outline-horde1.png",
+          "area": "goonk/hit-horde1.png",
+          "campaignBonus": "goonk/card-horde1.png",
+          "hidden": true
+        },
+        "horde1Upgr": {
+          "animation": "goonk/structure-horde1Upgr",
+          "x": 30,
+          "y": 86,
+          "z": 166,
+          "border": "goonk/outline-horde1Upgr.png",
+          "area": "goonk/hit-horde1Upgr.png",
+          "campaignBonus": "goonk/card-horde1Upgr.png",
+          "hidden": true
+        },
+        "ship": {
+          "animation": "goonk/structure-ship",
+          "x": 665,
+          "y": 263,
+          "z": 363,
+          "border": "goonk/outline-ship.png",
+          "area": "goonk/hit-ship.png",
+          "campaignBonus": "goonk/card-ship.png"
+        },
+        "special2": {
+          "animation": "goonk/structure-special2",
+          "x": 235,
+          "y": 214,
+          "z": 284,
+          "border": "goonk/outline-special2.png",
+          "area": "goonk/hit-special2.png",
+          "campaignBonus": "goonk/card-special2.png"
+        },
+        "special3": {
+          "animation": "goonk/structure-special3",
+          "x": 12,
+          "y": 172,
+          "z": 257,
+          "border": "goonk/outline-special3.png",
+          "area": "goonk/hit-special3.png",
+          "campaignBonus": "goonk/card-special3.png"
+        },
+        "grail": {
+          "animation": "goonk/structure-grail",
+          "x": 550,
+          "y": 208,
+          "z": 296,
+          "border": "goonk/outline-grail.png",
+          "area": "goonk/hit-grail.png",
+          "campaignBonus": "goonk/card-grail.png"
+        },
+        "dwellingLvl1": {
+          "animation": "goonk/structure-dwellingLvl1",
+          "x": 12,
+          "y": 272,
+          "z": 362,
+          "border": "goonk/outline-dwellingLvl1.png",
+          "area": "goonk/hit-dwellingLvl1.png",
+          "campaignBonus": "goonk/card-dwellingLvl1.png"
+        },
+        "dwellingLvl2": {
+          "animation": "goonk/structure-dwellingLvl2",
+          "x": 245,
+          "y": 125,
+          "z": 210,
+          "border": "goonk/outline-dwellingLvl2.png",
+          "area": "goonk/hit-dwellingLvl2.png",
+          "campaignBonus": "goonk/card-dwellingLvl2.png"
+        },
+        "dwellingLvl3": {
+          "animation": "goonk/structure-dwellingLvl3",
+          "x": 30,
+          "y": 86,
+          "z": 166,
+          "border": "goonk/outline-dwellingLvl3.png",
+          "area": "goonk/hit-dwellingLvl3.png",
+          "campaignBonus": "goonk/card-dwellingLvl3.png"
+        },
+        "dwellingLvl4": {
+          "animation": "goonk/structure-dwellingLvl4",
+          "x": 567,
+          "y": 237,
+          "z": 350,
+          "border": "goonk/outline-dwellingLvl4.png",
+          "area": "goonk/hit-dwellingLvl4.png",
+          "campaignBonus": "goonk/card-dwellingLvl4.png"
+        },
+        "dwellingLvl5": {
+          "animation": "goonk/structure-dwellingLvl5",
+          "x": 435,
+          "y": 274,
+          "z": 358,
+          "border": "goonk/outline-dwellingLvl5.png",
+          "area": "goonk/hit-dwellingLvl5.png",
+          "campaignBonus": "goonk/card-dwellingLvl5.png"
+        },
+        "dwellingLvl6": {
+          "animation": "goonk/structure-dwellingLvl6",
+          "x": 645,
+          "y": 126,
+          "z": 226,
+          "border": "goonk/outline-dwellingLvl6.png",
+          "area": "goonk/hit-dwellingLvl6.png",
+          "campaignBonus": "goonk/card-dwellingLvl6.png"
+        },
+        "dwellingLvl7": {
+          "animation": "goonk/structure-dwellingLvl7",
+          "x": 295,
+          "y": 39,
+          "z": 174,
+          "border": "goonk/outline-dwellingLvl7.png",
+          "area": "goonk/hit-dwellingLvl7.png",
+          "campaignBonus": "goonk/card-dwellingLvl7.png"
+        },
+        "dwellingUpLvl1": {
+          "animation": "goonk/structure-dwellingUpLvl1",
+          "x": 12,
+          "y": 272,
+          "z": 362,
+          "border": "goonk/outline-dwellingUpLvl1.png",
+          "area": "goonk/hit-dwellingUpLvl1.png",
+          "campaignBonus": "goonk/card-dwellingUpLvl1.png"
+        },
+        "dwellingUpLvl2": {
+          "animation": "goonk/structure-dwellingUpLvl2",
+          "x": 245,
+          "y": 125,
+          "z": 210,
+          "border": "goonk/outline-dwellingUpLvl2.png",
+          "area": "goonk/hit-dwellingUpLvl2.png",
+          "campaignBonus": "goonk/card-dwellingUpLvl2.png"
+        },
+        "dwellingUpLvl3": {
+          "animation": "goonk/structure-dwellingUpLvl3",
+          "x": 30,
+          "y": 86,
+          "z": 166,
+          "border": "goonk/outline-dwellingUpLvl3.png",
+          "area": "goonk/hit-dwellingUpLvl3.png",
+          "campaignBonus": "goonk/card-dwellingUpLvl3.png"
+        },
+        "dwellingUpLvl4": {
+          "animation": "goonk/structure-dwellingUpLvl4",
+          "x": 567,
+          "y": 237,
+          "z": 350,
+          "border": "goonk/outline-dwellingUpLvl4.png",
+          "area": "goonk/hit-dwellingUpLvl4.png",
+          "campaignBonus": "goonk/card-dwellingUpLvl4.png"
+        },
+        "dwellingUpLvl5": {
+          "animation": "goonk/structure-dwellingUpLvl5",
+          "x": 435,
+          "y": 274,
+          "z": 358,
+          "border": "goonk/outline-dwellingUpLvl5.png",
+          "area": "goonk/hit-dwellingUpLvl5.png",
+          "campaignBonus": "goonk/card-dwellingUpLvl5.png"
+        },
+        "dwellingUpLvl6": {
+          "animation": "goonk/structure-dwellingUpLvl6",
+          "x": 645,
+          "y": 126,
+          "z": 226,
+          "border": "goonk/outline-dwellingUpLvl6.png",
+          "area": "goonk/hit-dwellingUpLvl6.png",
+          "campaignBonus": "goonk/card-dwellingUpLvl6.png"
+        },
+        "dwellingUpLvl7": {
+          "animation": "goonk/structure-dwellingUpLvl7",
+          "x": 295,
+          "y": 39,
+          "z": 174,
+          "border": "goonk/outline-dwellingUpLvl7.png",
+          "area": "goonk/hit-dwellingUpLvl7.png",
+          "campaignBonus": "goonk/card-dwellingUpLvl7.png"
+        }
+      },
+      "musicTheme": [
+        "music/CstleTown"
+      ],
+      "defaultTavern": 5,
+      "tavernVideo": "",
+      "guildBackground": [
+        "TPMAGE.bmp"
+      ],
+      "townBackground": "goonk/town-v2.png",
+      "guildWindow": [
+        "TPMAGECS.bmp"
+      ],
+      "buildingsIcons": "goonk/building-cards-v2",
+      "hallBackground": "TPTHBKCS.BMP",
+      "hallSlots": [
+        [
+          [
+            "villageHall",
+            "townHall",
+            "cityHall",
+            "capitol"
+          ],
+          [
+            "fort",
+            "citadel",
+            "castle"
+          ],
+          [
+            "tavern",
+            "special3"
+          ],
+          [
+            "blacksmith"
+          ]
+        ],
+        [
+          [
+            "marketplace",
+            "resourceSilo"
+          ],
+          [
+            "mageGuild1",
+            "mageGuild2",
+            "mageGuild3",
+            "mageGuild4"
+          ],
+          [
+            "shipyard",
+            "special1"
+          ]
+        ],
+        [
+          [
+            "special2"
+          ],
+          [
+            "horde1",
+            "horde1Upgr"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl1",
+            "dwellingUpLvl1"
+          ],
+          [
+            "dwellingLvl2",
+            "dwellingUpLvl2"
+          ],
+          [
+            "dwellingLvl3",
+            "dwellingUpLvl3"
+          ],
+          [
+            "dwellingLvl4",
+            "dwellingUpLvl4"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl5",
+            "dwellingUpLvl5"
+          ],
+          [
+            "dwellingLvl6",
+            "dwellingUpLvl6"
+          ],
+          [
+            "dwellingLvl7",
+            "dwellingUpLvl7"
+          ]
+        ]
+      ],
+      "creatures": [
+        [
+          "paingpaing",
+          "paingpaingRoyal"
+        ],
+        [
+          "picpique",
+          "picpiqueRoyal"
+        ],
+        [
+          "zinzeclair",
+          "zinzeclairRoyal"
+        ],
+        [
+          "bubu",
+          "bubuRoyal"
+        ],
+        [
+          "glouglou",
+          "glouglouRoyal"
+        ],
+        [
+          "bobope",
+          "bobopeRoyal"
+        ],
+        [
+          "maillemaille",
+          "maillemailleRoyal"
+        ]
+      ],
+      "horde": [
+        2,
+        -1
+      ],
+      "mageGuild": 4,
+      "guildSpellPositions": [
+        [
+          {
+            "x": 222,
+            "y": 445
+          },
+          {
+            "x": 312,
+            "y": 445
+          },
+          {
+            "x": 402,
+            "y": 445
+          },
+          {
+            "x": 520,
+            "y": 445
+          },
+          {
+            "x": 610,
+            "y": 445
+          },
+          {
+            "x": 700,
+            "y": 445
+          }
+        ],
+        [
+          {
+            "x": 48,
+            "y": 53
+          },
+          {
+            "x": 48,
+            "y": 147
+          },
+          {
+            "x": 48,
+            "y": 241
+          },
+          {
+            "x": 48,
+            "y": 335
+          },
+          {
+            "x": 48,
+            "y": 429
+          }
+        ],
+        [
+          {
+            "x": 570,
+            "y": 82
+          },
+          {
+            "x": 672,
+            "y": 82
+          },
+          {
+            "x": 570,
+            "y": 157
+          },
+          {
+            "x": 672,
+            "y": 157
+          }
+        ],
+        [
+          {
+            "x": 183,
+            "y": 42
+          },
+          {
+            "x": 183,
+            "y": 148
+          },
+          {
+            "x": 183,
+            "y": 253
+          }
+        ]
+      ],
+      "guildWindowPosition": {
+        "x": 332,
+        "y": 76
+      },
+      "moatAbility": "castleMoat",
+      "buildings": {
+        "mageGuild1": {
+          "name": "Guilde des sortilèges 1",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "mageGuild2": {
+          "name": "Guilde des sortilèges 2",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "mageGuild3": {
+          "name": "Guilde des sortilèges 3",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "mageGuild4": {
+          "name": "Guilde des sortilèges 4",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "tavern": {
+          "name": "Taverne des doudous",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "shipyard": {
+          "name": "Chantier des petits bateaux",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "fort": {
+          "name": "Remparts Goonks",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "citadel": {
+          "name": "Citadelle des nez",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "castle": {
+          "name": "Château des sept Goonks",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "villageHall": {
+          "name": "Maison des Goonks",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {}
+        },
+        "townHall": {
+          "name": "Hôtel des nez",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "cityHall": {
+          "name": "Palais des peluches",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "capitol": {
+          "name": "Grand palais Goonk",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "marketplace": {
+          "name": "Marché des peluches",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "resourceSilo": {
+          "produce": {
+            "ore": 1,
+            "wood": 1
+          },
+          "name": "Réserve des doudous",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "blacksmith": {
+          "warMachine": "ballista",
+          "name": "Forge Goonk",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "special1": {
+          "bonuses": [
+            {
+              "propagator": "PLAYER",
+              "type": "MOVEMENT",
+              "subtype": "heroMovementSea",
+              "val": 500
+            }
+          ],
+          "requires": [
+            "shipyard"
+          ],
+          "name": "Phare des peluches",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "horde1": {
+          "upgrades": "dwellingLvl3",
+          "name": "Cibles des orages",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "horde1Upgr": {
+          "upgrades": "dwellingUpLvl3",
+          "requires": [
+            "horde1"
+          ],
+          "name": "Cibles royales",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "ship": {
+          "name": "Bateau Goonk",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "special2": {
+          "requires": [
+            "dwellingLvl4"
+          ],
+          "mapObjectLikeBonuses": "stables",
+          "configuration": {
+            "visitMode": "bonus",
+            "rewards": [
+              {
+                "message": "@core.genrltxt.580",
+                "movePoints": 400,
+                "bonuses": [
+                  {
+                    "type": "MOVEMENT",
+                    "subtype": "heroMovementLand",
+                    "val": 400,
+                    "stacking": "stables",
+                    "valueType": "ADDITIVE_VALUE",
+                    "duration": "ONE_WEEK"
+                  }
+                ]
+              }
+            ]
+          },
+          "name": "Écurie des nez",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "special3": {
+          "upgradeReplacesBonuses": true,
+          "bonuses": [
+            {
+              "type": "MORALE",
+              "val": 2
+            },
+            {
+              "propagator": "PLAYER",
+              "type": "THIEVES_GUILD_ACCESS",
+              "val": 1
+            }
+          ],
+          "upgrades": "tavern",
+          "name": "Grande taverne des Goonks",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "grail": {
+          "bonuses": [
+            {
+              "type": "MORALE",
+              "val": 2,
+              "propagator": "PLAYER"
+            }
+          ],
+          "name": "Grand nez sacré",
+          "description": "Bâtiment du Château Goonk.",
+          "cost": {
+            "gold": 1000,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "dwellingLvl1": {
+          "requires": [
+            "fort"
+          ],
+          "name": "Atelier des nez",
+          "description": "Frappe au corps à corps avec son grand nez. Évolution : deux coups de nez par attaque.",
+          "cost": {
+            "gold": 210,
+            "wood": 4,
+            "ore": 4
+          }
+        },
+        "dwellingLvl2": {
+          "requires": [
+            "dwellingLvl1"
+          ],
+          "name": "Forge des épées-lances",
+          "description": "Combat avec une épée-lance. Son arme frappe aussi la case derrière la cible.",
+          "cost": {
+            "gold": 420,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "dwellingLvl3": {
+          "requires": [
+            "dwellingLvl2"
+          ],
+          "name": "Archerie des orages",
+          "description": "Tire des flèches-éclairs, puis déclenche une explosion magique sur la cible et ses voisins. Attention aux alliés proches.",
+          "cost": {
+            "gold": 660,
+            "wood": 6,
+            "ore": 6
+          }
+        },
+        "dwellingLvl4": {
+          "requires": [
+            "dwellingLvl3"
+          ],
+          "name": "Jardin des pets",
+          "description": "Attaque uniquement avec ses pets. Son nuage affaiblit la cible ; son évolution la ralentit aussi.",
+          "cost": {
+            "gold": 990,
+            "wood": 7,
+            "ore": 7
+          }
+        },
+        "dwellingLvl5": {
+          "requires": [
+            "dwellingLvl4"
+          ],
+          "name": "Laboratoire du vomi",
+          "description": "Crache un jet de vomi cartoon à distance qui ronge la défense. Son évolution ajoute du poison.",
+          "cost": {
+            "gold": 1500,
+            "wood": 8,
+            "ore": 8
+          }
+        },
+        "dwellingLvl6": {
+          "requires": [
+            "dwellingLvl5"
+          ],
+          "name": "Carrière de Bobope",
+          "description": "Lance de gros cailloux comme un Cyclope. Son évolution peut aussi tirer sur les remparts en siège.",
+          "cost": {
+            "gold": 2550,
+            "wood": 9,
+            "ore": 9
+          }
+        },
+        "dwellingLvl7": {
+          "requires": [
+            "dwellingLvl6"
+          ],
+          "name": "Tour des braises",
+          "description": "Lance du feu à distance et peut lancer Boule de feu. Son évolution maîtrise aussi Inferno.",
+          "cost": {
+            "gold": 6600,
+            "wood": 10,
+            "ore": 10
+          }
+        },
+        "dwellingUpLvl1": {
+          "upgrades": "dwellingLvl1",
+          "name": "Atelier des nez royale",
+          "description": "Frappe au corps à corps avec son grand nez. Évolution : deux coups de nez par attaque.",
+          "cost": {
+            "gold": 210,
+            "wood": 4,
+            "ore": 4
+          }
+        },
+        "dwellingUpLvl2": {
+          "upgrades": "dwellingLvl2",
+          "name": "Forge des épées-lances royale",
+          "description": "Combat avec une épée-lance. Son arme frappe aussi la case derrière la cible.",
+          "cost": {
+            "gold": 420,
+            "wood": 5,
+            "ore": 5
+          }
+        },
+        "dwellingUpLvl3": {
+          "upgrades": "dwellingLvl3",
+          "name": "Archerie des orages royale",
+          "description": "Tire des flèches-éclairs, puis déclenche une explosion magique sur la cible et ses voisins. Attention aux alliés proches.",
+          "cost": {
+            "gold": 660,
+            "wood": 6,
+            "ore": 6
+          }
+        },
+        "dwellingUpLvl4": {
+          "upgrades": "dwellingLvl4",
+          "name": "Jardin des pets royale",
+          "description": "Attaque uniquement avec ses pets. Son nuage affaiblit la cible ; son évolution la ralentit aussi.",
+          "cost": {
+            "gold": 990,
+            "wood": 7,
+            "ore": 7
+          }
+        },
+        "dwellingUpLvl5": {
+          "upgrades": "dwellingLvl5",
+          "name": "Laboratoire du vomi royale",
+          "description": "Crache un jet de vomi cartoon à distance qui ronge la défense. Son évolution ajoute du poison.",
+          "cost": {
+            "gold": 1500,
+            "wood": 8,
+            "ore": 8
+          }
+        },
+        "dwellingUpLvl6": {
+          "upgrades": "dwellingLvl6",
+          "name": "Carrière de Bobope royale",
+          "description": "Lance de gros cailloux comme un Cyclope. Son évolution peut aussi tirer sur les remparts en siège.",
+          "cost": {
+            "gold": 2550,
+            "wood": 9,
+            "ore": 9
+          }
+        },
+        "dwellingUpLvl7": {
+          "upgrades": "dwellingLvl7",
+          "name": "Tour des braises royale",
+          "description": "Lance du feu à distance et peut lancer Boule de feu. Son évolution maîtrise aussi Inferno.",
+          "cost": {
+            "gold": 6600,
+            "wood": 10,
+            "ore": 10
+          }
+        },
+        "horde2": null,
+        "horde2Upgr": null,
+        "mageGuild5": null,
+        "special4": null
+      },
+      "siege": {
+        "shooter": "bobope",
+        "imagePrefix": "SGCS",
+        "gate": {
+          "arch": {
+            "x": 477,
+            "y": 238
+          },
+          "gate": {
+            "x": 399,
+            "y": 274
+          }
+        },
+        "moat": {
+          "bank": {
+            "x": 403,
+            "y": 80
+          },
+          "moat": {
+            "x": 410,
+            "y": 90
+          }
+        },
+        "static": {
+          "background": {
+            "x": 600,
+            "y": 49
+          },
+          "bottom": {
+            "x": 512,
+            "y": 347
+          },
+          "top": {
+            "x": 489,
+            "y": 79
+          }
+        },
+        "towers": {
+          "bottom": {
+            "battlement": {
+              "x": 602,
+              "y": 500
+            },
+            "creature": {
+              "x": 394,
+              "y": 299
+            },
+            "tower": {
+              "x": 602,
+              "y": 500
+            }
+          },
+          "keep": {
+            "battlement": {
+              "x": 720,
+              "y": 158
+            },
+            "creature": {
+              "x": 526,
+              "y": -29
+            },
+            "tower": {
+              "x": 720,
+              "y": 158
+            }
+          },
+          "top": {
+            "battlement": {
+              "x": 557,
+              "y": 24
+            },
+            "creature": {
+              "x": 342,
+              "y": -187
+            },
+            "tower": {
+              "x": 569,
+              "y": 35
+            }
+          }
+        },
+        "walls": {
+          "bottom": {
+            "x": 528,
+            "y": 350
+          },
+          "bottomMid": {
+            "x": 469,
+            "y": 291
+          },
+          "upper": {
+            "x": 524,
+            "y": 32
+          },
+          "upperMid": {
+            "x": 470,
+            "y": 127
+          }
+        },
+        "towerIconSmall": "goonk/blue-small.png",
+        "towerIconLarge": "goonk/blue-large.png"
+      },
+      "names": [
+        "Goonkbourg",
+        "Fort Paingpaing",
+        "Roc-Bobope",
+        "Bubuville",
+        "Maille-la-Braise",
+        "La Cité des Sept Nez"
+      ],
+      "tavern": {
+        "core:knight": 15,
+        "core:cleric": 15
+      },
+      "icons": {
+        "village": {
+          "normal": {
+            "small": "goonk/town-small-v2.png",
+            "large": "goonk/town-large-v2.png"
+          },
+          "built": {
+            "small": "goonk/town-small-v2.png",
+            "large": "goonk/town-large-v2.png"
+          }
+        },
+        "fort": {
+          "normal": {
+            "small": "goonk/town-small-v2.png",
+            "large": "goonk/town-large-v2.png"
+          },
+          "built": {
+            "small": "goonk/town-small-v2.png",
+            "large": "goonk/town-large-v2.png"
+          }
+        }
+      }
+    },
+    "name": "Château Goonk",
+    "description": "Le royaume des peluches : nez, cailloux, feu et catastrophes magiques."
+  }
+}
