@@ -9,3 +9,5 @@ work/vcmi-wasm/emscripten/
 .env
 .env.*
 !.env.example
+
+dist/
