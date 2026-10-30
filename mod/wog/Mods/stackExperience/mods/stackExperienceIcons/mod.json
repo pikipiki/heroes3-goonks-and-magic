@@ -1,0 +1,23 @@
+{
+	"name" : "Stack Experience Icons",
+	"description" : "This mod adds new numbered stack experience icons",
+	"modType" : "Mechanics",
+	"author" : "Aphra",
+	"contact" : "http://forum.vcmi.eu/index.php",
+	"version" : "1.1",
+	"depends" : [
+		"vcmi"
+	],
+	"chinese" : {
+		"name" : "生物经验图标",
+		"description" : "这个模组添加新的带数字的生物经验图标。"
+	},
+	"czech" : {
+		"name" : "Ikony zkušeností jednotek",
+		"description" : "Tato modifikace přidává nové číselné ikony zkušeností jednotek."
+	},
+	"polish" : {
+		"name" : "Ikony doświadczenia jednostek",
+		"description" : "Ten moduł dodaje nowe, numerowane ikony doświadczenia jednostek."
+	}
+}

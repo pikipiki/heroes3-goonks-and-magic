@@ -1,0 +1,40 @@
+{
+	"swordOfSharpness" : {
+		"type" : [
+			"COMMANDER"
+		],
+		"class" : "MINOR",
+		"value" : 1000,
+		"bonuses" : {
+			"damage" : {
+				"type" : "CREATURE_DAMAGE",
+				"subtype" : "creatureDamageBoth",
+				"val" : 12,
+				"valueType" : "PERCENT_TO_ALL"
+			}
+		},
+		"graphics" : {
+			"image" : "artifacts/HrArt148",
+			"scenarioBonus" : "artifacts/HrArt148L",
+			"map" : "artifacts/zart148.def"
+		},
+		"growing" : {
+			"bonusesPerLevel" : [
+				{
+					"level" : 1,
+					"bonus" : {
+						"type" : "CREATURE_DAMAGE",
+						"subtype" : "creatureDamageBoth",
+						"val" : 1,
+						"valueType" : "PERCENT_TO_ALL"
+					}
+				}
+			]
+		},
+		"text" : {
+			"name" : "Sword of Sharpness",
+			"description" : "{Sword of Sharpness}\r\n\r\nWhen worn by a commander this artifact gives +12% Damage plus +1% Damage after every victorious battle.",
+			"event" : "You pick up the glowing Sword of Sharpness. You're sure your Commander will enjoy chopping the enemy to pieces with it!"
+		}
+	}
+}

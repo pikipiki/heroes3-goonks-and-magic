@@ -1,0 +1,113 @@
+{
+	"supremeArchangel" : {
+		"name" : {
+			"singular" : "Supreme Archangel",
+			"plural" : "Supreme Archangels"
+		},
+		"faction" : "castle",
+		"level" : 8,
+		"cost" : {
+			"gold" : 10000,
+			"gems" : 4
+		},
+		"doubleWide" : true,
+		"speed" : 18,
+		"hitPoints" : 500,
+		"attack" : 40,
+		"defense" : 40,
+		"damage" : {
+			"min" : 75,
+			"max" : 75
+		},
+		"fightValue" : 18250,
+		"aiValue" : 26300,
+		"advMapAmount" : {
+			"min" : 2,
+			"max" : 5
+		},
+		"growth" : 1,
+		"hasDoubleWeek" : false,
+		"abilities" : {
+			"king2" : {
+				"type" : "KING",
+				"val" : 2,
+				"valueType" : "ADDITIVE_VALUE"
+			},
+			"flying" : {
+				"type" : "FLYING",
+				"subtype" : "movementFlying"
+			},
+			"resurrection100hp" : {
+				"type" : "SPECIFIC_SPELL_POWER",
+				"subtype" : "resurrection",
+				"val" : 100
+			},
+			"resurrects" : {
+				"type" : "SPELLCASTER",
+				"subtype" : "resurrection",
+				"val" : 3
+			},
+			"spellpoints" : {
+				"type" : "CASTS",
+				"val" : 2
+			},
+			"blockRetal" : {
+				"type" : "BLOCKS_RETALIATION"
+			},
+			"const_raises_morale" : {
+				"type" : "MORALE",
+				"val" : 1,
+				"propagator" : "ARMY",
+				"stacking" : "Angels",
+				"description" : "{Increases allies morale}\nSupreme Archangels increase allies Morale by one",
+				"icon" : "icons/e_minot.png"
+			},
+			"fearless" : {
+				"type" : "FEARFUL",
+				"valueType" : "INDEPENDENT_MIN",
+				"val" : 0,
+				"description" : "{Fearless}\nImmune to Fear ability",
+				"icon" : "icons/e_fearl.png"
+			},
+			"hateDevils" : {
+				"type" : "HATE",
+				"subtype" : "devil",
+				"val" : 50,
+				"hidden" : true
+			},
+			"hateArchDevils" : {
+				"type" : "HATE",
+				"subtype" : "archDevil",
+				"val" : 50,
+				"hidden" : true
+			},
+			"hateHellBarons" : {
+				"type" : "HATE",
+				"subtype" : "hellBaron",
+				"val" : 50,
+				"description" : "{Hates Hell Barons}\nDoes 50% more damage to Devils, Archdevils and Hell Barons"
+			}
+		},
+		"graphics" : {
+			"animation" : "creatures/supremeArchangel/ZM150Z",
+			"map" : "creatures/supremeArchangel/zmm150z",
+			"iconSmall" : "creatures/supremeArchangel/CPrS150C",
+			"iconLarge" : "creatures/supremeArchangel/CPrL150Z",
+			"mapAttackFromRight" : "avwattak/ZAvW150a",
+			"mapAttackFromLeft" : "avwattak/ZAvW150b",
+			"timeBetweenFidgets" : 1,
+			"animationTime" : {
+				"walk" : 0.82,
+				"attack" : 1,
+				"idle" : 10
+			}
+		},
+		"sound" : {
+			"attack" : "AAGLATTK.wav",
+			"defend" : "AAGLDFND.wav",
+			"killed" : "AAGLKILL.wav",
+			"move" : "AAGLMOVE.wav",
+			"wince" : "AAGLWNCE.wav"
+		}
+	}
+}

@@ -1,0 +1,72 @@
+{
+	"name" : "Mithril",
+	"description" : "This modification adds a new resource to the game.<br><br>Mithril is a magical metal worth 400 gold per unit.<br><br>- <b>Mithril Mine</b> produces 1 unit of mithril per day for its owner.<br>- <b>Warehouse of Mithril</b> provides 6-10 mithril once per week and refills after 7 days.<br><br>Currently, Mithril mine can appear on random maps using the following templates: Blockbuster, Clash of Dragons, Coldshadow's Fantasy, Extreme, Extreme 2, Frozen Dragons, Headquarters, Jebus Cross, Long Run, Oceans Eleven, Panic, Poor Jebus, Reckless, Roadrunner, Shaaafworld, Skirmish, Speed 2, Spider, Superslam, Triad, and Vortex.",
+	"version" : "1.0",
+	"author" : "George King",
+	"contact" : "http://forum.vcmi.eu/index.php",
+	"modType" : "Resources",
+	"keepDisabled" : true,
+	"compatibility" : {
+		"min" : "1.7.0"
+	},
+	"changelog" : {
+		"1.0.0" : [
+			"Initial release"
+		]
+	},
+	"depends" : [
+		"vcmi"
+	],
+	"softDepends" : [
+		"wake-of-gods.mapDecorations"
+	],
+	"resources" : {
+		"mithril" : {
+			"name" : "Mithril",
+			"price" : 4000,
+			"images" : {
+				"small" : "mithril/small.png",
+				"medium" : "mithril/medium.png",
+				"large" : "mithril/large.png"
+			}
+		}
+	},
+	"objects" : [
+		"config/mithril.json",
+		// Overwerite mithril as gold from wake-of-gods\Mods\mapDecorations\content\config\mapDecorations\wogStatic\mithril.json
+		"config/mithrilFix.json",
+		"config/mine.json",
+		"config/warehouse.json"
+	],
+	"templates" : [
+		"config/rmg/hdmod/blockbuster.json",
+		"config/rmg/hdmod/clashOfDragons.json",
+		"config/rmg/hdmod/coldshadowsFantasy.json",
+		"config/rmg/hdmod/extreme.json",
+		"config/rmg/hdmod/extreme2.json",
+		"config/rmg/hdmod/frozenDragons.json",
+		"config/rmg/hdmod/headquarters.json",
+		"config/rmg/hdmod/jebusCross.json",
+		"config/rmg/hdmod/longRun.json",
+		"config/rmg/hdmod/oceansEleven.json",
+		"config/rmg/hdmod/panic.json",
+		"config/rmg/hdmod/poorJebus.json",
+		"config/rmg/hdmod/reckless.json",
+		"config/rmg/hdmod/roadrunner.json",
+		"config/rmg/hdmod/shaaafworld.json",
+		"config/rmg/hdmod/skirmish.json",
+		"config/rmg/hdmod/speed2.json",
+		"config/rmg/hdmod/spider.json",
+		"config/rmg/hdmod/superslam.json",
+		"config/rmg/hdmod/triad.json",
+		"config/rmg/hdmod/vortex.json"
+	],
+	"chinese" : {
+		"name" : "秘银",
+		"description" : "该模组为游戏新增了一种资源。<br><br>秘银是一种魔法金属，每单位价值 400 金币。<br><br>- <b>秘银矿</b>每天为其占领者产出1单位秘银。<br>- <b>秘银仓库</b>每周一次性提供 6–10 单位秘银，并在 7 天后刷新。<br><br>目前，秘银矿可在使用以下模板的随机地图中生成： Blockbuster, Clash of Dragons, Coldshadow's Fantasy, Extreme, Extreme 2, Frozen Dragons, Headquarters, Jebus Cross, Long Run, Oceans Eleven, Panic, Poor Jebus, Reckless, Roadrunner, Shaaafworld, Skirmish, Speed 2, Spider, Superslam, Triad, and Vortex."
+	},
+	"czech" : {
+		"name" : "Mithril",
+		"description" : "Tato modifikace přidává do hry novou surovinu.<br><br>Mithril je magický kov v hodnotě 400 zlatých za kus.<br><br>- <b>Mithrilový důl</b> produkuje 1 kus mithrilu denně.<br>- <b>Skladiště mithrilu</b> poskytuje 6–10 kusů mithrilu jednou týdně a znovu se doplní po 7 dnech.<br><br>V současnosti se mithrilový důl může objevit na náhodně generovaných mapách při použití následujících šablon: Blockbuster, Clash of Dragons, Coldshadow's Fantasy, Extreme, Extreme 2, Frozen Dragons, Headquarters, Jebus Cross, Long Run, Oceans Eleven, Panic, Poor Jebus, Reckless, Roadrunner, Shaaafworld, Skirmish, Speed 2, Spider, Superslam, Triad a Vortex."
+	}
+}

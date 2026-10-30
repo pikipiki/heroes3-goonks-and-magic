@@ -1,0 +1,29 @@
+{
+	//TODO: implement
+	"helmOfImmortality" : {
+		"type" : [
+			"COMMANDER"
+		],
+		"class" : "RELIC",
+		"value" : 10000,
+		"bonuses" : {
+			"damageReduction" : {
+				"type" : "GENERAL_DAMAGE_REDUCTION",
+				"subtype" : "damageTypeAll",
+				"val" : 90,
+				"valueType" : "INDEPENDENT_MIN"
+			}
+		},
+		"graphics" : {
+			"image" : "artifacts/HrArt149",
+			"scenarioBonus" : "artifacts/HrArt149L",
+			"map" : "artifacts/zart149.def"
+		},
+		"text" : {
+			"name" : "Helm of Immortality",
+			//			"description" : "{Helm of Immortality}\r\n\r\nRevives a slain Commander immediately after battle (artifact incremental bonuses are not lost).",
+			"description" : "{Helm of Immortality}\r\n\r\nWhen worn makes Commander almost invulnerable to physical attack.",
+			"event" : "You pick up the shining Helm of Immortality. If your Commander wears this, death will never last for long!"
+		}
+	}
+}

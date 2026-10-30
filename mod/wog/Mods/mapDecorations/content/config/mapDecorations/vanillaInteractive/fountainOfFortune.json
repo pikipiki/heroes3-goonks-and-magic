@@ -1,0 +1,26 @@
+{
+	"core:fountainOfFortune" : {
+		"types" : {
+			"fountainOfFortune" : {
+				"templates" : {
+					"zfntng01" : {
+						"animation" : "objects/zfntng01.def",
+						"mask" : [
+							"VVV",
+							"VVV",
+							"VAB"
+						],
+						"visitableFrom" : [
+							"---",
+							"+--",
+							"+++"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,18 @@
+{
+  "installedVersion": "9.1.82",
+  "engineCompatibility": {
+    "min": "1.7.0"
+  },
+  "repository": "https://github.com/vcmi-mods/wake-of-gods",
+  "branch": "vcmi-1.7",
+  "commit": "89a9deb0293916abf6c7605aa88e494ac1fcaa17",
+  "latestUpstreamVersion": "9.1.83",
+  "latestUpstreamMinimumEngine": "1.8.0",
+  "existingOtherRepository": {
+    "path": "../Third-Upgrade-Mod-Full",
+    "version": "3.5.0",
+    "platform": "ERA",
+    "compatibleWithThisEngine": false
+  },
+  "note": "VCMI port of WoG, not the complete Windows ERA/ERM runtime. Optional submods requiring newer engine versions must remain disabled."
+}

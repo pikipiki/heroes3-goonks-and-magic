@@ -1,0 +1,111 @@
+{
+	"core:shrineOfMagicLevel1" : {
+		// Warning: lvl1 required for proper h3m loading. Do not change.
+		"name" : "Shrine of Magic Mystery",
+		"handler" : "configurable",
+		"types" : {
+			"wogShrineOfMagicMystery" : {
+				"name" : "Shrine of Magic Mystery",
+				"description" : "(learn level 4 spell)",
+				"rmg" : {
+					"value" : 7000,
+					"rarity" : 100,
+					"zoneLimit" : 1
+				},
+				"sounds" : {
+					"ambient" : [
+						"LOOPSHRIN"
+					],
+					"visit" : [
+						"TEMPLE"
+					]
+				},
+				"compatibilityIdentifiers" : [
+					"object"
+				],
+
+				"visitMode" : "limiter",
+				"visitedTooltip" : 354,
+				//"description" : "@core.xtrainfo.21",
+				"showScoutedPreview" : true,
+
+				"variables" : {
+					"spell" : {
+						"gainedSpell" : {
+							// Note: this variable name is used by engine for H3M loading
+							"level" : 4
+						}
+					}
+				},
+				"visitLimiter" : {
+					"spells" : [
+						"@gainedSpell"
+					]
+				},
+				"rewards" : [
+					{
+						"limiter" : {
+							"canLearnSpells" : [
+								"@gainedSpell"
+							]
+						},
+						"spells" : [
+							"@gainedSpell"
+						],
+						"description" : "@core.genrltxt.355",
+						"message" : [
+							129,
+							"%s."
+						] // You learn new spell
+					}
+				],
+				"onVisitedMessage" : [
+					129,
+					"%s. ",
+					174
+				], // You already known this spell
+				"onEmpty" : [
+					{
+						"limiter" : {
+							"artifacts" : [
+								{
+									"type" : "spellBook"
+								}
+							]
+						},
+						"message" : [
+							129,
+							"%s. ",
+							130
+						] // No Wisdom
+					},
+					{
+						"message" : [
+							129,
+							"%s. ",
+							131
+						] // No spellbook
+					}
+				],
+				"templates" : {
+					"Watersp4" : {
+						"animation" : "objects/Watersp4",
+						"mask" : [
+							"VVV",
+							" VVV",
+							"VAV"
+						],
+						"visitableFrom" : [
+							"---",
+							"+++",
+							"+++"
+						],
+						"allowedTerrains" : [
+							"water"
+						]
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,69 @@
+{
+	"nightmare" : {
+		"name" : {
+			"singular" : "Nightmare",
+			"plural" : "Nightmares"
+		},
+		"faction" : "inferno",
+		"level" : 6,
+		"cost" : {
+			"gold" : 1500
+		},
+		"doubleWide" : true,
+		"speed" : 9,
+		"hitPoints" : 110,
+		"attack" : 18,
+		"defense" : 16,
+		"shots" : 32,
+		"damage" : {
+			"min" : 20,
+			"max" : 24
+		},
+		"fightValue" : 2050,
+		"aiValue" : 2400,
+		"advMapAmount" : {
+			"min" : 5,
+			"max" : 10
+		},
+		"growth" : 2,
+		"hasDoubleWeek" : false,
+		"abilities" : {
+			"deathStare" : {
+				"type" : "DEATH_STARE",
+				"subtype" : "deathStareGorgon",
+				"val" : 15
+			},
+			"mindImmunity" : {
+				"type" : "MIND_IMMUNITY"
+			},
+			"fearless" : {
+				"type" : "FEARFUL",
+				"valueType" : "INDEPENDENT_MIN",
+				"val" : 0,
+				"description" : "{Fearless}\nImmune to Fear ability",
+				"icon" : "icons/e_fearl.png"
+			}
+		},
+		"graphics" : {
+			"animation" : "creatures/nightmare/ZM172N",
+			"map" : "creatures/nightmare/zmm172n",
+			"iconSmall" : "creatures/nightmare/CPrS172N",
+			"iconLarge" : "creatures/nightmare/CPrL172M",
+			"mapAttackFromRight" : "avwattak/ZAvW172a",
+			"mapAttackFromLeft" : "avwattak/ZAvW172b",
+			"timeBetweenFidgets" : 1,
+			"animationTime" : {
+				"walk" : 1.2,
+				"attack" : 1,
+				"idle" : 10
+			}
+		},
+		"sound" : {
+			"attack" : "BGORATTK.wav",
+			"defend" : "BGORDFND.wav",
+			"killed" : "BGORKILL.wav",
+			"move" : "BGORMOVE.wav",
+			"wince" : "BGORWNCE.wav"
+		}
+	}
+}

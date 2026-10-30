@@ -8,7 +8,7 @@ export function renderPage(root){
  const modSettingsPath='/home/web_user/.config/vcmi/modSettings.json';let modSettings;
  try{modSettings=JSON.parse(FS.readFile(modSettingsPath,{encoding:'utf8'}));}catch{modSettings={activePreset:'default',presets:{default:{mods:['core','vcmi'],settings:{}}}};}
  const preset=modSettings.activePreset||'default';modSettings.presets ||= {};modSettings.presets[preset] ||= {mods:['core','vcmi'],settings:{}};
- modSettings.presets[preset].mods=Array.from(new Set([...(modSettings.presets[preset].mods||[]),'goonk']));
+ modSettings.presets[preset].mods=Array.from(new Set([...(modSettings.presets[preset].mods||[]),'goonk','wog']));
  FS.writeFile(modSettingsPath,JSON.stringify(modSettings));
  module.canvas = document.getElementById("canvas");`);
  return html;

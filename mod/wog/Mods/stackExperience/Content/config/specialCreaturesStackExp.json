@@ -1,0 +1,369 @@
+{
+	"core:catapult" : {
+		"stackExperience" : [
+			{
+				"bonus" : {
+					"type" : "PRIMARY_SKILL",
+					"subtype" : "attack"
+				},
+				"values" : [
+					0,
+					1,
+					1,
+					1,
+					1,
+					2,
+					2,
+					2,
+					2,
+					3
+				]
+			},
+			{
+				"bonus" : {
+					"type" : "PRIMARY_SKILL",
+					"subtype" : "defence"
+				},
+				"values" : [
+					1,
+					1,
+					1,
+					1,
+					2,
+					2,
+					2,
+					2,
+					3,
+					3
+				]
+			},
+			{
+				"bonus" : {
+					"type" : "CREATURE_DAMAGE",
+					"subtype" : "creatureDamageMax"
+				},
+				"values" : [
+					0,
+					0,
+					1,
+					1,
+					1,
+					1,
+					2,
+					2,
+					2,
+					2
+				]
+			},
+			{
+				"bonus" : {
+					"type" : "CREATURE_DAMAGE",
+					"subtype" : "creatureDamageMin"
+				},
+				"values" : [
+					0,
+					0,
+					0,
+					1,
+					1,
+					1,
+					1,
+					2,
+					2,
+					2
+				]
+			},
+			{
+				"bonus" : {
+					"valueType" : "PERCENT_TO_BASE",
+					"type" : "STACK_HEALTH"
+				},
+				"values" : [
+					5,
+					10,
+					15,
+					20,
+					25,
+					30,
+					35,
+					40,
+					45,
+					50
+				]
+			}
+		]
+	},
+
+	"core:ballista" : {
+		"stackExperience" : [
+			{
+				"bonus" : {
+					"type" : "PRIMARY_SKILL",
+					"subtype" : "attack"
+				},
+				"values" : [
+					1,
+					1,
+					2,
+					3,
+					4,
+					5,
+					5,
+					6,
+					7,
+					8
+				]
+			},
+			{
+				"bonus" : {
+					"type" : "PRIMARY_SKILL",
+					"subtype" : "defence"
+				},
+				"values" : [
+					1,
+					2,
+					3,
+					3,
+					4,
+					5,
+					6,
+					6,
+					7,
+					8
+				]
+			},
+			{
+				"bonus" : {
+					"type" : "CREATURE_DAMAGE",
+					"subtype" : "creatureDamageMax"
+				},
+				"values" : [
+					1,
+					2,
+					2,
+					3,
+					4,
+					4,
+					5,
+					6,
+					7,
+					7
+				]
+			},
+			{
+				"bonus" : {
+					"type" : "CREATURE_DAMAGE",
+					"subtype" : "creatureDamageMin"
+				},
+				"values" : [
+					0,
+					1,
+					2,
+					3,
+					3,
+					4,
+					5,
+					6,
+					6,
+					7
+				]
+			},
+			{
+				"bonus" : {
+					"valueType" : "PERCENT_TO_BASE",
+					"type" : "STACK_HEALTH"
+				},
+				"values" : [
+					5,
+					10,
+					15,
+					20,
+					25,
+					30,
+					35,
+					40,
+					45,
+					50
+				]
+			}
+		]
+	},
+
+	"core:firstAidTent" : {
+		"stackExperience" : [
+			{
+				"bonus" : {
+					"type" : "PRIMARY_SKILL",
+					"subtype" : "attack"
+				},
+				"values" : [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			},
+			{
+				"bonus" : {
+					"type" : "PRIMARY_SKILL",
+					"subtype" : "defence"
+				},
+				"values" : [
+					1,
+					1,
+					1,
+					1,
+					2,
+					2,
+					2,
+					2,
+					3,
+					3
+				]
+			},
+			{
+				"bonus" : {
+					"type" : "CREATURE_DAMAGE",
+					"subtype" : "creatureDamageBoth"
+				},
+				"values" : [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			},
+			{
+				"bonus" : {
+					"valueType" : "PERCENT_TO_BASE",
+					"type" : "STACK_HEALTH"
+				},
+				"values" : [
+					5,
+					10,
+					15,
+					20,
+					25,
+					30,
+					35,
+					40,
+					45,
+					50
+				]
+			}
+		]
+	},
+
+	"core:ammoCart" : {
+		"stackExperience" : [
+			{
+				"bonus" : {
+					"type" : "PRIMARY_SKILL",
+					"subtype" : "attack"
+				},
+				"values" : [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			},
+			{
+				"bonus" : {
+					"type" : "PRIMARY_SKILL",
+					"subtype" : "defence"
+				},
+				"values" : [
+					1,
+					1,
+					1,
+					1,
+					2,
+					2,
+					2,
+					2,
+					3,
+					3
+				]
+			},
+			{
+				"bonus" : {
+					"type" : "CREATURE_DAMAGE",
+					"subtype" : "creatureDamageMin"
+				},
+				"values" : [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			},
+			{
+				"bonus" : {
+					"valueType" : "PERCENT_TO_BASE",
+					"type" : "STACK_HEALTH"
+				},
+				"values" : [
+					5,
+					10,
+					15,
+					20,
+					25,
+					30,
+					35,
+					40,
+					45,
+					50
+				]
+			}
+		]
+	},
+
+	"core:arrowTower" : {
+		"stackExperience" : [
+			{
+				"bonus" : {
+					"type" : "CREATURE_DAMAGE",
+					"subtype" : "creatureDamageMax",
+					"valueType" : "PERCENT_TO_BASE"
+				},
+				"values" : [
+					50,
+					100,
+					150,
+					200,
+					250,
+					300,
+					350,
+					400,
+					450,
+					500
+				]
+			}
+		]
+	}
+}

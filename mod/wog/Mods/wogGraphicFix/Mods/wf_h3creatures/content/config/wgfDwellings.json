@@ -1,0 +1,128 @@
+{
+	"core:creatureGeneratorCommon" : {
+		"types" : {
+			"cyclopsCaveBig" : {
+				"bannedForRandomDwelling" : true,
+				"name" : "Cyclops Cave",
+				"creatures" : [
+					[
+						"cyclop"
+					]
+				],
+				"sounds" : {
+					"ambient" : [
+						"LOOPCAVE.wav"
+					]
+				},
+				"templates" : {
+					"rough" : {
+						"animation" : "dwellings/AVGcycl1",
+						"mask" : [
+							"VVVV",
+							"VVVV",
+							"VBAB"
+						],
+						"visitableFrom" : [
+							"---",
+							"+++",
+							"+++"
+						],
+						"allowedTerrains" : [
+							"rough"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/AVGcycl1.def"
+			},
+			"behemothCragBig" : {
+				"name" : "Behemoth Crag",
+				"bannedForRandomDwelling" : true,
+				"creatures" : [
+					[
+						"behemoth"
+					]
+				],
+				"sounds" : {
+					"ambient" : [
+						"LOOPBEHE.wav"
+					]
+				},
+				"templates" : {
+					"rough" : {
+						"animation" : "dwellings/avgbhmt1",
+						"mask" : [
+							"VVVV",
+							"VVVV",
+							"VVAB"
+						],
+						"visitableFrom" : [
+							"---",
+							"+++",
+							"+++"
+						],
+						"allowedTerrains" : [
+							"rough"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/avgbhmt1.def"
+			},
+
+			"portalOfGloryBig" : {
+				"name" : "Portal of Glory",
+				"bannedForRandomDwelling" : true,
+				"creatures" : [
+					[
+						"angel"
+					]
+				],
+				"sounds" : {
+					"ambient" : [
+						"LOOPSANC.wav"
+					]
+				},
+				"templates" : {
+					"big" : {
+						"animation" : "dwellings/AVG2ang0",
+						"mask" : [
+							"VVV",
+							"VVV",
+							"VBA"
+						],
+						"visitableFrom" : [
+							"---",
+							"+++",
+							"+++"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/AVG2ang0.def"
+			},
+
+			"hovelSmall" : {
+				"name" : "Hovel",
+				"creatures" : [
+					[
+						"peasant"
+					]
+				],
+				"templates" : {
+					"small" : {
+						"animation" : "dwellings/AVGpeas1",
+						"mask" : [
+							"VVV",
+							"VVV",
+							"VVA"
+						],
+						"visitableFrom" : [
+							"---",
+							"+++",
+							"+++"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/AVGpeas1.def"
+			}
+		}
+	}
+}

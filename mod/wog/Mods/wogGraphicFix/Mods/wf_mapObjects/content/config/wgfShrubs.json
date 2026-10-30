@@ -1,0 +1,331 @@
+{
+	"core:shrub" : {
+		"types" : {
+			"object" : {
+				"templates" : {
+					"RKSHR00" : {
+						"animation" : "shrubs/RKSHR00",
+						"mask" : [
+							"VV",
+							"VB"
+						],
+						"allowedTerrains" : [
+							"sand"
+						]
+					},
+					"RKSHR01" : {
+						"animation" : "shrubs/RKSHR01",
+						"mask" : [
+							"VV",
+							"VB"
+						],
+						"allowedTerrains" : [
+							"sand"
+						]
+					},
+					"RKSHR02" : {
+						"animation" : "shrubs/RKSHR02",
+						"mask" : [
+							"VVV",
+							"VBV"
+						],
+						"allowedTerrains" : [
+							"sand"
+						]
+					},
+
+					"whwp01" : {
+						"animation" : "shrubs/whwp01",
+						"mask" : [
+							"VB"
+						],
+						"allowedTerrains" : [
+							"grass"
+						]
+					},
+					"whwp02" : {
+						"animation" : "shrubs/whwp02",
+						"mask" : [
+							"VB"
+						],
+						"allowedTerrains" : [
+							"grass"
+						]
+					},
+					"whwp03" : {
+						"animation" : "shrubs/whwp03",
+						"mask" : [
+							"VB"
+						],
+						"allowedTerrains" : [
+							"grass"
+						]
+					},
+					"whwp04" : {
+						"animation" : "shrubs/whwp04",
+						"mask" : [
+							"VVV",
+							"VBB"
+						],
+						"allowedTerrains" : [
+							"grass"
+						]
+					},
+
+					"avls02s1" : {
+						"animation" : "shrubs/avls02s1",
+						"mask" : [
+							"VB"
+						],
+						"allowedTerrains" : [
+							"swamp"
+						]
+					},
+
+					"AVLs0sn0" : {
+						"animation" : "shrubs/AVLs0sn0",
+						"mask" : [
+							"BB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"AVLs2sn0" : {
+						"animation" : "shrubs/AVLs2sn0",
+						"mask" : [
+							"B"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"AVLs4sn0" : {
+						"animation" : "shrubs/AVLs4sn0",
+						"mask" : [
+							"BB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"AVLs5sn0" : {
+						"animation" : "shrubs/AVLs5sn0",
+						"mask" : [
+							"VV",
+							"VB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"AVLs6sn0" : {
+						"animation" : "shrubs/AVLs6sn0",
+						"mask" : [
+							"VVV",
+							"VBB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"AVLs7sn0" : {
+						"animation" : "shrubs/AVLs7sn0",
+						"mask" : [
+							"VVVV",
+							"VVBB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+
+					"AVLswp80" : {
+						"animation" : "shrubs/AVLswp80",
+						"mask" : [
+							"VV",
+							"BB"
+						],
+						"allowedTerrains" : [
+							"swamp"
+						]
+					},
+					"AVLswp90" : {
+						"animation" : "shrubs/AVLswp90",
+						"mask" : [
+							"VV",
+							"BB"
+						],
+						"allowedTerrains" : [
+							"swamp"
+						]
+					},
+					"AVLswp91" : {
+						"animation" : "shrubs/AVLswp91",
+						"mask" : [
+							"VVV",
+							"VBB"
+						],
+						"allowedTerrains" : [
+							"swamp"
+						]
+					},
+					"wcattail00" : {
+						"animation" : "shrubs/wcattail00",
+						"mask" : [
+							"VVV",
+							"VBB"
+						],
+						"allowedTerrains" : [
+							"swamp"
+						]
+					},
+					"wcattail01" : {
+						"animation" : "shrubs/wcattail01",
+						"mask" : [
+							"VB"
+						],
+						"allowedTerrains" : [
+							"swamp"
+						]
+					},
+
+					"wctail0" : {
+						"animation" : "shrubs/wctail0",
+						"mask" : [
+							"VVV",
+							"VBB"
+						],
+						"allowedTerrains" : [
+							"swamp"
+						]
+					},
+					"wctail1" : {
+						"animation" : "shrubs/wctail1",
+						"mask" : [
+							"VB"
+						],
+						"allowedTerrains" : [
+							"swamp"
+						]
+					},
+					"AVLSH6R0" : {
+						"animation" : "shrubs/AVLSH6R0",
+						"mask" : [
+							"BB"
+						],
+						"allowedTerrains" : [
+							"rough"
+						]
+					},
+					"AVLSHR90" : {
+						"animation" : "shrubs/AVLSH9R0",
+						"mask" : [
+							"BB"
+						],
+						"allowedTerrains" : [
+							"rough"
+						]
+					},
+					"wgfavlsh9x0" : {
+						"animation" : "shrubs/avlsh9x0",
+						"mask" : [
+							"BBB"
+						],
+						"allowedTerrains" : [
+							"rough"
+						]
+					},
+					"avlsh9r1" : {
+						"animation" : "shrubs/avlsh9r1",
+						"mask" : [
+							"VV",
+							"VB"
+						],
+						"allowedTerrains" : [
+							"rough"
+						]
+					},
+					"avlsh9r2" : {
+						"animation" : "shrubs/avlsh9r2",
+						"mask" : [
+							"VVV",
+							"VBB"
+						],
+						"allowedTerrains" : [
+							"rough"
+						]
+					},
+					"avlsh9r3" : {
+						"animation" : "shrubs/avlsh9r3",
+						"mask" : [
+							"VVVV",
+							"VBBB"
+						],
+						"allowedTerrains" : [
+							"rough"
+						]
+					},
+					"desveg00" : {
+						"animation" : "shrubs/desveg00",
+						"mask" : [
+							"VVV",
+							"VBB"
+						],
+						"allowedTerrains" : [
+							"sand"
+						]
+					},
+					"desveg01" : {
+						"animation" : "shrubs/desveg01",
+						"mask" : [
+							"VVV",
+							"VBB"
+						],
+						"allowedTerrains" : [
+							"sand"
+						]
+					},
+					"desveg02" : {
+						"animation" : "shrubs/desveg02",
+						"mask" : [
+							"VB"
+						],
+						"allowedTerrains" : [
+							"sand"
+						]
+					},
+					"desveg03" : {
+						"animation" : "shrubs/desveg03",
+						"mask" : [
+							"VB"
+						],
+						"allowedTerrains" : [
+							"sand"
+						]
+					},
+					"desveg04" : {
+						"animation" : "shrubs/desveg04",
+						"mask" : [
+							"VVV",
+							"VBB"
+						],
+						"allowedTerrains" : [
+							"sand"
+						]
+					},
+					"desveg05" : {
+						"animation" : "shrubs/desveg05",
+						"mask" : [
+							"VVV",
+							"VBB"
+						],
+						"allowedTerrains" : [
+							"sand"
+						]
+					}
+				}
+			}
+		}
+	}
+}

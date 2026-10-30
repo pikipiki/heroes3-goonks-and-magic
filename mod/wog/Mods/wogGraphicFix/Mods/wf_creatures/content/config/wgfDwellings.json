@@ -1,0 +1,31 @@
+{
+	"core:creatureGeneratorCommon" : {
+		"types" : {
+			"vastCavern" : {
+				"templates" : {
+					"smallCavern" : {
+						"animation" : "dwellings/zavg172c",
+						"mask" : [
+							"VVV",
+							"VVV",
+							"VBA"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell172c.def"
+			},
+			"hellRift" : {
+				"templates" : {
+					"small" : {
+						"animation" : "dwellings/zavg195b",
+						"mask" : [
+							"VV",
+							"BA"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell195b.def"
+			}
+		}
+	}
+}

@@ -1,0 +1,110 @@
+{
+	"core:creatureGeneratorCommon" : {
+		"types" : {
+			"naturalCalamityAir" : {
+				"name" : "Air Calamity",
+				"creatures" : [
+					[
+						"airMessenger"
+					]
+				],
+				"sounds" : {
+					"ambient" : [
+						"LOOPCALA"
+					]
+				},
+				"guards" : true,
+				"templates" : {
+					"default" : {
+						"animation" : "dwellings/zavg174a",
+						"mask" : [
+							"VVVV",
+							"VVVV",
+							"VVVV",
+							"VVAB"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell174.def"
+			},
+			"naturalCalamityWater" : {
+				"name" : "Water Calamity",
+				"creatures" : [
+					[
+						"waterMessenger"
+					]
+				],
+				"guards" : true,
+				"sounds" : {
+					"ambient" : [
+						"LOOPCALA"
+					]
+				},
+				"templates" : {
+					"default" : {
+						"animation" : "dwellings/zavg174a",
+						"mask" : [
+							"VVVV",
+							"VVVV",
+							"VVVV",
+							"VVAB"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell174.def"
+			},
+			"naturalCalamityFire" : {
+				"name" : "Fire Calamity",
+				"creatures" : [
+					[
+						"fireMessenger"
+					]
+				],
+				"sounds" : {
+					"ambient" : [
+						"LOOPCALA"
+					]
+				},
+				"guards" : true,
+				"templates" : {
+					"default" : {
+						"animation" : "dwellings/zavg174a",
+						"mask" : [
+							"VVVV",
+							"VVVV",
+							"VVVV",
+							"VVAB"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell174.def"
+			},
+			"naturalCalamityEarth" : {
+				"name" : "Earth Calamity",
+				"creatures" : [
+					[
+						"earthMessenger"
+					]
+				],
+				"sounds" : {
+					"ambient" : [
+						"LOOPCALA"
+					]
+				},
+				"guards" : true,
+				"templates" : {
+					"default" : {
+						"animation" : "dwellings/zavg174a",
+						"mask" : [
+							"VVV",
+							"VVV",
+							"VVVV",
+							"VVBA"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell174.def"
+			}
+		}
+	}
+}

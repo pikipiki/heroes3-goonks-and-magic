@@ -1,0 +1,74 @@
+{
+	"ghost" : {
+		"name" : {
+			"singular" : "Wraith Ghost",
+			"plural" : "Wraith Ghosts"
+		},
+		"faction" : "neutral",
+		"level" : 3,
+		"cost" : {
+			"gold" : 500
+		},
+		"speed" : 8,
+		"hitPoints" : 5,
+		"attack" : 11,
+		"defense" : 8,
+		"damage" : {
+			"min" : 1,
+			"max" : 2
+		},
+		"fightValue" : 150,
+		"aiValue" : 250,
+		"advMapAmount" : {
+			"min" : 16,
+			"max" : 30
+		},
+		"growth" : 8,
+		"hasDoubleWeek" : false,
+		"abilities" : {
+			"undead" : {
+				"type" : "UNDEAD"
+			},
+			"flying" : {
+				"type" : "FLYING"
+			},
+			"soulSteal" : {
+				"type" : "SOUL_STEAL",
+				"subtype" : "soulStealPermanent",
+				"val" : 1
+			},
+			"armageddonImmunity" : {
+				"type" : "SPELL_IMMUNITY",
+				"subtype" : "armageddon"
+			},
+			"fearless" : {
+				"type" : "FEARFUL",
+				"valueType" : "INDEPENDENT_MIN",
+				"val" : 0,
+				"description" : "{Fearless}\nImmune to Fear ability",
+				"icon" : "icons/e_fearl.png"
+			}
+		},
+		"graphics" : {
+			"animation" : "creatures/ghost/ZM159G",
+			"map" : "creatures/ghost/zmm159g",
+			"iconSmall" : "creatures/ghost/CPrS159G",
+			"iconLarge" : "creatures/ghost/CPrL159G",
+			"mapAttackFromRight" : "avwattak/ZAvW159a",
+			"mapAttackFromLeft" : "avwattak/ZAvW159b",
+			"timeBetweenFidgets" : 1,
+			"animationTime" : {
+				"walk" : 1,
+				"attack" : 1,
+				"idle" : 10
+			}
+		},
+		"sound" : {
+			"attack" : "WRTHATTK.wav",
+			"defend" : "WRTHDFND.wav",
+			"killed" : "WRTHKILL.wav",
+			"move" : "WRTHMOVE.wav",
+			"wince" : "WRTHWNCE.wav"
+		}
+	}
+}

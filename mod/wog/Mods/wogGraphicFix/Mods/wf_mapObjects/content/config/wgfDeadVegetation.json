@@ -1,0 +1,233 @@
+{
+	"core:deadVegetation" : {
+		"types" : {
+			"object" : {
+				"templates" : {
+					"AVLDEAS0" : {
+						"animation" : "trees/AVLDEAS0",
+						"mask" : [
+							"VV",
+							"VB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"AVLDEAS1" : {
+						"animation" : "trees/AVLDEAS1",
+						"mask" : [
+							"VV",
+							"VB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"AVLDEAS2" : {
+						"animation" : "trees/AVLDEAS2",
+						"mask" : [
+							"VVVV",
+							"VBBV",
+							"VVBB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"AVLDEAS3" : {
+						"animation" : "trees/AVLDEAS3",
+						"mask" : [
+							"VVVV",
+							"VVBB",
+							"VBBV"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"AVLDEAS4" : {
+						"animation" : "trees/AVLDEAS4",
+						"mask" : [
+							"VVVV",
+							"VBBV",
+							"VVBB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"AVLDEAS5" : {
+						"animation" : "trees/AVLDEAS5",
+						"mask" : [
+							"VVVV",
+							"VVBB",
+							"VBBV"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"AVLDEAS6" : {
+						"animation" : "trees/AVLDEAS6",
+						"mask" : [
+							"VVVV",
+							"VBBV",
+							"VBBB",
+							"VVBB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"AVLDEAS7" : {
+						"animation" : "trees/AVLDEAS7",
+						"mask" : [
+							"VVVV",
+							"VVBB",
+							"VBBB",
+							"VBBV"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"FRTR00" : {
+						"animation" : "trees/FRTR00",
+						"mask" : [
+							"B"
+						],
+						"allowedTerrains" : [
+							"lava"
+						]
+					},
+					"FRTR01" : {
+						"animation" : "trees/FRTR01",
+						"mask" : [
+							"B"
+						],
+						"allowedTerrains" : [
+							"lava"
+						]
+					},
+					"FRTR02" : {
+						"animation" : "trees/FRTR02",
+						"mask" : [
+							"B"
+						],
+						"allowedTerrains" : [
+							"lava"
+						]
+					},
+					"WFddSN00" : {
+						"animation" : "trees/WFddSN00",
+						"mask" : [
+							"VV",
+							"VB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"WFddSN01" : {
+						"animation" : "trees/WFddSN01",
+						"mask" : [
+							"VV",
+							"VB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"WFddSN02" : {
+						"animation" : "trees/WFddSN02",
+						"mask" : [
+							"VV",
+							"VB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"WFddSN03" : {
+						"animation" : "trees/WFddSN03",
+						"mask" : [
+							"VV",
+							"VB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"WFddSN04" : {
+						"animation" : "trees/WFddSN04",
+						"mask" : [
+							"VVVV",
+							"VVBB",
+							"VBBV"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"WFddSN05" : {
+						"animation" : "trees/WFddSN05",
+						"mask" : [
+							"VVVV",
+							"VVBB",
+							"VBBV"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"WFddSN06" : {
+						"animation" : "trees/WFddSN06",
+						"mask" : [
+							"VVVV",
+							"VBBV",
+							"VVBB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"WFddSN07" : {
+						"animation" : "trees/WFddSN07",
+						"mask" : [
+							"VVVV",
+							"VBBV",
+							"VVBB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"WFddSN08" : {
+						"animation" : "trees/WFddSN08",
+						"mask" : [
+							"VVVV",
+							"VBBV",
+							"VBBB",
+							"VVBB"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					},
+					"WFddSN09" : {
+						"animation" : "trees/WFddSN09",
+						"mask" : [
+							"VVVV",
+							"VVBB",
+							"VBBB",
+							"VBBV"
+						],
+						"allowedTerrains" : [
+							"snow"
+						]
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,298 @@
+{
+	"core:creatureGeneratorCommon" : {
+		"types" : {
+			"rockCoveredPosition" : {
+				"name" : "Rock Covered Position",
+				"creatures" : [
+					[
+						"lavaSharpshooter"
+					]
+				],
+				"guards" : true,
+				"sounds" : {
+					"ambient" : [
+						"dwellings/LOOPARRW"
+					]
+				},
+				"templates" : {
+					"default" : {
+						"animation" : "dwellings/zavg171z",
+						"mask" : [
+							"VVVV",
+							"VVVV",
+							"VVAB"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell171.def"
+			},
+			"snowCoveredPosition" : {
+				"name" : "Snow Covered Position",
+				"creatures" : [
+					[
+						"arcticSharpshooter"
+					]
+				],
+				"guards" : true,
+				"sounds" : {
+					"ambient" : [
+						"dwellings/LOOPARRW"
+					]
+				},
+				"templates" : {
+					"default" : {
+						"animation" : "dwellings/zavg170z",
+						"mask" : [
+							"VVV",
+							"VVV",
+							"VAB"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell170.def"
+			},
+			"vastCavern" : {
+				"name" : "Vast Cavern",
+				"creatures" : [
+					[
+						"gorynych"
+					]
+				],
+				"guards" : true,
+				"sounds" : {
+					"ambient" : [
+						"dwellings/LOOPGRCH"
+					]
+				},
+				"templates" : {
+					"rockCavern" : {
+						"animation" : "dwellings/zavg172a",
+						"mask" : [
+							"VVVV",
+							"VVVV",
+							"VVVV",
+							"VVBA"
+						]
+					},
+					"swampCavern" : {
+						"animation" : "dwellings/zavg172b",
+						"mask" : [
+							"VVVV",
+							"VVVV",
+							"VVVV",
+							"VVBA"
+						],
+						"allowedTerrains" : [
+							"swamp",
+							"lava"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell172a.def"
+			},
+			"dreamHorse-shoe" : {
+				"name" : "Dream Horse-shoe",
+				"creatures" : [
+					[
+						"nightmare"
+					]
+				],
+				"guards" : true,
+				"sounds" : {
+					"ambient" : [
+						"dwellings/LOOPSHOE"
+					]
+				},
+				"templates" : {
+					"default" : {
+						"animation" : "dwellings/zavg173a",
+						"mask" : [
+							"VVVV",
+							"VVVV",
+							"VVVV",
+							"VVAB"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell172.def"
+			},
+			"hellRift" : {
+				"name" : "Hell Rift",
+				"creatures" : [
+					[
+						"hellSteed"
+					]
+				],
+				"guards" : true,
+				"sounds" : {
+					"ambient" : [
+						"dwellings/LOOPHLLRFT"
+					]
+				},
+				"templates" : {
+					"default" : {
+						"animation" : "dwellings/zavg195",
+						"mask" : [
+							"VVVV",
+							"VVBB",
+							"VVBA"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell195.def"
+			},
+			"lostFriary" : {
+				"name" : "Lost Friary",
+				"creatures" : [
+					[
+						"warZealot"
+					]
+				],
+				"guards" : true,
+				"sounds" : {
+					"ambient" : [
+						"dwellings/LOOPWZEL"
+					]
+				},
+				"templates" : {
+					"default" : {
+						"animation" : "dwellings/zavg169",
+						"mask" : [
+							"VVVV",
+							"VVVV",
+							"VVVV",
+							"VBAV"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell169.def"
+			},
+			"snowman" : {
+				"name" : "Snowman",
+				"creatures" : [
+					[
+						"santaGremlin"
+					]
+				],
+				"sounds" : {
+					"ambient" : [
+						"dwellings/LOOPSNWMN"
+					]
+				},
+				"templates" : {
+					"default" : {
+						"animation" : "dwellings/zavg173",
+						"mask" : [
+							"VVVV",
+							"VVVV",
+							"VVVV",
+							"VVAB"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell173.def"
+			},
+			"sylvanHomestead" : {
+				"name" : "Sylvan Homestead",
+				"creatures" : [
+					[
+						"sylvanCentaur"
+					]
+				],
+				"sounds" : {
+					"ambient" : [
+						"dwellings/LOOPSLVN"
+					]
+				},
+				"templates" : {
+					"default" : {
+						"animation" : "dwellings/zavg192",
+						"mask" : [
+							"VVV",
+							"VVV",
+							"VBA"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell192.def"
+			},
+			"enchantedTower" : {
+				"name" : "Enchanted Tower",
+				"creatures" : [
+					[
+						"wogSorceress"
+					]
+				],
+				"guards" : true,
+				"sounds" : {
+					"ambient" : [
+						"dwellings/LOOPETWR"
+					]
+				},
+				"templates" : {
+					"default" : {
+						"animation" : "dwellings/zavg193",
+						"mask" : [
+							"VVV",
+							"VVV",
+							"VVV",
+							"VAB"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell193.def"
+			},
+			"howlingHollow" : {
+				"name" : "Howling Hollow",
+				"creatures" : [
+					[
+						"werewolf"
+					]
+				],
+				"sounds" : {
+					"ambient" : [
+						"dwellings/LOOPWRWF"
+					]
+				},
+				"templates" : {
+					"default" : {
+						"animation" : "dwellings/zavg194",
+						"mask" : [
+							"VVV",
+							"VVV",
+							"VVV",
+							"VAB"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell194.def"
+			},
+			"dragonGraveyard" : {
+				"name" : "Dragon Graveyard",
+				"creatures" : [
+					[
+						"dracolich"
+					]
+				],
+				"guards" : true,
+				"sounds" : {
+					"ambient" : [
+						"dwellings/LOOPDRACO"
+					]
+				},
+				"templates" : {
+					"default" : {
+						"animation" : "dwellings/zavg196",
+						"mask" : [
+							"VVV",
+							"VVV",
+							"VVV",
+							"VAB"
+						]
+					}
+				},
+				"kingdomOverviewImage" : "dwellings/flagports/dwell196.def"
+			}
+		}
+	}
+}

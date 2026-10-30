@@ -1,0 +1,37 @@
+{
+	"name" : "Patched WoG Creatures",
+	"description" : "New graphics for WoG creatures.",
+	"version" : "1.2.2",
+	"author" : "Grossmaster",
+	"contact" : "http://wforum.heroes35.net/showthread.php?tid=5352",
+	"modType" : "Graphical",
+	"objects" : [
+		"config/wgfDwellings"
+	],
+	"softDepends" : [
+		"wake-of-gods.creatures",
+		"wake-of-gods.heroes3datapatch",
+		"wake-of-gods.heroes3datapatch.heroes3datapatchera"
+	],
+	"chinese" : {
+		"name" : "生物补丁",
+		"description" : "SoD/WoG生物的新图像。",
+		"translations" : [
+			"translation/wf_creatures/chinese.json"
+		]
+	},
+	"czech" : {
+		"name" : "Jednotky Wake of Gods",
+		"description" : "Nová grafika pro jednotky z Wake of Gods.",
+		"translations" : [
+			"translation/wf_creatures/czech.json"
+		]
+	},
+	"polish" : {
+		"name" : "Poprawione stworzenia WoG",
+		"description" : "Nowe grafiki stworzeń z WoG.",
+		"translations" : [
+			"translation/wf_creatures/polish.json"
+		]
+	}
+}

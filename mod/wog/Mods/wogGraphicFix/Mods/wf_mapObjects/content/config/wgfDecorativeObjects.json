@@ -1,0 +1,39 @@
+{
+	"zwall004" : {
+		"name" : "Wall",
+		"handler" : "generic",
+		"types" : {
+			"zwall004" : {
+				"name" : "Wall",
+				"templates" : {
+					"zwall004" : {
+						"animation" : "objects/zwall004",
+						"mask" : [
+							"VV",
+							"VB",
+							"VB"
+						]
+					}
+				}
+			}
+		}
+	},
+	"zwall005" : {
+		"name" : "Wall",
+		"handler" : "generic",
+		"types" : {
+			"zwall005" : {
+				"name" : "Wall",
+				"templates" : {
+					"zwall005" : {
+						"animation" : "objects/zwall005",
+						"mask" : [
+							"VVV",
+							"VBV"
+						]
+					}
+				}
+			}
+		}
+	}
+}
