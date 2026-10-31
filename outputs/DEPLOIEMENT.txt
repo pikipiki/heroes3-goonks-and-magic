@@ -25,7 +25,8 @@ POUR RECREER L’ARCHIVE
 Dans le dossier du projet : npm run package:web
 Résultat : outputs/heroes-goonk-netlify-pages.zip
 
-Les données originales Heroes III ne sont pas publiées. Chaque joueur
-importe ses fichiers au premier lancement, sans les envoyer au serveur.
+Les données de base Heroes III sont intégrées dans le déploiement par morceaux
+vérifiés de 4 Mo maximum. Aucun import manuel de fichiers n’est nécessaire : le
+jeu se synchronise directement au premier lancement.
 Sur GitHub Pages, laisse la page terminer son premier rechargement.
 Netlify et GitHub Pages ont des stockages locaux distincts.

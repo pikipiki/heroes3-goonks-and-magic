@@ -1,0 +1,5332 @@
+{
+  "version": 1,
+  "chunkSize": 4194304,
+  "files": [
+    {
+      "path": "Data/H3ab_ahd.snd",
+      "size": 1494972,
+      "hash": "c233f26b82aa1e5025489f69a8f6f9724f70df2df0be42b21562a3899a56aca0",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1494972,
+          "hash": "c233f26b82aa1e5025489f69a8f6f9724f70df2df0be42b21562a3899a56aca0"
+        }
+      ]
+    },
+    {
+      "path": "Data/H3ab_bmp.lod",
+      "size": 44019475,
+      "hash": "3cc4256e8844b3cd0af2706431dee320848bd1630b9f6c6022f6d4c78780f347",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 4194304,
+          "hash": "2056abae898f4ea7617df2e2c91323438c0a41db21e3d31b86ca0f5e9b4b2007"
+        },
+        {
+          "offset": 4194304,
+          "size": 4194304,
+          "hash": "09a695c21df66bfaf40efde2c34c805a585f3d874855a5501736b7093eed3ea8"
+        },
+        {
+          "offset": 8388608,
+          "size": 4194304,
+          "hash": "df4a7929efa5794039d0f5d105e95c18a351b7a95bbabb2b8740df80a6d4acee"
+        },
+        {
+          "offset": 12582912,
+          "size": 4194304,
+          "hash": "b7229d0f5d6ab142ba018c8c5b9197749a3a9f692bce89e12efaed594a8cb15d"
+        },
+        {
+          "offset": 16777216,
+          "size": 4194304,
+          "hash": "a25d3d982e682777fb060988826257a46dcfc012469fd6913b266db78cd2e265"
+        },
+        {
+          "offset": 20971520,
+          "size": 4194304,
+          "hash": "83fd040502f239776b92b4eff5fbfa2fd9bda401ed587db416e95bb93fd8fb91"
+        },
+        {
+          "offset": 25165824,
+          "size": 4194304,
+          "hash": "774ea1f2968b2e882e9f8e389d1c6f991f60003fe7101f2506e303fd7282aa74"
+        },
+        {
+          "offset": 29360128,
+          "size": 4194304,
+          "hash": "f2c83885f1540b092b4283907147ce8736f808f8545d401ffdf1935121287d6e"
+        },
+        {
+          "offset": 33554432,
+          "size": 4194304,
+          "hash": "65ea24f9d54d22cb5c75bff4ca8e24e11b1f52f05bb6d81585f2b88ac1997231"
+        },
+        {
+          "offset": 37748736,
+          "size": 4194304,
+          "hash": "b7c32009727a0d7256d01f7a81defcc57daa383e44b45f391f2334ac55e7a247"
+        },
+        {
+          "offset": 41943040,
+          "size": 2076435,
+          "hash": "24295cc36682f8d8d859c9018942f3481bd5f5d07facc99187bbb4de630be80a"
+        }
+      ]
+    },
+    {
+      "path": "Data/H3ab_spr.lod",
+      "size": 12131193,
+      "hash": "e0d5003742c8602827ef409966784483dece6eedde76aa2cfeee26cb12d25d67",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 4194304,
+          "hash": "3f49e941801fea591febfd8d24f99920b81e6b2f0763e94f5ea509e64d621db6"
+        },
+        {
+          "offset": 4194304,
+          "size": 4194304,
+          "hash": "23a6f76ef45ec2978e5ff2cee24ba8b7801c4984b428f9983a1492f812235462"
+        },
+        {
+          "offset": 8388608,
+          "size": 3742585,
+          "hash": "7a241bb01bbd0878a98c18e525f7563b43ad21850084fe5753b3424e934f978f"
+        }
+      ]
+    },
+    {
+      "path": "Data/H3bitmap.lod",
+      "size": 105724954,
+      "hash": "774cbfa7cfed6713ec80c48f8619a258dac14260e4f85faeebb29c053950a5a8",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 4194304,
+          "hash": "39f5f03d9c7b3a31d54873dbd51ff93179567be3de9daf4b999b76cd3d48f3d6"
+        },
+        {
+          "offset": 4194304,
+          "size": 4194304,
+          "hash": "6f4d7a4875fb34a1c5825b6fa632a62db1c77736aa8db2bac66aca77cfe77aa3"
+        },
+        {
+          "offset": 8388608,
+          "size": 4194304,
+          "hash": "3577b10a102d6b8f9c69c1a6c7827119bd5dbff08bdd4ca3c6debabed91fefd7"
+        },
+        {
+          "offset": 12582912,
+          "size": 4194304,
+          "hash": "9712403aac786c0db3b3358cda80dfbeaff27f72813eb6a43070d3330f6ffa20"
+        },
+        {
+          "offset": 16777216,
+          "size": 4194304,
+          "hash": "1841317eb8ffb9f64ba7a2932a232de566b766019f9c2c55e37bd86f89983c84"
+        },
+        {
+          "offset": 20971520,
+          "size": 4194304,
+          "hash": "9ae22411a7299c0e4115d9b9d4d4543f1fb70696a53d7315b4314c0d3c05199d"
+        },
+        {
+          "offset": 25165824,
+          "size": 4194304,
+          "hash": "932e69cf5492f3250f06fd91ccfe26b7ef8634e0e4068e34c11a2dbf6d321104"
+        },
+        {
+          "offset": 29360128,
+          "size": 4194304,
+          "hash": "94af4067e477d04ed419c0fc121ab8772358f336d7f2761a14ba57420646d179"
+        },
+        {
+          "offset": 33554432,
+          "size": 4194304,
+          "hash": "fe852a3cf3e8d23dece867efa383025961bfe3cfc3983c933eea0c642f061eab"
+        },
+        {
+          "offset": 37748736,
+          "size": 4194304,
+          "hash": "2fffc9f87bc954afd4b72bab204b284cd72ae6cb666c51b7827f32ee23ec250b"
+        },
+        {
+          "offset": 41943040,
+          "size": 4194304,
+          "hash": "496828b41aa8bc1b80e0da7c02600e1020e287eacd9d2b7b7188a633343f4937"
+        },
+        {
+          "offset": 46137344,
+          "size": 4194304,
+          "hash": "30d116f24c00b0c0489693658b431a77acc422facf3e98557f5d469a3310a3d3"
+        },
+        {
+          "offset": 50331648,
+          "size": 4194304,
+          "hash": "b4b94fc66e92544111f743b94aabb1de6b7a5c440ceefb3e5a77819967d652f4"
+        },
+        {
+          "offset": 54525952,
+          "size": 4194304,
+          "hash": "b9d3857151afc68905cac11aecaada09b4afb870d60bd1bad98f42e9611f03a1"
+        },
+        {
+          "offset": 58720256,
+          "size": 4194304,
+          "hash": "b0eb9418648e7a02a1e116464c8fa7c7184d77a692565d243a1946b7c9fb3eb8"
+        },
+        {
+          "offset": 62914560,
+          "size": 4194304,
+          "hash": "1d21e93fe0c4685c4e6a4eec69ff3b2fe67ad93240928a324963933c60842b0b"
+        },
+        {
+          "offset": 67108864,
+          "size": 4194304,
+          "hash": "2e802dfb236a714d12b78ab65472e2323e60e3b7a3a16492c0f6ffc73c8e7411"
+        },
+        {
+          "offset": 71303168,
+          "size": 4194304,
+          "hash": "57488852654095fe2c1720cb786fc3f45f2ab87cef440d6ff431fab34b5c9857"
+        },
+        {
+          "offset": 75497472,
+          "size": 4194304,
+          "hash": "fc4bcb5fd6c4c38b4cc67a42cdabe161fbc34c6c1ea25ad7098943eac9f0ed85"
+        },
+        {
+          "offset": 79691776,
+          "size": 4194304,
+          "hash": "363c25d1c6bb1d7860a34f70d6bb803e07700e40be94ca3bf103a3ab23dfa68c"
+        },
+        {
+          "offset": 83886080,
+          "size": 4194304,
+          "hash": "618c29e4bebc19a5cd9db176817cba9f69df18fe6fbef479adb3be0897b58329"
+        },
+        {
+          "offset": 88080384,
+          "size": 4194304,
+          "hash": "849992f6662f005734a36f5f69cf221938a2bbea80b1311734ce7d72181b3b19"
+        },
+        {
+          "offset": 92274688,
+          "size": 4194304,
+          "hash": "554155c357ff2b30cab781d260b44b739ccb5b0ccf5bdada853d0763094a1def"
+        },
+        {
+          "offset": 96468992,
+          "size": 4194304,
+          "hash": "06206aabb260a14f906c384d28de70efa42ce2ec08ffff556c7999d8d0bddf43"
+        },
+        {
+          "offset": 100663296,
+          "size": 4194304,
+          "hash": "1ea0794941db2678e9d5e6420faa0e095b250c38417801398ab361f28def4a0d"
+        },
+        {
+          "offset": 104857600,
+          "size": 867354,
+          "hash": "e0c35c645e5d0f51cda0141f6ce4049dcdee7dbd408c2b03c5053e36e1520e79"
+        }
+      ]
+    },
+    {
+      "path": "Data/H3sprite.lod",
+      "size": 64973159,
+      "hash": "57caf2c50573f33a0d91e4222e51d3a73c136d44decf59dde21cacad88fe5d66",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 4194304,
+          "hash": "d1a4933b1e0707d170d29b607d07a497938dd16642461e7c21a51ebe49653c5e"
+        },
+        {
+          "offset": 4194304,
+          "size": 4194304,
+          "hash": "1966f80b158d78a9817db6738c4f56a6a0b23a6121b0d244a2bc5cfd4126b2f7"
+        },
+        {
+          "offset": 8388608,
+          "size": 4194304,
+          "hash": "122f40794c651f447ab2e087129cce5a5130c2930cd4e2f27cc83a50fc71d34a"
+        },
+        {
+          "offset": 12582912,
+          "size": 4194304,
+          "hash": "a7acfde124c553f22da4d5a58e892fa5322ff0f2bcde336d0197155ea9673e07"
+        },
+        {
+          "offset": 16777216,
+          "size": 4194304,
+          "hash": "e754ac49c7893389801569fa4514b299d6e39fc8e210db8f4eda9073d9911266"
+        },
+        {
+          "offset": 20971520,
+          "size": 4194304,
+          "hash": "3e587ae754c5f33deb535baa4c88c00abb988675c427f2a8c5dd9162b42d7204"
+        },
+        {
+          "offset": 25165824,
+          "size": 4194304,
+          "hash": "8c12a3688064d065818850785209ab124458b21ef3ad61ffd494b31593bd371e"
+        },
+        {
+          "offset": 29360128,
+          "size": 4194304,
+          "hash": "3fe63c9d9e4fba1af5a5b3832da41c56c83639203abc1399f8193f3d97ad6614"
+        },
+        {
+          "offset": 33554432,
+          "size": 4194304,
+          "hash": "d718494520336aa27b99e9b29c1ed3a195dcf46246ee6163e8a613e6aaf56b36"
+        },
+        {
+          "offset": 37748736,
+          "size": 4194304,
+          "hash": "f7dd2e38b548a95c1f67b32e8a4bd473dc4be33165db451fa2cc2582f62c116d"
+        },
+        {
+          "offset": 41943040,
+          "size": 4194304,
+          "hash": "754f7a1a91bb58cf4826cc936149dbf7780faee99f5034e8af12679ded3bce1b"
+        },
+        {
+          "offset": 46137344,
+          "size": 4194304,
+          "hash": "b4989f016f557d3477607dae5413275cb332501abd652fd920d2b02e3d77ce3c"
+        },
+        {
+          "offset": 50331648,
+          "size": 4194304,
+          "hash": "78617ba94fc3318dda12724ce96123d0f89fe8f25262ee668fe7691cc87c423c"
+        },
+        {
+          "offset": 54525952,
+          "size": 4194304,
+          "hash": "2bad5280c368007032ad69952c39ec7fc6e204714f5d418e248bd262703ba626"
+        },
+        {
+          "offset": 58720256,
+          "size": 4194304,
+          "hash": "65d85c53397c487d9241c09c6f76d5de8cbd326c362f120176910b516d7d58da"
+        },
+        {
+          "offset": 62914560,
+          "size": 2058599,
+          "hash": "0114c88c9c73523ead118172a411f6c7538e9d2bed4f94819742675d13a09091"
+        }
+      ]
+    },
+    {
+      "path": "Data/Heroes3.snd",
+      "size": 43757432,
+      "hash": "b41d5162c1eb898ca88827b45f63bb27ee27436dd16a2a0ecc178fd644bb5d1b",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 4194304,
+          "hash": "90d0b5c661fd4ed72fa179fdc052203f8d4b02ac47768545ab7acdba53ef8711"
+        },
+        {
+          "offset": 4194304,
+          "size": 4194304,
+          "hash": "754f904b71fbed5192b7962b7b91e73abca0fde8cb9912738f23511db9dd8e1a"
+        },
+        {
+          "offset": 8388608,
+          "size": 4194304,
+          "hash": "3a71581e1af771869a7f223d5270023231294597be87b8742b46902394fa0565"
+        },
+        {
+          "offset": 12582912,
+          "size": 4194304,
+          "hash": "1aaa79ec055696f65c44e844b9740d9a3af38a0cd80fcd07b453040fce0685de"
+        },
+        {
+          "offset": 16777216,
+          "size": 4194304,
+          "hash": "0b312c48b815f90620ee0703c433e9c66476a70305410d883a6b8cb483611591"
+        },
+        {
+          "offset": 20971520,
+          "size": 4194304,
+          "hash": "2184e4f424260a6ad5103311d42f021d495472942f81170ed04a9f1691d12892"
+        },
+        {
+          "offset": 25165824,
+          "size": 4194304,
+          "hash": "b6564abd0562d662509138014d6fbec58ca301c96f99be5d96dc99ea4770d4bd"
+        },
+        {
+          "offset": 29360128,
+          "size": 4194304,
+          "hash": "8646cab1bffe32ec54d746e2a1ed1fbb74b941aa34e5e18fb0e24f9776c0295d"
+        },
+        {
+          "offset": 33554432,
+          "size": 4194304,
+          "hash": "767541617f4bec51724b7f2c06262b2d43f82cd626d7c8afb0a2b82ff6837e7e"
+        },
+        {
+          "offset": 37748736,
+          "size": 4194304,
+          "hash": "8a3323e94dcb42f504db1ad8e75055aa6783603e69323eb5972216bbb2d8184a"
+        },
+        {
+          "offset": 41943040,
+          "size": 1814392,
+          "hash": "095b690187ae33991b495febbb2a93b0cfd2a706bbe3b3ede55113a5823e5353"
+        }
+      ]
+    },
+    {
+      "path": "Maps/Invasion of Endogar.h3m",
+      "size": 110090,
+      "hash": "7a4fa4249bbd58f65500f5602d9eac18fa37060e3499fd261cfa1208a0cc2574",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 110090,
+          "hash": "7a4fa4249bbd58f65500f5602d9eac18fa37060e3499fd261cfa1208a0cc2574"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Adventuring Gnoll.h3m",
+      "size": 57888,
+      "hash": "0ebd95c4ef7061656308b7be7025b109870f4935e34522601d6516fd2a48ca32",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 57888,
+          "hash": "0ebd95c4ef7061656308b7be7025b109870f4935e34522601d6516fd2a48ca32"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Art Of War.h3m",
+      "size": 31468,
+      "hash": "aef10163cc0976a8f8d2354127f826f5d195c5597878b275dc4fb28906a1f051",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 31468,
+          "hash": "aef10163cc0976a8f8d2354127f826f5d195c5597878b275dc4fb28906a1f051"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_bloodhonor.h3m",
+      "size": 38190,
+      "hash": "be320920e5a55033a4018227f28420899ffe81307ebd9da0869da453f758d2eb",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 38190,
+          "hash": "be320920e5a55033a4018227f28420899ffe81307ebd9da0869da453f758d2eb"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_bowhope.h3m",
+      "size": 58032,
+      "hash": "67176d1fcc963d7759b2ac2c4fdb3b8d182ae275d654a340b21ee689b132ff20",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 58032,
+          "hash": "67176d1fcc963d7759b2ac2c4fdb3b8d182ae275d654a340b21ee689b132ff20"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_CHRONICL.H3M",
+      "size": 43346,
+      "hash": "c9b36e0bbaf91f5653edbda91d5d486e4358678cbbfaecf530bc978cb367768b",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 43346,
+          "hash": "c9b36e0bbaf91f5653edbda91d5d486e4358678cbbfaecf530bc978cb367768b"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Continenti.h3m",
+      "size": 38346,
+      "hash": "fb6215d2786b7c1fcc39d1a4baa2d26d0ca9747fdbe20162f7b30d4879784a13",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 38346,
+          "hash": "fb6215d2786b7c1fcc39d1a4baa2d26d0ca9747fdbe20162f7b30d4879784a13"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_DEVIL.H3M",
+      "size": 46414,
+      "hash": "d3a0169a847a99041354d2889d83532cae2a5b7f66f53fc07bcb47b4df075e90",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 46414,
+          "hash": "d3a0169a847a99041354d2889d83532cae2a5b7f66f53fc07bcb47b4df075e90"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_DOGS OF.H3M",
+      "size": 45771,
+      "hash": "24f9284062cc55aa296ec1198f7bb643d78860b3d4cd36ae92bf4402197bafa7",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 45771,
+          "hash": "24f9284062cc55aa296ec1198f7bb643d78860b3d4cd36ae92bf4402197bafa7"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Dragon King.h3m",
+      "size": 97395,
+      "hash": "ae8b16339994991acd4f3c163243432ec6abbeb4d0507d0e08e389044fe0fc6a",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 97395,
+          "hash": "ae8b16339994991acd4f3c163243432ec6abbeb4d0507d0e08e389044fe0fc6a"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Elemente.h3m",
+      "size": 41660,
+      "hash": "83fd320e2f4401bad9cbd099205a41b34076baa2d5c363fca872f2bdc62f185c",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 41660,
+          "hash": "83fd320e2f4401bad9cbd099205a41b34076baa2d5c363fca872f2bdc62f185c"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_End Of The World.h3m",
+      "size": 29822,
+      "hash": "7b8fae5b70a9f28ecd274f77b8349423026c66ce0f16e9982de7b221a1ea3209",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 29822,
+          "hash": "7b8fae5b70a9f28ecd274f77b8349423026c66ce0f16e9982de7b221a1ea3209"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_erathiashauptstadt.h3m",
+      "size": 25025,
+      "hash": "0a14b202a601a50072dbd3c97bef16dc5850e828634fb03ea2f84c6dcad9d223",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 25025,
+          "hash": "0a14b202a601a50072dbd3c97bef16dc5850e828634fb03ea2f84c6dcad9d223"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Evil alliance.h3m",
+      "size": 46978,
+      "hash": "292b80110448c8525f284b4061bcf99796c37c8a3bd60c3d3c5f0d4a0c5fef37",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 46978,
+          "hash": "292b80110448c8525f284b4061bcf99796c37c8a3bd60c3d3c5f0d4a0c5fef37"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Falasia II.h3m",
+      "size": 42021,
+      "hash": "e91cb21ee8e5699ad47a90876e1bb797530b9dc8126922466089c10d2c869496",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 42021,
+          "hash": "e91cb21ee8e5699ad47a90876e1bb797530b9dc8126922466089c10d2c869496"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Falasia III.h3m",
+      "size": 56541,
+      "hash": "63d978f6571811a155580ef609de005a42740f46778601d82d1a120d826a83de",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 56541,
+          "hash": "63d978f6571811a155580ef609de005a42740f46778601d82d1a120d826a83de"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Falasia.h3m",
+      "size": 58675,
+      "hash": "fb3bfd89ccfcdc70518579fa2575d611ee443c386cfc408c6e3eb831decbbc8c",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 58675,
+          "hash": "fb3bfd89ccfcdc70518579fa2575d611ee443c386cfc408c6e3eb831decbbc8c"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Gods.h3m",
+      "size": 41254,
+      "hash": "2651ee194ba58f462bd8311b22e3e178f695c60d022905a055d7b7d203471577",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 41254,
+          "hash": "2651ee194ba58f462bd8311b22e3e178f695c60d022905a055d7b7d203471577"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_GoldheartEX.h3m",
+      "size": 94415,
+      "hash": "91a66e62146a0151c2f74ce8e9b19a8161cb9271429ef5a941802f966142e576",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 94415,
+          "hash": "91a66e62146a0151c2f74ce8e9b19a8161cb9271429ef5a941802f966142e576"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Grandion.h3m",
+      "size": 44791,
+      "hash": "5c45946569f77a91cdcf8ddf7e0a3fd6e498449b55552a149a879d3c0f2adc31",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 44791,
+          "hash": "5c45946569f77a91cdcf8ddf7e0a3fd6e498449b55552a149a879d3c0f2adc31"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Halls of the Dead.h3m",
+      "size": 19059,
+      "hash": "9d513684c203685f06c4ef8fdfd96f7879bd86ccd5e50ce53080204032f9066f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 19059,
+          "hash": "9d513684c203685f06c4ef8fdfd96f7879bd86ccd5e50ce53080204032f9066f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_heavensbattle1.h3m",
+      "size": 47355,
+      "hash": "c7fd127a2865452a3f7a185ba89fb18bb22d11720f279ca88e8d678b1998ae03",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 47355,
+          "hash": "c7fd127a2865452a3f7a185ba89fb18bb22d11720f279ca88e8d678b1998ae03"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_heavensbattle2.h3m",
+      "size": 45653,
+      "hash": "88529081f6b17a9025193fbb58d20f24584b1db237226be7742dc090e060d2eb",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 45653,
+          "hash": "88529081f6b17a9025193fbb58d20f24584b1db237226be7742dc090e060d2eb"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_HONORBRO.H3M",
+      "size": 55411,
+      "hash": "6aca49c8b782db90b38054a6cc3a467fe12af0b65bc82d5120e88c2dcb5660a2",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 55411,
+          "hash": "6aca49c8b782db90b38054a6cc3a467fe12af0b65bc82d5120e88c2dcb5660a2"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_invdemon.h3m",
+      "size": 40373,
+      "hash": "f1757a7378cf482ef98676c8b334a55eecb741183a9fe233be7eab44d44db978",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 40373,
+          "hash": "f1757a7378cf482ef98676c8b334a55eecb741183a9fe233be7eab44d44db978"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Island Cell.h3m",
+      "size": 42568,
+      "hash": "720bda0e5ed15e729906a99c941d0a50e75dd5bb72634507816a3e9461437c35",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 42568,
+          "hash": "720bda0e5ed15e729906a99c941d0a50e75dd5bb72634507816a3e9461437c35"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Islandsafari.h3m",
+      "size": 33641,
+      "hash": "77939f9ef072f62a5072775aaa9406610dc5247365613f2ba3580b34a7a50160",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 33641,
+          "hash": "77939f9ef072f62a5072775aaa9406610dc5247365613f2ba3580b34a7a50160"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_KadeGe.h3m",
+      "size": 39760,
+      "hash": "5816907dfedb545d478147eafde9821720c3f8e37c5367c7bcddbceae8efd55f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 39760,
+          "hash": "5816907dfedb545d478147eafde9821720c3f8e37c5367c7bcddbceae8efd55f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Khelataar.h3m",
+      "size": 32877,
+      "hash": "453794799710a28d7d7e696cf77d75de05a1b4af62115092437f32cf9cd5b881",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 32877,
+          "hash": "453794799710a28d7d7e696cf77d75de05a1b4af62115092437f32cf9cd5b881"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Kingdoms.h3m",
+      "size": 37202,
+      "hash": "a1c163f4831789dc797df9bbe44f9c6467b7b04d2d6391aedfbab45a1615d3a5",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 37202,
+          "hash": "a1c163f4831789dc797df9bbe44f9c6467b7b04d2d6391aedfbab45a1615d3a5"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_LandofFallenGods.h3m",
+      "size": 41784,
+      "hash": "41ce97c53affeec08bcbe8f1e09f18fb43ccbc7e16673d94dfd7c4802bce169c",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 41784,
+          "hash": "41ce97c53affeec08bcbe8f1e09f18fb43ccbc7e16673d94dfd7c4802bce169c"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_LANDOVER.H3M",
+      "size": 46747,
+      "hash": "81601757a7be4f5c16f343584056a64b5764a09ad8b3e3f4fd533be5abea54d7",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 46747,
+          "hash": "81601757a7be4f5c16f343584056a64b5764a09ad8b3e3f4fd533be5abea54d7"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_lkaiser.h3m",
+      "size": 32436,
+      "hash": "90276180a8816a1061322578372a9daa0bdac4a690574c8f1ff5ceee4c934af4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 32436,
+          "hash": "90276180a8816a1061322578372a9daa0bdac4a690574c8f1ff5ceee4c934af4"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Lovers.h3m",
+      "size": 52335,
+      "hash": "b4e367a524a138abd43a5f28fdfa976c3f18e0a33a55c7fddb0d280638cfacd8",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 52335,
+          "hash": "b4e367a524a138abd43a5f28fdfa976c3f18e0a33a55c7fddb0d280638cfacd8"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_maze.h3m",
+      "size": 36511,
+      "hash": "c082adfa658b5e4156cb46ce69d132bc1e04cef003685186ed6c9faf53cb1aef",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 36511,
+          "hash": "c082adfa658b5e4156cb46ce69d132bc1e04cef003685186ed6c9faf53cb1aef"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Mountains Of Despair.h3m",
+      "size": 40673,
+      "hash": "50315c4e2ca2b5e36783a311490915cda0e2ade83237006f9854040ed2dd353e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 40673,
+          "hash": "50315c4e2ca2b5e36783a311490915cda0e2ade83237006f9854040ed2dd353e"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_mushrooms.h3m",
+      "size": 35855,
+      "hash": "42ff6d175c5a5fea7c28c78c5304eeb70db398d196eee1d3bffa2c1729df542b",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 35855,
+          "hash": "42ff6d175c5a5fea7c28c78c5304eeb70db398d196eee1d3bffa2c1729df542b"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_ODYSSEY.H3M",
+      "size": 33236,
+      "hash": "29658f914227d22b1bdb6a5eff719864e4774bf6039e37c5af1342bb477ea096",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 33236,
+          "hash": "29658f914227d22b1bdb6a5eff719864e4774bf6039e37c5af1342bb477ea096"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_ORCWARS.H3M",
+      "size": 47157,
+      "hash": "483062c8d802d405ba6cadbc1650580c2c09fc3f7e26a30caf1a183f0da3b7f0",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 47157,
+          "hash": "483062c8d802d405ba6cadbc1650580c2c09fc3f7e26a30caf1a183f0da3b7f0"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Paradisio.h3m",
+      "size": 39922,
+      "hash": "049070bfb31cec6329d0c3b31012b65c2c71f2b6f32cb83894096cd3e30649c5",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 39922,
+          "hash": "049070bfb31cec6329d0c3b31012b65c2c71f2b6f32cb83894096cd3e30649c5"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_POWER ST.H3M",
+      "size": 29351,
+      "hash": "afc27b9fe147f08558b3fbbd42b05b63d84fb4b8f6a2094b37df0c86ede5c925",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 29351,
+          "hash": "afc27b9fe147f08558b3fbbd42b05b63d84fb4b8f6a2094b37df0c86ede5c925"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Reign of Silence.h3m",
+      "size": 52425,
+      "hash": "9e3afa000ca27e3aa068c7b43781390e14270c509b62b1bb67ef5b06cf368140",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 52425,
+          "hash": "9e3afa000ca27e3aa068c7b43781390e14270c509b62b1bb67ef5b06cf368140"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_RiedelsWorld.h3m",
+      "size": 48874,
+      "hash": "2ed738a0bf0156a9637ef1e4f032d9843a0f63ff640c2f5839aaf47e930132e7",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 48874,
+          "hash": "2ed738a0bf0156a9637ef1e4f032d9843a0f63ff640c2f5839aaf47e930132e7"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Sleeper.h3m",
+      "size": 66236,
+      "hash": "92eebf0e735ab81faedccc10ad0f52c8987e7e8123e0f4f475c40a87dfddd4a9",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 66236,
+          "hash": "92eebf0e735ab81faedccc10ad0f52c8987e7e8123e0f4f475c40a87dfddd4a9"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Sword of Judgement.h3m",
+      "size": 29198,
+      "hash": "bc8e504ac5c4b8240d525d59eb96d59061378a76ca015aebb102aea25cfdbb87",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 29198,
+          "hash": "bc8e504ac5c4b8240d525d59eb96d59061378a76ca015aebb102aea25cfdbb87"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Tartyron3.h3m",
+      "size": 41989,
+      "hash": "dd915819e36fec74c1a3f4dd7a488ab301d4c69084b7af088230f7a65123d979",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 41989,
+          "hash": "dd915819e36fec74c1a3f4dd7a488ab301d4c69084b7af088230f7a65123d979"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Tartyron4.h3m",
+      "size": 39706,
+      "hash": "f1e8860b6207ea596dc1fbb9ff2020b1c5812291d8e7b3a1c6a585e57fec4fe2",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 39706,
+          "hash": "f1e8860b6207ea596dc1fbb9ff2020b1c5812291d8e7b3a1c6a585e57fec4fe2"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_The 8 Realms v1.3.h3m",
+      "size": 54045,
+      "hash": "258649902c00b0d3b5414b2390f904e2be11292635019450688737b3356b3354",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 54045,
+          "hash": "258649902c00b0d3b5414b2390f904e2be11292635019450688737b3356b3354"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_The Black Dread.h3m",
+      "size": 29271,
+      "hash": "bf1c433a3899fb2e3673652c912ee293d81932125b0862117e2afda2e31554ea",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 29271,
+          "hash": "bf1c433a3899fb2e3673652c912ee293d81932125b0862117e2afda2e31554ea"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_The fina.h3m",
+      "size": 43439,
+      "hash": "9ba21d1062309aa56f8d6f69bc86614cc99f2f8002e6e8a62e1b25be3bfead63",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 43439,
+          "hash": "9ba21d1062309aa56f8d6f69bc86614cc99f2f8002e6e8a62e1b25be3bfead63"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_The Isles.h3m",
+      "size": 19423,
+      "hash": "e4bae32dd73eea46952cdcded7597d7cd9c8ea6c3d24ea398483a8d94ecbcefb",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 19423,
+          "hash": "e4bae32dd73eea46952cdcded7597d7cd9c8ea6c3d24ea398483a8d94ecbcefb"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_The Lord of War.h3m",
+      "size": 148091,
+      "hash": "4646793d55dc96a188d266f35090ab14cc888fbbcd57be154e2993201c9547ad",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 148091,
+          "hash": "4646793d55dc96a188d266f35090ab14cc888fbbcd57be154e2993201c9547ad"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_The Quest.h3m",
+      "size": 33488,
+      "hash": "8495ba34637d570a8b14c5cf87275a88d0d7bffd5f9cc7cfc5c4706c5a8dc55f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 33488,
+          "hash": "8495ba34637d570a8b14c5cf87275a88d0d7bffd5f9cc7cfc5c4706c5a8dc55f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_thebigwar_a.h3m",
+      "size": 22552,
+      "hash": "4733bcbd8862cf90abcbf7fb46cb6f08bbed5c9d59df80dcb2de26ef0f2c6f31",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 22552,
+          "hash": "4733bcbd8862cf90abcbf7fb46cb6f08bbed5c9d59df80dcb2de26ef0f2c6f31"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_thebigwar.H3M",
+      "size": 22520,
+      "hash": "6e199aab6f785cac584d61130b3fd73417631dfafbfa75a5ae110209ba4cfcc6",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 22520,
+          "hash": "6e199aab6f785cac584d61130b3fd73417631dfafbfa75a5ae110209ba4cfcc6"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_THEIVES!!.h3m",
+      "size": 14955,
+      "hash": "970b7ccacf9756749fb5135eb01f2d15ee4209adafb4298ff05d29c957cb95c1",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 14955,
+          "hash": "970b7ccacf9756749fb5135eb01f2d15ee4209adafb4298ff05d29c957cb95c1"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Thekingandqueen.h3m",
+      "size": 46920,
+      "hash": "af8b3c418d6afceb5ea921678bc76e29e01da01500e2693c39fe8682835b58d4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 46920,
+          "hash": "af8b3c418d6afceb5ea921678bc76e29e01da01500e2693c39fe8682835b58d4"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_travellers.h3m",
+      "size": 34510,
+      "hash": "cb2918cc450555ff37f7e0cdd1b493d7a1724230925b6daf38346fd32547750a",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 34510,
+          "hash": "cb2918cc450555ff37f7e0cdd1b493d7a1724230925b6daf38346fd32547750a"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_TriadofEvil.h3m",
+      "size": 37047,
+      "hash": "728a0dcf6fc86b7d35ca7108ecc4cecff44a4bb8d8d5d79fcb5e281c4fd6f27d",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 37047,
+          "hash": "728a0dcf6fc86b7d35ca7108ecc4cecff44a4bb8d8d5d79fcb5e281c4fd6f27d"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Twirl.h3m",
+      "size": 28633,
+      "hash": "173b8b4e572eeb1e8c81d4e6370d3a5dc5e751185b63ed4b64d6bf01af76dae7",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 28633,
+          "hash": "173b8b4e572eeb1e8c81d4e6370d3a5dc5e751185b63ed4b64d6bf01af76dae7"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_UNDERG~1.H3M",
+      "size": 216827,
+      "hash": "c74a4c8bd64496f30d3a5b4cf77d609369516170c081965b82ae5f044bf7b0ee",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 216827,
+          "hash": "c74a4c8bd64496f30d3a5b4cf77d609369516170c081965b82ae5f044bf7b0ee"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Viking.h3m",
+      "size": 29281,
+      "hash": "a4bd0237c778c2760bca3816382178c8bcd1316d7e6d59240e413200303147b5",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 29281,
+          "hash": "a4bd0237c778c2760bca3816382178c8bcd1316d7e6d59240e413200303147b5"
+        }
+      ]
+    },
+    {
+      "path": "Maps/L_Wizard Blizzard.h3m",
+      "size": 34135,
+      "hash": "33726c5622a02ef85aca6713f5832776a7ed235b0e43e37ea4da03a45dbdc13c",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 34135,
+          "hash": "33726c5622a02ef85aca6713f5832776a7ed235b0e43e37ea4da03a45dbdc13c"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_4 Isle Fight.h3m",
+      "size": 13196,
+      "hash": "7ededa35d6cd3eecb90230d8f87940e8ac3266c64b1729cef11cb69183805efc",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 13196,
+          "hash": "7ededa35d6cd3eecb90230d8f87940e8ac3266c64b1729cef11cb69183805efc"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_4corners.h3m",
+      "size": 18270,
+      "hash": "f47733d7c5dedafda83b2f93c63c6455553966d9d37dfa5aadf923664ee70ae6",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 18270,
+          "hash": "f47733d7c5dedafda83b2f93c63c6455553966d9d37dfa5aadf923664ee70ae6"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_6sides.h3m",
+      "size": 15917,
+      "hash": "dd773733a4a02e03cd5de8d622394e3dc5bcab29dea06200ccdf0b32283695e3",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 15917,
+          "hash": "dd773733a4a02e03cd5de8d622394e3dc5bcab29dea06200ccdf0b32283695e3"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_A Waiting Game.h3m",
+      "size": 30391,
+      "hash": "55cd6e84be847f033da5a3014e5e19e059a1c6a8605efc49105f5e90f0c642ad",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 30391,
+          "hash": "55cd6e84be847f033da5a3014e5e19e059a1c6a8605efc49105f5e90f0c642ad"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Abanasinia.h3m",
+      "size": 18616,
+      "hash": "7060e5011b76a0fb0b7a4059c105cf6dd3c5cc9b862ccccb05efed7fff80efb3",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 18616,
+          "hash": "7060e5011b76a0fb0b7a4059c105cf6dd3c5cc9b862ccccb05efed7fff80efb3"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_AFTER TH.H3M",
+      "size": 26003,
+      "hash": "31f767bcbc6cf730a695176fda681411576eb12ba8f579e4fef189c57438715c",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 26003,
+          "hash": "31f767bcbc6cf730a695176fda681411576eb12ba8f579e4fef189c57438715c"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_akingdomswar_a.H3M",
+      "size": 13219,
+      "hash": "3d56785a0cfeadd2ceba2d2d973fd47c5c1ad1c62949651abb16439eefe79d44",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 13219,
+          "hash": "3d56785a0cfeadd2ceba2d2d973fd47c5c1ad1c62949651abb16439eefe79d44"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Angry Druids.h3m",
+      "size": 25867,
+      "hash": "7f9c50e9914b84f7cac6e1044b513454af8a1dc9f7280041714507a3c7ceff7f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 25867,
+          "hash": "7f9c50e9914b84f7cac6e1044b513454af8a1dc9f7280041714507a3c7ceff7f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_aroundthelake_a.h3m",
+      "size": 17208,
+      "hash": "7635019ce27ec3dba788cf304f43a2cd6bb6fbd83663a56be41b69817ca2817e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 17208,
+          "hash": "7635019ce27ec3dba788cf304f43a2cd6bb6fbd83663a56be41b69817ca2817e"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_aroundthelake.H3M",
+      "size": 17189,
+      "hash": "717f5c41b2aed8b0b3b19f65590636fae2f25d40b40c5788ad55c3d5030e474b",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 17189,
+          "hash": "717f5c41b2aed8b0b3b19f65590636fae2f25d40b40c5788ad55c3d5030e474b"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_BADLANDS.H3M",
+      "size": 12639,
+      "hash": "f5acefda0f3eb312f245049e92af63bd495faaecc89d98aeb170037eeaf83416",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 12639,
+          "hash": "f5acefda0f3eb312f245049e92af63bd495faaecc89d98aeb170037eeaf83416"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Balance of Power.h3m",
+      "size": 34829,
+      "hash": "69543b963d0d20de93aca2f4025f5e1f8f0b6c4584aaf90f4428d04abd4508ba",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 34829,
+          "hash": "69543b963d0d20de93aca2f4025f5e1f8f0b6c4584aaf90f4428d04abd4508ba"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Battle4all.h3m",
+      "size": 20289,
+      "hash": "e71601d85f8cc0af2626afb13bf876d62275ee5cb01946c55acd8423001d4226",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 20289,
+          "hash": "e71601d85f8cc0af2626afb13bf876d62275ee5cb01946c55acd8423001d4226"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_battlefornothing.h3m",
+      "size": 15381,
+      "hash": "ea6eecdf002309286f14467affbee76f527fcd134b8cb06f20faed73bdeb96b4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 15381,
+          "hash": "ea6eecdf002309286f14467affbee76f527fcd134b8cb06f20faed73bdeb96b4"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_BDEFENSE.H3M",
+      "size": 24591,
+      "hash": "1071100fadccce37823a26d4b0294bd12823f4a4ad1abc9f973ce1b263798add",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 24591,
+          "hash": "1071100fadccce37823a26d4b0294bd12823f4a4ad1abc9f973ce1b263798add"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_BEACHHEA.H3M",
+      "size": 14213,
+      "hash": "52b491c0dfa12f2a1d7e1de07a839ec76313886e0ef872c50c8445301c869cc8",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 14213,
+          "hash": "52b491c0dfa12f2a1d7e1de07a839ec76313886e0ef872c50c8445301c869cc8"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_BIKAT.H3M",
+      "size": 24847,
+      "hash": "1bd53f0551dca5862a2a6a719c03b5d91fbe27054e378738b35875b3226bc3f6",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 24847,
+          "hash": "1bd53f0551dca5862a2a6a719c03b5d91fbe27054e378738b35875b3226bc3f6"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Bruckner.h3m",
+      "size": 22896,
+      "hash": "73d4f443fb1880b8d6a5a1d6e2bbe7349e559cea5764c5b60a2825306cfb163b",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 22896,
+          "hash": "73d4f443fb1880b8d6a5a1d6e2bbe7349e559cea5764c5b60a2825306cfb163b"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Castle Of Pain.h3m",
+      "size": 17333,
+      "hash": "a6cfc5f3510c9c2a3b2ae2bd2b0fc4ce11ba3862cd877e96eba5e497d1b4b61e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 17333,
+          "hash": "a6cfc5f3510c9c2a3b2ae2bd2b0fc4ce11ba3862cd877e96eba5e497d1b4b61e"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_CHAOS.H3M",
+      "size": 74334,
+      "hash": "0dc7e197dbeaf9a7cf31382c850d768abd8ebc90dc12db0e3fe9ddbe44ed947e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 74334,
+          "hash": "0dc7e197dbeaf9a7cf31382c850d768abd8ebc90dc12db0e3fe9ddbe44ed947e"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Claw2.h3m",
+      "size": 8148,
+      "hash": "44c9185c480835bf0ab1225a84a01e38c3254dee23aee05cd8361ac0fa9c7ad2",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 8148,
+          "hash": "44c9185c480835bf0ab1225a84a01e38c3254dee23aee05cd8361ac0fa9c7ad2"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_conflict.h3m",
+      "size": 18720,
+      "hash": "f1f250275a14ca551901276a636f9296b793d1566920567264d2c32031f8dbcc",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 18720,
+          "hash": "f1f250275a14ca551901276a636f9296b793d1566920567264d2c32031f8dbcc"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_crisscross.H3M",
+      "size": 19785,
+      "hash": "107cf1cc464cbc4f3f902734f9eb3425b7d7b80571db290459424f3adb63c97f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 19785,
+          "hash": "107cf1cc464cbc4f3f902734f9eb3425b7d7b80571db290459424f3adb63c97f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Crossroads.h3m",
+      "size": 15803,
+      "hash": "389bc8737aa7357130edba1c715bd4070115aae9ade0f8cad2a37a21fbc96a50",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 15803,
+          "hash": "389bc8737aa7357130edba1c715bd4070115aae9ade0f8cad2a37a21fbc96a50"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Crystal Caverns.h3m",
+      "size": 24781,
+      "hash": "1f4b1d12001cc3740233dfcd01565468fde843f7ba0e0259f65c4e947cabc933",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 24781,
+          "hash": "1f4b1d12001cc3740233dfcd01565468fde843f7ba0e0259f65c4e947cabc933"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Crystal Palace.h3m",
+      "size": 11295,
+      "hash": "f3835d424ba41249472b9dc7ce9a0988deb34ec41d7390eda198256900f3269f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 11295,
+          "hash": "f3835d424ba41249472b9dc7ce9a0988deb34ec41d7390eda198256900f3269f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_CRYSTAL.H3M",
+      "size": 11344,
+      "hash": "542d8370dbc45080037ca30f951a1d26667623eb3931ae813412a1daa66d3e31",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 11344,
+          "hash": "542d8370dbc45080037ca30f951a1d26667623eb3931ae813412a1daa66d3e31"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Cursed Vengence.h3m",
+      "size": 13106,
+      "hash": "3efe26fdb958d3af5a4003e336286f931dd39b3dd83fa52b44dca4fc2d317380",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 13106,
+          "hash": "3efe26fdb958d3af5a4003e336286f931dd39b3dd83fa52b44dca4fc2d317380"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Dark Times.h3m",
+      "size": 36121,
+      "hash": "9278a1a95eb7866b8cd009bb7ed61c29ab2b6c9e35e3173ed9db599d5246fba7",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 36121,
+          "hash": "9278a1a95eb7866b8cd009bb7ed61c29ab2b6c9e35e3173ed9db599d5246fba7"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_DarkAtlantis.h3m",
+      "size": 27348,
+      "hash": "5ba3c36568d8ebd74ba1e6aac7fb64e30230f474f78c1ea37c6a8397a4918275",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 27348,
+          "hash": "5ba3c36568d8ebd74ba1e6aac7fb64e30230f474f78c1ea37c6a8397a4918275"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_death.h3m",
+      "size": 24109,
+      "hash": "3a914716d95e0207107d2fffa8173933f5a9804a835f6729e9337eb508e50aed",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 24109,
+          "hash": "3a914716d95e0207107d2fffa8173933f5a9804a835f6729e9337eb508e50aed"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Die Hard.h3m",
+      "size": 12544,
+      "hash": "f1372b7a3a7d103c9fe22ed0c9ea524c24b461609a3cf8b97007fa5d1c67c2b3",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 12544,
+          "hash": "f1372b7a3a7d103c9fe22ed0c9ea524c24b461609a3cf8b97007fa5d1c67c2b3"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_dragoncrossing_a.h3m",
+      "size": 16574,
+      "hash": "bb839e20a1bf7aee7c360fc3bcece4ef737fc04a35c77626249c6a28150ab3a2",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 16574,
+          "hash": "bb839e20a1bf7aee7c360fc3bcece4ef737fc04a35c77626249c6a28150ab3a2"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_dragoncrossing.H3M",
+      "size": 16565,
+      "hash": "8a7ac412aa147129bdf92b3ccdf97810989a74cad4a23623f3d03908a415b5ec",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 16565,
+          "hash": "8a7ac412aa147129bdf92b3ccdf97810989a74cad4a23623f3d03908a415b5ec"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_DSA1.H3M",
+      "size": 19095,
+      "hash": "4cad032dfbf7498e6b742e49f59114d053e46ccbe654df069e684f68e07908b6",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 19095,
+          "hash": "4cad032dfbf7498e6b742e49f59114d053e46ccbe654df069e684f68e07908b6"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Duel with Orange.h3m",
+      "size": 24242,
+      "hash": "f5ea08cfe58b68e5a5a219d00d0bf2d912fa6c128ff9ddb46a55c9b08ad8c276",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 24242,
+          "hash": "f5ea08cfe58b68e5a5a219d00d0bf2d912fa6c128ff9ddb46a55c9b08ad8c276"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Duel with Purple.h3m",
+      "size": 24261,
+      "hash": "3aa7fe31eb488f790b55c95954ce5f5ab7024153f189fd6eb033e1d23e5eff0d",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 24261,
+          "hash": "3aa7fe31eb488f790b55c95954ce5f5ab7024153f189fd6eb033e1d23e5eff0d"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_DUELING.H3M",
+      "size": 19846,
+      "hash": "2beb904d610178a284e42ce87e20f21781c15d44b5b9456f8f771cd7adb2b2dd",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 19846,
+          "hash": "2beb904d610178a284e42ce87e20f21781c15d44b5b9456f8f771cd7adb2b2dd"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Duelists.h3m",
+      "size": 24160,
+      "hash": "06c806588f12d6b0a818062db278930ebb5bb8d27dba50d6ad640cde5f3146f3",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 24160,
+          "hash": "06c806588f12d6b0a818062db278930ebb5bb8d27dba50d6ad640cde5f3146f3"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_DungeonA.h3m",
+      "size": 29913,
+      "hash": "ffdea8d977e12918f34d81edb75b1cd1106abc091456d66e940a90647da0de09",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 29913,
+          "hash": "ffdea8d977e12918f34d81edb75b1cd1106abc091456d66e940a90647da0de09"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Elemental Pass.h3m",
+      "size": 18480,
+      "hash": "6de72822ee029fa7d8fe0cbe8eb2f14fd7a1db43d6d6e7d7142978079f77536a",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 18480,
+          "hash": "6de72822ee029fa7d8fe0cbe8eb2f14fd7a1db43d6d6e7d7142978079f77536a"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Elven Salvation.h3m",
+      "size": 16896,
+      "hash": "006d84e21be8b5ce419c614007a7687e2ab331c202faedd21ab10543f94e0faf",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 16896,
+          "hash": "006d84e21be8b5ce419c614007a7687e2ab331c202faedd21ab10543f94e0faf"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Evil is Good 2.h3m",
+      "size": 31098,
+      "hash": "b84af17f2077542f3bf5ea3794ec4ba67b3f1f56fe948cdea3685c5dc5d6d568",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 31098,
+          "hash": "b84af17f2077542f3bf5ea3794ec4ba67b3f1f56fe948cdea3685c5dc5d6d568"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_EVIL IS.H3M",
+      "size": 25912,
+      "hash": "2ab54601cef96f007e15ff3047f19bc7c62c986eebcec6711fc240814ef9653f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 25912,
+          "hash": "2ab54601cef96f007e15ff3047f19bc7c62c986eebcec6711fc240814ef9653f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Find the Hat.h3m",
+      "size": 27700,
+      "hash": "2403139526c4e9b15d9dc21867d02d5efe34b64b02ac0f130ee0990aef041c0d",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 27700,
+          "hash": "2403139526c4e9b15d9dc21867d02d5efe34b64b02ac0f130ee0990aef041c0d"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Football.h3m",
+      "size": 6098,
+      "hash": "753b8f607075383fe3c0895b76bf0154f7c55387c05f4bb6ae12b4bbc9f4c6c6",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 6098,
+          "hash": "753b8f607075383fe3c0895b76bf0154f7c55387c05f4bb6ae12b4bbc9f4c6c6"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_forblood.h3m",
+      "size": 21203,
+      "hash": "c68e4203b5fc15ed2e2099f6d83a556f7cc1e2834ab0b3507f6ae83128d4764e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 21203,
+          "hash": "c68e4203b5fc15ed2e2099f6d83a556f7cc1e2834ab0b3507f6ae83128d4764e"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_ForceofFour.h3m",
+      "size": 21509,
+      "hash": "b974d616de7e756f84d3ecce5fc9b2617094b85f3a2baf1ad4f6275a4ba58d67",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 21509,
+          "hash": "b974d616de7e756f84d3ecce5fc9b2617094b85f3a2baf1ad4f6275a4ba58d67"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Foresty area's.h3m",
+      "size": 9255,
+      "hash": "ba2197d9d644aea3cd30e4d7932fcaec217f7edc404b9ebb609017875876bbb7",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 9255,
+          "hash": "ba2197d9d644aea3cd30e4d7932fcaec217f7edc404b9ebb609017875876bbb7"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_fourplay.h3m",
+      "size": 26663,
+      "hash": "6f63dd2e1e1523d6dd5ee45a0bccb27f155a3cd0e40964eef4da276c079f91bd",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 26663,
+          "hash": "6f63dd2e1e1523d6dd5ee45a0bccb27f155a3cd0e40964eef4da276c079f91bd"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Gold Rush.h3m",
+      "size": 20127,
+      "hash": "cad08c9acf7b2a7e409a4142710a95d325beb6d7d784c8d55fb9146afcd61780",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 20127,
+          "hash": "cad08c9acf7b2a7e409a4142710a95d325beb6d7d784c8d55fb9146afcd61780"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_GOOD-EVI.H3M",
+      "size": 29355,
+      "hash": "fcb5cc8974959c177a10df466bb3a84fecc1205fcc0210f16b5bfa0fa43ca9ab",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 29355,
+          "hash": "fcb5cc8974959c177a10df466bb3a84fecc1205fcc0210f16b5bfa0fa43ca9ab"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Graymap1.h3m",
+      "size": 27102,
+      "hash": "e3023e5482b854e97f32b0f413e0b6d1e7eb9304ae00086673e537f62929b602",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 27102,
+          "hash": "e3023e5482b854e97f32b0f413e0b6d1e7eb9304ae00086673e537f62929b602"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_greed_a.h3m",
+      "size": 12426,
+      "hash": "81f43d708c3887608b356399245b360c7f376bb5e09bae0381f3ed0184bb1ef1",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 12426,
+          "hash": "81f43d708c3887608b356399245b360c7f376bb5e09bae0381f3ed0184bb1ef1"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_greed.h3m",
+      "size": 12390,
+      "hash": "b666834be7314b1d3d239da92bb78ddd72fe22e72e56e7a38d06d66064b2fd4e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 12390,
+          "hash": "b666834be7314b1d3d239da92bb78ddd72fe22e72e56e7a38d06d66064b2fd4e"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Guardian(English).h3m",
+      "size": 25940,
+      "hash": "6dc47f3e094ed6714667f70b9643d63026188356514854914fecce5d6b43bc3b",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 25940,
+          "hash": "6dc47f3e094ed6714667f70b9643d63026188356514854914fecce5d6b43bc3b"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_HDOMAIN.H3M",
+      "size": 17310,
+      "hash": "123ff441cd09206390af4d0ef5dc9969b60cface1604b5c9be2cc7df07ce8b93",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 17310,
+          "hash": "123ff441cd09206390af4d0ef5dc9969b60cface1604b5c9be2cc7df07ce8b93"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_heat_a.h3m",
+      "size": 17721,
+      "hash": "c90ca951373072410422eb065b09c81e66ee282ecd9fbc89fab5e35d3b302480",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 17721,
+          "hash": "c90ca951373072410422eb065b09c81e66ee282ecd9fbc89fab5e35d3b302480"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Heavenvs.Hell.h3m",
+      "size": 23334,
+      "hash": "a08ff65ef25c66056a2182bbb8e825deef2c58d5db9ea1a28ca32996ff4f96b4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 23334,
+          "hash": "a08ff65ef25c66056a2182bbb8e825deef2c58d5db9ea1a28ca32996ff4f96b4"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Heroe's Battle.h3m",
+      "size": 21068,
+      "hash": "ea1b52326ecc01a23e5a6339219ab4716c15ae8aa1da189ec9e0c152c2a4598d",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 21068,
+          "hash": "ea1b52326ecc01a23e5a6339219ab4716c15ae8aa1da189ec9e0c152c2a4598d"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Hlgboden.h3m",
+      "size": 24412,
+      "hash": "0ee212e3a73ce063117c9cfea6fdc5e8fc21c83a33477f36c433bc0d48947860",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 24412,
+          "hash": "0ee212e3a73ce063117c9cfea6fdc5e8fc21c83a33477f36c433bc0d48947860"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Hour of the Dragon.h3m",
+      "size": 24752,
+      "hash": "fcedd247d5bcad84ed10b20972d3dd935b836f85041b94a8b59679d975b5f639",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 24752,
+          "hash": "fcedd247d5bcad84ed10b20972d3dd935b836f85041b94a8b59679d975b5f639"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Hour vs. Dungeon.h3m",
+      "size": 24996,
+      "hash": "74c304885811490de3c70290d3a5cc870211c4e1acb4af5ab3f689886862c7ea",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 24996,
+          "hash": "74c304885811490de3c70290d3a5cc870211c4e1acb4af5ab3f689886862c7ea"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Hour vs. Necromancer.h3m",
+      "size": 24960,
+      "hash": "527418bd9342d5cf7dd586329e94c48707df3bb12092531f03eff4e21392c791",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 24960,
+          "hash": "527418bd9342d5cf7dd586329e94c48707df3bb12092531f03eff4e21392c791"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Hour vs. Rampart.h3m",
+      "size": 24975,
+      "hash": "35f103a6ae01efb794ba6ff71a59cdf0ac0a1b7c09deffd15f74a947b2613312",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 24975,
+          "hash": "35f103a6ae01efb794ba6ff71a59cdf0ac0a1b7c09deffd15f74a947b2613312"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_iceland_a.h3m",
+      "size": 18460,
+      "hash": "3ed6b2a603970516affb6dbee5af567251fa98550f38cc478195607901825cc9",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 18460,
+          "hash": "3ed6b2a603970516affb6dbee5af567251fa98550f38cc478195607901825cc9"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_iceland.h3m",
+      "size": 18451,
+      "hash": "32267b24ea64b9771b96d4af839837e1d0fb152a3f0f8d99aaeef074548cd3e4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 18451,
+          "hash": "32267b24ea64b9771b96d4af839837e1d0fb152a3f0f8d99aaeef074548cd3e4"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_inthejungle.H3M",
+      "size": 11706,
+      "hash": "331ca8e16766ea49d97f2d32e1cc8f24f4c17bfc3878fc5cc2adf9c3cb8c8fd7",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 11706,
+          "hash": "331ca8e16766ea49d97f2d32e1cc8f24f4c17bfc3878fc5cc2adf9c3cb8c8fd7"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Island Hoppers.h3m",
+      "size": 20085,
+      "hash": "76d26e1e289441b7cfde4f507ac10dde26e46ab8575ddc458ea159430726e58d",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 20085,
+          "hash": "76d26e1e289441b7cfde4f507ac10dde26e46ab8575ddc458ea159430726e58d"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Island Hoppers(Allies).h3m",
+      "size": 20087,
+      "hash": "ee4c2fde375f4b49a6f3f0186cb6071860153a0da848a8633d452ed0f75774af",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 20087,
+          "hash": "ee4c2fde375f4b49a6f3f0186cb6071860153a0da848a8633d452ed0f75774af"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_JIZZLE~1.H3M",
+      "size": 14042,
+      "hash": "395ba5293f660c6ce11e82e49f49d8e1c32486f7321b89b27ff04f8f5386342a",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 14042,
+          "hash": "395ba5293f660c6ce11e82e49f49d8e1c32486f7321b89b27ff04f8f5386342a"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_jollyroger.h3m",
+      "size": 9199,
+      "hash": "56fdb8fc0193140f5b435f1a8cc59151e7c5ba8f72ccf71f368f0769747e402e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 9199,
+          "hash": "56fdb8fc0193140f5b435f1a8cc59151e7c5ba8f72ccf71f368f0769747e402e"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_justnotbigenough.H3M",
+      "size": 10172,
+      "hash": "d079b0e3e54d76aaad832087783f38dcc86f73e0faf9e75d90bc935df67b507b",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 10172,
+          "hash": "d079b0e3e54d76aaad832087783f38dcc86f73e0faf9e75d90bc935df67b507b"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Kaleb World 1.h3m",
+      "size": 26237,
+      "hash": "fcbb7cb06b4fc2b44b91a24dad4c3ba5a73f6ac923944751355de2fe5cd11931",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 26237,
+          "hash": "fcbb7cb06b4fc2b44b91a24dad4c3ba5a73f6ac923944751355de2fe5cd11931"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_landconquest_a.h3m",
+      "size": 17464,
+      "hash": "a081e3327ead514211bc54a8675ce7733141c7bbeb37516cd247610c19638f3a",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 17464,
+          "hash": "a081e3327ead514211bc54a8675ce7733141c7bbeb37516cd247610c19638f3a"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_landconquest.H3M",
+      "size": 17458,
+      "hash": "843575738ce7dd687292f3941a2312ef6de99daf270b716e8fde3079af565471",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 17458,
+          "hash": "843575738ce7dd687292f3941a2312ef6de99daf270b716e8fde3079af565471"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_landwar_a.h3m",
+      "size": 14818,
+      "hash": "102c186db7e2b39310a3cd4b5f96704d9c14bdd5b86b9a58cd87201989d2f78c",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 14818,
+          "hash": "102c186db7e2b39310a3cd4b5f96704d9c14bdd5b86b9a58cd87201989d2f78c"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_landwar.h3m",
+      "size": 14667,
+      "hash": "ebcea056ab720947ecffbf9fb013f8300a5611be5196dbf29a3e10629afe4465",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 14667,
+          "hash": "ebcea056ab720947ecffbf9fb013f8300a5611be5196dbf29a3e10629afe4465"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Liches and Lieges.h3m",
+      "size": 24388,
+      "hash": "54dd6f070b8ddfb2d19aced08c181954de304ab183fb08468e03c988ccff6cf0",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 24388,
+          "hash": "54dd6f070b8ddfb2d19aced08c181954de304ab183fb08468e03c988ccff6cf0"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Lords of the Underworld.h3m",
+      "size": 22777,
+      "hash": "7e7811123d7c32eb878daee8f9351797d5f558758e12bc0d5852af192be6ddc0",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 22777,
+          "hash": "7e7811123d7c32eb878daee8f9351797d5f558758e12bc0d5852af192be6ddc0"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Mega-Labyrinth.h3m",
+      "size": 16767,
+      "hash": "d56ba0d62222548e56dc20b3ddcebdfa29379f85ca3780bba603db93ad2291eb",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 16767,
+          "hash": "d56ba0d62222548e56dc20b3ddcebdfa29379f85ca3780bba603db93ad2291eb"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_mevsyou.H3M",
+      "size": 15183,
+      "hash": "add7e9f2c051e07675e6aa312e1c95365225bd6a4e920aee5569cbc62bd8f9db",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 15183,
+          "hash": "add7e9f2c051e07675e6aa312e1c95365225bd6a4e920aee5569cbc62bd8f9db"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_mightvsmagic.H3M",
+      "size": 13398,
+      "hash": "2864ca6a396d0f6aaffdc208bab906b2da94a429c2ba4dc94fec013edfb65ed9",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 13398,
+          "hash": "2864ca6a396d0f6aaffdc208bab906b2da94a429c2ba4dc94fec013edfb65ed9"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Minotaur's Maze.h3m",
+      "size": 16072,
+      "hash": "1324f99b04e552458fd324640005b81234aac6dab55cb15292cc076b769ec2ef",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 16072,
+          "hash": "1324f99b04e552458fd324640005b81234aac6dab55cb15292cc076b769ec2ef"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Morbus.h3m",
+      "size": 23021,
+      "hash": "7dee5955f43c02b79d5949d0f4dc7fba09a22d37e214e3bbf3f63fcce6980205",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 23021,
+          "hash": "7dee5955f43c02b79d5949d0f4dc7fba09a22d37e214e3bbf3f63fcce6980205"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Mystic Castle.h3m",
+      "size": 27527,
+      "hash": "79ff1cc94f24e7c989c21288744b3477cb02d34701939bcc936c318fe0c726fd",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 27527,
+          "hash": "79ff1cc94f24e7c989c21288744b3477cb02d34701939bcc936c318fe0c726fd"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Necromicon.h3m",
+      "size": 23584,
+      "hash": "beadc4b722f1887ea55f650ede45b2acc891bc166d3588f6e2a87dbdbc23b3d7",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 23584,
+          "hash": "beadc4b722f1887ea55f650ede45b2acc891bc166d3588f6e2a87dbdbc23b3d7"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_onemustfall.h3m",
+      "size": 13701,
+      "hash": "e3bae0ef56ffa5dcab348234710f4e9aad5e0cc08a678f62d16cf43957329ea3",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 13701,
+          "hash": "e3bae0ef56ffa5dcab348234710f4e9aad5e0cc08a678f62d16cf43957329ea3"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_osmiokat.h3m",
+      "size": 12750,
+      "hash": "f42c8ccb1c6a8f4693c088d60bf88f3362ddeeda5b7bec176fc7f01dfa596aa2",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 12750,
+          "hash": "f42c8ccb1c6a8f4693c088d60bf88f3362ddeeda5b7bec176fc7f01dfa596aa2"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Pandora's Box.h3m",
+      "size": 23428,
+      "hash": "5f154d6e08ae95555fbb66e025d9a705bdee836ecaf54f632db765ebf0323c63",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 23428,
+          "hash": "5f154d6e08ae95555fbb66e025d9a705bdee836ecaf54f632db765ebf0323c63"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Pirate.h3m",
+      "size": 20667,
+      "hash": "3a407d81f1625f9994ac0ea56ee1b22189c58cf4703e0c02fcaa7d4d6c7c539f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 20667,
+          "hash": "3a407d81f1625f9994ac0ea56ee1b22189c58cf4703e0c02fcaa7d4d6c7c539f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Playroom of the Gods.h3m",
+      "size": 21575,
+      "hash": "66b724ed34d30a0403f66b101b793bc60959dfc0613415ab6908bec5c06dd24e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 21575,
+          "hash": "66b724ed34d30a0403f66b101b793bc60959dfc0613415ab6908bec5c06dd24e"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Prisoner of War.h3m",
+      "size": 21886,
+      "hash": "eed4e8472a5d9c30f345c6fc25c1b9f6275b8cf59d9227eb95836b46080864ae",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 21886,
+          "hash": "eed4e8472a5d9c30f345c6fc25c1b9f6275b8cf59d9227eb95836b46080864ae"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_REALMO~2.H3M",
+      "size": 31821,
+      "hash": "0c57f65e87f69bb8e17e2924eb996b15006fcd93fff0c28c679903b21ec1bf94",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 31821,
+          "hash": "0c57f65e87f69bb8e17e2924eb996b15006fcd93fff0c28c679903b21ec1bf94"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_redskull.h3m",
+      "size": 22549,
+      "hash": "845219874f30477b6aea474d567ce906c1cdef5ade6fc9b5100909b26b1ac184",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 22549,
+          "hash": "845219874f30477b6aea474d567ce906c1cdef5ade6fc9b5100909b26b1ac184"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_ressourcenkampf.h3m",
+      "size": 35905,
+      "hash": "7d3bea336ecac000f9ad1ff7c206e0853beb27a5bcb75f0470b897193795a888",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 35905,
+          "hash": "7d3bea336ecac000f9ad1ff7c206e0853beb27a5bcb75f0470b897193795a888"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_risetothechallenge.h3m",
+      "size": 21549,
+      "hash": "bcf3b52d745145677ac2bd0d52e123a1dffa23d5b3958484deb658b0630843e2",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 21549,
+          "hash": "bcf3b52d745145677ac2bd0d52e123a1dffa23d5b3958484deb658b0630843e2"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_roads_a.h3m",
+      "size": 19726,
+      "hash": "1ba3975cdda2f3b6d3f5d3d3e872007920defa04de847713aa3392984bf8dccb",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 19726,
+          "hash": "1ba3975cdda2f3b6d3f5d3d3e872007920defa04de847713aa3392984bf8dccb"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_roads.h3m",
+      "size": 19619,
+      "hash": "28df532691b93134af25d4c7085327223d0f77772f4a6fd849c639beed0df6fb",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 19619,
+          "hash": "28df532691b93134af25d4c7085327223d0f77772f4a6fd849c639beed0df6fb"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Rome.h3m",
+      "size": 11980,
+      "hash": "5c8e76faead1272fcb371b986da33b07849536993cd67fd0c014467f6768e187",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 11980,
+          "hash": "5c8e76faead1272fcb371b986da33b07849536993cd67fd0c014467f6768e187"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Satanicus.h3m",
+      "size": 22306,
+      "hash": "16111dccff53e6195e43c4f828261e401352263ddc17d9850a0d91a53e63fedb",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 22306,
+          "hash": "16111dccff53e6195e43c4f828261e401352263ddc17d9850a0d91a53e63fedb"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Schnitzeljagd.h3m",
+      "size": 16261,
+      "hash": "c36768959215e5c95a54dd45aa647e2289855f438eb52f1f444e892cc3fa4453",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 16261,
+          "hash": "c36768959215e5c95a54dd45aa647e2289855f438eb52f1f444e892cc3fa4453"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_shipwrecked_a.h3m",
+      "size": 17959,
+      "hash": "173f992f96207176c47a8a715d0626c93fd4063c3836bcab5fbd4ee15a8cd6ad",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 17959,
+          "hash": "173f992f96207176c47a8a715d0626c93fd4063c3836bcab5fbd4ee15a8cd6ad"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_shipwrecked.h3m",
+      "size": 17735,
+      "hash": "5d295f86e9471e2ae90dee1f6727377d160712578efca5abeac6b1a022a5b70b",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 17735,
+          "hash": "5d295f86e9471e2ae90dee1f6727377d160712578efca5abeac6b1a022a5b70b"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Spellmasters.h3m",
+      "size": 12049,
+      "hash": "df1481530157594f484b5f85956bf9533fb3d5279349d422fa0da529666c9592",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 12049,
+          "hash": "df1481530157594f484b5f85956bf9533fb3d5279349d422fa0da529666c9592"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_spring_a.h3m",
+      "size": 18691,
+      "hash": "2bab21cf4b84dbef00d14985c6d4b67a5e1cedcf899149db7fc2f31a58d1171b",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 18691,
+          "hash": "2bab21cf4b84dbef00d14985c6d4b67a5e1cedcf899149db7fc2f31a58d1171b"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_spring.h3m",
+      "size": 18631,
+      "hash": "011104ad574068e857d6b864d19432d8f3b2810357d2bb5e90ca96766fa68daa",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 18631,
+          "hash": "011104ad574068e857d6b864d19432d8f3b2810357d2bb5e90ca96766fa68daa"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_swampland.h3m",
+      "size": 12624,
+      "hash": "1d984625a0fa03a1c0693f291073320a16a195bab64ffba62bc5cb8035c1fe19",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 12624,
+          "hash": "1d984625a0fa03a1c0693f291073320a16a195bab64ffba62bc5cb8035c1fe19"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Tacticality.h3m",
+      "size": 15602,
+      "hash": "ab4016159134b5efb1d49a54009ec35a33543d3a8186eaffdceed2eb136ae531",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 15602,
+          "hash": "ab4016159134b5efb1d49a54009ec35a33543d3a8186eaffdceed2eb136ae531"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_tartyron.h3m",
+      "size": 15007,
+      "hash": "020d55443679ec1734dba1c15f4b1d01ab724c71d7e393cf837e6f59e6516039",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 15007,
+          "hash": "020d55443679ec1734dba1c15f4b1d01ab724c71d7e393cf837e6f59e6516039"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_tartyron2.h3m",
+      "size": 18757,
+      "hash": "f1b980dc33fcd31b5cfba9eb0e729dfaa2697ba95b903803f06664f060890853",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 18757,
+          "hash": "f1b980dc33fcd31b5cfba9eb0e729dfaa2697ba95b903803f06664f060890853"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_teleport2_a.h3m",
+      "size": 18670,
+      "hash": "5048b2c49d57e023380d2f3c0e780176c65ed1fef7d89ff8cb2d96ece6a173fc",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 18670,
+          "hash": "5048b2c49d57e023380d2f3c0e780176c65ed1fef7d89ff8cb2d96ece6a173fc"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_teleport2.h3m",
+      "size": 20790,
+      "hash": "28642391f24705069aa44ae59039407f8965d580795b258ff5b6e066ae9d6dfe",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 20790,
+          "hash": "28642391f24705069aa44ae59039407f8965d580795b258ff5b6e066ae9d6dfe"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_The Angel with no Wings.h3m",
+      "size": 21513,
+      "hash": "a0db9c38dace03abada33a5d3ef8680e3827f99906f417c352f1afc045060734",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 21513,
+          "hash": "a0db9c38dace03abada33a5d3ef8680e3827f99906f417c352f1afc045060734"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_The Chase For Freakalis.h3m",
+      "size": 9893,
+      "hash": "4c26aa966d31060841c9ba879f98face8eca8bbdcd051598e42754d10817ab4f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 9893,
+          "hash": "4c26aa966d31060841c9ba879f98face8eca8bbdcd051598e42754d10817ab4f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_The Prince.h3m",
+      "size": 23638,
+      "hash": "693d0dc1419bd0ad3c3e155093f1285297d04dcaba0033bd68fe53d51c18afa4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 23638,
+          "hash": "693d0dc1419bd0ad3c3e155093f1285297d04dcaba0033bd68fe53d51c18afa4"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_THE UNEA.H3M",
+      "size": 29258,
+      "hash": "6a846a2481fbfea1ba1538f24c7cad3c577897aa79c2a45bdc7d60441418ae90",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 29258,
+          "hash": "6a846a2481fbfea1ba1538f24c7cad3c577897aa79c2a45bdc7d60441418ae90"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_THE-DIAM.H3M",
+      "size": 11816,
+      "hash": "05fac534114a1c543e4bed83100a1c9dcd38fb7615b976c761223b78b0d251ed",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 11816,
+          "hash": "05fac534114a1c543e4bed83100a1c9dcd38fb7615b976c761223b78b0d251ed"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_thebreakin_a.h3m",
+      "size": 11468,
+      "hash": "b62bca6eca7333116a7b77017d7cfcc200741830239482ecc32709d5ce224bb0",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 11468,
+          "hash": "b62bca6eca7333116a7b77017d7cfcc200741830239482ecc32709d5ce224bb0"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_thebreakin.H3M",
+      "size": 11446,
+      "hash": "c3e43bc39e6db717228851a85b10c0793e596f83283803961a693a48843422a9",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 11446,
+          "hash": "c3e43bc39e6db717228851a85b10c0793e596f83283803961a693a48843422a9"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_theduel.H3M",
+      "size": 8394,
+      "hash": "9ff8777f0b9706a6e9b08a143f8dfa7fd7d761b5fd43449ce93f0e6325020aef",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 8394,
+          "hash": "9ff8777f0b9706a6e9b08a143f8dfa7fd7d761b5fd43449ce93f0e6325020aef"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Titania.h3m",
+      "size": 23357,
+      "hash": "9a2e2dd74d57abacab0173d26605bba574ce995c907bd3a8750235f16e1401c4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 23357,
+          "hash": "9a2e2dd74d57abacab0173d26605bba574ce995c907bd3a8750235f16e1401c4"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Torn of War.h3m",
+      "size": 25673,
+      "hash": "73899c439d8668a3266a5b215e98e4e6ed63e7d84f773ee1988cc4074cb3f7f4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 25673,
+          "hash": "73899c439d8668a3266a5b215e98e4e6ed63e7d84f773ee1988cc4074cb3f7f4"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Treasure Islands.h3m",
+      "size": 24086,
+      "hash": "79ee1ab9048c50e6652101ab0b761a913a670cf060a511ef688f343cf0bf946d",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 24086,
+          "hash": "79ee1ab9048c50e6652101ab0b761a913a670cf060a511ef688f343cf0bf946d"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Two Enemies.h3m",
+      "size": 20195,
+      "hash": "4787812cb1ca74f07043dcfb4e5c3c58f4e40e9c15de56ade47f8d79fc7faf87",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 20195,
+          "hash": "4787812cb1ca74f07043dcfb4e5c3c58f4e40e9c15de56ade47f8d79fc7faf87"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_uprising_a.h3m",
+      "size": 16823,
+      "hash": "4b058c84cd29b1261a27c37024b449ca3c4b619adbb82acfc3c5e653ea7e65aa",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 16823,
+          "hash": "4b058c84cd29b1261a27c37024b449ca3c4b619adbb82acfc3c5e653ea7e65aa"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_uprising.h3m",
+      "size": 16799,
+      "hash": "4fc33f020dc894fbee5c4f99984c5bf8db7b89842e28650303f2a39273e9f065",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 16799,
+          "hash": "4fc33f020dc894fbee5c4f99984c5bf8db7b89842e28650303f2a39273e9f065"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_war_a.h3m",
+      "size": 17330,
+      "hash": "323eb74c72fc5316f3840ec48f88378144ab5039b429428d0df12611e799bbca",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 17330,
+          "hash": "323eb74c72fc5316f3840ec48f88378144ab5039b429428d0df12611e799bbca"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_war.h3m",
+      "size": 17319,
+      "hash": "a079aa611b4a21560112e8c3136072f7b5f27e41a64da38c6a18a70aa7ebc4ab",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 17319,
+          "hash": "a079aa611b4a21560112e8c3136072f7b5f27e41a64da38c6a18a70aa7ebc4ab"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Waterworld.h3m",
+      "size": 20827,
+      "hash": "7c068fe6b3a3fbf1b477cef5172097f1f46cf1164a5299d49b4bc1cdf2da34ea",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 20827,
+          "hash": "7c068fe6b3a3fbf1b477cef5172097f1f46cf1164a5299d49b4bc1cdf2da34ea"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_World of Xeen.h3m",
+      "size": 25898,
+      "hash": "d31aa1f87e3d009520bc546af0fd4f4cf003e3bedfc2772ebb0eca111f0d6681",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 25898,
+          "hash": "d31aa1f87e3d009520bc546af0fd4f4cf003e3bedfc2772ebb0eca111f0d6681"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_worldofthieves.h3m",
+      "size": 20212,
+      "hash": "12e317cb3dd0e91655d68383f73d6f6893f9f1079eaa7fc7912d0fa8f77e559e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 20212,
+          "hash": "12e317cb3dd0e91655d68383f73d6f6893f9f1079eaa7fc7912d0fa8f77e559e"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_xandallies.h3m",
+      "size": 18120,
+      "hash": "6eedaeaa682b361a986aceb814223aedcacd90e69a1fc76d9b5b83090fedde25",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 18120,
+          "hash": "6eedaeaa682b361a986aceb814223aedcacd90e69a1fc76d9b5b83090fedde25"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_ZELDA.H3M",
+      "size": 19707,
+      "hash": "d0a6cf1bead93bec7e4da9fa275ac04c1b510d03bc34d442ca85cc34bbef1d86",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 19707,
+          "hash": "d0a6cf1bead93bec7e4da9fa275ac04c1b510d03bc34d442ca85cc34bbef1d86"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_Zwei Inseln.h3m",
+      "size": 10226,
+      "hash": "460f5218aaa45e808db6a990a505092db01f6b4d3042e3e55ed5234eb08b1e40",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 10226,
+          "hash": "460f5218aaa45e808db6a990a505092db01f6b4d3042e3e55ed5234eb08b1e40"
+        }
+      ]
+    },
+    {
+      "path": "Maps/M_zyndorsarena.h3m",
+      "size": 15435,
+      "hash": "7dc07d1a3d01a00875eec4ee3ddce9dbde4aa789618b971f2d20d37f5d8fe2d6",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 15435,
+          "hash": "7dc07d1a3d01a00875eec4ee3ddce9dbde4aa789618b971f2d20d37f5d8fe2d6"
+        }
+      ]
+    },
+    {
+      "path": "Maps/Monster Island 1.01.h3m",
+      "size": 149492,
+      "hash": "f805df6f39f0d1e693bcbfa97bd98a15d484bd6ee2713214aa069a8a1ced65d4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 149492,
+          "hash": "f805df6f39f0d1e693bcbfa97bd98a15d484bd6ee2713214aa069a8a1ced65d4"
+        }
+      ]
+    },
+    {
+      "path": "Maps/Paragon 2.0 (eng).h3m",
+      "size": 356497,
+      "hash": "13ca3532780c0d9998d190714805a75c2e2992c68c2ea4a841fc7efb0ab73bc5",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 356497,
+          "hash": "13ca3532780c0d9998d190714805a75c2e2992c68c2ea4a841fc7efb0ab73bc5"
+        }
+      ]
+    },
+    {
+      "path": "Maps/Paragon_2_0.h3m",
+      "size": 378681,
+      "hash": "e98e6385781c2f3ff72d4f83af5423f0ac8ca4bfd3f8db96420eb90abbda0df4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 378681,
+          "hash": "e98e6385781c2f3ff72d4f83af5423f0ac8ca4bfd3f8db96420eb90abbda0df4"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_16Squares.h3m",
+      "size": 9231,
+      "hash": "700832731b9a1c152c5f4a04a7782a5c46cd6bf1a76bb25bc4c4ee55fa7383e9",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 9231,
+          "hash": "700832731b9a1c152c5f4a04a7782a5c46cd6bf1a76bb25bc4c4ee55fa7383e9"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_1on1.H3M",
+      "size": 3586,
+      "hash": "65e8c1b681e9c18996e44568599d39b3099832eb3be7efd2bbe536daee8f4ce1",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 3586,
+          "hash": "65e8c1b681e9c18996e44568599d39b3099832eb3be7efd2bbe536daee8f4ce1"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_2v2_a.h3m",
+      "size": 3923,
+      "hash": "7486acaa7920b258b7698d301b31dd14e2f95145d256963b62129dd5bbeb3bfa",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 3923,
+          "hash": "7486acaa7920b258b7698d301b31dd14e2f95145d256963b62129dd5bbeb3bfa"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_9Squares.h3m",
+      "size": 8085,
+      "hash": "b2366c0adb721ed494bf4a8c6142d9a78fcaf00ecb20c60826aaa5b35bf7856d",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 8085,
+          "hash": "b2366c0adb721ed494bf4a8c6142d9a78fcaf00ecb20c60826aaa5b35bf7856d"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_bandits.h3m",
+      "size": 9171,
+      "hash": "b6e931976560f36e23238e2effe0f147f1595d508c225a15d13157afd680a39c",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 9171,
+          "hash": "b6e931976560f36e23238e2effe0f147f1595d508c225a15d13157afd680a39c"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_battleforhell.h3m",
+      "size": 7241,
+      "hash": "39411f327ca1d56b4455aefc78a9fc39343a1a653a0d1ca9fd4d1c303d493059",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 7241,
+          "hash": "39411f327ca1d56b4455aefc78a9fc39343a1a653a0d1ca9fd4d1c303d493059"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_biter rivals.h3m",
+      "size": 10760,
+      "hash": "6ca0065363d95874fd11fceb696b4669557741eb4a9df63802d1675a9c97ee33",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 10760,
+          "hash": "6ca0065363d95874fd11fceb696b4669557741eb4a9df63802d1675a9c97ee33"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Brendis Quest (v.1.01).h3m",
+      "size": 12530,
+      "hash": "670a10635c73598bc22951aa6e45bb13274dd302b72820aec2aa36a0851ebc1f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 12530,
+          "hash": "670a10635c73598bc22951aa6e45bb13274dd302b72820aec2aa36a0851ebc1f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_conquestofthemiddle.h3m",
+      "size": 7521,
+      "hash": "8d6a48a65a31f4ad6177f0bc8fa62bcfb5ceca6ae83f4cf3dbdf2fc08ba3dea5",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 7521,
+          "hash": "8d6a48a65a31f4ad6177f0bc8fa62bcfb5ceca6ae83f4cf3dbdf2fc08ba3dea5"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_dangerzone.H3M",
+      "size": 5526,
+      "hash": "4f180f4dbdd1795796d99e57de1899984922a549fecdc69e0886cae75cdfa98a",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 5526,
+          "hash": "4f180f4dbdd1795796d99e57de1899984922a549fecdc69e0886cae75cdfa98a"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_DECREPIT.H3M",
+      "size": 7398,
+      "hash": "c096d58d831d123faf8e7880283d62cba320f16f5ea21efe7591181b27467f76",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 7398,
+          "hash": "c096d58d831d123faf8e7880283d62cba320f16f5ea21efe7591181b27467f76"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Defend&Conquer.h3m",
+      "size": 5493,
+      "hash": "23af69b4da168262d683d48f4c6ae5104b79e1c8e282ed5bf695234e7c90bef5",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 5493,
+          "hash": "23af69b4da168262d683d48f4c6ae5104b79e1c8e282ed5bf695234e7c90bef5"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Devil's Pass.h3m",
+      "size": 4015,
+      "hash": "220a8b19e1cfd003a0d42a186d02877099bc434f966dd9db7ae55b7ee434c9bc",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 4015,
+          "hash": "220a8b19e1cfd003a0d42a186d02877099bc434f966dd9db7ae55b7ee434c9bc"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Fire's Devestation.h3m",
+      "size": 10712,
+      "hash": "bb406f1c809542942088ed38acb43102991ab26cd6d4ec4d69417e136177f0ff",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 10712,
+          "hash": "bb406f1c809542942088ed38acb43102991ab26cd6d4ec4d69417e136177f0ff"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_forestdwellers.H3M",
+      "size": 4732,
+      "hash": "7f4837939667f312faacfd91117e8450b4d3fe134d7c250b408e5169e170235d",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 4732,
+          "hash": "7f4837939667f312faacfd91117e8450b4d3fe134d7c250b408e5169e170235d"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Grailed.h3m",
+      "size": 7757,
+      "hash": "e4cd6aaeb9b829c257a113b8af447b0935f67eab66789299470f2e9ba50e0025",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 7757,
+          "hash": "e4cd6aaeb9b829c257a113b8af447b0935f67eab66789299470f2e9ba50e0025"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Heroes.h3m",
+      "size": 3783,
+      "hash": "b89bef15629b84aa328c2d63b60c460552182241f0d144395e342029438944f1",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 3783,
+          "hash": "b89bef15629b84aa328c2d63b60c460552182241f0d144395e342029438944f1"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_hotspot.h3m",
+      "size": 5438,
+      "hash": "bf5f94b2b0bb66e68b312ae55c51459b0e6a71a622125070345d50b80f160e8e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 5438,
+          "hash": "bf5f94b2b0bb66e68b312ae55c51459b0e6a71a622125070345d50b80f160e8e"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Icefingers.h3m",
+      "size": 6319,
+      "hash": "21c7cb45e5d8e8a19295a1f40e629de9bdb142bee50e409b23afb9ecea891d06",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 6319,
+          "hash": "21c7cb45e5d8e8a19295a1f40e629de9bdb142bee50e409b23afb9ecea891d06"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Inside Information.h3m",
+      "size": 8856,
+      "hash": "9e1966fbda33c7d00e81d7d95b69081b251496122f942ce349b3dea4f672f090",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 8856,
+          "hash": "9e1966fbda33c7d00e81d7d95b69081b251496122f942ce349b3dea4f672f090"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_islandruler.H3M",
+      "size": 5908,
+      "hash": "a81b0ff28567f3357ed34985f655ad6f9b60ddb13c635aa267f964616b735f89",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 5908,
+          "hash": "a81b0ff28567f3357ed34985f655ad6f9b60ddb13c635aa267f964616b735f89"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Jesus vs Satan.h3m",
+      "size": 8211,
+      "hash": "9fbb912d31b6463e2430c98c784d267f53d6e773892f067670d988b00eaa02ae",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 8211,
+          "hash": "9fbb912d31b6463e2430c98c784d267f53d6e773892f067670d988b00eaa02ae"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Kingswestcoast.h3m",
+      "size": 4682,
+      "hash": "e53eeb6c8c5378063b8b3cf1a380164031a25982f55ac7911c044507e93f5013",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 4682,
+          "hash": "e53eeb6c8c5378063b8b3cf1a380164031a25982f55ac7911c044507e93f5013"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_landbridge.H3M",
+      "size": 5828,
+      "hash": "69f083f831478d82fe558e492564b0324a7f0acef22edab95a376ffef91dc754",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 5828,
+          "hash": "69f083f831478d82fe558e492564b0324a7f0acef22edab95a376ffef91dc754"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_landofire.h3m",
+      "size": 8167,
+      "hash": "21c1330ae5e3135bbacc584bd71f5ceb902c527b950af5c79069acf7c4d78c4a",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 8167,
+          "hash": "21c1330ae5e3135bbacc584bd71f5ceb902c527b950af5c79069acf7c4d78c4a"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Lava War.h3m",
+      "size": 5211,
+      "hash": "e04956448bf5aaeaead2d76af24630edd6c571fd9cd3da2fca204eb2ae169ff8",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 5211,
+          "hash": "e04956448bf5aaeaead2d76af24630edd6c571fd9cd3da2fca204eb2ae169ff8"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Majestic Contention.h3m",
+      "size": 6609,
+      "hash": "92edbb140e22e53b53ad14164e91072649eefd83014cc84d2b5c94fca025ebf8",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 6609,
+          "hash": "92edbb140e22e53b53ad14164e91072649eefd83014cc84d2b5c94fca025ebf8"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_marcatsland.h3m",
+      "size": 7222,
+      "hash": "9862d18b878ba129a3cf8f1fc66af9fd4ec2d49828a15cc4da98fa8a5aab4a66",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 7222,
+          "hash": "9862d18b878ba129a3cf8f1fc66af9fd4ec2d49828a15cc4da98fa8a5aab4a66"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_mines_a.h3m",
+      "size": 4564,
+      "hash": "20a1f8d6fd1bfefa5396b373f308f588a17e11eafe72ada0afbb0b90fb09219e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 4564,
+          "hash": "20a1f8d6fd1bfefa5396b373f308f588a17e11eafe72ada0afbb0b90fb09219e"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_mines.h3m",
+      "size": 4552,
+      "hash": "e5052fe02efee4a7d9534a9b59ce0caa0c11c0c7d720b3758a73c393f3b2ca43",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 4552,
+          "hash": "e5052fe02efee4a7d9534a9b59ce0caa0c11c0c7d720b3758a73c393f3b2ca43"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_NvsU.h3m",
+      "size": 4606,
+      "hash": "cd9671f62c3a0e10667da46071c9563fa5b2cc5a00c77b8e2095e883d6eef5d0",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 4606,
+          "hash": "cd9671f62c3a0e10667da46071c9563fa5b2cc5a00c77b8e2095e883d6eef5d0"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_oasis_a.h3m",
+      "size": 6936,
+      "hash": "fa5ee3230649bc9ad13f08b66803c5cd89d52dc01b26aa451ab2e4600847c693",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 6936,
+          "hash": "fa5ee3230649bc9ad13f08b66803c5cd89d52dc01b26aa451ab2e4600847c693"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_oasis.h3m",
+      "size": 6923,
+      "hash": "e79947add681526c5190bd40b27e4f202eccd2fb1bb5dd31ca6aabd134365cb0",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 6923,
+          "hash": "e79947add681526c5190bd40b27e4f202eccd2fb1bb5dd31ca6aabd134365cb0"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_PANDEMON.H3M",
+      "size": 5791,
+      "hash": "817bc3de013825db762cf50d1ff8e17f19af1cb82d297a7083dd697c895e1bb3",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 5791,
+          "hash": "817bc3de013825db762cf50d1ff8e17f19af1cb82d297a7083dd697c895e1bb3"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_rivals.h3m",
+      "size": 4365,
+      "hash": "dea6d3e8f885871c05ac761d260e9566dc7e5085593069247aca92181cda774a",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 4365,
+          "hash": "dea6d3e8f885871c05ac761d260e9566dc7e5085593069247aca92181cda774a"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_rivalsvalley.H3M",
+      "size": 11563,
+      "hash": "85339b599ce4f1ec9ee5807f1ca8e251264e2d26c2d01bda223d29f69e1d779c",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 11563,
+          "hash": "85339b599ce4f1ec9ee5807f1ca8e251264e2d26c2d01bda223d29f69e1d779c"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_seperate.h3m",
+      "size": 3881,
+      "hash": "ca878efa8654ea9dfba62e5848b9461de83b0f23c7e07cc10f3214b6cfb17a30",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 3881,
+          "hash": "ca878efa8654ea9dfba62e5848b9461de83b0f23c7e07cc10f3214b6cfb17a30"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_snowwar.H3M",
+      "size": 4429,
+      "hash": "203ec836ef8465dc92fca6d02d122f6be5f204a0370adcc20a0263ffed294590",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 4429,
+          "hash": "203ec836ef8465dc92fca6d02d122f6be5f204a0370adcc20a0263ffed294590"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Spieglein.h3m",
+      "size": 6610,
+      "hash": "6d79b55a17fb943b44a73f4b3f00d552c1deeab33ab2edcbaaf92eff1d6fefbd",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 6610,
+          "hash": "6d79b55a17fb943b44a73f4b3f00d552c1deeab33ab2edcbaaf92eff1d6fefbd"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Stripes.h3m",
+      "size": 6288,
+      "hash": "904833e891d242fd0110a425936a75ba0be6a8b261afc63ef4610702583611e4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 6288,
+          "hash": "904833e891d242fd0110a425936a75ba0be6a8b261afc63ef4610702583611e4"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Tartan.h3m",
+      "size": 4009,
+      "hash": "bf99a8c584a8598d250f4135eb5b5c5ba8cbf4ffa024651c4e4b37aedb1b471e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 4009,
+          "hash": "bf99a8c584a8598d250f4135eb5b5c5ba8cbf4ffa024651c4e4b37aedb1b471e"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_teleport1.h3m",
+      "size": 6605,
+      "hash": "95d5697afead0cc8295e5c0154824f27e7b7fecbab7927260976bc9c84ed7482",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 6605,
+          "hash": "95d5697afead0cc8295e5c0154824f27e7b7fecbab7927260976bc9c84ed7482"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_territories.h3m",
+      "size": 6225,
+      "hash": "009b5c36a8b9d8f67ab38ae3db63c94b30e566511a774b558c069322a26a1e1c",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 6225,
+          "hash": "009b5c36a8b9d8f67ab38ae3db63c94b30e566511a774b558c069322a26a1e1c"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_The Aftermath.h3m",
+      "size": 8123,
+      "hash": "0b3506335ce1a3075d58ca97c55ad9a602139e2b34f2b51bc1effc0dfcf40d93",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 8123,
+          "hash": "0b3506335ce1a3075d58ca97c55ad9a602139e2b34f2b51bc1effc0dfcf40d93"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_The Conquest.h3m",
+      "size": 7087,
+      "hash": "366630e91d9e777405f413d4dd476a1a26fef23747c7979d40810aa83f7856b1",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 7087,
+          "hash": "366630e91d9e777405f413d4dd476a1a26fef23747c7979d40810aa83f7856b1"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_THE DIAD.H3M",
+      "size": 9528,
+      "hash": "c4e193fa3f5ea743ca719a6acc96480c2589acc93f4e1028d1aee45e06f8877f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 9528,
+          "hash": "c4e193fa3f5ea743ca719a6acc96480c2589acc93f4e1028d1aee45e06f8877f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_The Switch.h3m",
+      "size": 6419,
+      "hash": "1587f04698d4677e5ca1e6d3843972646240831ab4ead0d400d4627a8d103474",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 6419,
+          "hash": "1587f04698d4677e5ca1e6d3843972646240831ab4ead0d400d4627a8d103474"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_The Unholy Keep.h3m",
+      "size": 4747,
+      "hash": "c015cadd0b2644b6510ce9e8dc06725de07e3364c07cda7a6796366443b73373",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 4747,
+          "hash": "c015cadd0b2644b6510ce9e8dc06725de07e3364c07cda7a6796366443b73373"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_thelandofmagic_a.h3m",
+      "size": 6552,
+      "hash": "0f46edbef3d044a98618869c9d36397dc1bf6e36f1ea4b76e77ddc97de1d7785",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 6552,
+          "hash": "0f46edbef3d044a98618869c9d36397dc1bf6e36f1ea4b76e77ddc97de1d7785"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_thelandofmagic.h3m",
+      "size": 6537,
+      "hash": "25ede891d8b77bb990eebc9c0245f3f28ef13dfdc9048c24a8cb3e66dacb52eb",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 6537,
+          "hash": "25ede891d8b77bb990eebc9c0245f3f28ef13dfdc9048c24a8cb3e66dacb52eb"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Time of Fire.h3m",
+      "size": 9928,
+      "hash": "4d256ea570be25617565b57643bc743a58f7c2a7c62e09bde3d0fc9a75c78268",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 9928,
+          "hash": "4d256ea570be25617565b57643bc743a58f7c2a7c62e09bde3d0fc9a75c78268"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_unbrokenalliance.h3m",
+      "size": 7887,
+      "hash": "d60f9a134a8402423dc109dbb13b51f1b1c750bec6085355a79fd6b495a02e36",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 7887,
+          "hash": "d60f9a134a8402423dc109dbb13b51f1b1c750bec6085355a79fd6b495a02e36"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_underwordtravel_a.h3m",
+      "size": 6333,
+      "hash": "0176926362701ab93f29e1fab4fa97846dcebd6f710aa5b65083b0d4244b329f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 6333,
+          "hash": "0176926362701ab93f29e1fab4fa97846dcebd6f710aa5b65083b0d4244b329f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_underwordtravel.h3m",
+      "size": 6314,
+      "hash": "045db1738f7251cc46a9567c5c623c170c5a87fce2ed6edf6b1e3a35d8354f85",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 6314,
+          "hash": "045db1738f7251cc46a9567c5c623c170c5a87fce2ed6edf6b1e3a35d8354f85"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Visitation.h3m",
+      "size": 7074,
+      "hash": "590d464ea1a37a08c39cfebe2d0070629c4bcbe304e4e876d76d3170d2d35f24",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 7074,
+          "hash": "590d464ea1a37a08c39cfebe2d0070629c4bcbe304e4e876d76d3170d2d35f24"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_War of the Forest.h3m",
+      "size": 4827,
+      "hash": "bcdf16097dae37d10a8f4f028420fde1c2fc84a1cb33a2f6105aaff229115c47",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 4827,
+          "hash": "bcdf16097dae37d10a8f4f028420fde1c2fc84a1cb33a2f6105aaff229115c47"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_wastelandwarriors.h3m",
+      "size": 6953,
+      "hash": "299c3b41ba49c63f1409c31bf56dbc4c37fc59b1833fb1ba505c60279dc6dbc3",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 6953,
+          "hash": "299c3b41ba49c63f1409c31bf56dbc4c37fc59b1833fb1ba505c60279dc6dbc3"
+        }
+      ]
+    },
+    {
+      "path": "Maps/S_Winter Palace.h3m",
+      "size": 7116,
+      "hash": "b2479077ee21a022df5cf9b92a2af5fd171ca6100b0d09f095505afe7fe8206e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 7116,
+          "hash": "b2479077ee21a022df5cf9b92a2af5fd171ca6100b0d09f095505afe7fe8206e"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_1939.H3M",
+      "size": 70324,
+      "hash": "58016f0e0b798858f974a08ec184a32dcd242593d2daaacae8cbb90f4516c352",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 70324,
+          "hash": "58016f0e0b798858f974a08ec184a32dcd242593d2daaacae8cbb90f4516c352"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_A Clash of Kings.h3m",
+      "size": 72749,
+      "hash": "c5c7ff019ba278e85b1cdd6a8aaa78184585d74aea1e7d35b56687ff38de1c92",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 72749,
+          "hash": "c5c7ff019ba278e85b1cdd6a8aaa78184585d74aea1e7d35b56687ff38de1c92"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_A Fistful of Dinars.h3m",
+      "size": 32826,
+      "hash": "9c32d0ec36b36f1ae2f1e90a951b7d53919e82017c98a283b4070153bf29a03d",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 32826,
+          "hash": "9c32d0ec36b36f1ae2f1e90a951b7d53919e82017c98a283b4070153bf29a03d"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_A VALLEY.H3M",
+      "size": 75294,
+      "hash": "69508e981d00898c16932eb68ed89e663704cf1a26ff5833affb9470797313bf",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 75294,
+          "hash": "69508e981d00898c16932eb68ed89e663704cf1a26ff5833affb9470797313bf"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Achtland (v.1.01).h3m",
+      "size": 91678,
+      "hash": "a24f1daf9de56ede7b01dc54918c37b6c95adce0778f92e2fb2de1a6365c38ff",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 91678,
+          "hash": "a24f1daf9de56ede7b01dc54918c37b6c95adce0778f92e2fb2de1a6365c38ff"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_AKUBA.H3M",
+      "size": 61040,
+      "hash": "32f9a3960ff98bc195c17425965c074d5e32e213a78abb46878351a985a25759",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 61040,
+          "hash": "32f9a3960ff98bc195c17425965c074d5e32e213a78abb46878351a985a25759"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_ALLIES.H3M",
+      "size": 78587,
+      "hash": "693ac0f18e72de00feaf5407121caa5e6c7e8bba1a5262fdae3aae93863e1e88",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 78587,
+          "hash": "693ac0f18e72de00feaf5407121caa5e6c7e8bba1a5262fdae3aae93863e1e88"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Almoravid Kingdom.h3m",
+      "size": 63043,
+      "hash": "820f0abaafa2eba64a212dd877fe5d23a7b6b7a817ac814c170a15fd8d2e0759",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 63043,
+          "hash": "820f0abaafa2eba64a212dd877fe5d23a7b6b7a817ac814c170a15fd8d2e0759"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Angelic Pride.h3m",
+      "size": 74770,
+      "hash": "d7c66ae1d5050af68ab26215dbe20d6d5a85e61af509974df10f1bb98fae220c",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 74770,
+          "hash": "d7c66ae1d5050af68ab26215dbe20d6d5a85e61af509974df10f1bb98fae220c"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Another World.h3m",
+      "size": 63142,
+      "hash": "85f594ea233d1779c0ac5f8437ee9df134d96a599a548ff734b8f255c938f5bf",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 63142,
+          "hash": "85f594ea233d1779c0ac5f8437ee9df134d96a599a548ff734b8f255c938f5bf"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Attak of bad ass imps.h3m",
+      "size": 19763,
+      "hash": "71fb35c85a97f1a81218296d59bee73eac1359bab9bd3c533c37bddf525ffc87",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 19763,
+          "hash": "71fb35c85a97f1a81218296d59bee73eac1359bab9bd3c533c37bddf525ffc87"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Battle of Glory_Team.h3m",
+      "size": 89814,
+      "hash": "69a625f12dd525bc91573981cf3b10eb60744237f4736c95f698bcd66d9ac83a",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 89814,
+          "hash": "69a625f12dd525bc91573981cf3b10eb60744237f4736c95f698bcd66d9ac83a"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Battle of Glory.h3m",
+      "size": 89802,
+      "hash": "175e57360f4352523e49fb531fecbdefbb586d0f8a3a783890f64500479570f4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 89802,
+          "hash": "175e57360f4352523e49fb531fecbdefbb586d0f8a3a783890f64500479570f4"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Blood Ties.h3m",
+      "size": 51733,
+      "hash": "e1eb683b56eef82ef8943812ca7c2209db0d30ef1f61e07bd76a0e32fb3d5c24",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 51733,
+          "hash": "e1eb683b56eef82ef8943812ca7c2209db0d30ef1f61e07bd76a0e32fb3d5c24"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Chain Lightning.h3m",
+      "size": 60138,
+      "hash": "e5e86fcd486b73f1fde2532cfbf07bc5eead31b348407ac255f90ba3bc36641e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 60138,
+          "hash": "e5e86fcd486b73f1fde2532cfbf07bc5eead31b348407ac255f90ba3bc36641e"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Circle.h3m",
+      "size": 40295,
+      "hash": "911c64f9d238648bea371b70a2bc5711235fcd680e1061e310ab5189847c4a88",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 40295,
+          "hash": "911c64f9d238648bea371b70a2bc5711235fcd680e1061e310ab5189847c4a88"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Clash of Bast.h3m",
+      "size": 33996,
+      "hash": "126173822e2168ecc530461e5264d0a76f3f1834900f75f18ec946a4d25f0d38",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 33996,
+          "hash": "126173822e2168ecc530461e5264d0a76f3f1834900f75f18ec946a4d25f0d38"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Confused.h3m",
+      "size": 60668,
+      "hash": "0d704c9b7eb9c0108c6b95fc24d4c406faa6445dd3064d73ce2cf977e77c5d22",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 60668,
+          "hash": "0d704c9b7eb9c0108c6b95fc24d4c406faa6445dd3064d73ce2cf977e77c5d22"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_CROMWELL.H3M",
+      "size": 72941,
+      "hash": "5488a43564bade1843fcbb1ac78d1fe6d80f078ffbcc420239fbbb9e76aa834f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 72941,
+          "hash": "5488a43564bade1843fcbb1ac78d1fe6d80f078ffbcc420239fbbb9e76aa834f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_damnedriv.h3m",
+      "size": 66521,
+      "hash": "fc5a2435a5bd782d7685bd04bf1b890bdbd50779248258243a73d164423556f7",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 66521,
+          "hash": "fc5a2435a5bd782d7685bd04bf1b890bdbd50779248258243a73d164423556f7"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Defeated Angels.h3m",
+      "size": 71355,
+      "hash": "41e456c97cc3a625300572cfb43ccc47aabc02e585d5910e4105f596ef6a77c4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 71355,
+          "hash": "41e456c97cc3a625300572cfb43ccc47aabc02e585d5910e4105f596ef6a77c4"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_despic.h3m",
+      "size": 82087,
+      "hash": "ee2d05867770ad3d48ca82fcf643aba744483883ee825174b1004fa6b95d6723",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 82087,
+          "hash": "ee2d05867770ad3d48ca82fcf643aba744483883ee825174b1004fa6b95d6723"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Devilish Pride.h3m",
+      "size": 76337,
+      "hash": "36719fc045be2405999ccda2ef83a57f0da3f4320c7585277d3633f766a6b0e9",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 76337,
+          "hash": "36719fc045be2405999ccda2ef83a57f0da3f4320c7585277d3633f766a6b0e9"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Die_letzte_Schlacht.h3m",
+      "size": 94184,
+      "hash": "36bea286fc57c754c076e7d6d12ca5adabed84da7ee564539f091a5bfa79f832",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 94184,
+          "hash": "36bea286fc57c754c076e7d6d12ca5adabed84da7ee564539f091a5bfa79f832"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_DOMINION.H3M",
+      "size": 57784,
+      "hash": "cc59d84afb05f7af72efac49878ecab239aee86b265ae16061c007f2e28266eb",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 57784,
+          "hash": "cc59d84afb05f7af72efac49878ecab239aee86b265ae16061c007f2e28266eb"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_DOOMSDAY.H3M",
+      "size": 79309,
+      "hash": "483b7fb6e02c63f99e9cb3795a3e2e7c9d37d98b6d03f584de2d30d4ac372dfe",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 79309,
+          "hash": "483b7fb6e02c63f99e9cb3795a3e2e7c9d37d98b6d03f584de2d30d4ac372dfe"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Dragon Island.h3m",
+      "size": 36240,
+      "hash": "51b55bd550151fdb79a1b3562dae643a5378b8a12048b2e90c8e81d6d3616d64",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 36240,
+          "hash": "51b55bd550151fdb79a1b3562dae643a5378b8a12048b2e90c8e81d6d3616d64"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Ecran.h3m",
+      "size": 80618,
+      "hash": "8027ff53039baa32cc6b0bc82d04419b7efe6c35d1131dfa21b33b4fbb2fa4f4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 80618,
+          "hash": "8027ff53039baa32cc6b0bc82d04419b7efe6c35d1131dfa21b33b4fbb2fa4f4"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Ecranteam.h3m",
+      "size": 80637,
+      "hash": "34d7339b7bdc82001e8612aaacdd34c2130da0b28b0365b57ea193acc77e3f9a",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 80637,
+          "hash": "34d7339b7bdc82001e8612aaacdd34c2130da0b28b0365b57ea193acc77e3f9a"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Eden.h3m",
+      "size": 94742,
+      "hash": "92e74ef247035f98c3ecb4952859f0189b66f9323b6767f4e03b0cbd9c2ae6c0",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 94742,
+          "hash": "92e74ef247035f98c3ecb4952859f0189b66f9323b6767f4e03b0cbd9c2ae6c0"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Europe_v1.3.h3m",
+      "size": 67660,
+      "hash": "abaa36bb866951ed13d20ac3417bb0f84a9fb21b9802b54d420546370b80f9e7",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 67660,
+          "hash": "abaa36bb866951ed13d20ac3417bb0f84a9fb21b9802b54d420546370b80f9e7"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_fallen.h3m",
+      "size": 64669,
+      "hash": "a28bb5d8e7e6d8abd3a139dfa8a17fe275cd38011dd461c1e0a40efc9d8fedd0",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 64669,
+          "hash": "a28bb5d8e7e6d8abd3a139dfa8a17fe275cd38011dd461c1e0a40efc9d8fedd0"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Fend.h3m",
+      "size": 85781,
+      "hash": "0d9926df23d5db7c06041ac87231816e0bb786309e1044395bffeaaad8d7a865",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 85781,
+          "hash": "0d9926df23d5db7c06041ac87231816e0bb786309e1044395bffeaaad8d7a865"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_forestlord.h3m",
+      "size": 71608,
+      "hash": "45abe4e1894d37e85ea038b706bac7087fbc55d3d2fd91ccc4af309efc717111",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 71608,
+          "hash": "45abe4e1894d37e85ea038b706bac7087fbc55d3d2fd91ccc4af309efc717111"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_FRIENDS.H3M",
+      "size": 94369,
+      "hash": "5adecd2e9fb0a61df4e58197cb81420cdb70cc372f4fe2c9c462200e824671b7",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 94369,
+          "hash": "5adecd2e9fb0a61df4e58197cb81420cdb70cc372f4fe2c9c462200e824671b7"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_goodvs.h3m",
+      "size": 61790,
+      "hash": "5a9d7af14c5da00daa3125ec5ad5d4583c46e7967cd51925a179e5cdc2d869e9",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 61790,
+          "hash": "5a9d7af14c5da00daa3125ec5ad5d4583c46e7967cd51925a179e5cdc2d869e9"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Gorgon.h3m",
+      "size": 86847,
+      "hash": "ba1fadadd1f3279582688defd5ccac326f10dcd13be88c78baf30686114950c8",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 86847,
+          "hash": "ba1fadadd1f3279582688defd5ccac326f10dcd13be88c78baf30686114950c8"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_gralqual.h3m",
+      "size": 64663,
+      "hash": "954a7dd2449b8cb7392772f5442376c037cb586f19bb8f1b7a032304be8c2da3",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 64663,
+          "hash": "954a7dd2449b8cb7392772f5442376c037cb586f19bb8f1b7a032304be8c2da3"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Great Underground Lake.h3m",
+      "size": 79199,
+      "hash": "6152e1fb104f923ee62fc76861395a06190f71ba58a7215ba319b891adb461c0",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 79199,
+          "hash": "6152e1fb104f923ee62fc76861395a06190f71ba58a7215ba319b891adb461c0"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Heaven.h3m",
+      "size": 60348,
+      "hash": "4445080d467b86d549a469f13f4dcb55f1277163174693884c25f5192e313cfa",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 60348,
+          "hash": "4445080d467b86d549a469f13f4dcb55f1277163174693884c25f5192e313cfa"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Hell Hath No Fury.h3m",
+      "size": 58186,
+      "hash": "f9eefb4c659a44998cfcb893eefa0f6c5080cfd88024087695e67fb67dcd94fe",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 58186,
+          "hash": "f9eefb4c659a44998cfcb893eefa0f6c5080cfd88024087695e67fb67dcd94fe"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Hinterhalt.h3m",
+      "size": 59910,
+      "hash": "d1e432b5c9440f0922e98232a2afef3e4244bd699306637fc5a6d1441920a9bd",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 59910,
+          "hash": "d1e432b5c9440f0922e98232a2afef3e4244bd699306637fc5a6d1441920a9bd"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Illusionswelt.h3m",
+      "size": 115226,
+      "hash": "2f11b83703ccabcf5a9f6eaa562bcc11ff5c8b726907e2cf016606c5943529c4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 115226,
+          "hash": "2f11b83703ccabcf5a9f6eaa562bcc11ff5c8b726907e2cf016606c5943529c4"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_invasion.h3m",
+      "size": 6790,
+      "hash": "c83a4d327fbbb2e73d1552c4a70b2dc179c8f720ce0465602587d9ad93156cee",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 6790,
+          "hash": "c83a4d327fbbb2e73d1552c4a70b2dc179c8f720ce0465602587d9ad93156cee"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_IRISH.H3M",
+      "size": 78580,
+      "hash": "83e91455460b914529005ccd508bfdb4e5748c05376e03f90bd32341b318b3ca",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 78580,
+          "hash": "83e91455460b914529005ccd508bfdb4e5748c05376e03f90bd32341b318b3ca"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Island Hopping.h3m",
+      "size": 62674,
+      "hash": "a3357680b8b2fb09053b2b7534277adc463a7f8b227d043d03ab159ed765a490",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 62674,
+          "hash": "a3357680b8b2fb09053b2b7534277adc463a7f8b227d043d03ab159ed765a490"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Islands of War.h3m",
+      "size": 65265,
+      "hash": "a498ed825f34797cf89819e3b5695b02be52ada9990c7aa35892f387028b2ce2",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 65265,
+          "hash": "a498ed825f34797cf89819e3b5695b02be52ada9990c7aa35892f387028b2ce2"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Isle of the Damned.h3m",
+      "size": 37278,
+      "hash": "d71519d303ea7805df9184f65eac63421b975ec7c63e7f0aa965fe850db02798",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 37278,
+          "hash": "d71519d303ea7805df9184f65eac63421b975ec7c63e7f0aa965fe850db02798"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Join or Die.h3m",
+      "size": 69028,
+      "hash": "6e7b051d37c61a34791d614c3c0fd7b05e3beac1c77407b5ab64a199b31dd143",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 69028,
+          "hash": "6e7b051d37c61a34791d614c3c0fd7b05e3beac1c77407b5ab64a199b31dd143"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Koguryoe.h3m",
+      "size": 44978,
+      "hash": "2c2f3121ddb060ac2477dcd41d7765719b115b8e69344e943a4b71de54021aa3",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 44978,
+          "hash": "2c2f3121ddb060ac2477dcd41d7765719b115b8e69344e943a4b71de54021aa3"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Komm mit oder stirb!.h3m",
+      "size": 69060,
+      "hash": "9096db1cf1ae3de76d3beb7f7e5b1d5e9dbe710f107109deb63f916d5f7ed5ea",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 69060,
+          "hash": "9096db1cf1ae3de76d3beb7f7e5b1d5e9dbe710f107109deb63f916d5f7ed5ea"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Land of Kingdoms.h3m",
+      "size": 77013,
+      "hash": "2e5df75e181c843332e32ca580bd6c32e3bb6d278727003c90d0065afd13715c",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 77013,
+          "hash": "2e5df75e181c843332e32ca580bd6c32e3bb6d278727003c90d0065afd13715c"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Lightning Bolt.h3m",
+      "size": 68082,
+      "hash": "b11e08c22ced7a9da480efe7c42b11c295ecec8a92a4f5d9ba766f036a56b0b1",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 68082,
+          "hash": "b11e08c22ced7a9da480efe7c42b11c295ecec8a92a4f5d9ba766f036a56b0b1"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Lordof.h3m",
+      "size": 148068,
+      "hash": "014fcc2ee14c5901d7aec9a9c31293477b75f386dc51a0e97ffa774f1880b76f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 148068,
+          "hash": "014fcc2ee14c5901d7aec9a9c31293477b75f386dc51a0e97ffa774f1880b76f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_LOST PAR.H3M",
+      "size": 69844,
+      "hash": "4b4a1da4e9945be02b3c270d17214e3e553bb7011bfe869390ce0448abae42ae",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 69844,
+          "hash": "4b4a1da4e9945be02b3c270d17214e3e553bb7011bfe869390ce0448abae42ae"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Maxi.h3m",
+      "size": 48223,
+      "hash": "0a43d13868507a27b6602e16716fc66fea9538f176094862dc7e1fd31d0f618b",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 48223,
+          "hash": "0a43d13868507a27b6602e16716fc66fea9538f176094862dc7e1fd31d0f618b"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Mordor.h3m",
+      "size": 74212,
+      "hash": "296c1d6e4afb81af5430e1f1a27db71c90995ce1aea2eade2ce506fbce776451",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 74212,
+          "hash": "296c1d6e4afb81af5430e1f1a27db71c90995ce1aea2eade2ce506fbce776451"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Morgath.h3m",
+      "size": 69855,
+      "hash": "fc83c3add39414e16cb7b93281e34dc1ba5771b7a5d585bf510e8d0a84ca9940",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 69855,
+          "hash": "fc83c3add39414e16cb7b93281e34dc1ba5771b7a5d585bf510e8d0a84ca9940"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Mortal Beloved.h3m",
+      "size": 51827,
+      "hash": "11a09a0fe14c21f91fdd97dd5b0931149a8a2569551524188e84b6b958be8160",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 51827,
+          "hash": "11a09a0fe14c21f91fdd97dd5b0931149a8a2569551524188e84b6b958be8160"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Omnitopia.h3m",
+      "size": 89309,
+      "hash": "7c6826104a748f58ec57bf615c6f344d732e3e4f53c978347138eca7a7a03d6d",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 89309,
+          "hash": "7c6826104a748f58ec57bf615c6f344d732e3e4f53c978347138eca7a7a03d6d"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_overthemountains.H3M",
+      "size": 47677,
+      "hash": "dafff97cace5c427c5770ad40fe91f00887cbd77c79d1ef7163d8f3d9d60a0d8",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 47677,
+          "hash": "dafff97cace5c427c5770ad40fe91f00887cbd77c79d1ef7163d8f3d9d60a0d8"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Race.h3m",
+      "size": 40400,
+      "hash": "877527b6362fe4d0fc0d619ccabe88977bcb2837b30220803f6490e8d6eb8cd9",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 40400,
+          "hash": "877527b6362fe4d0fc0d619ccabe88977bcb2837b30220803f6490e8d6eb8cd9"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Risk-World Conquest.h3m",
+      "size": 62279,
+      "hash": "04b71ee067d52161dfd64e4f95537bf2a729dfecd07cbd920dd5780256d4a36a",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 62279,
+          "hash": "04b71ee067d52161dfd64e4f95537bf2a729dfecd07cbd920dd5780256d4a36a"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_River Rings.h3m",
+      "size": 68730,
+      "hash": "324a827ff067274f12ce0eb1e206ae85a2492b1122dd83b294579287e7e0be2b",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 68730,
+          "hash": "324a827ff067274f12ce0eb1e206ae85a2492b1122dd83b294579287e7e0be2b"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_SALANTES.H3M",
+      "size": 60609,
+      "hash": "4193b133da8d718a6c922e613e8f2d3329bc08ccb345e5d8c2301e0ac8cb586b",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 60609,
+          "hash": "4193b133da8d718a6c922e613e8f2d3329bc08ccb345e5d8c2301e0ac8cb586b"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Silmaril.h3m",
+      "size": 65261,
+      "hash": "1b340f6d2cb150bcdd7d01692a1adba348151a7d83eabca379bd6ec471455459",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 65261,
+          "hash": "1b340f6d2cb150bcdd7d01692a1adba348151a7d83eabca379bd6ec471455459"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Sivilwar.h3m",
+      "size": 53003,
+      "hash": "a71bea4bd178122d4b450b8a64eb94da967f5556777808210b73c54b1e95afa4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 53003,
+          "hash": "a71bea4bd178122d4b450b8a64eb94da967f5556777808210b73c54b1e95afa4"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_STARGATE.H3M",
+      "size": 94559,
+      "hash": "59871ff992dcdcf0d50e7b990089b82fce29fe543304f73f52a4a7e004e785b0",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 94559,
+          "hash": "59871ff992dcdcf0d50e7b990089b82fce29fe543304f73f52a4a7e004e785b0"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_STONE WI.H3M",
+      "size": 60969,
+      "hash": "0d969aefd3acf2f83c52f033099a628593e90b56829714baa3ae1d589041f9d3",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 60969,
+          "hash": "0d969aefd3acf2f83c52f033099a628593e90b56829714baa3ae1d589041f9d3"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Survive and Conquer.h3m",
+      "size": 68075,
+      "hash": "7e6a88a86aa5a753ab1481413ec3c5d46d0e7322649a6b9cebc1eb0cdf68db63",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 68075,
+          "hash": "7e6a88a86aa5a753ab1481413ec3c5d46d0e7322649a6b9cebc1eb0cdf68db63"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_tarante.h3m",
+      "size": 81872,
+      "hash": "c2f0514d4f1c0d7182bd618a2a25aa5c87574874f4e2cfdfa25e0b71eb4e7eb8",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 81872,
+          "hash": "c2f0514d4f1c0d7182bd618a2a25aa5c87574874f4e2cfdfa25e0b71eb4e7eb8"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_The Alliance.h3m",
+      "size": 76642,
+      "hash": "73e1ee9fe943310e2277752e5ceb865dbcf6fc6c01fe04fb99ed80fed8e5392f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 76642,
+          "hash": "73e1ee9fe943310e2277752e5ceb865dbcf6fc6c01fe04fb99ed80fed8e5392f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_The Alornian Dispute.h3m",
+      "size": 63160,
+      "hash": "898846d052c7602c515a183821bece1137f42f640de02fa1e436a3d46eb02062",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 63160,
+          "hash": "898846d052c7602c515a183821bece1137f42f640de02fa1e436a3d46eb02062"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_THE BELG.H3M",
+      "size": 83029,
+      "hash": "9f29312070af0dc9ecdc8aa7bb2e8347d03172e983b08fc27a9399b6c12e22d5",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 83029,
+          "hash": "9f29312070af0dc9ecdc8aa7bb2e8347d03172e983b08fc27a9399b6c12e22d5"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_The great conflict.h3m",
+      "size": 72934,
+      "hash": "79111eb4bf756efe16f2c76176bf97bcf719e0482c091e644a54fe6d9f36ba48",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 72934,
+          "hash": "79111eb4bf756efe16f2c76176bf97bcf719e0482c091e644a54fe6d9f36ba48"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_The Pen and the Sword.h3m",
+      "size": 96228,
+      "hash": "58cd1dc222d768a3ab87f9bec82fa417fbb4e8324f75c1213bb8727b7c8f6dba",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 96228,
+          "hash": "58cd1dc222d768a3ab87f9bec82fa417fbb4e8324f75c1213bb8727b7c8f6dba"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_The Saving of Kazunda.h3m",
+      "size": 65906,
+      "hash": "6d5409c93eea0f2b84fbe327e22fc9e641fd4c532db3a22a25bb4e630907a9c1",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 65906,
+          "hash": "6d5409c93eea0f2b84fbe327e22fc9e641fd4c532db3a22a25bb4e630907a9c1"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_The US of America.h3m",
+      "size": 85193,
+      "hash": "d5eaf01df729db6fb9499362b1580902e4045ea71d47196cd6e85dea09d3ebd2",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 85193,
+          "hash": "d5eaf01df729db6fb9499362b1580902e4045ea71d47196cd6e85dea09d3ebd2"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_The Ways.h3m",
+      "size": 68178,
+      "hash": "19bb35a5e1ee7ed134faf2fea8e461629091a09781ce1344fe40b8b7dc1f33fc",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 68178,
+          "hash": "19bb35a5e1ee7ed134faf2fea8e461629091a09781ce1344fe40b8b7dc1f33fc"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_thelandofcrossing_a.h3m",
+      "size": 35935,
+      "hash": "98b7bd8c91be3f29e3acb8e4a8eb106bc45a334203c487dca19a3790e9ee6ad6",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 35935,
+          "hash": "98b7bd8c91be3f29e3acb8e4a8eb106bc45a334203c487dca19a3790e9ee6ad6"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_thelandofcrossing.H3M",
+      "size": 35960,
+      "hash": "0e3c881c4585b8030f7eb55204257afd18b5e562992afbf52e3f49519c75bacd",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 35960,
+          "hash": "0e3c881c4585b8030f7eb55204257afd18b5e562992afbf52e3f49519c75bacd"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_thewar.h3m",
+      "size": 61129,
+      "hash": "db60038061443ca7d3b475ea5ad786dec30bfcfbd6b850110384342d0260b50f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 61129,
+          "hash": "db60038061443ca7d3b475ea5ad786dec30bfcfbd6b850110384342d0260b50f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Titanic Pride.h3m",
+      "size": 75195,
+      "hash": "cdc5bb1577124c2e481db036a7026bf35931e92e61f5bfe45dc03b3f2a2b8bf9",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 75195,
+          "hash": "cdc5bb1577124c2e481db036a7026bf35931e92e61f5bfe45dc03b3f2a2b8bf9"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Tod der Starken.h3m",
+      "size": 44276,
+      "hash": "e1008ecd793a7de7469d347ad6db67c0c2a4905d41662755ef514a60b72bb543",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 44276,
+          "hash": "e1008ecd793a7de7469d347ad6db67c0c2a4905d41662755ef514a60b72bb543"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Ulthuan.h3m",
+      "size": 50402,
+      "hash": "b7839842bc29b178faa17c12040c2f3654286ee77820c9d385349237f1539162",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 50402,
+          "hash": "b7839842bc29b178faa17c12040c2f3654286ee77820c9d385349237f1539162"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_ultimate.h3m",
+      "size": 61236,
+      "hash": "62c2c9e94d45ab72e83330131b07c875f414e25f7a78fe29cbebb6df1870050f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 61236,
+          "hash": "62c2c9e94d45ab72e83330131b07c875f414e25f7a78fe29cbebb6df1870050f"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_UNDERGRO.H3M",
+      "size": 59420,
+      "hash": "031df3c5abef90bb2015f66f9053930521998dcc48c80e52fa0aa2f07ee9647c",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 59420,
+          "hash": "031df3c5abef90bb2015f66f9053930521998dcc48c80e52fa0aa2f07ee9647c"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_UNICORNI.H3M",
+      "size": 65359,
+      "hash": "082bae62e345bce918b845d7e7d6f9cd8c62731ff9bdd734c721b07d04a121a3",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 65359,
+          "hash": "082bae62e345bce918b845d7e7d6f9cd8c62731ff9bdd734c721b07d04a121a3"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_vierlande2.h3m",
+      "size": 54441,
+      "hash": "a04b7fcd411f3d612e551165226fee2365ea10f78e4a22c19055340920a168fb",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 54441,
+          "hash": "a04b7fcd411f3d612e551165226fee2365ea10f78e4a22c19055340920a168fb"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_Vulcanian Archipeligo.h3m",
+      "size": 70601,
+      "hash": "fe534864cb94859b5c14c59a6cbb8691714b8083aeeb772a8574ec5e93d25ac0",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 70601,
+          "hash": "fe534864cb94859b5c14c59a6cbb8691714b8083aeeb772a8574ec5e93d25ac0"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_wally_sworld.h3m",
+      "size": 60903,
+      "hash": "681fa16e7ffd82f968ab28084bee5e6f745f4408422557c43251c8b1384e9830",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 60903,
+          "hash": "681fa16e7ffd82f968ab28084bee5e6f745f4408422557c43251c8b1384e9830"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_warzone_a.h3m",
+      "size": 62326,
+      "hash": "e148c69025505e6b4047bac35538de8506ece7d490f3a491e77277621e6d6758",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 62326,
+          "hash": "e148c69025505e6b4047bac35538de8506ece7d490f3a491e77277621e6d6758"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_warzone.h3m",
+      "size": 62307,
+      "hash": "4b1c4be7c893ebfedeb4b2b5beed0fe6502e1ebc66dc37a75c4456d4396ebed1",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 62307,
+          "hash": "4b1c4be7c893ebfedeb4b2b5beed0fe6502e1ebc66dc37a75c4456d4396ebed1"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_weinstadt.h3m",
+      "size": 50759,
+      "hash": "aada333ab93f7d25937f852a27c65966638855f256ed7a2da71d4664a9741485",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 50759,
+          "hash": "aada333ab93f7d25937f852a27c65966638855f256ed7a2da71d4664a9741485"
+        }
+      ]
+    },
+    {
+      "path": "Maps/XL_wuestenplanet.h3m",
+      "size": 49107,
+      "hash": "313c2248d670d805dfa02489b3ccafd10284ee66e6b5737eb22a099d244e3ac1",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 49107,
+          "hash": "313c2248d670d805dfa02489b3ccafd10284ee66e6b5737eb22a099d244e3ac1"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/AITheme0.ogg",
+      "size": 549461,
+      "hash": "356e9aaeb753ec131d172475b9c5a12ebfb464482f3638a5f690d574d385d491",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 549461,
+          "hash": "356e9aaeb753ec131d172475b9c5a12ebfb464482f3638a5f690d574d385d491"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/AITHEME1.ogg",
+      "size": 635528,
+      "hash": "5dd470f7cb66855ccbf0e1d13fa0d7311140771768d0323c5aae7628f12c966d",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 635528,
+          "hash": "5dd470f7cb66855ccbf0e1d13fa0d7311140771768d0323c5aae7628f12c966d"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/AITHEME2.ogg",
+      "size": 1613188,
+      "hash": "730d4bfa7e8461f5b30dd466688500f5281af661b3ef68d96edb5e994aaac8e4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1613188,
+          "hash": "730d4bfa7e8461f5b30dd466688500f5281af661b3ef68d96edb5e994aaac8e4"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/BladeABCampaign.ogg",
+      "size": 1890188,
+      "hash": "d733d46165bcb1f4b7d88ec3307e24fe668837e24b87e660b5b48321c09d6386",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1890188,
+          "hash": "d733d46165bcb1f4b7d88ec3307e24fe668837e24b87e660b5b48321c09d6386"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/BladeDBCampaign.ogg",
+      "size": 757894,
+      "hash": "5328f0240b10122b6de955851ff66124607c051196dc68ceff14cc3280febc7f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 757894,
+          "hash": "5328f0240b10122b6de955851ff66124607c051196dc68ceff14cc3280febc7f"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/BladeDSCampaign.ogg",
+      "size": 723449,
+      "hash": "3e0d413f29a4e7ecfd72a76809c8ead86842d89aed4e4e685da4f6f9b3dc5004",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 723449,
+          "hash": "3e0d413f29a4e7ecfd72a76809c8ead86842d89aed4e4e685da4f6f9b3dc5004"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/BladeFLCampaign.ogg",
+      "size": 619567,
+      "hash": "b149f277e81528bf008e30b60eaefffc5c1d43f81a97e32e3dcbd79e09e1d325",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 619567,
+          "hash": "b149f277e81528bf008e30b60eaefffc5c1d43f81a97e32e3dcbd79e09e1d325"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/BladeFWCampaign.ogg",
+      "size": 758575,
+      "hash": "1e634aa3536c9af9052a9d43472ae492b8858687007d901d6e7b6292d272fc31",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 758575,
+          "hash": "1e634aa3536c9af9052a9d43472ae492b8858687007d901d6e7b6292d272fc31"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/BladePFCampaign.ogg",
+      "size": 957096,
+      "hash": "8439c39069edc8c17c4112596bfeb4e2954426b05409bdad49adc60e491b0955",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 957096,
+          "hash": "8439c39069edc8c17c4112596bfeb4e2954426b05409bdad49adc60e491b0955"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/CampainMusic01.ogg",
+      "size": 714483,
+      "hash": "f2b24d2ccf5c9b549cd645cc1a0102e715baf653dd3dbb0075cc745e7d5d1f24",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 714483,
+          "hash": "f2b24d2ccf5c9b549cd645cc1a0102e715baf653dd3dbb0075cc745e7d5d1f24"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/CampainMusic02.ogg",
+      "size": 906883,
+      "hash": "e6e6c22a9ee33c9b73c16b437c3f5d11c4747f9a68b39fd4a5265cb1527896dd",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 906883,
+          "hash": "e6e6c22a9ee33c9b73c16b437c3f5d11c4747f9a68b39fd4a5265cb1527896dd"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/CampainMusic03.ogg",
+      "size": 662817,
+      "hash": "7a1e276b594cf910e90bb2c5aeb21650d6302c04a599f556d27e84da242b1b9f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 662817,
+          "hash": "7a1e276b594cf910e90bb2c5aeb21650d6302c04a599f556d27e84da242b1b9f"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/CampainMusic04.ogg",
+      "size": 614427,
+      "hash": "03341cf34856679855856e4b26539ba2aed329fbe7cab5b398970dd9be49a127",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 614427,
+          "hash": "03341cf34856679855856e4b26539ba2aed329fbe7cab5b398970dd9be49a127"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/CampainMusic05.ogg",
+      "size": 544698,
+      "hash": "e61612f7b43a8106fed6c81e54f833d33c88acf0516df98fff95d90f8d5f666f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 544698,
+          "hash": "e61612f7b43a8106fed6c81e54f833d33c88acf0516df98fff95d90f8d5f666f"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/CampainMusic06.ogg",
+      "size": 649535,
+      "hash": "515d8bc5a386d3e5e450b2f614929370133e7b642c6b7777e16ae11581bb61c0",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 649535,
+          "hash": "515d8bc5a386d3e5e450b2f614929370133e7b642c6b7777e16ae11581bb61c0"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/CampainMusic07.ogg",
+      "size": 559217,
+      "hash": "a61581416866cd98ade3e48433505fd0a09b667bbd40a81e6414bd0699173175",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 559217,
+          "hash": "a61581416866cd98ade3e48433505fd0a09b667bbd40a81e6414bd0699173175"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/CampainMusic08.ogg",
+      "size": 626698,
+      "hash": "ae2f27653bff37152a11a21228d2052cc81f802d29ccfd6bb302e1cf68d750d3",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 626698,
+          "hash": "ae2f27653bff37152a11a21228d2052cc81f802d29ccfd6bb302e1cf68d750d3"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/CampainMusic09.ogg",
+      "size": 646614,
+      "hash": "618ba6bec9be512aa493f27c9ef764150bcb9de8c3608cc436f86b75b5dbbfb0",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 646614,
+          "hash": "618ba6bec9be512aa493f27c9ef764150bcb9de8c3608cc436f86b75b5dbbfb0"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/CampainMusic10.ogg",
+      "size": 927410,
+      "hash": "47d1fc8b54d926a7a40eece8227f8f669e3691bc210972fc92c3f68aac187b9e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 927410,
+          "hash": "47d1fc8b54d926a7a40eece8227f8f669e3691bc210972fc92c3f68aac187b9e"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/CampainMusic11.ogg",
+      "size": 1462826,
+      "hash": "6b2492618eefe6d7963f0e7485893f8994d2c3d57bf13be665ec3a9676313d09",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1462826,
+          "hash": "6b2492618eefe6d7963f0e7485893f8994d2c3d57bf13be665ec3a9676313d09"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/COMBAT01.ogg",
+      "size": 2629078,
+      "hash": "2f0c144ba2fc418eb9ea3b4e13f849bc9638e3a131a955e686ae06ce7faf6f5d",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 2629078,
+          "hash": "2f0c144ba2fc418eb9ea3b4e13f849bc9638e3a131a955e686ae06ce7faf6f5d"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/COMBAT02.ogg",
+      "size": 2212601,
+      "hash": "af9af921a3ade67154b28dc541436d32d1bf51dd3feea9c6b6cc001ed3bd9770",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 2212601,
+          "hash": "af9af921a3ade67154b28dc541436d32d1bf51dd3feea9c6b6cc001ed3bd9770"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/COMBAT03.ogg",
+      "size": 2009262,
+      "hash": "900075a578333cb293bfc4d0fa83c1f2715ac812b4bfe266b5e520953ac2fda0",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 2009262,
+          "hash": "900075a578333cb293bfc4d0fa83c1f2715ac812b4bfe266b5e520953ac2fda0"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/COMBAT04.ogg",
+      "size": 2586280,
+      "hash": "4e0f52d559556e376342f59847cff8a3ac0fd5d414a99e4e05c52916d00b486d",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 2586280,
+          "hash": "4e0f52d559556e376342f59847cff8a3ac0fd5d414a99e4e05c52916d00b486d"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/CstleTown.ogg",
+      "size": 2116060,
+      "hash": "32bddb76a29b25ebcb470df53160ce3eca4fb45b49abad7b6529f2b442a42d37",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 2116060,
+          "hash": "32bddb76a29b25ebcb470df53160ce3eca4fb45b49abad7b6529f2b442a42d37"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/Defend Castle.ogg",
+      "size": 144184,
+      "hash": "3992598225f59891b1e4c29bc00dc58c71d943a324e3514648ee4d15bd719949",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 144184,
+          "hash": "3992598225f59891b1e4c29bc00dc58c71d943a324e3514648ee4d15bd719949"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/DIRT.ogg",
+      "size": 1623859,
+      "hash": "a181698be4e05ce0643305f267b03a12c9f14c9fb8296b62b59478af65098b5d",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1623859,
+          "hash": "a181698be4e05ce0643305f267b03a12c9f14c9fb8296b62b59478af65098b5d"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/DUNGEON.ogg",
+      "size": 1717356,
+      "hash": "5c483bf024d8349420c7337eeacce5c99921cd0e31c3f00224904b30610a6fe7",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1717356,
+          "hash": "5c483bf024d8349420c7337eeacce5c99921cd0e31c3f00224904b30610a6fe7"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/ElemTown.ogg",
+      "size": 1167753,
+      "hash": "457d821d2fab1af402277d7197f391239d50d3dbf81e4ca1370a629357373b8f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1167753,
+          "hash": "457d821d2fab1af402277d7197f391239d50d3dbf81e4ca1370a629357373b8f"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/EvilTheme.ogg",
+      "size": 1448246,
+      "hash": "6200de36da608465b221fa28116f4394a7dcb69c2221dc0334d0e8ab5705998e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1448246,
+          "hash": "6200de36da608465b221fa28116f4394a7dcb69c2221dc0334d0e8ab5705998e"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/FortressTown.ogg",
+      "size": 1506019,
+      "hash": "f2b6edff165cd52884ce0832ffaa77800eab281b38ec08fbe6510ba06774f750",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1506019,
+          "hash": "f2b6edff165cd52884ce0832ffaa77800eab281b38ec08fbe6510ba06774f750"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/GoodTheme.ogg",
+      "size": 981835,
+      "hash": "6459bd84727080a216530351d1c82f941c8443929d35a5cec4aee36a21279ff4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 981835,
+          "hash": "6459bd84727080a216530351d1c82f941c8443929d35a5cec4aee36a21279ff4"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/GRASS.ogg",
+      "size": 1657111,
+      "hash": "bbbf2b68e38c03d08a39f5f1e284dc1af330c2a9d82f61fc84cf3c98adf6d895",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1657111,
+          "hash": "bbbf2b68e38c03d08a39f5f1e284dc1af330c2a9d82f61fc84cf3c98adf6d895"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/InfernoTown.ogg",
+      "size": 1814257,
+      "hash": "b20b48e2b1ba940e27c0789b1cc9324686de4c6be0e06ad50598391e16d723d4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1814257,
+          "hash": "b20b48e2b1ba940e27c0789b1cc9324686de4c6be0e06ad50598391e16d723d4"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/LAVA.ogg",
+      "size": 1360695,
+      "hash": "6d922e3bd15703ab2701d705ace3d42adba771d5becdd3f41b71df765f8bacf5",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1360695,
+          "hash": "6d922e3bd15703ab2701d705ace3d42adba771d5becdd3f41b71df765f8bacf5"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/LoopLepr.ogg",
+      "size": 71339,
+      "hash": "2f44996c62c4f03ca0102f88f2d3f6899754774f0ff1db3a72f2d835c84ed732",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 71339,
+          "hash": "2f44996c62c4f03ca0102f88f2d3f6899754774f0ff1db3a72f2d835c84ed732"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/Lose Campain.ogg",
+      "size": 286881,
+      "hash": "112a6e6fada461a6c3596456543df31a517eca3dca397e8f97cc013aac828bf1",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 286881,
+          "hash": "112a6e6fada461a6c3596456543df31a517eca3dca397e8f97cc013aac828bf1"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/LoseCastle.ogg",
+      "size": 56833,
+      "hash": "d1537ae2a1974afc6a264a9415dab3042f83273fc010c37d2d44b2b29aa06af9",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 56833,
+          "hash": "d1537ae2a1974afc6a264a9415dab3042f83273fc010c37d2d44b2b29aa06af9"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/LoseCombat.ogg",
+      "size": 90055,
+      "hash": "655740a69d9413bc568c3be45d8d7c7f60b3c995e3d5d50ec74c472d44369792",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 90055,
+          "hash": "655740a69d9413bc568c3be45d8d7c7f60b3c995e3d5d50ec74c472d44369792"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/MAINMENU.ogg",
+      "size": 1020327,
+      "hash": "1deb88467fd50dbad1d6b287e6cf4fe7f0de8d45c548cf2f52c090e3c15dbbc8",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1020327,
+          "hash": "1deb88467fd50dbad1d6b287e6cf4fe7f0de8d45c548cf2f52c090e3c15dbbc8"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/necroTown.ogg",
+      "size": 2025341,
+      "hash": "dbfcffcd88df336e49cbc2c438c8af8efaf8341176bafe86579a85aaca23d073",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 2025341,
+          "hash": "dbfcffcd88df336e49cbc2c438c8af8efaf8341176bafe86579a85aaca23d073"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/NeutralTheme.ogg",
+      "size": 1365815,
+      "hash": "21016e72f56979e0924db38b5988da0839d5e50652cca635cdbc1df0b812b091",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1365815,
+          "hash": "21016e72f56979e0924db38b5988da0839d5e50652cca635cdbc1df0b812b091"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/RAMPART.ogg",
+      "size": 2117302,
+      "hash": "acc77729b3953fed02be744fd5b043febc086ca0f72a1e77c068e71bfe7e9ab7",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 2117302,
+          "hash": "acc77729b3953fed02be744fd5b043febc086ca0f72a1e77c068e71bfe7e9ab7"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/Retreat Battle.ogg",
+      "size": 74591,
+      "hash": "78421773c77e0cb143755396f43025c9c039820f58ae4b3c963c9e83db7262b9",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 74591,
+          "hash": "78421773c77e0cb143755396f43025c9c039820f58ae4b3c963c9e83db7262b9"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/ROUGH.ogg",
+      "size": 1852092,
+      "hash": "7b98744d1df7bc24be0fe785e1d615f4cf578d4203ee266e186cf0d949a9a03e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1852092,
+          "hash": "7b98744d1df7bc24be0fe785e1d615f4cf578d4203ee266e186cf0d949a9a03e"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/SAND.ogg",
+      "size": 1573416,
+      "hash": "bf9a1cdeb99fc8a61fa32c4621a9cbc0221e70f1b3bb97f0b1d8f8f331ccb510",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1573416,
+          "hash": "bf9a1cdeb99fc8a61fa32c4621a9cbc0221e70f1b3bb97f0b1d8f8f331ccb510"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/SecretTheme.ogg",
+      "size": 991703,
+      "hash": "77e2d3400dd1c19a86a4d046dbacaaa6a2623f1e814249bbc86334e2e2dfe14b",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 991703,
+          "hash": "77e2d3400dd1c19a86a4d046dbacaaa6a2623f1e814249bbc86334e2e2dfe14b"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/SNOW.ogg",
+      "size": 1571276,
+      "hash": "3d0139e3fe0cf1e45c65cc7a88488a0dee1d847c24812bdbd45601a756406fba",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1571276,
+          "hash": "3d0139e3fe0cf1e45c65cc7a88488a0dee1d847c24812bdbd45601a756406fba"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/StrongHold.ogg",
+      "size": 1897089,
+      "hash": "c3f1ab1f4697572e86bde07c51ccc4fa7fda0abaca9383f32f7342bd389d1a5c",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1897089,
+          "hash": "c3f1ab1f4697572e86bde07c51ccc4fa7fda0abaca9383f32f7342bd389d1a5c"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/Surrender Battle.ogg",
+      "size": 56425,
+      "hash": "71571940583c2fc34941951b6fd5b2c43cd6a96dc4da3c6fcffadaf099f96f85",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 56425,
+          "hash": "71571940583c2fc34941951b6fd5b2c43cd6a96dc4da3c6fcffadaf099f96f85"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/SWAMP.ogg",
+      "size": 1910995,
+      "hash": "655c579138ad87988e363b815a37d52947a501355df7fe1c991638d3a16b4e77",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1910995,
+          "hash": "655c579138ad87988e363b815a37d52947a501355df7fe1c991638d3a16b4e77"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/TowerTown.ogg",
+      "size": 2952358,
+      "hash": "b2a80ccc0c8323b3ec7abfac080196c5759c9c86658694a5f0809e99292ffd53",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 2952358,
+          "hash": "b2a80ccc0c8323b3ec7abfac080196c5759c9c86658694a5f0809e99292ffd53"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/UltimateLose.ogg",
+      "size": 198727,
+      "hash": "de8167fa44e8ee1e04054ce605d82bada6dd8331fb8a54979d9f9a16b73396e2",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 198727,
+          "hash": "de8167fa44e8ee1e04054ce605d82bada6dd8331fb8a54979d9f9a16b73396e2"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/Underground.ogg",
+      "size": 1465050,
+      "hash": "6b4dc0916101c32152a42e210945e33818da3a65203941a24dab82743711f5eb",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1465050,
+          "hash": "6b4dc0916101c32152a42e210945e33818da3a65203941a24dab82743711f5eb"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/WATER.ogg",
+      "size": 1528948,
+      "hash": "8de915105908587b197d46c1ef7d7238b3d2807d216dd1953c91405b7416d15f",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 1528948,
+          "hash": "8de915105908587b197d46c1ef7d7238b3d2807d216dd1953c91405b7416d15f"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/Win Battle.ogg",
+      "size": 69145,
+      "hash": "2a723ead95c63d592bb3642e2ff6f1f7ec62e88c6786bba5a04270d1c5eed54e",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 69145,
+          "hash": "2a723ead95c63d592bb3642e2ff6f1f7ec62e88c6786bba5a04270d1c5eed54e"
+        }
+      ]
+    },
+    {
+      "path": "Mp3/Win Scenario.ogg",
+      "size": 926272,
+      "hash": "1af01345c8f478eba0718f2c63b22b5c2f84be4ca25cc3a45f3a5aa0f4440106",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 926272,
+          "hash": "1af01345c8f478eba0718f2c63b22b5c2f84be4ca25cc3a45f3a5aa0f4440106"
+        }
+      ]
+    }
+  ]
+}

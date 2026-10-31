@@ -1,4 +1,4 @@
-# Local dependencies and original Heroes III data
+# Local dependencies and working runtime data
 **/node_modules/
 work/game-data/
 work/chrome-test-profile/
@@ -10,9 +10,14 @@ work/vcmi-wasm/emscripten/
 .env.*
 !.env.example
 
+# Assembled large LOD files in game-data (tracked via .part-* parts under 50MB)
+game-data/Data/H3bitmap.lod
+game-data/Data/H3sprite.lod
+
 dist/
 work/downloads/
 work/public-data/
 
 # Deployment archives are regenerated from tracked sources
 outputs/heroes-goonk-netlify-pages.zip
+

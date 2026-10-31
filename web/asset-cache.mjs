@@ -10,14 +10,14 @@ export async function syncAssets({manifest,opfs,storage,fetcher=fetch,onProgress
   let fullDownload;
   if(!file.size)await opfs.write(ROOT,file.path,0,new Uint8Array(),0);
   for(const chunk of file.chunks){
-   const response=fullDownload?null:await fetcher(file.url,{headers:file.chunks.length>1?{Range:`bytes=${chunk.offset}-${chunk.offset+chunk.size-1}`}:{}});
+   const split=!!chunk.url;const response=(!split&&fullDownload)?null:await fetcher(chunk.url||file.url,{headers:!split&&file.chunks.length>1?{Range:`bytes=${chunk.offset}-${chunk.offset+chunk.size-1}`}:{}});
    if(response&&!response.ok)throw Error('Téléchargement impossible : '+file.path);
    // A host without byte ranges may return the whole file. Slice it only in that fallback.
-   const full=fullDownload||new Uint8Array(await response.arrayBuffer());
-   if(response?.status===200&&file.chunks.length>1)fullDownload=full;
-   const bytes=file.chunks.length>1&&fullDownload?full.slice(chunk.offset,chunk.offset+chunk.size):full;
+   const full=(!split&&fullDownload)||new Uint8Array(await response.arrayBuffer());
+   if(!split&&response?.status===200&&file.chunks.length>1)fullDownload=full;
+   const bytes=!split&&file.chunks.length>1&&fullDownload?full.slice(chunk.offset,chunk.offset+chunk.size):full;
    if(bytes.length!==chunk.size||await digest(bytes)!==chunk.hash)throw Error('Données incomplètes ou altérées : '+file.path);
-   const length=bytes.length;await opfs.write(ROOT,file.path,chunk.offset,bytes,file.size);downloaded+=length;
+   const length=bytes.length;await opfs.write(ROOT,file.path,chunk.offset,bytes,file.size);downloaded+=length;onProgress({file:file.path,downloaded,reused,total:manifest.files.length});
   }
   next[file.path]={hash:file.hash,size:file.size};completedSinceFlush++;
   // A failed download never validates a partial file; completed files survive a retry.

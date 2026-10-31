@@ -25,18 +25,18 @@ L’onglet **Codes de triche** présente les codes VCMI et leur effet avec un bo
 
 ## Installation et Netlify
 
-Après un clonage : `npm ci --prefix work/browser-tests`, puis `npm run prepare:web`. Le moteur web précompilé est inclus dans `outputs/vcmi-wasm-goonk-0.3.3-engine.tar.gz`.
-Les données originales Heroes III restent exclues de Git. Pour le serveur local, les installer dans `work/game-data/homm3eng/home/web_user/.local/share/vcmi/`.
+Après un clonage : `npm ci --prefix work/browser-tests`, puis `npm run prepare:web`. Le moteur web précompilé est inclus dans `outputs/vcmi-wasm-goonk-0.3.3-engine.tar.gz`, et les données du jeu sont intégrées par morceaux de 4 Mo vérifiés dans `game-data/`.
+`npm run prepare:web` reconstitue automatiquement les données dans `work/game-data/homm3eng/home/web_user/.local/share/vcmi/`.
 
-`npm run build:web` prépare `dist/` pour Netlify ; `node scripts/verify-site.mjs` vérifie les liens du moteur et l’exclusion des données originales. La configuration `netlify.toml` lance la préparation automatiquement. `node work/browser-tests/static-server.mjs` permet d’essayer ce dossier public sur le port 8767. Aucun déploiement en ligne n’a été effectué.
+`npm run build:web` prépare `dist/` pour Netlify et GitHub Pages ; `node scripts/verify-site.mjs` vérifie les liens du moteur et les données hébergées. La configuration `netlify.toml` lance la préparation automatiquement. `node work/browser-tests/static-server.mjs` permet d’essayer ce dossier public sur le port 8767.
 
-Le site public distribue le moteur, les mods Goonk/WoG et la carte Goonk. Au premier lancement, chaque joueur importe ses fichiers Heroes III depuis son appareil, sans les envoyer au serveur. Le choix de fichiers fonctionne aussi sans sélection de dossier sur téléphone. Les fichiers sont conservés dans le stockage privé du navigateur (OPFS) ; vider ce stockage impose une nouvelle importation.
+Le site public distribue le moteur, les données Heroes III, les mods Goonk/WoG et les cartes. Au premier lancement, les fichiers se synchronisent automatiquement dans le stockage privé du navigateur (OPFS), sans exiger d'import manuel.
 
-Les données téléchargées portent une empreinte de contenu et sont vérifiées par morceaux de 4 Mo. Un redémarrage réutilise les fichiers inchangés ; une mise à jour télécharge les fichiers modifiés seulement. Les sauvegardes sont préservées. Le moteur compilé constitue toutefois un fichier unique : sa modification entraîne son rechargement. Ce mécanisme ne garantit pas un démarrage entièrement hors connexion : la page et le catalogue restent nécessaires.
+Les données téléchargées portent une empreinte de contenu et sont vérifiées par morceaux de 4 Mo. Un redémarrage réutilise les fichiers inchangés ; une mise à jour télécharge les fichiers modifiés seulement. Les sauvegardes sont préservées. Le moteur compilé constitue toutefois un fichier unique : sa modification entraîne son rechargement.
 
 ## Publier sur Netlify ou GitHub Pages
 
-`npm run package:web` prépare le dossier `dist/` et l’archive `outputs/heroes-goonk-netlify-pages.zip`. Elle contient le moteur, les mods et la carte Goonk ; les données originales Heroes III sont toujours importées localement par chaque joueur.
+`npm run package:web` prépare le dossier `dist/` et l’archive `outputs/heroes-goonk-netlify-pages.zip`. Elle contient le moteur complet, les données de base et les mods.
 
 **Netlify, dépôt manuel** : décompresser l’archive ZIP, puis déposer le dossier obtenu (ou `dist/`) sur https://app.netlify.com/drop. Déposer le site compilé, pas le dossier de sources. Le fichier `_headers` inclus active les fonctions nécessaires au moteur. Pour les mises à jour, déposer le nouveau dossier compilé dans les déploiements du même site. Le site représente environ 200 Mo : la connexion GitHub ci-dessous est préférable pour un envoi fiable ; Netlify recommande plutôt Git ou son outil en ligne de commande pour les gros sites. Aucun fichier individuel ne dépasse 10 Mo.
 

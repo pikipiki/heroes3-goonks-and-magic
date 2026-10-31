@@ -1,6 +1,6 @@
 {
   "name": "heroes-goonk",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "private": true,
   "scripts": {
     "start": "cd work/browser-tests && node server.mjs",
@@ -9,6 +9,7 @@
     "prepare:web": "node scripts/prepare-web.mjs",
     "build:web": "node scripts/build-site.mjs",
     "verify:web": "node scripts/verify-site.mjs",
-    "package:web": "npm run prepare:web && npm run build:web && npm run verify:web && node scripts/package-site.mjs"
+    "package:web": "npm run prepare:web && npm run build:web && npm run verify:web && node scripts/package-site.mjs",
+    "pack:game-data": "node scripts/pack-game-data.mjs"
   }
 }
