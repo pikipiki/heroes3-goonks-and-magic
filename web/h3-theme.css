@@ -101,3 +101,6 @@
 #mobile-app .dialog-close{flex:0 0 44px;width:44px;min-height:44px;padding:0;font-size:22px;touch-action:manipulation}
 #mobile-app .native-dialog-close-hit{position:absolute;z-index:3;min-width:0;min-height:0;margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;transform:none;touch-action:manipulation}
 #mobile-app .native-dialog-close-hit:focus-visible{outline:2px solid #ffe9aa;outline-offset:1px}
+
+/* Autosave status must never intercept troop transfers or the panel close button. */
+#save-toast{pointer-events:none}
