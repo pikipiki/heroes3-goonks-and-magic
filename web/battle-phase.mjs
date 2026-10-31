@@ -1,0 +1,1 @@
+export function battleCapabilities(state){const tactics=state.tacticsMode===true,combatReady=!!state.canAct&&!tactics&&(state.round??0)>0;return {tactics,combatReady,move:!!state.canAct&&(tactics||combatReady),magic:combatReady&&state.canUseMagic!==false,endTactics:tactics&&!!state.canEndTactics};}
