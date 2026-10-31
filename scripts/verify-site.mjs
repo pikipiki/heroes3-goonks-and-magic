@@ -7,3 +7,4 @@ const worker=html.match(/mainScriptUrlOrBlob: new URL\('\.\/([^']+)'/);assert(wo
 
 assert(!/(?:src|href)="\/(?!\/)|(?:WASM|DATA)_URL = '\//.test(html),'Les liens du jeu doivent être relatifs pour GitHub Pages.');
 assert(manifest.files.every(f=>f.url.startsWith('./assets/')));
+for(const match of html.matchAll(/\bimport\(['"](\.\/[^'"]+)['"]\)/g))assert(fs.existsSync('dist/'+match[1]),'Module dynamique absent : '+match[1]);

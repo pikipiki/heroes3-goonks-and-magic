@@ -4,6 +4,7 @@
 #ifdef VCMI_EMSCRIPTEN
 #include <emscripten/emscripten.h>
 #include <SDL_timer.h>
+#include <atomic>
 #include "GameEngine.h"
 #include "media/ISoundPlayer.h"
 #include "media/IMusicPlayer.h"
@@ -43,15 +44,17 @@ namespace {
 bool mobileEnabled=false,stateEnabled=false,audioMuted=false;
 ui32 previousSoundVolume=75,previousMusicVolume=75;
 bool mapsListed=false,savesListed=false;std::vector<std::pair<std::string,std::string>> mobileMaps,mobileSaves;
-uint32_t lastPublished=0;
+uint32_t lastPublished=0,lastSent=0;
+std::string lastSnapshot;
+std::atomic_bool snapshotPending{false};
 JsonNode rect(const Rect & r){JsonNode n;n["x"].Integer()=r.x;n["y"].Integer()=r.y;n["w"].Integer()=r.w;n["h"].Integer()=r.h;return n;}
 JsonNode creature(const CCreature * c,int count){JsonNode n;n["name"].String()=c->getNameSingularTranslated();n["id"].Integer()=c->getId().getNum();n["icon"].String()=c->largeIconName;n["count"].Integer()=count;for(int i=0;i<7;i++)n["cost"].Vector().push_back(JsonNode(double(c->getRecruitCost(GameResID(i)))));return n;}
 JsonNode army(const CArmedInstance * a,const std::string & name){JsonNode n;n["id"].Integer()=a->id.getNum();n["name"].String()=name;for(int i=0;i<7;i++){auto c=a->getCreature(SlotID(i));n["slots"].Vector().push_back(c?creature(c,a->getStackCount(SlotID(i))):JsonNode());}return n;}
 void shortcut(EShortcut key){ENGINE->events().dispatchShortcutPressed({key});ENGINE->events().dispatchShortcutReleased({key});}
 }
 void publishMobileState(){
- if(!stateEnabled||!ENGINE||!GAME||SDL_GetTicks()-lastPublished<180)return;lastPublished=SDL_GetTicks();
- if(audioMuted){ENGINE->sound().setVolume(0);ENGINE->music().setVolume(0);}
+ if(!stateEnabled||!ENGINE||!GAME||snapshotPending.load()||SDL_GetTicks()-lastPublished<180)return;lastPublished=SDL_GetTicks();
+ if(audioMuted){if(ENGINE->sound().getVolume()!=0)ENGINE->sound().setVolume(0);if(ENGINE->music().getVolume()!=0)ENGINE->music().setVolume(0);}
  JsonNode n;n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top)n["rect"]=rect(top->pos);
  auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();
  if(ENGINE->windows().topWindow<CLobbyScreen>())n["mode"].String()=GAME->server().screenType==ESelectionScreen::loadGame?"load":"lobby";
@@ -85,8 +88,19 @@ void publishMobileState(){
   if(battleWindow&&CPlayerInterface::battleInt){const auto b=CPlayerInterface::battleInt;n["canAct"].Bool()=b->makingTurn();n["round"].Integer()=b->round;const auto active=b->stacksController->getActiveStack();if(active){n["activeUnit"]=creature(active->unitType(),active->getCount());n["activeStack"].Integer()=active->unitId();const auto center=b->fieldController->hexPositionAbsolute(active->getPosition()).center();n["focus"]["x"].Integer()=center.x;n["focus"]["y"].Integer()=center.y;}
    for(const auto stack:b->getBattle()->battleGetAllStacks()){if(stack->getCount()<=0||!stack->getPosition().isValid())continue;auto item=creature(stack->unitType(),stack->getCount());const auto center=b->fieldController->hexPositionAbsolute(stack->getPosition()).center();item["x"].Integer()=center.x;item["y"].Integer()=center.y;item["enemy"].Bool()=active&&stack->unitSide()!=active->unitSide();n["battleUnits"].Vector().push_back(item);}const auto hovered=b->fieldController->getHoveredStack();if(hovered)n["targetUnit"]=creature(hovered->unitType(),hovered->getCount());}
  }
- const auto text=n.toCompactString();MAIN_THREAD_EM_ASM({window.dispatchEvent(new CustomEvent('goonk-state',{detail:JSON.parse(UTF8ToString($0))}));},text.c_str());
+ const auto text=n.toCompactString();
+ if(text==lastSnapshot&&SDL_GetTicks()-lastSent<1000)return;
+ auto * snapshot=static_cast<char *>(malloc(text.size()+1));if(!snapshot)return;
+ memcpy(snapshot,text.c_str(),text.size()+1);lastSnapshot=text;lastSent=SDL_GetTicks();snapshotPending.store(true);
+ // Never wait for DOM handlers while holding GameEngine::interfaceMutex.
+ // Keep at most one notification in flight if the browser is busy.
+ MAIN_THREAD_ASYNC_EM_ASM({
+  const snapshot=UTF8ToString($0);_free($0);
+  try{window.dispatchEvent(new CustomEvent('goonk-state',{detail:JSON.parse(snapshot)}));}
+  finally{Module._vcmiMobileStateAck();}
+ },snapshot);
 }
+extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileStateAck(){snapshotPending.store(false);}
 bool isMobilePresentationActive(){return mobileEnabled;}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileEnable(int enabled){if(ENGINE)ENGINE->dispatchMainThread([enabled](){mobileEnabled=enabled==1;stateEnabled=enabled!=0;lastPublished=0;});}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePointer(int x,int y,int action){if(ENGINE)ENGINE->dispatchMainThread([x,y,action](){Point point(x,y);ENGINE->events().dispatchMouseMoved(Point(0,0),point);if(action==1){ENGINE->events().dispatchMouseLeftButtonPressed(point,4);ENGINE->events().dispatchMouseLeftButtonReleased(point,4);}if(action==2)ENGINE->events().dispatchShowPopup(point,4);if(action==3)ENGINE->events().dispatchClosePopup(point);});}

@@ -1,0 +1,17 @@
+import {chromium} from 'playwright-core';import fs from 'node:fs';import assert from 'node:assert/strict';
+const browser=await chromium.connectOverCDP('http://127.0.0.1:9223'),page=browser.contexts()[0].pages().at(-1),result={checks:[],errors:[]};page.on('pageerror',e=>result.errors.push(e.message));const wait=fn=>page.waitForFunction(fn,null,{timeout:45000}),click=name=>page.getByRole('button',{name,exact:true}).click();
+try{
+ if((await page.evaluate(()=>goonkMobileState.mode))==='dialog')await click('✓ Valider');await wait(()=>goonkMobileState.mode==='map');
+ const baseline=await page.evaluate(()=>({resources:goonkMobileState.resources,movement:goonkMobileState.movement,count:goonkRuntimeStats.saves.length}));
+ await click('☰ Plus');await click('💾 Sauvegarder');await page.waitForFunction(count=>goonkRuntimeStats.saves.length>count,baseline.count);result.checks.push('Native save is persisted through the asynchronous scheduler');
+ result.burst=await page.evaluate(async()=>{
+  let reads=0,cloud=0;const originalRead=Module.FS.readFile,originalCloud=Module.fsUpdate;Module.FS.readFile=function(...args){reads++;return originalRead.apply(this,args);};Module.fsUpdate=(...args)=>{cloud++;return originalCloud(...args);};
+  const before=goonkRuntimeStats.saves.length;await Promise.all(Array.from({length:10},()=>Module.persistLocalSave('/home/web_user/.local/share/vcmi/Saves/Goonk-mobile.vsgm1')));const flushes=goonkRuntimeStats.saves.length-before;
+  Module.FS.readFile=originalRead;Module.fsUpdate=originalCloud;return{reads,cloud,flushes,errors:goonkRuntimeStats.errors};
+ });assert.equal(result.burst.flushes,1);assert.equal(result.burst.reads,0);assert.equal(result.burst.cloud,0);assert.deepEqual(result.burst.errors,[]);result.checks.push('Ten persistence requests coalesce into one flush, with no save-sized copies or cloud request');
+ result.roundTrip=await page.evaluate(async()=>{
+  const root='/home/web_user/.local/share/vcmi',name='Saves/Goonk-mobile.vsgm1';const {opfsList,opfsRead}=await import('./opfs-worker.js');await opfsList(root);const disk=await opfsRead(root,name,0,0),memory=Module.FS.readFile(root+'/'+name);const hash=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),x=>x.toString(16).padStart(2,'0')).join('');return{disk:await hash(disk.contents),memory:await hash(memory),bytes:memory.length};
+ });assert.equal(result.roundTrip.disk,result.roundTrip.memory);result.checks.push('OPFS bytes match the native save exactly');
+ await page.goto('http://127.0.0.1:8768/heroes-goonk/?mobile=1');await wait(()=>window.goonkMobileState?.mode==='menu');await click('Charger une partie');await wait(()=>goonkMobileState.maps?.length);const saved=(await page.evaluate(()=>goonkMobileState.maps)).find(x=>x.name==='Goonk-mobile');assert(saved);await page.locator('#mobile-map-select').selectOption(String(saved.index));await click('Commencer');await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.heroName);assert.deepEqual(await page.evaluate(()=>goonkMobileState.resources),baseline.resources);assert.equal(await page.evaluate(()=>goonkMobileState.movement),baseline.movement);result.checks.push('Saved resources and movement survive a reload and native load');assert.deepEqual(result.errors,[]);
+}catch(error){result.failure=error.stack;console.error(error.stack);}
+fs.writeFileSync('../../outputs/save-persistence-validation.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result));process.exit(result.failure?1:0);

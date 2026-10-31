@@ -1,0 +1,189 @@
+{
+  "version": "after",
+  "phases": [
+    {
+      "name": "start-game",
+      "longTasks": [],
+      "gaps": [],
+      "handlers": [],
+      "fs": [],
+      "heap": 486808828,
+      "wasm": 536870912
+    },
+    {
+      "name": "map-idle",
+      "longTasks": [],
+      "gaps": [],
+      "handlers": [],
+      "fs": [],
+      "heap": 487852109,
+      "wasm": 536870912
+    },
+    {
+      "name": "town-idle",
+      "longTasks": [],
+      "gaps": [],
+      "handlers": [],
+      "fs": [],
+      "heap": 493912654,
+      "wasm": 536870912
+    },
+    {
+      "name": "town-muted",
+      "longTasks": [],
+      "gaps": [],
+      "handlers": [],
+      "fs": [],
+      "heap": 480182808,
+      "wasm": 536870912
+    },
+    {
+      "name": "town-refresh-stress",
+      "longTasks": [],
+      "gaps": [],
+      "handlers": [],
+      "fs": [],
+      "heap": 484689612,
+      "wasm": 536870912
+    },
+    {
+      "name": "manual-save",
+      "longTasks": [],
+      "gaps": [],
+      "handlers": [],
+      "fs": [
+        {
+          "at": 44926.95499998331,
+          "name": "getLocalSet",
+          "total": 0.09500002861022949
+        },
+        {
+          "at": 44926.95499998331,
+          "name": "getLocalSet",
+          "blocking": 0.12000000476837158
+        },
+        {
+          "at": 44926.95499998331,
+          "name": "syncfs",
+          "blocking": 0.12000000476837158
+        },
+        {
+          "at": 44927.07999998331,
+          "name": "getLocalSet",
+          "total": 37.3400000333786
+        },
+        {
+          "at": 44927.07999998331,
+          "name": "getLocalSet",
+          "blocking": 37.360000014305115
+        },
+        {
+          "at": 44927.07499998808,
+          "name": "syncfs",
+          "blocking": 37.36500000953674
+        },
+        {
+          "at": 44965.92500001192,
+          "name": "reconcile",
+          "total": 0.004999995231628418
+        },
+        {
+          "at": 44926.95499998331,
+          "name": "syncfs",
+          "total": 38.980000019073486
+        },
+        {
+          "at": 44965.92500001192,
+          "name": "reconcile",
+          "blocking": 0.014999985694885254
+        },
+        {
+          "at": 45082.964999973774,
+          "name": "reconcile",
+          "blocking": 2.939999997615814
+        },
+        {
+          "at": 45082.964999973774,
+          "name": "reconcile",
+          "total": 129.43000000715256
+        },
+        {
+          "at": 44927.07499998808,
+          "name": "syncfs",
+          "total": 285.32499998807907
+        }
+      ],
+      "heap": 483354068,
+      "wasm": 536870912
+    }
+  ],
+  "errors": [],
+  "console": [
+    "\u001b[0m\u001b[1;32mThe log file will be saved to \"/home/web_user/.cache/vcmi/VCMI_Client_log.txt\"",
+    "\t Error: Required entry name is missing",
+    "\t Error: Required entry name is missing",
+    "\t Error: Required entry name is missing",
+    "\t Error: Required entry name is missing",
+    "\t Error: Required entry name is missing",
+    "\t Error: Required entry name is missing",
+    "\t Error: Required entry name is missing",
+    "\t Error: Required entry name is missing",
+    "\t Error: Required entry name is missing",
+    "\t Error: Required entry name is missing",
+    "\t Error: Music file \"music/CstleTown\" was not found",
+    "\t Error: Video file \"TAVERN.BIK\" was not found",
+    "\t Error: Music file \"music/ElemTown\" was not found",
+    "\t Error: Video file \"TAVERN.BIK\" was not found",
+    "\t Error: Music file \"music/Dungeon\" was not found",
+    "\t Error: Video file \"TAVERN.BIK\" was not found",
+    "\t Error: Music file \"music/FortressTown\" was not found",
+    "\t Error: Video file \"TAVERN.BIK\" was not found",
+    "\t Error: Music file \"music/InfernoTown\" was not found",
+    "\t Error: Video file \"TAVERN.BIK\" was not found",
+    "\t Error: Music file \"music/NecroTown\" was not found",
+    "\t Error: Video file \"TAVERN.BIK\" was not found",
+    "\t Error: Music file \"music/Rampart\" was not found",
+    "\t Error: Video file \"TAVERN.BIK\" was not found",
+    "\t Error: Music file \"music/Stronghold\" was not found",
+    "\t Error: Video file \"TAVERN.BIK\" was not found",
+    "\t Error: Music file \"music/TowerTown\" was not found",
+    "\t Error: Video file \"TAVERN.BIK\" was not found",
+    "\t Error: Music file \"Dirt.mp3\" was not found",
+    "\t Error: Music file \"Grass.mp3\" was not found",
+    "\t Error: Music file \"Lava.mp3\" was not found",
+    "\t Error: Music file \"Underground.mp3\" was not found",
+    "\t Error: Music file \"Rough.mp3\" was not found",
+    "\t Error: Music file \"Sand.mp3\" was not found",
+    "\t Error: Music file \"Snow.mp3\" was not found",
+    "\t Error: Music file \"Underground.mp3\" was not found",
+    "\t Error: Music file \"Swamp.mp3\" was not found",
+    "\t Error: Music file \"Water.mp3\" was not found",
+    "\t Error: Music file \"music/CstleTown\" was not found",
+    "\t Error: Video file \"\" was not found",
+    "Unable to play sound file BUILDTWN , error No free channels available",
+    "Unable to play sound file BUILDTWN , error No free channels available",
+    "Unable to play sound file BUILDTWN , error No free channels available",
+    "Unable to play sound file BUILDTWN , error No free channels available",
+    "Unable to play sound file BUILDTWN , error No free channels available",
+    "Unable to play sound file BUILDTWN , error No free channels available",
+    "Unable to play sound file BUILDTWN , error No free channels available",
+    "Unable to play sound file BUILDTWN , error No free channels available",
+    "Unable to play sound file BUILDTWN , error No free channels available",
+    "Unable to play sound file BUILDTWN , error No free channels available",
+    "Unable to play sound file BUILDTWN , error No free channels available",
+    "Unable to play sound file BUILDTWN , error No free channels available",
+    "Unable to play sound file BUILDTWN , error No free channels available",
+    "Unable to play sound file BUILDTWN , error No free channels available",
+    "Unable to play sound file BUILDTWN , error No free channels available",
+    "Unable to play sound file CHAT , error No free channels available",
+    "\u001b[0m\u001b[1;31m\u001b[0m\u001b[1;31m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;31m\u001b[0m\u001b[1;31m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;31m\u001b[0m\u001b[1;31m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;31m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[",
+    "\u001b[0m\u001b[1;32mGame has been successfully saved!",
+    "\u001b[0m\u001b[1;32mGame has been saved as Saves/Goonk-mobile"
+  ],
+  "measurement": {
+    "longTaskThresholdMs": 80,
+    "jsTimerGapThresholdMs": 250,
+    "stateGapThresholdMs": 1500,
+    "note": "State gap thresholds differ because unchanged state is now emitted as a 1-second heartbeat. Do not compare state gap counts as a performance speedup."
+  }
+}

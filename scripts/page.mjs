@@ -8,6 +8,7 @@ export function renderPage(root){
  html=html.replace('</head>','<link rel="stylesheet" href="./web/mobile.css"><link rel="stylesheet" href="./web/game-menu.css"><script type="module" src="./web/install.mjs"></script><script type="module" src="./web/mobile.mjs"></script><script type="module" src="./web/game-menu.mjs"></script></head>');
  html=html.replace('const FS = module.FS;','await window.goonkAssetsReady;\n        const FS = module.FS;');
  html=html.replace('module.canvas = document.getElementById("canvas");',`
+ const {installRuntimeScheduling}=await import('./web/runtime-scheduling.mjs');installRuntimeScheduling(module);
  const modSettingsPath='/home/web_user/.config/vcmi/modSettings.json';let modSettings;
  try{modSettings=JSON.parse(FS.readFile(modSettingsPath,{encoding:'utf8'}));}catch{modSettings={activePreset:'default',presets:{default:{mods:['core','vcmi'],settings:{}}}};}
  const preset=modSettings.activePreset||'default';modSettings.presets ||= {};modSettings.presets[preset] ||= {mods:['core','vcmi'],settings:{}};

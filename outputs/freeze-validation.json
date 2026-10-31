@@ -1,0 +1,85 @@
+{
+  "version": "0.3.2",
+  "unitTestsPassed": 15,
+  "engineBuild": "ninja -j32 html5 successful",
+  "reportedMultiSecondIdleFreezeReproduced": false,
+  "observations": [
+    "No multi-second idle freeze in the tested map/town phases",
+    "A browser-side full filesystem scan still takes about 35 ms during a save on this dataset",
+    "No claim that every cause of the user-reported freeze is fixed"
+  ],
+  "changes": [
+    "Asynchronous bounded native-to-browser state notifications",
+    "Unchanged snapshots emitted only as a heartbeat",
+    "Muted mixer volumes updated only when needed",
+    "Save notification transfers only its path and does not block the server thread",
+    "Queued and coalesced local filesystem persistence",
+    "No unused save-sized native/browser copies for ordinary local saves"
+  ],
+  "saveRegression": {
+    "checks": [
+      "Native save is persisted through the asynchronous scheduler",
+      "Ten persistence requests coalesce into one flush, with no save-sized copies or cloud request",
+      "OPFS bytes match the native save exactly",
+      "Saved resources and movement survive a reload and native load"
+    ],
+    "errors": [],
+    "burst": {
+      "reads": 0,
+      "cloud": 0,
+      "flushes": 1,
+      "errors": []
+    },
+    "roundTrip": {
+      "disk": "265dd8750b72f5ae2da8ba277029bb60b10ce9c3e59cff45fc6ae48ccc4400fc",
+      "memory": "265dd8750b72f5ae2da8ba277029bb60b10ce9c3e59cff45fc6ae48ccc4400fc",
+      "bytes": 117888
+    }
+  },
+  "mobileRegression": {
+    "checks": [
+      "Démarrage mobile de Goonk avec WoG",
+      "Déplacement confirmé après choix du trajet",
+      "Construction confirmée par le moteur",
+      "Recrutement de deux Paingpaing",
+      "Séparation de troupe",
+      "Regroupement de troupes",
+      "Portrait et paysage"
+    ],
+    "screens": [
+      "mobile-portrait-welcome",
+      "mobile-portrait-new-game",
+      "mobile-portrait-map",
+      "mobile-portrait-move",
+      "mobile-portrait-town",
+      "mobile-portrait-build",
+      "mobile-portrait-recruit",
+      "mobile-landscape-town",
+      "mobile-landscape-recruit",
+      "mobile-landscape-army"
+    ],
+    "errors": [],
+    "cache": {
+      "downloaded": 0,
+      "reused": 5028,
+      "files": 5028
+    }
+  },
+  "combatRegression": {
+    "checks": [
+      "Retour du château à la carte",
+      "Sauvegarde native créée",
+      "Choix tactile du pouvoir et de sa cible",
+      "Victoire et fermeture du résultat",
+      "Déplacement après victoire contre Paingpaing",
+      "Reprise de la sauvegarde après rechargement"
+    ],
+    "errors": [],
+    "cacheAfterReload": {
+      "downloaded": 0,
+      "reused": 5028,
+      "files": 5028
+    }
+  },
+  "pendingContext": "Mac or phone, local or published URL, and whether freezes occur while idle"
+}

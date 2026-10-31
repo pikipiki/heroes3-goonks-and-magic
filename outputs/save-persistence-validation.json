@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "Native save is persisted through the asynchronous scheduler",
+    "Ten persistence requests coalesce into one flush, with no save-sized copies or cloud request",
+    "OPFS bytes match the native save exactly",
+    "Saved resources and movement survive a reload and native load"
+  ],
+  "errors": [],
+  "burst": {
+    "reads": 0,
+    "cloud": 0,
+    "flushes": 1,
+    "errors": []
+  },
+  "roundTrip": {
+    "disk": "265dd8750b72f5ae2da8ba277029bb60b10ce9c3e59cff45fc6ae48ccc4400fc",
+    "memory": "265dd8750b72f5ae2da8ba277029bb60b10ce9c3e59cff45fc6ae48ccc4400fc",
+    "bytes": 117888
+  }
+}

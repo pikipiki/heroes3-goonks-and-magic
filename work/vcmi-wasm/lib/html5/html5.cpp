@@ -30,33 +30,17 @@ void html5::fsUpdate(const char *path) {
     if (!path || strncmp(path, "/home/web_user/.config", 22) == 0) {
         return;
     }
-    std::ifstream infile(path);
-    if (!infile.is_open()) {
-        assert(false);
-    }
-    infile.seekg(0, std::ios::end);
-    size_t length = infile.tellg();
-    infile.seekg(0, std::ios::beg);
-
-    char *buffer = (char *) malloc(length);
-    infile.read(buffer, length);
-
-    char *pathCopy = (char *)malloc(strlen(path) + 1);
-    strcpy(pathCopy, path);
-
 #ifdef EMSCRIPTEN
- 	MAIN_THREAD_EM_ASM((
-        const path = UTF8ToString($0);
-        FS.syncfs(false, () => {
-            console.log("fsUpdated", path);
-        });
-		if (Module.fsUpdate) {
-			Module.fsUpdate($0, $1, $2);
-		} else {
-            Module.free($0);
-            Module.free($1);
-        }
-  	), pathCopy, buffer, length);
+    // The VFS file is already closed by CSaveFile::write. Only transfer its
+    // path; copying the entire save here also stalls the server thread.
+    auto *pathCopy = static_cast<char *>(malloc(strlen(path) + 1));
+    if (!pathCopy) return;
+    strcpy(pathCopy, path);
+    MAIN_THREAD_ASYNC_EM_ASM({
+        const path = UTF8ToString($0);_free($0);
+        if (Module.persistLocalSave) Module.persistLocalSave(path);
+        else FS.syncfs(false, error => { if(error) console.error('Save persistence failed', error); });
+    }, pathCopy);
 #endif
 }
 
