@@ -132,3 +132,13 @@ L’interface tactile et le menu utilisent désormais les textures `DIBOXBCK.PCX
 À l’ouverture/fermeture d’un panneau, lors d’une rotation, d’un changement de viewport ou de la perte de focus, les captures de pointeur et les gestes en attente sont libérés. Le fond devient inerte pendant un panneau ; sa croix a son propre gestionnaire et une cible de 48 px. La hauteur d’en-tête est mesurée, y compris la zone de sécurité, et le titre ne se réduit plus pour laisser le contenu déborder. La cause exacte sur l’iPhone du signalement n’a pas pu être observée physiquement.
 
 `mobile-rotation-e2e.mjs` vérifie la fermeture après paysage → portrait et après interruption d’un pointeur maintenu, dans Chromium et WebKit. `native-recruitment-e2e.mjs` vérifie l’accès direct, les images animées, le changement de créature, l’achat et la croix après rotation dans une vraie partie.
+
+## Combat tactile sans zoom répété et navigation (0.3.11)
+
+Le combat affiche désormais le canevas natif complet (800 × 600), y compris la file d’initiative en haut. Le cadrage ne zoome plus à l’entrée, au changement d’unité ou au choix d’une cible. En portrait, le champ complet est suivi d’un panneau de commandes ; en paysage, ce panneau se place à droite. Les cartes d’unités affichent des extraits animés de la scène native et permettent de viser précisément un allié ou un adversaire avant confirmation. « Magie » donne accès aux sorts du héros et aux capacités de la créature.
+
+Pour un déplacement, un toucher du terrain sélectionne le centre d’un hexagone ; une loupe et six grandes flèches ajustent la case sans agrandir ou déplacer le champ principal. Le moteur conserve la validation des déplacements et des attaques. Les commandes natives hors de la grille restent cliquables. Les anciens boutons de zoom et la mini-carte sont masqués pendant le combat, puisque le champ complet reste visible.
+
+Sur la carte, « ◎ Héros » recentre directement sur le héros sélectionné et rétablit la vue normale. Le signe du déplacement envoyé au moteur est inversé : le décor suit désormais le doigt, au lieu de partir dans l’autre sens. Le test réel compare les pixels avant/après un glissement pour vérifier ce sens, puis recentre et démarre un combat.
+
+Tests : `battle-ux-e2e.mjs` joue un combat Goonk réel, vérifie le cadrage, les centres de cases, le choix de cible, la loupe, les orientations et une attaque confirmée. `battle-layout-e2e.mjs` vérifie les pixels des bords supérieur et inférieur et les commandes de précision sous Chromium et WebKit. Les essais complets de moteur restent exécutés sous Chromium ; l’iPhone physique reste à confirmer. Les captures sont dans `outputs/battle-new-*.png`.

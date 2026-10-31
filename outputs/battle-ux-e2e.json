@@ -1,0 +1,431 @@
+{
+  "errors": [],
+  "pan": {
+    "calls": [
+      [
+        -6,
+        0
+      ],
+      [
+        -6,
+        0
+      ],
+      [
+        -6,
+        0
+      ],
+      [
+        -6,
+        0
+      ],
+      [
+        -6,
+        0
+      ],
+      [
+        -6,
+        0
+      ],
+      [
+        -6,
+        0
+      ]
+    ],
+    "best": {
+      "shift": 42,
+      "matches": 2428
+    }
+  },
+  "units": [
+    {
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        70
+      ],
+      "count": 6,
+      "enemy": true,
+      "icon": "goonk/pink-large.png",
+      "id": 158,
+      "name": "Paingpaing",
+      "x": 718,
+      "y": 196
+    },
+    {
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        98
+      ],
+      "count": 6,
+      "enemy": true,
+      "icon": "goonk/pink-evo-large.png",
+      "id": 159,
+      "name": "Paingpaing, Bélier royal",
+      "x": 718,
+      "y": 448
+    },
+    {
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        140
+      ],
+      "count": 1,
+      "enemy": false,
+      "icon": "commanders/CPrL174n",
+      "id": 198,
+      "name": "Paladin",
+      "x": 168,
+      "y": 322
+    },
+    {
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        70
+      ],
+      "count": 30,
+      "enemy": false,
+      "icon": "goonk/pink-large.png",
+      "id": 158,
+      "name": "Paingpaing",
+      "x": 102,
+      "y": 112
+    },
+    {
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        140
+      ],
+      "count": 6,
+      "enemy": false,
+      "icon": "goonk/lancer-large.png",
+      "id": 160,
+      "name": "Picpique",
+      "x": 102,
+      "y": 196
+    },
+    {
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        220
+      ],
+      "count": 6,
+      "enemy": false,
+      "icon": "goonk/archer-large.png",
+      "id": 162,
+      "name": "Zinzéclair",
+      "x": 102,
+      "y": 280
+    },
+    {
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        330
+      ],
+      "count": 6,
+      "enemy": false,
+      "icon": "goonk/fart-large.png",
+      "id": 152,
+      "name": "Bubu",
+      "x": 80,
+      "y": 322
+    },
+    {
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        500
+      ],
+      "count": 6,
+      "enemy": false,
+      "icon": "goonk/vomit-large.png",
+      "id": 154,
+      "name": "Glouglou",
+      "x": 102,
+      "y": 364
+    },
+    {
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        850
+      ],
+      "count": 6,
+      "enemy": false,
+      "icon": "goonk/blue-large.png",
+      "id": 150,
+      "name": "Bobope",
+      "x": 102,
+      "y": 448
+    },
+    {
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2200
+      ],
+      "count": 3,
+      "enemy": false,
+      "icon": "goonk/fire-large.png",
+      "id": 156,
+      "name": "La gros maille maille",
+      "x": 102,
+      "y": 532
+    }
+  ],
+  "fullFrame": {
+    "l": {
+      "x": 0,
+      "y": 0,
+      "w": 800,
+      "h": 600,
+      "scale": 0.4875,
+      "dx": 0,
+      "dy": 0.25
+    },
+    "hexErrors": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "beforeActionStack": 6,
+  "afterAction": {
+    "mode": "battle",
+    "stack": 0,
+    "units": [
+      {
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          70
+        ],
+        "count": 1,
+        "enemy": true,
+        "icon": "goonk/pink-large.png",
+        "id": 158,
+        "name": "Paingpaing",
+        "x": 718,
+        "y": 196
+      },
+      {
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          98
+        ],
+        "count": 6,
+        "enemy": true,
+        "icon": "goonk/pink-evo-large.png",
+        "id": 159,
+        "name": "Paingpaing, Bélier royal",
+        "x": 718,
+        "y": 448
+      },
+      {
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          140
+        ],
+        "count": 1,
+        "enemy": false,
+        "icon": "commanders/CPrL174n",
+        "id": 198,
+        "name": "Paladin",
+        "x": 168,
+        "y": 322
+      },
+      {
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          70
+        ],
+        "count": 30,
+        "enemy": false,
+        "icon": "goonk/pink-large.png",
+        "id": 158,
+        "name": "Paingpaing",
+        "x": 102,
+        "y": 112
+      },
+      {
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          140
+        ],
+        "count": 6,
+        "enemy": false,
+        "icon": "goonk/lancer-large.png",
+        "id": 160,
+        "name": "Picpique",
+        "x": 102,
+        "y": 196
+      },
+      {
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          220
+        ],
+        "count": 6,
+        "enemy": false,
+        "icon": "goonk/archer-large.png",
+        "id": 162,
+        "name": "Zinzéclair",
+        "x": 102,
+        "y": 280
+      },
+      {
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          330
+        ],
+        "count": 6,
+        "enemy": false,
+        "icon": "goonk/fart-large.png",
+        "id": 152,
+        "name": "Bubu",
+        "x": 80,
+        "y": 322
+      },
+      {
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          500
+        ],
+        "count": 6,
+        "enemy": false,
+        "icon": "goonk/vomit-large.png",
+        "id": 154,
+        "name": "Glouglou",
+        "x": 102,
+        "y": 364
+      },
+      {
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          850
+        ],
+        "count": 6,
+        "enemy": false,
+        "icon": "goonk/blue-large.png",
+        "id": 150,
+        "name": "Bobope",
+        "x": 102,
+        "y": 448
+      },
+      {
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2200
+        ],
+        "count": 3,
+        "enemy": false,
+        "icon": "goonk/fire-large.png",
+        "id": 156,
+        "name": "La gros maille maille",
+        "x": 102,
+        "y": 532
+      }
+    ]
+  }
+}

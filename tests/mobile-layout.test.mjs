@@ -2,3 +2,10 @@ import {test} from 'node:test';import assert from 'node:assert/strict';import {f
 for(const [width,height]of [[390,650],[750,280],[360,520],[1024,620]])test(`Scene coordinates stay invertible and clamped at ${width}x${height}`,()=>{const region={x:6,y:6,w:598,h:550};for(const zoom of [1,2,4])for(const focus of [{x:-100,y:-100},{x:300,y:260},{x:1000,y:1000}]){const l=fitRegion(width,height,region,zoom,focus);assert.ok(l.x>=6&&l.y>=6&&l.x+l.w<=604.001&&l.y+l.h<=556.001);const point=scenePoint(l.dx+l.w*l.scale/2,l.dy+l.h*l.scale/2,l);assert.ok(Math.abs(point.x-(l.x+l.w/2))<=1);assert.ok(Math.abs(point.y-(l.y+l.h/2))<=1);assert.equal(scenePoint(-10,-10,l),null);}});
 test('Recruitment respects stock, gold and special resource limits',()=>{assert.equal(affordable({count:20,cost:[0,0,0,0,1,0,100]},[0,0,0,0,3,0,1000]),3);assert.equal(affordable({count:2,cost:[0,0,0,0,0,0,100]},[0,0,0,0,0,0,1000]),2);assert.equal(affordable({count:2,cost:[0,0,0,0,0,0,100]},[]),0);});
 test('Construction explains exhausted daily allowance and missing resources',()=>{assert.match(buildReason(5),/jour/);assert.match(buildReason(6),/Ressources/);});
+
+test('Battle framing includes the top queue and bottom edge without cropping in either orientation',async()=>{
+ const {BATTLE_REGION,battleHex,mapDrag}=await import('../web/mobile-layout.mjs');
+ for(const [w,h] of [[390,293],[512,345],[360,260]]){const l=fitRegion(w,h,BATTLE_REGION);assert.equal(l.x,0);assert.equal(l.y,0);assert.equal(l.w,800);assert.equal(l.h,600);assert.deepEqual(scenePoint(l.dx,l.dy,l),{x:0,y:0});assert.deepEqual(scenePoint(l.dx+800*l.scale,l.dy+600*l.scale,l),{x:800,y:600});}
+ assert.deepEqual(mapDrag(30,-15,1.5),{x:-20,y:10});
+ for(let row=0;row<11;row++){const p={x:36+(row%2===0?22:0)+44*8,y:112+42*row};assert.deepEqual(battleHex(p),p);assert.deepEqual(battleHex({x:p.x+3,y:p.y-2}),p);}
+});
