@@ -1,4 +1,5 @@
 import fs from 'node:fs';import path from 'node:path';import {fileURLToPath} from 'node:url';import sharp from 'sharp';
+import {cleanLegacyCreatureFrames} from './clean-goonk-legacy-frames.mjs';
 import {isolatedBuilding} from './goonk-building-art.mjs';import {buildCreatureIcons} from './build-creature-icons.mjs';
 const keys=['pink','lancer','archer','fart','vomit','blue','fire'],clear={r:0,g:0,b:0,alpha:0};
 export async function buildGoonkPoses({imageDir,artDir}){
@@ -35,6 +36,7 @@ export async function buildGoonkPoses({imageDir,artDir}){
    fs.writeFileSync(configPath,JSON.stringify(config,null,2)+'\n');
   }
  }
+ await cleanLegacyCreatureFrames(imageDir);
  await buildCreatureIcons(imageDir,keys);
  const creaturesPath=path.resolve(imageDir,'../../config/creatures.json'),creatures=JSON.parse(fs.readFileSync(creaturesPath));
  for(const creature of Object.values(creatures))creature.graphics.animationTime.idle=30;

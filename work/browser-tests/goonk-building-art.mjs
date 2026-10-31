@@ -1,6 +1,6 @@
 import sharp from 'sharp';
 // Discard isolated fragments from neighboring atlas cells before making game assets.
-export async function isolatedBuilding(tile){
+export async function isolatedBuilding(tile,{trim=true}={}){
  const {data,info}=await sharp(tile).ensureAlpha().raw().toBuffer({resolveWithObject:true});
  const {width:w,height:h}=info,seen=new Uint8Array(w*h);let largest=[];
  for(let p=0;p<w*h;p++){
@@ -14,6 +14,7 @@ export async function isolatedBuilding(tile){
  }
  const keep=new Uint8Array(w*h);
  for(const q of largest){const x=q%w,y=Math.floor(q/w);for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const xx=x+dx,yy=y+dy;if(xx>=0&&xx<w&&yy>=0&&yy<h)keep[yy*w+xx]=1;}}
- for(let p=0;p<keep.length;p++)if(!keep[p])data[p*4+3]=0;
- return sharp(data,{raw:{width:w,height:h,channels:4}}).trim().png().toBuffer();
+ for(let p=0;p<keep.length;p++)if(!keep[p]||data[p*4+3]===0)data.fill(0,p*4,p*4+4);
+ const cleaned=sharp(data,{raw:{width:w,height:h,channels:4}});
+ return (trim?cleaned.trim():cleaned).png().toBuffer();
 }
