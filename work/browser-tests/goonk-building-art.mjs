@@ -17,4 +17,3 @@ export async function isolatedBuilding(tile){
  for(let p=0;p<keep.length;p++)if(!keep[p])data[p*4+3]=0;
  return sharp(data,{raw:{width:w,height:h,channels:4}}).trim().png().toBuffer();
 }
-
