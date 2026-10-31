@@ -12,6 +12,7 @@ const mod=path.join(game,'Mods/goonk');
 const out=path.resolve('../../outputs');
 const assets=JSON.parse(fs.readFileSync(path.join(work,'goonk-reference/assets.json')));
 const write=(relative,data)=>{const file=path.join(mod,relative);fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,JSON.stringify(data,null,2));};
+const sourceSounds=path.resolve('../../mod/goonk/Content/Sounds');if(fs.existsSync(sourceSounds))fs.cpSync(sourceSounds,path.join(mod,'Content/Sounds'),{recursive:true});
 const imageDir=path.join(mod,'Content/Sprites/goonk');fs.mkdirSync(imageDir,{recursive:true});
 const blue=[91,85,195],pink=[200,65,154],clear={r:0,g:0,b:0,alpha:0};
 const units=[
@@ -81,7 +82,7 @@ for(const u of units){
    else graphics.missile.ray=[{start:u.kind==='fire'?[255,135,30,255]:[150,245,60,220],end:u.kind==='fire'?[255,30,20,190]:[60,170,35,160]}];
   }
   const id=u.id+(upgraded?'Royal':'');
-  creatures[id]={name:{singular:upgraded?u.evo:u.name,plural:upgraded?u.evo:u.name},description:u.desc,faction:'goonk',level:u.level,attack:u.attack+(upgraded?3:0),defense:u.defense+(upgraded?3:0),hitPoints:Math.round(u.hp*(upgraded?1.3:1)),speed:u.speed+(upgraded?1:0),damage:{min:Math.round(u.min*(upgraded?1.25:1)),max:Math.round(u.max*(upgraded?1.25:1))},growth:u.growth,horde:2,cost:{gold:Math.round(u.gold*(upgraded?1.4:1))},fightValue:Math.round(u.hp*u.attack*1.4*(upgraded?1.4:1)),aiValue:Math.round(u.hp*u.attack*1.4*(upgraded?1.4:1)),advMapAmount:{min:3,max:8},abilities,graphics,sound:{attack:'PIKEATTK.wav',defend:'PIKEDFND.wav',killed:'PIKEKILL.wav',move:'PIKEMOVE.wav',wince:'PIKEWNCE.wav',shoot:u.kind==='rock'?'CCYCSHOT.wav':'LCRSSHOT.wav'},...(ranged?{shots:u.kind==='gas'?12:16}:{}),...(!upgraded?{upgrades:[u.id+'Royal']}:{})};
+  creatures[id]={name:{singular:upgraded?u.evo:u.name,plural:upgraded?u.evo:u.name},description:u.desc,faction:'goonk',level:u.level,attack:u.attack+(upgraded?3:0),defense:u.defense+(upgraded?3:0),hitPoints:Math.round(u.hp*(upgraded?1.3:1)),speed:u.speed+(upgraded?1:0),damage:{min:Math.round(u.min*(upgraded?1.25:1)),max:Math.round(u.max*(upgraded?1.25:1))},growth:u.growth,horde:2,cost:{gold:Math.round(u.gold*(upgraded?1.4:1))},fightValue:Math.round(u.hp*u.attack*1.4*(upgraded?1.4:1)),aiValue:Math.round(u.hp*u.attack*1.4*(upgraded?1.4:1)),advMapAmount:{min:3,max:8},abilities,graphics,sound:{attack:'goonk/'+({nose:'nose',lance:'spear',lightning:'lightning',gas:'fart',slime:'vomit',rock:'boulder',fire:'fire'}[u.kind])+'.wav',defend:'PIKEDFND.wav',killed:'PIKEKILL.wav',move:'PIKEMOVE.wav',wince:'PIKEWNCE.wav',shoot:'goonk/'+({nose:'nose',lance:'spear',lightning:'lightning',gas:'fart',slime:'vomit',rock:'boulder',fire:'fire'}[u.kind])+'.wav'},...(ranged?{shots:u.kind==='gas'?12:16}:{}),...(!upgraded?{upgrades:[u.id+'Royal']}:{})};
  }
 }
 // A crisp code-native lightning bolt projectile; characters and town are generated raster art.
@@ -109,7 +110,7 @@ for(const u of units){for(const [prefix,upgrade] of [['dwellingLvl',false],['dwe
 town.buildings.villageHall.cost={};town.buildings.villageHall.name='Maison des Goonks';town.buildings.townHall.name='Hôtel des nez';town.buildings.cityHall.name='Palais des peluches';town.buildings.capitol.name='Grand palais Goonk';town.buildings.tavern.name='Taverne des doudous';
 await buildTown({town,faction,assets,units,png,write,imageDir,repo,out});
 write('Content/config/faction.json',{goonk:faction});
-write('mod.json',{name:'Château Goonk',description:'Sept peluches et leurs évolutions : Paingpaing, Bobope, Bubu, La gros maille maille et leurs amis.',author:'Création personnelle',version:'0.2.0',modType:'Town',compatibility:{min:'1.7.3'},factions:['config/faction.json'],creatures:['config/creatures.json'],heroes:['config/heroes.json'],keepDisabled:false});
+write('mod.json',{name:'Château Goonk',description:'Sept peluches et leurs évolutions : Paingpaing, Bobope, Bubu, La gros maille maille et leurs amis.',author:'Création personnelle',version:'0.3.0',modType:'Town',compatibility:{min:'1.7.3'},factions:['config/faction.json'],creatures:['config/creatures.json'],heroes:['config/heroes.json'],keepDisabled:false});
 write('Content/config/heroes.json',{gardienGoonk:{class:'core:knight',female:false,special:false,texts:{name:'Gardien des Goonks',biography:'Protecteur du royaume des sept nez.',specialty:{name:'Paingpaing',description:'Renforce les unités Paingpaing.',tooltip:'{Paingpaing}\nSpécialiste des coups de nez.'}},images:{large:'goonk/pink-large.png',small:'goonk/pink-small.png',specialtySmall:'goonk/pink-small.png',specialtyLarge:'goonk/pink-large.png'},army:[{creature:'paingpaing',min:20,max:20},{creature:'bobope',min:3,max:3}],skills:[{skill:'core:leadership',level:'basic'}],specialty:{creature:'paingpaing'}}});
 // Small native VCMI showcase map, separate from existing campaigns and saves.
 const mapdir=path.join(work,'goonk-map');fs.mkdirSync(mapdir,{recursive:true});

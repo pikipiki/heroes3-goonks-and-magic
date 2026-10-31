@@ -41,6 +41,8 @@
 #include "../lib/mapObjects/CGHeroInstance.h"
 #include "../lib/mapObjects/CGTownInstance.h"
 #include "../lib/entities/faction/CTown.h"
+#include "../lib/entities/faction/CFaction.h"
+#include "../lib/networkPacks/PacksForLobby.h"
 #include "../lib/entities/building/CBuilding.h"
 #include "../lib/mapping/CMapInfo.h"
 #include "../lib/pathfinder/CGPathNode.h"
@@ -50,7 +52,7 @@ bool mobileEnabled=false,stateEnabled=false,audioMuted=false;
 ui32 previousSoundVolume=75,previousMusicVolume=75;
 bool mapsListed=false,savesListed=false;std::vector<std::pair<std::string,std::string>> mobileMaps,mobileSaves;
 uint32_t lastPublished=0,lastSent=0;
-std::string lastSnapshot;
+std::string lastSnapshot,pendingDefaultMap;
 std::atomic_bool snapshotPending{false};
 JsonNode rect(const Rect & r){JsonNode n;n["x"].Integer()=r.x;n["y"].Integer()=r.y;n["w"].Integer()=r.w;n["h"].Integer()=r.h;return n;}
 JsonNode creature(const CCreature * c,int count){JsonNode n;n["name"].String()=c->getNameSingularTranslated();n["id"].Integer()=c->getId().getNum();n["icon"].String()=c->largeIconName;n["count"].Integer()=count;for(int i=0;i<7;i++)n["cost"].Vector().push_back(JsonNode(double(c->getRecruitCost(GameResID(i)))));return n;}
@@ -106,7 +108,16 @@ void publishMobileState(){
   n["lobbyReady"].Bool()=GAME->server().getState()==EClientState::LOBBY;
   if(!mapsListed){mapsListed=true;const auto files=CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path){return path.getType()==EResType::MAP&&path.getName().find("MAPS/")==0;});for(const auto & file:files){try{CMapInfo info;info.mapInit(file.getOriginalName());if(info.amountOfHumanControllablePlayers>0)mobileMaps.emplace_back(file.getOriginalName(),info.getNameForList());}catch(const std::exception &){} }std::sort(mobileMaps.begin(),mobileMaps.end(),[](const auto & a,const auto & b){return a.second<b.second;});}
   for(size_t i=0;i<mobileMaps.size();i++){JsonNode entry;entry["index"].Integer()=i;entry["name"].String()=mobileMaps[i].second;n["maps"].Vector().push_back(entry);}
-  if(GAME->server().mi)n["selectedMap"].String()=GAME->server().mi->getNameForList();
+  if(GAME->server().mi){
+   auto & server=GAME->server();n["selectedMap"].String()=server.mi->getNameForList();n["difficulty"].Integer()=server.si->difficulty;
+   const auto color=server.myFirstColor();
+   if(server.si->playerInfos.count(color)){
+    const auto & allowed=server.getPlayerInfo(color).allowedFactions;
+    n["selectedFaction"].Integer()=server.si->playerInfos.at(color).castle.getNum();n["allowRandomFaction"].Bool()=server.getPlayerInfo(color).isFactionRandom;
+    for(const auto id:allowed){const auto faction=id.toFaction();JsonNode item;item["id"].Integer()=id.getNum();item["name"].String()=faction->getNameTranslated();item["key"].String()=faction->getJsonKey();n["factions"].Vector().push_back(item);}
+    if(!pendingDefaultMap.empty()&&server.mi->getNameForList()==pendingDefaultMap){pendingDefaultMap.clear();server.setDifficulty(1);for(const auto id:allowed)if(id.toFaction()->getJsonKey()=="goonk:goonk")server.setPlayerOption(LobbyChangePlayerOption::TOWN_ID,id.getNum(),color);}
+   }
+  }
  }
  if(n["mode"].String()=="load"){
   n["lobbyReady"].Bool()=GAME->server().getState()==EClientState::LOBBY;
@@ -117,7 +128,7 @@ void publishMobileState(){
   if(const auto c=recruitWindow->getRecruitCreature())n["recruitUnit"]=creature(c,recruitWindow->getRecruitAvailable());
   n["recruitAmount"].Integer()=recruitWindow->getRecruitAmount();n["recruitMaximum"].Integer()=recruitWindow->getRecruitMaximum();
  }
- if(p&&p->cb&&p->localState){
+ if(p&&p->cb&&p->localState){n["day"].Integer()=p->cb->getDate(Date::DAY);
   n["turn"].Bool()=p->makingTurn; n["autosaveAllowed"].Bool()=p->makingTurn&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>());
   n["cheatsAllowed"].Bool()=p->cb->getStartInfo()->extraOptionsInfo.cheatsAllowed;
   n["cheatReady"].Bool()=p->makingTurn&&(n["mode"].String()=="map"||n["mode"].String()=="town");
@@ -134,6 +145,7 @@ void publishMobileState(){
   if(battleWindow&&CPlayerInterface::battleInt){const auto b=CPlayerInterface::battleInt;const bool tactics=b->tacticsMode||b->getBattle()->battleTacticDist()!=0;
    const bool ownsTactics=b->getBattle()->battleTacticDist()>0&&b->getBattle()->sideToPlayer(b->getBattle()->battleGetTacticsSide())==p->playerID;
    n["tacticsMode"].Bool()=tactics;n["canEndTactics"].Bool()=b->tacticsMode&&ownsTactics&&!b->openingPlaying()&&!b->hasAnimations();
+   n["canRetreat"].Bool()=!tactics&&b->round>0&&b->makingTurn()&&!b->hasAnimations()&&b->getBattle()->battleCanFlee();
    n["canUseMagic"].Bool()=!tactics&&b->round>0&&b->makingTurn()&&!b->openingPlaying()&&!b->hasAnimations();
    const auto caster=b->currentHero();n["heroHasSpellbook"].Bool()=caster&&caster->hasSpellbook();if(caster)n["heroMana"].Integer()=caster->mana;
    const auto spellProblem=caster?b->getBattle()->battleCanCastSpell(caster,spells::Mode::HERO):ESpellCastProblem::NO_HERO_TO_CAST_SPELL;
@@ -164,10 +176,11 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==0){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});return;}if(action==1){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});return;}
  if(action==28){const bool mute=a!=0;if(mute&&!audioMuted){previousSoundVolume=ENGINE->sound().getVolume();previousMusicVolume=ENGINE->music().getVolume();}if(mute!=audioMuted){audioMuted=mute;ENGINE->sound().setVolume(mute?0:previousSoundVolume);ENGINE->music().setVolume(mute?0:previousMusicVolume);}lastPublished=0;return;}
  if(action==20){if(GAME&&!GAME->interface())CMainMenu::openLobby(ESelectionScreen::newGame,true,{"Goonk"},ELoadMode::NONE,false);return;}
- if(action==21){if(GAME&&GAME->server().getState()==EClientState::LOBBY){auto info=std::make_shared<CMapInfo>();info->mapInit("MAPS/000-Goonk");GAME->server().setMapInfo(info);}return;}
+ if(action==21){if(GAME&&GAME->server().getState()==EClientState::LOBBY){auto info=std::make_shared<CMapInfo>();info->mapInit("MAPS/001-Goonks");pendingDefaultMap="Goonks";GAME->server().setMapInfo(info);}return;}
  if(action==22){if(GAME&&GAME->server().getState()==EClientState::LOBBY)GAME->server().sendStartGame();return;}
- if(action==24){if(GAME&&GAME->server().getState()==EClientState::LOBBY&&a>=0&&a<int(mobileMaps.size())){auto info=std::make_shared<CMapInfo>();info->mapInit(mobileMaps[a].first);GAME->server().setMapInfo(info);}return;}
+ if(action==24){if(GAME&&GAME->server().getState()==EClientState::LOBBY&&a>=0&&a<int(mobileMaps.size())){auto info=std::make_shared<CMapInfo>();info->mapInit(mobileMaps[a].first);pendingDefaultMap=info->getNameForList()=="Goonks"?"Goonks":"";GAME->server().setMapInfo(info);}return;}
  if(action==25){if(GAME&&GAME->server().getState()==EClientState::LOBBY&&a>=0&&a<=4)GAME->server().setDifficulty(a);return;}
+ if(action==37){if(GAME&&GAME->server().getState()==EClientState::LOBBY&&GAME->server().mi){auto & server=GAME->server();const auto color=server.myFirstColor();if(server.si->playerInfos.count(color)&&(server.getPlayerInfo(color).allowedFactions.count(FactionID(a))||(a==-1&&server.getPlayerInfo(color).isFactionRandom)))server.setPlayerOption(LobbyChangePlayerOption::TOWN_ID,a,color);}return;}
  if(action==27){if(GAME&&GAME->server().getState()==EClientState::LOBBY&&GAME->server().screenType==ESelectionScreen::loadGame&&a>=0&&a<int(mobileSaves.size())){auto info=std::make_shared<CMapInfo>();info->saveInit(ResourcePath(mobileSaves[a].first,EResType::SAVEGAME));GAME->server().setMapInfo(info);}return;}
  if(action==23){if(GAME&&!GAME->interface())CMainMenu::openLobby(ESelectionScreen::loadGame,true,{"Goonk"},ELoadMode::SINGLE,false);return;}
  auto p=GAME?GAME->interface():nullptr;if(!p||!p->cb||!p->localState)return;
@@ -213,6 +226,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   if(action==13&&combatReady)battle->giveCommand(EActionType::DEFEND);
   if(action==14&&combatReady)shortcut(a==1?EShortcut::BATTLE_USE_CREATURE_SPELL:EShortcut::BATTLE_CAST_SPELL);
   if(action==15&&battle->openingPlaying())battle->openingEnd();
+  if(action==38&&combatReady&&battle->getBattle()->battleCanFlee())shortcut(EShortcut::BATTLE_RETREAT);
   if(action==35&&canPlace)battle->tacticPhaseEnd();
   if(action==36&&canPlace)battle->tacticNextStack(nullptr);
  }

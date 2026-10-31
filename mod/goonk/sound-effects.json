@@ -1,0 +1,49 @@
+{
+  "provider": "ElevenLabs",
+  "model": "eleven_text_to_sound_v2",
+  "flow": "https://elevenlabs.io/app/flows/sPFNpeRk2ekUJqWRqMcl",
+  "effects": [
+    {
+      "key": "fart",
+      "id": "dOGPfTfjNsRzNd6DW2k6",
+      "prompt": "One convincing short deep wet raspberry fart from a chubby green cartoon monster, low bubbly rumble with a rattly sputtering finish. Close dry foley, playful but physically believable. Single attack, immediate onset, no talking, no music, no ambience.",
+      "duration": 1.2
+    },
+    {
+      "key": "vomit",
+      "id": "Vt7wsI1qVE7Ml9eqdMeN",
+      "prompt": "One wet forceful projectile vomit attack by a small cartoon monster: a brief guttural retch and thick liquid splattering onto the ground. Convincing liquid texture, close dry foley, immediate onset, no words, no music, no ambience.",
+      "duration": 1.08
+    },
+    {
+      "key": "fire",
+      "id": "w2urtdAavblLdFEtgQpq",
+      "prompt": "A single fantasy fireball attack: quick fiery ignition whoosh, rushing flame and a compact soft explosive impact with crackling embers. Punchy polished strategy game foley, immediate onset, no speech, no music, no ambience.",
+      "duration": 1
+    },
+    {
+      "key": "lightning",
+      "id": "kbGQf8klz3DcO2KiaHNB",
+      "prompt": "One electric magic arrow attack: bowstring twang followed instantly by a fast sizzling electric zip and a sharp miniature thunder crack impact. Compact dramatic polished fantasy strategy game foley, no speech, no music, no ambience.",
+      "duration": 1
+    },
+    {
+      "key": "spear",
+      "id": "GBeEM9LnGX2IZ7K0D0LJ",
+      "prompt": "One heavy sword spear thrust attack, fast metal blade swish through air ending in a solid metallic clank and padded thud. Weighty convincing fantasy weapon foley, immediate onset, no vocalization, no music, no ambience.",
+      "duration": 0.8
+    },
+    {
+      "key": "nose",
+      "id": "5gvvxhIUF91P3LxLXaNC",
+      "prompt": "One playful heavy plush monster nose punch, quick elastic rubbery swish followed by a satisfying rounded low thump and tiny squeak. Convincing physical foley, immediate onset, no speech, no music, no ambience.",
+      "duration": 0.6802494331065759
+    },
+    {
+      "key": "boulder",
+      "id": "mj2DyNRWkZf87EYaI6I8",
+      "prompt": "One cyclops boulder throw, weighty rushing stone whoosh followed by a strong rocky crunch impact and small stone fragments scattering. Convincing fantasy strategy game foley, immediate onset, no voice, no music, no ambience.",
+      "duration": 1
+    }
+  ]
+}

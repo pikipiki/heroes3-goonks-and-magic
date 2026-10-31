@@ -40,12 +40,12 @@
       }
     },
     "sound": {
-      "attack": "PIKEATTK.wav",
+      "attack": "goonk/nose.wav",
       "defend": "PIKEDFND.wav",
       "killed": "PIKEKILL.wav",
       "move": "PIKEMOVE.wav",
       "wince": "PIKEWNCE.wav",
-      "shoot": "LCRSSHOT.wav"
+      "shoot": "goonk/nose.wav"
     },
     "upgrades": [
       "paingpaingRoyal"
@@ -97,12 +97,12 @@
       }
     },
     "sound": {
-      "attack": "PIKEATTK.wav",
+      "attack": "goonk/nose.wav",
       "defend": "PIKEDFND.wav",
       "killed": "PIKEKILL.wav",
       "move": "PIKEMOVE.wav",
       "wince": "PIKEWNCE.wav",
-      "shoot": "LCRSSHOT.wav"
+      "shoot": "goonk/nose.wav"
     }
   },
   "picpique": {
@@ -150,12 +150,12 @@
       }
     },
     "sound": {
-      "attack": "PIKEATTK.wav",
+      "attack": "goonk/spear.wav",
       "defend": "PIKEDFND.wav",
       "killed": "PIKEKILL.wav",
       "move": "PIKEMOVE.wav",
       "wince": "PIKEWNCE.wav",
-      "shoot": "LCRSSHOT.wav"
+      "shoot": "goonk/spear.wav"
     },
     "upgrades": [
       "picpiqueRoyal"
@@ -209,12 +209,12 @@
       }
     },
     "sound": {
-      "attack": "PIKEATTK.wav",
+      "attack": "goonk/spear.wav",
       "defend": "PIKEDFND.wav",
       "killed": "PIKEKILL.wav",
       "move": "PIKEMOVE.wav",
       "wince": "PIKEWNCE.wav",
-      "shoot": "LCRSSHOT.wav"
+      "shoot": "goonk/spear.wav"
     }
   },
   "zinzeclair": {
@@ -290,12 +290,12 @@
       }
     },
     "sound": {
-      "attack": "PIKEATTK.wav",
+      "attack": "goonk/lightning.wav",
       "defend": "PIKEDFND.wav",
       "killed": "PIKEKILL.wav",
       "move": "PIKEMOVE.wav",
       "wince": "PIKEWNCE.wav",
-      "shoot": "LCRSSHOT.wav"
+      "shoot": "goonk/lightning.wav"
     },
     "shots": 16,
     "upgrades": [
@@ -384,12 +384,12 @@
       }
     },
     "sound": {
-      "attack": "PIKEATTK.wav",
+      "attack": "goonk/lightning.wav",
       "defend": "PIKEDFND.wav",
       "killed": "PIKEKILL.wav",
       "move": "PIKEMOVE.wav",
       "wince": "PIKEWNCE.wav",
-      "shoot": "LCRSSHOT.wav"
+      "shoot": "goonk/lightning.wav"
     },
     "shots": 16
   },
@@ -481,12 +481,12 @@
       }
     },
     "sound": {
-      "attack": "PIKEATTK.wav",
+      "attack": "goonk/fart.wav",
       "defend": "PIKEDFND.wav",
       "killed": "PIKEKILL.wav",
       "move": "PIKEMOVE.wav",
       "wince": "PIKEWNCE.wav",
-      "shoot": "LCRSSHOT.wav"
+      "shoot": "goonk/fart.wav"
     },
     "shots": 12,
     "upgrades": [
@@ -590,12 +590,12 @@
       }
     },
     "sound": {
-      "attack": "PIKEATTK.wav",
+      "attack": "goonk/fart.wav",
       "defend": "PIKEDFND.wav",
       "killed": "PIKEKILL.wav",
       "move": "PIKEMOVE.wav",
       "wince": "PIKEWNCE.wav",
-      "shoot": "LCRSSHOT.wav"
+      "shoot": "goonk/fart.wav"
     },
     "shots": 12
   },
@@ -687,12 +687,12 @@
       }
     },
     "sound": {
-      "attack": "PIKEATTK.wav",
+      "attack": "goonk/vomit.wav",
       "defend": "PIKEDFND.wav",
       "killed": "PIKEKILL.wav",
       "move": "PIKEMOVE.wav",
       "wince": "PIKEWNCE.wav",
-      "shoot": "LCRSSHOT.wav"
+      "shoot": "goonk/vomit.wav"
     },
     "shots": 16,
     "upgrades": [
@@ -796,12 +796,12 @@
       }
     },
     "sound": {
-      "attack": "PIKEATTK.wav",
+      "attack": "goonk/vomit.wav",
       "defend": "PIKEDFND.wav",
       "killed": "PIKEKILL.wav",
       "move": "PIKEMOVE.wav",
       "wince": "PIKEWNCE.wav",
-      "shoot": "LCRSSHOT.wav"
+      "shoot": "goonk/vomit.wav"
     },
     "shots": 16
   },
@@ -869,12 +869,12 @@
       }
     },
     "sound": {
-      "attack": "PIKEATTK.wav",
+      "attack": "goonk/boulder.wav",
       "defend": "PIKEDFND.wav",
       "killed": "PIKEKILL.wav",
       "move": "PIKEMOVE.wav",
       "wince": "PIKEWNCE.wav",
-      "shoot": "CCYCSHOT.wav"
+      "shoot": "goonk/boulder.wav"
     },
     "shots": 16,
     "upgrades": [
@@ -949,12 +949,12 @@
       }
     },
     "sound": {
-      "attack": "PIKEATTK.wav",
+      "attack": "goonk/boulder.wav",
       "defend": "PIKEDFND.wav",
       "killed": "PIKEKILL.wav",
       "move": "PIKEMOVE.wav",
       "wince": "PIKEWNCE.wav",
-      "shoot": "CCYCSHOT.wav"
+      "shoot": "goonk/boulder.wav"
     },
     "shots": 16
   },
@@ -1054,12 +1054,12 @@
       }
     },
     "sound": {
-      "attack": "PIKEATTK.wav",
+      "attack": "goonk/fire.wav",
       "defend": "PIKEDFND.wav",
       "killed": "PIKEKILL.wav",
       "move": "PIKEMOVE.wav",
       "wince": "PIKEWNCE.wav",
-      "shoot": "LCRSSHOT.wav"
+      "shoot": "goonk/fire.wav"
     },
     "shots": 16,
     "upgrades": [
@@ -1162,12 +1162,12 @@
       }
     },
     "sound": {
-      "attack": "PIKEATTK.wav",
+      "attack": "goonk/fire.wav",
       "defend": "PIKEDFND.wav",
       "killed": "PIKEKILL.wav",
       "move": "PIKEMOVE.wav",
       "wince": "PIKEWNCE.wav",
-      "shoot": "LCRSSHOT.wav"
+      "shoot": "goonk/fire.wav"
     },
     "shots": 16
   }

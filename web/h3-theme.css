@@ -62,3 +62,7 @@
 @media(orientation:landscape) and (max-height:360px){#battle-creature-detail{height:92px;min-height:80px}#mobile-app[data-mode=battle][data-battle-view=native] .battle-selection{font-size:11px}}
 
 .mobile-top{position:relative;z-index:4}.battle-view{position:relative;z-index:5;pointer-events:auto;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+
+/* Three direct battle tools remain visible without opening the spell menu. */
+#mobile-app[data-mode=battle][data-battle-view=native] .battle-tools{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(orientation:landscape) and (max-height:600px){#mobile-app[data-mode=battle][data-battle-view=native] .battle-tools{grid-template-columns:repeat(2,minmax(0,1fr))}#mobile-app[data-mode=battle] [data-ui=battle-retreat]{grid-column:1/-1}}

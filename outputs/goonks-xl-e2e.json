@@ -1,0 +1,52 @@
+{
+  "errors": [],
+  "serverErrors": [],
+  "defaults": {
+    "map": "Goonks",
+    "difficulty": 1,
+    "faction": "goonk:goonk"
+  },
+  "started": {
+    "hero": "Sanya",
+    "towns": [
+      {
+        "index": 0,
+        "name": "Goonkbourg"
+      }
+    ],
+    "armies": [
+      {
+        "index": 0,
+        "movement": 1560,
+        "name": "Sanya"
+      }
+    ]
+  },
+  "town": {
+    "name": "Goonkbourg",
+    "recruits": [
+      {
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          70
+        ],
+        "count": 16,
+        "icon": "goonk/pink-large.png",
+        "id": 158,
+        "level": 0,
+        "name": "Paingpaing",
+        "variant": 0
+      }
+    ]
+  },
+  "aiTurnCompleted": true,
+  "dayAfterAI": 2,
+  "alternateCastle": true,
+  "retreatCancelled": true,
+  "retreatCompleted": true
+}

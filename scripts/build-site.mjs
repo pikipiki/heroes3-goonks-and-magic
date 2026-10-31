@@ -7,7 +7,7 @@ const root=path.resolve(process.env.GOONK_ENGINE_DIR||'work/vcmi-wasm/emscripten
 if(!fs.existsSync(root))throw Error('Extraire le moteur précompilé dans work/vcmi-wasm/emscripten/ avant de construire le site.');
 fs.rmSync(dist,{recursive:true,force:true});fs.cpSync(root,dist,{recursive:true});fs.cpSync('web',path.join(dist,'web'),{recursive:true});
 // Public builds include the Goonk/WoG mods and showcase map.
-const publicData=path.resolve('work/public-data');fs.rmSync(publicData,{recursive:true,force:true});fs.mkdirSync(publicData+'/Maps',{recursive:true});fs.cpSync('mod',publicData+'/Mods',{recursive:true});fs.copyFileSync('maps/000-Goonk.vmap',publicData+'/Maps/000-Goonk.vmap');
+const publicData=path.resolve('work/public-data');fs.rmSync(publicData,{recursive:true,force:true});fs.mkdirSync(publicData+'/Maps',{recursive:true});fs.cpSync('mod',publicData+'/Mods',{recursive:true});for(const file of fs.readdirSync('maps').filter(f=>f.endsWith('.vmap')))fs.copyFileSync('maps/'+file,publicData+'/Maps/'+file);
 const manifest=makeManifest(publicData,{includeBase:false});
 for(const file of manifest.files)file.url='.'+file.url;
 for(const file of manifest.files){const target=path.join(dist,decodeURIComponent(file.url));fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(path.join(publicData,file.path),target);}
