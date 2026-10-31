@@ -1,0 +1,94 @@
+{
+  "chromium": [
+    {
+      "mobile": false,
+      "offscreen": false,
+      "preserve": false,
+      "pixel": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "mobile": false,
+      "offscreen": true,
+      "preserve": false,
+      "pixel": [
+        255,
+        51,
+        26,
+        255
+      ]
+    },
+    {
+      "mobile": true,
+      "offscreen": false,
+      "preserve": true,
+      "pixel": [
+        255,
+        51,
+        26,
+        255
+      ]
+    },
+    {
+      "mobile": true,
+      "offscreen": true,
+      "preserve": true,
+      "pixel": [
+        255,
+        51,
+        26,
+        255
+      ]
+    }
+  ],
+  "webkit": [
+    {
+      "mobile": false,
+      "offscreen": false,
+      "preserve": false,
+      "pixel": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "mobile": false,
+      "offscreen": true,
+      "preserve": false,
+      "pixel": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "mobile": true,
+      "offscreen": false,
+      "preserve": true,
+      "pixel": [
+        255,
+        51,
+        26,
+        255
+      ]
+    },
+    {
+      "mobile": true,
+      "offscreen": true,
+      "preserve": true,
+      "pixel": [
+        255,
+        51,
+        26,
+        255
+      ]
+    }
+  ]
+}
