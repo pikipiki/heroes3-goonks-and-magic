@@ -1,6 +1,6 @@
 import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';
 import {makeManifest} from './assets.mjs';import {renderPage} from './page.mjs';
-const root=path.resolve('work/vcmi-wasm/emscripten/html5'),data=path.resolve('work/game-data/homm3eng/home/web_user/.local/share/vcmi'),dist=path.resolve('dist');
+const root=path.resolve(process.env.GOONK_ENGINE_DIR||'work/vcmi-wasm/emscripten/html5'),data=path.resolve('work/game-data/homm3eng/home/web_user/.local/share/vcmi'),dist=path.resolve('dist');
 if(!fs.existsSync(root))throw Error('Extraire le moteur précompilé dans work/vcmi-wasm/emscripten/ avant de construire le site.');
 fs.rmSync(dist,{recursive:true,force:true});fs.cpSync(root,dist,{recursive:true});fs.cpSync('web',path.join(dist,'web'),{recursive:true});
 // Public builds include the Goonk/WoG mods and showcase map, never the original Heroes III files.

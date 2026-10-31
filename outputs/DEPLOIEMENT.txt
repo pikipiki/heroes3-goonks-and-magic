@@ -10,7 +10,11 @@ Le ZIP fait environ 137 Mo : pour un envoi plus fiable, tu peux aussi
 importer le dépôt GitHub dans Netlify. Les réglages sont déjà fournis
 dans netlify.toml. Les prochains commits envoyés publient les mises à jour.
 
-GITHUB PAGES
+GITHUB PAGES — AUTOMATIQUE POUR CE DEPOT
+https://pikipiki.github.io/heroes3-goonks-and-magic/
+Chaque push sur main construit et publie automatiquement le site.
+Les étapes ci-dessous servent à configurer une nouvelle copie du dépôt.
+
 1. Envoie le dépôt heroes-goonk sur GitHub.
 2. Settings > Pages > Build and deployment > Source : GitHub Actions.
 3. Actions > Publish Heroes Goonk to GitHub Pages > Run workflow (main).

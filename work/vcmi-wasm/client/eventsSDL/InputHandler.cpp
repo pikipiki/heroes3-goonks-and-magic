@@ -70,6 +70,10 @@ void InputHandler::handleCurrentEvent(const SDL_Event & current)
 		case SDL_MOUSEMOTION:
 			if (enableMouse)
 			{
+#ifdef VCMI_EMSCRIPTEN
+				// Apply only the coalesced motion, under updateFrame's GUI lock.
+				ENGINE->cursor().cursorMove(current.motion.x, current.motion.y);
+#endif
 				setCurrentInputMode(InputMode::KEYBOARD_AND_MOUSE);
 				mouseHandler->handleEventMouseMotion(current.motion);
 			}
@@ -341,7 +345,7 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 		return;
 	}
 
-#ifndef VCMI_EMULATE_TOUCHSCREEN_WITH_MOUSE
+#if !defined(VCMI_EMULATE_TOUCHSCREEN_WITH_MOUSE) && !defined(VCMI_EMSCRIPTEN)
 	//preprocessing
 	if(ev.type == SDL_MOUSEMOTION)
 	{

@@ -10,7 +10,9 @@
     "Touch presentation disables mouse edge scrolling",
     "Native cheat menu and persistent master mute for music and effects",
     "Bounded asynchronous UI state notifications; unchanged snapshots deduplicated",
-    "Nonblocking save notification and coalesced local persistence without unused cloud copies"
+    "Nonblocking save notification and coalesced local persistence without unused cloud copies",
+    "Web mouse cursor updates occur after motion-event coalescing",
+    "Web frame lock uses try_lock to avoid browser-blocking ownership races"
   ],
   "license": "VCMI engine: GPL-2.0-or-later; see work/vcmi-wasm/license.txt",
   "vendoredDependencies": {

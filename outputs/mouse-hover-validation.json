@@ -1,0 +1,23 @@
+{
+  "checks": [
+    "Release engine contains no temporary contention hook",
+    "Mouse-only sweep completed",
+    "Hero movement and repeated mouse sweeps completed"
+  ],
+  "errors": [],
+  "phases": [
+    {
+      "name": "320 mouse-only events",
+      "gaps": []
+    },
+    {
+      "name": "960 mouse events during three hero moves",
+      "gaps": []
+    }
+  ],
+  "movement": {
+    "before": 1630,
+    "after": 1130
+  },
+  "maxBrowserGapMs": 0
+}

@@ -1,6 +1,6 @@
 # Heroes Goonk
 
-Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.3.2, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
+Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.3.3, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
 
 ## Jouer sur ce Mac
 
@@ -25,7 +25,7 @@ L’onglet **Codes de triche** présente les codes VCMI et leur effet avec un bo
 
 ## Installation et Netlify
 
-Après un clonage : `npm ci --prefix work/browser-tests`, puis `npm run prepare:web`. Le moteur web précompilé est inclus dans `outputs/vcmi-wasm-goonk-0.3.2-engine.tar.gz`.
+Après un clonage : `npm ci --prefix work/browser-tests`, puis `npm run prepare:web`. Le moteur web précompilé est inclus dans `outputs/vcmi-wasm-goonk-0.3.3-engine.tar.gz`.
 Les données originales Heroes III restent exclues de Git. Pour le serveur local, les installer dans `work/game-data/homm3eng/home/web_user/.local/share/vcmi/`.
 
 `npm run build:web` prépare `dist/` pour Netlify ; `node scripts/verify-site.mjs` vérifie les liens du moteur et l’exclusion des données originales. La configuration `netlify.toml` lance la préparation automatiquement. `node work/browser-tests/static-server.mjs` permet d’essayer ce dossier public sur le port 8767. Aucun déploiement en ligne n’a été effectué.
@@ -42,7 +42,7 @@ Les données téléchargées portent une empreinte de contenu et sont vérifiée
 
 **Netlify, depuis GitHub** : importer le dépôt dans Netlify. `netlify.toml` définit déjà la commande de compilation et `dist/` comme dossier à publier. Les prochains commits envoyés à la branche connectée déclenchent un nouveau déploiement.
 
-**GitHub Pages** : envoyer ce dépôt dans un dépôt GitHub, puis ouvrir **Settings → Pages → Build and deployment → Source → GitHub Actions**. Dans **Actions**, sélectionner **Publish Heroes Goonk to GitHub Pages**, puis **Run workflow** sur `main`. Les prochains envois sur `main` déclenchent ensuite la publication automatiquement. Le workflow `.github/workflows/pages.yml` compile le site et publie uniquement `dist/` ; aucune clé secrète personnelle n’est nécessaire. GitHub peut demander une validation du déploiement selon les réglages de ton dépôt.
+**GitHub Pages** : la publication de ce dépôt est activée sur https://pikipiki.github.io/heroes3-goonks-and-magic/ et chaque envoi sur `main` lance automatiquement la construction puis le déploiement. Pour configurer une autre copie, envoyer ce dépôt dans un dépôt GitHub, puis ouvrir **Settings → Pages → Build and deployment → Source → GitHub Actions**. Dans **Actions**, sélectionner **Publish Heroes Goonk to GitHub Pages**, puis **Run workflow** sur `main`. Les prochains envois sur `main` déclenchent ensuite la publication automatiquement. Le workflow `.github/workflows/pages.yml` compile le site et publie uniquement `dist/` ; aucune clé secrète personnelle n’est nécessaire. GitHub peut demander une validation du déploiement selon les réglages de ton dépôt.
 
 La même archive fonctionne à la racine d’un domaine et dans un chemin de projet, comme `https://ton-compte.github.io/heroes-goonk/`. Les liens sont relatifs. Sur GitHub Pages, le premier accès prépare un service worker limité au dossier du jeu, puis relance la page pour activer les threads WebAssembly. Sur Netlify, les en-têtes du serveur activent directement ces fonctions. Utiliser l’adresse HTTPS publiée. Si le navigateur bloque les service workers sur GitHub Pages, un message et un bouton Réessayer apparaissent.
 
@@ -76,3 +76,7 @@ Il reste à valider sur des téléphones physiques, notamment Safari/iPhone : m�
 Les notifications du moteur vers l’interface sont désormais asynchrones, avec une seule notification en attente et une détection des changements. La musique et les effets ne sont plus remis à zéro à répétition lorsque le son est coupé. Les sauvegardes locales sont synchronisées en file, avec regroupement des rafales ; le moteur ne recopie plus chaque sauvegarde entière pour un service cloud inutilisé et n’attend plus les traitements du navigateur sous son verrou d’interface.
 
 Ces changements suppriment des sources de blocage identifiées dans le code. Le gel aléatoire de plusieurs secondes rapporté par le joueur n’a pas été reproduit à l’arrêt pendant les essais locaux ; cela ne prouve pas que toutes ses causes ont été éliminées. Les rapports de mesure sont dans `outputs/freeze-profile-*.json`.
+
+## Souris sur Mac (0.3.3)
+
+Le déplacement du curseur WebAssembly est appliqué après regroupement des événements, sous le verrou de la frame, plutôt que de bloquer le navigateur à chaque événement brut. La prise du verrou de rendu est désormais non bloquante sur le Web, pour supprimer la course après la vérification préalable de disponibilité. La variante native conserve son comportement habituel.

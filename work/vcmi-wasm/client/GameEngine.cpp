@@ -135,7 +135,14 @@ void GameEngine::mainLoop()
 
 void GameEngine::updateFrame()
 {
+#ifdef VCMI_EMSCRIPTEN
+	// The entry point's earlier probe is not ownership: a worker can take
+	// the mutex after it. Never block the browser thread on that race.
+	std::unique_lock interfaceLock(ENGINE->interfaceMutex, std::try_to_lock);
+	if (!interfaceLock.owns_lock()) return;
+#else
 	std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+#endif
 
 	engineUser->onUpdate();
 
