@@ -9,3 +9,4 @@ test('Battle framing includes the top queue and bottom edge without cropping in 
  assert.deepEqual(mapDrag(30,-15,1.5),{x:-20,y:10});
  for(let row=0;row<11;row++){const p={x:36+(row%2===0?22:0)+44*8,y:112+42*row};assert.deepEqual(battleHex(p),p);assert.deepEqual(battleHex({x:p.x+3,y:p.y-2}),p);}
 });
+test('Town panorama fills the scene, keeps taps invertible and reaches both ends without stretching',async()=>{const {fitTown}=await import('../web/mobile-layout.mjs');for(const [w,h]of [[390,610],[750,275],[474,205]]){const l=fitTown(w,h);assert(Math.abs(l.w*l.scale-w)<.001);assert(Math.abs(l.h*l.scale-h)<.001);assert(l.x>=0&&l.y>=0&&l.x+l.w<=800.001&&l.y+l.h<=374.001);const left=fitTown(w,h,{x:0,y:0}),right=fitTown(w,h,{x:800,y:374});assert.equal(left.x,0);assert(Math.abs(right.x+right.w-800)<.001);const p=scenePoint(w/2,h/2,l);assert(Math.abs(p.x-(l.x+l.w/2))<=1);const whole=fitTown(w,h,null,true);assert.equal(whole.w,800);assert.equal(whole.h,374);}});

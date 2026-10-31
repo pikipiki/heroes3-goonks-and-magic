@@ -16,3 +16,6 @@ export function battleHex(point){
  for(let row=0;row<11;row++)for(let col=1;col<16;col++){const p={x:36+(row%2===0?22:0)+44*col,y:112+42*row};const d=(p.x-point.x)**2+(p.y-point.y)**2;if(d<distance){best=p;distance=d;}}
  return best;
 }
+
+export const TOWN_REGION={x:0,y:0,w:800,h:374};
+export function fitTown(width,height,focus,whole=false){const r=TOWN_REGION,base=Math.min(width/r.w,height/r.h),cover=Math.max(width/r.w,height/r.h);return fitRegion(width,height,r,whole?1:cover/base,focus);}

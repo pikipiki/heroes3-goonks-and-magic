@@ -3,7 +3,7 @@
     {
       "name": "original",
       "errors": [],
-      "town": "Daemon Gate",
+      "town": "Maille-la-Braise",
       "unit": {
         "cost": [
           0,
@@ -12,17 +12,17 @@
           0,
           0,
           0,
-          50
+          70
         ],
-        "count": 15,
-        "icon": "",
-        "id": 42,
-        "name": "Imp"
+        "count": 16,
+        "icon": "goonk/pink-large.png",
+        "id": 158,
+        "name": "Paingpaing"
       },
       "switchCreature": true,
       "animationFrames": 10,
       "goldBefore": 20000,
-      "goldAfter": 19900,
+      "goldAfter": 19860,
       "garrisonIncrease": 2,
       "rotationClose": true,
       "immediateQuantityPurchase": 1
@@ -47,8 +47,8 @@
         "name": "Paingpaing"
       },
       "animationFrames": 12,
-      "goldBefore": 20600,
-      "goldAfter": 20460,
+      "goldBefore": 20000,
+      "goldAfter": 19860,
       "garrisonIncrease": 2,
       "rotationClose": true,
       "immediateQuantityPurchase": 1
