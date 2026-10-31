@@ -1,11 +1,14 @@
 {
   "errors": [],
   "serverErrors": [],
-  "initialBuildings": 4,
+  "resourceIcons": true,
+  "goldBefore": "20k",
+  "initialBuildings": 5,
   "nativeRecruitment": "Paingpaing",
   "nativeHallOpened": true,
   "unbuiltClickBlocked": true,
-  "constructed": "Forge des épées-lances",
+  "constructed": "Archerie des orages",
+  "goldAfter": "19,3k",
   "classicToggle": true,
   "rotation": true
 }

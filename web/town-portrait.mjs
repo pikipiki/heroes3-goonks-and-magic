@@ -31,7 +31,7 @@ export function createTownPortrait({root,scene,asset,command,getState}){
  const background=image(new URL('./town/portrait-v2.webp',import.meta.url).href);
  return {
   paint(ctx,width,height,state,enabled){
-   if(!enabled||state.mode!=='town'||!isGoonkTown(state)||width>=height){overlay.hidden=true;delete root.dataset.townLayout;return false;}
+   if(!enabled||state.mode!=='town'||!isGoonkTown(state)||root.clientWidth>=root.clientHeight){overlay.hidden=true;delete root.dataset.townLayout;return false;}
    const buildings=townPortraitBuildings(width,height,state.buildings);const artwork=buildings.map(b=>({b,picture:image(asset('goonk/structure-'+b.artKey+'.png')),outline:image(asset('goonk/outline-'+b.artKey+'.png'))}));
    if(!ready(background)||artwork.some(item=>!ready(item.picture))){overlay.hidden=true;delete root.dataset.townLayout;return false;}
    root.dataset.townLayout='portrait';overlay.hidden=false;overlay.style.width=width+'px';overlay.style.height=height+'px';
