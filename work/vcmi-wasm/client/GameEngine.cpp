@@ -10,6 +10,9 @@
 #include "StdInc.h"
 #include "GameEngine.h"
 #include "MobileBridge.h"
+#ifdef VCMI_HTML5_BUILD
+#include "../lib/html5/html5.h"
+#endif
 #include "GameLibrary.h"
 #include "Discord.h"
 
@@ -322,6 +325,8 @@ void GameEngine::setEngineUser(IGameEngineUser * user)
 #ifdef VCMI_EMSCRIPTEN
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiOnCanvasResize()
 {
+	// The touch camera has a fixed Retina source, independent of orientation.
+	if(html5::getGoonkRenderScale() > 1) return;
 	if(!ENGINE)
 		return;
 

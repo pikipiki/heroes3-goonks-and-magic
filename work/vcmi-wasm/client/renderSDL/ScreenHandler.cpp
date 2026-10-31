@@ -525,7 +525,13 @@ bool ScreenHandler::onScreenResize(bool keepWindowResolution)
 	// In browser builds, DOM canvas resize does not always produce SDL size events.
 	// Force SDL window size from current JS-reported canvas size, then recreate buffers.
 	Point resolution = getPreferredWindowResolution();
-	SDL_SetWindowSize(mainWindow, resolution.x, resolution.y);
+	int width=0,height=0;SDL_GetWindowSize(mainWindow,&width,&height);
+	const Point bufferSize=getPreferredLogicalResolution()*getScalingFactor();
+	if(width==resolution.x && height==resolution.y && screen &&
+		screen->w==bufferSize.x && screen->h==bufferSize.y)
+		return false;
+	if(width!=resolution.x || height!=resolution.y)
+		SDL_SetWindowSize(mainWindow, resolution.x, resolution.y);
 	destroyScreenBuffers();
 	initializeScreenBuffers();
 	return true;

@@ -1,0 +1,20 @@
+import{chromium}from'playwright-core';import assert from'node:assert/strict';import fs from'node:fs';import{fitRegion}from'../../web/mobile-layout.mjs';
+const out=n=>new URL('../../outputs/'+n,import.meta.url).pathname,report={errors:[],serverErrors:[],rotations:[]},browser=await chromium.connectOverCDP('http://127.0.0.1:9224'),context=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,deviceScaleFactor:2}),p=await context.newPage(),wait=f=>p.waitForFunction(f,null,{timeout:90000}),click=n=>p.getByRole('button',{name:n,exact:true}).click();p.on('pageerror',e=>report.errors.push(e.message));p.on('console',m=>{if(/Server encountered a problem|Assertion failed/i.test(m.text()))report.serverErrors.push(m.text());});
+try{
+ await p.goto('http://127.0.0.1:8767/game.html?mobile=1');await wait(()=>window.goonkMobileState?.mode==='menu');await click('Nouvelle aventure');await wait(()=>goonkMobileState.selectedMap==='Goonks');await click('Commencer');await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.heroName);await p.waitForTimeout(300);const initialMovement=await p.evaluate(()=>goonkMobileState.movement);
+ for(let i=0;i<8;i++){
+  const box=await p.locator('#mobile-scene').boundingBox();if(i%2===0){await p.mouse.move(box.x+box.width/2,box.y+box.height/2);await p.mouse.down();await p.mouse.move(box.x+box.width/2+18,box.y+box.height/2,{steps:5});}
+  await p.setViewportSize({width:844,height:390});await p.evaluate(()=>window.dispatchEvent(new Event('orientationchange')));await p.waitForTimeout(70);
+  await p.setViewportSize({width:390,height:844});await p.evaluate(()=>{window.dispatchEvent(new Event('orientationchange'));for(let n=0;n<12;n++)window.visualViewport?.dispatchEvent(new Event('resize'));});if(i%2===0)await p.mouse.up();await p.waitForTimeout(110);
+  report.rotations.push(await p.evaluate(()=>({source:[document.querySelector('#canvas').width,document.querySelector('#canvas').height],memory:Module.HEAPU8.buffer.byteLength/1048576,mode:goonkMobileState.mode})));
+ }
+ assert.equal(await p.evaluate(()=>goonkMobileState.movement),initialMovement,'Rotation alone must not move the hero');assert(report.rotations.every(r=>r.source[0]===1600&&r.source[1]===1200&&r.mode==='map'));
+ // Repeated browser resize notifications must remain no-ops for the fixed source.
+ await p.evaluate(()=>{for(let n=0;n<120;n++)Module._vcmiOnCanvasResize();});const start=Date.now();await click('♜ Villes');await p.locator('.sheet-body button').first().click();await p.waitForFunction(()=>goonkMobileState.mode==='town',null,{timeout:10000});report.nativeResponseMs=Date.now()-start;await click('Carte');await wait(()=>goonkMobileState.mode==='map');await click('Recentrer sur le héros');await p.waitForTimeout(200);
+ let chosen=false;for(const [x,y]of [[330,300],[300,330],[330,330],[270,330],[300,360],[270,300],[360,330],[300,390]]){
+  const box=await p.locator('#mobile-scene').boundingBox(),region={x:6,y:6,w:598,h:550},base=Math.min(box.width/region.w,box.height/region.h),z=Math.min(1.4,Math.max(.8,Math.min(box.width/320,box.height/420)))/base,l=fitRegion(box.width,box.height,region,z);
+  await p.touchscreen.tap(box.x+l.dx+(x-l.x)*l.scale,box.y+l.dy+(y-l.y)*l.scale);await p.waitForTimeout(250);if(await p.evaluate(()=>goonkMobileState.hasPath&&!(goonkMobileState.pathTurns>0))){chosen=true;break;}
+ }assert(chosen,'A touch must prepare a real path after rotations');const before=await p.evaluate(()=>goonkMobileState.movement);await click('➤ Marcher');await p.waitForFunction(n=>goonkMobileState.movement<n,before,{timeout:15000});report.movement={before,after:await p.evaluate(()=>goonkMobileState.movement)};await p.screenshot({path:out('map-rotation-after-move.png')});
+ assert.deepEqual(report.errors,[]);assert.deepEqual(report.serverErrors,[]);console.log(JSON.stringify(report));
+}catch(e){report.failure=e.stack;await p.screenshot({path:out('map-rotation-native-failure.png')});throw e;}
+finally{fs.writeFileSync(out('map-rotation-native-e2e.json'),JSON.stringify(report,null,2));await context.close();await browser.close();}
