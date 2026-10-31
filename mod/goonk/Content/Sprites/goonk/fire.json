@@ -3,16 +3,18 @@
     {
       "group": 0,
       "frames": [
-        "goonk/fire-1.png",
-        "goonk/fire-motion-0-0-1.png",
-        "goonk/fire-motion-0-0-2.png",
-        "goonk/fire-2.png",
-        "goonk/fire-motion-0-1-1.png",
-        "goonk/fire-motion-0-1-2.png",
-        "goonk/fire-1.png",
-        "goonk/fire-motion-0-2-1.png",
-        "goonk/fire-motion-0-2-2.png",
-        "goonk/fire-2.png"
+        "goonk/fire-v3-walk-0.png",
+        "goonk/fire-v3-walk-1.png",
+        "goonk/fire-v3-walk-2.png",
+        "goonk/fire-v3-walk-3.png",
+        "goonk/fire-v3-walk-4.png",
+        "goonk/fire-v3-walk-5.png",
+        "goonk/fire-v3-walk-6.png",
+        "goonk/fire-v3-walk-7.png",
+        "goonk/fire-v3-walk-8.png",
+        "goonk/fire-v3-walk-9.png",
+        "goonk/fire-v3-walk-10.png",
+        "goonk/fire-v3-walk-11.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -20,14 +22,18 @@
     {
       "group": 1,
       "frames": [
-        "goonk/fire-idle-key-0.png",
-        "goonk/fire-idle-key-1.png",
-        "goonk/fire-idle-key-2.png",
-        "goonk/fire-idle-key-3.png",
-        "goonk/fire-idle-key-5.png",
-        "goonk/fire-idle-key-4.png",
-        "goonk/fire-idle-key-3.png",
-        "goonk/fire-idle-key-2.png"
+        "goonk/fire-v3-walk-0.png",
+        "goonk/fire-v3-walk-1.png",
+        "goonk/fire-v3-walk-2.png",
+        "goonk/fire-v3-walk-3.png",
+        "goonk/fire-v3-walk-4.png",
+        "goonk/fire-v3-walk-5.png",
+        "goonk/fire-v3-walk-5.png",
+        "goonk/fire-v3-walk-4.png",
+        "goonk/fire-v3-walk-3.png",
+        "goonk/fire-v3-walk-2.png",
+        "goonk/fire-v3-walk-1.png",
+        "goonk/fire-v3-walk-0.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -35,30 +41,38 @@
     {
       "group": 2,
       "frames": [
-        "goonk/fire-idle-key-0.png",
-        "goonk/fire-idle-0-1.png",
-        "goonk/fire-idle-0-2.png",
-        "goonk/fire-idle-0-3.png",
-        "goonk/fire-idle-key-1.png",
-        "goonk/fire-idle-1-1.png",
-        "goonk/fire-idle-1-2.png",
-        "goonk/fire-idle-1-3.png",
-        "goonk/fire-idle-key-2.png",
-        "goonk/fire-idle-2-1.png",
-        "goonk/fire-idle-2-2.png",
-        "goonk/fire-idle-2-3.png",
-        "goonk/fire-idle-key-3.png",
-        "goonk/fire-idle-3-1.png",
-        "goonk/fire-idle-3-2.png",
-        "goonk/fire-idle-3-3.png",
-        "goonk/fire-idle-key-4.png",
-        "goonk/fire-idle-4-1.png",
-        "goonk/fire-idle-4-2.png",
-        "goonk/fire-idle-4-3.png",
-        "goonk/fire-idle-key-5.png",
-        "goonk/fire-idle-5-1.png",
-        "goonk/fire-idle-5-2.png",
-        "goonk/fire-idle-5-3.png"
+        "goonk/fire-v3-idle-0.png",
+        "goonk/fire-v3-idle-1.png",
+        "goonk/fire-v3-idle-2.png",
+        "goonk/fire-v3-idle-3.png",
+        "goonk/fire-v3-idle-4.png",
+        "goonk/fire-v3-idle-5.png",
+        "goonk/fire-v3-idle-6.png",
+        "goonk/fire-v3-idle-7.png",
+        "goonk/fire-v3-idle-8.png",
+        "goonk/fire-v3-idle-9.png",
+        "goonk/fire-v3-idle-10.png",
+        "goonk/fire-v3-idle-11.png",
+        "goonk/fire-v3-idle-12.png",
+        "goonk/fire-v3-idle-13.png",
+        "goonk/fire-v3-idle-14.png",
+        "goonk/fire-v3-idle-15.png",
+        "goonk/fire-v3-idle-16.png",
+        "goonk/fire-v3-idle-17.png",
+        "goonk/fire-v3-idle-18.png",
+        "goonk/fire-v3-idle-19.png",
+        "goonk/fire-v3-idle-20.png",
+        "goonk/fire-v3-idle-21.png",
+        "goonk/fire-v3-idle-22.png",
+        "goonk/fire-v3-idle-23.png",
+        "goonk/fire-v3-idle-24.png",
+        "goonk/fire-v3-idle-25.png",
+        "goonk/fire-v3-idle-26.png",
+        "goonk/fire-v3-idle-27.png",
+        "goonk/fire-v3-idle-28.png",
+        "goonk/fire-v3-idle-29.png",
+        "goonk/fire-v3-idle-30.png",
+        "goonk/fire-v3-idle-31.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -124,17 +138,18 @@
     {
       "group": 11,
       "frames": [
-        "goonk/fire-0.png",
-        "goonk/fire-attack-tween-0-1.png",
-        "goonk/fire-attack-tween-0-2.png",
-        "goonk/fire-3.png",
-        "goonk/fire-attack-tween-1-1.png",
-        "goonk/fire-attack-tween-1-2.png",
-        "goonk/fire-4.png",
-        "goonk/fire-4.png",
-        "goonk/fire-attack-tween-3-1.png",
-        "goonk/fire-attack-tween-3-2.png",
-        "goonk/fire-0.png"
+        "goonk/fire-v3-attack-0.png",
+        "goonk/fire-v3-attack-1.png",
+        "goonk/fire-v3-attack-2.png",
+        "goonk/fire-v3-attack-3.png",
+        "goonk/fire-v3-attack-4.png",
+        "goonk/fire-v3-attack-5.png",
+        "goonk/fire-v3-attack-6.png",
+        "goonk/fire-v3-attack-7.png",
+        "goonk/fire-v3-attack-8.png",
+        "goonk/fire-v3-attack-9.png",
+        "goonk/fire-v3-attack-10.png",
+        "goonk/fire-v3-attack-11.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -142,17 +157,18 @@
     {
       "group": 12,
       "frames": [
-        "goonk/fire-0.png",
-        "goonk/fire-attack-tween-0-1.png",
-        "goonk/fire-attack-tween-0-2.png",
-        "goonk/fire-3.png",
-        "goonk/fire-attack-tween-1-1.png",
-        "goonk/fire-attack-tween-1-2.png",
-        "goonk/fire-4.png",
-        "goonk/fire-4.png",
-        "goonk/fire-attack-tween-3-1.png",
-        "goonk/fire-attack-tween-3-2.png",
-        "goonk/fire-0.png"
+        "goonk/fire-v3-attack-0.png",
+        "goonk/fire-v3-attack-1.png",
+        "goonk/fire-v3-attack-2.png",
+        "goonk/fire-v3-attack-3.png",
+        "goonk/fire-v3-attack-4.png",
+        "goonk/fire-v3-attack-5.png",
+        "goonk/fire-v3-attack-6.png",
+        "goonk/fire-v3-attack-7.png",
+        "goonk/fire-v3-attack-8.png",
+        "goonk/fire-v3-attack-9.png",
+        "goonk/fire-v3-attack-10.png",
+        "goonk/fire-v3-attack-11.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -160,17 +176,18 @@
     {
       "group": 13,
       "frames": [
-        "goonk/fire-0.png",
-        "goonk/fire-attack-tween-0-1.png",
-        "goonk/fire-attack-tween-0-2.png",
-        "goonk/fire-3.png",
-        "goonk/fire-attack-tween-1-1.png",
-        "goonk/fire-attack-tween-1-2.png",
-        "goonk/fire-4.png",
-        "goonk/fire-4.png",
-        "goonk/fire-attack-tween-3-1.png",
-        "goonk/fire-attack-tween-3-2.png",
-        "goonk/fire-0.png"
+        "goonk/fire-v3-attack-0.png",
+        "goonk/fire-v3-attack-1.png",
+        "goonk/fire-v3-attack-2.png",
+        "goonk/fire-v3-attack-3.png",
+        "goonk/fire-v3-attack-4.png",
+        "goonk/fire-v3-attack-5.png",
+        "goonk/fire-v3-attack-6.png",
+        "goonk/fire-v3-attack-7.png",
+        "goonk/fire-v3-attack-8.png",
+        "goonk/fire-v3-attack-9.png",
+        "goonk/fire-v3-attack-10.png",
+        "goonk/fire-v3-attack-11.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -178,17 +195,18 @@
     {
       "group": 14,
       "frames": [
-        "goonk/fire-0.png",
-        "goonk/fire-attack-tween-0-1.png",
-        "goonk/fire-attack-tween-0-2.png",
-        "goonk/fire-3.png",
-        "goonk/fire-attack-tween-1-1.png",
-        "goonk/fire-attack-tween-1-2.png",
-        "goonk/fire-4.png",
-        "goonk/fire-4.png",
-        "goonk/fire-attack-tween-3-1.png",
-        "goonk/fire-attack-tween-3-2.png",
-        "goonk/fire-0.png"
+        "goonk/fire-v3-attack-0.png",
+        "goonk/fire-v3-attack-1.png",
+        "goonk/fire-v3-attack-2.png",
+        "goonk/fire-v3-attack-3.png",
+        "goonk/fire-v3-attack-4.png",
+        "goonk/fire-v3-attack-5.png",
+        "goonk/fire-v3-attack-6.png",
+        "goonk/fire-v3-attack-7.png",
+        "goonk/fire-v3-attack-8.png",
+        "goonk/fire-v3-attack-9.png",
+        "goonk/fire-v3-attack-10.png",
+        "goonk/fire-v3-attack-11.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -196,17 +214,18 @@
     {
       "group": 15,
       "frames": [
-        "goonk/fire-0.png",
-        "goonk/fire-attack-tween-0-1.png",
-        "goonk/fire-attack-tween-0-2.png",
-        "goonk/fire-3.png",
-        "goonk/fire-attack-tween-1-1.png",
-        "goonk/fire-attack-tween-1-2.png",
-        "goonk/fire-4.png",
-        "goonk/fire-4.png",
-        "goonk/fire-attack-tween-3-1.png",
-        "goonk/fire-attack-tween-3-2.png",
-        "goonk/fire-0.png"
+        "goonk/fire-v3-attack-0.png",
+        "goonk/fire-v3-attack-1.png",
+        "goonk/fire-v3-attack-2.png",
+        "goonk/fire-v3-attack-3.png",
+        "goonk/fire-v3-attack-4.png",
+        "goonk/fire-v3-attack-5.png",
+        "goonk/fire-v3-attack-6.png",
+        "goonk/fire-v3-attack-7.png",
+        "goonk/fire-v3-attack-8.png",
+        "goonk/fire-v3-attack-9.png",
+        "goonk/fire-v3-attack-10.png",
+        "goonk/fire-v3-attack-11.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -214,17 +233,18 @@
     {
       "group": 16,
       "frames": [
-        "goonk/fire-0.png",
-        "goonk/fire-attack-tween-0-1.png",
-        "goonk/fire-attack-tween-0-2.png",
-        "goonk/fire-3.png",
-        "goonk/fire-attack-tween-1-1.png",
-        "goonk/fire-attack-tween-1-2.png",
-        "goonk/fire-4.png",
-        "goonk/fire-4.png",
-        "goonk/fire-attack-tween-3-1.png",
-        "goonk/fire-attack-tween-3-2.png",
-        "goonk/fire-0.png"
+        "goonk/fire-v3-attack-0.png",
+        "goonk/fire-v3-attack-1.png",
+        "goonk/fire-v3-attack-2.png",
+        "goonk/fire-v3-attack-3.png",
+        "goonk/fire-v3-attack-4.png",
+        "goonk/fire-v3-attack-5.png",
+        "goonk/fire-v3-attack-6.png",
+        "goonk/fire-v3-attack-7.png",
+        "goonk/fire-v3-attack-8.png",
+        "goonk/fire-v3-attack-9.png",
+        "goonk/fire-v3-attack-10.png",
+        "goonk/fire-v3-attack-11.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -232,17 +252,18 @@
     {
       "group": 17,
       "frames": [
-        "goonk/fire-0.png",
-        "goonk/fire-attack-tween-0-1.png",
-        "goonk/fire-attack-tween-0-2.png",
-        "goonk/fire-3.png",
-        "goonk/fire-attack-tween-1-1.png",
-        "goonk/fire-attack-tween-1-2.png",
-        "goonk/fire-4.png",
-        "goonk/fire-4.png",
-        "goonk/fire-attack-tween-3-1.png",
-        "goonk/fire-attack-tween-3-2.png",
-        "goonk/fire-0.png"
+        "goonk/fire-v3-attack-0.png",
+        "goonk/fire-v3-attack-1.png",
+        "goonk/fire-v3-attack-2.png",
+        "goonk/fire-v3-attack-3.png",
+        "goonk/fire-v3-attack-4.png",
+        "goonk/fire-v3-attack-5.png",
+        "goonk/fire-v3-attack-6.png",
+        "goonk/fire-v3-attack-7.png",
+        "goonk/fire-v3-attack-8.png",
+        "goonk/fire-v3-attack-9.png",
+        "goonk/fire-v3-attack-10.png",
+        "goonk/fire-v3-attack-11.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -250,17 +271,18 @@
     {
       "group": 18,
       "frames": [
-        "goonk/fire-0.png",
-        "goonk/fire-attack-tween-0-1.png",
-        "goonk/fire-attack-tween-0-2.png",
-        "goonk/fire-3.png",
-        "goonk/fire-attack-tween-1-1.png",
-        "goonk/fire-attack-tween-1-2.png",
-        "goonk/fire-4.png",
-        "goonk/fire-4.png",
-        "goonk/fire-attack-tween-3-1.png",
-        "goonk/fire-attack-tween-3-2.png",
-        "goonk/fire-0.png"
+        "goonk/fire-v3-attack-0.png",
+        "goonk/fire-v3-attack-1.png",
+        "goonk/fire-v3-attack-2.png",
+        "goonk/fire-v3-attack-3.png",
+        "goonk/fire-v3-attack-4.png",
+        "goonk/fire-v3-attack-5.png",
+        "goonk/fire-v3-attack-6.png",
+        "goonk/fire-v3-attack-7.png",
+        "goonk/fire-v3-attack-8.png",
+        "goonk/fire-v3-attack-9.png",
+        "goonk/fire-v3-attack-10.png",
+        "goonk/fire-v3-attack-11.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -268,17 +290,18 @@
     {
       "group": 19,
       "frames": [
-        "goonk/fire-0.png",
-        "goonk/fire-attack-tween-0-1.png",
-        "goonk/fire-attack-tween-0-2.png",
-        "goonk/fire-3.png",
-        "goonk/fire-attack-tween-1-1.png",
-        "goonk/fire-attack-tween-1-2.png",
-        "goonk/fire-4.png",
-        "goonk/fire-4.png",
-        "goonk/fire-attack-tween-3-1.png",
-        "goonk/fire-attack-tween-3-2.png",
-        "goonk/fire-0.png"
+        "goonk/fire-v3-attack-0.png",
+        "goonk/fire-v3-attack-1.png",
+        "goonk/fire-v3-attack-2.png",
+        "goonk/fire-v3-attack-3.png",
+        "goonk/fire-v3-attack-4.png",
+        "goonk/fire-v3-attack-5.png",
+        "goonk/fire-v3-attack-6.png",
+        "goonk/fire-v3-attack-7.png",
+        "goonk/fire-v3-attack-8.png",
+        "goonk/fire-v3-attack-9.png",
+        "goonk/fire-v3-attack-10.png",
+        "goonk/fire-v3-attack-11.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -286,8 +309,9 @@
     {
       "group": 20,
       "frames": [
-        "goonk/fire-idle-key-0.png",
-        "goonk/fire-idle-key-1.png"
+        "goonk/fire-v3-walk-0.png",
+        "goonk/fire-v3-walk-1.png",
+        "goonk/fire-v3-walk-2.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -295,8 +319,9 @@
     {
       "group": 21,
       "frames": [
-        "goonk/fire-idle-key-1.png",
-        "goonk/fire-idle-key-0.png"
+        "goonk/fire-v3-walk-2.png",
+        "goonk/fire-v3-walk-1.png",
+        "goonk/fire-v3-walk-0.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1

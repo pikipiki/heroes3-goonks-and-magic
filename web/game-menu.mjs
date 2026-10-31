@@ -60,8 +60,8 @@ function mountGameMenu(){
     if(action==='close'){dialog.close();toggle.focus();}
     if(action==='manage-storage'&&!['battle','dialog'].includes(state.mode)){location.assign(new URL('../storage.html',import.meta.url));return;}
     if(action==='settings'||action==='cheats'||action==='storage'){tab=action;status.textContent='';render();}
-    if(action==='sound'){muted=!muted;pendingAudio=muted;try{localStorage.setItem(muteKey,String(muted));}catch{}command(28,muted?1:0);if(!muted)void audio.resume().then(ok=>{if(!muted)status.textContent=ok?'Son réactivé.':'Touche Rétablir le son pour reprendre l’audio.';});audio.observe();render();status.textContent=muted?'Musique et effets coupés.':'Son demandé : reprise de l’audio…';}
-    if(action==='recover-sound'&&!muted){command(28,0);void audio.resume().then(ok=>{if(muted)return;if(ok){command(28,0,1);status.textContent='Audio du jeu relancé.';}else status.textContent='Touche à nouveau Rétablir le son pour reprendre l’audio.';});}
+    if(action==='sound'){muted=!muted;pendingAudio=muted;try{localStorage.setItem(muteKey,String(muted));}catch{}command(28,muted?1:0);if(!muted)void audio.resume({repair:true}).then(ok=>{if(ok&&!muted)command(28,0,1);if(!muted)status.textContent=ok?'Son réactivé.':'Touche Rétablir le son pour reprendre l’audio.';});audio.observe();render();status.textContent=muted?'Musique et effets coupés.':'Son demandé : reprise de l’audio…';}
+    if(action==='recover-sound'&&!muted){command(28,0);void audio.resume({repair:true}).then(ok=>{if(muted)return;if(ok){command(28,0,1);status.textContent='Audio du jeu relancé.';}else status.textContent='Touche à nouveau Rétablir le son pour reprendre l’audio.';});}
   });
   dialog.addEventListener('keydown',event=>event.stopPropagation());
 }

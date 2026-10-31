@@ -483,6 +483,7 @@ CCreatureAnim::CCreatureAnim(int x, int y, const AnimationPath & name, ui8 flags
 {
 	xOffset = 0;
 	yOffset = 0;
+	if(name.getName().find("GOONK/")!=std::string::npos)frameTimeTotal=33;
 }
 
 void CCreatureAnim::loopPreview(bool warMachine)

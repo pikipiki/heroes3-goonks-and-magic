@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
+import {buildGoonkPoses} from './build-goonk-poses.mjs';
 import {buildCreatureIcons} from './build-creature-icons.mjs';
 
 export async function buildMotion({units,assets,imageDir,png,write}){
@@ -52,4 +53,5 @@ export async function buildMotion({units,assets,imageDir,png,write}){
   write('Content/Sprites/goonk/'+u.key+'-evo.json',evo);
  }
  await buildCreatureIcons(imageDir,units.map(u=>u.key));
+ await buildGoonkPoses({imageDir,artDir:path.resolve('../../outputs/goonk-art')});
 }

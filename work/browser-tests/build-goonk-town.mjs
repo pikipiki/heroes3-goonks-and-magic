@@ -14,8 +14,8 @@ export async function buildTown({town,faction,assets,units,png,write,imageDir,re
  for(const [name,w,h] of [['town-small-v2.png',48,32],['town-large-v2.png',58,64]])
   await png(name,sharp(assets.castle).resize(w,h,{fit:'cover'}).removeAlpha());
  for(const t of ['village','fort'])for(const s of ['normal','built'])town.icons[t][s]={small:'goonk/town-small-v2.png',large:'goonk/town-large-v2.png'};
- // Native preview rectangles are 100/120/130 px; backgrounds must fill those exact sizes.
- for(const n of [120,130])await png('creature-bg-'+n+'.png',sharp(assets.castle).resize(n,130,{fit:'cover'}).removeAlpha());
+ // VCMI keys describe height: native previews are 100×120 and 100×130, not 120/130 px wide.
+ for(const n of [120,130]){await png('creature-bg-'+n+'.png',sharp(assets.castle).resize(100,n,{fit:'cover'}).removeAlpha());await sharp(assets.castle).resize(200,n*2,{fit:'cover'}).removeAlpha().png().toFile(path.resolve(imageDir,'../../Sprites2x/goonk/creature-bg-'+n+'.png'));}
  faction.creatureBackground={'120px':'goonk/creature-bg-120.png','130px':'goonk/creature-bg-130.png'};
  const meta=await sharp(assets.buildings).metadata(),cw=Math.floor(meta.width/4),ch=Math.floor(meta.height/4);
  const cells=[];

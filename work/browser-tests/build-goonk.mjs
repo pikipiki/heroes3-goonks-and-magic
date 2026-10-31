@@ -74,7 +74,7 @@ for(const u of units){
    abilities.fireMagic={type:'SPELLCASTER',subtype:'spell.'+(upgraded?'inferno':'fireball'),val:upgraded?3:2};
    abilities.casts={type:'CASTS',val:upgraded?4:3};abilities.power={type:'CREATURE_SPELL_POWER',val:100};abilities.fireproof={type:'SPELL_IMMUNITY',subtype:'spell.fireball'};
   }
-  const graphics={animation:'goonk/'+u.key+(upgraded?'-evo':''),map:'goonk/'+u.key+'-map',iconSmall:'goonk/'+u.key+(upgraded?'-evo':'')+'-small.png',iconLarge:'goonk/'+u.key+(upgraded?'-evo':'')+'-large.png',timeBetweenFidgets:3+u.level/3,animationTime:{walk:0.8,attack:0.9,idle:2.4}};
+  const graphics={animation:'goonk/'+u.key+(upgraded?'-evo':''),map:'goonk/'+u.key+'-map',iconSmall:'goonk/'+u.key+(upgraded?'-evo':'')+'-small.png',iconLarge:'goonk/'+u.key+(upgraded?'-evo':'')+'-large.png',timeBetweenFidgets:3+u.level/3,animationTime:{walk:0.8,attack:0.9,idle:30}};
   if(ranged){
    graphics.missile={frameAngles:[90,45,0,-45,-90],offset:{upperX:20,upperY:-45,middleX:25,middleY:-35,lowerX:20,lowerY:-25},attackClimaxFrame:6};
    if(u.kind==='rock')graphics.missile.projectile='PCYCLBX.DEF';
