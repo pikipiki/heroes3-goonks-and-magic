@@ -1,4 +1,4 @@
-import {opfsList,opfsWrite,opfsFlush,opfsUnlink} from '/opfs-worker.js';
+import {opfsList,opfsWrite,opfsFlush,opfsUnlink} from '../opfs-worker.js';
 import {syncAssets,ROOT} from './asset-cache.mjs';
 const status=text=>{const el=document.querySelector('#status');if(el)el.textContent=text;};
 const hasOriginals=entries=>['h3bitmap.lod','h3sprite.lod'].every(name=>Object.keys(entries).some(p=>p.toLowerCase().endsWith('/data/'+name)));
@@ -23,7 +23,7 @@ async function importOriginals(){
  });});
 }
 const prepare=async()=>{
- const response=await fetch('/asset-manifest.json',{cache:'no-store'});if(!response.ok)throw Error('Le catalogue des données est indisponible');const manifest=await response.json();window.goonkAssetURLs=manifest.files;
+ const manifestURL=new URL('../asset-manifest.json',import.meta.url);const response=await fetch(manifestURL,{cache:'no-store'});if(!response.ok)throw Error('Le catalogue des données est indisponible');const manifest=await response.json();for(const file of manifest.files)file.url=new URL(file.url,manifestURL).href;window.goonkAssetURLs=manifest.files;
  navigator.storage?.persist?.().catch(()=>{});
  if(manifest.requiresImport)await importOriginals();
  const result=await syncAssets({manifest,opfs:{list:opfsList,write:opfsWrite,flush:opfsFlush,unlink:opfsUnlink},storage:localStorage,onProgress:p=>status('Préparation : '+p.file+' · '+Math.round(p.downloaded/1048576)+' Mo téléchargés')});

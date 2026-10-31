@@ -1,0 +1,51 @@
+{
+  "cases": [
+    {
+      "name": "netlify",
+      "url": "http://127.0.0.1:8767/",
+      "errors": [],
+      "badResponses": [],
+      "isolation": {
+        "isolated": true,
+        "sharedMemory": true,
+        "worker": false,
+        "scope": "/game.html"
+      },
+      "firstCache": {
+        "downloaded": 0,
+        "reused": 5028,
+        "files": 5028
+      },
+      "realGame": true,
+      "warmCache": {
+        "downloaded": 0,
+        "reused": 5028,
+        "files": 5028
+      }
+    },
+    {
+      "name": "github-pages",
+      "url": "http://127.0.0.1:8768/heroes-goonk/",
+      "errors": [],
+      "badResponses": [],
+      "isolation": {
+        "isolated": true,
+        "sharedMemory": true,
+        "worker": true,
+        "scope": "/heroes-goonk/game.html"
+      },
+      "originalImport": "Local files, no upload",
+      "firstCache": {
+        "downloaded": 183013299,
+        "reused": 0,
+        "files": 5028
+      },
+      "realGame": true,
+      "warmCache": {
+        "downloaded": 0,
+        "reused": 5028,
+        "files": 5028
+      }
+    }
+  ]
+}

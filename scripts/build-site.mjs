@@ -6,10 +6,16 @@ fs.rmSync(dist,{recursive:true,force:true});fs.cpSync(root,dist,{recursive:true}
 // Public builds include the Goonk/WoG mods and showcase map, never the original Heroes III files.
 const publicData=path.resolve('work/public-data');fs.rmSync(publicData,{recursive:true,force:true});fs.mkdirSync(publicData+'/Maps',{recursive:true});fs.cpSync('mod',publicData+'/Mods',{recursive:true});fs.copyFileSync('maps/000-Goonk.vmap',publicData+'/Maps/000-Goonk.vmap');
 const manifest=makeManifest(publicData,{includeBase:false});
+for(const file of manifest.files)file.url='.'+file.url;
 for(const file of manifest.files){const target=path.join(dist,decodeURIComponent(file.url));fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(path.join(publicData,file.path),target);}
 let html=renderPage(root);const runtimeNames={};
 for(const name of ['vcmiclient.data.js','vcmiclient.wasm','vcmiclient.data','vcmiclient.js']){const bytes=fs.readFileSync(path.join(dist,name)),hash=crypto.createHash('sha256').update(bytes).digest('hex').slice(0,16),hashed=name.replace(/(\.[^.]+)$/,'.'+hash+'$1');fs.renameSync(path.join(dist,name),path.join(dist,hashed));runtimeNames[name]=hashed;}
 html=html.replace(/vcmiclient\.(?:data\.js|wasm|data|js)/g,name=>runtimeNames[name]);
-fs.writeFileSync(path.join(dist,'index.html'),html);fs.writeFileSync(path.join(dist,'asset-manifest.json'),JSON.stringify(manifest));
+fs.writeFileSync(path.join(dist,'game.html'),html);fs.writeFileSync(path.join(dist,'asset-manifest.json'),JSON.stringify(manifest));
 fs.writeFileSync(path.join(dist,'_headers'),'/*\n  Cross-Origin-Opener-Policy: same-origin\n  Cross-Origin-Embedder-Policy: require-corp\n/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n/asset-manifest.json\n  Cache-Control: no-cache\n');
 console.log('Site statique créé dans dist — import local des données Heroes III au premier lancement.');
+
+fs.copyFileSync('web/hosting-index.html',path.join(dist,'index.html'));
+fs.copyFileSync('web/hosting-bootstrap.mjs',path.join(dist,'hosting-bootstrap.mjs'));
+fs.copyFileSync('web/coi-serviceworker.js',path.join(dist,'coi-serviceworker.js'));
+fs.writeFileSync(path.join(dist,'.nojekyll'),'');

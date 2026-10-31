@@ -1,5 +1,5 @@
 [build]
-  command = "npm run prepare:web && npm run build:web"
+  command = "npm run prepare:web && npm run build:web && npm run verify:web"
   publish = "dist"
 [build.environment]
   NODE_VERSION = "22"

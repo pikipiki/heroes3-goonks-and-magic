@@ -1,10 +1,11 @@
 import fs from 'node:fs';
 export function renderPage(root){
  let html=fs.readFileSync(root+'/game.html','utf8');
+ html=html.replace(/quitGame: \(\) => \{[\s\S]*?\n      \},/, "quitGame: () => { location.href = new URL('./', location.href).href; },");
  html=html.replace('const module = {',"const module = { mainScriptUrlOrBlob: new URL('./vcmiclient.js', location.href).href,");
- html=html.replace(/window\.VCMI_WASM_URL\s*=.*?;/g,"window.VCMI_WASM_URL = '/vcmiclient.wasm';").replace(/window\.VCMI_DATA_URL\s*=.*?;/g,"window.VCMI_DATA_URL = '/vcmiclient.data';");
+ html=html.replace(/window\.VCMI_WASM_URL\s*=.*?;/g,"window.VCMI_WASM_URL = './vcmiclient.wasm';").replace(/window\.VCMI_DATA_URL\s*=.*?;/g,"window.VCMI_DATA_URL = './vcmiclient.data';");
  html=html.replace('<meta name="viewport" content="width=device-width, height=device-height, user-scalable=0" />','<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />');
- html=html.replace('</head>','<link rel="stylesheet" href="/web/mobile.css"><script type="module" src="/web/install.mjs"></script><script type="module" src="/web/mobile.mjs"></script></head>');
+ html=html.replace('</head>','<link rel="stylesheet" href="./web/mobile.css"><script type="module" src="./web/install.mjs"></script><script type="module" src="./web/mobile.mjs"></script></head>');
  html=html.replace('const FS = module.FS;','await window.goonkAssetsReady;\n        const FS = module.FS;');
  html=html.replace('module.canvas = document.getElementById("canvas");',`
  const modSettingsPath='/home/web_user/.config/vcmi/modSettings.json';let modSettings;

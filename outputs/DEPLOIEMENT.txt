@@ -1,0 +1,27 @@
+HEROES GOONK — PUBLICATION
+
+NETLIFY
+1. Ouvre https://app.netlify.com/drop
+2. Décompresse heroes-goonk-netlify-pages.zip, puis glisse le dossier
+   obtenu (avec index.html à sa racine) dans la zone de dépôt.
+3. Ouvre l’adresse HTTPS fournie.
+
+Le ZIP fait environ 137 Mo : pour un envoi plus fiable, tu peux aussi
+importer le dépôt GitHub dans Netlify. Les réglages sont déjà fournis
+dans netlify.toml. Les prochains commits envoyés publient les mises à jour.
+
+GITHUB PAGES
+1. Envoie le dépôt heroes-goonk sur GitHub.
+2. Settings > Pages > Build and deployment > Source : GitHub Actions.
+3. Actions > Publish Heroes Goonk to GitHub Pages > Run workflow (main).
+4. Le lien public apparaît dans le déploiement GitHub Pages.
+Les prochains envois sur main publient automatiquement les mises à jour.
+
+POUR RECREER L’ARCHIVE
+Dans le dossier du projet : npm run package:web
+Résultat : outputs/heroes-goonk-netlify-pages.zip
+
+Les données originales Heroes III ne sont pas publiées. Chaque joueur
+importe ses fichiers au premier lancement, sans les envoyer au serveur.
+Sur GitHub Pages, laisse la page terminer son premier rechargement.
+Netlify et GitHub Pages ont des stockages locaux distincts.
