@@ -104,3 +104,11 @@
 
 /* Autosave status must never intercept troop transfers or the panel close button. */
 #save-toast{pointer-events:none}
+
+/* The adventure minimap shares the native world/fog, with room beside touch controls. */
+#mobile-app[data-mode=map] .scene-tools{display:grid;grid-template-columns:repeat(2,minmax(52px,1fr));width:158px;gap:6px;top:8px;left:8px}
+#mobile-app[data-mode=map] .scene-tools button{min-height:48px;min-width:0;padding:6px;font-size:14px}
+#mobile-app[data-mode=map] #mobile-overview{display:block;width:116px;height:116px;top:8px;right:8px;border:3px ridge #c5a558;border-radius:0;background:#080906;touch-action:none;box-shadow:0 2px 8px #000a;image-rendering:pixelated}
+#mobile-app[data-mode=map] #mobile-overview[hidden]{display:none}
+#mobile-app[data-mode=map] #mobile-overview:focus-visible{outline:3px solid #ffe894;outline-offset:3px}
+@media(orientation:landscape) and (max-height:600px){#mobile-app[data-mode=map] #mobile-overview{width:100px;height:100px}}

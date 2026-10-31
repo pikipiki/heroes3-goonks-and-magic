@@ -111,6 +111,8 @@ protected:
 
 public:
 	AdventureMapInterface();
+	std::shared_ptr<CMinimap> getMobileMinimap() const;
+	Rect getMobileMapRect() const;
 
 	void hotkeyAbortCastingMode();
 	void hotkeyExitWorldView();

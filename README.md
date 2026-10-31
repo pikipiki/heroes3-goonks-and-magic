@@ -288,3 +288,9 @@ Le panneau « Organiser les armées » reste ouvert après un déplacement, un r
 ### Un seul bouton Son (0.4.17)
 
 Dans le menu, l’onglet général s’appelle « Réglages ». Il contient un unique interrupteur « Son activé / Son coupé », avec un état accessible et mémorisé. La commande « Rétablir le son » est supprimée : sa réparation de la sortie audio est exécutée automatiquement lors de la réactivation. Le contrôle attend la confirmation du moteur avant d’accepter une nouvelle action.
+
+### Vue d’ensemble de la carte d’aventure (0.4.18)
+
+La mini-carte native est visible dans la vue mobile de la carte d’aventure, en portrait et en paysage. Elle représente le monde complet au niveau actuellement affiché, avec les terrains explorés, les couleurs du joueur et le brouillard de guerre d’origine. Un cadre doré indique la portion réellement visible après le recadrage ou le zoom mobile. Les cartes rectangulaires gardent leurs proportions.
+
+Toucher la mini-carte recentre la caméra via le véritable composant natif ; cette action ne crée pas de trajet et ne dépense aucun point de déplacement du héros. Les flèches du clavier fonctionnent aussi lorsque la mini-carte a le focus. Les boutons de zoom et de recentrage restent séparés de cet aperçu, y compris sur un écran de 320 pixels de large. La compilation WebAssembly, 78 tests unitaires et un scénario natif XL en 390×844, 844×390 et 320×568 ont été vérifiés.

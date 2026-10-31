@@ -66,6 +66,8 @@ protected:
 
 public:
 	explicit CMinimap(const Rect & position);
+	const Rect & mobileVisibleArea() const { return screenArea; }
+	int mobileLevel() const { return level; }
 
 	void onMapViewMoved(const Rect & visibleArea, int mapLevel);
 	void update();

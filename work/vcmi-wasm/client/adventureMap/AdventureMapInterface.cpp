@@ -79,6 +79,9 @@ AdventureMapInterface::AdventureMapInterface():
 	addUsedEvents(KEYBOARD | TIME);
 }
 
+std::shared_ptr<CMinimap> AdventureMapInterface::getMobileMinimap() const { return widget->getMinimap(); }
+Rect AdventureMapInterface::getMobileMapRect() const { return widget->getMapView()->pos; }
+
 void AdventureMapInterface::onMapViewMoved(const Rect & visibleArea, int mapLevel)
 {
 	shortcuts->onMapViewMoved(visibleArea, mapLevel);

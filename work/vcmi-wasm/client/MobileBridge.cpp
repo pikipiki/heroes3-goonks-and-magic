@@ -22,6 +22,7 @@
 #include "gui/EventDispatcher.h"
 #include "gui/Shortcut.h"
 #include "adventureMap/AdventureMapInterface.h"
+#include "adventureMap/CMinimap.h"
 #include "mainmenu/CMainMenu.h"
 #include "lobby/CLobbyScreen.h"
 #include "windows/CCastleInterface.h"
@@ -140,6 +141,7 @@ void publishMobileState(){
   n["cheatReady"].Bool()=p->makingTurn&&(n["mode"].String()=="map"||n["mode"].String()=="town");
   if(p->localState->getCurrentTown())n["selectedTownName"].String()=p->localState->getCurrentTown()->getNameTranslated();
   for(int i=0;i<7;i++)n["resources"].Vector().push_back(JsonNode(double(p->cb->getResourceAmount(GameResID(i)))));
+  if(n["mode"].String()=="map"&&adventureInt){auto mini=adventureInt->getMobileMinimap();if(mini){auto size=p->cb->getMapSize();auto & m=n["mapOverview"];m["rect"]=rect(mini->pos);m["view"]=rect(adventureInt->getMobileMapRect());m["viewport"]=rect(mini->mobileVisibleArea());m["width"].Integer()=size.x;m["height"].Integer()=size.y;m["level"].Integer()=mini->mobileLevel();}}
   const auto hero=p->localState->getCurrentHero();
   if(hero){n["heroName"].String()=hero->getNameTranslated();n["movement"].Integer()=hero->movementPointsRemaining();n["heroId"].Integer()=hero->id.getNum();n["armies"].Vector().push_back(army(hero,hero->getNameTranslated()));if(p->localState->hasPath(hero)){n["hasPath"].Bool()=true;n["pathTurns"].Integer()=p->localState->getPath(hero).lastNode().turns;}}
   int index=0;for(auto h:p->localState->getWanderingHeroes()){JsonNode item;item["name"].String()=h->getNameTranslated();item["index"].Integer()=index++;item["movement"].Integer()=h->movementPointsRemaining();n["heroes"].Vector().push_back(item);}

@@ -10,6 +10,7 @@
 
 #include "StdInc.h"
 #include "CMinimap.h"
+#include "../MobileBridge.h"
 
 #include "AdventureMapInterface.h"
 
@@ -222,7 +223,10 @@ void CMinimap::showAll(Canvas & to)
 				screenArea.w * pos.w / mapSizes.x - 1,
 				screenArea.h * pos.h / mapSizes.y - 1
 			};
-		clippedTarget.drawBorderDashed(radar, Colors::PURPLE);
+		#ifdef VCMI_EMSCRIPTEN
+		if(!isMobilePresentationActive())
+#endif
+			clippedTarget.drawBorderDashed(radar, Colors::PURPLE);
 	}
 }
 
