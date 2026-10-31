@@ -284,3 +284,7 @@ Les quatre planches originales ont été créées avec l’outil intégré `imag
 ### Transferts d’armées sans fermer le panneau (0.4.16)
 
 Le panneau « Organiser les armées » reste ouvert après un déplacement, un regroupement ou une séparation de troupe. Les cases sont actualisées après confirmation du moteur, en conservant le défilement et le focus sur la destination. Les commandes de transfert sont temporairement désactivées pendant cette confirmation pour éviter une deuxième action sur des quantités périmées. Les sauvegardes seules ne reconstruisent pas le panneau et leur notification n’intercepte plus les touches. La croix permet toujours de fermer volontairement le panneau.
+
+### Un seul bouton Son (0.4.17)
+
+Dans le menu, l’onglet général s’appelle « Réglages ». Il contient un unique interrupteur « Son activé / Son coupé », avec un état accessible et mémorisé. La commande « Rétablir le son » est supprimée : sa réparation de la sortie audio est exécutée automatiquement lors de la réactivation. Le contrôle attend la confirmation du moteur avant d’accepter une nouvelle action.
