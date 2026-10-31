@@ -150,6 +150,13 @@ void CRecruitmentWindow::select(std::shared_ptr<CCreatureCard> card)
 	}
 }
 
+const CCreature * CRecruitmentWindow::getRecruitCreature() const { return selected ? selected->creature : nullptr; }
+int CRecruitmentWindow::getRecruitAvailable() const { return selected ? selected->amount : 0; }
+int CRecruitmentWindow::getRecruitAmount() const { return slider->getValue(); }
+int CRecruitmentWindow::getRecruitMaximum() const { return slider->getAmount(); }
+void CRecruitmentWindow::setRecruitAmount(int amount) { slider->scrollTo(std::max(0, std::min(amount, slider->getAmount()))); }
+void CRecruitmentWindow::confirmRecruitment() { if(selected && slider->getValue() > 0) buy(); }
+
 void CRecruitmentWindow::close()
 {
 	if (onClose)

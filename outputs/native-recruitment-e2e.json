@@ -1,0 +1,52 @@
+{
+  "cases": [
+    {
+      "name": "original",
+      "errors": [],
+      "town": "Kanan",
+      "unit": {
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          60
+        ],
+        "count": 14,
+        "icon": "",
+        "id": 0,
+        "name": "Pikeman"
+      },
+      "animationFrames": 11,
+      "goldBefore": 20700,
+      "goldAfter": 20580,
+      "garrisonIncrease": 2
+    },
+    {
+      "name": "goonk",
+      "errors": [],
+      "town": "Goonkbourg",
+      "unit": {
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          70
+        ],
+        "count": 16,
+        "icon": "goonk/pink-large.png",
+        "id": 158,
+        "name": "Paingpaing"
+      },
+      "animationFrames": 12,
+      "goldBefore": 20000,
+      "goldAfter": 19860,
+      "garrisonIncrease": 2
+    }
+  ]
+}

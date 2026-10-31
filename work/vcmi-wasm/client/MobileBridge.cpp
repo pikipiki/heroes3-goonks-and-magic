@@ -56,8 +56,9 @@ void publishMobileState(){
  if(!stateEnabled||!ENGINE||!GAME||snapshotPending.load()||SDL_GetTicks()-lastPublished<180)return;lastPublished=SDL_GetTicks();
  if(audioMuted){if(ENGINE->sound().getVolume()!=0)ENGINE->sound().setVolume(0);if(ENGINE->music().getVolume()!=0)ENGINE->music().setVolume(0);}
  JsonNode n;n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top)n["rect"]=rect(top->pos);
- auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();
+ auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();auto recruitWindow=ENGINE->windows().topWindow<CRecruitmentWindow>();
  if(ENGINE->windows().topWindow<CLobbyScreen>())n["mode"].String()=GAME->server().screenType==ESelectionScreen::loadGame?"load":"lobby";
+ else if(recruitWindow)n["mode"].String()="recruit";
  else if(townWindow)n["mode"].String()="town";
  else if(battleWindow)n["mode"].String()="battle";
  else if(ENGINE->windows().topWindow<AdventureMapInterface>())n["mode"].String()="map";
@@ -71,6 +72,10 @@ void publishMobileState(){
   if(!savesListed){savesListed=true;mobileSaves.clear();const auto files=CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path){return path.getType()==EResType::SAVEGAME;});for(const auto & file:files){try{CMapInfo info;info.saveInit(file);mobileSaves.emplace_back(file.getOriginalName(),info.getNameForList());}catch(const std::exception &){} }std::sort(mobileSaves.begin(),mobileSaves.end());}
   for(size_t i=0;i<mobileSaves.size();i++){JsonNode entry;entry["index"].Integer()=i;entry["name"].String()=mobileSaves[i].second;n["maps"].Vector().push_back(entry);}if(GAME->server().mi)n["selectedMap"].String()=GAME->server().mi->getNameForList();
  }else savesListed=false;
+ if(recruitWindow){
+  if(const auto c=recruitWindow->getRecruitCreature())n["recruitUnit"]=creature(c,recruitWindow->getRecruitAvailable());
+  n["recruitAmount"].Integer()=recruitWindow->getRecruitAmount();n["recruitMaximum"].Integer()=recruitWindow->getRecruitMaximum();
+ }
  if(p&&p->cb&&p->localState){
   n["turn"].Bool()=p->makingTurn;
   n["cheatsAllowed"].Bool()=p->cb->getStartInfo()->extraOptionsInfo.cheatsAllowed;
@@ -133,7 +138,20 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==6&&adventureInt&&hero)adventureInt->centerOnObject(hero);
  if(action==7&&ENGINE->windows().topWindow<AdventureMapInterface>())p->cb->save("Saves/Goonk-mobile",true);
  if(action==8&&townWindow&&townWindow->town->getOwner()==p->playerID&&p->cb->canBuildStructure(townWindow->town,BuildingID(a))==EBuildingState::ALLOWED)p->cb->buildBuilding(townWindow->town,BuildingID(a));
- if(action==9&&townWindow&&townWindow->town->getOwner()==p->playerID){const auto t=townWindow->town;if(a>=0&&a<int(t->creatures.size())&&b>=0&&b<int(t->creatures[a].second.size())&&c>0){const auto id=t->creatures[a].second[b];const auto destination=t->getVisitingHero()?static_cast<const CArmedInstance*>(t->getVisitingHero()):t->getUpperArmy();p->cb->recruitCreatures(t,destination,id,std::min(c,int(t->creatures[a].first)),a);}}
+ if(action==9&&townWindow&&townWindow->town->getOwner()==p->playerID){const auto t=townWindow->town;if(a>=0&&a<int(t->creatures.size())&&b>=0&&b<int(t->creatures[a].second.size())&&c>0){const auto id=t->creatures[a].second[b];p->cb->recruitCreatures(t,t->getUpperArmy(),id,std::min(c,int(t->creatures[a].first)),a);}}
+ if(action==30&&townWindow&&p->makingTurn&&townWindow->town->getOwner()==p->playerID){
+  const auto town=townWindow->town;
+  if(a>=0&&a<int(town->creatures.size())&&!town->creatures[a].second.empty()){
+   const auto recruit=[town,a](CreatureID id,int count){GAME->interface()->cb->recruitCreatures(town,town->getUpperArmy(),id,count,a);};
+   ENGINE->windows().createAndPushWindow<CRecruitmentWindow>(town,a,town->getUpperArmy(),recruit,nullptr,-87);
+  }
+ }
+ if(auto recruitment=ENGINE->windows().topWindow<CRecruitmentWindow>()){
+  if(action==31)recruitment->setRecruitAmount(a);
+  if(action==32&&p->makingTurn)recruitment->confirmRecruitment();
+  if(action==33)recruitment->close();
+ }
+
  if((action==10||action==11)&&a>=0&&c>=0&&b>=0&&b<7&&d>=0&&d<7){const auto from=dynamic_cast<const CArmedInstance*>(p->cb->getObj(ObjectInstanceID(a)));const auto to=dynamic_cast<const CArmedInstance*>(p->cb->getObj(ObjectInstanceID(c)));if(from&&to&&from->getOwner()==p->playerID&&to->getOwner()==p->playerID&&from->hasStackAtSlot(SlotID(b))){if(action==10)p->cb->mergeOrSwapStacks(from,to,SlotID(b),SlotID(d));else if(e>0&&e<from->getStackCount(SlotID(b))&&!to->hasStackAtSlot(SlotID(d)))p->cb->splitStack(from,to,SlotID(b),SlotID(d),e);}}
  if(ENGINE->windows().topWindow<BattleWindow>()&&battle){if(action==12&&battle->makingTurn())battle->giveCommand(EActionType::WAIT);if(action==13&&battle->makingTurn())battle->giveCommand(EActionType::DEFEND);if(action==14)shortcut(a==1?EShortcut::BATTLE_USE_CREATURE_SPELL:EShortcut::BATTLE_CAST_SPELL);if(action==15)battle->openingEnd();}
  lastPublished=0;

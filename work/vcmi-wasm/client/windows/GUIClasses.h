@@ -101,6 +101,12 @@ class CRecruitmentWindow : public CStatusbarWindow
 	void showAll(Canvas & to) override;
 public:
 	const CGDwelling * const dwelling;
+	const CCreature * getRecruitCreature() const;
+	int getRecruitAvailable() const;
+	int getRecruitAmount() const;
+	int getRecruitMaximum() const;
+	void setRecruitAmount(int amount);
+	void confirmRecruitment();
 	CRecruitmentWindow(const CGDwelling * Dwelling, int Level, const CArmedInstance * Dst, const std::function<void(CreatureID,int)> & Recruit, const std::function<void()> & onClose, int y_offset = 0);
 	void availableCreaturesChanged();
 	void close() override;

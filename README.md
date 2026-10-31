@@ -114,3 +114,11 @@ L’interface tactile copie le canevas WebGL du moteur dans un canevas 2D à cha
 `work/browser-tests/mobile-render-e2e.mjs` vérifie le contenu réel des pixels après présentation dans Chromium et WebKit, avec une source visible et hors écran. `one-on-one-e2e.mjs` lance la carte originale « 1 on 1 » dans Chromium, vérifie que la carte contient des pixels visibles en portrait et paysage, puis déplace le héros. Une partie native complète dans WebKit n’a pas pu être validée ici : son essai a échoué pendant la préparation du stockage avec une erreur transitoire, avant le démarrage du moteur. Le téléphone physique reste à confirmer.
 
 Référence du comportement : [spécification WebGL — tampon après présentation](https://registry.khronos.org/webgl/specs/1.0/).
+
+## Recrutement natif animé sur mobile (0.3.9)
+
+Le panneau de choix ouvre désormais la vraie fenêtre `CRecruitmentWindow` de VCMI : décor, fond de faction, créatures animées, variantes, coûts et commandes du jeu. Des commandes tactiles ajoutent la saisie de quantité, un curseur, « Tout », « Recruter » et « Annuler », en portrait et paysage. Le moteur reste responsable des limites de stock, du prix et des places disponibles.
+
+Les achats passent par le même chemin que la fenêtre habituelle et arrivent dans `town->getUpperArmy()` (garnison ou héros en garnison). L’ancien panneau ciblait le héros visiteur lorsqu’il existait, ce qui différait du comportement natif et pouvait rendre les recrues difficiles à retrouver. Le message mobile de confirmation attend désormais la modification de l’armée ; il ne se contente plus d’annoncer l’envoi d’une demande.
+
+Le moteur a été recompilé avec `ninja -j32 html5` ; la construction publique utilise `outputs/vcmi-wasm-goonk-0.3.9-engine.tar.gz`. Le test `native-recruitment-e2e.mjs` vérifie un achat de deux créatures classiques et de deux Paingpaing : variation exacte de l’or, du stock et de la garnison, animation réelle sur plusieurs images, orientations, quantité nulle désactivée et annulation sans achat. Voir `outputs/native-recruitment-e2e.json` et `outputs/recruit-*.png`. Ces tests utilisent Chromium en format téléphone ; le téléphone physique reste à confirmer.
