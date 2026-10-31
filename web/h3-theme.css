@@ -72,3 +72,14 @@
 #mobile-app[data-mode=map] .mobile-nav button{min-height:48px!important;font-size:13px!important}
 #mobile-app[data-mode=map] .toast-mobile{bottom:calc(126px + var(--safe-bottom))}
 @media(orientation:landscape) and (max-height:600px){.goonk-mobile #mobile-app[data-mode=map]{grid-template-columns:minmax(0,1fr) 176px}#mobile-app[data-mode=map] .mobile-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(44px,1fr));gap:5px;overflow:visible;padding:6px 6px calc(6px + var(--safe-bottom))}#mobile-app[data-mode=map] .mobile-nav button{min-height:44px!important;min-width:0;overflow-wrap:normal}#mobile-app[data-mode=map] .toast-mobile{bottom:12px;right:188px}}
+
+/* Portrait town art is a real layered scene: native buildings remain independent. */
+#mobile-app[data-town-layout=portrait] #mobile-overview{display:none!important}
+.town-portrait-buildings{position:absolute;left:0;top:0;z-index:1;pointer-events:none}
+#mobile-app .town-building-hit{position:absolute;pointer-events:auto;min-height:44px!important;min-width:44px!important;padding:0!important;border:0!important;border-image:none!important;border-radius:0;background:transparent!important;box-shadow:none!important;text-shadow:none;touch-action:manipulation}
+#mobile-app .town-building-hit:disabled{opacity:1}
+#mobile-app .town-building-hit:focus-visible{outline:2px solid #ffe599;outline-offset:1px}
+.town-building-name{display:none!important;position:absolute;left:50%;bottom:-3px;transform:translateY(100%);padding:4px 7px;border:1px solid #ddbe73;background:#20150ef2;color:#ffe9aa;font:12px/1.2 Georgia;white-space:normal;text-align:center;pointer-events:none;z-index:3}
+#mobile-app .town-building-hit:hover .town-building-name,#mobile-app .town-building-hit:focus-visible .town-building-name{display:block!important}
+#mobile-app[data-town-layout=portrait] .town-view{top:auto;left:auto;right:6px;bottom:15px;width:104px;min-height:52px;font-size:12px}
+#mobile-app[data-town-layout=portrait] .town-recruit-strip{width:calc(100% - 116px)}

@@ -1,0 +1,264 @@
+{
+  "chromium": {
+    "errors": [],
+    "sizes": [
+      {
+        "width": 390,
+        "height": 844,
+        "scene": {
+          "x": 0,
+          "y": 59,
+          "width": 390,
+          "height": 615.703125
+        },
+        "pixels": {
+          "width": 390,
+          "height": 616,
+          "layout": "portrait",
+          "pixels": [
+            [
+              130,
+              140,
+              214,
+              255
+            ],
+            [
+              196,
+              165,
+              202,
+              255
+            ],
+            [
+              20,
+              41,
+              37,
+              255
+            ],
+            [
+              123,
+              101,
+              35,
+              255
+            ]
+          ]
+        }
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "scene": {
+          "x": 0,
+          "y": 59,
+          "width": 320,
+          "height": 339.703125
+        },
+        "pixels": {
+          "width": 320,
+          "height": 340,
+          "layout": "portrait",
+          "pixels": [
+            [
+              20,
+              27,
+              31,
+              255
+            ],
+            [
+              165,
+              115,
+              5,
+              255
+            ],
+            [
+              49,
+              42,
+              8,
+              255
+            ],
+            [
+              5,
+              0,
+              2,
+              255
+            ]
+          ]
+        }
+      },
+      {
+        "width": 430,
+        "height": 932,
+        "scene": {
+          "x": 0,
+          "y": 59,
+          "width": 430,
+          "height": 703.703125
+        },
+        "pixels": {
+          "width": 430,
+          "height": 704,
+          "layout": "portrait",
+          "pixels": [
+            [
+              137,
+              141,
+              213,
+              255
+            ],
+            [
+              193,
+              162,
+              202,
+              255
+            ],
+            [
+              1,
+              6,
+              7,
+              255
+            ],
+            [
+              3,
+              2,
+              0,
+              255
+            ]
+          ]
+        }
+      }
+    ],
+    "outline": true,
+    "heldTap": true,
+    "classicAndOtherTowns": true
+  },
+  "webkit": {
+    "errors": [],
+    "sizes": [
+      {
+        "width": 390,
+        "height": 844,
+        "scene": {
+          "x": 0,
+          "y": 59,
+          "width": 390,
+          "height": 616
+        },
+        "pixels": {
+          "width": 390,
+          "height": 616,
+          "layout": "portrait",
+          "pixels": [
+            [
+              130,
+              140,
+              214,
+              255
+            ],
+            [
+              196,
+              164,
+              202,
+              255
+            ],
+            [
+              17,
+              38,
+              34,
+              255
+            ],
+            [
+              110,
+              87,
+              20,
+              255
+            ]
+          ]
+        }
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "scene": {
+          "x": 0,
+          "y": 59,
+          "width": 320,
+          "height": 340
+        },
+        "pixels": {
+          "width": 320,
+          "height": 340,
+          "layout": "portrait",
+          "pixels": [
+            [
+              22,
+              28,
+              31,
+              255
+            ],
+            [
+              163,
+              113,
+              12,
+              255
+            ],
+            [
+              49,
+              42,
+              9,
+              255
+            ],
+            [
+              7,
+              2,
+              2,
+              255
+            ]
+          ]
+        }
+      },
+      {
+        "width": 430,
+        "height": 932,
+        "scene": {
+          "x": 0,
+          "y": 59,
+          "width": 430,
+          "height": 704
+        },
+        "pixels": {
+          "width": 430,
+          "height": 704,
+          "layout": "portrait",
+          "pixels": [
+            [
+              135,
+              142,
+              212,
+              255
+            ],
+            [
+              194,
+              162,
+              202,
+              255
+            ],
+            [
+              1,
+              6,
+              7,
+              255
+            ],
+            [
+              3,
+              2,
+              0,
+              255
+            ]
+          ]
+        }
+      }
+    ],
+    "outline": true,
+    "heldTap": true,
+    "classicAndOtherTowns": true
+  }
+}
