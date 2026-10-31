@@ -1,0 +1,16 @@
+{
+  "chromium": {
+    "errors": [],
+    "emptyDisposableOrigin": true,
+    "tinyFixtureOnly": true,
+    "activeTabProtected": true,
+    "savesPreserved": true,
+    "settingsPreserved": true,
+    "filesRemoved": true
+  },
+  "webkit": {
+    "errors": [],
+    "privateStorageUnavailableFallback": true,
+    "identificationVisible": true
+  }
+}

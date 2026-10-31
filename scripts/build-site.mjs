@@ -21,14 +21,15 @@ let html=renderPage(root);const runtimeNames={};
 for(const name of ['vcmiclient.data.js','vcmiclient.wasm','vcmiclient.data','vcmiclient.js']){const bytes=fs.readFileSync(path.join(dist,name)),hash=crypto.createHash('sha256').update(bytes).digest('hex').slice(0,16),hashed=name.replace(/(\.[^.]+)$/,'.'+hash+'$1');fs.renameSync(path.join(dist,name),path.join(dist,hashed));runtimeNames[name]=hashed;}
 html=html.replace(/vcmiclient\.(?:data\.js|wasm|data|js)/g,name=>runtimeNames[name]);
 fs.copyFileSync('web/hosting-bootstrap.mjs',path.join(dist,'hosting-bootstrap.mjs'));
-let index=fs.readFileSync('web/hosting-index.html','utf8');
+let index=fs.readFileSync('web/hosting-index.html','utf8');let storagePage=fs.readFileSync('web/storage.html','utf8');
 const loadScript=url=>fs.readFileSync(path.join(dist,url)),gameScripts=authorizeExternalScripts(html,loadScript),indexScripts=authorizeExternalScripts(index,loadScript);
 html=gameScripts.html;index=indexScripts.html;const rootScripts=fs.readdirSync(dist).filter(name=>/\.(mjs|js)$/.test(name));
 const scriptBases=['https://heroes3-goonks-and-magic.netlify.app','https://pikipiki.github.io/heroes3-goonks-and-magic'];
 if(process.env.GOONK_TEST_ORIGIN)scriptBases.push(new URL(process.env.GOONK_TEST_ORIGIN).origin);
 const scriptSources=scriptBases.flatMap(base=>[base+'/web/',...rootScripts.map(name=>base+'/'+name)]);
-const policy=scriptPolicy([html,index],[...gameScripts.hashes,...indexScripts.hashes],scriptSources);html=applyScriptPolicy(html,policy);index=applyScriptPolicy(index,policy);
-fs.writeFileSync(path.join(dist,'game.html'),html);fs.writeFileSync(path.join(dist,'asset-manifest.json'),JSON.stringify(manifest));
+const storageScripts=authorizeExternalScripts(storagePage,loadScript);storagePage=storageScripts.html;
+const policy=scriptPolicy([html,index,storagePage],[...gameScripts.hashes,...indexScripts.hashes,...storageScripts.hashes],scriptSources);html=applyScriptPolicy(html,policy);index=applyScriptPolicy(index,policy);
+fs.writeFileSync(path.join(dist,'storage.html'),applyScriptPolicy(storagePage,policy));fs.writeFileSync(path.join(dist,'game.html'),html);fs.writeFileSync(path.join(dist,'asset-manifest.json'),JSON.stringify(manifest));
 fs.writeFileSync(path.join(dist,'_headers'),'/*\n  Cross-Origin-Opener-Policy: same-origin\n  Cross-Origin-Embedder-Policy: require-corp\n  Content-Security-Policy: '+policy+'\n/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n/asset-manifest.json\n  Cache-Control: no-cache\n');
 console.log('Site statique créé dans dist — données Heroes III et mods hébergés.');
 
