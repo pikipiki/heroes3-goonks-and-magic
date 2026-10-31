@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "Menu tactile intégré à l’en-tête",
+    "Codes indisponibles avant le début de la partie",
+    "Musique et effets réellement à zéro",
+    "Silence conservé après rechargement",
+    "Restauration des volumes précédents",
+    "Code ressources : +100 000 or et +100 ressources",
+    "Code déplacement réellement appliqué",
+    "Fermeture du menu accessible après défilement des codes",
+    "Code construction appliqué à Goonkbourg",
+    "Menu et silence utilisables sur ordinateur"
+  ],
+  "errors": [],
+  "badResponses": [],
+  "baselineAudio": {
+    "sound": 88,
+    "music": 88
+  }
+}

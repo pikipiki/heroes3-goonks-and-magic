@@ -7,7 +7,8 @@
     "lib/html5/runtime-functions.json",
     "Battle result interface lifetime guard",
     "Mobile state and command bridge",
-    "Touch presentation disables mouse edge scrolling"
+    "Touch presentation disables mouse edge scrolling",
+    "Native cheat menu and persistent master mute for music and effects"
   ],
   "license": "VCMI engine: GPL-2.0-or-later; see work/vcmi-wasm/license.txt",
   "vendoredDependencies": {

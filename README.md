@@ -1,6 +1,6 @@
 # Heroes Goonk
 
-Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.3.0, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
+Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.3.1, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
 
 ## Jouer sur ce Mac
 
@@ -17,9 +17,15 @@ L’interface mobile utilise les véritables commandes du moteur :
 
 En portrait, les commandes sont en bas et les panneaux occupent la largeur ; en paysage, les commandes passent à droite. Les dialogues secondaires natifs, notamment le livre des sorts, restent consultables dans la scène avec zoom/déplacement et Valider/Retour.
 
+## Menu, son et codes de triche
+
+Le bouton **☰ Menu du jeu** est disponible sur ordinateur et dans l’en-tête mobile, y compris pendant les combats. L’onglet **Son** coupe ou réactive à la fois la musique et les effets ; le choix est conservé sur cet appareil et les volumes précédents sont rétablis à la réactivation.
+
+L’onglet **Codes de triche** présente les codes VCMI et leur effet avec un bouton Appliquer : or/ressources, déplacements illimités, carte révélée, sorts, niveau, chance, moral et construction complète. Les actions nécessitant un héros ou une ville demandent une sélection adaptée. Elles sont accessibles pendant ton tour sur la carte ou dans une ville, et respectent l’option du moteur autorisant les codes. Leur utilisation marque la partie comme trichée.
+
 ## Installation et Netlify
 
-Après un clonage : `npm ci --prefix work/browser-tests`, puis `npm run prepare:web`. Le moteur web précompilé est inclus dans `outputs/vcmi-wasm-goonk-0.3.0-engine.tar.gz`.
+Après un clonage : `npm ci --prefix work/browser-tests`, puis `npm run prepare:web`. Le moteur web précompilé est inclus dans `outputs/vcmi-wasm-goonk-0.3.1-engine.tar.gz`.
 Les données originales Heroes III restent exclues de Git. Pour le serveur local, les installer dans `work/game-data/homm3eng/home/web_user/.local/share/vcmi/`.
 
 `npm run build:web` prépare `dist/` pour Netlify ; `node scripts/verify-site.mjs` vérifie les liens du moteur et l’exclusion des données originales. La configuration `netlify.toml` lance la préparation automatiquement. `node work/browser-tests/static-server.mjs` permet d’essayer ce dossier public sur le port 8767. Aucun déploiement en ligne n’a été effectué.

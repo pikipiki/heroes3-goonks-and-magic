@@ -5,6 +5,9 @@
 #include <emscripten/emscripten.h>
 #include <SDL_timer.h>
 #include "GameEngine.h"
+#include "media/ISoundPlayer.h"
+#include "media/IMusicPlayer.h"
+#include "../lib/StartInfo.h"
 #include "GameInstance.h"
 #include "CPlayerInterface.h"
 #include "CServerHandler.h"
@@ -37,7 +40,8 @@
 #include "../lib/pathfinder/CGPathNode.h"
 
 namespace {
-bool mobileEnabled=false;
+bool mobileEnabled=false,stateEnabled=false,audioMuted=false;
+ui32 previousSoundVolume=75,previousMusicVolume=75;
 bool mapsListed=false,savesListed=false;std::vector<std::pair<std::string,std::string>> mobileMaps,mobileSaves;
 uint32_t lastPublished=0;
 JsonNode rect(const Rect & r){JsonNode n;n["x"].Integer()=r.x;n["y"].Integer()=r.y;n["w"].Integer()=r.w;n["h"].Integer()=r.h;return n;}
@@ -46,8 +50,9 @@ JsonNode army(const CArmedInstance * a,const std::string & name){JsonNode n;n["i
 void shortcut(EShortcut key){ENGINE->events().dispatchShortcutPressed({key});ENGINE->events().dispatchShortcutReleased({key});}
 }
 void publishMobileState(){
- if(!mobileEnabled||!ENGINE||!GAME||SDL_GetTicks()-lastPublished<180)return;lastPublished=SDL_GetTicks();
- JsonNode n;n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top)n["rect"]=rect(top->pos);
+ if(!stateEnabled||!ENGINE||!GAME||SDL_GetTicks()-lastPublished<180)return;lastPublished=SDL_GetTicks();
+ if(audioMuted){ENGINE->sound().setVolume(0);ENGINE->music().setVolume(0);}
+ JsonNode n;n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top)n["rect"]=rect(top->pos);
  auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();
  if(ENGINE->windows().topWindow<CLobbyScreen>())n["mode"].String()=GAME->server().screenType==ESelectionScreen::loadGame?"load":"lobby";
  else if(townWindow)n["mode"].String()="town";
@@ -65,6 +70,9 @@ void publishMobileState(){
  }else savesListed=false;
  if(p&&p->cb&&p->localState){
   n["turn"].Bool()=p->makingTurn;
+  n["cheatsAllowed"].Bool()=p->cb->getStartInfo()->extraOptionsInfo.cheatsAllowed;
+  n["cheatReady"].Bool()=p->makingTurn&&(n["mode"].String()=="map"||n["mode"].String()=="town");
+  if(p->localState->getCurrentTown())n["selectedTownName"].String()=p->localState->getCurrentTown()->getNameTranslated();
   for(int i=0;i<7;i++)n["resources"].Vector().push_back(JsonNode(double(p->cb->getResourceAmount(GameResID(i)))));
   const auto hero=p->localState->getCurrentHero();
   if(hero){n["heroName"].String()=hero->getNameTranslated();n["movement"].Integer()=hero->movementPointsRemaining();n["heroId"].Integer()=hero->id.getNum();n["armies"].Vector().push_back(army(hero,hero->getNameTranslated()));if(p->localState->hasPath(hero)){n["hasPath"].Bool()=true;n["pathTurns"].Integer()=p->localState->getPath(hero).lastNode().turns;}}
@@ -80,11 +88,12 @@ void publishMobileState(){
  const auto text=n.toCompactString();MAIN_THREAD_EM_ASM({window.dispatchEvent(new CustomEvent('goonk-state',{detail:JSON.parse(UTF8ToString($0))}));},text.c_str());
 }
 bool isMobilePresentationActive(){return mobileEnabled;}
-extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileEnable(int enabled){if(ENGINE)ENGINE->dispatchMainThread([enabled](){mobileEnabled=enabled!=0;lastPublished=0;});}
+extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileEnable(int enabled){if(ENGINE)ENGINE->dispatchMainThread([enabled](){mobileEnabled=enabled==1;stateEnabled=enabled!=0;lastPublished=0;});}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePointer(int x,int y,int action){if(ENGINE)ENGINE->dispatchMainThread([x,y,action](){Point point(x,y);ENGINE->events().dispatchMouseMoved(Point(0,0),point);if(action==1){ENGINE->events().dispatchMouseLeftButtonPressed(point,4);ENGINE->events().dispatchMouseLeftButtonReleased(point,4);}if(action==2)ENGINE->events().dispatchShowPopup(point,4);if(action==3)ENGINE->events().dispatchClosePopup(point);});}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePan(int dx,int dy){if(ENGINE)ENGINE->dispatchMainThread([dx,dy](){Point p(300,260),distance(dx,dy);ENGINE->events().dispatchGesturePanningStarted(p);ENGINE->events().dispatchGesturePanning(p,p+distance,distance);ENGINE->events().dispatchGesturePanningEnded(p,p+distance);});}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,int c,int d,int e){if(!ENGINE)return;ENGINE->dispatchMainThread([action,a,b,c,d,e](){
  if(action==0){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});return;}if(action==1){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});return;}
+ if(action==28){const bool mute=a!=0;if(mute&&!audioMuted){previousSoundVolume=ENGINE->sound().getVolume();previousMusicVolume=ENGINE->music().getVolume();}if(mute!=audioMuted){audioMuted=mute;ENGINE->sound().setVolume(mute?0:previousSoundVolume);ENGINE->music().setVolume(mute?0:previousMusicVolume);}lastPublished=0;return;}
  if(action==20){if(GAME&&!GAME->interface())CMainMenu::openLobby(ESelectionScreen::newGame,true,{"Goonk"},ELoadMode::NONE,false);return;}
  if(action==21){if(GAME&&GAME->server().getState()==EClientState::LOBBY){auto info=std::make_shared<CMapInfo>();info->mapInit("MAPS/000-Goonk");GAME->server().setMapInfo(info);}return;}
  if(action==22){if(GAME&&GAME->server().getState()==EClientState::LOBBY)GAME->server().sendStartGame();return;}
@@ -94,6 +103,15 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==23){if(GAME&&!GAME->interface())CMainMenu::openLobby(ESelectionScreen::loadGame,true,{"Goonk"},ELoadMode::SINGLE,false);return;}
  auto p=GAME?GAME->interface():nullptr;if(!p||!p->cb||!p->localState)return;
  const auto hero=p->localState->getCurrentHero();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battle= CPlayerInterface::battleInt;
+ if(action==29){
+  static const std::array<std::string,8> codes={"vcmiresources 100","vcmimove","vcmimap","vcmispells","vcmibuild","vcmilevel 1","vcmiluck","vcmimorale"};
+  if(a<0||a>=int(codes.size())||!p->makingTurn||!p->cb->getStartInfo()->extraOptionsInfo.cheatsAllowed)return;
+  if(!townWindow&&!ENGINE->windows().topWindow<AdventureMapInterface>())return;
+  const auto town=townWindow?townWindow->town:p->localState->getCurrentTown();
+  if(a==4){if(!town||town->getOwner()!=p->playerID)return;p->cb->sendMessage(codes[a],town);}
+  else{if(a!=0&&a!=2&&!hero)return;p->cb->sendMessage(codes[a],hero);}
+  return;
+ }
  if(action==2&&ENGINE->windows().topWindow<AdventureMapInterface>()&&hero&&p->localState->hasPath(hero)&&p->makingTurn)shortcut(EShortcut::ADVENTURE_MOVE_HERO);
  if(action==3&&ENGINE->windows().topWindow<AdventureMapInterface>()&&p->makingTurn)p->cb->endTurn();
  if(action==4&&a>=0&&a<int(p->localState->getWanderingHeroes().size())&&ENGINE->windows().topWindow<AdventureMapInterface>()){const auto h=p->localState->getWanderingHero(a);p->localState->setSelection(h);adventureInt->centerOnObject(h);}
