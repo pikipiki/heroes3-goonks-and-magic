@@ -6,7 +6,14 @@ export function fitNativeBattle(width,height,focus,view='auto'){
  return fitRegion(width,height,NATIVE_BATTLE_REGION,close?cover/base:1,focus);
 }
 export function nativeBattleClose(width,height,view){return view==='close'||(view==='auto'&&height>width);}
-export function paintMovementRange(ctx,cells,layout){ctx.save();ctx.strokeStyle='#ffde8b99';ctx.lineWidth=1;for(const cell of cells||[]){if(!cell.reachable||cell.kind>=2)continue;const vertices=[[0,-23],[20,-12],[20,12],[0,23],[-20,12],[-20,-12]];ctx.beginPath();vertices.forEach(([x,y],i)=>{const xx=layout.dx+(cell.x+x-layout.x)*layout.scale,yy=layout.dy+(cell.y+y-layout.y)*layout.scale;i?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy);});ctx.closePath();ctx.stroke();}ctx.restore();}
+export function paintMovementRange(ctx,cells,layout){ctx.save();ctx.strokeStyle='#ffde8b99';ctx.lineWidth=1;for(const cell of cells||[]){if(!cell.reachable||cell.kind>=2)continue;const vertices=BATTLE_HEX_VERTICES;ctx.beginPath();vertices.forEach(([x,y],i)=>{const xx=layout.dx+(cell.x+x-layout.x)*layout.scale,yy=layout.dy+(cell.y+y-layout.y)*layout.scale;i?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy);});ctx.closePath();ctx.stroke();}ctx.restore();}
+export function battleFocus(state,manual,previous){return manual||state.focus||(state.battleUnits||[]).find(u=>state.activeStack!==undefined&&u.stackId===state.activeStack)||(state.battleUnits||[]).find(u=>state.activeUnit?.id!==undefined&&u.id===state.activeUnit.id&&!u.enemy)||(state.battleUnits||[]).find(u=>!u.enemy)||previous||{x:400,y:277};}
+export const BATTLE_HEX_VERTICES=[[0,-26],[22,-16],[22,16],[0,26],[-22,16],[-22,-16]];
+export function paintBattleGrid(ctx,cells,layout,units=[]){
+ const boxes=units.map(u=>{const occupied=(cells||[]).filter(c=>u.occupied?.includes(c.hex)),xs=[u.x,...occupied.map(c=>c.x)];return {left:Math.min(...xs)-44,right:Math.max(...xs)+44,top:u.y-88,bottom:u.y+16};});
+ ctx.save();ctx.beginPath();for(const cell of cells||[]){if(boxes.some(b=>cell.x+22>b.left&&cell.x-22<b.right&&cell.y+26>b.top&&cell.y-26<b.bottom))continue;BATTLE_HEX_VERTICES.forEach(([x,y],i)=>{const xx=layout.dx+(cell.x+x-layout.x)*layout.scale,yy=layout.dy+(cell.y+y-layout.y)*layout.scale;i?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy);});ctx.closePath();}
+ ctx.strokeStyle='#16160ed9';ctx.lineWidth=2;ctx.stroke();ctx.strokeStyle='#f8e8af85';ctx.lineWidth=.8;ctx.stroke();ctx.restore();
+}
 export function configureMobileBattle(FS,enabled){if(!enabled)return;const path='/home/web_user/.config/vcmi/settings.json';let value={};try{const existing=FS.readFile(path,{encoding:'utf8'});if(existing.trim())value=JSON.parse(existing);}catch(error){if(FS.analyzePath(path).exists)throw error;}
  value.battle={...value.battle,cellBorders:false,stackRange:false,movementHighlightOnHover:false,rangeLimitHighlightOnHover:false,stickyHeroInfoWindows:false,showQueue:false,queueSize:'small',queueSmallSlots:8};FS.writeFile(path,JSON.stringify(value));}
 
