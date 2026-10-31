@@ -122,3 +122,13 @@ Le panneau de choix ouvre désormais la vraie fenêtre `CRecruitmentWindow` de V
 Les achats passent par le même chemin que la fenêtre habituelle et arrivent dans `town->getUpperArmy()` (garnison ou héros en garnison). L’ancien panneau ciblait le héros visiteur lorsqu’il existait, ce qui différait du comportement natif et pouvait rendre les recrues difficiles à retrouver. Le message mobile de confirmation attend désormais la modification de l’armée ; il ne se contente plus d’annoncer l’envoi d’une demande.
 
 Le moteur a été recompilé avec `ninja -j32 html5` ; la construction publique utilise `outputs/vcmi-wasm-goonk-0.3.9-engine.tar.gz`. Le test `native-recruitment-e2e.mjs` vérifie un achat de deux créatures classiques et de deux Paingpaing : variation exacte de l’or, du stock et de la garnison, animation réelle sur plusieurs images, orientations, quantité nulle désactivée et annulation sans achat. Voir `outputs/native-recruitment-e2e.json` et `outputs/recruit-*.png`. Ces tests utilisent Chromium en format téléphone ; le téléphone physique reste à confirmer.
+
+## Recrutement direct, thème Heroes III et rotation (0.3.10)
+
+Le bouton « Recruter » ouvre immédiatement la fenêtre native animée du premier logement, sans panneau de noms intermédiaire. Une rangée défilante permet de choisir les autres créatures et la croix de l’en-tête ferme le recrutement. Les logements sans stock restent consultables ; l’achat reste limité par le moteur. Les commandes réutilisent le moteur 0.3.9.
+
+L’interface tactile et le menu utilisent désormais les textures `DIBOXBCK.PCX` et le cadre `TPRCRT.PCX` extraits des données Heroes III du propriétaire : `web/h3-theme/`, régénérables avec `work/browser-tests/extract-h3-theme.mjs`. Les boutons sont rectangulaires, à bordure dorée et fond brun/rouge, avec une police à empattements. Les commandes du dialogue natif conservent leurs graphismes et animations du jeu.
+
+À l’ouverture/fermeture d’un panneau, lors d’une rotation, d’un changement de viewport ou de la perte de focus, les captures de pointeur et les gestes en attente sont libérés. Le fond devient inerte pendant un panneau ; sa croix a son propre gestionnaire et une cible de 48 px. La hauteur d’en-tête est mesurée, y compris la zone de sécurité, et le titre ne se réduit plus pour laisser le contenu déborder. La cause exacte sur l’iPhone du signalement n’a pas pu être observée physiquement.
+
+`mobile-rotation-e2e.mjs` vérifie la fermeture après paysage → portrait et après interruption d’un pointeur maintenu, dans Chromium et WebKit. `native-recruitment-e2e.mjs` vérifie l’accès direct, les images animées, le changement de créature, l’achat et la croix après rotation dans une vraie partie.

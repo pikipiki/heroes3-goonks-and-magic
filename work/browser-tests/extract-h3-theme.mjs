@@ -1,0 +1,5 @@
+import fs from 'node:fs';import zlib from 'node:zlib';import sharp from 'sharp';
+const lod=fs.readFileSync(new URL('../game-data/homm3eng/home/web_user/.local/share/vcmi/Data/H3bitmap.lod',import.meta.url)),entries=new Map();
+for(let i=0;i<lod.readUInt32LE(8);i++){const p=92+i*32,name=lod.subarray(p,p+16).toString().split('\0')[0].toUpperCase();entries.set(name,{offset:lod.readUInt32LE(p+16),size:lod.readUInt32LE(p+20),compressed:lod.readUInt32LE(p+28)});}
+const out=new URL('../../web/h3-theme/',import.meta.url);fs.mkdirSync(out,{recursive:true});
+for(const [name,target] of [['DIBOXBCK.PCX','stone.png'],['TPRCRT.PCX','recruit-frame.png']]){const e=entries.get(name);if(!e)throw Error('Missing '+name);const raw=lod.subarray(e.offset,e.offset+(e.compressed||e.size)),pcx=e.compressed?zlib.inflateSync(raw):raw,w=pcx.readUInt32LE(4),h=pcx.readUInt32LE(8),data=Buffer.alloc(w*h*3),palette=pcx.length-768;for(let i=0;i<w*h;i++)pcx.copy(data,i*3,palette+pcx[12+i]*3,palette+pcx[12+i]*3+3);await sharp(data,{raw:{width:w,height:h,channels:3}}).png().toFile(new URL(target,out).pathname);console.log(name,w,h);}
