@@ -1,0 +1,38 @@
+{
+  "errors": [],
+  "cases": [
+    {
+      "zeroPreferences": false,
+      "initial": {
+        "state": "running",
+        "sound": 88,
+        "music": 88
+      },
+      "resumedAfterRotation": true,
+      "signalPeak": 0.8753509521484375,
+      "restored": {
+        "sound": 88,
+        "music": 88,
+        "sameContext": true
+      },
+      "muteRespected": true,
+      "unmuteResumed": true
+    },
+    {
+      "zeroPreferences": true,
+      "initial": {
+        "state": "running",
+        "sound": 0,
+        "music": 0
+      },
+      "signalPeak": 0.781524658203125,
+      "restored": {
+        "sound": 75,
+        "music": 75,
+        "sameContext": true
+      },
+      "muteRespected": true,
+      "unmuteResumed": true
+    }
+  ]
+}

@@ -33,6 +33,7 @@
 #include "battle/BattleStacksController.h"
 #include "battle/BattleFieldController.h"
 #include "../lib/json/JsonNode.h"
+#include "../lib/CConfigHandler.h"
 #include "../lib/filesystem/Filesystem.h"
 #include "../lib/CCreatureHandler.h"
 #include "../lib/CStack.h"
@@ -182,7 +183,22 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  // A dedicated cancel operation cannot also accept a dialog or close the town
  // below it. Ignore delayed taps once the taverne is no longer on top.
  if(action==40){if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>())tavern->close();lastPublished=0;return;}
- if(action==28){const bool mute=a!=0;if(mute&&!audioMuted){previousSoundVolume=ENGINE->sound().getVolume();previousMusicVolume=ENGINE->music().getVolume();}if(mute!=audioMuted){audioMuted=mute;ENGINE->sound().setVolume(mute?0:previousSoundVolume);ENGINE->music().setVolume(mute?0:previousMusicVolume);}lastPublished=0;return;}
+ if(action==28){
+  const bool mute=a!=0;const auto sound=ENGINE->sound().getVolume(),music=ENGINE->music().getVolume();
+  if(mute&&!audioMuted){previousSoundVolume=sound;previousMusicVolume=music;}
+  if(!mute&&(audioMuted||(sound==0&&music==0))){
+   auto restoredSound=previousSoundVolume,restoredMusic=previousMusicVolume;
+   if(!audioMuted||(!restoredSound&&!restoredMusic)){
+    restoredSound=std::clamp<si64>(settings["general"]["sound"].Integer(),0,100);
+    restoredMusic=std::clamp<si64>(settings["general"]["music"].Integer(),0,100);
+    if(!restoredSound&&!restoredMusic)restoredSound=restoredMusic=75;
+   }
+   ENGINE->sound().setVolume(restoredSound);ENGINE->music().setVolume(restoredMusic);
+  }
+  audioMuted=mute;if(mute){ENGINE->sound().setVolume(0);ENGINE->music().setVolume(0);}
+  if(!mute&&b==1)ENGINE->sound().playSound(soundBase::button);
+  lastPublished=0;return;
+ }
  if(action==20){if(GAME&&!GAME->interface())CMainMenu::openLobby(ESelectionScreen::newGame,true,{"Goonk"},ELoadMode::NONE,false);return;}
  if(action==21){if(GAME&&GAME->server().getState()==EClientState::LOBBY){auto info=std::make_shared<CMapInfo>();info->mapInit("MAPS/001-Goonks");pendingDefaultMap="Goonks";GAME->server().setMapInfo(info);}return;}
  if(action==22){if(GAME&&GAME->server().getState()==EClientState::LOBBY)GAME->server().sendStartGame();return;}
