@@ -23,15 +23,11 @@
 
 .battle-preview-only{justify-content:center;margin-top:8px}.battle-preview-only>canvas{width:176px;max-width:65%}.battle-arrows[hidden]{display:none!important}@media(orientation:landscape) and (max-height:600px){.battle-precision{flex-wrap:nowrap}.battle-precision>canvas{width:84px;flex:0 0 84px}.battle-arrows{grid-template-columns:repeat(2,minmax(44px,1fr));gap:3px}.battle-preview-only{display:none}}
 #mobile-app[data-mode=battle] .mobile-resources{display:none}.battle-view{min-width:76px;min-height:44px!important;padding:4px 8px!important}
-#mobile-app[data-mode=battle][data-battle-view=tactical] #mobile-scene{flex:1;min-height:0;height:0;aspect-ratio:auto;max-height:none;touch-action:none}#mobile-app[data-mode=battle][data-battle-view=tactical] .battle-panel{flex:0 0 auto;max-height:145px;overflow-y:auto}#mobile-app[data-mode=battle][data-battle-view=tactical] .battle-panel .battle-unit-list,#mobile-app[data-mode=battle][data-battle-view=tactical] .battle-panel .battle-precision{display:none!important}.autosave-status{font-size:13px;padding:0 16px;color:var(--gold)}
-@media(orientation:landscape) and (max-height:600px){#mobile-app[data-mode=battle][data-battle-view=tactical] #mobile-scene{height:100%}#mobile-app[data-mode=battle][data-battle-view=tactical] .battle-panel{height:100%;max-height:none}#mobile-app[data-mode=battle][data-battle-view=tactical] .battle-panel .battle-unit-list{display:grid!important}.battle-view{min-width:70px}}
-#tactical-unit-detail{float:right;width:52px;height:52px;border:1px solid var(--line);margin:0 0 4px 8px;background:#18130b}.battle-panel .battle-tools{clear:both}#mobile-app[data-mode=battle][data-battle-view=tactical] .battle-panel .battle-selection{margin-bottom:4px}#mobile-app[data-mode=battle][data-battle-view=tactical] .battle-panel .battle-turn{font-size:15px}
 #save-toast{background:#302418 url('./h3-theme/stone.png');color:#fff0c2;border:1px solid #c7a85c;border-radius:0;font-family:Georgia,"Times New Roman",serif;pointer-events:none}
 
 .battle-panel{box-sizing:border-box;min-height:0;min-width:0}
 
 .goonk-mobile #mobile-app{padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
-@media(orientation:landscape) and (max-height:600px){#mobile-app[data-mode=battle][data-battle-view=tactical] .mobile-play{grid-template-columns:minmax(0,1fr) clamp(170px,28vw,238px)}}
 
 /* Native Heroes III button artwork, including its raised and pressed edges. */
 #mobile-app button,#game-menu button,#game-menu-toggle{border:5px solid transparent;border-image:url('./h3-theme/button-frame.png') 5 fill stretch;border-radius:0;background:#24180d;box-shadow:none;padding:5px 9px}
@@ -50,3 +46,17 @@
 #mobile-app .town-action{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:66px;padding:3px 2px;font-size:13px!important;color:#ffe5a0}
 #mobile-app .town-action img{width:34px;height:30px;object-fit:contain;image-rendering:pixelated}#mobile-app .town-action span{display:block;font-size:13px;margin:0}
 @media(orientation:landscape) and (max-height:600px){#mobile-app[data-mode=town] #mobile-scene{height:calc(100% - 70px)}#mobile-app[data-mode=town] #town-overview{height:70px}#mobile-app .town-recruit-strip button{min-height:52px;min-width:132px}#mobile-app[data-mode=town] .town-view{top:6px;left:6px}#mobile-app[data-mode=town] #mobile-overview{width:104px;height:49px;top:6px;right:6px}#mobile-app .town-action{min-height:52px!important}#mobile-app .town-action img{height:24px;width:30px}}
+
+/* Native battlefield: original terrain, sprites, spells and projectiles. */
+#mobile-app[data-mode=battle][data-battle-view=native] .mobile-play{display:flex;flex-direction:column}
+#mobile-app[data-mode=battle][data-battle-view=native] #mobile-scene{flex:1;min-height:0;height:0;width:100%;aspect-ratio:auto;max-height:none}
+#mobile-app[data-mode=battle][data-battle-view=native] #mobile-overview{display:block;width:104px;height:72px;top:8px;right:8px;border:3px ridge #bd9b52;border-radius:0;box-shadow:0 2px 6px #000a;touch-action:none}
+#mobile-app[data-mode=battle][data-battle-view=native] .battle-panel{display:grid;grid-template-columns:110px minmax(0,1fr);grid-template-rows:1fr 44px;gap:5px 10px;flex:0 0 166px;max-height:166px;padding:6px 10px;overflow:hidden;border-top:3px ridge #ba974b}
+#battle-creature-detail{grid-column:1;grid-row:1;width:106px;height:100px;object-fit:contain;border:2px ridge #ba974b;background:radial-gradient(ellipse at bottom,#655534,#1c1a12);box-sizing:border-box}
+#mobile-app[data-mode=battle][data-battle-view=native] .battle-turn{grid-column:2;grid-row:1;align-self:start;font-size:17px;margin:3px 0 0;line-height:1.1;max-height:40px;overflow:hidden}
+#mobile-app[data-mode=battle][data-battle-view=native] .battle-selection{grid-column:2;grid-row:1;align-self:end;margin:0 0 5px;font-size:13px;line-height:1.2}
+#mobile-app[data-mode=battle][data-battle-view=native] .battle-tools{grid-column:1/3;grid-row:2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:0;gap:8px}
+#mobile-app[data-mode=battle][data-battle-view=native] .battle-panel .battle-unit-list,#mobile-app[data-mode=battle][data-battle-view=native] .battle-precision{display:none!important}
+@media(orientation:landscape) and (max-height:600px){#mobile-app[data-mode=battle][data-battle-view=native] .mobile-play{display:grid;grid-template-columns:minmax(0,1fr) 164px;grid-template-rows:minmax(0,1fr)}#mobile-app[data-mode=battle][data-battle-view=native] #mobile-scene{height:100%;grid-column:1;grid-row:1}#mobile-app[data-mode=battle][data-battle-view=native] .battle-panel{height:100%;max-height:none;grid-column:2;grid-row:1;display:flex;flex-direction:column;align-items:stretch;overflow-y:auto;gap:5px;padding:6px;border-top:0;border-left:3px ridge #ba974b}#mobile-app[data-mode=battle][data-battle-view=native] .battle-turn{order:1;max-height:none;font-size:15px}#battle-creature-detail{order:2;width:132px;height:120px;min-height:80px;align-self:center}#mobile-app[data-mode=battle][data-battle-view=native] .battle-selection{order:3;font-size:12px}#mobile-app[data-mode=battle][data-battle-view=native] .battle-tools{order:4;grid-template-columns:repeat(2,minmax(0,1fr));flex:0 0 auto}#mobile-app[data-mode=battle][data-battle-view=native] #mobile-overview{width:84px;height:58px;right:172px;top:6px}}
+
+@media(orientation:landscape) and (max-height:360px){#battle-creature-detail{height:92px;min-height:80px}#mobile-app[data-mode=battle][data-battle-view=native] .battle-selection{font-size:11px}}

@@ -1,0 +1,174 @@
+{
+  "chromium": [
+    {
+      "width": 390,
+      "height": 844,
+      "scene": {
+        "x": 0,
+        "y": 60,
+        "width": 390,
+        "height": 536.625
+      },
+      "picture": {
+        "x": 10,
+        "y": 605.625,
+        "width": 106,
+        "height": 100
+      },
+      "pixels": {
+        "top": [
+          200,
+          20,
+          20
+        ],
+        "bottom": [
+          20,
+          20,
+          200
+        ]
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "scene": {
+        "x": 0,
+        "y": 45,
+        "width": 586,
+        "height": 345
+      },
+      "picture": {
+        "x": 603.5,
+        "y": 75.5,
+        "width": 132,
+        "height": 120
+      },
+      "pixels": {
+        "top": [
+          200,
+          20,
+          20
+        ],
+        "bottom": [
+          20,
+          20,
+          200
+        ]
+      }
+    },
+    {
+      "width": 568,
+      "height": 320,
+      "scene": {
+        "x": 0,
+        "y": 45,
+        "width": 310,
+        "height": 275
+      },
+      "picture": {
+        "x": 327.5,
+        "y": 75.5,
+        "width": 132,
+        "height": 92
+      },
+      "pixels": {
+        "top": [
+          200,
+          20,
+          20
+        ],
+        "bottom": [
+          20,
+          20,
+          200
+        ]
+      }
+    }
+  ],
+  "webkit": [
+    {
+      "width": 390,
+      "height": 844,
+      "scene": {
+        "x": 0,
+        "y": 60,
+        "width": 390,
+        "height": 537
+      },
+      "picture": {
+        "x": 10,
+        "y": 606,
+        "width": 106,
+        "height": 100
+      },
+      "pixels": {
+        "top": [
+          200,
+          20,
+          20
+        ],
+        "bottom": [
+          20,
+          20,
+          200
+        ]
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "scene": {
+        "x": 0,
+        "y": 45,
+        "width": 586,
+        "height": 345
+      },
+      "picture": {
+        "x": 603.5,
+        "y": 75,
+        "width": 132,
+        "height": 120
+      },
+      "pixels": {
+        "top": [
+          200,
+          20,
+          20
+        ],
+        "bottom": [
+          20,
+          20,
+          200
+        ]
+      }
+    },
+    {
+      "width": 568,
+      "height": 320,
+      "scene": {
+        "x": 0,
+        "y": 45,
+        "width": 310,
+        "height": 275
+      },
+      "picture": {
+        "x": 327.5,
+        "y": 75,
+        "width": 132,
+        "height": 92
+      },
+      "pixels": {
+        "top": [
+          200,
+          20,
+          20
+        ],
+        "bottom": [
+          20,
+          20,
+          200
+        ]
+      }
+    }
+  ]
+}

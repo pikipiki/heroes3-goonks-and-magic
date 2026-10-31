@@ -1,0 +1,48 @@
+{
+  "errors": [],
+  "units": [
+    {
+      "name": "Harpy",
+      "count": 14,
+      "enemy": true
+    },
+    {
+      "name": "Harpy Hag",
+      "count": 13,
+      "enemy": true
+    },
+    {
+      "name": "Paladin",
+      "count": 1,
+      "enemy": false
+    },
+    {
+      "name": "Harpy",
+      "count": 34,
+      "enemy": false
+    },
+    {
+      "name": "Beholder",
+      "count": 12,
+      "enemy": false
+    },
+    {
+      "name": "Minotaur",
+      "count": 6,
+      "enemy": false
+    }
+  ],
+  "harpyAtlasRGB": [
+    76.953007518797,
+    64.99462943071966,
+    35.66783029001074
+  ],
+  "flightMovedTo": {
+    "hex": 24,
+    "kind": 0,
+    "reachable": true,
+    "x": 344,
+    "y": 154
+  },
+  "nativeOptions": true
+}
