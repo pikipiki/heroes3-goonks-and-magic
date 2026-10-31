@@ -1,5 +1,6 @@
 import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';
 import {scriptPolicy,applyScriptPolicy,authorizeExternalScripts} from './script-policy.mjs';
+import {packSmallAssets} from './asset-packs.mjs';
 import {visitBaseGame} from './base-game.mjs';
 import {makeManifest} from './assets.mjs';import {renderPage} from './page.mjs';
 const root=path.resolve(process.env.GOONK_ENGINE_DIR||'work/vcmi-wasm/emscripten/html5'),data=path.resolve('work/game-data/homm3eng/home/web_user/.local/share/vcmi'),dist=path.resolve('dist');
@@ -15,6 +16,7 @@ if(fs.existsSync('game-data/manifest.json')){
  manifest.files.unshift(...base.files.map(file=>({...file,chunks:file.chunks.map(chunk=>({...chunk,url:'./assets/base/'+chunk.hash+'.bin'}))})));
  manifest.requiresImport=false;manifest.bundledBase=true;
 }
+packSmallAssets(manifest.files,file=>fs.readFileSync(path.join(publicData,file.path)),(url,bytes)=>{const target=path.join(dist,url);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,bytes);});
 let html=renderPage(root);const runtimeNames={};
 for(const name of ['vcmiclient.data.js','vcmiclient.wasm','vcmiclient.data','vcmiclient.js']){const bytes=fs.readFileSync(path.join(dist,name)),hash=crypto.createHash('sha256').update(bytes).digest('hex').slice(0,16),hashed=name.replace(/(\.[^.]+)$/,'.'+hash+'$1');fs.renameSync(path.join(dist,name),path.join(dist,hashed));runtimeNames[name]=hashed;}
 html=html.replace(/vcmiclient\.(?:data\.js|wasm|data|js)/g,name=>runtimeNames[name]);

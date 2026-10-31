@@ -19,15 +19,27 @@ export async function syncAssets({manifest,opfs,storage,fetcher=fetch,onProgress
   else accept(new Uint8Array(await response.arrayBuffer()));
   if(offset!==size)throw Error('Données incomplètes ou altérées : '+item.file);return bytes;
  };
+ const packs=new Map(),uses=new Map();
+ for(const f of pending)for(const chunk of f.chunks)if(chunk.packSize)uses.set(chunk.url,(uses.get(chunk.url)||0)+1);
+ const packed=async(chunk,item)=>{
+  if(chunk.packOffset<0||chunk.packOffset+chunk.size>chunk.packSize||chunk.packSize>2*1048576)throw Error('Archive de données incorrecte');
+  let pack=packs.get(chunk.url);
+  if(!pack){
+   pack={loaded:0,listeners:new Set()};packs.set(chunk.url,pack);
+   pack.promise=(async()=>{const response=await fetcher(chunk.url,{headers:{}});if(!response.ok)throw Error('Téléchargement impossible : '+item.file+' ('+response.status+')');const bytes=new Uint8Array(chunk.packSize);const accept=part=>{if(pack.loaded+part.length>bytes.length)throw Error('Archive de données incorrecte');bytes.set(part,pack.loaded);pack.loaded+=part.length;received+=part.length;for(const update of pack.listeners)update();emit();};if(response.body?.getReader){const reader=response.body.getReader();try{for(;;){const {done,value}=await reader.read();if(done)break;accept(value);}}finally{reader.releaseLock();}}else accept(new Uint8Array(await response.arrayBuffer()));if(pack.loaded!==bytes.length)throw Error('Archive de données incomplète');return bytes;})();
+  }
+  const base=item.loaded,update=()=>{item.loaded=base+Math.max(0,Math.min(chunk.size,pack.loaded-chunk.packOffset));};pack.listeners.add(update);if(pack.loaded>=chunk.packOffset+chunk.size)item.state='unpack';update();emit();
+  try{const bytes=await pack.promise;return bytes.slice(chunk.packOffset,chunk.packOffset+chunk.size);}finally{pack.listeners.delete(update);const remaining=uses.get(chunk.url)-1;uses.set(chunk.url,remaining);if(!remaining)packs.delete(chunk.url);}
+ };
  const install=async file=>{
   const item={file:file.path,size:file.size,loaded:0,state:'download',samples:[[now(),0]]};active.set(file.path,item);emit();let fullDownload;
   if(!file.size)await disk(()=>opfs.write(ROOT,file.path,0,new Uint8Array(),0));
   for(const chunk of file.chunks){
    if(failure)return;
-   const split=!!chunk.url;const response=(!split&&fullDownload)?null:await fetcher(chunk.url||file.url,{headers:!split&&file.chunks.length>1?{Range:`bytes=${chunk.offset}-${chunk.offset+chunk.size-1}`}:{}});
+   const split=!!chunk.url;const response=chunk.packSize||(!split&&fullDownload)?null:await fetcher(chunk.url||file.url,{headers:!split&&file.chunks.length>1?{Range:`bytes=${chunk.offset}-${chunk.offset+chunk.size-1}`}:{}});
    if(response&&!response.ok)throw Error('Téléchargement impossible : '+file.path+' ('+response.status+')');
    const fallback=!split&&response?.status===200&&file.chunks.length>1;
-   const full=(!split&&fullDownload)||await read(response,fallback?file.size:chunk.size,item);
+   const full=chunk.packSize?await packed(chunk,item):(!split&&fullDownload)||await read(response,fallback?file.size:chunk.size,item);
    if(fallback)fullDownload=full;
    const bytes=!split&&file.chunks.length>1&&fullDownload?full.slice(chunk.offset,chunk.offset+chunk.size):full;
    item.state='verify';emit();if(bytes.length!==chunk.size||await digest(bytes)!==chunk.hash)throw Error('Données incomplètes ou altérées : '+file.path);
