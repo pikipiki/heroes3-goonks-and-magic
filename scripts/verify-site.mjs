@@ -1,3 +1,4 @@
+import {inlineScriptHashes} from './script-policy.mjs';
 import fs from 'node:fs';import assert from 'node:assert/strict';
 const html=fs.readFileSync('dist/game.html','utf8');
 for(const name of ['index.html','hosting-bootstrap.mjs','coi-serviceworker.js','.nojekyll'])assert(fs.existsSync('dist/'+name),name);
@@ -9,3 +10,5 @@ assert(!/(?:src|href)="\/(?!\/)|(?:WASM|DATA)_URL = '\//.test(html),'Les liens d
 assert(manifest.files.every(f=>f.url?.startsWith('./assets/')||f.chunks.every(c=>c.url?.startsWith('./assets/'))));
 for(const file of manifest.files)for(const chunk of file.chunks||[])if(chunk.url)assert(fs.existsSync('dist/'+chunk.url));
 for(const match of html.matchAll(/\bimport\(['"](\.\/[^'"]+)['"]\)/g))assert(fs.existsSync('dist/'+match[1]),'Module dynamique absent : '+match[1]);
+
+for(const name of ['index.html','game.html']){const doc=fs.readFileSync('dist/'+name,'utf8'),policy=doc.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/i)?.[1];assert(policy,'Politique de scripts manquante');assert(!policy.includes("'unsafe-inline'"));for(const hash of inlineScriptHashes(doc))assert(policy.includes(hash),'Script de démarrage non autorisé');}

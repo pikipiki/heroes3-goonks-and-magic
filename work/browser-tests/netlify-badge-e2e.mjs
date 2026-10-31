@@ -1,0 +1,8 @@
+import {chromium} from 'playwright-core';import fs from 'node:fs';import assert from 'node:assert/strict';
+const b=await chromium.connectOverCDP('http://127.0.0.1:9224'),c=await b.newContext(),p=await c.newPage(),hud=await (await fetch('https://heroes3-goonks-and-magic.netlify.app/.netlify/scripts/hud?variant=public')).text(),report={};
+const policy=fs.readFileSync('../../dist/game.html','utf8').match(/http-equiv="Content-Security-Policy" content="([^"]+)"/)[1];
+let strict=false;
+await c.route('**/.netlify/scripts/hud*',route=>route.fulfill({contentType:'text/javascript',body:hud}));
+await c.route('**/badge-test',route=>route.fulfill({contentType:'text/html',body:'<!doctype html><html><head>'+(strict?'<meta http-equiv="Content-Security-Policy" content="'+policy+'">':'')+'</head><body><h1>Goonk</h1><script src="/.netlify/scripts/hud?variant=public" data-nf-variant="public" data-netlify-site-id="59842342-e599-4c3a-8775-0fb6dadd2569" data-app-host="app.netlify.com" data-account-tier="free"></script></body></html>'}));
+for(const mode of ['baseline','strict']){strict=mode==='strict';await p.goto('http://127.0.0.1:8767/badge-test');if(!strict)await p.locator('#nl-badge-frame').waitFor();await p.waitForTimeout(500);const frames=await p.locator('#nl-badge-frame').count();report[mode]={frames,badgeVisible:frames?await p.frameLocator('#nl-badge-frame').locator('#nl-badge').isVisible():false};await p.screenshot({path:'../../outputs/netlify-badge-'+mode+'.png'});}
+console.log(JSON.stringify(report));fs.writeFileSync('../../outputs/netlify-badge-validation.json',JSON.stringify(report,null,2));assert(report.baseline.badgeVisible);assert(!report.strict.badgeVisible);await c.close();process.exit();

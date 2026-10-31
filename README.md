@@ -84,3 +84,11 @@ Le déplacement du curseur WebAssembly est appliqué après regroupement des év
 ## Jeu intégré pour les tests (0.3.4)
 
 À la demande du propriétaire, les données de son installation Heroes III sont versionnées dans `game-data/` : 418 fichiers (environ 335 Mio), stockés en morceaux de 4 Mio avec leurs empreintes. Le site de 536 Mio inclut les données, les cartes et musiques, le moteur et les mods. Le premier chargement est automatique et les lancements suivants réutilisent le stockage du navigateur. `npm run pack:game-data` permet de régénérer les morceaux depuis l’installation locale ; les sauvegardes et configurations personnelles sont exclues.
+
+## Badge Netlify (0.3.5)
+
+La construction autorise les scripts livrés avec le jeu et leurs modules, sur le domaine Netlify et sous le chemin GitHub Pages du projet. Les scripts ajoutés par l’hébergeur, dont `/.netlify/scripts/hud`, ne sont pas autorisés. La politique est fournie dans les pages et dans les en-têtes Netlify ; les workers et la compilation WebAssembly restent autorisés. Pour un nouveau domaine, adapter `scriptBases` dans `scripts/build-site.mjs`.
+
+Netlify permet aussi de désactiver ce badge dans **Project configuration → General → Powered by Netlify badge → Off**, y compris sur une offre gratuite : [documentation officielle](https://docs.netlify.com/manage/projects/powered-by-netlify-badge/). Aucun accès au compte Netlify n’était disponible pour changer ce réglage ; la correction publiée est dans le site.
+
+Validation navigateur : `netlify-badge-e2e.mjs` vérifie le composant Netlify réel avec puis sans protection ; `badge-game-e2e.mjs` vérifie le démarrage WebAssembly et une nouvelle partie Goonk. Ces scénarios utilisent Chrome sur le port 9224 et le serveur statique sur 8767 ; construire avec `GOONK_TEST_ORIGIN=http://127.0.0.1:8767 npm run build:web` pour cet essai local. La construction publiée n’autorise pas cette adresse locale.
