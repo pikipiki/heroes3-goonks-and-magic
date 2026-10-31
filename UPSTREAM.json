@@ -5,7 +5,15 @@
   "localChanges": [
     "CMake build fixes",
     "lib/html5/runtime-functions.json",
-    "Battle result interface lifetime guard"
+    "Battle result interface lifetime guard",
+    "Mobile state and command bridge",
+    "Touch presentation disables mouse edge scrolling"
   ],
-  "license": "VCMI engine: GPL-2.0-or-later; see work/vcmi-wasm/license.txt"
+  "license": "VCMI engine: GPL-2.0-or-later; see work/vcmi-wasm/license.txt",
+  "vendoredDependencies": {
+    "FuzzyLite": {
+      "repository": "https://github.com/fuzzylite/fuzzylite",
+      "commit": "13b3122f5c353c0389ed4e66041d548c44ec9df6"
+    }
+  }
 }

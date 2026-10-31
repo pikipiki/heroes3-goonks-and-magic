@@ -1,0 +1,29 @@
+{
+  "checks": [
+    "Démarrage mobile de Goonk avec WoG",
+    "Déplacement confirmé après choix du trajet",
+    "Construction confirmée par le moteur",
+    "Recrutement de deux Paingpaing",
+    "Séparation de troupe",
+    "Regroupement de troupes",
+    "Portrait et paysage"
+  ],
+  "screens": [
+    "mobile-portrait-welcome",
+    "mobile-portrait-new-game",
+    "mobile-portrait-map",
+    "mobile-portrait-move",
+    "mobile-portrait-town",
+    "mobile-portrait-build",
+    "mobile-portrait-recruit",
+    "mobile-landscape-town",
+    "mobile-landscape-recruit",
+    "mobile-landscape-army"
+  ],
+  "errors": [],
+  "cache": {
+    "downloaded": 0,
+    "reused": 5446,
+    "files": 5446
+  }
+}

@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../MobileBridge.h"
 #include "AdventureMapInterface.h"
 
 #include "AdventureOptions.h"
@@ -208,6 +209,8 @@ void AdventureMapInterface::tick(uint32_t msPassed)
 
 void AdventureMapInterface::handleMapScrollingUpdate(uint32_t timePassed)
 {
+	// The touch presentation pans explicitly; its hidden canvas has no edge cursor.
+	if(isMobilePresentationActive()) return;
 	/// Width of window border, in pixels, that triggers map scrolling
 	static constexpr int32_t borderScrollWidth = 15;
 

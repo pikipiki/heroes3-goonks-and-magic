@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "GameEngine.h"
+#include "MobileBridge.h"
 #include "GameLibrary.h"
 #include "Discord.h"
 
@@ -148,6 +149,7 @@ void GameEngine::updateFrame()
 
 	windows().onFrameRendered();
 	ENGINE->cursor().update();
+	publishMobileState();
 }
 
 GameEngine::~GameEngine()

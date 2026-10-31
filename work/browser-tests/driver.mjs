@@ -12,6 +12,8 @@ for await(const line of readline.createInterface({input:process.stdin})){
   try{
     const c=JSON.parse(line); let result;
     if(c.op==='newpage'){await page.close().catch(()=>{});page=await context.newPage();await page.setViewportSize({width:1024,height:768});page.on('console',m=>logs.push(m.type()+': '+m.text()));page.on('pageerror',e=>logs.push('PAGEERROR '+e.message));}
+    if(c.op==='viewport')await page.setViewportSize({width:c.width,height:c.height});
+    if(c.op==='clickText')await page.getByRole('button',{name:c.text,exact:true}).click();
     if(c.op==='goto')result=await page.goto(c.url,{waitUntil:'domcontentloaded',timeout:30000});
     if(c.op==='click')await page.mouse.click(c.x,c.y,{clickCount:c.count||1});
     if(c.op==='key')await page.keyboard.press(c.key,{delay:100});

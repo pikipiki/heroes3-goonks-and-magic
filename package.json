@@ -1,12 +1,13 @@
 {
   "name": "heroes-goonk",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "start": "cd work/browser-tests && node server.mjs",
     "build:mod": "cd work/browser-tests && node build-goonk.mjs",
     "test": "node --test tests/*.test.mjs",
     "prepare:web": "node scripts/prepare-web.mjs",
-    "build:web": "node scripts/build-site.mjs"
+    "build:web": "node scripts/build-site.mjs",
+    "verify:web": "node scripts/verify-site.mjs"
   }
 }

@@ -1,0 +1,18 @@
+{
+  "errors": [],
+  "checks": [
+    "Import local sans envoi au serveur et démarrage du site public",
+    "Redémarrage public sans réimport ni téléchargement de données",
+    "Nouvelle partie réelle depuis le dossier statique public"
+  ],
+  "cache": {
+    "downloaded": 183013299,
+    "reused": 0,
+    "files": 5028
+  },
+  "warmCache": {
+    "downloaded": 0,
+    "reused": 5028,
+    "files": 5028
+  }
+}

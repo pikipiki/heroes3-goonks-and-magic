@@ -1,0 +1,84 @@
+{
+  "version": "0.3.0",
+  "engine": "VCMI 1.7.3, Emscripten 4.0.23",
+  "wog": "9.1.82 / vcmi-1.7",
+  "engineBuild": "ninja -j32 html5 successful",
+  "unitTests": 12,
+  "browser": "Real WebAssembly engine in headless Chrome; viewport 390x844 and 844x390",
+  "gameplay": {
+    "checks": [
+      "Démarrage mobile de Goonk avec WoG",
+      "Déplacement confirmé après choix du trajet",
+      "Construction confirmée par le moteur",
+      "Recrutement de deux Paingpaing",
+      "Séparation de troupe",
+      "Regroupement de troupes",
+      "Portrait et paysage"
+    ],
+    "screens": [
+      "mobile-portrait-welcome",
+      "mobile-portrait-new-game",
+      "mobile-portrait-map",
+      "mobile-portrait-move",
+      "mobile-portrait-town",
+      "mobile-portrait-build",
+      "mobile-portrait-recruit",
+      "mobile-landscape-town",
+      "mobile-landscape-recruit",
+      "mobile-landscape-army"
+    ],
+    "errors": [],
+    "cache": {
+      "downloaded": 0,
+      "reused": 5446,
+      "files": 5446
+    }
+  },
+  "combatAndSaves": {
+    "checks": [
+      "Retour du château à la carte",
+      "Sauvegarde native créée",
+      "Choix tactile du pouvoir et de sa cible",
+      "Victoire et fermeture du résultat",
+      "Déplacement après victoire contre Paingpaing",
+      "Reprise de la sauvegarde après rechargement"
+    ],
+    "errors": [],
+    "cacheAfterReload": {
+      "downloaded": 0,
+      "reused": 5446,
+      "files": 5446
+    }
+  },
+  "publicBuild": {
+    "errors": [],
+    "checks": [
+      "Import local sans envoi au serveur et démarrage du site public",
+      "Redémarrage public sans réimport ni téléchargement de données",
+      "Nouvelle partie réelle depuis le dossier statique public"
+    ],
+    "cache": {
+      "downloaded": 183013299,
+      "reused": 0,
+      "files": 5028
+    },
+    "warmCache": {
+      "downloaded": 0,
+      "reused": 5028,
+      "files": 5028
+    }
+  },
+  "limitations": [
+    "No physical iPhone or Android test",
+    "Multitouch gestures implemented, not tested on physical touchscreen",
+    "No entire campaign completed",
+    "Native spellbook and secondary dialogs retain zoomable engine UI",
+    "Siege artwork still uses original Castle layout",
+    "Prepared for Netlify, not deployed"
+  ],
+  "desktopSmoke": {
+    "publicBuild": true,
+    "viewport": "1024x768",
+    "javascriptErrors": []
+  }
+}

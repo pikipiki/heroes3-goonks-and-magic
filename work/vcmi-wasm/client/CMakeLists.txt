@@ -1,5 +1,6 @@
 set(vcmiclientcommon_SRCS
 	StdInc.cpp
+	MobileBridge.cpp
 
 	adventureMap/AdventureMapInterface.cpp
 	adventureMap/AdventureMapShortcuts.cpp
