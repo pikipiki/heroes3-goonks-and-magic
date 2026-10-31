@@ -82,6 +82,7 @@ private:
 	void showMoveDetailsInStatusbar(const CGHeroInstance & hero, const CGPathNode & pathNode);
 
 	const CGObjectInstance *getActiveObject(const int3 &tile);
+	const CGTownInstance *getOwnedTownAt(const int3 &tile);
 
 	/// exits currently opened world view mode and returns to normal map
 	void exitCastingMode();

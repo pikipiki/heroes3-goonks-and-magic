@@ -294,3 +294,11 @@ Dans le menu, l’onglet général s’appelle « Réglages ». Il contient un u
 La mini-carte native est visible dans la vue mobile de la carte d’aventure, en portrait et en paysage. Elle représente le monde complet au niveau actuellement affiché, avec les terrains explorés, les couleurs du joueur et le brouillard de guerre d’origine. Un cadre doré indique la portion réellement visible après le recadrage ou le zoom mobile. Les cartes rectangulaires gardent leurs proportions.
 
 Toucher la mini-carte recentre la caméra via le véritable composant natif ; cette action ne crée pas de trajet et ne dépense aucun point de déplacement du héros. Les flèches du clavier fonctionnent aussi lorsque la mini-carte a le focus. Les boutons de zoom et de recentrage restent séparés de cet aperçu, y compris sur un écran de 320 pixels de large. La compilation WebAssembly, 78 tests unitaires et un scénario natif XL en 390×844, 844×390 et 320×568 ont été vérifiés.
+
+### Toucher le château et cohérence des images locales (0.4.19)
+
+En vue mobile, toucher les murs ou le toit de son château ouvre sa ville sans déplacer le héros. Un appui long prépare un trajet vers l’entrée ; « Marcher » confirme le déplacement. Des touchers répétés sur un trajet ne font plus partir le héros automatiquement. Une commande de carte retardée est ignorée si une fenêtre de ville s’est ouverte entre-temps.
+
+Le serveur de développement synchronise les sources des mods au démarrage. Les anciens aperçus locaux pouvaient conserver les animations précédant la correction des morceaux d’autres personnages. Les 861 images référencées par les quatorze animations Goonks ont été contrôlées et un combat natif a été lancé avec les données actuelles. Une partie déjà ouverte garde ses images en mémoire : il faut recharger sa page pour charger la version mise à jour, sans supprimer ses sauvegardes.
+
+La compilation WebAssembly et les 78 tests unitaires de la version ont été vérifiés, ainsi que l’ouverture de la ville sur 390×844, 844×390 et 320×568 (après déplacement de la carte lorsque ses commandes couvrent le château), la préparation du trajet sans dépense de points, puis l’arrivée du héros après confirmation.

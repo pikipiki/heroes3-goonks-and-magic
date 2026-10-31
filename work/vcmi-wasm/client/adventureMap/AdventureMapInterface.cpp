@@ -513,6 +513,17 @@ const CGObjectInstance* AdventureMapInterface::getActiveObject(const int3 &mapPo
 	return *boost::range::max_element(bobjs, &CMap::compareObjectBlitOrder);
 }
 
+// Include the visible town artwork (roof/walls), not only its entrance tile.
+const CGTownInstance * AdventureMapInterface::getOwnedTownAt(const int3 &tile)
+{
+ const auto player = GAME->interface();
+ const auto object = getActiveObject(tile);
+ for(const auto town : player->localState->getOwnedTowns())
+  if(town->getOwner() == player->playerID && town->coveringAt(tile) && (!object || object == town))
+   return town;
+ return nullptr;
+}
+
 void AdventureMapInterface::onTileLeftClicked(const int3 &targetPosition)
 {
 	if(!shortcuts->optionMapViewActive())
@@ -531,6 +542,16 @@ void AdventureMapInterface::onTileLeftClicked(const int3 &targetPosition)
 
 	if(!GAME->interface()->cb->isVisible(targetPosition))
 		return;
+
+#ifdef VCMI_EMSCRIPTEN
+ // The touch presentation opens owned towns immediately; Shift retains classic path selection.
+ if(isMobilePresentationActive() && GAME->interface()->makingTurn && !ENGINE->isKeyboardShiftDown())
+  if(const auto town = getOwnedTownAt(targetPosition))
+  {
+   GAME->interface()->openTownWindow(town);
+   return;
+  }
+#endif
 
 	//check if we can select this object
 	bool canSelect = topBlocking && topBlocking->ID == Obj::HERO && topBlocking->tempOwner == GAME->interface()->playerID;
@@ -580,6 +601,9 @@ void AdventureMapInterface::onTileLeftClicked(const int3 &targetPosition)
 			   GAME->interface()->localState->getPath(currentHero).endPos() == destinationTile &&
 			   !ENGINE->isKeyboardShiftDown())//we'll be moving
 			{
+#ifdef VCMI_EMSCRIPTEN
+				if(isMobilePresentationActive()) return; // Movement is confirmed with the mobile Marcher button.
+#endif
 				assert(!GAME->map().hasOngoingAnimations());
 				if(!GAME->map().hasOngoingAnimations() && GAME->interface()->localState->getPath(currentHero).nextNode().turns == 0)
 					GAME->interface()->moveHero(currentHero, GAME->interface()->localState->getPath(currentHero));
@@ -814,6 +838,18 @@ void AdventureMapInterface::onTileRightClicked(const int3 &mapPos)
 		CRClickPopup::createAndPush(LIBRARY->generaltexth->allTexts[61]); //Uncharted Territory
 		return;
 	}
+
+#ifdef VCMI_EMSCRIPTEN
+ // A long touch keeps travel to an owned town available without starting movement.
+ if(isMobilePresentationActive() && GAME->interface()->makingTurn)
+  if(const auto town = getOwnedTownAt(mapPos))
+   if(const auto hero = GAME->interface()->localState->getCurrentHero())
+   {
+    GAME->interface()->localState->setPath(hero, town->visitablePos());
+    onHeroChanged(hero);
+    return;
+   }
+#endif
 
 	const CGObjectInstance * obj = getActiveObject(mapPos);
 	if(!obj)
