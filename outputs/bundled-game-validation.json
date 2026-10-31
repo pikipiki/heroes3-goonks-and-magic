@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "Fresh browser starts without any manual file import",
+    "Native Goonk game starts with the bundled original data and WoG",
+    "Warm restart reuses all game files without downloading them again"
+  ],
+  "errors": [],
+  "failedResponses": [],
+  "coldCache": {
+    "downloaded": 534299287,
+    "reused": 0,
+    "files": 5446
+  },
+  "availableMaps": 356,
+  "warmCache": {
+    "downloaded": 0,
+    "reused": 5446,
+    "files": 5446
+  }
+}

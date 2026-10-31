@@ -1,6 +1,6 @@
 # Heroes Goonk
 
-Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.3.3, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
+Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.3.4, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
 
 ## Jouer sur ce Mac
 
@@ -38,7 +38,7 @@ Les données téléchargées portent une empreinte de contenu et sont vérifiée
 
 `npm run package:web` prépare le dossier `dist/` et l’archive `outputs/heroes-goonk-netlify-pages.zip`. Elle contient le moteur complet, les données de base et les mods.
 
-**Netlify, dépôt manuel** : décompresser l’archive ZIP, puis déposer le dossier obtenu (ou `dist/`) sur https://app.netlify.com/drop. Déposer le site compilé, pas le dossier de sources. Le fichier `_headers` inclus active les fonctions nécessaires au moteur. Pour les mises à jour, déposer le nouveau dossier compilé dans les déploiements du même site. Le site représente environ 200 Mo : la connexion GitHub ci-dessous est préférable pour un envoi fiable ; Netlify recommande plutôt Git ou son outil en ligne de commande pour les gros sites. Aucun fichier individuel ne dépasse 10 Mo.
+**Netlify, dépôt manuel** : décompresser l’archive ZIP, puis déposer le dossier obtenu (ou `dist/`) sur https://app.netlify.com/drop. Déposer le site compilé, pas le dossier de sources. Le fichier `_headers` inclus active les fonctions nécessaires au moteur. Pour les mises à jour, déposer le nouveau dossier compilé dans les déploiements du même site. Le site représente environ 536 Mo : la connexion GitHub ci-dessous est préférable pour un envoi fiable ; Netlify recommande plutôt Git ou son outil en ligne de commande pour les gros sites. Aucun fichier individuel ne dépasse 10 Mo.
 
 **Netlify, depuis GitHub** : importer le dépôt dans Netlify. `netlify.toml` définit déjà la commande de compilation et `dist/` comme dossier à publier. Les prochains commits envoyés à la branche connectée déclenchent un nouveau déploiement.
 
@@ -46,7 +46,7 @@ Les données téléchargées portent une empreinte de contenu et sont vérifiée
 
 La même archive fonctionne à la racine d’un domaine et dans un chemin de projet, comme `https://ton-compte.github.io/heroes-goonk/`. Les liens sont relatifs. Sur GitHub Pages, le premier accès prépare un service worker limité au dossier du jeu, puis relance la page pour activer les threads WebAssembly. Sur Netlify, les en-têtes du serveur activent directement ces fonctions. Utiliser l’adresse HTTPS publiée. Si le navigateur bloque les service workers sur GitHub Pages, un message et un bouton Réessayer apparaissent.
 
-L’archive ne transforme pas le jeu en application hors ligne. Le service worker ajoute les en-têtes nécessaires ; il ne met pas toutes les ressources en cache. Les données et sauvegardes importées restent liées au domaine utilisé : passer de Netlify à GitHub Pages nécessite une nouvelle importation sur ce nouveau domaine.
+L’archive ne transforme pas le jeu en application hors ligne. Le service worker ajoute les en-têtes nécessaires ; il ne met pas toutes les ressources en cache. Les données et sauvegardes restent liées au domaine utilisé : passer de Netlify à GitHub Pages déclenche un nouveau chargement automatique des données, et les sauvegardes locales ne sont pas transférées entre domaines.
 
 Validation locale des deux hébergements : `outputs/hosting-validation.json`. Serveur Netlify simulé : `node work/browser-tests/static-server.mjs`. Serveur GitHub Pages simulé sans en-têtes spéciaux : `PORT=8768 BASE_PATH=/heroes-goonk/ ISOLATION_HEADERS=0 node work/browser-tests/static-server.mjs`.
 
@@ -69,7 +69,7 @@ Le moteur se compile avec Emscripten 4.0.23, CMake/Ninja et ses dépendances SDL
 
 Voir `outputs/mobile-e2e.json`, `outputs/mobile-battle-e2e.json` et les captures `outputs/mobile-*.png`. Les essais portent sur une véritable partie de la carte Goonk dans Chrome, avec WoG activé, en fenêtres 390×844 et 844×390 : déplacement, construction, recrutement, séparation/regroupement, combat, victoire, déplacement après combat et sauvegarde/reprise.
 
-Il reste à valider sur des téléphones physiques, notamment Safari/iPhone : mémoire WebAssembly, stockage disponible, import de gros fichiers et gestes multitactiles réels. Une campagne entière n’a pas été terminée. Le décor de siège conserve encore celui du Château classique. Les anciennes sauvegardes gardent les bâtiments déjà construits ; commencer une nouvelle partie pour retrouver la progression de construction.
+Il reste à valider sur des téléphones physiques, notamment Safari/iPhone : mémoire WebAssembly, stockage disponible, chargement initial et gestes multitactiles réels. Une campagne entière n’a pas été terminée. Le décor de siège conserve encore celui du Château classique. Les anciennes sauvegardes gardent les bâtiments déjà construits ; commencer une nouvelle partie pour retrouver la progression de construction.
 
 ## Réduction des blocages intermittents (0.3.2)
 
@@ -80,3 +80,7 @@ Ces changements suppriment des sources de blocage identifiées dans le code. Le 
 ## Souris sur Mac (0.3.3)
 
 Le déplacement du curseur WebAssembly est appliqué après regroupement des événements, sous le verrou de la frame, plutôt que de bloquer le navigateur à chaque événement brut. La prise du verrou de rendu est désormais non bloquante sur le Web, pour supprimer la course après la vérification préalable de disponibilité. La variante native conserve son comportement habituel.
+
+## Jeu intégré pour les tests (0.3.4)
+
+À la demande du propriétaire, les données de son installation Heroes III sont versionnées dans `game-data/` : 418 fichiers (environ 335 Mio), stockés en morceaux de 4 Mio avec leurs empreintes. Le site de 536 Mio inclut les données, les cartes et musiques, le moteur et les mods. Le premier chargement est automatique et les lancements suivants réutilisent le stockage du navigateur. `npm run pack:game-data` permet de régénérer les morceaux depuis l’installation locale ; les sauvegardes et configurations personnelles sont exclues.
