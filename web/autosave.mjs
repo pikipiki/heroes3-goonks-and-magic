@@ -11,5 +11,7 @@ export function createAutosave({request,onStatus=()=>{},clock=()=>Date.now()}){
 export function installAutosave(){
  const controller=createAutosave({request:id=>window.Module?._vcmiMobileCommand?.(34,id,0,0,0,0),onStatus:value=>{window.goonkAutosaveStatus=value;window.dispatchEvent(new CustomEvent('goonk-autosave-status',{detail:value}));}});
  window.addEventListener('goonk-state',e=>controller.update(e.detail));window.addEventListener('goonk-autosave-accepted',e=>controller.accepted(e.detail));window.addEventListener('goonk-save-persisted',e=>controller.persisted(e.detail));
- setInterval(()=>{if(!document.hidden)controller.tick();},10000);return controller;
+ setInterval(()=>{if(!document.hidden)controller.tick();},10000);
+ // Best effort checkpoint before suspension; the regular 10-second cycle remains authoritative.
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)controller.tick();});return controller;
 }
