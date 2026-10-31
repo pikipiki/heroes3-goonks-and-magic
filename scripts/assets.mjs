@@ -14,5 +14,5 @@ export function makeManifest(data,{includeBase=true}={}){
  const files=[];
  const walk=dir=>{if(!fs.existsSync(path.join(data,dir)))return;for(const entry of fs.readdirSync(path.join(data,dir),{withFileTypes:true}).sort((a,b)=>a.name.localeCompare(b.name))){if(entry.name.startsWith('.'))continue;const relative=dir+'/'+entry.name;if(entry.isDirectory())walk(relative);else if(entry.isFile()){const meta=describeFile(path.join(data,relative));files.push({path:relative,...meta,url:'/assets/data/'+meta.hash+'/'+relative.split('/').map(encodeURIComponent).join('/')});}}};
  for(const dir of includeBase?['Data','Maps','Mp3','Mods']:['Maps','Mods'])walk(dir);
- return {version:1,requiresImport:!includeBase,files};
+ return {version:1,requiresImport:false,files};
 }

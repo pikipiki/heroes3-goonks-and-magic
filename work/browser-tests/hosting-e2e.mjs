@@ -20,13 +20,7 @@ try{
   result.isolation=await page.evaluate(()=>({isolated:crossOriginIsolated,sharedMemory:typeof SharedArrayBuffer==='function',worker:!!navigator.serviceWorker.controller,scope:location.pathname}));
   assert(result.isolation.isolated&&result.isolation.sharedMemory);
   if(name==='github-pages')assert(result.isolation.worker);
-  const input=page.getByLabel('Importer les fichiers Heroes III',{exact:true});
-  await Promise.race([input.waitFor({timeout:60000}),page.waitForFunction(()=>window.goonkMobileState?.mode==='menu',null,{timeout:60000})]);
-  if(await input.isVisible()){
-   const cdp=await context.newCDPSession(page),doc=await cdp.send('DOM.getDocument'),node=await cdp.send('DOM.querySelector',{nodeId:doc.root.nodeId,selector:'input[aria-label="Importer les fichiers Heroes III"]'});
-   await cdp.send('DOM.setFileInputFiles',{nodeId:node.nodeId,files:fs.readdirSync(data).filter(x=>/\.(lod|snd)$/i.test(x)).map(x=>path.join(data,x))});
-   result.originalImport='Local files, no upload';
-  }
+  assert.equal(await page.locator('input[type=file]').count(),0);
   await page.waitForFunction(()=>window.goonkMobileState?.mode==='menu',null,{timeout:180000});
   result.firstCache=await page.evaluate(()=>goonkCacheStats);
   await page.getByRole('button',{name:'Nouvelle aventure',exact:true}).click();

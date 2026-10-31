@@ -3,8 +3,8 @@ const b=await chromium.connectOverCDP('http://127.0.0.1:9224'),c=b.contexts()[0]
 await p.addInitScript(()=>{let last=performance.now();window.mouseGaps=[];setInterval(()=>{const now=performance.now();if(now-last>150)mouseGaps.push(now-last);last=now;},25);});
 const wait=fn=>p.waitForFunction(fn,null,{timeout:60000}),command=(a,b=0)=>p.evaluate(([a,b])=>Module._vcmiMobileCommand(a,b,0,0,0,0),[a,b]);
 try{
- await p.setViewportSize({width:1024,height:768});await p.goto('http://127.0.0.1:8768/heroes-goonk/?mobile=0');const input=p.getByLabel('Importer les fichiers Heroes III',{exact:true});await Promise.race([input.waitFor({timeout:60000}),wait(()=>window.goonkGameMenuState?.ready)]);
- if(await input.isVisible()){const session=await c.newCDPSession(p),doc=await session.send('DOM.getDocument'),node=await session.send('DOM.querySelector',{nodeId:doc.root.nodeId,selector:'input[aria-label="Importer les fichiers Heroes III"]'}),data=path.resolve('../game-data/homm3eng/home/web_user/.local/share/vcmi/Data');await session.send('DOM.setFileInputFiles',{nodeId:node.nodeId,files:fs.readdirSync(data).filter(x=>/\.(lod|snd)$/i.test(x)).map(x=>path.join(data,x))});}
+ await p.setViewportSize({width:1024,height:768});await p.goto('http://127.0.0.1:8768/heroes-goonk/?mobile=0');
+ assert.equal(await p.locator('input[type=file]').count(),0);
  await wait(()=>window.goonkGameMenuState?.ready);assert.equal(await p.evaluate(()=>!!Module._vcmiArmMouseContention),false);report.checks.push('Release engine contains no temporary contention hook');
  await command(20);await wait(()=>goonkGameMenuState.native.mode==='lobby');await command(21);await p.waitForTimeout(300);await command(22);await wait(()=>goonkGameMenuState.native.mode==='map');await command(4);await wait(()=>!!goonkGameMenuState.native.heroName);await p.waitForTimeout(300);
  const cdp=await c.newCDPSession(p);await p.evaluate(()=>mouseGaps=[]);
