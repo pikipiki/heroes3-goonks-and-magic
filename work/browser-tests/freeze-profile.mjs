@@ -18,6 +18,6 @@ try{
  await phase('town-idle',async()=>{await click('♜ Villes');await click('Goonkbourg');await wait(()=>goonkMobileState.mode==='town');},8000);
  await phase('town-muted',async()=>{await click('Menu du jeu');const mute=page.getByRole('button',{name:'🔇 Couper le son',exact:true});if(await mute.count())await mute.click();await click('Fermer le menu');},8000);
  await phase('town-refresh-stress',async()=>{await click('Menu du jeu');await click('Codes de triche');await click('Appliquer : Or et ressources');await click('Appliquer : Tout construire dans la ville');await click('Fermer le menu');},8000);
- await phase('manual-save',async()=>{await click('↩ Carte');await wait(()=>goonkMobileState.mode==='map');await click('☰ Plus');await click('💾 Sauvegarder');},7000);
+ await phase('manual-save',async()=>{await click('↩ Carte');await wait(()=>goonkMobileState.mode==='map');await click('💾 Sauvegarder');},7000);
 }catch(error){report.failure=error.stack;console.error(error.stack);}
 fs.writeFileSync('../../outputs/freeze-profile-'+report.version+'.json',JSON.stringify(report,null,2));process.exit(report.failure?1:0);

@@ -1,0 +1,98 @@
+{
+  "chromium": {
+    "sizes": [
+      {
+        "width": 320,
+        "height": 568,
+        "scene": {
+          "x": 0,
+          "y": 59,
+          "width": 320,
+          "height": 380.625
+        }
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "scene": {
+          "x": 0,
+          "y": 59,
+          "width": 390,
+          "height": 656.625
+        }
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "scene": {
+          "x": 0,
+          "y": 45,
+          "width": 668,
+          "height": 345
+        }
+      },
+      {
+        "width": 568,
+        "height": 320,
+        "scene": {
+          "x": 0,
+          "y": 45,
+          "width": 392,
+          "height": 275
+        }
+      }
+    ],
+    "errors": [],
+    "directActions": true,
+    "endTurnConfirmation": true,
+    "staleTurnBlocked": true
+  },
+  "webkit": {
+    "sizes": [
+      {
+        "width": 320,
+        "height": 568,
+        "scene": {
+          "x": 0,
+          "y": 59,
+          "width": 320,
+          "height": 381
+        }
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "scene": {
+          "x": 0,
+          "y": 59,
+          "width": 390,
+          "height": 657
+        }
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "scene": {
+          "x": 0,
+          "y": 45,
+          "width": 668,
+          "height": 345
+        }
+      },
+      {
+        "width": 568,
+        "height": 320,
+        "scene": {
+          "x": 0,
+          "y": 45,
+          "width": 392,
+          "height": 275
+        }
+      }
+    ],
+    "errors": [],
+    "directActions": true,
+    "endTurnConfirmation": true,
+    "staleTurnBlocked": true
+  }
+}

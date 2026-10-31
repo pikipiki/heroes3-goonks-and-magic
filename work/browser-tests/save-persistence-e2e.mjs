@@ -3,7 +3,7 @@ const browser=await chromium.connectOverCDP('http://127.0.0.1:9223'),page=browse
 try{
  if((await page.evaluate(()=>goonkMobileState.mode))==='dialog')await click('✓ Valider');await wait(()=>goonkMobileState.mode==='map');
  const baseline=await page.evaluate(()=>({resources:goonkMobileState.resources,movement:goonkMobileState.movement,count:goonkRuntimeStats.saves.length}));
- await click('☰ Plus');await click('💾 Sauvegarder');await page.waitForFunction(count=>goonkRuntimeStats.saves.length>count,baseline.count);result.checks.push('Native save is persisted through the asynchronous scheduler');
+ await click('💾 Sauvegarder');await page.waitForFunction(count=>goonkRuntimeStats.saves.length>count,baseline.count);result.checks.push('Native save is persisted through the asynchronous scheduler');
  result.burst=await page.evaluate(async()=>{
   let reads=0,cloud=0;const originalRead=Module.FS.readFile,originalCloud=Module.fsUpdate;Module.FS.readFile=function(...args){reads++;return originalRead.apply(this,args);};Module.fsUpdate=(...args)=>{cloud++;return originalCloud(...args);};
   const before=goonkRuntimeStats.saves.length;await Promise.all(Array.from({length:10},()=>Module.persistLocalSave('/home/web_user/.local/share/vcmi/Saves/Goonk-mobile.vsgm1')));const flushes=goonkRuntimeStats.saves.length-before;
