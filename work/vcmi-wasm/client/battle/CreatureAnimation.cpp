@@ -329,6 +329,11 @@ static ColorRGBA genBorderColor(ui8 alpha, const ColorRGBA & base)
 
 void CreatureAnimation::nextFrame(Canvas & canvas, const ColorRGBA & effectColor, uint8_t transparency, bool facingRight)
 {
+ drawFrameAt(canvas, pos.topLeft(), effectColor, transparency, facingRight);
+}
+
+void CreatureAnimation::drawFrameAt(Canvas & canvas, const Point & position, const ColorRGBA & effectColor, uint8_t transparency, bool facingRight)
+{
 	size_t frame = static_cast<size_t>(floor(currentFrame));
 
 	std::shared_ptr<IImage> image;
@@ -348,7 +353,7 @@ void CreatureAnimation::nextFrame(Canvas & canvas, const ColorRGBA & effectColor
 		image->setEffectColor(effectColor);
 		image->setAlpha(transparency);
 
-		canvas.draw(image, pos.topLeft(), Rect(0, 0, pos.w, pos.h));
+		canvas.draw(image, position, Rect(0, 0, pos.w, pos.h));
 	}
 }
 

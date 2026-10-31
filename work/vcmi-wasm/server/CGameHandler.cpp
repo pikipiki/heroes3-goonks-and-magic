@@ -4208,6 +4208,13 @@ void CGameHandler::spawnWanderingMonsters(CreatureID creatureID)
 
 bool CGameHandler::isBlockedByQueries(const CPackForServer *pack, PlayerColor player)
 {
+#ifdef VCMI_HTML5_BUILD
+ // A quiet browser checkpoint may run while the owned-town UI is open.
+ // Ongoing battles remain excluded: their query state is not serialized.
+ if(const auto save=dynamic_cast<const SaveGame *>(pack))
+  if(save->fname=="Saves/Goonk-auto"&&!save->notifySuccess&&!gameState().getBattle(player))return false;
+#endif
+
 	if (dynamic_cast<const PlayerMessage *>(pack) != nullptr)
 		return false;
 

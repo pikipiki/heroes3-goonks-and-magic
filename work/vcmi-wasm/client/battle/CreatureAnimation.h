@@ -125,6 +125,7 @@ public:
 	ECreatureAnimType getType() const;
 
 	void nextFrame(Canvas & canvas, const ColorRGBA & effectColor, uint8_t transparency, bool facingRight);
+	void drawFrameAt(Canvas & canvas, const Point & position, const ColorRGBA & effectColor, uint8_t transparency, bool facingRight);
 
 	/// should be called every frame, return true when animation was reset to beginning
 	bool incrementFrame(float timePassed);

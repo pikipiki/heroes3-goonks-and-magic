@@ -156,6 +156,7 @@ void GameEngine::updateFrame()
 
 	windows().onFrameRendered();
 	ENGINE->cursor().update();
+	publishMobileBattleAtlas();
 	publishMobileState();
 }
 

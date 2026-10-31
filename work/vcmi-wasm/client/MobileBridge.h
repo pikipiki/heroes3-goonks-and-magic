@@ -2,3 +2,5 @@
 void publishMobileState();
 
 bool isMobilePresentationActive();
+
+void publishMobileBattleAtlas();

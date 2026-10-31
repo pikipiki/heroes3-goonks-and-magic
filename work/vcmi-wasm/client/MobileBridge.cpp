@@ -4,6 +4,10 @@
 #ifdef VCMI_EMSCRIPTEN
 #include <emscripten/emscripten.h>
 #include <SDL_timer.h>
+#include <SDL_surface.h>
+#include "render/Canvas.h"
+#include "../lib/battle/AccessibilityInfo.h"
+#include "../lib/battle/IBattleState.h"
 #include <atomic>
 #include "GameEngine.h"
 #include "media/ISoundPlayer.h"
@@ -52,6 +56,36 @@ JsonNode creature(const CCreature * c,int count){JsonNode n;n["name"].String()=c
 JsonNode army(const CArmedInstance * a,const std::string & name){JsonNode n;n["id"].Integer()=a->id.getNum();n["name"].String()=name;for(int i=0;i<7;i++){auto c=a->getCreature(SlotID(i));n["slots"].Vector().push_back(c?creature(c,a->getStackCount(SlotID(i))):JsonNode());}return n;}
 void shortcut(EShortcut key){ENGINE->events().dispatchShortcutPressed({key});ENGINE->events().dispatchShortcutReleased({key});}
 }
+std::atomic_bool atlasPending{false};
+void publishMobileBattleAtlas(){
+ static uint32_t last=0;
+ if(!mobileEnabled||!ENGINE||!GAME||atlasPending.load()||SDL_GetTicks()-last<83)return;
+ const auto battle=CPlayerInterface::battleInt;
+ if(!battle||!ENGINE->windows().topWindow<BattleWindow>())return;
+ last=SDL_GetTicks();
+ std::vector<const CStack *> units;for(const auto stack:battle->getBattle()->battleGetAllStacks())if(stack->getCount()>0&&stack->getPosition().isValid()&&units.size()<64)units.push_back(stack);
+ if(units.empty())return;
+ const int width=1024,height=((units.size()+7)/8)*128;
+ auto scratch=SDL_CreateRGBSurfaceWithFormat(0,512,512,32,SDL_PIXELFORMAT_RGBA32);
+ auto atlas=SDL_CreateRGBSurfaceWithFormat(0,width,height,32,SDL_PIXELFORMAT_RGBA32);
+ if(!scratch||!atlas){if(scratch)SDL_FreeSurface(scratch);if(atlas)SDL_FreeSurface(atlas);return;}
+ SDL_FillRect(atlas,nullptr,0);
+ {auto canvas=Canvas::createFromSurface(scratch,CanvasScalingPolicy::IGNORE);
+ for(size_t i=0;i<units.size();i++){
+  SDL_FillRect(scratch,nullptr,0);Point bounds;if(!battle->stacksController->drawIsolatedStack(canvas,units[i],bounds))continue;
+  int left=512,top=512,right=-1,bottom=-1;
+  for(int y=0;y<std::min(512,bounds.y);y++)for(int x=0;x<std::min(512,bounds.x);x++){const auto pixel=static_cast<uint8_t*>(scratch->pixels)+y*scratch->pitch+x*4;if(pixel[3]>32){left=std::min(left,x);right=std::max(right,x);top=std::min(top,y);bottom=std::max(bottom,y);}}
+  if(right<left)continue;
+  SDL_Rect src{left,top,right-left+1,bottom-top+1};double scale=std::min(110.0/src.w,110.0/src.h);
+  SDL_Rect dst{int(i%8)*128+(128-int(src.w*scale))/2,int(i/8)*128+(128-int(src.h*scale))/2,int(src.w*scale),int(src.h*scale)};
+  SDL_SetSurfaceBlendMode(scratch,SDL_BLENDMODE_NONE);SDL_BlitScaled(scratch,&src,atlas,&dst);
+ }}
+ const size_t prefix=units.size()*4,bytes=width*height*4;auto packet=static_cast<uint8_t*>(malloc(prefix+bytes));
+ if(packet){for(size_t i=0;i<units.size();i++)reinterpret_cast<uint32_t*>(packet)[i]=units[i]->unitId();memcpy(packet+prefix,atlas->pixels,bytes);atlasPending.store(true);
+ MAIN_THREAD_ASYNC_EM_ASM({const ptr=$0;const w=$1;const h=$2;const n=$3;try{const ids=Array.from(HEAPU32.subarray(ptr/4,ptr/4+n));const rgba=new Uint8ClampedArray(HEAPU8.slice(ptr+n*4,ptr+n*4+w*h*4).buffer);const canvas=window.goonkBattleAtlas||(window.goonkBattleAtlas=document.createElement('canvas'));if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}canvas.getContext('2d').putImageData(new ImageData(rgba,w,h),0,0);window.goonkBattleAtlasIds=new Map(ids.map((id,i)=>[id,i]));}finally{_free(ptr);Module._vcmiMobileAtlasAck();}},packet,width,height,units.size());}
+ SDL_FreeSurface(scratch);SDL_FreeSurface(atlas);
+}
+extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileAtlasAck(){atlasPending.store(false);}
 void publishMobileState(){
  if(!stateEnabled||!ENGINE||!GAME||snapshotPending.load()||SDL_GetTicks()-lastPublished<180)return;lastPublished=SDL_GetTicks();
  if(audioMuted){if(ENGINE->sound().getVolume()!=0)ENGINE->sound().setVolume(0);if(ENGINE->music().getVolume()!=0)ENGINE->music().setVolume(0);}
@@ -64,20 +98,22 @@ void publishMobileState(){
  else if(ENGINE->windows().topWindow<AdventureMapInterface>())n["mode"].String()="map";
  else if(p)n["mode"].String()="dialog";
  if(n["mode"].String()=="lobby"){
+  n["lobbyReady"].Bool()=GAME->server().getState()==EClientState::LOBBY;
   if(!mapsListed){mapsListed=true;const auto files=CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path){return path.getType()==EResType::MAP&&path.getName().find("MAPS/")==0;});for(const auto & file:files){try{CMapInfo info;info.mapInit(file.getOriginalName());if(info.amountOfHumanControllablePlayers>0)mobileMaps.emplace_back(file.getOriginalName(),info.getNameForList());}catch(const std::exception &){} }std::sort(mobileMaps.begin(),mobileMaps.end(),[](const auto & a,const auto & b){return a.second<b.second;});}
   for(size_t i=0;i<mobileMaps.size();i++){JsonNode entry;entry["index"].Integer()=i;entry["name"].String()=mobileMaps[i].second;n["maps"].Vector().push_back(entry);}
   if(GAME->server().mi)n["selectedMap"].String()=GAME->server().mi->getNameForList();
  }
  if(n["mode"].String()=="load"){
+  n["lobbyReady"].Bool()=GAME->server().getState()==EClientState::LOBBY;
   if(!savesListed){savesListed=true;mobileSaves.clear();const auto files=CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path){return path.getType()==EResType::SAVEGAME;});for(const auto & file:files){try{CMapInfo info;info.saveInit(file);mobileSaves.emplace_back(file.getOriginalName(),info.getNameForList());}catch(const std::exception &){} }std::sort(mobileSaves.begin(),mobileSaves.end());}
-  for(size_t i=0;i<mobileSaves.size();i++){JsonNode entry;entry["index"].Integer()=i;entry["name"].String()=mobileSaves[i].second;n["maps"].Vector().push_back(entry);}if(GAME->server().mi)n["selectedMap"].String()=GAME->server().mi->getNameForList();
+  for(size_t i=0;i<mobileSaves.size();i++){JsonNode entry;entry["index"].Integer()=i;entry["name"].String()=mobileSaves[i].second;n["maps"].Vector().push_back(entry);}if(GAME->server().mi){const auto selected=ResourcePath(GAME->server().mi->fileURI,EResType::SAVEGAME).getName();for(size_t i=0;i<mobileSaves.size();i++)if(ResourcePath(mobileSaves[i].first,EResType::SAVEGAME).getName()==selected){n["selectedMap"].String()=mobileSaves[i].second;n["selectedIndex"].Integer()=i;break;}}
  }else savesListed=false;
  if(recruitWindow){
   if(const auto c=recruitWindow->getRecruitCreature())n["recruitUnit"]=creature(c,recruitWindow->getRecruitAvailable());
   n["recruitAmount"].Integer()=recruitWindow->getRecruitAmount();n["recruitMaximum"].Integer()=recruitWindow->getRecruitMaximum();
  }
  if(p&&p->cb&&p->localState){
-  n["turn"].Bool()=p->makingTurn;
+  n["turn"].Bool()=p->makingTurn; n["autosaveAllowed"].Bool()=p->makingTurn&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>());
   n["cheatsAllowed"].Bool()=p->cb->getStartInfo()->extraOptionsInfo.cheatsAllowed;
   n["cheatReady"].Bool()=p->makingTurn&&(n["mode"].String()=="map"||n["mode"].String()=="town");
   if(p->localState->getCurrentTown())n["selectedTownName"].String()=p->localState->getCurrentTown()->getNameTranslated();
@@ -90,8 +126,10 @@ void publishMobileState(){
    for(const auto & entry:town->getTown()->buildings){if(!entry.second||entry.first.getNum()>=44)continue;JsonNode b;b["id"].Integer()=entry.first.getNum();b["name"].String()=entry.second->getNameTranslated();b["key"].String()=entry.second->getJsonKey();b["description"].String()=entry.second->getDescriptionTranslated();b["built"].Bool()=town->hasBuilt(entry.first);b["allowed"].Bool()=p->cb->canBuildStructure(town,entry.first)==EBuildingState::ALLOWED;b["state"].Integer()=static_cast<int>(p->cb->canBuildStructure(town,entry.first));for(int i=0;i<7;i++)b["cost"].Vector().push_back(JsonNode(double(town->getBuildingCost(entry.first)[GameResID(i)])));n["buildings"].Vector().push_back(b);}
    for(size_t level=0;level<town->creatures.size();level++)for(size_t variant=0;variant<town->creatures[level].second.size();variant++){auto c=town->creatures[level].second[variant].toCreature();JsonNode item=creature(c,town->creatures[level].first);item["level"].Integer()=level;item["variant"].Integer()=variant;n["recruits"].Vector().push_back(item);}
   }
-  if(battleWindow&&CPlayerInterface::battleInt){const auto b=CPlayerInterface::battleInt;n["canAct"].Bool()=b->makingTurn();n["round"].Integer()=b->round;const auto active=b->stacksController->getActiveStack();if(active){n["activeUnit"]=creature(active->unitType(),active->getCount());n["activeStack"].Integer()=active->unitId();const auto center=b->fieldController->hexPositionAbsolute(active->getPosition()).center();n["focus"]["x"].Integer()=center.x;n["focus"]["y"].Integer()=center.y;}
-   for(const auto stack:b->getBattle()->battleGetAllStacks()){if(stack->getCount()<=0||!stack->getPosition().isValid())continue;auto item=creature(stack->unitType(),stack->getCount());const auto center=b->fieldController->hexPositionAbsolute(stack->getPosition()).center();item["x"].Integer()=center.x;item["y"].Integer()=center.y;item["enemy"].Bool()=active&&stack->unitSide()!=active->unitSide();n["battleUnits"].Vector().push_back(item);}const auto hovered=b->fieldController->getHoveredStack();if(hovered)n["targetUnit"]=creature(hovered->unitType(),hovered->getCount());}
+  if(battleWindow&&CPlayerInterface::battleInt){const auto b=CPlayerInterface::battleInt;n["canAct"].Bool()=b->makingTurn();n["round"].Integer()=b->round;n["battlePlayerAttacks"].Bool()=b->getBattle()->getBattle()->getSidePlayer(BattleSide::ATTACKER)==p->playerID;const auto active=b->stacksController->getActiveStack();if(active){n["activeUnit"]=creature(active->unitType(),active->getCount());n["activeStack"].Integer()=active->unitId();const auto center=b->fieldController->hexPositionAbsolute(active->getPosition()).center();n["focus"]["x"].Integer()=center.x;n["focus"]["y"].Integer()=center.y;}
+   for(const auto stack:b->getBattle()->battleGetAllStacks()){if(stack->getCount()<=0||!stack->getPosition().isValid())continue;auto item=creature(stack->unitType(),stack->getCount());item["stackId"].Integer()=stack->unitId();for(const auto hex:stack->getHexes())item["occupied"].Vector().push_back(JsonNode(double(hex.toInt())));const auto center=b->fieldController->hexPositionAbsolute(stack->getPosition()).center();item["x"].Integer()=center.x;item["y"].Integer()=center.y;item["enemy"].Bool()=stack->getOwner()!=p->playerID;n["battleUnits"].Vector().push_back(item);}const auto accessibility=b->getBattle()->getAccessibility();const auto reachable=active?b->getBattle()->battleGetAvailableHexes(active,false):BattleHexArray();
+   for(int row=0;row<11;row++)for(int col=1;col<16;col++){const BattleHex hex(col+17*row);const auto center=b->fieldController->hexPositionAbsolute(hex).center();JsonNode cell;cell["hex"].Integer()=hex.toInt();cell["x"].Integer()=center.x;cell["y"].Integer()=center.y;cell["kind"].Integer()=int(accessibility[hex.toInt()]);cell["reachable"].Bool()=active&&reachable.contains(hex);n["battleCells"].Vector().push_back(cell);}
+   const auto hovered=b->fieldController->getHoveredStack();if(hovered)n["targetUnit"]=creature(hovered->unitType(),hovered->getCount());}
  }
  const auto text=n.toCompactString();
  if(text==lastSnapshot&&SDL_GetTicks()-lastSent<1000)return;
@@ -122,6 +160,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==23){if(GAME&&!GAME->interface())CMainMenu::openLobby(ESelectionScreen::loadGame,true,{"Goonk"},ELoadMode::SINGLE,false);return;}
  auto p=GAME?GAME->interface():nullptr;if(!p||!p->cb||!p->localState)return;
  const auto hero=p->localState->getCurrentHero();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battle= CPlayerInterface::battleInt;
+ if(action==34){const bool allowed=p->makingTurn&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>());if(allowed)p->cb->save("Saves/Goonk-auto",false);MAIN_THREAD_ASYNC_EM_ASM({window.dispatchEvent(new CustomEvent('goonk-autosave-accepted',{detail:{id:$0,accepted:!!$1}}));},a,allowed);return;}
  if(action==29){
   static const std::array<std::string,8> codes={"vcmiresources 100","vcmimove","vcmimap","vcmispells","vcmibuild","vcmilevel 1","vcmiluck","vcmimorale"};
   if(a<0||a>=int(codes.size())||!p->makingTurn||!p->cb->getStartInfo()->extraOptionsInfo.cheatsAllowed)return;
@@ -158,5 +197,6 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  });}
 #else
 void publishMobileState(){}
+void publishMobileBattleAtlas(){}
 bool isMobilePresentationActive(){return false;}
 #endif

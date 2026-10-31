@@ -127,6 +127,7 @@ public:
 
 	void showAliveStack(Canvas & canvas, const CStack * stack);
 	void showStack(Canvas & canvas, const CStack * stack);
+	bool drawIsolatedStack(Canvas & canvas, const CStack * stack, Point & dimensions);
 
 	void updateHoveredStacks();
 

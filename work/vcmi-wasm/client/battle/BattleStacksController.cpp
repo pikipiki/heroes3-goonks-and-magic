@@ -348,6 +348,17 @@ void BattleStacksController::showStack(Canvas & canvas, const CStack * stack)
 	stackAnimation[stack->unitId()]->nextFrame(canvas, effectColor, transparency, facingRight(stack)); // do actual blit
 }
 
+bool BattleStacksController::drawIsolatedStack(Canvas & canvas, const CStack * stack, Point & dimensions)
+{
+ const auto found=stackAnimation.find(stack->unitId());
+ if(found==stackAnimation.end())return false;
+ ColorRGBA color=Colors::TRANSPARENCY;uint8_t alpha=255;
+ for(const auto & filter:stackFilterEffects)if(filter.target==stack){color=filter.effectColor;alpha=static_cast<int>(filter.transparency)*alpha/255;}
+ dimensions=Point(found->second->getWidth(),found->second->getHeight());
+ found->second->drawFrameAt(canvas, Point(0,0), color, alpha, facingRight(stack));
+ return true;
+}
+
 void BattleStacksController::tick(uint32_t msPassed)
 {
 	updateHoveredStacks();

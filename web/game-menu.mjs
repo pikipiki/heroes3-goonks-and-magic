@@ -6,7 +6,7 @@ function mountGameMenu(){
   const toggle=document.createElement('button');toggle.id='game-menu-toggle';toggle.textContent='☰';toggle.setAttribute('aria-label','Menu du jeu');
   const brand=document.querySelector('#mobile-app .mobile-brand');if(brand)brand.replaceWith(toggle);else document.body.append(toggle);
   const dialog=document.createElement('dialog');dialog.id='game-menu';dialog.setAttribute('aria-labelledby','game-menu-title');
-  dialog.innerHTML='<header><h2 id="game-menu-title">Menu du jeu</h2><button data-menu="close" aria-label="Fermer le menu">✕</button></header><nav aria-label="Rubriques du menu"><button data-menu="settings">Son</button><button data-menu="cheats">Codes de triche</button></nav><div class="game-menu-body"></div><p class="game-menu-status" role="status"></p>';
+  dialog.innerHTML='<header><h2 id="game-menu-title">Menu du jeu</h2><button data-menu="close" aria-label="Fermer le menu">✕</button></header><p class="autosave-status" aria-live="polite">Sauvegarde automatique : toutes les 10 secondes</p><nav aria-label="Rubriques du menu"><button data-menu="settings">Son</button><button data-menu="cheats">Codes de triche</button></nav><div class="game-menu-body"></div><p class="game-menu-status" role="status"></p>';
   document.body.append(dialog);
   const content=dialog.querySelector('.game-menu-body'),status=dialog.querySelector('.game-menu-status');
   const command=(action,value=0)=>window.Module?._vcmiMobileCommand?.(action,value,0,0,0,0);
@@ -35,6 +35,7 @@ function mountGameMenu(){
     if(dialog.open)render();
     window.goonkGameMenuState={muted,ready:initialAudioApplied,native:state};
   });
+  window.addEventListener('goonk-autosave-status',e=>{const s=e.detail;dialog.querySelector('.autosave-status').textContent=s.phase==='error'?'Sauvegarde automatique : '+s.error:s.phase==='saving'?'Sauvegarde automatique en cours…':s.deferred?'Combat en cours : sauvegarde différée'+(s.lastSaved?' · dernière à '+new Date(s.lastSaved).toLocaleTimeString('fr-FR'):''):s.lastSaved?'Sauvegarde automatique : '+new Date(s.lastSaved).toLocaleTimeString('fr-FR')+' · cycle 10 s':'Sauvegarde automatique : cycle 10 s · en attente d’un état enregistrable';});
   toggle.onclick=()=>{render();status.textContent='';dialog.showModal();};
   dialog.addEventListener('click',event=>{
     const button=event.target.closest('button');if(!button||button.disabled)return;

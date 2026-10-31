@@ -1,0 +1,38 @@
+{
+  "chromium": {
+    "portrait": {
+      "width": 390,
+      "height": 576.625
+    },
+    "landscape": {
+      "width": 513.6875,
+      "height": 345
+    },
+    "small-landscape": {
+      "width": 386.25,
+      "height": 330
+    },
+    "compact-landscape": {
+      "width": 304,
+      "height": 275
+    }
+  },
+  "webkit": {
+    "portrait": {
+      "width": 390,
+      "height": 577
+    },
+    "landscape": {
+      "width": 513.6875,
+      "height": 345
+    },
+    "small-landscape": {
+      "width": 386.25,
+      "height": 330
+    },
+    "compact-landscape": {
+      "width": 304,
+      "height": 275
+    }
+  }
+}
