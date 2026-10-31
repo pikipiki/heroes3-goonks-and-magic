@@ -1,0 +1,48 @@
+{
+  "errors": [],
+  "serverErrors": [],
+  "closed": [
+    {
+      "width": 390,
+      "height": 844,
+      "hit": {
+        "x": 306.0625,
+        "y": 595.578125,
+        "width": 63.1875,
+        "height": 44
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "hit": {
+        "x": 451.90625,
+        "y": 326.234375,
+        "width": 44,
+        "height": 44
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "hit": {
+        "x": 255.1875,
+        "y": 443,
+        "width": 64.796875,
+        "height": 44
+      }
+    }
+  ],
+  "art": {
+    "path": "Mods/goonk/Content/Sprites2x/goonk/structure-dwellingLvl1.png",
+    "width": 190,
+    "height": 180
+  },
+  "rotationAndHeldPress": true,
+  "staleCloseIgnored": true,
+  "hdCard": [
+    300,
+    140
+  ],
+  "recruitment": true
+}

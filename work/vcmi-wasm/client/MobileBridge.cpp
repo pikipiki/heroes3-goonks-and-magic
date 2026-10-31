@@ -26,6 +26,7 @@
 #include "lobby/CLobbyScreen.h"
 #include "windows/CCastleInterface.h"
 #include "windows/GUIClasses.h"
+#include "widgets/Buttons.h"
 #include "windows/CHeroWindow.h"
 #include "battle/BattleInterface.h"
 #include "battle/BattleWindow.h"
@@ -104,6 +105,10 @@ void publishMobileState(){
  else if(battleWindow)n["mode"].String()="battle";
  else if(ENGINE->windows().topWindow<AdventureMapInterface>())n["mode"].String()="map";
  else if(p)n["mode"].String()="dialog";
+ if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>()){
+  n["dialogKind"].String()="tavern";n["dialogTitle"].String()="Taverne";
+  if(tavern->cancel)n["dialogCloseRect"]=rect(tavern->cancel->pos);
+ }
  if(n["mode"].String()=="lobby"){
   n["lobbyReady"].Bool()=GAME->server().getState()==EClientState::LOBBY;
   if(!mapsListed){mapsListed=true;const auto files=CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path){return path.getType()==EResType::MAP&&path.getName().find("MAPS/")==0;});for(const auto & file:files){try{CMapInfo info;info.mapInit(file.getOriginalName());if(info.amountOfHumanControllablePlayers>0)mobileMaps.emplace_back(file.getOriginalName(),info.getNameForList());}catch(const std::exception &){} }std::sort(mobileMaps.begin(),mobileMaps.end(),[](const auto & a,const auto & b){return a.second<b.second;});}
@@ -174,6 +179,9 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePointer(int x,int y,int action){i
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePan(int dx,int dy){if(ENGINE)ENGINE->dispatchMainThread([dx,dy](){Point p(300,260),distance(dx,dy);ENGINE->events().dispatchGesturePanningStarted(p);ENGINE->events().dispatchGesturePanning(p,p+distance,distance);ENGINE->events().dispatchGesturePanningEnded(p,p+distance);});}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,int c,int d,int e){if(!ENGINE)return;ENGINE->dispatchMainThread([action,a,b,c,d,e](){
  if(action==0){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});return;}if(action==1){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});return;}
+ // A dedicated cancel operation cannot also accept a dialog or close the town
+ // below it. Ignore delayed taps once the taverne is no longer on top.
+ if(action==40){if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>())tavern->close();lastPublished=0;return;}
  if(action==28){const bool mute=a!=0;if(mute&&!audioMuted){previousSoundVolume=ENGINE->sound().getVolume();previousMusicVolume=ENGINE->music().getVolume();}if(mute!=audioMuted){audioMuted=mute;ENGINE->sound().setVolume(mute?0:previousSoundVolume);ENGINE->music().setVolume(mute?0:previousMusicVolume);}lastPublished=0;return;}
  if(action==20){if(GAME&&!GAME->interface())CMainMenu::openLobby(ESelectionScreen::newGame,true,{"Goonk"},ELoadMode::NONE,false);return;}
  if(action==21){if(GAME&&GAME->server().getState()==EClientState::LOBBY){auto info=std::make_shared<CMapInfo>();info->mapInit("MAPS/001-Goonks");pendingDefaultMap="Goonks";GAME->server().setMapInfo(info);}return;}
