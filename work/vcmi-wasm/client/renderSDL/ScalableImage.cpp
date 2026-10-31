@@ -492,6 +492,12 @@ std::shared_ptr<const ISharedImage> ScalableImageShared::loadOrGenerateImage(EIm
 		}
 	}
 
+	// Full-color PNGs have no indexed shadow/flag palette. With no supplied
+	// optional layer, enlarging their body would incorrectly tint the entire
+	// object in the owner's color (and duplicate it as a shadow).
+	if (optionalImage && !getPalette())
+		return nullptr;
+
 	ScalableImageParameters parameters(getPalette(), mode);
 	// if all else fails - use base (presumably, indexed) image and convert it to desired form
 	if (color != PlayerColor::CANNOT_DETERMINE && parameters.palette)

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
 import JSON5 from 'json5';
+import {buildMapCastleHD} from './build-map-castle-hd.mjs';
 
 // Discard isolated fragments from neighboring atlas cells before making game assets.
 async function isolatedBuilding(tile){
@@ -82,6 +83,8 @@ export async function buildTown({town,faction,assets,units,png,write,imageDir,re
  // Custom adventure-map animation, anchored like native 6x4 town templates.
  const mapSprite=await sharp(assets.mapCastle).trim().resize(184,145,{fit:'contain',background:clear}).png().toBuffer();
  await png('map-town-v2.png',sharp({create:{width:192,height:160,channels:4,background:clear}}).composite([{input:mapSprite,left:4,top:0}]));
+ // Render from the original artwork, never by enlarging the 1x sprite.
+ await buildMapCastleHD(assets.mapCastle,path.join(imageDir,'../../Sprites2x/goonk'));
  write('Content/Sprites/goonk/map-town-v2.json',{sequences:[{group:0,frames:['goonk/map-town-v2.png']}]});
  for(const template of Object.values(town.mapObject.templates))template.animation='goonk/map-town-v2';
  fs.writeFileSync(path.join(out,'goonk-building-layout-v2.json'),JSON.stringify(placement,null,2));

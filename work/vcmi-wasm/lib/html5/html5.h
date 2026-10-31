@@ -23,6 +23,7 @@ namespace html5 {
     void quitGame();
 #ifdef EMSCRIPTEN
     Point getPreferredWindowResolution();
+    int getGoonkRenderScale();
 #endif
 }
 

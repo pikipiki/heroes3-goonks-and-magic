@@ -252,6 +252,11 @@ std::shared_ptr<const ISharedImage> SDLImageShared::scaleInteger(int factor, SDL
 	else
 		algorithm = EScalingAlgorithm::XBRZ_ALPHA;
 
+#ifdef VCMI_HTML5_BUILD
+	// HD replacements load directly. Legacy sprites use a cheap pixel-preserving
+	// fallback, avoiding xBRZ work and its long stalls on phones.
+	if (html5::getGoonkRenderScale() > 1) algorithm = EScalingAlgorithm::NEAREST;
+#endif
 	auto result = SDLImageShared::createScaled(this, factor, algorithm);
 
 	if (surf->format->palette)

@@ -171,6 +171,11 @@ void html5::quitGame() {
 }
 
 #ifdef EMSCRIPTEN
+int html5::getGoonkRenderScale() {
+    static const int scale = EM_ASM_INT({ return Module.getGoonkRenderScale ? Module.getGoonkRenderScale() : 1; });
+    return scale;
+}
+
 Point html5::getPreferredWindowResolution() {
     auto width = EM_ASM_INT((
         return Module.getWidth();

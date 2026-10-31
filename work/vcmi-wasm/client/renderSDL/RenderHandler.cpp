@@ -9,6 +9,10 @@
  */
 #include "StdInc.h"
 #include "RenderHandler.h"
+#ifdef VCMI_HTML5_BUILD
+#include "../../lib/html5/html5.h"
+#endif
+
 
 #include "SDLImage.h"
 #include "ScalableImage.h"
@@ -46,6 +50,16 @@
 #include <vcmi/SkillService.h>
 #include <vcmi/spells/Service.h>
 #include <vcmi/ResourceTypeService.h>
+
+
+namespace {
+bool hdTexturesEnabled() {
+#ifdef VCMI_HTML5_BUILD
+ if (html5::getGoonkRenderScale() > 1) return true;
+#endif
+ return settings["video"]["useHdTextures"].Bool();
+}
+}
 
 RenderHandler::RenderHandler()
 	:assetGenerator(std::make_unique<AssetGenerator>())
@@ -177,7 +191,7 @@ RenderHandler::AnimationLayoutMap & RenderHandler::getAnimationLayout(const Anim
 
 	auto it = animationLayouts.find(actualPath);
 
-	if (it != animationLayouts.end() && (settings["video"]["useHdTextures"].Bool() || scalingFactor == 1))
+	if (it != animationLayouts.end() && (hdTexturesEnabled() || scalingFactor == 1))
 		return it->second;
 
 	AnimationLayoutMap result;
@@ -332,7 +346,7 @@ std::shared_ptr<SDLImageShared> RenderHandler::loadScaledImage(const ImageLocato
 		// we expect that .def's are only used for 1x data, upscaled assets should use standalone images
 		if (!remappedLocator.image)
 		{
-			if(!settings["video"]["useHdTextures"].Bool() || locator.scalingFactor == 1)
+			if(!hdTexturesEnabled() || locator.scalingFactor == 1)
 				return nullptr;
 
 			if(!CResourceHandler::get("core")->existsResource(*locator.defFile)) // HD mod supports only core
@@ -382,11 +396,11 @@ std::shared_ptr<SDLImageShared> RenderHandler::loadScaledImage(const ImageLocato
 
 	std::shared_ptr<SDLImageShared> img = nullptr;
 
-	if(!img && CResourceHandler::get()->existsResource(imagePathSprites) && (settings["video"]["useHdTextures"].Bool() || locator.scalingFactor == 1))
+	if(!img && CResourceHandler::get()->existsResource(imagePathSprites) && (hdTexturesEnabled() || locator.scalingFactor == 1))
 		img = std::make_shared<SDLImageShared>(imagePathSprites, optimizeImage);
-	if(!img && CResourceHandler::get()->existsResource(imagePathData) && (settings["video"]["useHdTextures"].Bool() || locator.scalingFactor == 1))
+	if(!img && CResourceHandler::get()->existsResource(imagePathData) && (hdTexturesEnabled() || locator.scalingFactor == 1))
 		img = std::make_shared<SDLImageShared>(imagePathData, optimizeImage);
-	if(!img && hdImageLoader->exists(imagePathOriginal) && settings["video"]["useHdTextures"].Bool() && locator.scalingFactor > 1)
+	if(!img && hdImageLoader->exists(imagePathOriginal) && hdTexturesEnabled() && locator.scalingFactor > 1)
 	{
 		if((!isOverlay || !isShadow) || overlay || shadow)
 			img = hdImageLoader->getImage(imagePathOriginal, defFullSize, defMargins, shadow, overlay);
