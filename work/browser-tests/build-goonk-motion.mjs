@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
+import {buildCreatureIcons} from './build-creature-icons.mjs';
 
 export async function buildMotion({units,assets,imageDir,png,write}){
  const clear={r:0,g:0,b:0,alpha:0},m=await sharp(assets.idle).metadata(),cw=Math.floor(m.width/6),ch=Math.floor(m.height/7);
@@ -49,10 +50,6 @@ export async function buildMotion({units,assets,imageDir,png,write}){
   const royalAttack=evo.sequences.find(s=>s.group===12);await smooth(royalAttack,u.key+'-royal-attack-tween');
   for(const s of evo.sequences)if(s.group>=11&&s.group<=19)s.frames=royalAttack.frames;
   write('Content/Sprites/goonk/'+u.key+'-evo.json',evo);
-  // Portraits are composited once at their native dimensions, so every army slot has scenery.
-  for(const royal of [false,true])for(const [kind,w,h]of [['large',58,64],['small',32,32]]){
-   const file=u.key+(royal?'-evo':'')+'-'+kind+'.png',portrait=await sharp(path.join(imageDir,file)).trim().resize(w-4,h-4,{fit:'contain',background:clear}).png().toBuffer();
-   await png(file,sharp(assets.castle).resize(w,h,{fit:'cover'}).composite([{input:portrait,gravity:'south'}]).removeAlpha());
-  }
  }
+ await buildCreatureIcons(imageDir,units.map(u=>u.key));
 }
