@@ -1,0 +1,152 @@
+{
+	"tides-of-war.alternative-creatures:mdtPaladin" :
+	{
+		"upgrades": ["mdtRoyalPaladin"],
+	},
+	"mdtRoyalPaladin" : {
+		"advMapAmount" : {"max" : 5, "min" : 2},
+		"aiValue" : 19500,
+		"attack" : 25,
+		"cost" : { "gold" : 8000, "ore" : 5 },
+		"damage" : {"max" : 70, "min" : 50},
+		"defense" : 35,
+		"faction" : "castle",
+		"fightValue" : 19500,
+		"graphics" : {
+			"animation" : "creatures/castle/CRoyalPaladin.def",
+			"animationTime" : { "attack" : 1, "idle" : 10, "walk" : 0.8 },
+			"iconLarge" : "creatures/castle/RpaladinBig.png",
+			"iconSmall" : "creatures/castle/RpaladinSmall.png",
+			"map" : "creatures/castle/CRPldnmap.def",
+			"timeBetweenFidgets" : 1
+		},
+		"growth" : 2,
+		"hitPoints" : 450,
+		"speed" : 10,
+        "doubleWide" : false,
+		"level" : 8,
+		"name" : { "plural" : "Royal Paladins", "singular" : "Royal Paladin" },
+		"sound" :
+		{
+			"attack" : "creatures/castle/templar/TempATTK.wav",
+			"defend" : "creatures/castle/templar/TempDFND.wav",
+			"killed" : "creatures/castle/templar/TempDEAD.wav",
+			"move" : "creatures/castle/templar/TempMOVE.wav",
+			"wince" : "creatures/castle/templar/TempWNCE.wav"
+		} ,
+		"abilities":
+		{
+			"casts" :
+			{
+				"type" : "CASTS",
+				"val" : 3
+			},
+			"castsPrayer" :
+			{
+				"type" : "OPENING_BATTLE_SPELL",
+				"subtype" : "spell.prayer",
+				"val" : 2,
+				"propagator" : "HERO"
+			},
+			"noCastByDefault" :
+			{
+				"type" : "NO_SPELLCAST_BY_DEFAULT"
+			},
+			"castsDestroyUndead" :
+			{
+				"type" : "SPELLCASTER",
+				"subtype" : "spell.destroyUndead",
+				"val" : 3
+			},
+//sprobować rozszerzyć na demony
+			"destroyPower" : 
+			{
+				"type" : "SPECIFIC_SPELL_POWER",
+				"subtype" : "spell.destroyUndead",
+				"val" : 80
+			},
+			"fearless" :
+			{
+				"type" : "FEARLESS"
+			},
+			"doubleStrike" :
+			{
+				"type" : "ADDITIONAL_ATTACK",
+				"val" : 1
+			}	
+		},
+		"stackExperience" :
+		[
+			{
+				"bonus" :
+				{
+					"type" : "PRIMARY_SKILL",
+					"subtype" : "primarySkill.attack"
+				},
+				"values" : [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+			},	
+			{
+				"bonus" :
+				{
+					"type" : "PRIMARY_SKILL",
+					"subtype" : "primarySkill.defence"
+				},
+				"values" : [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "CREATURE_DAMAGE",
+					"subtype" : "creatureDamageMax"
+				},
+				"values" : [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "CREATURE_DAMAGE",
+					"subtype" : "creatureDamageMin"
+				},
+				"values" : [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+			},
+			{
+				"bonus" :
+				{
+					"valueType" : "PERCENT_TO_BASE",
+					"type" : "STACK_HEALTH"
+				},
+				"values" : [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "ENCHANTED",
+					"subtype" : "spell.prayer"
+				},
+				"values" : [ 0, 0, 0, 1, 1, 2, 2, 3, 3, 3 ]	
+			},
+			{
+				"bonus" :
+				{
+					"type" : "ENCHANTED",
+					"subtype" : "spell.bless"
+				},
+				"values" : [ 0, 0, 0, 1, 1, 2, 2, 3, 3, 3 ]	
+			},
+			{
+				"bonus" :
+				{
+					"type" : "FEARLESS"
+				},
+				"values" : [ false, false, false, false, true, true, true, true, true, true ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "STACKS_SPEED"
+				},
+				"values" : [ 0, 0, 0, 1, 1, 1, 1, 1, 1, 2 ]
+			}
+		]
+	}
+}

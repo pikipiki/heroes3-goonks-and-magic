@@ -8,7 +8,7 @@ const project=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..')
 const root=path.join(project,'work/vcmi-wasm/emscripten/html5');
 const data=path.join(project,'work/game-data/homm3eng/home/web_user/.local/share/vcmi');
 // Serve the current mod sources, including when this preview predates a web release.
-for (const name of ['goonk','wake-of-gods']) {
+for (const name of fs.readdirSync(path.join(project,'mod')).filter(name=>fs.statSync(path.join(project,'mod',name)).isDirectory())) {
  const source=path.join(project,'mod',name);
  if(fs.existsSync(source))fs.cpSync(source,path.join(data,'Mods',name),{recursive:true});
 }

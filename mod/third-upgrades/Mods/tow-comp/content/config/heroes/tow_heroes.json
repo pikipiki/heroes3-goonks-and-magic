@@ -1,0 +1,148 @@
+{
+	"tides-of-war.heroes:mdtCharles" :
+	{
+		"texts" :
+		{
+			"name" : "Charles",
+			"biography" : "For many years, Sir Charles had trained Paladins in Steadwick, but gave up being a tutor and started his career as a Dragon Hunter in Jadame. However, when the war had come, he came back to Erathia and began fighting for Morgan Kendal as a commander.",
+			"specialty" : {
+				"name" : "Templars",
+				"description" : "All Templars, Paladins, and Royal Paladins always have positive morale.",
+				"tooltip" : "Creature Bonus: Templars"
+			}
+		}
+	},
+	"tides-of-war.heroes:mdtIrrigus" :
+	{
+		"texts" :
+		{
+			"name" : "Irrigus",
+			"biography" : "Irrigus have never felt loyal to the Triton Empire, which occupies the whole Endless Ocean. Because of that, he gladly serves the Masters of the Elements after he felt called to the Conflux.",
+			"specialty" : {
+				"name" : "Tritons",
+				"description" : "Increases the Attack and Defense skills of any Tritons, Abyssal Tritons, and Noble Tritons for each level attained after 3rd level. Additionally, Tritons, Abyssal Tritons, and Noble Tritons get a permanent +1 Speed bonus.",
+				"tooltip" : "Creature Bonus: Tritons"
+			}
+		}
+	},
+	"tides-of-war.heroes:mdtCollivea" :
+	{
+		"texts" :
+		{
+			"name" : "Collivea",
+			"biography" : "When young Collivea joined the forces of Nighon, Warlocks were amazed to find out that she's resistant to the look of a Medusa. That settled her career as an Overlord.",
+			"specialty" : {
+				"name" : "Medusas",
+				"description" : "Increases the Attack and Defense skills of any Medusas, Medusa Queens, and Medusa Empresses for each level attained after 4th level. Additionally, Medusas, Medusa Queens, and Medusa Empresses get a permanent +1 Speed bonus.",
+				"tooltip" : "Creature Bonus: Medusas"
+			}
+		}
+	},
+	"tides-of-war.heroes:mdtGaluum" :
+	{
+		"texts" :
+		{
+			"name" : "Galuum",
+			"biography" : "Many say that Galuum was once a slave trader, who, due to an ancient ritual, became a monster, but also a very powerful Warlock. No one, however, can prove these rumors. No matter if this legend is true, Galuum is a very talented leader, who frightens his enemies with not only his appearance, but also his skills.",
+			"specialty" : {
+				"name" : "Illithids",
+				"description" : "Increases the Attack and Defense skills of any Illithids, Alhoons, and Illitiliches for each level attained after 5th level. Additionally, Illithids, Alhoons, and Illitiliches get a permanent +1 Speed bonus.",
+				"tooltip" : "Creature Bonus: Illithids"
+			}
+		}
+	},
+	"tides-of-war.heroes:mdtShroo" :
+	{
+		"texts" :
+		{
+			"name" : "Shroo",
+			"biography" : "No one really knows how long Trolls live. Rumor has it that Shroo remember the days of the Revolt of the Beastmasters. No one though has been brave enough to ask her about it.",
+			"specialty" : {
+				"name" : "Troll Hags",
+				"description" : "Increases the Attack and Defense skills of any Troll Hags, Troll Witches, and Troll Hexers for each level attained after 5th level. Additionally, Troll Hags, Troll Witches, and Troll Hexers get a permanent +1 Speed bonus",
+				"tooltip" : "Creature Bonus: Troll Hags"
+			}
+		}
+	},
+	"tides-of-war.heroes:mdtThyroc" :
+	{
+		"texts" :
+		{
+			"name" : "Thyroc",
+			"biography" : "Not everyone mourned King Tralossk after his death. Thyroc's old friend from war, Prince Wystan, contributed to his promotion in Tatalian Army after taking power.",
+			"specialty" : {
+				"name" : "Hydras",
+				"description" : "Increases the speed of any Hydras, Chaos Hydras, and Hell Hydras by 1 and their Attack and Defense skills by 5% for every 7 levels (rounded up).",
+				"tooltip" : "Creature Bonus: Hydras"
+			}
+		}
+	},
+	"tides-of-war.heroes:eyzeaDemoniac" :
+	{
+		"texts" :
+		{
+			"name" : "Eyzea",
+			"biography" : "Eyzea presents herself as the real mother of Xeron, commander of the Sons of Erebus. When Eeofol lost the War of Armageddon's Blade, she had to hide underground, fearing for her life. Now she awaits the moment to return to the surface and lead the Kreegan army to their final victory.",
+			"specialty" : {
+				"name" : "Succubi",
+				"description" : "Increases the Attack and Defense skills of any Succubi, Lilims, and Tempters for each level attained after 4th level. Additionally, Succubi, Lilims, and Tempters get a permanent +1 Speed bonus",
+				"tooltip" : "Creature Bonus: Succubi"
+			}
+		}
+	},
+	"tides-of-war.heroes:yaverrDeathknight" :
+	{
+		"texts" :
+		{
+			"name" : "Yaverr",
+			"biography" : "When Kastore came to the throne of Deyja, many Undeads, as yet hiding in shadows, blatantly opposed the new authority. Yaverr, once hunting Harmondale's peasants alone, happened to be a very talented commander among the rebels.",
+			"specialty" : {
+				"name" : "Werewolves",
+				"description" : "Increases the Attack and Defense skills of any Werewolves, Dire Werewolves, and Spirit Werewolves for each level attained after 4th level. Additionally, Werewolves, Dire Werewolves, and Spirit Werewolves get a permanent +1 Speed bonus",
+				"tooltip" : "Creature Bonus: Werewolves"
+			}
+		}
+	},
+	"tides-of-war.heroes:mdtEurydis" :
+	{
+		"texts" :
+		{
+			"name" : "Eurydis",
+			"biography" : "By cutting down trees in the north of Steadwick, monsters of Deyja awakened the Forest's spirits. Eurydis miraculously avoided death and, with other Dryads, fled to AvLee. Here she gathered an army to avenge her murdered sisters.",
+			"specialty" :
+			{
+				"name" : "Dryads",
+				"description" : "Increases the Attack and Defense skills of any Dryads, Oak Dryads, and Forest Dryads for each level attained after 4th level. Additionally, Dryads, Oak Dryads, and Forest Dryads get a permanent +1 Speed bonus",
+				"tooltip" : "Creature Bonus: Dryads"
+			}
+		}
+	},
+	"tides-of-war.heroes:mdtErgon" :
+	{
+		"texts" :
+		{
+			"name" : "Ergon",
+			"biography" : "After taking the throne of Krewlod, Kilgor brought Ergon to quell the rebellion of the Ogres who were still loyal to Winston Boragus, even after his death. Needless to say, the veteran of Succession Wars did his job very effectively by raiding the unruly tribes with his exotic beasts.",
+			"specialty" :
+			{
+				"name" : "Couatls",
+				"description" : "Increases the Attack and Defense skills of any Couatls, Quetzalcouatls, and Voracious Quetzalcouatls for each level attained after 6th level. Additionally, Couatls, Quetzalcouatls, and Voracious Quetzalcouatls get a permanent +1 Speed bonus.",
+				"tooltip" : "Creature Bonus: Couatls"
+			}
+		}
+	},
+	"tides-of-war.heroes:mdtVerstan" :
+	{
+		"texts" :
+		{
+			"name" : "Verstan",
+			"biography" : "Verstan has been fascinated by constructing Golems since childhood. His inquisitiveness and challenging questions often perplexed even the best constructors. Not much time has past before Gavin Magnus himself noticed Verstan's potential and ordered him constructing new kinds of Golems, based on the accomplishments of the Red Dwarves.",
+			"specialty" :
+			{
+				"name" : "Drake Golems",
+				"description" : "All Drake Golems, Dragon Golems, and Silver Dragon Golems gain additional 10% magic resistance.",
+				"tooltip" : "Creature Bonus: Drake Golems"
+			}
+		}
+	}
+}

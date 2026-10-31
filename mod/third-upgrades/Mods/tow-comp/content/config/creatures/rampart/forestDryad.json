@@ -1,0 +1,141 @@
+{
+	"tides-of-war.alternative-creatures:mdtOakDryad" : {
+		"upgrades": ["mdtForestDryad"]
+	},
+	"mdtForestDryad" : {
+		"abilities" : {
+			"canFly" : 
+			{ 
+				"type" : "FLYING"
+			},
+			"noRetaliation" : 
+			{ 
+				"type" : "BLOCKS_RETALIATION"
+			},
+			"blockAttack" : 
+			{
+				"type" : "GENERAL_ATTACK_REDUCTION",
+				"val" : 30
+			},
+			"helpEnt2" :
+			{
+				"type" : "SPELLCASTER",
+				"subtype" : "spell.symbiosis3",
+				"val" : 3
+			},
+			"spellPower" :
+			{
+				"type" : "SPECIFIC_SPELL_POWER",
+				"subtype" : "spell.symbiosis3",
+				"val" : 300
+			},
+			"spellpoints" :
+			{
+				"type" : "CASTS",
+				"val" : 1
+			}
+		},	
+		"advMapAmount" : {"max" : 16, "min" : 10},
+		"aiValue" : 948,
+		"attack" : 10,
+		"cost" : { "gold" : 375 },
+		"damage" : {"max" : 10, "min" : 8},
+		"defense" : 13,
+		"faction" : "rampart",
+		"fightValue" : 893,
+		"graphics" : {
+			"animation" : "creatures/rampart/forestB.def",
+			"animationTime" : { "attack" : 1, "idle" : 10, "walk" : 1 },
+			"iconLarge" : "creatures/rampart/forestB.bmp",
+			"iconSmall" : "creatures/rampart/forest.bmp",
+			"map" : "creatures/rampart/forest.def",
+			"timeBetweenFidgets" : 1
+		},
+		"growth" : 4,
+		"hitPoints" : 35,
+        	"doubleWide" : false,
+		"level" : 4,
+		"name" : { "plural" : "Forest Dryads", "singular" : "Forest Dryad" },
+		"sound" : {
+			"attack" : "creatures/rampart/dryad/DRYDATTK.wav",
+			"defend" : "creatures/rampart/dryad/DRYDDFND.wav",
+			"killed" : "creatures/rampart/dryad/DRYDKILL.wav",
+			"move" : "creatures/rampart/dryad/DRYDMOVE.wav",
+			"wince" : "creatures/rampart/dryad/DRYDWNCE.wav"
+		},
+		"speed" : 9,
+		"stackExperience" :
+		[
+			{
+				"bonus" :
+				{
+					"type" : "PRIMARY_SKILL",
+					"subtype" : "primarySkill.attack"
+				},
+				"values" : [ 1, 2, 2, 3, 4, 5, 6, 6, 7, 8 ]
+			},	
+			{
+				"bonus" :
+				{
+					"type" : "PRIMARY_SKILL",
+					"subtype" : "primarySkill.defence"
+				},
+				"values" : [ 1, 2, 2, 3, 4, 4, 5, 6, 7, 8 ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "CREATURE_DAMAGE",
+					"subtype" : "creatureDamageMax"
+				},
+				"values" : [ 0, 1, 1, 2, 2, 3, 3, 4, 4, 5 ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "CREATURE_DAMAGE",
+					"subtype" : "creatureDamageMin"
+				},
+				"values" : [ 0, 1, 1, 2, 2, 3, 3, 4, 4, 4 ]
+			},
+			{
+				"bonus" :
+				{
+					"valueType" : "PERCENT_TO_BASE",
+					"type" : "STACK_HEALTH"
+				},
+				"values" : [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "ENEMY_DEFENCE_REDUCTION"
+				},
+				"values" : [ 4, 8, 12, 16, 20, 24, 28, 32, 36, 40 ]			
+			},
+			{
+				"bonus" :
+				{
+					"subtype" : "earth",
+					"type" : "SPELL_DAMAGE_REDUCTION",
+					"val" : 100
+				},
+				"values" : [ false, false, false, false, false, false, false, false, false, true ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "MAGIC_RESISTANCE",				
+				},
+				"values" : [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "STACKS_SPEED"
+				},
+				"values" : [ 0, 0, 0, 0, 1, 1, 1, 1, 1, 2 ]
+			}
+		]
+	}
+}

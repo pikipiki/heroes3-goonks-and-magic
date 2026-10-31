@@ -1,0 +1,41 @@
+{
+  "engine": "VCMI 1.7.3",
+  "sources": [
+    {
+      "repository": "https://github.com/vcmi-mods/third-upgrades",
+      "commit": "00c3e7e8d129b09a589e856854d8b0e4999411d4",
+      "version": "1.1.12",
+      "installed": true
+    },
+    {
+      "repository": "https://github.com/VMaiko1634/Third-Upgrade-Mod-Full",
+      "commit": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+      "version": "3.5.0",
+      "installed": "Red Bones Dragon resources and VCMI adaptation only"
+    },
+    {
+      "repository": "https://github.com/misiokles/tow-tum",
+      "commit": "9677204d821f98aed05e9b782312a2946c641fbf",
+      "installed": false,
+      "reason": "Standalone alternative duplicates the same nine towns. Not enabled alongside third-upgrades."
+    }
+  ],
+  "eraArchiveSHA256": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+  "adaptation": {
+    "stats": "AmeCre.pac/Crtraits.txt, Red Bones Dragon row",
+    "regeneration": "Data/Creatures/224.cfg: 50 HP, 100% chance",
+    "portraits": "AmeCre.pac/cprsmall.def and twcrport.def, frame 224",
+    "buildings": "Fourth Necropolis dwelling; reuses the advanced Dragon Vault art and icon. Building price is a local balance choice.",
+    "abilities": "Native WoG age, life drain, fear and morale bonuses; regeneration and no retaliation added. ERA hit effects and full ERM runtime are not ported."
+  },
+  "remaining": "Other ERA-only fourth upgrades, scripts and mechanisms are not implemented by this integration.",
+  "vcmiCompatibilityFixes": [
+    "badLuckDice denominators converted to badLuckChance weights [2,4,6] for the native 24-sided luck roll",
+    "Artifact bonuses converted to named objects; scenarioBonus graphics renamed",
+    "Obsolete summon spell aiValue fields removed",
+    "Duplicate hero text keys consolidated",
+    "WoG Sylvan Homestead patch uses the dependency-scoped sylvanHomestead identifier",
+    "Inherited optional bonus icons removed from Red Bones Dragon; no unavailable icon dependencies",
+    "Mobile construction panel opens the native hall for all advanced upgrade tiers"
+  ]
+}

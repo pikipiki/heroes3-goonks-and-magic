@@ -1,0 +1,19 @@
+{
+  "name": "TUM ERA — Red Bones Dragon",
+  "author": "VMaiko, PerryR, Archer30; adaptation VCMI Heroes Goonk",
+  "version": "0.1.0",
+  "modType": "Creatures",
+  "compatibility": {
+    "min": "1.7.3"
+  },
+  "depends": [
+    "third-upgrades",
+    "wake-of-gods.level8units"
+  ],
+  "creatures": [
+    "config/red-bones-dragon.json"
+  ],
+  "factions": [
+    "config/necropolis.json"
+  ]
+}

@@ -1,0 +1,154 @@
+{
+	"tides-of-war.alternative-creatures:mdtDragonGolem" : {
+		"upgrades" : [ "mdtSilverDragonGolem" ]
+	},
+	"mdtSilverDragonGolem" : {
+		"abilities" : {
+			"nonliving" :
+			{
+				"type" : "NON_LIVING"
+			},
+			"magicResistance" :
+			{
+				"type" : "MAGIC_RESISTANCE",
+				"val" : 80
+			},
+			"firstStrike" :
+			{
+				"type" : "FIRST_STRIKE"
+			},
+			"fearless" :
+			{
+				"type" : "FEARLESS"
+			},
+			"enchanted":
+			{
+				"type" : "ENCHANTED",
+				"subtype" : "spell.bloodlust",
+				"val" : 2
+			},
+			"acid":
+			{
+				"type" : "ACID_BREATH",
+				"addInfo" : 20,
+				"val" : 20
+			}
+		},
+		"advMapAmount" : { "max" : 5, "min" : 2 },
+		"aiValue" : 21360,
+		"attack" : 28,
+		"cost" : { "gold" : 8500, "ore" : 4 },
+		"damage" : { "max" : 75, "min" : 60 },
+		"defense" : 32,
+		"faction" : "tower",
+		"fightValue" : 19760,
+		"graphics" : {
+			"animation" : "creatures/tower/SDraGolem.def",
+			"animationTime" : { "attack" : 1, "idle" : 10, "walk" : 1.0 },
+			"iconLarge" : "creatures/tower/sdragonGolemBig.png",
+			"iconSmall" : "creatures/tower/sdragonGolemSmall.png",
+			"map" : "creatures/tower/mapSDragonGolem.def",
+			"timeBetweenFidgets" : 1
+		},
+		"growth" : 1,
+		"hitPoints" : 600,
+        	"doubleWide" : true,
+		"level" : 8,
+		"name" : { "plural" : "Silver Dragon Golems", "singular" : "Silver Dragon Golem" },
+		"sound" : {
+			"attack" : "creatures/tower/drakeGolem/DrGoATTK.wav",
+			"defend" : "creatures/tower/drakeGolem/DrGoDFND.wav",
+			"killed" : "creatures/tower/drakeGolem/DrGoDEAD.wav",
+			"move" : "creatures/tower/drakeGolem/DrGoMOVE.wav",
+			"wince" : "creatures/tower/drakeGolem/DrGoWNCE.wav"
+		},
+		"speed" : 17,
+		"stackExperience" :
+		[
+			{
+				"bonus" :
+				{
+					"type" : "PRIMARY_SKILL",
+					"subtype" : "primarySkill.attack"
+				},
+				"values" : [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+			},	
+			{
+				"bonus" :
+				{
+					"type" : "PRIMARY_SKILL",
+					"subtype" : "primarySkill.defence"
+				},
+				"values" : [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "CREATURE_DAMAGE",
+					"subtype" : "creatureDamageMax"
+				},
+				"values" : [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "CREATURE_DAMAGE",
+					"subtype" : "creatureDamageMin"
+				},
+				"values" : [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+			},
+			{
+				"bonus" :
+				{
+					"valueType" : "PERCENT_TO_BASE",
+					"type" : "STACK_HEALTH"
+				},
+				"values" : [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "ADDITIONAL_RETALIATION"
+				},
+				"values" : [ 0, 0, 0, 0, 1, 1, 2, 2, 3, 4 ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "BLOCKS_RETALIATION"
+				},
+				"values" : [ false, false, false, false, true, true, true, true, true, true ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "SPELL_DAMAGE_REDUCTION",
+					"subtype" : "spellSchool.any"
+				},
+				"values" : [ 81, 82, 83, 84, 85, 90, 92, 94, 95, 99 ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "MAGIC_RESISTANCE",				
+				},
+				"values" : [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "ADDITIONAL_ATTACK"
+				},
+				"values" : [ 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 ]
+			},
+			{
+				"bonus" :
+				{
+					"type" : "STACKS_SPEED"
+				},
+				"values" : [ 0, 0, 0, 1, 1, 1, 1, 1, 1, 1 ]
+			}
+		]
+	}
+}
+

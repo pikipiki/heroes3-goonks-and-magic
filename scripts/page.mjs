@@ -13,7 +13,11 @@ export function renderPage(root){
  const modSettingsPath='/home/web_user/.config/vcmi/modSettings.json';let modSettings;
  try{modSettings=JSON.parse(FS.readFile(modSettingsPath,{encoding:'utf8'}));}catch{modSettings={activePreset:'default',presets:{default:{mods:['core','vcmi'],settings:{}}}};}
  const preset=modSettings.activePreset||'default';modSettings.presets ||= {};modSettings.presets[preset] ||= {mods:['core','vcmi'],settings:{}};
- modSettings.presets[preset].mods=Array.from(new Set([...(modSettings.presets[preset].mods||[]).filter(id=>id!=='wog'),'goonk','wake-of-gods']));
+ modSettings.presets[preset].mods=Array.from(new Set([...(modSettings.presets[preset].mods||[]).filter(id=>id!=='wog'),'goonk','wake-of-gods','third-upgrades','tum-era']));
+ modSettings.presets[preset].settings ||= {};
+ modSettings.presets[preset].settings['wake-of-gods'] ||= {};
+ modSettings.presets[preset].settings['wake-of-gods'].level8units=true;
+ modSettings.presets[preset].settings['third-upgrades']={...(modSettings.presets[preset].settings['third-upgrades']||{}),'hota-comp':false,'tow-comp':false,'tow-hota-comp':false};
  FS.writeFile(modSettingsPath,JSON.stringify(modSettings));
  module.canvas = document.getElementById("canvas");`);
  // Touch presentation rotates its own canvas; its 1600x1200 engine must stay intact.

@@ -1,0 +1,15 @@
+{
+    "basepath" : "town-screen/castle/frames/",
+	"images" :
+	[
+		{ "frame" : 24, "file" : "ThCsGr3H"},
+		{ "frame" : 44, "file" : "ThCsPik3"},
+		{ "frame" : 45, "file" : "ThCsCrs3"},
+		{ "frame" : 46, "file" : "ThCsGr3"},
+		{ "frame" : 47, "file" : "ThCsSwd3"},
+		{ "frame" : 48, "file" : "ThCsMon3"},
+		{ "frame" : 49, "file" : "ThCsCv3"},		
+//		{ "frame" : 51, "file" : "ThCsPik3"},
+		{ "frame" : 50, "file" : "ThCsAng3"}
+	]
+}

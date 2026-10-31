@@ -1,0 +1,29 @@
+{
+	"name" : "Horn of the Abyss compatibility",
+	"author" : "VMaiko, avatar, Olegmods.INC, Aphra",
+	"contact" : "http://heroescommunity.com/viewthread.php3?TID=46241",
+	"description" : "This is compatibility patch between Third Upgrades mod and Horn of the Abyss expansion",
+	"licenseName" : "Creative Commons Attribution-ShareAlike",
+	"licenseURL" : "http://creativecommons.org/licenses/by-sa/4.0/deed",
+	"modType" : "Compatibility",
+	"version" : "1.0.0",
+	"compatibility" :
+	{
+		"min" : "1.5.0"
+	},
+	"changelog" :
+    {
+		"1.0.0"   : [ "Initial release" ]
+    },	
+	"depends" :
+	[
+		"wake-of-gods.level8units",
+		"hota.gameBalance",
+		"hota.confluxVaultofAshes",
+		"hota.heroes3DataPatch"
+	],
+	"factions" :
+	[
+		"config/town-screen/conflux/factions"
+	]
+}

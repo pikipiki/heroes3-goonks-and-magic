@@ -14,3 +14,5 @@ for(const file of manifest.files)for(const chunk of file.chunks||[])if(chunk.url
 for(const match of html.matchAll(/\bimport\(['"](\.\/[^'"]+)['"]\)/g))assert(fs.existsSync('dist/'+match[1]),'Module dynamique absent : '+match[1]);
 
 for(const name of ['index.html','game.html','storage.html']){const doc=fs.readFileSync('dist/'+name,'utf8'),policy=doc.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/i)?.[1];assert(policy,'Politique de scripts manquante');assert(!policy.includes("'unsafe-inline'"));for(const hash of inlineScriptHashes(doc))assert(policy.includes(hash),'Script de démarrage non autorisé');}
+
+for(const name of ['third-upgrades','tum-era'])assert(manifest.files.some(f=>f.path==='Mods/'+name+'/mod.json'),'Mod TUM manquant : '+name);

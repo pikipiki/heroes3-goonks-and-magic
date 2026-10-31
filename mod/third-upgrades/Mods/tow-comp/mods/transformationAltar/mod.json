@@ -1,0 +1,19 @@
+{
+	"name" : "ToW Transformation Altar TUM Patch",
+	"description" : "Makes an object that allows to convert the alternatives into classic creatures and vice versa work with TUM.",
+	"modType" : "Mechanics",
+	"author" : "Olegmods.INC",
+	"contact" : "http://www.forum.acidcave.net/topic.php?TID=1423",
+	"licenseName" : "Creative Commons Attribution-ShareAlike",
+	"licenseURL" : "http://creativecommons.org/licenses/by-sa/4.0/deed",
+	"version" : "1.0.0",
+	"compatibility" :
+	{
+		"min" : "1.5.0"
+	},
+	"depends" : [ "third-upgrades" , "tides-of-war.alternative-creatures", "tides-of-war.transformationAltar", "wake-of-gods.level8units" ],
+	"objects" :
+	[
+		"config/objects/altarcpatch"
+	]
+}

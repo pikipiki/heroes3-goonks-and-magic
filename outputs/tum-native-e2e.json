@@ -1,0 +1,177 @@
+{
+  "checks": [
+    "Necropolis native building plan opens from the mobile construction panel",
+    "Fourth Necropolis dwelling enables Red Bones Dragon recruitment",
+    "One Red Bones Dragon actually recruited into the town garrison"
+  ],
+  "errors": [],
+  "town": {
+    "townName": "Ghostwind",
+    "townFaction": "core:necropolis"
+  },
+  "recruits": [
+    {
+      "name": "Skeleton",
+      "level": 0,
+      "variant": 0,
+      "id": 56
+    },
+    {
+      "name": "Skeleton Warrior",
+      "level": 0,
+      "variant": 1,
+      "id": 57
+    },
+    {
+      "name": "Skeleton Knight",
+      "level": 0,
+      "variant": 2,
+      "id": 240
+    },
+    {
+      "name": "Walking Dead",
+      "level": 1,
+      "variant": 0,
+      "id": 58
+    },
+    {
+      "name": "Zombie",
+      "level": 1,
+      "variant": 1,
+      "id": 59
+    },
+    {
+      "name": "Ghoul",
+      "level": 1,
+      "variant": 2,
+      "id": 212
+    },
+    {
+      "name": "Wight",
+      "level": 2,
+      "variant": 0,
+      "id": 60
+    },
+    {
+      "name": "Wraith",
+      "level": 2,
+      "variant": 1,
+      "id": 61
+    },
+    {
+      "name": "Specter",
+      "level": 2,
+      "variant": 2,
+      "id": 241
+    },
+    {
+      "name": "Vampire",
+      "level": 3,
+      "variant": 0,
+      "id": 62
+    },
+    {
+      "name": "Vampire Lord",
+      "level": 3,
+      "variant": 1,
+      "id": 63
+    },
+    {
+      "name": "Nosferatu",
+      "level": 3,
+      "variant": 2,
+      "id": 232
+    },
+    {
+      "name": "Lich",
+      "level": 4,
+      "variant": 0,
+      "id": 64
+    },
+    {
+      "name": "Power Lich",
+      "level": 4,
+      "variant": 1,
+      "id": 65
+    },
+    {
+      "name": "Lich King",
+      "level": 4,
+      "variant": 2,
+      "id": 224
+    },
+    {
+      "name": "Black Knight",
+      "level": 5,
+      "variant": 0,
+      "id": 66
+    },
+    {
+      "name": "Dread Knight",
+      "level": 5,
+      "variant": 1,
+      "id": 67
+    },
+    {
+      "name": "Death Knight",
+      "level": 5,
+      "variant": 2,
+      "id": 206
+    },
+    {
+      "name": "Bone Dragon",
+      "level": 6,
+      "variant": 0,
+      "id": 68
+    },
+    {
+      "name": "Ghost Dragon",
+      "level": 6,
+      "variant": 1,
+      "id": 69
+    },
+    {
+      "name": "Blood Dragon",
+      "level": 6,
+      "variant": 2,
+      "id": 177
+    },
+    {
+      "name": "Red Bones Dragon",
+      "level": 6,
+      "variant": 3,
+      "id": 250
+    }
+  ],
+  "recruitUI": {
+    "cost": [
+      0,
+      3,
+      0,
+      0,
+      0,
+      0,
+      6000
+    ],
+    "count": 1,
+    "icon": "tum-era/portrait-large",
+    "id": 250,
+    "name": "Red Bones Dragon"
+  },
+  "modValidation": [
+    "Parsing mod: OK (third-upgrades)",
+    "Parsing mod: OK (third-upgrades.new-creatures)",
+    "Parsing mod: OK (tum-era)",
+    "Parsing mod: OK (third-upgrades.wog-comp)",
+    "Loading mod: OK (third-upgrades)",
+    "Loading mod: OK (third-upgrades.new-creatures)",
+    "Loading mod: OK (tum-era)",
+    "Loading mod: OK (third-upgrades.wog-comp)"
+  ],
+  "automatedTests": {
+    "passed": 81,
+    "failed": 0,
+    "scope": "Staged snapshot, excluding unrelated local touchscreen WIP"
+  },
+  "siteBuild": "Clean staged source snapshot: build-site and verify-site passed"
+}

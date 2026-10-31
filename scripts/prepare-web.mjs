@@ -7,5 +7,4 @@ if(!fs.existsSync(destination+'/html5/vcmiclient.wasm')||!fs.existsSync(marker)|
 const data='work/game-data/homm3eng/home/web_user/.local/share/vcmi';
 fs.mkdirSync(data+'/Mods',{recursive:true});fs.mkdirSync(data+'/Maps',{recursive:true});
 if(fs.existsSync('game-data/manifest.json'))unpackBaseGame('game-data',data);
-fs.cpSync('mod/goonk',data+'/Mods/goonk',{recursive:true});for(const file of fs.readdirSync('maps').filter(f=>f.endsWith('.vmap')))fs.copyFileSync('maps/'+file,data+'/Maps/'+file);
-if(fs.existsSync('mod/wake-of-gods'))fs.cpSync('mod/wake-of-gods',data+'/Mods/wake-of-gods',{recursive:true});
+for(const name of fs.readdirSync('mod'))if(fs.statSync('mod/'+name).isDirectory())fs.cpSync('mod/'+name,data+'/Mods/'+name,{recursive:true});for(const file of fs.readdirSync('maps').filter(f=>f.endsWith('.vmap')))fs.copyFileSync('maps/'+file,data+'/Maps/'+file);

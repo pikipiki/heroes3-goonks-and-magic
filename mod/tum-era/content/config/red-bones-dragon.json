@@ -1,0 +1,130 @@
+{
+  "redBonesDragon": {
+    "name": {
+      "singular": "Red Bones Dragon",
+      "plural": "Red Bones Dragons"
+    },
+    "faction": "necropolis",
+    "level": 7,
+    "cost": {
+      "wood": 0,
+      "mercury": 3,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 6000
+    },
+    "doubleWide": true,
+    "speed": 18,
+    "hitPoints": 400,
+    "attack": 30,
+    "defense": 27,
+    "damage": {
+      "min": 40,
+      "max": 75
+    },
+    "fightValue": 12000,
+    "aiValue": 15000,
+    "advMapAmount": {
+      "min": 1,
+      "max": 3
+    },
+    "growth": 1,
+    "hasDoubleWeek": false,
+    "abilities": {
+      "king1": {
+        "type": "KING",
+        "val": 0,
+        "valueType": "ADDITIVE_VALUE"
+      },
+      "dragon": {
+        "type": "DRAGON_NATURE"
+      },
+      "flying": {
+        "type": "FLYING",
+        "subtype": "movementFlying"
+      },
+      "undead": {
+        "type": "UNDEAD"
+      },
+      "drainsLife": {
+        "type": "LIFE_DRAIN",
+        "val": 40
+      },
+      "age": {
+        "type": "SPELL_AFTER_ATTACK",
+        "subtype": "age",
+        "val": 50
+      },
+      "descreaseMorale": {
+        "type": "MORALE",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE"
+        ],
+        "val": -2,
+        "stacking": "Undead Dragons",
+        "description": "{Reduces enemy morale}\nDracoliches lower the morale of enemy units by two"
+      },
+      "fearful": {
+        "type": "FEARFUL",
+        "val": 10,
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE",
+          {
+            "type": "HAS_ANOTHER_BONUS_LIMITER",
+            "bonusType": "LIVING"
+          }
+        ],
+        "description": "{Fearsome}\nEnemy units have a 10% chance of freezing in fear"
+      },
+      "fearless": {
+        "type": "FEARFUL",
+        "valueType": "INDEPENDENT_MIN",
+        "val": 0,
+        "description": "{Fearless}\nImmune to Fear ability"
+      },
+      "dragonSkeleton": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "boneDragon"
+      },
+      "regeneration": {
+        "type": "HP_REGENERATION",
+        "val": 50
+      },
+      "noRetaliation": {
+        "type": "BLOCKS_RETALIATION"
+      }
+    },
+    "graphics": {
+      "animation": "tum-era/cr224",
+      "map": "tum-era/AVWCR224",
+      "iconSmall": "tum-era/portrait-small",
+      "iconLarge": "tum-era/portrait-large",
+      "mapAttackFromRight": "avwattak/ZAvW154a",
+      "mapAttackFromLeft": "avwattak/ZAvW154b",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.75,
+        "attack": 1,
+        "idle": 10
+      }
+    },
+    "sound": {
+      "attack": "GHDRATTK.wav",
+      "defend": "GHDRDFND.wav",
+      "killed": "GHDRKILL.wav",
+      "move": "GHDRMOVE.wav",
+      "wince": "GHDRWNCE.wav"
+    }
+  },
+  "wake-of-gods.level8units:bloodDragon": {
+    "upgrades": [
+      "redBonesDragon"
+    ]
+  }
+}

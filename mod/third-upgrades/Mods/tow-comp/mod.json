@@ -1,0 +1,55 @@
+{
+	"name" : "Tides of War compatibility",
+	"author" : "VMaiko, avatar, Olegmods.INC, Aphra",
+	"contact" : "http://heroescommunity.com/viewthread.php3?TID=46241",
+	"description" : "This is compatibility patch between Third Upgrades mod and Tides of War expansion",
+	"licenseName" : "Creative Commons Attribution-ShareAlike",
+	"licenseURL" : "http://creativecommons.org/licenses/by-sa/4.0/deed",
+	"modType" : "Compatibility",
+	"version" : "1.0.0",
+	"compatibility" :
+	{
+		"min" : "1.5.0"
+	},
+	"changelog" :
+    {
+		"1.0.0"   : [ "Initial release" ]
+    },	
+	"depends" :
+	[
+		"wake-of-gods.level8units",
+		"tides-of-war.alternative-creatures"
+	],
+	"creatures" :
+	[
+		"config/creatures/necropolis/spiritWerewolf",
+		"config/creatures/fortress/trollHexer",
+		"config/creatures/rampart/forestDryad",
+		"config/creatures/inferno/tempter",
+		"config/creatures/tower/silverDragonGolem",
+		"config/creatures/conflux/nobleTriton",
+		"config/creatures/castle/royalPaladin",
+		"config/creatures/dungeon/illithilich",
+		"config/creatures/stronghold/darkQuetzalcouatl"
+	],
+	"spells" :
+	[
+		"config/spells/symbiosis3"
+	],
+	"heroes" :
+	[
+		"config/heroes/tow_heroes"
+	],
+	"factions" :
+	[
+		"config/town-screen/necropolis/factions",
+		"config/town-screen/fortress/factions",
+		"config/town-screen/rampart/factions",
+		"config/town-screen/inferno/factions",
+		"config/town-screen/tower/factions",
+		"config/town-screen/conflux/factions",
+		"config/town-screen/castle/factions",
+		"config/town-screen/dungeon/factions",
+		"config/town-screen/stronghold/factions"
+	]
+}
