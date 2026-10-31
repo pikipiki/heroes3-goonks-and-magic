@@ -92,3 +92,11 @@ La construction autorise les scripts livrés avec le jeu et leurs modules, sur l
 Netlify permet aussi de désactiver ce badge dans **Project configuration → General → Powered by Netlify badge → Off**, y compris sur une offre gratuite : [documentation officielle](https://docs.netlify.com/manage/projects/powered-by-netlify-badge/). Aucun accès au compte Netlify n’était disponible pour changer ce réglage ; la correction publiée est dans le site.
 
 Validation navigateur : `netlify-badge-e2e.mjs` vérifie le composant Netlify réel avec puis sans protection ; `badge-game-e2e.mjs` vérifie le démarrage WebAssembly et une nouvelle partie Goonk. Ces scénarios utilisent Chrome sur le port 9224 et le serveur statique sur 8767 ; construire avec `GOONK_TEST_ORIGIN=http://127.0.0.1:8767 npm run build:web` pour cet essai local. La construction publiée n’autorise pas cette adresse locale.
+
+## Chargement parallèle et progression (0.3.6)
+
+Les 5 446 fichiers ne sont plus téléchargés un par un : huit fichiers au maximum sont transférés en parallèle, avec lecture progressive des réponses. Les morceaux de chaque fichier restent séquentiels et vérifiés par SHA-256 ; les écritures et les points de sauvegarde sont ordonnés. Les fichiers déjà validés sont conservés après une interruption et réutilisés au prochain lancement. Le site conserve les liens relatifs compatibles GitHub Pages.
+
+Le chargement affiche le pourcentage total calculé en octets (y compris les fichiers déjà présents), les volumes reçus, la vitesse globale, le nombre de fichiers restants et le nom, la progression et la vitesse de chacun des fichiers actifs. Les phases de vérification et d’enregistrement sont indiquées séparément ; 100 % n’est affiché qu’après enregistrement. Les vitesses sont mesurées sur une fenêtre récente, en octets reçus par le navigateur, et peuvent différer du débit radio ou des octets compressés sur le réseau.
+
+`work/browser-tests/loading-e2e.mjs` teste une installation réelle, les deux orientations, le lancement d’une partie et le cache au second chargement. Avec une latence artificielle de 40 ms par requête sur le serveur local, le chargement complet testé prend environ 37 secondes ; ce chiffre ne prédit pas la vitesse d’un téléphone ou de Netlify.

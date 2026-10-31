@@ -1,0 +1,6 @@
+#status:has(#asset-loading){width:min(94vw,620px);max-width:none;margin:16px auto;padding:0 16px;box-sizing:border-box;font-family:system-ui,sans-serif;text-align:left}
+#asset-loading h2{font-size:1.1rem;margin:0 0 8px;color:#fff}#asset-loading p{font-size:.85rem;line-height:1.4;margin:8px 0;color:#eee}#asset-loading progress{display:block;width:100%;height:12px;accent-color:#ec8ccc}#asset-loading ul{list-style:none;padding:0;margin:12px 0;max-height:32vh;overflow:auto}#asset-loading li{padding:7px 0;border-top:1px solid #ffffff25}#asset-loading li span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.72rem;color:#fff}#asset-loading small{display:block;font-size:.7rem;color:#d4bfd4;margin-top:3px}
+body:has(#asset-loading) #spinner .spinner-logo{max-height:28vh;width:auto;max-width:70vw;object-fit:contain}
+@media(max-height:500px){#status:has(#asset-loading){width:min(60vw,620px)}#asset-loading ul{max-height:24vh}body:has(#asset-loading) #spinner .spinner-logo{max-height:14vh}}
+
+body:has(#asset-loading) #spinner{margin:0;overflow:auto}body:has(#asset-loading) #spinner .spinner-content{max-height:100%;padding:16px 0}body:has(#asset-loading) #spinner strong{display:none}
