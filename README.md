@@ -332,3 +332,11 @@ Vérifications : compilation `ninja -j32 html5`, 88 tests unitaires, combats nat
 ## Bridge ERA natif
 
 Le développement du bridge est décrit dans `ERA-BRIDGE.md`. Il réutilise les données TUM et les services natifs VCMI ; la compatibilité complète avec ERA 3.5 reste explicitement incomplète et les opérations sans adaptateur vérifié sont rejetées. L’audit détaillé est dans `outputs/era-bridge-audit.json`.
+
+### Combat portrait : terrain complet et vue rapprochée
+
+En portrait, une vue stratégique affiche en permanence tout le champ de bataille natif. Toucher une zone y recentre la vue rapprochée du dessous sans préparer de déplacement ; toucher une troupe permet de l’examiner ou de préparer une cible. Le cadre pointillé situe le cadrage rapproché sur la carte entière. Les flèches du clavier déplacent aussi ce cadrage lorsque la vue stratégique a le focus.
+
+La vue du dessous conserve les animations, sorts, projectiles et décors natifs, avec des hexagones d’au moins 44 pixels CSS de large. Toucher une case autorisée ou une cible prépare l’action ; la confirmation reste nécessaire. Une rotation conserve la cible choisie. Les commandes de la créature sont regroupées en bas et le panneau de détails est compact ; en paysage, la présentation native habituelle est conservée.
+
+Validation : 124 tests unitaires sur la version isolée du changement, combat natif avec déplacement confirmé, choix de cible, ouverture/fermeture de la magie, orientations 390×844 et 844×390, petit écran 320×568, puis autocombat jusqu’au résultat et retour sur la carte. Les gestes et performances sur téléphone physique restent à confirmer.
