@@ -30,7 +30,7 @@ async function run(tactics){
   const info=await page.evaluate(()=>({state:goonkMobileState,width:document.querySelector('#mobile-scene').clientWidth,height:document.querySelector('#mobile-scene').clientHeight,label:document.querySelector('#mobile-scene').getAttribute('aria-label'),summary:document.querySelector('.battle-selection').textContent,taps:window.battlePointerCalls,confirmDisabled:document.querySelector('[data-ui=target]').disabled}));
   const actor=info.state.battleUnits.find(u=>u.stackId===info.state.activeStack);assert(actor&&!actor.enemy);assert.equal(info.taps,0,'No battlefield pointer input should be needed for guidance');assert(info.confirmDisabled,'Showing reachability must not prepare a move');
   const occupied=new Set(info.state.battleUnits.flatMap(u=>u.occupied)),cells=info.state.battleCells.filter(c=>c.reachable&&!occupied.has(c.hex));assert(cells.length>0);assert(info.summary.includes(cells.length+' case'));assert(info.label.includes(actor.name));
-  const layout=fitNativeBattle(info.width,info.height,info.state.focus),x=layout.dx+(actor.x-layout.x)*layout.scale,y=layout.dy+(actor.y-layout.y)*layout.scale;
+  const layout=fitNativeBattle(info.width,info.height,info.state.focus,'whole'),x=layout.dx+(actor.x-layout.x)*layout.scale,y=layout.dy+(actor.y-layout.y)*layout.scale;
   assert(x>=0&&x<=info.width&&y>=0&&y<=info.height,'Active creature must be on screen');
   const boxes=info.state.battleUnits.map(u=>({left:u.x-44,right:u.x+44,top:u.y-88,bottom:u.y+16}));
   const cell=cells.find(c=>!boxes.some(b=>c.x+22>b.left&&c.x-22<b.right&&c.y+26>b.top&&c.y-26<b.bottom)&&c.x>layout.x+24&&c.x<layout.x+layout.w-24&&c.y>layout.y+30&&c.y<layout.y+layout.h-30);assert(cell,'A legal unoccupied square must be visible');

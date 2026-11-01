@@ -6,9 +6,9 @@ export function listLocalSaves(FS){
  }).sort((a,b)=>b.modified-a.modified||a.name.localeCompare(b.name));}catch{return[];}
 }
 // Boot-only recovery. Foregrounding a live engine never sends a load command.
-export function createSessionRecovery({listSaves,command,onStatus=()=>{},clock=()=>Date.now()}){
+export function createSessionRecovery({listSaves,command,onStatus=()=>{},manual=false,onChooseAlternative=()=>{},clock=()=>Date.now()}){
  let phase='idle',checked=false,candidates=[],chosen=null,lastProgress=clock();
- const status=(value,error)=>{phase=value;lastProgress=clock();onStatus({phase,error,save:chosen?.name,busy:['opening','selecting','starting'].includes(phase),canDismiss:phase!=='starting'});};
+ const status=(value,error)=>{phase=value;lastProgress=clock();onStatus({phase,error,save:chosen?.name,busy:['opening','selecting','starting'].includes(phase),canDismiss:true});};
  const fail=error=>status('failed',error);
  const api={
   get phase(){return phase;},
@@ -19,6 +19,7 @@ export function createSessionRecovery({listSaves,command,onStatus=()=>{},clock=(
    }
    if(!checked){
     checked=true;
+    if(manual&&state.mode==='menu'){status('dismissed');command(23);return;}
     if(state.mode!=='menu'){status('done');return;}
     try{candidates=listSaves();if(!candidates.length){status('done');return;}status('opening');command(23);}catch(error){fail(String(error));}
     return;
@@ -36,7 +37,7 @@ export function createSessionRecovery({listSaves,command,onStatus=()=>{},clock=(
   },
   tick(){if(['opening','selecting','starting'].includes(phase)&&clock()-lastProgress>60000)fail('La reprise prend trop de temps. Tu peux choisir une sauvegarde manuellement.');},
   wake(){lastProgress=clock();},
-  dismiss(){if(phase==='starting')return false;checked=true;status('dismissed');return true;},
+  dismiss(){const restarting=phase==='starting';checked=true;status('dismissed');onChooseAlternative({restarting});return true;},
   get intercept(){return ['opening','selecting','starting'].includes(phase);}
  };
  return api;
@@ -45,7 +46,9 @@ export function installSessionRecovery({win=window,doc=document}={}){
  const dialog=doc.createElement('dialog');dialog.className='session-recovery';dialog.setAttribute('aria-labelledby','session-recovery-title');
  dialog.innerHTML='<h2 id="session-recovery-title">Reprise de ta partie</h2><p class="session-recovery-message" role="status" aria-live="polite"></p><button type="button">Choisir une autre partie</button>';
  doc.body.append(dialog);const message=dialog.querySelector('p'),button=dialog.querySelector('button');
- const recovery=createSessionRecovery({listSaves:()=>listLocalSaves(win.Module?.FS),command:(a,b=0)=>win.Module?._vcmiMobileCommand?.(a,b,0,0,0,0),onStatus:info=>{
+ const url=new URL(win.location.href),manual=url.searchParams.get('choose-save')==='1';if(manual){url.searchParams.delete('choose-save');win.history.replaceState(null,'',url.href);}
+ let lastState=null;
+ const recovery=createSessionRecovery({manual,onChooseAlternative:({restarting})=>{if(restarting){const next=new URL(win.location.href);next.searchParams.set('choose-save','1');win.location.replace(next.href);}else if(lastState)win.dispatchEvent(new CustomEvent('goonk-state',{detail:lastState}));},listSaves:()=>listLocalSaves(win.Module?.FS),command:(a,b=0)=>win.Module?._vcmiMobileCommand?.(a,b,0,0,0,0),onStatus:info=>{
   win.goonkSessionRecovery=info;
   const show=info.busy||info.phase==='failed';dialog.dataset.busy=String(info.busy);button.disabled=!info.canDismiss;
   message.textContent=info.error||(info.phase==='starting'?'Chargement de la dernière sauvegarde…':'Recherche de la dernière sauvegarde enregistrée sur cet appareil…');
@@ -53,7 +56,7 @@ export function installSessionRecovery({win=window,doc=document}={}){
  }});
  button.onclick=()=>recovery.dismiss();dialog.addEventListener('cancel',event=>{event.preventDefault();recovery.dismiss();});dialog.addEventListener('keydown',event=>event.stopPropagation());
  // Run before the mobile lobby's default selection; it must not race the resume choice.
- win.addEventListener('goonk-state',event=>{recovery.update(event.detail);if(recovery.intercept)event.stopImmediatePropagation();},true);
+ win.addEventListener('goonk-state',event=>{lastState=event.detail;recovery.update(event.detail);if(recovery.intercept)event.stopImmediatePropagation();},true);
  const timer=win.setInterval(()=>{if(!doc.hidden)recovery.tick();},1000);
  doc.addEventListener('visibilitychange',()=>{if(!doc.hidden)recovery.wake();});win.addEventListener('pageshow',()=>recovery.wake());
  return{recovery,dispose:()=>win.clearInterval(timer)};

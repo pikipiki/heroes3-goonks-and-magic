@@ -17,7 +17,7 @@ export function overviewCreature(point,units,scale){
  return (units||[]).map(unit=>({unit,distance:Math.hypot((unit.x-point.x)*scale,(unit.y-30-point.y)*scale)}))
   .filter(item=>item.distance<=Math.max(12,36*scale)).sort((a,b)=>a.distance-b.distance)[0]?.unit||null;
 }
-export function createBattleDualView({root,scene,getState,onFocus,onUnit}){
+export function createBattleDualView({root,scene,getState,getView=()=>'whole',onFocus,onUnit}){
  const stylesheet=document.createElement('link');stylesheet.rel='stylesheet';stylesheet.href=new URL('./battle-dual-view.css',import.meta.url).href;document.head.append(stylesheet);
  const strategic=document.createElement('section');strategic.className='battle-strategic-view';strategic.setAttribute('aria-label','Vue stratégique du combat');strategic.hidden=true;
  const title=document.createElement('div');title.className='battle-view-label';title.textContent='Vue stratégique · Terrain entier';
@@ -25,7 +25,7 @@ export function createBattleDualView({root,scene,getState,onFocus,onUnit}){
  strategic.append(title,canvas);scene.before(strategic);
  const detailLabel=document.createElement('div');detailLabel.className='battle-detail-label battle-view-label';detailLabel.textContent='Vue rapprochée · Choisissez une case ou une cible';detailLabel.hidden=true;scene.before(detailLabel);
  const ctx=canvas.getContext('2d');let active=false,press=null,currentLayout=null;
- function sync(){const next=getState().mode==='battle'&&root.clientHeight>=root.clientWidth;if(next!==active||root.dataset.battleLayout!==(next?'dual':'native')){active=next;press=null;root.dataset.battleLayout=active?'dual':'native';strategic.hidden=!active;detailLabel.hidden=!active;}return active;}
+ function sync(){const next=getState().mode==='battle'&&getView()==='close'&&root.clientHeight>=root.clientWidth;if(next!==active||root.dataset.battleLayout!==(next?'dual':'native')){active=next;press=null;root.dataset.battleLayout=active?'dual':'native';strategic.hidden=!active;detailLabel.hidden=!active;}return active;}
  function point(event){const r=canvas.getBoundingClientRect();return battleOverviewPoint(event.clientX-r.left,event.clientY-r.top,r.width,r.height);}
  canvas.addEventListener('pointerdown',event=>{if(!active)return;event.preventDefault();canvas.setPointerCapture(event.pointerId);press={id:event.pointerId,x:event.clientX,y:event.clientY,moved:false};});
  canvas.addEventListener('pointermove',event=>{if(press?.id!==event.pointerId)return;if(Math.hypot(event.clientX-press.x,event.clientY-press.y)>9)press.moved=true;});

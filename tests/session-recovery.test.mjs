@@ -25,3 +25,10 @@ test('Local save listing sorts timestamps, filters non-saves and empty files and
  const stats={'manual.vsgm1':{size:20,mtime:new Date(30)},'Goonk-auto.vsgm1':{size:20,mtime:new Date(10)},'partial.vsgm1':{size:0,mtime:new Date(40)}};
  assert.deepEqual(listLocalSaves({readdir:()=>[...Object.keys(stats),'settings.json'],stat:p=>stats[p.split('/').at(-1)]}),[{name:'manual',modified:30},{name:'goonk-auto',modified:10}]);assert.deepEqual(listLocalSaves(),[]);
 });
+
+test('Choosing another save during startup stays enabled and stops further automatic starts',()=>{
+ const commands=[],choices=[],statuses=[];const r=createSessionRecovery({listSaves:()=>[{name:'auto'}],command:(...args)=>commands.push(args),onStatus:s=>statuses.push(s),onChooseAlternative:info=>choices.push(info)});
+ r.update({mode:'menu'});const load={mode:'load',lobbyReady:true,maps:[{index:0,name:'auto'}],selectedIndex:0};r.update(load);r.update(load);
+ assert.equal(r.phase,'starting');assert(statuses.at(-1).canDismiss);assert(r.dismiss());assert.deepEqual(choices,[{restarting:true}]);r.update(load);assert.equal(commands.filter(c=>c[0]===22).length,1);assert(!r.intercept);
+ const manual=[];const next=createSessionRecovery({manual:true,listSaves:()=>{throw Error('Automatic selection must be skipped');},command:(...args)=>manual.push(args)});next.update({mode:'menu'});next.update(load);assert.deepEqual(manual,[[23]]);assert.equal(next.phase,'dismissed');
+});
