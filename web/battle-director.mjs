@@ -22,6 +22,7 @@ export function createBattleDirector({clock=()=>performance.now()}={}){
    const a=event?.actor||actor(state),targets=event?.targets||[];
    let points=targets.length?targets:valid(event?.destination)&&event.kind!=='move'?[event.destination]:[a];
    if(!points.length)points=[a];
+   if((event?.kind==='attack'||(event?.kind==='spell'&&valid(event.actor)))&&valid(a)&&!points.some(p=>(a.stackId!=null&&p.stackId===a.stackId)||Math.hypot(p.x-a.x,p.y-a.y)<1))points=[a,...points];
    const focus=manual||center(event?.kind==='move'?[a]:points);
    const label=manual?'Exploration manuelle':event?.kind==='spell'?(event.label||'Sort')+' · '+(targets.length>1?targets.length+' cibles':'Cible du sort'):event?.kind==='attack'?'Attaque · '+(targets[0]?.name||'Cible'):event?.kind==='move'?(event.preview?'Destination préparée':'Déplacement en cours'):'À jouer · '+(a.name||state.activeUnit?.name||'Créature active');
    return {...event,focus,points:manual?[]:points,manual:!!manual,label};

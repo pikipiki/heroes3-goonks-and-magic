@@ -8,9 +8,18 @@ import {battleGuidance,paintActiveCreature} from './battle-guidance.mjs';
 // 44 pixels wide even when the portrait detail pane is short.
 export function fitBattleDetail(width,height,focus,points=[],scaleOverride=null){
  const base=Math.min(width/800,height/555),normal=Math.max(1,width/800,height/555);
- const spread=points.length>1?Math.min(width/(Math.max(...points.map(p=>p.x))-Math.min(...points.map(p=>p.x))+120),height/(Math.max(...points.map(p=>p.y))-Math.min(...points.map(p=>p.y))+120)):normal;
- const scale=Math.max(base,scaleOverride??Math.min(normal,spread));
- return {...fitRegion(width,height,NATIVE_BATTLE_REGION,scale/base,focus),scale};
+ const framed=points.filter(p=>Number.isFinite(p.x)&&Number.isFinite(p.y));
+ const bounds=framed.length>1?{left:Math.max(0,Math.min(...framed.map(p=>p.x))-60),right:Math.min(800,Math.max(...framed.map(p=>p.x))+60),top:Math.max(0,Math.min(...framed.map(p=>p.y))-96),bottom:Math.min(555,Math.max(...framed.map(p=>p.y))+24)}:null;
+ const limit=bounds?Math.min(normal,width/(bounds.right-bounds.left),height/(bounds.bottom-bounds.top)):normal;
+ // Zoom out immediately when a shot starts; easing must never crop either end.
+ const scale=Math.max(base,Math.min(scaleOverride??limit,limit));
+ const layout={...fitRegion(width,height,NATIVE_BATTLE_REGION,scale/base,focus),scale};
+ if(bounds){
+  // A camera still panning from the previous action must also contain both units.
+  layout.x=Math.max(Math.max(0,bounds.right-layout.w),Math.min(Math.min(800-layout.w,bounds.left),layout.x));
+  layout.y=Math.max(Math.max(0,bounds.bottom-layout.h),Math.min(Math.min(555-layout.h,bounds.top),layout.y));
+ }
+ return layout;
 }
 export function battleOverviewPoint(x,y,width,height){
  return scenePoint(x,y,fitNativeBattle(width,height,null,'whole'));
