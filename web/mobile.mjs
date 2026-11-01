@@ -110,10 +110,10 @@ function mount(){
  bindPress(root.querySelector('.native-dialog-close-hit'),closeTavern);
  bindPress(root.querySelector('.battle-view'),()=>{if(state.mode!=='battle')return;const chosen=selectedPoint;battleView=nativeBattleClose(scene.clientWidth,scene.clientHeight,battleView)?'whole':'close';resetGestures();selectedPoint=chosen;syncBattleView();renderBattlePanel();controls();});
  function closeSheet(){clearTimeout(armyTimer);armyPending=false;armyFocus=null;sheet.removeAttribute('aria-busy');sheet.hidden=true;sheetKind='';armySelection=null;root.querySelector('.mobile-play').inert=false;nav.inert=false;resetGestures();if(previousFocus?.isConnected)previousFocus.focus({preventScroll:true});}
- sheet.querySelector('[data-ui="close-sheet"]').addEventListener('click',event=>{event.stopPropagation();closeSheet();});
+ bindPress(sheet.querySelector('[data-ui="close-sheet"]'),closeSheet);
  function openRecruit(level){if(!recruitChoices.length){notify('Aucune recrue disponible dans les logements construits.');return;}resetGestures();activeRecruitLevel=level??recruitChoices[0].level;expectedRecruitId=recruitChoices.find(u=>u.level===activeRecruitLevel)?.id;recruitLoading=true;root.querySelector('#recruit-number').blur();controls();if(state.mode==='recruit')command(33);command(30,activeRecruitLevel);}
 
- function openSheet(kind,title){previousFocus=document.activeElement;resetGestures();root.querySelector('.mobile-play').inert=true;nav.inert=true;sheetKind=kind;sheet.hidden=false;root.querySelector('#sheet-title').textContent=title;body.innerHTML='';root.querySelector('[data-ui="close-sheet"]').focus();}
+ function openSheet(kind,title){previousFocus=document.activeElement;resetGestures();root.querySelector('.mobile-play').inert=true;nav.inert=true;sheetKind=kind;sheet.hidden=false;root.querySelector('#sheet-title').textContent=title;body.innerHTML='';root.querySelector('[data-ui="close-sheet"]').focus({preventScroll:true});}
  function refreshArmy(){
   clearTimeout(armyTimer);armyPending=false;sheet.removeAttribute('aria-busy');
   const scroll=body.scrollTop,focused=document.activeElement,army=armyFocus?.army??focused?.dataset.army,slot=armyFocus?.slot??focused?.dataset.slot;armyFocus=null;
