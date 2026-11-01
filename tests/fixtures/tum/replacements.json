@@ -1,0 +1,8468 @@
+[
+  {
+    "id": "000",
+    "source": "Data/s/000_Beholders's Sanctuary (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 21,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 85,
+        "sourceSubtype": 0,
+        "percentage": 25,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "001",
+    "source": "Data/s/001_Mansion (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 24,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 55,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "002",
+    "source": "Data/s/002_Spit (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 25,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 1,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "003",
+    "source": "Data/s/003_Red Tower (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 26,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 47,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 2,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "004",
+    "source": "Data/s/004_Black Tower (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 27,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 47,
+        "sourceSubtype": 0,
+        "percentage": 5,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "005",
+    "source": "Data/s/005_Ivory Tower (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 28,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 3,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "006",
+    "source": "Data/s/006_Churchyard (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 29,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 84,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "007",
+    "source": "Data/s/007_Experimental Shop (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 30,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 23,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "008",
+    "source": "Data/s/008_Wolf Raider Picket (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 31,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "009",
+    "source": "Data/s/009_Pantheon (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 33,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 84,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "010",
+    "source": "Data/s/010_Mithril Tower (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 34,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 3,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "011",
+    "source": "Data/s/011_Experimental Factory (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 35,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 23,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "012",
+    "source": "Data/s/012_Wolf Raider Gaol (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 36,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "013",
+    "source": "Data/s/013_Blue Tower (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 38,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 47,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 2,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "014",
+    "source": "Data/s/014_Lava Spit (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 39,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 1,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "015",
+    "source": "Data/s/015_Monstrous Eyes' Sanctuary (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 40,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 85,
+        "sourceSubtype": 0,
+        "percentage": 25,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "016",
+    "source": "Data/s/016_Haunted Mansion (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 41,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 55,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "017",
+    "source": "Data/s/017_Bone Pillar (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 42,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 3,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "018",
+    "source": "Data/s/018_City of the Dead (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 43,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 1,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "019",
+    "source": "Data/s/019_Sacred Temple (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 44,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 5,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "020",
+    "source": "Data/s/020_Seminarium (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 45,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 2,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "021",
+    "source": "Data/s/021_Phantom Ship (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 46,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 24,
+        "sourceSubtype": 0,
+        "percentage": 50,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "022",
+    "source": "Data/s/022_Sorceress Castle (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 47,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 25,
+        "sourceSubtype": 0,
+        "percentage": 15,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "023",
+    "source": "Data/s/023_Outpost of Souls (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 48,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 1,
+        "percentage": 5,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "024",
+    "source": "Data/s/024_Rotten Dragons Valley (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 49,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 25,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "025",
+    "source": "Data/s/025_Magical Utopia (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 50,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 25,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "026",
+    "source": "Data/s/026_Legendary Dragon Utopia (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 51,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 25,
+        "sourceSubtype": 0,
+        "percentage": 3,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "027",
+    "source": "Data/s/027_Dreadnought Tower (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 52,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 96,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "028",
+    "source": "Data/s/028_Heaven's Door (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 53,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 107,
+        "sourceSubtype": 0,
+        "percentage": 5,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "029",
+    "source": "Data/s/029_Forbidden Cliffs (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 54,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 1,
+        "percentage": 5,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "030",
+    "source": "Data/s/030_Olympus Forbidden (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 55,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 107,
+        "sourceSubtype": 0,
+        "percentage": 5,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "031",
+    "source": "Data/s/031_Sins Generator (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 56,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 3,
+        "percentage": 5,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "032",
+    "source": "Data/s/032_Dragon Mausoleum (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 57,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 2,
+        "percentage": 5,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "033",
+    "source": "Data/s/033_Dragon City (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 58,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 1,
+        "percentage": 5,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "034",
+    "source": "Data/s/034_Behemoth Ancient Crag (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 59,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 41,
+        "sourceSubtype": 0,
+        "percentage": 5,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "035",
+    "source": "Data/s/035_Volcanic Well (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 60,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 3,
+        "percentage": 5,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "036",
+    "source": "Data/s/036_Supreme Pyre( replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 61,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 107,
+        "sourceSubtype": 0,
+        "percentage": 5,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "037",
+    "source": "Data/s/037_Elemental Stockpile (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 62,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 23,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "038",
+    "source": "Data/s/038_Gargoyle Stonevault (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 63,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 2,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "039",
+    "source": "Data/s/039_Halls of Temptation (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 64,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 5,
+        "percentage": 10,
+        "xOffset": 2,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "040",
+    "source": "Data/s/040_Royal Treasury (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 65,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 23,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "041",
+    "source": "Data/s/041_Fire Dragon Castle (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 66,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 25,
+        "sourceSubtype": 0,
+        "percentage": 5,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": null,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "042",
+    "source": "Data/s/042_Ice Dragon Castle (replacer).erm",
+    "enabled": true,
+    "targetType": 16,
+    "targetSubtype": 67,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 25,
+        "sourceSubtype": 0,
+        "percentage": 3,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": null,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "100",
+    "source": "Data/s/100_Training Grounds with Archery (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 101,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 5,
+        "percentage": 20,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "101",
+    "source": "Data/s/101_Giant Golden Pavilion (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 102,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 36,
+        "percentage": 15,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 1,
+        "xOffset": 1,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": 16,
+        "sourceSubtype": 1,
+        "percentage": 1,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "102",
+    "source": "Data/s/102_Wineyard (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 103,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 1,
+        "percentage": 25,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "103",
+    "source": "Data/s/103_Alehouse (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 105,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 5,
+        "percentage": 25,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "104",
+    "source": "Data/s/104_Ziggurat [Fangarm] (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 104,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 2,
+        "percentage": 25,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "109",
+    "source": "Data/s/109_Order of Fire (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 122,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 51,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "110",
+    "source": "Data/s/110_Order of Ice (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 123,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 96,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "111",
+    "source": "Data/s/111_Dragon Slayer Tower (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 124,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 107,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "112",
+    "source": "Data/s/112_Cursed Temple of Archers (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 125,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 54,
+        "percentage": 25,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "113",
+    "source": "Data/s/113_Bloody Temple (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 126,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 54,
+        "percentage": 25,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "114",
+    "source": "Data/s/114_Temple of Souls (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 127,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 54,
+        "percentage": 25,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "115",
+    "source": "Data/s/115_Legendary Cursed Temple (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 128,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 54,
+        "percentage": 5,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "116",
+    "source": "Data/s/116_Order of Thunder (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 129,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 51,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "117",
+    "source": "Data/s/117_Dragon Sanctuary (replacer).erm",
+    "enabled": true,
+    "targetType": 20,
+    "targetSubtype": 2,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 107,
+        "sourceSubtype": 0,
+        "percentage": 5,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "118",
+    "source": "Data/s/118_Laboratory (replacer).erm",
+    "enabled": true,
+    "targetType": 20,
+    "targetSubtype": 3,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 0,
+        "percentage": 5,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "70",
+    "source": "Data/s/130_Black Tower (replacer).erm",
+    "enabled": true,
+    "targetType": 20,
+    "targetSubtype": 4,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 47,
+        "sourceSubtype": 0,
+        "percentage": 5,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "71",
+    "source": "Data/s/131_Mysterious Cave (replacer).erm",
+    "enabled": true,
+    "targetType": 63,
+    "targetSubtype": 56,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 1,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": 51,
+        "sourceSubtype": 0,
+        "percentage": 20,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": null,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "132",
+    "source": "Data/s/132_Cathedral (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 110,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 2,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "133",
+    "source": "Data/s/133_Treehouse (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 111,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 47,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "134",
+    "source": "Data/s/134_Dragon Factory (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 112,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 23,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "135",
+    "source": "Data/s/135_Lust Chambers (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 113,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 5,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "136",
+    "source": "Data/s/136_Wolf Cave (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 114,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 3,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "137",
+    "source": "Data/s/137_Primeval Maw (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 115,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 4,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "138",
+    "source": "Data/s/138_Ziggurat (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 116,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "139",
+    "source": "Data/s/139_Coral Reef (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 119,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 85,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": null,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "140",
+    "source": "Data/s/140_Swamp Hut (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 117,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 3,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "141",
+    "source": "Data/s/141_Drowned Hall (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 118,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 5,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "142",
+    "source": "Data/s/142_Ancient Crypt (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 120,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 23,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "143",
+    "source": "Data/s/143_Frigate of the fallen (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 121,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "143",
+    "source": "Data/s/144_Defunct Treetop Tower (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 130,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 67,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "145",
+    "source": "Data/s/145_Training Tower (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 131,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 57,
+        "percentage": 50,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "146",
+    "source": "Data/s/146_Peon Hut (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 132,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 2,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "147",
+    "source": "Data/s/147_Mire (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 133,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 4,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "148",
+    "source": "Data/s/148_Altar of Darkness (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 134,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 6,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "149",
+    "source": "Data/s/149_Butt Excavation (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 135,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 1,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "150",
+    "source": "Data/s/150_ Black Alder (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 136,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 47,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "151",
+    "source": "Data/s/151_Quaggy Relic (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 137,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 5,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "152",
+    "source": "Data/s/152_Squalid Nide (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 138,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 2,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "153",
+    "source": "Data/s/153_Rusty Habitation (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 139,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 4,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "154",
+    "source": "Data/s/154_Turquoise Passage (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 140,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 61,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "155",
+    "source": "Data/s/155_Baba Yaga's Hut (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 141,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 2,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "156",
+    "source": "Data/s/156_Sparky Meadow (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 142,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 3,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "157",
+    "source": "Data/s/157_Mysterious portal (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 143,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 3,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "158",
+    "source": "Data/s/158_Lizard Soldier Den (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 144,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 30,
+        "percentage": 50,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "159",
+    "source": "Data/s/159_Slith Pool (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 145,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 23,
+        "sourceSubtype": 0,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "160",
+    "source": "Data/s/160_Illusory Dragon Shrine (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 146,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 47,
+        "sourceSubtype": 0,
+        "percentage": 5,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "161",
+    "source": "Data/s/161_Primitive stable (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 147,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 6,
+        "percentage": 15,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "162",
+    "source": "Data/s/162_Ruins in Lava (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 148,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 16,
+        "sourceSubtype": 1,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "163",
+    "source": "Data/s/163_Evil Cathedral (replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 149,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 4,
+        "percentage": 15,
+        "xOffset": 2,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "164",
+    "source": "Data/s/164_Dark Shrine(replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 150,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 3,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "165",
+    "source": "Data/s/165_Black Pond(replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 151,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 51,
+        "sourceSubtype": 0,
+        "percentage": 20,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "166",
+    "source": "Data/s/166_Gates of Tartarus(replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 152,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 14,
+        "percentage": 10,
+        "xOffset": 2,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "167",
+    "source": "Data/s/167_Shadow Vault(replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 153,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 4,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "168",
+    "source": "Data/s/168_Imperial Barracks(replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 154,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 58,
+        "percentage": 5,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "169",
+    "source": "Data/s/169_Green Dragon Nest(replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 155,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 24,
+        "percentage": 50,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": 16,
+        "sourceSubtype": 6,
+        "percentage": 10,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 10,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "170",
+    "source": "Data/s/170_Red Dragon Nest(replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 156,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 41,
+        "percentage": 50,
+        "xOffset": 2,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": 16,
+        "sourceSubtype": 4,
+        "percentage": 30,
+        "xOffset": 2,
+        "enabled": true
+      },
+      {
+        "slot": 2,
+        "sourceType": 16,
+        "sourceSubtype": 5,
+        "percentage": 30,
+        "xOffset": 2,
+        "enabled": true
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "171",
+    "source": "Data/s/171_Faerie Dragon Nest(replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 157,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 64,
+        "percentage": 30,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": 16,
+        "sourceSubtype": 6,
+        "percentage": 7,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "172",
+    "source": "Data/s/172_Rust Dragon Nest(replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 158,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 65,
+        "percentage": 30,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": 16,
+        "sourceSubtype": 6,
+        "percentage": 7,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  },
+  {
+    "id": "173",
+    "source": "Data/s/173_Azure Dragon Nest(replacer).erm",
+    "enabled": true,
+    "targetType": 17,
+    "targetSubtype": 159,
+    "rules": [
+      {
+        "slot": 0,
+        "sourceType": 17,
+        "sourceSubtype": 62,
+        "percentage": 50,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 1,
+        "sourceType": 16,
+        "sourceSubtype": 6,
+        "percentage": 5,
+        "xOffset": 1,
+        "enabled": true
+      },
+      {
+        "slot": 2,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 3,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 4,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 5,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      },
+      {
+        "slot": 6,
+        "sourceType": -1,
+        "sourceSubtype": -1,
+        "percentage": 0,
+        "xOffset": 0,
+        "enabled": false
+      }
+    ],
+    "conditions": {
+      "day": 1,
+      "firstPlayer": true,
+      "randomMap": false,
+      "setting": "tum_replaceObj_on"
+    },
+    "random": {
+      "min": 0,
+      "max": 99,
+      "consume": "every object of sourceType, including nonmatching subtypes"
+    },
+    "placement": {
+      "xBoundsCheck": true,
+      "otherBoundsOrCollisionCheck": false,
+      "poN": 3,
+      "setCoordinateFlag": true
+    },
+    "requiredHook": "server:first-day-before-first-player-turn"
+  }
+]

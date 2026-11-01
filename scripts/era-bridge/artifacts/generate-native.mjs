@@ -1,0 +1,21 @@
+import fs from 'node:fs';import path from 'node:path';import {pathToFileURL,fileURLToPath} from 'node:url';
+import {readArtifactTraits,parseJsonc,identifiersByIndex,importNativeArtifacts} from './importer.mjs';
+const here=path.dirname(fileURLToPath(import.meta.url));
+const tum=process.argv[2]??path.resolve('../Third-Upgrade-Mod-Full');
+const engine=process.argv[3]??path.resolve('work/vcmi-wasm');
+const archiveReader=process.argv[4]??path.resolve('scripts/era-bridge/resources.mjs');
+const output=path.resolve(process.argv[5]??path.join(here,'generated-native'));
+const {readEraArchive}=await import(pathToFileURL(archiveReader));
+const archive=readEraArchive(fs.readFileSync(path.join(tum,'Data/EmeraldArtifacts.pac')));
+const traits=readArtifactTraits(archive.extract('artraits.txt').toString('latin1'));
+const language=JSON.parse(fs.readFileSync(path.join(tum,'Lang/TUM_Artifacts.json'),'utf8')).era.artifacts;
+const cfgs=Object.fromEntries(fs.readdirSync(path.join(tum,'Data/artifacts')).filter(n=>/^\d+\.cfg$/.test(n)).map(n=>[parseInt(n),fs.readFileSync(path.join(tum,'Data/artifacts',n),'utf8')]));
+const spellIds=identifiersByIndex(fs.readdirSync(path.join(engine,'config/spells')).filter(n=>n.endsWith('.json')).map(n=>parseJsonc(fs.readFileSync(path.join(engine,'config/spells',n),'utf8'))));
+const coreArtifacts=identifiersByIndex([parseJsonc(fs.readFileSync(path.join(engine,'config/artifacts.json'),'utf8'))]);
+const result=importNativeArtifacts({traits,language,cfgs,archive,aiPolicy:'native-vcmi',dailyConversions:{bridgeVersion:2,resolveCreature:id=>({18:'core:woodElf',19:'core:grandElf',256:'third-upgrades:tumSharpshooterElf'})[id]},resolveSpell:id=>spellIds.has(id)?`core:${spellIds.get(id)}`:null,resolveCoreArtifact:id=>id<171&&coreArtifacts.has(id)?`core:${coreArtifacts.get(id)}`:null});
+fs.mkdirSync(path.join(output,'Content/config'),{recursive:true});
+for(const [name,bytes] of result.files){const file=path.join(output,name);fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,bytes);}
+fs.writeFileSync(path.join(output,'Content/config/native-artifacts.json'),JSON.stringify(result.definitions,null,2)+'\n');
+fs.writeFileSync(path.join(output,'artifact-runtime-policy.json'),JSON.stringify(result.runtimePolicy,null,2)+'\n');
+fs.writeFileSync(path.join(output,'artifact-import-report.json'),JSON.stringify({sourceArchiveSha256:archive.sha256,metadataRows:traits.length,imported:result.report.filter(a=>a.included).length,excluded:result.report.filter(a=>!a.included).length,nativeIds:Object.fromEntries(spellIds),coreArtifactIds:Object.fromEntries(coreArtifacts),report:result.report},null,2)+'\n');
+console.log(JSON.stringify({output,metadataRows:traits.length,imported:result.report.filter(a=>a.included).length,excluded:result.report.filter(a=>!a.included).length,assetFiles:result.files.size}));

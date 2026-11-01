@@ -1,0 +1,5187 @@
+{
+  "cfgCount": 241,
+  "numericCreatureCfgCount": 240,
+  "orphanCfg": [
+    "350s.cfg"
+  ],
+  "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+  "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+  "sourceBinaryParity": "unverified",
+  "properties": [
+    {
+      "key": "ACAST_CUSTOM_Chance",
+      "occurrences": 10,
+      "sourceParserLines": [
+        1302,
+        1303
+      ],
+      "examples": [
+        {
+          "file": "201.cfg",
+          "line": 1,
+          "value": "100"
+        },
+        {
+          "file": "206.cfg",
+          "line": 1,
+          "value": "100"
+        },
+        {
+          "file": "231.cfg",
+          "line": 3,
+          "value": "100"
+        },
+        {
+          "file": "240.cfg",
+          "line": 1,
+          "value": "100"
+        }
+      ],
+      "values": [
+        "100"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "ACAST_CUSTOM_Spell",
+      "occurrences": 10,
+      "sourceParserLines": [
+        1304,
+        1305
+      ],
+      "examples": [
+        {
+          "file": "201.cfg",
+          "line": 2,
+          "value": "60"
+        },
+        {
+          "file": "206.cfg",
+          "line": 2,
+          "value": "60"
+        },
+        {
+          "file": "231.cfg",
+          "line": 4,
+          "value": "60"
+        },
+        {
+          "file": "240.cfg",
+          "line": 2,
+          "value": "60"
+        }
+      ],
+      "values": [
+        "60"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "AfterActionSpellMastery",
+      "occurrences": 5,
+      "sourceParserLines": [
+        1415,
+        1416
+      ],
+      "examples": [
+        {
+          "file": "212.cfg",
+          "line": 3,
+          "value": "0"
+        },
+        {
+          "file": "259.cfg",
+          "line": 2,
+          "value": "1"
+        },
+        {
+          "file": "346.cfg",
+          "line": 4,
+          "value": "3"
+        },
+        {
+          "file": "347.cfg",
+          "line": 4,
+          "value": "3"
+        }
+      ],
+      "values": [
+        "0",
+        "1",
+        "3"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "AfterDefendSpell",
+      "occurrences": 4,
+      "sourceParserLines": [
+        1409,
+        1410
+      ],
+      "examples": [
+        {
+          "file": "258.cfg",
+          "line": 1,
+          "value": "27"
+        },
+        {
+          "file": "346.cfg",
+          "line": 3,
+          "value": "29"
+        },
+        {
+          "file": "347.cfg",
+          "line": 3,
+          "value": "20"
+        },
+        {
+          "file": "355.cfg",
+          "line": 3,
+          "value": "13"
+        }
+      ],
+      "values": [
+        "13",
+        "20",
+        "27",
+        "29"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "AfterDefendSpell2",
+      "occurrences": 4,
+      "sourceParserLines": [
+        1424,
+        1425
+      ],
+      "examples": [
+        {
+          "file": "258.cfg",
+          "line": 2,
+          "value": "28"
+        },
+        {
+          "file": "346.cfg",
+          "line": 6,
+          "value": "29"
+        },
+        {
+          "file": "347.cfg",
+          "line": 6,
+          "value": "20"
+        },
+        {
+          "file": "350.cfg",
+          "line": 3,
+          "value": "27"
+        }
+      ],
+      "values": [
+        "20",
+        "27",
+        "28",
+        "29"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "AfterMeleeSpell",
+      "occurrences": 4,
+      "sourceParserLines": [
+        1403,
+        1404
+      ],
+      "examples": [
+        {
+          "file": "346.cfg",
+          "line": 2,
+          "value": "22"
+        },
+        {
+          "file": "347.cfg",
+          "line": 2,
+          "value": "20"
+        },
+        {
+          "file": "355.cfg",
+          "line": 2,
+          "value": "15"
+        },
+        {
+          "file": "360.cfg",
+          "line": 2,
+          "value": "50"
+        }
+      ],
+      "values": [
+        "15",
+        "20",
+        "22",
+        "50"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "AfterMeleeSpell2",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1418,
+        1419
+      ],
+      "examples": [
+        {
+          "file": "346.cfg",
+          "line": 5,
+          "value": "22"
+        },
+        {
+          "file": "347.cfg",
+          "line": 5,
+          "value": "16"
+        },
+        {
+          "file": "360.cfg",
+          "line": 3,
+          "value": "52"
+        }
+      ],
+      "values": [
+        "16",
+        "22",
+        "52"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "AfterShootSpell",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1406,
+        1407
+      ],
+      "examples": [
+        {
+          "file": "226.cfg",
+          "line": 1,
+          "value": "61"
+        },
+        {
+          "file": "259.cfg",
+          "line": 1,
+          "value": "15"
+        },
+        {
+          "file": "284.cfg",
+          "line": 3,
+          "value": "54"
+        }
+      ],
+      "values": [
+        "15",
+        "54",
+        "61"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "AfterWoundSpell",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1412,
+        1413
+      ],
+      "examples": [
+        {
+          "file": "355.cfg",
+          "line": 4,
+          "value": "29"
+        }
+      ],
+      "values": [
+        "29"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Aging",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1368,
+        1369
+      ],
+      "examples": [
+        {
+          "file": "339.cfg",
+          "line": 11,
+          "value": "100"
+        }
+      ],
+      "values": [
+        "100"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "AlwaysPositiveLuck",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1575,
+        1576
+      ],
+      "examples": [
+        {
+          "file": "138.cfg",
+          "line": 5,
+          "value": "1"
+        },
+        {
+          "file": "348.cfg",
+          "line": 5,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "AlwaysPositiveMorale",
+      "occurrences": 9,
+      "sourceParserLines": [
+        1572,
+        1573
+      ],
+      "examples": [
+        {
+          "file": "201.cfg",
+          "line": 8,
+          "value": "1"
+        },
+        {
+          "file": "202.cfg",
+          "line": 11,
+          "value": "1"
+        },
+        {
+          "file": "229.cfg",
+          "line": 6,
+          "value": "1"
+        },
+        {
+          "file": "269.cfg",
+          "line": 9,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Attack effect",
+      "occurrences": 14,
+      "sourceParserLines": [
+        1660,
+        1662
+      ],
+      "examples": [
+        {
+          "file": "212.cfg",
+          "line": 7,
+          "value": "1"
+        },
+        {
+          "file": "221.cfg",
+          "line": 4,
+          "value": "0"
+        },
+        {
+          "file": "224.cfg",
+          "line": 5,
+          "value": "0"
+        },
+        {
+          "file": "230.cfg",
+          "line": 5,
+          "value": "3"
+        }
+      ],
+      "values": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "CastsSpell",
+      "occurrences": 21,
+      "sourceParserLines": [
+        1556,
+        1557
+      ],
+      "examples": [
+        {
+          "file": "212.cfg",
+          "line": 10,
+          "value": "19"
+        },
+        {
+          "file": "218.cfg",
+          "line": 9,
+          "value": "29"
+        },
+        {
+          "file": "235.cfg",
+          "line": 11,
+          "value": "56"
+        },
+        {
+          "file": "236.cfg",
+          "line": 9,
+          "value": "17"
+        }
+      ],
+      "values": [
+        "16",
+        "17",
+        "19",
+        "21",
+        "22",
+        "24",
+        "25",
+        "28",
+        "29",
+        "41",
+        "46",
+        "48",
+        "49",
+        "51",
+        "56",
+        "60"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "CounterstrikeFury",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1343,
+        1344
+      ],
+      "examples": [
+        {
+          "file": "220.cfg",
+          "line": 5,
+          "value": "1"
+        },
+        {
+          "file": "353.cfg",
+          "line": 6,
+          "value": "1"
+        },
+        {
+          "file": "354.cfg",
+          "line": 10,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "CounterstrikeTwice",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1346,
+        1347
+      ],
+      "examples": [
+        {
+          "file": "321.cfg",
+          "line": 4,
+          "value": "1"
+        },
+        {
+          "file": "354.cfg",
+          "line": 11,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "CreatureMimicArtifact",
+      "occurrences": 5,
+      "sourceParserLines": [
+        1476,
+        1477
+      ],
+      "examples": [
+        {
+          "file": "202.cfg",
+          "line": 13,
+          "value": "129"
+        },
+        {
+          "file": "212.cfg",
+          "line": 13,
+          "value": "135"
+        },
+        {
+          "file": "288.cfg",
+          "line": 9,
+          "value": "123"
+        },
+        {
+          "file": "311.cfg",
+          "line": 3,
+          "value": "90"
+        }
+      ],
+      "values": [
+        "123",
+        "129",
+        "135",
+        "71",
+        "90"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "CreatureMimicArtifact2",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1479,
+        1480
+      ],
+      "examples": [
+        {
+          "file": "356.cfg",
+          "line": 13,
+          "value": "88"
+        }
+      ],
+      "values": [
+        "88"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "CreatureSpellPowerAdder",
+      "occurrences": 15,
+      "sourceParserLines": [
+        1470,
+        1471
+      ],
+      "examples": [
+        {
+          "file": "218.cfg",
+          "line": 8,
+          "value": "6"
+        },
+        {
+          "file": "235.cfg",
+          "line": 10,
+          "value": "6"
+        },
+        {
+          "file": "242.cfg",
+          "line": 5,
+          "value": "1"
+        },
+        {
+          "file": "246.cfg",
+          "line": 8,
+          "value": "6"
+        }
+      ],
+      "values": [
+        "1",
+        "6",
+        "60",
+        "90"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "CreatureSpellPowerMultiplier",
+      "occurrences": 13,
+      "sourceParserLines": [
+        1464,
+        1465
+      ],
+      "examples": [
+        {
+          "file": "218.cfg",
+          "line": 7,
+          "value": "0"
+        },
+        {
+          "file": "235.cfg",
+          "line": 9,
+          "value": "0"
+        },
+        {
+          "file": "246.cfg",
+          "line": 7,
+          "value": "0"
+        },
+        {
+          "file": "247.cfg",
+          "line": 9,
+          "value": "0"
+        }
+      ],
+      "values": [
+        "0",
+        "10",
+        "5"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "DeathBlow",
+      "occurrences": 5,
+      "sourceParserLines": [
+        1509,
+        1510
+      ],
+      "examples": [
+        {
+          "file": "216.cfg",
+          "line": 4,
+          "value": "15"
+        },
+        {
+          "file": "223.cfg",
+          "line": 5,
+          "value": "20"
+        },
+        {
+          "file": "229.cfg",
+          "line": 4,
+          "value": "15"
+        },
+        {
+          "file": "238.cfg",
+          "line": 6,
+          "value": "50"
+        }
+      ],
+      "values": [
+        "15",
+        "20",
+        "25",
+        "50"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Demonology",
+      "occurrences": 5,
+      "sourceParserLines": [
+        1461,
+        1462
+      ],
+      "examples": [
+        {
+          "file": "217.cfg",
+          "line": 7,
+          "value": "49"
+        },
+        {
+          "file": "222.cfg",
+          "line": 10,
+          "value": "56"
+        },
+        {
+          "file": "279.cfg",
+          "line": 9,
+          "value": "315"
+        },
+        {
+          "file": "334.cfg",
+          "line": 7,
+          "value": "60"
+        }
+      ],
+      "values": [
+        "217",
+        "315",
+        "49",
+        "56",
+        "60"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "DoNotGenerate",
+      "occurrences": 7,
+      "sourceParserLines": [
+        1382,
+        1383
+      ],
+      "examples": [
+        {
+          "file": "341.cfg",
+          "line": 1,
+          "value": "1"
+        },
+        {
+          "file": "342.cfg",
+          "line": 1,
+          "value": "1"
+        },
+        {
+          "file": "343.cfg",
+          "line": 1,
+          "value": "1"
+        },
+        {
+          "file": "344.cfg",
+          "line": 1,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Fear",
+      "occurrences": 12,
+      "sourceParserLines": [
+        1514,
+        1515
+      ],
+      "examples": [
+        {
+          "file": "219.cfg",
+          "line": 8,
+          "value": "1"
+        },
+        {
+          "file": "224.cfg",
+          "line": 8,
+          "value": "1"
+        },
+        {
+          "file": "231.cfg",
+          "line": 10,
+          "value": "1"
+        },
+        {
+          "file": "238.cfg",
+          "line": 7,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Fearless",
+      "occurrences": 35,
+      "sourceParserLines": [
+        1516,
+        1517
+      ],
+      "examples": [
+        {
+          "file": "169.cfg",
+          "line": 4,
+          "value": "1"
+        },
+        {
+          "file": "201.cfg",
+          "line": 6,
+          "value": "1"
+        },
+        {
+          "file": "202.cfg",
+          "line": 10,
+          "value": "1"
+        },
+        {
+          "file": "206.cfg",
+          "line": 8,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Fire shield",
+      "occurrences": 7,
+      "sourceParserLines": [
+        1705,
+        1707
+      ],
+      "examples": [
+        {
+          "file": "214.cfg",
+          "line": 5,
+          "value": "0.250000"
+        },
+        {
+          "file": "218.cfg",
+          "line": 10,
+          "value": "0.300000"
+        },
+        {
+          "file": "242.cfg",
+          "line": 8,
+          "value": "0.250000"
+        },
+        {
+          "file": "249.cfg",
+          "line": 19,
+          "value": "0.300000"
+        }
+      ],
+      "values": [
+        "0.200000",
+        "0.250000",
+        "0.300000"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Flags",
+      "occurrences": 175,
+      "sourceParserLines": [
+        1624,
+        1626
+      ],
+      "examples": [
+        {
+          "file": "133.cfg",
+          "line": 3,
+          "value": "-2147483503"
+        },
+        {
+          "file": "138.cfg",
+          "line": 2,
+          "value": "20"
+        },
+        {
+          "file": "141.cfg",
+          "line": 1,
+          "value": "394240"
+        },
+        {
+          "file": "151.cfg",
+          "line": 4,
+          "value": "-2147483621"
+        }
+      ],
+      "values": [
+        "-2013265765",
+        "-2146003825",
+        "-2146761197",
+        "-2147023741",
+        "-2147089277",
+        "-2147351551",
+        "-2147400549",
+        "-2147463009",
+        "-2147467109",
+        "-2147483493",
+        "-2147483501",
+        "-2147483503",
+        "-2147483621",
+        "-2147483629",
+        "1040",
+        "1042",
+        "1069078",
+        "131072",
+        "131074",
+        "131088",
+        "131328",
+        "132096",
+        "136198",
+        "137",
+        "1442820",
+        "147",
+        "148482",
+        "149",
+        "16",
+        "16403",
+        "16539",
+        "17",
+        "17426",
+        "18",
+        "19",
+        "196864",
+        "197634",
+        "20",
+        "2069",
+        "21",
+        "27",
+        "272",
+        "273",
+        "32784",
+        "32785",
+        "32787",
+        "32788",
+        "36884",
+        "36885",
+        "37893",
+        "38420",
+        "394240",
+        "394241",
+        "394242",
+        "394244",
+        "398336",
+        "4100",
+        "410626",
+        "4116",
+        "4118",
+        "4119",
+        "427008",
+        "427012",
+        "459778",
+        "49168",
+        "5140",
+        "52",
+        "524290",
+        "524291",
+        "524307",
+        "529",
+        "565",
+        "589841",
+        "589969",
+        "6164",
+        "65552",
+        "65554",
+        "65555",
+        "65811",
+        "721920",
+        "83216"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "GhostFraction",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1591,
+        1592
+      ],
+      "examples": [
+        {
+          "file": "325.cfg",
+          "line": 6,
+          "value": "0.005000"
+        }
+      ],
+      "values": [
+        "0.005000"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0012",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "153.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "219.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0013",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "153.cfg",
+          "line": 2,
+          "value": "200"
+        },
+        {
+          "file": "219.cfg",
+          "line": 2,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0026",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 6,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0027",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 7,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0040",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "155.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "231.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0041",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "155.cfg",
+          "line": 2,
+          "value": "200"
+        },
+        {
+          "file": "231.cfg",
+          "line": 2,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0054",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "150.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "202.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0055",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "150.cfg",
+          "line": 2,
+          "value": "200"
+        },
+        {
+          "file": "202.cfg",
+          "line": 2,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0056",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 5,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0057",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 6,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0058",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 7,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0059",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 8,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0060",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 9,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0061",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 10,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0062",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 11,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0063",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 12,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0064",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 13,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0065",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 14,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0066",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 15,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0067",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 16,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0068",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "151.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "200.cfg",
+          "line": 8,
+          "value": "500"
+        },
+        {
+          "file": "362.cfg",
+          "line": 17,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200",
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0069",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "151.cfg",
+          "line": 2,
+          "value": "200"
+        },
+        {
+          "file": "200.cfg",
+          "line": 9,
+          "value": "500"
+        },
+        {
+          "file": "362.cfg",
+          "line": 18,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200",
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0082",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "152.cfg",
+          "line": 2,
+          "value": "200"
+        },
+        {
+          "file": "200.cfg",
+          "line": 10,
+          "value": "500"
+        },
+        {
+          "file": "212.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200",
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0083",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "152.cfg",
+          "line": 3,
+          "value": "200"
+        },
+        {
+          "file": "200.cfg",
+          "line": 11,
+          "value": "500"
+        },
+        {
+          "file": "212.cfg",
+          "line": 2,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200",
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0112",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "250.cfg",
+          "line": 17,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0113",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "247.cfg",
+          "line": 17,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0114",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "248.cfg",
+          "line": 13,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0115",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "249.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0123",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "249.cfg",
+          "line": 2,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0125",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "247.cfg",
+          "line": 18,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0127",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "250.cfg",
+          "line": 18,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0129",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "248.cfg",
+          "line": 14,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0132",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 12,
+          "value": "500"
+        },
+        {
+          "file": "330.cfg",
+          "line": 1,
+          "value": "100"
+        }
+      ],
+      "values": [
+        "100",
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0133",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 13,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0134",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 14,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0135",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 15,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0141",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 19,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0150",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "153.cfg",
+          "line": 3,
+          "value": "200"
+        },
+        {
+          "file": "54.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "55.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0151",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 16,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0152",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "82.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "83.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0153",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "12.cfg",
+          "line": 1,
+          "value": "100"
+        },
+        {
+          "file": "13.cfg",
+          "line": 1,
+          "value": "100"
+        },
+        {
+          "file": "150.cfg",
+          "line": 3,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "100",
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0154",
+      "occurrences": 4,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 17,
+          "value": "500"
+        },
+        {
+          "file": "26.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "27.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "362.cfg",
+          "line": 20,
+          "value": "250"
+        }
+      ],
+      "values": [
+        "200",
+        "250",
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0155",
+      "occurrences": 4,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "152.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "200.cfg",
+          "line": 18,
+          "value": "500"
+        },
+        {
+          "file": "40.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "41.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200",
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0159",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 21,
+          "value": "100"
+        }
+      ],
+      "values": [
+        "100"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0168",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 19,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0196",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 20,
+          "value": "500"
+        },
+        {
+          "file": "207.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "362.cfg",
+          "line": 22,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "200",
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0199",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "46.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "47.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0201",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "66.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "67.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0202",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "153.cfg",
+          "line": 4,
+          "value": "200"
+        },
+        {
+          "file": "54.cfg",
+          "line": 2,
+          "value": "200"
+        },
+        {
+          "file": "55.cfg",
+          "line": 2,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0203",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "84.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "85.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0207",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 21,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0212",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "155.cfg",
+          "line": 3,
+          "value": "200"
+        },
+        {
+          "file": "82.cfg",
+          "line": 2,
+          "value": "200"
+        },
+        {
+          "file": "83.cfg",
+          "line": 2,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0213",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "28.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "29.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0218",
+      "occurrences": 4,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "36.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "37.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "52.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "53.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0219",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "12.cfg",
+          "line": 2,
+          "value": "100"
+        },
+        {
+          "file": "13.cfg",
+          "line": 2,
+          "value": "100"
+        },
+        {
+          "file": "150.cfg",
+          "line": 4,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "100",
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0220",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "118.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "119.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "362.cfg",
+          "line": 23,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0221",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 24,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0222",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 25,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0223",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "0.cfg",
+          "line": 1,
+          "value": "60"
+        },
+        {
+          "file": "1.cfg",
+          "line": 1,
+          "value": "60"
+        },
+        {
+          "file": "362.cfg",
+          "line": 26,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200",
+        "60"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0224",
+      "occurrences": 5,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "151.cfg",
+          "line": 3,
+          "value": "200"
+        },
+        {
+          "file": "200.cfg",
+          "line": 22,
+          "value": "500"
+        },
+        {
+          "file": "26.cfg",
+          "line": 2,
+          "value": "200"
+        },
+        {
+          "file": "27.cfg",
+          "line": 2,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200",
+        "300",
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0231",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 23,
+          "value": "500"
+        },
+        {
+          "file": "40.cfg",
+          "line": 2,
+          "value": "200"
+        },
+        {
+          "file": "41.cfg",
+          "line": 2,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200",
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0232",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "138.cfg",
+          "line": 1,
+          "value": "100"
+        },
+        {
+          "file": "348.cfg",
+          "line": 1,
+          "value": "100"
+        }
+      ],
+      "values": [
+        "100"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0234",
+      "occurrences": 4,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "100.cfg",
+          "line": 1,
+          "value": "50"
+        },
+        {
+          "file": "101.cfg",
+          "line": 1,
+          "value": "50"
+        },
+        {
+          "file": "18.cfg",
+          "line": 1,
+          "value": "50"
+        },
+        {
+          "file": "19.cfg",
+          "line": 1,
+          "value": "50"
+        }
+      ],
+      "values": [
+        "50"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0239",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "14.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "15.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0244",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "135.cfg",
+          "line": 1,
+          "value": "100"
+        }
+      ],
+      "values": [
+        "100"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0246",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "70.cfg",
+          "line": 1,
+          "value": "100"
+        },
+        {
+          "file": "71.cfg",
+          "line": 1,
+          "value": "100"
+        }
+      ],
+      "values": [
+        "100"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0247",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "250.cfg",
+          "line": 19,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0248",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "249.cfg",
+          "line": 3,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0249",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "248.cfg",
+          "line": 15,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0250",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "247.cfg",
+          "line": 19,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0253",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 24,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0254",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 25,
+          "value": "500"
+        },
+        {
+          "file": "207.cfg",
+          "line": 2,
+          "value": "200"
+        },
+        {
+          "file": "362.cfg",
+          "line": 28,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "200",
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0255",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "42.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "43.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0256",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "88.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "89.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0257",
+      "occurrences": 7,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "120.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "121.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "136.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "169.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0258",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 26,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0261",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 29,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0265",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 27,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0266",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 28,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0267",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 29,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0268",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 30,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0269",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "331.cfg",
+          "line": 1,
+          "value": "200"
+        },
+        {
+          "file": "332.cfg",
+          "line": 1,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0278",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "331.cfg",
+          "line": 2,
+          "value": "200"
+        },
+        {
+          "file": "332.cfg",
+          "line": 2,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0287",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 30,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0295",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 31,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0296",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 32,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0297",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 33,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0299",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 34,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0322",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 31,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0323",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 32,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0325",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 33,
+          "value": "500"
+        },
+        {
+          "file": "362.cfg",
+          "line": 35,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200",
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0330",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 34,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0336",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 35,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0339",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 36,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0341",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 37,
+          "value": "100"
+        }
+      ],
+      "values": [
+        "100"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0342",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 38,
+          "value": "100"
+        }
+      ],
+      "values": [
+        "100"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0343",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 39,
+          "value": "100"
+        }
+      ],
+      "values": [
+        "100"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0344",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 40,
+          "value": "100"
+        }
+      ],
+      "values": [
+        "100"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0345",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 41,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0346",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 42,
+          "value": "900"
+        }
+      ],
+      "values": [
+        "900"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0347",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 43,
+          "value": "900"
+        }
+      ],
+      "values": [
+        "900"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0357",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 36,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0359",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 37,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0360",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 38,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0361",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "362.cfg",
+          "line": 39,
+          "value": "200"
+        }
+      ],
+      "values": [
+        "200"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Hate0362",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1254
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 44,
+          "value": "500"
+        }
+      ],
+      "values": [
+        "500"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "ImposedSpell1Level",
+      "occurrences": 12,
+      "sourceParserLines": [
+        1495,
+        1496
+      ],
+      "examples": [
+        {
+          "file": "212.cfg",
+          "line": 9,
+          "value": "3"
+        },
+        {
+          "file": "222.cfg",
+          "line": 9,
+          "value": "2"
+        },
+        {
+          "file": "232.cfg",
+          "line": 5,
+          "value": "1"
+        },
+        {
+          "file": "233.cfg",
+          "line": 5,
+          "value": "3"
+        }
+      ],
+      "values": [
+        "1",
+        "2",
+        "3"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "ImposedSpell1Number",
+      "occurrences": 12,
+      "sourceParserLines": [
+        1493,
+        1494
+      ],
+      "examples": [
+        {
+          "file": "212.cfg",
+          "line": 8,
+          "value": "28"
+        },
+        {
+          "file": "222.cfg",
+          "line": 8,
+          "value": "44"
+        },
+        {
+          "file": "232.cfg",
+          "line": 4,
+          "value": "46"
+        },
+        {
+          "file": "233.cfg",
+          "line": 4,
+          "value": "43"
+        }
+      ],
+      "values": [
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "36",
+        "43",
+        "44",
+        "46",
+        "55"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "ImposedSpell2Level",
+      "occurrences": 5,
+      "sourceParserLines": [
+        1500,
+        1501
+      ],
+      "examples": [
+        {
+          "file": "247.cfg",
+          "line": 14,
+          "value": "0"
+        },
+        {
+          "file": "249.cfg",
+          "line": 16,
+          "value": "0"
+        },
+        {
+          "file": "250.cfg",
+          "line": 14,
+          "value": "0"
+        },
+        {
+          "file": "252.cfg",
+          "line": 7,
+          "value": "0"
+        }
+      ],
+      "values": [
+        "0"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "ImposedSpell2Number",
+      "occurrences": 5,
+      "sourceParserLines": [
+        1498,
+        1499
+      ],
+      "examples": [
+        {
+          "file": "247.cfg",
+          "line": 13,
+          "value": "28"
+        },
+        {
+          "file": "249.cfg",
+          "line": 15,
+          "value": "29"
+        },
+        {
+          "file": "250.cfg",
+          "line": 13,
+          "value": "46"
+        },
+        {
+          "file": "252.cfg",
+          "line": 6,
+          "value": "55"
+        }
+      ],
+      "values": [
+        "28",
+        "29",
+        "43",
+        "46",
+        "55"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "ImposedSpell3Level",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1505,
+        1506
+      ],
+      "examples": [
+        {
+          "file": "253.cfg",
+          "line": 8,
+          "value": "3"
+        }
+      ],
+      "values": [
+        "3"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "ImposedSpell3Number",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1503,
+        1504
+      ],
+      "examples": [
+        {
+          "file": "253.cfg",
+          "line": 7,
+          "value": "48"
+        }
+      ],
+      "values": [
+        "48"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "JoustingBonus",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1537,
+        1538
+      ],
+      "examples": [
+        {
+          "file": "201.cfg",
+          "line": 7,
+          "value": "1"
+        },
+        {
+          "file": "293.cfg",
+          "line": 4,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "JoustingImmune",
+      "occurrences": 5,
+      "sourceParserLines": [
+        1539,
+        1540
+      ],
+      "examples": [
+        {
+          "file": "197.cfg",
+          "line": 5,
+          "value": "1"
+        },
+        {
+          "file": "211.cfg",
+          "line": 4,
+          "value": "1"
+        },
+        {
+          "file": "230.cfg",
+          "line": 7,
+          "value": "1"
+        },
+        {
+          "file": "253.cfg",
+          "line": 13,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Level",
+      "occurrences": 178,
+      "sourceParserLines": [
+        1618,
+        1620,
+        1622
+      ],
+      "examples": [
+        {
+          "file": "0.cfg",
+          "line": 2,
+          "value": "0"
+        },
+        {
+          "file": "133.cfg",
+          "line": 4,
+          "value": "6"
+        },
+        {
+          "file": "138.cfg",
+          "line": 3,
+          "value": "0"
+        },
+        {
+          "file": "141.cfg",
+          "line": 2,
+          "value": "2"
+        }
+      ],
+      "values": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "MagicAura",
+      "occurrences": 7,
+      "sourceParserLines": [
+        1527,
+        1528
+      ],
+      "examples": [
+        {
+          "file": "206.cfg",
+          "line": 9,
+          "value": "1"
+        },
+        {
+          "file": "207.cfg",
+          "line": 12,
+          "value": "1"
+        },
+        {
+          "file": "230.cfg",
+          "line": 8,
+          "value": "1"
+        },
+        {
+          "file": "246.cfg",
+          "line": 10,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "MagicChannel",
+      "occurrences": 4,
+      "sourceParserLines": [
+        1531,
+        1532
+      ],
+      "examples": [
+        {
+          "file": "213.cfg",
+          "line": 4,
+          "value": "1"
+        },
+        {
+          "file": "222.cfg",
+          "line": 11,
+          "value": "1"
+        },
+        {
+          "file": "251.cfg",
+          "line": 9,
+          "value": "1"
+        },
+        {
+          "file": "356.cfg",
+          "line": 10,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "MagicMirror",
+      "occurrences": 4,
+      "sourceParserLines": [
+        1529,
+        1530
+      ],
+      "examples": [
+        {
+          "file": "169.cfg",
+          "line": 5,
+          "value": "1"
+        },
+        {
+          "file": "253.cfg",
+          "line": 15,
+          "value": "1"
+        },
+        {
+          "file": "259.cfg",
+          "line": 9,
+          "value": "1"
+        },
+        {
+          "file": "323.cfg",
+          "line": 3,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "ManaDrain",
+      "occurrences": 5,
+      "sourceParserLines": [
+        1560,
+        1561
+      ],
+      "examples": [
+        {
+          "file": "210.cfg",
+          "line": 7,
+          "value": "5"
+        },
+        {
+          "file": "251.cfg",
+          "line": 6,
+          "value": "10"
+        },
+        {
+          "file": "261.cfg",
+          "line": 6,
+          "value": "2"
+        },
+        {
+          "file": "297.cfg",
+          "line": 4,
+          "value": "2"
+        }
+      ],
+      "values": [
+        "1",
+        "10",
+        "2",
+        "5"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "MovesTwice",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1734,
+        1736
+      ],
+      "examples": [
+        {
+          "file": "347.cfg",
+          "line": 19,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "NoWallPenalty",
+      "occurrences": 8,
+      "sourceParserLines": [
+        1519,
+        1520
+      ],
+      "examples": [
+        {
+          "file": "212.cfg",
+          "line": 12,
+          "value": "1"
+        },
+        {
+          "file": "240.cfg",
+          "line": 7,
+          "value": "1"
+        },
+        {
+          "file": "256.cfg",
+          "line": 4,
+          "value": "1"
+        },
+        {
+          "file": "257.cfg",
+          "line": 5,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Paralyze",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1375,
+        1376
+      ],
+      "examples": [
+        {
+          "file": "339.cfg",
+          "line": 12,
+          "value": "100"
+        }
+      ],
+      "values": [
+        "100"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "ParalyzeChance",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1378,
+        1379
+      ],
+      "examples": [
+        {
+          "file": "339.cfg",
+          "line": 13,
+          "value": "3"
+        }
+      ],
+      "values": [
+        "3"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Poison",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1371,
+        1372
+      ],
+      "examples": [
+        {
+          "file": "240.cfg",
+          "line": 10,
+          "value": "100"
+        },
+        {
+          "file": "243.cfg",
+          "line": 7,
+          "value": "100"
+        },
+        {
+          "file": "339.cfg",
+          "line": 10,
+          "value": "100"
+        }
+      ],
+      "values": [
+        "100"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "PreventiveStrike",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1434,
+        1435
+      ],
+      "examples": [
+        {
+          "file": "242.cfg",
+          "line": 7,
+          "value": "1"
+        },
+        {
+          "file": "280.cfg",
+          "line": 4,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "ReduceTargetDefense",
+      "occurrences": 4,
+      "sourceParserLines": [
+        1437,
+        1438
+      ],
+      "examples": [
+        {
+          "file": "238.cfg",
+          "line": 1,
+          "value": "95"
+        },
+        {
+          "file": "307.cfg",
+          "line": 1,
+          "value": "10"
+        },
+        {
+          "file": "308.cfg",
+          "line": 1,
+          "value": "20"
+        },
+        {
+          "file": "348.cfg",
+          "line": 2,
+          "value": "20"
+        }
+      ],
+      "values": [
+        "10",
+        "20",
+        "95"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "RegenerationChance",
+      "occurrences": 14,
+      "sourceParserLines": [
+        1542,
+        1543
+      ],
+      "examples": [
+        {
+          "file": "205.cfg",
+          "line": 6,
+          "value": "50"
+        },
+        {
+          "file": "224.cfg",
+          "line": 7,
+          "value": "100"
+        },
+        {
+          "file": "245.cfg",
+          "line": 7,
+          "value": "50"
+        },
+        {
+          "file": "248.cfg",
+          "line": 11,
+          "value": "100"
+        }
+      ],
+      "values": [
+        "100",
+        "50"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "RegenerationHitPoints",
+      "occurrences": 14,
+      "sourceParserLines": [
+        1545,
+        1546
+      ],
+      "examples": [
+        {
+          "file": "205.cfg",
+          "line": 5,
+          "value": "40"
+        },
+        {
+          "file": "224.cfg",
+          "line": 6,
+          "value": "50"
+        },
+        {
+          "file": "245.cfg",
+          "line": 6,
+          "value": "50"
+        },
+        {
+          "file": "248.cfg",
+          "line": 10,
+          "value": "10"
+        }
+      ],
+      "values": [
+        "10",
+        "100",
+        "15",
+        "200",
+        "40",
+        "50"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "ResGen_Amount",
+      "occurrences": 7,
+      "sourceParserLines": [
+        1447,
+        1448
+      ],
+      "examples": [
+        {
+          "file": "133.cfg",
+          "line": 2,
+          "value": "1"
+        },
+        {
+          "file": "207.cfg",
+          "line": 4,
+          "value": "3"
+        },
+        {
+          "file": "267.cfg",
+          "line": 2,
+          "value": "2"
+        },
+        {
+          "file": "268.cfg",
+          "line": 2,
+          "value": "3"
+        }
+      ],
+      "values": [
+        "1",
+        "2",
+        "3"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "ResGen_Tax",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1443,
+        1444
+      ],
+      "examples": [
+        {
+          "file": "303.cfg",
+          "line": 1,
+          "value": "25"
+        }
+      ],
+      "values": [
+        "25"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "ResGen_Type",
+      "occurrences": 8,
+      "sourceParserLines": [
+        1450,
+        1451
+      ],
+      "examples": [
+        {
+          "file": "133.cfg",
+          "line": 1,
+          "value": "4"
+        },
+        {
+          "file": "207.cfg",
+          "line": 3,
+          "value": "5"
+        },
+        {
+          "file": "267.cfg",
+          "line": 1,
+          "value": "4"
+        },
+        {
+          "file": "268.cfg",
+          "line": 1,
+          "value": "4"
+        }
+      ],
+      "values": [
+        "1",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Resistance effect",
+      "occurrences": 30,
+      "sourceParserLines": [
+        1664,
+        1666
+      ],
+      "examples": [
+        {
+          "file": "132.cfg",
+          "line": 1,
+          "value": "2"
+        },
+        {
+          "file": "133.cfg",
+          "line": 5,
+          "value": "1"
+        },
+        {
+          "file": "151.cfg",
+          "line": 7,
+          "value": "4"
+        },
+        {
+          "file": "155.cfg",
+          "line": 7,
+          "value": "4"
+        }
+      ],
+      "values": [
+        "0",
+        "1",
+        "15",
+        "17",
+        "2",
+        "20",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "RetaliateRanged",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1431,
+        1432
+      ],
+      "examples": [
+        {
+          "file": "281.cfg",
+          "line": 4,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Retaliations",
+      "occurrences": 13,
+      "sourceParserLines": [
+        1549,
+        1550
+      ],
+      "examples": [
+        {
+          "file": "197.cfg",
+          "line": 4,
+          "value": "100"
+        },
+        {
+          "file": "199.cfg",
+          "line": 4,
+          "value": "127"
+        },
+        {
+          "file": "206.cfg",
+          "line": 7,
+          "value": "127"
+        },
+        {
+          "file": "216.cfg",
+          "line": 5,
+          "value": "125"
+        }
+      ],
+      "values": [
+        "100",
+        "110",
+        "121",
+        "125",
+        "127",
+        "2",
+        "3"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Self-resurrection",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1713,
+        1716
+      ],
+      "examples": [
+        {
+          "file": "131.cfg",
+          "line": 1,
+          "value": "0.200000"
+        },
+        {
+          "file": "158.cfg",
+          "line": 1,
+          "value": "0.200000"
+        },
+        {
+          "file": "253.cfg",
+          "line": 17,
+          "value": "1.000000"
+        }
+      ],
+      "values": [
+        "0.200000",
+        "1.000000"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Sharpshooters",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1521,
+        1522
+      ],
+      "examples": [
+        {
+          "file": "299.cfg",
+          "line": 5,
+          "value": "1"
+        },
+        {
+          "file": "351.cfg",
+          "line": 5,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "ShootingAdjacent",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1523,
+        1524
+      ],
+      "examples": [
+        {
+          "file": "240.cfg",
+          "line": 8,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "ShootingRayColor",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1299,
+        1300
+      ],
+      "examples": [
+        {
+          "file": "351.cfg",
+          "line": 6,
+          "value": "10092543"
+        }
+      ],
+      "values": [
+        "10092543"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "ShootingResistance",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1398,
+        1399
+      ],
+      "examples": [
+        {
+          "file": "337.cfg",
+          "line": 1,
+          "value": "0.300000"
+        },
+        {
+          "file": "338.cfg",
+          "line": 1,
+          "value": "0.300000"
+        }
+      ],
+      "values": [
+        "0.300000"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Shot type",
+      "occurrences": 6,
+      "sourceParserLines": [
+        1693,
+        1695
+      ],
+      "examples": [
+        {
+          "file": "214.cfg",
+          "line": 4,
+          "value": "1"
+        },
+        {
+          "file": "222.cfg",
+          "line": 13,
+          "value": "2"
+        },
+        {
+          "file": "254.cfg",
+          "line": 9,
+          "value": "2"
+        },
+        {
+          "file": "316.cfg",
+          "line": 6,
+          "value": "2"
+        }
+      ],
+      "values": [
+        "1",
+        "2",
+        "4"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Sktransformer",
+      "occurrences": 77,
+      "sourceParserLines": [
+        1689,
+        1691
+      ],
+      "examples": [
+        {
+          "file": "100.cfg",
+          "line": 2,
+          "value": "295"
+        },
+        {
+          "file": "101.cfg",
+          "line": 2,
+          "value": "295"
+        },
+        {
+          "file": "12.cfg",
+          "line": 3,
+          "value": "357"
+        },
+        {
+          "file": "120.cfg",
+          "line": 2,
+          "value": "297"
+        }
+      ],
+      "values": [
+        "178",
+        "187",
+        "254",
+        "295",
+        "297",
+        "299",
+        "357",
+        "361",
+        "66",
+        "68"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Spell 1",
+      "occurrences": 35,
+      "sourceParserLines": [
+        1675,
+        1677
+      ],
+      "examples": [
+        {
+          "file": "178.cfg",
+          "line": 1,
+          "value": "0"
+        },
+        {
+          "file": "187.cfg",
+          "line": 1,
+          "value": "0"
+        },
+        {
+          "file": "202.cfg",
+          "line": 7,
+          "value": "0"
+        },
+        {
+          "file": "210.cfg",
+          "line": 4,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "0",
+        "1",
+        "10",
+        "17",
+        "2",
+        "4",
+        "8"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Spell 2",
+      "occurrences": 35,
+      "sourceParserLines": [
+        1680,
+        1682
+      ],
+      "examples": [
+        {
+          "file": "178.cfg",
+          "line": 2,
+          "value": "9"
+        },
+        {
+          "file": "187.cfg",
+          "line": 2,
+          "value": "9"
+        },
+        {
+          "file": "202.cfg",
+          "line": 8,
+          "value": "0"
+        },
+        {
+          "file": "210.cfg",
+          "line": 5,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "0",
+        "1",
+        "14",
+        "2",
+        "3",
+        "7",
+        "9"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Spell 3",
+      "occurrences": 34,
+      "sourceParserLines": [
+        1685,
+        1687
+      ],
+      "examples": [
+        {
+          "file": "178.cfg",
+          "line": 3,
+          "value": "0"
+        },
+        {
+          "file": "187.cfg",
+          "line": 3,
+          "value": "0"
+        },
+        {
+          "file": "202.cfg",
+          "line": 9,
+          "value": "0"
+        },
+        {
+          "file": "210.cfg",
+          "line": 6,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "0",
+        "1",
+        "2",
+        "4",
+        "5"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Spell effect",
+      "occurrences": 30,
+      "sourceParserLines": [
+        1656,
+        1658
+      ],
+      "examples": [
+        {
+          "file": "141.cfg",
+          "line": 4,
+          "value": "3"
+        },
+        {
+          "file": "202.cfg",
+          "line": 6,
+          "value": "10"
+        },
+        {
+          "file": "205.cfg",
+          "line": 4,
+          "value": "0"
+        },
+        {
+          "file": "206.cfg",
+          "line": 6,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "0",
+        "1",
+        "10",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "SpellsCostDump",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1568,
+        1569
+      ],
+      "examples": [
+        {
+          "file": "204.cfg",
+          "line": 4,
+          "value": "3"
+        }
+      ],
+      "values": [
+        "3"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "SpellsCostLess",
+      "occurrences": 5,
+      "sourceParserLines": [
+        1565,
+        1566
+      ],
+      "examples": [
+        {
+          "file": "207.cfg",
+          "line": 10,
+          "value": "5"
+        },
+        {
+          "file": "257.cfg",
+          "line": 4,
+          "value": "2"
+        },
+        {
+          "file": "317.cfg",
+          "line": 4,
+          "value": "2"
+        },
+        {
+          "file": "34.cfg",
+          "line": 6,
+          "value": "2"
+        }
+      ],
+      "values": [
+        "2",
+        "5"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "StrikeAllAroundRange",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1349,
+        1350
+      ],
+      "examples": [
+        {
+          "file": "350.cfg",
+          "line": 9,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "StrikeAndReturn",
+      "occurrences": 5,
+      "sourceParserLines": [
+        1535,
+        1536
+      ],
+      "examples": [
+        {
+          "file": "155.cfg",
+          "line": 8,
+          "value": "0"
+        },
+        {
+          "file": "227.cfg",
+          "line": 5,
+          "value": "1"
+        },
+        {
+          "file": "231.cfg",
+          "line": 12,
+          "value": "1"
+        },
+        {
+          "file": "241.cfg",
+          "line": 6,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "0",
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Town",
+      "occurrences": 110,
+      "sourceParserLines": [
+        1637,
+        1639
+      ],
+      "examples": [
+        {
+          "file": "151.cfg",
+          "line": 6,
+          "value": "1"
+        },
+        {
+          "file": "155.cfg",
+          "line": 6,
+          "value": "5"
+        },
+        {
+          "file": "194.cfg",
+          "line": 3,
+          "value": "4"
+        },
+        {
+          "file": "197.cfg",
+          "line": 3,
+          "value": "0"
+        }
+      ],
+      "values": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "UpgradesTo",
+      "occurrences": 31,
+      "sourceParserLines": [
+        1454,
+        1455
+      ],
+      "examples": [
+        {
+          "file": "138.cfg",
+          "line": 4,
+          "value": "348"
+        },
+        {
+          "file": "141.cfg",
+          "line": 3,
+          "value": "360"
+        },
+        {
+          "file": "167.cfg",
+          "line": 2,
+          "value": "339"
+        },
+        {
+          "file": "265.cfg",
+          "line": 3,
+          "value": "266"
+        }
+      ],
+      "values": [
+        "133",
+        "194",
+        "266",
+        "268",
+        "278",
+        "279",
+        "280",
+        "281",
+        "282",
+        "283",
+        "284",
+        "285",
+        "302",
+        "304",
+        "308",
+        "310",
+        "314",
+        "332",
+        "334",
+        "336",
+        "338",
+        "339",
+        "348",
+        "350",
+        "352",
+        "353",
+        "356",
+        "358",
+        "359",
+        "360"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "Vulnerability effect",
+      "occurrences": 9,
+      "sourceParserLines": [
+        1668,
+        1670
+      ],
+      "examples": [
+        {
+          "file": "247.cfg",
+          "line": 5,
+          "value": "2"
+        },
+        {
+          "file": "248.cfg",
+          "line": 5,
+          "value": "5"
+        },
+        {
+          "file": "249.cfg",
+          "line": 7,
+          "value": "4"
+        },
+        {
+          "file": "250.cfg",
+          "line": 5,
+          "value": "3"
+        }
+      ],
+      "values": [
+        "1",
+        "11",
+        "2",
+        "3",
+        "4",
+        "5",
+        "9"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "hasFirewall",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1613,
+        1614
+      ],
+      "examples": [
+        {
+          "file": "289.cfg",
+          "line": 4,
+          "value": "1"
+        },
+        {
+          "file": "330.cfg",
+          "line": 5,
+          "value": "1"
+        },
+        {
+          "file": "346.cfg",
+          "line": 18,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "isAimedCaster",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1485,
+        1486
+      ],
+      "examples": [
+        {
+          "file": "258.cfg",
+          "line": 12,
+          "value": "1"
+        },
+        {
+          "file": "343.cfg",
+          "line": 8,
+          "value": "1"
+        },
+        {
+          "file": "356.cfg",
+          "line": 11,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "isCerberus",
+      "occurrences": 4,
+      "sourceParserLines": [
+        1458,
+        1459
+      ],
+      "examples": [
+        {
+          "file": "211.cfg",
+          "line": 5,
+          "value": "1"
+        },
+        {
+          "file": "215.cfg",
+          "line": 6,
+          "value": "1"
+        },
+        {
+          "file": "217.cfg",
+          "line": 8,
+          "value": "1"
+        },
+        {
+          "file": "230.cfg",
+          "line": 9,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "isConstruct",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1730,
+        1732
+      ],
+      "examples": [
+        {
+          "file": "324.cfg",
+          "line": 6,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "isDragonResistant",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1352,
+        1353
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 5,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "isDragonSlayer",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1440,
+        1441
+      ],
+      "examples": [
+        {
+          "file": "200.cfg",
+          "line": 3,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "isEnchanter",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1595,
+        1596
+      ],
+      "examples": [
+        {
+          "file": "259.cfg",
+          "line": 10,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "isFaerie",
+      "occurrences": 3,
+      "sourceParserLines": [
+        1482,
+        1483
+      ],
+      "examples": [
+        {
+          "file": "258.cfg",
+          "line": 13,
+          "value": "1"
+        },
+        {
+          "file": "343.cfg",
+          "line": 9,
+          "value": "1"
+        },
+        {
+          "file": "356.cfg",
+          "line": 12,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "isGhost",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1589,
+        1590
+      ],
+      "examples": [
+        {
+          "file": "325.cfg",
+          "line": 4,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "isHellHydra",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1364,
+        1365
+      ],
+      "examples": [
+        {
+          "file": "245.cfg",
+          "line": 11,
+          "value": "1"
+        },
+        {
+          "file": "339.cfg",
+          "line": 14,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "isLord",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1361,
+        1362
+      ],
+      "examples": [
+        {
+          "file": "340.cfg",
+          "line": 10,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "isRogue",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1586,
+        1587
+      ],
+      "examples": [
+        {
+          "file": "226.cfg",
+          "line": 5,
+          "value": "1"
+        },
+        {
+          "file": "260.cfg",
+          "line": 3,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "isSorceress",
+      "occurrences": 4,
+      "sourceParserLines": [
+        1598,
+        1599
+      ],
+      "examples": [
+        {
+          "file": "257.cfg",
+          "line": 6,
+          "value": "1"
+        },
+        {
+          "file": "259.cfg",
+          "line": 11,
+          "value": "1"
+        },
+        {
+          "file": "316.cfg",
+          "line": 5,
+          "value": "1"
+        },
+        {
+          "file": "355.cfg",
+          "line": 10,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "isTeleporter",
+      "occurrences": 6,
+      "sourceParserLines": [
+        1386,
+        1387
+      ],
+      "examples": [
+        {
+          "file": "219.cfg",
+          "line": 3,
+          "value": "1"
+        },
+        {
+          "file": "333.cfg",
+          "line": 1,
+          "value": "1"
+        },
+        {
+          "file": "334.cfg",
+          "line": 1,
+          "value": "1"
+        },
+        {
+          "file": "355.cfg",
+          "line": 1,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "isVulnerabilityCatalyst",
+      "occurrences": 1,
+      "sourceParserLines": [
+        1290,
+        1291
+      ],
+      "examples": [
+        {
+          "file": "356.cfg",
+          "line": 14,
+          "value": "1"
+        }
+      ],
+      "values": [
+        "1"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "rebirth chance",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1718,
+        1720
+      ],
+      "examples": [
+        {
+          "file": "252.cfg",
+          "line": 11,
+          "value": "1.000000"
+        },
+        {
+          "file": "296.cfg",
+          "line": 4,
+          "value": "1.000000"
+        }
+      ],
+      "values": [
+        "1.000000"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "rebirth fraction",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1722,
+        1724
+      ],
+      "examples": [
+        {
+          "file": "252.cfg",
+          "line": 12,
+          "value": "0.300000"
+        },
+        {
+          "file": "296.cfg",
+          "line": 5,
+          "value": "0.300000"
+        }
+      ],
+      "values": [
+        "0.300000"
+      ],
+      "status": "requires-runtime-or-proof"
+    },
+    {
+      "key": "rebirth sure",
+      "occurrences": 2,
+      "sourceParserLines": [
+        1726,
+        1728
+      ],
+      "examples": [
+        {
+          "file": "252.cfg",
+          "line": 13,
+          "value": "0.200000"
+        },
+        {
+          "file": "296.cfg",
+          "line": 6,
+          "value": "0.500000"
+        }
+      ],
+      "values": [
+        "0.200000",
+        "0.500000"
+      ],
+      "status": "requires-runtime-or-proof"
+    }
+  ]
+}

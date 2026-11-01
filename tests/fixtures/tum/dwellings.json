@@ -1,0 +1,2253 @@
+[
+  {
+    "objectType": 17,
+    "objectSubtype": 0,
+    "name": "Basilisk Pit",
+    "creatureIds": [
+      106
+    ],
+    "portraitFrame": 0,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 2
+    }
+  },
+  {
+    "objectType": 20,
+    "objectSubtype": 0,
+    "name": "Elemental Conflux",
+    "creatureIds": [
+      112,
+      114,
+      113,
+      115
+    ],
+    "portraitFrame": 0,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 2
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 1,
+    "name": "Behemoth Crag",
+    "creatureIds": [
+      96
+    ],
+    "portraitFrame": 1,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 3
+    }
+  },
+  {
+    "objectType": 20,
+    "objectSubtype": 1,
+    "name": "Golem Factory",
+    "creatureIds": [
+      32,
+      33,
+      116,
+      117
+    ],
+    "portraitFrame": 1,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 3
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 2,
+    "name": "Pillar of Eyes",
+    "creatureIds": [
+      74
+    ],
+    "portraitFrame": 2,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 4
+    }
+  },
+  {
+    "objectType": 20,
+    "objectSubtype": 2,
+    "name": "Dragon Sanctuary",
+    "creatureIds": [
+      132,
+      133,
+      134,
+      135
+    ],
+    "portraitFrame": 2,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 4
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 3,
+    "name": "Hall of Darkness",
+    "creatureIds": [
+      66
+    ],
+    "portraitFrame": 3,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 5
+    }
+  },
+  {
+    "objectType": 20,
+    "objectSubtype": 3,
+    "name": "Laboratory",
+    "creatureIds": [
+      224,
+      154,
+      69,
+      68
+    ],
+    "portraitFrame": 3,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 5
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 4,
+    "name": "Dragon Vault",
+    "creatureIds": [
+      68
+    ],
+    "portraitFrame": 4,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 6
+    }
+  },
+  {
+    "objectType": 20,
+    "objectSubtype": 4,
+    "name": "Dragon Tower",
+    "creatureIds": [
+      83,
+      27,
+      82,
+      26
+    ],
+    "portraitFrame": 4,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 6
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 5,
+    "name": "Training Grounds",
+    "creatureIds": [
+      10
+    ],
+    "portraitFrame": 5,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 7
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 6,
+    "name": "Centaur Stables",
+    "creatureIds": [
+      14
+    ],
+    "portraitFrame": 6,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 8
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 7,
+    "name": "Air Elemental Conflux",
+    "creatureIds": [
+      112
+    ],
+    "portraitFrame": 7,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 9
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 8,
+    "name": "Portal of Glory",
+    "creatureIds": [
+      12
+    ],
+    "portraitFrame": 8,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 10
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 9,
+    "name": "Cyclops Cave",
+    "creatureIds": [
+      94
+    ],
+    "portraitFrame": 9,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 11
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 10,
+    "name": "Forsaken Palace",
+    "creatureIds": [
+      54
+    ],
+    "portraitFrame": 10,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 12
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 11,
+    "name": "Serpent Fly Hive",
+    "creatureIds": [
+      104
+    ],
+    "portraitFrame": 11,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 13
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 12,
+    "name": "Dwarf Cottage",
+    "creatureIds": [
+      16
+    ],
+    "portraitFrame": 12,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 14
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 13,
+    "name": "Earth Elemental Conflux",
+    "creatureIds": [
+      113
+    ],
+    "portraitFrame": 13,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 15
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 14,
+    "name": "Fire Lake",
+    "creatureIds": [
+      52
+    ],
+    "portraitFrame": 14,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 16
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 15,
+    "name": "Homestead",
+    "creatureIds": [
+      18
+    ],
+    "portraitFrame": 15,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 17
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 16,
+    "name": "Fire Elementals Conflux",
+    "creatureIds": [
+      114
+    ],
+    "portraitFrame": 16,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 18
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 17,
+    "name": "Parapet",
+    "creatureIds": [
+      30
+    ],
+    "portraitFrame": 17,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 19
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 18,
+    "name": "Altar of Wishes",
+    "creatureIds": [
+      36
+    ],
+    "portraitFrame": 18,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 20
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 19,
+    "name": "Wolf Pen",
+    "creatureIds": [
+      86
+    ],
+    "portraitFrame": 19,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 21
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 20,
+    "name": "Gnoll Hut",
+    "creatureIds": [
+      98
+    ],
+    "portraitFrame": 20,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 22
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 21,
+    "name": "Goblin Barracks",
+    "creatureIds": [
+      84
+    ],
+    "portraitFrame": 21,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 23
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 22,
+    "name": "Hall of Sins",
+    "creatureIds": [
+      44
+    ],
+    "portraitFrame": 22,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 24
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 23,
+    "name": "Gorgon Lair",
+    "creatureIds": [
+      102
+    ],
+    "portraitFrame": 23,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 25
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 24,
+    "name": "Dragon Cliffs",
+    "creatureIds": [
+      26
+    ],
+    "portraitFrame": 24,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 26
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 25,
+    "name": "Griffin Tower",
+    "creatureIds": [
+      4
+    ],
+    "portraitFrame": 25,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 27
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 26,
+    "name": "Harpy Loft",
+    "creatureIds": [
+      72
+    ],
+    "portraitFrame": 26,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 28
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 27,
+    "name": "Kennels",
+    "creatureIds": [
+      46
+    ],
+    "portraitFrame": 27,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 29
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 28,
+    "name": "Hydra Pond",
+    "creatureIds": [
+      110
+    ],
+    "portraitFrame": 28,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 30
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 29,
+    "name": "Imp Crucible",
+    "creatureIds": [
+      42
+    ],
+    "portraitFrame": 29,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 31
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 30,
+    "name": "Lizard Den",
+    "creatureIds": [
+      100
+    ],
+    "portraitFrame": 30,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 32
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 31,
+    "name": "Mage Tower",
+    "creatureIds": [
+      34
+    ],
+    "portraitFrame": 31,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 33
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 32,
+    "name": "Manticore Lair",
+    "creatureIds": [
+      80
+    ],
+    "portraitFrame": 32,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 34
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 33,
+    "name": "Chapel of Stilled Voices",
+    "creatureIds": [
+      76
+    ],
+    "portraitFrame": 33,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 35
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 34,
+    "name": "Labyrinth",
+    "creatureIds": [
+      78
+    ],
+    "portraitFrame": 34,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 36
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 35,
+    "name": "Monastery",
+    "creatureIds": [
+      8
+    ],
+    "portraitFrame": 35,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 37
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 36,
+    "name": "Golden Pavilion",
+    "creatureIds": [
+      38
+    ],
+    "portraitFrame": 36,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 38
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 37,
+    "name": "Demon Gate",
+    "creatureIds": [
+      48
+    ],
+    "portraitFrame": 37,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 39
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 38,
+    "name": "Ogre Fort",
+    "creatureIds": [
+      90
+    ],
+    "portraitFrame": 38,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 40
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 39,
+    "name": "Orc Tower",
+    "creatureIds": [
+      88
+    ],
+    "portraitFrame": 39,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 41
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 40,
+    "name": "Hell Hole",
+    "creatureIds": [
+      50
+    ],
+    "portraitFrame": 40,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 42
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 41,
+    "name": "Dragon Cave",
+    "creatureIds": [
+      82
+    ],
+    "portraitFrame": 41,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 43
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 42,
+    "name": "Cliff Nest",
+    "creatureIds": [
+      92
+    ],
+    "portraitFrame": 42,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 44
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 43,
+    "name": "Workshop",
+    "creatureIds": [
+      28
+    ],
+    "portraitFrame": 43,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 45
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 44,
+    "name": "Cloud Temple",
+    "creatureIds": [
+      40
+    ],
+    "portraitFrame": 44,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 46
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 45,
+    "name": "Dendroid Arches",
+    "creatureIds": [
+      22
+    ],
+    "portraitFrame": 45,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 47
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 46,
+    "name": "Warren",
+    "creatureIds": [
+      70
+    ],
+    "portraitFrame": 46,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 48
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 47,
+    "name": "Water Elemental Conflux",
+    "creatureIds": [
+      115
+    ],
+    "portraitFrame": 47,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 49
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 48,
+    "name": "Tomb of Souls",
+    "creatureIds": [
+      60
+    ],
+    "portraitFrame": 48,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 50
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 49,
+    "name": "Wyvern Nest",
+    "creatureIds": [
+      108
+    ],
+    "portraitFrame": 49,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 51
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 50,
+    "name": "Enchanted Spring",
+    "creatureIds": [
+      20
+    ],
+    "portraitFrame": 50,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 52
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 51,
+    "name": "Unicorn Glade",
+    "creatureIds": [
+      24
+    ],
+    "portraitFrame": 51,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 53
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 52,
+    "name": "Mausoleum",
+    "creatureIds": [
+      64
+    ],
+    "portraitFrame": 52,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 54
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 53,
+    "name": "Estate",
+    "creatureIds": [
+      62
+    ],
+    "portraitFrame": 53,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 55
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 54,
+    "name": "Cursed Temple",
+    "creatureIds": [
+      56
+    ],
+    "portraitFrame": 54,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 56
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 55,
+    "name": "Graveyard",
+    "creatureIds": [
+      58
+    ],
+    "portraitFrame": 55,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 57
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 56,
+    "name": "Guardhouse",
+    "creatureIds": [
+      0
+    ],
+    "portraitFrame": 56,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 58
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 57,
+    "name": "Archers' Tower",
+    "creatureIds": [
+      2
+    ],
+    "portraitFrame": 57,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 59
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 58,
+    "name": "Barracks",
+    "creatureIds": [
+      6
+    ],
+    "portraitFrame": 58,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 60
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 59,
+    "name": "Magic Lantern",
+    "creatureIds": [
+      118
+    ],
+    "portraitFrame": 59,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 61
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 60,
+    "name": "Altar of Thought",
+    "creatureIds": [
+      120
+    ],
+    "portraitFrame": 60,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 62
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 61,
+    "name": "Pyre",
+    "creatureIds": [
+      130
+    ],
+    "portraitFrame": 61,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 63
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 62,
+    "name": "Frozen Cliffs",
+    "creatureIds": [
+      132
+    ],
+    "portraitFrame": 62,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 64
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 63,
+    "name": "Red Crystal Cavern",
+    "creatureIds": [
+      133
+    ],
+    "portraitFrame": 63,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 65
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 64,
+    "name": "Magic Forest",
+    "creatureIds": [
+      134
+    ],
+    "portraitFrame": 64,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 66
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 65,
+    "name": "Sulfurous Lair",
+    "creatureIds": [
+      135
+    ],
+    "portraitFrame": 65,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 67
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 66,
+    "name": "Enchanter's Hollow",
+    "creatureIds": [
+      136
+    ],
+    "portraitFrame": 66,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 68
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 67,
+    "name": "Treetop Tower",
+    "creatureIds": [
+      137
+    ],
+    "portraitFrame": 67,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 69
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 68,
+    "name": "Unicorn Glade",
+    "creatureIds": [
+      24
+    ],
+    "portraitFrame": 68,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 70
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 69,
+    "name": "Altar of Air",
+    "creatureIds": [
+      112
+    ],
+    "portraitFrame": 69,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 71
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 70,
+    "name": "Altar of Earth",
+    "creatureIds": [
+      113
+    ],
+    "portraitFrame": 70,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 72
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 71,
+    "name": "Altar of Fire",
+    "creatureIds": [
+      114
+    ],
+    "portraitFrame": 71,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 73
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 72,
+    "name": "Altar of Water",
+    "creatureIds": [
+      115
+    ],
+    "portraitFrame": 72,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 74
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 73,
+    "name": "Halfling Adobe",
+    "creatureIds": [
+      138
+    ],
+    "portraitFrame": 73,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 75
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 74,
+    "name": "Hovel",
+    "creatureIds": [
+      139
+    ],
+    "portraitFrame": 74,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 76
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 75,
+    "name": "Boar Glen",
+    "creatureIds": [
+      140
+    ],
+    "portraitFrame": 75,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 77
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 76,
+    "name": "Tomb of Curses",
+    "creatureIds": [
+      141
+    ],
+    "portraitFrame": 76,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 78
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 77,
+    "name": "Nomad Tent",
+    "creatureIds": [
+      142
+    ],
+    "portraitFrame": 77,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 79
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 78,
+    "name": "Rogue Cavern",
+    "creatureIds": [
+      143
+    ],
+    "portraitFrame": 78,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 80
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 79,
+    "name": "Troll Bridge",
+    "creatureIds": [
+      144
+    ],
+    "portraitFrame": 79,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 81
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 80,
+    "name": "Portal of Splendor",
+    "creatureIds": [
+      202
+    ],
+    "portraitFrame": 80,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 82
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 81,
+    "name": "Dragon Peaks",
+    "creatureIds": [
+      207
+    ],
+    "portraitFrame": 81,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 83
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 82,
+    "name": "Storm Temple",
+    "creatureIds": [
+      212
+    ],
+    "portraitFrame": 82,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 84
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 83,
+    "name": "Unholy Palace",
+    "creatureIds": [
+      219
+    ],
+    "portraitFrame": 83,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 85
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 84,
+    "name": "Bloody Vault",
+    "creatureIds": [
+      224
+    ],
+    "portraitFrame": 84,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 86
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 85,
+    "name": "Cave of Darkness",
+    "creatureIds": [
+      231
+    ],
+    "portraitFrame": 85,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 87
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 86,
+    "name": "Behemoth Tomb",
+    "creatureIds": [
+      238
+    ],
+    "portraitFrame": 86,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 88
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 87,
+    "name": "Chaos Pool",
+    "creatureIds": [
+      245
+    ],
+    "portraitFrame": 87,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 89
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 88,
+    "name": "Spirit Pyre",
+    "creatureIds": [
+      252
+    ],
+    "portraitFrame": 88,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 90
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 89,
+    "name": "Rock Covered Position",
+    "creatureIds": [
+      171
+    ],
+    "portraitFrame": 89,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 91
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 90,
+    "name": "Snow Covered Position",
+    "creatureIds": [
+      170
+    ],
+    "portraitFrame": 90,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 92
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 91,
+    "name": "Vast Cavern",
+    "creatureIds": [
+      168
+    ],
+    "portraitFrame": 91,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 93
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 92,
+    "name": "Dream Horse-shoe",
+    "creatureIds": [
+      172
+    ],
+    "portraitFrame": 92,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 94
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 93,
+    "name": "Natural Calamity",
+    "creatureIds": [
+      164
+    ],
+    "portraitFrame": 93,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 95
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 94,
+    "name": "Lost Friary",
+    "creatureIds": [
+      169
+    ],
+    "portraitFrame": 94,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 96
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 95,
+    "name": "Snowman",
+    "creatureIds": [
+      173
+    ],
+    "portraitFrame": 95,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 97
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 96,
+    "name": "Sylvan Homestead",
+    "creatureIds": [
+      192
+    ],
+    "portraitFrame": 96,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 98
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 97,
+    "name": "Enchanted Tower",
+    "creatureIds": [
+      193
+    ],
+    "portraitFrame": 97,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 99
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 98,
+    "name": "Howling Hollow",
+    "creatureIds": [
+      194
+    ],
+    "portraitFrame": 98,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 100
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 99,
+    "name": "Hellfire Rift",
+    "creatureIds": [
+      195
+    ],
+    "portraitFrame": 99,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 101
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 100,
+    "name": "Dragon Graveyard",
+    "creatureIds": [
+      196
+    ],
+    "portraitFrame": 100,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 102
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 101,
+    "name": "Training Grounds with archery",
+    "creatureIds": [
+      318
+    ],
+    "portraitFrame": 101,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 103
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 102,
+    "name": "Giant Golden Pavilion",
+    "creatureIds": [
+      319
+    ],
+    "portraitFrame": 102,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 104
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 103,
+    "name": "Wineyard",
+    "creatureIds": [
+      262
+    ],
+    "portraitFrame": 103,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 105
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 104,
+    "name": "Ziggurat",
+    "creatureIds": [
+      263
+    ],
+    "portraitFrame": 104,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 106
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 105,
+    "name": "Alehouse",
+    "creatureIds": [
+      264
+    ],
+    "portraitFrame": 105,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 107
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 106,
+    "name": "Yellow Crystal Cavern",
+    "creatureIds": [
+      265
+    ],
+    "portraitFrame": 106,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 108
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 107,
+    "name": "Purple Crystal Cavern",
+    "creatureIds": [
+      266
+    ],
+    "portraitFrame": 107,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 109
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 108,
+    "name": "Green Crystal Cavern",
+    "creatureIds": [
+      267
+    ],
+    "portraitFrame": 108,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 110
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 109,
+    "name": "Blue Crystal Cavern",
+    "creatureIds": [
+      268
+    ],
+    "portraitFrame": 109,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 111
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 110,
+    "name": "Cathedral",
+    "creatureIds": [
+      269
+    ],
+    "portraitFrame": 110,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 112
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 111,
+    "name": "Treehouse",
+    "creatureIds": [
+      270
+    ],
+    "portraitFrame": 111,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 113
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 112,
+    "name": "Dragon Factory",
+    "creatureIds": [
+      271
+    ],
+    "portraitFrame": 112,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 114
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 113,
+    "name": "Lust Chambers",
+    "creatureIds": [
+      272
+    ],
+    "portraitFrame": 113,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 115
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 114,
+    "name": "Wolf Cave",
+    "creatureIds": [
+      273
+    ],
+    "portraitFrame": 114,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 116
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 115,
+    "name": "Primeval Maw",
+    "creatureIds": [
+      274
+    ],
+    "portraitFrame": 115,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 117
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 116,
+    "name": "Ziggurat",
+    "creatureIds": [
+      275
+    ],
+    "portraitFrame": 116,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 118
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 117,
+    "name": "Swamp Hut",
+    "creatureIds": [
+      276
+    ],
+    "portraitFrame": 117,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 119
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 118,
+    "name": "Drowned Hall",
+    "creatureIds": [
+      277
+    ],
+    "portraitFrame": 118,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 120
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 119,
+    "name": "Coral Reef",
+    "creatureIds": [
+      288
+    ],
+    "portraitFrame": 119,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 121
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 120,
+    "name": "Ancient Crypt",
+    "creatureIds": [
+      286
+    ],
+    "portraitFrame": 120,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 122
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 121,
+    "name": "Frigate of the fallen",
+    "creatureIds": [
+      287
+    ],
+    "portraitFrame": 121,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 123
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 122,
+    "name": "Order of Fire",
+    "creatureIds": [
+      289
+    ],
+    "portraitFrame": 122,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 124
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 123,
+    "name": "Order of Ice",
+    "creatureIds": [
+      290
+    ],
+    "portraitFrame": 123,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 125
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 124,
+    "name": "Dragon Slayer Tower",
+    "creatureIds": [
+      200
+    ],
+    "portraitFrame": 124,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 126
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 125,
+    "name": "Cursed Temple of Archers",
+    "creatureIds": [
+      295
+    ],
+    "portraitFrame": 125,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 127
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 126,
+    "name": "Bloody Temple",
+    "creatureIds": [
+      296
+    ],
+    "portraitFrame": 126,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 128
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 127,
+    "name": "Temple of Souls",
+    "creatureIds": [
+      297
+    ],
+    "portraitFrame": 127,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 129
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 128,
+    "name": "Legendary Cursed Temple",
+    "creatureIds": [
+      298
+    ],
+    "portraitFrame": 128,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 130
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 129,
+    "name": "Order of Thunder",
+    "creatureIds": [
+      292
+    ],
+    "portraitFrame": 129,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 131
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 130,
+    "name": "Defunct Treetop Tower",
+    "creatureIds": [
+      299
+    ],
+    "portraitFrame": 130,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 132
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 131,
+    "name": "Training Tower",
+    "creatureIds": [
+      301
+    ],
+    "portraitFrame": 131,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 133
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 132,
+    "name": "Peon Hut",
+    "creatureIds": [
+      303
+    ],
+    "portraitFrame": 132,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 134
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 133,
+    "name": "Mire",
+    "creatureIds": [
+      304
+    ],
+    "portraitFrame": 133,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 135
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 134,
+    "name": "Altar of Darkness",
+    "creatureIds": [
+      306
+    ],
+    "portraitFrame": 134,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 136
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 135,
+    "name": "Butt Excavation",
+    "creatureIds": [
+      307
+    ],
+    "portraitFrame": 135,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 137
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 136,
+    "name": "Black Alder",
+    "creatureIds": [
+      309
+    ],
+    "portraitFrame": 136,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 138
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 137,
+    "name": "Quaggy Relic",
+    "creatureIds": [
+      311
+    ],
+    "portraitFrame": 137,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 139
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 138,
+    "name": "Squalid Nide",
+    "creatureIds": [
+      312
+    ],
+    "portraitFrame": 138,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 140
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 139,
+    "name": "Rusty Habitation",
+    "creatureIds": [
+      313
+    ],
+    "portraitFrame": 139,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 141
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 140,
+    "name": "Turquoise Passage",
+    "creatureIds": [
+      315
+    ],
+    "portraitFrame": 140,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 142
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 141,
+    "name": "Baba Yaga's Hut",
+    "creatureIds": [
+      316
+    ],
+    "portraitFrame": 141,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 143
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 142,
+    "name": "Sparky Meadow",
+    "creatureIds": [
+      317
+    ],
+    "portraitFrame": 142,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 144
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 143,
+    "name": "Mysterious portal",
+    "creatureIds": [
+      328
+    ],
+    "portraitFrame": 143,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 145
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 144,
+    "name": "Lizard Soldier Den",
+    "creatureIds": [
+      326
+    ],
+    "portraitFrame": 144,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 146
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 145,
+    "name": "Slith Pool",
+    "creatureIds": [
+      327
+    ],
+    "portraitFrame": 145,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 147
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 146,
+    "name": "Illusory Dragon Shrine",
+    "creatureIds": [
+      322
+    ],
+    "portraitFrame": 146,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 148
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 147,
+    "name": "Primitive stable",
+    "creatureIds": [
+      239
+    ],
+    "portraitFrame": 147,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 149
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 148,
+    "name": "Ruins in lava",
+    "creatureIds": [
+      330
+    ],
+    "portraitFrame": 148,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 150
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 149,
+    "name": "Evil Cathedral",
+    "creatureIds": [
+      331
+    ],
+    "portraitFrame": 149,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 151
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 150,
+    "name": "Dark Shrine",
+    "creatureIds": [
+      333
+    ],
+    "portraitFrame": 150,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 152
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 151,
+    "name": "Black Pond",
+    "creatureIds": [
+      335
+    ],
+    "portraitFrame": 151,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 153
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 152,
+    "name": "Gate of Tartarus",
+    "creatureIds": [
+      337
+    ],
+    "portraitFrame": 152,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 154
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 153,
+    "name": "Shadow Vault",
+    "creatureIds": [
+      325
+    ],
+    "portraitFrame": 153,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 155
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 154,
+    "name": "Imperial Barracks",
+    "creatureIds": [
+      340
+    ],
+    "portraitFrame": 154,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 156
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 155,
+    "name": "Green Dragon Nest",
+    "creatureIds": [
+      341
+    ],
+    "portraitFrame": 155,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 157
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 156,
+    "name": "Red Dragon Nest",
+    "creatureIds": [
+      342
+    ],
+    "portraitFrame": 156,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 158
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 157,
+    "name": "Faerie Dragon Nest",
+    "creatureIds": [
+      343
+    ],
+    "portraitFrame": 157,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 159
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 158,
+    "name": "Rust Dragon Nest",
+    "creatureIds": [
+      344
+    ],
+    "portraitFrame": 158,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 160
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 159,
+    "name": "Azure Dragon Nest",
+    "creatureIds": [
+      345
+    ],
+    "portraitFrame": 159,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 161
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 160,
+    "name": "Sacred Valley",
+    "creatureIds": [
+      349
+    ],
+    "portraitFrame": 160,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 162
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 161,
+    "name": "Spider Nest",
+    "creatureIds": [
+      351
+    ],
+    "portraitFrame": 161,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 163
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 162,
+    "name": "Maelstrom ",
+    "creatureIds": [
+      353
+    ],
+    "portraitFrame": 162,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 164
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 163,
+    "name": "Astral Portal",
+    "creatureIds": [
+      355
+    ],
+    "portraitFrame": 163,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 165
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 164,
+    "name": "Tomb of Angels",
+    "creatureIds": [
+      357
+    ],
+    "portraitFrame": 164,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 166
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 165,
+    "name": "Temple of the Ancients",
+    "creatureIds": [
+      361
+    ],
+    "portraitFrame": 165,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 167
+    }
+  },
+  {
+    "objectType": 17,
+    "objectSubtype": 166,
+    "name": "Holy Peaks",
+    "creatureIds": [
+      362
+    ],
+    "portraitFrame": 166,
+    "source": {
+      "file": "AmeCre.pac/DwTable.txt",
+      "line": 168
+    }
+  }
+]

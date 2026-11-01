@@ -21,3 +21,20 @@ export function readCreatureTable(text,{source='Crtraits.txt'}={}){
 }
 export function creatureStats(row){if(!row||!Number.isInteger(row.eraId))fail('UNRESOLVED_CREATURE','Missing ERA creature row');if(row.invalidRange)fail('INVALID_STAT','Invalid creature statistic range',row.source);const result={};for(const k of ['name','cost','fightValue','aiValue','growth','hitPoints','speed','attack','defense','damage','advMapAmount'])result[k]=structuredClone(row[k]);return result;}
 export function sourceFingerprint(file){return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');}
+
+// CRANIM uses two header lines followed by one 24-number record per ERA ID.
+// Preserve row identity: malformed data is an error, never a skipped creature.
+export function readCreatureAnimationTable(text,{source='cranim.txt'}={}){
+ const rows=[];
+ for(const [index,line]of text.replace(/^\uFEFF/,'').split(/\r?\n/).entries()){
+  if(index<2||!line.trim())continue;
+  const fields=line.split('\t'),numbers=fields.slice(0,24).map(Number);
+  if(fields.length<24||fields.slice(0,24).some(v=>!v.trim())||numbers.some(v=>!Number.isFinite(v)))fail('INVALID_ANIMATION','Expected 24 numeric animation columns',source+':'+(index+1));
+  const [timeBetweenFidgets,walk,attack]=numbers,graphics={timeBetweenFidgets,animationTime:{walk,attack,idle:10}};
+  if(timeBetweenFidgets<0||walk<=0||attack<=0)fail('INVALID_ANIMATION','Invalid animation timing',source+':'+(index+1));
+  if(numbers[10]!==0||numbers[23]!==0)graphics.missile={offset:Object.fromEntries(['upperX','upperY','middleX','middleY','lowerX','lowerY'].map((key,i)=>[key,numbers[4+i]])),frameAngles:numbers.slice(10,22),attackClimaxFrame:numbers[23]};
+  rows.push({eraId:rows.length,graphics,referenceName:fields[24]??'',source:source+':'+(index+1)});
+ }
+ if(!rows.length)fail('EMPTY_ANIMATION_TABLE','No creature animation rows',source);
+ return rows;
+}

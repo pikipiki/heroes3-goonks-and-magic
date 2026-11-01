@@ -1,0 +1,554 @@
+[
+  {
+    "id": "33",
+    "name": "Pantheon",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100,
+        "upgrade": 0
+      }
+    ]
+  },
+  {
+    "id": "34",
+    "name": "Mithril Tower",
+    "totalChance": 85,
+    "states": [
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 10,
+        "upgrade": 50
+      }
+    ]
+  },
+  {
+    "id": "35",
+    "name": "Experimental Factory",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 10,
+        "upgrade": 0
+      }
+    ]
+  },
+  {
+    "id": "36",
+    "name": "Wolf Raider Gaol",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 10,
+        "upgrade": 0
+      }
+    ]
+  },
+  {
+    "id": "38",
+    "name": "Blue Tower",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 10,
+        "upgrade": 0
+      }
+    ]
+  },
+  {
+    "id": "39",
+    "name": "Lava Spit",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 10,
+        "upgrade": 0
+      }
+    ]
+  },
+  {
+    "id": "40",
+    "name": "Monstrous Eyes' Sanctuary",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 10,
+        "upgrade": 0
+      }
+    ]
+  },
+  {
+    "id": "41",
+    "name": "Haunted Mansion",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 30,
+        "upgrade": 0
+      },
+      {
+        "chance": 10,
+        "upgrade": 0
+      }
+    ]
+  },
+  {
+    "id": "42",
+    "name": "Bone Pillar",
+    "totalChance": 85,
+    "states": [
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 10,
+        "upgrade": 0
+      }
+    ]
+  },
+  {
+    "id": "43",
+    "name": "City of the Dead",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100,
+        "upgrade": 0
+      }
+    ]
+  },
+  {
+    "id": "44",
+    "name": "Sacred Temple",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100,
+        "upgrade": 320
+      }
+    ]
+  },
+  {
+    "id": "45",
+    "name": "Seminarium",
+    "totalChance": 85,
+    "states": [
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 10,
+        "upgrade": 7
+      }
+    ]
+  },
+  {
+    "id": "46",
+    "name": "Phantom Ship",
+    "totalChance": 85,
+    "states": [
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 10,
+        "upgrade": 0
+      }
+    ]
+  },
+  {
+    "id": "47",
+    "name": "Sorceress Castle",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100,
+        "upgrade": 0
+      }
+    ]
+  },
+  {
+    "id": "48",
+    "name": "Outpost of Souls",
+    "totalChance": 85,
+    "states": [
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 25,
+        "upgrade": 222
+      },
+      {
+        "chance": 10,
+        "upgrade": 222
+      }
+    ]
+  },
+  {
+    "id": "49",
+    "name": "Rotten Dragons Valley",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 30
+      },
+      {
+        "chance": 30
+      },
+      {
+        "chance": 30
+      },
+      {
+        "chance": 10
+      }
+    ]
+  },
+  {
+    "id": "50",
+    "name": "Magical Utopia",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 30
+      },
+      {
+        "chance": 30
+      },
+      {
+        "chance": 30
+      },
+      {
+        "chance": 10
+      }
+    ]
+  },
+  {
+    "id": "51",
+    "name": "Legendary Dragon Utopia",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 30
+      },
+      {
+        "chance": 30
+      },
+      {
+        "chance": 30
+      },
+      {
+        "chance": 10
+      }
+    ]
+  },
+  {
+    "id": "52",
+    "name": "Dreadnought Tower",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100,
+        "upgrade": 223
+      }
+    ]
+  },
+  {
+    "id": "53",
+    "name": "Heaven's Door",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100,
+        "upgrade": 150
+      }
+    ]
+  },
+  {
+    "id": "54",
+    "name": "Forbidden Cliffs",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100,
+        "upgrade": 151
+      }
+    ]
+  },
+  {
+    "id": "55",
+    "name": "Olympus Forbidden",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100,
+        "upgrade": 152
+      }
+    ]
+  },
+  {
+    "id": "56",
+    "name": "Sins Generator",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100,
+        "upgrade": 153
+      }
+    ]
+  },
+  {
+    "id": "57",
+    "name": "Dragon Mausoleum",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100,
+        "upgrade": 154
+      }
+    ]
+  },
+  {
+    "id": "58",
+    "name": "Dragon City",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100,
+        "upgrade": 155
+      }
+    ]
+  },
+  {
+    "id": "59",
+    "name": "Behemoth Ancient Crag",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100,
+        "upgrade": 156
+      }
+    ]
+  },
+  {
+    "id": "60",
+    "name": "Volcanic Well",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100,
+        "upgrade": 157
+      }
+    ]
+  },
+  {
+    "id": "61",
+    "name": "Supreme Pyre",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100,
+        "upgrade": 158
+      }
+    ]
+  },
+  {
+    "id": "62",
+    "name": "Elemental Stockpile",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100,
+        "upgrade": 0
+      }
+    ]
+  },
+  {
+    "id": "63",
+    "name": "Gargoyle Stonevault",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100,
+        "upgrade": 31
+      }
+    ]
+  },
+  {
+    "id": "64",
+    "name": "Halls of Temptation",
+    "totalChance": 85,
+    "states": [
+      {
+        "chance": 25,
+        "upgrade": 281
+      },
+      {
+        "chance": 25,
+        "upgrade": 281
+      },
+      {
+        "chance": 25,
+        "upgrade": 281
+      },
+      {
+        "chance": 10,
+        "upgrade": 281
+      }
+    ]
+  },
+  {
+    "id": "65",
+    "name": "Royal Treasury",
+    "totalChance": 76,
+    "states": [
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 25,
+        "upgrade": 0
+      },
+      {
+        "chance": 1,
+        "upgrade": 0
+      }
+    ]
+  },
+  {
+    "id": "66",
+    "name": "Fire Dragon Castle",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100
+      }
+    ]
+  },
+  {
+    "id": "67",
+    "name": "Ice Dragon Castle",
+    "totalChance": 100,
+    "states": [
+      {
+        "chance": 100
+      }
+    ]
+  }
+]

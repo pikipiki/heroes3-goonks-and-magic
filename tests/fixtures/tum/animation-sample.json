@@ -1,0 +1,17 @@
+{
+  "archiveSHA256": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+  "text": "Time between fidgets\tWalk Animation Time\tAttack Animation Time\tFlight Animation Distance\tUpper-right Missile Offset\t\tRight Missile Offset\t\tLower-right Missile Offset\t\tMissile Frame Angles\t\t\t\t\t\t\t\t\t\t\t\tTroop Count Location Offset\tAttack Climax Frame\tName (reference only)\n\t\t\t\tX\tY\tX\tY\tX\tY\tThese must go from high to low (90 to -90)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n1.00\t1.15\t1.00\t1.00\t0\t0\t0\t0\t0\t0\t0.0\t0.0\t0.0\t0.0\t0.0\t0.0\t0.0\t0.0\t0.0\t0.0\t0.0\t0.0\t0\t0\tPikeman\n1.00\t0.90\t1.00\t1.00\t0\t0\t0\t0\t0\t0\t0.0\t0.0\t0.0\t0.0\t0.0\t0.0\t0.0\t0.0\t0.0\t0.0\t0.0\t0.0\t0\t0\tHalberdier\n1.00\t1.00\t1.00\t1.00\t38\t-65\t36\t-59\t21\t-50\t90.0\t72.0\t45.0\t27.0\t0.0\t-27.0\t-45.0\t-72.0\t-90.0\t0.0\t0.0\t0.0\t0\t7\tLight Crossboman",
+  "phoenix": {
+    "eraId": 252,
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      }
+    },
+    "referenceName": "Pheonix",
+    "source": "cranim.txt:288"
+  }
+}
