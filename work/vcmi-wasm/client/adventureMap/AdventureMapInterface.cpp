@@ -544,11 +544,15 @@ void AdventureMapInterface::onTileLeftClicked(const int3 &targetPosition)
 		return;
 
 #ifdef VCMI_EMSCRIPTEN
- // The touch presentation opens owned towns immediately; Shift retains classic path selection.
- if(isMobilePresentationActive() && GAME->interface()->makingTurn && !ENGINE->isKeyboardShiftDown())
+ // A map tap only prepares a route. Town windows are opened explicitly from Villes.
+ if(isMobilePresentationActive() && GAME->interface()->makingTurn)
   if(const auto town = getOwnedTownAt(targetPosition))
   {
-   GAME->interface()->openTownWindow(town);
+   if(const auto hero = GAME->interface()->localState->getCurrentHero())
+   {
+    GAME->interface()->localState->setPath(hero, town->visitablePos());
+    onHeroChanged(hero);
+   }
    return;
   }
 #endif

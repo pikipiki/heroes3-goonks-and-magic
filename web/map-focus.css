@@ -1,0 +1,4 @@
+#mobile-app .map-castle{display:none}
+#mobile-app[data-mode=map] .mobile-play .scene-tools{grid-template-columns:repeat(6,minmax(0,1fr));width:min(200px,calc(100% - 154px))}
+#mobile-app[data-mode=map] .mobile-play .scene-tools button{grid-column:span 2}
+#mobile-app[data-mode=map] .mobile-play .scene-tools .map-center,#mobile-app[data-mode=map] .mobile-play .scene-tools .map-castle{display:block;grid-column:span 3}

@@ -241,6 +241,11 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==4&&a>=0&&a<int(p->localState->getWanderingHeroes().size())&&ENGINE->windows().topWindow<AdventureMapInterface>()){const auto h=p->localState->getWanderingHero(a);p->localState->setSelection(h);adventureInt->centerOnObject(h);}
  if(action==5&&a>=0&&a<int(p->localState->getOwnedTowns().size())&&ENGINE->windows().topWindow<AdventureMapInterface>())p->openTownWindow(p->localState->getOwnedTown(a));
  if(action==6&&adventureInt&&hero)adventureInt->centerOnObject(hero);
+ if(action==45&&adventureInt&&ENGINE->windows().topWindow<AdventureMapInterface>()&&!p->localState->getOwnedTowns().empty()){
+  const auto selected=p->localState->getCurrentTown();
+  adventureInt->centerOnObject(selected&&selected->getOwner()==p->playerID?selected:p->localState->getOwnedTown(0));
+ }
+
  if(action==7&&ENGINE->windows().topWindow<AdventureMapInterface>())p->cb->save("Saves/Goonk-mobile",true);
  if(action==39){if(townWindow&&townWindow->builds&&p->makingTurn&&townWindow->town->getOwner()==p->playerID&&a>=0&&a<44&&townWindow->town->getTown()->buildings.count(BuildingID(a))&&townWindow->town->hasBuilt(BuildingID(a)))townWindow->builds->buildingClicked(BuildingID(a));lastPublished=0;return;}
  if(action==8&&townWindow&&townWindow->town->getOwner()==p->playerID&&p->cb->canBuildStructure(townWindow->town,BuildingID(a))==EBuildingState::ALLOWED)p->cb->buildBuilding(townWindow->town,BuildingID(a));
