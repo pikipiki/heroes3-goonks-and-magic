@@ -70,7 +70,7 @@ void publishMobileBattleAtlas(){
  const auto battle=CPlayerInterface::battleInt;
  if(!battle||!ENGINE->windows().topWindow<BattleWindow>())return;
  last=SDL_GetTicks();
- std::vector<const CStack *> units;for(const auto stack:battle->getBattle()->battleGetAllStacks())if(stack->getCount()>0&&stack->getPosition().isValid()&&units.size()<64)units.push_back(stack);
+ std::vector<const CStack *> units;size_t total=0;for(const auto stack:battle->getBattle()->battleGetAllStacks())if(stack->getPosition().isValid()){++total;if(units.size()<64)units.push_back(stack);}std::vector<std::array<int32_t,7>> geometry(units.size());
  if(units.empty())return;
  const int width=1024,height=((units.size()+7)/8)*128;
  auto scratch=SDL_CreateRGBSurfaceWithFormat(0,512,512,32,SDL_PIXELFORMAT_ARGB8888);
@@ -79,10 +79,13 @@ void publishMobileBattleAtlas(){
  SDL_FillRect(atlas,nullptr,0);
  {auto canvas=Canvas::createFromSurface(scratch,CanvasScalingPolicy::IGNORE);
  for(size_t i=0;i<units.size();i++){
-  SDL_FillRect(scratch,nullptr,0);Point bounds;if(!battle->stacksController->drawIsolatedStack(canvas,units[i],bounds))continue;
+  geometry[i][0]=units[i]->unitId();SDL_FillRect(scratch,nullptr,0);Point bounds;if(!battle->stacksController->drawIsolatedStack(canvas,units[i],bounds))continue;
   int left=512,top=512,right=-1,bottom=-1;
   for(int y=0;y<std::min(512,bounds.y);y++)for(int x=0;x<std::min(512,bounds.x);x++){const auto pixel=static_cast<uint8_t*>(scratch->pixels)+y*scratch->pitch+x*4;if(pixel[3]>32){left=std::min(left,x);right=std::max(right,x);top=std::min(top,y);bottom=std::max(bottom,y);}}
   if(right<left)continue;
+  const auto position=battle->stacksController->getStackPositionAtHex(units[i]->getPosition(),units[i])+battle->stacksController->mobileAnimationOffset(units[i]);
+  const auto center=battle->fieldController->hexPositionAbsolute(units[i]->getPosition()).center()+battle->stacksController->mobileAnimationOffset(units[i]);
+  geometry[i]={int32_t(units[i]->unitId()),position.x+left,position.y+top,right-left+1,bottom-top+1,center.x,center.y};
   SDL_Rect src{left,top,right-left+1,bottom-top+1};double scale=std::min(110.0/src.w,110.0/src.h);
   SDL_Rect dst{int(i%8)*128+(128-int(src.w*scale))/2,int(i/8)*128+(128-int(src.h*scale))/2,int(src.w*scale),int(src.h*scale)};
   SDL_SetSurfaceBlendMode(scratch,SDL_BLENDMODE_NONE);SDL_BlitScaled(scratch,&src,atlas,&dst);
@@ -91,9 +94,9 @@ void publishMobileBattleAtlas(){
  // at the browser boundary; drawing them directly into RGBA swaps red/blue.
  auto rgba=SDL_ConvertSurfaceFormat(atlas,SDL_PIXELFORMAT_RGBA32,0);
  if(!rgba){SDL_FreeSurface(scratch);SDL_FreeSurface(atlas);return;}
- const size_t prefix=units.size()*4,bytes=width*height*4;auto packet=static_cast<uint8_t*>(malloc(prefix+bytes));
- if(packet){for(size_t i=0;i<units.size();i++)reinterpret_cast<uint32_t*>(packet)[i]=units[i]->unitId();memcpy(packet+prefix,rgba->pixels,bytes);atlasPending.store(true);
- MAIN_THREAD_ASYNC_EM_ASM({const ptr=$0;const w=$1;const h=$2;const n=$3;try{const ids=Array.from(HEAPU32.subarray(ptr/4,ptr/4+n));const rgba=new Uint8ClampedArray(HEAPU8.slice(ptr+n*4,ptr+n*4+w*h*4).buffer);const canvas=window.goonkBattleAtlas||(window.goonkBattleAtlas=document.createElement('canvas'));if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}canvas.getContext('2d').putImageData(new ImageData(rgba,w,h),0,0);window.goonkBattleAtlasIds=new Map(ids.map((id,i)=>[id,i]));}finally{_free(ptr);Module._vcmiMobileAtlasAck();}},packet,width,height,units.size());}
+ const size_t prefix=units.size()*7*sizeof(int32_t),bytes=width*height*4;auto packet=static_cast<uint8_t*>(malloc(prefix+bytes));
+ if(packet){for(size_t i=0;i<units.size();i++)memcpy(packet+i*7*sizeof(int32_t),geometry[i].data(),7*sizeof(int32_t));memcpy(packet+prefix,rgba->pixels,bytes);atlasPending.store(true);
+ MAIN_THREAD_ASYNC_EM_ASM({const ptr=$0;const w=$1;const h=$2;const n=$3;try{const rows=Array.from({length:n},(_,i)=>Array.from(HEAP32.subarray(ptr/4+i*7,ptr/4+i*7+7)));const ids=rows.map(row=>row[0]);window.goonkBattleSpriteBounds=rows.map(row=>({stackId:row[0],x:row[1],y:row[2],w:row[3],h:row[4],renderX:row[5],renderY:row[6]}));window.goonkBattleSpriteBoundsComplete=!!$4;const rgba=new Uint8ClampedArray(HEAPU8.slice(ptr+n*28,ptr+n*28+w*h*4).buffer);const canvas=window.goonkBattleAtlas||(window.goonkBattleAtlas=document.createElement('canvas'));if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}canvas.getContext('2d').putImageData(new ImageData(rgba,w,h),0,0);window.goonkBattleAtlasIds=new Map(ids.map((id,i)=>[id,i]));}finally{_free(ptr);Module._vcmiMobileAtlasAck();}},packet,width,height,units.size(),total<=64);}
  SDL_FreeSurface(rgba);SDL_FreeSurface(scratch);SDL_FreeSurface(atlas);
 }
 // Version of native ERA services actually linked into this engine.

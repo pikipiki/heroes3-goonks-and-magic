@@ -6,8 +6,9 @@ export function fitNativeBattle(width,height,focus,view='auto'){
  return fitRegion(width,height,NATIVE_BATTLE_REGION,close?cover/base:1,focus);
 }
 export function nativeBattleClose(width,height,view){return view==='close'||(view==='auto'&&height>width);}
-export function paintMovementRange(ctx,cells,layout,units=[]){
+export function paintMovementRange(ctx,cells,layout,units=[],occlusion=[]){
  const boxes=units.map(u=>({left:u.x-44,right:u.x+44,top:u.y-88,bottom:u.y+16}));
+ boxes.push(...occlusion);
  ctx.save();ctx.strokeStyle='#ffe082';ctx.fillStyle='#f7d77430';ctx.lineWidth=1.5;
  for(const cell of cells||[]){
   if(!cell.reachable||boxes.some(b=>cell.x+22>b.left&&cell.x-22<b.right&&cell.y+26>b.top&&cell.y-26<b.bottom))continue;
@@ -17,8 +18,9 @@ export function paintMovementRange(ctx,cells,layout,units=[]){
 }
 export function battleFocus(state,manual,previous){return manual||state.focus||(state.battleUnits||[]).find(u=>state.activeStack!==undefined&&u.stackId===state.activeStack)||(state.battleUnits||[]).find(u=>state.activeUnit?.id!==undefined&&u.id===state.activeUnit.id&&!u.enemy)||(state.battleUnits||[]).find(u=>!u.enemy)||previous||{x:400,y:277};}
 export const BATTLE_HEX_VERTICES=[[0,-26],[22,-16],[22,16],[0,26],[-22,16],[-22,-16]];
-export function paintBattleGrid(ctx,cells,layout,units=[]){
+export function paintBattleGrid(ctx,cells,layout,units=[],occlusion=[]){
  const boxes=units.map(u=>{const occupied=(cells||[]).filter(c=>u.occupied?.includes(c.hex)),xs=[u.x,...occupied.map(c=>c.x)];return {left:Math.min(...xs)-44,right:Math.max(...xs)+44,top:u.y-88,bottom:u.y+16};});
+ boxes.push(...occlusion);
  ctx.save();ctx.beginPath();for(const cell of cells||[]){if(boxes.some(b=>cell.x+22>b.left&&cell.x-22<b.right&&cell.y+26>b.top&&cell.y-26<b.bottom))continue;BATTLE_HEX_VERTICES.forEach(([x,y],i)=>{const xx=layout.dx+(cell.x+x-layout.x)*layout.scale,yy=layout.dy+(cell.y+y-layout.y)*layout.scale;i?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy);});ctx.closePath();}
  ctx.strokeStyle='#16160ed9';ctx.lineWidth=2;ctx.stroke();ctx.strokeStyle='#f8e8af85';ctx.lineWidth=.8;ctx.stroke();ctx.restore();
 }

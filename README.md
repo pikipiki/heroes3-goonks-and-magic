@@ -355,4 +355,8 @@ Dans la vue rapprochée, la caméra suit les positions animées transmises par l
 
 Explorer une zone suspend le suivi ; « Revenir à l’action » le reprend. Une nouvelle action native reprend aussi le suivi. Le livre des sorts et les dialogues de combat conservent le choix de vue ; une nouvelle bataille commence toujours en vue entière. Le réglage de réduction des animations supprime les transitions de caméra.
 
-Le moteur est livré dans `outputs/vcmi-wasm-goonk-camera-follow-engine.tar.gz`. La compilation isolée utilise `ninja -j32 html5`. Vérifications : 134 tests unitaires, scénarios tactiles Chrome/WebKit, construction et vérification du site, puis bataille native avec sort de zone. Le téléphone physique reste à confirmer.
+Le moteur est livré dans `outputs/vcmi-wasm-goonk-camera-follow-engine.tar.gz`. La compilation isolée utilise `ninja -j32 html5`. Vérifications : 136 tests unitaires, scénarios tactiles Chrome/WebKit, construction et vérification du site, puis bataille native avec sort de zone. Le téléphone physique reste à confirmer.
+
+Les commandes du combat sont agrandies à 52–56 pixels de haut (48 pixels pour certaines commandes sur les plus petits écrans), espacées et protégées contre les clics de compatibilité retardés qui pourraient atteindre un bouton voisin après un changement de vue. Un glissement, un changement d’écran ou un toucher commencé sur une commande désactivée n’active pas une autre action.
+
+La grille utilise les dimensions natives réelles des créatures et des cadavres. Les cases qui recouvriraient leur corps ne sont pas dessinées, et les repères tactiques au sol sont retirés pendant les animations et l’autocombat. Les scénarios `battle-accessibility-e2e.mjs` vérifient les boutons, la navigation au clavier, les rotations et l’absence de pixels de grille sur un corps, sous Chrome et WebKit.
