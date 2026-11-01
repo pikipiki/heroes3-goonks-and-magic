@@ -10,6 +10,7 @@
 
 #include "StdInc.h"
 #include "InputHandler.h"
+#include "BrowserEventQueue.h"
 #ifdef VCMI_HTML5_BUILD
 #include "../../lib/html5/html5.h"
 #endif
@@ -244,7 +245,9 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 {
 	if(ev.type == SDL_QUIT)
 	{
+#ifndef VCMI_EMSCRIPTEN
 		std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+#endif
 #ifdef VCMI_ANDROID
 		ENGINE->user().onShutdownRequested(false);
 #else
@@ -254,7 +257,9 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 	}
 	else if(ev.type == SDL_APP_WILLENTERBACKGROUND)
 	{
+#ifndef VCMI_EMSCRIPTEN
 		std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+#endif
 		ENGINE->user().onAppPaused();
 		return;
 	}
@@ -263,21 +268,27 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 		if(ev.key.keysym.sym == SDLK_F4 && (ev.key.keysym.mod & KMOD_ALT))
 		{
 			// FIXME: dead code? Looks like intercepted by OS/SDL and delivered as SDL_Quit instead?
+#ifndef VCMI_EMSCRIPTEN
 			std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+#endif
 			ENGINE->user().onShutdownRequested(true);
 			return;
 		}
 
 		if(ev.key.keysym.scancode == SDL_SCANCODE_AC_BACK && !settings["input"]["handleBackRightMouseButton"].Bool())
 		{
+#ifndef VCMI_EMSCRIPTEN
 			std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+#endif
 			ENGINE->user().onShutdownRequested(true);
 			return;
 		}
 	}
 	else if(ev.type == SDL_USEREVENT)
 	{
+#ifndef VCMI_EMSCRIPTEN
 		std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+#endif
 		handleUserEvent(ev.user);
 
 		return;
@@ -296,14 +307,18 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 			case SDL_WINDOWEVENT_RESTORED:
 #ifndef VCMI_IOS
 			{
+#ifndef VCMI_EMSCRIPTEN
 				std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+#endif
 				ENGINE->onScreenResize(false, false);
 			}
 #endif
 				break;
 			case SDL_WINDOWEVENT_SIZE_CHANGED:
 			{
+#ifndef VCMI_EMSCRIPTEN
 				std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+#endif
 #ifdef VCMI_MOBILE
 				ENGINE->onScreenResize(true, false);
 #else
@@ -313,7 +328,9 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 				break;
 			case SDL_WINDOWEVENT_FOCUS_GAINED:
 			{
+#ifndef VCMI_EMSCRIPTEN
 				std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+#endif
 				if(settings["general"]["audioMuteFocus"].Bool()) {
 					ENGINE->music().setVolume(settings["general"]["music"].Integer());
 					ENGINE->sound().setVolume(settings["general"]["sound"].Integer());
@@ -322,7 +339,9 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 				break;
 			case SDL_WINDOWEVENT_FOCUS_LOST:
 			{
+#ifndef VCMI_EMSCRIPTEN
 				std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+#endif
 				if(settings["general"]["audioMuteFocus"].Bool()) {
 					ENGINE->music().setVolume(0);
 					ENGINE->sound().setVolume(0);
@@ -334,7 +353,9 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 	}
 	else if(ev.type == SDL_SYSWMEVENT)
 	{
+#ifndef VCMI_EMSCRIPTEN
 		std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+#endif
 		if(!settings["session"]["headless"].Bool() && settings["general"]["notifications"].Bool())
 		{
 			NotificationHandler::handleSdlEvent(ev);
@@ -360,7 +381,9 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 	//preprocessing
 	if(ev.type == SDL_MOUSEMOTION)
 	{
+#ifndef VCMI_EMSCRIPTEN
 		std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+#endif
 		ENGINE->cursor().cursorMove(ev.motion.x, ev.motion.y);
 	}
 #endif
@@ -400,12 +423,15 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 
 void InputHandler::fetchEvents()
 {
-	SDL_Event ev;
-
-	while(1 == SDL_PollEvent(&ev))
-	{
-		preprocessEvent(ev);
-	}
+ SDL_Event ev;
+#ifdef VCMI_EMSCRIPTEN
+ // A focus/visibility event must never block the browser while a worker owns
+ // the interface mutex and may be waiting for a browser-thread proxy.
+ while(SDL_PollEvent(&ev)==1)deferredBrowserEvents.push_back(ev);
+ browser_input::drain(deferredBrowserEvents,ENGINE->interfaceMutex,[this](const SDL_Event & event){preprocessEvent(event);});
+#else
+ while(SDL_PollEvent(&ev)==1)preprocessEvent(ev);
+#endif
 }
 
 bool InputHandler::isKeyboardCmdDown() const

@@ -48,6 +48,7 @@ struct PowerState {
 class InputHandler
 {
 	std::vector<SDL_Event> eventsQueue;
+	std::vector<SDL_Event> deferredBrowserEvents;
 	tbb::concurrent_queue<std::unique_ptr<std::function<void()>>> dispatchedTasks;
 	std::mutex eventsMutex;
 
