@@ -81,6 +81,29 @@ TEST_P(NormalLevelConditionTest, ImmuneNormal)
 	EXPECT_EQ(!isMagicalEffect, subject->isReceptive(&mechanicsMock, &unitMock));
 }
 
+TEST_P(NormalLevelConditionTest, SourceHarmfulLevelIncludesMagicalAbilities)
+{
+    setDefaultExpectations();
+    unitBonuses.addNewBonus(std::make_shared<Bonus>(BonusDuration::ONE_BATTLE,
+        BonusType::ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY, BonusSource::OTHER, 1, BonusSourceID()));
+    EXPECT_CALL(mechanicsMock, isPositiveSpell()).WillRepeatedly(Return(false));
+    for(int level : {0, 1, 2})
+    {
+        EXPECT_CALL(mechanicsMock, getSpellLevel()).WillRepeatedly(Return(level));
+        EXPECT_EQ(!isMagicalEffect || level > 1, subject->isReceptive(&mechanicsMock, &unitMock));
+    }
+}
+
+TEST_P(NormalLevelConditionTest, SourceHarmfulLevelAllowsPositiveSpells)
+{
+    setDefaultExpectations();
+    unitBonuses.addNewBonus(std::make_shared<Bonus>(BonusDuration::ONE_BATTLE,
+        BonusType::ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY, BonusSource::OTHER, 5, BonusSourceID()));
+    EXPECT_CALL(mechanicsMock, isPositiveSpell()).WillRepeatedly(Return(true));
+    EXPECT_CALL(mechanicsMock, getSpellLevel()).WillRepeatedly(Return(1));
+    EXPECT_TRUE(subject->isReceptive(&mechanicsMock, &unitMock));
+}
+
 INSTANTIATE_TEST_SUITE_P
 (
 	ByMagicalEffect,

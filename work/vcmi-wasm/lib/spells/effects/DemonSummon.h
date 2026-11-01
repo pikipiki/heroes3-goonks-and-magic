@@ -33,6 +33,9 @@ protected:
 	void serializeJsonUnitEffect(JsonSerializeFormat & handler) override final;
 
 private:
+	CreatureID raisedCreatureType(const battle::Unit * unit) const;
+	bool eraCorpseTransform = false;
+
 	int32_t raisedCreatureAmount(const Mechanics * m, const battle::Unit * unit) const;
 
 	CreatureID creature;

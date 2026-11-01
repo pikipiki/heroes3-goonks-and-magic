@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "registered": false,
+  "sourceArchive": "Common Def.pac",
+  "sourceArchiveSha256": "76d25c568e4af817ea574639063f8af8ae8ac7e697a5bc6e7f42adeaa247a253",
+  "proof": "Original5D5B05..35 passes buildingID[+64] as frame to H3DlgDef4EA800;5D5B5F..74 passes sameID to name460CC0. Original67F5D4 town table chooses HALL*.def. Constructor4EA83E..44 stores frame argument+20 into+34.",
+  "towns": [
+    {
+      "town": "castle",
+      "eraTown": 0,
+      "sourceBuilding": 77,
+      "nativeBuilding": 57,
+      "sourceName": "Upg. Portal of Splendor",
+      "sourceCost": [
+        0,
+        15,
+        0,
+        15,
+        15,
+        15,
+        30000
+      ],
+      "sourceHall": "HALLCSTL.def",
+      "sourceFrame": 77,
+      "nativeFrame": 57,
+      "rgbaSha256": "f7f4f6f40cae35059ee66583d6e8c7340818d939642991012386e1bf6181e2e7",
+      "png": {
+        "path": "content/Sprites/tum-era/castle-building77.png",
+        "sha256": "db44dac54c1e4f09ed6d16837124273bfa886c4bfdcfa3e667f38e1fbcb6f3a9"
+      },
+      "sourceThirdAndFourthSamePixels": true,
+      "oldReference": "tum-era/castle-hall",
+      "baseReference": "town-screen/castle/HALLCSTL",
+      "resolvedBaseResource": "mod/third-upgrades/content/sprites/town-screen/castle/HALLCSTL.def",
+      "baseRawFrames": 44,
+      "baseCustomFrames": [
+        24,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "preservedTownConfig": true
+    },
+    {
+      "town": "inferno",
+      "eraTown": 3,
+      "sourceBuilding": 77,
+      "nativeBuilding": 57,
+      "sourceName": "Upg. Unholy Palace",
+      "sourceCost": [
+        10,
+        25,
+        10,
+        0,
+        0,
+        0,
+        25000
+      ],
+      "sourceHall": "HALLINFR.def",
+      "sourceFrame": 77,
+      "nativeFrame": 57,
+      "rgbaSha256": "92da8591c98b12b849ca37eb1869bc2bf5606a7e6858f0301ab30c90b7d3ba5a",
+      "png": {
+        "path": "content/Sprites/tum-era/inferno-building77.png",
+        "sha256": "ad4a26634694099577226d9630e2a487415ca46fd0a7eeb36a3d22f21d42b279"
+      },
+      "sourceThirdAndFourthSamePixels": true,
+      "oldReference": "tum-era/inferno-hall",
+      "baseReference": "town-screen/inferno/ALTHALLINFR.DEF",
+      "resolvedBaseResource": "mod/third-upgrades/content/sprites/town-screen/inferno/ALTHALLINFR.def",
+      "baseRawFrames": 44,
+      "baseCustomFrames": [
+        17,
+        20,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "preservedTownConfig": true
+    },
+    {
+      "town": "necropolis",
+      "eraTown": 4,
+      "sourceBuilding": 77,
+      "nativeBuilding": 57,
+      "sourceName": "Upg. Bloody Vault",
+      "sourceCost": [
+        10,
+        30,
+        10,
+        0,
+        0,
+        0,
+        20000
+      ],
+      "sourceHall": "HALLNECR.def",
+      "sourceFrame": 77,
+      "nativeFrame": 57,
+      "rgbaSha256": "63ea09b2280f3e211e69898c892aebce4096ea37c361deb3b85869786f191e14",
+      "png": {
+        "path": "content/Sprites/tum-era/necropolis-building77.png",
+        "sha256": "3ba796dd2ba9582fe554bce3549190f5875e8381666a0104c8875748a62024e4"
+      },
+      "sourceThirdAndFourthSamePixels": true,
+      "oldReference": "tum-era/necropolis-hall",
+      "baseReference": "town-screen/necropolis/ALTHALLNECR.DEF",
+      "resolvedBaseResource": "mod/third-upgrades/content/sprites/town-screen/necropolis/ALTHALLNECR.def",
+      "baseRawFrames": 51,
+      "baseCustomFrames": [
+        24,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "preservedTownConfig": true
+    },
+    {
+      "town": "conflux",
+      "eraTown": 8,
+      "sourceBuilding": 77,
+      "nativeBuilding": 57,
+      "sourceName": "Upg. Spirit Pyre",
+      "sourceCost": [
+        15,
+        25,
+        15,
+        0,
+        0,
+        0,
+        20000
+      ],
+      "sourceHall": "HallElem.def",
+      "sourceFrame": 77,
+      "nativeFrame": 57,
+      "rgbaSha256": "7c2954c637c4bc19f5e82add847ede8f585fb9eb34230d027eed9c5c33a3b949",
+      "png": {
+        "path": "content/Sprites/tum-era/conflux-building77.png",
+        "sha256": "985233752f3fc41e8246c49d0e7acb4ba497904817246cd96d6370db41b406de"
+      },
+      "sourceThirdAndFourthSamePixels": true,
+      "oldReference": "tum-era/conflux-hall",
+      "baseReference": "town-screen/conflux/ALTHALLELEM.DEF",
+      "resolvedBaseResource": "mod/third-upgrades/content/sprites/town-screen/conflux/AltHallElem.def",
+      "baseRawFrames": 51,
+      "baseCustomFrames": [
+        23,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "preservedTownConfig": true
+    },
+    {
+      "town": "stronghold",
+      "eraTown": 6,
+      "sourceBuilding": 77,
+      "nativeBuilding": 57,
+      "sourceName": "Upg. Behemoth Tomb",
+      "sourceCost": [
+        15,
+        0,
+        15,
+        0,
+        25,
+        0,
+        20000
+      ],
+      "sourceHall": "HALLSTRN.def",
+      "sourceFrame": 77,
+      "nativeFrame": 57,
+      "rgbaSha256": "8ed6d860a066bb89bc249a03176576f444253e746aa1cb12ab63c2e8820a5094",
+      "png": {
+        "path": "content/Sprites/tum-era/stronghold-building77.png",
+        "sha256": "ec0cd5e4656f0e8561f16b9cd433cd879de372d337e40781b99614849e6b6c6b"
+      },
+      "sourceThirdAndFourthSamePixels": true,
+      "oldReference": "tum-era/stronghold-hall",
+      "baseReference": "town-screen/stronghold/HALLSTRNALT.DEF",
+      "resolvedBaseResource": "mod/third-upgrades/content/sprites/town-screen/stronghold/HALLSTRNALT.def",
+      "baseRawFrames": 51,
+      "baseCustomFrames": [
+        20,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "preservedTownConfig": true
+    }
+  ],
+  "pending": [],
+  "scope": "Changes only hall resource reference and PNGsourceframe77, preserving all existing town configuration. No creature or building activation.",
+  "nativeValidation": {
+    "report": "work/tum-native-proofs/hall-icons/results-native-halls-utf8/report.json",
+    "wasmSha256": "dcfabfb51fda81ef705972e04788ea8801731fc9548115699a68e070172f0277",
+    "scope": "Five towns: mobile construction list, native hall and building57 detail, actual PNG77 resource reads"
+  }
+}

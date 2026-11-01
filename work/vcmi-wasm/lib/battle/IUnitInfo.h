@@ -36,6 +36,9 @@ public:
 	virtual int32_t unitBaseAmount() const = 0;
 
 	virtual uint32_t unitId() const = 0;
+    // Source ERA array position, distinct from native unit ID and army slot.
+    // Default supports detached/simulated units from other game extensions.
+    virtual int32_t sourceMassSlot() const { return -1; }
 	virtual BattleSide unitSide() const = 0;
 	virtual PlayerColor unitOwner() const = 0;
 	virtual SlotID unitSlot() const = 0;

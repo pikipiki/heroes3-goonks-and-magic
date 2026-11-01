@@ -46,12 +46,12 @@ struct RebirthResult
 {
     Health health = 0;
     bool consumesCharge = false;
-    bool marksUsed = false;
+    bool marksDone = false;
 };
 
 // Amethyst stores these three configuration values as floats, including
 // creature-plus-stack aggregation. The observed comparison promotes chance
-// to long double; HP calculation promotes the stored fraction/sure to double.
+// to double in the shipped MSVC DLL; HP calculation also uses double.
 // Fractions are nonnegative but may exceed one after valid source aggregation.
 // Reject unrepresentable arithmetic instead of relying on overflow behavior.
 inline Health rawRebirthHealth(std::int64_t initialCount, Health unitHP,
@@ -71,8 +71,8 @@ inline Health rawRebirthHealth(std::int64_t initialCount, Health unitHP,
     if (initialCount > std::numeric_limits<Health>::max() / unitHP)
         throw std::overflow_error("Initial total creature HP cannot be represented");
     const Health maximum = initialCount * unitHP;
-    const bool success = static_cast<long double>(chance) >
-                         0.0001L * static_cast<long double>(roll0to9999);
+    const bool success = static_cast<double>(chance) >
+                         0.0001 * static_cast<double>(roll0to9999);
     const double factor = static_cast<double>(sure) +
                           (success ? static_cast<double>(fraction) : 0.0);
     const double hp = static_cast<double>(maximum) * factor;
@@ -84,20 +84,42 @@ inline Health rawRebirthHealth(std::int64_t initialCount, Health unitHP,
 
 // Call only for a dead non-clone stack. The original function also checks
 // stack eligibility before reaching this configuration-driven branch.
-// The separate creature-experience rebirth branch is intentionally not modeled.
+// The separate creature-experience branch uses experienceRebirthHealth below.
 // No whole-creature count is inferred: the source delegates HP restoration to
 // BattleMgr_ResurectArchangel and its resulting count/partial-HP behavior must
 // be established at the native integration point.
 inline RebirthResult rebirth(std::int64_t initialCount, Health unitHP,
                              float chance, float fraction, float sure,
-                             int roll0to9999, int charges, bool alreadyUsed)
+                             int roll0to9999, int charges, bool eraDone)
 {
     require(charges >= 0, "Rebirth charges must be nonnegative");
     const Health raw = rawRebirthHealth(initialCount, unitHP, chance,
                                        fraction, sure, roll0to9999);
-    if (alreadyUsed || charges == 0 || raw == 0)
+    if (eraDone || charges == 0 || raw == 0)
         return {};
     return {std::max(unitHP, raw), true, true};
+}
+
+// Independent stack-experience phoenix ability: a fixed20percent chance and
+// fixed20percent initial-total-HP heal. Source/DLL draw its coin first, even if
+// disabled; only the caller owns RNG and must preserve that call sequence.
+// The XP branch does not consume a spell charge and may run after configured
+// rebirth already marked DONE. Pass the pre-event eligibility to both branches.
+inline Health experienceRebirthHealth(std::int64_t initialCount, Health unitHP,
+                                     bool enabled, int roll0to9999, bool eraDone)
+{
+    require(initialCount >= 0, "Initial creature count must be nonnegative");
+    require(unitHP > 0, "Creature HP must be positive");
+    require(roll0to9999 >= 0 && roll0to9999 <= 9999,
+            "Experience rebirth roll must be between0and9999");
+    if(initialCount > std::numeric_limits<Health>::max() / unitHP)
+        throw std::overflow_error("Initial total creature HP cannot be represented");
+    if(!enabled || eraDone || !(0.2 > 0.0001 * static_cast<double>(roll0to9999)))
+        return 0;
+    const double hp = static_cast<double>(initialCount * unitHP) * 0.2;
+    if(!std::isfinite(hp) || hp >= std::ldexp(1.0, 63))
+        throw std::overflow_error("Experience resurrection HP cannot be represented");
+    return std::max(unitHP, static_cast<Health>(hp));
 }
 
 enum class ActionKind

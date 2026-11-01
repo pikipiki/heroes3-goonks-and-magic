@@ -34,6 +34,14 @@ int main()
     expectThrow<std::invalid_argument>([] { regeneration(1,100,50,50,100); });
     expectThrow<std::invalid_argument>([] { regeneration(1,100,50,50,-1); });
 
+    int successes = 0;
+    for(int roll=0;roll<10000;++roll)
+        successes += experienceRebirthHealth(10,100,true,roll,false) > 0;
+    assert(successes == 2000);
+    assert(experienceRebirthHealth(1,100,true,0,false) == 100);
+    assert(experienceRebirthHealth(10,100,true,2000,false) == 0);
+    assert(experienceRebirthHealth(10,100,false,0,false) == 0);
+    assert(experienceRebirthHealth(10,100,true,0,true) == 0);
     // Rebirth exposes HP directly, with no invented whole-creature rounding.
     assert(rawRebirthHealth(10,100,0.5f,0.3f,0.2f,4999) == 500);
     assert(rawRebirthHealth(10,100,0.5f,0.3f,0.2f,5000) == 200);
@@ -41,9 +49,9 @@ int main()
     assert(rawRebirthHealth(10,100,1.0f,0.3f,0.2f,9999) == 500);
     assert(rawRebirthHealth(3,101,1.0f,0.3f,0.2f,0) == 151);
     const auto one = rebirth(1,100,1.0f,0.3f,0.2f,0,1,false);
-    assert(one.health == 100 && one.consumesCharge && one.marksUsed);
+    assert(one.health == 100 && one.consumesCharge && one.marksDone);
     const auto none = rebirth(0,100,1.0f,0.3f,0.2f,0,1,false);
-    assert(none.health == 0 && !none.consumesCharge && !none.marksUsed);
+    assert(none.health == 0 && !none.consumesCharge && !none.marksDone);
     assert(rebirth(10,100,1.0f,0.3f,0.2f,0,0,false).health == 0);
     assert(rebirth(10,100,1.0f,0.3f,0.2f,0,1,true).health == 0);
     assert(rebirth(10,100,0.0f,0.3f,0.0f,0,1,false).health == 0);

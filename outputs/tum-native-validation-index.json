@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "engineSha256": "dcfabfb51fda81ef705972e04788ea8801731fc9548115699a68e070172f0277",
+  "reportsSanitized": true,
+  "screenshotsRemainInScratch": "Original15hall+9raise+4transformerPNG artifacts; index reports reference basenames",
+  "files": [
+    {
+      "path": "scripts/era-bridge/creatures/inventory-registered-creatures.mjs",
+      "bytes": 9391,
+      "sha256": "3103662059f93cb543ebf97183f9a17ee4c681b2761fa936d1c2d96b10bd13a7"
+    },
+    {
+      "path": "scripts/era-bridge/creatures/repair-fourth-halls.mjs",
+      "bytes": 5507,
+      "sha256": "7df407c46f2a4bfb7185dbcc6ae2336495103d08151a7b4abaef1816fc79c553"
+    },
+    {
+      "path": "work/browser-tests/era-fourth-halls-native-e2e.mjs",
+      "bytes": 7771,
+      "sha256": "a4aedf7759f10f3afbde8132b26f420a8f88640d245cc4b8215a6be2a51d4faa"
+    },
+    {
+      "path": "work/browser-tests/era-nightmare-245-native-e2e.mjs",
+      "bytes": 20729,
+      "sha256": "e8f1545671e3fff96a1325b0f5234b3cc9a88ea40105600d7c3181a1f594e5bf"
+    },
+    {
+      "path": "work/browser-tests/era-skeleton-357-native-e2e.mjs",
+      "bytes": 12718,
+      "sha256": "49aaeac76fd93893d94c943104f1d649437793721131d303121c617af3f835b8"
+    },
+    {
+      "path": "work/browser-tests/era-skeleton-transformer-native-e2e.mjs",
+      "bytes": 6724,
+      "sha256": "2ca057e05ce5a6c40c857b696b5bc57ff1724c0a3107cbab01ee7e79b87e16fe"
+    },
+    {
+      "path": "work/browser-tests/era-xp-training.mjs",
+      "bytes": 2147,
+      "sha256": "a3b13ea537fb037b34fb1e5f5a02ec224e40f21ab9b5050e69e22bc550b84ac7"
+    },
+    {
+      "path": "work/tum-native-proofs/hall-icons/results-native-halls-utf8/report.json",
+      "bytes": 160346,
+      "sha256": "21661b112eb8564ca988b32fbfc373f7432013adb3db1cccc70d7608bb2735f8"
+    },
+    {
+      "path": "work/tum-native-proofs/hall-icons/source-hall-frame-evidence.json",
+      "bytes": 1379,
+      "sha256": "1d5f537af39e5171f1cf7f803154c275f7f2a8ebebdeb79d5081d7872ffde86c"
+    },
+    {
+      "path": "work/tum-native-proofs/hall-icons/source-hall-frame-scoped.asm",
+      "bytes": 6386,
+      "sha256": "32d499ec02984047425bf84e1ac5d413865ce12d143502f35fdd4b43729fdc78"
+    },
+    {
+      "path": "work/tum-native-proofs/native-roster-inventory/review/base-stat-differences.csv",
+      "bytes": 44117,
+      "sha256": "78c405eb15e523d7a308cf1e976028e4c283174d60b449429e8872df9ba07c8f"
+    },
+    {
+      "path": "work/tum-native-proofs/native-roster-inventory/review/registered-creature-source-differences.json",
+      "bytes": 2166088,
+      "sha256": "f9f5055faf34c86a1e5f6a05d88e0f55ce7ff56ace6786fa63121a1fb2ad976a"
+    },
+    {
+      "path": "work/tum-native-proofs/nightmare-hydra-native/results-245-audio-fixed/report.json",
+      "bytes": 152475,
+      "sha256": "6fda6b00e79d9f3e2873aa30e3ed56791d99c95ef6e079c57270f7f8d2175e3e"
+    },
+    {
+      "path": "work/tum-native-proofs/skeleton-angel-native/results-357-complete/report.json",
+      "bytes": 252352,
+      "sha256": "b1ddbf39d026e097cb6dbcbc2f5b325b96ad354b9b46a376051b2493ff5e0ff3"
+    },
+    {
+      "path": "work/tum-native-proofs/skeleton-angel-native/results-transformer/report.json",
+      "bytes": 33003,
+      "sha256": "cf5c01c450ee543ce866d7dead58182ded721dd4c796c9c7098df07e26494fa7"
+    }
+  ],
+  "requiredEnv": [
+    "ERA_PREVIEW_GATE=previewmithrilready",
+    "ERA_TASK_PROFILE=tum-completion only when explicit default test context authorized",
+    "ERA_PROJECT=checkout for standalone scratch execution",
+    "ERA_245_OVERLAY=reviewcandidate for Hydra harness",
+    "ERA_HALL_OVERLAY=reviewcandidate with fourth-hall-repair-report.json for hall harness"
+  ],
+  "scope": "Read-only inventory and fixture-only native validation. No creature activation."
+}

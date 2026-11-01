@@ -1,0 +1,104 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank47": {
+        "name": "Sorceress Castle",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB15.def",
+            "mask": [
+              "VVVVV",
+              "VVVVV",
+              "VBBBV",
+              "VBBAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "grass"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank47MixedLayout",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:pixie",
+                "amount": 128
+              },
+              {
+                "type": "core:dwarf",
+                "amount": 32
+              },
+              {
+                "type": "core:woodElf",
+                "amount": 16
+              },
+              {
+                "type": "core:monk",
+                "amount": 8
+              },
+              {
+                "type": "core:unicorn",
+                "amount": 4
+              },
+              {
+                "type": "core:firebird",
+                "amount": 2
+              }
+            ],
+            "resources": {
+              "wood": 20,
+              "mercury": 10,
+              "ore": 20,
+              "sulfur": 10,
+              "crystal": 10,
+              "gems": 10,
+              "gold": 10000
+            },
+            "artifacts": [
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "visit": [
+            "tum-era/objects/SORCENTR.wav"
+          ],
+          "ambient": [
+            "tum-era/objects/SORCERESSLOOP.wav"
+          ]
+        },
+        "rmg": {
+          "value": 10000,
+          "rarity": 100
+        },
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33
+      }
+    }
+  }
+}

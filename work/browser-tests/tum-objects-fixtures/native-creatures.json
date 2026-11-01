@@ -1,0 +1,2197 @@
+{
+  "schemaVersion": 1,
+  "source": "Reviewed current native registry with explicit source identities; factual identifiers/levels/growth only.",
+  "eraIdentityRegistrySha256": "385a0844167a188e82e16f10b8aa69a882ba7b853c9ad6d3623ff9d2219fb60a",
+  "creatures": {
+    "core:pikeman": {
+      "eraId": 0,
+      "coreIndex": 0,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 14,
+      "nativeUpgrades": [
+        "core:halberdier"
+      ]
+    },
+    "core:halberdier": {
+      "eraId": 1,
+      "coreIndex": 1,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 14,
+      "nativeUpgrades": [
+        "third-upgrades:tumRoyalHalberdier"
+      ]
+    },
+    "core:archer": {
+      "eraId": 2,
+      "coreIndex": 2,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 9,
+      "nativeUpgrades": [
+        "core:marksman"
+      ]
+    },
+    "core:marksman": {
+      "eraId": 3,
+      "coreIndex": 3,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 9,
+      "nativeUpgrades": [
+        "third-upgrades:tumCrossbowman"
+      ]
+    },
+    "core:griffin": {
+      "eraId": 4,
+      "coreIndex": 4,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": [
+        "core:royalGriffin"
+      ]
+    },
+    "core:royalGriffin": {
+      "eraId": 5,
+      "coreIndex": 5,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": [
+        "third-upgrades:tumCeasarGriffin"
+      ]
+    },
+    "core:swordsman": {
+      "eraId": 6,
+      "coreIndex": 6,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 4,
+      "nativeUpgrades": [
+        "core:crusader"
+      ]
+    },
+    "core:crusader": {
+      "eraId": 7,
+      "coreIndex": 7,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": [
+        "third-upgrades:tumInquisitor"
+      ]
+    },
+    "core:monk": {
+      "eraId": 8,
+      "coreIndex": 8,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": [
+        "core:zealot"
+      ]
+    },
+    "core:zealot": {
+      "eraId": 9,
+      "coreIndex": 9,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": [
+        "third-upgrades:tumHighPriest"
+      ]
+    },
+    "core:cavalier": {
+      "eraId": 10,
+      "coreIndex": 10,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "core:champion"
+      ]
+    },
+    "core:champion": {
+      "eraId": 11,
+      "coreIndex": 11,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "third-upgrades:tumHolyChampion"
+      ]
+    },
+    "core:angel": {
+      "eraId": 12,
+      "coreIndex": 12,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "core:archangel"
+      ]
+    },
+    "core:archangel": {
+      "eraId": 13,
+      "coreIndex": 13,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "wake-of-gods.level8units:supremeArchangel"
+      ]
+    },
+    "core:pixie": {
+      "eraId": 118,
+      "coreIndex": 118,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 20,
+      "nativeUpgrades": [
+        "core:sprite"
+      ]
+    },
+    "core:sprite": {
+      "eraId": 119,
+      "coreIndex": 119,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 20,
+      "nativeUpgrades": [
+        "third-upgrades:tumFairy"
+      ]
+    },
+    "core:airElemental": {
+      "eraId": 112,
+      "coreIndex": 112,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 6,
+      "nativeUpgrades": [
+        "core:stormElemental"
+      ]
+    },
+    "core:stormElemental": {
+      "eraId": 127,
+      "coreIndex": 127,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 6,
+      "nativeUpgrades": [
+        "third-upgrades:tumHurricaneElemental"
+      ]
+    },
+    "core:waterElemental": {
+      "eraId": 115,
+      "coreIndex": 115,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 6,
+      "nativeUpgrades": [
+        "core:iceElemental"
+      ]
+    },
+    "core:iceElemental": {
+      "eraId": 123,
+      "coreIndex": 123,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 6,
+      "nativeUpgrades": [
+        "third-upgrades:tumLifeElemental"
+      ]
+    },
+    "core:fireElemental": {
+      "eraId": 114,
+      "coreIndex": 114,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 5,
+      "nativeUpgrades": [
+        "core:energyElemental"
+      ]
+    },
+    "core:energyElemental": {
+      "eraId": 129,
+      "coreIndex": 129,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 5,
+      "nativeUpgrades": [
+        "third-upgrades:tumPlasmaElemental"
+      ]
+    },
+    "core:earthElemental": {
+      "eraId": 113,
+      "coreIndex": 113,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 4,
+      "nativeUpgrades": [
+        "core:magmaElemental"
+      ]
+    },
+    "core:magmaElemental": {
+      "eraId": 125,
+      "coreIndex": 125,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 4,
+      "nativeUpgrades": [
+        "third-upgrades:tumMineralElemental"
+      ]
+    },
+    "core:psychicElemental": {
+      "eraId": 120,
+      "coreIndex": 120,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "core:magicElemental"
+      ]
+    },
+    "core:magicElemental": {
+      "eraId": 121,
+      "coreIndex": 121,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "third-upgrades:tumVoidElemental"
+      ]
+    },
+    "core:firebird": {
+      "eraId": 130,
+      "coreIndex": 130,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 2,
+      "nativeUpgrades": [
+        "core:phoenix"
+      ]
+    },
+    "core:phoenix": {
+      "eraId": 131,
+      "coreIndex": 131,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 2,
+      "nativeUpgrades": [
+        "wake-of-gods.level8units:sacredPhoenix"
+      ]
+    },
+    "core:troglodyte": {
+      "eraId": 70,
+      "coreIndex": 70,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 14,
+      "nativeUpgrades": [
+        "core:infernalTroglodyte"
+      ]
+    },
+    "core:infernalTroglodyte": {
+      "eraId": 71,
+      "coreIndex": 71,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 14,
+      "nativeUpgrades": [
+        "third-upgrades:tumPhosphorescentTroglodyte"
+      ]
+    },
+    "core:harpy": {
+      "eraId": 72,
+      "coreIndex": 72,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 8,
+      "nativeUpgrades": [
+        "core:harpyHag"
+      ]
+    },
+    "core:harpyHag": {
+      "eraId": 73,
+      "coreIndex": 73,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 8,
+      "nativeUpgrades": [
+        "third-upgrades:tumHarpySanguinary"
+      ]
+    },
+    "core:beholder": {
+      "eraId": 74,
+      "coreIndex": 74,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": [
+        "core:evilEye"
+      ]
+    },
+    "core:evilEye": {
+      "eraId": 75,
+      "coreIndex": 75,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": [
+        "third-upgrades:tumMonstrousEye"
+      ]
+    },
+    "core:medusa": {
+      "eraId": 76,
+      "coreIndex": 76,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": [
+        "core:medusaQueen"
+      ]
+    },
+    "core:medusaQueen": {
+      "eraId": 77,
+      "coreIndex": 77,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": [
+        "third-upgrades:tumMedusaEmpress"
+      ]
+    },
+    "core:minotaur": {
+      "eraId": 78,
+      "coreIndex": 78,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": [
+        "core:minotaurKing"
+      ]
+    },
+    "core:minotaurKing": {
+      "eraId": 79,
+      "coreIndex": 79,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": [
+        "third-upgrades:tumBlackMinotaur"
+      ]
+    },
+    "core:manticore": {
+      "eraId": 80,
+      "coreIndex": 80,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "core:scorpicore"
+      ]
+    },
+    "core:scorpicore": {
+      "eraId": 81,
+      "coreIndex": 81,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "third-upgrades:tumChimera"
+      ]
+    },
+    "core:redDragon": {
+      "eraId": 82,
+      "coreIndex": 82,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "core:blackDragon"
+      ]
+    },
+    "core:blackDragon": {
+      "eraId": 83,
+      "coreIndex": 83,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "wake-of-gods.level8units:darknessDragon"
+      ]
+    },
+    "core:gnoll": {
+      "eraId": 98,
+      "coreIndex": 98,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 12,
+      "nativeUpgrades": [
+        "core:gnollMarauder"
+      ]
+    },
+    "core:gnollMarauder": {
+      "eraId": 99,
+      "coreIndex": 99,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 12,
+      "nativeUpgrades": [
+        "third-upgrades:tumGnollShaman"
+      ]
+    },
+    "core:lizardman": {
+      "eraId": 100,
+      "coreIndex": 100,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 9,
+      "nativeUpgrades": [
+        "core:lizardWarrior"
+      ]
+    },
+    "core:lizardWarrior": {
+      "eraId": 101,
+      "coreIndex": 101,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 9,
+      "nativeUpgrades": [
+        "third-upgrades:tumEliteLizard"
+      ]
+    },
+    "core:serpentFly": {
+      "eraId": 104,
+      "coreIndex": 104,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 8,
+      "nativeUpgrades": [
+        "core:fireDragonFly"
+      ]
+    },
+    "core:fireDragonFly": {
+      "eraId": 105,
+      "coreIndex": 105,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 8,
+      "nativeUpgrades": [
+        "third-upgrades:tumChaoticDragonFly"
+      ]
+    },
+    "core:basilisk": {
+      "eraId": 106,
+      "coreIndex": 106,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": [
+        "core:greaterBasilisk"
+      ]
+    },
+    "core:greaterBasilisk": {
+      "eraId": 107,
+      "coreIndex": 107,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": [
+        "third-upgrades:tumLavaBasilisk"
+      ]
+    },
+    "core:gorgon": {
+      "eraId": 102,
+      "coreIndex": 102,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": [
+        "core:mightyGorgon"
+      ]
+    },
+    "core:mightyGorgon": {
+      "eraId": 103,
+      "coreIndex": 103,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": [
+        "third-upgrades:tumCatopleba"
+      ]
+    },
+    "core:wyvern": {
+      "eraId": 108,
+      "coreIndex": 108,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "core:wyvernMonarch"
+      ]
+    },
+    "core:wyvernMonarch": {
+      "eraId": 109,
+      "coreIndex": 109,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "third-upgrades:tumAcidWyvern"
+      ]
+    },
+    "core:hydra": {
+      "eraId": 110,
+      "coreIndex": 110,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "core:chaosHydra"
+      ]
+    },
+    "core:chaosHydra": {
+      "eraId": 111,
+      "coreIndex": 111,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "wake-of-gods.level8units:hellHydra"
+      ]
+    },
+    "core:imp": {
+      "eraId": 42,
+      "coreIndex": 42,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 15,
+      "nativeUpgrades": [
+        "core:familiar"
+      ]
+    },
+    "core:familiar": {
+      "eraId": 43,
+      "coreIndex": 43,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 15,
+      "nativeUpgrades": [
+        "third-upgrades:tumVermin"
+      ]
+    },
+    "core:gog": {
+      "eraId": 44,
+      "coreIndex": 44,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 8,
+      "nativeUpgrades": [
+        "core:magog"
+      ]
+    },
+    "core:magog": {
+      "eraId": 45,
+      "coreIndex": 45,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 8,
+      "nativeUpgrades": [
+        "third-upgrades:tumWingedMagog"
+      ]
+    },
+    "core:hellHound": {
+      "eraId": 46,
+      "coreIndex": 46,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 5,
+      "nativeUpgrades": [
+        "core:cerberus"
+      ]
+    },
+    "core:cerberus": {
+      "eraId": 47,
+      "coreIndex": 47,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 5,
+      "nativeUpgrades": [
+        "third-upgrades:tumAstralCerberus"
+      ]
+    },
+    "core:demon": {
+      "eraId": 48,
+      "coreIndex": 48,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": [
+        "core:hornedDemon"
+      ]
+    },
+    "core:hornedDemon": {
+      "eraId": 49,
+      "coreIndex": 49,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": [
+        "third-upgrades:tumSharpHornedDemon"
+      ]
+    },
+    "core:pitFiend": {
+      "eraId": 50,
+      "coreIndex": 50,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": [
+        "core:pitLord"
+      ]
+    },
+    "core:pitLord": {
+      "eraId": 51,
+      "coreIndex": 51,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": [
+        "third-upgrades:tumPitMaster"
+      ]
+    },
+    "core:efreet": {
+      "eraId": 52,
+      "coreIndex": 52,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "core:efreetSultan"
+      ]
+    },
+    "core:efreetSultan": {
+      "eraId": 53,
+      "coreIndex": 53,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "third-upgrades:tumEfreetRajah"
+      ]
+    },
+    "core:devil": {
+      "eraId": 54,
+      "coreIndex": 54,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "core:archDevil"
+      ]
+    },
+    "core:archDevil": {
+      "eraId": 55,
+      "coreIndex": 55,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "wake-of-gods.level8units:hellBaron"
+      ]
+    },
+    "core:skeleton": {
+      "eraId": 56,
+      "coreIndex": 56,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 12,
+      "nativeUpgrades": [
+        "core:skeletonWarrior"
+      ]
+    },
+    "core:skeletonWarrior": {
+      "eraId": 57,
+      "coreIndex": 57,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 12,
+      "nativeUpgrades": [
+        "third-upgrades:tumSkeletonKnight"
+      ]
+    },
+    "core:walkingDead": {
+      "eraId": 58,
+      "coreIndex": 58,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 8,
+      "nativeUpgrades": [
+        "core:zombieLord"
+      ]
+    },
+    "core:zombieLord": {
+      "eraId": 59,
+      "coreIndex": 59,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 8,
+      "nativeUpgrades": [
+        "third-upgrades:tumGhoul"
+      ]
+    },
+    "core:wight": {
+      "eraId": 60,
+      "coreIndex": 60,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": [
+        "core:wraith"
+      ]
+    },
+    "core:wraith": {
+      "eraId": 61,
+      "coreIndex": 61,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": [
+        "third-upgrades:tumSpecter"
+      ]
+    },
+    "core:vampire": {
+      "eraId": 62,
+      "coreIndex": 62,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": [
+        "core:vampireLord"
+      ]
+    },
+    "core:vampireLord": {
+      "eraId": 63,
+      "coreIndex": 63,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": [
+        "third-upgrades:tumNosferatu"
+      ]
+    },
+    "core:lich": {
+      "eraId": 64,
+      "coreIndex": 64,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": [
+        "core:powerLich"
+      ]
+    },
+    "core:powerLich": {
+      "eraId": 65,
+      "coreIndex": 65,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": [
+        "third-upgrades:tumLichKing"
+      ]
+    },
+    "core:blackKnight": {
+      "eraId": 66,
+      "coreIndex": 66,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "core:dreadKnight"
+      ]
+    },
+    "core:dreadKnight": {
+      "eraId": 67,
+      "coreIndex": 67,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "third-upgrades:tumDeathKnight"
+      ]
+    },
+    "core:boneDragon": {
+      "eraId": 68,
+      "coreIndex": 68,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "core:ghostDragon"
+      ]
+    },
+    "core:ghostDragon": {
+      "eraId": 69,
+      "coreIndex": 69,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "wake-of-gods.level8units:bloodDragon"
+      ]
+    },
+    "core:goldGolem": {
+      "eraId": 116,
+      "coreIndex": 116,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": []
+    },
+    "core:diamondGolem": {
+      "eraId": 117,
+      "coreIndex": 117,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "core:azureDragon": {
+      "eraId": 132,
+      "coreIndex": 132,
+      "nameSingular": null,
+      "level": 10,
+      "growth": 1,
+      "nativeUpgrades": []
+    },
+    "core:crystalDragon": {
+      "eraId": 133,
+      "coreIndex": 133,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": []
+    },
+    "core:fairieDragon": {
+      "eraId": 134,
+      "coreIndex": 134,
+      "nameSingular": null,
+      "level": 8,
+      "growth": 1,
+      "nativeUpgrades": []
+    },
+    "core:rustDragon": {
+      "eraId": 135,
+      "coreIndex": 135,
+      "nameSingular": null,
+      "level": 10,
+      "growth": 1,
+      "nativeUpgrades": []
+    },
+    "core:enchanter": {
+      "eraId": 136,
+      "coreIndex": 136,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "core:sharpshooter": {
+      "eraId": 137,
+      "coreIndex": 137,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": []
+    },
+    "core:halfling": {
+      "eraId": 138,
+      "coreIndex": 138,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 15,
+      "nativeUpgrades": []
+    },
+    "core:peasant": {
+      "eraId": 139,
+      "coreIndex": 139,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 25,
+      "nativeUpgrades": []
+    },
+    "core:boar": {
+      "eraId": 140,
+      "coreIndex": 140,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 8,
+      "nativeUpgrades": []
+    },
+    "core:mummy": {
+      "eraId": 141,
+      "coreIndex": 141,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": []
+    },
+    "core:nomad": {
+      "eraId": 142,
+      "coreIndex": 142,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": []
+    },
+    "core:rogue": {
+      "eraId": 143,
+      "coreIndex": 143,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 8,
+      "nativeUpgrades": []
+    },
+    "core:troll": {
+      "eraId": 144,
+      "coreIndex": 144,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": []
+    },
+    "core:centaur": {
+      "eraId": 14,
+      "coreIndex": 14,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 14,
+      "nativeUpgrades": [
+        "core:centaurCaptain"
+      ]
+    },
+    "core:centaurCaptain": {
+      "eraId": 15,
+      "coreIndex": 15,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 14,
+      "nativeUpgrades": [
+        "third-upgrades:tumCentaurGeneral"
+      ]
+    },
+    "core:dwarf": {
+      "eraId": 16,
+      "coreIndex": 16,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 8,
+      "nativeUpgrades": [
+        "core:battleDwarf"
+      ]
+    },
+    "core:battleDwarf": {
+      "eraId": 17,
+      "coreIndex": 17,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 8,
+      "nativeUpgrades": [
+        "third-upgrades:tumBerserkerDwarf"
+      ]
+    },
+    "core:woodElf": {
+      "eraId": 18,
+      "coreIndex": 18,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": [
+        "core:grandElf"
+      ]
+    },
+    "core:grandElf": {
+      "eraId": 19,
+      "coreIndex": 19,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": [
+        "third-upgrades:tumSharpshooterElf"
+      ]
+    },
+    "core:pegasus": {
+      "eraId": 20,
+      "coreIndex": 20,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 5,
+      "nativeUpgrades": [
+        "core:silverPegasus"
+      ]
+    },
+    "core:silverPegasus": {
+      "eraId": 21,
+      "coreIndex": 21,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 5,
+      "nativeUpgrades": [
+        "third-upgrades:tumGoldenPegasus"
+      ]
+    },
+    "core:dendroidGuard": {
+      "eraId": 22,
+      "coreIndex": 22,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": [
+        "core:dendroidSoldier"
+      ]
+    },
+    "core:dendroidSoldier": {
+      "eraId": 23,
+      "coreIndex": 23,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": [
+        "third-upgrades:tumElderDendroid"
+      ]
+    },
+    "core:unicorn": {
+      "eraId": 24,
+      "coreIndex": 24,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "core:warUnicorn"
+      ]
+    },
+    "core:warUnicorn": {
+      "eraId": 25,
+      "coreIndex": 25,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "third-upgrades:tumLegendaryUnicorn"
+      ]
+    },
+    "core:greenDragon": {
+      "eraId": 26,
+      "coreIndex": 26,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "core:goldDragon"
+      ]
+    },
+    "core:goldDragon": {
+      "eraId": 27,
+      "coreIndex": 27,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "wake-of-gods.level8units:diamondDragon"
+      ]
+    },
+    "core:unused122": {
+      "eraId": 122,
+      "coreIndex": 122,
+      "nameSingular": null,
+      "nativeUpgrades": []
+    },
+    "core:unused124": {
+      "eraId": 124,
+      "coreIndex": 124,
+      "nameSingular": null,
+      "nativeUpgrades": []
+    },
+    "core:unused126": {
+      "eraId": 126,
+      "coreIndex": 126,
+      "nameSingular": null,
+      "nativeUpgrades": []
+    },
+    "core:unused128": {
+      "eraId": 128,
+      "coreIndex": 128,
+      "nameSingular": null,
+      "nativeUpgrades": []
+    },
+    "core:catapult": {
+      "eraId": 145,
+      "coreIndex": 145,
+      "nameSingular": null,
+      "level": 0,
+      "nativeUpgrades": []
+    },
+    "core:ballista": {
+      "eraId": 146,
+      "coreIndex": 146,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 0,
+      "nativeUpgrades": []
+    },
+    "core:firstAidTent": {
+      "eraId": 147,
+      "coreIndex": 147,
+      "nameSingular": null,
+      "level": 0,
+      "nativeUpgrades": []
+    },
+    "core:ammoCart": {
+      "eraId": 148,
+      "coreIndex": 148,
+      "nameSingular": null,
+      "level": 0,
+      "nativeUpgrades": []
+    },
+    "core:arrowTower": {
+      "eraId": 149,
+      "coreIndex": 149,
+      "nameSingular": null,
+      "level": 0,
+      "nativeUpgrades": []
+    },
+    "core:goblin": {
+      "eraId": 84,
+      "coreIndex": 84,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 15,
+      "nativeUpgrades": [
+        "core:hobgoblin"
+      ]
+    },
+    "core:hobgoblin": {
+      "eraId": 85,
+      "coreIndex": 85,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 15,
+      "nativeUpgrades": [
+        "third-upgrades:tumHobgoblinOverlord"
+      ]
+    },
+    "core:goblinWolfRider": {
+      "eraId": 86,
+      "coreIndex": 86,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 9,
+      "nativeUpgrades": [
+        "core:hobgoblinWolfRider"
+      ]
+    },
+    "core:hobgoblinWolfRider": {
+      "eraId": 87,
+      "coreIndex": 87,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 9,
+      "nativeUpgrades": [
+        "third-upgrades:tumWolfRiderKiller"
+      ]
+    },
+    "core:orc": {
+      "eraId": 88,
+      "coreIndex": 88,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": [
+        "core:orcChieftain"
+      ]
+    },
+    "core:orcChieftain": {
+      "eraId": 89,
+      "coreIndex": 89,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": [
+        "third-upgrades:tumOrcLeader"
+      ]
+    },
+    "core:ogre": {
+      "eraId": 90,
+      "coreIndex": 90,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": [
+        "core:ogreMage"
+      ]
+    },
+    "core:ogreMage": {
+      "eraId": 91,
+      "coreIndex": 91,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": [
+        "third-upgrades:tumElderOgre"
+      ]
+    },
+    "core:roc": {
+      "eraId": 92,
+      "coreIndex": 92,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": [
+        "core:thunderbird"
+      ]
+    },
+    "core:thunderbird": {
+      "eraId": 93,
+      "coreIndex": 93,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": [
+        "third-upgrades:tumLightningbird"
+      ]
+    },
+    "core:cyclop": {
+      "eraId": 94,
+      "coreIndex": 94,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "core:cyclopKing"
+      ]
+    },
+    "core:cyclopKing": {
+      "eraId": 95,
+      "coreIndex": 95,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "third-upgrades:tumCyclopsEmperor"
+      ]
+    },
+    "core:behemoth": {
+      "eraId": 96,
+      "coreIndex": 96,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "core:ancientBehemoth"
+      ]
+    },
+    "core:ancientBehemoth": {
+      "eraId": 97,
+      "coreIndex": 97,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "wake-of-gods.level8units:ghostBehemoth"
+      ]
+    },
+    "core:gremlin": {
+      "eraId": 28,
+      "coreIndex": 28,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 16,
+      "nativeUpgrades": [
+        "core:masterGremlin"
+      ]
+    },
+    "core:masterGremlin": {
+      "eraId": 29,
+      "coreIndex": 29,
+      "nameSingular": null,
+      "level": 1,
+      "growth": 16,
+      "nativeUpgrades": [
+        "third-upgrades:tumGrandmasterGremlin"
+      ]
+    },
+    "core:stoneGargoyle": {
+      "eraId": 30,
+      "coreIndex": 30,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 9,
+      "nativeUpgrades": [
+        "core:obsidianGargoyle"
+      ]
+    },
+    "core:obsidianGargoyle": {
+      "eraId": 31,
+      "coreIndex": 31,
+      "nameSingular": null,
+      "level": 2,
+      "growth": 9,
+      "nativeUpgrades": [
+        "third-upgrades:tumMarbleGargoyle"
+      ]
+    },
+    "core:ironGolem": {
+      "eraId": 32,
+      "coreIndex": 32,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 6,
+      "nativeUpgrades": [
+        "core:stoneGolem"
+      ]
+    },
+    "core:stoneGolem": {
+      "eraId": 33,
+      "coreIndex": 33,
+      "nameSingular": null,
+      "level": 3,
+      "growth": 6,
+      "nativeUpgrades": [
+        "third-upgrades:tumSteelGolem"
+      ]
+    },
+    "core:mage": {
+      "eraId": 34,
+      "coreIndex": 34,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": [
+        "core:archMage"
+      ]
+    },
+    "core:archMage": {
+      "eraId": 35,
+      "coreIndex": 35,
+      "nameSingular": null,
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": [
+        "third-upgrades:tumSupremeArchMage"
+      ]
+    },
+    "core:genie": {
+      "eraId": 36,
+      "coreIndex": 36,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": [
+        "core:masterGenie"
+      ]
+    },
+    "core:masterGenie": {
+      "eraId": 37,
+      "coreIndex": 37,
+      "nameSingular": null,
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": [
+        "third-upgrades:tumArcaneGenie"
+      ]
+    },
+    "core:naga": {
+      "eraId": 38,
+      "coreIndex": 38,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "core:nagaQueen"
+      ]
+    },
+    "core:nagaQueen": {
+      "eraId": 39,
+      "coreIndex": 39,
+      "nameSingular": null,
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "third-upgrades:tumNagaEmpress"
+      ]
+    },
+    "core:giant": {
+      "eraId": 40,
+      "coreIndex": 40,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "core:titan"
+      ]
+    },
+    "core:titan": {
+      "eraId": 41,
+      "coreIndex": 41,
+      "nameSingular": null,
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "wake-of-gods.level8units:lordOfThunder"
+      ]
+    },
+    "wake-of-gods.level8units:supremeArchangel": {
+      "eraId": 150,
+      "coreIndex": null,
+      "nameSingular": "Supreme Archangel",
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "tum-era:cherub"
+      ]
+    },
+    "wake-of-gods.level8units:diamondDragon": {
+      "eraId": 151,
+      "coreIndex": null,
+      "nameSingular": "Diamond Dragon",
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.level8units:lordOfThunder": {
+      "eraId": 152,
+      "coreIndex": null,
+      "nameSingular": "Lord of Thunder",
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.level8units:hellBaron": {
+      "eraId": 153,
+      "coreIndex": null,
+      "nameSingular": "Hell Baron",
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "tum-era:antichrist"
+      ]
+    },
+    "wake-of-gods.level8units:bloodDragon": {
+      "eraId": 154,
+      "coreIndex": null,
+      "nameSingular": "Blood Dragon",
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "tum-era:redBonesDragon"
+      ]
+    },
+    "wake-of-gods.level8units:darknessDragon": {
+      "eraId": 155,
+      "coreIndex": null,
+      "nameSingular": "Darkness Dragon",
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.level8units:ghostBehemoth": {
+      "eraId": 156,
+      "coreIndex": null,
+      "nameSingular": "Ghost Behemot",
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "tum-era:ancestralBehemoth"
+      ]
+    },
+    "wake-of-gods.level8units:hellHydra": {
+      "eraId": 157,
+      "coreIndex": null,
+      "nameSingular": "Hell Hydra",
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.level8units:sacredPhoenix": {
+      "eraId": 158,
+      "coreIndex": null,
+      "nameSingular": "Sacred Phoenix",
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": [
+        "tum-era:divinePhoenix"
+      ]
+    },
+    "wake-of-gods.creatures:ghost": {
+      "eraId": 159,
+      "coreIndex": null,
+      "nameSingular": "Wraith Ghost",
+      "level": 3,
+      "growth": 8,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.messengersandemissaries:emissaryOfWar": {
+      "eraId": 160,
+      "coreIndex": null,
+      "nameSingular": "Emissary of War",
+      "level": 6,
+      "growth": 0,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.messengersandemissaries:emissaryOfPeace": {
+      "eraId": 161,
+      "coreIndex": null,
+      "nameSingular": "Emissary of Peace",
+      "level": 6,
+      "growth": 0,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.messengersandemissaries:emissaryOfMana": {
+      "eraId": 162,
+      "coreIndex": null,
+      "nameSingular": "Emissary of Mana",
+      "level": 6,
+      "growth": 0,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.messengersandemissaries:emissaryOfLore": {
+      "eraId": 163,
+      "coreIndex": null,
+      "nameSingular": "Emissary of Lore",
+      "level": 6,
+      "growth": 0,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.messengersandemissaries:fireMessenger": {
+      "eraId": 164,
+      "coreIndex": null,
+      "nameSingular": "Fire Messenger",
+      "level": 5,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.messengersandemissaries:earthMessenger": {
+      "eraId": 165,
+      "coreIndex": null,
+      "nameSingular": "Earth Messenger",
+      "level": 5,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.messengersandemissaries:airMessenger": {
+      "eraId": 166,
+      "coreIndex": null,
+      "nameSingular": "Air Messenger",
+      "level": 5,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.messengersandemissaries:waterMessenger": {
+      "eraId": 167,
+      "coreIndex": null,
+      "nameSingular": "Water Messenger",
+      "level": 7,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.creatures:gorynych": {
+      "eraId": 168,
+      "coreIndex": null,
+      "nameSingular": "Gorynych",
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.creatures:warZealot": {
+      "eraId": 169,
+      "coreIndex": null,
+      "nameSingular": "War Zealot",
+      "level": 5,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.creatures:arcticSharpshooter": {
+      "eraId": 170,
+      "coreIndex": null,
+      "nameSingular": "Arctic Sharpshooter",
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.creatures:lavaSharpshooter": {
+      "eraId": 171,
+      "coreIndex": null,
+      "nameSingular": "Lava Sharpshooter",
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.creatures:nightmare": {
+      "eraId": 172,
+      "coreIndex": null,
+      "nameSingular": "Nightmare",
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.creatures:santaGremlin": {
+      "eraId": 173,
+      "coreIndex": null,
+      "nameSingular": "Santa Gremlin",
+      "level": 3,
+      "growth": 16,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.creatures:sylvanCentaur": {
+      "eraId": 192,
+      "coreIndex": null,
+      "nameSingular": "Sylwan Centaur",
+      "level": 3,
+      "growth": 14,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.creatures:wogSorceress": {
+      "eraId": 193,
+      "coreIndex": null,
+      "nameSingular": "Arcane Sorceress",
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.creatures:werewolf": {
+      "eraId": 194,
+      "coreIndex": null,
+      "nameSingular": "Lunar Werewolf",
+      "level": 4,
+      "growth": 5,
+      "nativeUpgrades": []
+    },
+    "wake-of-gods.creatures:hellSteed": {
+      "eraId": 195,
+      "coreIndex": null,
+      "nameSingular": "Hell Steed",
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": [
+        "wake-of-gods.creatures:nightmare"
+      ]
+    },
+    "wake-of-gods.creatures:dracolich": {
+      "eraId": 196,
+      "coreIndex": null,
+      "nameSingular": "Dracolich",
+      "level": 10,
+      "growth": 1,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumRoyalHalberdier": {
+      "eraId": 197,
+      "coreIndex": null,
+      "nameSingular": "Royal Halberdier",
+      "level": 1,
+      "growth": 14,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumCrossbowman": {
+      "eraId": 198,
+      "coreIndex": null,
+      "nameSingular": "Crossbowman",
+      "level": 2,
+      "growth": 9,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumCeasarGriffin": {
+      "eraId": 199,
+      "coreIndex": null,
+      "nameSingular": "Cesar Griffin",
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumInquisitor": {
+      "eraId": 291,
+      "coreIndex": null,
+      "nameSingular": "Inquisitor",
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumHighPriest": {
+      "eraId": 320,
+      "coreIndex": null,
+      "nameSingular": "High Priest",
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumHolyChampion": {
+      "eraId": 201,
+      "coreIndex": null,
+      "nameSingular": "Holy Champion",
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumCentaurGeneral": {
+      "eraId": 293,
+      "coreIndex": null,
+      "nameSingular": "Centaur General",
+      "level": 1,
+      "growth": 14,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumBerserkerDwarf": {
+      "eraId": 203,
+      "coreIndex": null,
+      "nameSingular": "Dwarf Chieftain",
+      "level": 2,
+      "growth": 8,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumSharpshooterElf": {
+      "eraId": 256,
+      "coreIndex": null,
+      "nameSingular": "Noble Elf",
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumGoldenPegasus": {
+      "eraId": 204,
+      "coreIndex": null,
+      "nameSingular": "Golden Pegasus",
+      "level": 4,
+      "growth": 5,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumElderDendroid": {
+      "eraId": 205,
+      "coreIndex": null,
+      "nameSingular": "Elder Dendroid",
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumLegendaryUnicorn": {
+      "eraId": 206,
+      "coreIndex": null,
+      "nameSingular": "Legendary Unicorn",
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumGrandmasterGremlin": {
+      "eraId": 255,
+      "coreIndex": null,
+      "nameSingular": "Grandmaster Gremlin",
+      "level": 1,
+      "growth": 16,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumMarbleGargoyle": {
+      "eraId": 208,
+      "coreIndex": null,
+      "nameSingular": "Marble Gargoyle",
+      "level": 2,
+      "growth": 9,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumSteelGolem": {
+      "eraId": 209,
+      "coreIndex": null,
+      "nameSingular": "Mithril Golem",
+      "level": 3,
+      "growth": 6,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumSupremeArchMage": {
+      "eraId": 257,
+      "coreIndex": null,
+      "nameSingular": "Supreme Arch Mage",
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumArcaneGenie": {
+      "eraId": 210,
+      "coreIndex": null,
+      "nameSingular": "Arcane Genie",
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumNagaEmpress": {
+      "eraId": 211,
+      "coreIndex": null,
+      "nameSingular": "Naga Empress",
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumVermin": {
+      "eraId": 213,
+      "coreIndex": null,
+      "nameSingular": "Vermin",
+      "level": 1,
+      "growth": 15,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumWingedMagog": {
+      "eraId": 214,
+      "coreIndex": null,
+      "nameSingular": "Winged Magog",
+      "level": 2,
+      "growth": 8,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumAstralCerberus": {
+      "eraId": 215,
+      "coreIndex": null,
+      "nameSingular": "Astral Cerberus",
+      "level": 3,
+      "growth": 5,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumSharpHornedDemon": {
+      "eraId": 216,
+      "coreIndex": null,
+      "nameSingular": "Sharp-Horned Demon",
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumPitMaster": {
+      "eraId": 217,
+      "coreIndex": null,
+      "nameSingular": "Pit Master",
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumEfreetRajah": {
+      "eraId": 218,
+      "coreIndex": null,
+      "nameSingular": "Efreet Rajah",
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumSkeletonKnight": {
+      "eraId": 220,
+      "coreIndex": null,
+      "nameSingular": "Skeleton Knight",
+      "level": 1,
+      "growth": 12,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumGhoul": {
+      "eraId": 329,
+      "coreIndex": null,
+      "nameSingular": "Ghoul",
+      "level": 3,
+      "growth": 8,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumSpecter": {
+      "eraId": 261,
+      "coreIndex": null,
+      "nameSingular": "Specter",
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumNosferatu": {
+      "eraId": 221,
+      "coreIndex": null,
+      "nameSingular": "Nosferatu",
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumLichKing": {
+      "eraId": 222,
+      "coreIndex": null,
+      "nameSingular": "Lich King",
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumDeathKnight": {
+      "eraId": 223,
+      "coreIndex": null,
+      "nameSingular": "Death Knight",
+      "level": 5,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumPhosphorescentTroglodyte": {
+      "eraId": 225,
+      "coreIndex": null,
+      "nameSingular": "Phosphorescent Troglodyte",
+      "level": 1,
+      "growth": 14,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumHarpySanguinary": {
+      "eraId": 227,
+      "coreIndex": null,
+      "nameSingular": "Harpy Sanguinary",
+      "level": 2,
+      "growth": 8,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumMonstrousEye": {
+      "eraId": 226,
+      "coreIndex": null,
+      "nameSingular": "Monstrous Eye",
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumMedusaEmpress": {
+      "eraId": 228,
+      "coreIndex": null,
+      "nameSingular": "Medusa Empress",
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumBlackMinotaur": {
+      "eraId": 229,
+      "coreIndex": null,
+      "nameSingular": "Black Minotaur",
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumChimera": {
+      "eraId": 230,
+      "coreIndex": null,
+      "nameSingular": "Chimera",
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumHobgoblinOverlord": {
+      "eraId": 232,
+      "coreIndex": null,
+      "nameSingular": "Hobgoblin Overlord",
+      "level": 1,
+      "growth": 15,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumWolfRiderKiller": {
+      "eraId": 233,
+      "coreIndex": null,
+      "nameSingular": "Wolf Captain",
+      "level": 2,
+      "growth": 9,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumOrcLeader": {
+      "eraId": 234,
+      "coreIndex": null,
+      "nameSingular": "Orc Leader",
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumElderOgre": {
+      "eraId": 235,
+      "coreIndex": null,
+      "nameSingular": "Elder Ogre",
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumLightningbird": {
+      "eraId": 236,
+      "coreIndex": null,
+      "nameSingular": "Lightningbird",
+      "level": 5,
+      "growth": 3,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumCyclopsEmperor": {
+      "eraId": 237,
+      "coreIndex": null,
+      "nameSingular": "Cyclops Emperor",
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumGnollShaman": {
+      "eraId": 321,
+      "coreIndex": null,
+      "nameSingular": "Gnoll Shaman",
+      "level": 1,
+      "growth": 12,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumEliteLizard": {
+      "eraId": 240,
+      "coreIndex": null,
+      "nameSingular": "Elite Lizard",
+      "level": 2,
+      "growth": 9,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumChaoticDragonFly": {
+      "eraId": 241,
+      "coreIndex": null,
+      "nameSingular": "Chaotic Dragon Fly",
+      "level": 3,
+      "growth": 8,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumLavaBasilisk": {
+      "eraId": 242,
+      "coreIndex": null,
+      "nameSingular": "Lava Basilisk",
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumFairy": {
+      "eraId": 246,
+      "coreIndex": null,
+      "nameSingular": "Fairy",
+      "level": 1,
+      "growth": 20,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumHurricaneElemental": {
+      "eraId": 247,
+      "coreIndex": null,
+      "nameSingular": "Hurricane Elemental",
+      "level": 2,
+      "growth": 6,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumLifeElemental": {
+      "eraId": 248,
+      "coreIndex": null,
+      "nameSingular": "Cryogenic Elemental",
+      "level": 3,
+      "growth": 6,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumPlasmaElemental": {
+      "eraId": 249,
+      "coreIndex": null,
+      "nameSingular": "Plasma Elemental",
+      "level": 4,
+      "growth": 5,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumMineralElemental": {
+      "eraId": 250,
+      "coreIndex": null,
+      "nameSingular": "Lava Elemental",
+      "level": 5,
+      "growth": 4,
+      "nativeUpgrades": []
+    },
+    "third-upgrades:tumVoidElemental": {
+      "eraId": 251,
+      "coreIndex": null,
+      "nameSingular": "Void Elemental",
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "tum-era:cherub": {
+      "eraId": 202,
+      "coreIndex": null,
+      "nameSingular": "Cherub",
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": []
+    },
+    "tum-era:antichrist": {
+      "eraId": 219,
+      "coreIndex": null,
+      "nameSingular": "Antichrist",
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": []
+    },
+    "tum-era:redBonesDragon": {
+      "eraId": 224,
+      "coreIndex": null,
+      "nameSingular": "Red Bones Dragon",
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": []
+    },
+    "tum-era:divinePhoenix": {
+      "eraId": 252,
+      "coreIndex": null,
+      "nameSingular": "Divine Phoenix",
+      "level": 7,
+      "growth": 1,
+      "nativeUpgrades": []
+    },
+    "tum-era:eraCreature287": {
+      "eraId": 287,
+      "coreIndex": null,
+      "nameSingular": "Dread Skipper",
+      "level": 3,
+      "growth": 7,
+      "nativeUpgrades": []
+    },
+    "tum-era:eraCreature295": {
+      "eraId": 295,
+      "coreIndex": null,
+      "nameSingular": "Skeleton Archer",
+      "level": 1,
+      "growth": 12,
+      "nativeUpgrades": [
+        "tum-era:eraCreature359"
+      ]
+    },
+    "tum-era:eraCreature297": {
+      "eraId": 297,
+      "coreIndex": null,
+      "nameSingular": "Mana Skeleton",
+      "level": 1,
+      "growth": 14,
+      "nativeUpgrades": []
+    },
+    "tum-era:eraCreature299": {
+      "eraId": 299,
+      "coreIndex": null,
+      "nameSingular": "Sharpshooter Skeleton",
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": []
+    },
+    "tum-era:eraCreature357": {
+      "eraId": 357,
+      "coreIndex": null,
+      "nameSingular": "Skeleton Angel",
+      "level": 6,
+      "growth": 2,
+      "nativeUpgrades": []
+    },
+    "tum-era:eraCreature359": {
+      "eraId": 359,
+      "coreIndex": null,
+      "nameSingular": "Skeleton Ranger",
+      "level": 1,
+      "growth": 12,
+      "nativeUpgrades": []
+    },
+    "tum-era:eraCreature361": {
+      "eraId": 361,
+      "coreIndex": null,
+      "nameSingular": "General Skeleton",
+      "level": 4,
+      "growth": 4,
+      "nativeUpgrades": []
+    }
+  }
+}

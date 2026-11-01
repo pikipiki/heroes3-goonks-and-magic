@@ -9,6 +9,9 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraBridgePolicies.h"
+#include "../era/EraDefenseReduction.h"
+#include "../CCreatureHandler.h"
 
 #include "DamageCalculator.h"
 #include "CBattleInfoCallback.h"
@@ -197,6 +200,11 @@ int DamageCalculator::getTargetDefenseEffective() const
 
 int DamageCalculator::getTargetDefenseIgnored() const
 {
+    if(era_compat::Policies::get().defenseReduction95(info.attacker->creatureId().toCreature()->getJsonKey()))
+    {
+        const int base = getTargetDefenseBase();
+        return era_bridge::defenseAfterReduction95(base) - base;
+    }
 	double multDefenceReduction = battleBonusValue(info.attacker, Selector::type()(BonusType::ENEMY_DEFENCE_REDUCTION)) / 100.0;
 
 	if(multDefenceReduction > 0)

@@ -8,6 +8,8 @@
  *
  */
 #include "StdInc.h"
+#include "AudioThread.h"
+#include <atomic>
 #include "CMusicHandler.h"
 
 #include "../eventsSDL/InputHandler.h"
@@ -26,12 +28,19 @@
 #include <emscripten.h>
 #endif
 
+#ifdef VCMI_EMSCRIPTEN
+// Accessed only on the browser runtime thread, including hook registration.
+static CMusicHandler * webMusicHandler=nullptr;
+static GameEngine * webMusicEngine=nullptr;
+static std::atomic<uint64_t> webMusicGeneration{0};
+#endif
+
 void CMusicHandler::onVolumeChange(const JsonNode & volumeNode)
 {
 	setVolume(volumeNode.Integer());
 }
 
-CMusicHandler::CMusicHandler():
+CMusicHandler::CMusicHandler(GameEngine & owner):
 	listener(settings.listen["general"]["music"])
 {
 	listener(std::bind(&CMusicHandler::onVolumeChange, this, _1));
@@ -58,10 +67,17 @@ CMusicHandler::CMusicHandler():
 
 	if (isInitialized())
 	{
-		Mix_HookMusicFinished([]()
+#ifdef VCMI_EMSCRIPTEN
+        web_audio::call([this,&owner](){webMusicHandler=this;webMusicEngine=&owner;});
+#endif
+		web_audio::call([&](){ return Mix_HookMusicFinished([]()
 		{
-			ENGINE->music().musicFinishedCallback();
-		});
+#ifdef VCMI_EMSCRIPTEN
+            if(webMusicHandler)webMusicHandler->musicFinishedCallback();
+#else
+            if(ENGINE)ENGINE->music().musicFinishedCallback();
+#endif
+		}); });
 	}
 }
 
@@ -94,7 +110,11 @@ CMusicHandler::~CMusicHandler()
 	{
 		std::scoped_lock guard(mutex);
 
-		Mix_HookMusicFinished(nullptr);
+		web_audio::call([&](){ return Mix_HookMusicFinished(nullptr); });
+#ifdef VCMI_EMSCRIPTEN
+        web_audio::call([](){webMusicHandler=nullptr;webMusicEngine=nullptr;});
+#endif
+        callbackLifetime.reset();
 
 		current.reset();
 		next.reset();
@@ -175,7 +195,7 @@ void CMusicHandler::setVolume(ui32 percent)
 	volume = std::min(100u, percent);
 
 	if(isInitialized())
-		Mix_VolumeMusic((MIX_MAX_VOLUME * volume) / 100);
+		web_audio::call([&](){ return Mix_VolumeMusic((MIX_MAX_VOLUME * volume) / 100); });
 }
 
 void CMusicHandler::musicFinishedCallback()
@@ -188,10 +208,29 @@ void CMusicHandler::musicFinishedCallback()
 	// 1) SDL thread waiting to acquire music lock in this method (while keeping internal SDL mutex locked)
 	// 2) VCMI thread waiting to acquire internal SDL mutex (while keeping music mutex locked)
 
-	ENGINE->dispatchMainThread(
-		[this]()
+#ifdef VCMI_EMSCRIPTEN
+    auto * dispatchEngine=webMusicEngine;
+#else
+    auto * dispatchEngine=ENGINE.get();
+#endif
+    if(!dispatchEngine)return;
+    const std::weak_ptr<int> lifetime(callbackLifetime);
+#ifdef VCMI_EMSCRIPTEN
+    const auto generation=webMusicGeneration.load();
+#else
+    const uint64_t generation=0;
+#endif
+	dispatchEngine->dispatchMainThread(
+		[this,lifetime,generation]()
 		{
+            if(lifetime.expired())return;
 			std::unique_lock lockGuard(mutex);
+#ifdef VCMI_EMSCRIPTEN
+            // A queued completion for an old track cannot stop a newer track.
+            if(generation!=webMusicGeneration.load())return;
+#else
+            (void)generation;
+#endif
 			if(current != nullptr)
 			{
 				// if music is looped, play it again
@@ -236,37 +275,48 @@ MusicEntry::~MusicEntry()
 	{
 		assert(0);
 		logGlobal->error("Attempt to delete music while playing!");
-		Mix_HaltMusic();
+		web_audio::call([&](){ return Mix_HaltMusic(); });
 	}
 
-	if(loop == 0 && Mix_FadingMusic() != MIX_NO_FADING)
+	if(loop == 0 && web_audio::call([&](){ return Mix_FadingMusic(); }) != MIX_NO_FADING)
 	{
 		logGlobal->trace("Halting playback of music file %s", currentName.getOriginalName());
-		Mix_HaltMusic();
+		web_audio::call([&](){ return Mix_HaltMusic(); });
 	}
 
 	logGlobal->trace("Del-ing music file %s", currentName.getOriginalName());
 	if(music)
-		Mix_FreeMusic(music);
+		web_audio::call([&](){ return Mix_FreeMusic(music); });
 }
 
 #ifdef VCMI_EMSCRIPTEN
 MusicEntry* MusicEntry::pendingMusic = nullptr;
 
-void playPendingMusic() {
-	if (MusicEntry::pendingMusic) {
-		try
-		{
-			auto musicFile = MakeSDLRWops(CResourceHandler::get()->load(MusicEntry::pendingMusic->currentName));
-			MusicEntry::pendingMusic->music = Mix_LoadMUS_RW(musicFile, SDL_TRUE);
-			MusicEntry::pendingMusic->play();
-		}
-		catch(std::exception &e)
-		{
-			logGlobal->error("Failed to load async music %s", MusicEntry::pendingMusic->currentName.getOriginalName());
-			logGlobal->error("Exception: %s", e.what());
-		}
-	}
+void playPendingMusic()
+{
+    // JS unlock/retry must not race with the GUI's MusicEntry replacement.
+    auto * handler=webMusicHandler;
+    auto * engine=webMusicEngine;
+    if(!handler || !engine)return;
+    const std::weak_ptr<int> lifetime(handler->callbackLifetime);
+    engine->dispatchMainThread([handler,lifetime]()
+    {
+        if(lifetime.expired())return;
+        std::scoped_lock guard(handler->mutex);
+        auto * pending=MusicEntry::pendingMusic;
+        if(!pending || pending->owner!=handler)return;
+        try
+        {
+            auto * file=MakeSDLRWops(CResourceHandler::get()->load(pending->currentName));
+            pending->music=web_audio::call([&](){return Mix_LoadMUS_RW(file,SDL_TRUE);});
+            if(pending->music)MusicEntry::pendingMusic=nullptr;
+            pending->play();
+        }
+        catch(const std::exception & error)
+        {
+            logGlobal->error("Failed to load async music %s: %s",pending->currentName.getOriginalName(),error.what());
+        }
+    });
 }
 
 extern "C" void EMSCRIPTEN_KEEPALIVE playMusic() {
@@ -279,7 +329,7 @@ void MusicEntry::load(const AudioPath & musicURI)
 	if(music)
 	{
 		logGlobal->trace("Del-ing music file %s", currentName.getOriginalName());
-		Mix_FreeMusic(music);
+		web_audio::call([&](){ return Mix_FreeMusic(music); });
 		music = nullptr;
 	}
 
@@ -300,7 +350,7 @@ void MusicEntry::load(const AudioPath & musicURI)
 			stream->seek(52);
 
 		auto * musicFile = MakeSDLRWops(std::move(stream));
-		music = Mix_LoadMUS_RW(musicFile, SDL_TRUE);
+		music = web_audio::call([&](){ return Mix_LoadMUS_RW(musicFile, SDL_TRUE); });
 	}
 	catch(const std::exception & e)
 	{
@@ -347,7 +397,14 @@ bool MusicEntry::play()
 		// if music track is not interrupted and will finish by timeout/end of file - it will restart from beginning as it should
 		owner->trackPositions.erase(owner->trackPositions.find(currentName));
 
-		if(Mix_FadeInMusicPos(music, 1, 1000, timeToStart) == -1)
+		if(web_audio::call([&](){
+#ifdef VCMI_EMSCRIPTEN
+            // Halt before changing the generation so any outgoing notification
+            // is tagged with the old playback, even on implicit replacement.
+            Mix_HaltMusic();
+            ++webMusicGeneration;
+#endif
+            return Mix_FadeInMusicPos(music, 1, 1000, timeToStart); }) == -1)
 		{
 			logGlobal->error("Unable to play music (%s)", Mix_GetError());
 			return false;
@@ -357,7 +414,14 @@ bool MusicEntry::play()
 	{
 		startPosition = 0;
 
-		if(Mix_PlayMusic(music, 1) == -1)
+		if(web_audio::call([&](){
+#ifdef VCMI_EMSCRIPTEN
+            // Halt before changing the generation so any outgoing notification
+            // is tagged with the old playback, even on implicit replacement.
+            Mix_HaltMusic();
+            ++webMusicGeneration;
+#endif
+            return Mix_PlayMusic(music, 1); }) == -1)
 		{
 			logGlobal->error("Unable to play music (%s)", Mix_GetError());
 			return false;
@@ -372,10 +436,12 @@ bool MusicEntry::play()
 
 bool MusicEntry::stop(int fade_ms)
 {
-	if(Mix_PlayingMusic())
+    // A natural finish may already be queued on the GUI. Cancel its replay
+    // even if SDL has stopped the track before this request arrives.
+    playing=false;
+    loop=0;
+	if(web_audio::call([&](){ return Mix_PlayingMusic(); }))
 	{
-		playing = false;
-		loop = 0;
 		uint32_t endTime = ENGINE->input().getTicks();
 		assert(startTime != uint32_t(-1));
 		float playDuration = (endTime - startTime + startPosition) / 1000.f;
@@ -386,9 +452,9 @@ bool MusicEntry::stop(int fade_ms)
 		// Web Audio advances fades on the browser event loop. Mix_FreeMusic
 		// waits for an outgoing fade, so freeing a replaced track on that
 		// same loop can block forever (also when the audio context is paused).
-		Mix_HaltMusic();
+		web_audio::call([&](){ return Mix_HaltMusic(); });
 #else
-		Mix_FadeOutMusic(fade_ms);
+		web_audio::call([&](){ return Mix_FadeOutMusic(fade_ms); });
 #endif
 		return true;
 	}

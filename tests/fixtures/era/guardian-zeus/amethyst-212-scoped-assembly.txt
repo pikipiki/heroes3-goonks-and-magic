@@ -1,0 +1,40 @@
+Bounded original-artifact instructions; half-open VA ranges: [(268513120, 268513296)]
+10012f61: 6a 07                        	pushl	$0x7
+10012f63: 6a 00                        	pushl	$0x0
+10012f65: 68 70 82 01 10               	pushl	$0x10018270             # imm = 0x10018270
+10012f6a: 68 6c c9 75 00               	pushl	$0x75c96c               # imm = 0x75C96C
+10012f6f: e8 cc 80 ff ff               	calll	0x1000b040 <ChooseAnyCreatureType+0x2760>
+10012f74: 83 c4 10                     	addl	$0x10, %esp
+10012f77: c7 05 66 82 44 00 70 94 04 10	movl	$0x10049470, 0x448266   # imm = 0x10049470
+10012f81: 68 00 04 00 00               	pushl	$0x400                  # imm = 0x400
+10012f86: 6a 09                        	pushl	$0x9
+10012f88: 68 58 83 2f 11               	pushl	$0x112f8358             # imm = 0x112F8358
+10012f8d: e8 be eb 00 00               	calll	0x10021b50 <set_check_resistence_for_creature_cast+0x1d00>
+10012f92: 83 c4 0c                     	addl	$0xc, %esp
+10012f95: 0f b6 05 2c d1 04 10         	movzbl	0x1004d12c, %eax
+10012f9c: 85 c0                        	testl	%eax, %eax
+10012f9e: 74 12                        	je	0x10012fb2 <ChooseAnyCreatureType+0xa6d2>
+10012fa0: b9 2e 00 00 00               	movl	$0x2e, %ecx
+10012fa5: 8b 35 5f 82 44 00            	movl	0x44825f, %esi
+10012fab: bf 65 83 2f 11               	movl	$0x112f8365, %edi       # imm = 0x112F8365
+10012fb0: f3 a5                        	rep		movsl	(%esi), %es:(%edi)
+10012fb2: 68 40 9c 01 10               	pushl	$0x10019c40             # imm = 0x10019C40
+10012fb7: 68 42 82 44 00               	pushl	$0x448242               # imm = 0x448242
+10012fbc: 8b 0d 74 d5 a6 10            	movl	0x10a6d574, %ecx
+10012fc2: 8b 11                        	movl	(%ecx), %edx
+10012fc4: a1 74 d5 a6 10               	movl	0x10a6d574, %eax
+10012fc9: 50                           	pushl	%eax
+10012fca: 8b 4a 18                     	movl	0x18(%edx), %ecx
+10012fcd: ff d1                        	calll	*%ecx
+10012fcf: c7 05 5f 82 44 00 58 83 2f 11	movl	$0x112f8358, 0x44825f   # imm = 0x112F8358
+10012fd9: ba 01 00 00 00               	movl	$0x1, %edx
+10012fde: 69 c2 96 00 00 00            	imull	$0x96, %edx, %eax
+10012fe4: 89 85 b4 fe ff ff            	movl	%eax, -0x14c(%ebp)
+10012fea: 81 bd b4 fe ff ff 00 04 00 00	cmpl	$0x400, -0x14c(%ebp)    # imm = 0x400
+10012ff4: 73 02                        	jae	0x10012ff8 <ChooseAnyCreatureType+0xa718>
+10012ff6: eb 06                        	jmp	0x10012ffe <ChooseAnyCreatureType+0xa71e>
+10012ff8: e8 a5 d0 00 00               	calll	0x100200a2 <set_check_resistence_for_creature_cast+0x252>
+10012ffd: 90                           	nop
+10012ffe: 8b 8d b4 fe ff ff            	movl	-0x14c(%ebp), %ecx
+10013004: c6 81 58 83 2f 11 00         	movb	$0x0, 0x112f8358(%ecx)
+1001300b: ba 01 00 00 00               	movl	$0x1, %edx

@@ -60,6 +60,10 @@ class DLL_LINKAGE SpellCastEnvironment : public ServerCallback
 public:
 	virtual ~SpellCastEnvironment() = default;
 
+    // Server post-hazard boundary; AI/client environments have no mutation hook.
+    virtual void afterObstacleTrigger(const CBattleInfoCallback & battle) {}
+
+
 	virtual const CMap * getMap() const = 0;
 	virtual const IGameInfoCallback * getCb() const = 0;
 
@@ -95,12 +99,15 @@ public:
 
 	virtual boost::logic::tribool isSmart() const = 0;
 	virtual boost::logic::tribool isMassive() const = 0;
+	virtual bool isEraExperiencePreAttack() const { return false; }
 };
 
 ///all parameters of particular cast event
 class DLL_LINKAGE BattleCast : public IBattleCast
 {
 public:
+	bool eraExperiencePreAttack = false;
+	bool isEraExperiencePreAttack() const override { return eraExperiencePreAttack; }
 	boost::logic::tribool smart;
 	boost::logic::tribool massive;
 
@@ -334,6 +341,7 @@ public:
 	const CBattleInfoCallback * battle() const override;
 
 protected:
+	bool eraExperiencePreAttack = false;
 	const CSpell * owner;
 	Mode mode;
 

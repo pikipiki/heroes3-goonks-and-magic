@@ -1,0 +1,41 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_164": {
+        "name": "Tomb of Angels",
+        "creatures": [
+          [
+            "tum-era:eraCreature357"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature357",
+            "amount": 6
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw67.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 10038,
+          "rarity": 40,
+          "neutralAllowed": true
+        }
+      }
+    }
+  }
+}

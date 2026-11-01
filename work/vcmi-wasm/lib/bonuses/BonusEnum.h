@@ -203,6 +203,10 @@ class JsonNode;
 	BONUS_NAME(CPU_CONTROLLED) /* Makes unit CPU controller by default, like ballista. Currently, target picking uses custom server logic rather than using battle AI */ \
 	BONUS_NAME(DEITYOFFIRE) /* Controls special week */ \
 	BONUS_NAME(ON_COMBAT_EVENT) /* Allows triggering various effects on combat events */ \
+	BONUS_NAME(ERA_DISPEL_IMMUNITY) /* Source XP wP:val1 regular Dispel both sides; wp:val2 hostile effective side only */ \
+	BONUS_NAME(ERA_SOURCE_STATUS_HEALTH) /* Battle-scoped exact poison/Age health profile */ \
+	BONUS_NAME(ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY) /* Source XP w1..w5: nonpositive spells up to level N, including level zero */ \
+	BONUS_NAME(ERA_SOURCE_ACID_DEFENSE) /* Source80 may leave signedDEF after a defended boost expires */ \
 
 	/* end of list */
 

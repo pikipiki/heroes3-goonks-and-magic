@@ -11,7 +11,7 @@
       "repository": "https://github.com/VMaiko1634/Third-Upgrade-Mod-Full",
       "commit": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
       "version": "3.5.0",
-      "installed": "Red Bones Dragon resources and VCMI adaptation only"
+      "installed": "Native creature/resource adapters; see ERA-BRIDGE-UPSTREAM.json for verified coverage"
     },
     {
       "repository": "https://github.com/misiokles/tow-tum",
@@ -22,13 +22,12 @@
   ],
   "eraArchiveSHA256": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
   "adaptation": {
-    "stats": "AmeCre.pac/Crtraits.txt, Red Bones Dragon row",
-    "regeneration": "Data/Creatures/224.cfg: 50 HP, 100% chance",
-    "portraits": "AmeCre.pac/cprsmall.def and twcrport.def, frame 224",
-    "buildings": "Fourth Necropolis dwelling; reuses the advanced Dragon Vault art and icon. Building price is a local balance choice.",
-    "abilities": "Native WoG age, life drain, fear and morale bonuses; regeneration and no retaliation added. ERA hit effects and full ERM runtime are not ported."
+    "stats": "Original AmeCre.pac/Crtraits.txt rows, creature cfg and explicit native identities",
+    "portraits": "CPRSMALL/TWCRPORT use original creature ID + 2 reserved frames; custom frame names are checked",
+    "buildings": "Five fourth-upgrade town chains with ERA building77 costs; advanced building artwork reused",
+    "abilities": "Source-scoped native policies; inherited WoG behavior is distinguished from proven ERA behavior"
   },
-  "remaining": "Other ERA-only fourth upgrades, scripts and mechanisms are not implemented by this integration.",
+  "remaining": "Complete ERA 3.5 compatibility remains false; unclosed creatures, artifact specials, conditional scripts and mechanisms stay outside active content.",
   "vcmiCompatibilityFixes": [
     "badLuckDice denominators converted to badLuckChance weights [2,4,6] for the native 24-sided luck roll",
     "Artifact bonuses converted to named objects; scenarioBonus graphics renamed",
@@ -37,5 +36,19 @@
     "WoG Sylvan Homestead patch uses the dependency-scoped sylvanHomestead identifier",
     "Inherited optional bonus icons removed from Red Bones Dragon; no unavailable icon dependencies",
     "Mobile construction panel opens the native hall for all advanced upgrade tiers"
-  ]
+  ],
+  "activeContent": {
+    "tumCreatures": 12,
+    "artifacts": 56,
+    "mapObjects": 28,
+    "experienceProfiles": 234,
+    "fourthUpgradeTowns": [
+      "castle",
+      "inferno",
+      "necropolis",
+      "conflux",
+      "stronghold"
+    ],
+    "baseThirdUpgradeTowns": 9
+  }
 }

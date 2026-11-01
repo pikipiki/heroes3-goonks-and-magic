@@ -1,0 +1,105 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank43": {
+        "name": "City of the Dead",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB11.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VBAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:skeletonWarrior",
+                "amount": 25
+              },
+              {
+                "type": "core:zombieLord",
+                "amount": 15
+              },
+              {
+                "type": "core:wraith",
+                "amount": 10
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 5
+              },
+              {
+                "type": "core:skeletonWarrior",
+                "amount": 25
+              },
+              {
+                "type": "core:zombieLord",
+                "amount": 15
+              },
+              {
+                "type": "core:wraith",
+                "amount": 10
+              }
+            ],
+            "resources": [
+              {
+                "type": "core:gold",
+                "amount": 5000
+              },
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 2
+              }
+            ],
+            "spells": [
+              {
+                "anyOf": [
+                  "core:blind",
+                  "core:deathRipple",
+                  "core:disguise",
+                  "core:disruptingRay",
+                  "core:fireWall",
+                  "core:fortune",
+                  "core:iceBolt",
+                  "core:lightningBolt",
+                  "core:precision",
+                  "core:protectAir",
+                  "core:quicksand",
+                  "core:removeObstacle",
+                  "core:scuttleBoat",
+                  "core:visions",
+                  "core:weakness"
+                ]
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 5200,
+          "rarity": 100
+        },
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33
+      }
+    }
+  }
+}

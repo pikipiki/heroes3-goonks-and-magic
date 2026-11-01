@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "source": "h3era.exe",
+  "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "method": "Bounded objdump fallback, source caller and constructor only",
+  "townDefTable": {
+    "va": "0x67F5D4",
+    "stride": 4,
+    "townOrder": [
+      "Castle",
+      "Rampart",
+      "Tower",
+      "Inferno",
+      "Necropolis",
+      "Dungeon",
+      "Stronghold",
+      "Fortress",
+      "Conflux"
+    ]
+  },
+  "frameSelection": [
+    {
+      "va": "0x5D5B05",
+      "meaning": "Read building ID from object+0x64"
+    },
+    {
+      "va": "0x5D5B16",
+      "meaning": "Pass same building ID as H3DlgDef frame argument"
+    },
+    {
+      "va": "0x5D5B35",
+      "meaning": "Call H3DlgDef constructor 0x4EA800"
+    },
+    {
+      "va": "0x5D5B5F",
+      "meaning": "Read same building ID again"
+    },
+    {
+      "va": "0x5D5B74",
+      "meaning": "Pass ID to building name resolver 0x460CC0"
+    },
+    {
+      "va": "0x4EA83E..0x4EA844",
+      "meaning": "Constructor stores frame argument[ebp+0x20] into object+0x34"
+    }
+  ],
+  "bridgeMapping": {
+    "sourceBuilding": 77,
+    "nativeBuilding": 57,
+    "sourceFrame": 77,
+    "nativeFrame": 57
+  },
+  "scope": "Only direct frame-index correspondence. Source77 and70 pixels may coincide; no claim that third/fourth icons differ visually. Real native lazy-load checks are separate."
+}

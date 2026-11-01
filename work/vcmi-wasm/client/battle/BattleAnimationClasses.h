@@ -336,6 +336,7 @@ public:
 		ALIGN_TO_BOTTOM = 1,
 		FORCE_ON_TOP    = 2,
 		SCREEN_FILL     = 4,
+        MIRROR_HORIZONTAL = 8,
 	};
 
 	/// Create animation with screen-wide effect

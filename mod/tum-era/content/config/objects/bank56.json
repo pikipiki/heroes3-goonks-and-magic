@@ -1,0 +1,73 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank56": {
+        "name": "Sins Generator",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB24.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VVBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:archDevil",
+                "amount": 21,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:archDevil",
+                "amount": 21
+              },
+              {
+                "type": "core:archDevil",
+                "amount": 21
+              },
+              {
+                "type": "core:archDevil",
+                "amount": 21
+              }
+            ],
+            "resources": {
+              "mercury": 20,
+              "gold": 10000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:antichrist",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 10000,
+          "rarity": 100
+        },
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33
+      }
+    }
+  }
+}

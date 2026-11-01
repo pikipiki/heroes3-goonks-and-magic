@@ -1,0 +1,62 @@
+{
+  "core:creatureGeneratorSpecial": {
+    "types": {
+      "eraDwelling20_3": {
+        "name": "Laboratory",
+        "creatures": [
+          [
+            "tum-era:redBonesDragon"
+          ],
+          [
+            "wake-of-gods.level8units:bloodDragon"
+          ],
+          [
+            "core:ghostDragon"
+          ],
+          [
+            "core:boneDragon"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:redBonesDragon",
+            "amount": 3
+          },
+          {
+            "type": "wake-of-gods.level8units:bloodDragon",
+            "amount": 3
+          },
+          {
+            "type": "core:ghostDragon",
+            "amount": 3
+          },
+          {
+            "type": "core:boneDragon",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw31.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 29662,
+          "rarity": 300
+        }
+      }
+    }
+  }
+}

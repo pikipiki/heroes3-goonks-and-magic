@@ -8,6 +8,12 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraStatusHealth.h"
+#include "../era/EraBattleSlots.h"
+#include <tuple>
+#include "../era/EraStatusHealthBonuses.h"
+#include "../era/EraBridgePolicies.h"
+#include "../CCreatureHandler.h"
 #include "BattleInfo.h"
 
 #include "BattleLayout.h"
@@ -70,6 +76,34 @@ void BattleInfo::localInit()
 
 	for(auto & s : stacks)
 		s->localInit(this);
+
+    // Original463234 compacts army slots, then appends145..148 machines,
+    //149 towers and the WoG commander. Native storage is initiative-sorted
+    //and creates machines before the army, so its vector/ID order is different.
+    const auto sourceOrder=[](const CStack * stack)
+    {
+        const auto slot=stack->unitSlot();
+        int category=4,ordinal=static_cast<int>(stack->unitId());
+        if(slot.validSlot()){category=0;ordinal=slot.getNum();}
+        else if(slot==SlotID::WAR_MACHINES_SLOT){category=1;ordinal=stack->creatureIndex();}
+        else if(slot==SlotID::ARROW_TOWERS_SLOT)
+        {
+            category=2;
+            // The center precedes both side towers. Side-tower source labels
+            //are unproven; both have zero Sorrow acceptance and consume a draw.
+            ordinal=stack->initialPosition==BattleHex::CASTLE_CENTRAL_TOWER?0
+                :stack->initialPosition==BattleHex::CASTLE_UPPER_TOWER?1:2;
+        }
+        else if(slot==SlotID::COMMANDER_SLOT_PLACEHOLDER){category=3;ordinal=0;}
+        return std::make_tuple(static_cast<int>(stack->unitSide()),category,ordinal,stack->unitId());
+    };
+    std::vector<CStack *> ordered;
+    for(const auto & stack:stacks)ordered.push_back(stack.get());
+    std::stable_sort(ordered.begin(),ordered.end(),[&](const CStack * a,const CStack * b)
+        {return sourceOrder(a)<sourceOrder(b);});
+    BattleSideArray<int> sourceCounts{};
+    for(auto * stack:ordered)
+        stack->eraMassSlot=sourceCounts.at(stack->unitSide())++;
 
 	exportBonuses();
 }
@@ -659,10 +693,22 @@ void BattleInfo::nextRound()
 
 	for(auto & s : stacks)
 	{
-		// new turn effects
-		s->reduceBonusDurations(Bonus::NTurns);
-
-		s->afterNewRound();
+        const bool sourceHealth=era_compat::sourceStatusUsesProfile(*s);
+        const int oldMaximum=s->getMaxHealth();
+        // Original446EDA expires statuses first, then446F11 advances poison.
+        s->reduceBonusDurations(Bonus::NTurns);
+        if(sourceHealth && s->alive())
+        {
+            auto poison=s->getLocalBonus(Selector::source(BonusSource::SPELL_EFFECT,SpellID(SpellID::POISON))
+                .And(Selector::type()(BonusType::STACK_HEALTH)));
+            if(poison)
+            {
+                poison->val=-::era_bridge::sourcePoisonNextPercent(-poison->val);
+                s->nodeHasChanged();
+            }
+            s->health.sourceMaximumChanged(oldMaximum);
+        }
+        s->afterNewRound();
 	}
 
 	for(auto & obst : obstacles)
@@ -694,6 +740,30 @@ void BattleInfo::addUnit(uint32_t id, const JsonNode & data)
 
 	auto ret = std::make_unique<CStack>(&base, owner, info.id, info.side, SlotID::SUMMONED_SLOT_PLACEHOLDER);
 	ret->initialPosition = info.position;
+    std::vector<::era_bridge::BattleSlotState> sourceSlots;
+    for(const auto & existing:stacks)
+        if(existing->unitSide()==info.side)
+            sourceSlots.push_back({existing->eraMassSlot,
+                existing->alive() && !existing->isGhost(),existing->summoned});
+    const bool sourceSlotsActive=CResourceHandler::get()->existsResource(JsonPath::builtin("config/era-bridge-status-attacks"));
+    int assignedSlot=0;
+    if(sourceSlotsActive)
+    {
+        assignedSlot=::era_bridge::allocateBattleSlot(sourceSlots).slot;
+        for(auto & existing:stacks)
+            if(existing->unitSide()==info.side && existing->eraMassSlot==assignedSlot)
+            {
+                // Native IDs remain unique while ERA overwrites this array
+                // position. The retired unit is logically gone, including its
+                // clone ownership link; copied unit-state packets cannot revive it.
+                existing->eraMassSlot=-2;
+                for(auto & original:stacks)
+                    if(original->cloneID==existing->unitId())original->cloneID=-1;
+            }
+    }
+    else
+        for(const auto & existing:sourceSlots)assignedSlot=std::max(assignedSlot,existing.slot+1);
+    ret->eraMassSlot=assignedSlot;
 	stacks.push_back(std::move(ret));
 	stacks.back()->localInit(this);
 	stacks.back()->summoned = info.summoned;
@@ -775,7 +845,11 @@ void BattleInfo::setUnitState(uint32_t id, const JsonNode & data, int64_t health
 		changedStack->removeBonusesRecursive(selector);
 	}
 
-	if(!changedStack->alive() && changedStack->isClone())
+    // Preserve ownership through the ERA post-sequence decision. Successful
+    // revival keeps hasClone() true; failed revival's REMOVE clears the link.
+    const bool deferredEraClone = changedStack->isClone()
+        && era_compat::Policies::get().rebirth(changedStack->creatureId().toCreature()->getJsonKey()).has_value();
+	if(!changedStack->alive() && changedStack->isClone() && !deferredEraClone)
 	{
 		for(auto & s : stacks)
 		{
@@ -841,8 +915,12 @@ void BattleInfo::addUnitBonus(uint32_t id, const std::vector<Bonus> & bonus)
 		return;
 	}
 
-	for(const Bonus & b : bonus)
-		addOrUpdateUnitBonus(sta, b, true);
+    const bool oldProfile=era_compat::sourceStatusUsesProfile(*sta);
+    const int oldMaximum=sta->getMaxHealth();
+    for(const Bonus & b : bonus)
+        addOrUpdateUnitBonus(sta,b,true);
+    if(oldProfile && era_compat::sourceStatusUsesProfile(*sta))
+        sta->health.sourceMaximumChanged(oldMaximum);
 }
 
 void BattleInfo::updateUnitBonus(uint32_t id, const std::vector<Bonus> & bonus)
@@ -855,8 +933,12 @@ void BattleInfo::updateUnitBonus(uint32_t id, const std::vector<Bonus> & bonus)
 		return;
 	}
 
-	for(const Bonus & b : bonus)
-		addOrUpdateUnitBonus(sta, b, false);
+    const bool oldProfile=era_compat::sourceStatusUsesProfile(*sta);
+    const int oldMaximum=sta->getMaxHealth();
+    for(const Bonus & b : bonus)
+        addOrUpdateUnitBonus(sta,b,false);
+    if(oldProfile && era_compat::sourceStatusUsesProfile(*sta))
+        sta->health.sourceMaximumChanged(oldMaximum);
 }
 
 void BattleInfo::removeUnitBonus(uint32_t id, const std::vector<Bonus> & bonus)
@@ -869,6 +951,8 @@ void BattleInfo::removeUnitBonus(uint32_t id, const std::vector<Bonus> & bonus)
 		return;
 	}
 
+    const bool oldProfile=era_compat::sourceStatusUsesProfile(*sta);
+    const int oldMaximum=sta->getMaxHealth();
 	for(const Bonus & one : bonus)
 	{
 		auto selector = [one](const Bonus * b)
@@ -883,8 +967,10 @@ void BattleInfo::removeUnitBonus(uint32_t id, const std::vector<Bonus> & bonus)
 			&& one.valType == b->valType
 			&& one.effectRange == b->effectRange;
 		};
-		sta->removeBonusesRecursive(selector);
-	}
+        sta->removeBonusesRecursive(selector);
+    }
+    if(oldProfile && era_compat::sourceStatusUsesProfile(*sta))
+        sta->health.sourceMaximumChanged(oldMaximum);
 }
 
 uint32_t BattleInfo::nextUnitId() const
@@ -909,6 +995,10 @@ void BattleInfo::addOrUpdateUnitBonus(CStack * sta, const Bonus & value, bool fo
 			if(stackBonus->source == value.source && stackBonus->sid == value.sid && stackBonus->type == value.type && stackBonus->subtype == value.subtype && stackBonus->valType == value.valType)
 			{
 				stackBonus->turnsRemain = std::max(stackBonus->turnsRemain, value.turnsRemain);
+                if(value.type==BonusType::POISON && value.val==50
+                    && sta->hasBonusOfType(BonusType::ERA_SOURCE_STATUS_HEALTH)
+                    && (stackBonus->val==30 || stackBonus->val==50))
+                    stackBonus->val=50;
 			}
 		}
 		sta->nodeHasChanged();

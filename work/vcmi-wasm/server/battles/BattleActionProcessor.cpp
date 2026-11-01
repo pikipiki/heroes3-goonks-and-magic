@@ -8,13 +8,25 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraDeflectionLog.h"
+#include "../../lib/era/EraExperienceAttackSpells.h"
+#include "../../lib/era/EraSourceAttackGate.h"
 #include "BattleActionProcessor.h"
+#include "../era/EraDoneRound.h"
+#include "../era/EraRebirth.h"
+#include "../era/EraPetrification.h"
+#include "../era/EraStatusAttacks.h"
+#include "../../lib/era/EraDeflectionRuntime.h"
+#include "../era/EraAcidAttackRuntime.h"
+#include "../era/EraThunderAttackRuntime.h"
 
 #include "BattleProcessor.h"
 
 #include "../CGameHandler.h"
 
 #include "../../lib/CStack.h"
+#include "../../lib/era/EraBridgePolicies.h"
+#include "../../lib/CCreatureHandler.h"
 #include "../../lib/IGameSettings.h"
 #include "../../lib/battle/CBattleInfoCallback.h"
 #include "../../lib/battle/CObstacleInstance.h"
@@ -153,6 +165,10 @@ bool BattleActionProcessor::doWalkAction(const CBattleInfoCallback & battle, con
 		gameHandler->complain("Stack failed movement!");
 		return false;
 	}
+    if(!battle.battleTacticDist())
+    {
+        markEraDoneRound(*gameHandler, battle, stack);
+    }
 	processBattleEventTriggers(battle, CombatEventType::AFTER_MOVE, stack, nullptr);
 	return true;
 }
@@ -163,6 +179,9 @@ bool BattleActionProcessor::doDefendAction(const CBattleInfoCallback & battle, c
 
 	if (!canStackAct(battle, stack))
 		return false;
+
+    // ERA DEFEND sets DONE before applying defense/after-defend effects.
+    markEraDoneRound(*gameHandler, battle, stack);
 
 	//defensive stance, TODO: filter out spell boosts from bonus (stone skin etc.)
 	SetStackEffect sse;
@@ -237,9 +256,39 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
 		return false;
 	}
 
+    if(stack->unitId() == destinationStack->unitId() || !CStack::isMeleeAttackPossible(stack, destinationStack, attackPos))
+    {
+        gameHandler->complain("Invalid melee attack destination");
+        return false;
+    }
+    EraPetrificationSequence petrification;
+    const auto beforeMovement = [&]()
+    {
+        petrification.beforeAction(*gameHandler,battle,stack,destinationStack);
+    // Apply once per accepted melee action, before movement, first strike or retaliation.
+    // Extra attacks within this action share the resulting authoritative stats.
+    if(era_compat::Policies::get().meleeRage(stack->creatureId().toCreature()->getJsonKey()))
+    {
+        const auto transfer = ::era_bridge::beforeMeleeStatTransfer(::era_bridge::ActionKind::MeleeAttack,
+            stack->getAttack(false), stack->getDefense(false));
+        if(transfer.applied)
+        {
+            SetStackEffect effect;
+            effect.battleID = battle.getBattle()->getBattleID();
+            std::vector<Bonus> bonuses;
+            bonuses.emplace_back(BonusDuration::ONE_BATTLE, BonusType::PRIMARY_SKILL, BonusSource::OTHER,
+                transfer.attackDelta, BonusSourceID(), BonusSubtypeID(PrimarySkill::ATTACK), BonusValueType::ADDITIVE_VALUE);
+            bonuses.emplace_back(BonusDuration::ONE_BATTLE, BonusType::PRIMARY_SKILL, BonusSource::OTHER,
+                transfer.defenseDelta, BonusSourceID(), BonusSubtypeID(PrimarySkill::DEFENSE), BonusValueType::ADDITIVE_VALUE);
+            effect.toAdd.emplace_back(ba.stackNumber, std::move(bonuses));
+            gameHandler->sendAndApply(effect);
+        }
+    }
+    };
+
 	BattleHex startingPos = stack->getPosition();
 	int beforeAttackSpeed = stack->getMovementRange(0);
-	const auto movementResult = moveStack(battle, ba.stackNumber, attackPos);
+	const auto movementResult = moveStack(battle, ba.stackNumber, attackPos, beforeMovement);
 
 	logGlobal->trace("%s will attack %s", stack->nodeName(), destinationStack->nodeName());
 
@@ -253,6 +302,7 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
 	{
 		// we were not able to reach destination tile, nor occupy specified hex
 		// abort attack attempt, but treat this case as legal - we have stepped onto a quicksands/mine
+        petrification.flush(*gameHandler,battle);
 		return true;
 	}
 
@@ -272,6 +322,7 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
 		gameHandler->complain("Attack cannot be performed!");
 		return false;
 	}
+
 
 	//attack
 	int totalAttacks = stack->getTotalAttacks(false);
@@ -295,13 +346,13 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
 		//first strike
 		if(i == 0 && firstStrike && retaliation && !stack->hasBonusOfType(BonusType::BLOCKS_RETALIATION) && !stack->isInvincible())
 		{
-			makeAttack(battle, destinationStack, stack, 0, stack->getPosition(), true, false, true);
+			makeAttack(battle, destinationStack, stack, 0, stack->getPosition(), true, false, true, &petrification);
 		}
 
 		//move can cause death, eg. by walking into the moat, first strike can cause death or paralysis/petrification
 		if(stack->alive() && !stack->hasBonusOfType(BonusType::NOT_ACTIVE) && destinationStack->alive())
 		{
-			makeAttack(battle, stack, destinationStack, (i ? 0 : movementResult.distance), destinationTile, i==0, false, false);//no distance travelled on second attack
+			makeAttack(battle, stack, destinationStack, (i ? 0 : movementResult.distance), destinationTile, i==0, false, false, &petrification);//no distance travelled on second attack
 
 			if(!ferocityApplied && stack->hasBonusOfType(BonusType::FEROCITY))
 			{
@@ -324,9 +375,19 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
 			&& (i == 0 && !firstStrike)
 			&& retaliation && destinationStack->ableToRetaliate())
 		{
-			makeAttack(battle, destinationStack, stack, 0, stack->getPosition(), true, false, true);
+			makeAttack(battle, destinationStack, stack, 0, stack->getPosition(), true, false, true, &petrification);
 		}
 	}
+
+    // Original468C99 consumes queued per-target spells after all strikes.
+    petrification.flush(*gameHandler, battle);
+
+    // Source445780 calls469020 only after retaliation and double strikes.
+    applyEraRebirth(*gameHandler, battle);
+
+    // ERA sub478230 sets DONE after the complete melee/retaliation sequence,
+    // before the return movement. StartAction.movedThisRound is too early.
+    markEraDoneRound(*gameHandler, battle, stack);
 
 	//return
 	if(stack->hasBonusOfType(BonusType::RETURN_AFTER_STRIKE)
@@ -379,6 +440,8 @@ bool BattleActionProcessor::doShootAction(const CBattleInfoCallback & battle, co
 		return false;
 	}
 
+    EraPetrificationSequence petrification;
+    petrification.beforeAction(*gameHandler,battle,stack,destinationStack);
 	bool firstStrike = false;
 	if(!emptyTileAreaAttack)
 	{
@@ -387,7 +450,7 @@ bool BattleActionProcessor::doShootAction(const CBattleInfoCallback & battle, co
 	}
 
 	if (!firstStrike)
-		makeAttack(battle, stack, destinationStack, 0, destination, true, true, false);
+		makeAttack(battle, stack, destinationStack, 0, destination, true, true, false, &petrification);
 
 	//ranged counterattack
 	if (!emptyTileAreaAttack
@@ -397,7 +460,7 @@ bool BattleActionProcessor::doShootAction(const CBattleInfoCallback & battle, co
 		&& battle.battleCanShoot(destinationStack, stack->getPosition())
 		&& stack->alive()) //attacker may have died (fire shield)
 	{
-		makeAttack(battle, destinationStack, stack, 0, stack->getPosition(), true, true, true);
+		makeAttack(battle, destinationStack, stack, 0, stack->getPosition(), true, true, true, &petrification);
 	}
 	//allow more than one additional attack
 
@@ -416,10 +479,11 @@ bool BattleActionProcessor::doShootAction(const CBattleInfoCallback & battle, co
 			&& (emptyTileAreaAttack || destinationStack->alive())
 			&& stack->shots.canUse())
 		{
-			makeAttack(battle, stack, destinationStack, 0, destination, false, true, false);
+			makeAttack(battle, stack, destinationStack, 0, destination, false, true, false, &petrification);
 		}
 	}
 
+    petrification.flush(*gameHandler,battle);
 	return true;
 }
 
@@ -683,6 +747,23 @@ bool BattleActionProcessor::makeBattleActionImpl(const CBattleInfoCallback & bat
 
 	bool result = dispatchBattleAction(battle, ba);
 
+    if(result && (ba.actionType == EActionType::SHOOT
+        || ba.actionType == EActionType::HERO_SPELL
+        || ba.actionType == EActionType::MONSTER_SPELL
+        || ba.actionType == EActionType::WALK_AND_CAST
+        || ba.actionType == EActionType::CATAPULT))
+        applyEraRebirth(*gameHandler, battle);
+
+    // Ranged attacks, activated creature spells and ordinary moves become
+    // DONE only after their synchronous action completes. WAIT and hero casts
+    // do not set a creature DONE bit; tactics moves are also excluded.
+    if(result && ba.isUnitAction() && !battle.battleTacticDist()
+        && ba.actionType != EActionType::WAIT
+        && ba.actionType != EActionType::HERO_SPELL)
+    {
+        markEraDoneRound(*gameHandler, battle, stack);
+    }
+
 	if (!ba.isBattleEndAction())
 	{
 		EndAction endAction;
@@ -696,7 +777,7 @@ bool BattleActionProcessor::makeBattleActionImpl(const CBattleInfoCallback & bat
 	return result;
 }
 
-BattleActionProcessor::MovementResult BattleActionProcessor::moveStack(const CBattleInfoCallback & battle, int stack, BattleHex dest)
+BattleActionProcessor::MovementResult BattleActionProcessor::moveStack(const CBattleInfoCallback & battle, int stack, BattleHex dest, const std::function<void()> & beforeMovement)
 {
 	const CStack *currentUnit = battle.battleGetStackByID(stack);
 	const CStack *stackAtEnd = battle.battleGetStackByPos(dest);
@@ -711,7 +792,11 @@ BattleActionProcessor::MovementResult BattleActionProcessor::moveStack(const CBa
 
 	auto start = currentUnit->getPosition();
 	if (start == dest)
-		return { 0, false, false };
+    {
+        if(beforeMovement)
+            beforeMovement();
+        return { 0, false, false };
+    }
 
 	//initing necessary tables
 	auto accessibility = battle.getAccessibility(currentUnit);
@@ -758,6 +843,13 @@ BattleActionProcessor::MovementResult BattleActionProcessor::moveStack(const CBa
 		gameHandler->complain("Given destination is not reachable!");
 		return { 0, false, true };
 	}
+
+    // All path validation succeeded; ERA OnBeforeBattleAction precedes any
+    // obstacle/moat damage along the accepted movement path.
+    if(beforeMovement)
+    {
+        beforeMovement();
+    }
 
 	bool hasWideMoat = vstd::contains_if(battle.battleGetAllObstaclesOnPos(BattleHex(BattleHex::GATE_BRIDGE), false), [](const std::shared_ptr<const CObstacleInstance> & obst)
 	{
@@ -994,7 +1086,7 @@ BattleActionProcessor::MovementResult BattleActionProcessor::moveStack(const CBa
 	return { static_cast<int16_t>(pathDistance), !movementSuccess, false };
 }
 
-void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const CStack * attacker, const CStack * defender, int distance, const BattleHex & targetHex, bool first, bool ranged, bool counter)
+void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const CStack * attacker, const CStack * defender, int distance, const BattleHex & targetHex, bool first, bool ranged, bool counter, EraPetrificationSequence * petrification)
 {
 	if(defender && first && !counter)
 		handleAttackBeforeCasting(battle, ranged, attacker, defender);
@@ -1110,6 +1202,11 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
 
 	gameHandler->sendAndApply(bat);
 
+    if(petrification && !ranged)
+    {
+        petrification->collect(*gameHandler, battle, attacker, bat, defender);
+    }
+
 	{
 		const bool multipleTargets = bat.bsa.size() > 1;
 
@@ -1135,6 +1232,9 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
 		addGenericResurrectedLog(blm, attackerState, defender, healInfo.resurrectedCount);
 	}
 
+    era_compat_server::applySourceThunder(*gameHandler,battle,ranged,attacker,defender);
+    era_compat_server::applyAcidAttack(*gameHandler, battle, ranged, attacker, defender);
+
 	if(!fireShield.empty())
 	{
 		//todo: this should be "virtual" spell instead, we only need fire spell school bonus here
@@ -1148,14 +1248,20 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
 
 			const CGHeroInstance * actorOwner = battle.battleGetFightingHero(actor->unitSide());
 
-			if(actorOwner)
-			{
-				rawDamage = fireShieldSpell->adjustRawDamage(actorOwner, attacker, rawDamage);
-			}
-			else
-			{
-				rawDamage = fireShieldSpell->adjustRawDamage(actor, attacker, rawDamage);
-			}
+            // Source440858 sends reflection straight to443DB0. It does not
+            // visit magical vulnerability selector11, or spell protection and
+            // caster multipliers before a source L deflection wrapper.
+            const auto & sourcePolicy=era_compat::Policies::get();
+            const auto & targetKey=attacker->creatureId().toCreature()->getJsonKey();
+            const bool sourceDirect=sourcePolicy.spellDamageInversion(targetKey)
+                || sourcePolicy.physicalDeflection(targetKey).has_value();
+            if(!sourceDirect)
+            {
+                if(actorOwner)
+                    rawDamage=fireShieldSpell->adjustRawDamage(actorOwner,attacker,rawDamage);
+                else
+                    rawDamage=fireShieldSpell->adjustRawDamage(actor,attacker,rawDamage);
+            }
 
 			totalDamage+=rawDamage;
 			//FIXME: add custom effect on actor
@@ -1168,7 +1274,8 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
 			bsa.flags |= BattleStackAttacked::FIRE_SHIELD;
 			bsa.stackAttacked = attacker->unitId(); //invert
 			bsa.attackerID = defender->unitId();
-			bsa.damageAmount = totalDamage;
+			bsa.damageAmount = applyEraDeflection(attacker, gameHandler->getRandomGenerator(), totalDamage, [&](int strength,int chance){auto message=eraDeflectionLog(battle.getBattle()->getBattleID(),strength,chance);gameHandler->sendAndApply(message);});
+            totalDamage = bsa.damageAmount;
 			attacker->prepareAttacked(bsa, gameHandler->getRandomGenerator());
 
 			StacksInjured pack;
@@ -1203,8 +1310,31 @@ void BattleActionProcessor::attackCasting(const CBattleInfoCallback & battle, bo
 		TConstBonusListPtr spells = attacker->getBonuses(Selector::type()(attackMode));
 		std::set<SpellID> spellsToCast = getSpellsForAttackCasting(spells, defender);
 
-		for(SpellID spellID : spellsToCast)
+        std::vector<SpellID> orderedSpells(spellsToCast.begin(), spellsToCast.end());
+        // Original71DBD8 executes a before K (then k), independent of SpellID.
+        // For the proven231 pair this means Blind62 before Berserk59.
+        const auto & sourceContracts = era_compat::ExperienceAttackSpells::get();
+        const auto creatureKey = attacker->creatureId().toCreature()->getJsonKey();
+        const auto priority = [&](SpellID id)
+        {
+            if(sourceContracts.mastery(creatureKey, id.toSpell()->getJsonKey(), attackMode) < 0) return 2;
+            return id == SpellID(SpellID::BLIND) ? 0 : 1;
+        };
+        if(attackMode == BonusType::SPELL_AFTER_ATTACK)
+            std::stable_sort(orderedSpells.begin(), orderedSpells.end(), [&](SpellID lhs, SpellID rhs) { return priority(lhs) < priority(rhs); });
+		for(SpellID spellID : orderedSpells)
 		{
+            // STONE selector5 is queued by the melee sequence service, including
+            // counterstrikes; never cast an inherited immediate copy.
+            const int sourceMastery = sourceContracts.mastery(creatureKey, spellID.toSpell()->getJsonKey(), attackMode);
+            const bool sourceExperienceCast = sourceMastery >= 0;
+            const bool queuedIntrinsic = (spellID == SpellID(SpellID::STONE_GAZE)
+                && era_compat::Policies::get().petrification(creatureKey))
+                || (spellID == SpellID(SpellID::BLIND)
+                && era_compat::Policies::get().blindness(creatureKey));
+            if(queuedIntrinsic && !sourceExperienceCast) continue;
+            //71D98D/71D9A0 reject a dead caster or target before any RNG draws.
+            if(sourceExperienceCast && !attacker->alive()) continue;
 			bool castMe = false;
 			if(!defender->alive())
 			{
@@ -1229,21 +1359,51 @@ void BattleActionProcessor::attackCasting(const CBattleInfoCallback & battle, bo
 			vstd::amin(chance, 100);
 
 			const CSpell * spell = SpellID(spellID).toSpell();
-			spells::AbilityCaster caster(attacker, spellLevel);
+			const bool sourcePreAttack = sourceExperienceCast; // shared71D939 primary gate, also a/K afterattack
+            spells::AbilityCaster caster(attacker, spellLevel);
+            BattleSide effectiveSide = attacker->unitSide();
+            if(sourcePreAttack && attacker->isHypnotized())
+                effectiveSide = effectiveSide == BattleSide::ATTACKER ? BattleSide::DEFENDER : BattleSide::ATTACKER;
+            era_compat::ExperienceAttackCaster sourceCaster(attacker, battle.getBattle()->getSidePlayer(effectiveSide), sourceExperienceCast ? sourceMastery : 3);
+            const spells::Caster * selectedCaster = sourcePreAttack ? static_cast<const spells::Caster *>(&sourceCaster) : &caster;
 
 			spells::Target target;
 			target.emplace_back(defender);
 
-			spells::BattleCast parameters(&battle, &caster, spells::Mode::PASSIVE, spell);
+			spells::BattleCast parameters(&battle, selectedCaster, spells::Mode::PASSIVE, spell);
+            parameters.eraExperiencePreAttack = sourcePreAttack;
+            if(sourcePreAttack)
+            {
+                parameters.setSpellLevel(sourceMastery);
+                parameters.setEffectDuration(3);
+                parameters.setEffectPower(3);
+            }
 
 			auto m = spell->battleMechanics(&parameters);
 
-			if(!m->canBeCastAt(target))
+			if(!sourcePreAttack && !m->canBeCastAt(target))
 				continue;
 
-			//check if spell should be cast (probability handling)
-			if (!gameHandler->randomizer->rollCombatAbility(ownerArmy, chance))
-				continue;
+			// Source WoG71DA69..71DA85 rolls the ability, then the original
+            // defender's resistance before any expert mass spell is dispatched.
+            if(sourcePreAttack)
+            {
+                if(chance <= 0) continue; //71DA44 rejects zero chance before RNG.
+                if(!::era_bridge::experienceAttackTriggers(chance, gameHandler->getRandomGenerator().nextInt(1,100)))
+                    continue;
+                const bool primaryReceptive = era_compat::sourceSpellContextAllows(battle,defender,spell) && m->isReceptive(defender);
+                //5A8950 truncates source float success*100 before its mandatory
+                //1..100 draw. Native integer magicResistance differs by one
+                //percentage point for e.g. dwarf20+hero10+aura20 (55 vs56).
+                const int accuracy = primaryReceptive ? era_compat_server::statusRawAccuracy(battle, defender) : 0;
+                const int primaryAcceptanceRoll = gameHandler->getRandomGenerator().nextInt(1,100);
+                if(primaryAcceptanceRoll > accuracy)
+                    continue;
+                if(!m->canBeCastAt(target))
+                    continue;
+            }
+            else if(!gameHandler->randomizer->rollCombatAbility(ownerArmy, chance))
+                continue;
 
 			//casting
 			if(castMe)
@@ -1382,6 +1542,7 @@ void BattleActionProcessor::handleAfterAttackCasting(const CBattleInfoCallback &
 	if(!attacker->alive() || !defender->alive()) // can be already dead
 		return;
 
+    era_compat_server::applySourceKPoison(*gameHandler,battle,attacker,defender);
 	attackCasting(battle, ranged, BonusType::SPELL_AFTER_ATTACK, attacker, defender);
 	processBattleEventTriggers(battle, CombatEventType::AFTER_ATTACK, attacker, defender);
 	processBattleEventTriggers(battle, CombatEventType::AFTER_ATTACKED, defender, attacker);
@@ -1517,6 +1678,7 @@ void BattleActionProcessor::applyBattleEffects(const CBattleInfoCallback & battl
 
 	bsa.attackerID = attackerState->unitId();
 	bsa.stackAttacked = def->unitId();
+    int64_t rawDamageBeforeDeflection = 0;
 	{
 		BattleAttackInfo bai(attackerState.get(), def, distance, bat.shot());
 
@@ -1527,13 +1689,25 @@ void BattleActionProcessor::applyBattleEffects(const CBattleInfoCallback & battl
 
 		auto range = battle.calculateDmgRange(bai);
 		bsa.damageAmount = battle.getBattle()->getActualDamage(range.damage, attackerState->getCount(), gameHandler->getRandomGenerator());
+        rawDamageBeforeDeflection = bsa.damageAmount;
+        // Proven source replacement sites cover regular physical hits and
+        // siege-tower hits; spell and moat entry points are scoped separately.
+        bsa.damageAmount = applyEraDeflection(def, gameHandler->getRandomGenerator(), bsa.damageAmount, [&](int strength,int chance){auto message=eraDeflectionLog(battle.getBattle()->getBattleID(),strength,chance);gameHandler->sendAndApply(message);});
 		CStack::prepareAttacked(bsa, gameHandler->getRandomGenerator(), bai.defender->acquireState()); //calculate casualties
 	}
 
 	//life drain handling
-	if(attackerState->hasBonusOfType(BonusType::LIFE_DRAIN) && def->isLiving() && attackerState->getTotalHealth() != attackerState->getAvailableHealth())
+    const bool sourceVampire=era_compat::Policies::get().vampireDrain(attackerState->creatureId().toCreature()->getJsonKey());
+	if(attackerState->hasBonusOfType(BonusType::LIFE_DRAIN) && (sourceVampire?era_compat_server::statusLiving(def):def->isLiving()) && attackerState->getTotalHealth() != attackerState->getAvailableHealth())
 	{
-		int64_t toHeal = bsa.damageAmount * attackerState->valOfBonuses(BonusType::LIFE_DRAIN) / 100;
+		// Source440921 uses min(raw attack damage, victim pre-hit HP),
+        // calculated before the71C710 block in443DB0. Preserve it only for
+        // source-profiled targets; other mods retain native drain behavior.
+        const bool sourceBlock = era_compat::Policies::get().physicalDeflection(def->creatureId().toCreature()->getJsonKey()).has_value();
+        const int64_t drainDamage = (sourceBlock || sourceVampire) ? std::min<int64_t>(rawDamageBeforeDeflection, def->getAvailableHealth()) : bsa.damageAmount;
+        // Amethyst selector0 jumps to440921: full min(raw damage, pre-hit
+        // victim HP), including clone victims; no inherited WoG40% multiplier.
+        int64_t toHeal = sourceVampire ? drainDamage : drainDamage * attackerState->valOfBonuses(BonusType::LIFE_DRAIN) / 100;
 		healInfo += attackerState->heal(toHeal, EHealLevel::RESURRECT, EHealPower::PERMANENT);
 	}
 
@@ -1566,7 +1740,7 @@ void BattleActionProcessor::applyBattleEffects(const CBattleInfoCallback & battl
 			)
 	{
 		//TODO: use damage with bonus but without penalties
-		auto fireShieldDamage = (std::min<int64_t>(def->getAvailableHealth(), bsa.damageAmount) * def->valOfBonuses(BonusType::FIRE_SHIELD)) / 100;
+		auto fireShieldDamage = (std::min<int64_t>(def->getAvailableHealth(), era_compat::Policies::get().physicalDeflection(def->creatureId().toCreature()->getJsonKey()).has_value() ? rawDamageBeforeDeflection : bsa.damageAmount) * def->valOfBonuses(BonusType::FIRE_SHIELD)) / 100;
 		fireShield.emplace_back(def, fireShieldDamage);
 	}
 }

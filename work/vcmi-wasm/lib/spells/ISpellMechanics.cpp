@@ -353,6 +353,7 @@ BaseMechanics::BaseMechanics(const IBattleCast * event):
 	cb(event->getBattle())
 {
 	caster = event->getCaster();
+	eraExperiencePreAttack = event->isEraExperiencePreAttack();
 
 	casterSide = cb->playerToSide(caster->getCasterOwner());
 

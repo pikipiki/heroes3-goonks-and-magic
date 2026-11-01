@@ -9,6 +9,8 @@
  */
 #pragma once
 
+class GameEngine;
+
 #include "CAudioBase.h"
 #include "ISoundPlayer.h"
 
@@ -68,7 +70,7 @@ private:
 	int playSoundImpl(const AudioPath & sound, int repeats, bool useCache);
 
 public:
-	CSoundHandler();
+	explicit CSoundHandler(GameEngine & owner);
 	~CSoundHandler();
 
 	ui32 getVolume() const final;

@@ -8,7 +8,12 @@
  *
  */
 #include "StdInc.h"
+#include "../lib/era/EraSkeletonTransformations.h"
+#include "../lib/era/EraExperienceProgression.h"
+#include "../lib/era/EraExperienceDistribution.h"
 #include "CGameHandler.h"
+#include "era/EraImposedSpells.h"
+#include "../lib/networkPacks/PacksForClientBattle.h"
 
 #include "CVCMIServer.h"
 #include "TurnTimerHandler.h"
@@ -343,10 +348,24 @@ void CGameHandler::giveStackExperience(const CArmedInstance * army, TExpType val
 	GiveStackExperience gse;
 	gse.id = army->id;
 
+    const auto & progressions = era_compat::ExperienceProgressions::get();
+    std::vector<float> weights;
+    bool sourceArmy = false;
+    for(const auto & slot : army->Slots())
+    {
+        const auto * profile = progressions.find(slot.second->getType()->getJsonKey());
+        sourceArmy |= profile != nullptr;
+        weights.push_back(profile ? profile->experienceMultiplier : 1.0f);
+    }
+    const auto sourceAwards = sourceArmy
+        ? ::era_bridge::distributeExperienceModeZero(val, weights) : std::vector<uint64_t>{};
+    size_t index = 0;
 	for (const auto & stack : army->Slots())
 	{
+        const TExpType base = sourceArmy ? sourceAwards.at(index) : val;
 		int experienceBonusMultiplier = stack.second->valOfBonuses(BonusType::STACK_EXPERIENCE_GAIN_PERCENT);
-		gse.val[stack.first] = val + val * experienceBonusMultiplier / 100;
+		gse.val[stack.first] = base + base * experienceBonusMultiplier / 100;
+        ++index;
 	}
 	sendAndApply(gse);
 }
@@ -1535,7 +1554,17 @@ void CGameHandler::heroExchange(ObjectInstanceID hero1, ObjectInstanceID hero2)
 
 void CGameHandler::sendAndApply(CPackForClient & pack)
 {
-	gameServer().applyPack(pack);
+    gameServer().applyPack(pack);
+    // All summon/clone/guardian/transmutation creation paths eventually send
+    // ADD here. RESET_STATE (healing, resurrection and damage) must not reapply.
+    if(const auto * changed = dynamic_cast<const BattleUnitsChanged *>(&pack))
+    {
+        const auto * battle = gameState().getBattle(changed->battleID);
+        if(battle)
+            for(const auto & unit : changed->changedStacks)
+                if(unit.operation == UnitChanges::EOperation::ADD)
+                    applyEraImposedSpells(*this, *battle, battle->battleGetStackByID(unit.id));
+    }
 }
 
 void CGameHandler::sendAndApply(CGarrisonOperationPack & pack)
@@ -3289,9 +3318,18 @@ bool CGameHandler::transformInUndead(const IMarket *market, const CGHeroInstance
 	//resulting creature - bone dragons or skeletons
 	CreatureID resCreature = CreatureID::SKELETON;
 
-	auto customTargerBonus = s.getBonusesOfType(BonusType::SKELETON_TRANSFORMER_TARGET);
-	if (!customTargerBonus->empty())
-		resCreature = customTargerBonus->front()->subtype.as<CreatureID>();
+    // Source Amethyst tables13264..13269 redirects the original town
+    // transformer lookups5664B5/5668A0/566D7C/566F3F/566FA7/566FD4
+    // to the same skeltrans table used by Spell2mode14 battle raising.
+    const auto * sourceTransformation = era_compat::SkeletonTransformations::get().find(s.getCreatureID().toCreature()->getJsonKey());
+    if(sourceTransformation)
+        resCreature = CreatureID(sourceTransformation->target);
+    else
+    {
+        auto customTargetBonus = s.getBonusesOfType(BonusType::SKELETON_TRANSFORMER_TARGET);
+        if(!customTargetBonus->empty())
+            resCreature = customTargetBonus->front()->subtype.as<CreatureID>();
+    }
 
 	changeStackType(StackLocation(army->id, slot), resCreature.toCreature());
 	return true;

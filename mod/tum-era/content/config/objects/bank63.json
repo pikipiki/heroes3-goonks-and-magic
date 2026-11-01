@@ -1,0 +1,71 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank63": {
+        "name": "Gargoyle Stonevault",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB31.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:stoneGargoyle",
+                "amount": 30,
+                "upgradeChance": 31
+              },
+              {
+                "type": "core:stoneGargoyle",
+                "amount": 30
+              },
+              {
+                "type": "core:stoneGargoyle",
+                "amount": 30
+              },
+              {
+                "type": "core:ironGolem",
+                "amount": 10
+              },
+              {
+                "type": "core:ironGolem",
+                "amount": 10
+              }
+            ],
+            "resources": {
+              "ore": 30,
+              "gold": 2500
+            }
+          }
+        ],
+        "rmg": {
+          "value": 6000,
+          "rarity": 100
+        },
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33
+      }
+    }
+  }
+}

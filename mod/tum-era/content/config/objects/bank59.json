@@ -1,0 +1,72 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank59": {
+        "name": "Behemoth Ancient Crag",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB27.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "BBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank59MixedLayout",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:ancientBehemoth",
+                "amount": 20,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:ancientBehemoth",
+                "amount": 20
+              },
+              {
+                "type": "core:ancientBehemoth",
+                "amount": 20
+              },
+              {
+                "type": "core:ancientBehemoth",
+                "amount": 20
+              }
+            ],
+            "resources": {
+              "sulfur": 25,
+              "gold": 10000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:ancestralBehemoth",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 10000,
+          "rarity": 100
+        }
+      }
+    }
+  }
+}

@@ -32,6 +32,7 @@ VCMI_LIB_NAMESPACE_END
 
 class CGameHandler;
 class BattleProcessor;
+class EraPetrificationSequence;
 
 /// Processes incoming battle action queries and applies requested action(s)
 class BattleActionProcessor : boost::noncopyable
@@ -51,8 +52,8 @@ class BattleActionProcessor : boost::noncopyable
 	BattleProcessor * owner;
 	CGameHandler * gameHandler;
 
-	MovementResult moveStack(const CBattleInfoCallback & battle, int stack, BattleHex dest); //returned value - travelled distance
-	void makeAttack(const CBattleInfoCallback & battle, const CStack * attacker, const CStack * defender, int distance, const BattleHex & targetHex, bool first, bool ranged, bool counter);
+	MovementResult moveStack(const CBattleInfoCallback & battle, int stack, BattleHex dest, const std::function<void()> & beforeMovement = {}); //returned value - travelled distance
+	void makeAttack(const CBattleInfoCallback & battle, const CStack * attacker, const CStack * defender, int distance, const BattleHex & targetHex, bool first, bool ranged, bool counter, EraPetrificationSequence * petrification = nullptr);
 
 	void handleAttackBeforeCasting(const CBattleInfoCallback & battle, bool ranged, const CStack * attacker, const CStack * defender);
 

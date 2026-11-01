@@ -40,6 +40,11 @@ private:
 public:
 	void postDeserialize(const CArmedInstance * army);
 
+    // Rebuilt at BattleInfo::localInit, maintained at addUnit. Deliberately
+    // outside cloneable unit state and save/network binary layout.
+    int32_t eraMassSlot = -1;
+    int32_t sourceMassSlot() const override { return eraMassSlot; }
+
 	const CStackInstance * base = nullptr; //garrison slot from which stack originates (nullptr for war machines, summoned cres, etc)
 	
 	BattleHex initialPosition; //position on battlefield; -2 - keep, -3 - lower tower, -4 - upper tower

@@ -4,13 +4,15 @@ import {readEraArchive,readCreatureTable} from '../resources.mjs';
 import {convertObjectTemplate,parseDwellingTable,compileDwelling,eraDwellingGuards,ObjectBridgeError} from './objects.mjs';
 import {compileTumBank} from '../banks.mjs';
 import {compileEraTroopPlacement,compileEraBankRmg} from './bank-extras.mjs';
+import {createEraBankSoundResolver} from './sound-assets.mjs';
+import {prepareTumLegacyWogDwellings} from './legacy-wog-dwellings.mjs';
 const guardEvidence='h3era.exe SHA256451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181;0x47A9A2..0x47A9BA draws1..100 and compares roll<=upgrade;0 never upgrades; REA ev_1e22d8e4a59ce00df9320a7c287efc2d6f215628285187aa18db3af920f8cecc';
 /** Compile real source dwelling/bank files and extract their original DEF+MSK assets.
  * Returns files in memory; does not enable mods or change user installation.
  * Missing creature identities/stats/layouts or unsupported upgrade behavior fail
  * the WHOLE corresponding object. Other independent definitions remain reviewable.
  */
-export function prepareTumObjectImport({sourceRoot,resolveCreature,resolveStats,levelBase,resolveArtifact,resolveResource,resolveBankLayout,upgradeMode,resolveEraUpgrade,resolveNativeUpgrades,spellMode,spellCatalog,resolveSpell,emptyGuardMode,resolveNullSound,appearanceMode,rmgPolicy='none',animationNamespace='tum-era/objects/',resolveDwellingRmg,includeLegacyDwellings=false}={}){
+export function prepareTumObjectImport({sourceRoot,resolveCreature,resolveStats,levelBase,resolveArtifact,resolveResource,resolveBankLayout,upgradeMode,resolveEraUpgrade,resolveNativeUpgrades,spellMode,spellCatalog,resolveSpell,emptyGuardMode,resolveNullSound,appearanceMode,rmgPolicy='none',animationNamespace='tum-era/objects/',resolveDwellingRmg,includeLegacyDwellings=false,legacyDwellingOptions,baseSoundArchivePaths=[]}={}){
  if(!['none','era-value-density'].includes(rmgPolicy))throw new ObjectBridgeError('INVALID_RMG_POLICY','Unknown object RMG adaptation policy');
  if(typeof animationNamespace!=='string'||!animationNamespace||animationNamespace.startsWith('/')||animationNamespace.split('/').some(p=>p==='..')||!animationNamespace.endsWith('/'))throw new ObjectBridgeError('INVALID_ASSET_NAMESPACE','A safe relative animation namespace ending in/ is required');
  const sourceAssetName=name=>name.startsWith(animationNamespace)?name.slice(animationNamespace.length):name;
@@ -31,7 +33,8 @@ export function prepareTumObjectImport({sourceRoot,resolveCreature,resolveStats,
   const animation=line.trim().split(/\s+/)[0],msk=animation.replace(/\.[^.]+$/,'.msk');
   return ['base'+i,convertObjectTemplate(line,{maskBytes:find(msk).bytes,animationPrefix:animationNamespace}).template];
  }));
- const add=(kind,id,result)=>{
+ const resolveSound=createEraBankSoundResolver(sourceRoot,{baseSoundArchivePaths});
+ const add=(kind,id,result,soundAssets=[])=>{
   const type=Object.values(Object.values(result.definition)[0].types)[0];
   const pending=[];
   for(const t of Object.values(type.templates)){
@@ -41,13 +44,14 @@ export function prepareTumObjectImport({sourceRoot,resolveCreature,resolveStats,
   for(const animation of type.eraBankAppearance?.animations||[]){const resource=find(sourceAssetName(animation));pending.push({name:animation,...resource});}
   // Validate every asset before exposing any part of this object.
   for(const item of pending){const destination='content/sprites/'+item.name;files.set(destination,item.bytes);assets.push({object:`${kind}:${id}`,path:destination,sourceArchive:item.archive});}
+  for(const item of soundAssets){const destination='content/Sounds/'+item.name;files.set(destination,item.bytes);assets.push({object:`${kind}:${id}`,path:destination,sourceArchive:item.archive,sourceArchiveSha256:item.archiveSha256,sha256:item.sha256});}
   const config='content/config/objects/'+kind+id+'.json';files.set(config,Buffer.from(JSON.stringify(result.definition,null,2)+'\n'));
   compiled.push({kind,id,config,provenance:result.provenance||result.source});
  };
  const error=(kind,id,cause)=>diagnostics.push({kind,id,code:cause.code||cause.name,message:cause.message,details:cause.details||null,diagnostics:cause.diagnostics||null});
  const rows=parseDwellingTable(find('DwTable.txt').bytes.toString('latin1'));
  if(resolveStats===undefined){const sourceStats=readTumObjectStats(sourceRoot,find('Crtraits.txt').bytes.toString('latin1'));resolveStats=id=>sourceStats.get(id);levelBase=0;}
- for(const row of rows){if(!includeLegacyDwellings&&((row.objectType===17&&row.objectSubtype<101)||(row.objectType===20&&row.objectSubtype<2)))continue;
+ for(const row of rows){if((row.objectType===17&&row.objectSubtype<101)||(row.objectType===20&&row.objectSubtype<2)){if(includeLegacyDwellings&&!legacyDwellingOptions)error('dwelling',`${row.objectType}_${row.objectSubtype}`,new ObjectBridgeError('MISSING_LEGACY_WOG_PROOF','Legacy dwelling patches require explicit stock/native proof; no duplicate subtype is created'));continue;}
   const id=`${row.objectType}_${row.objectSubtype}`;
   try{
    const lines=dwellingLines.filter(line=>{const p=line.trim().split(/\s+/);return Number(p[5])===row.objectType&&Number(p[6])===row.objectSubtype;});
@@ -57,6 +61,7 @@ export function prepareTumObjectImport({sourceRoot,resolveCreature,resolveStats,
    add('dwelling',id,compileDwelling(row,{objectId:'eraDwelling'+id,templates:templatesFor(lines),name,resolveCreature,guards,nativeRmg:resolveDwellingRmg?.(row)}));
   }catch(cause){error('dwelling',id,cause);}
  }
+ if(includeLegacyDwellings&&legacyDwellingOptions){const legacy=prepareTumLegacyWogDwellings({sourceRoot,resolveCreature,resolveStats,levelBase,...legacyDwellingOptions});for(const[k,v]of legacy.files)files.set(k,v);compiled.push(...legacy.compiled);assets.push(...legacy.assets);diagnostics.push(...legacy.diagnostics);}
  for(const [id,bank] of Object.entries(sourceBanks)){
   try{
    const layoutPolicy=resolveBankLayout?.(Number(id),bank);
@@ -64,8 +69,9 @@ export function prepareTumObjectImport({sourceRoot,resolveCreature,resolveStats,
    if(!bank.troopPlacement&&layoutPolicy&&typeof layoutPolicy==='object'&&layoutPolicy.layout){layout=layoutPolicy.layoutId;layoutResult={layoutId:layoutPolicy.layoutId,layout:structuredClone(layoutPolicy.layout)};}
    if(bank.troopPlacement&&layoutPolicy&&typeof layoutPolicy==='object'){layoutResult=compileEraTroopPlacement(bank.troopPlacement,layoutPolicy);layout=layoutResult.layoutId;sourceBank=structuredClone(bank);delete sourceBank.troopPlacement;}
    if(typeof layout!=='string'||!layout)throw new ObjectBridgeError('UNRESOLVED_LAYOUT','Explicit original-compatible bank layout resolver required');
+   const soundAssets=[];if(sourceBank.sound){sourceBank=structuredClone(sourceBank);for(const[key,name]of Object.entries(sourceBank.sound))if(typeof name==='string'){const original=resolveSound(name),nativeName=animationNamespace+name;soundAssets.push({name:nativeName,...original});sourceBank.sound[key]=nativeName;}}
    const result=compileTumBank(sourceBank,{source:'Lang/TUM_CreatureBanks.json',objectId:'eraBank'+id,nativeTemplates:templatesFor(bank.properties),guardsLayout:layout,resolveCreature,resolveArtifact,resolveResource,upgradeMode,resolveEraUpgrade,resolveNativeUpgrades,spellMode,spellCatalog,resolveSpell,emptyGuardMode,resolveNullSound,appearanceMode,resolveAnimation:name=>{find(name);return animationNamespace+name;},nativeRmg:rmgPolicy==='era-value-density'?compileEraBankRmg(bank):undefined,chanceMode:'era-fourth-state-remainder',disabledUpgradeEvidence:guardEvidence});
-   add('bank',id,result);
+   add('bank',id,result,soundAssets);
    if(layoutResult)layoutSettings[layoutResult.layoutId]=layoutResult.layout;
   }catch(cause){error('bank',id,cause);}
  }

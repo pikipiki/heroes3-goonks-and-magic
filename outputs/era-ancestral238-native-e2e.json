@@ -1,0 +1,1177 @@
+{
+  "engineLabel": "preview238-defense95",
+  "startedAt": "2026-11-01T04:22:35.115Z",
+  "cases": [
+    {
+      "name": "ancestral238-armageddon-immunity-defense95",
+      "startedAt": "2026-11-01T04:22:35.222Z",
+      "errors": [],
+      "errorStacks": [],
+      "nativeErrors": [],
+      "wasmResponses": [
+        {
+          "url": "http://127.0.0.1:8774/vcmiclient.09880eb71a9ae2ed.wasm",
+          "headers": {
+            "transfer-encoding": "chunked",
+            "cross-origin-embedder-policy": "require-corp",
+            "cross-origin-opener-policy": "same-origin",
+            "keep-alive": "timeout=5",
+            "date": "Sun, 01 Nov 2026 04:22:35 GMT",
+            "content-type": "application/wasm",
+            "connection": "keep-alive"
+          },
+          "at": "2026-11-01T04:22:35.619Z"
+        }
+      ],
+      "before": {
+        "actor": {
+          "attack": 0,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            4,
+            0,
+            6000,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 600,
+          "defense": 35,
+          "enemy": false,
+          "icon": "tum-era/ancestral-behemoth/portrait-large",
+          "id": 251,
+          "maximumHealth": 600,
+          "morale": 0,
+          "name": "Ancestral Behemoth",
+          "occupied": [
+            87,
+            86
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "stackId": 0,
+          "x": 124,
+          "y": 322
+        },
+        "enemy": {
+          "attack": 0,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 10000,
+          "defense": 20,
+          "enemy": true,
+          "icon": "",
+          "id": 0,
+          "maximumHealth": 10000,
+          "morale": 0,
+          "name": "Pikeman",
+          "occupied": [
+            100
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "stackId": 1,
+          "x": 696,
+          "y": 322
+        }
+      },
+      "fixtureTerrainNormalization": "Pikeman faction stronghold in this fixture only prevents the native grass/Castle +1 attack/defense; observed runtime stats asserted0/20",
+      "afterArmageddon": {
+        "actor": {
+          "attack": 0,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            4,
+            0,
+            6000,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 600,
+          "defense": 35,
+          "enemy": false,
+          "icon": "tum-era/ancestral-behemoth/portrait-large",
+          "id": 251,
+          "maximumHealth": 600,
+          "morale": 0,
+          "name": "Ancestral Behemoth",
+          "occupied": [
+            87,
+            86
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "stackId": 0,
+          "x": 124,
+          "y": 322
+        },
+        "enemy": {
+          "attack": 0,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 8630,
+          "defense": 20,
+          "enemy": true,
+          "icon": "",
+          "id": 0,
+          "maximumHealth": 10000,
+          "morale": 0,
+          "name": "Pikeman",
+          "occupied": [
+            100
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "stackId": 1,
+          "x": 696,
+          "y": 322
+        }
+      },
+      "physicalDamage": 97,
+      "afterHit": {
+        "attack": 0,
+        "cloned": false,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          60,
+          0
+        ],
+        "count": 1,
+        "currentHealth": 8533,
+        "defense": 20,
+        "enemy": true,
+        "icon": "",
+        "id": 0,
+        "maximumHealth": 10000,
+        "morale": 0,
+        "name": "Pikeman",
+        "occupied": [
+          100
+        ],
+        "remainingCasts": 0,
+        "remainingRetaliations": 1,
+        "stackId": 1,
+        "x": 696,
+        "y": 322
+      },
+      "nativeLog": "2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.250000] DEBUG [runNetwork] global - Building widget with name __widget_1\n[2026-Nov-01 05:23:14.250000] TRACE [runNetwork] global - loading ./Mods/vcmi/Content/Sprites/battle/actionAttack.png\n[2026-Nov-01 05:23:14.250000] TRACE [runNetwork] global - loading ./Mods/vcmi/Content/Sprites2x/battle/actionAttack.png\n[2026-Nov-01 05:23:14.251000] TRACE [runNetwork] global - loading ./config/widgets/buttons/battleUnitAction.json\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Building configurable interface object\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Building widget from config\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Building widget CFilledTexture\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading rect\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading PlayerColor\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Unknown PlayerColor attribute\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Building widget with name __widget_0\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Building widget from config\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Building widget GraphicalPrimitiveCanvas\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading rect\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading color\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Reading point\n[2026-Nov-01 05:23:14.251000] DEBUG [runNetwork] global - Building widget with name __widget_1\n[2026-Nov-01 05:23:14.251000] TRACE [runNetwork] global - loading ./Mods/vcmi/Content/Sprites/battle/actionInfo.png\n[2026-Nov-01 05:23:14.252000] TRACE [runNetwork] global - loading ./Mods/vcmi/Content/Sprites2x/battle/actionInfo.png\n[2026-Nov-01 05:23:14.252000] TRACE [runNetwork] network - \tMade second apply on cl: 20BattleSetActiveStack\n[2026-Nov-01 05:23:14.252000] TRACE [runNetwork] network - Received CPack of type 14PackageApplied\n[2026-Nov-01 05:23:14.252000] TRACE [runNetwork] network - \tMade first apply on cl: 14PackageApplied\n[2026-Nov-01 05:23:14.252000] TRACE [runNetwork] network - \tApplied on gs: 14PackageApplied\n[2026-Nov-01 05:23:14.252000] TRACE [runNetwork] network - \tMade second apply on cl: 14PackageApplied\n[2026-Nov-01 05:23:14.254000] DEBUG [MainGUI] global - totalRedraw requested!\n[2026-Nov-01 05:23:14.356000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/wake-of-gods/Mods/wogGraphicFix/Mods/wf_heroes3DataPatch/content/sprites/CPKMAN.def\n[2026-Nov-01 05:23:14.409000] TRACE [MainGUI] global - Setting command for red battle stack [0]: 1 of tum-era:ancestralBehemoth from slot 0 of armyobj=1\n[2026-Nov-01 05:23:14.409000] TRACE [MainGUI] network - Sending a request \"10MakeAction\". It'll have an ID=14.\n[2026-Nov-01 05:23:14.410000] TRACE [MainGUI] network - Sending a pack of type 10MakeAction\n[2026-Nov-01 05:23:14.412000] TRACE [runServer] network - Received CPack of type 10MakeAction\n[2026-Nov-01 05:23:14.412000] TRACE [runServer] network - Sending a pack of type 15PackageReceived\n[2026-Nov-01 05:23:14.413000] TRACE [runNetwork] network - Received CPack of type 15PackageReceived\n[2026-Nov-01 05:23:14.413000] TRACE [runServer] global - Making action: {BattleAction: side '0', stackNumber '0', actionType '8', actionSubtype '-1', target {99,100,}}\n[2026-Nov-01 05:23:14.413000] TRACE [runNetwork] network - \tMade first apply on cl: 15PackageReceived\n[2026-Nov-01 05:23:14.413000] TRACE [runServer] network - \tSending to all clients: 11StartAction\n[2026-Nov-01 05:23:14.413000] TRACE [runNetwork] network - \tApplied on gs: 15PackageReceived\n[2026-Nov-01 05:23:14.413000] TRACE [runServer] network - Sending a pack of type 11StartAction\n[2026-Nov-01 05:23:14.413000] TRACE [runNetwork] network - \tMade second apply on cl: 15PackageReceived\n[2026-Nov-01 05:23:14.413000] TRACE [runServer] network - \tApplied on gameState(): 11StartAction\n[2026-Nov-01 05:23:14.413000] TRACE [runNetwork] network - Received CPack of type 11StartAction\n[2026-Nov-01 05:23:14.413000] TRACE [runServer] network - \tSending to all clients: 16BattleStackMoved\n[2026-Nov-01 05:23:14.413000] TRACE [runServer] network - Sending a pack of type 16BattleStackMoved\n[2026-Nov-01 05:23:14.413000] TRACE [runServer] network - \tApplied on gameState(): 16BattleStackMoved\n[2026-Nov-01 05:23:14.413000] TRACE [runServer] global - red battle stack [0]: 1 of tum-era:ancestralBehemoth from slot 0 of armyobj=1 will attack neutral battle stack [1]: 1 of core:pikeman from slot 0 of armyobj=3\n[2026-Nov-01 05:23:14.414000] TRACE [runServer] network - \tSending to all clients: 12BattleAttack\n[2026-Nov-01 05:23:14.415000] TRACE [runServer] network - Sending a pack of type 12BattleAttack\n[2026-Nov-01 05:23:14.415000] TRACE [runServer] network - \tApplied on gameState(): 12BattleAttack\n[2026-Nov-01 05:23:14.415000] TRACE [runNetwork] network - \tMade first apply on cl: 11StartAction\n[2026-Nov-01 05:23:14.415000] TRACE [runNetwork] network - \tApplied on gs: 11StartAction\n[2026-Nov-01 05:23:14.415000] TRACE [runNetwork] network - \tMade second apply on cl: 11StartAction\n[2026-Nov-01 05:23:14.415000] TRACE [runServer] network - \tSending to all clients: 16BattleLogMessage\n[2026-Nov-01 05:23:14.415000] TRACE [runServer] network - Sending a pack of type 16BattleLogMessage\n[2026-Nov-01 05:23:14.415000] TRACE [runNetwork] network - Received CPack of type 16BattleStackMoved\n[2026-Nov-01 05:23:14.415000] TRACE [runServer] network - \tApplied on gameState(): 16BattleLogMessage\n[2026-Nov-01 05:23:14.415000] TRACE [runNetwork] animation - Animation #3 created\n[2026-Nov-01 05:23:14.415000] DEBUG [runNetwork] animation - Created MovementStartAnimation for Ancestral Behemoth\n[2026-Nov-01 05:23:14.415000] TRACE [runServer] network - \tSending to all clients: 12BattleAttack\n[2026-Nov-01 05:23:14.415000] TRACE [runServer] network - Sending a pack of type 12BattleAttack\n[2026-Nov-01 05:23:14.415000] TRACE [runServer] network - \tApplied on gameState(): 12BattleAttack\n[2026-Nov-01 05:23:14.415000] TRACE [runServer] network - \tSending to all clients: 16BattleLogMessage\n[2026-Nov-01 05:23:14.415000] TRACE [runServer] network - Sending a pack of type 16BattleLogMessage\n[2026-Nov-01 05:23:14.415000] TRACE [runServer] network - \tApplied on gameState(): 16BattleLogMessage\n[2026-Nov-01 05:23:14.415000] TRACE [runServer] network - \tSending to all clients: 9EndAction\n[2026-Nov-01 05:23:14.415000] TRACE [runServer] network - Sending a pack of type 9EndAction\n[2026-Nov-01 05:23:14.415000] TRACE [runServer] network - \tApplied on gameState(): 9EndAction\n[2026-Nov-01 05:23:14.416000] TRACE [runServer] network - \tSending to all clients: 20BattleSetActiveStack\n[2026-Nov-01 05:23:14.416000] TRACE [runServer] network - Sending a pack of type 20BattleSetActiveStack\n[2026-Nov-01 05:23:14.416000] TRACE [runServer] network - \tApplied on gameState(): 20BattleSetActiveStack\n[2026-Nov-01 05:23:14.416000] TRACE [runServer] global - Message 10MakeAction successfully applied!\n[2026-Nov-01 05:23:14.416000] TRACE [runServer] network - Sending a pack of type 14PackageApplied\n[2026-Nov-01 05:23:14.420000] DEBUG [MainGUI] animation - CMovementStartAnimation::init: stack Ancestral Behemoth\n[2026-Nov-01 05:23:14.420000] DEBUG [MainGUI] global - totalRedraw requested!\n[2026-Nov-01 05:23:14.427000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:14.470000] TRACE [MainGUI] animation - Animation #3 ended, type is P15BattleAnimation\n[2026-Nov-01 05:23:14.470000] TRACE [MainGUI] animation - Animation #3 deleted\n[2026-Nov-01 05:23:14.470000] TRACE [MainGUI] animation - Animation #4 created\n[2026-Nov-01 05:23:14.470000] DEBUG [MainGUI] animation - Created MovementAnimation for Ancestral Behemoth\n[2026-Nov-01 05:23:14.471000] DEBUG [MainGUI] animation - CMovementAnimation::init: stack Ancestral Behemoth moves 87 -> 99\n[2026-Nov-01 05:23:14.471000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sounds/tum-era/ancestral-behemoth/S238MOVE.wav\n[2026-Nov-01 05:23:14.472000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sounds/tum-era/ancestral-behemoth/S238MOVE.wav\n[2026-Nov-01 05:23:14.474000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:14.537000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:14.605000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:14.654000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:14.721000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:14.773000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:14.838000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:14.905000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:14.954000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:15.755000] TRACE [MainGUI] animation - Animation #4 ended, type is P15BattleAnimation\n[2026-Nov-01 05:23:15.755000] TRACE [MainGUI] animation - Animation #4 deleted\n[2026-Nov-01 05:23:15.755000] TRACE [MainGUI] animation - Animation #5 created\n[2026-Nov-01 05:23:15.755000] DEBUG [MainGUI] animation - Created MovementEndAnimation for Ancestral Behemoth\n[2026-Nov-01 05:23:15.755000] DEBUG [MainGUI] animation - CMovementEndAnimation::init: stack Ancestral Behemoth\n[2026-Nov-01 05:23:15.756000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:15.822000] TRACE [MainGUI] animation - Animation #5 ended, type is P15BattleAnimation\n[2026-Nov-01 05:23:15.822000] TRACE [MainGUI] animation - Animation #5 deleted\n[2026-Nov-01 05:23:15.824000] TRACE [runNetwork] network - \tMade first apply on cl: 16BattleStackMoved\n[2026-Nov-01 05:23:15.824000] TRACE [runNetwork] network - \tApplied on gs: 16BattleStackMoved\n[2026-Nov-01 05:23:15.824000] TRACE [runNetwork] network - \tMade second apply on cl: 16BattleStackMoved\n[2026-Nov-01 05:23:15.824000] TRACE [runNetwork] network - Received CPack of type 12BattleAttack\n[2026-Nov-01 05:23:15.825000] TRACE [runNetwork] animation - Animation #6 created\n[2026-Nov-01 05:23:15.825000] DEBUG [runNetwork] animation - Created MeleeAttackAnimation for Ancestral Behemoth\n[2026-Nov-01 05:23:15.838000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sounds/tum-era/ancestral-behemoth/S238ATTK.wav\n[2026-Nov-01 05:23:15.839000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sounds/tum-era/ancestral-behemoth/S238ATTK.wav\n[2026-Nov-01 05:23:15.841000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:15.872000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:15.938000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:15.988000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:16.038000] TRACE [MainGUI] animation - Animation #7 created\n[2026-Nov-01 05:23:16.038000] DEBUG [MainGUI] animation - Created HittedAnimation for Pikeman\n[2026-Nov-01 05:23:16.040000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:16.089000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:16.138000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def\n[2026-Nov-01 05:23:16.187000] TRACE [MainGUI] animation - Animation #6 ended, type is P15BattleAnimation\n[2026-Nov-01 05:23:16.187000] TRACE [MainGUI] animation - Animation #6 deleted\n[2026-Nov-01 05:23:16.353000] TRACE [MainGUI] animation - Animation #7 ended, type is P15BattleAnimation\n[2026-Nov-01 05:23:16.353000] TRACE [MainGUI] animation - Animation #7 deleted\n[2026-Nov-01 05:23:16.355000] TRACE [runNetwork] network - \tMade first apply on cl: 12BattleAttack\n[2026-Nov-01 05:23:16.355000] TRACE [runNetwork] network - \tApplied on gs: 12BattleAttack\n[2026-Nov-01 05:23:16.355000] TRACE [runNetwork] network - \tMade second apply on cl: 12BattleAttack\n[2026-Nov-01 05:23:16.355000] TRACE [runNetwork] network - Received CPack of type 16BattleLogMessage\n[2026-Nov-01 05:23:16.355000] TRACE [runNetwork] network - \tMade first apply on cl: 16BattleLogMessage\n[2026-Nov-01 05:23:16.355000] TRACE [runNetwork] network - \tApplied on gs: 16BattleLogMessage\n[2026-Nov-01 05:23:16.355000] TRACE [runNetwork] global - CBattleConsole message: The Ancestral Behemoth does 97 damage.\n[2026-Nov-01 05:23:16.356000] TRACE [runNetwork] network - \tMade second apply on cl: 16BattleLogMessage\n[2026-Nov-01 05:23:16.356000] TRACE [runNetwork] network - Received CPack of type 12BattleAttack\n[2026-Nov-01 05:23:16.356000] TRACE [runNetwork] animation - Animation #8 created\n[2026-Nov-01 05:23:16.356000] DEBUG [runNetwork] animation - Created MeleeAttackAnimation for Pikeman\n[2026-Nov-01 05:23:16.375000] TRACE [MainGUI] global - loading /home/web_user/.local/share/vcmi/Mods/wake-of-gods/Mods/wogGraphicFix/Mods/wf_heroes3DataPatch/content/sprites/CPKMAN.def\n",
+      "passed": true,
+      "snapshots": [
+        {
+          "round": 0,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 20,
+              "enemy": true,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                6000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 35,
+              "enemy": false,
+              "icon": "tum-era/ancestral-behemoth/portrait-large",
+              "id": 251,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Ancestral Behemoth",
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 20,
+              "enemy": true,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                6000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 35,
+              "enemy": false,
+              "icon": "tum-era/ancestral-behemoth/portrait-large",
+              "id": 251,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Ancestral Behemoth",
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 8630,
+              "defense": 20,
+              "enemy": true,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                6000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 35,
+              "enemy": false,
+              "icon": "tum-era/ancestral-behemoth/portrait-large",
+              "id": 251,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Ancestral Behemoth",
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 8630,
+              "defense": 20,
+              "enemy": true,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                6000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 35,
+              "enemy": false,
+              "icon": "tum-era/ancestral-behemoth/portrait-large",
+              "id": 251,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Ancestral Behemoth",
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 8630,
+              "defense": 20,
+              "enemy": true,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                6000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 35,
+              "enemy": false,
+              "icon": "tum-era/ancestral-behemoth/portrait-large",
+              "id": 251,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Ancestral Behemoth",
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 8630,
+              "defense": 20,
+              "enemy": true,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                6000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 35,
+              "enemy": false,
+              "icon": "tum-era/ancestral-behemoth/portrait-large",
+              "id": 251,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Ancestral Behemoth",
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 8630,
+              "defense": 20,
+              "enemy": true,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                6000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 35,
+              "enemy": false,
+              "icon": "tum-era/ancestral-behemoth/portrait-large",
+              "id": 251,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Ancestral Behemoth",
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 8630,
+              "defense": 20,
+              "enemy": true,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                6000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 35,
+              "enemy": false,
+              "icon": "tum-era/ancestral-behemoth/portrait-large",
+              "id": 251,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Ancestral Behemoth",
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 8630,
+              "defense": 20,
+              "enemy": true,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                6000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 35,
+              "enemy": false,
+              "icon": "tum-era/ancestral-behemoth/portrait-large",
+              "id": 251,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Ancestral Behemoth",
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 8630,
+              "defense": 20,
+              "enemy": true,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                6000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 35,
+              "enemy": false,
+              "icon": "tum-era/ancestral-behemoth/portrait-large",
+              "id": 251,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Ancestral Behemoth",
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 8630,
+              "defense": 20,
+              "enemy": true,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                6000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 35,
+              "enemy": false,
+              "icon": "tum-era/ancestral-behemoth/portrait-large",
+              "id": 251,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Ancestral Behemoth",
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 8630,
+              "defense": 20,
+              "enemy": true,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                6000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 35,
+              "enemy": false,
+              "icon": "tum-era/ancestral-behemoth/portrait-large",
+              "id": 251,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Ancestral Behemoth",
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 8630,
+              "defense": 20,
+              "enemy": true,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                6000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 35,
+              "enemy": false,
+              "icon": "tum-era/ancestral-behemoth/portrait-large",
+              "id": 251,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Ancestral Behemoth",
+              "occupied": [
+                99,
+                98
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 652,
+              "y": 322
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 8533,
+              "defense": 20,
+              "enemy": true,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                4,
+                0,
+                6000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 35,
+              "enemy": false,
+              "icon": "tum-era/ancestral-behemoth/portrait-large",
+              "id": 251,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Ancestral Behemoth",
+              "occupied": [
+                99,
+                98
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 652,
+              "y": 322
+            }
+          ],
+          "heroMana": 480
+        }
+      ]
+    }
+  ]
+}

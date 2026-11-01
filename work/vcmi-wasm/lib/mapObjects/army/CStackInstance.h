@@ -55,6 +55,13 @@ public:
 
 	TExpType getTotalExperience() const;
 	TExpType getAverageExperience() const;
+    TExpType getExperienceThreshold(int rank) const;
+    TExpType getMaxExperiencePerUnit() const;
+    TExpType getMaxExperienceGainPerBattle() const;
+    int getExperienceBattleLimitPercent() const;
+    float getExperienceMultiplier() const;
+    float getExperienceUpgradeMultiplier() const;
+
 	virtual bool canGainExperience() const;
 
 	template<typename Handler>
@@ -113,6 +120,7 @@ public:
 
 	void setType(const CreatureID & creID);
 	void setType(const CCreature * c) final;
+	void setType(const CCreature * c, bool preserveExperience);
 	void setCount(TQuantity amount) final;
 
 	/// Gives specified amount of stack experience that will not be scaled by unit size

@@ -1,0 +1,449 @@
+{
+  "executed": true,
+  "cases": [
+    {
+      "name": "odd3Age",
+      "flat": 0,
+      "poison": false,
+      "max": 2,
+      "first": 1,
+      "base": 3,
+      "errors": [],
+      "snapshots": [
+        {
+          "round": 2,
+          "unit": {
+            "attack": 1,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 35,
+            "currentHealth": 1,
+            "defense": 1001,
+            "enemy": true,
+            "icon": "",
+            "id": 0,
+            "maximumHealth": 2,
+            "morale": 0,
+            "name": "Pikeman",
+            "occupied": [
+              31
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "stackId": 1,
+            "x": 652,
+            "y": 154
+          }
+        },
+        {
+          "round": 3,
+          "unit": {
+            "attack": 1,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 35,
+            "currentHealth": 1,
+            "defense": 1001,
+            "enemy": true,
+            "icon": "",
+            "id": 0,
+            "maximumHealth": 2,
+            "morale": 0,
+            "name": "Pikeman",
+            "occupied": [
+              30
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "stackId": 1,
+            "x": 608,
+            "y": 154
+          }
+        },
+        {
+          "round": 4,
+          "unit": {
+            "attack": 1,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 35,
+            "currentHealth": 2,
+            "defense": 1001,
+            "enemy": true,
+            "icon": "",
+            "id": 0,
+            "maximumHealth": 3,
+            "morale": 0,
+            "name": "Pikeman",
+            "occupied": [
+              30
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "stackId": 1,
+            "x": 608,
+            "y": 154
+          }
+        }
+      ],
+      "after": {
+        "round": 1,
+        "unit": {
+          "attack": 1,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 35,
+          "currentHealth": 1,
+          "defense": 1001,
+          "enemy": true,
+          "icon": "",
+          "id": 0,
+          "maximumHealth": 2,
+          "morale": 0,
+          "name": "Pikeman",
+          "occupied": [
+            49
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "stackId": 1,
+          "x": 718,
+          "y": 196
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "flat5Age",
+      "flat": 2,
+      "poison": false,
+      "max": 3,
+      "first": 2,
+      "base": 5,
+      "errors": [],
+      "snapshots": [
+        {
+          "round": 2,
+          "unit": {
+            "attack": 1,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 35,
+            "currentHealth": 2,
+            "defense": 1001,
+            "enemy": true,
+            "icon": "",
+            "id": 0,
+            "maximumHealth": 3,
+            "morale": 0,
+            "name": "Pikeman",
+            "occupied": [
+              31
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "stackId": 1,
+            "x": 652,
+            "y": 154
+          }
+        },
+        {
+          "round": 3,
+          "unit": {
+            "attack": 1,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 35,
+            "currentHealth": 2,
+            "defense": 1001,
+            "enemy": true,
+            "icon": "",
+            "id": 0,
+            "maximumHealth": 3,
+            "morale": 0,
+            "name": "Pikeman",
+            "occupied": [
+              31
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "stackId": 1,
+            "x": 652,
+            "y": 154
+          }
+        },
+        {
+          "round": 4,
+          "unit": {
+            "attack": 1,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 35,
+            "currentHealth": 4,
+            "defense": 1001,
+            "enemy": true,
+            "icon": "",
+            "id": 0,
+            "maximumHealth": 5,
+            "morale": 0,
+            "name": "Pikeman",
+            "occupied": [
+              31
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "stackId": 1,
+            "x": 652,
+            "y": 154
+          }
+        }
+      ],
+      "after": {
+        "round": 1,
+        "unit": {
+          "attack": 1,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 35,
+          "currentHealth": 2,
+          "defense": 1001,
+          "enemy": true,
+          "icon": "",
+          "id": 0,
+          "maximumHealth": 3,
+          "morale": 0,
+          "name": "Pikeman",
+          "occupied": [
+            49
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "stackId": 1,
+          "x": 718,
+          "y": 196
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "flat5AgePoison",
+      "flat": 2,
+      "poison": true,
+      "max": 3,
+      "first": 2,
+      "base": 5,
+      "errors": [],
+      "snapshots": [
+        {
+          "round": 2,
+          "unit": {
+            "attack": 1,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 35,
+            "currentHealth": 1,
+            "defense": 1001,
+            "enemy": true,
+            "icon": "",
+            "id": 0,
+            "maximumHealth": 2,
+            "morale": 0,
+            "name": "Pikeman",
+            "occupied": [
+              31
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "stackId": 1,
+            "x": 652,
+            "y": 154
+          }
+        },
+        {
+          "round": 3,
+          "unit": {
+            "attack": 1,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 35,
+            "currentHealth": 1,
+            "defense": 1001,
+            "enemy": true,
+            "icon": "",
+            "id": 0,
+            "maximumHealth": 2,
+            "morale": 0,
+            "name": "Pikeman",
+            "occupied": [
+              31
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "stackId": 1,
+            "x": 652,
+            "y": 154
+          }
+        },
+        {
+          "round": 4,
+          "unit": {
+            "attack": 1,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 35,
+            "currentHealth": 4,
+            "defense": 1001,
+            "enemy": true,
+            "icon": "",
+            "id": 0,
+            "maximumHealth": 5,
+            "morale": 0,
+            "name": "Pikeman",
+            "occupied": [
+              31
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "stackId": 1,
+            "x": 652,
+            "y": 154
+          }
+        }
+      ],
+      "after": {
+        "round": 1,
+        "unit": {
+          "attack": 1,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 35,
+          "currentHealth": 2,
+          "defense": 1001,
+          "enemy": true,
+          "icon": "",
+          "id": 0,
+          "maximumHealth": 3,
+          "morale": 0,
+          "name": "Pikeman",
+          "occupied": [
+            49
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "stackId": 1,
+          "x": 718,
+          "y": 196
+        }
+      },
+      "passed": true
+    }
+  ]
+}

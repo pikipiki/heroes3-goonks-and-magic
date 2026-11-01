@@ -1,0 +1,63 @@
+{
+  "core:creatureGeneratorSpecial": {
+    "types": {
+      "eraDwelling20_2": {
+        "name": "Dragon Sanctuary",
+        "creatures": [
+          [
+            "core:azureDragon"
+          ],
+          [
+            "core:crystalDragon"
+          ],
+          [
+            "core:fairieDragon"
+          ],
+          [
+            "core:rustDragon"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "core:azureDragon",
+            "amount": 3
+          },
+          {
+            "type": "core:crystalDragon",
+            "amount": 3
+          },
+          {
+            "type": "core:fairieDragon",
+            "amount": 3
+          },
+          {
+            "type": "core:rustDragon",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw25.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBBB",
+              "VBAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 164196,
+          "rarity": 300,
+          "neutralAllowed": true
+        }
+      }
+    }
+  }
+}

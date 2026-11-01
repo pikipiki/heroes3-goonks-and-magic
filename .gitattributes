@@ -1,1 +1,3 @@
 game-data/chunks/*.bin -text -diff
+# Preserve the original quoted TSV fixture byte-for-byte (CRLF and significant tabs).
+tests/fixtures/tum/SPTRAITS.original.txt -text -diff

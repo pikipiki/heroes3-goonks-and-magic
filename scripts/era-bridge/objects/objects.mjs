@@ -7,7 +7,7 @@ const fail=(code,message,details)=>{throw new ObjectBridgeError(code,message,det
 const integer=(n,field,min=0,max=Number.MAX_SAFE_INTEGER)=>{
   if(!Number.isSafeInteger(n)||n<min||n>max)fail('INVALID_INTEGER',`Invalid ${field}`,{value:n}); return n;
 };
-const terrainNames=['dirt','sand','grass','snow','swamp','rough','subterranean','lava','water'];
+const terrainNames=['dirt','sand','grass','snow','swamp','rough','subterra','lava','water'];
 // These numeric top-visitable constants MUST come from the caller's engine catalog.
 // Creature/hero/artifact/resource legacy template categories (2..5) are unconditional.
 export function convertObjectTemplate(line,{maskBytes,topVisitableObjectIds=[],animationPrefix=''}={}) {

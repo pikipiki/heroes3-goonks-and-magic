@@ -8,7 +8,10 @@
  *
  */
 #include "StdInc.h"
+#include "era/EraStatusHealthRuntime.h"
 #include "CStack.h"
+#include "era/EraBridgePolicies.h"
+#include "CCreatureHandler.h"
 
 #include <vstd/RNG.h>
 
@@ -77,6 +80,14 @@ void CStack::localInit(BattleInfo * battleInfo)
 		attachTo(*army);
 		attachToSource(*typeID.toCreature());
 	}
+    if(era_compat::sourceHealthBattleEnabled()
+        && !hasBonusOfType(BonusType::ERA_SOURCE_STATUS_HEALTH))
+    {
+        // Explicit TUM module policy applies from battle start. Summons and
+        // clones share this profile; baseline games without the policy do not.
+        addNewBonus(std::make_shared<Bonus>(BonusDuration::PERMANENT,
+            BonusType::ERA_SOURCE_STATUS_HEALTH,BonusSource::CREATURE_ABILITY,1,BonusSourceID()));
+    }
 	CUnitState::localInit(this); //it causes execution of the CStack::isOnNativeTerrain where nativeTerrain will be considered
 	position = initialPosition;
 }
@@ -175,7 +186,11 @@ void CStack::prepareAttacked(BattleStackAttacked & bsa, vstd::RNG & rand, const 
 	// compute damage and update bsa.damageAmount
 	customState->damage(bsa.damageAmount);
 
-	bsa.killedAmount = initialCount - customState->getCount();
+    // Inverted spell damage can add units. A wire killedAmount is unsigned;
+    // the authoritative positive healthDelta carries this source count change.
+    bsa.killedAmount = customState->getCount() > initialCount
+        && era_compat::Policies::get().spellDamageInversion(customState->creatureId().toCreature()->getJsonKey())
+        ? 0 : initialCount - customState->getCount();
 
 	if(!customState->alive() && customState->isClone())
 	{
@@ -187,7 +202,11 @@ void CStack::prepareAttacked(BattleStackAttacked & bsa, vstd::RNG & rand, const 
 
 		auto resurrectValue = customState->valOfBonuses(BonusType::REBIRTH);
 
-		if(resurrectValue > 0 && customState->canCast()) //there must be casts left
+        const auto eraPolicy = era_compat::Policies::get().rebirth(customState->creatureId().toCreature()->getJsonKey());
+        // ERA rebirth is deferred until the full attack/cast/hazard completes.
+        // The original hook runs in BattleArmy_Attack_HEX's post-sequence scan,
+        // after retaliation and double strikes. Preserve native behavior otherwise.
+        if(!eraPolicy && resurrectValue > 0 && customState->canCast()) //there must be casts left
 		{
 			double resurrectFactor = resurrectValue / 100.0;
 

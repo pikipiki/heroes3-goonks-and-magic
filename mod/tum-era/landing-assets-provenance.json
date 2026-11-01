@@ -1,0 +1,101 @@
+{
+  "officialProject": "Hit Landing Effects for ERA",
+  "officialPage": "https://heroes3wog.net/hit-landing-effects-mod-era-project/",
+  "sourceArchiveSha256": "907044343b50277c7ac32748fa9df37699bd333637e87d9026bc60d738e9fd4d",
+  "sourceSoundArchiveSha256": "04630ce582ba0bbb65f47be55bcc80d0e593693e90fa633ebaa3c9f4109852a5",
+  "sourceTUM": "ThirdUpgradeMod.erm HitEffects assignments",
+  "bindings": {
+    "tum-era:cherub": {
+      "melee": {
+        "animation": "tum-era/hit-effects/Burst04.def",
+        "sound": "tum-era/hit-effects/PHOEMOVE.wav"
+      }
+    },
+    "tum-era:ancestralBehemoth": {
+      "melee": {
+        "animation": "tum-era/hit-effects/Burst23.def"
+      }
+    },
+    "tum-era:antichrist": {
+      "melee": {
+        "animation": "tum-era/hit-effects/Burst14.def",
+        "sound": "tum-era/hit-effects/FAERATTK.wav"
+      }
+    },
+    "tum-era:redBonesDragon": {
+      "melee": {
+        "animation": "tum-era/hit-effects/Burst16.def"
+      }
+    },
+    "tum-era:necrossDragon": {
+      "ranged": {
+        "animation": "tum-era/hit-effects/Burst17.def",
+        "sound": "tum-era/hit-effects/DEATHCLS.wav"
+      },
+      "melee": {
+        "animation": "tum-era/hit-effects/Burst25.def"
+      }
+    }
+  },
+  "assets": [
+    {
+      "file": "content/Sprites/tum-era/hit-effects/Burst04.def",
+      "sha256": "d408c0467a322b72e77dc3827571106f9cb67376d813ddfa543c1c6aba53e5de",
+      "bytes": 7779
+    },
+    {
+      "file": "content/Sprites/tum-era/hit-effects/Burst14.def",
+      "sha256": "116194792ecd01ae993df32b75daf1790e358d4953b0173bfaeda8154d2e530f",
+      "bytes": 13338
+    },
+    {
+      "file": "content/Sprites/tum-era/hit-effects/Burst16.def",
+      "sha256": "93811d333a2ce4426d390b0077e3000b3e3c9ee994966295b20195e0a42f9997",
+      "bytes": 6981
+    },
+    {
+      "file": "content/Sprites/tum-era/hit-effects/Burst17.def",
+      "sha256": "395a3450fe12b64e179c595932b896dc1b7630765e9ebcc68204fa4e732c4d39",
+      "bytes": 59714
+    },
+    {
+      "file": "content/Sprites/tum-era/hit-effects/Burst23.def",
+      "sha256": "d25cbb6cd5a6ceaa1ac30410e2f2ab32d4418470ef4e57a4be9849e8f374a248",
+      "bytes": 11610
+    },
+    {
+      "file": "content/Sprites/tum-era/hit-effects/Burst25.def",
+      "sha256": "8210863a5a0019a79ab3e89efd21621c33037fb275e4f9c71d16d593e1324aed",
+      "bytes": 7250
+    },
+    {
+      "file": "content/Sounds/tum-era/hit-effects/PHOEMOVE.wav",
+      "sha256": "14586f29232b539f64aa098fe362920e732d5fb61d46a6aa144498ad6230da3e",
+      "bytes": 6724
+    },
+    {
+      "file": "content/Sounds/tum-era/hit-effects/FAERATTK.wav",
+      "sha256": "b35714df9f4aba1d92503f52edf7e6e9733e8d3fece0c7958c1ad95547aaa296",
+      "bytes": 10568
+    },
+    {
+      "file": "content/Sounds/tum-era/hit-effects/DEATHCLS.wav",
+      "sha256": "8cb1be6eead5294981957cf4114bd9ae91769dceea5ad6e949afc4bef8a89146",
+      "bytes": 15288
+    }
+  ],
+  "requiresNativeLandingEffectAdapter": true,
+  "registered": true,
+  "registeredCreatures": [
+    "tum-era:cherub",
+    "tum-era:antichrist",
+    "tum-era:redBonesDragon",
+    "tum-era:ancestralBehemoth"
+  ],
+  "authors": [
+    "JackSlater",
+    "Raistlin",
+    "Dalion",
+    "Archer30"
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank38": {
+        "name": "Blue Tower",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB6.def",
+            "mask": [
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVVBV",
+              "VVVAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 14
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 14
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 14
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 14
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 14
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:firebird",
+                "amount": 2
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 28
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 28
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 28
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 28
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 28
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:phoenix",
+                "amount": 1
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 42
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 42
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 42
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 42
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 42
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:phoenix",
+                "amount": 2
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumEfreetRajah",
+                "amount": 60
+              },
+              {
+                "type": "third-upgrades:tumEfreetRajah",
+                "amount": 60
+              },
+              {
+                "type": "third-upgrades:tumEfreetRajah",
+                "amount": 60
+              },
+              {
+                "type": "third-upgrades:tumEfreetRajah",
+                "amount": 60
+              },
+              {
+                "type": "third-upgrades:tumEfreetRajah",
+                "amount": 60
+              }
+            ],
+            "creatures": [
+              {
+                "type": "wake-of-gods.level8units:sacredPhoenix",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "visit": [
+            "tum-era/objects/REDTWRVS.wav"
+          ],
+          "ambient": [
+            "tum-era/objects/REDTWRLO.wav"
+          ]
+        },
+        "rmg": {
+          "value": 8000,
+          "rarity": 20
+        },
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33
+      }
+    }
+  }
+}

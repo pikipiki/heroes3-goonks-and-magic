@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../../era/EraDeflectionLog.h"
 
 #include "Damage.h"
 #include "Registry.h"
@@ -15,6 +16,10 @@
 #include "../ISpellMechanics.h"
 
 #include "../../CStack.h"
+#include "../../CCreatureHandler.h"
+#include "../../era/EraBridgePolicies.h"
+#include "../../era/EraDeflectionRuntime.h"
+#include "../../networkPacks/SetStackEffect.h"
 #include "../../battle/IBattleState.h"
 #include "../../battle/CBattleInfoCallback.h"
 #include "../../networkPacks/PacksForClientBattle.h"
@@ -33,9 +38,29 @@ namespace spells
 namespace effects
 {
 
+namespace
+{
+bool eraDeflectionSpell(const Mechanics * m)
+{
+    // Shipped source hook records789A88..789B20 include5A1065 (DeathRipple)
+    // and469A93 (ordinary faction moat), but NOT MagicArrow5A0D02 or other
+    // direct damage spell calls. Do not apply globally to every Damage effect.
+    const auto spell = m->getSpellId();
+    if(spell == SpellID(SpellID::DEATH_RIPPLE) || spell == SpellID(SpellID::THUNDERBOLT)
+        || spell == SpellID(SpellID::DEATH_STARE) || spell == SpellID(SpellID::ACID_BREATH_DAMAGE)) return true;
+    const auto key = m->getSpell()->getJsonKey();
+    static const std::set<std::string> sourceMoats = {"core:castleMoatTrigger", "core:rampartMoatTrigger",
+        "core:infernoMoatTrigger", "core:necropolisMoatTrigger", "core:dungeonMoatTrigger",
+        "core:strongholdMoatTrigger", "core:fortressMoatTrigger", "core:confluxMoatTrigger"};
+    return sourceMoats.count(key) != 0;
+}
+}
+
 void Damage::apply(ServerCallback * server, const Mechanics * m, const EffectTarget & target) const
 {
 	StacksInjured stacksInjured;
+    SetStackEffect clearedStatuses;
+    clearedStatuses.battleID = m->battle()->getBattle()->getBattleID();
 	BattleLogMessage blm;
 	stacksInjured.battleID = m->battle()->getBattle()->getBattleID();
 	blm.battleID = m->battle()->getBattle()->getBattleID();
@@ -55,10 +80,31 @@ void Damage::apply(ServerCallback * server, const Mechanics * m, const EffectTar
 		{
 			BattleStackAttacked bsa;
 			bsa.damageAmount = damageForTarget(targetIndex, m, unit);
+            if(eraDeflectionSpell(m))
+                bsa.damageAmount = applyEraDeflection(m->battle()->battleGetStackByID(unit->unitId()),
+                    *server->getRNG(), bsa.damageAmount, [&](int strength,int chance){if(!describe)return;auto message=eraDeflectionLog(m->battle()->getBattle()->getBattleID(),strength,chance);server->apply(message);});
 			bsa.stackAttacked = unit->unitId();
 			bsa.attackerID = -1;
 			auto newState = unit->acquireState();
 			CStack::prepareAttacked(bsa, *server->getRNG(), newState);
+            if(bsa.damageAmount < 0 && era_compat::Policies::get().spellDamageInversion(
+                unit->creatureId().toCreature()->getJsonKey()))
+            {
+                // Original443E1B clears Blind62, Stone70 and Paralyze74 even
+                // when signed damage is negative. A positive healthDelta would
+                // otherwise bypass native UntilBeingAttacked removal.
+                std::vector<Bonus> removed;
+                for(const auto & bonus : *unit->getBonuses(Selector::sourceTypeSel(BonusSource::SPELL_EFFECT)))
+                {
+                    const auto source = bonus->sid.as<SpellID>();
+                    if(source == SpellID(SpellID::BLIND) || source == SpellID(SpellID::STONE_GAZE)
+                        || source == SpellID(SpellID::PARALYZE))
+                        removed.push_back(*bonus);
+                }
+                if(!removed.empty())
+                    clearedStatuses.toRemove.emplace_back(unit->unitId(), std::move(removed));
+            }
+
 
 			if(describe)
 			{
@@ -82,6 +128,9 @@ void Damage::apply(ServerCallback * server, const Mechanics * m, const EffectTar
 	if(!stacksInjured.stacks.empty())
 		server->apply(stacksInjured);
 
+    if(!clearedStatuses.toRemove.empty())
+        server->apply(clearedStatuses);
+
 	if(!blm.lines.empty())
 		server->apply(blm);
 }
@@ -100,6 +149,9 @@ SpellEffectValue Damage::getHealthChange(const Mechanics * m, const EffectTarget
 		{
 			BattleStackAttacked bsa;
 			bsa.damageAmount = damageForTarget(targetIndex, m, unit);
+            if(eraDeflectionSpell(m))
+                bsa.damageAmount = applyEraDeflection(m->battle()->battleGetStackByID(unit->unitId()),
+                    fakeRng, bsa.damageAmount);
 			bsa.stackAttacked = unit->unitId();
 			bsa.attackerID = -1;
 			auto state = unit->acquireState();
@@ -109,7 +161,11 @@ SpellEffectValue Damage::getHealthChange(const Mechanics * m, const EffectTarget
 			int64_t applied = before - after;
 
 			result.hpDelta -= applied;
-			result.unitsDelta -= static_cast<int32_t>(bsa.killedAmount);
+            if(bsa.damageAmount < 0 && era_compat::Policies::get().spellDamageInversion(
+                unit->creatureId().toCreature()->getJsonKey()))
+                result.unitsDelta += state->getCount() - unit->getCount();
+            else
+                result.unitsDelta -= static_cast<int32_t>(bsa.killedAmount);
 		}
 
 		targetIndex++;

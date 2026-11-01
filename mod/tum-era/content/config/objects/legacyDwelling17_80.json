@@ -1,0 +1,36 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "portalOfSplendor": {
+        "name": "Portal of Splendor",
+        "creatures": [
+          [
+            "tum-era:cherub"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:cherub",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "default": {
+            "animation": "tum-era/objects/legacy/zavg150z.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

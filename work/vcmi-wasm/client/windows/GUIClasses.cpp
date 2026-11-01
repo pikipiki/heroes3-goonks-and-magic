@@ -8,6 +8,8 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraSkeletonTransformations.h"
+#include "../../lib/era/EraTransformerPreview.h"
 #include "GUIClasses.h"
 
 #include "CCastleInterface.h"
@@ -879,6 +881,7 @@ void CTransformerWindow::CItem::move()
 	else
 		moveBy(Point(-289, 0));
 	left = !left;
+    update();
 }
 
 void CTransformerWindow::CItem::clickPressed(const Point & cursorPosition)
@@ -889,7 +892,21 @@ void CTransformerWindow::CItem::clickPressed(const Point & cursorPosition)
 
 void CTransformerWindow::CItem::update()
 {
-	icon->setFrame(parent->army->getCreature(SlotID(id))->getId() + 2);
+    if(::era_bridge::confirmTransformerReturn(left,pendingTransform))
+        moveBy(Point(-289,0));
+    const auto * actual = parent->army->getCreature(SlotID(id));
+    if(!actual)
+    {
+        icon->setFrame(0);
+        count->setText("0");
+        return;
+    }
+    size = parent->army->getStackCount(SlotID(id));
+    count->setText(std::to_string(size));
+    const auto * transformation = era_compat::SkeletonTransformations::get().find(actual->getJsonKey());
+    const int preview = ::era_bridge::transformerPreviewCreature(actual->getId().getNum(), left,
+        transformation ? transformation->target : -1);
+    icon->setFrame(CreatureID(preview).toCreature()->getIconIndex());
 }
 
 CTransformerWindow::CItem::CItem(CTransformerWindow * parent_, int size_, int id_)
@@ -905,7 +922,7 @@ CTransformerWindow::CItem::CItem(CTransformerWindow * parent_, int size_, int id
 
 	pos.x += 45  + (id%3)*83 + id/6*83;
 	pos.y += 109 + (id/3)*98;
-	icon = std::make_shared<CAnimImage>(AnimationPath::builtin("TWCRPORT"), parent->army->getCreature(SlotID(id))->getId() + 2);
+	icon = std::make_shared<CAnimImage>(AnimationPath::builtin("TWCRPORT"), parent->army->getCreature(SlotID(id))->getIconIndex());
 	count = std::make_shared<CLabel>(28, 76,FONT_SMALL, ETextAlignment::CENTER, Colors::WHITE, std::to_string(size));
 }
 
@@ -914,7 +931,11 @@ void CTransformerWindow::makeDeal()
 	for(auto & elem : items)
 	{
 		if(!elem->left)
-			GAME->interface()->cb->trade(market->getObjInstanceID(), EMarketMode::CREATURE_UNDEAD, SlotID(elem->id), {}, {}, hero);
+        {
+            const auto * actual = army->getCreature(SlotID(elem->id));
+            elem->pendingTransform = actual && era_compat::SkeletonTransformations::get().find(actual->getJsonKey());
+            GAME->interface()->cb->trade(market->getObjInstanceID(), EMarketMode::CREATURE_UNDEAD, SlotID(elem->id), {}, {}, hero);
+        }
 	}
 }
 
@@ -936,7 +957,7 @@ void CTransformerWindow::updateGarrisons()
 
 bool CTransformerWindow::holdsGarrison(const CArmedInstance * army)
 {
-	return army == hero;
+    return era_compat::SkeletonTransformations::get().enabled() ? army == this->army : army == hero;
 }
 
 CTransformerWindow::CTransformerWindow(const IMarket * _market, const CGHeroInstance * _hero, const std::function<void()> & onWindowClosed)
@@ -969,6 +990,11 @@ CTransformerWindow::CTransformerWindow(const IMarket * _market, const CGHeroInst
 	titleRight = std::make_shared<CLabel>(153+295, 29, FONT_SMALL, ETextAlignment::CENTER, Colors::YELLOW, LIBRARY->generaltexth->allTexts[486]);//transformer
 	helpLeft = std::make_shared<CTextBox>(LIBRARY->generaltexth->allTexts[487], Rect(26,  56, 255, 40), 0, FONT_MEDIUM, ETextAlignment::CENTER, Colors::YELLOW);//move creatures to create skeletons
 	helpRight = std::make_shared<CTextBox>(LIBRARY->generaltexth->allTexts[488], Rect(320, 56, 255, 40), 0, FONT_MEDIUM, ETextAlignment::CENTER, Colors::YELLOW);//creatures here will become skeletons
+    if(era_compat::SkeletonTransformations::get().enabled())
+    {
+        helpLeft->setText(LIBRARY->generaltexth->translate("tum-era.transformer.help.left"));
+        helpRight->setText(LIBRARY->generaltexth->translate("tum-era.transformer.help.right"));
+    }
 }
 
 void CTransformerWindow::close()

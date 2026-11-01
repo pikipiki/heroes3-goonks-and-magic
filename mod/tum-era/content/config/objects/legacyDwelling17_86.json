@@ -1,0 +1,20 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "behemothTomb": {
+        "name": "Behemoth Tomb",
+        "creatures": [
+          [
+            "tum-era:ancestralBehemoth"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:ancestralBehemoth",
+            "amount": 3
+          }
+        ]
+      }
+    }
+  }
+}

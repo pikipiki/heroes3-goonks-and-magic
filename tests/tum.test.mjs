@@ -13,5 +13,10 @@ test('Red Bones Dragon has the original ERA stats, a real upgrade chain and a fo
 test('The original dragon DEF files include frames and both extracted portraits are PNGs',()=>{
  for(const name of ['cr224.def','AVWCR224.DEF']){const b=fs.readFileSync('mod/tum-era/content/Sprites/tum-era/'+name);let p=784,frames=0;for(let g=0;g<b.readUInt32LE(12);g++){const n=b.readUInt32LE(p+4);frames+=n;p+=16+13*n;for(let i=0;i<n;i++)assert(b.readUInt32LE(p+i*4)<b.length);p+=n*4;}assert(frames>0);}
  for(const name of ['portrait-small.png','portrait-large.png']){const b=fs.readFileSync('mod/tum-era/content/Sprites/tum-era/'+name);assert.equal(b.subarray(1,4).toString(),'PNG');assert(b.readUInt32BE(16)>0);}
- const icons=read('mod/tum-era/content/Sprites/tum-era/necropolis-hall.json');assert.equal(icons.images[57].defFrame,50);
+ for(const town of ['castle','inferno','necropolis','conflux','stronghold']){
+  const icons=read('mod/tum-era/content/Sprites/tum-era/'+town+'-hall.json'),fourth=icons.images.find(image=>image.frame===57);
+  assert.equal(fourth.file,'tum-era/'+town+'-building77.png');
+  const image=fs.readFileSync('mod/tum-era/content/Sprites/'+fourth.file);assert.equal(image.subarray(1,4).toString(),'PNG');assert(image.readUInt32BE(16)>0);
+ }
+
 });

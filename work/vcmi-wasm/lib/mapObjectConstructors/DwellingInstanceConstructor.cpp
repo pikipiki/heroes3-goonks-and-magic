@@ -55,6 +55,7 @@ void DwellingInstanceConstructor::initTypeData(const JsonNode & input)
 	}
 	guards = input["guards"];
 	bannedForRandomDwelling = input["bannedForRandomDwelling"].Bool();
+	neutralRmgAllowed = input["rmg"]["neutralAllowed"].Bool();
 	kingdomOverviewImage = AnimationPath::fromJson(input["kingdomOverviewImage"]);
 
 	for (const auto & mapTemplate : getTemplates())
@@ -80,6 +81,11 @@ void DwellingInstanceConstructor::onTemplateAdded(const std::shared_ptr<const Ob
 
 	if (invalidForRandomDwelling)
 		logMod->warn("Dwelling %s has template %s which is not valid for a random dwelling! Dwellings must not block tiles outside 2x2 range and must be visitable in bottom row. Change dwelling mask or mark dwelling as 'bannedForRandomDwelling'", getJsonKey(), mapTemplate->animationFile.getOriginalName());
+}
+
+bool DwellingInstanceConstructor::allowsNeutralRmg() const
+{
+	return neutralRmgAllowed;
 }
 
 bool DwellingInstanceConstructor::isBannedForRandomDwelling() const

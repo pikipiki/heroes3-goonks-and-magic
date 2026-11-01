@@ -10,6 +10,8 @@
 
 #include "StdInc.h"
 #include "Limiters.h"
+#include "../era/EraExperienceProgression.h"
+#include "../era/EraSourceRankRange.h"
 #include "Updaters.h"
 
 #include "../CBonusTypeHandler.h"
@@ -488,7 +490,8 @@ ILimiter::EDecision RankRangeLimiter::limit(const BonusLimitationContext &contex
 	{
 		if (csi->getNodeType() == BonusNodeType::COMMANDER) //no stack exp bonuses for commander creatures
 			return ILimiter::EDecision::DISCARD;
-		if (csi->getExpRank() > minRank && csi->getExpRank() < maxRank)
+		const bool sourceProfile = era_compat::ExperienceProgressions::get().find(csi->getType()->getJsonKey()) != nullptr;
+		if (::era_bridge::sourceRankRangeAccepts(csi->getExpRank(), minRank, maxRank, sourceProfile))
 			return ILimiter::EDecision::ACCEPT;
 
 		return ILimiter::EDecision::DISCARD;

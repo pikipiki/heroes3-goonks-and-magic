@@ -498,6 +498,21 @@
 		}
 	},
 
+	"ERA_SOURCE_STATUS_HEALTH": { "blockDescriptionPropagation": true },
+
+	"ERA_SOURCE_ACID_DEFENSE": { "blockDescriptionPropagation": true },
+
+	"ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY": { "description": "Immunity to harmful spells up to level %d" },
+
+	"ERA_DISPEL_IMMUNITY":
+	{
+		"description": "Dispel immunity",
+		"valueDescriptions": {
+			"1": "Immune to Dispel cast by either side",
+			"2": "Immune to enemy Dispel"
+		}
+	},
+
 	"SPELL_IMMUNITY":
 	{
 	},

@@ -1,3 +1,4 @@
+import {exportedI32Constant} from './wasm-constant.mjs';
 import {inlineScriptHashes} from './script-policy.mjs';
 import fs from 'node:fs';import assert from 'node:assert/strict';
 const html=fs.readFileSync('dist/game.html','utf8');
@@ -18,3 +19,5 @@ for(const name of ['index.html','game.html','storage.html']){const doc=fs.readFi
 for(const name of ['third-upgrades','tum-era'])assert(manifest.files.some(f=>f.path==='Mods/'+name+'/mod.json'),'Mod TUM manquant : '+name);
 
 const eraWasm=fs.readdirSync('dist').find(name=>/^vcmiclient\.[a-f0-9]+\.wasm$/.test(name));assert(eraWasm,'Moteur WebAssembly manquant');const eraModule=await WebAssembly.compile(fs.readFileSync('dist/'+eraWasm));const eraJS=fs.readdirSync('dist').find(name=>/^vcmiclient\.[a-f0-9]+\.js$/.test(name));const eraExport=fs.readFileSync('dist/'+eraJS,'utf8').match(/Module\["_vcmiEraBridgeVersion"\]\s*=\s*wasmExports\["([^"]+)"\]/);assert(eraExport&&WebAssembly.Module.exports(eraModule).some(item=>item.name===eraExport[1]&&item.kind==='function'),'Le moteur doit inclure les services natifs du bridge ERA.');assert(manifest.files.some(f=>f.path==='Mods/tum-era/content/config/era-bridge-runtime.json'),'Politique ERA native manquante');
+
+assert.equal(exportedI32Constant(fs.readFileSync('dist/'+eraWasm),eraExport[1],WebAssembly.Module.imports(eraModule).filter(item=>item.kind==='function').length),2,'La version native du bridge ERA doit être 2.');

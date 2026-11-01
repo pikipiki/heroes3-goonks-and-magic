@@ -38,7 +38,8 @@
 				},
 				"rarity" : {
 					"type" : "number"
-				}
+				},
+				"neutralAllowed" : {"type":"boolean", "description":"Opt in this dwelling to neutral RMG recruitment in foreign faction land zones; default false."}
 			}
 		},
 		"name" : {

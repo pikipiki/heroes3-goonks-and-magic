@@ -10,6 +10,10 @@
 #include "StdInc.h"
 
 #include "UnitEffect.h"
+#include "../../CCreatureHandler.h"
+#include "../../era/EraDeathCloud.h"
+#include "../../era/EraSkeletonTransformations.h"
+#include "../CSpellHandler.h"
 
 #include "../ISpellMechanics.h"
 
@@ -265,6 +269,16 @@ bool UnitEffect::isValidTarget(const Mechanics * m, const battle::Unit * unit) c
 
 bool UnitEffect::isReceptive(const Mechanics * m, const battle::Unit * unit) const
 {
+    if(m->getSpell()->getJsonKey()=="tum-era:necrossDeathCloud")
+    {
+        // ShotType2 source43FCDC tests the ERA ALIVE flag, not VCMI's
+        // current biological/construct classification. Primarytarget is added
+        // unconditionally by transformTargetByRange(alwaysHitFirstTarget).
+        const auto * source=era_compat::SkeletonTransformations::get().find(
+            unit->creatureId().toCreature()->getJsonKey());
+        return ::era_bridge::deathCloudTarget(unit->alive(),false,source ? source->living : unit->isLiving());
+    }
+
 	if(ignoreImmunity)
 	{
 		//ignore all immunities, except specific absolute immunity(VCMI addition)

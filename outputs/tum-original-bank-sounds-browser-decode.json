@@ -1,0 +1,73 @@
+{
+  "case": "bank:43",
+  "method": "Read actual isolated native FS and decode WAVs through browser OfflineAudioContext; no audible-output assertion",
+  "files": [
+    {
+      "name": "CEMETRY.wav",
+      "bytes": 408990,
+      "sha256": "99636ad325309d2ba3d1e17d255f8714cffd0b94be2c881753025b0d6955dfea",
+      "channels": 1,
+      "sampleRate": 44100,
+      "durationSeconds": 4.6355102040816325
+    },
+    {
+      "name": "LOOPCMTR.wav",
+      "bytes": 3268874,
+      "sha256": "815243b6d4731275c80f6a7e3cc8d1d598795e80329b4104bbd279aa87410084",
+      "channels": 2,
+      "sampleRate": 44100,
+      "durationSeconds": 18.51532879818594
+    },
+    {
+      "name": "REDTWRVS.wav",
+      "bytes": 281178,
+      "sha256": "3236c3ab27931d0c0e895ccaa9a3927d39fd94ae8bf5bb3da222d53003bdcda8",
+      "channels": 1,
+      "sampleRate": 44100,
+      "durationSeconds": 3.175442176870748
+    },
+    {
+      "name": "REDTWRLO.wav",
+      "bytes": 840220,
+      "sha256": "c3af71a55216874ee6e82df832e56e9cc5d9f412a5a44560aaac56fb6b632140",
+      "channels": 1,
+      "sampleRate": 44100,
+      "durationSeconds": 9.494897959183673
+    },
+    {
+      "name": "mansionv.wav",
+      "bytes": 566110,
+      "sha256": "a4d50735851da810aa2484a4a91b65a8e65aa4c7eca2ad581996d06272e99c8d",
+      "channels": 2,
+      "sampleRate": 44100,
+      "durationSeconds": 3.193832199546485
+    },
+    {
+      "name": "LOOPMANS.wav",
+      "bytes": 1087442,
+      "sha256": "a8fefbcb9ba130778696d8a4aced93e107f4158f125e32c6bab82d87697a6452",
+      "channels": 1,
+      "sampleRate": 44100,
+      "durationSeconds": 12.328775510204082
+    },
+    {
+      "name": "SORCENTR.wav",
+      "bytes": 132124,
+      "sha256": "7e5273ad74b1c61a12086a273b700f222ef9c4f2fe732442973deebf2e64ad94",
+      "channels": 1,
+      "sampleRate": 44100,
+      "durationSeconds": 5.990022675736961
+    },
+    {
+      "name": "SORCERESSLOOP.wav",
+      "bytes": 423404,
+      "sha256": "5d706a69b2232edb076b56690c46ca55ede37bb552b76a6110ff94754d0ce63f",
+      "channels": 1,
+      "sampleRate": 44100,
+      "durationSeconds": 19.2
+    }
+  ],
+  "allEightSourceArchiveBytesMatch": true,
+  "sourceArchiveSha256": "1da1264707a6dd7da79490bed64798a7bd6cf7cba12581e5b93549f0c29bbc32",
+  "passed": true
+}

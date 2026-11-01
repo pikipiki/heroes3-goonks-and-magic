@@ -1,0 +1,38 @@
+{
+  "capturedAtUtc": "2026-11-01T05:57:34.049Z",
+  "capturePhase": "before-test",
+  "origin": "http://127.0.0.1:8784",
+  "referenceMode": "explicit-source-unhashed",
+  "files": {
+    "/": {
+      "sha256": "6c347a741da05c781ee4ed197b3c00441e5ee7b57d99b3341cc37727764f5bd0",
+      "bytes": 16801
+    },
+    "asset-manifest.json": {
+      "sha256": "4fbd02835ecb2ff495c3206dc70c5c37a9cfddbbf85e4d3b861700660dfc9a63",
+      "bytes": 3491920
+    },
+    "vcmiclient.wasm": {
+      "sha256": "6d4907dd95a90f007a0c08c30a340e95c25023356f5b158eb2b67b37ed13f60a",
+      "bytes": 9326964
+    },
+    "vcmiclient.data": {
+      "sha256": "c5f25fbf1af454a34033e81cb72fa7a35d0afbe82a8ed81cc123efce6bbd446b",
+      "bytes": 8437338
+    },
+    "vcmiclient.js": {
+      "sha256": "483e65f305f3a78b57a57ab48717149c79e6f01f352e3b9beb24a18b5d6584f1",
+      "bytes": 272708
+    },
+    "vcmiclient.data.js": {
+      "sha256": "6219f4f6893b2e6db3f181bc37cf8ddefc749557012d0cfacf15d434597e8f9d",
+      "bytes": 62978
+    }
+  },
+  "runtime": [
+    "vcmiclient.wasm",
+    "vcmiclient.data",
+    "vcmiclient.js",
+    "vcmiclient.data.js"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "capturedAtUtc": "2026-11-01T04:49:27.524Z",
+  "capturePhase": "after-test-do-not-claim-pre-run-manifest",
+  "origin": "http://127.0.0.1:8774",
+  "files": {
+    "game.html": {
+      "sha256": "bc8539bef625833f5b3a57423c350fddd49637bde96128df649b840eb36e4cb6",
+      "bytes": 19449
+    },
+    "asset-manifest.json": {
+      "sha256": "e23a520614b85288fd464d272c789cf7179efe4b7f143b8c57b8a4ec1720f103",
+      "bytes": 4373172
+    },
+    "vcmiclient.96ed59c0ef589289.js": {
+      "sha256": "96ed59c0ef589289411c5997d9df9b76da78adcfa10481430602cf3d6cda3498",
+      "bytes": 272706
+    },
+    "vcmiclient.09880eb71a9ae2ed.wasm": {
+      "sha256": "09880eb71a9ae2edb632130597d56d752284adb61323e48570b16b167683e547",
+      "bytes": 9294123
+    },
+    "vcmiclient.701da1e57caeedab.data": {
+      "sha256": "701da1e57caeedab295998da9198c1eee603bc57bc6f0270b1e14c265557c025",
+      "bytes": 8437235
+    }
+  },
+  "runtime": [
+    "vcmiclient.96ed59c0ef589289.js",
+    "vcmiclient.09880eb71a9ae2ed.wasm",
+    "vcmiclient.701da1e57caeedab.data"
+  ],
+  "note": "Original gameplay tests predated provenance capture and applied scoped resource arrays to isolated FS. Parent may have rebuilt data after tests. This record identifies current served bytes only; source file hashes and test report linkage are recorded separately."
+}

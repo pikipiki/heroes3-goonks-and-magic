@@ -5,7 +5,70 @@
       "regeneration": {
         "hitPoints": 50,
         "chancePercent": 100
+      },
+      "vampireDrain": {}
+    },
+    "tum-era:divinePhoenix": {
+      "regeneration": {
+        "hitPoints": 200,
+        "chancePercent": 100
+      },
+      "rebirth": {
+        "chance": 1,
+        "fraction": 0.3,
+        "guaranteedFraction": 0.2
+      },
+      "imposedSpells": [
+        {
+          "spell": "core:fireShield",
+          "mastery": 3
+        },
+        {
+          "spell": "core:slayer",
+          "mastery": 0
+        }
+      ]
+    },
+    "tum-era:eraCreature297": {
+      "spellDamageInversion": {}
+    },
+    "tum-era:cherub": {
+      "artifactMimic": {
+        "artifact": 129
+      },
+      "angelicArmyMorale": {
+        "supremeArchangel": "wake-of-gods.level8units:supremeArchangel"
       }
+    },
+    "tum-era:antichrist": {
+      "meleeRage": {},
+      "petrification": {}
+    },
+    "core:crystalDragon": {
+      "dailyResources": {
+        "resource": "core:crystal",
+        "amount": 1,
+        "goldPerCreature": 0
+      }
+    },
+    "tum-era:ancestralBehemoth": {
+      "defenseReduction": {
+        "percent": 95
+      }
+    }
+  },
+  "artifacts": {
+    "tum-era:artifact218": {
+      "dailyConversions": [
+        {
+          "from": "core:woodElf",
+          "to": "third-upgrades:tumSharpshooterElf"
+        },
+        {
+          "from": "core:grandElf",
+          "to": "third-upgrades:tumSharpshooterElf"
+        }
+      ]
     }
   }
 }

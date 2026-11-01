@@ -1,0 +1,90 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank33": {
+        "name": "Pantheon",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB1.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "dirt",
+              "subterra",
+              "lava"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumGhoul",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumGhoul",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumGhoul",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumGhoul",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumGhoul",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumGhoul",
+                "amount": 30
+              }
+            ],
+            "resources": {
+              "gold": 5000
+            },
+            "artifacts": [
+              {
+                "class": "MAJOR"
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "visit": [
+            "tum-era/objects/CEMETRY.wav"
+          ],
+          "ambient": [
+            "tum-era/objects/LOOPCMTR.wav"
+          ]
+        },
+        "rmg": {
+          "value": 1800,
+          "rarity": 100
+        },
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33
+      }
+    }
+  }
+}

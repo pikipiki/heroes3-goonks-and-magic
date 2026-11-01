@@ -21,6 +21,7 @@ public:
 
 	void complain(const std::string & problem) override;
 	bool describeChanges() const override;
+    void afterObstacleTrigger(const CBattleInfoCallback & battle) override;
 
 	vstd::RNG * getRNG() override;
 

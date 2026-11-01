@@ -1,0 +1,177 @@
+{
+  "eraId": 224,
+  "activationReady": true,
+  "registered": true,
+  "cfgSHA256": "b8f35d68bbf809dd5a479e0ab2e21b77d693243cc7b1d8bc5caceeea8e7eac15",
+  "crexpbonSHA256": "ff8a0f976d787f45da8e1252b7136cb911848aa435a7fb6db68df1f52bfdab31",
+  "sourceNativeRows": [
+    {
+      "creature": 224,
+      "code": "S",
+      "modifier": "+",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3
+      ],
+      "comment": "Red Bones Dragon: Speed R4/R6/R10",
+      "source": "crexpbon.txt",
+      "line": 1103
+    },
+    {
+      "creature": 224,
+      "code": "s",
+      "modifier": "#28",
+      "values": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "comment": "Red Bones Dragon: Air Shield R2/R5",
+      "source": "crexpbon.txt",
+      "line": 1104
+    },
+    {
+      "creature": 224,
+      "code": "w",
+      "modifier": "F",
+      "values": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "comment": "Red Bones Dragon: Immune to Hostile Fire Spells R3",
+      "source": "crexpbon.txt",
+      "line": 1105
+    },
+    {
+      "creature": 224,
+      "code": "w",
+      "modifier": "W",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "comment": "Red Bones Dragon: Immune to Hostile Water Spells R5",
+      "source": "crexpbon.txt",
+      "line": 1106
+    },
+    {
+      "creature": 224,
+      "code": "w",
+      "modifier": "A",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "comment": "Red Bones Dragon: Immune to Hostile Air Spells R7",
+      "source": "crexpbon.txt",
+      "line": 1107
+    },
+    {
+      "creature": 224,
+      "code": "w",
+      "modifier": "E",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "comment": "Red Bones Dragon: Immune to Hostile Earth Spells R9",
+      "source": "crexpbon.txt",
+      "line": 1108
+    }
+  ],
+  "runtimeExperience": [
+    {
+      "source": "crexpbon.txt",
+      "line": 1109,
+      "contract": "source-c75-v1",
+      "creatureId": 224,
+      "spell": "core:age",
+      "sourceCode": "c",
+      "sourceModifier": "#75",
+      "rankChances": [
+        0,
+        8,
+        16,
+        24,
+        32,
+        40,
+        48,
+        56,
+        64,
+        72,
+        80
+      ],
+      "endpoint": "EraPetrificationSequence::beforeAction/shared-target-EC",
+      "selector": "era_compat_server::selectSourceCAge",
+      "sourceReference": "h3era.exe 71D7A9/75C0AD/75CAF8",
+      "timing": "selection-before-action; postsequence sharedEC flush; innate Age may overwrite"
+    }
+  ],
+  "pendingExperience": [],
+  "sourceVampire": {
+    "selector": 0,
+    "entry": "440921",
+    "percent": 100,
+    "cap": "minimum of raw attack damage, victim pre-hit HP, attacker missing HP",
+    "target": "source ALIVE flag"
+  },
+  "remaining": [],
+  "nativeProofs": [
+    "outputs/era-vampire-native-e2e.json",
+    "outputs/era-red-bones-age-native-e2e.json",
+    "outputs/era-status-final-native-e2e.json"
+  ]
+}

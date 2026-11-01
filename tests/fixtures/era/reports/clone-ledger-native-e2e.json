@@ -1,0 +1,3401 @@
+{
+  "engineLabel": "source-slot-new-kernel",
+  "startedAt": "2026-11-01T05:33:10.829Z",
+  "cases": [
+    {
+      "name": "phoenix-clone-rebirth-done-fragile",
+      "startedAt": "2026-11-01T05:33:10.944Z",
+      "errors": [],
+      "errorStacks": [],
+      "nativeErrors": [],
+      "wasmResponses": [
+        {
+          "url": "http://127.0.0.1:8774/vcmiclient.a85e26413c0fb2d0.wasm",
+          "headers": {
+            "transfer-encoding": "chunked",
+            "cross-origin-embedder-policy": "require-corp",
+            "cross-origin-opener-policy": "same-origin",
+            "keep-alive": "timeout=5",
+            "date": "Sun, 01 Nov 2026 05:33:11 GMT",
+            "content-type": "application/wasm",
+            "connection": "keep-alive"
+          },
+          "at": "2026-11-01T05:33:11.383Z"
+        }
+      ],
+      "source": {
+        "attack": 35,
+        "cloned": false,
+        "cost": [
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          5000,
+          0
+        ],
+        "count": 3,
+        "currentHealth": 10000,
+        "defense": 35,
+        "enemy": false,
+        "eraSlot": 0,
+        "icon": "tum-era/divine-phoenix/portrait-large",
+        "id": 254,
+        "maximumHealth": 10000,
+        "morale": 0,
+        "name": "Divine Phoenix",
+        "occupied": [
+          36,
+          35
+        ],
+        "remainingCasts": 2,
+        "remainingRetaliations": 1,
+        "stackId": 0,
+        "x": 146,
+        "y": 196
+      },
+      "cloneFresh": {
+        "attack": 34,
+        "cloned": true,
+        "cost": [
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          5000,
+          0
+        ],
+        "count": 3,
+        "currentHealth": 10000,
+        "defense": 34,
+        "enemy": false,
+        "eraSlot": 2,
+        "icon": "tum-era/divine-phoenix/portrait-large",
+        "id": 254,
+        "maximumHealth": 10000,
+        "morale": 0,
+        "name": "Divine Phoenix",
+        "occupied": [
+          20,
+          19
+        ],
+        "remainingCasts": 2,
+        "remainingRetaliations": 1,
+        "stackId": 3,
+        "x": 168,
+        "y": 154
+      },
+      "cloneReborn": {
+        "attack": 34,
+        "cloned": true,
+        "cost": [
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          5000,
+          0
+        ],
+        "count": 2,
+        "currentHealth": 5000,
+        "defense": 40,
+        "enemy": false,
+        "eraSlot": 2,
+        "icon": "tum-era/divine-phoenix/portrait-large",
+        "id": 254,
+        "maximumHealth": 10000,
+        "morale": 0,
+        "name": "Divine Phoenix",
+        "occupied": [
+          20,
+          19
+        ],
+        "remainingCasts": 1,
+        "remainingRetaliations": 1,
+        "stackId": 3,
+        "x": 168,
+        "y": 154
+      },
+      "sourceAfterFirst": {
+        "attack": 35,
+        "cloned": false,
+        "cost": [
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          5000,
+          0
+        ],
+        "count": 3,
+        "currentHealth": 8630,
+        "defense": 35,
+        "enemy": false,
+        "eraSlot": 0,
+        "icon": "tum-era/divine-phoenix/portrait-large",
+        "id": 254,
+        "maximumHealth": 10000,
+        "morale": 0,
+        "name": "Divine Phoenix",
+        "occupied": [
+          36,
+          35
+        ],
+        "remainingCasts": 2,
+        "remainingRetaliations": 1,
+        "stackId": 0,
+        "x": 146,
+        "y": 196
+      },
+      "removedAfterSecondRealSpell": true,
+      "cloneRound3": {
+        "attack": 34,
+        "cloned": true,
+        "cost": [
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          5000,
+          0
+        ],
+        "count": 3,
+        "currentHealth": 10000,
+        "defense": 34,
+        "enemy": false,
+        "eraSlot": 2,
+        "icon": "tum-era/divine-phoenix/portrait-large",
+        "id": 254,
+        "maximumHealth": 10000,
+        "morale": 0,
+        "name": "Divine Phoenix",
+        "occupied": [
+          20,
+          19
+        ],
+        "remainingCasts": 2,
+        "remainingRetaliations": 1,
+        "stackId": 4,
+        "x": 168,
+        "y": 154
+      },
+      "sourceRound3": {
+        "attack": 35,
+        "cloned": false,
+        "cost": [
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          5000,
+          0
+        ],
+        "count": 3,
+        "currentHealth": 8660,
+        "defense": 42,
+        "enemy": false,
+        "eraSlot": 0,
+        "icon": "tum-era/divine-phoenix/portrait-large",
+        "id": 254,
+        "maximumHealth": 10000,
+        "morale": 0,
+        "name": "Divine Phoenix",
+        "occupied": [
+          36,
+          35
+        ],
+        "remainingCasts": 2,
+        "remainingRetaliations": 1,
+        "stackId": 0,
+        "x": 146,
+        "y": 196
+      },
+      "reusedSourceSlot2": true,
+      "passed": true,
+      "snapshots": [
+        {
+          "round": 0,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000000,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 35,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000000,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 35,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000000,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 35,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000000,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 35,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            },
+            {
+              "attack": 34,
+              "cloned": true,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 34,
+              "enemy": false,
+              "eraSlot": 2,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                20,
+                19
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 3,
+              "x": 168,
+              "y": 154
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 1,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000000,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 35,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            },
+            {
+              "attack": 34,
+              "cloned": true,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 34,
+              "enemy": false,
+              "eraSlot": 2,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                20,
+                19
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 3,
+              "x": 168,
+              "y": 154
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000000,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 35,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            },
+            {
+              "attack": 34,
+              "cloned": true,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 34,
+              "enemy": false,
+              "eraSlot": 2,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                20,
+                19
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 3,
+              "x": 168,
+              "y": 154
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 1,
+          "active": 3,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000000,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 42,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            },
+            {
+              "attack": 34,
+              "cloned": true,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 34,
+              "enemy": false,
+              "eraSlot": 2,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                20,
+                19
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 3,
+              "x": 168,
+              "y": 154
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000000,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 42,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            },
+            {
+              "attack": 34,
+              "cloned": true,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 34,
+              "enemy": false,
+              "eraSlot": 2,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                20,
+                19
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 3,
+              "x": 168,
+              "y": 154
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 1,
+          "active": 1,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000000,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 42,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            },
+            {
+              "attack": 34,
+              "cloned": true,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 40,
+              "enemy": false,
+              "eraSlot": 2,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                20,
+                19
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 3,
+              "x": 168,
+              "y": 154
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000000,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 42,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            },
+            {
+              "attack": 34,
+              "cloned": true,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 40,
+              "enemy": false,
+              "eraSlot": 2,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                20,
+                19
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 3,
+              "x": 168,
+              "y": 154
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 2,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000000,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 35,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            },
+            {
+              "attack": 34,
+              "cloned": true,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 40,
+              "enemy": false,
+              "eraSlot": 2,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                20,
+                19
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 3,
+              "x": 168,
+              "y": 154
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 2,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9998630,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 8630,
+              "defense": 35,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 2,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9998630,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 8630,
+              "defense": 35,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            }
+          ],
+          "heroMana": 480
+        },
+        {
+          "round": 2,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9998630,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 8630,
+              "defense": 35,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            },
+            {
+              "attack": 34,
+              "cloned": true,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 2,
+              "currentHealth": 5000,
+              "defense": 40,
+              "enemy": false,
+              "eraSlot": 2,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                20,
+                19
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 3,
+              "x": 168,
+              "y": 154
+            }
+          ],
+          "heroMana": 460
+        },
+        {
+          "round": 2,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9998630,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 8630,
+              "defense": 35,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            },
+            {
+              "attack": 34,
+              "cloned": true,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 2,
+              "currentHealth": 5000,
+              "defense": 40,
+              "enemy": false,
+              "eraSlot": 2,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                20,
+                19
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 3,
+              "x": 168,
+              "y": 154
+            }
+          ],
+          "heroMana": 460
+        },
+        {
+          "round": 2,
+          "active": 1,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9998630,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 8630,
+              "defense": 42,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            },
+            {
+              "attack": 34,
+              "cloned": true,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 2,
+              "currentHealth": 5000,
+              "defense": 40,
+              "enemy": false,
+              "eraSlot": 2,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                20,
+                19
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 3,
+              "x": 168,
+              "y": 154
+            }
+          ],
+          "heroMana": 460
+        },
+        {
+          "round": 2,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9998630,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 8630,
+              "defense": 42,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            },
+            {
+              "attack": 34,
+              "cloned": true,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 2,
+              "currentHealth": 5000,
+              "defense": 40,
+              "enemy": false,
+              "eraSlot": 2,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                20,
+                19
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 3,
+              "x": 168,
+              "y": 154
+            }
+          ],
+          "heroMana": 460
+        },
+        {
+          "round": 2,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9998460,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 8460,
+              "defense": 42,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            }
+          ],
+          "heroMana": 460
+        },
+        {
+          "round": 2,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9998460,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 8460,
+              "defense": 42,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 5,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            }
+          ],
+          "heroMana": 460
+        },
+        {
+          "round": 2,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9998460,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 8460,
+              "defense": 42,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 4,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            }
+          ],
+          "heroMana": 460
+        },
+        {
+          "round": 3,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9998460,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 8660,
+              "defense": 42,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 4,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            }
+          ],
+          "heroMana": 460
+        },
+        {
+          "round": 3,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9998460,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 8660,
+              "defense": 35,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 4,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            }
+          ],
+          "heroMana": 460
+        },
+        {
+          "round": 3,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9998460,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 8660,
+              "defense": 35,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 4,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            }
+          ],
+          "heroMana": 460
+        },
+        {
+          "round": 3,
+          "active": 1,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9998460,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 8660,
+              "defense": 42,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 4,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            }
+          ],
+          "heroMana": 460
+        },
+        {
+          "round": 3,
+          "active": 1,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9998460,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 8660,
+              "defense": 42,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 4,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            }
+          ],
+          "heroMana": 460
+        },
+        {
+          "round": 3,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                30000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9998460,
+              "defense": 50,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 132,
+              "maximumHealth": 10000000,
+              "morale": 0,
+              "name": "Azure Dragon",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 2,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 35,
+              "cloned": false,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 8660,
+              "defense": 42,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                36,
+                35
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 146,
+              "y": 196
+            },
+            {
+              "attack": 1,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 1000000,
+              "defense": 1,
+              "enemy": false,
+              "eraSlot": 1,
+              "icon": "",
+              "id": 139,
+              "maximumHealth": 1000000,
+              "morale": 0,
+              "name": "Peasant",
+              "occupied": [
+                137
+              ],
+              "remainingCasts": 4,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 102,
+              "y": 448
+            },
+            {
+              "attack": 34,
+              "cloned": true,
+              "cost": [
+                0,
+                5,
+                0,
+                0,
+                0,
+                0,
+                5000,
+                0
+              ],
+              "count": 3,
+              "currentHealth": 10000,
+              "defense": 34,
+              "enemy": false,
+              "eraSlot": 2,
+              "icon": "tum-era/divine-phoenix/portrait-large",
+              "id": 254,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Divine Phoenix",
+              "occupied": [
+                20,
+                19
+              ],
+              "remainingCasts": 2,
+              "remainingRetaliations": 1,
+              "stackId": 4,
+              "x": 168,
+              "y": 154
+            }
+          ],
+          "heroMana": 440
+        }
+      ]
+    }
+  ]
+}

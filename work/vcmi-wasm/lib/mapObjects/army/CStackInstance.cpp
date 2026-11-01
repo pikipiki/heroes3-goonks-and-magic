@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "CStackInstance.h"
+#include "../../era/EraExperienceProgression.h"
 
 #include "CArmedInstance.h"
 
@@ -55,6 +56,8 @@ int CStackInstance::getExpRank() const
 {
 	if(!LIBRARY->engineSettings()->getBoolean(EGameSettings::MODULE_STACK_EXPERIENCE))
 		return 0;
+    if(const auto * era = era_compat::ExperienceProgressions::get().find(getType()->getJsonKey()))
+        return getAverageExperience() > 0 ? era->rank(getAverageExperience()) : 0;
 	int tier = getType()->getLevel();
 	if(vstd::iswithin(tier, 1, 7))
 	{
@@ -86,6 +89,19 @@ void CStackInstance::giveAverageStackExperience(TExpType desiredAmountPerUnit)
 	if(!canGainExperience())
 		return;
 
+    if(const auto * era = era_compat::ExperienceProgressions::get().find(getType()->getJsonKey()))
+    {
+        const auto count = getCount();
+        if(count <= 0)
+            return;
+        const auto average = getAverageExperience();
+        if(average < 0 || desiredAmountPerUnit < 0)
+            throw std::runtime_error("ERA experience: negative experience gain is unsupported");
+        const auto gained = era->gain(average, desiredAmountPerUnit);
+        if(gained)
+            totalExperience = era->total(average + gained, count);
+        return;
+    }
 	int level = std::clamp(getLevel(), 1, 7);
 	TExpType maxAmountPerUnit = LIBRARY->creh->expRanks[level].back();
 	TExpType actualAmountPerUnit = std::min(desiredAmountPerUnit, maxAmountPerUnit * LIBRARY->creh->maxExpPerBattle[level] / 100);
@@ -101,6 +117,20 @@ void CStackInstance::giveTotalStackExperience(TExpType experienceToGive)
 	if(!canGainExperience())
 		return;
 
+    if(const auto * era = era_compat::ExperienceProgressions::get().find(getType()->getJsonKey()))
+    {
+        const auto count = getCount();
+        if(count <= 0)
+            return;
+        if(totalExperience < 0 || experienceToGive < 0)
+            throw std::runtime_error("ERA experience: negative total transfer is unsupported");
+        const auto limit = era->total(era->maximum(), count);
+        const auto current = std::min<uint64_t>(totalExperience, limit);
+        const auto combined = current + std::min<uint64_t>(experienceToGive, limit - current);
+        // ERA stores integer experience per unit; discard weighted-merge remainder.
+        totalExperience = era->total(combined / count, count);
+        return;
+    }
 	totalExperience += experienceToGive;
 }
 
@@ -111,7 +141,54 @@ TExpType CStackInstance::getTotalExperience() const
 
 TExpType CStackInstance::getAverageExperience() const
 {
-	return totalExperience / getCount();
+	return getCount() > 0 ? totalExperience / getCount() : 0;
+}
+
+TExpType CStackInstance::getExperienceThreshold(int rank) const
+{
+    if(const auto * era = era_compat::ExperienceProgressions::get().find(getType()->getJsonKey()))
+        return era->threshold(rank);
+    int tier = getType()->getLevel();
+    if(!vstd::iswithin(tier, 1, 7))
+        tier = 0;
+    const auto & ranks = LIBRARY->creh->expRanks.at(tier);
+    return ranks.at(std::clamp(rank - 1, 0, static_cast<int>(ranks.size()) - 1));
+}
+TExpType CStackInstance::getMaxExperiencePerUnit() const
+{
+    if(const auto * era = era_compat::ExperienceProgressions::get().find(getType()->getJsonKey()))
+        return era->maximum();
+    int tier = getType()->getLevel();
+    if(!vstd::iswithin(tier, 1, 7))
+        tier = 0;
+    return LIBRARY->creh->expRanks.at(tier).back();
+}
+int CStackInstance::getExperienceBattleLimitPercent() const
+{
+    if(const auto * era = era_compat::ExperienceProgressions::get().find(getType()->getJsonKey()))
+        return era->battlePercent;
+    int tier = getType()->getLevel();
+    if(!vstd::iswithin(tier, 1, 7))
+        tier = 0;
+    return LIBRARY->creh->maxExpPerBattle.at(tier);
+}
+TExpType CStackInstance::getMaxExperienceGainPerBattle() const
+{
+    if(const auto * era = era_compat::ExperienceProgressions::get().find(getType()->getJsonKey()))
+        return era->battleLimit();
+    return getMaxExperiencePerUnit() * getExperienceBattleLimitPercent() / 100;
+}
+float CStackInstance::getExperienceMultiplier() const
+{
+    if(const auto * era = era_compat::ExperienceProgressions::get().find(getType()->getJsonKey()))
+        return era->experienceMultiplier;
+    return 1.0f;
+}
+float CStackInstance::getExperienceUpgradeMultiplier() const
+{
+    if(const auto * era = era_compat::ExperienceProgressions::get().find(getType()->getJsonKey()))
+        return era->upgradeMultiplier;
+    return LIBRARY->creh->expAfterUpgrade / 100.0f;
 }
 
 bool CStackInstance::canGainExperience() const
@@ -129,11 +206,23 @@ void CStackInstance::setType(const CreatureID & creID)
 
 void CStackInstance::setType(const CCreature * c)
 {
+	setType(c, false);
+}
+
+void CStackInstance::setType(const CCreature * c, bool preserveExperience)
+{
 	if(getCreature())
 	{
 		detachFromSource(*getCreature());
-		if(LIBRARY->engineSettings()->getBoolean(EGameSettings::MODULE_STACK_EXPERIENCE))
-			totalExperience = totalExperience * LIBRARY->creh->expAfterUpgrade / 100;
+        if(!preserveExperience && LIBRARY->engineSettings()->getBoolean(EGameSettings::MODULE_STACK_EXPERIENCE))
+        {
+            const auto * oldEra = era_compat::ExperienceProgressions::get().find(getCreature()->getJsonKey());
+            const auto * newEra = c ? era_compat::ExperienceProgressions::get().find(c->getJsonKey()) : nullptr;
+            if(const auto * era = oldEra ? oldEra : newEra)
+                totalExperience = era->total(era->retainOnUpgrade(getAverageExperience()), getCount());
+            else
+                totalExperience = totalExperience * LIBRARY->creh->expAfterUpgrade / 100;
+        }
 	}
 
 	CStackBasicDescriptor::setType(c);

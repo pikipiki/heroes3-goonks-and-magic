@@ -1,0 +1,73 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank61": {
+        "name": "Supreme Pyre",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB29.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBBV",
+              "VVAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank61MixedLayout",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:phoenix",
+                "amount": 18,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:phoenix",
+                "amount": 18
+              },
+              {
+                "type": "core:phoenix",
+                "amount": 18
+              },
+              {
+                "type": "core:phoenix",
+                "amount": 18
+              }
+            ],
+            "resources": {
+              "crystal": 20,
+              "gold": 12000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:divinePhoenix",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 10000,
+          "rarity": 100
+        },
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33
+      }
+    }
+  }
+}

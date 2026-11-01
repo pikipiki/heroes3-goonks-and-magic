@@ -1,0 +1,1381 @@
+{
+  "engineLabel": "dcfabfb51fda81ef705972e04788ea8801731fc9548115699a68e070172f0277",
+  "startedAt": "2026-11-01T07:05:47.210Z",
+  "cases": [
+    {
+      "name": "native-necropolis-garrison-transformer",
+      "errors": [],
+      "nativeErrors": [],
+      "before": [
+        {
+          "id": 0,
+          "name": "Garnison",
+          "slots": [
+            {
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                3000,
+                0
+              ],
+              "count": 3,
+              "icon": "",
+              "id": 12,
+              "name": "Angel"
+            },
+            {
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                100,
+                0
+              ],
+              "count": 5,
+              "icon": "",
+              "id": 2,
+              "name": "Archer"
+            },
+            {
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1000,
+                0
+              ],
+              "count": 2,
+              "icon": "",
+              "id": 10,
+              "name": "Cavalier"
+            },
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "building": {
+        "allowed": false,
+        "built": true,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "The Skeleton Transformer allows you to convert any creature into a skeleton.",
+        "id": 22,
+        "key": "core:special3",
+        "name": "Skeleton Transformer",
+        "state": 4
+      },
+      "windowBefore": {
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "dialog",
+        "musicVolume": 88,
+        "rect": {
+          "h": 485,
+          "w": 600,
+          "x": 100,
+          "y": 58
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "after": {
+        "armies": [
+          {
+            "id": 0,
+            "name": "Garnison",
+            "slots": [
+              {
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  2500,
+                  0
+                ],
+                "count": 3,
+                "icon": "tum-era/creatures/357/large.png",
+                "id": 259,
+                "name": "Skeleton Angel"
+              },
+              {
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  70,
+                  0
+                ],
+                "count": 5,
+                "icon": "tum-era/creatures/295/large.png",
+                "id": 256,
+                "name": "Skeleton Archer"
+              },
+              {
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1200,
+                  0
+                ],
+                "count": 2,
+                "icon": "",
+                "id": 66,
+                "name": "Black Knight"
+              },
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": true,
+        "buildings": [
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 0,
+            "key": "core:mageGuild1",
+            "name": "Mage Guild Level 1",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              4,
+              5,
+              4,
+              4,
+              4,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 1,
+            "key": "core:mageGuild2",
+            "name": "Mage Guild Level 2",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              6,
+              5,
+              6,
+              6,
+              6,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 2,
+            "key": "core:mageGuild3",
+            "name": "Mage Guild Level 3",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              8,
+              5,
+              8,
+              8,
+              8,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 3,
+            "key": "core:mageGuild4",
+            "name": "Mage Guild Level 4",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              10,
+              5,
+              10,
+              10,
+              10,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 4,
+            "key": "core:mageGuild5",
+            "name": "Mage Guild Level 5",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              500,
+              0
+            ],
+            "description": "The Tavern increases morale for troops defending the city.",
+            "id": 5,
+            "key": "core:tavern",
+            "name": "Tavern",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              20,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Shipyard allows you to purchase ships.",
+            "id": 6,
+            "key": "core:shipyard",
+            "name": "Shipyard",
+            "state": 1
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              20,
+              0,
+              20,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Fort provides your town with defensive walls.",
+            "id": 7,
+            "key": "core:fort",
+            "name": "Fort",
+            "state": 4
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2500,
+              0
+            ],
+            "description": "Including a 50% increase to base creature growth, the Citadel adds a keep, and other terrain obstacles, to a town's defenses.",
+            "id": 8,
+            "key": "core:citadel",
+            "name": "Citadel",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              10,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Castle adds two arrow towers, fortifies your town's defenses, and doubles base creature growth.",
+            "id": 9,
+            "key": "core:castle",
+            "name": "Castle",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "description": "The Village Hall allows you to purchase town structures and earns your kingdom 500 gold per day.",
+            "id": 10,
+            "key": "core:villageHall",
+            "name": "Village Hall",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2500,
+              0
+            ],
+            "description": "The Town Hall allows you to purchase town structures and earns your kingdom 1000 gold per day.",
+            "id": 11,
+            "key": "core:townHall",
+            "name": "Town Hall",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The City Hall allows you to purchase town structures and earns your kingdom 2000 gold per day.",
+            "id": 12,
+            "key": "core:cityHall",
+            "name": "City Hall",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              10000,
+              0
+            ],
+            "description": "The Capitol earns your kingdom 4000 gold per day.",
+            "id": 13,
+            "key": "core:capitol",
+            "name": "Capitol",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              500,
+              0
+            ],
+            "description": "With the Marketplace, you can buy and sell resources (exchange rates increase with each Marketplace you own).",
+            "id": 14,
+            "key": "core:marketplace",
+            "name": "Marketplace",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Resource Silo provides you with an additional +1 wood and +1 ore each day.",
+            "id": 15,
+            "key": "core:resourceSilo",
+            "name": "Resource Silo",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Blacksmith provides your armies with First Aid Tents.",
+            "id": 16,
+            "key": "core:blacksmith",
+            "name": "Blacksmith",
+            "state": 7
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Cover of Darkness covers your city with a permanent shroud to all other players.",
+            "id": 17,
+            "key": "core:special1",
+            "name": "Cover of Darkness",
+            "state": 7
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Unearthed Graves increase Skeleton production by 6 per week.",
+            "id": 18,
+            "key": "core:horde1",
+            "name": "Unearthed Graves",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Unearthed Graves increase Skeleton Warrior production by 6 per week.",
+            "id": 19,
+            "key": "core:horde1Upgr",
+            "name": "Unearthed Graves",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "The Shipyard allows you to purchase ships.",
+            "id": 20,
+            "key": "core:ship",
+            "name": "Shipyard",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Necromancy Amplifier increases the Necromancy skill of all heroes you control (with the Necromancy skill) by 10%.",
+            "id": 21,
+            "key": "core:special2",
+            "name": "Necromancy Amplifier",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Skeleton Transformer allows you to convert any creature into a skeleton.",
+            "id": 22,
+            "key": "core:special3",
+            "name": "Skeleton Transformer",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Unearthed Graves increase Skeleton Knights production by 6 per week.",
+            "id": 24,
+            "key": "core:horde2",
+            "name": "{Unearthed Graves}",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "The presence of the Soul Prison increases weekly creature generation by 50%, provides your empire with an additional 5000 gold each day, and boosts the Necromancy skill of all allied heroes (who possess the skill) by 20%.",
+            "id": 26,
+            "key": "core:grail",
+            "name": "Soul Prison",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "",
+            "id": 27,
+            "key": "core:extraTownHall",
+            "name": "",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "",
+            "id": 28,
+            "key": "core:extraCityHall",
+            "name": "",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "Tombstone mark unlocks 3rd level structures to build.",
+            "id": 29,
+            "key": "core:extraCapitol",
+            "name": "Tombstone",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              400,
+              0
+            ],
+            "description": "The Cursed Temple allows you to recruit Skeletons.",
+            "id": 30,
+            "key": "core:dwellingLvl1",
+            "name": "Cursed Temple",
+            "state": 4
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Graveyard allows you to recruit Walking Dead.",
+            "id": 31,
+            "key": "core:dwellingLvl2",
+            "name": "Graveyard",
+            "state": 7
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1500,
+              0
+            ],
+            "description": "The Tomb of Souls allows you to recruit Wights.",
+            "id": 32,
+            "key": "core:dwellingLvl3",
+            "name": "Tomb of Souls",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Estate allows you to recruit Vampires.",
+            "id": 33,
+            "key": "core:dwellingLvl4",
+            "name": "Estate",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              10,
+              10,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Mausoleum allows you to recruit Liches.",
+            "id": 34,
+            "key": "core:dwellingLvl5",
+            "name": "Mausoleum",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              10,
+              0,
+              0,
+              0,
+              6000,
+              0
+            ],
+            "description": "The Hall of Darkness allows you to recruit Black Knights.",
+            "id": 35,
+            "key": "core:dwellingLvl6",
+            "name": "Hall of Darkness",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              5,
+              5,
+              5,
+              5,
+              5,
+              10000,
+              0
+            ],
+            "description": "The Dragon Vault allows you to recruit Bone Dragons.",
+            "id": 36,
+            "key": "core:dwellingLvl7",
+            "name": "Dragon Vault",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Cursed Temple allows you to recruit Skeleton Warriors.",
+            "id": 37,
+            "key": "core:dwellingUpLvl1",
+            "name": "Upg. Cursed Temple",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Graveyard allows you to recruit Zombies.",
+            "id": 38,
+            "key": "core:dwellingUpLvl2",
+            "name": "Upg. Graveyard",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              5,
+              0,
+              0,
+              0,
+              0,
+              1500,
+              0
+            ],
+            "description": "The Tomb of Souls allows you to recruit Wraiths.",
+            "id": 39,
+            "key": "core:dwellingUpLvl3",
+            "name": "Upg. Tomb of Souls",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              10,
+              10,
+              2000,
+              0
+            ],
+            "description": "The Estate allows you to recruit Vampire Lords.",
+            "id": 40,
+            "key": "core:dwellingUpLvl4",
+            "name": "Upg. Estate",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              5,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Mausoleum allows you to recruit Power Liches.",
+            "id": 41,
+            "key": "core:dwellingUpLvl5",
+            "name": "Upg. Mausoleum",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              2,
+              5,
+              2,
+              2,
+              2,
+              3000,
+              0
+            ],
+            "description": "The Hall of Darkness allows you to recruit Dread Knights.",
+            "id": 42,
+            "key": "core:dwellingUpLvl6",
+            "name": "Upg. Hall of Darkness",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              20,
+              5,
+              0,
+              0,
+              0,
+              15000,
+              0
+            ],
+            "description": "The Dragon Vault allows you to recruit Ghost Dragons.",
+            "id": 43,
+            "key": "core:dwellingUpLvl7",
+            "name": "Upg. Dragon Vault",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              10,
+              0,
+              0,
+              0,
+              1400,
+              0
+            ],
+            "description": "The Cursed Temple allows you to recruit Skeleton Knight.",
+            "id": 44,
+            "key": "third-upgrades:dwellingUp2Lvl1",
+            "name": "{Adv. Cursed Temple}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              10,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Graveyard allows you to recruit Ghouls.",
+            "id": 45,
+            "key": "third-upgrades:dwellingUp2Lvl2",
+            "name": "{Adv. Graveyard}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              5,
+              5,
+              0,
+              0,
+              0,
+              3000,
+              0
+            ],
+            "description": "The Tomb of Souls allows you to recruit Specters.",
+            "id": 46,
+            "key": "third-upgrades:dwellingUp2Lvl3",
+            "name": "{Adv. Tomb of Souls}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              5,
+              0,
+              10,
+              10,
+              4000,
+              0
+            ],
+            "description": "The Estate allows you to recruit Nosferatu.",
+            "id": 47,
+            "key": "third-upgrades:dwellingUp2Lvl4",
+            "name": "{Adv. Estate}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              15,
+              15,
+              0,
+              0,
+              4000,
+              0
+            ],
+            "description": "The Mausoleum allows you to recruit Lich Kings.",
+            "id": 48,
+            "key": "third-upgrades:dwellingUp2Lvl5",
+            "name": "{Adv. Mausolem}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              15,
+              2,
+              15,
+              2,
+              2,
+              2,
+              9000,
+              0
+            ],
+            "description": "The Hall of Darkness allows you to recruit Death Knights.",
+            "id": 49,
+            "key": "third-upgrades:dwellingUp2Lvl6",
+            "name": "{Adv. Hall of Darkness}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              25,
+              10,
+              5,
+              5,
+              5,
+              25000,
+              0
+            ],
+            "description": "The Dragon Vault allows you to recruit Blood Dragons.",
+            "id": 50,
+            "key": "third-upgrades:dwellingUp2Lvl7",
+            "name": "{Adv. Dragon Vault}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              30,
+              10,
+              0,
+              0,
+              0,
+              20000,
+              0
+            ],
+            "description": "Allows recruitment and upgrades of Red Bones Dragons.",
+            "id": 57,
+            "key": "tum-era:dwellingUp3Lvl7",
+            "name": "Upg. Bloody Vault",
+            "state": 8
+          }
+        ],
+        "cheatReady": true,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "town",
+        "musicVolume": 88,
+        "recruits": [
+          {
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 12,
+            "icon": "",
+            "id": 56,
+            "level": 0,
+            "name": "Skeleton",
+            "variant": 0
+          }
+        ],
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "townFaction": "core:necropolis",
+        "townName": "Goonkbourg",
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "transformed": [
+        {
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2500,
+            0
+          ],
+          "count": 3,
+          "icon": "tum-era/creatures/357/large.png",
+          "id": 259,
+          "name": "Skeleton Angel"
+        },
+        {
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            70,
+            0
+          ],
+          "count": 5,
+          "icon": "tum-era/creatures/295/large.png",
+          "id": 256,
+          "name": "Skeleton Archer"
+        },
+        {
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1200,
+            0
+          ],
+          "count": 2,
+          "icon": "",
+          "id": 66,
+          "name": "Black Knight"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

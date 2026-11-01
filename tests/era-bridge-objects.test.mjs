@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import path from 'node:path';
 import {convertObjectTemplate,parseDwellingTable,compileDwelling,parseReplacementScript,executeReplacementPlan,validateReplacementPlans} from '../scripts/era-bridge/objects/objects.mjs';
 const fixture=name=>JSON.parse(fs.readFileSync(new URL('./fixtures/tum/'+name,import.meta.url)));
 const line='TEST.def 001111111111111111111111111111111111111111111111 100000000000000000000000000000000000000000000000 111111111 011111111 17 101 0 1';
@@ -8,6 +9,7 @@ test('H3 bit0 is native bottom-right; MSK crops preserved original cells',()=>{
  let x=convertObjectTemplate(line,{maskBytes:Uint8Array.from([3,2])});
  assert.deepEqual(x.template.mask,['VVV','VBA']);assert.equal(x.template.zIndex,100);assert.deepEqual(x.template.visitableFrom,['---','+-+','+++']);assert.equal(x.template.allowedTerrains,undefined);
  assert.deepEqual(convertObjectTemplate(line.replace(' 011111111 ',' 100000000 ')).template.allowedTerrains,['water']);
+ assert.deepEqual(convertObjectTemplate(line.replace(' 011111111 ',' 001000000 ')).template.allowedTerrains,['subterra'],'H3 terrain bit6 resolves the native terrain, not the subterranean battlefield');
 });
 test('all 677 original templates compile, have assets dimensions and retain IDs',()=>{const rows=fixture('templates.json');assert.equal(rows.length,677);assert.ok(rows.every(x=>!x.error&&x.source.mskApplied&&x.template.mask.length===x.source.height));assert.ok(rows.every(x=>x.template.mask.every(y=>y.length===x.source.width)));});
 test('rejects unsupported or malformed masks and MSK',()=>{assert.throws(()=>convertObjectTemplate(line.replace('00111111','11111111')),e=>e.code==='UNREPRESENTABLE_MASK');assert.throws(()=>convertObjectTemplate('x'),e=>e.code==='INVALID_TEMPLATE');assert.throws(()=>convertObjectTemplate(line,{maskBytes:new Uint8Array([9,6])}),e=>e.code==='INVALID_INTEGER');});
@@ -104,14 +106,17 @@ test('native bank layout preserves decimal07 and original fallback for out-of-bo
 test('advanced real importer uses native Mithril dependency, original spell candidates and exact castle layouts',{skip:!process.env.TUM_SOURCE},async()=>{
  const {prepareTumObjectImport}=await import('../scripts/era-bridge/objects/importer.mjs');const sourceRoot=process.env.TUM_SOURCE;
  const baseLayout={attackerUnits:[57,61,90,93,96,125,129],defenderUnits:[15,185,172,2,100,87,8],attackerCommander:94,defenderCommander:8};
- const r=prepareTumObjectImport({sourceRoot,resolveCreature:id=>'fixture:c'+id,resolveArtifact:id=>'fixture:a'+id,resolveResource:id=>id===7?'wake-of-gods.mithril:mithril':undefined,resolveBankLayout:(id,bank)=>bank.troopPlacement?{layoutId:'eraBank'+id,baseLayout}:'creatureBankNarrow',spellMode:'era-single-filter',spellCatalog:[{eraId:1,nativeId:'core:spell',level:2,flags:1,schoolBits:15}]});
- assert.ok(r.compiled.some(x=>x.kind==='bank'&&x.id==='43'));assert.ok(r.compiled.some(x=>x.kind==='bank'&&x.id==='66'));assert.ok(r.compiled.some(x=>x.kind==='bank'&&x.id==='67'));assert.equal(r.modPatch.settings.combat.layouts.eraBank66.defenderUnits[5],7);
- const cfg=JSON.parse(r.files.get('content/config/objects/bank43.json'))['core:creatureBank'].types.eraBank43;assert.equal(cfg.rewards[0].resources['wake-of-gods.mithril:mithril'],2);assert.deepEqual(cfg.rewards[0].spells,[{anyOf:['core:spell']}]);
+ const baseSound=process.env.TUM_BASE_SND||path.resolve('work/game-data/homm3eng/home/web_user/.local/share/vcmi/Data/Heroes3.snd');
+ const r=prepareTumObjectImport({sourceRoot,baseSoundArchivePaths:fs.existsSync(baseSound)?[baseSound]:[],resolveCreature:id=>'fixture:c'+id,resolveArtifact:id=>'fixture:a'+id,resolveResource:id=>id===7?'wake-of-gods.mithril:mithril':undefined,resolveBankLayout:(id,bank)=>bank.troopPlacement?{layoutId:'eraBank'+id,baseLayout}:'creatureBankNarrow',spellMode:'era-single-filter',spellCatalog:[{eraId:1,nativeId:'core:spell',level:2,flags:1,schoolBits:15}]});
+ assert.ok(r.compiled.some(x=>x.kind==='bank'&&x.id==='43'));
+ if(fs.existsSync(baseSound)){for(const id of ['66','67'])assert.ok(r.compiled.some(x=>x.kind==='bank'&&x.id===id));assert.equal(r.modPatch.settings.combat.layouts.eraBank66.defenderUnits[5],7);}
+ else {for(const id of ['66','67'])assert(r.diagnostics.some(x=>x.kind==='bank'&&x.id===id&&x.code==='MISSING_BANK_SOUND'));assert.equal(r.modPatch.settings?.combat?.layouts?.eraBank66,undefined);}
+ const cfg=JSON.parse(r.files.get('content/config/objects/bank43.json'))['core:creatureBank'].types.eraBank43;assert(cfg.rewards[0].resources.some(r=>r.type==='wake-of-gods.mithril:mithril'&&r.amount===2));assert.deepEqual(cfg.rewards[0].spells,[{anyOf:['core:spell']}]);
 });
 test('production source mappings compile actual installed core/WoG/WotC creatures without fixture IDs',{skip:!process.env.TUM_SOURCE},async()=>{
  const {createProductionObjectResolvers}=await import('../scripts/era-bridge/objects/production-resolvers.mjs');const {prepareTumObjectImport}=await import('../scripts/era-bridge/objects/importer.mjs');const sourceRoot=process.env.TUM_SOURCE,projectRoot=process.cwd();
  const r=createProductionObjectResolvers({sourceRoot,projectRoot});assert.equal(r.resolveCreature(0),'core:pikeman');assert.equal(r.resolveCreature(154),'wake-of-gods.level8units:bloodDragon');assert.equal(r.resolveCreature(329),'third-upgrades:tumGhoul');assert.equal(r.resolveCreature(99999),undefined);
- const result=prepareTumObjectImport({sourceRoot,...r});assert.deepEqual(result.compiled.map(x=>`${x.kind}:${x.id}`),['dwelling:20_2','dwelling:20_4','bank:33','bank:38','bank:41','bank:47','bank:52','bank:62','bank:63']);assert.ok([...result.files.values()].every(b=>!b.toString('latin1').includes('fixture:')));
+ const result=prepareTumObjectImport({sourceRoot,...r});const emitted=new Set(result.compiled.map(x=>`${x.kind}:${x.id}`));for(const id of ['dwelling:20_2','dwelling:20_4','bank:33','bank:38','bank:41','bank:47','bank:52','bank:62','bank:63'])assert(emitted.has(id),'Missing baseline import '+id);if(fs.existsSync(projectRoot+'/mod/tum-era/era-identities.json')){assert.equal(r.resolveCreature(202),'tum-era:cherub');assert.equal(r.resolveCreature(297),'tum-era:eraCreature297');for(const id of ['bank:53','bank:56','bank:57','bank:61','dwelling:20_3'])assert(emitted.has(id),'Missing newly closed import '+id);}assert.ok([...result.files.values()].every(b=>!b.toString('latin1').includes('fixture:')));
 });
 test('customDef native hook policy binds each original state to original verified assets',async()=>{
  const {compileEraAppearancePolicy}=await import('../scripts/era-bridge/objects/bank-extras.mjs');const bank={properties:[line],states:[{chance:25},{chance:25,customDef:'CB17.def'},{chance:25,customDef:'CB18.def'},{chance:10,customDef:'CB19.def'}]};

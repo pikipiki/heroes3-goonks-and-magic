@@ -299,4 +299,97 @@ TEST_F(UnitStateTest, getMaxDamage)
 	EXPECT_EQ(subject.getMaxDamage(true), 10);
 }
 
+TEST_F(UnitStateTest, eraStatusHealthPreservesWoundsAndComposesFlatHealth)
+{
+    setDefaultExpectations();
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::PERMANENT,
+        BonusType::ERA_SOURCE_STATUS_HEALTH,BonusSource::CREATURE_ABILITY,1,BonusSourceID()));
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::PERMANENT,
+        BonusType::STACK_HEALTH,BonusSource::ARTIFACT,2,BonusSourceID()));
+    initUnit();
+    ASSERT_EQ(subject.getMaxHealth(),125u);
+    int64_t damage=20;subject.health.damage(damage);
+    ASSERT_EQ(subject.getFirstHPleft(),105);
+    const auto count=subject.getCount();
+    auto age=std::make_shared<Bonus>(BonusDuration::N_TURNS,BonusType::STACK_HEALTH,
+        BonusSource::SPELL_EFFECT,-50,BonusSourceID(SpellID(SpellID::AGE)),BonusSubtypeID(),BonusValueType::PERCENT_TO_ALL);
+    age->turnsRemain=3;bonusMock.addNewBonus(age);
+    subject.health.sourceMaximumChanged(125);
+    EXPECT_EQ(subject.getMaxHealth(),63u);
+    EXPECT_EQ(subject.getFirstHPleft(),43);
+    EXPECT_EQ(subject.getCount(),count);
+    auto poison=std::make_shared<Bonus>(BonusDuration::N_TURNS,BonusType::STACK_HEALTH,
+        BonusSource::SPELL_EFFECT,-10,BonusSourceID(SpellID(SpellID::POISON)),BonusSubtypeID(),BonusValueType::PERCENT_TO_ALL);
+    poison->turnsRemain=3;bonusMock.addNewBonus(poison);
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::N_TURNS,BonusType::POISON,
+        BonusSource::SPELL_EFFECT,50,BonusSourceID(SpellID(SpellID::POISON))));
+    subject.health.sourceMaximumChanged(63);
+    EXPECT_EQ(subject.getMaxHealth(),57u);
+    EXPECT_EQ(subject.getFirstHPleft(),37);
+    // Reapplication updates only duration, not progression or already lost HP.
+    poison->turnsRemain=std::max(poison->turnsRemain,3);
+    subject.health.sourceMaximumChanged(57);
+    EXPECT_EQ(poison->val,-10);EXPECT_EQ(subject.getFirstHPleft(),37);
+    bonusMock.removeBonus(age);
+    subject.health.sourceMaximumChanged(57);
+    EXPECT_EQ(subject.getMaxHealth(),113u);EXPECT_EQ(subject.getFirstHPleft(),93);
+    bonusMock.removeBonus(poison);
+    subject.health.sourceMaximumChanged(113);
+    EXPECT_EQ(subject.getMaxHealth(),125u);EXPECT_EQ(subject.getFirstHPleft(),105);
+    EXPECT_EQ(subject.getCount(),count);EXPECT_EQ(subject.health.getResurrected(),0);
+}
+
+TEST_F(UnitStateTest, eraStatusHealthClampNeverKillsAndExpiryRestoresWounds)
+{
+    setDefaultExpectations();
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::PERMANENT,
+        BonusType::ERA_SOURCE_STATUS_HEALTH,BonusSource::CREATURE_ABILITY,1,BonusSourceID()));
+    initUnit();
+    int64_t damage=100;subject.health.damage(damage);
+    auto age=std::make_shared<Bonus>(BonusDuration::N_TURNS,BonusType::STACK_HEALTH,
+        BonusSource::SPELL_EFFECT,-50,BonusSourceID(SpellID(SpellID::AGE)),BonusSubtypeID(),BonusValueType::PERCENT_TO_ALL);
+    bonusMock.addNewBonus(age);subject.health.sourceMaximumChanged(123);
+    EXPECT_EQ(subject.getMaxHealth(),62u);EXPECT_EQ(subject.getFirstHPleft(),1);
+    EXPECT_EQ(subject.getCount(),DEFAULT_AMOUNT);
+    bonusMock.removeBonus(age);subject.health.sourceMaximumChanged(62);
+    EXPECT_EQ(subject.getMaxHealth(),123u);EXPECT_EQ(subject.getFirstHPleft(),62);
+    EXPECT_EQ(subject.getCount(),DEFAULT_AMOUNT);
+}
+
+TEST_F(UnitStateTest, customAgeStrengthKeepsNativeHealthPipeline)
+{
+    setDefaultExpectations();
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::PERMANENT,
+        BonusType::ERA_SOURCE_STATUS_HEALTH,BonusSource::CREATURE_ABILITY,1,BonusSourceID()));
+    initUnit();
+    auto age=std::make_shared<Bonus>(BonusDuration::N_TURNS,BonusType::STACK_HEALTH,
+        BonusSource::SPELL_EFFECT,-25,BonusSourceID(SpellID(SpellID::AGE)),BonusSubtypeID(),BonusValueType::PERCENT_TO_ALL);
+    bonusMock.addNewBonus(age);
+    EXPECT_EQ(subject.getMaxHealth(),92u);
+}
+
+TEST_F(UnitStateTest, unprofiledStatusHealthKeepsNativeRounding)
+{
+    setDefaultExpectations();initUnit();
+    auto age=std::make_shared<Bonus>(BonusDuration::N_TURNS,BonusType::STACK_HEALTH,
+        BonusSource::SPELL_EFFECT,-50,BonusSourceID(SpellID(SpellID::AGE)),BonusSubtypeID(),BonusValueType::PERCENT_TO_ALL);
+    bonusMock.addNewBonus(age);
+    EXPECT_EQ(subject.getMaxHealth(),61u);
+}
+
+TEST_F(UnitStateTest, eraNonstandardPoisonKeepsNativeHealthFallback)
+{
+    setDefaultExpectations();
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::PERMANENT,
+        BonusType::ERA_SOURCE_STATUS_HEALTH,BonusSource::CREATURE_ABILITY,1,BonusSourceID()));
+    initUnit();
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::N_TURNS,BonusType::STACK_HEALTH,
+        BonusSource::SPELL_EFFECT,-50,BonusSourceID(SpellID(SpellID::AGE)),BonusSubtypeID(),BonusValueType::PERCENT_TO_ALL));
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::N_TURNS,BonusType::STACK_HEALTH,
+        BonusSource::SPELL_EFFECT,-15,BonusSourceID(SpellID(SpellID::POISON)),BonusSubtypeID(),BonusValueType::PERCENT_TO_ALL));
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::N_TURNS,BonusType::POISON,
+        BonusSource::SPELL_EFFECT,37,BonusSourceID(SpellID(SpellID::POISON))));
+    EXPECT_EQ(subject.getMaxHealth(),43u); // native123*(100-50-15)/100
+}
+
 }

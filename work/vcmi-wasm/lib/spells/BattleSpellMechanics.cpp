@@ -8,6 +8,9 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraPhysicalAbilities.h"
+#include "../era/EraSourceSpellAccuracy.h"
+#include "../era/EraExperienceCastTargets.h"
 
 #include "BattleSpellMechanics.h"
 
@@ -218,7 +221,10 @@ bool BattleSpellMechanics::canBeCast(Problem & problem) const
 	//TODO: check creature abilities to block
 	//TODO: check any possible caster
 
-	if(battle()->battleMaxSpellLevel(side) < getSpellLevel() || battle()->battleMinSpellLevel(side) > getSpellLevel())
+	const bool sourcePhysicalAbility = era_compat::PhysicalAbilities::get().enabled(owner->getJsonKey());
+    if(sourcePhysicalAbility && (isMagicalEffect() || getSpellLevel()!=0))
+        throw std::runtime_error("ERA physical ability must be nonMagical with level0");
+    if(!sourcePhysicalAbility && (battle()->battleMaxSpellLevel(side) < getSpellLevel() || battle()->battleMinSpellLevel(side) > getSpellLevel()))
 		return adaptProblem(ESpellCastProblem::SPELL_LEVEL_LIMIT_EXCEEDED, problem);
 
 	return effects->applicable(problem, this);
@@ -452,15 +458,57 @@ void BattleSpellMechanics::beforeCast(BattleSpellCast & sc, vstd::RNG & rng, con
 	std::vector <const battle::Unit *> resisted;
 
 	resistantUnitIds.clear();
+    const bool sourceMassTimed=eraExperiencePreAttack && getSpellIndex()==50 && isMassive();
 	if(isNegativeSpell() && isMagicalEffect())
 	{
-		//magic resistance
-		for (const auto * unit : battle()->battleGetAllUnits(false))
-		{
-			const int prob = std::min(unit->magicResistance(), 100); //probability of resistance in %
-			if(rng.nextInt(0, 99) < prob)
-				resistantUnitIds.insert(unit->unitId());
-		}
+        if(eraExperiencePreAttack)
+        {
+            battle::Units sourceTargets;
+            if(sourceMassTimed)
+            {
+                sourceTargets=battle()->battleGetUnitsIf([](const battle::Unit * unit){return unit->sourceMassSlot()!=-2;});
+                // Original5A69E0 scans side then slot, including dead stacks,
+                // removed clones not yet reused, towers and appended commanders.
+                std::stable_sort(sourceTargets.begin(),sourceTargets.end(),[](const battle::Unit * a,const battle::Unit * b)
+                {
+                    if(a->unitSide()!=b->unitSide())return a->unitSide()==BattleSide::ATTACKER;
+                    const auto aSlot=a->sourceMassSlot(),bSlot=b->sourceMassSlot();
+                    // Additional/hypothetical native units retain native order
+                    // after mapped slots. The source-slot service marks this
+                    // compatibility extension outside the strict ERA domain.
+                    if(aSlot<0 || bSlot<0)return aSlot>=0 && bSlot<0;
+                    return aSlot<bSlot;
+                });
+            }
+            else if(getSpellIndex()==59 && !target.empty())
+            {
+                //5A4B20: reverse source axial hex enumeration, first occurrence
+                // of a living occupant; immunities are evaluated AFTER collection.
+                for(const int hex:era_bridge::sourceAdvancedBerserkHexes(target.front().hexValue.toInt()))
+                {
+                    const auto * unit=battle()->battleGetUnitByPos(BattleHex(hex),true);
+                    if(unit && std::find(sourceTargets.begin(),sourceTargets.end(),unit)==sourceTargets.end())
+                        sourceTargets.push_back(unit);
+                }
+            }
+            // Blind62 follows5A138F->444610 directly. Its already accepted
+            // primary target receives no second resistance draw.
+            for(const auto * unit:sourceTargets)
+            {
+                if(sourceMassTimed && unit->isHypnotized())continue; //before RNG at5A6A29.
+                const int accuracy=(era_compat::sourceSpellContextAllows(*battle(),unit,getSpell()) && isReceptive(unit))?era_compat::statusRawAccuracy(*battle(),unit):0;
+                if(rng.nextInt(1,100)>accuracy)resistantUnitIds.insert(unit->unitId());
+            }
+        }
+        else
+        {
+            // Native behavior for every unregistered cast.
+            for(const auto * unit:battle()->battleGetAllUnits(false))
+            {
+                const int prob=std::min(unit->magicResistance(),100);
+                if(rng.nextInt(0,99)<prob)resistantUnitIds.insert(unit->unitId());
+            }
+        }
 	}
 
 	auto filterResisted = [&, this](const battle::Unit * unit) -> bool
@@ -470,6 +518,9 @@ void BattleSpellMechanics::beforeCast(BattleSpellCast & sc, vstd::RNG & rng, con
 
 	auto filterUnit = [&](const battle::Unit * unit)
 	{
+        // Original mass timed spell helper5A6A23 excludes hypnotized units.
+        if(sourceMassTimed && unit->isHypnotized())
+            return;
 		if(filterResisted(unit))
 			resisted.push_back(unit);
 		else
@@ -501,7 +552,7 @@ void BattleSpellMechanics::beforeCast(BattleSpellCast & sc, vstd::RNG & rng, con
 		{
 			if(!d.unitValue)
 				return false;
-			return vstd::contains(resisted, d.unitValue);
+			return (sourceMassTimed && d.unitValue->isHypnotized()) || vstd::contains(resisted, d.unitValue);
 		});
 	}
 

@@ -1,0 +1,38 @@
+{
+  "capturedAtUtc": "2026-11-01T06:50:58.611Z",
+  "capturePhase": "before-test",
+  "origin": "http://127.0.0.1:8774",
+  "referenceMode": "published-hashed",
+  "files": {
+    "game.html": {
+      "sha256": "8be3271f4c51c3d635fd3b26b3e8841bd2f1080c54f74952011c98c8395de084",
+      "bytes": 19449
+    },
+    "asset-manifest.json": {
+      "sha256": "3a53cdfe1801cd1f3d0e9d37168b87d23f5cb71b992d193f394662b6c14c7cbf",
+      "bytes": 4401071
+    },
+    "vcmiclient.30b20f8d8ca2b81b.js": {
+      "sha256": "30b20f8d8ca2b81bd35e67a7a9fdd30d45f3b9ed55ff50c0addbd57296764ecd",
+      "bytes": 273084
+    },
+    "vcmiclient.data.b5f5e706b82fd639.js": {
+      "sha256": "b5f5e706b82fd639271746f718b47e698505a9e20d8a526ae7eb7771d22165b3",
+      "bytes": 62978
+    },
+    "vcmiclient.dcfabfb51fda81ef.wasm": {
+      "sha256": "dcfabfb51fda81ef705972e04788ea8801731fc9548115699a68e070172f0277",
+      "bytes": 9352286
+    },
+    "vcmiclient.47c3b217cb06b844.data": {
+      "sha256": "47c3b217cb06b844e92e80166003e4edcdc67086ccf543bf7163e253dd53b33b",
+      "bytes": 8437408
+    }
+  },
+  "runtime": [
+    "vcmiclient.30b20f8d8ca2b81b.js",
+    "vcmiclient.data.b5f5e706b82fd639.js",
+    "vcmiclient.dcfabfb51fda81ef.wasm",
+    "vcmiclient.47c3b217cb06b844.data"
+  ]
+}

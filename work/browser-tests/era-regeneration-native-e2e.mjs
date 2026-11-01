@@ -31,7 +31,7 @@ for(const chancePercent of [0,100]){
     }});
    }});
   });
-  await page.goto((process.env.GAME_ORIGIN||'http://127.0.0.1:8772')+'/?mobile=1');await wait(()=>window.goonkMobileState?.mode==='menu');assert.equal(await page.evaluate(()=>Module._vcmiEraBridgeVersion()),1);
+  await page.goto((process.env.GAME_ORIGIN||'http://127.0.0.1:8772')+'/?mobile=1');await wait(()=>window.goonkMobileState?.mode==='menu');assert.equal(await page.evaluate(()=>Module._vcmiEraBridgeVersion()),2);
   await page.evaluate(({map,chancePercent})=>{Module.FS.writeFile('/home/web_user/.local/share/vcmi/Maps/000-Goonk.vmap',Uint8Array.from(atob(map),c=>c.charCodeAt(0)));Module.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/config/era-bridge-runtime.json',JSON.stringify({schemaVersion:1,creatures:{'tum-era:redBonesDragon':{regeneration:{hitPoints:50,chancePercent}}}}));},{map:fixture.toString('base64'),chancePercent});
   await click('Nouvelle aventure');await wait(()=>goonkMobileState.maps?.length);const map=(await page.evaluate(()=>goonkMobileState.maps)).find(m=>m.name.includes('Château Goonk'));assert(map);await page.locator('#mobile-map-select').selectOption(String(map.index));await page.waitForFunction(name=>goonkMobileState.selectedMap===name,map.name);await click('Commencer');await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.heroName);await page.evaluate(()=>Module._vcmiMobilePointer(433,281,1));await wait(()=>goonkMobileState.hasPath);await click('➤ Marcher');await wait(()=>goonkMobileState.mode==='battle'&&goonkMobileState.canAct);
   let observed;

@@ -1,0 +1,208 @@
+Bounded original-artifact instructions; half-open VA ranges: [(268524976, 268525616), (268529488, 268529568), (268533134, 268533264)]
+10015db0: 55                           	pushl	%ebp
+10015db1: 8b ec                        	movl	%esp, %ebp
+10015db3: 81 ec 00 01 00 00            	subl	$0x100, %esp            # imm = 0x100
+10015db9: a1 84 2b 05 10               	movl	0x10052b84, %eax
+10015dbe: 33 c5                        	xorl	%ebp, %eax
+10015dc0: 89 45 fc                     	movl	%eax, -0x4(%ebp)
+10015dc3: c7 45 c8 00 00 00 00         	movl	$0x0, -0x38(%ebp)
+10015dca: c7 85 6c ff ff ff 88 99 7f 02	movl	$0x27f9988, -0x94(%ebp) # imm = 0x27F9988
+10015dd4: 8b 85 6c ff ff ff            	movl	-0x94(%ebp), %eax
+10015dda: 8b 08                        	movl	(%eax), %ecx
+10015ddc: 89 8d 48 ff ff ff            	movl	%ecx, -0xb8(%ebp)
+10015de2: 83 3d 24 05 2f 10 00         	cmpl	$0x0, 0x102f0524
+10015de9: 0f 84 93 03 00 00            	je	0x10016182 <isSoulBound_ART+0x19e2>
+10015def: 8d 4d cc                     	leal	-0x34(%ebp), %ecx
+10015df2: e8 79 58 ff ff               	calll	0x1000b670 <art_AI_report+0xc80>
+10015df7: c7 45 a4 00 00 00 00         	movl	$0x0, -0x5c(%ebp)
+10015dfe: eb 09                        	jmp	0x10015e09 <isSoulBound_ART+0x1669>
+10015e00: 8b 55 a4                     	movl	-0x5c(%ebp), %edx
+10015e03: 83 c2 01                     	addl	$0x1, %edx
+10015e06: 89 55 a4                     	movl	%edx, -0x5c(%ebp)
+10015e09: 83 7d a4 07                  	cmpl	$0x7, -0x5c(%ebp)
+10015e0d: 0f 8d 9f 01 00 00            	jge	0x10015fb2 <isSoulBound_ART+0x1812>
+10015e13: 8b 45 a4                     	movl	-0x5c(%ebp), %eax
+10015e16: 8b 4d 08                     	movl	0x8(%ebp), %ecx
+10015e19: 8b 94 81 91 00 00 00         	movl	0x91(%ecx,%eax,4), %edx
+10015e20: 8b 04 95 b0 ca 0e 10         	movl	0x100ecab0(,%edx,4), %eax
+10015e27: 89 45 9c                     	movl	%eax, -0x64(%ebp)
+10015e2a: 83 7d 9c 00                  	cmpl	$0x0, -0x64(%ebp)
+10015e2e: 0f 8e 79 01 00 00            	jle	0x10015fad <isSoulBound_ART+0x180d>
+10015e34: 8b 4d 9c                     	movl	-0x64(%ebp), %ecx
+10015e37: c1 e1 05                     	shll	$0x5, %ecx
+10015e3a: 8b 15 98 fc 0e 10            	movl	0x100efc98, %edx
+10015e40: 0f be 44 0a 1d               	movsbl	0x1d(%edx,%ecx), %eax
+10015e45: 85 c0                        	testl	%eax, %eax
+10015e47: 0f 84 60 01 00 00            	je	0x10015fad <isSoulBound_ART+0x180d>
+10015e4d: 8b 4d 9c                     	movl	-0x64(%ebp), %ecx
+10015e50: 51                           	pushl	%ecx
+10015e51: 8d 55 cc                     	leal	-0x34(%ebp), %edx
+10015e54: 52                           	pushl	%edx
+10015e55: 68 c0 95 4d 00               	pushl	$0x4d95c0               # imm = 0x4D95C0
+10015e5a: e8 b1 57 ff ff               	calll	0x1000b610 <art_AI_report+0xc20>
+10015e5f: 83 c4 0c                     	addl	$0xc, %esp
+10015e62: c7 45 c0 00 00 00 00         	movl	$0x0, -0x40(%ebp)
+10015e69: eb 09                        	jmp	0x10015e74 <isSoulBound_ART+0x16d4>
+10015e6b: 8b 45 c0                     	movl	-0x40(%ebp), %eax
+10015e6e: 83 c0 01                     	addl	$0x1, %eax
+10015e71: 89 45 c0                     	movl	%eax, -0x40(%ebp)
+10015e74: 81 7d c0 8c 00 00 00         	cmpl	$0x8c, -0x40(%ebp)
+10015e7b: 0f 8d 2c 01 00 00            	jge	0x10015fad <isSoulBound_ART+0x180d>
+10015e81: 83 3d 88 c6 0e 10 00         	cmpl	$0x0, 0x100ec688
+10015e88: 0f 84 95 00 00 00            	je	0x10015f23 <isSoulBound_ART+0x1783>
+10015e8e: 8b 4d c0                     	movl	-0x40(%ebp), %ecx
+10015e91: 51                           	pushl	%ecx
+10015e92: 8d 95 38 ff ff ff            	leal	-0xc8(%ebp), %edx
+10015e98: 52                           	pushl	%edx
+10015e99: 8d 4d cc                     	leal	-0x34(%ebp), %ecx
+10015e9c: e8 ff 57 ff ff               	calll	0x1000b6a0 <art_AI_report+0xcb0>
+10015ea1: 89 85 50 ff ff ff            	movl	%eax, -0xb0(%ebp)
+10015ea7: 8b 45 c8                     	movl	-0x38(%ebp), %eax
+10015eaa: 83 c8 01                     	orl	$0x1, %eax
+10015ead: 89 45 c8                     	movl	%eax, -0x38(%ebp)
+10015eb0: 8b 8d 50 ff ff ff            	movl	-0xb0(%ebp), %ecx
+10015eb6: e8 25 58 ff ff               	calll	0x1000b6e0 <art_AI_report+0xcf0>
+10015ebb: 0f b6 c8                     	movzbl	%al, %ecx
+10015ebe: 85 c9                        	testl	%ecx, %ecx
+10015ec0: 74 1d                        	je	0x10015edf <isSoulBound_ART+0x173f>
+10015ec2: 8b 55 08                     	movl	0x8(%ebp), %edx
+10015ec5: 03 55 c0                     	addl	-0x40(%ebp), %edx
+10015ec8: 0f be 82 ea 03 00 00         	movsbl	0x3ea(%edx), %eax
+10015ecf: 85 c0                        	testl	%eax, %eax
+10015ed1: 75 0c                        	jne	0x10015edf <isSoulBound_ART+0x173f>
+10015ed3: c7 85 68 ff ff ff 01 00 00 00	movl	$0x1, -0x98(%ebp)
+10015edd: eb 0a                        	jmp	0x10015ee9 <isSoulBound_ART+0x1749>
+10015edf: c7 85 68 ff ff ff 00 00 00 00	movl	$0x0, -0x98(%ebp)
+10015ee9: 8a 8d 68 ff ff ff            	movb	-0x98(%ebp), %cl
+10015eef: 88 4d b2                     	movb	%cl, -0x4e(%ebp)
+10015ef2: 8b 55 c8                     	movl	-0x38(%ebp), %edx
+10015ef5: 83 e2 01                     	andl	$0x1, %edx
+10015ef8: 74 0f                        	je	0x10015f09 <isSoulBound_ART+0x1769>
+10015efa: 83 65 c8 fe                  	andl	$-0x2, -0x38(%ebp)
+10015efe: 8d 8d 38 ff ff ff            	leal	-0xc8(%ebp), %ecx
+10015f04: e8 97 d9 fe ff               	calll	0x100038a0 <.text+0x28a0>
+10015f09: 0f b6 45 b2                  	movzbl	-0x4e(%ebp), %eax
+10015f0d: 85 c0                        	testl	%eax, %eax
+10015f0f: 74 0d                        	je	0x10015f1e <isSoulBound_ART+0x177e>
+10015f11: 8b 4d 08                     	movl	0x8(%ebp), %ecx
+10015f14: 03 4d c0                     	addl	-0x40(%ebp), %ecx
+10015f17: c6 81 ea 03 00 00 02         	movb	$0x2, 0x3ea(%ecx)
+10015f1e: e9 85 00 00 00               	jmp	0x10015fa8 <isSoulBound_ART+0x1808>
+10015f23: 8b 55 c0                     	movl	-0x40(%ebp), %edx
+10015f26: 52                           	pushl	%edx
+10015f27: 8d 85 30 ff ff ff            	leal	-0xd0(%ebp), %eax
+10015f2d: 50                           	pushl	%eax
+10015f2e: 8d 4d cc                     	leal	-0x34(%ebp), %ecx
+10015f31: e8 6a 57 ff ff               	calll	0x1000b6a0 <art_AI_report+0xcb0>
+10015f36: 89 85 40 ff ff ff            	movl	%eax, -0xc0(%ebp)
+10015f3c: 8b 4d c8                     	movl	-0x38(%ebp), %ecx
+10015f3f: 83 c9 02                     	orl	$0x2, %ecx
+10015f42: 89 4d c8                     	movl	%ecx, -0x38(%ebp)
+10015f45: 8b 8d 40 ff ff ff            	movl	-0xc0(%ebp), %ecx
+10015f4b: e8 90 57 ff ff               	calll	0x1000b6e0 <art_AI_report+0xcf0>
+10015f50: 0f b6 d0                     	movzbl	%al, %edx
+10015f53: 85 d2                        	testl	%edx, %edx
+10015f55: 74 12                        	je	0x10015f69 <isSoulBound_ART+0x17c9>
+10015f57: 83 7d c0 46                  	cmpl	$0x46, -0x40(%ebp)
+10015f5b: 7d 0c                        	jge	0x10015f69 <isSoulBound_ART+0x17c9>
+10015f5d: c7 85 64 ff ff ff 01 00 00 00	movl	$0x1, -0x9c(%ebp)
+10015f67: eb 0a                        	jmp	0x10015f73 <isSoulBound_ART+0x17d3>
+10015f69: c7 85 64 ff ff ff 00 00 00 00	movl	$0x0, -0x9c(%ebp)
+10015f73: 8a 85 64 ff ff ff            	movb	-0x9c(%ebp), %al
+10015f79: 88 45 b7                     	movb	%al, -0x49(%ebp)
+10015f7c: 8b 4d c8                     	movl	-0x38(%ebp), %ecx
+10015f7f: 83 e1 02                     	andl	$0x2, %ecx
+10015f82: 74 0f                        	je	0x10015f93 <isSoulBound_ART+0x17f3>
+10015f84: 83 65 c8 fd                  	andl	$-0x3, -0x38(%ebp)
+10015f88: 8d 8d 30 ff ff ff            	leal	-0xd0(%ebp), %ecx
+10015f8e: e8 0d d9 fe ff               	calll	0x100038a0 <.text+0x28a0>
+10015f93: 0f b6 55 b7                  	movzbl	-0x49(%ebp), %edx
+10015f97: 85 d2                        	testl	%edx, %edx
+10015f99: 74 0d                        	je	0x10015fa8 <isSoulBound_ART+0x1808>
+10015f9b: 8b 45 08                     	movl	0x8(%ebp), %eax
+10015f9e: 03 45 c0                     	addl	-0x40(%ebp), %eax
+10015fa1: c6 80 30 04 00 00 01         	movb	$0x1, 0x430(%eax)
+10015fa8: e9 be fe ff ff               	jmp	0x10015e6b <isSoulBound_ART+0x16cb>
+10015fad: e9 4e fe ff ff               	jmp	0x10015e00 <isSoulBound_ART+0x1660>
+10015fb2: 8b 4d 08                     	movl	0x8(%ebp), %ecx
+10015fb5: 51                           	pushl	%ecx
+10015fb6: e8 55 10 00 00               	calll	0x10017010 <isSoulBound_ART+0x2870>
+10015fbb: 83 c4 04                     	addl	$0x4, %esp
+10015fbe: 89 45 98                     	movl	%eax, -0x68(%ebp)
+10015fc1: 83 7d 98 00                  	cmpl	$0x0, -0x68(%ebp)
+10015fc5: 0f 84 b7 01 00 00            	je	0x10016182 <isSoulBound_ART+0x19e2>
+10015fcb: c7 45 ac 00 00 00 00         	movl	$0x0, -0x54(%ebp)
+10015fd2: eb 09                        	jmp	0x10015fdd <isSoulBound_ART+0x183d>
+10015fd4: 8b 55 ac                     	movl	-0x54(%ebp), %edx
+10015fd7: 83 c2 01                     	addl	$0x1, %edx
+10015fda: 89 55 ac                     	movl	%edx, -0x54(%ebp)
+10015fdd: 83 7d ac 1c                  	cmpl	$0x1c, -0x54(%ebp)
+10015fe1: 0f 8d 9b 01 00 00            	jge	0x10016182 <isSoulBound_ART+0x19e2>
+10015fe7: 6b 4d ac 14                  	imull	$0x14, -0x54(%ebp), %ecx
+10015feb: 03 4d 98                     	addl	-0x68(%ebp), %ecx
+10015fee: e8 fd 0e 00 00               	calll	0x10016ef0 <isSoulBound_ART+0x2750>
+10015ff3: 0f b6 c0                     	movzbl	%al, %eax
+10015ff6: 85 c0                        	testl	%eax, %eax
+10015ff8: 75 02                        	jne	0x10015ffc <isSoulBound_ART+0x185c>
+10015ffa: eb d8                        	jmp	0x10015fd4 <isSoulBound_ART+0x1834>
+10015ffc: 6b 4d ac 14                  	imull	$0x14, -0x54(%ebp), %ecx
+10016000: 8b 55 98                     	movl	-0x68(%ebp), %edx
+10016003: 8b 04 0a                     	movl	(%edx,%ecx), %eax
+10016006: 8b 0c 85 b0 ca 0e 10         	movl	0x100ecab0(,%eax,4), %ecx
+1001600d: 89 4d 94                     	movl	%ecx, -0x6c(%ebp)
+10016010: 83 7d 94 00                  	cmpl	$0x0, -0x6c(%ebp)
+10016014: 0f 8e 63 01 00 00            	jle	0x1001617d <isSoulBound_ART+0x19dd>
+1001601a: 8b 55 94                     	movl	-0x6c(%ebp), %edx
+1001601d: c1 e2 05                     	shll	$0x5, %edx
+10016020: a1 98 fc 0e 10               	movl	0x100efc98, %eax
+10016025: 0f be 4c 10 1d               	movsbl	0x1d(%eax,%edx), %ecx
+1001602a: 85 c9                        	testl	%ecx, %ecx
+1001602c: 0f 84 4b 01 00 00            	je	0x1001617d <isSoulBound_ART+0x19dd>
+10016f50: 55                           	pushl	%ebp
+10016f51: 8b ec                        	movl	%esp, %ebp
+10016f53: 83 ec 0c                     	subl	$0xc, %esp
+10016f56: c7 45 fc 00 00 00 00         	movl	$0x0, -0x4(%ebp)
+10016f5d: eb 09                        	jmp	0x10016f68 <isSoulBound_ART+0x27c8>
+10016f5f: 8b 45 fc                     	movl	-0x4(%ebp), %eax
+10016f62: 83 c0 01                     	addl	$0x1, %eax
+10016f65: 89 45 fc                     	movl	%eax, -0x4(%ebp)
+10016f68: 81 7d fc 00 04 00 00         	cmpl	$0x400, -0x4(%ebp)      # imm = 0x400
+10016f6f: 0f 8d 8d 00 00 00            	jge	0x10017002 <isSoulBound_ART+0x2862>
+10016f75: 83 3d 24 05 2f 10 00         	cmpl	$0x0, 0x102f0524
+10016f7c: 74 3b                        	je	0x10016fb9 <isSoulBound_ART+0x2819>
+10016f7e: 8b 0d 24 05 2f 10            	movl	0x102f0524, %ecx
+10016f84: 89 4d f8                     	movl	%ecx, -0x8(%ebp)
+10016f87: 8b 55 fc                     	movl	-0x4(%ebp), %edx
+10016f8a: 52                           	pushl	%edx
+10016f8b: ff 55 f8                     	calll	*-0x8(%ebp)
+10016f8e: 83 c4 04                     	addl	$0x4, %esp
+10016f91: 8b 4d fc                     	movl	-0x4(%ebp), %ecx
+10016f94: 89 04 8d b0 ca 0e 10         	movl	%eax, 0x100ecab0(,%ecx,4)
+10016f9b: 8b 55 fc                     	movl	-0x4(%ebp), %edx
+10016f9e: 83 3c 95 b0 ca 0e 10 00      	cmpl	$0x0, 0x100ecab0(,%edx,4)
+10017d8e: c7 45 d8 56 00 00 00         	movl	$0x56, -0x28(%ebp)
+10017d95: c7 45 dc 57 00 00 00         	movl	$0x57, -0x24(%ebp)
+10017d9c: c7 45 e0 58 00 00 00         	movl	$0x58, -0x20(%ebp)
+10017da3: c7 45 e4 59 00 00 00         	movl	$0x59, -0x1c(%ebp)
+10017daa: c7 45 e8 7b 00 00 00         	movl	$0x7b, -0x18(%ebp)
+10017db1: c7 45 ec 7c 00 00 00         	movl	$0x7c, -0x14(%ebp)
+10017db8: c7 45 f0 80 00 00 00         	movl	$0x80, -0x10(%ebp)
+10017dbf: c7 45 f4 87 00 00 00         	movl	$0x87, -0xc(%ebp)
+10017dc6: c7 45 f8 ff ff ff ff         	movl	$0xffffffff, -0x8(%ebp) # imm = 0xFFFFFFFF
+10017dcd: c7 45 d0 00 00 00 00         	movl	$0x0, -0x30(%ebp)
+10017dd4: eb 09                        	jmp	0x10017ddf <isSoulBound_ART+0x363f>
+10017dd6: 8b 55 d0                     	movl	-0x30(%ebp), %edx
+10017dd9: 83 c2 01                     	addl	$0x1, %edx
+10017ddc: 89 55 d0                     	movl	%edx, -0x30(%ebp)
+10017ddf: 8b 45 d0                     	movl	-0x30(%ebp), %eax
+10017de2: 83 7c 85 d8 00               	cmpl	$0x0, -0x28(%ebp,%eax,4)
+10017de7: 7c 21                        	jl	0x10017e0a <isSoulBound_ART+0x366a>
+10017de9: 8b 4d d0                     	movl	-0x30(%ebp), %ecx
+10017dec: 8b 54 8d d8                  	movl	-0x28(%ebp,%ecx,4), %edx
+10017df0: c1 e2 05                     	shll	$0x5, %edx
+10017df3: c6 82 8d 05 2f 10 01         	movb	$0x1, 0x102f058d(%edx)
+10017dfa: 8b 45 d0                     	movl	-0x30(%ebp), %eax
+10017dfd: 8b 4c 85 d8                  	movl	-0x28(%ebp,%eax,4), %ecx
+10017e01: c6 81 70 a5 2f 10 fe         	movb	$-0x2, 0x102fa570(%ecx)
+10017e08: eb cc                        	jmp	0x10017dd6 <isSoulBound_ART+0x3636>
+10017e0a: 8b 15 90 c6 0e 10            	movl	0x100ec690, %edx

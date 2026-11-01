@@ -939,6 +939,10 @@ EffectAnimation::EffectAnimation(BattleInterface & owner, const AnimationPath & 
 
 bool EffectAnimation::init()
 {
+    // Each EffectAnimation owns its CAnimation. Flipping this instance does
+    // not mutate cached image data or effects belonging to the opposite side.
+    if(effectFlags & MIRROR_HORIZONTAL)
+        animation->horizontalFlip();
 	auto first = animation->getImage(0, 0, true);
 	if(!first)
 	{

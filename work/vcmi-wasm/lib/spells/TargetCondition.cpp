@@ -10,6 +10,8 @@
 #include "StdInc.h"
 
 #include "TargetCondition.h"
+#include "../era/EraBridgePolicies.h"
+#include "../CCreatureHandler.h"
 
 #include "../GameConstants.h"
 #include "../CBonusTypeHandler.h"
@@ -228,6 +230,19 @@ protected:
 	{
 		if(!m->isMagicalEffect()) //Always pass on non-magical
 			return true;
+        // Amethyst resistance selector4 -> original44A56F returns zero
+        // spell-success probability without a level cutoff. Keep this in the
+        // NORMAL conditions: native positive RECEPTIVE and Orb negation gates
+        // run before it. Physical/nonMagical abilities pass the check above;
+        // native Dispel ignoreImmunity bypasses it, as source44A205 does.
+        if(era_compat::Policies::get().hasAllSpellImmunity()
+            && era_compat::Policies::get().allSpellImmunity(target->creatureId().toCreature()->getJsonKey()))
+            return false;
+        // Source w1..w5 includes neutral and level-zero magical effects.
+        // Keep it in NORMAL so Orb/receptive and Dispel bypasses remain native.
+        const int harmfulLevel = target->valOfBonuses(BonusType::ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY);
+        if(harmfulLevel > 0 && !m->isPositiveSpell() && m->getSpellLevel() <= harmfulLevel)
+            return false;
 		TConstBonusListPtr levelImmunities = target->getBonusesOfType(BonusType::LEVEL_SPELL_IMMUNITY);
 		return levelImmunities->size() == 0 ||
 		levelImmunities->totalValue() < m->getSpellLevel() ||

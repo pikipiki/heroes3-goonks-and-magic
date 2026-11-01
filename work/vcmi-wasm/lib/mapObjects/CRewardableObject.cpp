@@ -64,12 +64,20 @@ void CRewardableObject::onHeroVisit(IGameEventCallback & gameEvents, const CGHer
 	else
 	{
 		auto guardedIndexes = getAvailableRewards(hero, Rewardable::EEventType::EVENT_GUARDED);
-		auto guardedReward = configuration.info.at(guardedIndexes.at(0));
+		MetaString guardedMessage;
+		if (guardedIndexes.empty())
+		{
+			logMod->warn("Guarded object %s has no available guarded-visit message; using standard bank prompt", getObjectName());
+			guardedMessage.appendLocalString(EMetaText::ADVOB_TXT, 32);
+			guardedMessage.replaceRawString(getObjectName());
+		}
+		else
+			guardedMessage = configuration.info.at(guardedIndexes.front()).message;
 
 		// ask player to confirm attack
 		BlockingDialog bd(true, false);
 		bd.player = hero->getOwner();
-		bd.text = guardedReward.message;
+		bd.text = guardedMessage;
 		bd.components = getPopupComponents(hero->getOwner());
 
 		gameEvents.showBlockingDialog(this, &bd);

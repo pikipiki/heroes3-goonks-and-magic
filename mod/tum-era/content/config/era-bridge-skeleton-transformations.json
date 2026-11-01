@@ -1,0 +1,973 @@
+{
+  "schemaVersion": 1,
+  "creatures": {
+    "core:pikeman": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:halberdier": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:archer": {
+      "target": "tum-era:eraCreature295",
+      "living": true
+    },
+    "core:marksman": {
+      "target": "tum-era:eraCreature295",
+      "living": true
+    },
+    "core:griffin": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:royalGriffin": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:swordsman": {
+      "target": "tum-era:eraCreature361",
+      "living": true
+    },
+    "core:crusader": {
+      "target": "tum-era:eraCreature361",
+      "living": true
+    },
+    "core:monk": {
+      "target": "tum-era:eraCreature297",
+      "living": true
+    },
+    "core:zealot": {
+      "target": "tum-era:eraCreature297",
+      "living": true
+    },
+    "core:cavalier": {
+      "target": "core:blackKnight",
+      "living": true
+    },
+    "core:champion": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:angel": {
+      "target": "tum-era:eraCreature357",
+      "living": true
+    },
+    "core:archangel": {
+      "target": "tum-era:eraCreature357",
+      "living": true
+    },
+    "core:pixie": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:sprite": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:airElemental": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:stormElemental": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:waterElemental": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:iceElemental": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:fireElemental": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:energyElemental": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:earthElemental": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:magmaElemental": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:psychicElemental": {
+      "target": "tum-era:eraCreature297",
+      "living": false
+    },
+    "core:magicElemental": {
+      "target": "tum-era:eraCreature297",
+      "living": false
+    },
+    "core:firebird": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:phoenix": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:troglodyte": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:infernalTroglodyte": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:harpy": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:harpyHag": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:beholder": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:evilEye": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:medusa": {
+      "target": "tum-era:eraCreature295",
+      "living": true
+    },
+    "core:medusaQueen": {
+      "target": "tum-era:eraCreature295",
+      "living": true
+    },
+    "core:minotaur": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:minotaurKing": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:manticore": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:scorpicore": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:redDragon": {
+      "target": "core:boneDragon",
+      "living": true
+    },
+    "core:blackDragon": {
+      "target": "core:boneDragon",
+      "living": true
+    },
+    "core:gnoll": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:gnollMarauder": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:lizardman": {
+      "target": "tum-era:eraCreature295",
+      "living": true
+    },
+    "core:lizardWarrior": {
+      "target": "tum-era:eraCreature295",
+      "living": true
+    },
+    "core:serpentFly": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:fireDragonFly": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:basilisk": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:greaterBasilisk": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:gorgon": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:mightyGorgon": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:wyvern": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:wyvernMonarch": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:hydra": {
+      "target": "core:boneDragon",
+      "living": true
+    },
+    "core:chaosHydra": {
+      "target": "core:boneDragon",
+      "living": true
+    },
+    "core:imp": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:familiar": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:gog": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:magog": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:hellHound": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:cerberus": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:demon": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:hornedDemon": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:pitFiend": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:pitLord": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:efreet": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:efreetSultan": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:devil": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:archDevil": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:skeleton": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:skeletonWarrior": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:walkingDead": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:zombieLord": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:wight": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:wraith": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:vampire": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:vampireLord": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:lich": {
+      "target": "tum-era:eraCreature297",
+      "living": false
+    },
+    "core:powerLich": {
+      "target": "tum-era:eraCreature297",
+      "living": false
+    },
+    "core:blackKnight": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:dreadKnight": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:boneDragon": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:ghostDragon": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:goldGolem": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:diamondGolem": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:azureDragon": {
+      "target": "core:boneDragon",
+      "living": true
+    },
+    "core:crystalDragon": {
+      "target": "core:boneDragon",
+      "living": true
+    },
+    "core:fairieDragon": {
+      "target": "core:boneDragon",
+      "living": true
+    },
+    "core:rustDragon": {
+      "target": "core:boneDragon",
+      "living": true
+    },
+    "core:enchanter": {
+      "target": "tum-era:eraCreature297",
+      "living": true
+    },
+    "core:sharpshooter": {
+      "target": "tum-era:eraCreature299",
+      "living": true
+    },
+    "core:halfling": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:peasant": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:boar": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:mummy": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:nomad": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:rogue": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:troll": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:centaur": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:centaurCaptain": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:dwarf": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:battleDwarf": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:woodElf": {
+      "target": "tum-era:eraCreature295",
+      "living": true
+    },
+    "core:grandElf": {
+      "target": "tum-era:eraCreature295",
+      "living": true
+    },
+    "core:pegasus": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:silverPegasus": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:dendroidGuard": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:dendroidSoldier": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:unicorn": {
+      "target": "core:blackKnight",
+      "living": true
+    },
+    "core:warUnicorn": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:greenDragon": {
+      "target": "core:boneDragon",
+      "living": true
+    },
+    "core:goldDragon": {
+      "target": "core:boneDragon",
+      "living": true
+    },
+    "core:unused122": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:unused124": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:unused126": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:unused128": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:catapult": {
+      "target": "core:catapult",
+      "living": false
+    },
+    "core:ballista": {
+      "target": "core:ballista",
+      "living": false
+    },
+    "core:firstAidTent": {
+      "target": "core:firstAidTent",
+      "living": false
+    },
+    "core:ammoCart": {
+      "target": "core:ammoCart",
+      "living": false
+    },
+    "core:arrowTower": {
+      "target": "core:arrowTower",
+      "living": false
+    },
+    "core:goblin": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:hobgoblin": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:goblinWolfRider": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:hobgoblinWolfRider": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:orc": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:orcChieftain": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:ogre": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:ogreMage": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:roc": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:thunderbird": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:cyclop": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:cyclopKing": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:behemoth": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:ancientBehemoth": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:gremlin": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:masterGremlin": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:stoneGargoyle": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:obsidianGargoyle": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:ironGolem": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:stoneGolem": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "core:mage": {
+      "target": "tum-era:eraCreature297",
+      "living": false
+    },
+    "core:archMage": {
+      "target": "tum-era:eraCreature297",
+      "living": false
+    },
+    "core:genie": {
+      "target": "tum-era:eraCreature297",
+      "living": true
+    },
+    "core:masterGenie": {
+      "target": "tum-era:eraCreature297",
+      "living": true
+    },
+    "core:naga": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:nagaQueen": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:giant": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "core:titan": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "wake-of-gods.level8units:supremeArchangel": {
+      "target": "tum-era:eraCreature357",
+      "living": true
+    },
+    "wake-of-gods.level8units:diamondDragon": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "wake-of-gods.level8units:lordOfThunder": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "wake-of-gods.level8units:hellBaron": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "wake-of-gods.level8units:bloodDragon": {
+      "target": "core:boneDragon",
+      "living": false
+    },
+    "wake-of-gods.level8units:darknessDragon": {
+      "target": "core:boneDragon",
+      "living": true
+    },
+    "wake-of-gods.level8units:ghostBehemoth": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "wake-of-gods.level8units:hellHydra": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "wake-of-gods.level8units:sacredPhoenix": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "wake-of-gods.creatures:ghost": {
+      "target": "wake-of-gods.creatures:ghost",
+      "living": false
+    },
+    "wake-of-gods.messengersandemissaries:emissaryOfWar": {
+      "target": "wake-of-gods.messengersandemissaries:emissaryOfWar",
+      "living": false
+    },
+    "wake-of-gods.messengersandemissaries:emissaryOfPeace": {
+      "target": "wake-of-gods.messengersandemissaries:emissaryOfPeace",
+      "living": false
+    },
+    "wake-of-gods.messengersandemissaries:emissaryOfMana": {
+      "target": "wake-of-gods.messengersandemissaries:emissaryOfMana",
+      "living": false
+    },
+    "wake-of-gods.messengersandemissaries:emissaryOfLore": {
+      "target": "wake-of-gods.messengersandemissaries:emissaryOfLore",
+      "living": false
+    },
+    "wake-of-gods.messengersandemissaries:fireMessenger": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "wake-of-gods.messengersandemissaries:earthMessenger": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "wake-of-gods.messengersandemissaries:airMessenger": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "wake-of-gods.messengersandemissaries:waterMessenger": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "wake-of-gods.creatures:gorynych": {
+      "target": "core:boneDragon",
+      "living": false
+    },
+    "wake-of-gods.creatures:warZealot": {
+      "target": "tum-era:eraCreature297",
+      "living": true
+    },
+    "wake-of-gods.creatures:arcticSharpshooter": {
+      "target": "tum-era:eraCreature299",
+      "living": true
+    },
+    "wake-of-gods.creatures:lavaSharpshooter": {
+      "target": "tum-era:eraCreature299",
+      "living": true
+    },
+    "wake-of-gods.creatures:nightmare": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "wake-of-gods.creatures:santaGremlin": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "wake-of-gods.creatures:sylvanCentaur": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "wake-of-gods.creatures:wogSorceress": {
+      "target": "tum-era:eraCreature297",
+      "living": true
+    },
+    "wake-of-gods.creatures:werewolf": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "wake-of-gods.creatures:hellSteed": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "wake-of-gods.creatures:dracolich": {
+      "target": "core:boneDragon",
+      "living": false
+    },
+    "third-upgrades:tumRoyalHalberdier": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumCrossbowman": {
+      "target": "tum-era:eraCreature295",
+      "living": true
+    },
+    "third-upgrades:tumCeasarGriffin": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumInquisitor": {
+      "target": "tum-era:eraCreature361",
+      "living": true
+    },
+    "third-upgrades:tumHighPriest": {
+      "target": "tum-era:eraCreature297",
+      "living": true
+    },
+    "third-upgrades:tumHolyChampion": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumCentaurGeneral": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumBerserkerDwarf": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumSharpshooterElf": {
+      "target": "tum-era:eraCreature299",
+      "living": true
+    },
+    "third-upgrades:tumGoldenPegasus": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumElderDendroid": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumLegendaryUnicorn": {
+      "target": "core:blackKnight",
+      "living": true
+    },
+    "third-upgrades:tumGrandmasterGremlin": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumMarbleGargoyle": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "third-upgrades:tumSteelGolem": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "third-upgrades:tumSupremeArchMage": {
+      "target": "tum-era:eraCreature297",
+      "living": true
+    },
+    "third-upgrades:tumArcaneGenie": {
+      "target": "tum-era:eraCreature297",
+      "living": true
+    },
+    "third-upgrades:tumNagaEmpress": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumVermin": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumWingedMagog": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumAstralCerberus": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumSharpHornedDemon": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumPitMaster": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumEfreetRajah": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumSkeletonKnight": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "third-upgrades:tumGhoul": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "third-upgrades:tumSpecter": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "third-upgrades:tumNosferatu": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "third-upgrades:tumLichKing": {
+      "target": "tum-era:eraCreature297",
+      "living": false
+    },
+    "third-upgrades:tumDeathKnight": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "third-upgrades:tumPhosphorescentTroglodyte": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumHarpySanguinary": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumMonstrousEye": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumMedusaEmpress": {
+      "target": "tum-era:eraCreature295",
+      "living": true
+    },
+    "third-upgrades:tumBlackMinotaur": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumChimera": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumHobgoblinOverlord": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumWolfRiderKiller": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumOrcLeader": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumElderOgre": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumLightningbird": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumCyclopsEmperor": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumGnollShaman": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumEliteLizard": {
+      "target": "tum-era:eraCreature295",
+      "living": true
+    },
+    "third-upgrades:tumChaoticDragonFly": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumLavaBasilisk": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumFairy": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "third-upgrades:tumHurricaneElemental": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "third-upgrades:tumLifeElemental": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "third-upgrades:tumPlasmaElemental": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "third-upgrades:tumMineralElemental": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "third-upgrades:tumVoidElemental": {
+      "target": "tum-era:eraCreature297",
+      "living": false
+    },
+    "tum-era:cherub": {
+      "target": "tum-era:eraCreature357",
+      "living": true
+    },
+    "tum-era:eraCreature357": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "tum-era:antichrist": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "tum-era:redBonesDragon": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "tum-era:divinePhoenix": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "tum-era:eraCreature287": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "tum-era:eraCreature295": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "tum-era:eraCreature297": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "tum-era:eraCreature299": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "tum-era:eraCreature359": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "tum-era:eraCreature361": {
+      "target": "core:skeleton",
+      "living": false
+    }
+  }
+}

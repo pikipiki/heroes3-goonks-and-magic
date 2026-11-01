@@ -1,0 +1,36 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_121": {
+        "name": "Frigate of the fallen",
+        "creatures": [
+          [
+            "tum-era:eraCreature287"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw21.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 2177,
+          "rarity": 40,
+          "neutralAllowed": true
+        }
+      }
+    }
+  }
+}

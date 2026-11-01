@@ -34,6 +34,9 @@
 #include "../../lib/CConfigHandler.h"
 #include "../../lib/CRandomGenerator.h"
 #include "../../lib/CStack.h"
+#include "../../lib/CCreatureHandler.h"
+#include "../../lib/era/EraBridgePolicies.h"
+#include "../../lib/era/EraLandingEffects.h"
 #include "../../lib/GameLibrary.h"
 #include "../../lib/battle/BattleAction.h"
 #include "../../lib/battle/BattleHex.h"
@@ -465,6 +468,11 @@ void BattleStacksController::stacksAreAttacked(std::vector<StackAttackedInfo> at
 
 	for(auto & attackedInfo : attackedInfos)
 	{
+        // Deferred ERA rebirth has already played its death event in an earlier
+        // packet. Only queue ResurrectionAnimation below, not a zero-damage hit.
+        if(attackedInfo.rebirth && attackedInfo.damageDealt == 0 && attackedInfo.amountKilled == 0)
+            continue;
+
 		bool useDeathAnim   = attackedInfo.killed;
 		bool useDefenceAnim = attackedInfo.defender->defendingAnim && !attackedInfo.indirectAttack && !attackedInfo.killed;
 
@@ -504,7 +512,11 @@ void BattleStacksController::stacksAreAttacked(std::vector<StackAttackedInfo> at
 			});
 		}
 
-		if (attackedInfo.killed && attackedInfo.defender->summoned)
+        // ERA revival is emitted in a following post-sequence packet. Keep the
+        // corpse animation until revival or authoritative ghost removal arrives.
+        const bool deferredEraRevival = era_compat::Policies::get().rebirth(
+            attackedInfo.defender->creatureId().toCreature()->getJsonKey()).has_value();
+		if (attackedInfo.killed && attackedInfo.defender->summoned && !deferredEraRevival)
 		{
 			owner.addToAnimationStage(EAnimationEvents::AFTER_HIT, [this, attackedInfo](){
 				addNewAnim(new ColorTransformAnimation(owner, attackedInfo.defender, "summonFadeOut", nullptr));
@@ -644,9 +656,36 @@ void BattleStacksController::stackAttacking( const StackAttackInfo & info )
 		}
 		else
 		{
+            // Original melee bursts begin with the attack swing. Their leading
+            // empty frames supply the original landing delay; do not restart
+            // them at HIT or duplicate them for dragon-breath collateral.
+            const auto * landing=era_compat::LandingEffects::get().findMelee(attacker->unitType()->getJsonKey());
+            if(landing)
+            {
+                if(!landing->sound.empty())
+                    ENGINE->sound().playSound(AudioPath::builtinTODO(landing->sound));
+                const int flags=facingRight(attacker)?0:EffectAnimation::MIRROR_HORIZONTAL;
+                addNewAnim(new EffectAnimation(owner,AnimationPath::builtinTODO(landing->animation),tile,flags));
+            }
 			addNewAnim(new MeleeAttackAnimation(owner, attacker, tile, defender, info.playCustomAnimation));
 		}
 	});
+
+    if(info.indirectAttack)
+    {
+        // Official HitLandingEffects10001E70 captures Shot at43F620;
+        //10002610/468570 plays it AFTER projectile flight, with target HIT.
+        // Do not attach the burst to shooting start or duplicate it for BSA
+        // indirect spell damage (e.g.212 intrinsic Thunder uses spell17 itself).
+        owner.addToAnimationStage(EAnimationEvents::HIT,[this,attacker,tile]()
+        {
+            const auto * landing=era_compat::LandingEffects::get().findRanged(attacker->unitType()->getJsonKey());
+            if(!landing)return;
+            if(!landing->sound.empty())
+                ENGINE->sound().playSound(AudioPath::builtinTODO(landing->sound));
+            addNewAnim(new EffectAnimation(owner,AnimationPath::builtinTODO(landing->animation),tile,0));
+        });
+    }
 
 	if (info.spellEffect != SpellID::NONE)
 	{

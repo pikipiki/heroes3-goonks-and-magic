@@ -140,7 +140,7 @@
               6000
             ],
             "count": 1,
-            "currentHealth": 359,
+            "currentHealth": 360,
             "enemy": false,
             "icon": "tum-era/portrait-large",
             "id": 250,
@@ -155,12 +155,8 @@
             "y": 322
           },
           "enemy": {
-            "count": 24,
+            "count": 20,
             "stacks": [
-              {
-                "count": 4,
-                "stackId": 1
-              },
               {
                 "count": 20,
                 "stackId": 2
@@ -182,7 +178,7 @@
             6000
           ],
           "count": 1,
-          "currentHealth": 359,
+          "currentHealth": 360,
           "enemy": false,
           "icon": "tum-era/portrait-large",
           "id": 250,
@@ -197,12 +193,8 @@
           "y": 322
         },
         "enemy": {
-          "count": 24,
+          "count": 20,
           "stacks": [
-            {
-              "count": 4,
-              "stackId": 1
-            },
             {
               "count": 20,
               "stackId": 2
@@ -366,8 +358,12 @@
             "y": 322
           },
           "enemy": {
-            "count": 20,
+            "count": 25,
             "stacks": [
+              {
+                "count": 5,
+                "stackId": 1
+              },
               {
                 "count": 20,
                 "stackId": 2
@@ -404,8 +400,12 @@
           "y": 322
         },
         "enemy": {
-          "count": 20,
+          "count": 25,
           "stacks": [
+            {
+              "count": 5,
+              "stackId": 1
+            },
             {
               "count": 20,
               "stackId": 2

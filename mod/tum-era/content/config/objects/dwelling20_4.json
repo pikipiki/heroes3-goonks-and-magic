@@ -1,0 +1,64 @@
+{
+  "core:creatureGeneratorSpecial": {
+    "types": {
+      "eraDwelling20_4": {
+        "name": "Dragon Tower",
+        "creatures": [
+          [
+            "core:blackDragon"
+          ],
+          [
+            "core:goldDragon"
+          ],
+          [
+            "core:redDragon"
+          ],
+          [
+            "core:greenDragon"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "core:blackDragon",
+            "amount": 3
+          },
+          {
+            "type": "core:goldDragon",
+            "amount": 3
+          },
+          {
+            "type": "core:redDragon",
+            "amount": 3
+          },
+          {
+            "type": "core:greenDragon",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw32.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VVAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 26908,
+          "rarity": 300,
+          "neutralAllowed": true
+        }
+      }
+    }
+  }
+}

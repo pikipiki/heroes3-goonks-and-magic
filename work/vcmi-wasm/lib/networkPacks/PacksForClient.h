@@ -893,6 +893,8 @@ struct DLL_LINKAGE SetStackType : CGarrisonOperationPack
 	ObjectInstanceID army;
 	SlotID slot;
 	CreatureID type;
+	// Direct TUM daily conversions preserve stack experience; paid upgrades retain normal loss.
+	bool preserveExperience = false;
 
 	void visitTyped(ICPackVisitor & visitor) override;
 
@@ -901,6 +903,7 @@ struct DLL_LINKAGE SetStackType : CGarrisonOperationPack
 		h & army;
 		h & slot;
 		h & type;
+		h & preserveExperience;
 	}
 };
 

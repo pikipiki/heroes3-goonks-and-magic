@@ -347,6 +347,7 @@ class CTransformerWindow : public CStatusbarWindow, public IGarrisonHolder
 	{
 	public:
 		int id;//position of creature in hero army
+        bool pendingTransform = false;
 		bool left;//position of the item
 		int size; //size of creature stack
 		CTransformerWindow * parent;

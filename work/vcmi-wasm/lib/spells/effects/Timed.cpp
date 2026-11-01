@@ -138,6 +138,17 @@ void Timed::apply(ServerCallback * server, const Mechanics * m, const EffectTarg
 
 		if(!affected->alive())
 			continue;
+        if(affected->hasBonusOfType(BonusType::ERA_SOURCE_STATUS_HEALTH) && m->getSpellId()==SpellID::POISON)
+        {
+            // Adapt only the canonical core71 contract. Other mods' custom
+            // magnitudes retain native health calculations and before-turn ticks.
+            const bool canonicalHealth=std::any_of(buffer.begin(),buffer.end(),[](const Bonus & b)
+                {return b.type==BonusType::STACK_HEALTH && b.val==-10;});
+            if(canonicalHealth)
+                for(auto & item:buffer)
+                    if(item.type==BonusType::POISON && item.val==30)item.val=50;
+        }
+
 
 		if(describe)
 			describeEffect(blm.lines, m, converted, affected);

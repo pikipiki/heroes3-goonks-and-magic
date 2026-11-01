@@ -1,0 +1,1018 @@
+{
+  "provenance": "TUM source Lang/TUM_CreatureBanks.json43/44; H3 SPTRAITS extracted source facts only, descriptions excluded; known category flag bits only.",
+  "spells": [
+    {
+      "eraId": 0,
+      "nativeId": "core:summonBoat",
+      "name": "Summon Boat",
+      "level": 1,
+      "schoolBits": 4,
+      "flags": 2,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 1,
+      "nativeId": "core:scuttleBoat",
+      "name": "Scuttle Boat",
+      "level": 2,
+      "schoolBits": 4,
+      "flags": 2,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 2,
+      "nativeId": "core:visions",
+      "name": "Visions",
+      "level": 2,
+      "schoolBits": 15,
+      "flags": 2,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 3,
+      "nativeId": "core:viewEarth",
+      "name": "View Earth",
+      "level": 1,
+      "schoolBits": 8,
+      "flags": 2,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 4,
+      "nativeId": "core:disguise",
+      "name": "Disguise",
+      "level": 2,
+      "schoolBits": 1,
+      "flags": 2,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 5,
+      "nativeId": "core:viewAir",
+      "name": "View Air",
+      "level": 1,
+      "schoolBits": 1,
+      "flags": 2,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 6,
+      "nativeId": "core:fly",
+      "name": "Fly",
+      "level": 5,
+      "schoolBits": 1,
+      "flags": 2,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 7,
+      "nativeId": "core:waterWalk",
+      "name": "Water Walk",
+      "level": 4,
+      "schoolBits": 4,
+      "flags": 2,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 8,
+      "nativeId": "core:dimensionDoor",
+      "name": "Dimension Door",
+      "level": 5,
+      "schoolBits": 1,
+      "flags": 2,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 9,
+      "nativeId": "core:townPortal",
+      "name": "Town Portal",
+      "level": 4,
+      "schoolBits": 8,
+      "flags": 2,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 10,
+      "nativeId": "core:quicksand",
+      "name": "Quicksand",
+      "level": 2,
+      "schoolBits": 8,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 11,
+      "nativeId": "core:landMine",
+      "name": "Land Mine",
+      "level": 3,
+      "schoolBits": 2,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 12,
+      "nativeId": "core:forceField",
+      "name": "Force Field",
+      "level": 3,
+      "schoolBits": 8,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 13,
+      "nativeId": "core:fireWall",
+      "name": "Fire Wall",
+      "level": 2,
+      "schoolBits": 2,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 14,
+      "nativeId": "core:earthquake",
+      "name": "Earthquake",
+      "level": 3,
+      "schoolBits": 8,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 15,
+      "nativeId": "core:magicArrow",
+      "name": "Magic Arrow",
+      "level": 1,
+      "schoolBits": 15,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 16,
+      "nativeId": "core:iceBolt",
+      "name": "Ice Bolt",
+      "level": 2,
+      "schoolBits": 4,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 17,
+      "nativeId": "core:lightningBolt",
+      "name": "Lightning Bolt",
+      "level": 2,
+      "schoolBits": 1,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 18,
+      "nativeId": "core:implosion",
+      "name": "Implosion",
+      "level": 5,
+      "schoolBits": 8,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 19,
+      "nativeId": "core:chainLightning",
+      "name": "Chain Lightning",
+      "level": 4,
+      "schoolBits": 1,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 20,
+      "nativeId": "core:frostRing",
+      "name": "Frost Ring",
+      "level": 3,
+      "schoolBits": 4,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 21,
+      "nativeId": "core:fireball",
+      "name": "Fireball",
+      "level": 3,
+      "schoolBits": 2,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 22,
+      "nativeId": "core:inferno",
+      "name": "Inferno",
+      "level": 4,
+      "schoolBits": 2,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 23,
+      "nativeId": "core:meteorShower",
+      "name": "Meteor Shower",
+      "level": 4,
+      "schoolBits": 8,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 24,
+      "nativeId": "core:deathRipple",
+      "name": "Death Ripple",
+      "level": 2,
+      "schoolBits": 8,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 25,
+      "nativeId": "core:destroyUndead",
+      "name": "Destroy Undead",
+      "level": 3,
+      "schoolBits": 1,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 26,
+      "nativeId": "core:armageddon",
+      "name": "Armageddon",
+      "level": 4,
+      "schoolBits": 2,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 27,
+      "nativeId": "core:shield",
+      "name": "Shield",
+      "level": 1,
+      "schoolBits": 8,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 28,
+      "nativeId": "core:airShield",
+      "name": "Air Shield",
+      "level": 3,
+      "schoolBits": 1,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 29,
+      "nativeId": "core:fireShield",
+      "name": "Fire Shield",
+      "level": 4,
+      "schoolBits": 2,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 30,
+      "nativeId": "core:protectAir",
+      "name": "Protection from Air",
+      "level": 2,
+      "schoolBits": 1,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 31,
+      "nativeId": "core:protectFire",
+      "name": "Protection from Fire",
+      "level": 1,
+      "schoolBits": 2,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 32,
+      "nativeId": "core:protectWater",
+      "name": "Prot. from Water",
+      "level": 1,
+      "schoolBits": 4,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 33,
+      "nativeId": "core:protectEarth",
+      "name": "Prot. from Earth",
+      "level": 3,
+      "schoolBits": 8,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 34,
+      "nativeId": "core:antiMagic",
+      "name": "Anti-Magic",
+      "level": 3,
+      "schoolBits": 8,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 35,
+      "nativeId": "core:dispel",
+      "name": "Dispel",
+      "level": 1,
+      "schoolBits": 4,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 36,
+      "nativeId": "core:magicMirror",
+      "name": "Magic Mirror",
+      "level": 5,
+      "schoolBits": 1,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 37,
+      "nativeId": "core:cure",
+      "name": "Cure",
+      "level": 1,
+      "schoolBits": 4,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 38,
+      "nativeId": "core:resurrection",
+      "name": "Resurrection",
+      "level": 4,
+      "schoolBits": 8,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 39,
+      "nativeId": "core:animateDead",
+      "name": "Animate Dead",
+      "level": 3,
+      "schoolBits": 8,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 40,
+      "nativeId": "core:sacrifice",
+      "name": "Sacrifice",
+      "level": 5,
+      "schoolBits": 2,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 41,
+      "nativeId": "core:bless",
+      "name": "Bless",
+      "level": 1,
+      "schoolBits": 4,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 42,
+      "nativeId": "core:curse",
+      "name": "Curse",
+      "level": 1,
+      "schoolBits": 2,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 43,
+      "nativeId": "core:bloodlust",
+      "name": "Bloodlust",
+      "level": 1,
+      "schoolBits": 2,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 44,
+      "nativeId": "core:precision",
+      "name": "Precision",
+      "level": 2,
+      "schoolBits": 1,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 45,
+      "nativeId": "core:weakness",
+      "name": "Weakness",
+      "level": 2,
+      "schoolBits": 4,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 46,
+      "nativeId": "core:stoneSkin",
+      "name": "Stone Skin",
+      "level": 1,
+      "schoolBits": 8,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 47,
+      "nativeId": "core:disruptingRay",
+      "name": "Disrupting Ray",
+      "level": 2,
+      "schoolBits": 1,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 48,
+      "nativeId": "core:prayer",
+      "name": "Prayer",
+      "level": 4,
+      "schoolBits": 4,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 49,
+      "nativeId": "core:mirth",
+      "name": "Mirth",
+      "level": 3,
+      "schoolBits": 4,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 50,
+      "nativeId": "core:sorrow",
+      "name": "Sorrow",
+      "level": 4,
+      "schoolBits": 8,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 51,
+      "nativeId": "core:fortune",
+      "name": "Fortune",
+      "level": 2,
+      "schoolBits": 1,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 52,
+      "nativeId": "core:misfortune",
+      "name": "Misfortune",
+      "level": 3,
+      "schoolBits": 2,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 53,
+      "nativeId": "core:haste",
+      "name": "Haste",
+      "level": 1,
+      "schoolBits": 1,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 54,
+      "nativeId": "core:slow",
+      "name": "Slow",
+      "level": 1,
+      "schoolBits": 8,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 55,
+      "nativeId": "core:slayer",
+      "name": "Slayer",
+      "level": 4,
+      "schoolBits": 2,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 56,
+      "nativeId": "core:frenzy",
+      "name": "Frenzy",
+      "level": 4,
+      "schoolBits": 2,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 57,
+      "nativeId": "core:titanBolt",
+      "name": "Titan's Lightning Bolt",
+      "level": 5,
+      "schoolBits": 1,
+      "flags": 0,
+      "flagsUnknown": true,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 58,
+      "nativeId": "core:counterstrike",
+      "name": "Counterstrike",
+      "level": 4,
+      "schoolBits": 1,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 59,
+      "nativeId": "core:berserk",
+      "name": "Berserk",
+      "level": 4,
+      "schoolBits": 2,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 60,
+      "nativeId": "core:hypnotize",
+      "name": "Hypnotize",
+      "level": 3,
+      "schoolBits": 1,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 61,
+      "nativeId": "core:forgetfulness",
+      "name": "Forgetfulness",
+      "level": 3,
+      "schoolBits": 4,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 62,
+      "nativeId": "core:blind",
+      "name": "Blind",
+      "level": 2,
+      "schoolBits": 2,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 63,
+      "nativeId": "core:teleport",
+      "name": "Teleport",
+      "level": 3,
+      "schoolBits": 4,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 64,
+      "nativeId": "core:removeObstacle",
+      "name": "Remove Obstacle",
+      "level": 2,
+      "schoolBits": 4,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 65,
+      "nativeId": "core:clone",
+      "name": "Clone",
+      "level": 4,
+      "schoolBits": 4,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 66,
+      "nativeId": "core:fireElemental",
+      "name": "Fire Elemental",
+      "level": 5,
+      "schoolBits": 2,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 67,
+      "nativeId": "core:earthElemental",
+      "name": "Earth Elemental",
+      "level": 5,
+      "schoolBits": 8,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 68,
+      "nativeId": "core:waterElemental",
+      "name": "Water Elemental",
+      "level": 5,
+      "schoolBits": 4,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 69,
+      "nativeId": "core:airElemental",
+      "name": "Air Elemental",
+      "level": 5,
+      "schoolBits": 1,
+      "flags": 1,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": false
+    },
+    {
+      "eraId": 70,
+      "nativeId": "core:stoneGaze",
+      "name": "Stone Gaze",
+      "level": 3,
+      "schoolBits": 0,
+      "flags": 8,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": true
+    },
+    {
+      "eraId": 71,
+      "nativeId": "core:poison",
+      "name": "Poison",
+      "level": 0,
+      "schoolBits": 0,
+      "flags": 8,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": true
+    },
+    {
+      "eraId": 72,
+      "nativeId": "core:bind",
+      "name": "Bind",
+      "level": 0,
+      "schoolBits": 0,
+      "flags": 8,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": true
+    },
+    {
+      "eraId": 73,
+      "nativeId": "core:disease",
+      "name": "Disease",
+      "level": 2,
+      "schoolBits": 0,
+      "flags": 8,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": true
+    },
+    {
+      "eraId": 74,
+      "nativeId": "core:paralyze",
+      "name": "Paralyze",
+      "level": 4,
+      "schoolBits": 0,
+      "flags": 8,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": true
+    },
+    {
+      "eraId": 75,
+      "nativeId": "core:age",
+      "name": "Age",
+      "level": 5,
+      "schoolBits": 0,
+      "flags": 8,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": true
+    },
+    {
+      "eraId": 76,
+      "nativeId": "core:deathCloud",
+      "name": "Death Cloud",
+      "level": 0,
+      "schoolBits": 0,
+      "flags": 8,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": true
+    },
+    {
+      "eraId": 77,
+      "nativeId": "core:thunderbolt",
+      "name": "Thunderbolt",
+      "level": 0,
+      "schoolBits": 0,
+      "flags": 8,
+      "flagsUnknown": false,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": true
+    },
+    {
+      "eraId": 78,
+      "nativeId": "core:dispelHelpful",
+      "name": "Dispel Helpful Spells",
+      "level": 0,
+      "schoolBits": 0,
+      "flags": 0,
+      "flagsUnknown": true,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": true
+    },
+    {
+      "eraId": 79,
+      "nativeId": "core:deathStare",
+      "name": "Death Stare",
+      "level": 0,
+      "schoolBits": 0,
+      "flags": 0,
+      "flagsUnknown": true,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": true
+    },
+    {
+      "eraId": 80,
+      "nativeId": "core:acidBreath",
+      "name": "Acid breath",
+      "level": 0,
+      "schoolBits": 0,
+      "flags": 0,
+      "flagsUnknown": true,
+      "flagsEvidence": "SPTRAITS category proves nonzero, not complete flags word",
+      "nativeSpecial": true
+    }
+  ],
+  "banks": {
+    "43": {
+      "density": 100,
+      "enabled": true,
+      "name": "City of the Dead",
+      "properties": [
+        "CB11.def 000111111111111111111111111111111111111111111111 010000000000000000000000000000000000000000000000 111111111 011111111 16 43 1 0"
+      ],
+      "states": [
+        {
+          "spells": [
+            {
+              "bits": {
+                "levels": 4
+              }
+            }
+          ],
+          "artifactTypeCounts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "chance": 100,
+          "creatureRewardCount": 0,
+          "creatureRewardType": -1,
+          "guardians": {
+            "count": [
+              25,
+              15,
+              10,
+              5,
+              25,
+              15,
+              10
+            ],
+            "type": [
+              57,
+              59,
+              61,
+              63,
+              57,
+              59,
+              61
+            ]
+          },
+          "resources": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            5000,
+            2
+          ],
+          "upgrade": 0
+        }
+      ],
+      "value": 5200
+    },
+    "44": {
+      "density": 100,
+      "enabled": true,
+      "name": "Sacred Temple",
+      "properties": [
+        "CB12.def 001111111111111111111111111111111111111111111111 010000000000000000000000000000000000000000000000 111111111 011111111 16 44 1 0"
+      ],
+      "states": [
+        {
+          "spells": [
+            {
+              "bits": {
+                "levels": 4
+              }
+            }
+          ],
+          "artifactTypeCounts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "chance": 100,
+          "creatureRewardCount": 0,
+          "creatureRewardType": -1,
+          "guardians": {
+            "count": [
+              15,
+              15,
+              15,
+              15,
+              15,
+              -1,
+              -1
+            ],
+            "type": [
+              9,
+              9,
+              9,
+              9,
+              9,
+              -1,
+              -1
+            ]
+          },
+          "resources": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2500,
+            2
+          ],
+          "upgrade": 320
+        }
+      ],
+      "value": 7000
+    }
+  }
+}

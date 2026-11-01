@@ -9,6 +9,8 @@
  */
 #pragma once
 
+class GameEngine;
+
 #include "CAudioBase.h"
 #include "IMusicPlayer.h"
 
@@ -63,6 +65,10 @@ private:
 	std::unique_ptr<MusicEntry> next;
 
 	std::mutex mutex;
+    std::shared_ptr<int> callbackLifetime=std::make_shared<int>(0);
+#ifdef VCMI_EMSCRIPTEN
+    friend void playPendingMusic();
+#endif
 	int volume = 0; // from 0 (mute) to 100
 
 	void queueNext(CMusicHandler * owner, const std::string & setName, const AudioPath & musicURI, bool looped, bool fromStart);
@@ -75,7 +81,7 @@ private:
 	std::map<AudioPath, float> trackPositions;
 
 public:
-	CMusicHandler();
+	explicit CMusicHandler(GameEngine & owner);
 	~CMusicHandler();
 
 	/// add entry with URI musicURI in set. Track will have ID musicID

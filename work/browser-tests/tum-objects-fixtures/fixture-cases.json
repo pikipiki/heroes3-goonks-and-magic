@@ -1,0 +1,1953 @@
+{
+  "schemaVersion": 1,
+  "modId": "tum-era",
+  "cases": [
+    {
+      "map": "TUM-dwelling-20_2.vmap",
+      "name": "TUM Bridge Fixture dwelling-20_2",
+      "kind": "dwelling",
+      "sourceId": "20_2",
+      "targetSubtype": "tum-era:eraDwelling20_2",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 14,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Dragon Sanctuary",
+        "creatures": [
+          [
+            "core:azureDragon"
+          ],
+          [
+            "core:crystalDragon"
+          ],
+          [
+            "core:fairieDragon"
+          ],
+          [
+            "core:rustDragon"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "core:azureDragon",
+            "amount": 3
+          },
+          {
+            "type": "core:crystalDragon",
+            "amount": 3
+          },
+          {
+            "type": "core:fairieDragon",
+            "amount": 3
+          },
+          {
+            "type": "core:rustDragon",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw25.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBBB",
+              "VBAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 164196,
+          "rarity": 300,
+          "neutralAllowed": true
+        }
+      },
+      "mapSha256": "77eacf2747f66c50033f62abe32c97b36921a5a502dfac76c63f115e4d2edd8c"
+    },
+    {
+      "map": "TUM-dwelling-20_4.vmap",
+      "name": "TUM Bridge Fixture dwelling-20_4",
+      "kind": "dwelling",
+      "sourceId": "20_4",
+      "targetSubtype": "tum-era:eraDwelling20_4",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 14,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Dragon Tower",
+        "creatures": [
+          [
+            "core:blackDragon"
+          ],
+          [
+            "core:goldDragon"
+          ],
+          [
+            "core:redDragon"
+          ],
+          [
+            "core:greenDragon"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "core:blackDragon",
+            "amount": 3
+          },
+          {
+            "type": "core:goldDragon",
+            "amount": 3
+          },
+          {
+            "type": "core:redDragon",
+            "amount": 3
+          },
+          {
+            "type": "core:greenDragon",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw32.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VVAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 26908,
+          "rarity": 300,
+          "neutralAllowed": true
+        }
+      },
+      "mapSha256": "be027700c0bbad497b3c177b5132051500c64cf0b1504628e9a6c16d9ae07ed4"
+    },
+    {
+      "map": "TUM-bank-33.vmap",
+      "name": "TUM Bridge Fixture bank-33",
+      "kind": "bank",
+      "sourceId": "33",
+      "targetSubtype": "tum-era:eraBank33",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 14,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Pantheon",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB1.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "dirt",
+              "subterra",
+              "lava"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumGhoul",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumGhoul",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumGhoul",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumGhoul",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumGhoul",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumGhoul",
+                "amount": 30
+              }
+            ],
+            "resources": {
+              "gold": 5000
+            },
+            "artifacts": [
+              {
+                "class": "MAJOR"
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "visit": [
+            "CEMETRY.wav"
+          ],
+          "ambient": [
+            "LOOPCMTR.wav"
+          ]
+        },
+        "rmg": {
+          "value": 1800,
+          "rarity": 100
+        }
+      },
+      "mapSha256": "83f5cf5c647a2796b2f64f237696be1be30e9757ca2d8088288c3366150c7d95"
+    },
+    {
+      "map": "TUM-bank-38.vmap",
+      "name": "TUM Bridge Fixture bank-38",
+      "kind": "bank",
+      "sourceId": "38",
+      "targetSubtype": "tum-era:eraBank38",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 14,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Blue Tower",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB6.def",
+            "mask": [
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVVBV",
+              "VVVAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 14
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 14
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 14
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 14
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 14
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:firebird",
+                "amount": 2
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 28
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 28
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 28
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 28
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 28
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:phoenix",
+                "amount": 1
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 42
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 42
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 42
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 42
+              },
+              {
+                "type": "third-upgrades:tumPlasmaElemental",
+                "amount": 42
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:phoenix",
+                "amount": 2
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumEfreetRajah",
+                "amount": 60
+              },
+              {
+                "type": "third-upgrades:tumEfreetRajah",
+                "amount": 60
+              },
+              {
+                "type": "third-upgrades:tumEfreetRajah",
+                "amount": 60
+              },
+              {
+                "type": "third-upgrades:tumEfreetRajah",
+                "amount": 60
+              },
+              {
+                "type": "third-upgrades:tumEfreetRajah",
+                "amount": 60
+              }
+            ],
+            "creatures": [
+              {
+                "type": "wake-of-gods.level8units:sacredPhoenix",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "visit": [
+            "REDTWRVS.wav"
+          ],
+          "ambient": [
+            "REDTWRLO.wav"
+          ]
+        },
+        "rmg": {
+          "value": 8000,
+          "rarity": 20
+        }
+      },
+      "mapSha256": "c5498af00ed2117f2fd5889124b3d09d9add64bb03ed1638db49653c47bf6b0f"
+    },
+    {
+      "map": "TUM-bank-41.vmap",
+      "name": "TUM Bridge Fixture bank-41",
+      "kind": "bank",
+      "sourceId": "41",
+      "targetSubtype": "tum-era:eraBank41",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 14,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Haunted Mansion",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB9.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "dirt",
+              "rough",
+              "subterra",
+              "lava"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 16
+              },
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 16
+              },
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 16
+              },
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 16
+              },
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 16
+              }
+            ],
+            "resources": {
+              "mercury": 4,
+              "sulfur": 4,
+              "crystal": 4,
+              "gems": 4,
+              "gold": 5000
+            },
+            "artifacts": [
+              {
+                "class": "RELIC"
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 24
+              },
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 24
+              },
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 24
+              },
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 24
+              },
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 24
+              }
+            ],
+            "resources": {
+              "mercury": 6,
+              "sulfur": 6,
+              "crystal": 6,
+              "gems": 6,
+              "gold": 10000
+            },
+            "artifacts": [
+              {
+                "class": "RELIC"
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 32
+              },
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 32
+              },
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 32
+              },
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 32
+              },
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 32
+              }
+            ],
+            "resources": {
+              "mercury": 8,
+              "sulfur": 8,
+              "crystal": 8,
+              "gems": 8,
+              "gold": 12000
+            },
+            "artifacts": [
+              {
+                "class": "RELIC"
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 40
+              },
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 40
+              },
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 40
+              },
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 40
+              },
+              {
+                "type": "third-upgrades:tumNosferatu",
+                "amount": 40
+              }
+            ],
+            "resources": {
+              "mercury": 10,
+              "sulfur": 10,
+              "crystal": 10,
+              "gems": 10,
+              "gold": 15000
+            },
+            "artifacts": [
+              {
+                "class": "RELIC"
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "visit": [
+            "mansionv.wav"
+          ],
+          "ambient": [
+            "LOOPMANS.wav"
+          ]
+        },
+        "rmg": {
+          "value": 8000,
+          "rarity": 50
+        }
+      },
+      "mapSha256": "edfc21299112bc59e8ef7047b1a18b28cfc51cd019b0d9af4efbb584646fcc86"
+    },
+    {
+      "map": "TUM-bank-47.vmap",
+      "name": "TUM Bridge Fixture bank-47",
+      "kind": "bank",
+      "sourceId": "47",
+      "targetSubtype": "tum-era:eraBank47",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 14,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Sorceress Castle",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB15.def",
+            "mask": [
+              "VVVVV",
+              "VVVVV",
+              "VBBBV",
+              "VBBAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "grass"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank47MixedLayout",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:pixie",
+                "amount": 128
+              },
+              {
+                "type": "core:dwarf",
+                "amount": 32
+              },
+              {
+                "type": "core:woodElf",
+                "amount": 16
+              },
+              {
+                "type": "core:monk",
+                "amount": 8
+              },
+              {
+                "type": "core:unicorn",
+                "amount": 4
+              },
+              {
+                "type": "core:firebird",
+                "amount": 2
+              }
+            ],
+            "resources": {
+              "wood": 20,
+              "mercury": 10,
+              "ore": 20,
+              "sulfur": 10,
+              "crystal": 10,
+              "gems": 10,
+              "gold": 10000
+            },
+            "artifacts": [
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "visit": [
+            "SORCENTR.wav"
+          ],
+          "ambient": [
+            "SORCERESSLOOP.wav"
+          ]
+        },
+        "rmg": {
+          "value": 10000,
+          "rarity": 100
+        }
+      },
+      "mapSha256": "fbcee719705b1c607eeb9a76e9c4412c9d1fffb0bb87ec3ad2f27b4d96b4830e"
+    },
+    {
+      "map": "TUM-bank-52.vmap",
+      "name": "TUM Bridge Fixture bank-52",
+      "kind": "bank",
+      "sourceId": "52",
+      "targetSubtype": "tum-era:eraBank52",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 14,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Dreadnought Tower",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB20.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "dirt",
+              "subterra"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank52MixedLayout",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:dreadKnight",
+                "amount": 7,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:dreadKnight",
+                "amount": 7
+              },
+              {
+                "type": "core:dreadKnight",
+                "amount": 7
+              },
+              {
+                "type": "core:dreadKnight",
+                "amount": 7
+              }
+            ],
+            "resources": {
+              "mercury": 10,
+              "gold": 7500
+            },
+            "artifacts": [
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "MAJOR"
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 8000,
+          "rarity": 100
+        }
+      },
+      "mapSha256": "ad12f1ddb5e056b4b31bcb66d2b443d2c7be15645e930fcfa25e2427eb69762e"
+    },
+    {
+      "map": "TUM-bank-62.vmap",
+      "name": "TUM Bridge Fixture bank-62",
+      "kind": "bank",
+      "sourceId": "62",
+      "targetSubtype": "tum-era:eraBank62",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Elemental Stockpile",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB30.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:airElemental",
+                "amount": 10
+              },
+              {
+                "type": "core:waterElemental",
+                "amount": 10
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 10
+              },
+              {
+                "type": "core:earthElemental",
+                "amount": 10
+              }
+            ],
+            "resources": {
+              "wood": 5,
+              "mercury": 5,
+              "ore": 5,
+              "sulfur": 5,
+              "crystal": 5,
+              "gems": 5
+            }
+          }
+        ],
+        "rmg": {
+          "value": 6000,
+          "rarity": 100
+        }
+      },
+      "mapSha256": "022f93a776d331525efe1fa69d1a0fb11e4061016ac626003978d95eb6b347dc"
+    },
+    {
+      "map": "TUM-bank-63.vmap",
+      "name": "TUM Bridge Fixture bank-63",
+      "kind": "bank",
+      "sourceId": "63",
+      "targetSubtype": "tum-era:eraBank63",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Gargoyle Stonevault",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB31.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:stoneGargoyle",
+                "amount": 30,
+                "upgradeChance": 31
+              },
+              {
+                "type": "core:stoneGargoyle",
+                "amount": 30
+              },
+              {
+                "type": "core:stoneGargoyle",
+                "amount": 30
+              },
+              {
+                "type": "core:ironGolem",
+                "amount": 10
+              },
+              {
+                "type": "core:ironGolem",
+                "amount": 10
+              }
+            ],
+            "resources": {
+              "ore": 30,
+              "gold": 2500
+            }
+          }
+        ],
+        "rmg": {
+          "value": 6000,
+          "rarity": 100
+        }
+      },
+      "mapSha256": "4fa3535589817d56c3e856de55978125206aa92f9c4443e89c0412aab8fe4326"
+    },
+    {
+      "map": "TUM-bank-43.vmap",
+      "name": "TUM Bridge Fixture bank-43",
+      "kind": "bank",
+      "sourceId": "43",
+      "targetSubtype": "tum-era:eraBank43",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 14,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "City of the Dead",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB11.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VBAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:skeletonWarrior",
+                "amount": 25
+              },
+              {
+                "type": "core:zombieLord",
+                "amount": 15
+              },
+              {
+                "type": "core:wraith",
+                "amount": 10
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 5
+              },
+              {
+                "type": "core:skeletonWarrior",
+                "amount": 25
+              },
+              {
+                "type": "core:zombieLord",
+                "amount": 15
+              },
+              {
+                "type": "core:wraith",
+                "amount": 10
+              }
+            ],
+            "resources": {
+              "gold": 5000,
+              "wake-of-gods.mithril:mithril": 2
+            },
+            "spells": [
+              {
+                "anyOf": [
+                  "core:blind",
+                  "core:deathRipple",
+                  "core:disguise",
+                  "core:disruptingRay",
+                  "core:fireWall",
+                  "core:fortune",
+                  "core:iceBolt",
+                  "core:lightningBolt",
+                  "core:precision",
+                  "core:protectAir",
+                  "core:quicksand",
+                  "core:removeObstacle",
+                  "core:scuttleBoat",
+                  "core:visions",
+                  "core:weakness"
+                ]
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 5200,
+          "rarity": 100
+        }
+      },
+      "mapSha256": "f5034e93ec5a4e93a47e0764201822ba4ec65d6deec9109631d18c6597b467ff"
+    },
+    {
+      "map": "TUM-bank-44.vmap",
+      "name": "TUM Bridge Fixture bank-44",
+      "kind": "bank",
+      "sourceId": "44",
+      "targetSubtype": "tum-era:eraBank44",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 14,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Sacred Temple",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB12.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:zealot",
+                "amount": 15,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:zealot",
+                "amount": 15
+              },
+              {
+                "type": "core:zealot",
+                "amount": 15
+              },
+              {
+                "type": "core:zealot",
+                "amount": 15
+              },
+              {
+                "type": "core:zealot",
+                "amount": 15
+              }
+            ],
+            "resources": {
+              "gold": 2500,
+              "wake-of-gods.mithril:mithril": 2
+            },
+            "spells": [
+              {
+                "anyOf": [
+                  "core:blind",
+                  "core:deathRipple",
+                  "core:disguise",
+                  "core:disruptingRay",
+                  "core:fireWall",
+                  "core:fortune",
+                  "core:iceBolt",
+                  "core:lightningBolt",
+                  "core:precision",
+                  "core:protectAir",
+                  "core:quicksand",
+                  "core:removeObstacle",
+                  "core:scuttleBoat",
+                  "core:visions",
+                  "core:weakness"
+                ]
+              }
+            ],
+            "artifacts": [
+              {
+                "class": "TREASURE"
+              },
+              {
+                "class": "MINOR"
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 7000,
+          "rarity": 100
+        }
+      },
+      "mapSha256": "881e1464f9e5dc66ae8ab4e41799ab90d9b5646f493ec03a799ee24876d4c73e"
+    },
+    {
+      "map": "TUM-dwelling-20_3.vmap",
+      "name": "TUM Bridge Fixture dwelling-20_3",
+      "kind": "dwelling",
+      "sourceId": "20_3",
+      "targetSubtype": "tum-era:eraDwelling20_3",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 14,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Laboratory",
+        "creatures": [
+          [
+            "tum-era:redBonesDragon"
+          ],
+          [
+            "wake-of-gods.level8units:bloodDragon"
+          ],
+          [
+            "core:ghostDragon"
+          ],
+          [
+            "core:boneDragon"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:redBonesDragon",
+            "amount": 3
+          },
+          {
+            "type": "wake-of-gods.level8units:bloodDragon",
+            "amount": 3
+          },
+          {
+            "type": "core:ghostDragon",
+            "amount": 3
+          },
+          {
+            "type": "core:boneDragon",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw31.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 29662,
+          "rarity": 300
+        }
+      },
+      "mapSha256": "240eee50b4d5f089b6652e3201217fe9bb56a689fd21007d9d70d73d887d682e"
+    },
+    {
+      "map": "TUM-dwelling-17_121.vmap",
+      "name": "TUM Bridge Fixture dwelling-17_121",
+      "kind": "dwelling",
+      "sourceId": "17_121",
+      "targetSubtype": "tum-era:eraDwelling17_121",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 14,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Frigate of the fallen",
+        "creatures": [
+          [
+            "tum-era:eraCreature287"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw21.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 2177,
+          "rarity": 40,
+          "neutralAllowed": true
+        }
+      },
+      "mapSha256": "67b5ef165cded1927165506a71af03bddeb25b745a62baa5613dae1bd0d6e033"
+    },
+    {
+      "map": "TUM-dwelling-17_125.vmap",
+      "name": "TUM Bridge Fixture dwelling-17_125",
+      "kind": "dwelling",
+      "sourceId": "17_125",
+      "targetSubtype": "tum-era:eraDwelling17_125",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Cursed Temple of Archers",
+        "creatures": [
+          [
+            "tum-era:eraCreature295"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw26.def",
+            "mask": [
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 1020,
+          "rarity": 40,
+          "neutralAllowed": true
+        }
+      },
+      "mapSha256": "36e71f8c7b8f0a70bf64f202ffde391335488fa99aaa371ce7d55d2af3cbc298"
+    },
+    {
+      "map": "TUM-dwelling-17_127.vmap",
+      "name": "TUM Bridge Fixture dwelling-17_127",
+      "kind": "dwelling",
+      "sourceId": "17_127",
+      "targetSubtype": "tum-era:eraDwelling17_127",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Temple of Souls",
+        "creatures": [
+          [
+            "tum-era:eraCreature297"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw28.def",
+            "mask": [
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 1610,
+          "rarity": 40,
+          "neutralAllowed": true
+        }
+      },
+      "mapSha256": "b54ff795daf222a4beedba4acce6b296ab264be82fdec9cbceeadcb2d3dd65d0"
+    },
+    {
+      "map": "TUM-dwelling-17_130.vmap",
+      "name": "TUM Bridge Fixture dwelling-17_130",
+      "kind": "dwelling",
+      "sourceId": "17_130",
+      "targetSubtype": "tum-era:eraDwelling17_130",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Defunct Treetop Tower",
+        "creatures": [
+          [
+            "tum-era:eraCreature299"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw33.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 2340,
+          "rarity": 40
+        }
+      },
+      "mapSha256": "a187140fa9c146d1f75e73309d12c4741e45f5e1339dad917855c5724277acea"
+    },
+    {
+      "map": "TUM-dwelling-17_164.vmap",
+      "name": "TUM Bridge Fixture dwelling-17_164",
+      "kind": "dwelling",
+      "sourceId": "17_164",
+      "targetSubtype": "tum-era:eraDwelling17_164",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 14,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Tomb of Angels",
+        "creatures": [
+          [
+            "tum-era:eraCreature357"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature357",
+            "amount": 6
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw67.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 10038,
+          "rarity": 40,
+          "neutralAllowed": true
+        }
+      },
+      "mapSha256": "884dd4f0f780ceae2602e04a14c19fcc1c35ae51b9714682b3a530451c3e2399"
+    },
+    {
+      "map": "TUM-dwelling-17_165.vmap",
+      "name": "TUM Bridge Fixture dwelling-17_165",
+      "kind": "dwelling",
+      "sourceId": "17_165",
+      "targetSubtype": "tum-era:eraDwelling17_165",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 14,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Temple of the Ancients",
+        "creatures": [
+          [
+            "tum-era:eraCreature361"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw68.def",
+            "mask": [
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 2352,
+          "rarity": 40
+        }
+      },
+      "mapSha256": "c20dbeee6f947b66f7b972051f82cfa26ebacb6a49b2bfa299953501d4d30ba8"
+    },
+    {
+      "map": "TUM-bank-53.vmap",
+      "name": "TUM Bridge Fixture bank-53",
+      "kind": "bank",
+      "sourceId": "53",
+      "targetSubtype": "tum-era:eraBank53",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Heaven's Door",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB21.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBBV",
+              "VVVA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank53MixedLayout",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:archangel",
+                "amount": 20,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:archangel",
+                "amount": 20
+              },
+              {
+                "type": "core:archangel",
+                "amount": 20
+              },
+              {
+                "type": "core:archangel",
+                "amount": 20
+              }
+            ],
+            "resources": {
+              "gems": 20,
+              "gold": 15000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:cherub",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 10000,
+          "rarity": 100
+        }
+      },
+      "mapSha256": "57f17930fbe7b8e9560bcdba5f13d9a3610f90126e6831a2cc1a1aae958c9708"
+    },
+    {
+      "map": "TUM-bank-56.vmap",
+      "name": "TUM Bridge Fixture bank-56",
+      "kind": "bank",
+      "sourceId": "56",
+      "targetSubtype": "tum-era:eraBank56",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Sins Generator",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB24.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VVBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:archDevil",
+                "amount": 21,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:archDevil",
+                "amount": 21
+              },
+              {
+                "type": "core:archDevil",
+                "amount": 21
+              },
+              {
+                "type": "core:archDevil",
+                "amount": 21
+              }
+            ],
+            "resources": {
+              "mercury": 20,
+              "gold": 10000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:antichrist",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 10000,
+          "rarity": 100
+        }
+      },
+      "mapSha256": "073ae6d6e7f807399895bb46cb17c97c2b311d23372f321bb79f3aa65fecf162"
+    },
+    {
+      "map": "TUM-bank-57.vmap",
+      "name": "TUM Bridge Fixture bank-57",
+      "kind": "bank",
+      "sourceId": "57",
+      "targetSubtype": "tum-era:eraBank57",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Dragon Mausoleum",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB25.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VVBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank57MixedLayout",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:ghostDragon",
+                "amount": 25,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:ghostDragon",
+                "amount": 25
+              },
+              {
+                "type": "core:ghostDragon",
+                "amount": 25
+              },
+              {
+                "type": "core:ghostDragon",
+                "amount": 25
+              }
+            ],
+            "resources": {
+              "mercury": 20,
+              "gold": 12000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:redBonesDragon",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 10000,
+          "rarity": 100
+        }
+      },
+      "mapSha256": "a0c2a95e4193031c7eb4bfde21ac7267cbbbe5264da144e1257ef4bc0e205eb5"
+    },
+    {
+      "map": "TUM-bank-61.vmap",
+      "name": "TUM Bridge Fixture bank-61",
+      "kind": "bank",
+      "sourceId": "61",
+      "targetSubtype": "tum-era:eraBank61",
+      "targetVisitablePosition": {
+        "x": 13,
+        "y": 11,
+        "l": 0
+      },
+      "targetAnchorPosition": {
+        "x": 14,
+        "y": 11,
+        "l": 0
+      },
+      "expectedDefinition": {
+        "name": "Supreme Pyre",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB29.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBBV",
+              "VVAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank61MixedLayout",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:phoenix",
+                "amount": 18,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:phoenix",
+                "amount": 18
+              },
+              {
+                "type": "core:phoenix",
+                "amount": 18
+              },
+              {
+                "type": "core:phoenix",
+                "amount": 18
+              }
+            ],
+            "resources": {
+              "crystal": 20,
+              "gold": 12000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:divinePhoenix",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 10000,
+          "rarity": 100
+        }
+      },
+      "mapSha256": "1286a468294b0620dc5ea380fb67c0c3aa1e4ef51e35b65e2dbcc61bdb98cdc8"
+    }
+  ]
+}

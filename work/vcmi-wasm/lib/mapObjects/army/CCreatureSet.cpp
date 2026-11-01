@@ -540,10 +540,13 @@ std::unique_ptr<CStackInstance> CCreatureSet::detachStack(const SlotID & slot)
 	return ret;
 }
 
-void CCreatureSet::setStackType(const SlotID & slot, const CreatureID & type)
+void CCreatureSet::setStackType(const SlotID & slot, const CreatureID & type, bool preserveExperience)
 {
 	assert(hasStackAtSlot(slot));
-	stacks[slot]->setType(type);
+	if(preserveExperience)
+		stacks[slot]->setType(type.toCreature(), true);
+	else
+		stacks[slot]->setType(type);
 	armyChanged();
 }
 

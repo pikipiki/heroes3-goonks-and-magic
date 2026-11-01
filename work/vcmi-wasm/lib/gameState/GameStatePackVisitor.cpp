@@ -716,7 +716,7 @@ void GameStatePackVisitor::visitSetStackType(SetStackType & pack)
 	if(!srcObj)
 		throw std::runtime_error("SetStackType: invalid army object " + std::to_string(pack.army.getNum()) + ", possible game state corruption.");
 
-	srcObj->setStackType(pack.slot, pack.type);
+	srcObj->setStackType(pack.slot, pack.type, pack.preserveExperience);
 }
 
 void GameStatePackVisitor::visitEraseStack(EraseStack & pack)
@@ -1255,6 +1255,9 @@ void GameStatePackVisitor::visitBattleTriggerEffect(BattleTriggerEffect & pack)
 				b->val = pack.val;
 			break;
 		}
+        // Source c selectors announce rejection only; no authoritative state changes.
+        case BonusType::MAGIC_MIRROR:
+        case BonusType::MAGIC_RESISTANCE:
 		case BonusType::ENCHANTER:
 		case BonusType::MORALE:
 			break;

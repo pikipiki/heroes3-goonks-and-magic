@@ -1,0 +1,6666 @@
+{
+  "engineLabel": "dcfabfb51fda81ef705972e04788ea8801731fc9548115699a68e070172f0277",
+  "startedAt": "2026-11-01T07:01:41.873Z",
+  "cases": [
+    {
+      "town": "castle",
+      "sourceBuilding": 77,
+      "nativeBuilding": 57,
+      "errors": [],
+      "nativeErrors": [],
+      "townState": {
+        "armies": [
+          {
+            "id": 0,
+            "name": "Garnison",
+            "slots": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": true,
+        "buildings": [
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 0,
+            "key": "core:mageGuild1",
+            "name": "Mage Guild Level 1",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              4,
+              5,
+              4,
+              4,
+              4,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 1,
+            "key": "core:mageGuild2",
+            "name": "Mage Guild Level 2",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              6,
+              5,
+              6,
+              6,
+              6,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 2,
+            "key": "core:mageGuild3",
+            "name": "Mage Guild Level 3",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              8,
+              5,
+              8,
+              8,
+              8,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 3,
+            "key": "core:mageGuild4",
+            "name": "Mage Guild Level 4",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              500,
+              0
+            ],
+            "description": "The Tavern increases morale for troops defending the city.",
+            "id": 5,
+            "key": "core:tavern",
+            "name": "Tavern",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              20,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Shipyard allows you to purchase ships.",
+            "id": 6,
+            "key": "core:shipyard",
+            "name": "Shipyard",
+            "state": 1
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              20,
+              0,
+              20,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Fort provides your town with defensive walls.",
+            "id": 7,
+            "key": "core:fort",
+            "name": "Fort",
+            "state": 4
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2500,
+              0
+            ],
+            "description": "Including a 50% increase to base creature growth, the Citadel adds a keep, and other terrain obstacles, to a town's defenses.",
+            "id": 8,
+            "key": "core:citadel",
+            "name": "Citadel",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              10,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Castle adds two arrow towers, fortifies your town's defenses, and doubles base creature growth.",
+            "id": 9,
+            "key": "core:castle",
+            "name": "Castle",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "description": "The Village Hall allows you to purchase town structures and earns your kingdom 500 gold per day.",
+            "id": 10,
+            "key": "core:villageHall",
+            "name": "Village Hall",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2500,
+              0
+            ],
+            "description": "The Town Hall allows you to purchase town structures and earns your kingdom 1000 gold per day.",
+            "id": 11,
+            "key": "core:townHall",
+            "name": "Town Hall",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The City Hall allows you to purchase town structures and earns your kingdom 2000 gold per day.",
+            "id": 12,
+            "key": "core:cityHall",
+            "name": "City Hall",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              10000,
+              0
+            ],
+            "description": "The Capitol earns your kingdom 4000 gold per day.",
+            "id": 13,
+            "key": "core:capitol",
+            "name": "Capitol",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              500,
+              0
+            ],
+            "description": "With the Marketplace, you can buy and sell resources (exchange rates increase with each Marketplace you own).",
+            "id": 14,
+            "key": "core:marketplace",
+            "name": "Marketplace",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Resource Silo provides you with an additional +1 wood and +1 ore each day.",
+            "id": 15,
+            "key": "core:resourceSilo",
+            "name": "Resource Silo",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Blacksmith provides your armies with Ballistas.",
+            "id": 16,
+            "key": "core:blacksmith",
+            "name": "Blacksmith",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              10,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The lighthouse grants additional mobility to any ships you control.",
+            "id": 17,
+            "key": "core:special1",
+            "name": "Lighthouse",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Griffin Bastion increases Griffin production by 3 per week.",
+            "id": 18,
+            "key": "core:horde1",
+            "name": "Griffin Bastion",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Griffin Bastion increases Royal Griffin production by 3 per week.",
+            "id": 19,
+            "key": "core:horde1Upgr",
+            "name": "Griffin Bastion",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "The Shipyard allows you to purchase ships.",
+            "id": 20,
+            "key": "core:ship",
+            "name": "Shipyard",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Stables increase the land movement rate of any visiting hero.",
+            "id": 21,
+            "key": "core:special2",
+            "name": "Stables",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              500,
+              0
+            ],
+            "description": "During a siege, the Brotherhood of the Sword increases troop morale by +2.",
+            "id": 22,
+            "key": "core:special3",
+            "name": "Brotherhood of the Sword",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Griffin Bastion increases Cesar Griffin production by 3 per week.",
+            "id": 24,
+            "key": "core:horde2",
+            "name": "{Griffin Bastion}",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "The presence of the Colossus increases weekly creature generation by 50%, provides your kingdom with an additional 5000 gold each day, and increases the morale of all allied heroes by +2.",
+            "id": 26,
+            "key": "core:grail",
+            "name": "Colossus",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "Faith mark unlocks 3rd level structures to build.",
+            "id": 29,
+            "key": "third-upgrades:extraCapitol",
+            "name": "Faith",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              10,
+              0,
+              0,
+              0,
+              500,
+              0
+            ],
+            "description": "The Guardhouse allows you to recruit Pikemen.",
+            "id": 30,
+            "key": "core:dwellingLvl1",
+            "name": "Guardhouse",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Archers' Tower allows you to recruit Archers.",
+            "id": 31,
+            "key": "core:dwellingLvl2",
+            "name": "Archers' Tower",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Griffin Tower allows you to recruit Griffins.",
+            "id": 32,
+            "key": "core:dwellingLvl3",
+            "name": "Griffin Tower",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Barracks allow you to recruit Swordsmen.",
+            "id": 33,
+            "key": "core:dwellingLvl4",
+            "name": "Barracks",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              2,
+              5,
+              2,
+              2,
+              2,
+              3000,
+              0
+            ],
+            "description": "The Monastery allows you to recruit Monks.",
+            "id": 34,
+            "key": "core:dwellingLvl5",
+            "name": "Monastery",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              20,
+              0,
+              0,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Training Grounds allow you to recruit Cavaliers.",
+            "id": 35,
+            "key": "core:dwellingLvl6",
+            "name": "Training Grounds",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              0,
+              10,
+              0,
+              10,
+              10,
+              10,
+              20000,
+              0
+            ],
+            "description": "The Portal of Glory allows you to recruit Angels.",
+            "id": 36,
+            "key": "core:dwellingLvl7",
+            "name": "Portal of Glory",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Guardhouse allows you to recruit Halberdiers.",
+            "id": 37,
+            "key": "core:dwellingUpLvl1",
+            "name": "Upg. Guardhouse",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Archers' Tower allows you to recruit Marksmen.",
+            "id": 38,
+            "key": "core:dwellingUpLvl2",
+            "name": "Upg. Archers' Tower",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Griffin Tower allows you to recruit Royal Griffins.",
+            "id": 39,
+            "key": "core:dwellingUpLvl3",
+            "name": "Upg. Griffin Tower",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              5,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Barracks allow you to recruit Crusaders.",
+            "id": 40,
+            "key": "core:dwellingUpLvl4",
+            "name": "Upg. Barracks",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1000,
+              0
+            ],
+            "description": "The Monastery allows you to recruit Zealots.",
+            "id": 41,
+            "key": "core:dwellingUpLvl5",
+            "name": "Upg. Monastery",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              0,
+              0,
+              0,
+              0,
+              3000,
+              0
+            ],
+            "description": "The Training Grounds allow you to recruit Champions.",
+            "id": 42,
+            "key": "core:dwellingUpLvl6",
+            "name": "Upg. Training Grounds",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              0,
+              10,
+              0,
+              10,
+              10,
+              10,
+              20000,
+              0
+            ],
+            "description": "The Portal of Glory allows you to recruit Arch Angels.",
+            "id": 43,
+            "key": "core:dwellingUpLvl7",
+            "name": "Upg. Portal of Glory",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              15,
+              0,
+              0,
+              0,
+              1500,
+              0
+            ],
+            "description": "The Guardhouse allows you to recruit Royal Halberdiers.",
+            "id": 44,
+            "key": "third-upgrades:dwellingUp2Lvl1",
+            "name": "{Adv. Guardhouse}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              10,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Archers' Tower allows you to recruit Crossbowmen.",
+            "id": 45,
+            "key": "third-upgrades:dwellingUp2Lvl2",
+            "name": "{Adv. Archers' Tower}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              10,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Griffin Tower allows you to recruit Cesar Griffins.",
+            "id": 46,
+            "key": "third-upgrades:dwellingUp2Lvl3",
+            "name": "{Adv. Griffin Tower}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              10,
+              0,
+              5,
+              0,
+              4000,
+              0
+            ],
+            "description": "The Barracks allow you to recruit Inquisitors.",
+            "id": 47,
+            "key": "third-upgrades:dwellingUp2Lvl4",
+            "name": "{Adv. Barracks}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              7,
+              4,
+              7,
+              4,
+              4,
+              4,
+              4000,
+              0
+            ],
+            "description": "The Monastery allows you to recruit High Priests.",
+            "id": 48,
+            "key": "third-upgrades:dwellingUp2Lvl5",
+            "name": "{Adv. Monastery}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              30,
+              0,
+              0,
+              0,
+              0,
+              0,
+              8000,
+              0
+            ],
+            "description": "The Training Grounds allow you to recruit Holy Champions.",
+            "id": 49,
+            "key": "third-upgrades:dwellingUp2Lvl6",
+            "name": "{Adv. Training Grounds}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              0,
+              20,
+              0,
+              20,
+              20,
+              20,
+              40000,
+              0
+            ],
+            "description": "The Portal of Glory allows you to recruit Supreme Archangels.",
+            "id": 50,
+            "key": "third-upgrades:dwellingUp2Lvl7",
+            "name": "{Adv. Portal of Glory}",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              15,
+              0,
+              15,
+              15,
+              15,
+              30000,
+              0
+            ],
+            "description": "Allows recruitment and upgrades of Cherubim.",
+            "id": 57,
+            "key": "tum-era:dwellingUp3Lvl7",
+            "name": "Upg. Portal of Splendor",
+            "state": 8
+          }
+        ],
+        "cheatReady": true,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "town",
+        "musicVolume": 88,
+        "recruits": [
+          {
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              3000,
+              0
+            ],
+            "count": 1,
+            "icon": "",
+            "id": 12,
+            "level": 6,
+            "name": "Angel",
+            "variant": 0
+          },
+          {
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              3,
+              5000,
+              0
+            ],
+            "count": 1,
+            "icon": "",
+            "id": 13,
+            "level": 6,
+            "name": "Archangel",
+            "variant": 1
+          },
+          {
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              4,
+              10000,
+              0
+            ],
+            "count": 1,
+            "icon": "creatures/supremeArchangel/CPrL150Z",
+            "id": 185,
+            "level": 6,
+            "name": "Supreme Archangel",
+            "variant": 2
+          }
+        ],
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "townFaction": "core:castle",
+        "townName": "Goonkbourg",
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "mobile57": {
+        "allowed": false,
+        "built": false,
+        "cost": [
+          0,
+          15,
+          0,
+          15,
+          15,
+          15,
+          30000,
+          0
+        ],
+        "description": "Allows recruitment and upgrades of Cherubim.",
+        "id": 57,
+        "key": "tum-era:dwellingUp3Lvl7",
+        "name": "Upg. Portal of Splendor",
+        "state": 8
+      },
+      "mobileListHas57": true,
+      "hallState": {
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "dialog",
+        "musicVolume": 88,
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "card": {
+        "x": 594,
+        "y": 491
+      },
+      "detailState": {
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "dialog",
+        "musicVolume": 88,
+        "rect": {
+          "h": 520,
+          "w": 395,
+          "x": 203,
+          "y": 40
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "resourceReads": [
+        "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/castle-building77.png",
+        "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/castle-building77.png"
+      ],
+      "passed": true
+    },
+    {
+      "town": "inferno",
+      "sourceBuilding": 77,
+      "nativeBuilding": 57,
+      "errors": [],
+      "nativeErrors": [],
+      "townState": {
+        "armies": [
+          {
+            "id": 0,
+            "name": "Garnison",
+            "slots": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": true,
+        "buildings": [
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 0,
+            "key": "core:mageGuild1",
+            "name": "Mage Guild Level 1",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              4,
+              5,
+              4,
+              4,
+              4,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 1,
+            "key": "core:mageGuild2",
+            "name": "Mage Guild Level 2",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              6,
+              5,
+              6,
+              6,
+              6,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 2,
+            "key": "core:mageGuild3",
+            "name": "Mage Guild Level 3",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              8,
+              5,
+              8,
+              8,
+              8,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 3,
+            "key": "core:mageGuild4",
+            "name": "Mage Guild Level 4",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              10,
+              5,
+              10,
+              10,
+              10,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 4,
+            "key": "core:mageGuild5",
+            "name": "Mage Guild Level 5",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              500,
+              0
+            ],
+            "description": "The Tavern increases morale for troops defending the city.",
+            "id": 5,
+            "key": "core:tavern",
+            "name": "Tavern",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              20,
+              0,
+              20,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Fort provides your town with defensive walls.",
+            "id": 7,
+            "key": "core:fort",
+            "name": "Fort",
+            "state": 4
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2500,
+              0
+            ],
+            "description": "Including a 50% increase to base creature growth, the Citadel adds a keep, and other terrain obstacles, to a town's defenses.",
+            "id": 8,
+            "key": "core:citadel",
+            "name": "Citadel",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              10,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Castle adds two arrow towers, fortifies your town's defenses, and doubles base creature growth.",
+            "id": 9,
+            "key": "core:castle",
+            "name": "Castle",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "description": "The Village Hall allows you to purchase town structures and earns your kingdom 500 gold per day.",
+            "id": 10,
+            "key": "core:villageHall",
+            "name": "Village Hall",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2500,
+              0
+            ],
+            "description": "The Town Hall allows you to purchase town structures and earns your kingdom 1000 gold per day.",
+            "id": 11,
+            "key": "core:townHall",
+            "name": "Town Hall",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The City Hall allows you to purchase town structures and earns your kingdom 2000 gold per day.",
+            "id": 12,
+            "key": "core:cityHall",
+            "name": "City Hall",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              10000,
+              0
+            ],
+            "description": "The Capitol earns your kingdom 4000 gold per day.",
+            "id": 13,
+            "key": "core:capitol",
+            "name": "Capitol",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              500,
+              0
+            ],
+            "description": "With the Marketplace, you can buy and sell resources (exchange rates increase with each Marketplace you own).",
+            "id": 14,
+            "key": "core:marketplace",
+            "name": "Marketplace",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Resource Silo provides you with an additional +1 mercury each day.",
+            "id": 15,
+            "key": "core:resourceSilo",
+            "name": "Resource Silo",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Blacksmith provides your armies with Ammo Carts.",
+            "id": 16,
+            "key": "core:blacksmith",
+            "name": "Blacksmith",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Birthing Pools increase Vermins production by 8 per week.",
+            "id": 17,
+            "key": "third-upgrades:horde4",
+            "name": "{Birthing Pools}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Birthing Pools increase Imp production by 8 per week.",
+            "id": 18,
+            "key": "core:horde1",
+            "name": "Birthing Pools",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Birthing Pools increase Familiar production by 8 per week.",
+            "id": 19,
+            "key": "core:horde1Upgr",
+            "name": "Birthing Pools",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Cages increase Astral Cerberi by 3 per week.",
+            "id": 20,
+            "key": "third-upgrades:horde3",
+            "name": "{Cages}",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              5,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Brimstone Stormclouds boost a garrison hero's power by +2 during any siege defense.",
+            "id": 21,
+            "key": "core:special2",
+            "name": "Brimstone Stormclouds",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              10000,
+              0
+            ],
+            "description": "Allows travel between Inferno towns containing Castle Gates. Destination town must be unoccupied.",
+            "id": 22,
+            "key": "core:special3",
+            "name": "Castle Gate",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Order of Fire increases the Power skill of any visiting hero by +1.",
+            "id": 23,
+            "key": "core:special4",
+            "name": "Order of Fire",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Cages increase Hell Hound production by 3 per week.",
+            "id": 24,
+            "key": "core:horde2",
+            "name": "Cages",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Cages increase Cerberus production by 3 per week.",
+            "id": 25,
+            "key": "core:horde2Upgr",
+            "name": "Cages",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "The presence of the Deity of Fire increases weekly creature generation by 50% and provides your empire with an additional 5000 gold each day.  Every week hereafter will be a Week of the Imp.",
+            "id": 26,
+            "key": "core:grail",
+            "name": "Deity of Fire",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "Chaos mark unlocks 3rd level structures to build.",
+            "id": 29,
+            "key": "third-upgrades:extraCapitol",
+            "name": "Chaos",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              300,
+              0
+            ],
+            "description": "The Imp Crucible allows you to recruit Imps.",
+            "id": 30,
+            "key": "core:dwellingLvl1",
+            "name": "Imp Crucible",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Hall of Sins allows you to recruit Gogs.",
+            "id": 31,
+            "key": "core:dwellingLvl2",
+            "name": "Hall of Sins",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1500,
+              0
+            ],
+            "description": "The Kennels allow you to recruit Hell Hounds.",
+            "id": 32,
+            "key": "core:dwellingLvl3",
+            "name": "Kennels",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Demon Gate allows you to recruit Demons.",
+            "id": 33,
+            "key": "core:dwellingLvl4",
+            "name": "Demon Gate",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              3000,
+              0
+            ],
+            "description": "The Hell Hole allows you to recruit Pit Fiends.",
+            "id": 34,
+            "key": "core:dwellingLvl5",
+            "name": "Hell Hole",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              3,
+              10,
+              3,
+              0,
+              3,
+              4000,
+              0
+            ],
+            "description": "The Fire Lake allows you to recruit Efreet.",
+            "id": 35,
+            "key": "core:dwellingLvl6",
+            "name": "Fire Lake",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              10,
+              20,
+              10,
+              0,
+              0,
+              0,
+              15000,
+              0
+            ],
+            "description": "The Forsaken Palace allows you to recruit Devils.",
+            "id": 36,
+            "key": "core:dwellingLvl7",
+            "name": "Forsaken Palace",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Imp Crucible allows you to recruit Familiars.",
+            "id": 37,
+            "key": "core:dwellingUpLvl1",
+            "name": "Upg. Imp Crucible",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              5,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Hall of Sins allows you to recruit Magogs.",
+            "id": 38,
+            "key": "core:dwellingUpLvl2",
+            "name": "Upg. Hall of Sins",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              5,
+              0,
+              0,
+              1500,
+              0
+            ],
+            "description": "The Kennels allow you to recruit Cerberi.",
+            "id": 39,
+            "key": "core:dwellingUpLvl3",
+            "name": "Upg. Kennels",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Demon Gate allows you to recruit Horned Demons.",
+            "id": 40,
+            "key": "core:dwellingUpLvl4",
+            "name": "Upg. Demon Gate",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              5,
+              0,
+              5,
+              0,
+              0,
+              3000,
+              0
+            ],
+            "description": "The Hell Hole allows you to recruit Pit Lords.",
+            "id": 41,
+            "key": "core:dwellingUpLvl5",
+            "name": "Upg. Hell Hole",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              5,
+              5,
+              5,
+              0,
+              5,
+              3000,
+              0
+            ],
+            "description": "The Fire Lake allows you to recruit Efreet Sultans.",
+            "id": 42,
+            "key": "core:dwellingUpLvl6",
+            "name": "Upg. Fire Lake",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              5,
+              20,
+              5,
+              0,
+              0,
+              0,
+              20000,
+              0
+            ],
+            "description": "The Forsaken Palace allows you to recruit Arch Devils.",
+            "id": 43,
+            "key": "core:dwellingUpLvl7",
+            "name": "Upg. Forsaken Palace",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1300,
+              0
+            ],
+            "description": "The Imp Crucible allows you to recruit Vermins.",
+            "id": 44,
+            "key": "third-upgrades:dwellingUp2Lvl1",
+            "name": "{Adv. Imp Crucible}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              5,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Hall of Sins allows you to recruit Winged Magogs.",
+            "id": 45,
+            "key": "third-upgrades:dwellingUp2Lvl2",
+            "name": "{Adv. Hall of Sins}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              0,
+              5,
+              0,
+              0,
+              3000,
+              0
+            ],
+            "description": "The Kennels allow you to recruit Astral Cerberi.",
+            "id": 46,
+            "key": "third-upgrades:dwellingUp2Lvl3",
+            "name": "{Adv. Kennels}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              10,
+              0,
+              0,
+              0,
+              4000,
+              0
+            ],
+            "description": "The Demon Gate allows you to recruit Sharp-Horned Demons.",
+            "id": 47,
+            "key": "third-upgrades:dwellingUp2Lvl4",
+            "name": "{Adv. Demon Gate}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              5,
+              0,
+              5,
+              0,
+              0,
+              6000,
+              0
+            ],
+            "description": "The Hell Hole allows you to recruit Pit Masters.",
+            "id": 48,
+            "key": "third-upgrades:dwellingUp2Lvl5",
+            "name": "{Adv. Hell Hole}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              8,
+              15,
+              8,
+              0,
+              8,
+              7000,
+              0
+            ],
+            "description": "The Fire Lake allows you to recruit Efreeti Rajahs.",
+            "id": 49,
+            "key": "third-upgrades:dwellingUp2Lvl6",
+            "name": "{Adv. Fire Lake}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              15,
+              40,
+              15,
+              0,
+              0,
+              0,
+              35000,
+              0
+            ],
+            "description": "The Forsaken Palace allows you to recruit Hell Barons.",
+            "id": 50,
+            "key": "third-upgrades:dwellingUp2Lvl7",
+            "name": "{Adv. Forsaken Palace}",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              25,
+              10,
+              0,
+              0,
+              0,
+              25000,
+              0
+            ],
+            "description": "Allows recruitment and upgrades of Antichrists.",
+            "id": 57,
+            "key": "tum-era:dwellingUp3Lvl7",
+            "name": "Upg. Unholy Palace",
+            "state": 8
+          }
+        ],
+        "cheatReady": true,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "town",
+        "musicVolume": 88,
+        "recruits": [
+          {
+            "cost": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              2700,
+              0
+            ],
+            "count": 1,
+            "icon": "",
+            "id": 54,
+            "level": 6,
+            "name": "Devil",
+            "variant": 0
+          },
+          {
+            "cost": [
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              4500,
+              0
+            ],
+            "count": 1,
+            "icon": "",
+            "id": 55,
+            "level": 6,
+            "name": "Arch Devil",
+            "variant": 1
+          },
+          {
+            "cost": [
+              0,
+              3,
+              0,
+              0,
+              0,
+              0,
+              9000,
+              0
+            ],
+            "count": 1,
+            "icon": "creatures/hellBaron/CPrL153Z",
+            "id": 181,
+            "level": 6,
+            "name": "Hell Baron",
+            "variant": 2
+          }
+        ],
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "townFaction": "core:inferno",
+        "townName": "Goonkbourg",
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "mobile57": {
+        "allowed": false,
+        "built": false,
+        "cost": [
+          10,
+          25,
+          10,
+          0,
+          0,
+          0,
+          25000,
+          0
+        ],
+        "description": "Allows recruitment and upgrades of Antichrists.",
+        "id": 57,
+        "key": "tum-era:dwellingUp3Lvl7",
+        "name": "Upg. Unholy Palace",
+        "state": 8
+      },
+      "mobileListHas57": true,
+      "hallState": {
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "dialog",
+        "musicVolume": 88,
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "card": {
+        "x": 594,
+        "y": 491
+      },
+      "detailState": {
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "dialog",
+        "musicVolume": 88,
+        "rect": {
+          "h": 520,
+          "w": 395,
+          "x": 203,
+          "y": 40
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "resourceReads": [
+        "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/inferno-building77.png",
+        "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/inferno-building77.png"
+      ],
+      "passed": true
+    },
+    {
+      "town": "necropolis",
+      "sourceBuilding": 77,
+      "nativeBuilding": 57,
+      "errors": [],
+      "nativeErrors": [],
+      "townState": {
+        "armies": [
+          {
+            "id": 0,
+            "name": "Garnison",
+            "slots": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": true,
+        "buildings": [
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 0,
+            "key": "core:mageGuild1",
+            "name": "Mage Guild Level 1",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              4,
+              5,
+              4,
+              4,
+              4,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 1,
+            "key": "core:mageGuild2",
+            "name": "Mage Guild Level 2",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              6,
+              5,
+              6,
+              6,
+              6,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 2,
+            "key": "core:mageGuild3",
+            "name": "Mage Guild Level 3",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              8,
+              5,
+              8,
+              8,
+              8,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 3,
+            "key": "core:mageGuild4",
+            "name": "Mage Guild Level 4",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              10,
+              5,
+              10,
+              10,
+              10,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 4,
+            "key": "core:mageGuild5",
+            "name": "Mage Guild Level 5",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              500,
+              0
+            ],
+            "description": "The Tavern increases morale for troops defending the city.",
+            "id": 5,
+            "key": "core:tavern",
+            "name": "Tavern",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              20,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Shipyard allows you to purchase ships.",
+            "id": 6,
+            "key": "core:shipyard",
+            "name": "Shipyard",
+            "state": 1
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              20,
+              0,
+              20,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Fort provides your town with defensive walls.",
+            "id": 7,
+            "key": "core:fort",
+            "name": "Fort",
+            "state": 4
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2500,
+              0
+            ],
+            "description": "Including a 50% increase to base creature growth, the Citadel adds a keep, and other terrain obstacles, to a town's defenses.",
+            "id": 8,
+            "key": "core:citadel",
+            "name": "Citadel",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              10,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Castle adds two arrow towers, fortifies your town's defenses, and doubles base creature growth.",
+            "id": 9,
+            "key": "core:castle",
+            "name": "Castle",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "description": "The Village Hall allows you to purchase town structures and earns your kingdom 500 gold per day.",
+            "id": 10,
+            "key": "core:villageHall",
+            "name": "Village Hall",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2500,
+              0
+            ],
+            "description": "The Town Hall allows you to purchase town structures and earns your kingdom 1000 gold per day.",
+            "id": 11,
+            "key": "core:townHall",
+            "name": "Town Hall",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The City Hall allows you to purchase town structures and earns your kingdom 2000 gold per day.",
+            "id": 12,
+            "key": "core:cityHall",
+            "name": "City Hall",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              10000,
+              0
+            ],
+            "description": "The Capitol earns your kingdom 4000 gold per day.",
+            "id": 13,
+            "key": "core:capitol",
+            "name": "Capitol",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              500,
+              0
+            ],
+            "description": "With the Marketplace, you can buy and sell resources (exchange rates increase with each Marketplace you own).",
+            "id": 14,
+            "key": "core:marketplace",
+            "name": "Marketplace",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Resource Silo provides you with an additional +1 wood and +1 ore each day.",
+            "id": 15,
+            "key": "core:resourceSilo",
+            "name": "Resource Silo",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Blacksmith provides your armies with First Aid Tents.",
+            "id": 16,
+            "key": "core:blacksmith",
+            "name": "Blacksmith",
+            "state": 7
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Cover of Darkness covers your city with a permanent shroud to all other players.",
+            "id": 17,
+            "key": "core:special1",
+            "name": "Cover of Darkness",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Unearthed Graves increase Skeleton production by 6 per week.",
+            "id": 18,
+            "key": "core:horde1",
+            "name": "Unearthed Graves",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Unearthed Graves increase Skeleton Warrior production by 6 per week.",
+            "id": 19,
+            "key": "core:horde1Upgr",
+            "name": "Unearthed Graves",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "The Shipyard allows you to purchase ships.",
+            "id": 20,
+            "key": "core:ship",
+            "name": "Shipyard",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Necromancy Amplifier increases the Necromancy skill of all heroes you control (with the Necromancy skill) by 10%.",
+            "id": 21,
+            "key": "core:special2",
+            "name": "Necromancy Amplifier",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Skeleton Transformer allows you to convert any creature into a skeleton.",
+            "id": 22,
+            "key": "core:special3",
+            "name": "Skeleton Transformer",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Unearthed Graves increase Skeleton Knights production by 6 per week.",
+            "id": 24,
+            "key": "core:horde2",
+            "name": "{Unearthed Graves}",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "The presence of the Soul Prison increases weekly creature generation by 50%, provides your empire with an additional 5000 gold each day, and boosts the Necromancy skill of all allied heroes (who possess the skill) by 20%.",
+            "id": 26,
+            "key": "core:grail",
+            "name": "Soul Prison",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "",
+            "id": 27,
+            "key": "core:extraTownHall",
+            "name": "",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "",
+            "id": 28,
+            "key": "core:extraCityHall",
+            "name": "",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "Tombstone mark unlocks 3rd level structures to build.",
+            "id": 29,
+            "key": "core:extraCapitol",
+            "name": "Tombstone",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              400,
+              0
+            ],
+            "description": "The Cursed Temple allows you to recruit Skeletons.",
+            "id": 30,
+            "key": "core:dwellingLvl1",
+            "name": "Cursed Temple",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Graveyard allows you to recruit Walking Dead.",
+            "id": 31,
+            "key": "core:dwellingLvl2",
+            "name": "Graveyard",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1500,
+              0
+            ],
+            "description": "The Tomb of Souls allows you to recruit Wights.",
+            "id": 32,
+            "key": "core:dwellingLvl3",
+            "name": "Tomb of Souls",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Estate allows you to recruit Vampires.",
+            "id": 33,
+            "key": "core:dwellingLvl4",
+            "name": "Estate",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              10,
+              10,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Mausoleum allows you to recruit Liches.",
+            "id": 34,
+            "key": "core:dwellingLvl5",
+            "name": "Mausoleum",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              10,
+              0,
+              0,
+              0,
+              6000,
+              0
+            ],
+            "description": "The Hall of Darkness allows you to recruit Black Knights.",
+            "id": 35,
+            "key": "core:dwellingLvl6",
+            "name": "Hall of Darkness",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              5,
+              5,
+              5,
+              5,
+              5,
+              5,
+              10000,
+              0
+            ],
+            "description": "The Dragon Vault allows you to recruit Bone Dragons.",
+            "id": 36,
+            "key": "core:dwellingLvl7",
+            "name": "Dragon Vault",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Cursed Temple allows you to recruit Skeleton Warriors.",
+            "id": 37,
+            "key": "core:dwellingUpLvl1",
+            "name": "Upg. Cursed Temple",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Graveyard allows you to recruit Zombies.",
+            "id": 38,
+            "key": "core:dwellingUpLvl2",
+            "name": "Upg. Graveyard",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              5,
+              0,
+              0,
+              0,
+              0,
+              1500,
+              0
+            ],
+            "description": "The Tomb of Souls allows you to recruit Wraiths.",
+            "id": 39,
+            "key": "core:dwellingUpLvl3",
+            "name": "Upg. Tomb of Souls",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              10,
+              10,
+              2000,
+              0
+            ],
+            "description": "The Estate allows you to recruit Vampire Lords.",
+            "id": 40,
+            "key": "core:dwellingUpLvl4",
+            "name": "Upg. Estate",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              5,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Mausoleum allows you to recruit Power Liches.",
+            "id": 41,
+            "key": "core:dwellingUpLvl5",
+            "name": "Upg. Mausoleum",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              2,
+              5,
+              2,
+              2,
+              2,
+              3000,
+              0
+            ],
+            "description": "The Hall of Darkness allows you to recruit Dread Knights.",
+            "id": 42,
+            "key": "core:dwellingUpLvl6",
+            "name": "Upg. Hall of Darkness",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              5,
+              20,
+              5,
+              0,
+              0,
+              0,
+              15000,
+              0
+            ],
+            "description": "The Dragon Vault allows you to recruit Ghost Dragons.",
+            "id": 43,
+            "key": "core:dwellingUpLvl7",
+            "name": "Upg. Dragon Vault",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              10,
+              0,
+              0,
+              0,
+              1400,
+              0
+            ],
+            "description": "The Cursed Temple allows you to recruit Skeleton Knight.",
+            "id": 44,
+            "key": "third-upgrades:dwellingUp2Lvl1",
+            "name": "{Adv. Cursed Temple}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              10,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Graveyard allows you to recruit Ghouls.",
+            "id": 45,
+            "key": "third-upgrades:dwellingUp2Lvl2",
+            "name": "{Adv. Graveyard}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              5,
+              5,
+              0,
+              0,
+              0,
+              3000,
+              0
+            ],
+            "description": "The Tomb of Souls allows you to recruit Specters.",
+            "id": 46,
+            "key": "third-upgrades:dwellingUp2Lvl3",
+            "name": "{Adv. Tomb of Souls}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              5,
+              0,
+              10,
+              10,
+              4000,
+              0
+            ],
+            "description": "The Estate allows you to recruit Nosferatu.",
+            "id": 47,
+            "key": "third-upgrades:dwellingUp2Lvl4",
+            "name": "{Adv. Estate}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              15,
+              15,
+              0,
+              0,
+              4000,
+              0
+            ],
+            "description": "The Mausoleum allows you to recruit Lich Kings.",
+            "id": 48,
+            "key": "third-upgrades:dwellingUp2Lvl5",
+            "name": "{Adv. Mausolem}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              15,
+              2,
+              15,
+              2,
+              2,
+              2,
+              9000,
+              0
+            ],
+            "description": "The Hall of Darkness allows you to recruit Death Knights.",
+            "id": 49,
+            "key": "third-upgrades:dwellingUp2Lvl6",
+            "name": "{Adv. Hall of Darkness}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              10,
+              25,
+              10,
+              5,
+              5,
+              5,
+              25000,
+              0
+            ],
+            "description": "The Dragon Vault allows you to recruit Blood Dragons.",
+            "id": 50,
+            "key": "third-upgrades:dwellingUp2Lvl7",
+            "name": "{Adv. Dragon Vault}",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              30,
+              10,
+              0,
+              0,
+              0,
+              20000,
+              0
+            ],
+            "description": "Allows recruitment and upgrades of Red Bones Dragons.",
+            "id": 57,
+            "key": "tum-era:dwellingUp3Lvl7",
+            "name": "Upg. Bloody Vault",
+            "state": 8
+          }
+        ],
+        "cheatReady": true,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "town",
+        "musicVolume": 88,
+        "recruits": [
+          {
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1800,
+              0
+            ],
+            "count": 1,
+            "icon": "",
+            "id": 68,
+            "level": 6,
+            "name": "Bone Dragon",
+            "variant": 0
+          },
+          {
+            "cost": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              3000,
+              0
+            ],
+            "count": 1,
+            "icon": "",
+            "id": 69,
+            "level": 6,
+            "name": "Ghost Dragon",
+            "variant": 1
+          },
+          {
+            "cost": [
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              6000,
+              0
+            ],
+            "count": 1,
+            "icon": "creatures/bloodDragon/CPrL154Z",
+            "id": 177,
+            "level": 6,
+            "name": "Blood Dragon",
+            "variant": 2
+          }
+        ],
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "townFaction": "core:necropolis",
+        "townName": "Goonkbourg",
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "mobile57": {
+        "allowed": false,
+        "built": false,
+        "cost": [
+          10,
+          30,
+          10,
+          0,
+          0,
+          0,
+          20000,
+          0
+        ],
+        "description": "Allows recruitment and upgrades of Red Bones Dragons.",
+        "id": 57,
+        "key": "tum-era:dwellingUp3Lvl7",
+        "name": "Upg. Bloody Vault",
+        "state": 8
+      },
+      "mobileListHas57": true,
+      "hallState": {
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "dialog",
+        "musicVolume": 88,
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "card": {
+        "x": 594,
+        "y": 491
+      },
+      "detailState": {
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "dialog",
+        "musicVolume": 88,
+        "rect": {
+          "h": 520,
+          "w": 395,
+          "x": 203,
+          "y": 40
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "resourceReads": [
+        "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/necropolis-building77.png",
+        "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/necropolis-building77.png"
+      ],
+      "passed": true
+    },
+    {
+      "town": "conflux",
+      "sourceBuilding": 77,
+      "nativeBuilding": 57,
+      "errors": [],
+      "nativeErrors": [],
+      "townState": {
+        "armies": [
+          {
+            "id": 0,
+            "name": "Garnison",
+            "slots": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": true,
+        "buildings": [
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 0,
+            "key": "core:mageGuild1",
+            "name": "Mage Guild Level 1",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              4,
+              5,
+              4,
+              4,
+              4,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 1,
+            "key": "core:mageGuild2",
+            "name": "Mage Guild Level 2",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              6,
+              5,
+              6,
+              6,
+              6,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 2,
+            "key": "core:mageGuild3",
+            "name": "Mage Guild Level 3",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              8,
+              5,
+              8,
+              8,
+              8,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 3,
+            "key": "core:mageGuild4",
+            "name": "Mage Guild Level 4",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              10,
+              5,
+              10,
+              10,
+              10,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 4,
+            "key": "core:mageGuild5",
+            "name": "Mage Guild Level 5",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              500,
+              0
+            ],
+            "description": "The Tavern increases morale for troops defending the city.",
+            "id": 5,
+            "key": "core:tavern",
+            "name": "Tavern",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              20,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Shipyard allows you to purchase ships.",
+            "id": 6,
+            "key": "core:shipyard",
+            "name": "Shipyard",
+            "state": 1
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              20,
+              0,
+              20,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Fort provides your town with defensive walls.",
+            "id": 7,
+            "key": "core:fort",
+            "name": "Fort",
+            "state": 4
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2500,
+              0
+            ],
+            "description": "Including a 50% increase to base creature growth, the Citadel adds a keep, and other terrain obstacles, to a town's defenses.",
+            "id": 8,
+            "key": "core:citadel",
+            "name": "Citadel",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              10,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Castle adds two arrow towers, fortifies your town's defenses, and doubles base creature growth.",
+            "id": 9,
+            "key": "core:castle",
+            "name": "Castle",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "description": "The Village Hall allows you to purchase town structures and earns your kingdom 500 gold per day.",
+            "id": 10,
+            "key": "core:villageHall",
+            "name": "Village Hall",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2500,
+              0
+            ],
+            "description": "The Town Hall allows you to purchase town structures and earns your kingdom 1000 gold per day.",
+            "id": 11,
+            "key": "core:townHall",
+            "name": "Town Hall",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The City Hall allows you to purchase town structures and earns your kingdom 2000 gold per day.",
+            "id": 12,
+            "key": "core:cityHall",
+            "name": "City Hall",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              10000,
+              0
+            ],
+            "description": "The Capitol earns your kingdom 4000 gold per day.",
+            "id": 13,
+            "key": "core:capitol",
+            "name": "Capitol",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              500,
+              0
+            ],
+            "description": "With the Marketplace, you can buy and sell resources (exchange rates increase with each Marketplace you own).",
+            "id": 14,
+            "key": "core:marketplace",
+            "name": "Marketplace",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Resource Silo provides you with an additional 1 Mercury each day.",
+            "id": 15,
+            "key": "core:resourceSilo",
+            "name": "Resource Silo",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Blacksmith provides your armies with Ballistas.",
+            "id": 16,
+            "key": "core:blacksmith",
+            "name": "Blacksmith",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              10000,
+              0
+            ],
+            "description": "For a nominal fee, you can purchase artifacts from the Artifact Merchants.",
+            "id": 17,
+            "key": "core:special1",
+            "name": "Artifact Merchants",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "This structure increases weekly production of Pixies by 10 per week.",
+            "id": 18,
+            "key": "core:horde1",
+            "name": "Garden of Life",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "This structure increases weekly production of Sprites 10 per week.",
+            "id": 19,
+            "key": "core:horde1Upgr",
+            "name": "Garden of Life",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "The Shipyard allows you to purchase ships.",
+            "id": 20,
+            "key": "core:ship",
+            "name": "Shipyard",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              10,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "At the Magic University, you can pay to learn any, or all, of the four schools of magic.",
+            "id": 21,
+            "key": "core:special2",
+            "name": "Magic University",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Garden of Life increases weekly production of Fairies by 10 per week.",
+            "id": 24,
+            "key": "core:horde2",
+            "name": "{Garden of Life}",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "The presence of the Aurora Borealias increases weekly creature generation by 50%, provides your kingdom with an additional 5000 gold each day, and places all spells in your mage guild.",
+            "id": 26,
+            "key": "core:grail",
+            "name": "Aurora Borealias",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "",
+            "id": 27,
+            "key": "core:extraTownHall",
+            "name": "",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "",
+            "id": 28,
+            "key": "core:extraCityHall",
+            "name": "",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "Nature mark unlocks 3rd level structures to build.",
+            "id": 29,
+            "key": "core:extraCapitol",
+            "name": "Nature",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              300,
+              0
+            ],
+            "description": "The Magic Lantern allows you to recruit Pixies.",
+            "id": 30,
+            "key": "core:dwellingLvl1",
+            "name": "Magic Lantern",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1500,
+              0
+            ],
+            "description": "The Altar of Air allows you to recruit Air Elementals.",
+            "id": 31,
+            "key": "core:dwellingLvl2",
+            "name": "Altar of Air",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1500,
+              0
+            ],
+            "description": "The Altar of Water allows you to recruit Water Elementals.",
+            "id": 32,
+            "key": "core:dwellingLvl3",
+            "name": "Altar of Water",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Altar of Fire allows you to recruit Fire Elementals.",
+            "id": 33,
+            "key": "core:dwellingLvl4",
+            "name": "Altar of Fire",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              10,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Altar of Earth allows you to recruit Earth Elementals.",
+            "id": 34,
+            "key": "core:dwellingLvl5",
+            "name": "Altar of Earth",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              2,
+              5,
+              2,
+              2,
+              2,
+              3000,
+              0
+            ],
+            "description": "The Altar of Thought allows you to recruit Psychic Elementals.",
+            "id": 35,
+            "key": "core:dwellingLvl6",
+            "name": "Altar of Thought",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              10,
+              10,
+              10,
+              0,
+              0,
+              0,
+              10000,
+              0
+            ],
+            "description": "The Pyre allows you to recruit Fire Birds.",
+            "id": 36,
+            "key": "core:dwellingLvl7",
+            "name": "Pyre",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Magic Pool allows you to recruit Sprites.",
+            "id": 37,
+            "key": "core:dwellingUpLvl1",
+            "name": "Upg. Magic Lantern",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              2,
+              2,
+              0,
+              0,
+              0,
+              2,
+              1500,
+              0
+            ],
+            "description": "The Temple of Thunder allows you to recruit Storm Elementals.",
+            "id": 38,
+            "key": "core:dwellingUpLvl2",
+            "name": "Upg. Altar of Air",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              5,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Temple of Ice allows you to recruit Ice Elementals.",
+            "id": 39,
+            "key": "core:dwellingUpLvl3",
+            "name": "Upg. Altar of Water",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              5,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Temple of Energy allows you to recruit Energy Elementals.",
+            "id": 40,
+            "key": "core:dwellingUpLvl4",
+            "name": "Upg. Altar of Fire",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              5,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Temple of Magma allows you to recruit Magma Elementals.",
+            "id": 41,
+            "key": "core:dwellingUpLvl5",
+            "name": "Upg. Altar of Earth",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              3,
+              0,
+              3,
+              3,
+              3,
+              3000,
+              0
+            ],
+            "description": "The Temple of Magic allows you to recruit Magic Elementals.",
+            "id": 42,
+            "key": "core:dwellingUpLvl6",
+            "name": "Upg. Altar of Thought",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              10,
+              20,
+              10,
+              0,
+              0,
+              0,
+              15000,
+              0
+            ],
+            "description": "The Funeral Pyre allows you to recruit Pheonixes .",
+            "id": 43,
+            "key": "core:dwellingUpLvl7",
+            "name": "Upg. Pyre",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              2,
+              0,
+              2,
+              0,
+              0,
+              0,
+              1300,
+              0
+            ],
+            "description": "The Magic Lantern allows you to recruit Fairies.",
+            "id": 44,
+            "key": "third-upgrades:dwellingUp2Lvl1",
+            "name": "{Adv. Magic Lantern}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              2,
+              2,
+              5,
+              0,
+              0,
+              2,
+              3000,
+              0
+            ],
+            "description": "The Altar of Air allows you to recruit Hurricane Elementals.",
+            "id": 45,
+            "key": "third-upgrades:dwellingUp2Lvl2",
+            "name": "{Adv. Altar of Air}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              5,
+              10,
+              0,
+              0,
+              0,
+              3500,
+              0
+            ],
+            "description": "The Altar of Water allows you to recruit Cryogenic Elementals.",
+            "id": 46,
+            "key": "third-upgrades:dwellingUp2Lvl3",
+            "name": "{Adv. Altar of Water}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              5,
+              10,
+              0,
+              0,
+              0,
+              4000,
+              0
+            ],
+            "description": "The Altar of Fire allows you to recruit Plasma Elementals.",
+            "id": 47,
+            "key": "third-upgrades:dwellingUp2Lvl4",
+            "name": "{Adv. Altar of Fire}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              10,
+              5,
+              0,
+              0,
+              3000,
+              0
+            ],
+            "description": "The Altar of Earth allows you to recruit Lava Elementals.",
+            "id": 48,
+            "key": "third-upgrades:dwellingUp2Lvl5",
+            "name": "{Adv. Altar of Earth}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              5,
+              5,
+              5,
+              5,
+              5,
+              6000,
+              0
+            ],
+            "description": "The Altar of Thought allows you to recruit Void Elementals.",
+            "id": 49,
+            "key": "third-upgrades:dwellingUp2Lvl6",
+            "name": "{Adv. Altar of Thought}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              20,
+              20,
+              20,
+              0,
+              0,
+              0,
+              25000,
+              0
+            ],
+            "description": "The Pyre allows you to recruit Sacred Phoenixes.",
+            "id": 50,
+            "key": "third-upgrades:dwellingUp2Lvl7",
+            "name": "{Adv. Pyre}",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              15,
+              25,
+              15,
+              0,
+              0,
+              0,
+              20000,
+              0
+            ],
+            "description": "Allows recruitment and upgrades of Divine Phoenixes.",
+            "id": 57,
+            "key": "tum-era:dwellingUp3Lvl7",
+            "name": "Upg. Spirit Pyre",
+            "state": 8
+          }
+        ],
+        "cheatReady": true,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "town",
+        "musicVolume": 88,
+        "recruits": [
+          {
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1500,
+              0
+            ],
+            "count": 1,
+            "icon": "",
+            "id": 130,
+            "level": 6,
+            "name": "Firebird",
+            "variant": 0
+          },
+          {
+            "cost": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "count": 1,
+            "icon": "",
+            "id": 131,
+            "level": 6,
+            "name": "Phoenix",
+            "variant": 1
+          },
+          {
+            "cost": [
+              0,
+              3,
+              0,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "count": 1,
+            "icon": "creatures/sacredphoenix/CPrL158Z",
+            "id": 184,
+            "level": 6,
+            "name": "Sacred Phoenix",
+            "variant": 2
+          }
+        ],
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "townFaction": "core:conflux",
+        "townName": "Goonkbourg",
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "mobile57": {
+        "allowed": false,
+        "built": false,
+        "cost": [
+          15,
+          25,
+          15,
+          0,
+          0,
+          0,
+          20000,
+          0
+        ],
+        "description": "Allows recruitment and upgrades of Divine Phoenixes.",
+        "id": 57,
+        "key": "tum-era:dwellingUp3Lvl7",
+        "name": "Upg. Spirit Pyre",
+        "state": 8
+      },
+      "mobileListHas57": true,
+      "hallState": {
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "dialog",
+        "musicVolume": 88,
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "card": {
+        "x": 594,
+        "y": 491
+      },
+      "detailState": {
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "dialog",
+        "musicVolume": 88,
+        "rect": {
+          "h": 520,
+          "w": 395,
+          "x": 203,
+          "y": 40
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "resourceReads": [
+        "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/conflux-building77.png",
+        "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/conflux-building77.png"
+      ],
+      "passed": true
+    },
+    {
+      "town": "stronghold",
+      "sourceBuilding": 77,
+      "nativeBuilding": 57,
+      "errors": [],
+      "nativeErrors": [],
+      "townState": {
+        "armies": [
+          {
+            "id": 0,
+            "name": "Garnison",
+            "slots": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": true,
+        "buildings": [
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 0,
+            "key": "core:mageGuild1",
+            "name": "Mage Guild Level 1",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              4,
+              5,
+              4,
+              4,
+              4,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 1,
+            "key": "core:mageGuild2",
+            "name": "Mage Guild Level 2",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              6,
+              5,
+              6,
+              6,
+              6,
+              1000,
+              0
+            ],
+            "description": "Entering the Mage Guild will allow a visiting hero to learn the spells kept within.",
+            "id": 2,
+            "key": "core:mageGuild3",
+            "name": "Mage Guild Level 3",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              500,
+              0
+            ],
+            "description": "The Tavern increases morale for troops defending the city.",
+            "id": 5,
+            "key": "core:tavern",
+            "name": "Tavern",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              20,
+              0,
+              20,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Fort provides your town with defensive walls.",
+            "id": 7,
+            "key": "core:fort",
+            "name": "Fort",
+            "state": 4
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2500,
+              0
+            ],
+            "description": "Including a 50% increase to base creature growth, the Citadel adds a keep, and other terrain obstacles, to a town's defenses.",
+            "id": 8,
+            "key": "core:citadel",
+            "name": "Citadel",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              10,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Castle adds two arrow towers, fortifies your town's defenses, and doubles base creature growth.",
+            "id": 9,
+            "key": "core:castle",
+            "name": "Castle",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "description": "The Village Hall allows you to purchase town structures and earns your kingdom 500 gold per day.",
+            "id": 10,
+            "key": "core:villageHall",
+            "name": "Village Hall",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2500,
+              0
+            ],
+            "description": "The Town Hall allows you to purchase town structures and earns your kingdom 1000 gold per day.",
+            "id": 11,
+            "key": "core:townHall",
+            "name": "Town Hall",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The City Hall allows you to purchase town structures and earns your kingdom 2000 gold per day.",
+            "id": 12,
+            "key": "core:cityHall",
+            "name": "City Hall",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              10000,
+              0
+            ],
+            "description": "The Capitol earns your kingdom 4000 gold per day.",
+            "id": 13,
+            "key": "core:capitol",
+            "name": "Capitol",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              500,
+              0
+            ],
+            "description": "With the Marketplace, you can buy and sell resources (exchange rates increase with each Marketplace you own).",
+            "id": 14,
+            "key": "core:marketplace",
+            "name": "Marketplace",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              5000,
+              0
+            ],
+            "description": "The Resource Silo provides you with an additional +1 wood and +1 ore each day.",
+            "id": 15,
+            "key": "core:resourceSilo",
+            "name": "Resource Silo",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Blacksmith provides your armies with Ammo Carts.",
+            "id": 16,
+            "key": "core:blacksmith",
+            "name": "Blacksmith",
+            "state": 7
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Escape Tunnel allows a garrison hero to flee from defending against a siege.",
+            "id": 17,
+            "key": "core:special1",
+            "name": "Escape Tunnel",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Mess Hall increases Goblin production by 8 per week.",
+            "id": 18,
+            "key": "core:horde1",
+            "name": "Mess Hall",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Mess Hall increases Hobgoblin production by 8 per week.",
+            "id": 19,
+            "key": "core:horde1Upgr",
+            "name": "Mess Hall",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Freelancer's Guild allows you to trade creatures for resources.",
+            "id": 21,
+            "key": "core:special2",
+            "name": "Freelancer's Guild",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "This Blacksmith upgrade provides your armies with ballistas.",
+            "id": 22,
+            "key": "core:special3",
+            "name": "Ballista Yard",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Hall of Valhalla increases the Attack skill of any visiting hero by +1.",
+            "id": 23,
+            "key": "core:special4",
+            "name": "Hall of Valhalla",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Mess Hall increases Hobgoblin Overlords production by 8 per week.",
+            "id": 24,
+            "key": "core:horde2",
+            "name": "{Mess Hall}",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "The presence of the Warlords' Monument increases weekly creature generation by 50%, provides your kingdom with an additional 5000 gold each day, and increases the Attack strength of a garrison hero by +20 when defending against a siege.",
+            "id": 26,
+            "key": "core:grail",
+            "name": "Warlords' Monument",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "description": "Tribe mark unlocks 3rd level structures to build.",
+            "id": 29,
+            "key": "third-upgrades:extraCapitol",
+            "name": "Tribe",
+            "state": 8
+          },
+          {
+            "allowed": true,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              200,
+              0
+            ],
+            "description": "The Goblin Barracks allow you to recruit Goblins.",
+            "id": 30,
+            "key": "core:dwellingLvl1",
+            "name": "Goblin Barracks",
+            "state": 7
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Wolf Pen allows you to recruit Wolf Riders.",
+            "id": 31,
+            "key": "core:dwellingLvl2",
+            "name": "Wolf Pen",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Orc Tower allows you to recruit Orcs.",
+            "id": 32,
+            "key": "core:dwellingLvl3",
+            "name": "Orc Tower",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              20,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Ogre Fort allows you to recruit Ogres.",
+            "id": 33,
+            "key": "core:dwellingLvl4",
+            "name": "Ogre Fort",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              10,
+              0,
+              0,
+              0,
+              2500,
+              0
+            ],
+            "description": "The Cliff Nest allows you to recruit Rocs.",
+            "id": 34,
+            "key": "core:dwellingLvl5",
+            "name": "Cliff Nest",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              0,
+              0,
+              20,
+              0,
+              20,
+              0,
+              3500,
+              0
+            ],
+            "description": "The Cyclops Cave allows you to recruit Cyclopses.",
+            "id": 35,
+            "key": "core:dwellingLvl6",
+            "name": "Cyclops Cave",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              10,
+              0,
+              10,
+              0,
+              10,
+              0,
+              10000,
+              0
+            ],
+            "description": "The Behemoth Lair allows you to recruit Behemoths.",
+            "id": 36,
+            "key": "core:dwellingLvl7",
+            "name": "Behemoth Lair",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Goblin Barracks allow you to recruit Hobgoblins.",
+            "id": 37,
+            "key": "core:dwellingUpLvl1",
+            "name": "Upg. Goblin Barracks",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Wolf Pen allows you to recruit Wolf Raiders.",
+            "id": 38,
+            "key": "core:dwellingUpLvl2",
+            "name": "Upg. Wolf Pen",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              2,
+              0,
+              2,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "description": "The Orc Tower allows you to recruit Orc Chieftains.",
+            "id": 39,
+            "key": "core:dwellingUpLvl3",
+            "name": "Upg. Orc Tower",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              5,
+              2000,
+              0
+            ],
+            "description": "The Ogre Fort allows you to recruit Ogre Magi.",
+            "id": 40,
+            "key": "core:dwellingUpLvl4",
+            "name": "Upg. Ogre Fort",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Cliff Nest allows you to recruit Thunderbirds.",
+            "id": 41,
+            "key": "core:dwellingUpLvl5",
+            "name": "Upg. Cliff Nest",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              5,
+              0,
+              0,
+              0,
+              3000,
+              0
+            ],
+            "description": "The Cyclops Cave allows you to recruit Cyclops Kings.",
+            "id": 42,
+            "key": "core:dwellingUpLvl6",
+            "name": "Upg. Cyclops Cave",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              10,
+              0,
+              10,
+              0,
+              20,
+              0,
+              15000,
+              0
+            ],
+            "description": "The Behemoth Lair allows you to recruit Ancient Behemoths.",
+            "id": 43,
+            "key": "core:dwellingUpLvl7",
+            "name": "Upg. Behemoth Lair",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              10,
+              0,
+              10,
+              0,
+              0,
+              0,
+              1200,
+              0
+            ],
+            "description": "The Goblin Barracks allow you to recruit Hobgoblin Overlords.",
+            "id": 44,
+            "key": "third-upgrades:dwellingUp2Lvl1",
+            "name": "{Adv. Goblin Barracks}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              15,
+              0,
+              10,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Wolf Pen allows you to recruit Wolf Captains.",
+            "id": 45,
+            "key": "third-upgrades:dwellingUp2Lvl2",
+            "name": "{Adv. Wolf Pen}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              7,
+              0,
+              7,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "description": "The Orc Tower allows you to recruit Orc Leaders.",
+            "id": 46,
+            "key": "third-upgrades:dwellingUp2Lvl3",
+            "name": "{Adv. Orc Tower}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              25,
+              0,
+              5,
+              0,
+              0,
+              5,
+              4000,
+              0
+            ],
+            "description": "The Ogre Fort allows you to recruit Elder Ogres.",
+            "id": 47,
+            "key": "third-upgrades:dwellingUp2Lvl4",
+            "name": "{Adv. Ogre Fort}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              15,
+              0,
+              0,
+              0,
+              4500,
+              0
+            ],
+            "description": "The Cliff Nest allows you to recruit Lightningbirds.",
+            "id": 48,
+            "key": "third-upgrades:dwellingUp2Lvl5",
+            "name": "{Adv. Cliff Nest}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              5,
+              0,
+              25,
+              0,
+              20,
+              0,
+              7500,
+              0
+            ],
+            "description": "The Cyclops Cave allows you to recruit Cyclop Emperors.",
+            "id": 49,
+            "key": "third-upgrades:dwellingUp2Lvl6",
+            "name": "{Adv. Cyclops Cave}",
+            "state": 8
+          },
+          {
+            "allowed": false,
+            "built": true,
+            "cost": [
+              20,
+              0,
+              20,
+              0,
+              30,
+              0,
+              25000,
+              0
+            ],
+            "description": "The Behemoth Lair allows you to recruit Ghost Behemoths.",
+            "id": 50,
+            "key": "third-upgrades:dwellingUp2Lvl7",
+            "name": "{Adv. Behemoth Lair}",
+            "state": 4
+          },
+          {
+            "allowed": false,
+            "built": false,
+            "cost": [
+              15,
+              0,
+              15,
+              0,
+              25,
+              0,
+              20000,
+              0
+            ],
+            "description": "Allows recruitment and upgrades of Ancestral Behemoths.",
+            "id": 57,
+            "key": "tum-era:dwellingUp3Lvl7",
+            "name": "Upg. Behemoth Tomb",
+            "state": 8
+          }
+        ],
+        "cheatReady": true,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "town",
+        "musicVolume": 88,
+        "recruits": [
+          {
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1500,
+              0
+            ],
+            "count": 1,
+            "icon": "",
+            "id": 96,
+            "level": 6,
+            "name": "Behemoth",
+            "variant": 0
+          },
+          {
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              3000,
+              0
+            ],
+            "count": 1,
+            "icon": "",
+            "id": 97,
+            "level": 6,
+            "name": "Ancient Behemoth",
+            "variant": 1
+          },
+          {
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              2,
+              0,
+              6000,
+              0
+            ],
+            "count": 1,
+            "icon": "creatures/ghostbehemoth/CPrL156Z",
+            "id": 180,
+            "level": 6,
+            "name": "Ghost Behemot",
+            "variant": 2
+          }
+        ],
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "townFaction": "core:stronghold",
+        "townName": "Goonkbourg",
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "mobile57": {
+        "allowed": false,
+        "built": false,
+        "cost": [
+          15,
+          0,
+          15,
+          0,
+          25,
+          0,
+          20000,
+          0
+        ],
+        "description": "Allows recruitment and upgrades of Ancestral Behemoths.",
+        "id": 57,
+        "key": "tum-era:dwellingUp3Lvl7",
+        "name": "Upg. Behemoth Tomb",
+        "state": 8
+      },
+      "mobileListHas57": true,
+      "hallState": {
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "dialog",
+        "musicVolume": 88,
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "card": {
+        "x": 594,
+        "y": 491
+      },
+      "detailState": {
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "heroes": [
+          {
+            "index": 0,
+            "movement": 1630,
+            "name": "Gardien des Goonks"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "dialog",
+        "musicVolume": 88,
+        "rect": {
+          "h": 520,
+          "w": 395,
+          "x": 203,
+          "y": 40
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20700,
+          0
+        ],
+        "selectedTownName": "Goonkbourg",
+        "soundVolume": 88,
+        "towns": [
+          {
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true
+      },
+      "resourceReads": [
+        "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/stronghold-building77.png",
+        "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/stronghold-building77.png"
+      ],
+      "passed": true
+    }
+  ]
+}

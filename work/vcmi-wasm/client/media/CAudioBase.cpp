@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "AudioThread.h"
 #include "CAudioBase.h"
 
 #include <SDL_mixer.h>
@@ -19,7 +20,7 @@ CAudioBase::CAudioBase()
 {
 	if(initializationCounter == 0)
 	{
-		if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
+		if(web_audio::call([&](){ return Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024); }) == -1)
 			logGlobal->error("Mix_OpenAudio error: %s", Mix_GetError());
 		else
 			initializeSuccess = true;
@@ -38,7 +39,7 @@ CAudioBase::~CAudioBase()
 
 	if(initializationCounter == 0 && initializeSuccess)
 	{
-		Mix_CloseAudio();
+		web_audio::call([&](){ return Mix_CloseAudio(); });
 		initializeSuccess = false;
 	}
 }

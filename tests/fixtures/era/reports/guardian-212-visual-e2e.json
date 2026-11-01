@@ -1,0 +1,3452 @@
+{
+  "engineLabel": "ranged-landing-8784-7837ff0",
+  "startedAt": "2026-11-01T05:44:56.598Z",
+  "cases": [
+    {
+      "name": "guardian212-landing-melee",
+      "startedAt": "2026-11-01T05:44:56.686Z",
+      "errors": [],
+      "errorStacks": [],
+      "nativeErrors": [],
+      "wasmResponses": [
+        {
+          "url": "http://127.0.0.1:8784/vcmiclient.wasm",
+          "headers": {
+            "cache-control": "no-cache",
+            "cross-origin-opener-policy": "same-origin",
+            "connection": "keep-alive",
+            "cross-origin-embedder-policy": "require-corp",
+            "accept-ranges": "bytes",
+            "content-length": "9326090",
+            "keep-alive": "timeout=5",
+            "date": "Sun, 01 Nov 2026 05:44:57 GMT",
+            "content-type": "application/wasm"
+          },
+          "at": "2026-11-01T05:44:57.093Z"
+        }
+      ],
+      "before": {
+        "actor": {
+          "attack": 0,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            5,
+            10000,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 600,
+          "defense": 36,
+          "enemy": false,
+          "eraSlot": 0,
+          "icon": "tum-era/guardian-zeus/portrait-large",
+          "id": 263,
+          "maximumHealth": 600,
+          "morale": 0,
+          "name": "Master of Thunder",
+          "occupied": [
+            86
+          ],
+          "remainingCasts": 1,
+          "remainingRetaliations": 1,
+          "stackId": 0,
+          "x": 80,
+          "y": 322
+        },
+        "enemy": {
+          "attack": 0,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 10000,
+          "defense": 0,
+          "enemy": true,
+          "eraSlot": 0,
+          "icon": "",
+          "id": 0,
+          "maximumHealth": 10000,
+          "morale": 0,
+          "name": "Pikeman",
+          "occupied": [
+            100
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "stackId": 1,
+          "x": 696,
+          "y": 322
+        }
+      },
+      "frames": [
+        "guardian212-melee-frame-00.png",
+        "guardian212-melee-frame-01.png",
+        "guardian212-melee-frame-02.png",
+        "guardian212-melee-frame-03.png",
+        "guardian212-melee-frame-04.png",
+        "guardian212-melee-frame-05.png",
+        "guardian212-melee-frame-06.png",
+        "guardian212-melee-frame-07.png",
+        "guardian212-melee-frame-08.png",
+        "guardian212-melee-frame-09.png",
+        "guardian212-melee-frame-10.png",
+        "guardian212-melee-frame-11.png",
+        "guardian212-melee-frame-12.png",
+        "guardian212-melee-frame-13.png",
+        "guardian212-melee-frame-14.png",
+        "guardian212-melee-frame-15.png",
+        "guardian212-melee-frame-16.png",
+        "guardian212-melee-frame-17.png",
+        "guardian212-melee-frame-18.png",
+        "guardian212-melee-frame-19.png",
+        "guardian212-melee-frame-20.png",
+        "guardian212-melee-frame-21.png",
+        "guardian212-melee-frame-22.png",
+        "guardian212-melee-frame-23.png",
+        "guardian212-melee-frame-24.png",
+        "guardian212-melee-frame-25.png",
+        "guardian212-melee-frame-26.png",
+        "guardian212-melee-frame-27.png",
+        "guardian212-melee-frame-28.png",
+        "guardian212-melee-frame-29.png",
+        "guardian212-melee-frame-30.png",
+        "guardian212-melee-frame-31.png",
+        "guardian212-melee-frame-32.png",
+        "guardian212-melee-frame-33.png",
+        "guardian212-melee-frame-34.png",
+        "guardian212-melee-frame-35.png",
+        "guardian212-melee-frame-36.png",
+        "guardian212-melee-frame-37.png",
+        "guardian212-melee-frame-38.png",
+        "guardian212-melee-frame-39.png",
+        "guardian212-melee-frame-40.png"
+      ],
+      "after": [
+        {
+          "attack": 0,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 9999,
+          "defense": 0,
+          "enemy": true,
+          "eraSlot": 0,
+          "icon": "",
+          "id": 0,
+          "maximumHealth": 10000,
+          "morale": 0,
+          "name": "Pikeman",
+          "occupied": [
+            100
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "stackId": 1,
+          "x": 696,
+          "y": 322
+        },
+        {
+          "attack": 0,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            5,
+            10000,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 599,
+          "defense": 36,
+          "enemy": false,
+          "eraSlot": 0,
+          "icon": "tum-era/guardian-zeus/portrait-large",
+          "id": 263,
+          "maximumHealth": 600,
+          "morale": 0,
+          "name": "Master of Thunder",
+          "occupied": [
+            99
+          ],
+          "remainingCasts": 1,
+          "remainingRetaliations": 1,
+          "stackId": 0,
+          "x": 652,
+          "y": 322
+        }
+      ],
+      "resourceReads": [
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sounds/tum-era/hit-effects/GOGFLAME.wav",
+          "at": 74436.375
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sounds/tum-era/hit-effects/GOGFLAME.wav",
+          "at": 74438.59000003338
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 74440.905000031
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 74449.00999999046
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 74501.43500000238
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 74551.99000000954
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 74601.22000002861
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 74653.25
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 74701.61500000954
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 74750.32499998808
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 74801.2650000453
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 74850.56000000238
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 74901
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 74949.32499998808
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 75016.29500001669
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 75050.81499999762
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 75117.90000003576
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 75167.75999999046
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst10.def",
+          "at": 75218.280000031
+        }
+      ],
+      "staticTimingProof": "guardian-landing-source-evidence.json",
+      "passed": true,
+      "snapshots": [
+        {
+          "round": 0,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                99
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 652,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9999,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                99
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 652,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 2,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9999,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 599,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                99
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 652,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        }
+      ]
+    },
+    {
+      "name": "guardian212-landing-ranged",
+      "startedAt": "2026-11-01T05:46:13.290Z",
+      "errors": [],
+      "errorStacks": [],
+      "nativeErrors": [],
+      "wasmResponses": [
+        {
+          "url": "http://127.0.0.1:8784/vcmiclient.wasm",
+          "headers": {
+            "cache-control": "no-cache",
+            "cross-origin-opener-policy": "same-origin",
+            "connection": "keep-alive",
+            "cross-origin-embedder-policy": "require-corp",
+            "accept-ranges": "bytes",
+            "content-length": "9326090",
+            "keep-alive": "timeout=5",
+            "date": "Sun, 01 Nov 2026 05:46:13 GMT",
+            "content-type": "application/wasm"
+          },
+          "at": "2026-11-01T05:46:13.727Z"
+        }
+      ],
+      "before": {
+        "actor": {
+          "attack": 0,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            5,
+            10000,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 600,
+          "defense": 36,
+          "enemy": false,
+          "eraSlot": 0,
+          "icon": "tum-era/guardian-zeus/portrait-large",
+          "id": 263,
+          "maximumHealth": 600,
+          "morale": 0,
+          "name": "Master of Thunder",
+          "occupied": [
+            86
+          ],
+          "remainingCasts": 1,
+          "remainingRetaliations": 1,
+          "stackId": 0,
+          "x": 80,
+          "y": 322
+        },
+        "enemy": {
+          "attack": 0,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 10000,
+          "defense": 0,
+          "enemy": true,
+          "eraSlot": 0,
+          "icon": "",
+          "id": 0,
+          "maximumHealth": 10000,
+          "morale": 0,
+          "name": "Pikeman",
+          "occupied": [
+            100
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "stackId": 1,
+          "x": 696,
+          "y": 322
+        }
+      },
+      "frames": [
+        "guardian212-ranged-frame-00.png",
+        "guardian212-ranged-frame-01.png",
+        "guardian212-ranged-frame-02.png",
+        "guardian212-ranged-frame-03.png",
+        "guardian212-ranged-frame-04.png",
+        "guardian212-ranged-frame-05.png",
+        "guardian212-ranged-frame-06.png",
+        "guardian212-ranged-frame-07.png",
+        "guardian212-ranged-frame-08.png",
+        "guardian212-ranged-frame-09.png"
+      ],
+      "after": [
+        {
+          "attack": 0,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 9998,
+          "defense": 0,
+          "enemy": true,
+          "eraSlot": 0,
+          "icon": "",
+          "id": 0,
+          "maximumHealth": 10000,
+          "morale": 0,
+          "name": "Pikeman",
+          "occupied": [
+            100
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "stackId": 1,
+          "x": 696,
+          "y": 322
+        },
+        {
+          "attack": 0,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            5,
+            10000,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 600,
+          "defense": 36,
+          "enemy": false,
+          "eraSlot": 0,
+          "icon": "tum-era/guardian-zeus/portrait-large",
+          "id": 263,
+          "maximumHealth": 600,
+          "morale": 0,
+          "name": "Master of Thunder",
+          "occupied": [
+            86
+          ],
+          "remainingCasts": 1,
+          "remainingRetaliations": 1,
+          "stackId": 0,
+          "x": 80,
+          "y": 322
+        }
+      ],
+      "resourceReads": [
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 20318.474999964237
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 20319.144999980927
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 20386.485000014305
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 20436.94999998808
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 20486.469999969006
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 20535.95499998331
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 20585.95499998331
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 20635.680000007153
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 20685.649999976158
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 20735.65499997139
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 21269.414999961853
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 21335.860000014305
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 21385.680000007153
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 21436.735000014305
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 21486.75
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 21536.12000000477
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 21586.480000019073
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 21636.40999996662
+        },
+        {
+          "path": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/hit-effects/Burst11.def",
+          "at": 21686.735000014305
+        }
+      ],
+      "staticTimingProof": "guardian-landing-source-evidence.json",
+      "passed": true,
+      "snapshots": [
+        {
+          "round": 0,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9999,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 2,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9998,
+              "defense": 0,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "stackId": 1,
+              "x": 696,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                10000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 600,
+              "defense": 36,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "tum-era/guardian-zeus/portrait-large",
+              "id": 263,
+              "maximumHealth": 600,
+              "morale": 0,
+              "name": "Master of Thunder",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 1,
+              "remainingRetaliations": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        }
+      ]
+    }
+  ]
+}

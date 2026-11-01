@@ -1,0 +1,342 @@
+{
+  "executed": true,
+  "passed": true,
+  "source": "Actual native WASM, browserUI and virtualFS fixtures, no production setters",
+  "caseCount": 5,
+  "engineLabel": "status-audio-dcfabfb51fda",
+  "previewProvenance": {
+    "capturedAtUtc": "2026-11-01T06:50:58.611Z",
+    "capturePhase": "before-test",
+    "origin": "http://127.0.0.1:8774",
+    "referenceMode": "published-hashed",
+    "files": {
+      "game.html": {
+        "sha256": "8be3271f4c51c3d635fd3b26b3e8841bd2f1080c54f74952011c98c8395de084",
+        "bytes": 19449
+      },
+      "asset-manifest.json": {
+        "sha256": "3a53cdfe1801cd1f3d0e9d37168b87d23f5cb71b992d193f394662b6c14c7cbf",
+        "bytes": 4401071
+      },
+      "vcmiclient.30b20f8d8ca2b81b.js": {
+        "sha256": "30b20f8d8ca2b81bd35e67a7a9fdd30d45f3b9ed55ff50c0addbd57296764ecd",
+        "bytes": 273084
+      },
+      "vcmiclient.data.b5f5e706b82fd639.js": {
+        "sha256": "b5f5e706b82fd639271746f718b47e698505a9e20d8a526ae7eb7771d22165b3",
+        "bytes": 62978
+      },
+      "vcmiclient.dcfabfb51fda81ef.wasm": {
+        "sha256": "dcfabfb51fda81ef705972e04788ea8801731fc9548115699a68e070172f0277",
+        "bytes": 9352286
+      },
+      "vcmiclient.47c3b217cb06b844.data": {
+        "sha256": "47c3b217cb06b844e92e80166003e4edcdc67086ccf543bf7163e253dd53b33b",
+        "bytes": 8437408
+      }
+    },
+    "runtime": [
+      "vcmiclient.30b20f8d8ca2b81b.js",
+      "vcmiclient.data.b5f5e706b82fd639.js",
+      "vcmiclient.dcfabfb51fda81ef.wasm",
+      "vcmiclient.47c3b217cb06b844.data"
+    ]
+  },
+  "fixtureSourceHashes": {
+    "harness": "3dcfc1f7433f6a81ceb309c08ed82f733f663e2c7826100afca032abd5f7bc68",
+    "xpTraining": "a3b13ea537fb037b34fb1e5f5a02ec224e40f21ab9b5050e69e22bc550b84ac7",
+    "baseMap": "54b055b09b96cfb9876c24f932d02ec8004e8fb4a971342c489f7e59481e9ae5",
+    "candidateDefinition": "039552730772b06622a4bbf727023c3211272c8db68a7468706ed34d9172744b"
+  },
+  "fixtureAssetHashes": {
+    "content/Sprites/tum-era/creatures/254/battle.def": "3fbede70a80a27ce2a4f7ec9c93ad6e8f2c40c9e505134f38c379f9f90ee96ed",
+    "content/Sprites/tum-era/creatures/254/map.def": "de1c0efce9c8dbe73d1333a356e90ca81e3d306c616f52b70421a672de2962f7",
+    "content/Sprites/tum-era/creatures/254/map.msk": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811",
+    "content/Sprites/tum-era/creatures/254/shot.def": "56bee71921e83b0cd91ae17a8b54642a8db068e4cfbe06d23b1cd5cb335de2ae",
+    "content/Data/tum-era/creatures/254/small.png": "910226bf3c84a613755b53a04ba265f3883728b793d820591016cf1e6bf82e0d",
+    "content/Data/tum-era/creatures/254/large.png": "a9deeaad625dbab025100dc9e6cb292188cd2105a92ab0339a7e2a6822708f93",
+    "content/Sounds/tum-era/creatures/254/S254ATTK.wav": "7ef8371801ccc63a5272b657898f6ceccdb24d7c47dee9cfcacbe7854f2ad3da",
+    "content/Sounds/tum-era/creatures/254/S254DFND.wav": "109fe82c843748de4d03a306fdf41e7672ff9f4488e01207c1143122ebaefd32",
+    "content/Sounds/tum-era/creatures/254/S254KILL.wav": "9679cf6aa75bc14b219234c3c078b5e89451fe41b468ec337c7ff2c7613c5315",
+    "content/Sounds/tum-era/creatures/254/S254MOVE.wav": "59ea6ccc58f3197a5b042dfafd2d323c4b96d47e9769e36a313a6399bcee9dfc",
+    "content/Sounds/tum-era/creatures/254/S254SHOT.wav": "ed8a2f94f2b8cdb6735211d8ab6abeef87d3dd75e08156d2f66a59bcfc3caade",
+    "content/Sounds/tum-era/creatures/254/S254WNCE.wav": "7673bc96b2c2fbb11cea640f09a0789dbd1fa4952cf668ec0beb0ab40cbd6fed",
+    "content/Sprites/tum-era/hit-effects/Burst17.def": "395a3450fe12b64e179c595932b896dc1b7630765e9ebcc68204fa4e732c4d39",
+    "content/Sprites/tum-era/hit-effects/Burst25.def": "8210863a5a0019a79ab3e89efd21621c33037fb275e4f9c71d16d593e1324aed",
+    "content/Sounds/tum-era/hit-effects/DEATHCLS.wav": "8cb1be6eead5294981957cf4114bd9ae91769dceea5ad6e949afc4bef8a89146"
+  },
+  "contextStrategy": "root-owned fresh tum-completion test profile; only own pages close",
+  "cases": [
+    {
+      "name": "acid-before-fire-shield",
+      "seed": 20261111,
+      "passed": true,
+      "observed": {
+        "attack": 0,
+        "cloned": false,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          200,
+          0
+        ],
+        "count": 35,
+        "currentHealth": 95,
+        "defense": 2,
+        "enemy": true,
+        "eraSlot": 0,
+        "icon": "",
+        "id": 33,
+        "maximumHealth": 101,
+        "morale": 0,
+        "name": "Iron Golem",
+        "occupied": [
+          49
+        ],
+        "remainingCasts": 0,
+        "remainingRetaliations": 0,
+        "remainingShots": 0,
+        "speed": 1,
+        "stackId": 2,
+        "x": 718,
+        "y": 196
+      },
+      "acidProof": {
+        "physicalDamage": 4,
+        "acidDamage": 2,
+        "afterShieldActorCount": 1,
+        "wrongPostShieldAcidWouldBe": 1
+      }
+    },
+    {
+      "name": "c75-orb-undead",
+      "seed": 20261101,
+      "passed": true,
+      "observed": {
+        "attack": 0,
+        "cloned": false,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          60,
+          0
+        ],
+        "count": 35,
+        "currentHealth": 50,
+        "defense": 1000,
+        "enemy": true,
+        "eraSlot": 0,
+        "icon": "",
+        "id": 56,
+        "maximumHealth": 51,
+        "morale": 0,
+        "name": "Skeleton",
+        "occupied": [
+          49
+        ],
+        "remainingCasts": 0,
+        "remainingRetaliations": 0,
+        "remainingShots": 0,
+        "speed": 1,
+        "stackId": 2,
+        "x": 718,
+        "y": 196
+      },
+      "ageInnateExcludedBy": "UNDEAD target and ranged attack"
+    },
+    {
+      "name": "deflection-log",
+      "seed": 20261101,
+      "passed": true,
+      "observed": "[2026-Nov-01 07:54:08.219000] TRACE [runNetwork] global - CBattleConsole message: The Stack partially deflected the attack ( 50% of Damage, 50% Chance)",
+      "deflectionLogLines": [
+        "[2026-Nov-01 07:54:08.219000] TRACE [runNetwork] global - CBattleConsole message: The Stack partially deflected the attack ( 50% of Damage, 50% Chance)"
+      ],
+      "deflectionProof": {
+        "strength": 50,
+        "chance": 50,
+        "nativeBattleLog": true
+      }
+    },
+    {
+      "name": "intrinsicAge254",
+      "actorEraId": 254,
+      "passed": true,
+      "after": {
+        "round": 1,
+        "unit": {
+          "attack": 1,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 35,
+          "currentHealth": 1,
+          "defense": 1001,
+          "enemy": true,
+          "eraSlot": 0,
+          "icon": "",
+          "id": 0,
+          "maximumHealth": 51,
+          "morale": 0,
+          "name": "Pikeman",
+          "occupied": [
+            49
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "speed": 2,
+          "stackId": 1,
+          "x": 718,
+          "y": 196
+        }
+      },
+      "expiration": {
+        "round": 4,
+        "unit": {
+          "attack": 1,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 35,
+          "currentHealth": 51,
+          "defense": 1001,
+          "enemy": true,
+          "eraSlot": 0,
+          "icon": "",
+          "id": 0,
+          "maximumHealth": 101,
+          "morale": 0,
+          "name": "Pikeman",
+          "occupied": [
+            31
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "speed": 2,
+          "stackId": 1,
+          "x": 652,
+          "y": 154
+        }
+      },
+      "errors": []
+    },
+    {
+      "name": "intrinsicAge224",
+      "actorEraId": 224,
+      "passed": true,
+      "after": {
+        "round": 1,
+        "unit": {
+          "attack": 1,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 35,
+          "currentHealth": 1,
+          "defense": 1001,
+          "enemy": true,
+          "eraSlot": 0,
+          "icon": "",
+          "id": 0,
+          "maximumHealth": 51,
+          "morale": 0,
+          "name": "Pikeman",
+          "occupied": [
+            49
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "speed": 2,
+          "stackId": 1,
+          "x": 718,
+          "y": 196
+        }
+      },
+      "expiration": {
+        "round": 4,
+        "unit": {
+          "attack": 1,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 35,
+          "currentHealth": 51,
+          "defense": 1001,
+          "enemy": true,
+          "eraSlot": 0,
+          "icon": "",
+          "id": 0,
+          "maximumHealth": 101,
+          "morale": 0,
+          "name": "Pikeman",
+          "occupied": [
+            31
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "speed": 2,
+          "stackId": 1,
+          "x": 652,
+          "y": 154
+        }
+      },
+      "errors": []
+    }
+  ],
+  "allObservedPageErrors": [],
+  "negativeChanceAttempts": "Retained in full report; missed proc is not a passing observation. Acid confirmed seed20261111 after ten unconfirmed seeded attempts.",
+  "sourceRngObservability": "Seeds configured; exact source draw-order/call-count covered separately by pure selector tests, browser API has no draw log.",
+  "previousAudioIncident": {
+    "report": "/tmp/tum-status-selectors-native-shared-v3/report.json",
+    "seed": 20261109,
+    "preserved": true,
+    "cleanSameSeedRepro": "/tmp/tum-status-clone-trap-repro-v2/report.json",
+    "ownerAudioFixStress": "outputs/era-audio-stability-native-e2e.json",
+    "notSilentlySuppressed": true
+  },
+  "activation": "No shared project/native files modified by this suite. Owner may now integrate reviewed254 and224 data; 207/231 gameplay gates remain separate."
+}

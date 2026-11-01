@@ -16,12 +16,14 @@
 #include "../texts/CGeneralTextHandler.h"
 #include "../CConfigHandler.h"
 #include "../GameLibrary.h"
+#include "../era/EraBankAppearance.h"
 
 VCMI_LIB_NAMESPACE_BEGIN
 
 void CRewardableConstructor::initTypeData(const JsonNode & config)
 {
 	objectInfo.init(config, getBaseTextID());
+	eraBankAppearance = config["eraBankAppearance"];
 	blockVisit = config["blockedVisitable"].Bool();
 
 	if (!config["name"].isNull())
@@ -87,6 +89,7 @@ void CRewardableConstructor::configureObject(CGObjectInstance * object, IGameRan
 
 	rewardableObject->configuration = generateConfiguration(object->cb, gameRandomizer, object->ID, rewardableObject->configuration.variables.preset);
 	rewardableObject->initializeGuards();
+	era_bridge::applyBankAppearance(*rewardableObject, eraBankAppearance);
 
 	if (rewardableObject->configuration.info.empty())
 	{

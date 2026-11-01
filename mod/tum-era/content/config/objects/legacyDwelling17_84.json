@@ -1,0 +1,37 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "spectralVault": {
+        "name": "Bloody Vault",
+        "creatures": [
+          [
+            "tum-era:redBonesDragon"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:redBonesDragon",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "default": {
+            "animation": "tum-era/objects/legacy/zavg154z.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

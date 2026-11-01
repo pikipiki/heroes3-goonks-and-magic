@@ -154,9 +154,12 @@
           ],
           "cost": {
             "wood": 10,
+            "mercury": 30,
             "ore": 10,
-            "mercury": 20,
-            "gold": 30000
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 20000
           }
         }
       },

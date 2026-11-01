@@ -1,0 +1,1331 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "casesPassed": 22,
+  "counts": {
+    "banks": 13,
+    "dwellings": 9
+  },
+  "execution": {
+    "nativeEngineAbi": 2,
+    "origin": "http://127.0.0.1:8774",
+    "saveDeletion": false,
+    "inputSaveFiles": false,
+    "isolatedBrowserFilesystem": true,
+    "preMain": {
+      "commanders": false,
+      "resourceArrayCandidate": true
+    },
+    "dataCandidate": "Only43/44scoped resource dictionaries converted to supported native identifier/amount arrays before main. Preview dist was unchanged during gameplay tests.",
+    "coverageLimit": "RMG distribution and audio playback were not asserted by these object visits. Source field/schema/asset checks are separate. Inventory contents are not exposed by MobileBridge;43/44reward dialogs visually show spell/artifact/resource components.",
+    "historicalNativeDiagnosticsLimitation": "This historical run did not match the native phrases Failed to resolve identifier / Identifier ... does not exist. Empty monitored error lists do not prove clean boot. The newer strict run exposed a terrain ID issue (subterranean instead of subterra) and a fixture spellBook capitalization issue; both require corrected reruns.",
+    "resultScope": "Gameplay assertions passed; current production boot diagnostics require the later strict report."
+  },
+  "visualChecks": {
+    "bank43": "Reward dialog shows Fire Wall,5000gold and2Mithril.",
+    "bank44": "Reward dialog shows Amulet of the Undertaker,Sacrificial Dagger,Blind,2500gold and2Mithril."
+  },
+  "previewByteProvenance": {
+    "file": "tum-preview-after-run.json",
+    "phase": "after-run",
+    "warning": "No pre-run byte snapshot was recorded by the original harness; do not equate a later data manifest with the tested one."
+  },
+  "cases": [
+    {
+      "kind": "dwelling",
+      "sourceId": "20_2",
+      "passed": true,
+      "evidenceRun": "native-visits-retry/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        0,
+        -20,
+        0,
+        0,
+        0,
+        0,
+        -30000,
+        0
+      ],
+      "sourceStateIndices": null,
+      "initialNativeGuards": [
+        {
+          "nativeId": 132,
+          "name": "Azure Dragon",
+          "count": 3,
+          "occupied": [
+            14,
+            15
+          ]
+        },
+        {
+          "nativeId": 133,
+          "name": "Crystal Dragon",
+          "count": 3,
+          "occupied": [
+            82,
+            83
+          ]
+        },
+        {
+          "nativeId": 134,
+          "name": "Faerie Dragon",
+          "count": 3,
+          "occupied": [
+            116,
+            117
+          ]
+        },
+        {
+          "nativeId": 135,
+          "name": "Rust Dragon",
+          "count": 3,
+          "occupied": [
+            184,
+            185
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": {
+        "id": 132,
+        "name": "Azure Dragon",
+        "amount": 1
+      },
+      "onceOnlyRevisit": null,
+      "guardAssertion": "Exact source roster and amounts postvalidated from original native snapshots"
+    },
+    {
+      "kind": "dwelling",
+      "sourceId": "20_4",
+      "passed": true,
+      "evidenceRun": "native-visits-retry/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        0,
+        0,
+        0,
+        -2,
+        0,
+        0,
+        -4000,
+        0
+      ],
+      "sourceStateIndices": null,
+      "initialNativeGuards": [
+        {
+          "nativeId": 83,
+          "name": "Black Dragon",
+          "count": 3,
+          "occupied": [
+            14,
+            15
+          ]
+        },
+        {
+          "nativeId": 27,
+          "name": "Gold Dragon",
+          "count": 3,
+          "occupied": [
+            82,
+            83
+          ]
+        },
+        {
+          "nativeId": 82,
+          "name": "Red Dragon",
+          "count": 3,
+          "occupied": [
+            116,
+            117
+          ]
+        },
+        {
+          "nativeId": 26,
+          "name": "Green Dragon",
+          "count": 3,
+          "occupied": [
+            184,
+            185
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": {
+        "id": 83,
+        "name": "Black Dragon",
+        "amount": 1
+      },
+      "onceOnlyRevisit": null,
+      "guardAssertion": "Exact source roster and amounts postvalidated from original native snapshots"
+    },
+    {
+      "kind": "bank",
+      "sourceId": "33",
+      "passed": true,
+      "evidenceRun": "native-visits/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5000,
+        0
+      ],
+      "sourceStateIndices": [
+        0
+      ],
+      "initialNativeGuards": [
+        {
+          "nativeId": 212,
+          "name": "Ghoul",
+          "count": 30,
+          "occupied": [
+            15
+          ]
+        },
+        {
+          "nativeId": 212,
+          "name": "Ghoul",
+          "count": 30,
+          "occupied": [
+            185
+          ]
+        },
+        {
+          "nativeId": 212,
+          "name": "Ghoul",
+          "count": 30,
+          "occupied": [
+            172
+          ]
+        },
+        {
+          "nativeId": 212,
+          "name": "Ghoul",
+          "count": 30,
+          "occupied": [
+            2
+          ]
+        },
+        {
+          "nativeId": 212,
+          "name": "Ghoul",
+          "count": 30,
+          "occupied": [
+            100
+          ]
+        },
+        {
+          "nativeId": 212,
+          "name": "Ghoul",
+          "count": 30,
+          "occupied": [
+            87
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": null,
+      "onceOnlyRevisit": {
+        "observed": true,
+        "unchangedResourceBalances": true
+      }
+    },
+    {
+      "kind": "bank",
+      "sourceId": "38",
+      "passed": true,
+      "evidenceRun": "native-visits-retry/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sourceStateIndices": [
+        2
+      ],
+      "initialNativeGuards": [
+        {
+          "nativeId": 236,
+          "name": "Plasma Elemental",
+          "count": 42,
+          "occupied": [
+            15
+          ]
+        },
+        {
+          "nativeId": 236,
+          "name": "Plasma Elemental",
+          "count": 42,
+          "occupied": [
+            185
+          ]
+        },
+        {
+          "nativeId": 236,
+          "name": "Plasma Elemental",
+          "count": 42,
+          "occupied": [
+            172
+          ]
+        },
+        {
+          "nativeId": 236,
+          "name": "Plasma Elemental",
+          "count": 42,
+          "occupied": [
+            2
+          ]
+        },
+        {
+          "nativeId": 236,
+          "name": "Plasma Elemental",
+          "count": 42,
+          "occupied": [
+            100
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": null,
+      "onceOnlyRevisit": {
+        "observed": true,
+        "unchangedResourceBalances": true
+      }
+    },
+    {
+      "kind": "bank",
+      "sourceId": "41",
+      "passed": true,
+      "evidenceRun": "native-visits/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        0,
+        6,
+        0,
+        6,
+        6,
+        6,
+        10000,
+        0
+      ],
+      "sourceStateIndices": [
+        1
+      ],
+      "initialNativeGuards": [
+        {
+          "nativeId": 232,
+          "name": "Nosferatu",
+          "count": 24,
+          "occupied": [
+            15
+          ]
+        },
+        {
+          "nativeId": 232,
+          "name": "Nosferatu",
+          "count": 24,
+          "occupied": [
+            185
+          ]
+        },
+        {
+          "nativeId": 232,
+          "name": "Nosferatu",
+          "count": 24,
+          "occupied": [
+            172
+          ]
+        },
+        {
+          "nativeId": 232,
+          "name": "Nosferatu",
+          "count": 24,
+          "occupied": [
+            2
+          ]
+        },
+        {
+          "nativeId": 232,
+          "name": "Nosferatu",
+          "count": 24,
+          "occupied": [
+            100
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": null,
+      "onceOnlyRevisit": {
+        "observed": true,
+        "unchangedResourceBalances": true
+      }
+    },
+    {
+      "kind": "bank",
+      "sourceId": "47",
+      "passed": true,
+      "evidenceRun": "native-visits/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        20,
+        10,
+        20,
+        10,
+        10,
+        10,
+        10000,
+        0
+      ],
+      "sourceStateIndices": [
+        0
+      ],
+      "initialNativeGuards": [
+        {
+          "nativeId": 118,
+          "name": "Pixie",
+          "count": 128,
+          "occupied": [
+            15
+          ]
+        },
+        {
+          "nativeId": 16,
+          "name": "Dwarf",
+          "count": 32,
+          "occupied": [
+            185
+          ]
+        },
+        {
+          "nativeId": 18,
+          "name": "Wood Elf",
+          "count": 16,
+          "occupied": [
+            172
+          ]
+        },
+        {
+          "nativeId": 8,
+          "name": "Monk",
+          "count": 8,
+          "occupied": [
+            2
+          ]
+        },
+        {
+          "nativeId": 24,
+          "name": "Unicorn",
+          "count": 4,
+          "occupied": [
+            99,
+            100
+          ]
+        },
+        {
+          "nativeId": 130,
+          "name": "Firebird",
+          "count": 2,
+          "occupied": [
+            86,
+            87
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": null,
+      "onceOnlyRevisit": {
+        "observed": true,
+        "unchangedResourceBalances": true
+      }
+    },
+    {
+      "kind": "bank",
+      "sourceId": "52",
+      "passed": true,
+      "evidenceRun": "native-visits/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        0,
+        10,
+        0,
+        0,
+        0,
+        0,
+        7500,
+        0
+      ],
+      "sourceStateIndices": [
+        0
+      ],
+      "initialNativeGuards": [
+        {
+          "nativeId": 206,
+          "name": "Death Knight",
+          "count": 7,
+          "occupied": [
+            14,
+            15
+          ]
+        },
+        {
+          "nativeId": 67,
+          "name": "Dread Knight",
+          "count": 7,
+          "occupied": [
+            184,
+            185
+          ]
+        },
+        {
+          "nativeId": 67,
+          "name": "Dread Knight",
+          "count": 7,
+          "occupied": [
+            171,
+            172
+          ]
+        },
+        {
+          "nativeId": 67,
+          "name": "Dread Knight",
+          "count": 7,
+          "occupied": [
+            1,
+            2
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": null,
+      "onceOnlyRevisit": {
+        "observed": true,
+        "unchangedResourceBalances": true
+      }
+    },
+    {
+      "kind": "bank",
+      "sourceId": "62",
+      "passed": true,
+      "evidenceRun": "native-visits/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        0,
+        0
+      ],
+      "sourceStateIndices": [
+        0
+      ],
+      "initialNativeGuards": [
+        {
+          "nativeId": 112,
+          "name": "Air Elemental",
+          "count": 10,
+          "occupied": [
+            15
+          ]
+        },
+        {
+          "nativeId": 115,
+          "name": "Water Elemental",
+          "count": 10,
+          "occupied": [
+            184,
+            185
+          ]
+        },
+        {
+          "nativeId": 114,
+          "name": "Fire Elemental",
+          "count": 10,
+          "occupied": [
+            172
+          ]
+        },
+        {
+          "nativeId": 113,
+          "name": "Earth Elemental",
+          "count": 10,
+          "occupied": [
+            2
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": null,
+      "onceOnlyRevisit": {
+        "observed": true,
+        "unchangedResourceBalances": true
+      }
+    },
+    {
+      "kind": "bank",
+      "sourceId": "63",
+      "passed": true,
+      "evidenceRun": "native-visits/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        0,
+        0,
+        30,
+        0,
+        0,
+        0,
+        2500,
+        0
+      ],
+      "sourceStateIndices": [
+        0
+      ],
+      "initialNativeGuards": [
+        {
+          "nativeId": 30,
+          "name": "Stone Gargoyle",
+          "count": 30,
+          "occupied": [
+            15
+          ]
+        },
+        {
+          "nativeId": 30,
+          "name": "Stone Gargoyle",
+          "count": 30,
+          "occupied": [
+            185
+          ]
+        },
+        {
+          "nativeId": 30,
+          "name": "Stone Gargoyle",
+          "count": 30,
+          "occupied": [
+            172
+          ]
+        },
+        {
+          "nativeId": 32,
+          "name": "Stone Golem",
+          "count": 10,
+          "occupied": [
+            2
+          ]
+        },
+        {
+          "nativeId": 32,
+          "name": "Stone Golem",
+          "count": 10,
+          "occupied": [
+            100
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": null,
+      "onceOnlyRevisit": {
+        "observed": true,
+        "unchangedResourceBalances": true
+      }
+    },
+    {
+      "kind": "bank",
+      "sourceId": "43",
+      "passed": true,
+      "evidenceRun": "native-visits/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5000,
+        2
+      ],
+      "sourceStateIndices": [
+        0
+      ],
+      "initialNativeGuards": [
+        {
+          "nativeId": 57,
+          "name": "Skeleton Warrior",
+          "count": 25,
+          "occupied": [
+            15
+          ]
+        },
+        {
+          "nativeId": 59,
+          "name": "Zombie",
+          "count": 15,
+          "occupied": [
+            185
+          ]
+        },
+        {
+          "nativeId": 61,
+          "name": "Wraith",
+          "count": 10,
+          "occupied": [
+            172
+          ]
+        },
+        {
+          "nativeId": 63,
+          "name": "Vampire Lord",
+          "count": 5,
+          "occupied": [
+            2
+          ]
+        },
+        {
+          "nativeId": 57,
+          "name": "Skeleton Warrior",
+          "count": 25,
+          "occupied": [
+            100
+          ]
+        },
+        {
+          "nativeId": 59,
+          "name": "Zombie",
+          "count": 15,
+          "occupied": [
+            87
+          ]
+        },
+        {
+          "nativeId": 61,
+          "name": "Wraith",
+          "count": 10,
+          "occupied": [
+            8
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": null,
+      "onceOnlyRevisit": {
+        "observed": true,
+        "unchangedResourceBalances": true
+      }
+    },
+    {
+      "kind": "bank",
+      "sourceId": "44",
+      "passed": true,
+      "evidenceRun": "native-visits/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2500,
+        2
+      ],
+      "sourceStateIndices": [
+        0
+      ],
+      "initialNativeGuards": [
+        {
+          "nativeId": 217,
+          "name": "High Priest",
+          "count": 15,
+          "occupied": [
+            15
+          ]
+        },
+        {
+          "nativeId": 9,
+          "name": "Zealot",
+          "count": 15,
+          "occupied": [
+            185
+          ]
+        },
+        {
+          "nativeId": 9,
+          "name": "Zealot",
+          "count": 15,
+          "occupied": [
+            172
+          ]
+        },
+        {
+          "nativeId": 9,
+          "name": "Zealot",
+          "count": 15,
+          "occupied": [
+            2
+          ]
+        },
+        {
+          "nativeId": 9,
+          "name": "Zealot",
+          "count": 15,
+          "occupied": [
+            100
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": null,
+      "onceOnlyRevisit": {
+        "observed": true,
+        "unchangedResourceBalances": true
+      }
+    },
+    {
+      "kind": "dwelling",
+      "sourceId": "20_3",
+      "passed": true,
+      "evidenceRun": "native-visits-retry/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        0,
+        -3,
+        0,
+        0,
+        0,
+        0,
+        -6000,
+        0
+      ],
+      "sourceStateIndices": null,
+      "initialNativeGuards": [
+        {
+          "nativeId": 261,
+          "name": "Red Bones Dragon",
+          "count": 3,
+          "occupied": [
+            14,
+            15
+          ]
+        },
+        {
+          "nativeId": 177,
+          "name": "Blood Dragon",
+          "count": 3,
+          "occupied": [
+            82,
+            83
+          ]
+        },
+        {
+          "nativeId": 69,
+          "name": "Ghost Dragon",
+          "count": 3,
+          "occupied": [
+            116,
+            117
+          ]
+        },
+        {
+          "nativeId": 68,
+          "name": "Bone Dragon",
+          "count": 3,
+          "occupied": [
+            184,
+            185
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": {
+        "id": 261,
+        "name": "Red Bones Dragon",
+        "amount": 1
+      },
+      "onceOnlyRevisit": null,
+      "guardAssertion": "Exact source roster and amounts postvalidated from original native snapshots"
+    },
+    {
+      "kind": "dwelling",
+      "sourceId": "17_121",
+      "passed": true,
+      "evidenceRun": "native-visits-retry/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": false,
+      "resourceDelta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -240,
+        0
+      ],
+      "sourceStateIndices": null,
+      "initialNativeGuards": [],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": {
+        "id": 254,
+        "name": "Dread Skipper",
+        "amount": 1
+      },
+      "onceOnlyRevisit": null,
+      "guardAssertion": "Exact source roster and amounts postvalidated from original native snapshots"
+    },
+    {
+      "kind": "dwelling",
+      "sourceId": "17_125",
+      "passed": true,
+      "evidenceRun": "native-visits/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": false,
+      "resourceDelta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sourceStateIndices": null,
+      "initialNativeGuards": [],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": {
+        "type": "tum-era:eraCreature295",
+        "name": "Skeleton Archer",
+        "amount": 12,
+        "mode": "source-level1-free-join"
+      },
+      "onceOnlyRevisit": null,
+      "guardAssertion": "Exact source roster and amounts postvalidated from original native snapshots"
+    },
+    {
+      "kind": "dwelling",
+      "sourceId": "17_127",
+      "passed": true,
+      "evidenceRun": "native-visits/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": false,
+      "resourceDelta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sourceStateIndices": null,
+      "initialNativeGuards": [],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": {
+        "type": "tum-era:eraCreature297",
+        "name": "Mana Skeleton",
+        "amount": 14,
+        "mode": "source-level1-free-join"
+      },
+      "onceOnlyRevisit": null,
+      "guardAssertion": "Exact source roster and amounts postvalidated from original native snapshots"
+    },
+    {
+      "kind": "dwelling",
+      "sourceId": "17_130",
+      "passed": true,
+      "evidenceRun": "native-visits-retry/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": false,
+      "resourceDelta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -400,
+        0
+      ],
+      "sourceStateIndices": null,
+      "initialNativeGuards": [],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": {
+        "id": 257,
+        "name": "Sharpshooter Skeleton",
+        "amount": 1
+      },
+      "onceOnlyRevisit": null,
+      "guardAssertion": "Exact source roster and amounts postvalidated from original native snapshots"
+    },
+    {
+      "kind": "dwelling",
+      "sourceId": "17_164",
+      "passed": true,
+      "evidenceRun": "native-visits-retry/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -2500,
+        0
+      ],
+      "sourceStateIndices": null,
+      "initialNativeGuards": [
+        {
+          "nativeId": 258,
+          "name": "Skeleton Angel",
+          "count": 6,
+          "occupied": [
+            100
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": {
+        "id": 258,
+        "name": "Skeleton Angel",
+        "amount": 1
+      },
+      "onceOnlyRevisit": null,
+      "guardAssertion": "Exact source roster and amounts postvalidated from original native snapshots"
+    },
+    {
+      "kind": "dwelling",
+      "sourceId": "17_165",
+      "passed": true,
+      "evidenceRun": "native-visits-retry/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": false,
+      "resourceDelta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -400,
+        0
+      ],
+      "sourceStateIndices": null,
+      "initialNativeGuards": [],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": {
+        "id": 260,
+        "name": "General Skeleton",
+        "amount": 1
+      },
+      "onceOnlyRevisit": null,
+      "guardAssertion": "Exact source roster and amounts postvalidated from original native snapshots"
+    },
+    {
+      "kind": "bank",
+      "sourceId": "53",
+      "passed": true,
+      "evidenceRun": "native-visits/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        20,
+        15000,
+        0
+      ],
+      "sourceStateIndices": [
+        0
+      ],
+      "initialNativeGuards": [
+        {
+          "nativeId": 185,
+          "name": "Supreme Archangel",
+          "count": 20,
+          "occupied": [
+            14,
+            15
+          ]
+        },
+        {
+          "nativeId": 13,
+          "name": "Archangel",
+          "count": 20,
+          "occupied": [
+            184,
+            185
+          ]
+        },
+        {
+          "nativeId": 13,
+          "name": "Archangel",
+          "count": 20,
+          "occupied": [
+            171,
+            172
+          ]
+        },
+        {
+          "nativeId": 13,
+          "name": "Archangel",
+          "count": 20,
+          "occupied": [
+            1,
+            2
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": null,
+      "onceOnlyRevisit": {
+        "observed": true,
+        "unchangedResourceBalances": true
+      }
+    },
+    {
+      "kind": "bank",
+      "sourceId": "56",
+      "passed": true,
+      "evidenceRun": "native-visits/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        0,
+        20,
+        0,
+        0,
+        0,
+        0,
+        10000,
+        0
+      ],
+      "sourceStateIndices": [
+        0
+      ],
+      "initialNativeGuards": [
+        {
+          "nativeId": 181,
+          "name": "Hell Baron",
+          "count": 21,
+          "occupied": [
+            15
+          ]
+        },
+        {
+          "nativeId": 55,
+          "name": "Arch Devil",
+          "count": 21,
+          "occupied": [
+            185
+          ]
+        },
+        {
+          "nativeId": 55,
+          "name": "Arch Devil",
+          "count": 21,
+          "occupied": [
+            172
+          ]
+        },
+        {
+          "nativeId": 55,
+          "name": "Arch Devil",
+          "count": 21,
+          "occupied": [
+            2
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": null,
+      "onceOnlyRevisit": {
+        "observed": true,
+        "unchangedResourceBalances": true
+      }
+    },
+    {
+      "kind": "bank",
+      "sourceId": "57",
+      "passed": true,
+      "evidenceRun": "native-visits/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        0,
+        20,
+        0,
+        0,
+        0,
+        0,
+        12000,
+        0
+      ],
+      "sourceStateIndices": [
+        0
+      ],
+      "initialNativeGuards": [
+        {
+          "nativeId": 177,
+          "name": "Blood Dragon",
+          "count": 25,
+          "occupied": [
+            14,
+            15
+          ]
+        },
+        {
+          "nativeId": 69,
+          "name": "Ghost Dragon",
+          "count": 25,
+          "occupied": [
+            184,
+            185
+          ]
+        },
+        {
+          "nativeId": 69,
+          "name": "Ghost Dragon",
+          "count": 25,
+          "occupied": [
+            171,
+            172
+          ]
+        },
+        {
+          "nativeId": 69,
+          "name": "Ghost Dragon",
+          "count": 25,
+          "occupied": [
+            1,
+            2
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": null,
+      "onceOnlyRevisit": {
+        "observed": true,
+        "unchangedResourceBalances": true
+      }
+    },
+    {
+      "kind": "bank",
+      "sourceId": "61",
+      "passed": true,
+      "evidenceRun": "native-visits/report.json",
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "battleOccurred": true,
+      "resourceDelta": [
+        0,
+        0,
+        0,
+        0,
+        20,
+        0,
+        12000,
+        0
+      ],
+      "sourceStateIndices": [
+        0
+      ],
+      "initialNativeGuards": [
+        {
+          "nativeId": 184,
+          "name": "Sacred Phoenix",
+          "count": 18,
+          "occupied": [
+            14,
+            15
+          ]
+        },
+        {
+          "nativeId": 131,
+          "name": "Phoenix",
+          "count": 18,
+          "occupied": [
+            184,
+            185
+          ]
+        },
+        {
+          "nativeId": 131,
+          "name": "Phoenix",
+          "count": 18,
+          "occupied": [
+            171,
+            172
+          ]
+        },
+        {
+          "nativeId": 131,
+          "name": "Phoenix",
+          "count": 18,
+          "occupied": [
+            1,
+            2
+          ]
+        }
+      ],
+      "guardFootprintsDoNotOverlap": true,
+      "recruit": null,
+      "onceOnlyRevisit": {
+        "observed": true,
+        "unchangedResourceBalances": true
+      }
+    }
+  ]
+}

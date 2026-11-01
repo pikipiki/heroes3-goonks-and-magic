@@ -1,0 +1,35 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_130": {
+        "name": "Defunct Treetop Tower",
+        "creatures": [
+          [
+            "tum-era:eraCreature299"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw33.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 2340,
+          "rarity": 40
+        }
+      }
+    }
+  }
+}

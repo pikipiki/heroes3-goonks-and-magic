@@ -1,0 +1,1900 @@
+{
+  "artifact171": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 10000,
+    "slot": [
+      "RIGHT_HAND"
+    ],
+    "text": {
+      "name": "Hammer of Doom",
+      "description": "{Hammer of Doom}\n\nWhen worn, this massive relic increases your Attack skill by +16, but reduces your Defense skill by -6 and Morale -1.",
+      "event": "You find the Hammer of Doom, dust it off, and stick it in your pack."
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/171/icon.png",
+      "map": "tum-era/artifacts/171/map.def",
+      "scenarioBonus": "tum-era/artifacts/171/scenario.png"
+    },
+    "bonuses": {
+      "Attack": {
+        "type": "PRIMARY_SKILL",
+        "val": 16,
+        "subtype": "primarySkill.attack"
+      },
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": -5,
+        "subtype": "primarySkill.defence"
+      },
+      "Morale": {
+        "type": "MORALE",
+        "val": -1
+      }
+    }
+  },
+  "artifact172": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 10000,
+    "slot": [
+      "LEFT_HAND"
+    ],
+    "text": {
+      "name": "Eclipse Shield",
+      "description": "{Eclipse Shield}\n\nThis left handed item increases your Defense skill by +16,  but reduces your Attack skill by -5 and Morale -1.",
+      "event": "You find the Eclipse Shield, dust it off, and stick it in your pack."
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/172/icon.png",
+      "map": "tum-era/artifacts/172/map.def",
+      "scenarioBonus": "tum-era/artifacts/172/scenario.png"
+    },
+    "bonuses": {
+      "Attack": {
+        "type": "PRIMARY_SKILL",
+        "val": -5,
+        "subtype": "primarySkill.attack"
+      },
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 16,
+        "subtype": "primarySkill.defence"
+      },
+      "Morale": {
+        "type": "MORALE",
+        "val": -1
+      }
+    }
+  },
+  "artifact173": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 10000,
+    "slot": [
+      "HEAD"
+    ],
+    "text": {
+      "name": "Helmet of Fallen Paladin",
+      "description": "{Helmet of Fallen Paladin}\n\nWorn on the head, this item increases your Knowledge skill by +14 but reduces your Spellpower skill by -4 and Morale -1.",
+      "event": "You find the Helmet of Fallen Paladin, dust it off, and stick it in your pack."
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/173/icon.png",
+      "map": "tum-era/artifacts/173/map.def",
+      "scenarioBonus": "tum-era/artifacts/173/scenario.png"
+    },
+    "bonuses": {
+      "Knowledge": {
+        "type": "PRIMARY_SKILL",
+        "val": 14,
+        "subtype": "primarySkill.knowledge"
+      },
+      "Spellpower": {
+        "type": "PRIMARY_SKILL",
+        "val": -4,
+        "subtype": "primarySkill.spellpower"
+      },
+      "Morale": {
+        "type": "MORALE",
+        "val": -1
+      }
+    }
+  },
+  "artifact174": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 10000,
+    "slot": [
+      "TORSO"
+    ],
+    "text": {
+      "name": "Dragonrider's Armor",
+      "description": "{Dragonrider's Armor}\n\nWorn on the torso, this item increases your Spellpower skill by +14 but reduces your Knowledge skill by -4 and Morale -1.",
+      "event": "You find the Dragonrider's Armor, dust it off, and stick it in your pack."
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/174/icon.png",
+      "map": "tum-era/artifacts/174/map.def",
+      "scenarioBonus": "tum-era/artifacts/174/scenario.png"
+    },
+    "bonuses": {
+      "Knowledge": {
+        "type": "PRIMARY_SKILL",
+        "val": -4,
+        "subtype": "primarySkill.knowledge"
+      },
+      "Spellpower": {
+        "type": "PRIMARY_SKILL",
+        "val": 14,
+        "subtype": "primarySkill.spellpower"
+      },
+      "Morale": {
+        "type": "MORALE",
+        "val": -1
+      }
+    }
+  },
+  "artifact175": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 7000,
+    "slot": [
+      "RIGHT_HAND"
+    ],
+    "text": {
+      "name": "Trident of Dominion",
+      "description": "{Trident of Dominion}\n\nThis right-handed weapon increases your Attack skill by +7.",
+      "event": "You finally found a well after a long search. Your soldiers could not get the bucket of water out, however. Something was preventing it from coming out. Your banner carrier had to descend in the well himself. It appeared that a trident was blocking the way."
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/175/icon.png",
+      "map": "tum-era/artifacts/175/map.def",
+      "scenarioBonus": "tum-era/artifacts/175/scenario.png"
+    },
+    "bonuses": {
+      "Attack": {
+        "type": "PRIMARY_SKILL",
+        "val": 7,
+        "subtype": "primarySkill.attack"
+      }
+    }
+  },
+  "artifact176": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 7000,
+    "slot": [
+      "LEFT_HAND"
+    ],
+    "text": {
+      "name": "Shield of Naval Glory",
+      "description": "{Shield of Naval Glory}\n\nThis left-handed shield increases your Defense skill by +7.",
+      "event": "You meet an old admiral at the tavern. After a couple of hours full of tales about glorious battles and days long passed he gifts you his parade shield."
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/176/icon.png",
+      "map": "tum-era/artifacts/176/map.def",
+      "scenarioBonus": "tum-era/artifacts/176/scenario.png"
+    },
+    "bonuses": {
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 7,
+        "subtype": "primarySkill.defence"
+      }
+    }
+  },
+  "artifact177": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 7000,
+    "slot": [
+      "HEAD"
+    ],
+    "text": {
+      "name": "Crown of the Five Seas",
+      "description": "{Crown of the Five Seas}\n\nWorn on the head, this item increases your Knowledge skill by +6.",
+      "event": "You see a fight on a hill nearby. As you get closer, you see two nix. One is winning, and as he is about to land a finishing blow, you intervene. The defeated nix thanks you for your help, and gifts you with his armor. He believes you deserve it more than he does."
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/177/icon.png",
+      "map": "tum-era/artifacts/177/map.def",
+      "scenarioBonus": "tum-era/artifacts/177/scenario.png"
+    },
+    "bonuses": {
+      "Knowledge": {
+        "type": "PRIMARY_SKILL",
+        "val": 6,
+        "subtype": "primarySkill.knowledge"
+      }
+    }
+  },
+  "artifact178": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 7000,
+    "slot": [
+      "TORSO"
+    ],
+    "text": {
+      "name": "Royal Armor of Nix",
+      "description": "{Royal Armor of Nix}\n\nWorn on the torso, this item increases your Power skill by +6.",
+      "event": "You hardly set a camp, leaving the saddle for the first time for the day, as some critter sneaked up on you and pulled one of your boots in his hole. Swearing silently, you search the hole with your hand. Instead of a boot, you touch something sharp. Amazed, you pull out a crown."
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/178/icon.png",
+      "map": "tum-era/artifacts/178/map.def",
+      "scenarioBonus": "tum-era/artifacts/178/scenario.png"
+    },
+    "bonuses": {
+      "Spellpower": {
+        "type": "PRIMARY_SKILL",
+        "val": 6,
+        "subtype": "primarySkill.spellpower"
+      }
+    }
+  },
+  "artifact182": {
+    "type": [
+      "HERO"
+    ],
+    "class": "SPECIAL",
+    "value": 55000,
+    "slot": [
+      "RIGHT_HAND"
+    ],
+    "text": {
+      "name": "Ironfist of the Dark Paladin",
+      "description": "{Ironfist of the Dark Paladin}\n\nIn addition to components effects, at the beginning of combat the Fist will cast Haste, Bloodlust, Fire Shield and Counterstrike (all Expert) lasting for 50 turns on all allied troops.",
+      "event": "On passing by a small cave you hear deep thumping. You enter the cave and see a juvenile Cyclops cracking nuts with an enormous hammer. Every strike ends in shells and nut pieces being scattered all over the cave. You teach the Cyclops to crack nuts more sparingly by crushing them against each other. Overjoyed with this discovery, the youth gifts you the hammer."
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/182/icon.png",
+      "map": "tum-era/artifacts/182/map.def",
+      "scenarioBonus": "tum-era/artifacts/182/scenario.png"
+    },
+    "bonuses": {
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:haste"
+      },
+      "Autospell2": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:bloodlust"
+      },
+      "Autospell3": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:fireShield"
+      },
+      "Autospell4": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:counterstrike"
+      }
+    },
+    "components": [
+      "tum-era:artifact171",
+      "tum-era:artifact172",
+      "tum-era:artifact173",
+      "tum-era:artifact174"
+    ]
+  },
+  "artifact189": {
+    "type": [
+      "HERO"
+    ],
+    "class": "TREASURE",
+    "value": 3000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Mana Crystal",
+      "description": "{Mana Crystal}\n\nIncrease number of spells of your creatures by 1 at the beginning of each combat.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/189/icon.png",
+      "map": "tum-era/artifacts/189/map.def",
+      "scenarioBonus": "tum-era/artifacts/189/scenario.png"
+    },
+    "bonuses": {
+      "Casts": {
+        "type": "CASTS",
+        "val": 1
+      }
+    }
+  },
+  "artifact190": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 4000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Flask of Mana",
+      "description": "{Flask of Mana}\n\nIncrease number of spells of your creatures by 2 at the beginning of each combat.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/190/icon.png",
+      "map": "tum-era/artifacts/190/map.def",
+      "scenarioBonus": "tum-era/artifacts/190/scenario.png"
+    },
+    "bonuses": {
+      "Casts": {
+        "type": "CASTS",
+        "val": 2
+      }
+    }
+  },
+  "artifact191": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 5000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Vial of Mana",
+      "description": "{Vial of Mana}\n\nIncrease number of spells of your creatures by 3 at the beginning of each combat.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/191/icon.png",
+      "map": "tum-era/artifacts/191/map.def",
+      "scenarioBonus": "tum-era/artifacts/191/scenario.png"
+    },
+    "bonuses": {
+      "Casts": {
+        "type": "CASTS",
+        "val": 3
+      }
+    }
+  },
+  "artifact196": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 6000,
+    "slot": [
+      "LEFT_HAND"
+    ],
+    "text": {
+      "name": "Fencer's Fist Shield",
+      "description": "{Fencer's Fist Shield}\n\nThis shield increases your Defense skill by 3 and the health of all your units by 1.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/196/icon.png",
+      "map": "tum-era/artifacts/196/map.def",
+      "scenarioBonus": "tum-era/artifacts/196/scenario.png"
+    },
+    "bonuses": {
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 3,
+        "subtype": "primarySkill.defence"
+      },
+      "Health": {
+        "type": "STACK_HEALTH",
+        "val": 1
+      }
+    }
+  },
+  "artifact198": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 3000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Observer's Eye",
+      "description": "{Observer's Eye}\n\nWhen equipped, this item allows to cast the View Earth, View Air, and Visions spells.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/198/icon.png",
+      "map": "tum-era/artifacts/198/map.def",
+      "scenarioBonus": "tum-era/artifacts/198/scenario.png"
+    },
+    "bonuses": {
+      "givenSpell2": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:visions"
+      },
+      "givenSpell3": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:viewEarth"
+      },
+      "givenSpell5": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:viewAir"
+      }
+    }
+  },
+  "artifact199": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 9000,
+    "slot": [
+      "LEFT_HAND"
+    ],
+    "text": {
+      "name": "Astral Shield",
+      "description": "{Astral Shield}\n\nWhen equipped, this shield increases your Defense skill by 3 and casts Forgetfulness on enemy shooters.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/199/icon.png",
+      "map": "tum-era/artifacts/199/map.def",
+      "scenarioBonus": "tum-era/artifacts/199/scenario.png"
+    },
+    "bonuses": {
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 3,
+        "subtype": "primarySkill.defence"
+      },
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:forgetfulness"
+      }
+    }
+  },
+  "artifact200": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 8000,
+    "slot": [
+      "LEFT_HAND"
+    ],
+    "text": {
+      "name": "Ice Shield",
+      "description": "{Ice Shield}\n\nWhen equipped, the Ice Shield increases your Defense skill by 3 and makes your units immune to Cold spells.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/200/icon.png",
+      "map": "tum-era/artifacts/200/map.def",
+      "scenarioBonus": "tum-era/artifacts/200/scenario.png"
+    },
+    "bonuses": {
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 3,
+        "subtype": "primarySkill.defence"
+      },
+      "immunity16": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:iceBolt"
+      },
+      "immunity20": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:frostRing"
+      }
+    }
+  },
+  "artifact201": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 6000,
+    "slot": [
+      "LEFT_RING",
+      "RIGHT_RING"
+    ],
+    "text": {
+      "name": "Ring of Negativity",
+      "description": "{Ring of Negativity}\n\nWearing this item renders your units immune to the Lightning Bolt spell.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/201/icon.png",
+      "map": "tum-era/artifacts/201/map.def",
+      "scenarioBonus": "tum-era/artifacts/201/scenario.png"
+    },
+    "bonuses": {
+      "immunity17": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:lightningBolt"
+      }
+    }
+  },
+  "artifact203": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 10000,
+    "slot": [
+      "TORSO"
+    ],
+    "text": {
+      "name": "Strong Armor",
+      "description": "{Strong Armor}\n\nWhen equipped, the Strong Armor increases your Power skill by 4 and makes your units immune to the Explosion and Disruption Ray spells.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/203/icon.png",
+      "map": "tum-era/artifacts/203/map.def",
+      "scenarioBonus": "tum-era/artifacts/203/scenario.png"
+    },
+    "bonuses": {
+      "Spellpower": {
+        "type": "PRIMARY_SKILL",
+        "val": 4,
+        "subtype": "primarySkill.spellpower"
+      },
+      "immunity47": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:disruptingRay"
+      },
+      "immunity18": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:implosion"
+      }
+    }
+  },
+  "artifact204": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 12000,
+    "slot": [
+      "TORSO"
+    ],
+    "text": {
+      "name": "Ionized Armor",
+      "description": "{Ionized Armor}\n\nWearing this item renders your units immune to all offensive Air spells.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/204/icon.png",
+      "map": "tum-era/artifacts/204/map.def",
+      "scenarioBonus": "tum-era/artifacts/204/scenario.png"
+    },
+    "bonuses": {
+      "immunity47": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:disruptingRay"
+      },
+      "immunity17": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:lightningBolt"
+      },
+      "immunity25": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:destroyUndead"
+      },
+      "immunity60": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:hypnotize"
+      },
+      "immunity19": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:chainLightning"
+      },
+      "immunity57": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:titanBolt"
+      }
+    }
+  },
+  "artifact205": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 12000,
+    "slot": [
+      "TORSO"
+    ],
+    "text": {
+      "name": "Green Armor",
+      "description": "{Green Armor}\n\nWearing this item renders your units immune to all offensive Earth spells.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/205/icon.png",
+      "map": "tum-era/artifacts/205/map.def",
+      "scenarioBonus": "tum-era/artifacts/205/scenario.png"
+    },
+    "bonuses": {
+      "immunity54": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:slow"
+      },
+      "immunity24": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:deathRipple"
+      },
+      "immunity10": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:quicksand"
+      },
+      "immunity23": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:meteorShower"
+      },
+      "immunity50": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:sorrow"
+      },
+      "immunity18": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:implosion"
+      }
+    }
+  },
+  "artifact206": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 12000,
+    "slot": [
+      "TORSO"
+    ],
+    "text": {
+      "name": "Chilled Armor",
+      "description": "{Chilled Armor}\n\nWearing this item renders your units immune to all offensive Fire spells.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/206/icon.png",
+      "map": "tum-era/artifacts/206/map.def",
+      "scenarioBonus": "tum-era/artifacts/206/scenario.png"
+    },
+    "bonuses": {
+      "immunity42": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:curse"
+      },
+      "immunity62": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:blind"
+      },
+      "immunity13": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:fireWall"
+      },
+      "immunity21": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:fireball"
+      },
+      "immunity11": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:landMine"
+      },
+      "immunity52": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:misfortune"
+      },
+      "immunity26": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:armageddon"
+      },
+      "immunity59": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:berserk"
+      },
+      "immunity22": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:inferno"
+      }
+    }
+  },
+  "artifact207": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 12000,
+    "slot": [
+      "TORSO"
+    ],
+    "text": {
+      "name": "Streamline Armor",
+      "description": "{Streamline Armor}\n\nWearing this item renders your units immune to all offensive Water spells.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/207/icon.png",
+      "map": "tum-era/artifacts/207/map.def",
+      "scenarioBonus": "tum-era/artifacts/207/scenario.png"
+    },
+    "bonuses": {
+      "immunity35": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:dispel"
+      },
+      "immunity16": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:iceBolt"
+      },
+      "immunity45": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:weakness"
+      },
+      "immunity61": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:forgetfulness"
+      },
+      "immunity20": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:frostRing"
+      }
+    }
+  },
+  "artifact208": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 6000,
+    "slot": [
+      "LEFT_RING",
+      "RIGHT_RING"
+    ],
+    "text": {
+      "name": "Ring of Precision",
+      "description": "{Ring of Precision}\n\nWhen equipped, this ring casts Precision on all friendly shooters at the beginning of each combat.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/208/icon.png",
+      "map": "tum-era/artifacts/208/map.def",
+      "scenarioBonus": "tum-era/artifacts/208/scenario.png"
+    },
+    "bonuses": {
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:precision"
+      }
+    }
+  },
+  "artifact209": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 7000,
+    "slot": [
+      "LEFT_RING",
+      "RIGHT_RING"
+    ],
+    "text": {
+      "name": "Ring of the Thousand Storms",
+      "description": "{Ring} {of} {the} {Thousand} {Storms}\n\nWhen equipped, this item casts Haste at the beginning of combat on all your units.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/209/icon.png",
+      "map": "tum-era/artifacts/209/map.def",
+      "scenarioBonus": "tum-era/artifacts/209/scenario.png"
+    },
+    "bonuses": {
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:haste"
+      }
+    }
+  },
+  "artifact211": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 2000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Arrow Quiver",
+      "description": "{Arrow} {Quiver}\n\nGrants a 20 additional shots to all your shooters at the beginning of combat.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/211/icon.png",
+      "map": "tum-era/artifacts/211/map.def",
+      "scenarioBonus": "tum-era/artifacts/211/scenario.png"
+    },
+    "bonuses": {
+      "Shots": {
+        "type": "SHOTS",
+        "val": 20
+      }
+    }
+  },
+  "artifact212": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 3000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Pendant of Hastiness",
+      "description": "{Pendant} {of} {Hastiness}\n\nWearing this item renders your units immune to the Slow spell.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/212/icon.png",
+      "map": "tum-era/artifacts/212/map.def",
+      "scenarioBonus": "tum-era/artifacts/212/scenario.png"
+    },
+    "bonuses": {
+      "immunity54": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:slow"
+      }
+    }
+  },
+  "artifact213": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 3000,
+    "slot": [
+      "LEFT_HAND"
+    ],
+    "text": {
+      "name": "Foggy Shield",
+      "description": "{Foggy} {Shield}\n\nIncreases your Defense skill by 2 and casts Air Shield at the beginning of combat on all your units.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/213/icon.png",
+      "map": "tum-era/artifacts/213/map.def",
+      "scenarioBonus": "tum-era/artifacts/213/scenario.png"
+    },
+    "bonuses": {
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 2,
+        "subtype": "primarySkill.defence"
+      },
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:airShield"
+      }
+    }
+  },
+  "artifact214": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 4000,
+    "slot": [
+      "LEFT_RING",
+      "RIGHT_RING"
+    ],
+    "text": {
+      "name": "Enchanted Gloves",
+      "description": "{Enchanted} {Gloves}\n\nCasts Shield at the beginning of combat on all your units.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/214/icon.png",
+      "map": "tum-era/artifacts/214/map.def",
+      "scenarioBonus": "tum-era/artifacts/214/scenario.png"
+    },
+    "bonuses": {
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:shield"
+      }
+    }
+  },
+  "artifact215": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 5000,
+    "slot": [
+      "LEFT_RING",
+      "RIGHT_RING"
+    ],
+    "text": {
+      "name": "Gloves of Arcane Fire",
+      "description": "{Gloves} {of} {Arcane} {Fire}\n\nCasts Fire Shield at the beginning of combat on all your units.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/215/icon.png",
+      "map": "tum-era/artifacts/215/map.def",
+      "scenarioBonus": "tum-era/artifacts/215/scenario.png"
+    },
+    "bonuses": {
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:fireShield"
+      }
+    }
+  },
+  "artifact216": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 2000,
+    "slot": [
+      "LEFT_HAND"
+    ],
+    "text": {
+      "name": "Stone Shield",
+      "description": "{Stone} {Shield}\n\nIncreases your Defense skill by 3 and casts Stone Skin at the beginning of combat on all your units.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/216/icon.png",
+      "map": "tum-era/artifacts/216/map.def",
+      "scenarioBonus": "tum-era/artifacts/216/scenario.png"
+    },
+    "bonuses": {
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 3,
+        "subtype": "primarySkill.defence"
+      },
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:stoneSkin"
+      }
+    }
+  },
+  "artifact217": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 3500,
+    "slot": [
+      "LEFT_HAND"
+    ],
+    "text": {
+      "name": "Sacrificial Dagger",
+      "description": "{Sacrificial} {Dagger}\n\nThis left handed item increases your Attack skill by +2 and casts Bloodlust at the beginning of combat on all your units.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/217/icon.png",
+      "map": "tum-era/artifacts/217/map.def",
+      "scenarioBonus": "tum-era/artifacts/217/scenario.png"
+    },
+    "bonuses": {
+      "Attack": {
+        "type": "PRIMARY_SKILL",
+        "val": 2,
+        "subtype": "primarySkill.attack"
+      },
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:bloodlust"
+      }
+    }
+  },
+  "artifact218": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 13000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Gelu's Bow",
+      "description": "{Gelu's Bow}\n\nWhen equipped, Gelu's Bow upgrades your Wood Elves and Grand Elves to Sharpshooter Elves, and provides you with 10 additional shots.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/218/icon.png",
+      "map": "tum-era/artifacts/218/map.def",
+      "scenarioBonus": "tum-era/artifacts/218/scenario.png"
+    },
+    "bonuses": {
+      "Shots": {
+        "type": "SHOTS",
+        "val": 10
+      }
+    }
+  },
+  "artifact221": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 3500,
+    "slot": [
+      "HEAD"
+    ],
+    "text": {
+      "name": "Dwarven Helmet",
+      "description": "{Dwarven Helmet}\n\nIncreases hero defense skill by 3 and renders units immune to defence-reducing spells.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/221/icon.png",
+      "map": "tum-era/artifacts/221/map.def",
+      "scenarioBonus": "tum-era/artifacts/221/scenario.png"
+    },
+    "bonuses": {
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 3,
+        "subtype": "primarySkill.defence"
+      },
+      "immunity47": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:disruptingRay"
+      }
+    }
+  },
+  "artifact224": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 5000,
+    "slot": [
+      "RIGHT_HAND"
+    ],
+    "text": {
+      "name": "Sacred War Hammer",
+      "description": "{Sacred War Hammer}\n\nHeld with the right hand, Sacred War Hammer casts expert Bless at the beginning of battle.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/224/icon.png",
+      "map": "tum-era/artifacts/224/map.def",
+      "scenarioBonus": "tum-era/artifacts/224/scenario.png"
+    },
+    "bonuses": {
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:bless"
+      }
+    }
+  },
+  "artifact225": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 3000,
+    "slot": [
+      "HEAD"
+    ],
+    "text": {
+      "name": "Tiara of Knowledge",
+      "description": "{Tiara of Knowledge}\n\nIncreases your knowledge skill by 5 and renders units immune to Hypnotize and Forgetfulness.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/225/icon.png",
+      "map": "tum-era/artifacts/225/map.def",
+      "scenarioBonus": "tum-era/artifacts/225/scenario.png"
+    },
+    "bonuses": {
+      "Knowledge": {
+        "type": "PRIMARY_SKILL",
+        "val": 5,
+        "subtype": "primarySkill.knowledge"
+      },
+      "immunity60": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:hypnotize"
+      },
+      "immunity61": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:forgetfulness"
+      }
+    }
+  },
+  "artifact226": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 15000,
+    "slot": [
+      "LEFT_HAND"
+    ],
+    "text": {
+      "name": "Shield of the Ancients",
+      "description": "{Shield of the Ancients}\n\nIncreases hero's spellpower skill by +12.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/226/icon.png",
+      "map": "tum-era/artifacts/226/map.def",
+      "scenarioBonus": "tum-era/artifacts/226/scenario.png"
+    },
+    "bonuses": {
+      "Spellpower": {
+        "type": "PRIMARY_SKILL",
+        "val": 12,
+        "subtype": "primarySkill.spellpower"
+      }
+    }
+  },
+  "artifact233": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 20000,
+    "slot": [
+      "RIGHT_HAND"
+    ],
+    "text": {
+      "name": "Scepter of Magic",
+      "description": "{Scepter of Magic}\n\nHeld with the right hand, Scepter of Magic increase your Power and Knowledge by +10.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/233/icon.png",
+      "map": "tum-era/artifacts/233/map.def",
+      "scenarioBonus": "tum-era/artifacts/233/scenario.png"
+    },
+    "bonuses": {
+      "Knowledge": {
+        "type": "PRIMARY_SKILL",
+        "val": 10,
+        "subtype": "primarySkill.knowledge"
+      },
+      "Spellpower": {
+        "type": "PRIMARY_SKILL",
+        "val": 10,
+        "subtype": "primarySkill.spellpower"
+      }
+    }
+  },
+  "artifact234": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 20000,
+    "slot": [
+      "RIGHT_HAND"
+    ],
+    "text": {
+      "name": "Axe of Might",
+      "description": "{Axe of Might}\n\nHeld with the right hand, Axe of Might increase your Attack and Defense by +10.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/234/icon.png",
+      "map": "tum-era/artifacts/234/map.def",
+      "scenarioBonus": "tum-era/artifacts/234/scenario.png"
+    },
+    "bonuses": {
+      "Attack": {
+        "type": "PRIMARY_SKILL",
+        "val": 10,
+        "subtype": "primarySkill.attack"
+      },
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 10,
+        "subtype": "primarySkill.defence"
+      }
+    }
+  },
+  "artifact235": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 35000,
+    "slot": [
+      "TORSO"
+    ],
+    "text": {
+      "name": "Sun Emperor Chainmail",
+      "description": "{Sun Emperor Plate Armor}\n\nIncreases all four primary skills by +5. Renders your units immune to all damage fire spells.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/235/icon.png",
+      "map": "tum-era/artifacts/235/map.def",
+      "scenarioBonus": "tum-era/artifacts/235/scenario.png"
+    },
+    "bonuses": {
+      "Attack": {
+        "type": "PRIMARY_SKILL",
+        "val": 5,
+        "subtype": "primarySkill.attack"
+      },
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 5,
+        "subtype": "primarySkill.defence"
+      },
+      "Knowledge": {
+        "type": "PRIMARY_SKILL",
+        "val": 5,
+        "subtype": "primarySkill.knowledge"
+      },
+      "Spellpower": {
+        "type": "PRIMARY_SKILL",
+        "val": 5,
+        "subtype": "primarySkill.spellpower"
+      },
+      "immunity11": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:landMine"
+      },
+      "immunity13": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:fireWall"
+      },
+      "immunity21": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:fireball"
+      },
+      "immunity22": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:inferno"
+      },
+      "immunity26": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:armageddon"
+      },
+      "immunity29": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:fireShield"
+      }
+    }
+  },
+  "artifact237": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 25000,
+    "slot": [
+      "HEAD"
+    ],
+    "text": {
+      "name": "Crown of the Fire King",
+      "description": "{Crown of the Fire King}\n\nIncreases all four primary skills by +3. Renders your units immune to debuff fire spells.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/237/icon.png",
+      "map": "tum-era/artifacts/237/map.def",
+      "scenarioBonus": "tum-era/artifacts/237/scenario.png"
+    },
+    "bonuses": {
+      "Attack": {
+        "type": "PRIMARY_SKILL",
+        "val": 3,
+        "subtype": "primarySkill.attack"
+      },
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 3,
+        "subtype": "primarySkill.defence"
+      },
+      "Knowledge": {
+        "type": "PRIMARY_SKILL",
+        "val": 3,
+        "subtype": "primarySkill.knowledge"
+      },
+      "Spellpower": {
+        "type": "PRIMARY_SKILL",
+        "val": 3,
+        "subtype": "primarySkill.spellpower"
+      },
+      "immunity42": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:curse"
+      },
+      "immunity52": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:misfortune"
+      },
+      "immunity59": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:berserk"
+      },
+      "immunity62": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:blind"
+      }
+    }
+  },
+  "artifact239": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 3000,
+    "slot": [
+      "NECK"
+    ],
+    "text": {
+      "name": "Pendant of Magic",
+      "description": "{Pendant of Magic}\n\nWearing this item renders your units immune to the Magic Arrow spell.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/239/icon.png",
+      "map": "tum-era/artifacts/239/map.def",
+      "scenarioBonus": "tum-era/artifacts/239/scenario.png"
+    },
+    "bonuses": {
+      "immunity15": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:magicArrow"
+      }
+    }
+  },
+  "artifact240": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 4000,
+    "slot": [
+      "NECK"
+    ],
+    "text": {
+      "name": "Regenerative Necklace of Mana",
+      "description": "{Regenerative Necklace of Mana}\n\nThis necklace helps you recover 5 extra spell point per day.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/240/icon.png",
+      "map": "tum-era/artifacts/240/map.def",
+      "scenarioBonus": "tum-era/artifacts/240/scenario.png"
+    },
+    "bonuses": {
+      "RegenerateSpellpoints": {
+        "type": "MANA_REGENERATION",
+        "val": 5
+      }
+    }
+  },
+  "artifact241": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 8000,
+    "slot": [
+      "HEAD"
+    ],
+    "text": {
+      "name": "Bucket Helmet",
+      "description": "{Bucket Helmet}\n\nThis weird helmet reduces your Defense skill by 2 making your units immune to all Mind Spells.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/241/icon.png",
+      "map": "tum-era/artifacts/241/map.def",
+      "scenarioBonus": "tum-era/artifacts/241/scenario.png"
+    },
+    "bonuses": {
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": -2,
+        "subtype": "primarySkill.defence"
+      },
+      "immunity59": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:berserk"
+      },
+      "immunity62": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:blind"
+      },
+      "immunity61": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:forgetfulness"
+      },
+      "immunity56": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:frenzy"
+      },
+      "immunity60": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:hypnotize"
+      },
+      "immunity49": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:mirth"
+      },
+      "immunity50": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:sorrow"
+      }
+    }
+  },
+  "artifact242": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 4000,
+    "slot": [
+      "LEFT_RING",
+      "RIGHT_RING"
+    ],
+    "text": {
+      "name": "Field Martial's Ring",
+      "description": "{Field Martial's Ring}\n\nWhen worn, the Field Martial's Ring increases your Morale by 3.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/242/icon.png",
+      "map": "tum-era/artifacts/242/map.def",
+      "scenarioBonus": "tum-era/artifacts/242/scenario.png"
+    },
+    "bonuses": {
+      "Morale": {
+        "type": "MORALE",
+        "val": 3
+      }
+    }
+  },
+  "artifact243": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 3000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Horseshoe",
+      "description": "{Horseshoe}\n\nWhen equipped, the Horseshoe increases your Luck by 2.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/243/icon.png",
+      "map": "tum-era/artifacts/243/map.def",
+      "scenarioBonus": "tum-era/artifacts/243/scenario.png"
+    },
+    "bonuses": {
+      "Luck": {
+        "type": "LUCK",
+        "val": 2
+      }
+    }
+  },
+  "artifact244": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 10000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Crystal Glyph",
+      "description": "{Crystal Glyph}\n\nWhen equipped, this item casts Magic Mirror at the beginning of combat on all your units.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/244/icon.png",
+      "map": "tum-era/artifacts/244/map.def",
+      "scenarioBonus": "tum-era/artifacts/244/scenario.png"
+    },
+    "bonuses": {
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:magicMirror"
+      }
+    }
+  },
+  "artifact245": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 3000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "General's Order",
+      "description": "{General's Order}\n\nWhen worn, the General's Order increases your Morale by 2.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/245/icon.png",
+      "map": "tum-era/artifacts/245/map.def",
+      "scenarioBonus": "tum-era/artifacts/245/scenario.png"
+    },
+    "bonuses": {
+      "Morale": {
+        "type": "MORALE",
+        "val": 2
+      }
+    }
+  },
+  "artifact246": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 3500,
+    "slot": [
+      "LEFT_RING",
+      "RIGHT_RING"
+    ],
+    "text": {
+      "name": "Ring of Fortune",
+      "description": "{Ring of Fortune}\n\nWhen worn, the Ring of Fortune increases your Luck by 3.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/246/icon.png",
+      "map": "tum-era/artifacts/246/map.def",
+      "scenarioBonus": "tum-era/artifacts/246/scenario.png"
+    },
+    "bonuses": {
+      "Luck": {
+        "type": "LUCK",
+        "val": 3
+      }
+    }
+  },
+  "artifact247": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 7500,
+    "slot": [
+      "TORSO"
+    ],
+    "text": {
+      "name": "Mithril Cuirass",
+      "description": "{Mithril Cuirass}\n\nWhen worn, this armor increases your Power and Defense skill by 6.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/247/icon.png",
+      "map": "tum-era/artifacts/247/map.def",
+      "scenarioBonus": "tum-era/artifacts/247/scenario.png"
+    },
+    "bonuses": {
+      "Spellpower": {
+        "type": "PRIMARY_SKILL",
+        "val": 6,
+        "subtype": "primarySkill.spellpower"
+      },
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 6,
+        "subtype": "primarySkill.defence"
+      }
+    }
+  },
+  "artifact248": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 7500,
+    "slot": [
+      "HEAD"
+    ],
+    "text": {
+      "name": "Mithril Helmet",
+      "description": "{Mithril Helmet}\n\nWhen worn, this helmet increases your Knowledge and Defense skill by 6.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/248/icon.png",
+      "map": "tum-era/artifacts/248/map.def",
+      "scenarioBonus": "tum-era/artifacts/248/scenario.png"
+    },
+    "bonuses": {
+      "Knowledge": {
+        "type": "PRIMARY_SKILL",
+        "val": 6,
+        "subtype": "primarySkill.knowledge"
+      },
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 6,
+        "subtype": "primarySkill.defence"
+      }
+    }
+  },
+  "artifact251": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 3000,
+    "slot": [
+      "LEFT_RING",
+      "RIGHT_RING"
+    ],
+    "text": {
+      "name": "Panic Ring",
+      "description": "{Panic Ring}\n\nWorn on the finger, the Panic Ring cast Sorrow in all enemies.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/251/icon.png",
+      "map": "tum-era/artifacts/251/map.def",
+      "scenarioBonus": "tum-era/artifacts/251/scenario.png"
+    },
+    "bonuses": {
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:sorrow"
+      }
+    }
+  },
+  "artifact255": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 8000,
+    "slot": [
+      "RIGHT_HAND"
+    ],
+    "text": {
+      "name": "Axe of the Piedmont King",
+      "description": "{Axe of the Piedmont King}\n\nIncreases your Attack skill by 5 and casts Counterstrike at the beginning of combat on all your units.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/255/icon.png",
+      "map": "tum-era/artifacts/255/map.def",
+      "scenarioBonus": "tum-era/artifacts/255/scenario.png"
+    },
+    "bonuses": {
+      "Attack": {
+        "type": "PRIMARY_SKILL",
+        "val": 5,
+        "subtype": "primarySkill.attack"
+      },
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:counterstrike"
+      }
+    }
+  },
+  "artifact256": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 5000,
+    "slot": [
+      "LEFT_RING",
+      "RIGHT_RING"
+    ],
+    "text": {
+      "name": "Ring of Anti-magic",
+      "description": "{Ring of Anti-magic}\n\nWhen equipped, this item casts Anti-magic at the beginning of combat on all your units.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/256/icon.png",
+      "map": "tum-era/artifacts/256/map.def",
+      "scenarioBonus": "tum-era/artifacts/256/scenario.png"
+    },
+    "bonuses": {
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:antiMagic"
+      }
+    }
+  },
+  "artifact257": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 6000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Earrings of Just Man",
+      "description": "{Earrings of Just Man}\n\nWhen equipped, this item casts Bless at the beginning of combat on all your units.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/257/icon.png",
+      "map": "tum-era/artifacts/257/map.def",
+      "scenarioBonus": "tum-era/artifacts/257/scenario.png"
+    },
+    "bonuses": {
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:bless"
+      }
+    }
+  },
+  "artifact258": {
+    "type": [
+      "HERO"
+    ],
+    "class": "SPECIAL",
+    "value": 24000,
+    "slot": [
+      "RIGHT_HAND"
+    ],
+    "text": {
+      "name": "Hell Baron's Gloves",
+      "description": "{Hell Baron's Gloves}\n\nAt the beginning of each battle the Hell Baron's Gloves will cast Slayer and Frenzy spells on all your creatures.\nEach unit of yours gains a Fire Shield effect.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/258/icon.png",
+      "map": "tum-era/artifacts/258/map.def",
+      "scenarioBonus": "tum-era/artifacts/258/scenario.png"
+    },
+    "bonuses": {
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:slayer"
+      },
+      "Autospell2": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:frenzy"
+      },
+      "Autospell3": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:fireShield"
+      }
+    },
+    "components": [
+      "core:hellstormHelmet",
+      "core:swordOfHellfire",
+      "core:breastplateOfBrimstone",
+      "core:shieldOfTheDamned"
+    ]
+  },
+  "artifact272": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 3500,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Endless mug of happiness beer",
+      "description": "{Endless mug of happiness beer}\n\nThis artifact casts Mirth to the expert level at the beginning of battle.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/272/icon.png",
+      "map": "tum-era/artifacts/272/map.def",
+      "scenarioBonus": "tum-era/artifacts/272/scenario.png"
+    },
+    "bonuses": {
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:mirth"
+      }
+    }
+  }
+}

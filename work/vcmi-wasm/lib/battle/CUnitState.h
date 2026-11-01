@@ -100,6 +100,7 @@ public:
 	void reset();
 
 	void damage(int64_t & amount);
+	void applyEraNegativeSpellDamage(int64_t amount);
 	HealInfo heal(int64_t & amount, EHealLevel level, EHealPower power);
 
 	int32_t getCount() const;
@@ -113,6 +114,7 @@ public:
 	int64_t total() const;
 
 	void takeResurrected();
+	void sourceMaximumChanged(int oldMaximum);
 
 	void serializeJson(JsonSerializeFormat & handler);
 private:
@@ -128,6 +130,7 @@ private:
 class DLL_LINKAGE CUnitState : public Unit
 {
 public:
+	bool eraDoneRound; // ERA DONE bit26; set after action resolution, reset on round/morale
 	bool cloned;
 	bool defending;
 	bool defendingAnim;
@@ -284,6 +287,7 @@ public:
 	int32_t getTreeVersion() const override;
 
 	uint32_t unitId() const override;
+    int32_t sourceMassSlot() const override;
 	BattleSide unitSide() const override;
 
 	const CCreature * unitType() const override;

@@ -9,6 +9,8 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraBridgePolicies.h"
+#include "../CCreatureHandler.h"
 
 #include <cctype>
 
@@ -376,6 +378,13 @@ int64_t CSpell::adjustRawDamage(const spells::Caster * caster, const battle::Uni
 	if(nullptr != affectedCreature)
 	{
 		const auto * bearer = affectedCreature->getBonusBearer();
+        // Amethyst vulnerability selector11 returns -incoming damage.
+        // Do not express it as SPELL_DAMAGE_REDUCTION200: native damage
+        // receptivity treats values >=100 as immunity before this point.
+        if(isMagical() && era_compat::Policies::get().spellDamageInversion(
+            affectedCreature->creatureId().toCreature()->getJsonKey()))
+            ret = -ret;
+
 		//applying protections - when spell has more then one elements, only one protection should be applied (I think)
 		forEachSchool([&](const SpellSchool & cnf, bool & stop)
 		{

@@ -1,19 +1,231 @@
 {
-  "name": "TUM ERA — Red Bones Dragon",
-  "author": "VMaiko, PerryR, Archer30; adaptation VCMI Heroes Goonk",
-  "version": "0.1.0",
+  "name": "TUM ERA — native adaptations",
+  "author": "VMaiko, PerryR, Archer30; Hit Landing Effects: JackSlater, Raistlin, Dalion; adaptation VCMI Heroes Goonk",
+  "version": "0.2.0",
   "modType": "Creatures",
   "compatibility": {
     "min": "1.7.3"
   },
   "depends": [
     "third-upgrades",
-    "wake-of-gods.level8units"
+    "wake-of-gods.level8units",
+    "wake-of-gods.mithril",
+    "wake-of-gods.creatures",
+    "wake-of-gods.messengersandemissaries",
+    "wake-of-gods.stackexperience"
   ],
   "creatures": [
-    "config/red-bones-dragon.json"
+    "config/red-bones-dragon.json",
+    "config/divine-phoenix.json",
+    "config/dread-skipper.json",
+    "config/skeletal-outputs.json",
+    "config/cherub.json",
+    "config/skeleton-angel.json",
+    "config/antichrist.json",
+    "config/tum-fear-baseline.json",
+    "config/resource-generation.json",
+    "config/ancestral-behemoth.json",
+    "config/undead-morale-creatures.json"
   ],
   "factions": [
-    "config/necropolis.json"
+    "config/necropolis.json",
+    "config/conflux.json",
+    "config/inferno.json",
+    "config/castle.json",
+    "config/stronghold.json"
+  ],
+  "artifacts": [
+    "config/native-artifacts.json"
+  ],
+  "objects": [
+    "config/objects/dwelling20_2.json",
+    "config/objects/dwelling20_4.json",
+    "config/objects/bank33.json",
+    "config/objects/bank38.json",
+    "config/objects/bank41.json",
+    "config/objects/bank47.json",
+    "config/objects/bank52.json",
+    "config/objects/bank62.json",
+    "config/objects/bank63.json",
+    "config/objects/bank43.json",
+    "config/objects/bank44.json",
+    "config/objects/dwelling20_3.json",
+    "config/objects/dwelling17_121.json",
+    "config/objects/dwelling17_125.json",
+    "config/objects/dwelling17_127.json",
+    "config/objects/dwelling17_130.json",
+    "config/objects/dwelling17_164.json",
+    "config/objects/dwelling17_165.json",
+    "config/objects/bank53.json",
+    "config/objects/bank56.json",
+    "config/objects/bank57.json",
+    "config/objects/bank61.json",
+    "config/objects/legacyDwelling17_80.json",
+    "config/objects/legacyDwelling17_83.json",
+    "config/objects/legacyDwelling17_84.json",
+    "config/objects/legacyDwelling17_86.json",
+    "config/objects/legacyDwelling17_88.json",
+    "config/objects/bank59.json"
+  ],
+  "settings": {
+    "combat": {
+      "layouts": {
+        "eraBank47MixedLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            172,
+            2,
+            100,
+            86,
+            8
+          ]
+        },
+        "eraBank52MixedLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            171,
+            1,
+            100,
+            87,
+            8
+          ]
+        },
+        "eraBank53MixedLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            171,
+            1,
+            100,
+            87,
+            8
+          ]
+        },
+        "eraBank57MixedLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            171,
+            1,
+            100,
+            87,
+            8
+          ]
+        },
+        "eraBank61MixedLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            171,
+            1,
+            100,
+            87,
+            8
+          ]
+        },
+        "eraBank59MixedLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            171,
+            1,
+            100,
+            87,
+            8
+          ]
+        }
+      }
+    }
+  },
+  "translations": [
+    "translation/tum-era-ui-english.json"
+  ],
+  "french": {
+    "translations": [
+      "translation/tum-era-ui-french.json"
+    ]
+  },
+  "spells": [
+    "config/skeletal-transformation.json"
   ]
 }

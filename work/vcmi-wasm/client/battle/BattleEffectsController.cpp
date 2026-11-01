@@ -68,6 +68,12 @@ void BattleEffectsController::battleTriggerEffect(const BattleTriggerEffect & bt
 	//don't show animation when no HP is regenerated
 	switch(bte.effect)
 	{
+        case BonusType::MAGIC_MIRROR:
+            displayEffect(EBattleEffect::MAGIC_MIRROR, AudioPath::builtin("BACKLASH"), stack->getPosition());
+            break;
+        case BonusType::MAGIC_RESISTANCE:
+            displayEffect(EBattleEffect::RESISTANCE, AudioPath::builtin("MAGICRES"), stack->getPosition());
+            break;
 		case BonusType::HP_REGENERATION:
 			displayEffect(EBattleEffect::REGENERATION, AudioPath::builtin("REGENER"), stack->getPosition(), 0.5);
 			break;

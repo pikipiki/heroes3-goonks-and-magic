@@ -70,7 +70,7 @@ export function compileTumBank(input,{
  if(own(root,'properties')){if(array(root.properties,join(pointer,'properties'))&&root.properties.some(v=>typeof v!=='string'))error(join(pointer,'properties'),'INVALID_TEMPLATE_METADATA','Source properties must be strings');note(join(pointer,'properties'),'opaque ERA object-template lines retained in report; native templates supplied explicitly');}
  for(const k of ['density','value'])if(own(root,k)){integer(root[k],join(pointer,k));note(join(pointer,k),'ERA RMG metadata retained; no automatic distribution equivalence claimed');}
  if(own(root,'enabled')){if(typeof root.enabled!=='boolean')error(join(pointer,'enabled'),'INVALID_BOOLEAN','enabled must be boolean');if(root.enabled===false)error(join(pointer,'enabled'),'DISABLED_SOURCE_BANK','Cannot emit a playable bank from a disabled ERA definition');note(join(pointer,'enabled'),'source bank enabled gate');}
- const definition={name:root.name,templates:structuredClone(nativeTemplates||{}),visitMode:'once',selectMode:'selectFirst',guardsLayout,rewards:[]};
+ const definition={name:root.name,templates:structuredClone(nativeTemplates||{}),visitMode:'once',selectMode:'selectFirst',guardsLayout,onGuardedMessage:32,onVisitedMessage:33,rewards:[]};
  if(own(root,'sound')&&keys(root.sound,['enter','loop'],join(pointer,'sound'))){definition.sounds={};for(const [key,native]of [['enter','visit'],['loop','ambient']])if(own(root.sound,key)){const p=join(join(pointer,'sound'),key);if(root.sound[key]===null&&typeof resolveNullSound==='function'){let policy;try{policy=resolveNullSound(key);}catch(cause){error(p,'NULL_SOUND_RESOLVER_FAILED',cause.message);}if(!policy||!['inherit','silence'].includes(policy.mode)||!policy.evidence)error(p,'UNVERIFIED_NULL_SOUND','Null sound policy requires verified inherit/silence mode and evidence');else{if(policy.mode==='silence')definition.sounds[native]=[];note(p,'verified ERA null sound '+policy.mode,policy.evidence);}}else if(typeof root.sound[key]!=='string'||!root.sound[key])error(p,'INVALID_SOUND','Expected sound resource name');else{definition.sounds[native]=[root.sound[key]];note(p,'native '+native+' sound');}}}
  if(own(root,'text')&&keys(root.text,['visit'],join(pointer,'text'))){if(typeof root.text.visit!=='string')error(join(join(pointer,'text'),'visit'),'INVALID_TEXT','Expected visit message');else{definition.onGuardedMessage=root.text.visit;note(join(join(pointer,'text'),'visit'),'native guarded-visit message');}}
  if(nativeRmg!==undefined){if(keys(nativeRmg,['value','rarity','mapLimit','zoneLimit'],join(pointer,'nativeRmg'))){for(const[k,v]of Object.entries(nativeRmg))integer(v,join(pointer,'nativeRmg/'+k));definition.rmg=structuredClone(nativeRmg);note(pointer,'caller-supplied native RMG policy; ERA density/value are report-only');}}
@@ -141,6 +141,11 @@ export function compileTumBank(input,{
     if(resource){if(own(reward.resources,resource))error(join(rp,ri),'DUPLICATE_RESOURCE','Resource resolver mapped two slots to the same native resource');else{reward.resources[resource]=amount;note(join(rp,ri),'native resource '+resource);}}
    }
    if(!Object.keys(reward.resources).length)delete reward.resources;
+   else if(Object.keys(reward.resources).some(type=>type.includes(':'))){
+    // JsonRandom dictionary syntax indexes unscoped resource keys only. Native
+    // identifier/value arrays preserve explicit scopes through loadResourceType.
+    reward.resources=Object.entries(reward.resources).map(([type,amount])=>({type:type.includes(':')?type:'core:'+type,amount}));
+   }
   }
   const count=integer(s.creatureRewardCount,join(p,'creatureRewardCount')),id=integer(s.creatureRewardType,join(p,'creatureRewardType'),{min:-1});
   if(count===0){note(join(p,'creatureRewardCount'),'no creature reward');note(join(p,'creatureRewardType'),'zero-count creature reward identity unused');}

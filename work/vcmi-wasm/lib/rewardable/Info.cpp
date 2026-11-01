@@ -466,11 +466,14 @@ void Rewardable::Info::configureObject(Rewardable::Configuration & object, IGame
 		object.info.push_back(onEmpty);
 	}
 
-	if (!parameters["onGuardedMessage"].isNull())
+	if (!parameters["onGuardedMessage"].isNull() || std::any_of(object.info.begin(), object.info.end(), [](const Rewardable::VisitInfo & info) { return !info.reward.guards.empty(); }))
 	{
 		Rewardable::VisitInfo onGuarded;
 		onGuarded.visitType = Rewardable::EEventType::EVENT_GUARDED;
-		onGuarded.message = loadMessage(parameters["onGuardedMessage"], TextIdentifier(objectTextID, "onGuarded"));
+		if (parameters["onGuardedMessage"].isNull())
+			onGuarded.message.appendLocalString(EMetaText::ADVOB_TXT, 32);
+		else
+			onGuarded.message = loadMessage(parameters["onGuardedMessage"], TextIdentifier(objectTextID, "onGuarded"));
 		replaceTextPlaceholders(onGuarded.message, object.variables);
 
 		object.info.push_back(onGuarded);

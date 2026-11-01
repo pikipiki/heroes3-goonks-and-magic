@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "scope": "TUM212 shipped cfg, bounded original h3era and shipped Amethyst/Emerald routines; not a claim of universal plugin parity",
+  "sourceRevisions": {
+    "Third-Upgrade-Mod-Full": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+    "h3era-plugins": "99e949d9d910556e57d19914b41976d5a07da577"
+  },
+  "sourceFiles": [
+    "Data/Creatures/212.cfg",
+    "Data/towns/2.cfg",
+    "Amethyst2/amethyst/tables.cpp",
+    "Emerald3/emerald/duplicate.cpp",
+    "Emerald3/emerald/events.cpp"
+  ],
+  "artifacts": {
+    "h3": {
+      "path": "ERA_REFERENCE_ROOT/h3era.exe",
+      "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+      "assembly": "h3-212-scoped-assembly.txt",
+      "vaRanges": [
+        [
+          "0x440ea5",
+          "0x441060"
+        ],
+        [
+          "0x441970",
+          "0x4419c0"
+        ],
+        [
+          "0x448230",
+          "0x4483e5"
+        ],
+        [
+          "0x4d95c0",
+          "0x4d97c0"
+        ],
+        [
+          "0x4e52f0",
+          "0x4e5440"
+        ],
+        [
+          "0x5a0e1c",
+          "0x5a0e80"
+        ],
+        [
+          "0x5a83a0",
+          "0x5a8480"
+        ],
+        [
+          "0x5a8950",
+          "0x5a89f0"
+        ],
+        [
+          "0x71d939",
+          "0x71da60"
+        ]
+      ]
+    },
+    "amethyst": {
+      "path": "TUM_ROOT/EraPlugins/amethyst2_4.dll",
+      "sha256": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+      "assembly": "amethyst-212-scoped-assembly.txt",
+      "vaRanges": [
+        [
+          "0x10012f60",
+          "0x10013010"
+        ]
+      ]
+    },
+    "emerald": {
+      "path": "TUM_ROOT/EraPlugins/emerald3_3.era",
+      "sha256": "3102fc09554a07619a19462f420c821cdf20b32d846ec8b4802c0f4415b60911",
+      "assembly": "emerald-212-scoped-assembly.txt",
+      "vaRanges": [
+        [
+          "0x10015db0",
+          "0x10016030"
+        ],
+        [
+          "0x10016f50",
+          "0x10016fa0"
+        ],
+        [
+          "0x10017d8e",
+          "0x10017e10"
+        ]
+      ]
+    }
+  },
+  "manualCasts": {
+    "configuredSpell": 19,
+    "spell1Default": 9,
+    "shippedJumpTableVA": "0x10049470",
+    "selector9Target": "0x4483dd",
+    "effect": "Return at4483DD; CastsSpell19 does not replace selector9; manual ChainLightning is not synthesized",
+    "defaultInitialization": "10012F81..10012F8D fill1024entries with9;10012FA5..10012FB0 copy184original entries only into index13 onward;10012FCF binds selector table112F8358"
+  },
+  "thunder": {
+    "sourceEffectSelector": 1,
+    "actualSpell": 17,
+    "primaryOnly": true,
+    "meleeOnly": true,
+    "chancePercent": 20,
+    "chanceRange": [
+      1,
+      100
+    ],
+    "ordering": [
+      "targetAlive",
+      "chance20",
+      "primary5A8950 accuracy draw even0",
+      "signed32 raw10*count",
+      "5A7BF0 damage adjustment",
+      "reject adjusted<=0",
+      "source L deflection hook441048",
+      "443DB0 direct health endpoint"
+    ],
+    "manaSkeleton297": "Adjusted negative damage rejected; intrinsic Thunder does not heal it"
+  },
+  "xpTitanBolt": {
+    "sourceRow": "212 p #57 0 1 2 3 4 5 6 7 8 9 10",
+    "mastery": 3,
+    "primaryGate": "5A8950 mandatory uniform1..100",
+    "dispatch": "5A0E1C",
+    "secondaryResistanceRoll": false,
+    "damageEndpoint": "5A0E61 adjust ->5A0E6B health; negative adjusted damage can heal297",
+    "SPTRAITS": "power0; all mastery levelPower600 and mana0"
+  },
+  "mimicArtifact135": {
+    "source": "Emerald3/emerald/duplicate.cpp MonGiveSpell",
+    "shippedFunction": "10015DB0",
+    "originalArmySlots": 7,
+    "cache": "Creature2Artifact100ECAB0; callback102F0524",
+    "artifactSpellFlagInitialization": "10017D8E..10017E08 includes135; flagbyte+1D",
+    "spellGrant": "10015E55 calls4D95C0;135 branch4D9791 grants57",
+    "manualMastery": "Hero Air Magic via4E52F0/4E5370; no expert override for artifact135",
+    "nativeAdapter": "Dynamic original-army spell-source grant; no physical artifact, no permanent primary stats, no forced mastery"
+  },
+  "contextGate": {
+    "source": "5A83A0..5A8480",
+    "cursedGround": "Spell level>1 ->accuracy0",
+    "recantersCloak83": "Either hero and spell level>2 ->accuracy0",
+    "artifact134": "Target owner hero and spell level<=4, including0, BEFORE Orb ->accuracy0",
+    "callerContract": "Context gates stay outside statusRawAccuracy; mandatory primary/secondary roll still occurs"
+  },
+  "pendingValidation": [
+    "Native patch compilation and real battle E2E",
+    "Landing Burst10/Burst11 assets exist but require native landing adapter",
+    "Fourth dwelling currently reuses third dwelling visual; exact source art adapter pending"
+  ]
+}

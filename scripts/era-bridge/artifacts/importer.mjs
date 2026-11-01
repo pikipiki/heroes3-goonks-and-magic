@@ -92,7 +92,7 @@ export function scenarioIcon(icon){const width=58,height=64,rgba=Buffer.alloc(wi
  * Asset loader is caller supplied; files Map holds exact source DEF/MSK and generated PNG.
  * Caller chooses deployment destination and supplies the real native entity resolvers.
  */
-export function importNativeArtifacts({traits,language,cfgs,archive,resolveSpell,resolveCoreArtifact,dailyConversions,aiPolicy='require-era-equivalence',namespace='tum-era',prefix='tum-era/artifacts'}={}) {
+export function importNativeArtifacts({traits,language,cfgs,archive,resolveSpell,resolveCoreArtifact,dailyConversions,spellCatalogue,aiPolicy='require-era-equivalence',namespace='tum-era',prefix='tum-era/artifacts'}={}) {
  if(!Array.isArray(traits)||!language||typeof language!=='object'||!cfgs||typeof cfgs!=='object'||typeof archive?.extract!=='function')throw new TypeError('Complete source traits, language, cfgs and archive are required');
  const runtimePolicy={schemaVersion:1,creatures:{},artifacts:{}};
  if(dailyConversions&&(dailyConversions.bridgeVersion!==2||typeof dailyConversions.resolveCreature!=='function'))throw new TypeError('Daily conversion binding requires native bridge v2 and an explicit creature resolver');
@@ -103,7 +103,7 @@ export function importNativeArtifacts({traits,language,cfgs,archive,resolveSpell
  const eligible=new Set();
  const proposedArtifact=n=>n<171?resolveCoreArtifact?.(n):Object.hasOwn(cfgs,n)?`${namespace}:artifact${n}`:null;
  for(const [idString,text] of Object.entries(cfgs)) {
-  const id=Number(idString),r=compileArtifactDefinition({id,text,...runtimeOptions,resolveSpell,resolveArtifact:proposedArtifact,aiPolicy,baseArtifact:{type:['HERO'],class:traits[id]?.class,value:traits[id]?.value,slot:traits[id]?.slot,text:normalizeArtifactLanguage(traits[id],language[id]).text},resolveAssets:()=>({image:'pending',map:'pending',scenarioBonus:'pending'}),duplicates:'emerald-first'});
+  const id=Number(idString),r=compileArtifactDefinition({id,text,...runtimeOptions,spellCatalogue,resolveSpell,resolveArtifact:proposedArtifact,aiPolicy,baseArtifact:{type:['HERO'],class:traits[id]?.class,value:traits[id]?.value,slot:traits[id]?.slot,text:normalizeArtifactLanguage(traits[id],language[id]).text},resolveAssets:()=>({image:'pending',map:'pending',scenarioBonus:'pending'}),duplicates:'emerald-first'});
   if(r.ok&&!manualExclusions[id]&&!(SPECIALS[id]?.length))eligible.add(id);
  }
  for(const [idString,text] of Object.entries(cfgs)) {
@@ -117,7 +117,7 @@ export function importNativeArtifacts({traits,language,cfgs,archive,resolveSpell
    const mapName=`ava${String(id).padStart(4,'0')}.def`,maskName=mapName.replace(/\.def$/,'.msk');
    // Extract before publishing anything: missing DEF/MSK causes artifact exclusion.
    const map=archive.extract(mapName),mask=archive.extract(maskName);
-   const c=compileArtifactDefinition({id,text,...runtimeOptions,resolveSpell,resolveArtifact,aiPolicy,baseArtifact:{type:['HERO'],class:traits[id].class,value:traits[id].value,slot:traits[id].slot,text:normalizeArtifactLanguage(traits[id],language[id]).text},resolveAssets:()=>({image:`${asset}/icon.png`,map:`${asset}/map.def`,scenarioBonus:`${asset}/scenario.png`}),duplicates:'emerald-first'});
+   const c=compileArtifactDefinition({id,text,...runtimeOptions,spellCatalogue,resolveSpell,resolveArtifact,aiPolicy,baseArtifact:{type:['HERO'],class:traits[id].class,value:traits[id].value,slot:traits[id].slot,text:normalizeArtifactLanguage(traits[id],language[id]).text},resolveAssets:()=>({image:`${asset}/icon.png`,map:`${asset}/map.def`,scenarioBonus:`${asset}/scenario.png`}),duplicates:'emerald-first'});
    if(!c.ok)throw new Error(JSON.stringify(c.diagnostics));
    definitions[key]=c.definition;
    const conversion=c.adapters.find(a=>a.kind==='artifactDailyConversions');

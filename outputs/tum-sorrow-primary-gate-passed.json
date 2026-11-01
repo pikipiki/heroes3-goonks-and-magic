@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "nativeEngineAbi": 2,
+  "sourceCreature": "tum-era:eraCreature287",
+  "sourceSpell": "core:sorrow",
+  "mastery": 3,
+  "preMain": {
+    "commanders": false,
+    "controlledFixtureStats": true
+  },
+  "saveDeletion": false,
+  "cases": [
+    {
+      "primaryResistance": 100,
+      "passed": true,
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "enemyBefore": [
+        {
+          "nativeId": 0,
+          "name": "Pikeman",
+          "count": 1000,
+          "health": 10000,
+          "morale": 1
+        },
+        {
+          "nativeId": 2,
+          "name": "Archer",
+          "count": 1000,
+          "health": 10000,
+          "morale": 1
+        }
+      ],
+      "enemyAfter": [
+        {
+          "nativeId": 0,
+          "name": "Pikeman",
+          "count": 1000,
+          "health": 9999,
+          "morale": 1
+        },
+        {
+          "nativeId": 2,
+          "name": "Archer",
+          "count": 1000,
+          "health": 10000,
+          "morale": 1
+        }
+      ],
+      "expectedAllTargetsMoraleDelta": 0
+    },
+    {
+      "primaryResistance": 0,
+      "passed": true,
+      "javascriptErrors": [],
+      "nativeFatalSchemaIdentifierErrors": [],
+      "enemyBefore": [
+        {
+          "nativeId": 0,
+          "name": "Pikeman",
+          "count": 1000,
+          "health": 10000,
+          "morale": 1
+        },
+        {
+          "nativeId": 2,
+          "name": "Archer",
+          "count": 1000,
+          "health": 10000,
+          "morale": 1
+        }
+      ],
+      "enemyAfter": [
+        {
+          "nativeId": 0,
+          "name": "Pikeman",
+          "count": 1000,
+          "health": 9999,
+          "morale": -1
+        },
+        {
+          "nativeId": 2,
+          "name": "Archer",
+          "count": 1000,
+          "health": 10000,
+          "morale": -1
+        }
+      ],
+      "expectedAllTargetsMoraleDelta": -2
+    }
+  ]
+}

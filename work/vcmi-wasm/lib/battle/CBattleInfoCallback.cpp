@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraBridgePolicies.h"
 #include "CBattleInfoCallback.h"
 
 #include <vcmi/scripting/Service.h>
@@ -1130,6 +1131,7 @@ bool CBattleInfoCallback::handleObstacleTriggersForUnit(SpellCastEnvironment & s
 					if(shouldReveal) { //hidden obstacle triggers effects after revealed
 						revealObstacles(*spellObstacle);
 						cast.cast(&spellEnv, target);
+                        spellEnv.afterObstacleTrigger(*this);
 					}
 				}
 			}
@@ -1974,6 +1976,21 @@ int32_t CBattleInfoCallback::battleGetSpellCost(const spells::Spell * sp, const 
 		}
 	}
 
+    // TUM with stack experience enabled: original766B99 scans the seven
+    // adventure-army slots, not living battle stacks. Their counts/XP stay
+    // unchanged until combat ends, so killing the dragon cannot remove its
+    // discount, and summoned/clone mages do not introduce an extra discount.
+    const bool sourceArmyDiscount = std::any_of(caster->Slots().begin(), caster->Slots().end(), [](const auto & slot)
+    {
+        return slot.second->getCount() > 0 && era_compat::Policies::get().armySpellCost(slot.second->getCreatureID().toCreature()->getJsonKey());
+    });
+    if(sourceArmyDiscount)
+    {
+        manaReduction = 0;
+        for(const auto & slot : caster->Slots())
+            if(slot.second->getCount() > 0)
+                manaReduction = std::max(manaReduction, slot.second->valOfBonuses(BonusType::CHANGES_SPELL_COST_FOR_ALLY));
+    }
 	return std::max(0, ret - manaReduction + manaIncrease);
 }
 

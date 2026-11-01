@@ -1,0 +1,371 @@
+{
+  "ancestralBehemoth": {
+    "name": {
+      "singular": "Ancestral Behemoth",
+      "plural": "Ancestral Behemoths"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 4,
+      "gems": 0,
+      "gold": 6000
+    },
+    "fightValue": 16250,
+    "aiValue": 18250,
+    "growth": 1,
+    "hitPoints": 600,
+    "speed": 14,
+    "attack": 35,
+    "defense": 35,
+    "damage": {
+      "min": 45,
+      "max": 75
+    },
+    "advMapAmount": {
+      "min": 1,
+      "max": 3
+    },
+    "faction": "core:stronghold",
+    "level": 7,
+    "doubleWide": true,
+    "hasDoubleWeek": false,
+    "abilities": {
+      "reducesDefense": {
+        "type": "ENEMY_DEFENCE_REDUCTION",
+        "val": 95
+      },
+      "flying": {
+        "type": "FLYING",
+        "subtype": "movementFlying"
+      },
+      "king": {
+        "type": "KING",
+        "val": 0
+      },
+      "deathBlow": {
+        "type": "DOUBLE_DAMAGE_CHANCE",
+        "val": 50
+      },
+      "fearless": {
+        "type": "FEARFUL",
+        "val": 0,
+        "valueType": "INDEPENDENT_MIN"
+      },
+      "fearful": {
+        "type": "FEARFUL",
+        "val": 10,
+        "valueType": "INDEPENDENT_MAX",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE",
+          [
+            "noneOf",
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NO_MORALE"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "UNDEAD"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NON_LIVING"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "MECHANICAL"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "SIEGE_WEAPON"
+            }
+          ]
+        ]
+      },
+      "sourceResistance6_26": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:armageddon"
+      },
+      "sourceResistance6_17": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:lightningBolt"
+      },
+      "sourceResistance6_19": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:chainLightning"
+      },
+      "sourceResistance6_57": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:titanBolt"
+      }
+    },
+    "graphics": {
+      "animation": "tum-era/ancestral-behemoth/cr238",
+      "map": "tum-era/ancestral-behemoth/AVWCR238",
+      "iconSmall": "tum-era/ancestral-behemoth/portrait-small",
+      "iconLarge": "tum-era/ancestral-behemoth/portrait-large",
+      "mapAttackFromRight": "avwattak/ZAvW156a",
+      "mapAttackFromLeft": "avwattak/ZAvW156b",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1.17,
+        "attack": 1,
+        "idle": 10
+      }
+    },
+    "sound": {
+      "attack": "tum-era/ancestral-behemoth/S238ATTK.wav",
+      "defend": "tum-era/ancestral-behemoth/S238DFND.wav",
+      "killed": "tum-era/ancestral-behemoth/S238KILL.wav",
+      "move": "tum-era/ancestral-behemoth/S238MOVE.wav",
+      "shoot": "tum-era/ancestral-behemoth/S238SHOT.wav",
+      "wince": "tum-era/ancestral-behemoth/S238WNCE.wav"
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ADDITIONAL_ATTACK",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NEGATIVE_EFFECTS_IMMUNITY",
+          "subtype": "spellSchool.earth"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          2,
+          3,
+          3,
+          4,
+          4,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "core:magicArrow"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "core:lightningBolt"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "core:chainLightning"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "core:meteorShower"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "core:implosion"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "core:fireball"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "core:armageddon"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "core:inferno"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "core:iceBolt"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "core:frostRing"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    ]
+  },
+  "wake-of-gods.level8units:ghostBehemoth": {
+    "upgrades": [
+      "ancestralBehemoth"
+    ]
+  }
+}

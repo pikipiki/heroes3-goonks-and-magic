@@ -10,6 +10,10 @@
 #include "StdInc.h"
 
 #include "CUnitState.h"
+#include "../era/EraStatusHealth.h"
+#include "../era/EraStatusHealthBonuses.h"
+#include "../era/EraBridgePolicies.h"
+#include "../era/EraSignedDamage.h"
 
 #include <vcmi/spells/Spell.h>
 
@@ -220,6 +224,16 @@ void CHealth::damage(int64_t & amount)
 	addResurrected(getCount() - oldCount);
 }
 
+void CHealth::applyEraNegativeSpellDamage(int64_t amount)
+{
+    const auto result = ::era_bridge::negativeSpellDamage(getCount(),
+        owner->getMaxHealth(), firstHPleft, amount);
+    // Original443DB0 uses signed IDIV and permits a negative lostHP remainder.
+    // Keep its exact count, including firstHPleft > unitHP and count > base.
+    fullUnits = result.count - 1;
+    firstHPleft = result.firstHPleft;
+}
+
 HealInfo CHealth::heal(int64_t & amount, EHealLevel level, EHealPower power)
 {
 	const int32_t unitHealth = owner->getMaxHealth();
@@ -294,6 +308,11 @@ int32_t CHealth::getResurrected() const
 	return resurrected;
 }
 
+void CHealth::sourceMaximumChanged(int oldMaximum)
+{
+    firstHPleft=::era_bridge::sourceStatusFirstHealth(oldMaximum,owner->getMaxHealth(),firstHPleft);
+}
+
 void CHealth::takeResurrected()
 {
 	if(resurrected != 0)
@@ -317,6 +336,7 @@ void CHealth::serializeJson(JsonSerializeFormat & handler)
 ///CUnitState
 CUnitState::CUnitState():
 	env(nullptr),
+	eraDoneRound(false),
 	cloned(false),
 	defending(false),
 	defendingAnim(false),
@@ -346,6 +366,7 @@ CUnitState & CUnitState::operator=(const CUnitState & other)
 {
 	//do not change unit and bonus info
 
+	eraDoneRound = other.eraDoneRound;
 	cloned = other.cloned;
 	defending = other.defending;
 	defendingAnim = other.defendingAnim;
@@ -496,7 +517,7 @@ bool CUnitState::alive() const
 
 bool CUnitState::isGhost() const
 {
-	return ghost;
+    return ghost || sourceMassSlot()==-2;
 }
 
 bool CUnitState::isFrozen() const
@@ -575,7 +596,21 @@ int64_t CUnitState::getTotalHealth() const
 
 uint32_t CUnitState::getMaxHealth() const
 {
-	return std::max(1, bonusCache.getBonusValue(UnitBonusValuesProxy::STACK_HEALTH));
+    if(!era_compat::sourceStatusUsesProfile(*this))
+        return std::max(1,bonusCache.getBonusValue(UnitBonusValuesProxy::STACK_HEALTH));
+    BonusList baseline;
+    int poison=0;bool age=false;
+    for(const auto & bonus:*getBonuses(Selector::type()(BonusType::STACK_HEALTH)))
+    {
+        if(bonus->source==BonusSource::SPELL_EFFECT && bonus->sid.as<SpellID>()==SpellID::POISON)
+            poison=std::max(poison,-bonus->val);
+        else if(bonus->source==BonusSource::SPELL_EFFECT && bonus->sid.as<SpellID>()==SpellID::AGE)
+            age=true;
+        else
+            baseline.push_back(bonus);
+    }
+    const int normal=std::max(1,baseline.totalValue());
+    return poison || age ? ::era_bridge::sourceStatusMaxHealth(normal,poison,age) : normal;
 }
 
 BattleHex CUnitState::getPosition() const
@@ -768,7 +803,11 @@ int CUnitState::getDefense(bool ranged) const
 		int defence = ranged ?
 						  bonusCache.getBonusValue(UnitBonusValuesProxy::DEFENCE_RANGED):
 						  bonusCache.getBonusValue(UnitBonusValuesProxy::DEFENCE_MELEE);
-		vstd::amax(defence, 0);
+        // Opt-in marker is emitted only by the source80 service. Vanilla
+        // units and other mods retain native nonnegative defense. A source
+        // DEFEND2+1 -> acid0 -> expiry(-1) must feed ATT-DEF as4422B0 does.
+        if(!hasBonusOfType(BonusType::ERA_SOURCE_ACID_DEFENSE))
+            vstd::amax(defence, 0);
 		return defence;
 	}
 }
@@ -791,6 +830,7 @@ std::shared_ptr<CUnitState> CUnitState::acquireState() const
 
 void CUnitState::serializeJson(JsonSerializeFormat & handler)
 {
+	handler.serializeBool("eraDoneRound", eraDoneRound);
 	handler.serializeBool("cloned", cloned);
 	handler.serializeBool("defending", defending);
 	handler.serializeBool("defendingAnim", defendingAnim);
@@ -828,6 +868,7 @@ void CUnitState::localInit(const IUnitEnvironment * env_)
 
 void CUnitState::reset()
 {
+	eraDoneRound = false;
 	cloned = false;
 	defending = false;
 	defendingAnim = false;
@@ -870,6 +911,21 @@ void CUnitState::load(const JsonNode & data)
 
 void CUnitState::damage(int64_t & amount)
 {
+    if(amount < 0 && era_compat::Policies::get().spellDamageInversion(
+        creatureId().toCreature()->getJsonKey()))
+    {
+        if(cloned)
+        {
+            // Original443DDE gives CLONE priority even for negative damage.
+            amount = 0;
+            health.reset();
+            ghostPending = true;
+        }
+        else
+            health.applyEraNegativeSpellDamage(amount);
+        return;
+    }
+
 	if(cloned)
 	{
 		// block ability should not kill clone (0 damage)
@@ -912,6 +968,7 @@ void CUnitState::afterAttack(bool ranged, bool counter)
 
 void CUnitState::afterNewRound()
 {
+	eraDoneRound = false;
 	defending = false;
 	waiting = false;
 	waitedThisTurn = false;
@@ -930,6 +987,8 @@ void CUnitState::afterGetsTurn(BattleUnitTurnReason reason)
 {
 	if(reason == BattleUnitTurnReason::MORALE)
 	{
+        // h3era.exe sub464500 clears DONE when granting positive morale.
+        eraDoneRound = false;
 		hadMorale = true;
 		castSpellThisTurn = false;
 		movedThisRound = false;
@@ -974,6 +1033,11 @@ CUnitStateDetached & CUnitStateDetached::operator=(const CUnitState & other)
 uint32_t CUnitStateDetached::unitId() const
 {
 	return unit->unitId();
+}
+
+int32_t CUnitStateDetached::sourceMassSlot() const
+{
+    return unit->sourceMassSlot();
 }
 
 BattleSide CUnitStateDetached::unitSide() const

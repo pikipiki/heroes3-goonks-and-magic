@@ -91,8 +91,8 @@ GameEngine::GameEngine()
 		videoPlayerInstance = std::make_unique<CVideoPlayer>();
 #endif
 
-	soundPlayerInstance = std::make_unique<CSoundHandler>();
-	musicPlayerInstance = std::make_unique<CMusicHandler>();
+	soundPlayerInstance = std::make_unique<CSoundHandler>(*this);
+	musicPlayerInstance = std::make_unique<CMusicHandler>(*this);
 	sound().setVolume(settings["general"]["sound"].Integer());
 	music().setVolume(settings["general"]["music"].Integer());
 	cursorHandlerInstance = std::make_unique<CursorHandler>();

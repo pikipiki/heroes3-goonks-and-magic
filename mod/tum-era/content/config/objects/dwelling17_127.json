@@ -1,0 +1,35 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_127": {
+        "name": "Temple of Souls",
+        "creatures": [
+          [
+            "tum-era:eraCreature297"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw28.def",
+            "mask": [
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 1610,
+          "rarity": 40,
+          "neutralAllowed": true
+        }
+      }
+    }
+  }
+}

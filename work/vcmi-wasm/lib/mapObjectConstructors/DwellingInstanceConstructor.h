@@ -24,6 +24,7 @@ class DwellingInstanceConstructor : public CDefaultObjectTypeHandler<CGDwelling>
 
 	JsonNode guards;
 	bool bannedForRandomDwelling = false;
+	bool neutralRmgAllowed = false;
 	AnimationPath kingdomOverviewImage;
 
 protected:
@@ -38,6 +39,7 @@ public:
 	void randomizeObject(CGDwelling * object, IGameRandomizer & gameRandomizer) const override;
 
 	bool isBannedForRandomDwelling() const;
+	bool allowsNeutralRmg() const;
 	bool producesCreature(const CCreature * crea) const;
 	std::vector<const CCreature *> getProducedCreatures() const;
 	AnimationPath getKingdomOverviewImage() const;

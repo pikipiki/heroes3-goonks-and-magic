@@ -1,0 +1,20 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "unholyPalace": {
+        "name": "Unholy Palace",
+        "creatures": [
+          [
+            "tum-era:antichrist"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:antichrist",
+            "amount": 3
+          }
+        ]
+      }
+    }
+  }
+}

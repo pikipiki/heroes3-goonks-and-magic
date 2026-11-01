@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "scope": "Observed native browser rendering, not Windows frame-perfect equivalence",
+  "passed": [
+    "Native meleeBurst10 andGOGFLAME opened/read during attack",
+    "Native rangedBurst11 read during both shots; targetHPdelta2 without intrinsicThunder",
+    "No JS or native errors in either battle"
+  ],
+  "reviewedFrames": [
+    "guardian212-melee-frame-34.png",
+    "guardian212-ranged-frame-08.png"
+  ],
+  "observed": "White impact sparks rendered on target. Melee41frames captured through long movement and HIT; ranged10frames through both shots. All captured frames retained."
+}

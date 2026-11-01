@@ -1,0 +1,272 @@
+{
+  "antichrist": {
+    "name": {
+      "singular": "Antichrist",
+      "plural": "Antichrists"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 5,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 9000
+    },
+    "fightValue": 19250,
+    "aiValue": 25700,
+    "growth": 1,
+    "hitPoints": 400,
+    "speed": 19,
+    "attack": 40,
+    "defense": 42,
+    "damage": {
+      "min": 45,
+      "max": 60
+    },
+    "advMapAmount": {
+      "min": 1,
+      "max": 3
+    },
+    "faction": "core:inferno",
+    "level": 7,
+    "doubleWide": false,
+    "hasDoubleWeek": false,
+    "abilities": {
+      "hateAngels": {
+        "type": "HATE",
+        "subtype": "core:angel",
+        "val": 200
+      },
+      "hateArchangels": {
+        "type": "HATE",
+        "subtype": "core:archangel",
+        "val": 200
+      },
+      "mindImmunity": {
+        "type": "MIND_IMMUNITY"
+      },
+      "fireImmunity": {
+        "type": "SPELL_SCHOOL_IMMUNITY",
+        "subtype": "fire"
+      },
+      "blocksRetaliation": {
+        "type": "BLOCKS_RETALIATION"
+      },
+      "king": {
+        "type": "KING",
+        "val": 2
+      },
+      "fearless": {
+        "type": "FEARFUL",
+        "val": 0,
+        "valueType": "INDEPENDENT_MIN"
+      },
+      "teleports": {
+        "type": "FLYING",
+        "subtype": "movementTeleporting"
+      },
+      "fearful": {
+        "type": "FEARFUL",
+        "val": 10,
+        "valueType": "INDEPENDENT_MAX",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE",
+          [
+            "noneOf",
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NO_MORALE"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "UNDEAD"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NON_LIVING"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "MECHANICAL"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "SIEGE_WEAPON"
+            }
+          ]
+        ]
+      }
+    },
+    "graphics": {
+      "animation": "tum-era/antichrist/cr219",
+      "map": "tum-era/antichrist/AVWCR219",
+      "iconSmall": "tum-era/antichrist/portrait-small",
+      "iconLarge": "tum-era/antichrist/portrait-large",
+      "mapAttackFromRight": "avwattak/ZAvW153a",
+      "mapAttackFromLeft": "avwattak/ZAvW153b",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "missile": {
+        "offset": {
+          "upperX": 10,
+          "upperY": -70,
+          "middleX": 10,
+          "middleY": -70,
+          "lowerX": 10,
+          "lowerY": -70
+        },
+        "frameAngles": [
+          90,
+          72,
+          45,
+          27,
+          0,
+          -27,
+          -45,
+          -72,
+          -90,
+          0,
+          0,
+          0
+        ],
+        "attackClimaxFrame": 0
+      }
+    },
+    "sound": {
+      "attack": "tum-era/antichrist/S219ATTK.wav",
+      "defend": "tum-era/antichrist/S219DFND.wav",
+      "killed": "tum-era/antichrist/S219KILL.wav",
+      "startMoving": "tum-era/antichrist/S219EXT1.wav",
+      "endMoving": "tum-era/antichrist/S219EXT2.wav",
+      "move": "tum-era/antichrist/S219MOVE.wav",
+      "shoot": "tum-era/antichrist/S219SHOT.wav",
+      "wince": "tum-era/antichrist/S219WNCE.wav"
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          2,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NEGATIVE_EFFECTS_IMMUNITY",
+          "subtype": "spellSchool.fire"
+        },
+        "values": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NEGATIVE_EFFECTS_IMMUNITY",
+          "subtype": "spellSchool.earth"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_BEFORE_ATTACK",
+          "subtype": "core:sorrow",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": 3
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "subtype": "wake-of-gods.level8units:supremeArchangel",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          20,
+          40,
+          60,
+          80,
+          100,
+          120,
+          140,
+          160,
+          180,
+          200
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "subtype": "tum-era:cherub",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          20,
+          40,
+          60,
+          80,
+          100,
+          120,
+          140,
+          160,
+          180,
+          200
+        ]
+      }
+    ]
+  },
+  "wake-of-gods.level8units:hellBaron": {
+    "upgrades": [
+      "antichrist"
+    ]
+  }
+}

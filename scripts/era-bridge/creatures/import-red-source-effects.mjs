@@ -1,0 +1,32 @@
+/** Review-only correction of the source224 combat effects. No active manifest is written. */
+import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';
+import {readEraArchive} from '../resources.mjs';import {parseCreatureExperience,compileCreatureExperience} from './crexpbon.mjs';
+const [projectArg,tumArg,outArg]=process.argv.slice(2);
+if(!projectArg||!tumArg||!outArg)throw Error('Usage: node import-red-source-effects.mjs PROJECT TUM REVIEW_OUTPUT');
+const project=path.resolve(projectArg),tum=path.resolve(tumArg),out=path.resolve(outArg);
+if(out===project||out.startsWith(project+path.sep))throw Error('Review output must be outside project');
+const read=p=>JSON.parse(fs.readFileSync(path.join(project,p),'utf8')),write=(p,v)=>{const dest=path.join(out,p);fs.mkdirSync(path.dirname(dest),{recursive:true});fs.writeFileSync(dest,JSON.stringify(v,null,2)+'\n');},sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const cfg=fs.readFileSync(tum+'/Data/Creatures/224.cfg','utf8');
+const actual=Object.fromEntries(cfg.trim().split(/\r?\n/).map(l=>{const[k,v]=l.split('=');return[k.trim(),Number(v)];}));
+const expected={Flags:-2147023741,Level:6,Town:4,'Spell effect':4,'Attack effect':0,RegenerationHitPoints:50,RegenerationChance:100,Fear:1,Fearless:1};
+if(JSON.stringify(Object.entries(actual).sort())!==JSON.stringify(Object.entries(expected).sort()))throw Error('Changed224cfg requires a fresh source audit');
+const archive=readEraArchive(fs.readFileSync(tum+'/Data/AmeCre.pac')),xpBytes=archive.extract('crexpbon.txt'),rows=parseCreatureExperience(xpBytes.toString('latin1'));
+const pending=rows.filter(r=>r.creature===224&&r.code==='c');
+if(pending.length!==1||pending[0].modifier!=='#75'||pending[0].values.some((v,i)=>v!==8*i))throw Error('Changed224 c75 source contract');
+const sourceRows=rows.filter(r=>r.creature===224);if(sourceRows.length!==7)throw Error('Changed224 XP row count');
+const installed=parseCreatureExperience(fs.readFileSync(project+'/mod/wake-of-gods/Mods/stackExperience/Content/data/crexpbon.txt','latin1'));
+// All referenced spell IDs are explicit. Source c75 has its own audited adapter.
+const spellIds={28:'airShield',75:'age'};
+const native=compileCreatureExperience(rows,{creatureId:224,installedRows:installed,nativeExperienceProfile:true,experienceStatusSelectors:'source-c75-v1',resolveSpell:id=>spellIds[id]?'core:'+spellIds[id]:null});
+if(!native.ok)throw Error(JSON.stringify(native.diagnostics));
+const definition=read('mod/tum-era/content/config/red-bones-dragon.json');
+definition.redBonesDragon.abilities.age=null;
+definition.redBonesDragon.abilities.drainsLife={type:'LIFE_DRAIN',val:100};
+definition.redBonesDragon.abilities.sourceMindImmunity={type:'MIND_IMMUNITY'};
+definition.redBonesDragon.stackExperience=native.definition.stackExperience;
+Object.assign(definition.redBonesDragon.abilities,native.definition.abilities);
+write('content/config/red-bones-dragon.candidate.json',definition);
+const runtime=read('mod/tum-era/content/config/era-bridge-runtime.json');runtime.creatures['tum-era:redBonesDragon'].vampireDrain={};write('content/config/era-bridge-runtime.candidate.json',runtime);
+const statuses=read('mod/tum-era/content/config/era-bridge-status-attacks.json');statuses.creatures=[...new Set([...statuses.creatures,'tum-era:redBonesDragon'])];if(statuses.sourceIds['tum-era:redBonesDragon']!==224)throw Error('224 identity missing');write('content/config/era-bridge-status-attacks.candidate.json',statuses);
+write('red-source-effects-import-report.json',{eraId:224,activationReady:false,registered:false,cfgSHA256:sha(Buffer.from(cfg)),crexpbonSHA256:sha(xpBytes),sourceNativeRows:sourceRows.filter(r=>r.code!=='c'),runtimeExperience:native.runtimeBindings,pendingExperience:[],sourceVampire:{selector:0,entry:'440921',percent:100,cap:'minimum of raw attack damage, victim pre-hit HP, attacker missing HP',target:'source ALIVE flag'},remaining:['c75 runtime test','intrinsic Age224 combat test','source vampire damage/heal combat tests']});
+console.log(JSON.stringify({out,activationReady:false,nativeXPRows:6,runtimeXPRows:1,pendingXPRows:0}));

@@ -15,6 +15,10 @@
 #include "../CGameHandler.h"
 
 #include "../../lib/CPlayerState.h"
+#include "../../lib/era/EraBridgeArtifactPolicies.h"
+#include "../../lib/era/EraBridgePolicies.h"
+#include "../../lib/entities/artifact/CArtifact.h"
+#include "../../lib/entities/artifact/CArtifactInstance.h"
 #include "../../lib/IGameSettings.h"
 #include "../../lib/StartInfo.h"
 #include "../../lib/callback/GameRandomizer.h"
@@ -143,6 +147,70 @@ void NewTurnProcessor::handleTownEvents(const CGTownInstance * town)
 void NewTurnProcessor::onPlayerTurnStarted(PlayerColor which)
 {
 	const auto * playerState = gameHandler->gameState().getPlayerState(which);
+
+    // Amethyst Daily_Res: maximum per resource across eligible armies, but
+    // gold tax is per individual. Garrison heroes are already in getHeroes().
+    ResourceSet income;
+    int64_t tax = 0;
+    const auto accumulate = [&](const CArmedInstance * army)
+    {
+        for(const auto & entry : army->Slots())
+        {
+            const auto * stack = entry.second.get();
+            const auto rule = era_compat::Policies::get().dailyResources(stack->getId().toCreature()->getJsonKey());
+            if(!rule)
+                continue;
+            income[rule->resource] = std::max<int64_t>(income[rule->resource], rule->amount);
+            const int64_t amount = static_cast<int64_t>(rule->goldPerCreature) * stack->getCount();
+            if(amount > std::numeric_limits<int64_t>::max() - tax)
+                throw std::runtime_error("ERA bridge: daily tax overflow");
+            tax += amount;
+        }
+    };
+    for(const auto * hero : playerState->getHeroes())
+        accumulate(hero);
+    for(const auto * town : playerState->getTowns())
+        if(!town->getGarrisonHero())
+            accumulate(town);
+    if(tax > std::numeric_limits<TResource>::max() - income[GameResID::GOLD])
+        throw std::runtime_error("ERA bridge: daily gold overflow");
+    income[GameResID::GOLD] += tax;
+    if(income.nonZero())
+    {
+        gameHandler->giveResources(which, income);
+    }
+
+	// Emerald events.cpp:303-308: equipped artifacts convert army types for free
+	// once at the owning player's new-day turn. Do not use town visits/player UI events: visiting and
+	// garrison heroes appear there too, and would be converted twice.
+	const auto & artifactPolicies = era_compat::ArtifactPolicies::get();
+	for(const CGHeroInstance * hero : playerState->getHeroes())
+		{
+			::era_bridge::EquippedDailyConversions equipped{};
+			for(int position = 0; position < 19; ++position)
+			{
+				const auto * artifact = hero->getArt(ArtifactPosition(position));
+				if(!artifact)
+					continue; // excludes backpack and locked combination placeholders
+				const auto * pairs = artifactPolicies.dailyConversions(artifact->getType()->getJsonKey());
+				if(pairs)
+					equipped[position] = *pairs;
+			}
+			std::array<int, 7> army;
+			army.fill(-1);
+			for(int slot = 0; slot < 7; ++slot)
+				if(hero->hasStackAtSlot(SlotID(slot)))
+					army[slot] = hero->getStackPtr(SlotID(slot))->getId().getNum();
+			for(const auto & conversion : ::era_bridge::planDailyConversions(army, equipped))
+			{
+				SetStackType packet;
+				packet.army = hero->id;
+				packet.slot = SlotID(static_cast<int>(conversion.armySlot));
+				packet.type = CreatureID(conversion.to);
+				packet.preserveExperience = true;
+				gameHandler->sendAndApply(packet); // shared authoritative state, count unchanged
+			}
+		}
 
 	handleTimeEvents(which);
 	for (const auto * t : playerState->getTowns())
@@ -711,6 +779,7 @@ void NewTurnProcessor::onNewTurn()
 	bool newMonth = gameHandler->gameInfo().getDate(Date::DAY_OF_MONTH) == 28;
 
 	gameHandler->sendAndApply(n);
+
 
 	if (newWeek)
 	{

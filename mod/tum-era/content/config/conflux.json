@@ -1,0 +1,164 @@
+{
+  "core:conflux": {
+    "town": {
+      "creatures": [
+        [
+          "pixie",
+          "sprite",
+          "tumFairy"
+        ],
+        [
+          "airElemental",
+          "stormElemental",
+          "tumHurricaneElemental"
+        ],
+        [
+          "waterElemental",
+          "iceElemental",
+          "tumLifeElemental"
+        ],
+        [
+          "fireElemental",
+          "energyElemental",
+          "tumPlasmaElemental"
+        ],
+        [
+          "earthElemental",
+          "magmaElemental",
+          "tumMineralElemental"
+        ],
+        [
+          "psychicElemental",
+          "magicElemental",
+          "tumVoidElemental"
+        ],
+        [
+          "firebird",
+          "phoenix",
+          "sacredPhoenix",
+          "divinePhoenix"
+        ]
+      ],
+      "hallSlots": [
+        [
+          [
+            "villageHall",
+            "townHall",
+            "cityHall",
+            "capitol"
+          ],
+          [
+            "fort",
+            "citadel",
+            "castle"
+          ],
+          [
+            "tavern"
+          ],
+          [
+            "blacksmith"
+          ]
+        ],
+        [
+          [
+            "marketplace",
+            "resourceSilo"
+          ],
+          [
+            "mageGuild1",
+            "mageGuild2",
+            "mageGuild3",
+            "mageGuild4",
+            "mageGuild5"
+          ],
+          [
+            "shipyard"
+          ]
+        ],
+        [
+          [
+            "special2"
+          ],
+          [
+            "special1"
+          ],
+          [
+            "horde1",
+            "horde1Upgr",
+            "horde2"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl1",
+            "dwellingUpLvl1",
+            "dwellingUp2Lvl1"
+          ],
+          [
+            "dwellingLvl2",
+            "dwellingUpLvl2",
+            "dwellingUp2Lvl2"
+          ],
+          [
+            "dwellingLvl3",
+            "dwellingUpLvl3",
+            "dwellingUp2Lvl3"
+          ],
+          [
+            "dwellingLvl4",
+            "dwellingUpLvl4",
+            "dwellingUp2Lvl4"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl5",
+            "dwellingUpLvl5",
+            "dwellingUp2Lvl5"
+          ],
+          [
+            "dwellingLvl6",
+            "dwellingUpLvl6",
+            "dwellingUp2Lvl6"
+          ],
+          [
+            "dwellingLvl7",
+            "dwellingUpLvl7",
+            "dwellingUp2Lvl7",
+            "dwellingUp3Lvl7"
+          ]
+        ]
+      ],
+      "buildingsIcons": "tum-era/conflux-hall",
+      "structures": {
+        "dwellingUp3Lvl7": {
+          "animation": "town-screen/conflux/TBELUP2_6.def",
+          "x": 34,
+          "y": 0,
+          "z": -2,
+          "border": "TOELUP_6.bmp",
+          "area": "TZELUP_6.bmp",
+          "builds": "dwellingUp3Lvl7",
+          "hidden": false
+        }
+      },
+      "buildings": {
+        "dwellingUp3Lvl7": {
+          "id": 57,
+          "name": "Upg. Spirit Pyre",
+          "description": "Allows recruitment and upgrades of Divine Phoenixes.",
+          "upgrades": "dwellingUp2Lvl7",
+          "requires": [
+            "dwellingUp2Lvl7"
+          ],
+          "cost": {
+            "wood": 15,
+            "mercury": 25,
+            "ore": 15,
+            "gold": 20000
+          }
+        }
+      }
+    }
+  }
+}

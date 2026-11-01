@@ -10,6 +10,7 @@
 
 #include "StdInc.h"
 #include "CGHeroInstance.h"
+#include "../era/EraCreatureArtifactMimic.h"
 
 #include <vcmi/ServerCallback.h>
 #include <vcmi/spells/Spell.h>
@@ -922,7 +923,10 @@ bool CGHeroInstance::canCastThisSpell(const spells::Spell * spell) const
 		{//hero has this spell in spellbook
 			logGlobal->error("Special spell %s in spellbook.", spell->getNameTranslated());
 		}
-		return hasBonusOfType(BonusType::SPELL, BonusSubtypeID(spell->getId()));
+		// Emerald MonGiveSpell uses original hero army and ArtifactGiveSpell135
+        // adds temporary learned spell57. It grants no primary stats or book.
+        return hasBonusOfType(BonusType::SPELL, BonusSubtypeID(spell->getId()))
+            || (spell->getIndex()==57 && era_compat::originalArmyMimicsArtifact(*this,135));
 	}
 	else if(!cb->isAllowed(spell->getId()))
 	{
@@ -1273,6 +1277,10 @@ std::vector<BonusSourceID> CGHeroInstance::getSourcesForSpell(const SpellID & sp
 			sources.emplace_back(bonus->sid);
 	}
 
+    const BonusSourceID mimicSource(ArtifactID(135));
+    if(spellId==SpellID(57) && era_compat::originalArmyMimicsArtifact(*this,135)
+        && std::find(sources.begin(),sources.end(),mimicSource)==sources.end())
+        sources.push_back(mimicSource);
 	return sources;
 }
 

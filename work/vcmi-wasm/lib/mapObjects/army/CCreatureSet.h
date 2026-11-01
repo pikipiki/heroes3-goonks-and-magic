@@ -72,7 +72,7 @@ public:
 	//removes stack from army but doesn't destroy it (so it can be moved somewhere else or safely deleted)
 	std::unique_ptr<CStackInstance> detachStack(const SlotID & slot);
 
-	void setStackType(const SlotID & slot, const CreatureID & type);
+	void setStackType(const SlotID & slot, const CreatureID & type, bool preserveExperience = false);
 
 	/// Give specified amount of experience to all units in army
 	/// Amount of granted experience is scaled by unit stack size

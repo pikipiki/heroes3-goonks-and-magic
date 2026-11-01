@@ -1,0 +1,190 @@
+{
+  "eraCreature287": {
+    "name": {
+      "singular": "Dread Skipper",
+      "plural": "Dread Skippers"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 240
+    },
+    "fightValue": 311,
+    "aiValue": 311,
+    "growth": 7,
+    "hitPoints": 25,
+    "speed": 6,
+    "attack": 8,
+    "defense": 8,
+    "damage": {
+      "min": 4,
+      "max": 5
+    },
+    "advMapAmount": {
+      "min": 12,
+      "max": 25
+    },
+    "abilities": {
+      "amethyst_flag_10": {
+        "type": "MIND_IMMUNITY",
+        "val": 0
+      },
+      "amethyst_flag_17": {
+        "type": "NO_MORALE",
+        "val": 0
+      },
+      "amethyst_flag_18": {
+        "type": "UNDEAD",
+        "val": 0
+      },
+      "crexp_0_rank0": {
+        "type": "SPELL_BEFORE_ATTACK",
+        "subtype": "core:sorrow",
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": 3,
+        "val": 100
+      }
+    },
+    "doubleWide": false,
+    "level": 3,
+    "graphics": {
+      "iconSmall": "tum-era/tow/287/creatures/neutral/iconssmall/dskipperS.png",
+      "iconLarge": "tum-era/tow/287/creatures/neutral/iconsbig/dskipperB.png",
+      "map": "tum-era/tow/287/creatures/neutral/map/dskippermap.def",
+      "animation": "tum-era/tow/287/creatures/neutral/battle/CSkipper.def",
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "timeBetweenFidgets": 1
+    },
+    "sound": {
+      "attack": "tum-era/tow/287/creatures/neutral/dreadSkipper/DRSKATTK.wav",
+      "defend": "tum-era/tow/287/creatures/neutral/dreadSkipper/DRSKDFND.wav",
+      "killed": "tum-era/tow/287/creatures/neutral/dreadSkipper/DRSKDEAD.wav",
+      "move": "tum-era/tow/287/creatures/neutral/dreadSkipper/DRSKMOVE.wav",
+      "wince": "tum-era/tow/287/creatures/neutral/dreadSkipper/DRSKWNCE.wav"
+    },
+    "shots": 0,
+    "faction": "core:neutral",
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ADDITIONAL_RETALIATION",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2
+        ]
+      }
+    ]
+  }
+}

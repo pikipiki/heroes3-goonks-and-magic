@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "scope": "Static original plugin code and scoped original h3era callsites. No Windows runtime frame capture performed. Native browser visual E2E still pending.",
+  "plugin": {
+    "path": "HIT_EFFECTS_ROOT/EraPlugins/Hit Landing Effects.era",
+    "sha256": "8afbfcb92877c2a82d993773654e21a069d4fa96e1ec6cd30ade2c26c9cecd0d"
+  },
+  "REA": "binary_session inspected; Hopper provider unavailable: bridge stopped unexpectedly with code null. Existing shared session left untouched; bounded objdump fallback used.",
+  "assignments": {
+    "source": "Third Upgrade Mod.erm2116..2118",
+    "melee": "Burst10.def",
+    "meleeSound": "GOGFLAME.wav",
+    "ranged": "Burst11.def",
+    "rangedSound": null
+  },
+  "ranged": {
+    "capture": "Plugin100027FB..10002813 hooks43F620 with10001E70; captures HitEffects.Shot212 and target pointer100178F8 before original shot action",
+    "playbackHook": "100028B4..100028C7 hooks468570 with10002610",
+    "replacement": "10002655..1000265C temporarily redirects originalC05SPE0.def resource to currentShot filename",
+    "targetPlayback": "10002678 sets target+20 HIT state;1000267C..8B calls original468570(10,1);1000268D..9F clears temporary state",
+    "restoration": "10002739..10002753 restores originalC05SPE0.def mapping and clears currentShot filename",
+    "originalOrdering": [
+      "43F7F4..43F84E draw full animated projectile/beam resource frame loop before damage",
+      "43F95B/43FA5E write targetHP",
+      "43FA7C calls468570, which the plugin replaces with burst10-animation mode at target HIT"
+    ],
+    "nativeDesign": "findRanged scheduled only for physical ranged AttackInfo atEAnimationEvents::HIT, after native projectile flight; no burst on shooting start; no mirrorflags in ranged draw",
+    "thunder": "Intrinsic212Thunder is a separate StacksInjured SPELL_EFFECT17 with native LightningBolt animation; it must not duplicate the ranged physical Burst11"
+  },
+  "pending": [
+    "Compile source-ranged-landing.patch",
+    "Native browser visual E2E of melee/ranged/electrical extra damage; source static timing is not a measured Windows frame-rate parity claim"
+  ]
+}

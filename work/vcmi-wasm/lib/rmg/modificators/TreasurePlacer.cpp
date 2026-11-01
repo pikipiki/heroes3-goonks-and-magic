@@ -24,6 +24,7 @@
 #include "../../mapObjectConstructors/AObjectTypeHandler.h"
 #include "../../mapObjectConstructors/CObjectClassesHandler.h"
 #include "../../mapObjectConstructors/DwellingInstanceConstructor.h"
+#include "../../era/EraNeutralDwellingRmg.h"
 #include "../../rewardable/Info.h"
 #include "../../mapObjects/CGHeroInstance.h"
 #include "../../mapObjects/CGPandoraBox.h"
@@ -250,9 +251,15 @@ void TreasurePlacer::addDwellings()
 				continue;
 
 			const auto * cre = creatures.front();
-			if(cre->getFactionID() == zone.getTownType())
+			const bool neutralOrMixedRecruitment = cre->getFactionID() == FactionID::NEUTRAL ||
+				std::any_of(creatures.begin(), creatures.end(), [cre](const CCreature * produced) { return produced->getFactionID() != cre->getFactionID(); });
+			const bool neutralRmg = dwellingHandler->allowsNeutralRmg() && neutralOrMixedRecruitment;
+			if(::era_bridge::dwellingRmgEligible(
+				cre->getFactionID() == zone.getTownType(),
+				neutralOrMixedRecruitment,
+				dwellingHandler->allowsNeutralRmg()))
 			{
-				float nativeZonesCount = static_cast<float>(map.getZoneCount(cre->getFactionID()));
+				float nativeZonesCount = neutralRmg ? 0.0f : static_cast<float>(map.getZoneCount(cre->getFactionID()));
 				// value increases, if there are more native zones for the faction
 				float valueModifier = 1 + (nativeZonesCount / map.getTotalZoneCount()) + (nativeZonesCount / 2);
 				ObjectInfo oi(dwellingType, secondaryID);

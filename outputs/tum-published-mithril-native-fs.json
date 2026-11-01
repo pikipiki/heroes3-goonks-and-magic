@@ -1,0 +1,38 @@
+{
+  "case": "bank:43",
+  "method": "Read actual native FS; production data, resource-array override disabled in matching harness report",
+  "configs": [
+    {
+      "relativePath": "Mods/tum-era/content/config/objects/bank43.json",
+      "sha256": "af6230f751fab90e298f1fddf78345643b6e1156679aad04dd5451c76f869a56",
+      "resources": [
+        [
+          {
+            "type": "core:gold",
+            "amount": 5000
+          },
+          {
+            "type": "wake-of-gods.mithril:mithril",
+            "amount": 2
+          }
+        ]
+      ]
+    },
+    {
+      "relativePath": "Mods/tum-era/content/config/objects/bank44.json",
+      "sha256": "9b443b9aca4474de8753e098b404f73830f508e8043b61fc845b54122ed130bc",
+      "resources": [
+        [
+          {
+            "type": "core:gold",
+            "amount": 2500
+          },
+          {
+            "type": "wake-of-gods.mithril:mithril",
+            "amount": 2
+          }
+        ]
+      ]
+    }
+  ]
+}

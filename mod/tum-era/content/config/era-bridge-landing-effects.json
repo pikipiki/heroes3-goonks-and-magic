@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "creatures": {
+    "tum-era:cherub": {
+      "melee": {
+        "animation": "tum-era/hit-effects/Burst04.def",
+        "sound": "tum-era/hit-effects/PHOEMOVE.wav"
+      }
+    },
+    "tum-era:antichrist": {
+      "melee": {
+        "animation": "tum-era/hit-effects/Burst14.def",
+        "sound": "tum-era/hit-effects/FAERATTK.wav"
+      }
+    },
+    "tum-era:redBonesDragon": {
+      "melee": {
+        "animation": "tum-era/hit-effects/Burst16.def"
+      }
+    },
+    "tum-era:ancestralBehemoth": {
+      "melee": {
+        "animation": "tum-era/hit-effects/Burst23.def"
+      }
+    }
+  }
+}

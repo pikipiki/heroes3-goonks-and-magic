@@ -17,7 +17,7 @@ test('weighted states use one shared native dice with exact disjoint bounds',()=
 test('all seven resource indices map in ERA order and unsupported nonzero extra resources fail',()=>{
  const input=bank();input.states[0].resources=[1,2,3,4,5,6,7];assert.deepEqual(native(compileTumBank(input,opts)).rewards[0].resources,{wood:1,mercury:2,ore:3,sulfur:4,crystal:5,gems:6,gold:7});
  input.states[0].resources.push(20);failure(()=>compileTumBank(input,opts),'MISSING_RESOLVER','/states/0/resources/7');
- assert.equal(native(compileTumBank(input,{...opts,resolveResource:id=>id===7?'custom:mithril':undefined})).rewards[0].resources['custom:mithril'],20);
+ assert.deepEqual(native(compileTumBank(input,{...opts,resolveResource:id=>id===7?'custom:mithril':undefined})).rewards[0].resources,[{type:'core:wood',amount:1},{type:'core:mercury',amount:2},{type:'core:ore',amount:3},{type:'core:sulfur',amount:4},{type:'core:crystal',amount:5},{type:'core:gems',amount:6},{type:'core:gold',amount:7},{type:'custom:mithril',amount:20}]);
 });
 test('specific artifacts and creature rewards must resolve before any bank can be emitted',()=>{
  const input=bank();Object.assign(input.states[0],{artifactIds:[227],creatureRewardType:324,creatureRewardCount:5});const b=native(compileTumBank(input,opts));assert.deepEqual(b.rewards[0].creatures,[{type:'tum:guard',amount:5}]);assert.deepEqual(b.rewards[0].artifacts,[{class:'MAJOR'},'tow:phylactery']);

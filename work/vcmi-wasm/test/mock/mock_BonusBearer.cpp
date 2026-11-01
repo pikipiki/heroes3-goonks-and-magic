@@ -44,3 +44,9 @@ int32_t BonusBearerMock::getTreeVersion() const
 }
 
 
+
+void BonusBearerMock::removeBonus(const std::shared_ptr<Bonus> & b)
+{
+    bonuses-=b;
+    treeVersion++;
+}

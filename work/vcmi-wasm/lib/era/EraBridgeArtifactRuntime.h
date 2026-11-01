@@ -1,0 +1,27 @@
+#pragma once
+#include <array>
+#include <cstddef>
+#include <vector>
+// Independent semantics of Emerald events.cpp:303-308.
+namespace era_bridge
+{
+struct DailyConversion { int from; int to; };
+struct DailyConversionAction { std::size_t armySlot; int from; int to; };
+using EquippedDailyConversions = std::array<std::vector<DailyConversion>, 19>;
+// Input snapshots are deliberately by value. Simulating each immediate update
+// preserves chains within one artifact and across later equipment slots.
+inline std::vector<DailyConversionAction> planDailyConversions(
+    std::array<int, 7> army, const EquippedDailyConversions & equipped)
+{
+    std::vector<DailyConversionAction> actions;
+    for(const auto & artifact : equipped)
+        for(const auto & pair : artifact)
+            for(std::size_t slot = 0; slot < army.size(); ++slot)
+                if(army[slot] >= 0 && army[slot] == pair.from && pair.from != pair.to)
+                {
+                    actions.push_back({slot, pair.from, pair.to});
+                    army[slot] = pair.to;
+                }
+    return actions;
+}
+} // namespace era_bridge

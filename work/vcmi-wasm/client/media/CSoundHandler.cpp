@@ -8,6 +8,10 @@
  *
  */
 #include "StdInc.h"
+#include "AudioThread.h"
+#ifdef VCMI_EMSCRIPTEN
+#include <emscripten.h>
+#endif
 #include "CSoundHandler.h"
 
 #include "../GameEngine.h"
@@ -29,43 +33,58 @@ static const std::string soundsList[] = {
 #undef VCMI_SOUND_NAME
 #undef VCMI_SOUND_FILE
 
+#ifdef VCMI_EMSCRIPTEN
+static CSoundHandler * webSoundHandler=nullptr;
+static GameEngine * webSoundEngine=nullptr;
+#endif
+
 void CSoundHandler::onVolumeChange(const JsonNode & volumeNode)
 {
 	setVolume(volumeNode.Integer());
 }
 
-CSoundHandler::CSoundHandler():
+CSoundHandler::CSoundHandler(GameEngine & owner):
 	listener(settings.listen["general"]["sound"]),
 	ambientConfig(JsonPath::builtin("config/ambientSounds.json"))
 {
 	listener(std::bind(&CSoundHandler::onVolumeChange, this, _1));
 
 	if(ambientConfig["allocateChannels"].isNumber())
-		Mix_AllocateChannels(ambientConfig["allocateChannels"].Integer());
+		web_audio::call([&](){ return Mix_AllocateChannels(ambientConfig["allocateChannels"].Integer()); });
 
 	if(isInitialized())
 	{
-		Mix_ChannelFinished([](int channel)
+#ifdef VCMI_EMSCRIPTEN
+        web_audio::call([this,&owner](){webSoundHandler=this;webSoundEngine=&owner;});
+#endif
+		web_audio::call([&](){ return Mix_ChannelFinished([](int channel)
 		{
 			// It is possible for this code to be executed during ENGINE destruction.
 			// In this scenario, ENGINE is already nullptr, but ~CSoundHandler is still running
+#ifdef VCMI_EMSCRIPTEN
+            if(webSoundHandler)webSoundHandler->soundFinishedCallback(channel);
+#else
 			if (ENGINE)
 				ENGINE->sound().soundFinishedCallback(channel);
-		});
+#endif
+		}); });
 	}
 }
 
 void CSoundHandler::MixChunkDeleter::operator()(Mix_Chunk * ptr)
 {
-	Mix_FreeChunk(ptr);
+	web_audio::call([&](){ return Mix_FreeChunk(ptr); });
 }
 
 CSoundHandler::~CSoundHandler()
 {
 	if(isInitialized())
 	{
-		Mix_ChannelFinished(nullptr);
-		Mix_HaltChannel(-1);
+		web_audio::call([&](){ return Mix_ChannelFinished(nullptr); });
+#ifdef VCMI_EMSCRIPTEN
+        web_audio::call([](){webSoundHandler=nullptr;webSoundEngine=nullptr;});
+#endif
+		web_audio::call([&](){ return Mix_HaltChannel(-1); });
 
 		soundChunks.clear();
 		uncachedPlayingChunks.clear();
@@ -87,7 +106,7 @@ CSoundHandler::MixChunkPtr CSoundHandler::getSoundChunk(const AudioPath & sound)
 	{
 		auto data = CResourceHandler::get()->load(sound.addPrefix("SOUNDS/"))->readAll();
 		SDL_RWops * ops = SDL_RWFromMem(data.first.get(), data.second);
-		Mix_Chunk * chunk = Mix_LoadWAV_RW(ops, 1); // will free ops
+		Mix_Chunk * chunk = web_audio::call([&](){ return Mix_LoadWAV_RW(ops, 1); }); // will free ops
 		return MixChunkPtr(chunk);
 	}
 	catch(std::exception & e)
@@ -104,7 +123,7 @@ CSoundHandler::MixChunkPtr CSoundHandler::getSoundChunk(std::pair<std::unique_pt
 		std::vector<ui8> startBytes = std::vector<ui8>(data.first.get(), data.first.get() + std::min(static_cast<si64>(100), data.second));
 
 		SDL_RWops * ops = SDL_RWFromMem(data.first.get(), data.second);
-		Mix_Chunk * chunk = Mix_LoadWAV_RW(ops, 1); // will free ops
+		Mix_Chunk * chunk = web_audio::call([&](){ return Mix_LoadWAV_RW(ops, 1); }); // will free ops
 		return MixChunkPtr(chunk);
 	}
 	catch(std::exception & e)
@@ -145,12 +164,12 @@ uint32_t CSoundHandler::getSoundDurationMilliseconds(const AudioPath & sound)
 
 	uint32_t milliseconds = 0;
 
-	Mix_Chunk * chunk = Mix_LoadWAV_RW(SDL_RWFromMem(data.first.get(), data.second), 1);
+	Mix_Chunk * chunk = web_audio::call([&](){ return Mix_LoadWAV_RW(SDL_RWFromMem(data.first.get(), data.second), 1); });
 
 	int freq = 0;
 	Uint16 fmt = 0;
 	int channels = 0;
-	if(!Mix_QuerySpec(&freq, &fmt, &channels))
+	if(!web_audio::call([&](){ return Mix_QuerySpec(&freq, &fmt, &channels); }))
 		return 0;
 
 	if(chunk != nullptr)
@@ -160,7 +179,7 @@ uint32_t CSoundHandler::getSoundDurationMilliseconds(const AudioPath & sound)
 		Uint32 frames = (samples / channels);
 		milliseconds = ((frames * 1000) / freq);
 
-		Mix_FreeChunk(chunk);
+		web_audio::call([&](){ return Mix_FreeChunk(chunk); });
 	}
 
 	return milliseconds;
@@ -204,6 +223,7 @@ int CSoundHandler::playSoundImpl(const AudioPath & sound, int repeats, bool useC
 
 	if(chunk)
 	{
+        return web_audio::call([&](){
 		channel = Mix_PlayChannel(-1, chunk, repeats);
 		if(channel == -1)
 		{
@@ -214,6 +234,8 @@ int CSoundHandler::playSoundImpl(const AudioPath & sound, int repeats, bool useC
 			storeChunk(channel, std::move(chunkPtr));
 			initCallback(channel);
 		}
+        return channel;
+        });
 	}
 	else
 		channel = -1;
@@ -223,8 +245,12 @@ int CSoundHandler::playSoundImpl(const AudioPath & sound, int repeats, bool useC
 
 void CSoundHandler::storeChunk(int channel, MixChunkPtr chunk)
 {
-	std::scoped_lock lockGuard(mutexCallbacks);
-	uncachedPlayingChunks[channel] = std::move(chunk);
+    MixChunkPtr previous;
+    {
+        std::scoped_lock lockGuard(mutexCallbacks);
+        previous=std::move(uncachedPlayingChunks[channel]);
+        uncachedPlayingChunks[channel]=std::move(chunk);
+    } // Destroy the previous chunk after releasing mutexCallbacks.
 }
 
 int CSoundHandler::playSound(std::pair<std::unique_ptr<ui8[]>, si64> & data)
@@ -233,6 +259,7 @@ int CSoundHandler::playSound(std::pair<std::unique_ptr<ui8[]>, si64> & data)
 	auto chunk = getSoundChunk(data);
 	if(chunk)
 	{
+        return web_audio::call([&](){
 		channel = Mix_PlayChannel(-1, chunk.get(), 0);
 		if(channel == -1)
 		{
@@ -243,6 +270,8 @@ int CSoundHandler::playSound(std::pair<std::unique_ptr<ui8[]>, si64> & data)
 			storeChunk(channel, std::move(chunk));
 			initCallback(channel);
 		}
+        return channel;
+        });
 	}
 	return channel;
 }
@@ -256,19 +285,19 @@ int CSoundHandler::playSoundFromSet(std::vector<soundBase::soundID> & sound_vec)
 void CSoundHandler::stopSound(int handler)
 {
 	if(isInitialized() && handler != -1)
-		Mix_HaltChannel(handler);
+		web_audio::call([&](){ return Mix_HaltChannel(handler); });
 }
 
 void CSoundHandler::pauseSound(int handler)
 {
 	if(isInitialized() && handler != -1)
-		Mix_Pause(handler);
+		web_audio::call([&](){ return Mix_Pause(handler); });
 }
 
 void CSoundHandler::resumeSound(int handler)
 {
 	if(isInitialized() && handler != -1)
-		Mix_Resume(handler);
+		web_audio::call([&](){ return Mix_Resume(handler); });
 }
 
 ui32 CSoundHandler::getVolume() const
@@ -301,67 +330,97 @@ void CSoundHandler::updateChannelVolume(int channel)
 // Sets the sound volume, from 0 (mute) to 100
 void CSoundHandler::setChannelVolume(int channel, ui32 percent)
 {
-	Mix_Volume(channel, (MIX_MAX_VOLUME * percent) / 100);
+	web_audio::call([&](){ return Mix_Volume(channel, (MIX_MAX_VOLUME * percent) / 100); });
 }
 
 void CSoundHandler::setCallback(int channel, std::function<void()> function)
 {
-	std::scoped_lock lockGuard(mutexCallbacks);
-
-	auto iter = callbacks.find(channel);
-
-	//channel not found. It may have finished so fire callback now
-	if(iter == callbacks.end())
-		function();
-	else
-		iter->second.push_back(function);
+    const bool finished=web_audio::call([&]()
+    {
+        std::scoped_lock lockGuard(mutexCallbacks);
+        auto iter=callbacks.find(channel);
+        if(iter==callbacks.end())return true;
+        iter->second.push_back(function);
+        return false;
+    });
+    if(finished)function(); // Client callbacks execute on their calling GUI thread.
 }
 
 void CSoundHandler::resetCallback(int channel)
 {
-	std::scoped_lock lockGuard(mutexCallbacks);
-
-	callbacks.erase(channel);
+    web_audio::call([&]()
+    {
+        std::scoped_lock lockGuard(mutexCallbacks);
+        callbacks.erase(channel);
+    });
 }
 
 void CSoundHandler::soundFinishedCallback(int channel)
 {
-	std::scoped_lock lockGuard(mutexCallbacks);
-
-	uncachedPlayingChunks.erase(channel);
-
-	if(callbacks.count(channel) == 0)
-		return;
-
-	// store callbacks from container locally - SDL might reuse this channel for another sound
-	// but do actually execution in separate thread, to avoid potential deadlocks in case if callback requires locks of its own
-	auto callback = callbacks.at(channel);
-	callbacks.erase(channel);
-
-	if(!callback.empty())
-	{
-		ENGINE->dispatchMainThread(
-			[callback]()
-			{
-				for(const auto & entry : callback)
-					entry();
-			}
-			);
-	}
+    MixChunkPtr retired;
+    std::vector<std::function<void()>> callback;
+    {
+        std::scoped_lock lockGuard(mutexCallbacks);
+        auto chunk=uncachedPlayingChunks.find(channel);
+        if(chunk!=uncachedPlayingChunks.end())
+        {
+            retired=std::move(chunk->second);
+            uncachedPlayingChunks.erase(chunk);
+        }
+        auto found=callbacks.find(channel);
+        if(found!=callbacks.end())
+        {
+            callback=std::move(found->second);
+            callbacks.erase(found);
+        }
+    }
+#ifdef VCMI_EMSCRIPTEN
+    // SDL_mixer still reads chunk->volume after ChannelFinished returns.
+    // Detach ownership now (the channel can be reused), but free on a later
+    // browser task. This task captures only the chunk, never its handler.
+    if(retired)
+        emscripten_async_call([](void * raw) noexcept
+        {
+            web_audio::call([&](){return Mix_FreeChunk(static_cast<Mix_Chunk *>(raw));});
+        },retired.release(),0);
+    auto * dispatchEngine=webSoundEngine;
+    if(callback.empty() || !dispatchEngine)return;
+    dispatchEngine->dispatchMainThread([callback]()
+    {
+        for(const auto & entry:callback)entry();
+    });
+#else
+    // The native audio lock makes freeing from the GUI safe after the callback.
+    auto * dispatchEngine=ENGINE.get();
+    if(!dispatchEngine){(void)retired.release();return;}
+    auto keepAlive=std::shared_ptr<Mix_Chunk>(retired.release(),MixChunkDeleter{});
+    if(callback.empty() && !keepAlive)return;
+    dispatchEngine->dispatchMainThread([callback,keepAlive]()
+    {
+        (void)keepAlive; // Own the chunk until this GUI task returns.
+        for(const auto & entry:callback)entry();
+    });
+#endif
 }
 
 void CSoundHandler::initCallback(int channel)
 {
-	std::scoped_lock lockGuard(mutexCallbacks);
-	assert(callbacks.count(channel) == 0);
-	callbacks[channel] = {};
+    web_audio::call([&]()
+    {
+        std::scoped_lock lockGuard(mutexCallbacks);
+        assert(callbacks.count(channel)==0);
+        callbacks[channel]={};
+    });
 }
 
-void CSoundHandler::initCallback(int channel, const std::function<void()> & function)
+void CSoundHandler::initCallback(int channel,const std::function<void()> & function)
 {
-	std::scoped_lock lockGuard(mutexCallbacks);
-	assert(callbacks.count(channel) == 0);
-	callbacks[channel].push_back(function);
+    web_audio::call([&]()
+    {
+        std::scoped_lock lockGuard(mutexCallbacks);
+        assert(callbacks.count(channel)==0);
+        callbacks[channel].push_back(function);
+    });
 }
 
 int CSoundHandler::ambientGetRange() const

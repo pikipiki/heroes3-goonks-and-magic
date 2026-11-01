@@ -1,0 +1,946 @@
+{
+  "eraCreature295": {
+    "name": {
+      "singular": "Skeleton Archer",
+      "plural": "Skeleton Archers"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 70
+    },
+    "fightValue": 85,
+    "aiValue": 85,
+    "growth": 12,
+    "hitPoints": 4,
+    "speed": 5,
+    "attack": 6,
+    "defense": 5,
+    "damage": {
+      "min": 1,
+      "max": 2
+    },
+    "advMapAmount": {
+      "min": 20,
+      "max": 30
+    },
+    "description": "Undead. Shooter.",
+    "level": 1,
+    "faction": "core:neutral",
+    "doubleWide": false,
+    "abilities": {
+      "flag2": {
+        "type": "SHOOTER"
+      },
+      "flag10": {
+        "type": "MIND_IMMUNITY"
+      },
+      "flag17": {
+        "type": "NO_MORALE"
+      },
+      "flag18": {
+        "type": "UNDEAD"
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:airShield",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:airShield",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 2
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "core:dispelHelpful"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_DISPEL_IMMUNITY",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_DISPEL_IMMUNITY",
+          "val": 2
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true
+        ]
+      }
+    ],
+    "graphics": {
+      "animation": "tum-era/creatures/295/battle.def",
+      "map": "tum-era/creatures/295/map.def",
+      "iconSmall": "tum-era/creatures/295/small.png",
+      "iconLarge": "tum-era/creatures/295/large.png",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "missile": {
+        "projectile": "tum-era/creatures/295/shot.def",
+        "offset": {
+          "upperX": 38,
+          "upperY": -65,
+          "middleX": 36,
+          "middleY": -59,
+          "lowerX": 21,
+          "lowerY": -50
+        },
+        "frameAngles": [
+          90,
+          72,
+          45,
+          27,
+          0,
+          -27,
+          -45,
+          -72,
+          -90,
+          0,
+          0,
+          0
+        ],
+        "attackClimaxFrame": 7
+      }
+    },
+    "sound": {
+      "attack": "tum-era/creatures/295/S295ATTK.wav",
+      "defend": "tum-era/creatures/295/S295DFND.wav",
+      "killed": "tum-era/creatures/295/S295KILL.wav",
+      "move": "tum-era/creatures/295/S295MOVE.wav",
+      "shoot": "tum-era/creatures/295/S295SHOT.wav",
+      "wince": "tum-era/creatures/295/S295WNCE.wav"
+    },
+    "upgrades": [
+      "tum-era:eraCreature359"
+    ],
+    "shots": 24
+  },
+  "eraCreature297": {
+    "name": {
+      "singular": "Mana Skeleton",
+      "plural": "Mana Skeleton"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 75
+    },
+    "fightValue": 115,
+    "aiValue": 115,
+    "growth": 14,
+    "hitPoints": 10,
+    "speed": 5,
+    "attack": 10,
+    "defense": 5,
+    "damage": {
+      "min": 4,
+      "max": 5
+    },
+    "advMapAmount": {
+      "min": 20,
+      "max": 30
+    },
+    "description": "Undead. Drain mana. \nAbsorb damage spells.",
+    "level": 1,
+    "faction": "core:neutral",
+    "doubleWide": false,
+    "abilities": {
+      "flag10": {
+        "type": "MIND_IMMUNITY"
+      },
+      "flag17": {
+        "type": "NO_MORALE"
+      },
+      "flag18": {
+        "type": "UNDEAD"
+      },
+      "manaDrain": {
+        "type": "MANA_DRAIN",
+        "val": 2
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ADDITIONAL_RETALIATION",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CHANGES_SPELL_COST_FOR_ALLY",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          4
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "core:dispelHelpful"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_DISPEL_IMMUNITY",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_DISPEL_IMMUNITY",
+          "val": 2
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true
+        ]
+      }
+    ],
+    "graphics": {
+      "animation": "tum-era/creatures/297/battle.def",
+      "map": "tum-era/creatures/297/map.def",
+      "iconSmall": "tum-era/creatures/297/small.png",
+      "iconLarge": "tum-era/creatures/297/large.png",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      }
+    },
+    "sound": {
+      "attack": "tum-era/creatures/297/S297ATTK.wav",
+      "defend": "tum-era/creatures/297/S297DFND.wav",
+      "killed": "tum-era/creatures/297/S297KILL.wav",
+      "move": "tum-era/creatures/297/S297MOVE.wav",
+      "shoot": "tum-era/creatures/297/S297SHOT.wav",
+      "wince": "tum-era/creatures/297/S297WNCE.wav"
+    }
+  },
+  "eraCreature299": {
+    "name": {
+      "singular": "Sharpshooter Skeleton",
+      "plural": "Sharpshooter Skeletons"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 400
+    },
+    "fightValue": 415,
+    "aiValue": 585,
+    "growth": 4,
+    "hitPoints": 15,
+    "speed": 9,
+    "attack": 12,
+    "defense": 8,
+    "damage": {
+      "min": 8,
+      "max": 10
+    },
+    "advMapAmount": {
+      "min": 5,
+      "max": 12
+    },
+    "description": "No Range or Barrier penalties.\nUndead.",
+    "level": 4,
+    "faction": "core:necropolis",
+    "doubleWide": false,
+    "abilities": {
+      "flag2": {
+        "type": "SHOOTER"
+      },
+      "flag10": {
+        "type": "MIND_IMMUNITY"
+      },
+      "flag17": {
+        "type": "NO_MORALE"
+      },
+      "flag18": {
+        "type": "UNDEAD"
+      },
+      "noWallPenalty": {
+        "type": "NO_WALL_PENALTY"
+      },
+      "noRangePenalty": {
+        "type": "NO_DISTANCE_PENALTY"
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FREE_SHOOTING"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "graphics": {
+      "animation": "tum-era/creatures/299/battle.def",
+      "map": "tum-era/creatures/299/map.def",
+      "iconSmall": "tum-era/creatures/299/small.png",
+      "iconLarge": "tum-era/creatures/299/large.png",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1.02,
+        "attack": 1,
+        "idle": 10
+      },
+      "missile": {
+        "projectile": "tum-era/creatures/299/shot.def",
+        "offset": {
+          "upperX": 32,
+          "upperY": -77,
+          "middleX": 40,
+          "middleY": -61,
+          "lowerX": 18,
+          "lowerY": -55
+        },
+        "frameAngles": [
+          90,
+          72,
+          45,
+          27,
+          0,
+          -27,
+          -45,
+          -72,
+          -90,
+          0,
+          0,
+          0
+        ],
+        "attackClimaxFrame": 7
+      }
+    },
+    "sound": {
+      "attack": "tum-era/creatures/299/S299ATTK.wav",
+      "defend": "tum-era/creatures/299/S299DFND.wav",
+      "killed": "tum-era/creatures/299/S299KILL.wav",
+      "move": "tum-era/creatures/299/S299MOVE.wav",
+      "shoot": "tum-era/creatures/299/S299SHOT.wav",
+      "wince": "tum-era/creatures/299/S299WNCE.wav"
+    },
+    "shots": 32
+  },
+  "eraCreature359": {
+    "name": {
+      "singular": "Skeleton Ranger",
+      "plural": "Skeleton Rangers"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 100
+    },
+    "fightValue": 110,
+    "aiValue": 110,
+    "growth": 12,
+    "hitPoints": 6,
+    "speed": 6,
+    "attack": 7,
+    "defense": 6,
+    "damage": {
+      "min": 1,
+      "max": 3
+    },
+    "advMapAmount": {
+      "min": 20,
+      "max": 30
+    },
+    "description": "Undead. Shoots twice.",
+    "level": 1,
+    "faction": "core:necropolis",
+    "doubleWide": false,
+    "abilities": {
+      "flag2": {
+        "type": "SHOOTER"
+      },
+      "flag10": {
+        "type": "MIND_IMMUNITY"
+      },
+      "flag15": {
+        "type": "ADDITIONAL_ATTACK",
+        "val": 1
+      },
+      "flag17": {
+        "type": "NO_MORALE"
+      },
+      "flag18": {
+        "type": "UNDEAD"
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:airShield",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:airShield",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 2
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "core:dispelHelpful"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_DISPEL_IMMUNITY",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_DISPEL_IMMUNITY",
+          "val": 2
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:precision",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NO_DISTANCE_PENALTY"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true
+        ]
+      }
+    ],
+    "graphics": {
+      "animation": "tum-era/creatures/359/battle.def",
+      "map": "tum-era/creatures/359/map.def",
+      "iconSmall": "tum-era/creatures/359/small.png",
+      "iconLarge": "tum-era/creatures/359/large.png",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "missile": {
+        "projectile": "tum-era/creatures/359/shot.def",
+        "offset": {
+          "upperX": 38,
+          "upperY": -65,
+          "middleX": 36,
+          "middleY": -59,
+          "lowerX": 21,
+          "lowerY": -50
+        },
+        "frameAngles": [
+          90,
+          72,
+          45,
+          27,
+          0,
+          -27,
+          -45,
+          -72,
+          -90,
+          0,
+          0,
+          0
+        ],
+        "attackClimaxFrame": 7
+      }
+    },
+    "sound": {
+      "attack": "tum-era/creatures/359/S359ATTK.wav",
+      "defend": "tum-era/creatures/359/S359DFND.wav",
+      "killed": "tum-era/creatures/359/S359KILL.wav",
+      "move": "tum-era/creatures/359/S359MOVE.wav",
+      "shoot": "tum-era/creatures/359/S359SHOT.wav",
+      "wince": "tum-era/creatures/359/S359WNCE.wav"
+    },
+    "shots": 24
+  },
+  "eraCreature361": {
+    "name": {
+      "singular": "General Skeleton",
+      "plural": "General Skeletons"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 400
+    },
+    "fightValue": 588,
+    "aiValue": 588,
+    "growth": 4,
+    "hitPoints": 35,
+    "speed": 6,
+    "attack": 12,
+    "defense": 12,
+    "damage": {
+      "min": 7,
+      "max": 10
+    },
+    "advMapAmount": {
+      "min": 10,
+      "max": 16
+    },
+    "description": "Undead. Strikes twice. Unlimited Retaliations.",
+    "level": 4,
+    "faction": "core:necropolis",
+    "doubleWide": false,
+    "abilities": {
+      "flag10": {
+        "type": "MIND_IMMUNITY"
+      },
+      "flag15": {
+        "type": "ADDITIONAL_ATTACK",
+        "val": 1
+      },
+      "flag17": {
+        "type": "NO_MORALE"
+      },
+      "flag18": {
+        "type": "UNDEAD"
+      },
+      "retaliations": {
+        "type": "ADDITIONAL_RETALIATION",
+        "val": 126
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "DOUBLE_DAMAGE_CHANCE",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          2,
+          5,
+          7,
+          10,
+          12,
+          15,
+          17,
+          20,
+          22,
+          25
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "core:dispelHelpful"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_DISPEL_IMMUNITY",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_DISPEL_IMMUNITY",
+          "val": 2
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true
+        ]
+      }
+    ],
+    "graphics": {
+      "animation": "tum-era/creatures/361/battle.def",
+      "map": "tum-era/creatures/361/map.def",
+      "iconSmall": "tum-era/creatures/361/small.png",
+      "iconLarge": "tum-era/creatures/361/large.png",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      }
+    },
+    "sound": {
+      "attack": "tum-era/creatures/361/S361ATTK.wav",
+      "defend": "tum-era/creatures/361/S361DFND.wav",
+      "killed": "tum-era/creatures/361/S361KILL.wav",
+      "move": "tum-era/creatures/361/S361MOVE.wav",
+      "shoot": "tum-era/creatures/361/S361SHOT.wav",
+      "wince": "tum-era/creatures/361/S361WNCE.wav"
+    }
+  }
+}

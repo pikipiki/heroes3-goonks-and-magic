@@ -22,6 +22,7 @@ public:
 	virtual ~BonusBearerMock();
 
 	void addNewBonus(const std::shared_ptr<Bonus> & b);
+	void removeBonus(const std::shared_ptr<Bonus> & b);
 
 	TConstBonusListPtr getAllBonuses(const CSelector & selector, const std::string & cachingStr = "") const override;
 

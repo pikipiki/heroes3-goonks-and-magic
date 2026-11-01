@@ -10,6 +10,8 @@
 #include "StdInc.h"
 
 #include "DemonSummon.h"
+#include "../../era/EraSkeletonTransformations.h"
+#include "../../era/EraCorpseTransformation.h"
 #include "Registry.h"
 #include "../ISpellMechanics.h"
 #include "../../battle/CBattleInfoCallback.h"
@@ -26,17 +28,42 @@ namespace spells
 namespace effects
 {
 
+CreatureID DemonSummon::raisedCreatureType(const battle::Unit * unit) const
+{
+    if(!eraCorpseTransform)
+        return creature;
+    if(!unit)
+        return CreatureID::NONE;
+    const auto * entry = era_compat::SkeletonTransformations::get().find(unit->creatureId().toCreature()->getJsonKey());
+    if(entry)
+        return entry->living ? CreatureID(entry->target) : CreatureID::NONE;
+    // Other installed mods retain native biological and transformer rules.
+    // Their creatures do not have ERA IDs and must not disappear from targeting.
+    if(!unit->isLiving())
+        return CreatureID::NONE;
+    const auto targets=unit->getBonusesOfType(BonusType::SKELETON_TRANSFORMER_TARGET);
+    return targets->empty() ? CreatureID(CreatureID::SKELETON) : targets->front()->subtype.as<CreatureID>();
+}
+
 int DemonSummon::raisedCreatureAmount(const Mechanics * m, const battle::Unit * unit) const
 {
 	if(!unit || unit->alive() || unit->isGhost())
 		return 0;
 
-	const auto *creatureType = creature.toEntity(m->creatures());
+	const CreatureID raisedType = raisedCreatureType(unit);
+	if(!raisedType.hasValue())
+		return 0;
+	const auto *creatureType = raisedType.toEntity(m->creatures());
 
 	int32_t deadCount         = unit->unitBaseAmount();
-	int32_t deadTotalHealth   = unit->getTotalHealth();
+	int64_t deadTotalHealth   = unit->getTotalHealth();
 	int32_t raisedMaxHealth   = creatureType->getMaxHealth();
-	int32_t raisedTotalHealth = m->applySpellBonus(m->getEffectValue(), unit);
+	int64_t raisedTotalHealth = m->applySpellBonus(m->getEffectValue(), unit);
+
+	// Original corpse info.hitPoints is mutable (Aging/HP bonuses), not Crtraits HP.
+	// Native total health therefore correctly supplies current maxHP * initial count.
+	if(eraCorpseTransform)
+		return ::era_bridge::raisedCorpseCount(raisedTotalHealth, deadTotalHealth, deadCount, raisedMaxHealth);
 
 	// Can't raise stack with more HP than original stack
 	int32_t maxAmountFromHealth     = deadTotalHealth / raisedMaxHealth;
@@ -66,9 +93,15 @@ void DemonSummon::apply(ServerCallback * server, const Mechanics * m, const Effe
 			continue;
 		}
 
-		auto hex = m->battle()->getAvailableHex(targetStack->creatureId(), m->casterSide, targetStack->getPosition().toInt());
+		const CreatureID raisedType = raisedCreatureType(targetStack);
+		if(!raisedType.hasValue())
+		{
+			server->complain("No verified ERA corpse transformation for this creature!");
+			continue;
+		}
+		auto hex = m->battle()->getAvailableHex(eraCorpseTransform ? raisedType : targetStack->creatureId(), m->casterSide, targetStack->getPosition().toInt());
 
-		if(!hex.isValid())
+		if(!hex.isValid() || (eraCorpseTransform && hex != targetStack->getPosition()))
 		{
 			server->complain("No place to put new summon!");
 			break;
@@ -85,7 +118,7 @@ void DemonSummon::apply(ServerCallback * server, const Mechanics * m, const Effe
 		battle::UnitInfo info;
 		info.id       = m->battle()->battleNextUnitId();
 		info.count    = finalAmount;
-		info.type     = creature;
+		info.type     = raisedType;
 		info.side     = m->casterSide;
 		info.position = dest.hexValue;
 		info.summoned = !permanent;
@@ -115,7 +148,7 @@ SpellEffectValue DemonSummon::getHealthChange(const Mechanics * m, const EffectT
 	if(unit)
 	{
 		result.unitsDelta = raisedCreatureAmount(m, unit);
-		result.unitType = creature;
+		result.unitType = raisedCreatureType(unit);
 	}
 
 	return result;
@@ -141,6 +174,16 @@ bool DemonSummon::isValidTarget(const Mechanics * m, const battle::Unit * unit) 
 	if (unit->isGhost())
 		return false;
 
+	if(eraCorpseTransform)
+	{
+		const CreatureID raisedType = raisedCreatureType(unit);
+		if(!raisedType.hasValue())
+			return false;
+		const auto hex = m->battle()->getAvailableHex(raisedType, m->casterSide, unit->getPosition().toInt());
+		if(!hex.isValid() || hex != unit->getPosition())
+			return false;
+	}
+
 	if (raisedCreatureAmount(m, unit) == 0)
 		return false;
 
@@ -151,6 +194,7 @@ void DemonSummon::serializeJsonUnitEffect(JsonSerializeFormat & handler)
 {
 	handler.serializeId("id", creature, CreatureID());
 	handler.serializeBool("permanent", permanent, false);
+	handler.serializeBool("eraCorpseTransform", eraCorpseTransform, false);
 }
 
 }

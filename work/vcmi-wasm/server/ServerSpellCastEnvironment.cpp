@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "ServerSpellCastEnvironment.h"
+#include "era/EraRebirth.h"
 
 #include "CGameHandler.h"
 #include "queries/QueriesProcessor.h"
@@ -105,4 +106,9 @@ void ServerSpellCastEnvironment::genericQuery(Query * request, PlayerColor color
 	request->queryID = query->queryID;
 	gh->queries->addQuery(query);
 	gh->sendAndApply(*request);
+}
+
+void ServerSpellCastEnvironment::afterObstacleTrigger(const CBattleInfoCallback & battle)
+{
+    applyEraRebirth(*gh, battle);
 }

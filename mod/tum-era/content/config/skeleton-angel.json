@@ -1,0 +1,200 @@
+{
+  "eraCreature357": {
+    "name": {
+      "singular": "Skeleton Angel",
+      "plural": "Skeleton Angels"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 2500
+    },
+    "fightValue": 3585,
+    "aiValue": 5019,
+    "growth": 2,
+    "hitPoints": 100,
+    "speed": 8,
+    "attack": 15,
+    "defense": 15,
+    "damage": {
+      "min": 25,
+      "max": 25
+    },
+    "advMapAmount": {
+      "min": 4,
+      "max": 10
+    },
+    "description": "Undead. Raises living units in their skeletal form.",
+    "level": 6,
+    "faction": "core:neutral",
+    "doubleWide": false,
+    "abilities": {
+      "undead": {
+        "type": "UNDEAD"
+      },
+      "noMorale": {
+        "type": "NO_MORALE"
+      },
+      "mindImmune": {
+        "type": "MIND_IMMUNITY"
+      },
+      "noMeleePenalty": {
+        "type": "NO_MELEE_PENALTY"
+      },
+      "fearless": {
+        "type": "FEARFUL",
+        "val": 0,
+        "valueType": "INDEPENDENT_MIN"
+      },
+      "casts": {
+        "type": "CASTS",
+        "val": 1
+      },
+      "raiseLiving": {
+        "type": "SPELLCASTER",
+        "subtype": "tum-era:skeletalTransformation",
+        "val": 3
+      },
+      "raise50hp": {
+        "type": "SPECIFIC_SPELL_POWER",
+        "subtype": "tum-era:skeletalTransformation",
+        "val": 50
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NEGATIVE_EFFECTS_IMMUNITY",
+          "subtype": "spellSchool.air"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FLYING"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CASTS",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    ],
+    "graphics": {
+      "animation": "tum-era/creatures/357/battle.def",
+      "map": "tum-era/creatures/357/map.def",
+      "iconSmall": "tum-era/creatures/357/small.png",
+      "iconLarge": "tum-era/creatures/357/large.png",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.82,
+        "attack": 1,
+        "idle": 10
+      }
+    },
+    "sound": {
+      "attack": "tum-era/creatures/357/S357ATTK.wav",
+      "defend": "tum-era/creatures/357/S357DFND.wav",
+      "killed": "tum-era/creatures/357/S357KILL.wav",
+      "move": "tum-era/creatures/357/S357MOVE.wav",
+      "shoot": "tum-era/creatures/357/S357SHOT.wav",
+      "wince": "tum-era/creatures/357/S357WNCE.wav"
+    }
+  }
+}

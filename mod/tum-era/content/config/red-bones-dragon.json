@@ -50,13 +50,9 @@
       },
       "drainsLife": {
         "type": "LIFE_DRAIN",
-        "val": 40
+        "val": 100
       },
-      "age": {
-        "type": "SPELL_AFTER_ATTACK",
-        "subtype": "age",
-        "val": 50
-      },
+      "age": null,
       "descreaseMorale": {
         "type": "MORALE",
         "propagator": "BATTLE_WIDE",
@@ -98,6 +94,9 @@
       },
       "noRetaliation": {
         "type": "BLOCKS_RETALIATION"
+      },
+      "sourceMindImmunity": {
+        "type": "MIND_IMMUNITY"
       }
     },
     "graphics": {
@@ -120,7 +119,139 @@
       "killed": "GHDRKILL.wav",
       "move": "GHDRMOVE.wav",
       "wince": "GHDRWNCE.wav"
-    }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:airShield",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 1
+        },
+        "values": [
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:airShield",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 2
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NEGATIVE_EFFECTS_IMMUNITY",
+          "subtype": "spellSchool.fire"
+        },
+        "values": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NEGATIVE_EFFECTS_IMMUNITY",
+          "subtype": "spellSchool.water"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NEGATIVE_EFFECTS_IMMUNITY",
+          "subtype": "spellSchool.air"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NEGATIVE_EFFECTS_IMMUNITY",
+          "subtype": "spellSchool.earth"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true
+        ]
+      }
+    ]
   },
   "wake-of-gods.level8units:bloodDragon": {
     "upgrades": [

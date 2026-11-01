@@ -19,6 +19,7 @@ struct Bonus;
 class DLL_LINKAGE CRewardableConstructor : public AObjectTypeHandler
 {
 	Rewardable::Info objectInfo;
+	JsonNode eraBankAppearance;
 
 	void assignBonuses(std::vector<std::shared_ptr<Bonus>> & bonuses, MapObjectID objectID) const;
 	void initTypeData(const JsonNode & config) override;

@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "era/EraExperienceProgression.h"
 #include "CCreatureHandler.h"
 
 #include "CBonusTypeHandler.h"
@@ -980,6 +981,34 @@ void CCreatureHandler::loadStackExperience(CCreature * creature, const JsonNode 
 		int lowerLimit = 1;//, upperLimit = 255;
 		if (values[0].getType() == JsonNode::JsonType::DATA_BOOL)
 		{
+			if(era_compat::ExperienceProgressions::get().find(creature->getJsonKey()))
+			{
+				// ERA profiles use inclusive lower and exclusive upper rank bounds.
+				// Native booleans formerly ignored every disable after the first enable.
+				int firstRank = 0, rank = 1;
+				auto addRange = [&](int first, int upper)
+				{
+					auto bonus = JsonUtils::parseBonus(exp["bonus"]);
+					bonus->source = BonusSource::STACK_EXPERIENCE;
+					bonus->duration = BonusDuration::PERMANENT;
+					bonus->addLimiter(std::make_shared<RankRangeLimiter>(first, upper));
+					creature->addNewBonus(bonus);
+				};
+				for(const auto & value : values)
+				{
+					if(value.Bool() && firstRank == 0)
+						firstRank = rank;
+					else if(!value.Bool() && firstRank != 0)
+					{
+						addRange(firstRank, rank);
+						firstRank = 0;
+					}
+					++rank;
+				}
+				if(firstRank != 0)
+					addRange(firstRank, 255);
+				continue;
+			}
 			for (const JsonNode &val : values)
 			{
 				if(val.Bool())

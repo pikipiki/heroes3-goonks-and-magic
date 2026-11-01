@@ -1,0 +1,73 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank53": {
+        "name": "Heaven's Door",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB21.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBBV",
+              "VVVA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank53MixedLayout",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:archangel",
+                "amount": 20,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:archangel",
+                "amount": 20
+              },
+              {
+                "type": "core:archangel",
+                "amount": 20
+              },
+              {
+                "type": "core:archangel",
+                "amount": 20
+              }
+            ],
+            "resources": {
+              "gems": 20,
+              "gold": 15000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:cherub",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 10000,
+          "rarity": 100
+        },
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33
+      }
+    }
+  }
+}

@@ -1,0 +1,6118 @@
+{
+  "engineLabel": "dcfabfb51fda81ef705972e04788ea8801731fc9548115699a68e070172f0277",
+  "startedAt": "2026-11-01T07:00:17.159Z",
+  "cases": [
+    {
+      "name": "hydra245-guaranteed-acid-defense-clamp-prayer",
+      "startedAt": "2026-11-01T07:00:17.213Z",
+      "errors": [],
+      "errorStacks": [],
+      "nativeErrors": [],
+      "wasmResponses": [
+        {
+          "url": "http://127.0.0.1:8774/vcmiclient.dcfabfb51fda81ef.wasm",
+          "headers": {
+            "transfer-encoding": "chunked",
+            "cross-origin-embedder-policy": "require-corp",
+            "cross-origin-opener-policy": "same-origin",
+            "keep-alive": "timeout=5",
+            "date": "Sun, 01 Nov 2026 07:00:17 GMT",
+            "content-type": "application/wasm",
+            "connection": "keep-alive"
+          },
+          "at": "2026-11-01T07:00:17.633Z"
+        }
+      ],
+      "afterEnemyAcid": {
+        "victim": {
+          "attack": 0,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 9971,
+          "defense": 0,
+          "enemy": false,
+          "eraSlot": 0,
+          "icon": "",
+          "id": 0,
+          "maximumHealth": 10000,
+          "morale": 0,
+          "name": "Pikeman",
+          "occupied": [
+            87
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "speed": 1,
+          "stackId": 0,
+          "x": 124,
+          "y": 322
+        },
+        "hydra": {
+          "attack": 0,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            7000,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 550,
+          "defense": 38,
+          "enemy": true,
+          "eraSlot": 0,
+          "icon": "tum-era/nightmare-hydra/portrait-large",
+          "id": 262,
+          "maximumHealth": 550,
+          "morale": 0,
+          "name": "Nightmare Hydra",
+          "occupied": [
+            69,
+            70
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "speed": 99,
+          "stackId": 1,
+          "x": 102,
+          "y": 280
+        }
+      },
+      "afterPrayer": {
+        "attack": 4,
+        "cloned": false,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          60,
+          0
+        ],
+        "count": 1,
+        "currentHealth": 9971,
+        "defense": 4,
+        "enemy": false,
+        "eraSlot": 0,
+        "icon": "",
+        "id": 0,
+        "maximumHealth": 10000,
+        "morale": 0,
+        "name": "Pikeman",
+        "occupied": [
+          87
+        ],
+        "remainingCasts": 0,
+        "remainingRetaliations": 1,
+        "remainingShots": 0,
+        "speed": 5,
+        "stackId": 0,
+        "x": 124,
+        "y": 322
+      },
+      "passed": true,
+      "snapshots": [
+        {
+          "round": 0,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9986,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9986,
+              "defense": 0,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 2,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9986,
+              "defense": 0,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 2,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9971,
+              "defense": 0,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 2,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9971,
+              "defense": 0,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 1,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 2,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 4,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9971,
+              "defense": 4,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 5,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 488
+        },
+        {
+          "round": 2,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 4,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9971,
+              "defense": 4,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 5,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 488
+        },
+        {
+          "round": 2,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 4,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9971,
+              "defense": 4,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 5,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 488
+        }
+      ]
+    },
+    {
+      "name": "hydra245-defend-expiry-signed-defense-105-prayer3",
+      "startedAt": "2026-11-01T07:00:37.168Z",
+      "errors": [],
+      "errorStacks": [],
+      "nativeErrors": [],
+      "wasmResponses": [
+        {
+          "url": "http://127.0.0.1:8774/vcmiclient.dcfabfb51fda81ef.wasm",
+          "headers": {
+            "transfer-encoding": "chunked",
+            "cross-origin-embedder-policy": "require-corp",
+            "cross-origin-opener-policy": "same-origin",
+            "keep-alive": "timeout=5",
+            "date": "Sun, 01 Nov 2026 07:00:37 GMT",
+            "content-type": "application/wasm",
+            "connection": "keep-alive"
+          },
+          "at": "2026-11-01T07:00:37.560Z"
+        }
+      ],
+      "before": {
+        "victim": {
+          "attack": 0,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 10000,
+          "defense": 2,
+          "enemy": false,
+          "eraSlot": 0,
+          "icon": "",
+          "id": 0,
+          "maximumHealth": 10000,
+          "morale": 0,
+          "name": "Pikeman",
+          "occupied": [
+            86
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "speed": 100,
+          "stackId": 0,
+          "x": 80,
+          "y": 322
+        },
+        "hydra": {
+          "attack": 0,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            7000,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 550,
+          "defense": 38,
+          "enemy": true,
+          "eraSlot": 0,
+          "icon": "tum-era/nightmare-hydra/portrait-large",
+          "id": 262,
+          "maximumHealth": 550,
+          "morale": 0,
+          "name": "Nightmare Hydra",
+          "occupied": [
+            99,
+            100
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "speed": 99,
+          "stackId": 1,
+          "x": 652,
+          "y": 322
+        }
+      },
+      "afterDefendExpiry": {
+        "attack": 0,
+        "cloned": false,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          60,
+          0
+        ],
+        "count": 1,
+        "currentHealth": 9858,
+        "defense": -1,
+        "enemy": false,
+        "eraSlot": 0,
+        "icon": "",
+        "id": 0,
+        "maximumHealth": 10000,
+        "morale": 0,
+        "name": "Pikeman",
+        "occupied": [
+          86
+        ],
+        "remainingCasts": 0,
+        "remainingRetaliations": 1,
+        "remainingShots": 0,
+        "speed": 100,
+        "stackId": 0,
+        "x": 80,
+        "y": 322
+      },
+      "secondPhysicalDamage": 105,
+      "afterSecond": {
+        "attack": 0,
+        "cloned": false,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          60,
+          0
+        ],
+        "count": 1,
+        "currentHealth": 9703,
+        "defense": -1,
+        "enemy": false,
+        "eraSlot": 0,
+        "icon": "",
+        "id": 0,
+        "maximumHealth": 10000,
+        "morale": 0,
+        "name": "Pikeman",
+        "occupied": [
+          87
+        ],
+        "remainingCasts": 0,
+        "remainingRetaliations": 1,
+        "remainingShots": 0,
+        "speed": 100,
+        "stackId": 0,
+        "x": 124,
+        "y": 322
+      },
+      "afterPrayer": {
+        "attack": 4,
+        "cloned": false,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          60,
+          0
+        ],
+        "count": 1,
+        "currentHealth": 9703,
+        "defense": 3,
+        "enemy": false,
+        "eraSlot": 0,
+        "icon": "",
+        "id": 0,
+        "maximumHealth": 10000,
+        "morale": 0,
+        "name": "Pikeman",
+        "occupied": [
+          87
+        ],
+        "remainingCasts": 0,
+        "remainingRetaliations": 1,
+        "remainingShots": 0,
+        "speed": 104,
+        "stackId": 0,
+        "x": 124,
+        "y": 322
+      },
+      "passed": true,
+      "snapshots": [
+        {
+          "round": 0,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 2,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                99,
+                100
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 652,
+              "y": 322
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 10000,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9858,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 1,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9858,
+              "defense": 0,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 2,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9858,
+              "defense": -1,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 2,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9858,
+              "defense": -1,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 2,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9858,
+              "defense": -1,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 2,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9858,
+              "defense": -1,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 80,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 2,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9858,
+              "defense": -1,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 2,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9703,
+              "defense": -1,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 3,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9703,
+              "defense": -1,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 100,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 500
+        },
+        {
+          "round": 3,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 4,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9703,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 104,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 488
+        },
+        {
+          "round": 3,
+          "canAct": false,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 4,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9703,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 104,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 488
+        },
+        {
+          "round": 3,
+          "active": 0,
+          "canAct": true,
+          "units": [
+            {
+              "attack": 0,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                7000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 550,
+              "defense": 38,
+              "enemy": true,
+              "eraSlot": 0,
+              "icon": "tum-era/nightmare-hydra/portrait-large",
+              "id": 262,
+              "maximumHealth": 550,
+              "morale": 0,
+              "name": "Nightmare Hydra",
+              "occupied": [
+                69,
+                70
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 99,
+              "stackId": 1,
+              "x": 102,
+              "y": 280
+            },
+            {
+              "attack": 4,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 9703,
+              "defense": 3,
+              "enemy": false,
+              "eraSlot": 0,
+              "icon": "",
+              "id": 0,
+              "maximumHealth": 10000,
+              "morale": 0,
+              "name": "Pikeman",
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "speed": 104,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            }
+          ],
+          "heroMana": 488
+        }
+      ]
+    }
+  ]
+}

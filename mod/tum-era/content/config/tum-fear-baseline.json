@@ -1,0 +1,236 @@
+{
+  "core:azureDragon": {
+    "abilities": {
+      "fearful": {
+        "type": "FEARFUL",
+        "val": 10,
+        "valueType": "INDEPENDENT_MAX",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE",
+          [
+            "noneOf",
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NO_MORALE"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "UNDEAD"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NON_LIVING"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "MECHANICAL"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "SIEGE_WEAPON"
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "wake-of-gods.level8units:hellBaron": {
+    "abilities": {
+      "fearful": {
+        "type": "FEARFUL",
+        "val": 10,
+        "valueType": "INDEPENDENT_MAX",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE",
+          [
+            "noneOf",
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NO_MORALE"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "UNDEAD"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NON_LIVING"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "MECHANICAL"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "SIEGE_WEAPON"
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "wake-of-gods.level8units:darknessDragon": {
+    "abilities": {
+      "fearful": {
+        "type": "FEARFUL",
+        "val": 10,
+        "valueType": "INDEPENDENT_MAX",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE",
+          [
+            "noneOf",
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NO_MORALE"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "UNDEAD"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NON_LIVING"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "MECHANICAL"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "SIEGE_WEAPON"
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "wake-of-gods.level8units:bloodDragon": {
+    "abilities": {
+      "fearful": {
+        "type": "FEARFUL",
+        "val": 0,
+        "valueType": "INDEPENDENT_MAX",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE",
+          [
+            "noneOf",
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NO_MORALE"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "UNDEAD"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NON_LIVING"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "MECHANICAL"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "SIEGE_WEAPON"
+            }
+          ]
+        ]
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 10,
+          "valueType": "INDEPENDENT_MAX",
+          "propagator": "BATTLE_WIDE",
+          "propagationUpdater": "BONUS_OWNER_UPDATER",
+          "limiters": [
+            "OPPOSITE_SIDE",
+            [
+              "noneOf",
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "NO_MORALE"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "UNDEAD"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "NON_LIVING"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "MECHANICAL"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "SIEGE_WEAPON"
+              }
+            ]
+          ]
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    ]
+  },
+  "tum-era:redBonesDragon": {
+    "abilities": {
+      "fearful": {
+        "type": "FEARFUL",
+        "val": 10,
+        "valueType": "INDEPENDENT_MAX",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE",
+          [
+            "noneOf",
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NO_MORALE"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "UNDEAD"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NON_LIVING"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "MECHANICAL"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "SIEGE_WEAPON"
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

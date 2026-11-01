@@ -8,9 +8,14 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraStatusHealthBonuses.h"
 #include "BattleFlowProcessor.h"
+#include "../era/EraImposedSpells.h"
+#include "../era/EraRebirth.h"
 #include "../../lib/CCreatureHandler.h"
 #include "../../lib/era/EraBridgePolicies.h"
+#include "../../lib/era/EraCreatureArtifactMimic.h"
+#include "../../lib/entities/artifact/CArtifact.h"
 
 #include "BattleProcessor.h"
 
@@ -136,6 +141,13 @@ void BattleFlowProcessor::tryPlaceMoats(const CBattleInfoCallback & battle)
 
 void BattleFlowProcessor::onBattleStarted(const CBattleInfoCallback & battle)
 {
+    // Initial enchantments precede tactics and opening spells. ERA refreshes
+    // them after each later round reset; dispelling lasts until that refresh.
+    for(const auto * stack : battle.battleGetAllStacks(true))
+    {
+        applyEraImposedSpells(*gameHandler, battle, stack);
+    }
+
 	tryPlaceMoats(battle);
 
 	gameHandler->turnTimerHandler->onBattleStart(battle.getBattle()->getBattleID());
@@ -205,9 +217,23 @@ void BattleFlowProcessor::castOpeningSpells(const CBattleInfoCallback & battle)
 		if (!h)
 			continue;
 
-		TConstBonusListPtr bl = h->getBonusesOfType(BonusType::OPENING_BATTLE_SPELL);
+		auto openingSpells = *h->getBonusesOfType(BonusType::OPENING_BATTLE_SPELL);
 
-		for (const auto & b : *bl)
+		// Source CreatureMimicArtifact=129 emulates HasArtifact(), so one or
+		// several original Cherub stacks count as one equipped artifact. Reuse
+		// the real native artifact's spell/mastery/duration and BonusCaster.
+		// Summoned battle creatures and neutral armies do not participate.
+		const ArtifactID angelicAlliance(129);
+		if(::era_bridge::needsMimicOpeningSpell(true,
+			era_compat::originalArmyMimicsArtifact(*h, 129),
+			h->hasArt(angelicAlliance, true, false)))
+		{
+			const auto artifactSpells = angelicAlliance.toArtifact()->getBonusesOfType(BonusType::OPENING_BATTLE_SPELL);
+			for(const auto & bonus : *artifactSpells)
+				openingSpells.push_back(bonus);
+		}
+
+		for (const auto & b : openingSpells)
 		{
 			spells::BonusCaster caster(h, b);
 
@@ -224,7 +250,8 @@ void BattleFlowProcessor::castOpeningSpells(const CBattleInfoCallback & battle)
 			parameters.setSpellLevel(spellLevel);
 			parameters.setEffectDuration(b->val);
 			parameters.massive = true;
-			parameters.castIfPossible(gameHandler->spellcastEnvironment(), spells::Target());
+            if(parameters.castIfPossible(gameHandler->spellcastEnvironment(), spells::Target()))
+                applyEraRebirth(*gameHandler, battle);
 		}
 	}
 }
@@ -269,7 +296,11 @@ void BattleFlowProcessor::startNextRound(const CBattleInfoCallback & battle, boo
 	for(const auto * stack : battle.battleGetAllStacks(true))
 	{
 		if(stack->alive() && !isFirstRound)
+        {
+            // ERA wrapper760627 calls round reset446e40 then imposed effects760652.
+            applyEraImposedSpells(*gameHandler, battle, stack);
 			stackEnchantedTrigger(battle, stack);
+        }
 	}
 }
 
@@ -927,7 +958,9 @@ void BattleFlowProcessor::stackTurnTrigger(const CBattleInfoCallback & battle, c
 			}
 		}
 
-		if (st->hasBonusOfType(BonusType::POISON))
+        // Source-profiled poison ticks in shared BattleNextRound, before any
+        // unit acts. Do not advance it again when the unit receives its turn.
+        if(st->hasBonusOfType(BonusType::POISON) && !era_compat::sourceStatusUsesProfile(*st))
 		{
 			std::shared_ptr<const Bonus> b = st->getFirstBonus(Selector::source(BonusSource::SPELL_EFFECT, BonusSourceID(SpellID(SpellID::POISON))).And(Selector::type()(BonusType::STACK_HEALTH)));
 			if (b) //TODO: what if not?...

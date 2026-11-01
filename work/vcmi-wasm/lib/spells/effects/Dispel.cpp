@@ -10,6 +10,7 @@
 #include "StdInc.h"
 
 #include "Dispel.h"
+#include "../../era/EraSourceRankRange.h"
 #include "Registry.h"
 
 #include <vcmi/spells/Spell.h>
@@ -88,6 +89,11 @@ void Dispel::serializeJsonUnitEffect(JsonSerializeFormat & handler)
 
 std::shared_ptr<const BonusList> Dispel::getBonuses(const Mechanics * m, const battle::Unit * unit) const
 {
+	// Original WoG71E9B3..71EA91: only regular Dispel35; Hypnotize flips control.
+	for(const auto & immunity : *unit->getBonusesOfType(BonusType::ERA_DISPEL_IMMUNITY))
+		if(::era_bridge::sourceDispelImmune(immunity->val, m->ownerMatches(unit, true), unit->isHypnotized(), m->getSpellIndex()))
+			return std::make_shared<BonusList>();
+
 	auto sel = [this, m](const Bonus * bonus)
 	{
 		if(bonus->source == BonusSource::SPELL_EFFECT)

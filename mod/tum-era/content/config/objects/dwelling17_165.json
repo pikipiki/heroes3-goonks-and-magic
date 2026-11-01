@@ -1,0 +1,34 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_165": {
+        "name": "Temple of the Ancients",
+        "creatures": [
+          [
+            "tum-era:eraCreature361"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw68.def",
+            "mask": [
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "rmg": {
+          "value": 2352,
+          "rarity": 40
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "core:castle": {
+    "town": {
+      "creatures": [
+        [
+          "pikeman",
+          "halberdier",
+          "tumRoyalHalberdier"
+        ],
+        [
+          "archer",
+          "marksman",
+          "tumCrossbowman"
+        ],
+        [
+          "griffin",
+          "royalGriffin",
+          "tumCeasarGriffin"
+        ],
+        [
+          "swordsman",
+          "crusader",
+          "tumInquisitor"
+        ],
+        [
+          "monk",
+          "zealot",
+          "tumHighPriest"
+        ],
+        [
+          "cavalier",
+          "champion",
+          "tumHolyChampion"
+        ],
+        [
+          "angel",
+          "archangel",
+          "supremeArchangel",
+          "tum-era:cherub"
+        ]
+      ],
+      "hallSlots": [
+        [
+          [
+            "villageHall",
+            "townHall",
+            "cityHall",
+            "capitol"
+          ],
+          [
+            "fort",
+            "citadel",
+            "castle"
+          ],
+          [
+            "tavern",
+            "special3"
+          ],
+          [
+            "blacksmith"
+          ]
+        ],
+        [
+          [
+            "marketplace",
+            "resourceSilo"
+          ],
+          [
+            "mageGuild1",
+            "mageGuild2",
+            "mageGuild3",
+            "mageGuild4"
+          ],
+          [
+            "shipyard",
+            "special1"
+          ]
+        ],
+        [
+          [
+            "special2"
+          ],
+          [
+            "horde1",
+            "horde1Upgr",
+            "horde2"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl1",
+            "dwellingUpLvl1",
+            "dwellingUp2Lvl1"
+          ],
+          [
+            "dwellingLvl2",
+            "dwellingUpLvl2",
+            "dwellingUp2Lvl2"
+          ],
+          [
+            "dwellingLvl3",
+            "dwellingUpLvl3",
+            "dwellingUp2Lvl3"
+          ],
+          [
+            "dwellingLvl4",
+            "dwellingUpLvl4",
+            "dwellingUp2Lvl4"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl5",
+            "dwellingUpLvl5",
+            "dwellingUp2Lvl5"
+          ],
+          [
+            "dwellingLvl6",
+            "dwellingUpLvl6",
+            "dwellingUp2Lvl6"
+          ],
+          [
+            "dwellingLvl7",
+            "dwellingUpLvl7",
+            "dwellingUp2Lvl7",
+            "dwellingUp3Lvl7"
+          ]
+        ]
+      ],
+      "buildingsIcons": "tum-era/castle-hall",
+      "structures": {
+        "dwellingUp3Lvl7": {
+          "animation": "town-screen/castle/TBCSUP2_6",
+          "x": 303,
+          "y": 0,
+          "z": -1,
+          "border": "town-screen/castle/borders/TOCSANG2U.png",
+          "area": "town-screen/castle/areas/TZCSANG2U.png",
+          "builds": "dwellingUp3Lvl7",
+          "hidden": false
+        }
+      },
+      "buildings": {
+        "dwellingUp3Lvl7": {
+          "id": 57,
+          "name": "Upg. Portal of Splendor",
+          "description": "Allows recruitment and upgrades of Cherubim.",
+          "upgrades": "dwellingUp2Lvl7",
+          "requires": [
+            "dwellingUp2Lvl7"
+          ],
+          "cost": {
+            "wood": 0,
+            "mercury": 15,
+            "ore": 0,
+            "sulfur": 15,
+            "crystal": 15,
+            "gems": 15,
+            "gold": 30000
+          }
+        }
+      }
+    }
+  }
+}

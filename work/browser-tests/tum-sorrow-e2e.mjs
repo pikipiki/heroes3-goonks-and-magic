@@ -1,0 +1,29 @@
+import{isTumNativeError}from'./tum-native-diagnostics.mjs';
+import fs from'node:fs';import path from'node:path';import assert from'node:assert/strict';import{createRequire}from'node:module';import{execFileSync}from'node:child_process';import{fileURLToPath}from'node:url';import{installTumFixturePreinit}from'./tum-fixture-preinit.mjs';import{tumNativeOptions}from'./tum-native-options.mjs';import{captureTumPreview,verifyTumFixtureSources}from'./tum-preview-provenance.mjs';
+const here=path.dirname(fileURLToPath(import.meta.url)),options=tumNativeOptions(here),project=options.project,require=createRequire(project+'/work/browser-tests/package.json'),{chromium}=require('playwright-core'),out=options.reportDir||path.join(here,'tum-native-reports/sorrow');fs.mkdirSync(out,{recursive:true});
+if(!options.ready)throw Error('Wait for previewmithrilready; then set TUM_PREVIEW_READY=mithril');
+const map=execFileSync('python3',['-c',`import zipfile,json,io,sys
+with zipfile.ZipFile(sys.argv[1])as z:
+ out=io.BytesIO()
+ with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED)as result:
+  for name in z.namelist():
+   data=z.read(name)
+   if name=='objects.json':
+    objs=json.loads(data);hero=next(o for o in objs if o['instanceName']=='goonkHero');hero['options']['army']=[{'type':'tum-era:eraCreature287','amount':1}];data=json.dumps(objs).encode()
+   result.writestr(name,data)
+ sys.stdout.buffer.write(out.getvalue())`,path.join(here,'tum-objects-fixtures/TUM-bank-43.vmap')]).toString('base64');
+const preview=await captureTumPreview(options.origin,{sourceRuntime:options.sourceRuntime}),sourceAttestation=verifyTumFixtureSources(options.tum,JSON.parse(fs.readFileSync(path.join(here,'tum-objects-fixtures/source-inputs.json'))));
+const browser=await chromium.connectOverCDP(options.cdp),report={preview,sourceAttestation,preInit:{commanders:false,sorrowFixture:true},cases:[]};const wait=(p,f,a)=>p.waitForFunction(f,a,{timeout:360000});const cmd=(p,n,a=0)=>p.evaluate(({n,a})=>Module._vcmiMobileCommand(n,a,0,0,0,0),{n,a});
+for(const resistance of [100,0]){const context=await browser.newContext({viewport:{width:390,height:844}}),p=await context.newPage(),r={primaryResistance:resistance,errors:[],nativeErrors:[]};p.on('pageerror',e=>r.errors.push(e.message));p.on('console',m=>{if(isTumNativeError(m.text()))r.nativeErrors.push(m.text());});
+ try{
+  await p.addInitScript(installTumFixturePreinit,{sorrowResistance:resistance});
+  await p.goto((options.origin)+'/?mobile=1');await wait(p,()=>window.goonkMobileState?.mode==='menu');assert.equal(await p.evaluate(()=>Module._vcmiEraBridgeVersion()),2);r.runtimeMainScript=await p.evaluate(()=>String(Module.mainScriptUrlOrBlob||''));assert(preview.runtime.includes(new URL(r.runtimeMainScript,options.origin).pathname.split('/').at(-1)),'Browser uses recorded hashed runtime');await p.evaluate(map=>{Module.FS.writeFile('/home/web_user/.local/share/vcmi/Maps/000-Goonk.vmap',Uint8Array.from(atob(map),c=>c.charCodeAt(0)));window.sorrowStates=[];window.addEventListener('goonk-state',e=>{if(e.detail.mode==='battle')sorrowStates.push(structuredClone(e.detail));});},map);
+  await p.getByRole('button',{name:'Nouvelle aventure',exact:true}).click();await wait(p,()=>goonkMobileState.maps?.length);const info=(await p.evaluate(()=>goonkMobileState.maps)).find(m=>m.name==='TUM Bridge Fixture bank-43');assert(info);await p.locator('#mobile-map-select').selectOption(String(info.index));await wait(p,name=>goonkMobileState.selectedMap===name,info.name);await p.getByRole('button',{name:'Commencer',exact:true}).click();await wait(p,()=>goonkMobileState.mode==='map'&&goonkMobileState.heroName);await p.evaluate(()=>Module._vcmiMobilePointer(682,70,1));await p.waitForTimeout(300);await p.evaluate(()=>Module._vcmiMobilePointer(304,280,1));await wait(p,()=>goonkMobileState.hasPath);await cmd(p,2);await wait(p,()=>goonkMobileState.mode==='dialog');await cmd(p,1);await wait(p,()=>goonkMobileState.mode==='battle'&&goonkMobileState.canAct);
+  r.before=await p.evaluate(()=>structuredClone(goonkMobileState));const enemies=r.before.battleUnits.filter(u=>u.enemy);assert.equal(enemies.length,2);assert(enemies.every(u=>Number.isInteger(u.morale)),'Read-only battleUnits.morale metadata required');const primary=enemies.find(u=>u.id===0);assert(primary,'Primary Pikeman core index0');assert.equal(r.before.activeUnit.name,'Dread Skipper');
+  await p.evaluate(({x,y})=>{Module._vcmiMobilePointer(x,y,0);Module._vcmiMobilePointer(x,y,1);},primary);await wait(p,before=>{const unit=goonkMobileState.battleUnits?.find(u=>u.stackId===before.stackId);return unit&&(unit.count<before.count||unit.currentHealth<before.currentHealth);},primary);
+  r.after=await p.evaluate(()=>structuredClone(goonkMobileState));for(const before of enemies){const after=r.after.battleUnits.find(u=>u.stackId===before.stackId);assert(after,'Both guard stacks survive fixture attack');assert.equal(after.morale-before.morale,resistance===100?0:-2,`Expert Sorrow morale delta for${before.name}`);}
+  r.snapshots=await p.evaluate(()=>sorrowStates);if(resistance===100)for(const s of r.snapshots)for(const before of enemies){const u=s.battleUnits?.find(u=>u.stackId===before.stackId);if(u)assert.equal(u.morale,before.morale,'Resistant primary blocks mass Sorrow on every target');}await p.screenshot({path:path.join(out,'primary-'+resistance+'.png')});assert.deepEqual(r.errors,[]);assert.deepEqual(r.nativeErrors,[]);r.passed=true;console.log(JSON.stringify({primaryResistance:resistance,passed:true,expectedDelta:resistance===100?0:-2}));
+ }catch(e){r.failure=e.stack;process.exitCode=1;console.error(e.stack);await p.screenshot({path:path.join(out,'primary-'+resistance+'-failure.png')}).catch(()=>{});r.last=await p.evaluate(()=>window.goonkMobileState).catch(()=>null);}
+ finally{report.cases.push(r);fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));await context.close();}
+}
+await browser.close();

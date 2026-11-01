@@ -1,0 +1,20 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "spiritPyre": {
+        "name": "Spirit Pyre",
+        "creatures": [
+          [
+            "tum-era:divinePhoenix"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:divinePhoenix",
+            "amount": 3
+          }
+        ]
+      }
+    }
+  }
+}

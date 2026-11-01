@@ -1040,36 +1040,33 @@ std::string CStackWindow::generateStackExpDescription()
 	const CStackInstance * stack = info->stackNode;
 	const CCreature * creature = info->creature;
 
-	int tier = stack->getType()->getLevel();
 	int rank = stack->getExpRank();
-	if (!vstd::iswithin(tier, 1, 7))
-		tier = 0;
 	int number;
 	std::string expText = LIBRARY->generaltexth->translate("vcmi.stackExperience.description");
 	boost::replace_first(expText, "%s", creature->getNamePluralTranslated());
 	boost::replace_first(expText, "%s", LIBRARY->generaltexth->translate("vcmi.stackExperience.rank", rank));
 	boost::replace_first(expText, "%i", std::to_string(rank));
 	boost::replace_first(expText, "%i", std::to_string(stack->getAverageExperience()));
-	number = static_cast<int>(LIBRARY->creh->expRanks[tier][rank] - stack->getAverageExperience());
+	number = static_cast<int>(stack->getExperienceThreshold(rank + 1) - stack->getAverageExperience());
 	boost::replace_first(expText, "%i", std::to_string(number));
 
-	number = LIBRARY->creh->maxExpPerBattle[tier]; //percent
+	number = stack->getExperienceBattleLimitPercent(); //percent
 	boost::replace_first(expText, "%i%", std::to_string(number));
-	number *= LIBRARY->creh->expRanks[tier].back() / 100; //actual amount
+	number = static_cast<int>(stack->getMaxExperienceGainPerBattle()); //actual amount
 	boost::replace_first(expText, "%i", std::to_string(number));
 
 	boost::replace_first(expText, "%i", std::to_string(stack->getCount())); //Number of Creatures in stack
 
-	int expmin = std::max(LIBRARY->creh->expRanks[tier][std::max(rank-1, 0)], (ui32)1);
+	int expmin = std::max<TExpType>(stack->getExperienceThreshold(std::max(rank, 1)), 1);
 	number = stack->getTotalExperience() / expmin - stack->getCount(); //Maximum New Recruits without losing current Rank
 	boost::replace_first(expText, "%i", std::to_string(number)); //TODO
 
-	boost::replace_first(expText, "%.2f", std::to_string(1)); //TODO Experience Multiplier
-	number = LIBRARY->creh->expAfterUpgrade;
+	boost::replace_first(expText, "%.2f", std::to_string(stack->getExperienceMultiplier()));
+	number = static_cast<int>(stack->getExperienceUpgradeMultiplier() * 100);
 	boost::replace_first(expText, "%.2f", std::to_string(number) + "%"); //Upgrade Multiplier
 
-	expmin = LIBRARY->creh->expRanks[tier][9];
-	int expmax = LIBRARY->creh->expRanks[tier][10];
+	expmin = stack->getExperienceThreshold(10);
+	int expmax = stack->getMaxExperiencePerUnit();
 	number = expmax - expmin;
 	boost::replace_first(expText, "%i", std::to_string(number)); //Experience after Rank 10
 	number = (stack->getCount() * (expmax - expmin)) / expmin;

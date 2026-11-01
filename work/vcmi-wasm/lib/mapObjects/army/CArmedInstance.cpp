@@ -10,6 +10,11 @@
 
 #include "StdInc.h"
 #include "CArmedInstance.h"
+#include "../../era/EraCreatureArtifactMimic.h"
+#include "../../era/EraUndeadArmyMoraleRuntime.h"
+#include "../../bonuses/Propagators.h"
+#include "../../bonuses/Limiters.h"
+#include "../../bonuses/Updaters.h"
 
 #include "CStackInstance.h"
 
@@ -83,7 +88,7 @@ void CArmedInstance::updateMoraleBonusFromArmy()
 
 	size_t factionsInArmy = factions.size(); //town garrison seems to take both sets into account
 
-	if(nonEvilAlignmentMix.hasBonus())
+	if(nonEvilAlignmentMix.hasBonus() || era_compat::originalArmyMimicsArtifact(*this, 129))
 	{
 		size_t mixableFactions = 0;
 
@@ -111,6 +116,58 @@ void CArmedInstance::updateMoraleBonusFromArmy()
 	}
 
 	b->description = bonusDescription;
+
+	// Archer.erm:964-977 runs after the original Angel/Archangel +1.
+	// Keep that native aura separate; source adds 2, minus 1 if Supreme is
+	// present. Presence is boolean, so split Cherubs never add several auras.
+	const auto sourceMorale = era_compat::originalArmyAngelicMorale(*this);
+	auto sourceAura = getExportedBonusList().getFirst([](const Bonus * bonus)
+	{
+		return bonus->type == BonusType::MORALE && bonus->source == BonusSource::CREATURE_ABILITY
+			&& bonus->stacking == "TUM.Archer.AngelicArmyMorale";
+	});
+	if(sourceMorale.value > 0)
+	{
+		if(!sourceAura)
+		{
+			sourceAura = std::make_shared<Bonus>(BonusDuration::PERMANENT, BonusType::MORALE,
+				BonusSource::CREATURE_ABILITY, sourceMorale.value, BonusSourceID(sourceMorale.source));
+			sourceAura->stacking = "TUM.Archer.AngelicArmyMorale";
+			addNewBonus(sourceAura);
+		}
+		sourceAura->val = sourceMorale.value;
+		sourceAura->sid = BonusSourceID(sourceMorale.source);
+		sourceAura->description = MetaString();
+		sourceAura->description.appendTextID(sourceMorale.source.toCreature()->getNameSingularTextID());
+	}
+	else if(sourceAura)
+		removeBonus(sourceAura);
+
+    // ArcherERM982..1010 reads the original seven-slot opposing army. Export
+    // exactly one static family aura; summoned/cloned/dying battle stacks must
+    // never acquire or remove this correction. Native creature family auras
+    // are disabled by the accompanying scoped data overlay.
+    const auto negativeMorale=era_compat::originalArmyUndeadMorale(*this);
+    auto negativeAura=getExportedBonusList().getFirst([](const Bonus * bonus)
+    {
+        return bonus->type==BonusType::MORALE && bonus->source==BonusSource::CREATURE_ABILITY
+            && bonus->stacking=="TUM.Archer.UndeadArmyMorale";
+    });
+    // OwnerUpdater produces a propagated COPY; remove/recreate instead of
+    // editing an exported value that existing battle copies would not observe.
+    if(negativeAura)
+        removeBonus(negativeAura);
+    if(negativeMorale.power>0)
+    {
+        negativeAura=std::make_shared<Bonus>(BonusDuration::PERMANENT,BonusType::MORALE,
+            BonusSource::CREATURE_ABILITY,-negativeMorale.power,BonusSourceID(negativeMorale.source));
+        negativeAura->stacking="TUM.Archer.UndeadArmyMorale";
+        negativeAura->propagator=std::make_shared<CPropagatorNodeType>(BonusNodeType::BATTLE_WIDE);
+        negativeAura->propagationUpdater=std::make_shared<OwnerUpdater>();
+        negativeAura->addLimiter(std::make_shared<OppositeSideLimiter>());
+        negativeAura->description.appendTextID(negativeMorale.source.toCreature()->getNameSingularTextID());
+        addNewBonus(negativeAura);
+    }
 
 	nodeHasChanged();
 

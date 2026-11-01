@@ -1,0 +1,78 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank52": {
+        "name": "Dreadnought Tower",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB20.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "dirt",
+              "subterra"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank52MixedLayout",
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:dreadKnight",
+                "amount": 7,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:dreadKnight",
+                "amount": 7
+              },
+              {
+                "type": "core:dreadKnight",
+                "amount": 7
+              },
+              {
+                "type": "core:dreadKnight",
+                "amount": 7
+              }
+            ],
+            "resources": {
+              "mercury": 10,
+              "gold": 7500
+            },
+            "artifacts": [
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "MAJOR"
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 8000,
+          "rarity": 100
+        },
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33
+      }
+    }
+  }
+}

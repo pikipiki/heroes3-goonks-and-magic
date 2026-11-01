@@ -24,17 +24,21 @@ export function validateRuntimePolicy(policy){
  for(const [id,operations] of Object.entries(policy.creatures)){
   if(!/^[-a-zA-Z0-9_.]+:[-a-zA-Z0-9_]+$/.test(id)||!object(operations))throw new TypeError('Invalid native ERA creature '+id);
   for(const [operation,service] of Object.entries(operations)){
-   if(!['regeneration','rebirth','meleeRage','petrification','spellDamageInversion','artifactMimic','angelicArmyMorale','imposedSpells','dailyResources'].includes(operation))throw new TypeError('Unknown native ERA operation '+operation);
+   if(!['regeneration','rebirth','meleeRage','petrification','blindness','allSpellImmunity','armySpellCost','spellDamageInversion','vampireDrain','artifactMimic','angelicArmyMorale','imposedSpells','dailyResources','physicalDeflection','defenseReduction'].includes(operation))throw new TypeError('Unknown native ERA operation '+operation);
    let valid=false;
    if(operation==='regeneration')valid=keys(service,['hitPoints','chancePercent'])&&Number.isInteger(service.hitPoints)&&fraction(service.hitPoints,1000000000)&&Number.isInteger(service.chancePercent)&&fraction(service.chancePercent,100);
    if(operation==='rebirth')valid=keys(service,['chance','fraction','guaranteedFraction'])&&fraction(service.chance,1)&&fraction(service.fraction,1000)&&fraction(service.guaranteedFraction,1000);
-   if(operation==='meleeRage'||operation==='petrification'||operation==='spellDamageInversion')valid=keys(service,[]);
-   if(operation==='artifactMimic')valid=keys(service,['artifact'])&&service.artifact===129;
+   if(operation==='vampireDrain')valid=id==='tum-era:redBonesDragon'&&keys(service,[]);
+   if(operation==='meleeRage'||operation==='petrification'||operation==='blindness'||operation==='allSpellImmunity'||operation==='armySpellCost'||operation==='spellDamageInversion')valid=keys(service,[]);
+   if(operation==='defenseReduction')valid=keys(service,['percent'])&&service.percent===95;
+   if(operation==='physicalDeflection')valid=keys(service,['modifier','values'])&&Number.isInteger(service.modifier)&&fraction(service.modifier,255)&&Array.isArray(service.values)&&service.values.length===11&&service.values.every(v=>Number.isInteger(v)&&fraction(v,255));
+   if(operation==='artifactMimic')valid=keys(service,['artifact'])&&[129,135].includes(service.artifact);
    if(operation==='angelicArmyMorale')valid=keys(service,['supremeArchangel'])&&qualified(service.supremeArchangel);
    if(operation==='imposedSpells')valid=Array.isArray(service)&&service.length<=3&&service.every(slot=>keys(slot,['spell','mastery'])&&supportedImposedSpells.includes(slot.spell)&&Number.isInteger(slot.mastery)&&fraction(slot.mastery,3));
    if(operation==='dailyResources')valid=keys(service,['resource','amount','goldPerCreature'])&&qualified(service.resource)&&Number.isInteger(service.amount)&&fraction(service.amount,1000000000)&&Number.isInteger(service.goldPerCreature)&&fraction(service.goldPerCreature,1000000000);
    if(!valid)throw new TypeError('Invalid native '+operation+' service for '+id);
   }
+  if(operations.petrification&&operations.blindness)throw new TypeError('Conflicting ERA post-hit effects for '+id);
  }
  if(policy.artifacts!==undefined){
   if(!object(policy.artifacts))throw new TypeError('Invalid ERA artifact policies');
@@ -87,4 +91,16 @@ export function compileImposedSpellsService(text,{source='<creature.cfg>',target
   consumed.push(number,level);
  }
  return {policy:validateRuntimePolicy({schemaVersion:1,creatures:{[target]:{imposedSpells}}}),provenance:{source,scope:'imposed spells service only',consumed,evidence:['Amethyst2/amethyst/tables.cpp:4359-4400','h3era.exe sub760627 resets round then calls imposed enchantment hook'],notCovered:['Other creature properties']}};
+}
+
+// Daily_Res (Amethyst dllmain.cpp:410-479): a max per resource plus a tax
+// per creature. Amount and tax default to zero in the original static tables.
+export function compileDailyResourceService(text,{source='<creature.cfg>',target,resolveResource}={}){
+ const parsed=parseAmethystCreature(text,{source});if(parsed.diagnostics.length)throw new AmethystCompilationError(parsed.diagnostics);
+ const names=['ResGen_Type','ResGen_Amount','ResGen_Tax'],entries=new Map(parsed.entries.filter(e=>names.includes(e.key)).map(e=>[e.key,e]));
+ if(!entries.has('ResGen_Type'))throw new TypeError(source+': missing ResGen_Type');
+ const read=(key,maximum,fallback)=>{const entry=entries.get(key);if(!entry)return fallback;if(!/^\d+$/.test(entry.rawValue))throw new TypeError(source+': invalid '+key);const n=Number(entry.rawValue);if(!Number.isSafeInteger(n)||n>maximum)throw new TypeError(source+': invalid '+key);return n;};
+ const resource=resolveResource?.(read('ResGen_Type',7));
+ const service={resource,amount:read('ResGen_Amount',1000000000,0),goldPerCreature:read('ResGen_Tax',1000000000,0)};
+ return {policy:validateRuntimePolicy({schemaVersion:1,creatures:{[target]:{dailyResources:service}}}),provenance:{source,scope:'daily resource service only',consumed:[...entries.values()],otherProperties:parsed.entries.filter(e=>!names.includes(e.key)),evidence:['Amethyst2/amethyst/dllmain.cpp:410-479'],notCovered:['Optional ERA Azylum hero storage','Other creature properties']}};
 }
