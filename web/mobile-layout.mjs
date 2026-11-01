@@ -10,7 +10,7 @@ export function affordable(unit,resources=[]){let max=unit.count;unit.cost?.forE
 
 // Keep the embedded initiative queue and every battlefield row visible.
 export const BATTLE_REGION={x:0,y:0,w:800,h:600};
-export const mapDrag=(dx,dy,scale)=>({x:Math.round(-dx/scale),y:Math.round(-dy/scale)});
+export const mapDrag=(dx,dy,scale)=>({x:-dx/scale,y:-dy/scale});
 export function battleHex(point){
  let best,distance=Infinity;
  for(let row=0;row<11;row++)for(let col=1;col<16;col++){const p={x:36+(row%2===0?22:0)+44*col,y:112+42*row};const d=(p.x-point.x)**2+(p.y-point.y)**2;if(d<distance){best=p;distance=d;}}
