@@ -112,3 +112,20 @@
 #mobile-app[data-mode=map] #mobile-overview[hidden]{display:none}
 #mobile-app[data-mode=map] #mobile-overview:focus-visible{outline:3px solid #ffe894;outline-offset:3px}
 @media(orientation:landscape) and (max-height:600px){#mobile-app[data-mode=map] #mobile-overview{width:100px;height:100px}}
+
+/* Army commands stay at the top; creature actions stay next to its portrait. */
+.battle-team-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#mobile-app[data-mode=battle] .mobile-top{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:6px 8px;padding:6px 8px;box-sizing:border-box}
+#mobile-app[data-mode=battle] .mobile-top>#game-menu-toggle{grid-column:1;grid-row:1}
+#mobile-app[data-mode=battle] .mobile-title{grid-column:2;grid-row:1;min-width:0}
+#mobile-app[data-mode=battle] .battle-view{grid-column:3;grid-row:1}
+#mobile-app[data-mode=battle] .battle-team-actions{grid-column:1/-1;grid-row:2}
+#mobile-app[data-mode=battle] .battle-team-actions button{min-height:44px;padding:6px 10px;white-space:nowrap;font-size:14px}
+#mobile-app[data-mode=battle][data-battle-view=native] .battle-tools{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(orientation:landscape) and (max-height:600px){
+ .goonk-mobile #mobile-app[data-mode=battle]{grid-template-rows:56px minmax(0,1fr)}
+ #mobile-app[data-mode=battle] .mobile-top{display:flex;flex-wrap:nowrap;gap:6px;padding:4px max(8px,env(safe-area-inset-right)) 4px max(8px,env(safe-area-inset-left))}
+ #mobile-app[data-mode=battle] .mobile-title{flex:1;min-width:0}
+ #mobile-app[data-mode=battle] .battle-team-actions{display:flex;flex:0 0 auto;gap:6px}
+ #mobile-app[data-mode=battle] .battle-team-actions button{min-width:96px}
+}

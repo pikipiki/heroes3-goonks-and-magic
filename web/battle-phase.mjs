@@ -1,1 +1,3 @@
-export function battleCapabilities(state){const tactics=state.tacticsMode===true,combatReady=!!state.canAct&&!tactics&&(state.round??0)>0;return {tactics,combatReady,move:!!state.canAct&&(tactics||combatReady),magic:combatReady&&state.canUseMagic!==false,endTactics:tactics&&!!state.canEndTactics};}
+export function battleCapabilities(state){const tactics=state.tacticsMode===true,manual=!!state.canAct&&!state.autoCombat,combatReady=manual&&!tactics&&(state.round??0)>0;return {tactics,combatReady,move:manual&&(tactics||combatReady),magic:combatReady&&state.canUseMagic!==false,endTactics:tactics&&!!state.canEndTactics&&!state.autoCombat};}
+
+export function battleTeamCapabilities(state){return {retreat:state.mode==='battle'&&battleCapabilities(state).combatReady&&state.canRetreat===true&&!state.autoCombat,auto:state.mode==='battle'&&state.canAutoCombat===true};}

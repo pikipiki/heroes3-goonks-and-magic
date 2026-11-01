@@ -30,6 +30,7 @@
 #include "widgets/Buttons.h"
 #include "windows/CHeroWindow.h"
 #include "battle/BattleInterface.h"
+#include "battle/BattleActionsController.h"
 #include "battle/BattleWindow.h"
 #include "battle/BattleStacksController.h"
 #include "battle/BattleFieldController.h"
@@ -153,6 +154,10 @@ void publishMobileState(){
   if(battleWindow&&CPlayerInterface::battleInt){const auto b=CPlayerInterface::battleInt;const bool tactics=b->tacticsMode||b->getBattle()->battleTacticDist()!=0;
    const bool ownsTactics=b->getBattle()->battleTacticDist()>0&&b->getBattle()->sideToPlayer(b->getBattle()->battleGetTacticsSide())==p->playerID;
    n["tacticsMode"].Bool()=tactics;n["canEndTactics"].Bool()=b->tacticsMode&&ownsTactics&&!b->openingPlaying()&&!b->hasAnimations();
+   const bool autoOn=b->curInt&&b->curInt->isAutoFightOn;
+   const bool autoReady=b->curInt&&!b->openingPlaying()&&!b->actionsController->heroSpellcastingModeActive()&&(autoOn||!b->curInt->autofightingAI)&&
+    (tactics?ownsTactics&&b->tacticsMode&&!b->hasAnimations()&&!settings["battle"]["endWithAutocombat"].Bool():b->round>0&&(!settings["battle"]["endWithAutocombat"].Bool()||(b->makingTurn()&&!b->hasAnimations())));
+   n["autoCombat"].Bool()=autoOn;n["canAutoCombat"].Bool()=autoReady;
    n["canRetreat"].Bool()=!tactics&&b->round>0&&b->makingTurn()&&!b->hasAnimations()&&b->getBattle()->battleCanFlee();
    n["canUseMagic"].Bool()=!tactics&&b->round>0&&b->makingTurn()&&!b->openingPlaying()&&!b->hasAnimations();
    const auto caster=b->currentHero();n["heroHasSpellbook"].Bool()=caster&&caster->hasSpellbook();if(caster)n["heroMana"].Integer()=caster->mana;
@@ -249,6 +254,11 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   const bool combatReady=!tactics&&battle->round>0&&battle->makingTurn()&&!battle->openingPlaying()&&!battle->hasAnimations();
   const bool ownsTactics=battle->getBattle()->battleTacticDist()>0&&battle->getBattle()->sideToPlayer(battle->getBattle()->battleGetTacticsSide())==p->playerID;
   const bool canPlace=battle->tacticsMode&&ownsTactics&&battle->getBattle()->battleTacticDist()>0&&!battle->openingPlaying()&&!battle->hasAnimations();
+  if(action==44&&battle->curInt&&!battle->openingPlaying()&&!battle->actionsController->heroSpellcastingModeActive()){
+   const bool autoOn=battle->curInt->isAutoFightOn;
+   const bool allowed=(autoOn||!battle->curInt->autofightingAI)&&(tactics?canPlace&&!settings["battle"]["endWithAutocombat"].Bool():battle->round>0&&(!settings["battle"]["endWithAutocombat"].Bool()||combatReady));
+   if(allowed&&autoOn!=(a!=0))shortcut(EShortcut::BATTLE_AUTOCOMBAT);
+  }
   if(action==12&&combatReady)battle->giveCommand(EActionType::WAIT);
   if(action==13&&combatReady)battle->giveCommand(EActionType::DEFEND);
   if(action==14&&combatReady)shortcut(a==1?EShortcut::BATTLE_USE_CREATURE_SPELL:EShortcut::BATTLE_CAST_SPELL);
