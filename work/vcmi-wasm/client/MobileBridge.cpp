@@ -117,6 +117,11 @@ void publishMobileState(){
   n["dialogKind"].String()="tavern";n["dialogTitle"].String()="Taverne";
   if(tavern->cancel)n["dialogCloseRect"]=rect(tavern->cancel->pos);
  }
+
+ if(auto fort=ENGINE->windows().topWindow<CFortScreen>()){
+  n["dialogKind"].String()="fort";n["dialogTitle"].String()="Créatures du château";
+  for(const auto & area:fort->mobileRecruitAreas())n["fortAreas"].Vector().push_back(rect(area));
+ }
  if(n["mode"].String()=="lobby"){
   n["lobbyReady"].Bool()=GAME->server().getState()==EClientState::LOBBY;
   if(!mapsListed){mapsListed=true;const auto files=CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path){return path.getType()==EResType::MAP&&path.getName().find("MAPS/")==0;});for(const auto & file:files){try{CMapInfo info;info.mapInit(file.getOriginalName());if(info.amountOfHumanControllablePlayers>0)mobileMaps.emplace_back(file.getOriginalName(),info.getNameForList());}catch(const std::exception &){} }std::sort(mobileMaps.begin(),mobileMaps.end(),[](const auto & a,const auto & b){return a.second<b.second;});}

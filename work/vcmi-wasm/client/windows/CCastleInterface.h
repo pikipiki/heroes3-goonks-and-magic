@@ -376,6 +376,12 @@ class CFortScreen : public CStatusbarWindow
 
 public:
 	CFortScreen(const CGTownInstance * town);
+	std::vector<Rect> mobileRecruitAreas() const
+	{
+		std::vector<Rect> result;
+		for(const auto & area : recAreas) result.push_back(area->pos);
+		return result;
+	}
 
 	void creaturesChangedEventHandler();
 };

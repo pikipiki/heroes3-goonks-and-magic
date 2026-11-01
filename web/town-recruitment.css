@@ -1,0 +1,10 @@
+/* Reflow the live native recruitment panels into the whole mobile play area. */
+#mobile-app .native-fort{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;min-height:0;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;background:#281b10 url('./h3-theme/stone.png');scrollbar-color:#b99a55 #281b10;scroll-padding:8px}
+#mobile-app .native-fort-help{flex:0 0 auto;margin:0;padding:8px 12px;color:#ffe4a0;font-size:15px}
+#mobile-app .native-fort-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;padding:0 6px 10px;align-content:start;min-width:0}
+#mobile-app .native-fort-card{display:block;min-width:0;width:100%;padding:0;border:2px ridge #be9d56;border-radius:0;background:#1c150e;overflow:hidden;touch-action:pan-y;line-height:0}
+#mobile-app .native-fort-card canvas{display:block;width:100%;height:auto;aspect-ratio:386/126;pointer-events:none}
+#mobile-app[data-native-fort] .scene-tools,#mobile-app[data-native-fort] .scene-hint,#mobile-app[data-native-fort] .native-dialog-close-hit{display:none!important}
+#mobile-app[data-native-fort] #mobile-scene{visibility:hidden}
+#mobile-app[data-native-fort] .mobile-nav{grid-template-columns:minmax(0,1fr)}
+@media(orientation:landscape){#mobile-app .native-fort-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:0 8px 8px}#mobile-app .native-fort-help{padding:5px 10px}}
