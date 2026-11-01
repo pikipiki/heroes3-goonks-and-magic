@@ -1,0 +1,418 @@
+{
+  "cases": [
+    {
+      "chancePercent": 0,
+      "errors": [],
+      "turns": [
+        {
+          "round": 1,
+          "dragon": {
+            "cost": [
+              0,
+              3,
+              0,
+              0,
+              0,
+              0,
+              6000
+            ],
+            "count": 1,
+            "currentHealth": 400,
+            "enemy": false,
+            "icon": "tum-era/portrait-large",
+            "id": 250,
+            "maximumHealth": 400,
+            "name": "Red Bones Dragon",
+            "occupied": [
+              87,
+              86
+            ],
+            "stackId": 0,
+            "x": 124,
+            "y": 322
+          },
+          "enemy": {
+            "count": 40,
+            "stacks": [
+              {
+                "count": 20,
+                "stackId": 1
+              },
+              {
+                "count": 20,
+                "stackId": 2
+              }
+            ]
+          }
+        },
+        {
+          "round": 2,
+          "dragon": {
+            "cost": [
+              0,
+              3,
+              0,
+              0,
+              0,
+              0,
+              6000
+            ],
+            "count": 1,
+            "currentHealth": 400,
+            "enemy": false,
+            "icon": "tum-era/portrait-large",
+            "id": 250,
+            "maximumHealth": 400,
+            "name": "Red Bones Dragon",
+            "occupied": [
+              87,
+              86
+            ],
+            "stackId": 0,
+            "x": 124,
+            "y": 322
+          },
+          "enemy": {
+            "count": 40,
+            "stacks": [
+              {
+                "count": 20,
+                "stackId": 1
+              },
+              {
+                "count": 20,
+                "stackId": 2
+              }
+            ]
+          }
+        },
+        {
+          "round": 3,
+          "dragon": {
+            "cost": [
+              0,
+              3,
+              0,
+              0,
+              0,
+              0,
+              6000
+            ],
+            "count": 1,
+            "currentHealth": 400,
+            "enemy": false,
+            "icon": "tum-era/portrait-large",
+            "id": 250,
+            "maximumHealth": 400,
+            "name": "Red Bones Dragon",
+            "occupied": [
+              87,
+              86
+            ],
+            "stackId": 0,
+            "x": 124,
+            "y": 322
+          },
+          "enemy": {
+            "count": 40,
+            "stacks": [
+              {
+                "count": 20,
+                "stackId": 1
+              },
+              {
+                "count": 20,
+                "stackId": 2
+              }
+            ]
+          }
+        },
+        {
+          "round": 4,
+          "dragon": {
+            "cost": [
+              0,
+              3,
+              0,
+              0,
+              0,
+              0,
+              6000
+            ],
+            "count": 1,
+            "currentHealth": 359,
+            "enemy": false,
+            "icon": "tum-era/portrait-large",
+            "id": 250,
+            "maximumHealth": 400,
+            "name": "Red Bones Dragon",
+            "occupied": [
+              87,
+              86
+            ],
+            "stackId": 0,
+            "x": 124,
+            "y": 322
+          },
+          "enemy": {
+            "count": 24,
+            "stacks": [
+              {
+                "count": 4,
+                "stackId": 1
+              },
+              {
+                "count": 20,
+                "stackId": 2
+              }
+            ]
+          }
+        }
+      ],
+      "observed": {
+        "round": 4,
+        "dragon": {
+          "cost": [
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            6000
+          ],
+          "count": 1,
+          "currentHealth": 359,
+          "enemy": false,
+          "icon": "tum-era/portrait-large",
+          "id": 250,
+          "maximumHealth": 400,
+          "name": "Red Bones Dragon",
+          "occupied": [
+            87,
+            86
+          ],
+          "stackId": 0,
+          "x": 124,
+          "y": 322
+        },
+        "enemy": {
+          "count": 24,
+          "stacks": [
+            {
+              "count": 4,
+              "stackId": 1
+            },
+            {
+              "count": 20,
+              "stackId": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "chancePercent": 100,
+      "errors": [],
+      "turns": [
+        {
+          "round": 1,
+          "dragon": {
+            "cost": [
+              0,
+              3,
+              0,
+              0,
+              0,
+              0,
+              6000
+            ],
+            "count": 1,
+            "currentHealth": 400,
+            "enemy": false,
+            "icon": "tum-era/portrait-large",
+            "id": 250,
+            "maximumHealth": 400,
+            "name": "Red Bones Dragon",
+            "occupied": [
+              87,
+              86
+            ],
+            "stackId": 0,
+            "x": 124,
+            "y": 322
+          },
+          "enemy": {
+            "count": 40,
+            "stacks": [
+              {
+                "count": 20,
+                "stackId": 1
+              },
+              {
+                "count": 20,
+                "stackId": 2
+              }
+            ]
+          }
+        },
+        {
+          "round": 2,
+          "dragon": {
+            "cost": [
+              0,
+              3,
+              0,
+              0,
+              0,
+              0,
+              6000
+            ],
+            "count": 1,
+            "currentHealth": 400,
+            "enemy": false,
+            "icon": "tum-era/portrait-large",
+            "id": 250,
+            "maximumHealth": 400,
+            "name": "Red Bones Dragon",
+            "occupied": [
+              87,
+              86
+            ],
+            "stackId": 0,
+            "x": 124,
+            "y": 322
+          },
+          "enemy": {
+            "count": 40,
+            "stacks": [
+              {
+                "count": 20,
+                "stackId": 1
+              },
+              {
+                "count": 20,
+                "stackId": 2
+              }
+            ]
+          }
+        },
+        {
+          "round": 3,
+          "dragon": {
+            "cost": [
+              0,
+              3,
+              0,
+              0,
+              0,
+              0,
+              6000
+            ],
+            "count": 1,
+            "currentHealth": 400,
+            "enemy": false,
+            "icon": "tum-era/portrait-large",
+            "id": 250,
+            "maximumHealth": 400,
+            "name": "Red Bones Dragon",
+            "occupied": [
+              87,
+              86
+            ],
+            "stackId": 0,
+            "x": 124,
+            "y": 322
+          },
+          "enemy": {
+            "count": 40,
+            "stacks": [
+              {
+                "count": 20,
+                "stackId": 1
+              },
+              {
+                "count": 20,
+                "stackId": 2
+              }
+            ]
+          }
+        },
+        {
+          "round": 4,
+          "dragon": {
+            "cost": [
+              0,
+              3,
+              0,
+              0,
+              0,
+              0,
+              6000
+            ],
+            "count": 1,
+            "currentHealth": 400,
+            "enemy": false,
+            "icon": "tum-era/portrait-large",
+            "id": 250,
+            "maximumHealth": 400,
+            "name": "Red Bones Dragon",
+            "occupied": [
+              87,
+              86
+            ],
+            "stackId": 0,
+            "x": 124,
+            "y": 322
+          },
+          "enemy": {
+            "count": 20,
+            "stacks": [
+              {
+                "count": 20,
+                "stackId": 2
+              }
+            ]
+          }
+        }
+      ],
+      "observed": {
+        "round": 4,
+        "dragon": {
+          "cost": [
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            6000
+          ],
+          "count": 1,
+          "currentHealth": 400,
+          "enemy": false,
+          "icon": "tum-era/portrait-large",
+          "id": 250,
+          "maximumHealth": 400,
+          "name": "Red Bones Dragon",
+          "occupied": [
+            87,
+            86
+          ],
+          "stackId": 0,
+          "x": 124,
+          "y": 322
+        },
+        "enemy": {
+          "count": 20,
+          "stacks": [
+            {
+              "count": 20,
+              "stackId": 2
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "fullTum35Compatibility": false,
+  "nativeActiveServices": [
+    "regeneration"
+  ],
+  "nativeHelpersNotYetBound": [
+    "rebirth",
+    "antichristStatTransfer"
+  ],
+  "strictCompilers": [
+    "Amethyst verified property subset",
+    "Unconditional ERM MA:U and UN:T",
+    "Declarative bank guard/reward states"
+  ],
+  "engineArchive": "outputs/vcmi-wasm-goonk-era-bridge-1-engine.tar.gz",
+  "sourceBaseCommit": "809969c9c15ade2a1c10e978d3a6f8d965a96afa",
+  "patchedSourceSHA256": {
+    "work/vcmi-wasm/lib/era/EraBridgeRuntime.h": "95f320de12372a9d91d81291bf9f410a92a0730c694b1b8ac69fa3a306a8385e",
+    "work/vcmi-wasm/lib/era/EraBridgePolicies.h": "56a0743d2ea6ea490570ff8de63b880d80f88353e61bc1f7ca82718f79b4eda7",
+    "work/vcmi-wasm/server/battles/BattleFlowProcessor.cpp": "95a51017b286ba2921cce3446d1344da4286ccb0505cd4e03aa6d7c3788cbc1b",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "4e8fa33122bb9d536e34c8ebdcf830da033a1f8d698aae7a87f16f02549672c8"
+  },
+  "engineArchiveSHA256": "b535f19e9b36106c5dde823f20aed725ef014894e89bddb164f5b2716149afa6",
+  "tests": {
+    "passed": 121,
+    "scope": "Unit tests, including native helpers compiled with address and undefined-behavior sanitizers"
+  },
+  "wasmBuild": "ninja -j32 html5, successful clean isolated source build; compile pool limited to fit 8 GiB build host",
+  "referenceERA": {
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "3785413e4dceb07b17ff2b52b264e960b7ce51b3",
+    "executableSHA256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+  },
+  "pluginSource": {
+    "repository": "https://gitlab.com/Knightmarevive/_h3era_plugins_",
+    "commit": "99e949d9d910556e57d19914b41976d5a07da577"
+  },
+  "limitations": [
+    "No generic x86 Windows DLL execution",
+    "No complete ERM runtime",
+    "TUM-specific age and drain compatibility not proven by runtime comparison",
+    "Other ERA features remain explicit audit failures"
+  ],
+  "wasmSHA256": "e7df8763de960d9de891ee9c4d181b716215ebe1c54252b1be80302e64ffab97",
+  "nativeVersionNegotiation": 1,
+  "browserValidation": {
+    "report": "outputs/era-regeneration-native-e2e.json",
+    "disabledRegeneration": {
+      "round": 4,
+      "health": 359,
+      "maximum": 400
+    },
+    "certainRegeneration": {
+      "round": 4,
+      "health": 400,
+      "maximum": 400
+    },
+    "nativeApiVersion": 1
+  }
+}

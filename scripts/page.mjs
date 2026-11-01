@@ -19,6 +19,7 @@ export function renderPage(root){
  modSettings.presets[preset].settings['wake-of-gods'].level8units=true;
  modSettings.presets[preset].settings['third-upgrades']={...(modSettings.presets[preset].settings['third-upgrades']||{}),'hota-comp':false,'tow-comp':false,'tow-hota-comp':false};
  FS.writeFile(modSettingsPath,JSON.stringify(modSettings));
+ if(typeof module._vcmiEraBridgeVersion!=='function'||module._vcmiEraBridgeVersion()!==1)throw new Error('La version du moteur ne correspond pas aux données du jeu. Recharge la page pour terminer la mise à jour.');
  module.canvas = document.getElementById("canvas");`);
  // Touch presentation rotates its own canvas; its 1600x1200 engine must stay intact.
  html=html.replace('module._vcmiOnCanvasResize();','if(!window.goonkMobileActive)module._vcmiOnCanvasResize();');

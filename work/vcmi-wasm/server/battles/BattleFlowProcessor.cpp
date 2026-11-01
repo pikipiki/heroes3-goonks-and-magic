@@ -9,6 +9,8 @@
  */
 #include "StdInc.h"
 #include "BattleFlowProcessor.h"
+#include "../../lib/CCreatureHandler.h"
+#include "../../lib/era/EraBridgePolicies.h"
 
 #include "BattleProcessor.h"
 
@@ -295,7 +297,17 @@ const CStack * BattleFlowProcessor::getNextStack(const CBattleInfoCallback & bat
 		bte.effect = BonusType::HP_REGENERATION;
 
 		const int32_t lostHealth = stack->getMaxHealth() - stack->getFirstHPleft();
-		if(stack->hasBonusOfType(BonusType::HP_REGENERATION))
+		const auto eraRegeneration = era_compat::Policies::get().regeneration(stack->creatureId().toCreature()->getJsonKey());
+		if(eraRegeneration && lostHealth > 0)
+		{
+			// Draw from the authoritative seeded game RNG, never browser state.
+			// Certain/disabled policies do not consume a useless random draw.
+			const int roll = eraRegeneration->chancePercent > 0 && eraRegeneration->chancePercent < 100
+				? gameHandler->getRandomGenerator().nextInt(0, 99) : 0;
+			bte.val = static_cast<int32_t>(::era_bridge::regeneration(stack->getFirstHPleft(), stack->getMaxHealth(),
+				std::max(eraRegeneration->hitPoints, stack->valOfBonuses(BonusType::HP_REGENERATION)), eraRegeneration->chancePercent, roll));
+		}
+		else if(!eraRegeneration && stack->hasBonusOfType(BonusType::HP_REGENERATION))
 			bte.val = std::min(lostHealth, stack->valOfBonuses(BonusType::HP_REGENERATION));
 
 		if(bte.val) // anything to heal

@@ -328,3 +328,7 @@ La vue mobile montre immédiatement la troupe active avec un anneau doré au sol
 « Retraite » et « Autocombat » se trouvent dans les commandes d’équipe en haut, sur deux rangées en portrait et une rangée en paysage. Les actions du bas concernent la créature. L’autocombat est celui du moteur ; le bouton permet de reprendre la main pendant le mode animé, même lorsque l’IA contrôle les actions des troupes. Les demandes répétées d’activation sont idempotentes et les commandes manuelles sont désactivées pendant ce mode. Le réglage natif de résolution rapide est conservé. La retraite respecte les permissions du combat et conserve sa confirmation.
 
 Vérifications : compilation `ninja -j32 html5`, 88 tests unitaires, combats natifs avec et sans placement, changement de troupe, premier tour, rotations et écrans de 390×844, 844×390 et 320×568. Le scénario vérifie l’affichage des cases et de l’anneau sans aucune interaction préalable avec le champ de bataille, la présence et la taille tactile des deux commandes en haut, l’annulation de la retraite, l’activation/arrêt de l’IA, puis une bataille menée jusqu’au résultat final en autocombat.
+
+## Bridge ERA natif
+
+Le développement du bridge est décrit dans `ERA-BRIDGE.md`. Il réutilise les données TUM et les services natifs VCMI ; la compatibilité complète avec ERA 3.5 reste explicitement incomplète et les opérations sans adaptateur vérifié sont rejetées. L’audit détaillé est dans `outputs/era-bridge-audit.json`.
