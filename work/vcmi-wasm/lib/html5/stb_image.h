@@ -4953,10 +4953,10 @@ static int stbi__compute_transparency16(stbi__png *z, stbi__uint16 tc[3], int ou
    return 1;
 }
 
-extern stbi_uc* vcmi_png_palette_indexes;
-extern stbi_uc* vcmi_png_palette;
-extern int vcmi_png_palette_len;
-extern int vcmi_png_palette_n;
+extern thread_local stbi_uc* vcmi_png_palette_indexes;
+extern thread_local stbi_uc* vcmi_png_palette;
+extern thread_local int vcmi_png_palette_len;
+extern thread_local int vcmi_png_palette_n;
 static int stbi__expand_png_palette(stbi__png *a, stbi_uc *palette, int len, int pal_img_n)
 {
    stbi__uint32 i, pixel_count = a->s->img_x * a->s->img_y;
@@ -4966,6 +4966,13 @@ static int stbi__expand_png_palette(stbi__png *a, stbi_uc *palette, int len, int
    vcmi_png_palette = (stbi_uc*) malloc(len * 4);
    vcmi_png_palette_len = len;
    vcmi_png_palette_n = pal_img_n;
+   if (!vcmi_png_palette_indexes || !vcmi_png_palette) {
+      free(vcmi_png_palette_indexes);
+      free(vcmi_png_palette);
+      vcmi_png_palette_indexes = NULL;
+      vcmi_png_palette = NULL;
+      return stbi__err("outofmem", "Out of memory");
+   }
    memcpy(vcmi_png_palette_indexes, orig, pixel_count);
    memcpy(vcmi_png_palette, palette, len * 4);
 

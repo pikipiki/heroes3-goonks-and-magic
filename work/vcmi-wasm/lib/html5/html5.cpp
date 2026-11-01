@@ -44,10 +44,11 @@ void html5::fsUpdate(const char *path) {
 #endif
 }
 
-stbi_uc *vcmi_png_palette_indexes;
-stbi_uc *vcmi_png_palette;
-int vcmi_png_palette_len;
-int vcmi_png_palette_n;
+// PNG decoding can run on several image-loading workers at once.
+thread_local stbi_uc *vcmi_png_palette_indexes;
+thread_local stbi_uc *vcmi_png_palette;
+thread_local int vcmi_png_palette_len;
+thread_local int vcmi_png_palette_n;
 
 std::unordered_map<std::string, SDL_Surface *> generatedSurfaces;
 
@@ -55,32 +56,41 @@ SDL_Surface *html5::loadPng(unsigned char *bytes, int length, const std::string&
     if (generatedSurfaces.contains(filename)) {
         return copySurface(generatedSurfaces[filename]);
     }
-    int width, height, n;
+    int width = 0, height = 0, n = 0;
+    struct PaletteCleanup {
+        ~PaletteCleanup() {
+            free(vcmi_png_palette_indexes);
+            free(vcmi_png_palette);
+            vcmi_png_palette_indexes = nullptr;
+            vcmi_png_palette = nullptr;
+        }
+    } cleanup;
     vcmi_png_palette_indexes = nullptr;
     vcmi_png_palette = nullptr;
     vcmi_png_palette_len = 0;
     vcmi_png_palette_n = 0;
     unsigned char *data = stbi_load_from_memory((stbi_uc const *) bytes, length,
                                                 &width, &height, &n, 0);
+    if (!data) return nullptr;
     if (vcmi_png_palette_indexes) {
         stbi_image_free(data);
 
         SDL_Surface *surface = SDL_CreateRGBSurfaceWithFormat(0, width, height, 8, SDL_PIXELFORMAT_INDEX8);
+        if (!surface) return nullptr;
         for (int y = 0; y < height; y++) {
             memcpy((unsigned char *) surface->pixels + y * surface->pitch, vcmi_png_palette_indexes + width * y, width);
         }
 
-        SDL_Color colors[vcmi_png_palette_len];
+        SDL_Color colors[256];
         for (int i = 0; i < vcmi_png_palette_len; i++) {
             int base = i * 4;
             colors[i].r = vcmi_png_palette[base];
             colors[i].g = vcmi_png_palette[base + 1];
             colors[i].b = vcmi_png_palette[base + 2];
+            colors[i].a = SDL_ALPHA_OPAQUE;
         }
         SDL_SetPaletteColors(surface->format->palette, colors, 0, vcmi_png_palette_len);
 
-        free(vcmi_png_palette_indexes);
-        free(vcmi_png_palette);
         return surface;
     } else {
         if (n == 1) {
@@ -98,11 +108,13 @@ SDL_Surface *html5::loadPng(unsigned char *bytes, int length, const std::string&
                                          &height, &n, 4);
             n = 4;
         }
+        if (!data) return nullptr;
         SDL_Surface *surface = nullptr;
         if (n > 2) {
             surface = SDL_CreateRGBSurface(0,
                                            width, height, n * 8,
                                            0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000);
+            if (!surface) { stbi_image_free(data); return nullptr; }
             for (int y = 0; y < height; y++) {
                 memcpy((unsigned char *) surface->pixels + y * surface->pitch, data + width * y * n, width * n);
             }

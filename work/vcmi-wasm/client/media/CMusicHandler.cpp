@@ -382,7 +382,14 @@ bool MusicEntry::stop(int fade_ms)
 		owner->trackPositions[currentName] = playDuration;
 		logGlobal->trace("Stopping music file %s at %f", currentName.getOriginalName(), playDuration);
 
+#ifdef VCMI_EMSCRIPTEN
+		// Web Audio advances fades on the browser event loop. Mix_FreeMusic
+		// waits for an outgoing fade, so freeing a replaced track on that
+		// same loop can block forever (also when the audio context is paused).
+		Mix_HaltMusic();
+#else
 		Mix_FadeOutMusic(fade_ms);
+#endif
 		return true;
 	}
 	return false;
