@@ -5,16 +5,12 @@
       "frames": [
         "goonk/pink-v3-walk-0.png",
         "goonk/pink-v3-walk-1.png",
-        "goonk/pink-v3-walk-2.png",
         "goonk/pink-v3-walk-3.png",
         "goonk/pink-v3-walk-4.png",
-        "goonk/pink-v3-walk-5.png",
         "goonk/pink-v3-walk-6.png",
         "goonk/pink-v3-walk-7.png",
-        "goonk/pink-v3-walk-8.png",
         "goonk/pink-v3-walk-9.png",
-        "goonk/pink-v3-walk-10.png",
-        "goonk/pink-v3-walk-11.png"
+        "goonk/pink-v3-walk-10.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -22,18 +18,21 @@
     {
       "group": 1,
       "frames": [
-        "goonk/pink-v3-walk-0.png",
-        "goonk/pink-v3-walk-1.png",
-        "goonk/pink-v3-walk-2.png",
-        "goonk/pink-v3-walk-3.png",
-        "goonk/pink-v3-walk-4.png",
-        "goonk/pink-v3-walk-5.png",
-        "goonk/pink-v3-walk-5.png",
-        "goonk/pink-v3-walk-4.png",
-        "goonk/pink-v3-walk-3.png",
-        "goonk/pink-v3-walk-2.png",
-        "goonk/pink-v3-walk-1.png",
-        "goonk/pink-v3-walk-0.png"
+        "goonk/pink-v3-idle-0.png",
+        "goonk/pink-v3-idle-2.png",
+        "goonk/pink-v3-idle-4.png",
+        "goonk/pink-v3-idle-6.png",
+        "goonk/pink-v3-idle-8.png",
+        "goonk/pink-v3-idle-10.png",
+        "goonk/pink-v3-idle-12.png",
+        "goonk/pink-v3-idle-14.png",
+        "goonk/pink-v3-idle-17.png",
+        "goonk/pink-v3-idle-19.png",
+        "goonk/pink-v3-idle-21.png",
+        "goonk/pink-v3-idle-23.png",
+        "goonk/pink-v3-idle-25.png",
+        "goonk/pink-v3-idle-27.png",
+        "goonk/pink-v3-idle-29.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -42,37 +41,13 @@
       "group": 2,
       "frames": [
         "goonk/pink-v3-idle-0.png",
-        "goonk/pink-v3-idle-1.png",
-        "goonk/pink-v3-idle-2.png",
-        "goonk/pink-v3-idle-3.png",
         "goonk/pink-v3-idle-4.png",
-        "goonk/pink-v3-idle-5.png",
-        "goonk/pink-v3-idle-6.png",
-        "goonk/pink-v3-idle-7.png",
         "goonk/pink-v3-idle-8.png",
-        "goonk/pink-v3-idle-9.png",
-        "goonk/pink-v3-idle-10.png",
-        "goonk/pink-v3-idle-11.png",
         "goonk/pink-v3-idle-12.png",
-        "goonk/pink-v3-idle-13.png",
-        "goonk/pink-v3-idle-14.png",
-        "goonk/pink-v3-idle-15.png",
         "goonk/pink-v3-idle-16.png",
-        "goonk/pink-v3-idle-17.png",
-        "goonk/pink-v3-idle-18.png",
-        "goonk/pink-v3-idle-19.png",
         "goonk/pink-v3-idle-20.png",
-        "goonk/pink-v3-idle-21.png",
-        "goonk/pink-v3-idle-22.png",
-        "goonk/pink-v3-idle-23.png",
         "goonk/pink-v3-idle-24.png",
-        "goonk/pink-v3-idle-25.png",
-        "goonk/pink-v3-idle-26.png",
-        "goonk/pink-v3-idle-27.png",
-        "goonk/pink-v3-idle-28.png",
-        "goonk/pink-v3-idle-29.png",
-        "goonk/pink-v3-idle-30.png",
-        "goonk/pink-v3-idle-31.png"
+        "goonk/pink-v3-idle-28.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -122,7 +97,8 @@
     {
       "group": 7,
       "frames": [
-        "goonk/pink-0.png"
+        "goonk/pink-v3-idle-0.png",
+        "goonk/pink-v3-idle-16.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -130,7 +106,8 @@
     {
       "group": 8,
       "frames": [
-        "goonk/pink-0.png"
+        "goonk/pink-v3-idle-0.png",
+        "goonk/pink-v3-idle-16.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -139,16 +116,12 @@
       "group": 11,
       "frames": [
         "goonk/pink-v3-attack-0.png",
-        "goonk/pink-v3-attack-1.png",
         "goonk/pink-v3-attack-2.png",
         "goonk/pink-v3-attack-3.png",
-        "goonk/pink-v3-attack-4.png",
         "goonk/pink-v3-attack-5.png",
         "goonk/pink-v3-attack-6.png",
-        "goonk/pink-v3-attack-7.png",
         "goonk/pink-v3-attack-8.png",
         "goonk/pink-v3-attack-9.png",
-        "goonk/pink-v3-attack-10.png",
         "goonk/pink-v3-attack-11.png"
       ],
       "generateShadow": 1,
@@ -158,16 +131,12 @@
       "group": 12,
       "frames": [
         "goonk/pink-v3-attack-0.png",
-        "goonk/pink-v3-attack-1.png",
         "goonk/pink-v3-attack-2.png",
         "goonk/pink-v3-attack-3.png",
-        "goonk/pink-v3-attack-4.png",
         "goonk/pink-v3-attack-5.png",
         "goonk/pink-v3-attack-6.png",
-        "goonk/pink-v3-attack-7.png",
         "goonk/pink-v3-attack-8.png",
         "goonk/pink-v3-attack-9.png",
-        "goonk/pink-v3-attack-10.png",
         "goonk/pink-v3-attack-11.png"
       ],
       "generateShadow": 1,
@@ -177,73 +146,12 @@
       "group": 13,
       "frames": [
         "goonk/pink-v3-attack-0.png",
-        "goonk/pink-v3-attack-1.png",
         "goonk/pink-v3-attack-2.png",
         "goonk/pink-v3-attack-3.png",
-        "goonk/pink-v3-attack-4.png",
         "goonk/pink-v3-attack-5.png",
         "goonk/pink-v3-attack-6.png",
-        "goonk/pink-v3-attack-7.png",
         "goonk/pink-v3-attack-8.png",
         "goonk/pink-v3-attack-9.png",
-        "goonk/pink-v3-attack-10.png",
-        "goonk/pink-v3-attack-11.png"
-      ],
-      "generateShadow": 1,
-      "generateOverlay": 1
-    },
-    {
-      "group": 14,
-      "frames": [
-        "goonk/pink-v3-attack-0.png",
-        "goonk/pink-v3-attack-1.png",
-        "goonk/pink-v3-attack-2.png",
-        "goonk/pink-v3-attack-3.png",
-        "goonk/pink-v3-attack-4.png",
-        "goonk/pink-v3-attack-5.png",
-        "goonk/pink-v3-attack-6.png",
-        "goonk/pink-v3-attack-7.png",
-        "goonk/pink-v3-attack-8.png",
-        "goonk/pink-v3-attack-9.png",
-        "goonk/pink-v3-attack-10.png",
-        "goonk/pink-v3-attack-11.png"
-      ],
-      "generateShadow": 1,
-      "generateOverlay": 1
-    },
-    {
-      "group": 15,
-      "frames": [
-        "goonk/pink-v3-attack-0.png",
-        "goonk/pink-v3-attack-1.png",
-        "goonk/pink-v3-attack-2.png",
-        "goonk/pink-v3-attack-3.png",
-        "goonk/pink-v3-attack-4.png",
-        "goonk/pink-v3-attack-5.png",
-        "goonk/pink-v3-attack-6.png",
-        "goonk/pink-v3-attack-7.png",
-        "goonk/pink-v3-attack-8.png",
-        "goonk/pink-v3-attack-9.png",
-        "goonk/pink-v3-attack-10.png",
-        "goonk/pink-v3-attack-11.png"
-      ],
-      "generateShadow": 1,
-      "generateOverlay": 1
-    },
-    {
-      "group": 16,
-      "frames": [
-        "goonk/pink-v3-attack-0.png",
-        "goonk/pink-v3-attack-1.png",
-        "goonk/pink-v3-attack-2.png",
-        "goonk/pink-v3-attack-3.png",
-        "goonk/pink-v3-attack-4.png",
-        "goonk/pink-v3-attack-5.png",
-        "goonk/pink-v3-attack-6.png",
-        "goonk/pink-v3-attack-7.png",
-        "goonk/pink-v3-attack-8.png",
-        "goonk/pink-v3-attack-9.png",
-        "goonk/pink-v3-attack-10.png",
         "goonk/pink-v3-attack-11.png"
       ],
       "generateShadow": 1,
@@ -253,16 +161,12 @@
       "group": 17,
       "frames": [
         "goonk/pink-v3-attack-0.png",
-        "goonk/pink-v3-attack-1.png",
         "goonk/pink-v3-attack-2.png",
         "goonk/pink-v3-attack-3.png",
-        "goonk/pink-v3-attack-4.png",
         "goonk/pink-v3-attack-5.png",
         "goonk/pink-v3-attack-6.png",
-        "goonk/pink-v3-attack-7.png",
         "goonk/pink-v3-attack-8.png",
         "goonk/pink-v3-attack-9.png",
-        "goonk/pink-v3-attack-10.png",
         "goonk/pink-v3-attack-11.png"
       ],
       "generateShadow": 1,
@@ -272,16 +176,12 @@
       "group": 18,
       "frames": [
         "goonk/pink-v3-attack-0.png",
-        "goonk/pink-v3-attack-1.png",
         "goonk/pink-v3-attack-2.png",
         "goonk/pink-v3-attack-3.png",
-        "goonk/pink-v3-attack-4.png",
         "goonk/pink-v3-attack-5.png",
         "goonk/pink-v3-attack-6.png",
-        "goonk/pink-v3-attack-7.png",
         "goonk/pink-v3-attack-8.png",
         "goonk/pink-v3-attack-9.png",
-        "goonk/pink-v3-attack-10.png",
         "goonk/pink-v3-attack-11.png"
       ],
       "generateShadow": 1,
@@ -291,16 +191,12 @@
       "group": 19,
       "frames": [
         "goonk/pink-v3-attack-0.png",
-        "goonk/pink-v3-attack-1.png",
         "goonk/pink-v3-attack-2.png",
         "goonk/pink-v3-attack-3.png",
-        "goonk/pink-v3-attack-4.png",
         "goonk/pink-v3-attack-5.png",
         "goonk/pink-v3-attack-6.png",
-        "goonk/pink-v3-attack-7.png",
         "goonk/pink-v3-attack-8.png",
         "goonk/pink-v3-attack-9.png",
-        "goonk/pink-v3-attack-10.png",
         "goonk/pink-v3-attack-11.png"
       ],
       "generateShadow": 1,
@@ -309,9 +205,8 @@
     {
       "group": 20,
       "frames": [
-        "goonk/pink-v3-walk-0.png",
-        "goonk/pink-v3-walk-1.png",
-        "goonk/pink-v3-walk-2.png"
+        "goonk/pink-v3-idle-0.png",
+        "goonk/pink-v3-walk-0.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -319,9 +214,8 @@
     {
       "group": 21,
       "frames": [
-        "goonk/pink-v3-walk-2.png",
-        "goonk/pink-v3-walk-1.png",
-        "goonk/pink-v3-walk-0.png"
+        "goonk/pink-v3-walk-11.png",
+        "goonk/pink-v3-idle-0.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1

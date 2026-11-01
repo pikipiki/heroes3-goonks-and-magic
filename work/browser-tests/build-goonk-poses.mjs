@@ -1,3 +1,4 @@
+import {applyMotionProfile,rebuildMotionProfiles} from './goonk-animation-profiles.mjs';
 import fs from 'node:fs';import path from 'node:path';import {fileURLToPath} from 'node:url';import sharp from 'sharp';
 import {cleanLegacyCreatureFrames} from './clean-goonk-legacy-frames.mjs';
 import {isolatedBuilding} from './goonk-building-art.mjs';import {buildCreatureIcons} from './build-creature-icons.mjs';
@@ -33,14 +34,12 @@ export async function buildGoonkPoses({imageDir,artDir}){
    // Canonical cutout inputs for rebuilding native iconSmall/iconLarge.
    await fs.promises.copyFile(path.join(imageDir,path.basename(frames.walk[0])),path.join(imageDir,royal?stem+'-idle.png':key+'-0.png'));
    for(const s of config.sequences){if(s.group===0)s.frames=frames.walk;if(s.group===2)s.frames=idle;if(s.group===1)s.frames=[...frames.walk.slice(0,6),...frames.walk.slice(0,6).reverse()];if(s.group>=11&&s.group<=19)s.frames=frames.attack;if(s.group===20)s.frames=frames.walk.slice(0,3);if(s.group===21)s.frames=frames.walk.slice(0,3).reverse();}
-   fs.writeFileSync(configPath,JSON.stringify(config,null,2)+'\n');
+   fs.writeFileSync(configPath,JSON.stringify(applyMotionProfile(config,stem,key,royal),null,2)+'\n');
   }
  }
  await cleanLegacyCreatureFrames(imageDir);
  await buildCreatureIcons(imageDir,keys);
- const creaturesPath=path.resolve(imageDir,'../../config/creatures.json'),creatures=JSON.parse(fs.readFileSync(creaturesPath));
- for(const creature of Object.values(creatures))creature.graphics.animationTime.idle=30;
- fs.writeFileSync(creaturesPath,JSON.stringify(creatures,null,2)+'\n');
+ if(fs.existsSync(path.resolve(imageDir,'../../config/creatures.json')))rebuildMotionProfiles(imageDir);
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  const root=path.resolve('../..');await buildGoonkPoses({imageDir:path.join(root,'mod/goonk/Content/Sprites/goonk'),artDir:path.join(root,'outputs/goonk-art')});console.log('Goonk pose animations rebuilt');

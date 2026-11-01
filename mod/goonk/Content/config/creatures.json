@@ -32,11 +32,11 @@
       "map": "goonk/pink-map",
       "iconSmall": "goonk/pink-small.png",
       "iconLarge": "goonk/pink-large.png",
-      "timeBetweenFidgets": 3.3333333333333335,
+      "timeBetweenFidgets": 1,
       "animationTime": {
-        "walk": 0.8,
-        "attack": 0.9,
-        "idle": 30
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
       }
     },
     "sound": {
@@ -89,11 +89,11 @@
       "map": "goonk/pink-map",
       "iconSmall": "goonk/pink-evo-small.png",
       "iconLarge": "goonk/pink-evo-large.png",
-      "timeBetweenFidgets": 3.3333333333333335,
+      "timeBetweenFidgets": 1,
       "animationTime": {
-        "walk": 0.8,
-        "attack": 0.9,
-        "idle": 30
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
       }
     },
     "sound": {
@@ -142,11 +142,11 @@
       "map": "goonk/lancer-map",
       "iconSmall": "goonk/lancer-small.png",
       "iconLarge": "goonk/lancer-large.png",
-      "timeBetweenFidgets": 3.6666666666666665,
+      "timeBetweenFidgets": 1,
       "animationTime": {
-        "walk": 0.8,
-        "attack": 0.9,
-        "idle": 30
+        "walk": 1.15,
+        "attack": 1,
+        "idle": 10
       }
     },
     "sound": {
@@ -201,11 +201,11 @@
       "map": "goonk/lancer-map",
       "iconSmall": "goonk/lancer-evo-small.png",
       "iconLarge": "goonk/lancer-evo-large.png",
-      "timeBetweenFidgets": 3.6666666666666665,
+      "timeBetweenFidgets": 1,
       "animationTime": {
-        "walk": 0.8,
-        "attack": 0.9,
-        "idle": 30
+        "walk": 0.9,
+        "attack": 1,
+        "idle": 10
       }
     },
     "sound": {
@@ -263,11 +263,11 @@
       "map": "goonk/archer-map",
       "iconSmall": "goonk/archer-small.png",
       "iconLarge": "goonk/archer-large.png",
-      "timeBetweenFidgets": 4,
+      "timeBetweenFidgets": 1,
       "animationTime": {
-        "walk": 0.8,
-        "attack": 0.9,
-        "idle": 30
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
       },
       "missile": {
         "frameAngles": [
@@ -285,7 +285,7 @@
           "lowerX": 20,
           "lowerY": -25
         },
-        "attackClimaxFrame": 6,
+        "attackClimaxFrame": 7,
         "projectile": "goonk/lightning-arrow"
       }
     },
@@ -357,11 +357,11 @@
       "map": "goonk/archer-map",
       "iconSmall": "goonk/archer-evo-small.png",
       "iconLarge": "goonk/archer-evo-large.png",
-      "timeBetweenFidgets": 4,
+      "timeBetweenFidgets": 1,
       "animationTime": {
-        "walk": 0.8,
-        "attack": 0.9,
-        "idle": 30
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
       },
       "missile": {
         "frameAngles": [
@@ -379,7 +379,7 @@
           "lowerX": 20,
           "lowerY": -25
         },
-        "attackClimaxFrame": 6,
+        "attackClimaxFrame": 7,
         "projectile": "goonk/lightning-arrow"
       }
     },
@@ -439,11 +439,11 @@
       "map": "goonk/fart-map",
       "iconSmall": "goonk/fart-small.png",
       "iconLarge": "goonk/fart-large.png",
-      "timeBetweenFidgets": 4.333333333333333,
+      "timeBetweenFidgets": 1,
       "animationTime": {
-        "walk": 0.8,
-        "attack": 0.9,
-        "idle": 30
+        "walk": 1.28,
+        "attack": 1,
+        "idle": 10
       },
       "missile": {
         "frameAngles": [
@@ -461,7 +461,7 @@
           "lowerX": 20,
           "lowerY": -25
         },
-        "attackClimaxFrame": 6,
+        "attackClimaxFrame": 4,
         "ray": [
           {
             "start": [
@@ -548,11 +548,11 @@
       "map": "goonk/fart-map",
       "iconSmall": "goonk/fart-evo-small.png",
       "iconLarge": "goonk/fart-evo-large.png",
-      "timeBetweenFidgets": 4.333333333333333,
+      "timeBetweenFidgets": 1,
       "animationTime": {
-        "walk": 0.8,
-        "attack": 0.9,
-        "idle": 30
+        "walk": 1.28,
+        "attack": 1,
+        "idle": 10
       },
       "missile": {
         "frameAngles": [
@@ -570,7 +570,7 @@
           "lowerX": 20,
           "lowerY": -25
         },
-        "attackClimaxFrame": 6,
+        "attackClimaxFrame": 4,
         "ray": [
           {
             "start": [
@@ -645,11 +645,11 @@
       "map": "goonk/vomit-map",
       "iconSmall": "goonk/vomit-small.png",
       "iconLarge": "goonk/vomit-large.png",
-      "timeBetweenFidgets": 4.666666666666667,
+      "timeBetweenFidgets": 1,
       "animationTime": {
-        "walk": 0.8,
-        "attack": 0.9,
-        "idle": 30
+        "walk": 1.28,
+        "attack": 1,
+        "idle": 10
       },
       "missile": {
         "frameAngles": [
@@ -667,7 +667,7 @@
           "lowerX": 20,
           "lowerY": -25
         },
-        "attackClimaxFrame": 6,
+        "attackClimaxFrame": 5,
         "ray": [
           {
             "start": [
@@ -754,11 +754,11 @@
       "map": "goonk/vomit-map",
       "iconSmall": "goonk/vomit-evo-small.png",
       "iconLarge": "goonk/vomit-evo-large.png",
-      "timeBetweenFidgets": 4.666666666666667,
+      "timeBetweenFidgets": 1,
       "animationTime": {
-        "walk": 0.8,
-        "attack": 0.9,
-        "idle": 30
+        "walk": 1.28,
+        "attack": 1,
+        "idle": 10
       },
       "missile": {
         "frameAngles": [
@@ -776,7 +776,7 @@
           "lowerX": 20,
           "lowerY": -25
         },
-        "attackClimaxFrame": 6,
+        "attackClimaxFrame": 5,
         "ray": [
           {
             "start": [
@@ -842,11 +842,11 @@
       "map": "goonk/blue-map",
       "iconSmall": "goonk/blue-small.png",
       "iconLarge": "goonk/blue-large.png",
-      "timeBetweenFidgets": 5,
+      "timeBetweenFidgets": 1,
       "animationTime": {
-        "walk": 0.8,
-        "attack": 0.9,
-        "idle": 30
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
       },
       "missile": {
         "frameAngles": [
@@ -864,7 +864,7 @@
           "lowerX": 20,
           "lowerY": -25
         },
-        "attackClimaxFrame": 6,
+        "attackClimaxFrame": 7,
         "projectile": "PCYCLBX.DEF"
       }
     },
@@ -922,11 +922,11 @@
       "map": "goonk/blue-map",
       "iconSmall": "goonk/blue-evo-small.png",
       "iconLarge": "goonk/blue-evo-large.png",
-      "timeBetweenFidgets": 5,
+      "timeBetweenFidgets": 1,
       "animationTime": {
-        "walk": 0.8,
-        "attack": 0.9,
-        "idle": 30
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
       },
       "missile": {
         "frameAngles": [
@@ -944,7 +944,7 @@
           "lowerX": 20,
           "lowerY": -25
         },
-        "attackClimaxFrame": 6,
+        "attackClimaxFrame": 7,
         "projectile": "PCYCLBX.DEF"
       }
     },
@@ -1012,11 +1012,11 @@
       "map": "goonk/fire-map",
       "iconSmall": "goonk/fire-small.png",
       "iconLarge": "goonk/fire-large.png",
-      "timeBetweenFidgets": 5.333333333333334,
+      "timeBetweenFidgets": 1,
       "animationTime": {
-        "walk": 0.8,
-        "attack": 0.9,
-        "idle": 30
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
       },
       "missile": {
         "frameAngles": [
@@ -1034,7 +1034,7 @@
           "lowerX": 20,
           "lowerY": -25
         },
-        "attackClimaxFrame": 6,
+        "attackClimaxFrame": 9,
         "ray": [
           {
             "start": [
@@ -1120,11 +1120,11 @@
       "map": "goonk/fire-map",
       "iconSmall": "goonk/fire-evo-small.png",
       "iconLarge": "goonk/fire-evo-large.png",
-      "timeBetweenFidgets": 5.333333333333334,
+      "timeBetweenFidgets": 1,
       "animationTime": {
-        "walk": 0.8,
-        "attack": 0.9,
-        "idle": 30
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
       },
       "missile": {
         "frameAngles": [
@@ -1142,7 +1142,7 @@
           "lowerX": 20,
           "lowerY": -25
         },
-        "attackClimaxFrame": 6,
+        "attackClimaxFrame": 9,
         "ray": [
           {
             "start": [

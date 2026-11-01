@@ -1,3 +1,4 @@
+import {applyCreatureTiming,rebuildMotionProfiles} from './goonk-animation-profiles.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
@@ -74,13 +75,14 @@ for(const u of units){
    abilities.fireMagic={type:'SPELLCASTER',subtype:'spell.'+(upgraded?'inferno':'fireball'),val:upgraded?3:2};
    abilities.casts={type:'CASTS',val:upgraded?4:3};abilities.power={type:'CREATURE_SPELL_POWER',val:100};abilities.fireproof={type:'SPELL_IMMUNITY',subtype:'spell.fireball'};
   }
-  const graphics={animation:'goonk/'+u.key+(upgraded?'-evo':''),map:'goonk/'+u.key+'-map',iconSmall:'goonk/'+u.key+(upgraded?'-evo':'')+'-small.png',iconLarge:'goonk/'+u.key+(upgraded?'-evo':'')+'-large.png',timeBetweenFidgets:3+u.level/3,animationTime:{walk:0.8,attack:0.9,idle:30}};
+  const graphics={animation:'goonk/'+u.key+(upgraded?'-evo':''),map:'goonk/'+u.key+'-map',iconSmall:'goonk/'+u.key+(upgraded?'-evo':'')+'-small.png',iconLarge:'goonk/'+u.key+(upgraded?'-evo':'')+'-large.png'};
   if(ranged){
    graphics.missile={frameAngles:[90,45,0,-45,-90],offset:{upperX:20,upperY:-45,middleX:25,middleY:-35,lowerX:20,lowerY:-25},attackClimaxFrame:6};
    if(u.kind==='rock')graphics.missile.projectile='PCYCLBX.DEF';
    else if(u.kind==='lightning')graphics.missile.projectile='goonk/lightning-arrow';
    else graphics.missile.ray=[{start:u.kind==='fire'?[255,135,30,255]:[150,245,60,220],end:u.kind==='fire'?[255,30,20,190]:[60,170,35,160]}];
   }
+  applyCreatureTiming({graphics},u.key,upgraded);
   const id=u.id+(upgraded?'Royal':'');
   creatures[id]={name:{singular:upgraded?u.evo:u.name,plural:upgraded?u.evo:u.name},description:u.desc,faction:'goonk',level:u.level,attack:u.attack+(upgraded?3:0),defense:u.defense+(upgraded?3:0),hitPoints:Math.round(u.hp*(upgraded?1.3:1)),speed:u.speed+(upgraded?1:0),damage:{min:Math.round(u.min*(upgraded?1.25:1)),max:Math.round(u.max*(upgraded?1.25:1))},growth:u.growth,horde:2,cost:{gold:Math.round(u.gold*(upgraded?1.4:1))},fightValue:Math.round(u.hp*u.attack*1.4*(upgraded?1.4:1)),aiValue:Math.round(u.hp*u.attack*1.4*(upgraded?1.4:1)),advMapAmount:{min:3,max:8},abilities,graphics,sound:{attack:'goonk/'+({nose:'nose',lance:'spear',lightning:'lightning',gas:'fart',slime:'vomit',rock:'boulder',fire:'fire'}[u.kind])+'.wav',defend:'PIKEDFND.wav',killed:'PIKEKILL.wav',move:'PIKEMOVE.wav',wince:'PIKEWNCE.wav',shoot:'goonk/'+({nose:'nose',lance:'spear',lightning:'lightning',gas:'fart',slime:'vomit',rock:'boulder',fire:'fire'}[u.kind])+'.wav'},...(ranged?{shots:u.kind==='gas'?12:16}:{}),...(!upgraded?{upgrades:[u.id+'Royal']}:{})};
  }
@@ -90,6 +92,7 @@ const bolt=Buffer.from('<svg width="52" height="20"><polygon points="0,11 20,4 1
 await png('lightning-arrow.png',sharp(bolt));write('Content/Sprites/goonk/lightning-arrow.json',{sequences:[{group:0,frames:Array(5).fill('goonk/lightning-arrow.png')}]});
 await buildMotion({units,assets,imageDir,png,write});
 write('Content/config/creatures.json',creatures);
+rebuildMotionProfiles(imageDir);
 const faction=JSON5.parse(fs.readFileSync(path.join(repo,'config/factions/castle.json'),'utf8')).castle;
 delete faction.index;faction.name='Château Goonk';faction.description='Le royaume des peluches : nez, cailloux, feu et catastrophes magiques.';
 const town=faction.town;town.names=['Goonkbourg','Fort Paingpaing','Roc-Bobope','Bubuville','Maille-la-Braise','La Cité des Sept Nez'];town.townBackground='goonk/town.png';town.creatures=units.map(u=>[u.id,u.id+'Royal']);town.siege.shooter='bobope';town.siege.towerIconSmall='goonk/blue-small.png';town.siege.towerIconLarge='goonk/blue-large.png';town.tavern={'core:knight':15,'core:cleric':15};town.tavernVideo='';
