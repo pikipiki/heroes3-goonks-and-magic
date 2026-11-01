@@ -1,0 +1,4 @@
+#mobile-app .mobile-calendar{grid-column:1/-1;grid-row:3;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2px 10px;width:100%;min-width:0;padding:3px 0 2px;border-top:1px solid #b5975060;color:#ffe6a1;font:12px/16px Georgia,"Times New Roman",serif;font-variant-numeric:tabular-nums}
+#mobile-app .mobile-calendar span{white-space:nowrap}
+#mobile-app .calendar-next-week{color:#e1cba2}
+@media(orientation:landscape) and (max-height:600px){.goonk-mobile #mobile-app[data-has-calendar=true]{grid-template-rows:auto minmax(0,1fr)}#mobile-app[data-has-calendar=true][data-has-resources=true] .mobile-top{flex-wrap:wrap;row-gap:0}#mobile-app .mobile-calendar{flex:0 0 100%;box-sizing:border-box}}

@@ -1,0 +1,3 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {gameDate} from '../web/game-calendar.mjs';
+test('The calendar follows native seven-day weeks and four-week months at every boundary',()=>{for(const [day,weekday,week,month,remaining] of [[1,1,1,1,7],[6,6,1,1,2],[7,7,1,1,1],[8,1,2,1,7],[14,7,2,1,1],[28,7,4,1,1],[29,1,1,2,7],[56,7,4,2,1]])assert.deepEqual(gameDate(day),{weekday,week,month,untilNextWeek:remaining});});
+test('No game date is invented for menus or incomplete snapshots',()=>{for(const day of [undefined,null,0,-1,1.5,NaN])assert.equal(gameDate(day),null);});

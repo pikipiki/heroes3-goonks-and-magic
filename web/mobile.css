@@ -1,3 +1,4 @@
+@import url('./game-calendar.css');
 @import url('./town-recruitment.css');
 :root{--ink:#f8efff;--muted:#c1b2cc;--panel:#21192c;--line:#584365;--pink:#ef92cb;--gold:#f9d897;--safe-bottom:env(safe-area-inset-bottom,0px)}
 #mobile-app{display:none}.goonk-mobile{overscroll-behavior:none}.goonk-mobile #canvas{position:fixed!important;left:0!important;top:0!important;z-index:0!important;width:800px!important;height:600px!important;pointer-events:none}.goonk-mobile #mobile-app{position:fixed;inset:0;display:grid;grid-template-rows:auto 1fr auto;background:#120e1c;color:var(--ink);font:15px/1.4 system-ui,sans-serif;padding-top:env(safe-area-inset-top);box-sizing:border-box;z-index:10}.goonk-mobile #spinner{z-index:30;background:#120e1c}.goonk-mobile #save-toast{z-index:40}
