@@ -1,3 +1,4 @@
+@import url('./map-settings.css');
 #game-menu-toggle{position:fixed;top:12px;left:12px;z-index:70;min-width:48px;min-height:44px;padding:8px 12px;border:1px solid #a48aaa;border-radius:12px;background:#2b2036ef;color:#f9d897;font:700 16px system-ui;cursor:pointer;touch-action:manipulation}
 .goonk-mobile #game-menu-toggle{position:static!important;flex-shrink:0;min-width:40px!important;min-height:40px!important;padding:5px!important;font-size:21px!important;line-height:1}
 #game-menu{box-sizing:border-box;width:min(600px,calc(100% - 24px));max-height:calc(100dvh - 32px);padding:0;border:1px solid #71587d;border-radius:22px;background:#21192c;color:#f8efff;font:16px/1.45 system-ui;overscroll-behavior:contain}

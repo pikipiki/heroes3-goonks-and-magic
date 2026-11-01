@@ -188,15 +188,16 @@ void MapViewController::tick(uint32_t timeDelta)
 			settings["adventure"]["heroMoveTime"].Float() :
 			settings["adventure"]["enemyMoveTime"].Float();
 
-		movementContext->progress += timeDelta / heroMoveTime;
-		movementContext->progress = std::min( 1.0, movementContext->progress);
+		// Live settings can make an animation instant or hidden mid-step.
+		movementContext->progress = heroMoveTime <= 0 ? 1.0 : std::min(1.0, movementContext->progress + timeDelta / heroMoveTime);
 
 		Point positionFrom = Point(hero->convertToVisitablePos(movementContext->tileFrom)) * model->getSingleTileSize() + model->getSingleTileSize() / 2;
 		Point positionDest = Point(hero->convertToVisitablePos(movementContext->tileDest)) * model->getSingleTileSize() + model->getSingleTileSize() / 2;
 
 		Point positionCurr = vstd::lerp(positionFrom, positionDest, movementContext->progress);
 
-		setViewCenter(positionCurr, movementContext->tileDest.z);
+		if(heroMoveTime >= 0)
+			setViewCenter(positionCurr, movementContext->tileDest.z);
 	}
 
 	if(teleportContext)

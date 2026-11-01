@@ -1,3 +1,6 @@
+import {MAP_SPEEDS,createMapSettings} from './map-settings.mjs';
+import {protectMenuButtons} from './menu-press.mjs';
+import {bindPress} from './mobile-press.mjs';
 import {installAudioRecovery} from './audio-recovery.mjs';
 import {cheatCodes,unavailableReason} from './cheat-codes.mjs';
 import {ROOT} from './asset-cache.mjs';
@@ -14,6 +17,7 @@ function mountGameMenu(){
   document.body.append(dialog);
   const content=dialog.querySelector('.game-menu-body'),status=dialog.querySelector('.game-menu-status');
   const command=(action,value=0,preview=0)=>window.Module?._vcmiMobileCommand?.(action,value,preview,0,0,0);
+  const movement=createMapSettings({send:value=>command(46,value.moveTime,value.hideEnemyMoves?1:0)});
   const audio=installAudioRecovery({isMuted:()=>muted,onChange:info=>{audioPhase=info.phase;if(dialog.open&&tab==='settings')render();}});
   function render(){
     dialog.querySelector('[data-menu=settings]').setAttribute('aria-pressed',String(tab==='settings'));
@@ -24,9 +28,10 @@ function mountGameMenu(){
     }
     delete content.dataset.storage;
     if(tab==='settings'){
-      if(content.dataset.view!=='audio'){
-        content.dataset.view='audio';content.innerHTML='<h3>Musique et effets sonores</h3><p>Ce réglage est conservé sur cet appareil.</p><button class="sound-toggle primary" data-menu="sound" role="switch" aria-label="Son"></button><p class="audio-health" role="status"></p>';
+      if(content.dataset.view!=='settings'){
+        content.dataset.view='settings';content.innerHTML='<section class="map-movement-settings"><h3>Déplacements sur la carte</h3><label class="map-speed-label">Vitesse de marche des héros<select data-map-speed aria-label="Vitesse de marche des héros">'+MAP_SPEEDS.map(speed=>'<option value="'+speed.value+'">'+speed.label+'</option>').join('')+'</select></label><p>La vitesse choisie s’applique à tes héros et à tes adversaires.</p><label><input type="checkbox" data-hide-enemy> Masquer les déplacements ennemis</label><p>Les adversaires jouent normalement, sans animation de marche ni suivi de caméra.</p><p class="map-settings-health" role="status"></p></section>'+'<h3>Musique et effets sonores</h3><p>Ce réglage est conservé sur cet appareil.</p><button class="sound-toggle primary" data-menu="sound" role="switch" aria-label="Son"></button><p class="audio-health" role="status"></p>';
       }
+      const prefs=movement.current,speed=content.querySelector('[data-map-speed]'),hide=content.querySelector('[data-hide-enemy]');speed.disabled=hide.disabled=!prefs.ready;if(document.activeElement!==speed)speed.value=String(prefs.moveTime);hide.checked=prefs.hideEnemyMoves;content.querySelector('.map-settings-health').textContent=!prefs.ready?'Chargement des réglages…':prefs.pending?'Application des réglages…':'Réglages conservés sur cet appareil.';
       const button=content.querySelector('[data-menu=sound]');button.textContent=muted?'🔇 Son coupé':'🔊 Son activé';button.setAttribute('aria-checked',String(!muted));button.setAttribute('aria-busy',String(pendingAudio!==null));button.disabled=!initialAudioApplied||pendingAudio!==null;
       content.querySelector('.audio-health').textContent=muted?'Musique et effets coupés.':audioPhase==='paused'?'Audio en pause. Coupe puis réactive le son avec ce bouton.':audioPhase==='closed'?'Audio indisponible : recharge le jeu.':audioPhase==='loading'?'Initialisation audio…':state.soundVolume===0&&state.musicVolume===0?'Volume du jeu à zéro. Coupe puis réactive le son avec ce bouton.':'Audio du jeu prêt.';
     }else{
@@ -42,7 +47,7 @@ function mountGameMenu(){
   const enable=()=>{if(window.Module?._vcmiMobileEnable)window.Module._vcmiMobileEnable(window.goonkMobileActive?1:2);};
   const timer=setInterval(()=>{enable();if(initialAudioApplied)clearInterval(timer);},250);
   window.addEventListener('goonk-state',event=>{
-    state=event.detail;
+    state=event.detail;movement.observe(state.mapSettings);
     if(!initialAudioApplied){initialAudioApplied=true;if(muted){pendingAudio=true;command(28,1);}}
     else if(pendingAudio!==null){if(state.audioMuted===pendingAudio)pendingAudio=null;}
     else if(typeof state.audioMuted==='boolean')muted=state.audioMuted;
@@ -51,9 +56,10 @@ function mountGameMenu(){
     window.goonkGameMenuState={muted,ready:initialAudioApplied,native:state};
   });
   window.addEventListener('goonk-autosave-status',e=>{const s=e.detail;dialog.querySelector('.autosave-status').textContent=s.phase==='error'?'Sauvegarde automatique : '+s.error:s.phase==='saving'?'Sauvegarde automatique en cours…':s.deferred?'Combat en cours : sauvegarde différée'+(s.lastSaved?' · dernière à '+new Date(s.lastSaved).toLocaleTimeString('fr-FR'):''):s.lastSaved?'Sauvegarde automatique : '+new Date(s.lastSaved).toLocaleTimeString('fr-FR')+' · cycle 10 s':'Sauvegarde automatique : cycle 10 s · en attente d’un état enregistrable';});
-  toggle.onclick=()=>{render();status.textContent='';dialog.showModal();};
-  dialog.addEventListener('click',event=>{
-    const button=event.target.closest('button');if(!button||button.disabled)return;
+  const menuPresses=protectMenuButtons(dialog,activateMenuButton,{context:()=>tab});
+  bindPress(toggle,()=>{menuPresses.cancel();render();status.textContent='';if(!dialog.open)dialog.showModal();});
+  function activateMenuButton(button){
+    if(!button?.isConnected||button.disabled)return;
     if(button.dataset.cheat!==undefined){const cheat=cheatCodes.find(x=>x.id===Number(button.dataset.cheat));if(!cheat||unavailableReason(cheat,state))return;command(29,cheat.id);status.textContent='Code envoyé au moteur : '+cheat.code;return;}
     const action=button.dataset.menu;
     if(action==='close'){dialog.close();toggle.focus();}
@@ -61,7 +67,8 @@ function mountGameMenu(){
     if(action==='settings'||action==='cheats'||action==='storage'){tab=action;status.textContent='';render();}
     if(action==='sound'){muted=!muted;pendingAudio=muted;try{localStorage.setItem(muteKey,String(muted));}catch{}command(28,muted?1:0);if(!muted)void audio.resume({repair:true}).then(ok=>{if(ok&&!muted)command(28,0,1);if(!muted)status.textContent=ok?'Son réactivé.':'Coupe puis réactive le son pour relancer l’audio.';});audio.observe();render();status.textContent=muted?'Musique et effets coupés.':'Son demandé : reprise de l’audio…';}
 
-  });
+  }
+  dialog.addEventListener('change',event=>{if(event.target.matches('[data-map-speed],[data-hide-enemy]')){const patch=event.target.matches('[data-map-speed]')?{moveTime:Number(event.target.value)}:{hideEnemyMoves:event.target.checked};const stored=movement.change(patch);render();status.textContent=stored?'Réglages de déplacement mis à jour.':'Réglages appliqués pour cette session.';}});
   dialog.addEventListener('keydown',event=>event.stopPropagation());
 }
 const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

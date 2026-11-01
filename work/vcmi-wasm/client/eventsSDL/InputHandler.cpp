@@ -10,6 +10,7 @@
 
 #include "StdInc.h"
 #include "InputHandler.h"
+#include "../MobileBridge.h"
 #include "BrowserEventQueue.h"
 #ifdef VCMI_HTML5_BUILD
 #include "../../lib/html5/html5.h"
@@ -243,6 +244,12 @@ bool InputHandler::ignoreEventsUntilInput()
 
 void InputHandler::preprocessEvent(const SDL_Event & ev)
 {
+#ifdef VCMI_EMSCRIPTEN
+ // The HTML presentation owns mobile pointer input. Only explicit bridge
+ // commands may click the native UI underneath menus and touch controls.
+ if(isMobilePresentationActive() && (ev.type==SDL_MOUSEMOTION || ev.type==SDL_MOUSEBUTTONDOWN || ev.type==SDL_MOUSEBUTTONUP || ev.type==SDL_MOUSEWHEEL || ev.type==SDL_FINGERDOWN || ev.type==SDL_FINGERUP || ev.type==SDL_FINGERMOTION)) return;
+#endif
+
 	if(ev.type == SDL_QUIT)
 	{
 #ifndef VCMI_EMSCRIPTEN

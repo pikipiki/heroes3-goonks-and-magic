@@ -1,0 +1,7 @@
+#game-menu .map-movement-settings{margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid #b59750}
+#game-menu .map-movement-settings label{display:flex;gap:10px;align-items:center;min-height:48px;margin:12px 0;color:#fff0c2;font-size:16px}
+#game-menu .map-speed-label{flex-direction:column;align-items:stretch!important}
+#game-menu .map-movement-settings select{width:100%;min-height:52px;padding:8px;color:#fff0c2;background:#2c1e13;border:2px solid #b59750;font:16px Georgia,serif;touch-action:manipulation}
+#game-menu .map-movement-settings input[type=checkbox]{width:24px;height:24px;flex:0 0 24px;accent-color:#d9b66b}
+#game-menu .map-movement-settings p{font-size:14px;margin:8px 0}
+#game-menu header button[aria-label="Fermer le menu"]{min-width:56px;min-height:56px}

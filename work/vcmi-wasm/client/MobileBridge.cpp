@@ -105,7 +105,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileAtlasAck(){atlasPending.store(fal
 void publishMobileState(){
  if(!stateEnabled||!ENGINE||!GAME||snapshotPending.load()||SDL_GetTicks()-lastPublished<180)return;lastPublished=SDL_GetTicks();
  if(audioMuted){if(ENGINE->sound().getVolume()!=0)ENGINE->sound().setVolume(0);if(ENGINE->music().getVolume()!=0)ENGINE->music().setVolume(0);}
- JsonNode n;n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top)n["rect"]=rect(top->pos);
+ JsonNode n;n["mapSettings"]["moveTime"].Integer()=settings["adventure"]["heroMoveTime"].Integer();n["mapSettings"]["enemyMoveTime"].Integer()=settings["adventure"]["enemyMoveTime"].Integer();n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top)n["rect"]=rect(top->pos);
  auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();auto recruitWindow=ENGINE->windows().topWindow<CRecruitmentWindow>();
  if(ENGINE->windows().topWindow<CLobbyScreen>())n["mode"].String()=GAME->server().screenType==ESelectionScreen::loadGame?"load":"lobby";
  else if(recruitWindow)n["mode"].String()="recruit";
@@ -214,6 +214,11 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   }
   audioMuted=mute;if(mute){ENGINE->sound().setVolume(0);ENGINE->music().setVolume(0);}
   if(!mute&&b==1)ENGINE->sound().playSound(soundBase::button);
+  lastPublished=0;return;
+ }
+ if(action==46){
+  if((a!=200&&a!=150&&a!=100&&a!=50&&a!=25&&a!=0)||(b!=0&&b!=1))return;
+  {Settings adventure=settings.write["adventure"];adventure["heroMoveTime"].Float()=a;adventure["enemyMoveTime"].Float()=b?-1:a;}
   lastPublished=0;return;
  }
  if(action==20){if(GAME&&!GAME->interface())CMainMenu::openLobby(ESelectionScreen::newGame,true,{"Goonk"},ELoadMode::NONE,false);return;}
