@@ -929,3 +929,10 @@ const std::vector<uint32_t> BattleStacksController::getHoveredStacksUnitIds() co
 
 	return result;
 }
+
+Point BattleStacksController::mobileAnimationOffset(const CStack * stack) const
+{
+ const auto found=stackAnimation.find(stack->unitId());
+ if(found==stackAnimation.end()||!stack->getPosition().isValid())return Point(0,0);
+ return found->second->pos.topLeft()-getStackPositionAtHex(stack->getPosition(),stack);
+}

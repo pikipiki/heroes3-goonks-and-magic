@@ -25,6 +25,7 @@ struct BattleSpellCast;
 struct CObstacleInstance;
 struct SetStackEffect;
 class BattleAction;
+class JsonNode;
 class CGTownInstance;
 struct CatapultAttack;
 struct BattleTriggerEffect;
@@ -148,6 +149,15 @@ public:
 
 	std::shared_ptr<BattleHero> attackingHero;
 	std::shared_ptr<BattleHero> defendingHero;
+
+
+ struct MobileCameraState
+ {
+  uint32_t sequence=0;bool active=false;int actor=-1;
+  std::string kind,label;std::vector<int> targets;
+  std::vector<BattleHex> path;BattleHex destination;
+ } mobileCamera;
+ JsonNode mobileCameraSnapshot() const;
 
 	bool openingPlaying() const;
 	void openingEnd();

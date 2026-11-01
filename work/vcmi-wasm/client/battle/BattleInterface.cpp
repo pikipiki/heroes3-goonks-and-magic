@@ -9,6 +9,8 @@
  */
 #include "StdInc.h"
 #include "BattleInterface.h"
+#include "../MobileBridge.h"
+#include "../../lib/json/JsonNode.h"
 
 #include "BattleActionsController.h"
 #include "BattleAnimationClasses.h"
@@ -222,6 +224,8 @@ void BattleInterface::stackActivated(const CStack *stack)
 
 void BattleInterface::stackMoved(const CStack *stack, const BattleHexArray & destHex, int distance, bool teleport)
 {
+ if(isMobilePresentationActive()&&!teleport){++mobileCamera.sequence;mobileCamera.active=true;mobileCamera.kind="move";mobileCamera.actor=stack->unitId();mobileCamera.path.assign(destHex.begin(),destHex.end());if(!destHex.empty())mobileCamera.destination=destHex.back();}
+
 	if (teleport)
 		stacksController->stackTeleported(stack, destHex, distance);
 	else
@@ -251,6 +255,8 @@ void BattleInterface::stacksAreAttacked(std::vector<StackAttackedInfo> attackedI
 
 void BattleInterface::stackAttacking( const StackAttackInfo & attackInfo )
 {
+ if(isMobilePresentationActive()){++mobileCamera.sequence;mobileCamera.active=true;mobileCamera.kind="attack";mobileCamera.actor=attackInfo.attacker->unitId();mobileCamera.targets={int(attackInfo.defender->unitId())};for(const auto target:attackInfo.secondaryDefender)mobileCamera.targets.push_back(target->unitId());mobileCamera.destination=attackInfo.tile;}
+
 	stacksController->stackAttacking(attackInfo);
 }
 
@@ -373,6 +379,13 @@ void BattleInterface::battleFinished(const BattleResult& br, QueryID queryID)
 void BattleInterface::spellCast(const BattleSpellCast * sc)
 {
 	waitForAnimations();
+ if(isMobilePresentationActive())
+ {
+  ++mobileCamera.sequence;mobileCamera.active=true;mobileCamera.kind="spell";mobileCamera.actor=sc->casterStack;mobileCamera.path.clear();mobileCamera.destination=sc->tile;
+  mobileCamera.targets.assign(sc->affectedCres.begin(),sc->affectedCres.end());
+  for(const auto id:sc->resistedCres)if(std::find(mobileCamera.targets.begin(),mobileCamera.targets.end(),id)==mobileCamera.targets.end())mobileCamera.targets.push_back(id);
+  mobileCamera.label=sc->spellID.hasValue()?sc->spellID.toSpell()->getNameTranslated():"";
+ }
 
 	// Do not deactivate anything in tactics mode
 	// This is battlefield setup spells
@@ -637,6 +650,7 @@ void BattleInterface::endAction(const BattleAction &action)
 	activateStack();
 
 	stacksController->endAction(action);
+ mobileCamera.active=false;
 	windowObject->updateQueue();
 
 	//stack ended movement in tactics phase -> select the next one
@@ -655,6 +669,15 @@ void BattleInterface::appendBattleLog(const std::string & newEntry)
 
 void BattleInterface::startAction(const BattleAction & action)
 {
+ if(isMobilePresentationActive())
+ {
+  ++mobileCamera.sequence;mobileCamera.actor=action.isUnitAction()?int(action.stackNumber):-1;
+  mobileCamera.targets.clear();mobileCamera.path.clear();mobileCamera.destination=BattleHex();mobileCamera.label.clear();
+  mobileCamera.kind=action.isSpellAction()?"spell":action.actionType==EActionType::WALK?"move":(action.actionType==EActionType::WALK_AND_ATTACK||action.actionType==EActionType::SHOOT)?"attack":"";
+  mobileCamera.active=!mobileCamera.kind.empty();
+  for(const auto & target:action.getTarget(getBattle().get())){if(target.unitValue)mobileCamera.targets.push_back(target.unitValue->unitId());if(target.hexValue.isValid())mobileCamera.destination=target.hexValue;}
+ }
+
 	if(action.actionType == EActionType::END_TACTIC_PHASE)
 	{
 		windowObject->tacticPhaseEnded();
@@ -887,4 +910,19 @@ void BattleInterface::setStickyQuickSpellWindowVisibility(bool visible)
 	windowObject->hideStickyQuickSpellWindow();
 	if(visible)
 		windowObject->showStickyQuickSpellWindow();
+}
+
+JsonNode BattleInterface::mobileCameraSnapshot() const
+{
+ JsonNode n;n["sequence"].Integer()=mobileCamera.sequence;n["active"].Bool()=mobileCamera.active;n["kind"].String()=mobileCamera.kind;n["label"].String()=mobileCamera.label;
+ auto point=[this](const BattleHex & hex){JsonNode p;const auto center=fieldController->hexPositionAbsolute(hex).center();p["x"].Integer()=center.x;p["y"].Integer()=center.y;return p;};
+ auto unit=[&](int id){JsonNode p;const auto stack=getBattle()->battleGetStackByID(id);if(!stack||!stack->getPosition().isValid())return p;p=point(stack->getPosition());const auto delta=stacksController->mobileAnimationOffset(stack);p["x"].Integer()+=delta.x;p["y"].Integer()+=delta.y;p["stackId"].Integer()=id;p["name"].String()=stack->unitType()->getNameSingularTranslated();for(const auto hex:stack->getHexes())p["cells"].Vector().push_back(point(hex));return p;};
+ if(mobileCamera.actor>=0)n["actor"]=unit(mobileCamera.actor);
+ for(const auto id:mobileCamera.targets){const auto target=unit(id);if(!target.isNull())n["targets"].Vector().push_back(target);}
+ for(const auto hex:mobileCamera.path)if(hex.isValid())n["path"].Vector().push_back(point(hex));
+ if(mobileCamera.destination.isValid())n["destination"]=point(mobileCamera.destination);
+ const auto active=stacksController->getActiveStack();const auto hover=fieldController->getHoveredHex();
+ if(active&&makingTurn()&&!mobileCamera.active&&hover.isValid()&&!getBattle()->battleGetStackByPos(hover))
+  for(const auto hex:getBattle()->getPath(active->getPosition(),hover,active).first)n["previewPath"].Vector().push_back(point(hex));
+ return n;
 }
