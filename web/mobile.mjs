@@ -1,3 +1,4 @@
+import {renderArmyPanel} from './army-panel.mjs';
 import {createGameCalendar} from './game-calendar.mjs';
 import {recruitmentSummary} from './recruitment-summary.mjs';
 import {createCanvasSizer} from './mobile-render.mjs';
@@ -109,11 +110,11 @@ function mount(){
  bindPress(root.querySelector('.dialog-close'),closeTavern);
  bindPress(root.querySelector('.native-dialog-close-hit'),closeTavern);
  bindPress(root.querySelector('.battle-view'),()=>{if(state.mode!=='battle')return;const chosen=selectedPoint;battleView=nativeBattleClose(scene.clientWidth,scene.clientHeight,battleView)?'whole':'close';resetGestures();selectedPoint=chosen;syncBattleView();renderBattlePanel();controls();});
- function closeSheet(){clearTimeout(armyTimer);armyPending=false;armyFocus=null;sheet.removeAttribute('aria-busy');sheet.hidden=true;sheetKind='';armySelection=null;root.querySelector('.mobile-play').inert=false;nav.inert=false;resetGestures();if(previousFocus?.isConnected)previousFocus.focus({preventScroll:true});}
+ function closeSheet(){clearTimeout(armyTimer);armyPending=false;armyFocus=null;sheet.removeAttribute('aria-busy');sheet.hidden=true;sheetKind='';delete root.dataset.sheet;armySelection=null;root.querySelector('.mobile-play').inert=false;nav.inert=false;resetGestures();if(previousFocus?.isConnected)previousFocus.focus({preventScroll:true});}
  bindPress(sheet.querySelector('[data-ui="close-sheet"]'),closeSheet);
  function openRecruit(level){if(!recruitChoices.length){notify('Aucune recrue disponible dans les logements construits.');return;}resetGestures();activeRecruitLevel=level??recruitChoices[0].level;expectedRecruitId=recruitChoices.find(u=>u.level===activeRecruitLevel)?.id;recruitLoading=true;root.querySelector('#recruit-number').blur();controls();if(state.mode==='recruit')command(33);command(30,activeRecruitLevel);}
 
- function openSheet(kind,title){previousFocus=document.activeElement;resetGestures();root.querySelector('.mobile-play').inert=true;nav.inert=true;sheetKind=kind;sheet.hidden=false;root.querySelector('#sheet-title').textContent=title;body.innerHTML='';root.querySelector('[data-ui="close-sheet"]').focus({preventScroll:true});}
+ function openSheet(kind,title){previousFocus=document.activeElement;resetGestures();root.querySelector('.mobile-play').inert=true;nav.inert=true;sheetKind=kind;root.dataset.sheet=kind;sheet.hidden=false;root.querySelector('#sheet-title').textContent=title;body.innerHTML='';root.querySelector('[data-ui="close-sheet"]').focus({preventScroll:true});}
  function refreshArmy(){
   clearTimeout(armyTimer);armyPending=false;sheet.removeAttribute('aria-busy');
   const scroll=body.scrollTop,focused=document.activeElement,army=armyFocus?.army??focused?.dataset.army,slot=armyFocus?.slot??focused?.dataset.slot;armyFocus=null;
@@ -129,7 +130,12 @@ function mount(){
   if(kind==='recruit'){openRecruit();return;}
 
 
-  if(kind==='army'){if(!refresh)openSheet(kind,'Organiser les armées');armySelection=null;armySignature=JSON.stringify(state.armies||[]);body.insertAdjacentHTML('beforeend','<p>Sélectionne une troupe, puis une destination. Des troupes identiques sont regroupées.</p><div id="army-options"></div>');for(const army of state.armies||[]){const section=document.createElement('section');section.innerHTML=`<h3>${escape(army.name)}</h3><div class="army-grid"></div>`;army.slots.forEach((unit,index)=>{const button=document.createElement('button');button.dataset.army=String(army.id);button.dataset.slot=String(index);button.innerHTML=unit?`${portrait(unit)}<span>${escape(unit.name)}<small>× ${unit.count}</small></span>`:'<span>Emplacement libre</span>';button.onclick=()=>{if(!armySelection){if(!unit)return;armySelection={army:army.id,slot:index,unit};body.querySelectorAll('.selected').forEach(e=>e.classList.remove('selected'));button.classList.add('selected');const options=body.querySelector('#army-options');options.innerHTML=unit.count>1?`<label><input id="army-split" type="checkbox"> Scinder cette troupe</label><label class="amount-row">À séparer <input aria-label="Nombre de créatures à séparer" type="number" value="${Math.floor(unit.count/2)}" min="1" max="${unit.count-1}"></label><p>Pour séparer ce nombre, touche un emplacement libre. Pour regrouper, touche une troupe identique.</p>`:'<p>Touche la destination pour déplacer ou regrouper cette troupe.</p>';return;}if(army.id===armySelection.army&&index===armySelection.slot){armySelection=null;button.classList.remove('selected');return;}const amount=body.querySelector('#army-split')?.checked?Number(body.querySelector('#army-options input[type=number]')?.value||0):0;if(!unit&&armySelection.unit.count>1&&amount>0&&amount<armySelection.unit.count)command(11,armySelection.army,armySelection.slot,army.id,index,amount);else command(10,armySelection.army,armySelection.slot,army.id,index);armySelection=null;armyFocus={army:String(army.id),slot:String(index)};armyPending=true;sheet.setAttribute('aria-busy','true');body.querySelectorAll('.army-grid button').forEach(b=>b.disabled=true);body.querySelector('#army-options').textContent='Déplacement en cours…';clearTimeout(armyTimer);armyTimer=setTimeout(()=>{if(sheetKind==='army'&&armyPending){refreshArmy();notify('Aucun changement confirmé. Vérifie la destination et réessaie.');}},8000);notify('Organisation de l’armée demandée');};section.querySelector('.army-grid').append(button);});body.append(section);}}
+  if(kind==='army'){if(!refresh)openSheet(kind,'Organiser les armées');armySelection=null;armySignature=JSON.stringify(state.armies||[]);
+   renderArmyPanel({body,armies:state.armies||[],portrait, onMessage:notify,onMove:({fromArmy,fromSlot,toArmy,toSlot,amount})=>{
+    command(amount?11:10,fromArmy,fromSlot,toArmy,toSlot,amount);armyFocus={army:String(toArmy),slot:String(toSlot)};armyPending=true;sheet.setAttribute('aria-busy','true');clearTimeout(armyTimer);
+    armyTimer=setTimeout(()=>{if(sheetKind==='army'&&armyPending){refreshArmy();notify('Aucun changement confirmé. Vérifie la destination et réessaie.');}},8000);
+   }});
+  }
  }
  for(const input of root.querySelectorAll('.mobile-recruit-amount input'))input.addEventListener('input',()=>{const value=Number(input.value);if(Number.isInteger(value)&&value>=0&&value<=state.recruitMaximum){for(const other of root.querySelectorAll('.mobile-recruit-amount input'))if(other!==input)other.value=value;command(31,value);}});
  function renderBattlePanel(){
