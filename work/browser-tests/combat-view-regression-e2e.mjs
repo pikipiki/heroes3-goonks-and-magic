@@ -1,10 +1,11 @@
 // Browser integration checks with a controlled native framebuffer and state snapshots.
 import {chromium,webkit} from 'playwright-core';
-import assert from 'node:assert/strict';
+import assert from 'node:assert/strict';import fs from'node:fs';import path from'node:path';
 const report=[];
 for(const kind of ['chromium','webkit']){
  const browser=await (kind==='chromium'?chromium.launch({headless:true,...(process.env.CHROME_PATH?{executablePath:process.env.CHROME_PATH}:{})}):webkit.launch({headless:true,...(process.env.WEBKIT_PATH?{executablePath:process.env.WEBKIT_PATH}:{})}));
  const context=await browser.newContext({viewport:{width:390,height:844},hasTouch:true}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.route('**/web/**',async r=>{const file=path.resolve('web',new URL(r.request().url()).pathname.split('/web/')[1]);if(!fs.existsSync(file))return r.abort();await r.fulfill({path:file});});
  await page.route('**/combat-check?mobile=1',route=>route.fulfill({contentType:'text/html',body:`<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/web/mobile.css"><link rel="stylesheet" href="/web/h3-theme.css"><link rel="stylesheet" href="/web/mobile-upgrade.css"><canvas id="canvas" width="800" height="600"></canvas><script>window.calls=[];window.Module={_vcmiMobileEnable(){},_vcmiMobileCommand(...a){calls.push(a)},_vcmiMobilePointer(...a){calls.push(a)}};const c=document.querySelector('canvas').getContext('2d');c.fillStyle='#777744';c.fillRect(0,0,800,600);c.fillStyle='rgb(200,20,20)';c.fillRect(0,0,800,30);c.fillStyle='rgb(20,20,200)';c.fillRect(0,525,800,30);</script><script type="module" src="/web/mobile.mjs"></script>`}));
  await page.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8776')+'/combat-check?mobile=1');await page.waitForSelector('#mobile-app');
  const update=patch=>page.evaluate(patch=>window.dispatchEvent(new CustomEvent('goonk-state',{detail:{...(window.goonkMobileState||{}),...patch}})),patch);
@@ -13,6 +14,8 @@ for(const kind of ['chromium','webkit']){
  for(const [width,height]of [[390,844],[844,390],[320,568],[390,844]]){
   await page.setViewportSize({width,height});await page.waitForTimeout(250);assert.equal(await root.getAttribute('data-battle-camera'),'whole');assert.equal(await root.getAttribute('data-battle-layout'),'native');
   for(const ui of ['battle-view','battle-auto','battle-retreat']){const button=page.locator('[data-ui='+ui+']');assert(await button.isVisible());const box=await button.boundingBox();assert(box.width>=44&&box.height>=44&&box.x>=0&&box.y>=0&&box.x+box.width<=width+1&&box.y+box.height<=height+1,ui+' accessible');assert(await button.evaluate(el=>{const r=el.getBoundingClientRect();return el.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2));}),ui+' hit test');}
+  const confirm=page.locator('[data-ui=target]'),anchor=await confirm.boundingBox();assert(anchor.height>=56);assert(await confirm.evaluate(e=>parseFloat(getComputedStyle(e).borderTopWidth)>=4));
+  for(const patch of[{tacticsMode:true,round:0,canEndTactics:true},{tacticsMode:false,round:1,spellTargeting:true},{spellTargeting:false,canAct:false},{canAct:true}]){await update(patch);await page.waitForTimeout(40);const box=await confirm.boundingBox();for(const key of['x','y','width','height'])assert(Math.abs(box[key]-anchor[key])<1,'Confirm hit area stays fixed across phases: '+key);}
   const pixels=await page.evaluate(async()=>{const {fitNativeBattle}=await import('/web/battle-scene.mjs'),s=document.querySelector('#mobile-scene'),l=fitNativeBattle(s.clientWidth,s.clientHeight,null,'whole'),c=s.getContext('2d'),d=s.width/s.clientWidth;return [10,545].map(y=>[...c.getImageData(Math.floor((l.dx+400*l.scale)*d),Math.floor((l.dy+y*l.scale)*d),1,1).data].slice(0,3));});assert.deepEqual(pixels,[[200,20,20],[20,20,200]]);
   await toggle.tap();await page.waitForTimeout(150);assert.equal(await root.getAttribute('data-battle-camera'),'close');assert.equal(await root.getAttribute('data-battle-layout'),'dual');await toggle.tap();await page.waitForTimeout(150);assert.equal(await root.getAttribute('data-battle-camera'),'whole');
  }

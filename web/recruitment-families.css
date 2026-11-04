@@ -61,3 +61,12 @@
 
 #mobile-app .hall-detail[data-locked=true] .hall-quantity,#mobile-app .hall-detail[data-locked=true] .hall-total{display:none}
 @media(orientation:landscape) and (max-height:380px){#mobile-app .hall-feature{min-height:70px}#mobile-app .hall-feature>canvas{height:68px}#mobile-app .hall-feature h3{line-height:1.2}#mobile-app .hall-feature .creature-stats dt{font-size:11px}}
+
+/* The selected tile is the only animated creature; no duplicate preview. */
+#mobile-app .hall-feature{display:block;min-height:0;grid-template-columns:minmax(0,1fr)}
+#mobile-app .hall-feature h3{margin:0 0 3px}
+#mobile-app .hall-feature .creature-stats{grid-template-columns:repeat(5,minmax(0,1fr))}
+#mobile-app .hall-feature .creature-stats dd{font-size:13px}
+#mobile-app .hall-detail{grid-template-rows:auto auto auto auto 48px}
+#mobile-app .hall-actions{align-self:end;height:48px}
+#mobile-app .hall-form canvas{height:64px}

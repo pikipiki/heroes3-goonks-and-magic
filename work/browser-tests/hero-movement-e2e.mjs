@@ -9,7 +9,7 @@ for(const kind of ['chromium','webkit']){
  for(const size of [{width:390,height:844},{width:844,height:390},{width:568,height:320},{width:320,height:740},{width:390,height:844}]){
  await page.setViewportSize(size);await page.waitForTimeout(180);assert.equal(await page.locator('.mobile-nav [data-ui=save]').count(),0);assert.equal(await page.locator('.hero-movement-item').count(),3);assert.equal(await page.locator('.hero-movement-item strong').first().textContent(),'Ax sis <test>');assert.match(await page.locator('.hero-movement-item.is-exhausted').textContent(),/Gunnar0 MP/);
  for(const rect of await page.locator('.mobile-nav>button').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().toJSON()))){assert(rect.width>=44&&rect.height>=44);assert(rect.x>=0&&rect.y>=0&&rect.right<=size.width+1&&rect.bottom<=size.height+1,'Actions stay within viewport');}
- await page.locator('[data-ui=endturn]').tap();await page.locator('[data-ui=close-sheet]').first().tap();
+ await page.locator('[data-ui=endturn]').tap();assert.equal((await page.evaluate(()=>calls.at(-1)))[0],3);assert.equal(await page.locator('.mobile-sheet:not([hidden])').count(),0);
  }
  await page.evaluate(()=>{testState.heroes[0].movement=0;testState.movement=0;send();});assert.equal(await page.locator('.hero-movement-item.is-exhausted').count(),2);assert.match(await page.locator('.hero-movement-item').first().textContent(),/0 MP/);
  await page.evaluate(async()=>{const{setLanguage}=await import('/web/i18n.mjs');setLanguage('fr');send();});assert.match(await page.locator('.hero-movement-item').first().textContent(),/0 PM/);
