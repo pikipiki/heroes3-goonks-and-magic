@@ -1,7 +1,21 @@
 {
-  "version": 1,
+  "version": 2,
   "maxArms": 2,
   "maxFeet": 2,
+  "scope": "All 21 forms, including original base and royal forms",
+  "states": [
+    "walk",
+    "idle",
+    "fidget",
+    "attack",
+    "shoot",
+    "hit",
+    "defend",
+    "death",
+    "map",
+    "small icon",
+    "large icon"
+  ],
   "grades": [
     "base",
     "royal",

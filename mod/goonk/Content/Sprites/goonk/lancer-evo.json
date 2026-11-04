@@ -42,8 +42,9 @@
     {
       "group": 3,
       "frames": [
-        "goonk/lancer-evo-attack.png",
-        "goonk/lancer-evo-idle.png"
+        "goonk/lancer-evo-v3-walk-0.png",
+        "goonk/lancer-evo-hurt.png",
+        "goonk/lancer-evo-v3-walk-0.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -51,8 +52,9 @@
     {
       "group": 4,
       "frames": [
-        "goonk/lancer-evo-attack.png",
-        "goonk/lancer-evo-idle.png"
+        "goonk/lancer-evo-v3-walk-0.png",
+        "goonk/lancer-evo-hurt.png",
+        "goonk/lancer-evo-v3-walk-0.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -60,9 +62,9 @@
     {
       "group": 5,
       "frames": [
-        "goonk/lancer-5.png",
-        "goonk/lancer-6.png",
-        "goonk/lancer-6.png"
+        "goonk/lancer-evo-hurt.png",
+        "goonk/lancer-evo-fallen.png",
+        "goonk/lancer-evo-fallen.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -70,9 +72,9 @@
     {
       "group": 6,
       "frames": [
-        "goonk/lancer-5.png",
-        "goonk/lancer-6.png",
-        "goonk/lancer-6.png"
+        "goonk/lancer-evo-hurt.png",
+        "goonk/lancer-evo-fallen.png",
+        "goonk/lancer-evo-fallen.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1

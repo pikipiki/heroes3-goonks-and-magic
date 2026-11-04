@@ -51,10 +51,9 @@
     {
       "group": 3,
       "frames": [
-        "goonk/fire-6.png",
-        "goonk/fire-motion-3-0-1.png",
-        "goonk/fire-motion-3-0-2.png",
-        "goonk/fire-0.png"
+        "goonk/fire-v3-walk-0.png",
+        "goonk/fire-hurt.png",
+        "goonk/fire-v3-walk-0.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -62,10 +61,9 @@
     {
       "group": 4,
       "frames": [
-        "goonk/fire-6.png",
-        "goonk/fire-motion-4-0-1.png",
-        "goonk/fire-motion-4-0-2.png",
-        "goonk/fire-0.png"
+        "goonk/fire-v3-walk-0.png",
+        "goonk/fire-hurt.png",
+        "goonk/fire-v3-walk-0.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -73,9 +71,9 @@
     {
       "group": 5,
       "frames": [
-        "goonk/fire-6.png",
-        "goonk/fire-7.png",
-        "goonk/fire-7.png"
+        "goonk/fire-hurt.png",
+        "goonk/fire-fallen.png",
+        "goonk/fire-fallen.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -83,9 +81,9 @@
     {
       "group": 6,
       "frames": [
-        "goonk/fire-6.png",
-        "goonk/fire-7.png",
-        "goonk/fire-7.png"
+        "goonk/fire-hurt.png",
+        "goonk/fire-fallen.png",
+        "goonk/fire-fallen.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1

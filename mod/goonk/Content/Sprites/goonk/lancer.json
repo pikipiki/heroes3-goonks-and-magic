@@ -41,10 +41,9 @@
     {
       "group": 3,
       "frames": [
-        "goonk/lancer-5.png",
-        "goonk/lancer-motion-3-0-1.png",
-        "goonk/lancer-motion-3-0-2.png",
-        "goonk/lancer-0.png"
+        "goonk/lancer-v3-walk-0.png",
+        "goonk/lancer-hurt.png",
+        "goonk/lancer-v3-walk-0.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -52,10 +51,9 @@
     {
       "group": 4,
       "frames": [
-        "goonk/lancer-5.png",
-        "goonk/lancer-motion-4-0-1.png",
-        "goonk/lancer-motion-4-0-2.png",
-        "goonk/lancer-0.png"
+        "goonk/lancer-v3-walk-0.png",
+        "goonk/lancer-hurt.png",
+        "goonk/lancer-v3-walk-0.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -63,9 +61,9 @@
     {
       "group": 5,
       "frames": [
-        "goonk/lancer-5.png",
-        "goonk/lancer-6.png",
-        "goonk/lancer-6.png"
+        "goonk/lancer-hurt.png",
+        "goonk/lancer-fallen.png",
+        "goonk/lancer-fallen.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -73,9 +71,9 @@
     {
       "group": 6,
       "frames": [
-        "goonk/lancer-5.png",
-        "goonk/lancer-6.png",
-        "goonk/lancer-6.png"
+        "goonk/lancer-hurt.png",
+        "goonk/lancer-fallen.png",
+        "goonk/lancer-fallen.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1

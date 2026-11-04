@@ -45,10 +45,9 @@
     {
       "group": 3,
       "frames": [
-        "goonk/blue-5.png",
-        "goonk/blue-motion-3-0-1.png",
-        "goonk/blue-motion-3-0-2.png",
-        "goonk/blue-0.png"
+        "goonk/blue-v3-walk-0.png",
+        "goonk/blue-hurt.png",
+        "goonk/blue-v3-walk-0.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -56,10 +55,9 @@
     {
       "group": 4,
       "frames": [
-        "goonk/blue-5.png",
-        "goonk/blue-motion-4-0-1.png",
-        "goonk/blue-motion-4-0-2.png",
-        "goonk/blue-0.png"
+        "goonk/blue-v3-walk-0.png",
+        "goonk/blue-hurt.png",
+        "goonk/blue-v3-walk-0.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -67,9 +65,9 @@
     {
       "group": 5,
       "frames": [
-        "goonk/blue-5.png",
-        "goonk/blue-6.png",
-        "goonk/blue-6.png"
+        "goonk/blue-hurt.png",
+        "goonk/blue-fallen.png",
+        "goonk/blue-fallen.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -77,9 +75,9 @@
     {
       "group": 6,
       "frames": [
-        "goonk/blue-5.png",
-        "goonk/blue-6.png",
-        "goonk/blue-6.png"
+        "goonk/blue-hurt.png",
+        "goonk/blue-fallen.png",
+        "goonk/blue-fallen.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1

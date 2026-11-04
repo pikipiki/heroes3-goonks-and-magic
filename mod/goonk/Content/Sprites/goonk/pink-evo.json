@@ -55,8 +55,9 @@
     {
       "group": 3,
       "frames": [
-        "goonk/pink-evo-attack.png",
-        "goonk/pink-evo-idle.png"
+        "goonk/pink-evo-v3-walk-0.png",
+        "goonk/pink-evo-hurt.png",
+        "goonk/pink-evo-v3-walk-0.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -64,8 +65,9 @@
     {
       "group": 4,
       "frames": [
-        "goonk/pink-evo-attack.png",
-        "goonk/pink-evo-idle.png"
+        "goonk/pink-evo-v3-walk-0.png",
+        "goonk/pink-evo-hurt.png",
+        "goonk/pink-evo-v3-walk-0.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -73,9 +75,9 @@
     {
       "group": 5,
       "frames": [
-        "goonk/pink-5.png",
-        "goonk/pink-6.png",
-        "goonk/pink-6.png"
+        "goonk/pink-evo-hurt.png",
+        "goonk/pink-evo-fallen.png",
+        "goonk/pink-evo-fallen.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -83,9 +85,9 @@
     {
       "group": 6,
       "frames": [
-        "goonk/pink-5.png",
-        "goonk/pink-6.png",
-        "goonk/pink-6.png"
+        "goonk/pink-evo-hurt.png",
+        "goonk/pink-evo-fallen.png",
+        "goonk/pink-evo-fallen.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1

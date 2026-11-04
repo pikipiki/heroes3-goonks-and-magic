@@ -1,0 +1,26 @@
+{
+  "tool": "image_gen.imagegen",
+  "sourceAtlas": "all-grades-hurt-death-v4.png",
+  "reference": "../goonk-three-grades-contact-0.4.36.png",
+  "layout": {
+    "rows": [
+      "Paingpaing",
+      "Picpique",
+      "Zinz\u00e9clair",
+      "Bubu",
+      "Glouglou",
+      "Bobope",
+      "Big Maille Maille"
+    ],
+    "columns": [
+      "base hurt",
+      "base defeated",
+      "royal hurt",
+      "royal defeated",
+      "exalted hurt",
+      "exalted defeated"
+    ]
+  },
+  "promptSpecification": "Preserve all 21 character identities and costumes. One complete body and head in every transparent cell, no more than two arms and two feet. Single clean recoil pose or horizontal defeated plush with closed eyes; no blended poses, motion blur, blood or duplicated limbs. No overlap between cells.",
+  "automatedScope": "Check active state bindings and map ownership; no automated anatomical counting is claimed."
+}

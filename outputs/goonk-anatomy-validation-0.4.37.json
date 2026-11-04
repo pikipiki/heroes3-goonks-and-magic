@@ -1,0 +1,33 @@
+{
+  "version": "0.4.37",
+  "scope": {
+    "forms": 21,
+    "grades": [
+      "base",
+      "royal",
+      "exalted"
+    ],
+    "maxArms": 2,
+    "maxFeet": 2
+  },
+  "changes": [
+    "Original base/royal hit and death states no longer reference historical pose blends",
+    "Every grade retains its own costume in hurt/death states",
+    "Every form has its own clean map animation"
+  ],
+  "visualEvidence": {
+    "before": "goonk-old-forms-before-0.4.37.png",
+    "after": "goonk-old-forms-after-0.4.37.png",
+    "generatedSource": "goonk-art/all-grades-hurt-death-v4.png"
+  },
+  "validation": {
+    "unitPassed": 308,
+    "unitSkipped": 16,
+    "unitFailed": 0,
+    "nativeSevenUpgradeChains": "passed",
+    "nativeGalleryRecruitment": "passed",
+    "productionBuildAndVerify": "passed"
+  },
+  "limits": "Automated tests verify active frame routing and image geometry; limb appearance was reviewed visually, not counted by a classifier. No complete campaign or physical-phone animation test is claimed.",
+  "engine": "Reuses the verified 0.4.36 engine without native-code changes"
+}

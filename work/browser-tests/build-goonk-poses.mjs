@@ -10,20 +10,23 @@ export async function buildGoonkPoses({imageDir,artDir,grades=['base','royal','e
   const rendered=await sharp({create:{width:450*scale,height:400*scale,channels:4,background:clear}}).composite([{input:sprite,left:160*scale+Math.round(breathe/2*scale),top:256*scale-h}]).png().toBuffer();
   await sharp(rendered).resize(450,400).png().toFile(path.join(imageDir,file));return 'goonk/'+file;
  };
+ const readGrid=async(file,count)=>{
+  const {data,info}=await sharp(file).ensureAlpha().raw().toBuffer({resolveWithObject:true}),occupancy=[];
+  for(let y=0;y<info.height;y++){let n=0;for(let x=0;x<info.width;x++)if(data[(y*info.width+x)*4+3]>100)n++;occupancy.push(n);}
+  const bounds=[0];for(let i=1;i<7;i++){let score=Infinity,cut=0;for(let y=Math.round(info.height*i/7)-55;y<Math.round(info.height*i/7)+40;y++){let n=0;for(let k=-2;k<=2;k++)n+=occupancy[y+k]||0;if(n<score){score=n;cut=y;}}bounds.push(cut);}bounds.push(info.height);
+  const columns=[];for(let row=0;row<7;row++){const cols=[0];for(let col=1;col<count;col++){let best=Infinity,cut=0;for(let x=Math.round(info.width*col/count)-22;x<=Math.round(info.width*col/count)+22;x++){let n=0;for(let y=bounds[row];y<bounds[row+1];y++)if(data[(y*info.width+x)*4+3]>100)n++;if(n<best){best=n;cut=x;}}cols.push(cut);}cols.push(info.width);columns.push(cols);}
+  return {file,...info,bounds,columns};
+ };
+ const tileAt=async(sheet,row,col)=>sharp(sheet.file).extract({left:sheet.columns[row][col],top:sheet.bounds[row],width:sheet.columns[row][col+1]-sheet.columns[row][col],height:sheet.bounds[row+1]-sheet.bounds[row]}).png().toBuffer();
+ const injuryFile=path.join(artDir,'all-grades-hurt-death-v4.png'),injury=fs.existsSync(injuryFile)?await readGrid(injuryFile,6):null;
  for(const grade of grades){
   const royal=grade!=='base';
   if(!fs.existsSync(path.join(artDir,grade+'-walk-v3.png')))continue;
-  const sheets={};for(const kind of ['walk','attack']){const file=path.join(artDir,grade+'-'+kind+'-v3.png');const {data,info}=await sharp(file).ensureAlpha().raw().toBuffer({resolveWithObject:true});const occupancy=[];
-   for(let y=0;y<info.height;y++){let count=0;for(let x=0;x<info.width;x++)if(data[(y*info.width+x)*4+3]>100)count++;occupancy.push(count);}
-   const bounds=[0];for(let i=1;i<7;i++){let score=Infinity,cut=0;for(let y=Math.round(info.height*i/7)-55;y<Math.round(info.height*i/7)+40;y++){let value=0;for(let k=-2;k<=2;k++)value+=occupancy[y+k]||0;if(value<score){score=value;cut=y;}}bounds.push(cut);}bounds.push(info.height);
-   const columns=[];for(let row=0;row<7;row++){const cols=[0];for(let col=1;col<12;col++){let best=Infinity,cut=0;for(let x=Math.round(info.width*col/12)-22;x<=Math.round(info.width*col/12)+22;x++){let count=0;for(let y=bounds[row];y<bounds[row+1];y++)if(data[(y*info.width+x)*4+3]>100)count++;if(count<best){best=count;cut=x;}}cols.push(cut);}cols.push(info.width);columns.push(cols);}
-   sheets[kind]={file,...info,bounds,columns};}
+  const sheets={};for(const kind of ['walk','attack'])sheets[kind]=await readGrid(path.join(artDir,grade+'-'+kind+'-v3.png'),12);
   for(let row=0;row<keys.length;row++){
    const key=keys[row],stem=key+(grade==='exalted'?'-exalted':royal?'-evo':''),configPath=path.join(imageDir,stem+'.json');
    if(!fs.existsSync(configPath))continue;
    const config=JSON.parse(fs.readFileSync(configPath));
-   // Existing hurt/death poses still work, but must not contain adjacent atlas cells.
-   const old=new Set(config.sequences.filter(s=>s.group>=3&&s.group<=8).flatMap(s=>s.frames));for(const frame of old){const file=path.join(imageDir,path.basename(frame));await pose(await fs.promises.readFile(file),path.basename(frame));}
    const frames={};for(const kind of ['walk','attack']){
     const sheet=sheets[kind],cw=Math.floor(sheet.width/12),ch=Math.floor(sheet.height/7);frames[kind]=[];
     for(let col=0;col<12;col++){
@@ -35,9 +38,11 @@ export async function buildGoonkPoses({imageDir,artDir,grades=['base','royal','e
    }
    const base=await fs.promises.readFile(path.join(imageDir,path.basename(frames.walk[0]))),idle=[];
    for(let i=0;i<32;i++)idle.push(await pose(base,stem+'-v3-idle-'+i+'.png',Math.sin(i/32*Math.PI*2)*2,true));
-   if(grade==='exalted'){
-    const hurt=await pose(base,stem+'-hurt.png',-2,true);
-    const fallen=await sharp(await isolatedBuilding(base)).rotate(80,{background:clear}).png().toBuffer();
+   {
+    // Every grade uses a single canonical body. Never blend legacy limb poses.
+    const column=['base','royal','exalted'].indexOf(grade)*2;
+    const hurt=await pose(injury?await tileAt(injury,row,column):base,stem+'-hurt.png',injury?0:-2,true);
+    const fallen=injury?await tileAt(injury,row,column+1):await sharp(await isolatedBuilding(base)).rotate(80,{background:clear}).png().toBuffer();
     const death=await pose(fallen,stem+'-fallen.png');
     for(const sequence of config.sequences){if(sequence.group===3||sequence.group===4)sequence.frames=[frames.walk[0],hurt,frames.walk[0]];if(sequence.group===5||sequence.group===6)sequence.frames=[hurt,death,death];}
     const map=await sharp(await isolatedBuilding(base)).resize(56,56,{fit:'contain',background:clear}).extend({top:4,bottom:4,left:4,right:4,background:clear}).png().toBuffer();

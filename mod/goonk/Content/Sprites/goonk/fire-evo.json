@@ -51,8 +51,9 @@
     {
       "group": 3,
       "frames": [
-        "goonk/fire-evo-attack.png",
-        "goonk/fire-evo-idle.png"
+        "goonk/fire-evo-v3-walk-0.png",
+        "goonk/fire-evo-hurt.png",
+        "goonk/fire-evo-v3-walk-0.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -60,8 +61,9 @@
     {
       "group": 4,
       "frames": [
-        "goonk/fire-evo-attack.png",
-        "goonk/fire-evo-idle.png"
+        "goonk/fire-evo-v3-walk-0.png",
+        "goonk/fire-evo-hurt.png",
+        "goonk/fire-evo-v3-walk-0.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -69,9 +71,9 @@
     {
       "group": 5,
       "frames": [
-        "goonk/fire-6.png",
-        "goonk/fire-7.png",
-        "goonk/fire-7.png"
+        "goonk/fire-evo-hurt.png",
+        "goonk/fire-evo-fallen.png",
+        "goonk/fire-evo-fallen.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
@@ -79,9 +81,9 @@
     {
       "group": 6,
       "frames": [
-        "goonk/fire-6.png",
-        "goonk/fire-7.png",
-        "goonk/fire-7.png"
+        "goonk/fire-evo-hurt.png",
+        "goonk/fire-evo-fallen.png",
+        "goonk/fire-evo-fallen.png"
       ],
       "generateShadow": 1,
       "generateOverlay": 1
