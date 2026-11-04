@@ -167,7 +167,7 @@ void publishMobileState(){
  if(creatureWindow&&creatureWindow->getMobileCreature()){
   auto item=creature(creatureWindow->getMobileCreature(),creatureWindow->getMobileCount());
   if(auto stack=creatureWindow->getMobileStack()){const bool shooter=stack->hasBonusOfType(BonusType::SHOOTER);item["attack"].Integer()=stack->getAttack(shooter);item["defense"].Integer()=stack->getDefense(shooter);item["health"].Integer()=stack->getMaxHealth();item["speed"].Integer()=stack->getMovementRange();item["damageMin"].Integer()=stack->getMinDamage(shooter);item["damageMax"].Integer()=stack->getMaxDamage(shooter);}
-  if(p&&p->cb)if(const auto stack=creatureWindow->getMobileStack())if(const auto armyObject=stack->getArmy())if(armyObject->getOwner()==p->playerID){
+  if(p&&p->cb&&!CPlayerInterface::battleInt)if(const auto stack=creatureWindow->getMobileStack())if(const auto armyObject=stack->getArmy())if(armyObject->getOwner()==p->playerID){
    const auto slot=armyObject->findStack(stack);UpgradeInfo upgrades(stack->getCreature()->getId());p->cb->fillUpgradeInfo(armyObject,slot,upgrades);
    for(const auto id:upgrades.getAvailableUpgrades()){
     auto upgrade=creature(id.toCreature(),stack->getCount());const auto total=upgrades.getUpgradeCostsFor(id)*stack->getCount();upgrade["cost"].Vector().clear();
@@ -355,7 +355,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   if(!ENGINE->windows().topWindow<AdventureMapInterface>()&&!townWindow)return;
   ENGINE->windows().createAndPushWindow<CStackWindow>(&army->getStack(SlotID(b)),false);lastPublished=0;return;
  }
- if(action==59&&p->makingTurn){
+ if(action==59&&p->makingTurn&&!CPlayerInterface::battleInt){
   if(const auto window=ENGINE->windows().topWindow<CStackWindow>())if(const auto stack=window->getMobileStack())if(const auto armyObject=stack->getArmy())if(armyObject->getOwner()==p->playerID){
    const auto slot=armyObject->findStack(stack);UpgradeInfo upgrades(stack->getCreature()->getId());p->cb->fillUpgradeInfo(armyObject,slot,upgrades);const CreatureID target(a);
    const auto & available=upgrades.getAvailableUpgrades();if(std::find(available.begin(),available.end(),target)!=available.end()&&p->cb->getResourceAmount().canAfford(upgrades.getUpgradeCostsFor(target)*stack->getCount())){p->cb->upgradeCreature(armyObject,slot,target);std::static_pointer_cast<CWindowObject>(window)->close();}

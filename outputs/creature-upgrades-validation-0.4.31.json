@@ -5,7 +5,8 @@
     "Creature detail has no navigation links to other army creatures.",
     "Recruitment for a dwelling shows only its native creature family variants.",
     "Available stack upgrades and total resource prices come from the engine.",
-    "Upgrade purchase revalidates ownership, availability, player turn and affordability before the native server request."
+    "Upgrade purchase revalidates ownership, availability, player turn and affordability before the native server request.",
+    "Upgrade offers and purchase commands are excluded while a battle is active."
   ],
   "validation": {
     "nativeBuild": "ninja -j32 html5 passed",
