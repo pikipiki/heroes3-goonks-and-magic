@@ -18,6 +18,14 @@ export async function buildGoonkPoses({imageDir,artDir,grades=['base','royal','e
   return {file,...info,bounds,columns};
  };
  const tileAt=async(sheet,row,col)=>sharp(sheet.file).extract({left:sheet.columns[row][col],top:sheet.bounds[row],width:sheet.columns[row][col+1]-sheet.columns[row][col],height:sheet.bounds[row+1]-sheet.bounds[row]}).png().toBuffer();
+ // Focused anatomical corrections override the legacy Bobope storyboard only.
+ const bobopeTile=async(kind,index=0)=>{
+  const file=path.join(artDir,'bobope-base-'+kind+'-v5.png');
+  const {width,height}=await sharp(file).metadata();
+  const columns=kind==='injury'?2:4,rows=kind==='injury'?1:3;
+  const left=Math.round(width*(index%columns)/columns),top=Math.round(height*Math.floor(index/columns)/rows);
+  return sharp(file).extract({left,top,width:Math.round(width*((index%columns)+1)/columns)-left,height:Math.round(height*(Math.floor(index/columns)+1)/rows)-top}).png().toBuffer();
+ };
  const injuryFile=path.join(artDir,'all-grades-hurt-death-v4.png'),injury=fs.existsSync(injuryFile)?await readGrid(injuryFile,6):null;
  for(const grade of grades){
   const royal=grade!=='base';
@@ -33,7 +41,7 @@ export async function buildGoonkPoses({imageDir,artDir,grades=['base','royal','e
      // Projectile-only storyboard cells are not creature poses. The engine draws missiles separately.
      const source=kind==='attack'&&((grade!=='exalted'&&row===5&&[6,7].includes(col))||(!royal&&row===6&&[6,7].includes(col)))?(col===6?5:8):col;
      const tile=await sharp(sheet.file).extract({left:sheet.columns[row][source],top:sheet.bounds[row],width:sheet.columns[row][source+1]-sheet.columns[row][source],height:sheet.bounds[row+1]-sheet.bounds[row]}).png().toBuffer();
-     frames[kind].push(await pose(tile,stem+'-v3-'+kind+'-'+col+'.png'));
+     frames[kind].push(await pose(grade==='base'&&key==='blue'?await bobopeTile(kind,col):tile,stem+'-v3-'+kind+'-'+col+'.png'));
     }
    }
    const base=await fs.promises.readFile(path.join(imageDir,path.basename(frames.walk[0]))),idle=[];
@@ -41,8 +49,8 @@ export async function buildGoonkPoses({imageDir,artDir,grades=['base','royal','e
    {
     // Every grade uses a single canonical body. Never blend legacy limb poses.
     const column=['base','royal','exalted'].indexOf(grade)*2;
-    const hurt=await pose(injury?await tileAt(injury,row,column):base,stem+'-hurt.png',injury?0:-2,true);
-    const fallen=injury?await tileAt(injury,row,column+1):await sharp(await isolatedBuilding(base)).rotate(80,{background:clear}).png().toBuffer();
+    const hurt=await pose(grade==='base'&&key==='blue'?await bobopeTile('injury',0):injury?await tileAt(injury,row,column):base,stem+'-hurt.png',injury?0:-2,true);
+    const fallen=grade==='base'&&key==='blue'?await bobopeTile('injury',1):injury?await tileAt(injury,row,column+1):await sharp(await isolatedBuilding(base)).rotate(80,{background:clear}).png().toBuffer();
     const death=await pose(fallen,stem+'-fallen.png');
     for(const sequence of config.sequences){if(sequence.group===3||sequence.group===4)sequence.frames=[frames.walk[0],hurt,frames.walk[0]];if(sequence.group===5||sequence.group===6)sequence.frames=[hurt,death,death];}
     const map=await sharp(await isolatedBuilding(base)).resize(56,56,{fit:'contain',background:clear}).extend({top:4,bottom:4,left:4,right:4,background:clear}).png().toBuffer();

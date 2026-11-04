@@ -1,0 +1,20 @@
+{
+  "tool": "image_gen.imagegen",
+  "scope": "Bobope base form only: walk, idle, attack, hit, death, map and icons",
+  "atlasLayout": {
+    "walk": [
+      4,
+      3
+    ],
+    "attack": [
+      4,
+      3
+    ],
+    "injury": [
+      2,
+      1
+    ]
+  },
+  "promptSpecification": "Preserve purple plush Bobope with teal beard and boulder. Exactly two arms from shoulders, both hands holding rock when carried; remove spare dangling arm. Exactly two feet. Full body in each cell, including attack follow-through; no projectile-only cells. Transparent background. Injury recoils holding rock, defeated lies on side.",
+  "review": "Visually reviewed all 26 corrected cells. Royal and exalted representative walk/attack/hurt/death inspected separately; unchanged. Automated tests verify asset bindings and alpha, not anatomical limb counts."
+}

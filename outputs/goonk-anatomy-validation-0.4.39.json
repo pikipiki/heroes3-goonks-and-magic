@@ -1,0 +1,15 @@
+{
+  "version": "0.4.39",
+  "correction": "Base Bobope extra arms in carried-boulder and hurt poses. Replaced canonical walk, attack, hurt and defeated atlases; rebuilt idle, map and icons.",
+  "visualEvidence": "bobope-anatomy-after-0.4.39.png",
+  "visualScope": "26 new base storyboard cells reviewed; representative walk/attack/hurt/death of royal and exalted reviewed. No automated limb counting claimed.",
+  "validation": {
+    "testsPassed": 377,
+    "testsSkipped": 22,
+    "testsFailed": 0,
+    "prepareWeb": "passed",
+    "buildWeb": "passed",
+    "verifyWeb": "passed"
+  },
+  "engine": "0.4.38 engine from concurrent TUM release; no native source changed for Bobope correction"
+}
