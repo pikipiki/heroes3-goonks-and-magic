@@ -29,3 +29,27 @@ test('Cancelling a map gesture also discards subpixel remainders',()=>{
  pan.add(.4,.4);queue.shift()();assert.equal(sent.length,0);
  pan.add(.4,.4);queue.shift()();assert.deepEqual(sent,[{x:1,y:1}]);
 });
+
+test('Document anchor keeps mobile buttons in client coordinates after iOS Home Screen rotation',async()=>{
+ const {anchorMobileViewport}=await import('../web/mobile-viewport.mjs');
+ class Target extends EventTarget{}
+ const queue=[],win=new Target(),viewport=new Target();Object.assign(viewport,{width:430,height:873,scale:1,offsetTop:59});Object.assign(win,{visualViewport:viewport,scrollX:0,scrollY:59,requestAnimationFrame:f=>queue.push(f)});
+ let writes=0;const values={},root={style:new Proxy(values,{set(o,k,v){writes++;o[k]=v;return true;}})};
+ const anchor=anchorMobileViewport(root,win);assert.equal(values.position,'absolute');assert.equal(parseFloat(values.top)-win.scrollY,0);assert.equal(values.height,'873px');
+ // Ignore visualViewport.offsetTop: adding the iOS stale safe-area offset
+ // would move hit targets away from the visible controls for a second time.
+ assert.equal(values.top,'59px');const initialWrites=writes;
+ viewport.dispatchEvent(new Event('scroll'));win.dispatchEvent(new Event('resize'));assert.equal(queue.length,1);queue.shift()();assert.equal(writes,initialWrites);
+ Object.assign(viewport,{width:932,height:430,offsetTop:0});win.scrollY=0;win.dispatchEvent(new Event('orientationchange'));queue.shift()();assert.equal(values.width,'932px');assert.equal(values.height,'430px');assert.equal(values.top,'0px');
+ Object.assign(viewport,{width:430,height:873,offsetTop:59});win.scrollY=59;viewport.dispatchEvent(new Event('scroll'));queue.shift()();assert.equal(parseFloat(values.top)-win.scrollY,0);assert.equal(values.width,'430px');
+ // Browser toolbar/keyboard changes resize the root, without resetting focus
+ // or writing window scroll position. Native pinch zoom is left alone.
+ viewport.height=500;viewport.dispatchEvent(new Event('resize'));queue.shift()();assert.equal(values.height,'500px');
+ viewport.scale=2;viewport.width=215;viewport.dispatchEvent(new Event('resize'));queue.shift()();assert.equal(values.width,'430px');
+ viewport.scale=1;viewport.width=430;viewport.height=873;win.dispatchEvent(new Event('pageshow'));queue.shift()();assert.equal(values.height,'873px');
+ anchor.dispose();win.dispatchEvent(new Event('resize'));assert.equal(queue.length,0);
+});
+test('Mobile document anchor works without visualViewport in desktop browsers',async()=>{
+ const {anchorMobileViewport}=await import('../web/mobile-viewport.mjs');const win=new EventTarget();Object.assign(win,{innerWidth:800,innerHeight:600,scrollX:0,scrollY:0,requestAnimationFrame:f=>f()});const root={style:{}};
+ const anchor=anchorMobileViewport(root,win);assert.equal(root.style.width,'800px');assert.equal(root.style.height,'600px');win.innerWidth=600;win.innerHeight=800;win.dispatchEvent(new Event('resize'));assert.equal(root.style.height,'800px');anchor.dispose();
+});

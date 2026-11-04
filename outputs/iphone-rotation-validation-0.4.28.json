@@ -1,0 +1,66 @@
+{
+  "version": "0.4.28",
+  "date": "2026-11-04",
+  "problem": "iPhone Home Screen app hit regions shifted after landscape-to-portrait rotation",
+  "physicalDevice": {
+    "type": "iPhone",
+    "ios": "27.2",
+    "homeScreenStandalone": true,
+    "method": "USB Web Inspector, user performed real rotations and finger taps; no WebDriver automation",
+    "before": {
+      "documentScrollY": 59,
+      "visualViewportOffsetTop": 59,
+      "rootClientY": -59,
+      "armyClientY": 726,
+      "actualFingerY": 807.3333333333333,
+      "target": "NAV",
+      "armyOpened": false
+    },
+    "after": {
+      "patch": "Exact anchorMobileViewport function injected into the existing loaded game without reloading",
+      "documentScrollY": 59,
+      "visualViewportOffsetTop": 0,
+      "rootClientY": 0,
+      "armyClientY": 785,
+      "actualFingerY": 803,
+      "target": "BUTTON[data-ui=army]",
+      "armyOpened": true,
+      "closeButtonWorked": true,
+      "landscapePortraitCyclePassed": true,
+      "userConfirmed": true
+    },
+    "chromeOnIPhoneTested": false
+  },
+  "browserRegression": {
+    "chromium": "passed",
+    "webkit": "passed",
+    "rotations": 4,
+    "checks": [
+      "Move",
+      "Hero center",
+      "Towns",
+      "End turn",
+      "Army open and close",
+      "keyboard activation",
+      "settings checkbox"
+    ]
+  },
+  "nativeEngineRegression": {
+    "browser": "Chromium",
+    "rotations": 5,
+    "armyTownCenter": "passed",
+    "heroMovementBefore": 1630,
+    "heroMovementAfter": 1430,
+    "javascriptErrors": []
+  },
+  "unitTests": {
+    "passed": 288,
+    "skipped": 16,
+    "failed": 0
+  },
+  "staticBuild": "passed",
+  "limitations": [
+    "Physical iPhone validation used the patch in the running Home Screen game; a fresh production launch was not yet retested.",
+    "Chrome on desktop and WebKit tested; Chrome on the physical iPhone not yet tested."
+  ]
+}
