@@ -163,3 +163,12 @@ html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=target]{gri
 .mobile-spellbook .spell-list{grid-column:1/-1;grid-row:4;grid-auto-rows:max-content;align-items:start}
 .mobile-spellbook>footer{grid-column:1/-1;grid-row:5}
 @media(orientation:landscape) and (max-height:600px){.mobile-spellbook{grid-template-columns:minmax(0,1fr) minmax(160px,.6fr);grid-template-rows:48px 44px minmax(0,1fr) 44px;gap:5px}.mobile-spellbook>header{grid-column:1;grid-row:1}.mobile-spellbook .spell-top-actions{grid-column:2;grid-row:1}.mobile-spellbook .spell-schools{grid-row:2}.mobile-spellbook .spell-list{grid-row:3}.mobile-spellbook>footer{grid-row:4}}
+
+/* Select heroes directly; edge arrows indicate the horizontally scrollable roster. */
+#mobile-app[data-mode=map] .hero-movement-summary{display:flex;align-items:center;gap:4px}
+#mobile-app .hero-movement-list{flex:1;min-width:0;scroll-snap-type:none}
+#mobile-app .hero-movement-item{padding:0;min-height:44px;flex:0 0 auto;scroll-snap-align:none}
+#mobile-app .hero-movement-item>button{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px;white-space:nowrap;padding:4px 8px;font-size:13px;border:0;background:transparent;color:inherit}
+#mobile-app .hero-movement-summary .hero-scroll{flex:0 0 44px;width:44px;min-height:44px;padding:0;font-size:24px}
+#mobile-app .hero-scroll[hidden]{display:none}
+#mobile-app .hero-movement-item>button span{font-size:13px;line-height:1.2;margin:0}
