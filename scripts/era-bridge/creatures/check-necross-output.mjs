@@ -7,7 +7,7 @@ test('all six source XP rows have distinct native or exact runtime ownership; no
  assert.deepEqual(report.runtimeExperienceBindings.map(x=>x.row.code).sort(),['L','c','k']);
  for(const row of report.runtimeExperienceBindings){assert.equal(row.emittedBonuses,0);assert.deepEqual(row.row.values,[0,5,10,15,20,25,30,35,40,45,50]);}
  const text=JSON.stringify({abilities:creature.abilities,xp:creature.stackExperience});assert(!text.includes('SPELL_BEFORE_ATTACK'));assert(!text.includes('SPELL_AFTER_ATTACK'));
- assert.equal(creature.abilities.magicResistance.val,40);assert.equal(creature.abilities.deathCloud.subtype,'tum-era:necrossDeathCloud');
+ assert.equal(creature.shots,10,'Source Crtraits254 has ten initial shots independently of the O+ XP row');assert.equal(creature.abilities.magicResistance.val,40);assert.equal(creature.abilities.deathCloud.subtype,'tum-era:necrossDeathCloud');
  assert.deepEqual(read('content/config/era-bridge-runtime.json').creatures['tum-era:necrossDragon'].physicalDeflection,{modifier:49,values:[0,5,10,15,20,25,30,35,40,45,50]});
 });
 test('source chain, experience, policies and unrelated registrations survive the candidate overlay',()=>{

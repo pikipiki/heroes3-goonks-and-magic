@@ -2,7 +2,10 @@
   "schemaVersion": 1,
   "creatures": [
     "tum-era:antichrist",
-    "tum-era:redBonesDragon"
+    "tum-era:redBonesDragon",
+    "tum-era:necrossDragon",
+    "tum-era:gemDragon",
+    "tum-era:chasmDragon"
   ],
   "sourceIds": {
     "core:pikeman": 0,
@@ -247,6 +250,11 @@
     "third-upgrades:tumGhoul": 329,
     "tum-era:eraCreature357": 357,
     "tum-era:eraCreature359": 359,
-    "tum-era:eraCreature361": 361
+    "tum-era:eraCreature361": 361,
+    "tum-era:necrossDragon": 254,
+    "tum-era:gemDragon": 207,
+    "tum-era:nightmareHydra": 245,
+    "tum-era:guardianOfZeus": 212,
+    "tum-era:chasmDragon": 231
   }
 }

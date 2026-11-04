@@ -968,6 +968,26 @@
     "tum-era:eraCreature361": {
       "target": "core:skeleton",
       "living": false
+    },
+    "tum-era:necrossDragon": {
+      "target": "tum-era:necrossDragon",
+      "living": false
+    },
+    "tum-era:gemDragon": {
+      "target": "core:boneDragon",
+      "living": true
+    },
+    "tum-era:nightmareHydra": {
+      "target": "core:boneDragon",
+      "living": true
+    },
+    "tum-era:guardianOfZeus": {
+      "target": "core:skeleton",
+      "living": true
+    },
+    "tum-era:chasmDragon": {
+      "target": "core:boneDragon",
+      "living": true
     }
   }
 }

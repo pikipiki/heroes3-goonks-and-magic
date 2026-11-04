@@ -369,6 +369,12 @@
 		"templates" : { },
 		"battleground" : { },
 		"sounds" : { },
+		"eraBankSpellPointsCap" : {
+			"type" : "integer",
+			"enum" : [999],
+			"description" : "ERA bank positive spell point award cap; does not lower existing mana above999"
+		},
+		"eraBankGuardSlots" : { "type":"array", "minItems":1, "maxItems":7, "uniqueItems":true, "items": { "type":"integer", "minimum":0, "maximum":6 } },
 		"eraBankAppearance" : {
 	"type": "object",
 	"additionalProperties": false,

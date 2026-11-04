@@ -1,0 +1,200 @@
+{
+  "wake-of-gods.level8units:ghostBehemoth": {
+    "abilities": {
+      "fearful": null
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "attack"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "defence"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageBoth"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACK_HEALTH",
+          "valueType": "PERCENT_TO_BASE"
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED"
+        },
+        "values": [
+          0,
+          0,
+          2,
+          3,
+          3,
+          4,
+          4,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 10,
+          "valueType": "INDEPENDENT_MAX",
+          "propagator": "BATTLE_WIDE",
+          "propagationUpdater": "BONUS_OWNER_UPDATER",
+          "limiters": [
+            "OPPOSITE_SIDE",
+            [
+              "noneOf",
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "NO_MORALE"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "UNDEAD"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "NON_LIVING"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "MECHANICAL"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "SIEGE_WEAPON"
+              }
+            ]
+          ],
+          "stacking": "eraSourceFear:156:v1"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ADDITIONAL_ATTACK"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "any"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "blind",
+          "addInfo": 0
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+import test from'node:test';import assert from'node:assert/strict';import{closeCreatureDependencies,assertPinned}from'../scripts/era-bridge/creatures/native-closed-fixed-point.mjs';
+const r=(nativeId,dependencies=[],obligations=[])=>({nativeId,dependencies,obligations});
+test('fixedpoint removes transitive partial chains but keeps complete cycles atomically',()=>{const x=closeCreatureDependencies([r('a',['b']),r('b',['c']),r('c',[],['unproved']),r('x',['y']),r('y',['x'])]);assert.deepEqual(x.accepted.map(r=>r.nativeId),['x','y']);assert.equal(x.removed.length,2);});
+test('registered targets discharge dependencies without duplicated identity',()=>{assert.equal(closeCreatureDependencies([r('a',['core:skeleton'])],new Set(['core:skeleton'])).accepted.length,1);assert.throws(()=>closeCreatureDependencies([r('a')],new Set(['a'])),/Conflicting/);assert.throws(()=>closeCreatureDependencies([r('a'),r('a')]),/Conflicting/);});
+test('changed source pin aborts rather than importing altered data',()=>{assertPinned('x','same','same');assert.throws(()=>assertPinned('x','new','old'),/Changed pinned/);});

@@ -122,11 +122,11 @@ struct DLL_LINKAGE Reward final
 
 	/// Generates list of components that describes reward for a specific hero
 	/// If hero is nullptr, then rewards will be generated without accounting for hero
-	void loadComponents(std::vector<Component> & comps, const CGHeroInstance * h) const;
+	void loadComponents(std::vector<Component> & comps, const CGHeroInstance * h, int32_t manaCap = -1) const;
 	
-	Component getDisplayedComponent(const CGHeroInstance * h) const;
+	Component getDisplayedComponent(const CGHeroInstance * h, int32_t manaCap = -1) const;
 
-	si32 calculateManaPoints(const CGHeroInstance * h) const;
+	si32 calculateManaPoints(const CGHeroInstance * h, int32_t manaCap = -1) const;
 	si32 calculateMovePoints(const CGHeroInstance * h) const;
 
 	Reward();

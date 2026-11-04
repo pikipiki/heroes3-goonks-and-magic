@@ -1,0 +1,110 @@
+{
+  "core:azureDragon": {
+    "abilities": {
+      "fearful": {
+        "stacking": "eraSourceFear:132:v1"
+      }
+    }
+  },
+  "wake-of-gods.level8units:hellBaron": {
+    "abilities": {
+      "fearful": {
+        "stacking": "eraSourceFear:153:v1"
+      }
+    }
+  },
+  "wake-of-gods.level8units:darknessDragon": {
+    "abilities": {
+      "fearful": {
+        "stacking": "eraSourceFear:155:v1"
+      }
+    }
+  },
+  "antichrist": {
+    "abilities": {
+      "fearful": {
+        "stacking": "eraSourceFear:219:v1"
+      }
+    }
+  },
+  "redBonesDragon": {
+    "abilities": {
+      "fearful": {
+        "stacking": "eraSourceFear:224:v1"
+      }
+    }
+  },
+  "ancestralBehemoth": {
+    "abilities": {
+      "fearful": {
+        "stacking": "eraSourceFear:238:v1"
+      }
+    }
+  },
+  "nightmareHydra": {
+    "abilities": {
+      "fearful": {
+        "stacking": "eraSourceFear:245:v1"
+      }
+    }
+  },
+  "necrossDragon": {
+    "abilities": {
+      "fear": {
+        "stacking": "eraSourceFear:254:v1"
+      }
+    }
+  },
+  "wake-of-gods.level8units:bloodDragon": {
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 10,
+          "valueType": "INDEPENDENT_MAX",
+          "propagator": "BATTLE_WIDE",
+          "propagationUpdater": "BONUS_OWNER_UPDATER",
+          "limiters": [
+            "OPPOSITE_SIDE",
+            [
+              "noneOf",
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "NO_MORALE"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "UNDEAD"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "NON_LIVING"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "MECHANICAL"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "SIEGE_WEAPON"
+              }
+            ]
+          ],
+          "stacking": "eraSourceFear:154:v1"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    ]
+  }
+}

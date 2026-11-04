@@ -31,6 +31,7 @@ protected:
 	void grantReward(IGameEventCallback & gameEvents, ui32 rewardID, const CGHeroInstance * hero) const override;
 	void markAsVisited(IGameEventCallback & gameEvents, const CGHeroInstance * hero) const override;
 
+	int32_t getManaCap() const override;
 	const IObjectInterface * getObject() const override;
 	void markAsScouted(IGameEventCallback & gameEvents, const CGHeroInstance * hero) const override;
 	

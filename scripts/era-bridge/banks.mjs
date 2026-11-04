@@ -1,3 +1,4 @@
+import {compileEraBankGuardSlots} from './objects/bank-guard-slots.mjs';
 import {compileEraSpellFilters,compileEraAppearancePolicy} from './objects/bank-extras.mjs';
 /** Strict bridge for declarative TUM bank rewards, not ERM map replacement. */
 const resourceNames=['wood','mercury','ore','sulfur','crystal','gems','gold'];
@@ -36,7 +37,7 @@ function atPointer(value,pointer){if(!pointer)return value;if(!pointer.startsWit
 export function compileTumBank(input,{
  source='<TUM_CreatureBanks.json>',pointer='',objectId,nativeTemplates,guardsLayout,
  resolveCreature,resolveArtifact,resolveResource,nativeRmg,
- chanceMode='percent',disabledUpgradeEvidence,upgradeMode='strict',resolveEraUpgrade,resolveNativeUpgrades,spellMode='strict',spellCatalog,resolveSpell,emptyGuardMode='strict',resolveNullSound,appearanceMode='strict',resolveAnimation,
+ chanceMode='percent',guardSlotsMode='strict',extraRewardsMode='strict',disabledUpgradeEvidence,upgradeMode='strict',resolveEraUpgrade,resolveNativeUpgrades,spellMode='strict',spellCatalog,resolveSpell,emptyGuardMode='strict',resolveNullSound,appearanceMode='strict',resolveAnimation,
 }={}){
  const parsed=typeof input==='string'?parseTumBanks(input,{source}):input&&own(input,'document')&&own(input,'locations')?structuredClone(input):{document:structuredClone(input),source,locations:{}};
  const root=atPointer(parsed.document,pointer),diagnostics=[],provenance=[];
@@ -60,6 +61,7 @@ export function compileTumBank(input,{
   if(!Array.isArray(t.mask)||!t.mask.length||t.mask.some(r=>typeof r!=='string'||!r.length||!/^[VAB]+$/.test(r))||new Set(t.mask.map(r=>r.length)).size!==1)error(p,'INVALID_TEMPLATE','Template requires a rectangular V/A/B mask');
  }
  if(typeof guardsLayout!=='string'||!guardsLayout.trim())error(pointer,'MISSING_GUARDS_LAYOUT','Explicit verified native guardsLayout is required');
+ if(!['strict','era-original'].includes(extraRewardsMode))error(pointer,'INVALID_EXTRA_REWARDS_MODE','Unknown bank extra rewards mode');
  if(!['strict','era-first-occupied-slot'].includes(upgradeMode))error(pointer,'INVALID_UPGRADE_MODE','Unknown bank upgrade mode');
  if(!['percent','relative','era-fourth-state-remainder'].includes(chanceMode))error(pointer,'INVALID_CHANCE_MODE','chanceMode must be percent, relative or era-fourth-state-remainder');
  if(!keys(root,['name','states','properties','sound','text','density','value','enabled'],pointer)){fail();}
@@ -71,6 +73,7 @@ export function compileTumBank(input,{
  for(const k of ['density','value'])if(own(root,k)){integer(root[k],join(pointer,k));note(join(pointer,k),'ERA RMG metadata retained; no automatic distribution equivalence claimed');}
  if(own(root,'enabled')){if(typeof root.enabled!=='boolean')error(join(pointer,'enabled'),'INVALID_BOOLEAN','enabled must be boolean');if(root.enabled===false)error(join(pointer,'enabled'),'DISABLED_SOURCE_BANK','Cannot emit a playable bank from a disabled ERA definition');note(join(pointer,'enabled'),'source bank enabled gate');}
  const definition={name:root.name,templates:structuredClone(nativeTemplates||{}),visitMode:'once',selectMode:'selectFirst',guardsLayout,onGuardedMessage:32,onVisitedMessage:33,rewards:[]};
+ try{const slots=compileEraBankGuardSlots(root,{mode:guardSlotsMode});if(slots){definition.eraBankGuardSlots=slots;note(pointer,'Native original guardian slots policy; no source holes compacted','h3era.exe0x47A717..0x47A721 copies7types/counts; count4 bypasses split0x47A824..0x47A83C');}}catch(cause){error(pointer,cause.code||'GUARD_SLOTS_FAILED',cause.message);}
  if(own(root,'sound')&&keys(root.sound,['enter','loop'],join(pointer,'sound'))){definition.sounds={};for(const [key,native]of [['enter','visit'],['loop','ambient']])if(own(root.sound,key)){const p=join(join(pointer,'sound'),key);if(root.sound[key]===null&&typeof resolveNullSound==='function'){let policy;try{policy=resolveNullSound(key);}catch(cause){error(p,'NULL_SOUND_RESOLVER_FAILED',cause.message);}if(!policy||!['inherit','silence'].includes(policy.mode)||!policy.evidence)error(p,'UNVERIFIED_NULL_SOUND','Null sound policy requires verified inherit/silence mode and evidence');else{if(policy.mode==='silence')definition.sounds[native]=[];note(p,'verified ERA null sound '+policy.mode,policy.evidence);}}else if(typeof root.sound[key]!=='string'||!root.sound[key])error(p,'INVALID_SOUND','Expected sound resource name');else{definition.sounds[native]=[root.sound[key]];note(p,'native '+native+' sound');}}}
  if(own(root,'text')&&keys(root.text,['visit'],join(pointer,'text'))){if(typeof root.text.visit!=='string')error(join(join(pointer,'text'),'visit'),'INVALID_TEXT','Expected visit message');else{definition.onGuardedMessage=root.text.visit;note(join(join(pointer,'text'),'visit'),'native guarded-visit message');}}
  if(nativeRmg!==undefined){if(keys(nativeRmg,['value','rarity','mapLimit','zoneLimit'],join(pointer,'nativeRmg'))){for(const[k,v]of Object.entries(nativeRmg))integer(v,join(pointer,'nativeRmg/'+k));definition.rmg=structuredClone(nativeRmg);note(pointer,'caller-supplied native RMG policy; ERA density/value are report-only');}}
@@ -78,7 +81,7 @@ export function compileTumBank(input,{
  const weights=[];
  for(let i=0;i<states.length;i++){
   const state=states[i],p=join(join(pointer,'states'),i);
-  if(!keys(state,['chance','guardians','resources','creatureRewardType','creatureRewardCount','artifactTypeCounts','artifactIds','upgrade',...(spellMode==='era-single-filter'?['spells']:[]),...(appearanceMode==='native-state-hook'?['customDef']:[])],p)){weights.push(0);continue;}
+  if(!keys(state,['chance','guardians','resources','creatureRewardType','creatureRewardCount','artifactTypeCounts','artifactIds','upgrade',...(spellMode==='era-single-filter'?['spells']:[]),...(appearanceMode==='native-state-hook'?['customDef']:[]),...(extraRewardsMode==='era-original'?['morale','spellPoints']:[])],p)){weights.push(0);continue;}
   const w=integer(state.chance,join(p,'chance'),{min:0,max:1000000});weights.push(w??0);
  }
  const sourceWeightTotal=weights.reduce((a,b)=>a+b,0);
@@ -101,6 +104,10 @@ export function compileTumBank(input,{
   if(!Number.isInteger(width))error(join(p,'chance'),'NONREPRESENTABLE_WEIGHTS','Exact state ratio is not representable on native 100-outcome dice; rounding is forbidden');
   const reward={mapDice:i,appearChance:{min:cursor,max:cursor+width},guards:[]};cursor+=width;note(join(p,'chance'),'shared native 0..99 dice, disjoint [min,max) state interval');
   if(own(s,'upgrade')){if(upgradeMode==='era-first-occupied-slot'){integer(s.upgrade,join(p,'upgrade'));}else if(s.upgrade===0&&typeof disabledUpgradeEvidence==='string'&&disabledUpgradeEvidence.trim())note(join(p,'upgrade'),'caller-proven zero disables ERA upgrade semantics',disabledUpgradeEvidence);else error(join(p,'upgrade'),'UNSUPPORTED_SEMANTICS','ERA upgrade behavior requires an explicit adapter; even zero requires disabledUpgradeEvidence');}
+  if(extraRewardsMode==='era-original'){
+   if(own(s,'morale')){const amount=integer(s.morale,join(p,'morale'),{min:-2147483648});if(amount!==undefined){const val=Math.max(-3,Math.min(3,amount));if(val)reward.bonuses=[{type:'MORALE',val,duration:'ONE_BATTLE'}];note(join(p,'morale'),'ERA clamps reward to[-3,3], adds temporary hero morale, consumed at next battle; native additive ONE_BATTLE bonus, no custom stacking','Objects_CreatureBanksExtender.dll302025e001b02df14ae8ed5ee10b281b69ae3cf60846dd614099b10f4441ed00:1000847e..10008482 addb hero+11a; h3era.exe4da780 clears temporary morale,4770c2 post-combat caller');}}
+   if(own(s,'spellPoints')){const amount=integer(s.spellPoints,join(p,'spellPoints'),{min:-2147483648});if(amount!==undefined){reward.manaPoints=Math.max(0,Math.min(999,amount));reward.manaOverflowFactor=100;definition.eraBankSpellPointsCap=999;note(join(p,'spellPoints'),'ERA clips award0..999; native optional constructor cap adds only missing amount and never lowers existing mana>=999','Objects_CreatureBanksExtender.dll302025e001b02df14ae8ed5ee10b281b69ae3cf60846dd614099b10f4441ed00:10008437..10008474; h3era.exe49f9a1 immediate999');}}
+  }
   const gp=join(p,'guardians');
   if(keys(s.guardians,['type','count'],gp)&&array(s.guardians.type,join(gp,'type'))&&array(s.guardians.count,join(gp,'count'))){
    if(s.guardians.type.length!==s.guardians.count.length||s.guardians.type.length>7||!s.guardians.type.length)error(gp,'INVALID_GUARD_SLOTS','Guard type/count arrays must have matching lengths from 1 to 7');

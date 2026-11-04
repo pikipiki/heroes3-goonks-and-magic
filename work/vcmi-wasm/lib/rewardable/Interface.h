@@ -44,6 +44,8 @@ protected:
 
 	void doHeroVisit(IGameEventCallback & gameEvents, const CGHeroInstance *h) const;
 
+	/// Optional source-specific absolute positive mana-award cap; no serialized state.
+	virtual int32_t getManaCap() const { return -1; }
 	virtual const IObjectInterface * getObject() const = 0;
 	virtual bool wasVisitedBefore(const CGHeroInstance * hero) const = 0;
 	virtual bool wasVisited(PlayerColor player) const = 0;

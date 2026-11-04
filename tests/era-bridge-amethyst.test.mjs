@@ -36,7 +36,7 @@ test('ERA faction and hated creature references require explicit resolvers',()=>
   resolveTown:id=>id===4?'core:necropolis':undefined,resolveCreature:id=>id===54?'core:devil':undefined,
  });
  assert.equal(result.definition.level,7);assert.equal(result.definition.faction,'core:necropolis');
- assert.deepEqual(result.definition.abilities.amethyst_Hate0054,{type:'HATE',subtype:'core:devil',val:200});
+ assert.deepEqual(result.definition.abilities.amethyst_Hate0054,{type:'ERA_PERSONAL_HATE_DAMAGE',subtype:'core:devil',val:200});
  assert.equal(result.definition.abilities.amethystStrikeAndReturn.type,'RETURN_AFTER_STRIKE');
  assert.equal(result.provenance.length,4);
 });

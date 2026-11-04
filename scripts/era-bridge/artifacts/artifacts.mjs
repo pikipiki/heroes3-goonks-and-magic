@@ -60,8 +60,9 @@ function resolve(resolver,kind,id,at,diagnostics) {
  * authorizeAdapters is for callers which really bind these exact policy contracts, not a permissive ignore switch.
  */
 export function compileArtifact({id,text='',source=`${id}.cfg`,resolveSpell,resolveCreature,resolveArtifact,
-  duplicates='reject',authorizeAdapters=[],aiPolicy='require-era-equivalence',spellCatalogue,includeSpecials=true,includeCombination=true}={}) {
+  duplicates='reject',authorizeAdapters=[],aiPolicy='require-era-equivalence',spellCatalogue,fixedPowerOpeningSpellContract,includeSpecials=true,includeCombination=true}={}) {
   if(!Number.isSafeInteger(id)||id<0)throw new TypeError('A nonnegative integer artifact id is required');
+  if(fixedPowerOpeningSpellContract!==undefined&&fixedPowerOpeningSpellContract!=='source-fixed50-global-v1')throw new TypeError('Unknown source opening spell contract');
   if(!['require-era-equivalence','native-vcmi'].includes(aiPolicy))throw new TypeError('Unknown artifact AI policy');
   const aiDecisions=[];
   const parsed=parseArtifactCfg(text,{source,duplicates}),diagnostics=[...parsed.diagnostics],bonuses={},adapters=[];
@@ -78,9 +79,10 @@ export function compileArtifact({id,text='',source=`${id}.cfg`,resolveSpell,reso
     }
     else if(/^Autospell/.test(key)) {
       if(value<0)diagnostics.push({...entry,code:'invalid-spell-id'});
-      else if(value!==0){const subtype=resolve(resolveSpell,'spell',value,entry,diagnostics);
-        if([11,24,25,60].includes(value))adapters.push({kind:'artifactFixedPowerOpeningSpell',spell:subtype,eraSpell:value,schoolLevel:3,sourceArgument:50,source:'Emerald emerald.cpp:151-159; resolve fixed-power/targeting semantics before binding',reason:'Native OPENING_BATTLE_SPELL sets duration only; source last argument may fix spell power, and Hypnotize auto-targeting differs.'});
-        else if(subtype)add(key,'OPENING_BATTLE_SPELL',50,{subtype});}
+      else if(value!==0){const subtype=resolve(resolveSpell,'spell',value,entry,diagnostics),autocastIndex=key==='Autospell'?0:Number(key.slice('Autospell'.length))-1;
+        if([24,25].includes(value)&&fixedPowerOpeningSpellContract==='source-fixed50-global-v1')add(key,'ERA_FIXED_POWER_OPENING_SPELL',50,{subtype,addInfo:[3,autocastIndex]});
+        else if([11,24,25,60].includes(value))adapters.push({kind:'artifactFixedPowerOpeningSpell',spell:subtype,eraSpell:value,schoolLevel:3,sourceArgument:50,source:'Emerald emerald.cpp:151-159; resolve fixed-power/targeting semantics before binding',reason:'Native OPENING_BATTLE_SPELL sets duration only; source last argument may fix spell power, and Hypnotize auto-targeting differs.'});
+        else if(subtype)add(key,'OPENING_BATTLE_SPELL',50,{subtype,addInfo:[3,autocastIndex]});}
     } else if(key==='GivesSpell') {
       if(value<0||value>127)diagnostics.push({...entry,code:'invalid-spell-id'});
       else {const subtype=resolve(resolveSpell,'spell',value,entry,diagnostics);if(subtype)add(key,'SPELL',0,{subtype});}

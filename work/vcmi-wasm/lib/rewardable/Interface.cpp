@@ -138,7 +138,7 @@ void Rewardable::Interface::grantRewardAfterLevelup(IGameEventCallback & gameEve
 	auto cb = getObject()->cb;
 
 	if(info.reward.manaDiff || info.reward.manaPercentage >= 0)
-		gameEvents.setManaPoints(hero->id, info.reward.calculateManaPoints(hero));
+		gameEvents.setManaPoints(hero->id, info.reward.calculateManaPoints(hero, getManaCap()));
 
 	if(info.reward.movePoints != 0 || info.reward.movePercentage >= 0)
 		gameEvents.setMovePoints(hero->id, info.reward.calculateMovePoints(hero));
@@ -279,7 +279,7 @@ void Rewardable::Interface::grantRewardWithMessage(IGameEventCallback & gameEven
 		InfoWindow iw;
 		iw.player = contextHero->tempOwner;
 		iw.text = vi.message;
-		vi.reward.loadComponents(iw.components, contextHero);
+		vi.reward.loadComponents(iw.components, contextHero, getManaCap());
 		iw.type = configuration.infoWindowType;
 		if(!iw.components.empty() || !iw.text.toString().empty())
 			gameEvents.showInfoDialog(&iw);
@@ -309,11 +309,11 @@ std::vector<Component> Rewardable::Interface::loadComponents(const CGHeroInstanc
 	if (configuration.selectMode != Rewardable::SELECT_FIRST && rewardIndices.size() > 1)
 	{
 		for (auto index : rewardIndices)
-			result.push_back(configuration.info.at(index).reward.getDisplayedComponent(contextHero));
+			result.push_back(configuration.info.at(index).reward.getDisplayedComponent(contextHero, getManaCap()));
 	}
 	else
 	{
-		configuration.info.at(rewardIndices.front()).reward.loadComponents(result, contextHero);
+		configuration.info.at(rewardIndices.front()).reward.loadComponents(result, contextHero, getManaCap());
 	}
 
 	return result;

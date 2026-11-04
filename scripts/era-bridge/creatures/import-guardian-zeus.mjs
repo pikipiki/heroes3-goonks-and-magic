@@ -27,7 +27,7 @@ const sound={};for(const[key,suffix]of Object.entries({attack:'ATTK',defend:'DFN
 
 const base=read('mod/wake-of-gods/Mods/level8Units/content/config/creatures/lordOfThunder.json').lordOfThunder;
 const creature={...creatureStats(stats),name:{singular:'Master of Thunder',plural:'Masters of Thunder'},faction:'core:tower',level:7,doubleWide:false,hasDoubleWeek:false,shots:stats.shots,abilities:{
- hateRedDragons:{type:'HATE',subtype:'core:redDragon',val:200},hateBlackDragons:{type:'HATE',subtype:'core:blackDragon',val:200},
+ hateRedDragons:{type:'ERA_PERSONAL_HATE_DAMAGE',subtype:'core:redDragon',val:200},hateBlackDragons:{type:'ERA_PERSONAL_HATE_DAMAGE',subtype:'core:blackDragon',val:200},
  shooter:{type:'SHOOTER'},king3:{type:'KING',val:3},mindImmunity:{type:'MIND_IMMUNITY'},noMeleePenalty:{type:'NO_MELEE_PENALTY'},
  doubleShot:{type:'ADDITIONAL_ATTACK',val:1,effectRange:'ONLY_DISTANCE_FIGHT'},noWallPenalty:{type:'NO_WALL_PENALTY'},
  initialUnusedSpellCharge:{type:'CASTS',val:stats.spells},fearless:{type:'FEARFUL',val:0,valueType:'INDEPENDENT_MIN'},...experience.definition.abilities},
@@ -37,8 +37,11 @@ function preserveTown(a,b){const r=structuredClone(a);for(const[k,v]of Object.en
 const towerExisting=path.join(project,'mod/tum-era/content/config/tower.json'),towerOverlay=fs.existsSync(towerExisting)?JSON5.parse(fs.readFileSync(towerExisting,'utf8'))['core:tower']?.town??{}:{};
 const town=preserveTown(read('mod/third-upgrades/content/config/town-screen/tower/factions.json')['core:tower'].town,towerOverlay),creatures=structuredClone(town.creatures),hallSlots=structuredClone(town.hallSlots);if(!creatures[6].includes('guardianOfZeus'))creatures[6].push('guardianOfZeus');if(!hallSlots[4][2].includes('dwellingUp3Lvl7'))hallSlots[4][2].push('dwellingUp3Lvl7');
 const townCfg=fs.readFileSync(path.join(tum,'Data/towns/2.cfg'),'utf8'),buildingCost=townCfg.match(/^BuildingCost0077="([^"]+)"/m)?.[1].trim().split(/\s+/).map(Number);const sourceCost=[10,0,10,0,0,35,25000];if(JSON.stringify(buildingCost)!==JSON.stringify(sourceCost))throw Error('Changed212buildingcost:'+buildingCost);
-write('content/config/tower.candidate.json',{'core:tower':{town:{creatures,hallSlots,buildingsIcons:'tum-era/tower-hall',structures:{dwellingUp3Lvl7:{...town.structures.dwellingUp2Lvl7,builds:'dwellingUp3Lvl7',hidden:false}},buildings:{dwellingUp3Lvl7:{id:57,name:'Upg. Storm Temple',description:'Allows recruitment and upgrades of Masters of Thunder.',upgrades:'dwellingUp2Lvl7',requires:['dwellingUp2Lvl7'],cost:{wood:10,ore:10,gems:35,gold:25000}}}}}});
-write('content/Sprites/tum-era/tower-hall.json',{images:Array.from({length:58},(_,frame)=>({frame,defFile:'town-screen/tower/ALTHALLTOW',defFrame:Math.min(frame,50)}))});
+write('content/config/tower.candidate.json',{'core:tower':{town:{creatures,hallSlots,buildingsIcons:'tum-era/tower-hall',structures:{dwellingUp3Lvl7:{...town.structures.dwellingUp2Lvl7,builds:'dwellingUp3Lvl7',hidden:false}},buildings:{dwellingUp3Lvl7:{name:'Upg. Storm Temple',description:'Allows recruitment and upgrades of Masters of Thunder.',upgrades:'dwellingUp2Lvl7',requires:['dwellingUp2Lvl7'],cost:{wood:10,ore:10,gems:35,gold:25000}}}}}});
+const sourceHallArchive=readEraArchive(fs.readFileSync(path.join(tum,'Data/Common Def.pac'))),sourceHall=readDefFrame(sourceHallArchive.extract('HallTowr.def'),77),sourceHallBase=read('mod/third-upgrades/content/config/town-screen/tower/factions.json')['core:tower'].town.buildingsIcons;
+await sharp(sourceHall.rgba,{raw:{width:sourceHall.width,height:sourceHall.height,channels:4}}).png().toFile(path.join(destination,'content/Sprites/tum-era/tower-building77.png'));
+write('content/Sprites/tum-era/tower-hall.json',{images:[...Array.from({length:51},(_,frame)=>({frame,defFile:sourceHallBase,defFrame:frame})),{frame:57,file:'tum-era/tower-building77.png'}]});
+write('tower-building77-provenance.json',{archive:'Common Def.pac',archiveSha256:sourceHallArchive.sha256,entry:'HallTowr.def',sourceFrame:77,nativeFrame:57,rgbaSha256:crypto.createHash('sha256').update(sourceHall.rgba).digest('hex'),baseHallReference:sourceHallBase});
 write('guardian-zeus-runtime-bindings.json',{eraId:212,runtimeBindings:experience.runtimeBindings,requirements:experience.requirements});
 write('content/config/era-bridge-experience-attack-spells.candidate.json',{schemaVersion:1,creatures:{'tum-era:guardianOfZeus':['core:titanBolt']}});
 write('content/config/era-bridge-runtime.candidate.json',{schemaVersion:1,creatures:{'tum-era:guardianOfZeus':{imposedSpells:[{spell:'core:airShield',mastery:3}],artifactMimic:{artifact:135}}}});
@@ -48,7 +51,7 @@ write('guardian-zeus-import-report.json',{eraId:212,activationReady:false,source
  inactiveConfiguration:{CastsSpell:19,AfterActionSpellMastery:0,reason:'Spell1 selector remains default9 (shipped DLL jump9=4483DD no action), Spell2 default8. CastsSpell19 writes active spell field but does not change selectors. No AfterMelee/Shoot/Defend/Wound spells configured, so AfterActionSpellMastery0 has no consumer for212. No synthesized manual ChainLightning.'},
  requiredRuntime:['CreatureMimicArtifact135 original-army hero TitanBolt grant','Source intrinsic Thunder melee20% gate17/damage10*alive/L endpoint','XPp57 source primary gate and direct600damage without secondary resistance roll','ImposedAirShield28expert3 duration1000'],
  blockers:['Native135/p57/Thunder services must compile and pass E2E before activation','HATE target231 must be imported together; candidate uses explicit tum-era:chasmDragon'],
- unimplementedVisuals:['HitEffects.Melee212 Burst10.def/GOGFLAME.wav and Shot212 Burst11.def require native landing-effects adapter','Original fourth-dwelling town animation/icon currently reuses third-dwelling art'],manifest:'Absent until closure.'});
+ unimplementedVisuals:['HitEffects.Melee212 Burst10.def/GOGFLAME.wav and Shot212 Burst11.def require native landing-effects adapter','Original fourth-dwelling town animation reuses third-dwelling art; hall icon uses source frame77'],manifest:'Absent until closure.'});
 console.log('Generated review-only Master of Thunder212 data in '+destination);
 
 // Complete portable review overlay: merge every shared registry from the
@@ -84,9 +87,10 @@ const expectedLanding={
 const hitData=process.argv[5]?path.resolve(process.argv[5]):process.env.TUM_HIT_EFFECTS_DATA?path.resolve(process.env.TUM_HIT_EFFECTS_DATA):null;
 let hitPac=null,hitSnd=null;
 if(hitData){hitPac=readEraArchive(fs.readFileSync(path.join(hitData,'HitEffects.pac')));const bytes=fs.readFileSync(path.join(hitData,'HitSounds.snd')),count=bytes.readUInt32LE(0),end=4+count*48;hitSnd=new Map();if(end>bytes.length)throw Error('Invalid landing SND');for(let i=0;i<count;i++){const p=4+i*48,n=bytes.subarray(p,p+40).toString('latin1').split('\0')[0].toUpperCase(),offset=bytes.readUInt32LE(p+40),length=bytes.readUInt32LE(p+44);if(offset<end||offset+length>bytes.length||hitSnd.has(n))throw Error('Invalid landing SND entry');hitSnd.set(n,bytes.subarray(offset,offset+length));}}
+const sourceHitAssets=process.env.TUM_HIT_EFFECTS_ASSET_ROOT?path.resolve(process.env.TUM_HIT_EFFECTS_ASSET_ROOT):sourceMod;
 const landingFiles=[];
 for(const[relative,expected]of Object.entries(expectedLanding)){
- const name=path.basename(relative),bytes=hitData?(relative.includes('/Sounds/')?hitSnd.get(name.replace(/\.wav$/i,'').toUpperCase()):hitPac.extract(name)):fs.readFileSync(path.join(sourceMod,relative));
+ const name=path.basename(relative),bytes=hitData?(relative.includes('/Sounds/')?hitSnd.get(name.replace(/\.wav$/i,'').toUpperCase()):hitPac.extract(name)):fs.readFileSync(path.join(sourceHitAssets,relative));
  if(!bytes||crypto.createHash('sha256').update(bytes).digest('hex')!==expected)throw Error('Unreviewed original landing resource '+relative);
  const target=path.join(destination,relative);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,bytes);landingFiles.push({file:relative,sha256:expected,bytes:bytes.length});
 }
@@ -96,5 +100,5 @@ write('content/config/era-bridge-landing-effects.json',mergeObject(landing,{crea
 const manifest=existing('mod.json',{});manifest.creatures=[...new Set([...(manifest.creatures??[]),'config/guardian-zeus.json'])];manifest.factions=[...new Set([...(manifest.factions??[]),'config/tower.json'])];write('mod.candidate.json',manifest);
 const reportFile=path.join(destination,'guardian-zeus-import-report.json'),report=JSON.parse(fs.readFileSync(reportFile,'utf8'));
 report.portable={completeReviewOverlay:true,sharedRegistriesMerged:['runtime','experience','experience-attack-spells','thunder-attacks','status-attacks.sourceIds','landing-effects'],landingFiles,requiredJointDefinition:{sourceId:231,native:'tum-era:chasmDragon',reason:'Reciprocal HATE212/231, must be registered before activation'},manifest:'mod.candidate.json; no active mod.json emitted'};
-report.unimplementedVisuals=['Native ranged/melee landing playback must pass visual E2E on new engine','Original fourth-dwelling art currently reuses third-dwelling art'];fs.writeFileSync(reportFile,JSON.stringify(report,null,2)+'\n');
+report.unimplementedVisuals=['Native ranged/melee landing playback must pass visual E2E on new engine','Original fourth-dwelling town animation reuses third-dwelling art; hall icon uses source frame77'];fs.writeFileSync(reportFile,JSON.stringify(report,null,2)+'\n');
 console.log('Merged portable212 overlay; active registration remains absent.');

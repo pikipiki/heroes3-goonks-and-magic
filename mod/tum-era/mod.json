@@ -1,7 +1,7 @@
 {
   "name": "TUM ERA — native adaptations",
   "author": "VMaiko, PerryR, Archer30; Hit Landing Effects: JackSlater, Raistlin, Dalion; adaptation VCMI Heroes Goonk",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "modType": "Creatures",
   "compatibility": {
     "min": "1.7.3"
@@ -27,7 +27,15 @@
     "config/ancestral-behemoth.json",
     "config/undead-morale-creatures.json",
     "config/source35-stat-patches.json",
-    "config/source-fearless-six.json"
+    "config/source-fearless-six.json",
+    "config/necross-dragon.json",
+    "config/gem-dragon.json",
+    "config/nightmare-hydra.json",
+    "config/source-fear-markers.json",
+    "config/source-ghost-fear-rank5.json",
+    "config/guardian-zeus.json",
+    "config/chasm-dragon.json",
+    "config/source-experience-defaults.json"
   ],
   "factions": [
     "config/necropolis.json",
@@ -43,7 +51,11 @@
     "config/third-upgrade-costs/dungeon.json",
     "config/third-upgrade-costs/stronghold.json",
     "config/third-upgrade-costs/fortress.json",
-    "config/third-upgrade-costs/conflux.json"
+    "config/third-upgrade-costs/conflux.json",
+    "config/rampart.json",
+    "config/tower.json",
+    "config/dungeon.json",
+    "config/fortress.json"
   ],
   "artifacts": [
     "config/native-artifacts.json"
@@ -234,9 +246,11 @@
   "french": {
     "translations": [
       "translation/tum-era-ui-french.json"
-    ]
+    ],
+    "name": "TUM — évolutions et expérience"
   },
   "spells": [
-    "config/skeletal-transformation.json"
+    "config/skeletal-transformation.json",
+    "config/necross-spells.json"
   ]
 }

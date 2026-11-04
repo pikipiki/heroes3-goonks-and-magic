@@ -55,6 +55,87 @@
       "defenseReduction": {
         "percent": 95
       }
+    },
+    "tum-era:necrossDragon": {
+      "physicalDeflection": {
+        "modifier": 49,
+        "values": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      }
+    },
+    "tum-era:gemDragon": {
+      "blindness": {},
+      "allSpellImmunity": {},
+      "armySpellCost": {},
+      "physicalDeflection": {
+        "modifier": 200,
+        "values": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      "dailyResources": {
+        "resource": "core:gems",
+        "amount": 3,
+        "goldPerCreature": 0
+      }
+    },
+    "tum-era:nightmareHydra": {
+      "regeneration": {
+        "hitPoints": 50,
+        "chancePercent": 50
+      },
+      "physicalDeflection": {
+        "modifier": 49,
+        "values": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      }
+    },
+    "tum-era:guardianOfZeus": {
+      "imposedSpells": [
+        {
+          "spell": "core:airShield",
+          "mastery": 3
+        }
+      ],
+      "artifactMimic": {
+        "artifact": 135
+      }
+    },
+    "tum-era:chasmDragon": {
+      "allSpellImmunity": {},
+      "blindness": {}
     }
   },
   "artifacts": {

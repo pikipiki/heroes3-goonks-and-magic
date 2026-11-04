@@ -1,0 +1,229 @@
+{
+  "necrossDragon": {
+    "name": {
+      "singular": "Necross Dragon",
+      "plural": "Necross Dragons"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 50,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 50000
+    },
+    "fightValue": 78500,
+    "aiValue": 85500,
+    "growth": 1,
+    "hitPoints": 1200,
+    "speed": 20,
+    "attack": 80,
+    "defense": 70,
+    "damage": {
+      "min": 75,
+      "max": 100
+    },
+    "advMapAmount": {
+      "min": 1,
+      "max": 3
+    },
+    "shots": 10,
+    "description": "50% Magic Resist. Age. Acid breath. \nAttack twice. Fear. Fearless.",
+    "level": 7,
+    "faction": "core:necropolis",
+    "doubleWide": true,
+    "abilities": {
+      "flying": {
+        "type": "FLYING"
+      },
+      "shooting": {
+        "type": "SHOOTER"
+      },
+      "breath": {
+        "type": "TWO_HEX_ATTACK_BREATH"
+      },
+      "king": {
+        "type": "KING",
+        "val": 0
+      },
+      "mindImmune": {
+        "type": "MIND_IMMUNITY"
+      },
+      "magicResistance": {
+        "type": "MAGIC_RESISTANCE",
+        "val": 40
+      },
+      "noMeleePenalty": {
+        "type": "NO_MELEE_PENALTY"
+      },
+      "attacksTwice": {
+        "type": "ADDITIONAL_ATTACK",
+        "val": 1
+      },
+      "noMorale": {
+        "type": "NO_MORALE"
+      },
+      "undead": {
+        "type": "UNDEAD"
+      },
+      "dragon": {
+        "type": "DRAGON_NATURE"
+      },
+      "deathCloud": {
+        "type": "SPELL_LIKE_ATTACK",
+        "subtype": "tum-era:necrossDeathCloud"
+      },
+      "fear": {
+        "type": "FEARFUL",
+        "val": 10,
+        "valueType": "INDEPENDENT_MAX",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE",
+          [
+            "noneOf",
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NO_MORALE"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "UNDEAD"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NON_LIVING"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "MECHANICAL"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "SIEGE_WEAPON"
+            }
+          ]
+        ]
+      },
+      "fearless": {
+        "type": "FEARFUL",
+        "val": 0,
+        "valueType": "INDEPENDENT_MIN"
+      },
+      "transformer": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "tum-era:necrossDragon"
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SHOTS",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_RESISTANCE_AURA",
+          "val": 20,
+          "valueType": "INDEPENDENT_MAX"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "graphics": {
+      "animation": "tum-era/creatures/254/battle.def",
+      "map": "tum-era/creatures/254/map.def",
+      "iconSmall": "tum-era/creatures/254/small.png",
+      "iconLarge": "tum-era/creatures/254/large.png",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.75,
+        "attack": 1,
+        "idle": 10
+      },
+      "missile": {
+        "projectile": "tum-era/creatures/254/shot.def",
+        "offset": {
+          "upperX": 41,
+          "upperY": -92,
+          "middleX": 58,
+          "middleY": -79,
+          "lowerX": 29,
+          "lowerY": -14
+        },
+        "frameAngles": [
+          90,
+          72,
+          45,
+          27,
+          0,
+          -27,
+          -45,
+          -72,
+          -90,
+          0,
+          0,
+          0
+        ],
+        "attackClimaxFrame": 0
+      }
+    },
+    "sound": {
+      "attack": "tum-era/creatures/254/S254ATTK.wav",
+      "defend": "tum-era/creatures/254/S254DFND.wav",
+      "killed": "tum-era/creatures/254/S254KILL.wav",
+      "move": "tum-era/creatures/254/S254MOVE.wav",
+      "shoot": "tum-era/creatures/254/S254SHOT.wav",
+      "wince": "tum-era/creatures/254/S254WNCE.wav"
+    }
+  },
+  "wake-of-gods.creatures:dracolich": {
+    "upgrades": [
+      "tum-era:necrossDragon"
+    ]
+  }
+}

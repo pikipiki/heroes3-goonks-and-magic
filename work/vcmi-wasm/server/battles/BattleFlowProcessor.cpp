@@ -12,10 +12,14 @@
 #include "BattleFlowProcessor.h"
 #include "../era/EraImposedSpells.h"
 #include "../era/EraRebirth.h"
+#include "../era/EraSourceFear.h"
 #include "../../lib/CCreatureHandler.h"
 #include "../../lib/era/EraBridgePolicies.h"
 #include "../../lib/era/EraCreatureArtifactMimic.h"
 #include "../../lib/entities/artifact/CArtifact.h"
+#include "../../lib/entities/artifact/CArtifactInstance.h"
+#include "../../lib/era/EraOpeningSpellOrder.h"
+#include "../../lib/bonuses/BonusList.h"
 
 #include "BattleProcessor.h"
 
@@ -209,6 +213,39 @@ void BattleFlowProcessor::trySummonGuardians(const CBattleInfoCallback & battle,
 	gameHandler->sendAndApply(fakeEvent);
 }
 
+namespace
+{
+bool isEmeraldArtifact(const CArtifact * artifact)
+{
+    if(!artifact)return false;
+    const auto key=artifact->getJsonKey();
+    const std::string prefix="tum-era:artifact";
+    return key.size()>prefix.size() && key.compare(0,prefix.size(),prefix)==0
+        && std::all_of(key.begin()+prefix.size(),key.end(),[](char c){return c>='0'&&c<='9';});
+}
+bool isEmeraldOpening(const Bonus * bonus)
+{
+    if(bonus->source!=BonusSource::ARTIFACT)return false;
+    const auto id=bonus->sid.as<ArtifactID>();
+    return id.hasValue() && isEmeraldArtifact(id.toArtifact());
+}
+bool isOpening(const Bonus * bonus)
+{
+    return bonus->type==BonusType::OPENING_BATTLE_SPELL
+        || bonus->type==BonusType::ERA_FIXED_POWER_OPENING_SPELL;
+}
+int emeraldAutocastIndex(const Bonus & bonus)
+{
+    if(!bonus.parameters)throw std::runtime_error("ERA opening: missing Autospell source index");
+    // BonusParameters::toJsonNode is an unimplemented presentation stub.
+    // Read the typed payload preserved by JsonBonus, including cfg index0.
+    const auto & encoded=bonus.parameters->toVector();
+    if(encoded.size()!=2 || encoded[0]!=3 || encoded[1]<0 || encoded[1]>8)
+        throw std::runtime_error("ERA opening: expected addInfo [expert3,index0..8]");
+    return encoded[1];
+}
+}
+
 void BattleFlowProcessor::castOpeningSpells(const CBattleInfoCallback & battle)
 {
 	for(auto i : {BattleSide::ATTACKER, BattleSide::DEFENDER})
@@ -217,7 +254,9 @@ void BattleFlowProcessor::castOpeningSpells(const CBattleInfoCallback & battle)
 		if (!h)
 			continue;
 
-		auto openingSpells = *h->getBonusesOfType(BonusType::OPENING_BATTLE_SPELL);
+		auto openingSpells = *h->getBonuses([](const Bonus * bonus) {
+            return isOpening(bonus) && !isEmeraldOpening(bonus);
+        });
 
 		// Source CreatureMimicArtifact=129 emulates HasArtifact(), so one or
 		// several original Cherub stacks count as one equipped artifact. Reuse
@@ -233,6 +272,27 @@ void BattleFlowProcessor::castOpeningSpells(const CBattleInfoCallback & battle)
 				openingSpells.push_back(bonus);
 		}
 
+        // Native/misc opening bonuses retain their native relative order. Emerald
+        // is an equipped-slot hook, not a traversal of the hero bonus graph.
+        // getArt excludes locked combination components and never scans backpack.
+        std::vector<std::shared_ptr<Bonus>> emeraldBonuses;
+        std::vector<::era_bridge::EmeraldOpeningSlot> sourceOrder;
+        for(int slot=0;slot<19;++slot)
+        {
+            const auto * artifact=h->getArt(ArtifactPosition(slot));
+            if(!artifact || !isEmeraldArtifact(artifact->getType()))continue;
+            for(const auto & bonus:artifact->getType()->getExportedBonusList())
+            {
+                if(!isOpening(bonus.get()))continue;
+                const int token=static_cast<int>(emeraldBonuses.size());
+                sourceOrder.push_back({slot,emeraldAutocastIndex(*bonus),token});
+                emeraldBonuses.push_back(bonus);
+            }
+        }
+        for(const int token : ::era_bridge::emeraldOpeningOrder(std::move(sourceOrder)))
+            openingSpells.push_back(emeraldBonuses.at(token));
+
+
 		for (const auto & b : openingSpells)
 		{
 			spells::BonusCaster caster(h, b);
@@ -246,9 +306,14 @@ void BattleFlowProcessor::castOpeningSpells(const CBattleInfoCallback & battle)
 			const CSpell * spell = spellID.toSpell();
 
 			spells::BattleCast parameters(&battle, &caster, spells::Mode::PASSIVE, spell);
-			int32_t spellLevel = b->parameters ? b->parameters->toNumber() : 3;
+			int32_t spellLevel = isEmeraldOpening(b.get()) ? 3 : (b->parameters ? b->parameters->toNumber() : 3);
 			parameters.setSpellLevel(spellLevel);
 			parameters.setEffectDuration(b->val);
+            // Emerald CastArtifactSpell passes50 as the final CastBattleSpell
+            // argument in mode2. Original5A041B preserves this caller power;
+            // it is not the hero's power or merely an enchantment duration.
+            if(b->type == BonusType::ERA_FIXED_POWER_OPENING_SPELL)
+                parameters.setEffectPower(b->val);
 			parameters.massive = true;
             if(parameters.castIfPossible(gameHandler->spellcastEnvironment(), spells::Target()))
                 applyEraRebirth(*gameHandler, battle);
@@ -881,12 +946,18 @@ bool BattleFlowProcessor::makeAutomaticAction(const CBattleInfoCallback & battle
 void BattleFlowProcessor::stackEnchantedTrigger(const CBattleInfoCallback & battle, const CStack * st)
 {
 	auto bl = *(st->getBonusesOfType(BonusType::ENCHANTED));
+    std::set<SpellID> castSpells;
 	for(const auto & b : bl)
 	{
 		if (!b->subtype.as<SpellID>().hasValue())
 			continue;
 
-		const CSpell * sp = b->subtype.as<SpellID>().toSpell();
+		// XP may supply several mastery thresholds for one spell. Its value
+        // is aggregated below, so applying it once per contributing bonus
+        // would repeat the same effective enchantment.
+        if(!castSpells.insert(b->subtype.as<SpellID>()).second)
+            continue;
+        const CSpell * sp = b->subtype.as<SpellID>().toSpell();
 		const int32_t val = bl.valOfBonuses(Selector::typeSubtype(b->type, b->subtype));
 		const int32_t level = ((val > 3) ? (val - 3) : val);
 
@@ -989,7 +1060,16 @@ void BattleFlowProcessor::stackTurnTrigger(const CBattleInfoCallback & battle, c
 				}
 			}
 		}
-		if (st->hasBonusOfType(BonusType::FEARFUL))
+		const auto sourceFear = era_server::trySourceFear(*gameHandler,battle,st);
+		if(sourceFear.has_value())
+		{
+			if(*sourceFear)
+			{
+				bte.effect = BonusType::FEARFUL;
+				gameHandler->sendAndApply(bte);
+			}
+		}
+		else if (st->hasBonusOfType(BonusType::FEARFUL))
 		{
 			int chance = st->valOfBonuses(BonusType::FEARFUL);
 			ObjectInstanceID opponentArmyID = battle.battleGetArmyObject(battle.otherSide(st->unitSide()))->id;

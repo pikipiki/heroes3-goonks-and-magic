@@ -397,6 +397,11 @@
 		"creatureNature" : true
 	},
 
+	"ERA_FIXED_POWER_OPENING_SPELL":
+	{
+		"blockDescriptionPropagation": true
+	},
+
 	"OPENING_BATTLE_SPELL":
 	{
 	},
@@ -498,8 +503,11 @@
 		}
 	},
 
+	"ERA_PERSONAL_HATE_DAMAGE": { "blockDescriptionPropagation": true },
 	"ERA_SOURCE_STATUS_HEALTH": { "blockDescriptionPropagation": true },
 
+	"ERA_EXPERIENCE_HEALTH_PERCENT": { "blockDescriptionPropagation": true },
+	"ERA_EXPERIENCE_DEFENSE_REDUCTION": { "blockDescriptionPropagation": true },
 	"ERA_SOURCE_ACID_DEFENSE": { "blockDescriptionPropagation": true },
 
 	"ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY": { "description": "Immunity to harmful spells up to level %d" },

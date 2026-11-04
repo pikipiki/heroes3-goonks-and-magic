@@ -207,6 +207,10 @@ class JsonNode;
 	BONUS_NAME(ERA_SOURCE_STATUS_HEALTH) /* Battle-scoped exact poison/Age health profile */ \
 	BONUS_NAME(ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY) /* Source XP w1..w5: nonpositive spells up to level N, including level zero */ \
 	BONUS_NAME(ERA_SOURCE_ACID_DEFENSE) /* Source80 may leave signedDEF after a defended boost expires */ \
+	BONUS_NAME(ERA_FIXED_POWER_OPENING_SPELL) /* Emerald artifact mode2: val is fixed spell power and duration */ \
+	BONUS_NAME(ERA_EXPERIENCE_HEALTH_PERCENT) /* Source XP H% rounding after pre-XP creature HP */ \
+	BONUS_NAME(ERA_EXPERIENCE_DEFENSE_REDUCTION) /* Source XP b: rational targetDEF reduction before truncation */ \
+	BONUS_NAME(ERA_PERSONAL_HATE_DAMAGE) /* Amethyst cfg creature-pair flat physical extra damage; not XP h% */ \
 
 	/* end of list */
 

@@ -27,6 +27,8 @@ class DLL_LINKAGE CRewardableConstructor : public AObjectTypeHandler
 	bool blockVisit = false;
 
 public:
+	const JsonNode & getEraBankSpellPointsCap() const { return objectInfo.getParameters()["eraBankSpellPointsCap"]; }
+	const JsonNode & getEraBankGuardSlots() const { return objectInfo.getParameters()["eraBankGuardSlots"]; }
 	bool hasNameTextID() const override;
 
 	std::shared_ptr<CGObjectInstance> create(IGameInfoCallback * cb, std::shared_ptr<const ObjectTemplate> tmpl = nullptr) const override;

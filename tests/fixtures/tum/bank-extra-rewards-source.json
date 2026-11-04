@@ -1,0 +1,556 @@
+{
+  "34": {
+    "density": 100,
+    "enabled": true,
+    "name": "Mithril Tower",
+    "properties": [
+      "CB2.def 001111111111111111111111111111111111111111111111 100000000000000000000000000000000000000000000000 000000101 000000101 16 34 1 0"
+    ],
+    "sound": {
+      "enter": "IVORYTOW.wav",
+      "loop": "IVORTWLO.wav"
+    },
+    "states": [
+      {
+        "artifactTypeCounts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "chance": 25,
+        "creatureRewardCount": 5,
+        "creatureRewardType": 324,
+        "guardians": {
+          "count": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            0,
+            0
+          ],
+          "type": [
+            136,
+            136,
+            136,
+            136,
+            136,
+            -1,
+            -1
+          ]
+        },
+        "resources": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2500
+        ],
+        "upgrade": 0
+      },
+      {
+        "artifactTypeCounts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "chance": 25,
+        "creatureRewardCount": 10,
+        "creatureRewardType": 324,
+        "guardians": {
+          "count": [
+            50,
+            50,
+            50,
+            50,
+            50,
+            0,
+            0
+          ],
+          "type": [
+            136,
+            136,
+            136,
+            136,
+            136,
+            -1,
+            -1
+          ]
+        },
+        "resources": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2500
+        ],
+        "upgrade": 0
+      },
+      {
+        "artifactTypeCounts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "chance": 25,
+        "creatureRewardCount": 15,
+        "creatureRewardType": 324,
+        "guardians": {
+          "count": [
+            75,
+            75,
+            75,
+            75,
+            75,
+            0,
+            0
+          ],
+          "type": [
+            136,
+            136,
+            136,
+            136,
+            136,
+            -1,
+            -1
+          ]
+        },
+        "resources": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5000
+        ],
+        "upgrade": 0
+      },
+      {
+        "artifactTypeCounts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "chance": 10,
+        "creatureRewardCount": 20,
+        "creatureRewardType": 324,
+        "guardians": {
+          "count": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            0,
+            0
+          ],
+          "type": [
+            136,
+            136,
+            136,
+            136,
+            136,
+            -1,
+            -1
+          ]
+        },
+        "resources": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          10000
+        ],
+        "upgrade": 50
+      }
+    ],
+    "value": 2200
+  },
+  "49": {
+    "density": 20,
+    "enabled": true,
+    "name": "Rotten Dragons Valley",
+    "sound": {
+      "enter": "DRAGON.wav",
+      "loop": "LOOPDRAG.wav"
+    },
+    "text": {
+      "visit": "This was known as Dragon Utopia, however, a mighty necromancer who wanted to have a kingdom of terror, decided to seize the Dragons to turn them into an army of undead that would fulfill their objective. Are you sure that you want to purge this Utopia?"
+    },
+    "properties": [
+      "avsutop1.def 100011111000001100001111111111111111111111111111 010000000000000000000000000000000000000000000000 001100001 011111111 16 49 0 0"
+    ],
+    "states": [
+      {
+        "morale": -3,
+        "artifactTypeCounts": [
+          0,
+          1,
+          2,
+          1
+        ],
+        "resources": [
+          0,
+          20,
+          0,
+          0,
+          0,
+          0,
+          25000,
+          5
+        ],
+        "chance": 30,
+        "guardians": {
+          "count": [
+            20,
+            15,
+            10,
+            5,
+            2,
+            0,
+            0
+          ],
+          "type": [
+            68,
+            69,
+            154,
+            224,
+            196,
+            -1,
+            -1
+          ]
+        },
+        "creatureRewardType": 254,
+        "creatureRewardCount": 1
+      },
+      {
+        "customDef": "AVSutop02.def",
+        "morale": -3,
+        "artifactTypeCounts": [
+          0,
+          0,
+          3,
+          2
+        ],
+        "resources": [
+          0,
+          30,
+          0,
+          0,
+          0,
+          0,
+          50000,
+          10
+        ],
+        "chance": 30,
+        "guardians": {
+          "count": [
+            40,
+            30,
+            20,
+            10,
+            4,
+            0,
+            0
+          ],
+          "type": [
+            68,
+            69,
+            154,
+            224,
+            196,
+            -1,
+            -1
+          ]
+        },
+        "creatureRewardType": 254,
+        "creatureRewardCount": 2
+      },
+      {
+        "customDef": "AVSutop03.def",
+        "morale": -3,
+        "artifactTypeCounts": [
+          0,
+          0,
+          2,
+          3
+        ],
+        "resources": [
+          0,
+          50,
+          0,
+          0,
+          0,
+          0,
+          75000,
+          15
+        ],
+        "chance": 30,
+        "guardians": {
+          "count": [
+            60,
+            40,
+            30,
+            20,
+            6,
+            0,
+            0
+          ],
+          "type": [
+            68,
+            69,
+            154,
+            224,
+            196,
+            -1,
+            -1
+          ]
+        },
+        "creatureRewardType": 254,
+        "creatureRewardCount": 3
+      },
+      {
+        "customDef": "AVSutop04.def",
+        "morale": -3,
+        "artifactTypeCounts": [
+          0,
+          0,
+          1,
+          4
+        ],
+        "resources": [
+          0,
+          70,
+          0,
+          0,
+          0,
+          0,
+          90000,
+          20
+        ],
+        "chance": 10,
+        "guardians": {
+          "count": [
+            80,
+            60,
+            50,
+            30,
+            8,
+            0,
+            0
+          ],
+          "type": [
+            68,
+            69,
+            154,
+            224,
+            196,
+            -1,
+            -1
+          ]
+        },
+        "creatureRewardType": 254,
+        "creatureRewardCount": 4
+      }
+    ],
+    "value": 12000
+  },
+  "50": {
+    "density": 20,
+    "enabled": true,
+    "name": "Magical Utopia",
+    "sound": {
+      "enter": "DRAGON.wav",
+      "loop": "LOOPDRAG.wav"
+    },
+    "text": {
+      "visit": "You approach an unusual variant of Dragon Utopia where Faeries Dragons inhabit guarding great wealth. Do you want to attack this mystical place full of magic?"
+    },
+    "properties": [
+      "avsutop2.def 100011111000001100001111111111111111111111111111 010000000000000000000000000000000000000000000000 000010100 011111111 16 50 0 0"
+    ],
+    "states": [
+      {
+        "spellPoints": 50,
+        "artifactTypeCounts": [
+          0,
+          1,
+          2,
+          1
+        ],
+        "resources": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          20,
+          25000,
+          5
+        ],
+        "chance": 30,
+        "guardians": {
+          "count": [
+            10,
+            10,
+            10,
+            10,
+            0,
+            0,
+            0
+          ],
+          "type": [
+            134,
+            134,
+            134,
+            134,
+            -1,
+            -1,
+            -1
+          ]
+        },
+        "creatureRewardType": 258,
+        "creatureRewardCount": 1
+      },
+      {
+        "spellPoints": 100,
+        "artifactTypeCounts": [
+          0,
+          0,
+          3,
+          2
+        ],
+        "resources": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          30,
+          45000,
+          10
+        ],
+        "chance": 30,
+        "guardians": {
+          "count": [
+            20,
+            20,
+            20,
+            20,
+            0,
+            0,
+            0
+          ],
+          "type": [
+            134,
+            134,
+            134,
+            134,
+            -1,
+            -1,
+            -1
+          ]
+        },
+        "creatureRewardType": 258,
+        "creatureRewardCount": 2
+      },
+      {
+        "spellPoints": 150,
+        "artifactTypeCounts": [
+          0,
+          0,
+          2,
+          3
+        ],
+        "resources": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          50,
+          70000,
+          15
+        ],
+        "chance": 30,
+        "guardians": {
+          "count": [
+            30,
+            30,
+            30,
+            30,
+            0,
+            0,
+            0
+          ],
+          "type": [
+            134,
+            134,
+            134,
+            134,
+            -1,
+            -1,
+            -1
+          ]
+        },
+        "creatureRewardType": 258,
+        "creatureRewardCount": 3
+      },
+      {
+        "spellPoints": 200,
+        "artifactTypeCounts": [
+          0,
+          0,
+          1,
+          3
+        ],
+        "resources": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          70,
+          90000,
+          20
+        ],
+        "chance": 10,
+        "guardians": {
+          "count": [
+            50,
+            50,
+            50,
+            50,
+            0,
+            0,
+            0
+          ],
+          "type": [
+            134,
+            134,
+            134,
+            134,
+            -1,
+            -1,
+            -1
+          ]
+        },
+        "creatureRewardType": 258,
+        "creatureRewardCount": 4
+      }
+    ],
+    "value": 12000
+  }
+}

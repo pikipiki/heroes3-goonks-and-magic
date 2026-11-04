@@ -10,6 +10,7 @@
 
 #include "StdInc.h"
 #include "CRewardableObject.h"
+#include "../era/EraBankGuardSlots.h"
 
 #include "../CPlayerState.h"
 #include "../IGameSettings.h"
@@ -28,6 +29,15 @@
 #include <vstd/RNG.h>
 
 VCMI_LIB_NAMESPACE_BEGIN
+
+int32_t CRewardableObject::getManaCap() const
+{
+	auto handler = std::dynamic_pointer_cast<const CRewardableConstructor>(getObjectHandler());
+	if (!handler)
+		return -1;
+	const auto & cap = handler->getEraBankSpellPointsCap();
+	return cap.isNumber() && cap.Float() == 999 ? 999 : -1;
+}
 
 const IObjectInterface * CRewardableObject::getObject() const
 {
@@ -399,6 +409,9 @@ void CRewardableObject::initializeGuards()
 			putStack(slotID, std::make_unique<CStackInstance>(cb, guard.getId(), guard.getCount()));
 		}
 	}
+	auto handler = std::dynamic_pointer_cast<const CRewardableConstructor>(getObjectHandler());
+	if (handler)
+		era_bridge::applyBankGuardSlots(*this, handler->getEraBankGuardSlots());
 }
 
 bool CRewardableObject::isCoastVisitable() const

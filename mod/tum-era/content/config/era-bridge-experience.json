@@ -170,8 +170,8 @@
       "upgradeMultiplier": 0.75
     },
     "core:archangel": {
-      "fullRank10": 122500,
-      "rank11Extra": 12250,
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
       "battlePercent": 20,
       "experienceMultiplier": 1,
       "upgradeMultiplier": 0.75
@@ -268,8 +268,8 @@
       "upgradeMultiplier": 0.75
     },
     "core:goldDragon": {
-      "fullRank10": 122500,
-      "rank11Extra": 12250,
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
       "battlePercent": 20,
       "experienceMultiplier": 1,
       "upgradeMultiplier": 0.75
@@ -366,8 +366,8 @@
       "upgradeMultiplier": 0.75
     },
     "core:titan": {
-      "fullRank10": 122500,
-      "rank11Extra": 12250,
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
       "battlePercent": 20,
       "experienceMultiplier": 1,
       "upgradeMultiplier": 0.75
@@ -464,8 +464,8 @@
       "upgradeMultiplier": 0.75
     },
     "core:archDevil": {
-      "fullRank10": 122500,
-      "rank11Extra": 12250,
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
       "battlePercent": 20,
       "experienceMultiplier": 1,
       "upgradeMultiplier": 0.75
@@ -660,8 +660,8 @@
       "upgradeMultiplier": 0.75
     },
     "core:blackDragon": {
-      "fullRank10": 122500,
-      "rank11Extra": 12250,
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
       "battlePercent": 20,
       "experienceMultiplier": 1,
       "upgradeMultiplier": 0.75
@@ -758,8 +758,8 @@
       "upgradeMultiplier": 0.75
     },
     "core:ancientBehemoth": {
-      "fullRank10": 122500,
-      "rank11Extra": 12250,
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
       "battlePercent": 20,
       "experienceMultiplier": 1,
       "upgradeMultiplier": 0.75
@@ -856,8 +856,8 @@
       "upgradeMultiplier": 0.75
     },
     "core:chaosHydra": {
-      "fullRank10": 122500,
-      "rank11Extra": 12250,
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
       "battlePercent": 20,
       "experienceMultiplier": 1,
       "upgradeMultiplier": 0.75
@@ -1192,8 +1192,8 @@
       "upgradeMultiplier": 0.75
     },
     "wake-of-gods.creatures:gorynych": {
-      "fullRank10": 122500,
-      "rank11Extra": 12250,
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
       "battlePercent": 20,
       "experienceMultiplier": 1,
       "upgradeMultiplier": 0.75
@@ -1398,7 +1398,7 @@
       "fullRank10": 17500,
       "rank11Extra": 12250,
       "battlePercent": 50,
-      "experienceMultiplier": 1,
+      "experienceMultiplier": 0.5,
       "upgradeMultiplier": 0.75
     },
     "third-upgrades:tumNosferatu": {
@@ -1633,6 +1633,48 @@
       "upgradeMultiplier": 0.75
     },
     "tum-era:ancestralBehemoth": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:necrossDragon": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:gemDragon": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:redBonesDragon": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:nightmareHydra": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:guardianOfZeus": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:chasmDragon": {
       "fullRank10": 147000,
       "rank11Extra": 14700,
       "battlePercent": 20,

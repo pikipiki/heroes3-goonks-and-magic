@@ -13,7 +13,7 @@ const builtInEvidence = {
   RegenerationHitPoints: 'TUM Data/Creatures/224.cfg; VCMI server/battles/BattleFlowProcessor.cpp HP_REGENERATION branch.',
   RegenerationChance: 'TUM Data/Creatures/224.cfg RegenerationChance=100; native HP_REGENERATION is unconditional.',
   StrikeAndReturn: 'TUM Data/Creatures/231.cfg StrikeAndReturn=1; VCMI BonusEnum.h RETURN_AFTER_STRIKE.',
-  Hate: 'TUM Data/Creatures/202.cfg Hate0054=200; VCMI BonusEnum.h HATE uses creature subtype and damage percentage.',
+  Hate: 'Shipped amethyst2_4.dll SHA82bd8174:10015DCA adds PersonalHate directly to extra physical damage; no count/percent scaling. XP h remains percentage.',
 };
 function diagnostic(source, line, code, message, key) {
   return { source, line, code, message, ...(key === undefined ? {} : {key}) };
@@ -137,7 +137,7 @@ export function compileAmethystCreature(input, {
       if (faction) builtIn([key], 'creature.faction = resolved ERA town', {faction});
     } else if (/^Hate\d{4}$/.test(key)) {
       const subtype = resolved(key, resolveCreature, Number(key.slice(4)));
-      if (subtype) builtIn([key], 'HATE damage bonus against resolved creature', {abilities:{['amethyst_'+key]:{type:'HATE', subtype, val:number(key, 0, 1000)}}});
+      if (subtype) builtIn([key], 'Flat cfgPersonalHate extra physical damage against resolved creature', {abilities:{['amethyst_'+key]:{type:'ERA_PERSONAL_HATE_DAMAGE', subtype, val:number(key, 0, 1000)}}});
     } else if (key === 'StrikeAndReturn') {
       if (number(key, 0, 1) === 1) builtIn([key], 'RETURN_AFTER_STRIKE enabled', {abilities:{amethystStrikeAndReturn:{type:'RETURN_AFTER_STRIKE'}}});
       else error(key, 'UNSUPPORTED_SEMANTICS', 'StrikeAndReturn=0 requires an explicit base-ability removal contract');

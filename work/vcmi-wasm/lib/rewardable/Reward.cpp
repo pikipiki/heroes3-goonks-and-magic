@@ -10,6 +10,7 @@
 
 #include "StdInc.h"
 #include "Reward.h"
+#include "../era/EraBankManaSemantics.h"
 
 #include "../mapObjects/CGHeroInstance.h"
 #include "../serializer/JsonSerializeFormat.h"
@@ -45,8 +46,10 @@ Rewardable::Reward::Reward()
 
 Rewardable::Reward::~Reward() = default;
 
-si32 Rewardable::Reward::calculateManaPoints(const CGHeroInstance * hero) const
+si32 Rewardable::Reward::calculateManaPoints(const CGHeroInstance * hero, int32_t manaCap) const
 {
+	if (manaCap >= 0 && manaDiff >= 0 && manaPercentage < 0)
+		return era_bridge::calculateBankMana(hero->mana, manaDiff, manaCap);
 	si32 manaScaled = hero->mana;
 	if (manaPercentage >= 0)
 		manaScaled = hero->manaLimit() * manaPercentage / 100;
@@ -77,10 +80,10 @@ si32 Rewardable::Reward::calculateMovePoints(const CGHeroInstance * hero) const
 	return std::max(0, moveOutput);
 }
 
-Component Rewardable::Reward::getDisplayedComponent(const CGHeroInstance * h) const
+Component Rewardable::Reward::getDisplayedComponent(const CGHeroInstance * h, int32_t manaCap) const
 {
 	std::vector<Component> comps;
-	loadComponents(comps, h);
+	loadComponents(comps, h, manaCap);
 
 	if (!comps.empty())
 		return comps.front();
@@ -92,7 +95,7 @@ Component Rewardable::Reward::getDisplayedComponent(const CGHeroInstance * h) co
 	return Component(ComponentType::NONE, 0);
 }
 
-void Rewardable::Reward::loadComponents(std::vector<Component> & comps, const CGHeroInstance * h) const
+void Rewardable::Reward::loadComponents(std::vector<Component> & comps, const CGHeroInstance * h, int32_t manaCap) const
 {
 	for (auto comp : extraComponents)
 		comps.push_back(comp);
@@ -112,7 +115,7 @@ void Rewardable::Reward::loadComponents(std::vector<Component> & comps, const CG
 		comps.emplace_back(ComponentType::LEVEL, heroLevel);
 
 	if (manaDiff || manaPercentage >= 0)
-		comps.emplace_back(ComponentType::MANA, h ? (calculateManaPoints(h) - h->mana) : manaDiff);
+		comps.emplace_back(ComponentType::MANA, h ? (calculateManaPoints(h, manaCap) - h->mana) : manaDiff);
 
 	for (size_t i=0; i<primary.size(); i++)
 	{

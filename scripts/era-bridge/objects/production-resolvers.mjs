@@ -1,3 +1,5 @@
+import {resolveTumNullEnterSound} from './bank-sound-policies.mjs';
+import {resolveEraBankGuardLayout} from './bank-guard-slots.mjs';
 import fs from 'node:fs';import path from 'node:path';
 import {readEraArchive,readCreatureTable} from '../resources.mjs';
 import {readTumObjectStats,prepareTumObjectImport,writePreparedTumObjects} from './importer.mjs';
@@ -36,29 +38,17 @@ export function createProductionObjectResolvers({sourceRoot,projectRoot,engineRo
  for(const match of upgradeBody.matchAll(/!!MA:U(\d+)\/(\d+);/g))declaredUpgrades.set(Number(match[1]),{eraId:Number(match[2]),evidence:`Original Third Upgrade Mod.erm tum_SetUpNewUpgrades unconditional MA:U${match[1]}/${match[2]}; last declaration wins; Amethyst upgtable hook`});
  const identitiesFile=path.join(tumRoot,'era-identities.json');
  if(fs.existsSync(identitiesFile)){const identities=readJsonc(identitiesFile);if(identities.schemaVersion!==1||!identities.creatures||Array.isArray(identities.creatures))throw new Error('Invalid TUM identity registry');for(const[id,native]of Object.entries(identities.creatures)){if(!/^\d+$/.test(id)||typeof native!=='string'||!/^tum-era:[A-Za-z0-9_]+$/.test(native))throw new Error('Invalid explicit TUM identity');set(Number(id),native,'Reviewed TUM source identity; native definition registered by current tum-era manifest');}}
- const resolveEraUpgrade=id=>{if(declaredUpgrades.has(id))return {kind:'upgrade',...declaredUpgrades.get(id)};const key=vanillaUpgradeKeys.get(id),native=key?findName(key):undefined;if(native){const target=[...byEra.entries()].find(([era,mapped])=>era<150&&mapped===native);if(target)return {kind:'upgrade',eraId:target[0],evidence:'Original H3 town upgrade fallback0x47AA50/0x47AAD0 matched to native core indexed upgrade, no TUM cfg/MA:U override'};}return undefined;};
+ const resolveEraUpgrade=id=>{if(declaredUpgrades.has(id))return {kind:'upgrade',...declaredUpgrades.get(id)};if(id===136)return {kind:'none',evidence:'Original h3era.exe451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181 global6747b0=6703b8, creature136 stride116 first DWORD at674158 isFFFFFFFF(town=-1);47AA50/47AAD0 rejecttown=-1. Original136.cfg has no UpgradesTo, no MA:U136 declaration; Amethyst default upgtable=-1 falls through to original routine'};const key=vanillaUpgradeKeys.get(id),native=key?findName(key):undefined;if(native){const target=[...byEra.entries()].find(([era,mapped])=>era<150&&mapped===native);if(target)return {kind:'upgrade',eraId:target[0],evidence:'Original H3 town upgrade fallback0x47AA50/0x47AAD0 matched to native core indexed upgrade, no TUM cfg/MA:U override'};}return undefined;};
  const resolveNativeUpgrades=id=>{const d=byNative.get(byEra.get(id));return Array.isArray(d?.upgrades)?d.upgrades.map(findName):[];};
  const resolveCreature=id=>byEra.get(id);
  const resolveStats=id=>{if(sourceStats.has(id))return sourceStats.get(id);const d=byNative.get(resolveCreature(id)),row=rows[id];if(!d||!row||!Number.isInteger(d.level)||d.level<1)return undefined;return {level:d.level,growth:row.growth,aiValue:row.aiValue};};
  // Normalize stats to one-based only at this public boundary.
  const resolveOneBasedStats=id=>sourceStats.has(id)?{...sourceStats.get(id),level:sourceStats.get(id).level+1}:resolveStats(id);
  const layouts=readJsonc(path.join(engineRoot,'config/gameConfig.json')).settings.combat.layouts;
- const resolveBankLayout=(id,bank)=>{
-  if(bank.troopPlacement)return undefined;
-  const patterns=[];
-  for(const state of bank.states){const active=state.guardians.type.filter((id,i)=>id>=0&&state.guardians.count[i]>0);
-   if(active.some(id=>!resolveCreature(id)))return 'creatureBankNarrow'; // Compiler reports unresolved identities atomically.
-   const positions=active.map((id,index)=>byNative.get(resolveCreature(id))?.doubleWide?layouts.creatureBankWide.defenderUnits[index]:layouts.creatureBankNarrow.defenderUnits[index]);
-   patterns.push(positions);
-  }
-  if(patterns.some(x=>JSON.stringify(x)!==JSON.stringify(patterns[0])))return undefined; // State-dependent footprint needs its own native policy.
-  if(patterns[0].every((position,index)=>position===layouts.creatureBankNarrow.defenderUnits[index]))return 'creatureBankNarrow';
-  const layout=structuredClone(layouts.creatureBankNarrow);layout.defenderUnits=layout.defenderUnits.map((position,index)=>patterns[0][index]??position);
-  return {layoutId:'eraBank'+id+'MixedLayout',layout};
- };
+ const resolveBankLayout=(id,bank)=>resolveEraBankGuardLayout(id,bank,{resolveCreature,byNative,layouts});
  const resolveDwellingRmg=row=>{if(row.objectType!==20||![2,4].includes(row.objectSubtype))return undefined;const value=row.creatureIds.reduce((n,id)=>n+rows[id].aiValue,0);return {value,rarity:300,neutralAllowed:true};};
  const baseSoundArchive=process.env.TUM_BASE_SND||path.join(projectRoot,'work/game-data/homm3eng/home/web_user/.local/share/vcmi/Data/Heroes3.snd');
- return {baseSoundArchivePaths:fs.existsSync(baseSoundArchive)?[baseSoundArchive]:[],resolveCreature,resolveStats:resolveOneBasedStats,resolveDwellingRmg,levelBase:1,resolveBankLayout,upgradeMode:'era-first-occupied-slot',resolveEraUpgrade,resolveNativeUpgrades,emptyGuardMode:'era-sentinel',rmgPolicy:'era-value-density',byEra,byNative,provenance,dependencies:['wake-of-gods.level8units','wake-of-gods.creatures','wake-of-gods.messengersandemissaries','third-upgrades']};
+ return {resolveNullSound:resolveTumNullEnterSound,baseSoundArchivePaths:fs.existsSync(baseSoundArchive)?[baseSoundArchive]:[],resolveCreature,resolveStats:resolveOneBasedStats,resolveDwellingRmg,levelBase:1,resolveBankLayout,upgradeMode:'era-first-occupied-slot',resolveEraUpgrade,resolveNativeUpgrades,emptyGuardMode:'era-sentinel',rmgPolicy:'era-value-density',byEra,byNative,provenance,dependencies:['wake-of-gods.level8units','wake-of-gods.creatures','wake-of-gods.messengersandemissaries','third-upgrades']};
 }
 
 if(process.argv[1]===new URL(import.meta.url).pathname){const sourceRoot=process.argv[2],projectRoot=process.argv[3],destination=process.argv[4];if(!sourceRoot||!projectRoot||!destination)throw new Error('Usage: production-resolvers.mjs TUM_ROOT PROJECT_ROOT FRESH_DESTINATION');const r=createProductionObjectResolvers({sourceRoot,projectRoot});const result=prepareTumObjectImport({sourceRoot,...r});result.identityProvenance=r.provenance;result.dependencies=r.dependencies;const report=writePreparedTumObjects(result,destination);const usedScopes=new Set();for(const item of report.compiled){const json=JSON.parse(result.files.get(item.config));for(const m of JSON.stringify(json).matchAll(/"([A-Za-z0-9_.-]+):[A-Za-z0-9_-]+"/g))if(m[1]!=='core')usedScopes.add(m[1]);}const manifest={name:'TUM ERA verified object imports',description:'Original TUM object appearances, bank rewards and external recruitment compiled through verified source mappings. Random-map replacements and unsupported objects are excluded.',version:'0.1.0',author:'TUM/WoG/Wrath of the Creators contributors',modType:'Mechanics',keepDisabled:true,compatibility:{min:'1.7.0'},depends:[...usedScopes].sort(),objects:report.compiled.map(x=>x.config.replace(/^content\//,'')),...result.modPatch};fs.writeFileSync(path.join(destination,'mod.json'),JSON.stringify(manifest,null,2)+'\n');console.log(JSON.stringify({compiled:report.compiled.map(x=>({kind:x.kind,id:x.id})),diagnostics:report.diagnostics.length,mappedCreatures:r.byEra.size,files:report.files.length}));}

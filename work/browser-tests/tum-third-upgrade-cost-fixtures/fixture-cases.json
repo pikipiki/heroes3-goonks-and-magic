@@ -1,0 +1,1527 @@
+{
+  "schemaVersion": 1,
+  "reviewOnly": true,
+  "expectedBuildings": 63,
+  "fixtureBudget": {
+    "method": "ordinary day-one map event",
+    "amountPerCoreResource": 100000
+  },
+  "progression": "one actual purchase per town per day; six ordinary end-turn actions between seven purchases",
+  "cases": [
+    {
+      "town": "castle",
+      "name": "TUM costs - castle",
+      "map": "castle.vmap",
+      "prebuilt": [
+        "core:mageGuild1",
+        "core:mageGuild2",
+        "core:mageGuild3",
+        "core:mageGuild4",
+        "core:tavern",
+        "core:shipyard",
+        "core:fort",
+        "core:citadel",
+        "core:castle",
+        "core:townHall",
+        "core:cityHall",
+        "core:capitol",
+        "core:marketplace",
+        "core:resourceSilo",
+        "core:blacksmith",
+        "core:special1",
+        "core:horde1",
+        "core:special2",
+        "core:special3",
+        "core:dwellingLvl1",
+        "core:dwellingLvl2",
+        "core:dwellingLvl3",
+        "core:dwellingLvl4",
+        "core:dwellingLvl5",
+        "core:dwellingLvl6",
+        "core:dwellingLvl7",
+        "core:dwellingUpLvl1",
+        "core:dwellingUpLvl2",
+        "core:dwellingUpLvl3",
+        "core:dwellingUpLvl4",
+        "core:dwellingUpLvl5",
+        "core:dwellingUpLvl6",
+        "core:dwellingUpLvl7"
+      ],
+      "targets": [
+        {
+          "sourceId": 64,
+          "id": 44,
+          "key": "dwellingUp2Lvl1",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 5,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1500
+          },
+          "hallCard": {
+            "x": 109,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 65,
+          "id": 45,
+          "key": "dwellingUp2Lvl2",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 0,
+            "ore": 5,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1500
+          },
+          "hallCard": {
+            "x": 303,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 66,
+          "id": 46,
+          "key": "dwellingUp2Lvl3",
+          "expectedCost": {
+            "wood": 10,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 2000
+          },
+          "hallCard": {
+            "x": 497,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 67,
+          "id": 47,
+          "key": "dwellingUp2Lvl4",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 5,
+            "sulfur": 0,
+            "crystal": 5,
+            "gems": 0,
+            "gold": 2500
+          },
+          "hallCard": {
+            "x": 691,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 68,
+          "id": 48,
+          "key": "dwellingUp2Lvl5",
+          "expectedCost": {
+            "wood": 3,
+            "mercury": 5,
+            "ore": 3,
+            "sulfur": 5,
+            "crystal": 3,
+            "gems": 3,
+            "gold": 2000
+          },
+          "hallCard": {
+            "x": 206,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 69,
+          "id": 49,
+          "key": "dwellingUp2Lvl6",
+          "expectedCost": {
+            "wood": 15,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 5000
+          },
+          "hallCard": {
+            "x": 400,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 70,
+          "id": 50,
+          "key": "dwellingUp2Lvl7",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 10,
+            "ore": 0,
+            "sulfur": 10,
+            "crystal": 10,
+            "gems": 10,
+            "gold": 15000
+          },
+          "hallCard": {
+            "x": 594,
+            "y": 491
+          }
+        }
+      ]
+    },
+    {
+      "town": "rampart",
+      "name": "TUM costs - rampart",
+      "map": "rampart.vmap",
+      "prebuilt": [
+        "core:mageGuild1",
+        "core:mageGuild2",
+        "core:mageGuild3",
+        "core:mageGuild4",
+        "core:mageGuild5",
+        "core:tavern",
+        "core:fort",
+        "core:citadel",
+        "core:castle",
+        "core:townHall",
+        "core:cityHall",
+        "core:capitol",
+        "core:marketplace",
+        "core:resourceSilo",
+        "core:blacksmith",
+        "core:special1",
+        "core:horde1",
+        "core:special2",
+        "core:special3",
+        "core:horde2",
+        "core:dwellingLvl1",
+        "core:dwellingLvl2",
+        "core:dwellingLvl3",
+        "core:dwellingLvl4",
+        "core:dwellingLvl5",
+        "core:dwellingLvl6",
+        "core:dwellingLvl7",
+        "core:dwellingUpLvl1",
+        "core:dwellingUpLvl2",
+        "core:dwellingUpLvl3",
+        "core:dwellingUpLvl4",
+        "core:dwellingUpLvl5",
+        "core:dwellingUpLvl6",
+        "core:dwellingUpLvl7"
+      ],
+      "targets": [
+        {
+          "sourceId": 64,
+          "id": 44,
+          "key": "dwellingUp2Lvl1",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1500
+          },
+          "hallCard": {
+            "x": 109,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 65,
+          "id": 45,
+          "key": "dwellingUp2Lvl2",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1500
+          },
+          "hallCard": {
+            "x": 303,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 66,
+          "id": 46,
+          "key": "dwellingUp2Lvl3",
+          "expectedCost": {
+            "wood": 15,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 5,
+            "gems": 0,
+            "gold": 2000
+          },
+          "hallCard": {
+            "x": 497,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 67,
+          "id": 47,
+          "key": "dwellingUp2Lvl4",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 5,
+            "gems": 0,
+            "gold": 2000
+          },
+          "hallCard": {
+            "x": 691,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 68,
+          "id": 48,
+          "key": "dwellingUp2Lvl5",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 3000
+          },
+          "hallCard": {
+            "x": 206,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 69,
+          "id": 49,
+          "key": "dwellingUp2Lvl6",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 10,
+            "gold": 5000
+          },
+          "hallCard": {
+            "x": 400,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 70,
+          "id": 50,
+          "key": "dwellingUp2Lvl7",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 30,
+            "sulfur": 0,
+            "crystal": 30,
+            "gems": 0,
+            "gold": 15000
+          },
+          "hallCard": {
+            "x": 594,
+            "y": 491
+          }
+        }
+      ]
+    },
+    {
+      "town": "tower",
+      "name": "TUM costs - tower",
+      "map": "tower.vmap",
+      "prebuilt": [
+        "core:mageGuild1",
+        "core:mageGuild2",
+        "core:mageGuild3",
+        "core:mageGuild4",
+        "core:mageGuild5",
+        "core:tavern",
+        "core:fort",
+        "core:citadel",
+        "core:castle",
+        "core:townHall",
+        "core:cityHall",
+        "core:capitol",
+        "core:marketplace",
+        "core:resourceSilo",
+        "core:blacksmith",
+        "core:special1",
+        "core:horde1",
+        "core:special2",
+        "core:special3",
+        "core:special4",
+        "core:dwellingLvl1",
+        "core:dwellingLvl2",
+        "core:dwellingLvl3",
+        "core:dwellingLvl4",
+        "core:dwellingLvl5",
+        "core:dwellingLvl6",
+        "core:dwellingLvl7",
+        "core:dwellingUpLvl1",
+        "core:dwellingUpLvl2",
+        "core:dwellingUpLvl3",
+        "core:dwellingUpLvl4",
+        "core:dwellingUpLvl5",
+        "core:dwellingUpLvl6",
+        "core:dwellingUpLvl7"
+      ],
+      "targets": [
+        {
+          "sourceId": 64,
+          "id": 44,
+          "key": "dwellingUp2Lvl1",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1500
+          },
+          "hallCard": {
+            "x": 109,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 65,
+          "id": 45,
+          "key": "dwellingUp2Lvl2",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 10,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1500
+          },
+          "hallCard": {
+            "x": 303,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 66,
+          "id": 46,
+          "key": "dwellingUp2Lvl3",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 2,
+            "ore": 5,
+            "sulfur": 2,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 2000
+          },
+          "hallCard": {
+            "x": 497,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 67,
+          "id": 47,
+          "key": "dwellingUp2Lvl4",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 3,
+            "ore": 5,
+            "sulfur": 3,
+            "crystal": 3,
+            "gems": 3,
+            "gold": 2500
+          },
+          "hallCard": {
+            "x": 691,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 68,
+          "id": 48,
+          "key": "dwellingUp2Lvl5",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 5,
+            "gems": 5,
+            "gold": 2500
+          },
+          "hallCard": {
+            "x": 206,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 69,
+          "id": 49,
+          "key": "dwellingUp2Lvl6",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 4,
+            "ore": 0,
+            "sulfur": 4,
+            "crystal": 4,
+            "gems": 4,
+            "gold": 3000
+          },
+          "hallCard": {
+            "x": 400,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 70,
+          "id": 50,
+          "key": "dwellingUp2Lvl7",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 0,
+            "ore": 5,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 25,
+            "gold": 20000
+          },
+          "hallCard": {
+            "x": 594,
+            "y": 491
+          }
+        }
+      ]
+    },
+    {
+      "town": "inferno",
+      "name": "TUM costs - inferno",
+      "map": "inferno.vmap",
+      "prebuilt": [
+        "core:mageGuild1",
+        "core:mageGuild2",
+        "core:mageGuild3",
+        "core:mageGuild4",
+        "core:mageGuild5",
+        "core:tavern",
+        "core:fort",
+        "core:citadel",
+        "core:castle",
+        "core:townHall",
+        "core:cityHall",
+        "core:capitol",
+        "core:marketplace",
+        "core:resourceSilo",
+        "core:blacksmith",
+        "core:horde1",
+        "core:special2",
+        "core:special3",
+        "core:special4",
+        "core:horde2",
+        "core:dwellingLvl1",
+        "core:dwellingLvl2",
+        "core:dwellingLvl3",
+        "core:dwellingLvl4",
+        "core:dwellingLvl5",
+        "core:dwellingLvl6",
+        "core:dwellingLvl7",
+        "core:dwellingUpLvl1",
+        "core:dwellingUpLvl2",
+        "core:dwellingUpLvl3",
+        "core:dwellingUpLvl4",
+        "core:dwellingUpLvl5",
+        "core:dwellingUpLvl6",
+        "core:dwellingUpLvl7"
+      ],
+      "targets": [
+        {
+          "sourceId": 64,
+          "id": 44,
+          "key": "dwellingUp2Lvl1",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 5,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1200
+          },
+          "hallCard": {
+            "x": 109,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 65,
+          "id": 45,
+          "key": "dwellingUp2Lvl2",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 3,
+            "ore": 5,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1500
+          },
+          "hallCard": {
+            "x": 303,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 66,
+          "id": 46,
+          "key": "dwellingUp2Lvl3",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 3,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 2000
+          },
+          "hallCard": {
+            "x": 497,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 67,
+          "id": 47,
+          "key": "dwellingUp2Lvl4",
+          "expectedCost": {
+            "wood": 10,
+            "mercury": 0,
+            "ore": 10,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 2500
+          },
+          "hallCard": {
+            "x": 691,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 68,
+          "id": 48,
+          "key": "dwellingUp2Lvl5",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 5,
+            "ore": 0,
+            "sulfur": 5,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 3000
+          },
+          "hallCard": {
+            "x": 206,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 69,
+          "id": 49,
+          "key": "dwellingUp2Lvl6",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 5,
+            "ore": 10,
+            "sulfur": 5,
+            "crystal": 0,
+            "gems": 5,
+            "gold": 7000
+          },
+          "hallCard": {
+            "x": 400,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 70,
+          "id": 50,
+          "key": "dwellingUp2Lvl7",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 20,
+            "ore": 5,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 15000
+          },
+          "hallCard": {
+            "x": 594,
+            "y": 491
+          }
+        }
+      ]
+    },
+    {
+      "town": "necropolis",
+      "name": "TUM costs - necropolis",
+      "map": "necropolis.vmap",
+      "prebuilt": [
+        "core:mageGuild1",
+        "core:mageGuild2",
+        "core:mageGuild3",
+        "core:mageGuild4",
+        "core:mageGuild5",
+        "core:tavern",
+        "core:shipyard",
+        "core:fort",
+        "core:citadel",
+        "core:castle",
+        "core:townHall",
+        "core:cityHall",
+        "core:capitol",
+        "core:marketplace",
+        "core:resourceSilo",
+        "core:blacksmith",
+        "core:special1",
+        "core:horde1",
+        "core:special2",
+        "core:special3",
+        "core:dwellingLvl1",
+        "core:dwellingLvl2",
+        "core:dwellingLvl3",
+        "core:dwellingLvl4",
+        "core:dwellingLvl5",
+        "core:dwellingLvl6",
+        "core:dwellingLvl7",
+        "core:dwellingUpLvl1",
+        "core:dwellingUpLvl2",
+        "core:dwellingUpLvl3",
+        "core:dwellingUpLvl4",
+        "core:dwellingUpLvl5",
+        "core:dwellingUpLvl6",
+        "core:dwellingUpLvl7"
+      ],
+      "targets": [
+        {
+          "sourceId": 64,
+          "id": 44,
+          "key": "dwellingUp2Lvl1",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 5,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1500
+          },
+          "hallCard": {
+            "x": 109,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 65,
+          "id": 45,
+          "key": "dwellingUp2Lvl2",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 0,
+            "ore": 5,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1500
+          },
+          "hallCard": {
+            "x": 303,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 66,
+          "id": 46,
+          "key": "dwellingUp2Lvl3",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 5,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 2000
+          },
+          "hallCard": {
+            "x": 497,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 67,
+          "id": 47,
+          "key": "dwellingUp2Lvl4",
+          "expectedCost": {
+            "wood": 10,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 10,
+            "gems": 10,
+            "gold": 2500
+          },
+          "hallCard": {
+            "x": 691,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 68,
+          "id": 48,
+          "key": "dwellingUp2Lvl5",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 10,
+            "sulfur": 6,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 3000
+          },
+          "hallCard": {
+            "x": 206,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 69,
+          "id": 49,
+          "key": "dwellingUp2Lvl6",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 4,
+            "ore": 10,
+            "sulfur": 4,
+            "crystal": 4,
+            "gems": 4,
+            "gold": 4500
+          },
+          "hallCard": {
+            "x": 400,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 70,
+          "id": 50,
+          "key": "dwellingUp2Lvl7",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 15,
+            "ore": 5,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 15000
+          },
+          "hallCard": {
+            "x": 594,
+            "y": 491
+          }
+        }
+      ]
+    },
+    {
+      "town": "dungeon",
+      "name": "TUM costs - dungeon",
+      "map": "dungeon.vmap",
+      "prebuilt": [
+        "core:mageGuild1",
+        "core:mageGuild2",
+        "core:mageGuild3",
+        "core:mageGuild4",
+        "core:mageGuild5",
+        "core:tavern",
+        "core:fort",
+        "core:citadel",
+        "core:castle",
+        "core:townHall",
+        "core:cityHall",
+        "core:capitol",
+        "core:marketplace",
+        "core:resourceSilo",
+        "core:blacksmith",
+        "core:special1",
+        "core:horde1",
+        "core:special2",
+        "core:special3",
+        "core:special4",
+        "core:dwellingLvl1",
+        "core:dwellingLvl2",
+        "core:dwellingLvl3",
+        "core:dwellingLvl4",
+        "core:dwellingLvl5",
+        "core:dwellingLvl6",
+        "core:dwellingLvl7",
+        "core:dwellingUpLvl1",
+        "core:dwellingUpLvl2",
+        "core:dwellingUpLvl3",
+        "core:dwellingUpLvl4",
+        "core:dwellingUpLvl5",
+        "core:dwellingUpLvl6",
+        "core:dwellingUpLvl7"
+      ],
+      "targets": [
+        {
+          "sourceId": 64,
+          "id": 44,
+          "key": "dwellingUp2Lvl1",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1500
+          },
+          "hallCard": {
+            "x": 109,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 65,
+          "id": 45,
+          "key": "dwellingUp2Lvl2",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 2,
+            "gems": 2,
+            "gold": 1500
+          },
+          "hallCard": {
+            "x": 303,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 66,
+          "id": 46,
+          "key": "dwellingUp2Lvl3",
+          "expectedCost": {
+            "wood": 2,
+            "mercury": 2,
+            "ore": 2,
+            "sulfur": 2,
+            "crystal": 2,
+            "gems": 2,
+            "gold": 2000
+          },
+          "hallCard": {
+            "x": 497,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 67,
+          "id": 47,
+          "key": "dwellingUp2Lvl4",
+          "expectedCost": {
+            "wood": 10,
+            "mercury": 0,
+            "ore": 10,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 2500
+          },
+          "hallCard": {
+            "x": 691,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 68,
+          "id": 48,
+          "key": "dwellingUp2Lvl5",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 10,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 10,
+            "gold": 3000
+          },
+          "hallCard": {
+            "x": 206,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 69,
+          "id": 49,
+          "key": "dwellingUp2Lvl6",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 5,
+            "ore": 5,
+            "sulfur": 5,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 5000
+          },
+          "hallCard": {
+            "x": 400,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 70,
+          "id": 50,
+          "key": "dwellingUp2Lvl7",
+          "expectedCost": {
+            "wood": 15,
+            "mercury": 0,
+            "ore": 15,
+            "sulfur": 25,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 15000
+          },
+          "hallCard": {
+            "x": 594,
+            "y": 491
+          }
+        }
+      ]
+    },
+    {
+      "town": "stronghold",
+      "name": "TUM costs - stronghold",
+      "map": "stronghold.vmap",
+      "prebuilt": [
+        "core:mageGuild1",
+        "core:mageGuild2",
+        "core:mageGuild3",
+        "core:tavern",
+        "core:fort",
+        "core:citadel",
+        "core:castle",
+        "core:townHall",
+        "core:cityHall",
+        "core:capitol",
+        "core:marketplace",
+        "core:resourceSilo",
+        "core:blacksmith",
+        "core:special1",
+        "core:horde1",
+        "core:special2",
+        "core:special3",
+        "core:special4",
+        "core:dwellingLvl1",
+        "core:dwellingLvl2",
+        "core:dwellingLvl3",
+        "core:dwellingLvl4",
+        "core:dwellingLvl5",
+        "core:dwellingLvl6",
+        "core:dwellingLvl7",
+        "core:dwellingUpLvl1",
+        "core:dwellingUpLvl2",
+        "core:dwellingUpLvl3",
+        "core:dwellingUpLvl4",
+        "core:dwellingUpLvl5",
+        "core:dwellingUpLvl6",
+        "core:dwellingUpLvl7"
+      ],
+      "targets": [
+        {
+          "sourceId": 64,
+          "id": 44,
+          "key": "dwellingUp2Lvl1",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 0,
+            "ore": 5,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1300
+          },
+          "hallCard": {
+            "x": 109,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 65,
+          "id": 45,
+          "key": "dwellingUp2Lvl2",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 0,
+            "ore": 5,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1500
+          },
+          "hallCard": {
+            "x": 303,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 66,
+          "id": 46,
+          "key": "dwellingUp2Lvl3",
+          "expectedCost": {
+            "wood": 4,
+            "mercury": 0,
+            "ore": 7,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1500
+          },
+          "hallCard": {
+            "x": 497,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 67,
+          "id": 47,
+          "key": "dwellingUp2Lvl4",
+          "expectedCost": {
+            "wood": 10,
+            "mercury": 0,
+            "ore": 5,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 5,
+            "gold": 2500
+          },
+          "hallCard": {
+            "x": 691,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 68,
+          "id": 48,
+          "key": "dwellingUp2Lvl5",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 0,
+            "ore": 10,
+            "sulfur": 0,
+            "crystal": 5,
+            "gems": 5,
+            "gold": 3000
+          },
+          "hallCard": {
+            "x": 206,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 69,
+          "id": 49,
+          "key": "dwellingUp2Lvl6",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 15,
+            "sulfur": 0,
+            "crystal": 10,
+            "gems": 0,
+            "gold": 5000
+          },
+          "hallCard": {
+            "x": 400,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 70,
+          "id": 50,
+          "key": "dwellingUp2Lvl7",
+          "expectedCost": {
+            "wood": 10,
+            "mercury": 0,
+            "ore": 10,
+            "sulfur": 0,
+            "crystal": 15,
+            "gems": 0,
+            "gold": 15000
+          },
+          "hallCard": {
+            "x": 594,
+            "y": 491
+          }
+        }
+      ]
+    },
+    {
+      "town": "fortress",
+      "name": "TUM costs - fortress",
+      "map": "fortress.vmap",
+      "prebuilt": [
+        "core:mageGuild1",
+        "core:mageGuild2",
+        "core:mageGuild3",
+        "core:tavern",
+        "core:shipyard",
+        "core:fort",
+        "core:citadel",
+        "core:castle",
+        "core:townHall",
+        "core:cityHall",
+        "core:capitol",
+        "core:marketplace",
+        "core:resourceSilo",
+        "core:blacksmith",
+        "core:special1",
+        "core:horde1",
+        "core:special2",
+        "core:special3",
+        "core:dwellingLvl1",
+        "core:dwellingLvl2",
+        "core:dwellingLvl3",
+        "core:dwellingLvl4",
+        "core:dwellingLvl5",
+        "core:dwellingLvl6",
+        "core:dwellingLvl7",
+        "core:dwellingUpLvl1",
+        "core:dwellingUpLvl2",
+        "core:dwellingUpLvl3",
+        "core:dwellingUpLvl4",
+        "core:dwellingUpLvl5",
+        "core:dwellingUpLvl6",
+        "core:dwellingUpLvl7"
+      ],
+      "targets": [
+        {
+          "sourceId": 64,
+          "id": 44,
+          "key": "dwellingUp2Lvl1",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 1,
+            "gems": 1,
+            "gold": 1400
+          },
+          "hallCard": {
+            "x": 109,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 65,
+          "id": 45,
+          "key": "dwellingUp2Lvl2",
+          "expectedCost": {
+            "wood": 10,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1600
+          },
+          "hallCard": {
+            "x": 303,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 66,
+          "id": 46,
+          "key": "dwellingUp2Lvl3",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 3,
+            "ore": 0,
+            "sulfur": 3,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 2000
+          },
+          "hallCard": {
+            "x": 497,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 67,
+          "id": 47,
+          "key": "dwellingUp2Lvl4",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 0,
+            "ore": 5,
+            "sulfur": 5,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 2500
+          },
+          "hallCard": {
+            "x": 691,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 68,
+          "id": 48,
+          "key": "dwellingUp2Lvl5",
+          "expectedCost": {
+            "wood": 10,
+            "mercury": 5,
+            "ore": 10,
+            "sulfur": 5,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 3000
+          },
+          "hallCard": {
+            "x": 206,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 69,
+          "id": 49,
+          "key": "dwellingUp2Lvl6",
+          "expectedCost": {
+            "wood": 15,
+            "mercury": 5,
+            "ore": 0,
+            "sulfur": 10,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 4500
+          },
+          "hallCard": {
+            "x": 400,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 70,
+          "id": 50,
+          "key": "dwellingUp2Lvl7",
+          "expectedCost": {
+            "wood": 10,
+            "mercury": 0,
+            "ore": 10,
+            "sulfur": 15,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 15000
+          },
+          "hallCard": {
+            "x": 594,
+            "y": 491
+          }
+        }
+      ]
+    },
+    {
+      "town": "conflux",
+      "name": "TUM costs - conflux",
+      "map": "conflux.vmap",
+      "prebuilt": [
+        "core:mageGuild1",
+        "core:mageGuild2",
+        "core:mageGuild3",
+        "core:mageGuild4",
+        "core:mageGuild5",
+        "core:tavern",
+        "core:shipyard",
+        "core:fort",
+        "core:citadel",
+        "core:castle",
+        "core:townHall",
+        "core:cityHall",
+        "core:capitol",
+        "core:marketplace",
+        "core:resourceSilo",
+        "core:blacksmith",
+        "core:special1",
+        "core:horde1",
+        "core:special2",
+        "core:dwellingLvl1",
+        "core:dwellingLvl2",
+        "core:dwellingLvl3",
+        "core:dwellingLvl4",
+        "core:dwellingLvl5",
+        "core:dwellingLvl6",
+        "core:dwellingLvl7",
+        "core:dwellingUpLvl1",
+        "core:dwellingUpLvl2",
+        "core:dwellingUpLvl3",
+        "core:dwellingUpLvl4",
+        "core:dwellingUpLvl5",
+        "core:dwellingUpLvl6",
+        "core:dwellingUpLvl7"
+      ],
+      "targets": [
+        {
+          "sourceId": 64,
+          "id": 44,
+          "key": "dwellingUp2Lvl1",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 2,
+            "gems": 2,
+            "gold": 1200
+          },
+          "hallCard": {
+            "x": 109,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 65,
+          "id": 45,
+          "key": "dwellingUp2Lvl2",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 3,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 3,
+            "gold": 2000
+          },
+          "hallCard": {
+            "x": 303,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 66,
+          "id": 46,
+          "key": "dwellingUp2Lvl3",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 6,
+            "ore": 10,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 2500
+          },
+          "hallCard": {
+            "x": 497,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 67,
+          "id": 47,
+          "key": "dwellingUp2Lvl4",
+          "expectedCost": {
+            "wood": 5,
+            "mercury": 5,
+            "ore": 10,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 2400
+          },
+          "hallCard": {
+            "x": 691,
+            "y": 387
+          }
+        },
+        {
+          "sourceId": 68,
+          "id": 48,
+          "key": "dwellingUp2Lvl5",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 10,
+            "sulfur": 10,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 2300
+          },
+          "hallCard": {
+            "x": 206,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 69,
+          "id": 49,
+          "key": "dwellingUp2Lvl6",
+          "expectedCost": {
+            "wood": 0,
+            "mercury": 7,
+            "ore": 0,
+            "sulfur": 7,
+            "crystal": 7,
+            "gems": 7,
+            "gold": 5000
+          },
+          "hallCard": {
+            "x": 400,
+            "y": 491
+          }
+        },
+        {
+          "sourceId": 70,
+          "id": 50,
+          "key": "dwellingUp2Lvl7",
+          "expectedCost": {
+            "wood": 10,
+            "mercury": 20,
+            "ore": 10,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 15000
+          },
+          "hallCard": {
+            "x": 594,
+            "y": 491
+          }
+        }
+      ]
+    }
+  ]
+}

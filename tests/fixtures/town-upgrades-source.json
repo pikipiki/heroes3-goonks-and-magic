@@ -1,0 +1,176 @@
+{
+  "sourceCommit": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+  "resources": [
+    "wood",
+    "mercury",
+    "ore",
+    "sulfur",
+    "crystal",
+    "gems",
+    "gold"
+  ],
+  "rows": [
+    {
+      "town": "castle",
+      "from": "wake-of-gods.level8units:supremeArchangel",
+      "to": "tum-era:cherub",
+      "hero": "core:orrin",
+      "hallId": 57,
+      "sourceHallId": 77,
+      "cost": {
+        "wood": 0,
+        "mercury": 15,
+        "ore": 0,
+        "sulfur": 15,
+        "crystal": 15,
+        "gems": 15,
+        "gold": 30000
+      },
+      "sourceCfgSHA256": "05c5cff6316a24c65b08fbcb41fa2c55118cc08d81d5dbc654bffb15426dc623"
+    },
+    {
+      "town": "rampart",
+      "from": "wake-of-gods.level8units:diamondDragon",
+      "to": "tum-era:gemDragon",
+      "hero": "core:ivor",
+      "hallId": 57,
+      "sourceHallId": 77,
+      "cost": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 30,
+        "sulfur": 0,
+        "crystal": 30,
+        "gems": 0,
+        "gold": 25000
+      },
+      "sourceCfgSHA256": "c904d9529e13088dfc3289dc365abf25939ceaf6b633485104502b8d3a8dc9e7"
+    },
+    {
+      "town": "tower",
+      "from": "wake-of-gods.level8units:lordOfThunder",
+      "to": "tum-era:guardianOfZeus",
+      "hero": "core:solmyr",
+      "hallId": 57,
+      "sourceHallId": 77,
+      "cost": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 35,
+        "gold": 25000
+      },
+      "sourceCfgSHA256": "2f3e8de7928d28c2d06572d750687d133b401094047f72c7e0440a4410a1bd4b"
+    },
+    {
+      "town": "inferno",
+      "from": "wake-of-gods.level8units:hellBaron",
+      "to": "tum-era:antichrist",
+      "hero": "core:calh",
+      "hallId": 57,
+      "sourceHallId": 77,
+      "cost": {
+        "wood": 10,
+        "mercury": 25,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 25000
+      },
+      "sourceCfgSHA256": "5b7d0fb109a280730baba123d5b3ef5ef274a8725467abdbb52d7e3f5b5eab70"
+    },
+    {
+      "town": "necropolis",
+      "from": "wake-of-gods.level8units:bloodDragon",
+      "to": "tum-era:redBonesDragon",
+      "hero": "core:galthran",
+      "hallId": 57,
+      "sourceHallId": 77,
+      "cost": {
+        "wood": 10,
+        "mercury": 30,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 20000
+      },
+      "sourceCfgSHA256": "898aa4de0968943f3620c0dd0fcf0335322dea3c4b771dec168db956e613c2a9"
+    },
+    {
+      "town": "dungeon",
+      "from": "wake-of-gods.level8units:darknessDragon",
+      "to": "tum-era:chasmDragon",
+      "hero": "core:gunnar",
+      "hallId": 57,
+      "sourceHallId": 77,
+      "cost": {
+        "wood": 15,
+        "mercury": 0,
+        "ore": 15,
+        "sulfur": 30,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 25000
+      },
+      "sourceCfgSHA256": "7dd6080767e01e9cbc24b4c363a72b0d8bb70bf5a14095e1eccb9d422f6d9d5c"
+    },
+    {
+      "town": "stronghold",
+      "from": "wake-of-gods.level8units:ghostBehemoth",
+      "to": "tum-era:ancestralBehemoth",
+      "hero": "core:cragHack",
+      "hallId": 57,
+      "sourceHallId": 77,
+      "cost": {
+        "wood": 15,
+        "mercury": 0,
+        "ore": 15,
+        "sulfur": 0,
+        "crystal": 25,
+        "gems": 0,
+        "gold": 20000
+      },
+      "sourceCfgSHA256": "9bc617808334077c271cfb05e177f93c0fc508c7107e52a82d20f1e7cd3562e0"
+    },
+    {
+      "town": "fortress",
+      "from": "wake-of-gods.level8units:hellHydra",
+      "to": "tum-era:nightmareHydra",
+      "hero": "core:tazar",
+      "hallId": 57,
+      "sourceHallId": 77,
+      "cost": {
+        "wood": 15,
+        "mercury": 0,
+        "ore": 15,
+        "sulfur": 30,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 20000
+      },
+      "sourceCfgSHA256": "f5c7373fa83d4f3030297e845ff78f2aafd060f892c7bbd1a85dc201b65c55b2"
+    },
+    {
+      "town": "conflux",
+      "from": "wake-of-gods.level8units:sacredPhoenix",
+      "to": "tum-era:divinePhoenix",
+      "hero": "core:luna",
+      "hallId": 57,
+      "sourceHallId": 77,
+      "cost": {
+        "wood": 15,
+        "mercury": 25,
+        "ore": 15,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 20000
+      },
+      "sourceCfgSHA256": "465551387ed75f513e35973f16cdf2b6667d2a2bca16ea2f9a472a4f80b0e11b"
+    }
+  ]
+}

@@ -9,6 +9,7 @@
  */
 
 #include "StdInc.h"
+#include "era/EraExperienceHealth.h"
 
 #include "GameLibrary.h"
 #include "GameConstants.h"
@@ -141,6 +142,8 @@ int AFactionMember::luckVal() const
 ui32 ACreature::getMaxHealth() const
 {
 	auto value = getBonusBearer()->valOfBonuses(BonusType::STACK_HEALTH);
+	if(getBonusBearer()->hasBonusOfType(BonusType::ERA_EXPERIENCE_HEALTH_PERCENT))
+		value = era_bridge::sourceExperienceHealth(value, getBonusBearer()->valOfBonuses(BonusType::ERA_EXPERIENCE_HEALTH_PERCENT));
 	return std::max(1, value); //never 0
 }
 

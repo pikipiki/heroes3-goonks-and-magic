@@ -1,0 +1,1060 @@
+{
+  "description": "Original selected 63 ERA costs and existing VCMI costs frozen for portable regression; not runtime activation evidence",
+  "sources": [
+    {
+      "source": "Data/towns/0.cfg",
+      "townId": 0,
+      "town": "castle",
+      "sha256": "05c5cff6316a24c65b08fbcb41fa2c55118cc08d81d5dbc654bffb15426dc623"
+    },
+    {
+      "source": "Data/towns/1.cfg",
+      "townId": 1,
+      "town": "rampart",
+      "sha256": "c904d9529e13088dfc3289dc365abf25939ceaf6b633485104502b8d3a8dc9e7"
+    },
+    {
+      "source": "Data/towns/2.cfg",
+      "townId": 2,
+      "town": "tower",
+      "sha256": "2f3e8de7928d28c2d06572d750687d133b401094047f72c7e0440a4410a1bd4b"
+    },
+    {
+      "source": "Data/towns/3.cfg",
+      "townId": 3,
+      "town": "inferno",
+      "sha256": "5b7d0fb109a280730baba123d5b3ef5ef274a8725467abdbb52d7e3f5b5eab70"
+    },
+    {
+      "source": "Data/towns/4.cfg",
+      "townId": 4,
+      "town": "necropolis",
+      "sha256": "898aa4de0968943f3620c0dd0fcf0335322dea3c4b771dec168db956e613c2a9"
+    },
+    {
+      "source": "Data/towns/5.cfg",
+      "townId": 5,
+      "town": "dungeon",
+      "sha256": "7dd6080767e01e9cbc24b4c363a72b0d8bb70bf5a14095e1eccb9d422f6d9d5c"
+    },
+    {
+      "source": "Data/towns/6.cfg",
+      "townId": 6,
+      "town": "stronghold",
+      "sha256": "9bc617808334077c271cfb05e177f93c0fc508c7107e52a82d20f1e7cd3562e0"
+    },
+    {
+      "source": "Data/towns/7.cfg",
+      "townId": 7,
+      "town": "fortress",
+      "sha256": "f5c7373fa83d4f3030297e845ff78f2aafd060f892c7bbd1a85dc201b65c55b2"
+    },
+    {
+      "source": "Data/towns/8.cfg",
+      "townId": 8,
+      "town": "conflux",
+      "sha256": "465551387ed75f513e35973f16cdf2b6667d2a2bca16ea2f9a472a4f80b0e11b"
+    }
+  ],
+  "towns": [
+    {
+      "townId": 0,
+      "town": "castle",
+      "source": "BuildingCost0064=\"0  0 5 0 0 0  1500\"\nBuildingCost0065=\"5 0 5 0 0 0  1500\"\nBuildingCost0066=\"10  0 0 0 0 0  2000\"\nBuildingCost0067=\"0  0 5 0 5 0  2500\"\nBuildingCost0068=\"3  5 3  5 3 3  2000\"\nBuildingCost0069=\"15 0 0  0 0 0  5000\"\nBuildingCost0070=\"0 10 0  10 10 10 15000\"\n",
+      "native": {
+        "core:castle": {
+          "town": {
+            "buildings": {
+              "dwellingUp2Lvl1": {
+                "id": 44,
+                "upgrades": "dwellingUpLvl1",
+                "cost": {
+                  "wood": 0,
+                  "mercury": 0,
+                  "ore": 15,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 1500
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl2": {
+                "id": 45,
+                "upgrades": "dwellingUpLvl2",
+                "cost": {
+                  "wood": 10,
+                  "mercury": 0,
+                  "ore": 10,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 2000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl3": {
+                "id": 46,
+                "upgrades": "dwellingUpLvl3",
+                "cost": {
+                  "wood": 0,
+                  "mercury": 0,
+                  "ore": 10,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 2000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl4": {
+                "id": 47,
+                "upgrades": "dwellingUpLvl4",
+                "cost": {
+                  "wood": 0,
+                  "mercury": 0,
+                  "ore": 10,
+                  "sulfur": 0,
+                  "crystal": 5,
+                  "gems": 0,
+                  "gold": 4000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl5": {
+                "id": 48,
+                "upgrades": "dwellingUpLvl5",
+                "cost": {
+                  "wood": 7,
+                  "mercury": 4,
+                  "ore": 7,
+                  "sulfur": 4,
+                  "crystal": 4,
+                  "gems": 4,
+                  "gold": 4000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl6": {
+                "id": 49,
+                "upgrades": "dwellingUpLvl6",
+                "cost": {
+                  "wood": 30,
+                  "mercury": 0,
+                  "ore": 0,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 8000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl7": {
+                "id": 50,
+                "upgrades": "dwellingUpLvl7",
+                "cost": {
+                  "wood": 0,
+                  "mercury": 20,
+                  "ore": 0,
+                  "sulfur": 20,
+                  "crystal": 20,
+                  "gems": 20,
+                  "gold": 40000
+                },
+                "fixtureUnrelated": "preserve"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "townId": 1,
+      "town": "rampart",
+      "source": "BuildingCost0064=\"5 0 0  0 0  0  1500\"\nBuildingCost0065=\"5 0 0  0 0  0  1500\"\nBuildingCost0066=\"15 0 0  0 5  0  2000\"\nBuildingCost0067=\"0  0 0  0 5 0  2000\"\nBuildingCost0068=\"0  0 0  0 0  0  3000\"\nBuildingCost0069=\"0  0 0  0 0  10 5000\"\nBuildingCost0070=\"0  0 30 0 30 0  15000\"\n",
+      "native": {
+        "core:rampart": {
+          "town": {
+            "buildings": {
+              "dwellingUp2Lvl1": {
+                "id": 44,
+                "upgrades": "dwellingUpLvl1",
+                "cost": {
+                  "wood": 15,
+                  "mercury": 0,
+                  "ore": 0,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 1500
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl2": {
+                "id": 45,
+                "upgrades": "dwellingUpLvl2",
+                "cost": {
+                  "wood": 10,
+                  "mercury": 0,
+                  "ore": 0,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 2000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl3": {
+                "id": 46,
+                "upgrades": "dwellingUpLvl3",
+                "cost": {
+                  "wood": 20,
+                  "mercury": 0,
+                  "ore": 0,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 3000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl4": {
+                "id": 47,
+                "upgrades": "dwellingUpLvl4",
+                "cost": {
+                  "wood": 0,
+                  "mercury": 0,
+                  "ore": 0,
+                  "sulfur": 0,
+                  "crystal": 15,
+                  "gems": 0,
+                  "gold": 4000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl5": {
+                "id": 48,
+                "upgrades": "dwellingUpLvl5",
+                "cost": {
+                  "wood": 0,
+                  "mercury": 0,
+                  "ore": 0,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 4000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl6": {
+                "id": 49,
+                "upgrades": "dwellingUpLvl6",
+                "cost": {
+                  "wood": 5,
+                  "mercury": 0,
+                  "ore": 5,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 15,
+                  "gold": 7000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl7": {
+                "id": 50,
+                "upgrades": "dwellingUpLvl7",
+                "cost": {
+                  "wood": 0,
+                  "mercury": 0,
+                  "ore": 60,
+                  "sulfur": 0,
+                  "crystal": 40,
+                  "gems": 0,
+                  "gold": 30000
+                },
+                "fixtureUnrelated": "preserve"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "townId": 2,
+      "town": "tower",
+      "source": "BuildingCost0064=\"5  0 0  0 0 0  1500\"\nBuildingCost0065=\"0  0 10 0 0 0  1500\"\nBuildingCost0066=\"0  2 5  2 0 0  2000\"\nBuildingCost0067=\"5  3 5  3 3 3  2500\"\nBuildingCost0068=\"0  0 0  0 5 5  2500\"\nBuildingCost0069=\"0  4 0  4 4 4  3000\"\nBuildingCost0070=\"5 0 5 0 0 25 20000\"\n",
+      "native": {
+        "core:tower": {
+          "town": {
+            "buildings": {
+              "dwellingUp2Lvl1": {
+                "id": 44,
+                "upgrades": "dwellingUpLvl1",
+                "cost": {
+                  "wood": 5,
+                  "mercury": 0,
+                  "ore": 5,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 1300
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl2": {
+                "id": 45,
+                "upgrades": "dwellingUpLvl2",
+                "cost": {
+                  "wood": 0,
+                  "mercury": 0,
+                  "ore": 15,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 2500
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl3": {
+                "id": 46,
+                "upgrades": "dwellingUpLvl3",
+                "cost": {
+                  "wood": 10,
+                  "mercury": 5,
+                  "ore": 10,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 4000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl4": {
+                "id": 47,
+                "upgrades": "dwellingUpLvl4",
+                "cost": {
+                  "wood": 10,
+                  "mercury": 5,
+                  "ore": 5,
+                  "sulfur": 5,
+                  "crystal": 5,
+                  "gems": 5,
+                  "gold": 4500
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl5": {
+                "id": 48,
+                "upgrades": "dwellingUpLvl5",
+                "cost": {
+                  "wood": 10,
+                  "mercury": 0,
+                  "ore": 5,
+                  "sulfur": 0,
+                  "crystal": 6,
+                  "gems": 6,
+                  "gold": 5000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl6": {
+                "id": 49,
+                "upgrades": "dwellingUpLvl6",
+                "cost": {
+                  "wood": 5,
+                  "mercury": 5,
+                  "ore": 5,
+                  "sulfur": 5,
+                  "crystal": 5,
+                  "gems": 5,
+                  "gold": 7000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl7": {
+                "id": 50,
+                "upgrades": "dwellingUpLvl7",
+                "cost": {
+                  "wood": 15,
+                  "mercury": 0,
+                  "ore": 15,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 40,
+                  "gold": 30000
+                },
+                "fixtureUnrelated": "preserve"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "townId": 3,
+      "town": "inferno",
+      "source": "BuildingCost0064=\"0  0  5  0 0  0  1200\"\nBuildingCost0065=\"0  3  5  0 0  0  1500\"\nBuildingCost0066=\"5 0  0  3 0  0  2000\"\nBuildingCost0067=\"10 0  10 0 0  0  2500\"\nBuildingCost0068=\"0  5  0  5 0  0  3000\"\nBuildingCost0069=\"0  5  10 5 0  5  7000\"\nBuildingCost0070=\"5 20 5 0 0  0  15000\"\n",
+      "native": {
+        "core:inferno": {
+          "town": {
+            "buildings": {
+              "dwellingUp2Lvl1": {
+                "id": 44,
+                "upgrades": "dwellingUpLvl1",
+                "cost": {
+                  "wood": 5,
+                  "mercury": 0,
+                  "ore": 5,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 1300
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl2": {
+                "id": 45,
+                "upgrades": "dwellingUpLvl2",
+                "cost": {
+                  "wood": 0,
+                  "mercury": 5,
+                  "ore": 5,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 2000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl3": {
+                "id": 46,
+                "upgrades": "dwellingUpLvl3",
+                "cost": {
+                  "wood": 10,
+                  "mercury": 0,
+                  "ore": 0,
+                  "sulfur": 5,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 3000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl4": {
+                "id": 47,
+                "upgrades": "dwellingUpLvl4",
+                "cost": {
+                  "wood": 10,
+                  "mercury": 0,
+                  "ore": 10,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 4000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl5": {
+                "id": 48,
+                "upgrades": "dwellingUpLvl5",
+                "cost": {
+                  "wood": 0,
+                  "mercury": 5,
+                  "ore": 0,
+                  "sulfur": 5,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 6000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl6": {
+                "id": 49,
+                "upgrades": "dwellingUpLvl6",
+                "cost": {
+                  "wood": 0,
+                  "mercury": 8,
+                  "ore": 15,
+                  "sulfur": 8,
+                  "crystal": 0,
+                  "gems": 8,
+                  "gold": 7000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl7": {
+                "id": 50,
+                "upgrades": "dwellingUpLvl7",
+                "cost": {
+                  "wood": 15,
+                  "mercury": 40,
+                  "ore": 15,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 35000
+                },
+                "fixtureUnrelated": "preserve"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "townId": 4,
+      "town": "necropolis",
+      "source": "BuildingCost0064=\"0 0  5 0  0  0  1500\"\nBuildingCost0065=\"5  0  5 0  0  0  1500\"\nBuildingCost0066=\"0  5  0  0  0  0  2000\"\nBuildingCost0067=\"10 0  0  0  10 10 2500\"\nBuildingCost0068=\"0  0  10 6 0  0  3000\"\nBuildingCost0069=\"0 4  10 4  4  4  4500\"\nBuildingCost0070=\"5 15 5 0  0  0  15000\"\n",
+      "native": {
+        "core:necropolis": {
+          "town": {
+            "buildings": {
+              "dwellingUp2Lvl1": {
+                "id": 44,
+                "upgrades": "dwellingUpLvl1",
+                "cost": {
+                  "wood": 10,
+                  "mercury": 0,
+                  "ore": 10,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 1400
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl2": {
+                "id": 45,
+                "upgrades": "dwellingUpLvl2",
+                "cost": {
+                  "wood": 5,
+                  "mercury": 0,
+                  "ore": 10,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 2000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl3": {
+                "id": 46,
+                "upgrades": "dwellingUpLvl3",
+                "cost": {
+                  "wood": 5,
+                  "mercury": 5,
+                  "ore": 5,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 3000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl4": {
+                "id": 47,
+                "upgrades": "dwellingUpLvl4",
+                "cost": {
+                  "wood": 10,
+                  "mercury": 0,
+                  "ore": 5,
+                  "sulfur": 0,
+                  "crystal": 10,
+                  "gems": 10,
+                  "gold": 4000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl5": {
+                "id": 48,
+                "upgrades": "dwellingUpLvl5",
+                "cost": {
+                  "wood": 0,
+                  "mercury": 0,
+                  "ore": 15,
+                  "sulfur": 15,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 4000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl6": {
+                "id": 49,
+                "upgrades": "dwellingUpLvl6",
+                "cost": {
+                  "wood": 15,
+                  "mercury": 2,
+                  "ore": 15,
+                  "sulfur": 2,
+                  "crystal": 2,
+                  "gems": 2,
+                  "gold": 9000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl7": {
+                "id": 50,
+                "upgrades": "dwellingUpLvl7",
+                "cost": {
+                  "wood": 10,
+                  "mercury": 25,
+                  "ore": 10,
+                  "sulfur": 5,
+                  "crystal": 5,
+                  "gems": 5,
+                  "gold": 25000
+                },
+                "fixtureUnrelated": "preserve"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "townId": 5,
+      "town": "dungeon",
+      "source": "BuildingCost0064=\"5 0  0  0  0  0  1500\"\nBuildingCost0065=\"0  0  0  0  2  2  1500\"\nBuildingCost0066=\"2  2  2  2  2  2  2000\"\nBuildingCost0067=\"10 0  10 0  0 0  2500\"\nBuildingCost0068=\"0  0  10 0  0  10 3000\"\nBuildingCost0069=\"5 5 5 5 0  0  5000\"\nBuildingCost0070=\"15 0  15 25 0  0  15000\"\n",
+      "native": {
+        "core:dungeon": {
+          "town": {
+            "buildings": {
+              "dwellingUp2Lvl1": {
+                "id": 44,
+                "upgrades": "dwellingUpLvl1",
+                "cost": {
+                  "wood": 15,
+                  "mercury": 0,
+                  "ore": 0,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 1400
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl2": {
+                "id": 45,
+                "upgrades": "dwellingUpLvl2",
+                "cost": {
+                  "wood": 0,
+                  "mercury": 0,
+                  "ore": 0,
+                  "sulfur": 2,
+                  "crystal": 2,
+                  "gems": 0,
+                  "gold": 2000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl3": {
+                "id": 46,
+                "upgrades": "dwellingUpLvl3",
+                "cost": {
+                  "wood": 2,
+                  "mercury": 2,
+                  "ore": 2,
+                  "sulfur": 2,
+                  "crystal": 2,
+                  "gems": 2,
+                  "gold": 2000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl4": {
+                "id": 47,
+                "upgrades": "dwellingUpLvl4",
+                "cost": {
+                  "wood": 10,
+                  "mercury": 0,
+                  "ore": 10,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 3500
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl5": {
+                "id": 48,
+                "upgrades": "dwellingUpLvl5",
+                "cost": {
+                  "wood": 0,
+                  "mercury": 0,
+                  "ore": 15,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 15,
+                  "gold": 7000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl6": {
+                "id": 49,
+                "upgrades": "dwellingUpLvl6",
+                "cost": {
+                  "wood": 10,
+                  "mercury": 10,
+                  "ore": 10,
+                  "sulfur": 10,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 6000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl7": {
+                "id": 50,
+                "upgrades": "dwellingUpLvl7",
+                "cost": {
+                  "wood": 30,
+                  "mercury": 0,
+                  "ore": 30,
+                  "sulfur": 40,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 30000
+                },
+                "fixtureUnrelated": "preserve"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "townId": 6,
+      "town": "stronghold",
+      "source": "BuildingCost0064=\"5 0  5 0  0  0  1300\"\nBuildingCost0065=\"5 0 5  0  0  0  1500\"\nBuildingCost0066=\"4  0  7  0  0  0  1500\"\nBuildingCost0067=\"10 0  5  0  0  5  2500\"\nBuildingCost0068=\"5  0  10 0  5  5  3000\"\nBuildingCost0069=\"0  0  15 0  10 0  5000\"\nBuildingCost0070=\"10 0  10 0  15 0  15000\"\n",
+      "native": {
+        "core:stronghold": {
+          "town": {
+            "buildings": {
+              "dwellingUp2Lvl1": {
+                "id": 44,
+                "upgrades": "dwellingUpLvl1",
+                "cost": {
+                  "wood": 10,
+                  "mercury": 0,
+                  "ore": 10,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 1200
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl2": {
+                "id": 45,
+                "upgrades": "dwellingUpLvl2",
+                "cost": {
+                  "wood": 15,
+                  "mercury": 0,
+                  "ore": 10,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 2000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl3": {
+                "id": 46,
+                "upgrades": "dwellingUpLvl3",
+                "cost": {
+                  "wood": 7,
+                  "mercury": 0,
+                  "ore": 7,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 2000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl4": {
+                "id": 47,
+                "upgrades": "dwellingUpLvl4",
+                "cost": {
+                  "wood": 25,
+                  "mercury": 0,
+                  "ore": 5,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 5,
+                  "gold": 4000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl5": {
+                "id": 48,
+                "upgrades": "dwellingUpLvl5",
+                "cost": {
+                  "wood": 5,
+                  "mercury": 0,
+                  "ore": 15,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 4500
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl6": {
+                "id": 49,
+                "upgrades": "dwellingUpLvl6",
+                "cost": {
+                  "wood": 5,
+                  "mercury": 0,
+                  "ore": 25,
+                  "sulfur": 0,
+                  "crystal": 20,
+                  "gems": 0,
+                  "gold": 7500
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl7": {
+                "id": 50,
+                "upgrades": "dwellingUpLvl7",
+                "cost": {
+                  "wood": 20,
+                  "mercury": 0,
+                  "ore": 20,
+                  "sulfur": 0,
+                  "crystal": 30,
+                  "gems": 0,
+                  "gold": 25000
+                },
+                "fixtureUnrelated": "preserve"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "townId": 7,
+      "town": "fortress",
+      "source": "BuildingCost0064=\"5 0  0  0  1  1  1400\"\nBuildingCost0065=\"10 0  0  0  0  0  1600\"\nBuildingCost0066=\"5  3  0  3  0  0  2000\"\nBuildingCost0067=\"5 0  5 5  0  0  2500\"\nBuildingCost0068=\"10 5  10 5  0  0  3000\"\nBuildingCost0069=\"15 5 0  10  0  0  4500\"\nBuildingCost0070=\"10 0  10 15 0  0  15000\"\n",
+      "native": {
+        "core:fortress": {
+          "town": {
+            "buildings": {
+              "dwellingUp2Lvl1": {
+                "id": 44,
+                "upgrades": "dwellingUpLvl1",
+                "cost": {
+                  "wood": 20,
+                  "mercury": 0,
+                  "ore": 0,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 1400
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl2": {
+                "id": 45,
+                "upgrades": "dwellingUpLvl2",
+                "cost": {
+                  "wood": 5,
+                  "mercury": 0,
+                  "ore": 5,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 2000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl3": {
+                "id": 46,
+                "upgrades": "dwellingUpLvl3",
+                "cost": {
+                  "wood": 5,
+                  "mercury": 4,
+                  "ore": 0,
+                  "sulfur": 4,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 2000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl4": {
+                "id": 47,
+                "upgrades": "dwellingUpLvl4",
+                "cost": {
+                  "wood": 10,
+                  "mercury": 0,
+                  "ore": 15,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 4000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl5": {
+                "id": 48,
+                "upgrades": "dwellingUpLvl5",
+                "cost": {
+                  "wood": 15,
+                  "mercury": 5,
+                  "ore": 15,
+                  "sulfur": 5,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 4500
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl6": {
+                "id": 49,
+                "upgrades": "dwellingUpLvl6",
+                "cost": {
+                  "wood": 25,
+                  "mercury": 10,
+                  "ore": 0,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 7500
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl7": {
+                "id": 50,
+                "upgrades": "dwellingUpLvl7",
+                "cost": {
+                  "wood": 20,
+                  "mercury": 0,
+                  "ore": 20,
+                  "sulfur": 30,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 25000
+                },
+                "fixtureUnrelated": "preserve"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "townId": 8,
+      "town": "conflux",
+      "source": "BuildingCost0064=\"0  0  0  0  2  2  1200\"\nBuildingCost0065=\"5  3  0  0  0  3  2000\"\nBuildingCost0066=\"0  6  10 0  0  0  2500\"\nBuildingCost0067=\"5  5  10 0  0  0  2400\"\nBuildingCost0068=\"0  0  10 10  0  0  2300\"\nBuildingCost0069=\"0 7  0  7  7  7  5000\"\nBuildingCost0070=\"10 20 10 0  0  0  15000\"\n",
+      "native": {
+        "core:conflux": {
+          "town": {
+            "buildings": {
+              "dwellingUp2Lvl1": {
+                "id": 44,
+                "upgrades": "dwellingUpLvl1",
+                "cost": {
+                  "wood": 2,
+                  "mercury": 0,
+                  "ore": 2,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 1300
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl2": {
+                "id": 45,
+                "upgrades": "dwellingUpLvl2",
+                "cost": {
+                  "wood": 2,
+                  "mercury": 2,
+                  "ore": 5,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 2,
+                  "gold": 3000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl3": {
+                "id": 46,
+                "upgrades": "dwellingUpLvl3",
+                "cost": {
+                  "wood": 0,
+                  "mercury": 5,
+                  "ore": 10,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 3500
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl4": {
+                "id": 47,
+                "upgrades": "dwellingUpLvl4",
+                "cost": {
+                  "wood": 5,
+                  "mercury": 5,
+                  "ore": 10,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 4000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl5": {
+                "id": 48,
+                "upgrades": "dwellingUpLvl5",
+                "cost": {
+                  "wood": 0,
+                  "mercury": 0,
+                  "ore": 10,
+                  "sulfur": 5,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 3000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl6": {
+                "id": 49,
+                "upgrades": "dwellingUpLvl6",
+                "cost": {
+                  "wood": 5,
+                  "mercury": 5,
+                  "ore": 5,
+                  "sulfur": 5,
+                  "crystal": 5,
+                  "gems": 5,
+                  "gold": 6000
+                },
+                "fixtureUnrelated": "preserve"
+              },
+              "dwellingUp2Lvl7": {
+                "id": 50,
+                "upgrades": "dwellingUpLvl7",
+                "cost": {
+                  "wood": 20,
+                  "mercury": 20,
+                  "ore": 20,
+                  "sulfur": 0,
+                  "crystal": 0,
+                  "gems": 0,
+                  "gold": 25000
+                },
+                "fixtureUnrelated": "preserve"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

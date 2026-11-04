@@ -233,7 +233,8 @@
 							"chainLength" : { "type" : "number" },
 							"chainFactor" : { "type" : "number" },
 							"id" : { "type" : "string" },
-							"permanent" : { "type" : "boolean" }
+							"permanent" : { "type" : "boolean" },
+							"eraCorpseTransform" : { "type" : "boolean", "default" : false }
 						},
 						"additionalProperties" : false
 					}

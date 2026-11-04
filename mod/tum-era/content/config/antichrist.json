@@ -34,12 +34,12 @@
     "hasDoubleWeek": false,
     "abilities": {
       "hateAngels": {
-        "type": "HATE",
+        "type": "ERA_PERSONAL_HATE_DAMAGE",
         "subtype": "core:angel",
         "val": 200
       },
       "hateArchangels": {
-        "type": "HATE",
+        "type": "ERA_PERSONAL_HATE_DAMAGE",
         "subtype": "core:archangel",
         "val": 200
       },

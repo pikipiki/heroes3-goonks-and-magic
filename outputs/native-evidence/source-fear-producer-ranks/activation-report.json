@@ -1,0 +1,73 @@
+{
+  "activated": true,
+  "activationKind": "Data only against existing compiled optional source-fear code",
+  "nativeChanged": false,
+  "previewChanged": false,
+  "indexChanged": false,
+  "fullTum35Compatibility": false,
+  "changes": [
+    {
+      "file": "mod/tum-era/content/config/source-fear-markers.json",
+      "bytes": 2325,
+      "sha256": "d477e503621e8c0801006688344b01fd11775288d9b3a71668c1f31526a50285"
+    },
+    {
+      "file": "mod/tum-era/content/config/source-ghost-fear-rank5.json",
+      "bytes": 3578,
+      "sha256": "234d8f1ec0f87e5f8fe9dbcd947d7789fa0e23cfb809378aa495445b604bdcd3"
+    },
+    {
+      "file": "mod/tum-era/content/config/era-bridge-fear.json",
+      "bytes": 1399,
+      "sha256": "61db7cea179fa760ace27ee01ee5d30bea0078ef1dd764ff6853cf9815080b68"
+    },
+    {
+      "file": "mod/tum-era/mod.json",
+      "beforeSHA256": "8bc1c6bd009aa05eef24043dd25e358f6a1aaac29c05c39e28c13f4fef3cea2e",
+      "sha256": "4e604349faca677a4e98419046d1f73a6456c9b65af4d44297db80b1955a7b9b"
+    },
+    {
+      "file": "TUM-UPSTREAM.json",
+      "sha256": "f69138fd4fc680314dada63497f7f0d0a06285e9d7993f75d9b95b0b14416433"
+    },
+    {
+      "file": "ERA-BRIDGE-UPSTREAM.json",
+      "sha256": "b58484ff4f1f83e5be0eb388fa9348c30a385f142c60a7df399feb56671ab5d0"
+    },
+    {
+      "file": "ERA-BRIDGE.md",
+      "sha256": "39db312b219cf55071114a64199fe30d469615952538ed36c21d921e107147dd"
+    }
+  ],
+  "preservedExistingModJsonCount": 93,
+  "unrelatedManifestFieldsPreserved": true,
+  "proofSHA256": "cf1c897fc287ae70d7c6267ac61e3587196a74f1d056115cba85a47a09f0fdd7",
+  "evidenceEngine": "d0e65ec6857b5100f9aeb4e6e74ee012a6fe9f6cc16ad76386bff79c4a7cad9c",
+  "currentHelpers": [
+    {
+      "file": "work/vcmi-wasm/server/era/EraSourceFear.h",
+      "d0SHA256": "2d0fd6dcb766ac83b919562077cb6624ac5b84cd64ce5fd818ee905260dd87ee",
+      "currentSHA256": "2d0fd6dcb766ac83b919562077cb6624ac5b84cd64ce5fd818ee905260dd87ee",
+      "byteIdentical": true
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraSourceFearSemantics.h",
+      "d0SHA256": "b38bfd91cafd6addc5d00234539e4a288166ae646961b65ec7467ebd71063c1e",
+      "currentSHA256": "b38bfd91cafd6addc5d00234539e4a288166ae646961b65ec7467ebd71063c1e",
+      "byteIdentical": true
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraSourceFearPolicies.h",
+      "d0SHA256": "19a0e2448b7cf8614ff30814f70de5c4b315ad9c0f84fb250c5c7832917a5ea0",
+      "currentSHA256": "19a0e2448b7cf8614ff30814f70de5c4b315ad9c0f84fb250c5c7832917a5ea0",
+      "byteIdentical": true
+    }
+  ],
+  "battleFlowHook": {
+    "matchesD0Patch": true,
+    "sha256": "8899b908f1e5d2b7eeae81d03d3fc055cef722eb79fe5a8f0a4bddeefa22e328"
+  },
+  "knownBaselineWarnings": 160,
+  "introducedWarnings": 0,
+  "structuredNativeErrors": 0
+}

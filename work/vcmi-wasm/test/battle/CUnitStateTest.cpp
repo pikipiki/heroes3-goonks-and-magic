@@ -392,4 +392,47 @@ TEST_F(UnitStateTest, eraNonstandardPoisonKeepsNativeHealthFallback)
     EXPECT_EQ(subject.getMaxHealth(),43u); // native123*(100-50-15)/100
 }
 
+TEST_F(UnitStateTest, eraExperienceHealthRoundsAfterOrdinaryFlatAndElixirBonuses)
+{
+    EXPECT_CALL(infoMock, unitBaseAmount()).WillRepeatedly(Return(DEFAULT_AMOUNT));
+    EXPECT_CALL(infoMock, unitType()).WillRepeatedly(Return(pikeman));
+    EXPECT_CALL(envMock, unitHasAmmoCart(_)).WillRepeatedly(Return(false));
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::PERMANENT,
+        BonusType::STACK_HEALTH,BonusSource::CREATURE_ABILITY,15,BonusSourceID(),BonusSubtypeID(),BonusValueType::BASE_NUMBER));
+    auto xp=std::make_shared<Bonus>(BonusDuration::PERMANENT,
+        BonusType::ERA_EXPERIENCE_HEALTH_PERCENT,BonusSource::STACK_EXPERIENCE,50,BonusSourceID());
+    bonusMock.addNewBonus(xp);initUnit();
+    EXPECT_EQ(subject.getMaxHealth(),23u);
+    auto vial=std::make_shared<Bonus>(BonusDuration::PERMANENT,
+        BonusType::STACK_HEALTH,BonusSource::ARTIFACT,2,BonusSourceID(),BonusSubtypeID(),BonusValueType::ADDITIVE_VALUE);
+    bonusMock.addNewBonus(vial);EXPECT_EQ(subject.getMaxHealth(),26u);
+    bonusMock.removeBonus(vial);
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::PERMANENT,
+        BonusType::STACK_HEALTH,BonusSource::ARTIFACT,4,BonusSourceID(),BonusSubtypeID(),BonusValueType::ADDITIVE_VALUE));
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::PERMANENT,
+        BonusType::STACK_HEALTH,BonusSource::ARTIFACT,25,BonusSourceID(),BonusSubtypeID(),BonusValueType::PERCENT_TO_BASE));
+    EXPECT_EQ(subject.getMaxHealth(),33u);
+    bonusMock.removeBonus(xp);EXPECT_EQ(subject.getMaxHealth(),22u);
+}
+
+TEST_F(UnitStateTest, eraExperienceHealthPrecedesCanonicalAgeAndPoison)
+{
+    EXPECT_CALL(infoMock, unitBaseAmount()).WillRepeatedly(Return(DEFAULT_AMOUNT));
+    EXPECT_CALL(infoMock, unitType()).WillRepeatedly(Return(pikeman));
+    EXPECT_CALL(envMock, unitHasAmmoCart(_)).WillRepeatedly(Return(false));
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::PERMANENT,
+        BonusType::STACK_HEALTH,BonusSource::CREATURE_ABILITY,22,BonusSourceID(),BonusSubtypeID(),BonusValueType::BASE_NUMBER));
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::PERMANENT,
+        BonusType::ERA_EXPERIENCE_HEALTH_PERCENT,BonusSource::STACK_EXPERIENCE,50,BonusSourceID()));
+    initUnit();EXPECT_EQ(subject.getMaxHealth(),33u);
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::N_TURNS,
+        BonusType::STACK_HEALTH,BonusSource::SPELL_EFFECT,-50,BonusSourceID(SpellID(SpellID::AGE)),BonusSubtypeID(),BonusValueType::PERCENT_TO_ALL));
+    EXPECT_EQ(subject.getMaxHealth(),17u);
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::N_TURNS,
+        BonusType::STACK_HEALTH,BonusSource::SPELL_EFFECT,-10,BonusSourceID(SpellID(SpellID::POISON)),BonusSubtypeID(),BonusValueType::PERCENT_TO_ALL));
+    bonusMock.addNewBonus(std::make_shared<Bonus>(BonusDuration::N_TURNS,
+        BonusType::POISON,BonusSource::SPELL_EFFECT,50,BonusSourceID(SpellID(SpellID::POISON))));
+    EXPECT_EQ(subject.getMaxHealth(),15u);
+}
+
 }

@@ -1,7 +1,9 @@
+import{requireSourceDeathBlowBinding}from'./death-blow-contract.mjs';
 /** Amethyst source-aware compiler. Policies are obligations, never working features.
  * Fresh definitions only: merging an arbitrary base silently retains disabled flags.
  */
 import { readFileSync } from 'node:fs';
+import { classifySourceBiology, nativeBiologyContract } from './biology.mjs';
 export const inventory = JSON.parse(readFileSync(new URL('./property-inventory.json', import.meta.url)));
 export const provenance = Object.freeze({tumRevision:inventory.tumRevision, sourceRevision:inventory.sourceRevision, sourceBinaryParity:'unverified'});
 const known = new Map(inventory.properties.map(p => [p.key,p]));
@@ -47,6 +49,7 @@ export function parseCreatureProperties(text,{source='<cfg>'}={}) {
  * resolveCreature/Spell/Town/Artifact return fully qualified VCMI identifiers.
  */
 export function compileCreatureProperties(text,options={}) {
+  if(options.nativeBiologyContract!==undefined&&options.nativeBiologyContract!==nativeBiologyContract)throw new TypeError('Unknown native biology contract');
   const entries=parseCreatureProperties(text,options),definition={abilities:{}},policies=[],mappings=[],diagnostics=[];
   const values=new Map(entries.map(e=>[e.key,e]));
   if(options.freshDefinition!==true)throw new TypeError('freshDefinition:true is required; inherited abilities cannot be overwritten safely');
@@ -75,7 +78,7 @@ export function compileCreatureProperties(text,options={}) {
         else issue(e,'RUNTIME_REJECTED',`${kind}: ${String(result)}`);
       }
     }
-    policies.push(requirement);mapped(e,`runtime:${kind}`);
+    policies.push(requirement);mapped(e,`runtime:${kind}`);return requirement;
   };
   for(const e of entries){
     const {key}=e;
@@ -83,7 +86,7 @@ export function compileCreatureProperties(text,options={}) {
     const n=numeric(e);if(!Number.isFinite(n))continue;
     if(key==='Level'){definition.level=integer(e,0,7)+1;mapped(e,'level + 1');}
     else if(key==='Town'){definition.faction=resolve(e,'Town',integer(e,-1,8));mapped(e,'faction');}
-    else if(/^Hate\d{4}$/.test(key))ability(e,'HATE',integer(e,0),resolve(e,'Creature',Number(key.slice(4))));
+    else if(/^Hate\d{4}$/.test(key))ability(e,'ERA_PERSONAL_HATE_DAMAGE',integer(e,0),resolve(e,'Creature',Number(key.slice(4))));
     else if(key==='Flags'){
       const bits=integer(e)>>>0;definition.doubleWide=!!(bits&1);
       for(const [bit,[type,val=0,subtype]] of Object.entries(flagBonus))if(bits&(2**bit)){
@@ -97,12 +100,29 @@ export function compileCreatureProperties(text,options={}) {
       if(kings.length===1)definition.abilities.amethystKing={type:'KING',val:kings[0]===7?0:kings[0]-6};
       const handled=[0,1,2,3,7,8,9,10,12,14,15,16,17,18,19,31];
       const residual=Array.from({length:32},(_,i)=>i).filter(i=>!handled.includes(i)&&(bits&(2**i)));
+      // ALIVE=0 also matters: a fresh native creature becomes LIVING unless
+      // explicitly UNDEAD/NON_LIVING. Never silently accept that opposite case.
+      const biology={sourceAlive:!!(bits&16),sourceUndead:!!(bits&0x40000),nativeAutomaticLivingRequiresExplicitEquivalence:true};
       // ALIVE controls eligibility in original executable; VCMI auto-adds LIVING
       // when loading non-UNDEAD/non-NON_LIVING definitions. Preserve difference.
-      if(residual.length)policy(e,'era-creature-flag-semantics',{unsignedMask:bits,residualBits:residual},'Original executable flag behavior must be verified, including ALIVE, catapult, obstacle, magog and initial state bits',{file:'Amethyst2/amethyst/H3CombatMonster.hpp',lines:[47,86]});
-      else mapped(e,'complete native flag reconstruction');
+      const category=classifySourceBiology(n);
+      if(category.error)issue(e,category.error,category.reason);
+      const opted=options.nativeBiologyContract===nativeBiologyContract;
+      const semanticResidual=opted&&category.closed?residual.filter(bit=>bit!==4):residual;
+      if(opted&&category.closed){
+        if(category.nature!=='UNDEAD')definition.abilities.amethystBiology={type:category.nature};
+        mapped(e,'source-native-biology:'+category.nature);
+      }
+      if(!opted||!category.closed||semanticResidual.length)policy(e,'era-creature-flag-semantics',{unsignedMask:bits,residualBits:semanticResidual,biology,...(opted?{category}: {})},'Original executable flag and biological behavior must be verified for both ALIVE=0 and ALIVE=1, including catapult, obstacle, magog and initial state bits',{file:'Amethyst2/amethyst/H3CombatMonster.hpp',lines:[47,86]});
+      else mapped(e,'native flags with scoped biological correspondence');
     }
     else if(key in toggles){integer(e,0,1);if(n)ability(e,toggles[key]);else mapped(e,'disabled in fresh definition');}
+    else if(key==='DeathBlow'){
+      const chance=integer(e,0,100),requirement=policy(e,'era-death-blow-crt',{sourceId:options.sourceCreatureId,operation:'deathBlowCRT',chance},'Source calls CRT rand()%100+1 without native combat-ability bias; explicit actor and runtime operation binding required');
+      // Generic validate callbacks cannot bypass the source-actor/operation contract.
+      requirement.bound=false;delete requirement.binding;
+      if(options.deathBlowCRT){try{const binding=requireSourceDeathBlowBinding(options.deathBlowCRT,{sourceId:options.sourceCreatureId,kind:'cfg',nativeExperienceProfile:options.nativeExperienceProfile});requirement.bound=true;requirement.binding=binding;ability(e,'DOUBLE_DAMAGE_CHANCE',chance);}catch(error){issue(e,'INVALID_DEATH_BLOW_BINDING',error.message);}}
+    }
     else if(key in scalar)ability(e,scalar[key],integer(e,0));
     else if(key==='Fearless'){
       integer(e,0,1);
@@ -121,9 +141,9 @@ export function compileCreatureProperties(text,options={}) {
     else if(key==='UpgradesTo'){definition.upgrades=[resolve(e,'Creature',integer(e,0))];mapped(e,'creature.upgrades');}
     else if(key==='Resistance effect'){
       const id=integer(e,0,20);
-      const resistance={0:20,1:40,9:60,10:80,11:100},levels={2:3,3:4,4:5,12:1,13:2};
+      const resistance={0:20,1:40,9:60,10:80,11:100};
       if(id in resistance)ability(e,'MAGIC_RESISTANCE',resistance[id]);
-      else if(id in levels)ability(e,'LEVEL_SPELL_IMMUNITY',levels[id]);
+      else if([2,3,4,12,13].includes(id))policy(e,'era-resistance-selector',{selector:id,name:enumNames[key][id],legacyNativeShortcutRejected:true},'Original spell-level, positivity, level-zero and ability eligibility require scoped binary proof. In particular selector4 blocks more than native LEVEL_SPELL_IMMUNITY5.');
       else if(id===8)mapped(e,'default resistance selector; no intrinsic ability');
       else policy(e,'era-resistance-selector',{selector:id,name:enumNames[key][id]},'Selector redirects executable spell eligibility; elemental creature immunities are not broad spell-school immunity');
     }

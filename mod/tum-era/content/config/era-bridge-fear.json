@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "creatures": {
+    "core:azureDragon": {
+      "sourceId": 132,
+      "firstRank": 0,
+      "marker": "eraSourceFear:132:v1"
+    },
+    "wake-of-gods.level8units:hellBaron": {
+      "sourceId": 153,
+      "firstRank": 0,
+      "marker": "eraSourceFear:153:v1"
+    },
+    "wake-of-gods.level8units:darknessDragon": {
+      "sourceId": 155,
+      "firstRank": 0,
+      "marker": "eraSourceFear:155:v1"
+    },
+    "tum-era:antichrist": {
+      "sourceId": 219,
+      "firstRank": 0,
+      "marker": "eraSourceFear:219:v1"
+    },
+    "tum-era:redBonesDragon": {
+      "sourceId": 224,
+      "firstRank": 0,
+      "marker": "eraSourceFear:224:v1"
+    },
+    "tum-era:ancestralBehemoth": {
+      "sourceId": 238,
+      "firstRank": 0,
+      "marker": "eraSourceFear:238:v1"
+    },
+    "tum-era:nightmareHydra": {
+      "sourceId": 245,
+      "firstRank": 0,
+      "marker": "eraSourceFear:245:v1"
+    },
+    "tum-era:necrossDragon": {
+      "sourceId": 254,
+      "firstRank": 0,
+      "marker": "eraSourceFear:254:v1"
+    },
+    "wake-of-gods.level8units:bloodDragon": {
+      "sourceId": 154,
+      "firstRank": 5,
+      "marker": "eraSourceFear:154:v1"
+    },
+    "wake-of-gods.level8units:ghostBehemoth": {
+      "sourceId": 156,
+      "firstRank": 5,
+      "marker": "eraSourceFear:156:v1"
+    },
+    "tum-era:chasmDragon": {
+      "sourceId": 231,
+      "firstRank": 0,
+      "marker": "eraSourceFear:231:v1"
+    }
+  },
+  "nativeFallbackTargets": [
+    "wake-of-gods.creatures:werewolf"
+  ]
+}

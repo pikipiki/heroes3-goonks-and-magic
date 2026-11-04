@@ -54,12 +54,12 @@
         "valueType": "INDEPENDENT_MAX"
       },
       "hateDevil": {
-        "type": "HATE",
+        "type": "ERA_PERSONAL_HATE_DAMAGE",
         "subtype": "core:devil",
         "val": 200
       },
       "hateArchdevil": {
-        "type": "HATE",
+        "type": "ERA_PERSONAL_HATE_DAMAGE",
         "subtype": "core:archDevil",
         "val": 200
       },

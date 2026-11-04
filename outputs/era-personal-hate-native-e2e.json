@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "scope": "Existing cfgPersonalHate bug fix for source202/219/207. Eighteen generic physical-operator controls use held212 in a throwaway mod overlay; no212/231 activation and no completeTUM claim.",
+  "engineSHA256": "c9b8be8cd25d4f2b6f8c4abd41d1fc162f150d2d473dd69f0384a00f0c62642a",
+  "runtimeVersion": "a3e0e67d9cbd6b73",
+  "summary": {
+    "passed": true,
+    "nativeControls": 18,
+    "baselineWarnings": 174,
+    "introducedWarnings": 0,
+    "nativeErrors": 0,
+    "pageErrors": 0
+  },
+  "activeDefinitionFixes": [
+    {
+      "sourceId": 202,
+      "native": "tum-era:cherub",
+      "cfgFlatBonuses": {
+        "hateDevil": {
+          "type": "ERA_PERSONAL_HATE_DAMAGE",
+          "subtype": "core:devil",
+          "val": 200
+        },
+        "hateArchdevil": {
+          "type": "ERA_PERSONAL_HATE_DAMAGE",
+          "subtype": "core:archDevil",
+          "val": 200
+        }
+      },
+      "ownXPDefinitionSha256": "fde54bc4db8fee9beeaa5845658e5e88708ac95ea0a50495c22998355f5a0a43"
+    },
+    {
+      "sourceId": 219,
+      "native": "tum-era:antichrist",
+      "cfgFlatBonuses": {
+        "hateAngels": {
+          "type": "ERA_PERSONAL_HATE_DAMAGE",
+          "subtype": "core:angel",
+          "val": 200
+        },
+        "hateArchangels": {
+          "type": "ERA_PERSONAL_HATE_DAMAGE",
+          "subtype": "core:archangel",
+          "val": 200
+        }
+      },
+      "ownXPDefinitionSha256": "56bcd8af0a2e9961dc82761a8f845ec271db8a51ed08bf7e6b3597023c2e7315"
+    },
+    {
+      "sourceId": 207,
+      "native": "tum-era:gemDragon",
+      "cfgFlatBonuses": {
+        "hateDracolich": {
+          "type": "ERA_PERSONAL_HATE_DAMAGE",
+          "subtype": "wake-of-gods.creatures:dracolich",
+          "val": 200
+        },
+        "hateNecross": {
+          "type": "ERA_PERSONAL_HATE_DAMAGE",
+          "subtype": "tum-era:necrossDragon",
+          "val": 200
+        }
+      },
+      "ownXPDefinitionSha256": "de2d38c21c8da6d4bce460c516d190370da3a5e5c399670f26afcd9b91ee29be"
+    }
+  ],
+  "sourceSemantics": {
+    "cfgHate": "Flat contribution per physical strike, independent of stack count, before physical protections.",
+    "experienceH": "Separate percentage; ownXP preserved. No new investigation or correction of global intermediate AT/h rounding.",
+    "sourceProof": "Amethyst DLL10015DCA ADDs PersonalHate to damage; installation10012E43/48, sourceSHA82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+    "nativeType": "ERA_PERSONAL_HATE_DAMAGE"
+  },
+  "controls": [
+    {
+      "name": "cfg-personal-hate-count1-ranged",
+      "damage": 600,
+      "expected": 600,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-count1-ranged-removed-control",
+      "damage": 200,
+      "expected": 200,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-count1-melee",
+      "damage": 300,
+      "expected": 300,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-count1-melee-removed-control",
+      "damage": 100,
+      "expected": 100,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-count2-ranged",
+      "damage": 800,
+      "expected": 800,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-count2-ranged-removed-control",
+      "damage": 400,
+      "expected": 400,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-count2-melee",
+      "damage": 400,
+      "expected": 400,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-count2-melee-removed-control",
+      "damage": 200,
+      "expected": 200,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-count1-ranged-half-distance",
+      "damage": 300,
+      "expected": 300,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-count2-ranged-half-distance",
+      "damage": 400,
+      "expected": 400,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-count1-ranged-AT10",
+      "damage": 700,
+      "expected": 700,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-count1-melee-AT10",
+      "damage": 350,
+      "expected": 350,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-count1-ranged-protected100",
+      "damage": 2,
+      "expected": 2,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-count1-ranged-L49composition",
+      "damage": 300,
+      "expected": 300,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-count1-melee-protected100",
+      "damage": 1,
+      "expected": 1,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-count1-melee-L49composition",
+      "damage": 150,
+      "expected": 150,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-retaliation-count1",
+      "damage": 300,
+      "expected": null,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    },
+    {
+      "name": "cfg-personal-hate-retaliation-count2",
+      "damage": 400,
+      "expected": null,
+      "warnings": 174,
+      "newWarnings": 0,
+      "passed": true
+    }
+  ],
+  "diagnostics": {
+    "baseline": "Full036 unmodified mod enrollment on samec9 engine, normalized nativeCastle ordinary map. Full174WARN entries with continuations retained.",
+    "caseRule": "All ERROR/FATAL and legacy unresolved-ID/policy/sound diagnostics fail; every WARN multiset compared to full036 baseline. None suppressed.",
+    "fixtureCorrections": [
+      "UTF8 literal JSON rather than escaped map names",
+      "Numeric instance names and references, AI hero generation, nativeCastle fixture",
+      "Remove ignored redundant id57 on predefined building in held town candidates",
+      "Use Tower fixture faction to isolate AT=DEF0 from native-terrain bonuses",
+      "After14passes, stop only owned process/page before combat when camera shifted; last4 replay with mapOverview-derived coordinates."
+    ],
+    "historicalFailuresPreserved": true
+  },
+  "limits": [
+    "No activation212/231 or further feature work; user requested stabilization first.",
+    "Global vanilla attack/protection intermediate rounding remains outside this bounded operator fix.",
+    "L49 composition target policy is explicitly fixture-only, not an intrinsicRedDragon ability claim.",
+    "Portable harness is a current runnable derivative; rawreports retain execution-time harness hashes."
+  ],
+  "runs": [
+    {
+      "run": "baseline-full036",
+      "report": "native-evidence/personal-hate-c9/baseline-full036/report.json",
+      "sha256": "d6dab3752e71ee7c68445df86f1fca184a13c0d08d0b00765bdca0a4f5c3e8d2"
+    },
+    {
+      "run": "first14",
+      "report": "native-evidence/personal-hate-c9/first14/report.json",
+      "sha256": "ef0c27b17d741e595220093b61b4a658a338616b8ab07e6327d458ee127de05b"
+    },
+    {
+      "run": "last4-dynamic-map",
+      "report": "native-evidence/personal-hate-c9/last4-dynamic-map/report.json",
+      "sha256": "0d6cab613b4b5338eeb0cbbc5029486335080b48fb327edc96110404f3681818"
+    },
+    {
+      "run": "historical-utf8-fixture",
+      "report": "native-evidence/personal-hate-c9/historical-utf8-fixture/report.json",
+      "sha256": "55ed1ab6a09f8ef6e4948272deb112b9381bbb0eb56b52d5ea441a8a1c7e9a91"
+    },
+    {
+      "run": "historical-terrain-fixture",
+      "report": "native-evidence/personal-hate-c9/historical-terrain-fixture/report.json",
+      "sha256": "c9e9fd4812727a45c37b496978213658f68b170195ca8d0a19b6344e15c56410"
+    },
+    {
+      "run": "historical-redundant-town-id",
+      "report": "native-evidence/personal-hate-c9/historical-redundant-town-id/report.json",
+      "sha256": "691891e1f63d54b2a255a0af3a0d10a4b57ae71e08e293b615d06b5a2aa94926"
+    }
+  ]
+}

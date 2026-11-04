@@ -1,0 +1,169 @@
+{
+  "core:rampart": {
+    "town": {
+      "creatures": [
+        [
+          "centaur",
+          "centaurCaptain",
+          "tumCentaurGeneral"
+        ],
+        [
+          "dwarf",
+          "battleDwarf",
+          "tumBerserkerDwarf"
+        ],
+        [
+          "woodElf",
+          "grandElf",
+          "tumSharpshooterElf"
+        ],
+        [
+          "pegasus",
+          "silverPegasus",
+          "tumGoldenPegasus"
+        ],
+        [
+          "dendroidGuard",
+          "dendroidSoldier",
+          "tumElderDendroid"
+        ],
+        [
+          "unicorn",
+          "warUnicorn",
+          "tumLegendaryUnicorn"
+        ],
+        [
+          "greenDragon",
+          "goldDragon",
+          "diamondDragon",
+          "tum-era:gemDragon"
+        ]
+      ],
+      "hallSlots": [
+        [
+          [
+            "villageHall",
+            "townHall",
+            "cityHall",
+            "capitol"
+          ],
+          [
+            "fort",
+            "citadel",
+            "castle"
+          ],
+          [
+            "tavern"
+          ],
+          [
+            "blacksmith"
+          ]
+        ],
+        [
+          [
+            "marketplace",
+            "resourceSilo"
+          ],
+          [
+            "mageGuild1",
+            "mageGuild2",
+            "mageGuild3",
+            "mageGuild4",
+            "mageGuild5"
+          ],
+          [
+            "special1",
+            "special2"
+          ]
+        ],
+        [
+          [
+            "special3"
+          ],
+          [
+            "horde2",
+            "horde2Upgr",
+            "horde2Upgr2"
+          ],
+          [
+            "horde1",
+            "horde1Upgr",
+            "horde1Upgr2"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl1",
+            "dwellingUpLvl1",
+            "dwellingUp2Lvl1"
+          ],
+          [
+            "dwellingLvl2",
+            "dwellingUpLvl2",
+            "dwellingUp2Lvl2"
+          ],
+          [
+            "dwellingLvl3",
+            "dwellingUpLvl3",
+            "dwellingUp2Lvl3"
+          ],
+          [
+            "dwellingLvl4",
+            "dwellingUpLvl4",
+            "dwellingUp2Lvl4"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl5",
+            "dwellingUpLvl5",
+            "dwellingUp2Lvl5"
+          ],
+          [
+            "dwellingLvl6",
+            "dwellingUpLvl6",
+            "dwellingUp2Lvl6"
+          ],
+          [
+            "dwellingLvl7",
+            "dwellingUpLvl7",
+            "dwellingUp2Lvl7",
+            "dwellingUp3Lvl7"
+          ]
+        ]
+      ],
+      "buildingsIcons": "tum-era/rampart-hall",
+      "structures": {
+        "dwellingUp3Lvl7": {
+          "animation": "town-screen/rampart/TBRMUP2_6.def",
+          "x": 502,
+          "y": 5,
+          "z": -5,
+          "border": "town-screen/rampart/borders/TORDR2AU.bmp",
+          "area": "town-screen/rampart/areas/TZRDR2AAU.bmp",
+          "builds": "dwellingUp3Lvl7",
+          "hidden": false
+        }
+      },
+      "buildings": {
+        "dwellingUp3Lvl7": {
+          "name": "Upg. Dragon Peaks",
+          "description": "Allows recruitment and upgrades of Brilliant Diamond Dragons.",
+          "upgrades": "dwellingUp2Lvl7",
+          "requires": [
+            "dwellingUp2Lvl7"
+          ],
+          "cost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 30,
+            "sulfur": 0,
+            "crystal": 30,
+            "gems": 0,
+            "gold": 25000
+          }
+        }
+      }
+    }
+  }
+}

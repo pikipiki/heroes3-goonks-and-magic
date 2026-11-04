@@ -11,6 +11,7 @@
 
 #include "CUnitState.h"
 #include "../era/EraStatusHealth.h"
+#include "../era/EraExperienceHealth.h"
 #include "../era/EraStatusHealthBonuses.h"
 #include "../era/EraBridgePolicies.h"
 #include "../era/EraSignedDamage.h"
@@ -596,8 +597,13 @@ int64_t CUnitState::getTotalHealth() const
 
 uint32_t CUnitState::getMaxHealth() const
 {
+    const auto applyExperience = [this](int value)
+    {
+        return hasBonusOfType(BonusType::ERA_EXPERIENCE_HEALTH_PERCENT)
+            ? ::era_bridge::sourceExperienceHealth(value,valOfBonuses(BonusType::ERA_EXPERIENCE_HEALTH_PERCENT)) : value;
+    };
     if(!era_compat::sourceStatusUsesProfile(*this))
-        return std::max(1,bonusCache.getBonusValue(UnitBonusValuesProxy::STACK_HEALTH));
+        return std::max(1,applyExperience(bonusCache.getBonusValue(UnitBonusValuesProxy::STACK_HEALTH)));
     BonusList baseline;
     int poison=0;bool age=false;
     for(const auto & bonus:*getBonuses(Selector::type()(BonusType::STACK_HEALTH)))
@@ -609,7 +615,7 @@ uint32_t CUnitState::getMaxHealth() const
         else
             baseline.push_back(bonus);
     }
-    const int normal=std::max(1,baseline.totalValue());
+    const int normal=std::max(1,applyExperience(baseline.totalValue()));
     return poison || age ? ::era_bridge::sourceStatusMaxHealth(normal,poison,age) : normal;
 }
 

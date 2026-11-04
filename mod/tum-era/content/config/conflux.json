@@ -144,7 +144,6 @@
       },
       "buildings": {
         "dwellingUp3Lvl7": {
-          "id": 57,
           "name": "Upg. Spirit Pyre",
           "description": "Allows recruitment and upgrades of Divine Phoenixes.",
           "upgrades": "dwellingUp2Lvl7",
@@ -155,6 +154,9 @@
             "wood": 15,
             "mercury": 25,
             "ore": 15,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
             "gold": 20000
           }
         }

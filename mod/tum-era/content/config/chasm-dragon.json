@@ -1,0 +1,367 @@
+{
+  "chasmDragon": {
+    "name": {
+      "singular": "Chasm Dragon",
+      "plural": "Chasm Dragons"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 6,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 8000
+    },
+    "fightValue": 20000,
+    "aiValue": 26000,
+    "growth": 1,
+    "hitPoints": 600,
+    "speed": 17,
+    "attack": 37,
+    "defense": 37,
+    "damage": {
+      "min": 60,
+      "max": 75
+    },
+    "advMapAmount": {
+      "min": 1,
+      "max": 3
+    },
+    "faction": "core:dungeon",
+    "level": 7,
+    "doubleWide": true,
+    "hasDoubleWeek": false,
+    "abilities": {
+      "hateGiants": {
+        "type": "ERA_PERSONAL_HATE_DAMAGE",
+        "subtype": "core:giant",
+        "val": 200
+      },
+      "hateTitans": {
+        "type": "ERA_PERSONAL_HATE_DAMAGE",
+        "subtype": "core:titan",
+        "val": 200
+      },
+      "flying": {
+        "type": "FLYING",
+        "subtype": "movementFlying"
+      },
+      "breath": {
+        "type": "TWO_HEX_ATTACK_BREATH"
+      },
+      "mindImmunity": {
+        "type": "MIND_IMMUNITY"
+      },
+      "fireImmunity": {
+        "type": "SPELL_SCHOOL_IMMUNITY",
+        "subtype": "fire"
+      },
+      "blocksRetaliation": {
+        "type": "BLOCKS_RETALIATION"
+      },
+      "dragon": {
+        "type": "DRAGON_NATURE"
+      },
+      "king": {
+        "type": "KING",
+        "val": 0
+      },
+      "fearless": {
+        "type": "FEARFUL",
+        "val": 0,
+        "valueType": "INDEPENDENT_MIN"
+      },
+      "fearful": {
+        "type": "FEARFUL",
+        "val": 10,
+        "valueType": "INDEPENDENT_MAX",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE",
+          [
+            "noneOf",
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NO_MORALE"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "UNDEAD"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NON_LIVING"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "MECHANICAL"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "SIEGE_WEAPON"
+            }
+          ]
+        ],
+        "stacking": "eraSourceFear:231:v1"
+      },
+      "strikeAndReturn": {
+        "type": "RETURN_AFTER_STRIKE"
+      },
+      "dragonSkeleton": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:boneDragon"
+      },
+      "crexp_3_rank0": {
+        "type": "HATE",
+        "subtype": "wake-of-gods.level8units:lordOfThunder",
+        "valueType": "ADDITIVE_VALUE",
+        "val": 50
+      },
+      "crexp_4_rank0": {
+        "type": "HATE",
+        "subtype": "tum-era:guardianOfZeus",
+        "valueType": "ADDITIVE_VALUE",
+        "val": 50
+      }
+    },
+    "graphics": {
+      "animation": "tum-era/chasm-dragon/cr231",
+      "map": "tum-era/chasm-dragon/AVWCR231",
+      "iconSmall": "tum-era/chasm-dragon/portrait-small",
+      "iconLarge": "tum-era/chasm-dragon/portrait-large",
+      "mapAttackFromRight": "avwattak/ZAvW155a",
+      "mapAttackFromLeft": "avwattak/ZAvW155b",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.6,
+        "attack": 1,
+        "idle": 10
+      }
+    },
+    "sound": {
+      "attack": "tum-era/chasm-dragon/S231ATTK.wav",
+      "defend": "tum-era/chasm-dragon/S231DFND.wav",
+      "killed": "tum-era/chasm-dragon/S231KILL.wav",
+      "move": "tum-era/chasm-dragon/S231MOVE.wav",
+      "shoot": "tum-era/chasm-dragon/S231SHOT.wav",
+      "wince": "tum-era/chasm-dragon/S231WNCE.wav"
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "RECEPTIVE"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "subtype": "wake-of-gods.level8units:lordOfThunder",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          70,
+          90,
+          110,
+          130,
+          150
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "subtype": "tum-era:guardianOfZeus",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          70,
+          90,
+          110,
+          130,
+          150
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_AFTER_ATTACK",
+          "subtype": "core:berserk",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": 2
+        },
+        "values": [
+          3,
+          6,
+          9,
+          12,
+          15,
+          18,
+          21,
+          24,
+          27,
+          30
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_AFTER_ATTACK",
+          "subtype": "core:blind",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": 3
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  "wake-of-gods.level8units:darknessDragon": {
+    "upgrades": [
+      "chasmDragon"
+    ]
+  }
+}

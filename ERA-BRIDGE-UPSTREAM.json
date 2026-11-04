@@ -40,10 +40,10 @@
     "whole declarative banks/dwellings with resolved guardians/rewards/resources/sounds"
   ],
   "tests": {
-    "passed": 262,
-    "skipped": 16,
+    "passed": 377,
+    "skipped": 22,
     "failed": 0,
-    "scope": "npm test; portable C++ runtime rules compiled with address/undefined sanitizers. Native engine GTest additions have not been executed."
+    "scope": "Node tests after merging Goonk0.4.36; portable native rules included. Native engine GTest additions not executed."
   },
   "wasmBuild": "ninja -j32 html5 succeeded; build pool constrained to fit 8GiB host",
   "referenceERA": {
@@ -79,7 +79,13 @@
       "work/tum-native-proofs/skeleton-angel-native/results-transformer/report.json",
       "work/tum-native-proofs/nightmare-hydra-native/results-245-audio-fixed/report.json"
     ],
-    "bundleAttribution": "Reports were collected against successive bridge2 candidates. Exact attribution and before/after capture limitations are retained per report; no claim that every report used the final archive."
+    "bundleAttribution": "Reports were collected against successive bridge2 candidates. Exact attribution and before/after capture limitations are retained per report; no claim that every report used the final archive.",
+    "finalNineTownCandidate": {
+      "passed": 9,
+      "evidence": "outputs/native-evidence/towns038/report.json",
+      "wasmSHA256": "9b35c0b49206b3c38f10e45cf470d823e5407e839736aae5656215363512acc5",
+      "scope": "bounded town purchases/recruitment/save-load atXP0;nonzeroXPcross-flow remains pending"
+    }
   },
   "limitations": [
     "No generic execution of Windows x86 DLLs",
@@ -93,66 +99,25 @@
     "74 registered creature definitions have candidate base-stat differences from source3.5; inventory is not a runtime equivalence claim"
   ],
   "activeContent": {
-    "tumCreatures": 12,
+    "tumCreatures": 17,
     "artifacts": 56,
     "mapObjects": 28,
-    "experienceProfiles": 234,
+    "experienceProfiles": 240,
     "fourthUpgradeTowns": [
       "castle",
+      "rampart",
+      "tower",
       "inferno",
       "necropolis",
-      "conflux",
-      "stronghold"
+      "dungeon",
+      "stronghold",
+      "fortress",
+      "conflux"
     ],
     "baseThirdUpgradeTowns": 9,
     "source35PrimitiveStatCorrections": 66,
     "source35ThirdDwellingCosts": 63,
     "intrinsicFearlessCorrections": 6
-  },
-  "dataOnlyRelease": {
-    "appVersion": "0.4.35",
-    "baseCommit": "2da1e91c12811c7e7c04f599ab33aa7aa2ed150d",
-    "nativeEngineArchive": "vcmi-wasm-goonk-0.4.34-engine.tar.gz",
-    "nativeChanges": false,
-    "stats": {
-      "count": 66,
-      "scope": "Numeric scalar properties only; no abilities/biology/XP/creature creation",
-      "evidence": "outputs/data-only-0.4.35/statistics-evidence.json"
-    },
-    "thirdUpgradeCosts": {
-      "count": 63,
-      "changed": 62,
-      "towns": 9,
-      "scope": "Full seven-core-resource cost dictionaries only; no prerequisites/rosters/graphics/IDs changed",
-      "evidence": "outputs/data-only-0.4.35/building-costs-evidence.json"
-    },
-    "intrinsicFearless": {
-      "count": 6,
-      "sourceIds": [
-        201,
-        206,
-        215,
-        225,
-        229,
-        291
-      ],
-      "scope": "Only FEARFUL0/INDEPENDENT_MIN on existing WotC creatures",
-      "evidence": "outputs/data-only-0.4.35/fearless-six-evidence.json"
-    },
-    "excluded": [
-      "New actors, artifacts, objects, XP profiles or fourth-upgrade towns beyond the base",
-      "New native code, H/rebirth changes, source RNG registry/markers and Ghost fear candidate",
-      "Common source XP defaults and other in-progress work"
-    ],
-    "nativeDiagnosticReview": {
-      "scope": "SameMain34 baseline2da versus candidate035 Castle startup/native town",
-      "baselineWarningRecords": 132,
-      "candidateWarningRecords": 132,
-      "newWarnings": 0,
-      "unknownIdentifiers": 0,
-      "evidence": "outputs/data-only-0.4.35/startup-native-evidence.json",
-      "notWarningFree": true
-    }
   },
   "historicalBridgeReference": {
     "engineArchive": "outputs/vcmi-wasm-goonk-era-bridge-2-engine.tar.gz",
@@ -274,12 +239,16 @@
     },
     "attribution": "Historical bridge-2 build record only; not the data-only release engine."
   },
-  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.36-engine.tar.gz",
-  "engineArchiveSHA256": "98536a95ea4e31ae0562b240c445691d4463068a432e5efe3f4b090a542ac37d",
-  "wasmSHA256": "4697b03d2f77fbd392878edd47e2d3d842e67e2418aa9eb9691eac2210b95aee",
-  "engineAttribution": "Recompiled 0.4.36 for native recruitment-family previews and validated purchases. The ERA bridge remains version 2; no future ERA creature adapters or data are activated by this UI change.",
+  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.38-engine.tar.gz",
+  "engineArchiveSHA256": "d5a0f9c8b937670f1b58581d6c40a8bff39b00647a2a060525a1064a8b7125a2",
+  "wasmSHA256": "9b35c0b49206b3c38f10e45cf470d823e5407e839736aae5656215363512acc5",
+  "engineAttribution": "Native nine-town stabilization candidate with reviewed bridge C9 source plus merged Goonk0.4.36 MobileBridge/CCastleInterface changes from a3ebaca. ninja -j32 html5 PASS14targets. Earlier proofs keep original hashes and do not all validate this final binary.",
   "knownCheckpointLimitations": [
-    "Existing 202/219 cfgPersonalHate is flat damage in the supplied DLL, whereas the unchanged baseline engine/data uses percentage HATE. This pre-existing mismatch is explicitly excluded from this data-only correction, together with global H/XP/RNG changes. No complete creature or TUM3.5 compatibility claim."
+    "Full TUM ERA3.5 compatibility remains false. This release is limited to the original nine town evolutions and reviewed corrections.",
+    "Native cfg personal HATE uses flat damage; XP h remains percentage. Earlier18-case C9 proof is separately attributed, not a claim of every global fractional rounding boundary.",
+    "Source fear applies only to registered and marked source producers; it does not emulate the process-wide Windows CRT stream.",
+    "Optional DeathBlowCRT policy has no active enrollment. Seven additional generic neutral creatures and additional artifacts/banks/options remain held.",
+    "Current campaign, physical-iPhone and broad save-version compatibility are not established by bounded town regressions."
   ],
   "priorDataOnlyReview": {
     "release": "0.4.34",
@@ -288,10 +257,69 @@
     "wasmSHA256": "5e1bb075a246cc42f494bf60260d2b5b11013fab072a7624f78d469bb4f6e0ad",
     "attribution": "Historical prior review only. Native startup is rerun on this release engine; source numerical/cost/fear evidence keeps original hashes."
   },
-  "previousRuntimeReference": {
-    "engineArchive": "outputs/vcmi-wasm-goonk-0.4.34-engine.tar.gz",
-    "engineArchiveSHA256": "3d9dacebf1855ccee5adb51cab47ebb29d6af97552824ad2b5f7a94ecbc7ab89",
-    "wasmSHA256": "e5ded71899389b2847e89d1098b0176e4ebe8a40696db019ca6138a8a8eddfb8",
-    "engineAttribution": "Unchanged published Main0.4.34 archive from base2da1e91, including catalogue fakeNode lifetime fix; no native compilation in this data-only release."
+  "stabilizationRelease": {
+    "appVersion": "0.4.38",
+    "baseCommit": "53218aeca32d0d1755cad381de4178fe8ef905ec",
+    "status": "validated candidate; awaiting publication",
+    "noNewArtifacts": true,
+    "noNewBanks": true,
+    "unactivated": [
+      "seven generic neutrals",
+      "DeathBlowCRT enrollments",
+      "remaining ERA scripts/options"
+    ],
+    "nativeChanges": true,
+    "nativeTownCases": 9,
+    "evidence": "outputs/native-evidence/towns038/report.json",
+    "node": {
+      "passed": 377,
+      "skipped": 22,
+      "failed": 0
+    }
+  },
+  "historicalDataOnlyRelease035": {
+    "appVersion": "0.4.35",
+    "baseCommit": "2da1e91c12811c7e7c04f599ab33aa7aa2ed150d",
+    "nativeEngineArchive": "vcmi-wasm-goonk-0.4.34-engine.tar.gz",
+    "nativeChanges": false,
+    "stats": {
+      "count": 66,
+      "scope": "Numeric scalar properties only; no abilities/biology/XP/creature creation",
+      "evidence": "outputs/data-only-0.4.35/statistics-evidence.json"
+    },
+    "thirdUpgradeCosts": {
+      "count": 63,
+      "changed": 62,
+      "towns": 9,
+      "scope": "Full seven-core-resource cost dictionaries only; no prerequisites/rosters/graphics/IDs changed",
+      "evidence": "outputs/data-only-0.4.35/building-costs-evidence.json"
+    },
+    "intrinsicFearless": {
+      "count": 6,
+      "sourceIds": [
+        201,
+        206,
+        215,
+        225,
+        229,
+        291
+      ],
+      "scope": "Only FEARFUL0/INDEPENDENT_MIN on existing WotC creatures",
+      "evidence": "outputs/data-only-0.4.35/fearless-six-evidence.json"
+    },
+    "excluded": [
+      "New actors, artifacts, objects, XP profiles or fourth-upgrade towns beyond the base",
+      "New native code, H/rebirth changes, source RNG registry/markers and Ghost fear candidate",
+      "Common source XP defaults and other in-progress work"
+    ],
+    "nativeDiagnosticReview": {
+      "scope": "SameMain34 baseline2da versus candidate035 Castle startup/native town",
+      "baselineWarningRecords": 132,
+      "candidateWarningRecords": 132,
+      "newWarnings": 0,
+      "unknownIdentifiers": 0,
+      "evidence": "outputs/data-only-0.4.35/startup-native-evidence.json",
+      "notWarningFree": true
+    }
   }
 }

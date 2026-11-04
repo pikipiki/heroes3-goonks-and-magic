@@ -11,6 +11,7 @@
 #include "../../lib/era/EraDeflectionLog.h"
 #include "../../lib/era/EraExperienceAttackSpells.h"
 #include "../../lib/era/EraSourceAttackGate.h"
+#include "../../lib/era/EraDeathBlowChance.h"
 #include "BattleActionProcessor.h"
 #include "../era/EraDoneRound.h"
 #include "../era/EraRebirth.h"
@@ -1120,8 +1121,17 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
 	if(attackerLuck < 0 && gameHandler->randomizer->rollBadLuck(ownerArmy, -attackerLuck))
 		bat.flags |= BattleAttack::UNLUCKY;
 
-	if (gameHandler->randomizer->rollCombatAbility(ownerArmy, attacker->valOfBonuses(BonusType::DOUBLE_DAMAGE_CHANCE)))
-		bat.flags |= BattleAttack::DEATH_BLOW;
+    const int deathBlowChance = attacker->valOfBonuses(BonusType::DOUBLE_DAMAGE_CHANCE);
+    const bool sourceDeathBlow = era_compat::Policies::get().deathBlowCRT(attacker->unitType()->getJsonKey())
+        && deathBlowChance >= 0 && deathBlowChance <= 100;
+    // Explicitly reviewed actors only. The source uses CRT%100+1, without
+    // VCMI's per-army adaptive ability bias. Foreign/out-of-domain changes
+    // retain the original native route; this does not emulate CRT seed state.
+    const bool deathBlow = sourceDeathBlow
+        ? era_bridge::rollSourceDeathBlow(deathBlowChance, [&](){ return gameHandler->getRandomGenerator().nextInt(0,32767); })
+        : gameHandler->randomizer->rollCombatAbility(ownerArmy, deathBlowChance);
+    if(deathBlow)
+        bat.flags |= BattleAttack::DEATH_BLOW;
 
 	const auto * ownerHero = battle.battleGetFightingHero(attacker->unitSide());
 	if(ownerHero)

@@ -11,6 +11,7 @@
 #include "StdInc.h"
 #include "../era/EraBridgePolicies.h"
 #include "../era/EraDefenseReduction.h"
+#include "../era/EraPersonalHate.h"
 #include "../CCreatureHandler.h"
 
 #include "DamageCalculator.h"
@@ -195,6 +196,11 @@ int DamageCalculator::getTargetDefenseBase() const
 
 int DamageCalculator::getTargetDefenseEffective() const
 {
+    // Dedicated source XP b carrier; admitted actors have no intrinsic CFG
+    // defense-reduction policy. Keep legacy native reductions unchanged.
+    const int sourceExperienceReduction = battleBonusValue(info.attacker, Selector::type()(BonusType::ERA_EXPERIENCE_DEFENSE_REDUCTION));
+    if(sourceExperienceReduction > 0)
+        return era_bridge::defenseAfterExperienceReduction(getTargetDefenseBase(),sourceExperienceReduction);
 	return getTargetDefenseBase() + getTargetDefenseIgnored();
 }
 
@@ -384,7 +390,16 @@ double DamageCalculator::getDefenseRangePenaltiesFactor() const
 
 		const bool distPenalty = callback.battleHasDistancePenalty(info.attacker, attackerPos, defenderPos);
 
-		if(distPenalty || info.defender->hasBonus(isAdvancedAirShield, cachingStrAdvAirShield))
+        // Amethyst's direct ImposedSpell28 calls the original enchantment
+        // endpoint. Its source ranged factor is applied once (443D1F), while
+        // the ordinary distance/wall checks4670F0/4671E0 remain independent.
+        // Preserve native legacy AirShield handling outside registered source
+        // imposed spells; do not impose an extra half-range factor on212.
+        const auto & sourceImposed = era_compat::Policies::get().imposedSpells(info.defender->unitType()->getJsonKey());
+        const bool sourceAirShield = std::any_of(sourceImposed.begin(), sourceImposed.end(), [](const auto & spell) {
+            return spell.spell == "core:airShield";
+        });
+		if(distPenalty || (!sourceAirShield && info.defender->hasBonus(isAdvancedAirShield, cachingStrAdvAirShield)))
 			return 0.5;
 
 	}
@@ -583,12 +598,18 @@ DamageEstimation DamageCalculator::calculateDmgRange() const
 		defenseFactorTotal *= (1 - std::min(1.0, factor));
 	}
 
+	const auto personalBonuses = info.attacker->getBonusesOfType(BonusType::ERA_PERSONAL_HATE_DAMAGE);
+	const int personalHate = personalBonuses->valOfBonuses(Selector::subtype()(BonusSubtypeID(info.defender->creatureId())));
 	double resultingFactor = attackFactorTotal * defenseFactorTotal;
 
 	int64_t cap = getDamageCap();
 
-	auto dmin = std::max<int64_t>(1.0, std::floor(damageBase.min * resultingFactor));
-	auto dmax = std::max<int64_t>(1.0, std::floor(damageBase.max * resultingFactor));
+	auto dmin = std::max<int64_t>(1.0, std::floor(personalHate != 0
+		? EraBridge::personalHateBeforeDefense(damageBase.min, attackFactorTotal, personalHate) * defenseFactorTotal
+		: damageBase.min * resultingFactor));
+	auto dmax = std::max<int64_t>(1.0, std::floor(personalHate != 0
+		? EraBridge::personalHateBeforeDefense(damageBase.max, attackFactorTotal, personalHate) * defenseFactorTotal
+		: damageBase.max * resultingFactor));
 
 	dmin = std::min(dmin, cap);
 	dmax = std::min(dmax, cap);

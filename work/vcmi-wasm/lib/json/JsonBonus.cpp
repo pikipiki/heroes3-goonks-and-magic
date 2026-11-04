@@ -122,6 +122,7 @@ static void loadBonusSubtype(BonusSubtypeID & subtype, BonusType type, const Jso
 		case BonusType::BONUS_DAMAGE_PERCENTAGE:
 		case BonusType::SPECIAL_UPGRADE:
 		case BonusType::HATE:
+		case BonusType::ERA_PERSONAL_HATE_DAMAGE:
 		case BonusType::SUMMON_GUARDIANS:
 		case BonusType::MANUAL_CONTROL:
 		case BonusType::SKELETON_TRANSFORMER_TARGET:
@@ -142,6 +143,7 @@ static void loadBonusSubtype(BonusSubtypeID & subtype, BonusType type, const Jso
 		case BonusType::SPECIFIC_SPELL_DAMAGE:
 		case BonusType::SPECIFIC_SPELL_RANGE:
 		case BonusType::SPELL:
+		case BonusType::ERA_FIXED_POWER_OPENING_SPELL:
 		case BonusType::OPENING_BATTLE_SPELL:
 		case BonusType::SPELL_LIKE_ATTACK:
 		case BonusType::CATAPULT:
@@ -240,9 +242,25 @@ static TBonusParametersPtr loadBonusAddInfo(BonusType type, const JsonNode & val
 		case BonusType::DARKNESS:
 		case BonusType::FULL_MAP_SCOUTING:
 		case BonusType::FULL_MAP_DARKNESS:
-		case BonusType::OPENING_BATTLE_SPELL:
 			// 1 number
 			var = static_cast<int32_t>(getFirstValue(value).Integer());
+			break;
+		case BonusType::ERA_FIXED_POWER_OPENING_SPELL:
+		case BonusType::OPENING_BATTLE_SPELL:
+			// Emerald uses [expert mastery, source Autospell index]. Legacy
+			// scalar and one-element vector forms retain their native payload.
+			// Other mods keep the historical first-element interpretation.
+			if((type==BonusType::ERA_FIXED_POWER_OPENING_SPELL || value.getModScope()=="tum-era")
+				&& value.isVector() && value.Vector().size() > 1)
+			{
+				if(value.Vector().size()!=2 || !value[0].isNumber() || value[0].Float()!=3
+					|| !value[1].isNumber() || value[1].Float()!=value[1].Integer()
+					|| value[1].Integer()<0 || value[1].Integer()>8)
+					throw std::runtime_error("ERA opening: expected addInfo [expert3,index0..8]");
+				var = std::vector<int32_t>{3, static_cast<int32_t>(value[1].Integer())};
+			}
+			else
+				var = static_cast<int32_t>(getFirstValue(value).Integer());
 			break;
 		case BonusType::SPECIAL_UPGRADE:
 		case BonusType::TRANSMUTATION:

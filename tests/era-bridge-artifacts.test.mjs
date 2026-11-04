@@ -9,7 +9,7 @@ test('signed stats use correct native subtype and damage min/max separate',()=>{
 });
 test('opening spell explicitly preserves expert/50 turn native semantics',()=>{
  const c=compileArtifact({id:99,text:'Autospell=53\nAutospell2=43',...resolvers});
- assert.deepEqual(c.patch.bonuses.Autospell,{type:'OPENING_BATTLE_SPELL',val:50,subtype:'spell53'});
+ assert.deepEqual(c.patch.bonuses.Autospell,{type:'OPENING_BATTLE_SPELL',val:50,subtype:'spell53',addInfo:[3,0]});
 });
 test('unknown/malformed/duplicate input and missing ids cannot emit partial patch',()=>{
  for(const text of ['Health=NaN','Health=1.1','Unknown=9','Shots=1\nShots=2','Immunities=1,no','Attack=2147483648'])assert.equal(compileArtifact({id:99,text}).patch,null);
@@ -80,3 +80,14 @@ test('native-vcmi AI policy retains signed gameplay bonuses and explicit source-
  assert.deepEqual(c.aiDecisions[0].eraTokens,[0,3,1,1,-1]);assert.equal(c.aiDecisions[0].policy,'native-vcmi');
  assert.throws(()=>compileArtifact({...input,aiPolicy:'ignore'}),/Unknown artifact AI policy/);
 });
+
+test('audited global source openings use fixed power50; targeted openings remain blocked',()=>{
+ for(const spell of [24,25]){
+  const r=compileArtifact({id:99,text:'Autospell='+spell,...resolvers,fixedPowerOpeningSpellContract:'source-fixed50-global-v1'});
+  assert(r.ok);assert.deepEqual(r.patch.bonuses.Autospell,{type:'ERA_FIXED_POWER_OPENING_SPELL',val:50,subtype:'spell'+spell,addInfo:[3,0]});assert.deepEqual(r.adapters,[]);
+ }
+ for(const spell of [11,60])assert(!compileArtifact({id:99,text:'Autospell='+spell,...resolvers,fixedPowerOpeningSpellContract:'source-fixed50-global-v1'}).ok);
+ assert.throws(()=>compileArtifact({id:99,fixedPowerOpeningSpellContract:'approximate'}),/Unknown source/);
+});
+
+test('Emerald cfg source indices are explicit even when text keys are out of order',()=>{const r=compileArtifact({id:99,text:'Autospell9=43\nAutospell=53\nAutospell2=29',...resolvers});assert(r.ok);assert.deepEqual(r.patch.bonuses.Autospell9.addInfo,[3,8]);assert.deepEqual(r.patch.bonuses.Autospell.addInfo,[3,0]);assert.deepEqual(r.patch.bonuses.Autospell2.addInfo,[3,1]);});

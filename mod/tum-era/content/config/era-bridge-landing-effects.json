@@ -22,6 +22,20 @@
       "melee": {
         "animation": "tum-era/hit-effects/Burst23.def"
       }
+    },
+    "tum-era:necrossDragon": {
+      "melee": {
+        "animation": "tum-era/hit-effects/Burst25.def"
+      }
+    },
+    "tum-era:guardianOfZeus": {
+      "melee": {
+        "animation": "tum-era/hit-effects/Burst10.def",
+        "sound": "tum-era/hit-effects/GOGFLAME.wav"
+      },
+      "ranged": {
+        "animation": "tum-era/hit-effects/Burst11.def"
+      }
     }
   }
 }

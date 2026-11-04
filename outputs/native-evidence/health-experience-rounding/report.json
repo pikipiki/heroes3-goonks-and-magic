@@ -1,0 +1,1038 @@
+{
+  "schemaVersion": 1,
+  "scope": "Three browser-only canonical health R0/no-gain/R10 artifact controls; effective values read from CStack battleUnits, never army base stats. Actual XP earned with accelerated profile; no active candidate or universal TUM parity claim.",
+  "activationReady": false,
+  "productionModified": false,
+  "startedAt": "2026-11-04T18:52:10.675Z",
+  "finishedAt": "2026-11-04T18:53:16.038Z",
+  "engineLabel": "d0e65-health-rounding",
+  "origin": "http://127.0.0.1:8774",
+  "entry": "/game.html",
+  "sourceArchiveSha256": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+  "reviewSha256": "533d4399eec794e9ea90e163c2b398f5b0edb783a995e17e276f37343002205e",
+  "projectHead": "6bfa181327f9e7e97dcc8e993c55ec28c8ab6491",
+  "baseMapSha256": "54b055b09b96cfb9876c24f932d02ec8004e8fb4a971342c489f7e59481e9ae5",
+  "resources": [
+    {
+      "url": "http://127.0.0.1:8774/game.html?mobile=1&choose-save=1",
+      "status": 200,
+      "headers": {
+        "accept-ranges": "bytes",
+        "cache-control": "no-cache",
+        "connection": "keep-alive",
+        "content-length": "20577",
+        "content-type": "text/html; charset=utf-8",
+        "cross-origin-embedder-policy": "require-corp",
+        "cross-origin-opener-policy": "same-origin",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "keep-alive": "timeout=5"
+      },
+      "sha256": "9eea40fd9b030f205bada2141a33488ad48baad5377165d9d8fac84199714bf6",
+      "bytes": 20577
+    },
+    {
+      "url": "http://127.0.0.1:8774/vcmiclient.b2ae5577a9693c16.data",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "8437889",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "application/octet-stream"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8774/opfs-worker.js?v=9e0a35070f133384",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "17678",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "d3b098bfac4488280bb1feafe98f1bc7427bdcf1d7677efbee98634a8cf6c449",
+      "bytes": 17678
+    },
+    {
+      "url": "http://127.0.0.1:8774/dialogs.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "5613",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "8e01abeec7194acfdef0eedeaed67bab7bccc1cf9df22a1fa0a77306d03586d6",
+      "bytes": 5613
+    },
+    {
+      "url": "http://127.0.0.1:8774/mini-lz4.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "9804",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "1efee24544e11330a986718249326e2ea5c3f4ee77e0496d6ca71646061393c6",
+      "bytes": 9804
+    },
+    {
+      "url": "http://127.0.0.1:8774/vcmiclient.data.7c2e7864baa3874b.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "62978",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "7c2e7864baa3874bd3920502663c4e8efbbcc513530f472c2794a69065a5de08",
+      "bytes": 62978
+    },
+    {
+      "url": "http://127.0.0.1:8774/vcmiclient.e1cd5ef296d479bb.js?v=9e0a35070f133384",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "274148",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "e1cd5ef296d479bbdebcf7a396706e95d5febbb301fae3e195ec2944b9eecedf",
+      "bytes": 274148
+    },
+    {
+      "url": "http://127.0.0.1:8774/vcmiclient.e1cd5ef296d479bb.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "274148",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "e1cd5ef296d479bbdebcf7a396706e95d5febbb301fae3e195ec2944b9eecedf",
+      "bytes": 274148
+    },
+    {
+      "url": "http://127.0.0.1:8774/vcmiclient.e1cd5ef296d479bb.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "274148",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "e1cd5ef296d479bbdebcf7a396706e95d5febbb301fae3e195ec2944b9eecedf",
+      "bytes": 274148
+    },
+    {
+      "url": "http://127.0.0.1:8774/vcmiclient.e1cd5ef296d479bb.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "274148",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "e1cd5ef296d479bbdebcf7a396706e95d5febbb301fae3e195ec2944b9eecedf",
+      "bytes": 274148
+    },
+    {
+      "url": "http://127.0.0.1:8774/vcmiclient.e1cd5ef296d479bb.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "274148",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "e1cd5ef296d479bbdebcf7a396706e95d5febbb301fae3e195ec2944b9eecedf",
+      "bytes": 274148
+    },
+    {
+      "url": "http://127.0.0.1:8774/vcmiclient.e1cd5ef296d479bb.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "274148",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "e1cd5ef296d479bbdebcf7a396706e95d5febbb301fae3e195ec2944b9eecedf",
+      "bytes": 274148
+    },
+    {
+      "url": "http://127.0.0.1:8774/vcmiclient.e1cd5ef296d479bb.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "274148",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "e1cd5ef296d479bbdebcf7a396706e95d5febbb301fae3e195ec2944b9eecedf",
+      "bytes": 274148
+    },
+    {
+      "url": "http://127.0.0.1:8774/vcmiclient.e1cd5ef296d479bb.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "274148",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "e1cd5ef296d479bbdebcf7a396706e95d5febbb301fae3e195ec2944b9eecedf",
+      "bytes": 274148
+    },
+    {
+      "url": "http://127.0.0.1:8774/vcmiclient.e1cd5ef296d479bb.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "274148",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "e1cd5ef296d479bbdebcf7a396706e95d5febbb301fae3e195ec2944b9eecedf",
+      "bytes": 274148
+    },
+    {
+      "url": "http://127.0.0.1:8774/vcmiclient.e1cd5ef296d479bb.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "274148",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "e1cd5ef296d479bbdebcf7a396706e95d5febbb301fae3e195ec2944b9eecedf",
+      "bytes": 274148
+    },
+    {
+      "url": "http://127.0.0.1:8774/vcmiclient.e1cd5ef296d479bb.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "274148",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "e1cd5ef296d479bbdebcf7a396706e95d5febbb301fae3e195ec2944b9eecedf",
+      "bytes": 274148
+    },
+    {
+      "url": "http://127.0.0.1:8774/vcmiclient.e1cd5ef296d479bb.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "274148",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "e1cd5ef296d479bbdebcf7a396706e95d5febbb301fae3e195ec2944b9eecedf",
+      "bytes": 274148
+    },
+    {
+      "url": "http://127.0.0.1:8774/vcmiclient.e1cd5ef296d479bb.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "274148",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "text/javascript"
+      },
+      "sha256": "e1cd5ef296d479bbdebcf7a396706e95d5febbb301fae3e195ec2944b9eecedf",
+      "bytes": 274148
+    },
+    {
+      "url": "http://127.0.0.1:8774/vcmiclient.d0e65ec6857b5100.wasm",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "cross-origin-opener-policy": "same-origin",
+        "connection": "keep-alive",
+        "cross-origin-embedder-policy": "require-corp",
+        "accept-ranges": "bytes",
+        "content-length": "9386403",
+        "keep-alive": "timeout=5",
+        "date": "Wed, 04 Nov 2026 18:52:11 GMT",
+        "content-type": "application/wasm"
+      },
+      "sha256": "d0e65ec6857b5100f9aeb4e6e74ee012a6fe9f6cc16ad76386bff79c4a7cad9c",
+      "bytes": 9386403
+    }
+  ],
+  "passed": true,
+  "observerContract": {
+    "army": "base CCreature stats; only XP/rank read here",
+    "battleUnits": "effective maxHealth/attack/defense/speed; damageMin/Max inherited CCreature base",
+    "creatureUnit": "effective damage via native CStackInstance getMinDamage/getMaxDamage"
+  },
+  "fixture": "Source239 temporary HP15, damage10000 and accelerated XP profile; bare/Vial/Elixir all earned1XP through actual kill. This does not claim raw source239 hasHP15.",
+  "cases": [
+    {
+      "name": "review239R10bare",
+      "passed": true,
+      "fixtureMapSha256": "1f30e892b61289d36719f4171f8693ac39c51768eefcc6e32a622168a2820479",
+      "equipment": [
+        {
+          "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+          "icon": 3,
+          "name": "Catapult",
+          "slot": 16
+        }
+      ],
+      "health": {
+        "observer": "battleUnits=CStack",
+        "baseline": 15,
+        "sourceR10Expected": 23,
+        "actual": 23
+      },
+      "poisonObservation": {
+        "stage": "Round2 after first enemy proc and one global tick",
+        "initialPoisonPercent": 10,
+        "observedPoisonPercent": 20,
+        "proof": "ability.json poison starts STACK_HEALTH-10; BattleInfo new-round advances sourcePoisonNextPercent by10"
+      },
+      "physicalDamage": {
+        "actual": 11504,
+        "sourceRange": [
+          11503,
+          11504
+        ],
+        "baseOnlyMaximum": 11500,
+        "attack": 4,
+        "targetDefense": 1
+      },
+      "status": {
+        "observer": "battleUnits=CStack",
+        "variant": "bare",
+        "expectedMaximumHealth": 19,
+        "after": {
+          "aiValue": 120,
+          "armySlot": 0,
+          "attack": 4,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            105,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 18,
+          "damageMax": 10000,
+          "damageMin": 10000,
+          "defense": 103,
+          "description": "",
+          "enemy": false,
+          "eraSlot": 0,
+          "experience": 1,
+          "experiencePerUnit": 1,
+          "experienceRank": 10,
+          "fightValue": 120,
+          "growth": 12,
+          "health": 15,
+          "icon": "tum-era/creatures/239/large",
+          "id": 255,
+          "key": "tum-era:eraCreature239",
+          "maximumHealth": 19,
+          "morale": 3,
+          "name": "Centagnoll",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            87,
+            86
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 100,
+          "stackId": 0,
+          "x": 124,
+          "y": 322
+        },
+        "round": 2
+      },
+      "effectiveDamagePopup": {
+        "aiValue": 120,
+        "attack": 4,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          105,
+          0
+        ],
+        "count": 1,
+        "damageMax": 10004,
+        "damageMin": 10003,
+        "defense": 103,
+        "description": "",
+        "experience": 1,
+        "experiencePerUnit": 1,
+        "experienceRank": 10,
+        "fightValue": 120,
+        "growth": 12,
+        "health": 23,
+        "icon": "tum-era/creatures/239/large",
+        "id": 255,
+        "key": "tum-era:eraCreature239",
+        "name": "Centagnoll",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": false,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "shooter": false,
+        "shots": 0,
+        "speed": 100
+      },
+      "errors": [],
+      "nativeErrors": [],
+      "noGainR0Control": {
+        "round": 2,
+        "unit": {
+          "aiValue": 120,
+          "armySlot": 0,
+          "attack": 0,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            105,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 15,
+          "damageMax": 10000,
+          "damageMin": 10000,
+          "defense": 99,
+          "description": "",
+          "enemy": false,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 120,
+          "growth": 12,
+          "health": 15,
+          "icon": "tum-era/creatures/239/large",
+          "id": 255,
+          "key": "tum-era:eraCreature239",
+          "maximumHealth": 15,
+          "morale": 1,
+          "name": "Centagnoll",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            87,
+            86
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 99,
+          "stackId": 0,
+          "x": 124,
+          "y": 322
+        }
+      }
+    },
+    {
+      "name": "review239R10vial",
+      "passed": true,
+      "fixtureMapSha256": "97a49295b19d9833fd35e861e6eeea0ced401aceccd94974a6bb7f755160d5b0",
+      "equipment": [
+        {
+          "description": "{Vial of Lifeblood}\n\nThis item increases the health of all your units by +2.",
+          "icon": 96,
+          "name": "Vial of Lifeblood",
+          "slot": 9
+        },
+        {
+          "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+          "icon": 3,
+          "name": "Catapult",
+          "slot": 16
+        }
+      ],
+      "health": {
+        "observer": "battleUnits=CStack",
+        "baseline": 17,
+        "sourceR10Expected": 26,
+        "actual": 26
+      },
+      "poisonObservation": {
+        "stage": "Round2 after first enemy proc and one global tick",
+        "initialPoisonPercent": 0,
+        "observedPoisonPercent": 0,
+        "proof": "ability.json poison starts STACK_HEALTH-10; BattleInfo new-round advances sourcePoisonNextPercent by10"
+      },
+      "physicalDamage": {
+        "actual": 11503,
+        "sourceRange": [
+          11503,
+          11504
+        ],
+        "baseOnlyMaximum": 11500,
+        "attack": 4,
+        "targetDefense": 1
+      },
+      "status": {
+        "observer": "battleUnits=CStack",
+        "variant": "vial",
+        "expectedMaximumHealth": 13,
+        "after": {
+          "aiValue": 120,
+          "armySlot": 0,
+          "attack": 4,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            105,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 12,
+          "damageMax": 10000,
+          "damageMin": 10000,
+          "defense": 103,
+          "description": "",
+          "enemy": false,
+          "eraSlot": 0,
+          "experience": 1,
+          "experiencePerUnit": 1,
+          "experienceRank": 10,
+          "fightValue": 120,
+          "growth": 12,
+          "health": 15,
+          "icon": "tum-era/creatures/239/large",
+          "id": 255,
+          "key": "tum-era:eraCreature239",
+          "maximumHealth": 13,
+          "morale": 3,
+          "name": "Centagnoll",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            87,
+            86
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 100,
+          "stackId": 0,
+          "x": 124,
+          "y": 322
+        },
+        "round": 2
+      },
+      "effectiveDamagePopup": {
+        "aiValue": 120,
+        "attack": 4,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          105,
+          0
+        ],
+        "count": 1,
+        "damageMax": 10004,
+        "damageMin": 10003,
+        "defense": 103,
+        "description": "",
+        "experience": 1,
+        "experiencePerUnit": 1,
+        "experienceRank": 10,
+        "fightValue": 120,
+        "growth": 12,
+        "health": 26,
+        "icon": "tum-era/creatures/239/large",
+        "id": 255,
+        "key": "tum-era:eraCreature239",
+        "name": "Centagnoll",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": false,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "shooter": false,
+        "shots": 0,
+        "speed": 100
+      },
+      "errors": [],
+      "nativeErrors": [],
+      "noGainR0Control": {
+        "round": 2,
+        "unit": {
+          "aiValue": 120,
+          "armySlot": 0,
+          "attack": 0,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            105,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 17,
+          "damageMax": 10000,
+          "damageMin": 10000,
+          "defense": 99,
+          "description": "",
+          "enemy": false,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 120,
+          "growth": 12,
+          "health": 15,
+          "icon": "tum-era/creatures/239/large",
+          "id": 255,
+          "key": "tum-era:eraCreature239",
+          "maximumHealth": 17,
+          "morale": 1,
+          "name": "Centagnoll",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            87,
+            86
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 99,
+          "stackId": 0,
+          "x": 124,
+          "y": 322
+        }
+      }
+    },
+    {
+      "name": "review239R10elixir",
+      "passed": true,
+      "fixtureMapSha256": "87b53eb9b80615f066740ae624ea16ca5902827d057b65b947c366396a126f54",
+      "equipment": [
+        {
+          "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+          "icon": 95,
+          "name": "Ring of Life",
+          "slot": 6
+        },
+        {
+          "description": "{Ring of Vitality}\n\nThis item increases the health of all your units by +1.",
+          "icon": 94,
+          "name": "Ring of Vitality",
+          "slot": 7
+        },
+        {
+          "description": "{Elixir of Life}\n\nAll creatures get a 25% health bonus and gain the regeneration ability.  Does not work on Undead or unliving creatures",
+          "icon": 131,
+          "name": "Elixir of Life",
+          "slot": 9
+        },
+        {
+          "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+          "icon": 3,
+          "name": "Catapult",
+          "slot": 16
+        }
+      ],
+      "health": {
+        "observer": "battleUnits=CStack",
+        "baseline": 22,
+        "sourceR10Expected": 33,
+        "actual": 33
+      },
+      "poisonObservation": {
+        "stage": "Round2 after first enemy proc and one global tick",
+        "initialPoisonPercent": 10,
+        "observedPoisonPercent": 20,
+        "proof": "ability.json poison starts STACK_HEALTH-10; BattleInfo new-round advances sourcePoisonNextPercent by10"
+      },
+      "physicalDamage": {
+        "actual": 11504,
+        "sourceRange": [
+          11503,
+          11504
+        ],
+        "baseOnlyMaximum": 11500,
+        "attack": 4,
+        "targetDefense": 1
+      },
+      "status": {
+        "observer": "battleUnits=CStack",
+        "variant": "elixir",
+        "expectedMaximumHealth": 14,
+        "after": {
+          "aiValue": 120,
+          "armySlot": 0,
+          "attack": 4,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            105,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 14,
+          "damageMax": 10000,
+          "damageMin": 10000,
+          "defense": 103,
+          "description": "",
+          "enemy": false,
+          "eraSlot": 0,
+          "experience": 1,
+          "experiencePerUnit": 1,
+          "experienceRank": 10,
+          "fightValue": 120,
+          "growth": 12,
+          "health": 15,
+          "icon": "tum-era/creatures/239/large",
+          "id": 255,
+          "key": "tum-era:eraCreature239",
+          "maximumHealth": 14,
+          "morale": 3,
+          "name": "Centagnoll",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            87,
+            86
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 100,
+          "stackId": 0,
+          "x": 124,
+          "y": 322
+        },
+        "round": 2
+      },
+      "effectiveDamagePopup": {
+        "aiValue": 120,
+        "attack": 4,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          105,
+          0
+        ],
+        "count": 1,
+        "damageMax": 10004,
+        "damageMin": 10003,
+        "defense": 103,
+        "description": "",
+        "experience": 1,
+        "experiencePerUnit": 1,
+        "experienceRank": 10,
+        "fightValue": 120,
+        "growth": 12,
+        "health": 33,
+        "icon": "tum-era/creatures/239/large",
+        "id": 255,
+        "key": "tum-era:eraCreature239",
+        "name": "Centagnoll",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": false,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "shooter": false,
+        "shots": 0,
+        "speed": 100
+      },
+      "errors": [],
+      "nativeErrors": [],
+      "noGainR0Control": {
+        "round": 2,
+        "unit": {
+          "aiValue": 120,
+          "armySlot": 0,
+          "attack": 0,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            105,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 22,
+          "damageMax": 10000,
+          "damageMin": 10000,
+          "defense": 99,
+          "description": "",
+          "enemy": false,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 120,
+          "growth": 12,
+          "health": 15,
+          "icon": "tum-era/creatures/239/large",
+          "id": 255,
+          "key": "tum-era:eraCreature239",
+          "maximumHealth": 22,
+          "morale": 1,
+          "name": "Centagnoll",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            87,
+            86
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 99,
+          "stackId": 0,
+          "x": 124,
+          "y": 322
+        }
+      }
+    }
+  ],
+  "diagnosticsRetained": [
+    "Initial damage observer assertions failed because battleUnits exposes base damage; corrected by source getter audit and effective popup plus physical verification.",
+    "Initial Poison10 assertion observed round2Poison20. Explicit effect-init+new-round progression is now recorded; earlier diagnostic reports retained outside this PASS record."
+  ],
+  "notProven": [
+    "External ERM HP-specialty mutations",
+    "Other actor-specific features",
+    "CUnitState GTests execution"
+  ],
+  "harnessSha256": "6c21ab49f18a4a62fd097d537adb6c6c78e3ac2d699036e27db472a5247cea1a",
+  "nativeDiagnosticScope": "Historical selective native-error filter, not every structured ERROR. Stats assertions remain valid; see outputs/native-evidence/diagnostics-scope.json. No rerun claimed."
+}

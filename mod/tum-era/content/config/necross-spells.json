@@ -1,0 +1,76 @@
+{
+  "necrossDeathCloud": {
+    "type": "ability",
+    "school": {},
+    "power": 0,
+    "name": "Necross Death Cloud",
+    "targetType": "NO_TARGET",
+    "level": 0,
+    "animation": {
+      "hit": [
+        {
+          "defName": "tum-era/hit-effects/Burst17.def",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "sounds": {
+      "cast": "tum-era/hit-effects/DEATHCLS.wav"
+    },
+    "levels": {
+      "none": {
+        "description": "",
+        "cost": 0,
+        "power": 0,
+        "range": "0-1",
+        "battleEffects": {
+          "damage": {
+            "type": "core:damage",
+            "ignoreImmunity": true
+          }
+        }
+      },
+      "basic": {
+        "description": "",
+        "cost": 0,
+        "power": 0,
+        "range": "0-1",
+        "battleEffects": {
+          "damage": {
+            "type": "core:damage",
+            "ignoreImmunity": true
+          }
+        }
+      },
+      "advanced": {
+        "description": "",
+        "cost": 0,
+        "power": 0,
+        "range": "0-1",
+        "battleEffects": {
+          "damage": {
+            "type": "core:damage",
+            "ignoreImmunity": true
+          }
+        }
+      },
+      "expert": {
+        "description": "",
+        "cost": 0,
+        "power": 0,
+        "range": "0-1",
+        "battleEffects": {
+          "damage": {
+            "type": "core:damage",
+            "ignoreImmunity": true
+          }
+        }
+      }
+    },
+    "flags": {
+      "indifferent": true,
+      "nonMagical": true
+    },
+    "targetCondition": {}
+  }
+}

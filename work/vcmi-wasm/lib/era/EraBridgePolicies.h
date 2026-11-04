@@ -35,6 +35,7 @@ class Policies
     std::map<std::string, bool> allSpellImmunityPolicies;
     std::map<std::string, PhysicalDeflectionPolicy> physicalDeflectionPolicies;
     std::map<std::string, bool> defenseReduction95Policies;
+    std::map<std::string, bool> deathBlowCrtPolicies;
     std::map<std::string, bool> petrificationPolicies;
     std::map<std::string, bool> blindnessPolicies;
     static float fraction(const JsonNode & node, float maximum)
@@ -176,6 +177,14 @@ public:
                     integer(operation.second["percent"], 95, 95);
                     defenseReduction95Policies.emplace(creature.first, true);
                 }
+                else if(operation.first == "deathBlowCRT")
+                {
+                    fields(operation.second, {});
+                    if(creature.first != "tum-era:eraCreature318" && creature.first != "tum-era:eraCreature319"
+                        && creature.first != "tum-era:ancestralBehemoth" && creature.first != "tum-era:eraCreature361")
+                        throw std::runtime_error("ERA bridge: unaudited DeathBlow CRT actor");
+                    deathBlowCrtPolicies.emplace(creature.first, true);
+                }
                 else if(operation.first == "petrification")
                 {
                     fields(operation.second, {});
@@ -245,6 +254,10 @@ public:
     bool defenseReduction95(const std::string & creature) const
     {
         return defenseReduction95Policies.count(creature) != 0;
+    }
+    bool deathBlowCRT(const std::string & creature) const
+    {
+        return deathBlowCrtPolicies.count(creature) != 0;
     }
     bool petrification(const std::string & creature) const
     {

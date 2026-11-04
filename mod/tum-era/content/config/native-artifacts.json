@@ -274,22 +274,38 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:haste"
+        "subtype": "core:haste",
+        "addInfo": [
+          3,
+          0
+        ]
       },
       "Autospell2": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:bloodlust"
+        "subtype": "core:bloodlust",
+        "addInfo": [
+          3,
+          1
+        ]
       },
       "Autospell3": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:fireShield"
+        "subtype": "core:fireShield",
+        "addInfo": [
+          3,
+          2
+        ]
       },
       "Autospell4": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:counterstrike"
+        "subtype": "core:counterstrike",
+        "addInfo": [
+          3,
+          3
+        ]
       }
     },
     "components": [
@@ -489,7 +505,11 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:forgetfulness"
+        "subtype": "core:forgetfulness",
+        "addInfo": [
+          3,
+          0
+        ]
       }
     }
   },
@@ -806,7 +826,11 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:precision"
+        "subtype": "core:precision",
+        "addInfo": [
+          3,
+          0
+        ]
       }
     }
   },
@@ -834,7 +858,11 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:haste"
+        "subtype": "core:haste",
+        "addInfo": [
+          3,
+          0
+        ]
       }
     }
   },
@@ -926,7 +954,11 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:airShield"
+        "subtype": "core:airShield",
+        "addInfo": [
+          3,
+          0
+        ]
       }
     }
   },
@@ -954,7 +986,11 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:shield"
+        "subtype": "core:shield",
+        "addInfo": [
+          3,
+          0
+        ]
       }
     }
   },
@@ -982,7 +1018,11 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:fireShield"
+        "subtype": "core:fireShield",
+        "addInfo": [
+          3,
+          0
+        ]
       }
     }
   },
@@ -1014,7 +1054,11 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:stoneSkin"
+        "subtype": "core:stoneSkin",
+        "addInfo": [
+          3,
+          0
+        ]
       }
     }
   },
@@ -1046,7 +1090,11 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:bloodlust"
+        "subtype": "core:bloodlust",
+        "addInfo": [
+          3,
+          0
+        ]
       }
     }
   },
@@ -1134,7 +1182,11 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:bless"
+        "subtype": "core:bless",
+        "addInfo": [
+          3,
+          0
+        ]
       }
     }
   },
@@ -1579,7 +1631,11 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:magicMirror"
+        "subtype": "core:magicMirror",
+        "addInfo": [
+          3,
+          0
+        ]
       }
     }
   },
@@ -1728,7 +1784,11 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:sorrow"
+        "subtype": "core:sorrow",
+        "addInfo": [
+          3,
+          0
+        ]
       }
     }
   },
@@ -1760,7 +1820,11 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:counterstrike"
+        "subtype": "core:counterstrike",
+        "addInfo": [
+          3,
+          0
+        ]
       }
     }
   },
@@ -1788,7 +1852,11 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:antiMagic"
+        "subtype": "core:antiMagic",
+        "addInfo": [
+          3,
+          0
+        ]
       }
     }
   },
@@ -1819,7 +1887,11 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:bless"
+        "subtype": "core:bless",
+        "addInfo": [
+          3,
+          0
+        ]
       }
     }
   },
@@ -1846,17 +1918,29 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:slayer"
+        "subtype": "core:slayer",
+        "addInfo": [
+          3,
+          0
+        ]
       },
       "Autospell2": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:frenzy"
+        "subtype": "core:frenzy",
+        "addInfo": [
+          3,
+          1
+        ]
       },
       "Autospell3": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:fireShield"
+        "subtype": "core:fireShield",
+        "addInfo": [
+          3,
+          2
+        ]
       }
     },
     "components": [
@@ -1893,7 +1977,11 @@
       "Autospell": {
         "type": "OPENING_BATTLE_SPELL",
         "val": 50,
-        "subtype": "core:mirth"
+        "subtype": "core:mirth",
+        "addInfo": [
+          3,
+          0
+        ]
       }
     }
   }

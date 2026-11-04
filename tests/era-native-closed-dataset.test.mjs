@@ -1,0 +1,9 @@
+import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';import path from'node:path';import crypto from'node:crypto';
+test('review candidates preserve exact source shots and all final Archer profiles; assets match hashes',{skip:!process.env.TUM_NATIVE_CLOSED_REVIEW},()=>{
+ const root=path.resolve(process.env.TUM_NATIVE_CLOSED_REVIEW),read=f=>JSON.parse(fs.readFileSync(path.join(root,f))),r=read('native-closed-import-review.json'),d=read('content/config/native-closed-creatures.candidate.json'),p=read('content/config/era-bridge-experience.candidate.json').creatures;
+ assert.equal(r.activationReady,false);assert(!fs.existsSync(path.join(root,'mod.json')));assert.deepEqual(r.candidateIds,[239,265,266,298,315,318,319,328]);
+ assert.equal(p['core:archangel'].fullRank10,147000);assert.equal(p['tum-era:redBonesDragon'].fullRank10,147000);assert.equal(p['third-upgrades:skeletonKnight']?.experienceMultiplier??Object.entries(p).find(([n])=>/skeletonKnight/i.test(n))?.[1].experienceMultiplier,.5);
+ for(const id of[265,266,298,319]){assert.equal(p['tum-era:eraCreature'+id].fullRank10,147000);assert.equal(p['tum-era:eraCreature'+id].rank11Extra,14700);}
+ assert.equal(d.eraCreature318.shots,12);assert.equal(d.eraCreature328.shots,0,'Source shooter with zero ammo stays zero; no invented ammunition');
+ for(const id of r.candidateIds){const row=r.records.find(x=>x.eraId===id);assert.equal(row.obligations.length,0);assert.equal(row.experienceFinalization.usesNativeLevel,false);assert.equal(Object.values(d['eraCreature'+id].abilities).filter(x=>x.type==='SKELETON_TRANSFORMER_TARGET').length,1);for(const a of row.assets){const b=fs.readFileSync(path.join(root,a.path));assert.equal(crypto.createHash('sha256').update(b).digest('hex'),a.sha256);assert.equal(b.length,a.bytes);}}
+});
