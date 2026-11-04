@@ -93,6 +93,18 @@ void publishPortraits()
  SDL_FreeSurface(rgba);
 }
 JsonNode army(const CArmedInstance * a,const std::string & name){JsonNode n;n["id"].Integer()=a->id.getNum();n["name"].String()=name;n["needsLastStack"].Bool()=a->needsLastStack();for(int i=0;i<7;i++){auto c=a->getCreature(SlotID(i));n["slots"].Vector().push_back(c?creature(c,a->getStackCount(SlotID(i))):JsonNode());}return n;}
+// Resolve army exchange from the persisted town/hero relationship, not from
+// whether the castle window has been opened since loading the saved game.
+const CGTownInstance * mobileResidentTown(const CGHeroInstance * hero){
+ if(!hero)return nullptr;const auto town=hero->getVisitedTown();
+ return town&&(town->getVisitingHero()==hero||town->getGarrisonHero()==hero)?town:nullptr;
+}
+void mobileTownArmies(JsonNode & n,const CGTownInstance * town){
+ n["armyTownId"].Integer()=town->id.getNum();n["armies"].Vector().clear();
+ const auto upper=town->getUpperArmy();const auto defender=town->getGarrisonHero();
+ n["armies"].Vector().push_back(army(upper,defender?defender->getNameTranslated():"Garnison"));
+ if(const auto visitor=town->getVisitingHero())if(visitor!=upper)n["armies"].Vector().push_back(army(visitor,visitor->getNameTranslated()));
+}
 void shortcut(EShortcut key){ENGINE->events().dispatchShortcutPressed({key});ENGINE->events().dispatchShortcutReleased({key});}
 }
 std::atomic_bool atlasPending{false};
@@ -217,10 +229,11 @@ void publishMobileState(){
   if(n["mode"].String()=="map"&&adventureInt){auto mini=adventureInt->getMobileMinimap();if(mini){auto size=p->cb->getMapSize();auto & m=n["mapOverview"];m["rect"]=rect(mini->pos);m["view"]=rect(adventureInt->getMobileMapRect());m["viewport"]=rect(mini->mobileVisibleArea());m["width"].Integer()=size.x;m["height"].Integer()=size.y;m["level"].Integer()=mini->mobileLevel();}}
   const auto hero=p->localState->getCurrentHero();
   if(hero){n["heroName"].String()=hero->getNameTranslated();n["movement"].Integer()=hero->movementPointsRemaining();n["heroId"].Integer()=hero->id.getNum();n["armies"].Vector().push_back(army(hero,hero->getNameTranslated()));if(p->localState->hasPath(hero)){n["hasPath"].Bool()=true;n["pathTurns"].Integer()=p->localState->getPath(hero).lastNode().turns;}}
+  if(n["mode"].String()=="map"&&hero){const auto town=mobileResidentTown(hero);if(town&&town->getOwner()==p->playerID)mobileTownArmies(n,town);}
   if(hero){for(const auto & slot:hero->artifactsWorn){auto artifact=slot.second.getArt();if(!artifact)continue;auto type=artifact->getType();JsonNode item;item["slot"].Integer()=slot.first.getNum();item["name"].String()=type->getNameTranslated();item["description"].String()=type->getDescriptionTranslated();item["icon"].Integer()=type->getIconIndex();n["equipment"].Vector().push_back(item);}n["backpackCount"].Integer()=hero->artifactsInBackpack.size();}
   int index=0;for(auto h:p->localState->getWanderingHeroes()){JsonNode item;item["name"].String()=h->getNameTranslated();item["index"].Integer()=index++;item["movement"].Integer()=h->movementPointsRemaining();if(h->movementPointsRemaining()>0)n["anyHeroCanMove"].Bool()=true;n["heroes"].Vector().push_back(item);}
   index=0;for(auto t:p->localState->getOwnedTowns()){JsonNode item;item["name"].String()=t->getNameTranslated();item["index"].Integer()=index++;n["towns"].Vector().push_back(item);}
-  if(townWindow||fortWindow){const auto town=townWindow?townWindow->town:fortWindow->getMobileTown();n["townName"].String()=town->getNameTranslated();n["townFaction"].String()=town->getFaction()->getJsonKey();n["armies"].Vector().clear();n["armies"].Vector().push_back(army(town->getUpperArmy(),"Garnison"));if(town->getVisitingHero())n["armies"].Vector().push_back(army(town->getVisitingHero(),town->getVisitingHero()->getNameTranslated()));
+  if(townWindow||fortWindow){const auto town=townWindow?townWindow->town:fortWindow->getMobileTown();n["townName"].String()=town->getNameTranslated();n["townFaction"].String()=town->getFaction()->getJsonKey();mobileTownArmies(n,town);
    for(const auto & entry:town->getTown()->buildings){if(!entry.second||entry.first.getNum()<0)continue;JsonNode b;b["id"].Integer()=entry.first.getNum();b["name"].String()=entry.second->getNameTranslated();b["key"].String()=entry.second->getJsonKey();b["description"].String()=entry.second->getDescriptionTranslated();b["built"].Bool()=town->hasBuilt(entry.first);const auto buildState=p->cb->canBuildStructure(town,entry.first);b["allowed"].Bool()=buildState==EBuildingState::ALLOWED;b["state"].Integer()=static_cast<int>(buildState);for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())b["cost"].Vector().push_back(JsonNode(double(town->getBuildingCost(entry.first)[resource])));n["buildings"].Vector().push_back(b);}
    if(fortWindow){for(size_t level=0;level<town->getTown()->creatures.size();level++){
     const auto & available=town->creatures[level].second;auto c=!available.empty()?available.back().toCreature():town->getTown()->creatures[level].front().toCreature();
@@ -363,8 +376,10 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   if(action==33)recruitment->close();
  }
 
- if(action==58&&townWindow&&p->makingTurn&&a!=b){
-  const auto upper=townWindow->town->getUpperArmy();const auto visitor=townWindow->town->getVisitingHero();
+ if(action==58&&p->makingTurn&&a!=b){
+  const auto town=townWindow?townWindow->town:ENGINE->windows().topWindow<AdventureMapInterface>()?mobileResidentTown(hero):nullptr;
+  if(!town||town->getOwner()!=p->playerID)return;
+  const auto upper=town->getUpperArmy();const auto visitor=town->getVisitingHero();
   const CArmedInstance * from=upper->id.getNum()==a?upper:visitor;
   const CArmedInstance * to=upper->id.getNum()==b?upper:visitor;
   if(from&&to&&from!=to&&from->id.getNum()==a&&to->id.getNum()==b&&from->getOwner()==p->playerID&&to->getOwner()==p->playerID&&!from->Slots().empty())p->cb->bulkMoveArmy(from->id,to->id,from->Slots().begin()->first);

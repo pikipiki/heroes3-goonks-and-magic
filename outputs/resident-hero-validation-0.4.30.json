@@ -1,0 +1,31 @@
+{
+  "version": "0.4.30",
+  "date": "2026-11-04",
+  "problem": "Opening Army directly on the adventure map after loading a hero already visiting a town exposed only the hero army.",
+  "change": "Build the army context from the persisted hero-town relationship and permit validated bulk transfers from the map as well as the town window.",
+  "validation": {
+    "nativeBuild": "ninja -j32 html5 passed",
+    "unit": {
+      "passed": 291,
+      "skipped": 16,
+      "failed": 0
+    },
+    "realSaveReload": {
+      "savedOnMap": true,
+      "browserReloaded": true,
+      "automaticResume": true,
+      "sameHeroAndTownRestored": true,
+      "bothArmiesRestored": true,
+      "castleWindowOpenedAfterReload": false,
+      "heroMovedAfterReload": false,
+      "fourteenSlotsVisible": true,
+      "bulkTransferBothDirections": "passed",
+      "totalCreaturesBeforeAndAfter": 49,
+      "heroKeepsOneCreature": true,
+      "panelRemainsOpen": true,
+      "javascriptErrors": []
+    },
+    "productionBuild": "passed",
+    "physicalIPhoneRetest": "not performed for this version"
+  }
+}
