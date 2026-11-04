@@ -72,7 +72,7 @@ namespace {
 bool mobileEnabled=false,stateEnabled=false,audioMuted=false;
 ui32 previousSoundVolume=75,previousMusicVolume=75;
 std::vector<ResourcePath> pendingMobileMaps;size_t mobileMapCursor=0;
-bool mapsListed=false,savesListed=false;std::set<int> portraitIds;std::vector<std::pair<std::string,std::string>> mobileCampaigns;std::vector<std::pair<std::string,std::string>> mobileMaps,mobileSaves;
+bool mapsListed=false,savesListed=false;std::set<int> portraitIds,artifactIconIds;std::vector<std::pair<std::string,std::string>> mobileCampaigns;std::vector<std::pair<std::string,std::string>> mobileMaps,mobileSaves;
 uint32_t lastPublished=0,lastSent=0;
 std::string lastSnapshot,pendingDefaultMap;
 std::atomic_bool snapshotPending{false};
@@ -92,6 +92,18 @@ void publishPortraits()
  auto rgba=SDL_ConvertSurfaceFormat(surface,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(surface);if(!rgba)return;
  auto packet=static_cast<uint8_t*>(malloc(prefix+bytes));if(packet){for(size_t i=0;i<ids.size();i++){int32_t id=ids[i];memcpy(packet+i*4,&id,4);}memcpy(packet+prefix,rgba->pixels,bytes);
  MAIN_THREAD_ASYNC_EM_ASM({try{const ptr=$0;const n=$3;window.goonkPortraitIds=new Map(Array.from(HEAP32.subarray(ptr/4,ptr/4+n),(id,i)=>[id,i]));const c=window.goonkPortraitAtlas||(window.goonkPortraitAtlas=document.createElement('canvas'));c.width=$1;c.height=$2;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+n*4,ptr+n*4+$1*$2*4)), $1,$2),0,0);window.dispatchEvent(new Event('goonk-portraits'));}finally{_free($0);}},packet,width,height,ids.size());}
+ SDL_FreeSurface(rgba);
+}
+void publishArtifactIcons()
+{
+ static std::set<int> previous; if(artifactIconIds.empty()||previous==artifactIconIds)return;previous=artifactIconIds;
+ std::vector<int> ids;for(int id:artifactIconIds)if(ids.size()<96)ids.push_back(id);
+ const int width=768,height=((ids.size()+7)/8)*96;const size_t prefix=ids.size()*4,bytes=width*height*4;
+ auto surface=SDL_CreateRGBSurfaceWithFormat(0,width,height,32,SDL_PIXELFORMAT_ARGB8888);if(!surface)return;SDL_FillRect(surface,nullptr,0);
+ {auto canvas=Canvas::createFromSurface(surface,CanvasScalingPolicy::IGNORE);for(size_t i=0;i<ids.size();i++)try{auto image=ENGINE->renderHandler().loadImage(AnimationPath::builtin("ARTIFACT"),ids[i],0,EImageBlitMode::SIMPLE);if(image){const auto dims=image->dimensions();auto icon=SDL_CreateRGBSurfaceWithFormat(0,dims.x,dims.y,32,SDL_PIXELFORMAT_ARGB8888);if(icon){SDL_FillRect(icon,nullptr,0);{auto iconCanvas=Canvas::createFromSurface(icon,CanvasScalingPolicy::IGNORE);iconCanvas.draw(image,Point(0,0));}const double scale=std::min(92.0/dims.x,92.0/dims.y);SDL_Rect target{int(i%8)*96+(96-int(dims.x*scale))/2,int(i/8)*96+(96-int(dims.y*scale))/2,int(dims.x*scale),int(dims.y*scale)};SDL_SetSurfaceBlendMode(icon,SDL_BLENDMODE_NONE);SDL_BlitScaled(icon,nullptr,surface,&target);SDL_FreeSurface(icon);}}}catch(const std::exception &){} }
+ auto rgba=SDL_ConvertSurfaceFormat(surface,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(surface);if(!rgba)return;
+ auto packet=static_cast<uint8_t*>(malloc(prefix+bytes));if(packet){for(size_t i=0;i<ids.size();i++){int32_t id=ids[i];memcpy(packet+i*4,&id,4);}memcpy(packet+prefix,rgba->pixels,bytes);
+ MAIN_THREAD_ASYNC_EM_ASM({try{const ptr=$0;const n=$3;window.goonkArtifactIds=new Map(Array.from(HEAP32.subarray(ptr/4,ptr/4+n),(id,i)=>[id,i]));const c=window.goonkArtifactAtlas||(window.goonkArtifactAtlas=document.createElement('canvas'));c.width=$1;c.height=$2;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+n*4,ptr+n*4+$1*$2*4)), $1,$2),0,0);window.dispatchEvent(new Event('goonk-artifacts'));}finally{_free($0);}},packet,width,height,ids.size());}
  SDL_FreeSurface(rgba);
 }
 void mobileStackExperience(JsonNode & node,const CStackInstance * stack)
@@ -158,8 +170,8 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileAtlasAck(){atlasPending.store(fal
 void publishMobileState(){
  if(!stateEnabled||!ENGINE||!GAME||snapshotPending.load()||SDL_GetTicks()-lastPublished<180)return;lastPublished=SDL_GetTicks();
  if(audioMuted){if(ENGINE->sound().getVolume()!=0)ENGINE->sound().setVolume(0);if(ENGINE->music().getVolume()!=0)ENGINE->music().setVolume(0);}
- portraitIds.clear();JsonNode n;n["mapSettings"]["moveTime"].Integer()=settings["adventure"]["heroMoveTime"].Integer();n["mapSettings"]["enemyMoveTime"].Integer()=settings["adventure"]["enemyMoveTime"].Integer();n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top)n["rect"]=rect(top->pos);
- auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();auto recruitWindow=ENGINE->windows().topWindow<CRecruitmentWindow>();auto fortWindow=ENGINE->windows().topWindow<CFortScreen>();auto creatureWindow=ENGINE->windows().topWindow<CStackWindow>();auto spellWindow=ENGINE->windows().topWindow<CSpellWindow>();
+ portraitIds.clear();artifactIconIds.clear();JsonNode n;n["mapSettings"]["moveTime"].Integer()=settings["adventure"]["heroMoveTime"].Integer();n["mapSettings"]["enemyMoveTime"].Integer()=settings["adventure"]["enemyMoveTime"].Integer();n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top)n["rect"]=rect(top->pos);
+ auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();auto recruitWindow=ENGINE->windows().topWindow<CRecruitmentWindow>();auto fortWindow=ENGINE->windows().topWindow<CFortScreen>();auto creatureWindow=ENGINE->windows().topWindow<CStackWindow>();auto spellWindow=ENGINE->windows().topWindow<CSpellWindow>();auto heroWindow=ENGINE->windows().topWindow<CHeroWindow>();
  // Upgrade the native preview in place after the server changes this stack.
  // No map/town snapshot is published between the old and refreshed windows.
  if(creatureWindow&&!CPlayerInterface::battleInt)if(const auto stack=creatureWindow->getMobileStack())if(stack->getCreature()!=creatureWindow->getMobileCreature()||stack->getCount()!=creatureWindow->getMobileCount()){
@@ -173,6 +185,7 @@ void publishMobileState(){
  else if(fortWindow)n["mode"].String()="fort";
  else if(creatureWindow)n["mode"].String()="creature";
  else if(townWindow)n["mode"].String()="town";
+ else if(heroWindow)n["mode"].String()="hero";
  else if(battleWindow)n["mode"].String()="battle";
  else if(ENGINE->windows().topWindow<AdventureMapInterface>())n["mode"].String()="map";
  else if(p||ENGINE->windows().topWindow<CBonusSelection>())n["mode"].String()="dialog";
@@ -249,9 +262,15 @@ void publishMobileState(){
    n["resourceTypes"].Vector().push_back(type);n["resources"].Vector().push_back(JsonNode(double(p->cb->getResourceAmount(resourceId))));
   }
   if(n["mode"].String()=="map"&&adventureInt){auto mini=adventureInt->getMobileMinimap();if(mini){auto size=p->cb->getMapSize();auto & m=n["mapOverview"];m["rect"]=rect(mini->pos);m["view"]=rect(adventureInt->getMobileMapRect());m["viewport"]=rect(mini->mobileVisibleArea());m["width"].Integer()=size.x;m["height"].Integer()=size.y;m["level"].Integer()=mini->mobileLevel();}}
-  const auto hero=p->localState->getCurrentHero();
+  const auto hero=heroWindow?heroWindow->curHero:p->localState->getCurrentHero();
   if(hero){n["heroName"].String()=hero->getNameTranslated();n["movement"].Integer()=hero->movementPointsRemaining();n["heroId"].Integer()=hero->id.getNum();n["armies"].Vector().push_back(army(hero,hero->getNameTranslated()));if(p->localState->hasPath(hero)){n["hasPath"].Bool()=true;n["pathTurns"].Integer()=p->localState->getPath(hero).lastNode().turns;}}
   if(n["mode"].String()=="map"&&hero){const auto town=mobileResidentTown(hero);if(town&&town->getOwner()==p->playerID)mobileTownArmies(n,town);}
+  if(heroWindow&&hero){auto & h=n["heroWindow"];h["owned"].Bool()=hero->getOwner()==p->playerID;h["name"].String()=hero->getNameTranslated();h["className"].String()=hero->getClassNameTranslated();h["level"].Integer()=hero->level;h["mana"].Integer()=hero->mana;h["manaLimit"].Integer()=hero->manaLimit();h["portrait"]=rect(Rect(heroWindow->pos.x+19,heroWindow->pos.y+19,58,64));
+   for(int i=0;i<4;i++)h["primarySkills"].Vector().push_back(JsonNode(double(hero->getPrimSkillLevel(static_cast<PrimarySkill>(i)))));
+   const auto picked=heroWindow->getPickedArtifact();if(picked){h["picked"]["name"].String()=picked->getType()->getNameTranslated();h["picked"]["icon"].Integer()=picked->getType()->getIconIndex();artifactIconIds.insert(picked->getType()->getIconIndex());}
+   auto addSlot=[&](int index,bool backpack){const auto position=ArtifactPosition(index);const auto art=hero->getArt(position,false);JsonNode item;item["slot"].Integer()=index;bool locked=false;for(const auto & set:heroWindow->artSets)if(set)if(auto place=set->getArtPlace(position)){locked=place->isLocked();break;}item["locked"].Bool()=locked;item["movable"].Bool()=art&&!locked&&index!=int(ArtifactPosition::SPELLBOOK)&&index!=int(ArtifactPosition::MACH4);item["allowed"].Bool()=picked&&!locked&&picked->canBePutAt(hero,position,true);if(art){const auto type=art->getType();item["name"].String()=type->getNameTranslated();item["description"].String()=type->getDescriptionTranslated();item["icon"].Integer()=type->getIconIndex();artifactIconIds.insert(type->getIconIndex());}h[backpack?"backpack":"slots"].Vector().push_back(item);};
+   for(int i=0;i<19;i++)addSlot(i,false);for(size_t i=0;i<=hero->artifactsInBackpack.size();i++)addSlot(int(ArtifactPosition::BACKPACK_START)+int(i),true);
+  }
   if(hero){for(const auto & slot:hero->artifactsWorn){auto artifact=slot.second.getArt();if(!artifact)continue;auto type=artifact->getType();JsonNode item;item["slot"].Integer()=slot.first.getNum();item["name"].String()=type->getNameTranslated();item["description"].String()=type->getDescriptionTranslated();item["icon"].Integer()=type->getIconIndex();n["equipment"].Vector().push_back(item);}n["backpackCount"].Integer()=hero->artifactsInBackpack.size();}
   int index=0;for(auto h:p->localState->getWanderingHeroes()){JsonNode item;item["name"].String()=h->getNameTranslated();item["index"].Integer()=index++;item["movement"].Integer()=h->movementPointsRemaining();if(h->movementPointsRemaining()>0)n["anyHeroCanMove"].Bool()=true;n["heroes"].Vector().push_back(item);}
   index=0;for(auto t:p->localState->getOwnedTowns()){JsonNode item;item["name"].String()=t->getNameTranslated();item["index"].Integer()=index++;n["towns"].Vector().push_back(item);}
@@ -293,7 +312,7 @@ void publishMobileState(){
    for(int row=0;row<11;row++)for(int col=1;col<16;col++){const BattleHex hex(col+17*row);const auto center=b->fieldController->hexPositionAbsolute(hex).center();JsonNode cell;cell["hex"].Integer()=hex.toInt();cell["x"].Integer()=center.x;cell["y"].Integer()=center.y;cell["kind"].Integer()=int(accessibility[hex.toInt()]);cell["reachable"].Bool()=active&&reachable.contains(hex);n["battleCells"].Vector().push_back(cell);}
    const auto hovered=b->fieldController->getHoveredStack();if(hovered)n["targetUnit"]=creature(hovered->unitType(),hovered->getCount());if(active)for(auto & unit:n["battleUnits"].Vector()){const BattleHex position(unit["occupied"].Vector().empty()?0:unit["occupied"].Vector()[0].Integer());unit["canShootAt"].Bool()=b->getBattle()->battleCanShoot(active,position);unit["canMeleeAt"].Bool()=b->getBattle()->battleCanAttackHex(reachable,active,position);}}
  }
- publishPortraits();const auto text=n.toCompactString();
+ publishPortraits();publishArtifactIcons();const auto text=n.toCompactString();
  if(text==lastSnapshot&&SDL_GetTicks()-lastSent<1000)return;
  auto * snapshot=static_cast<char *>(malloc(text.size()+1));if(!snapshot)return;
  memcpy(snapshot,text.c_str(),text.size()+1);lastSnapshot=text;lastSent=SDL_GetTicks();snapshotPending.store(true);
@@ -314,6 +333,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==0){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});return;}if(action==1){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});return;}
  // A dedicated cancel operation cannot also accept a dialog or close the town
  // below it. Ignore delayed taps once the taverne is no longer on top.
+ if(action==62||action==63||action==64){if(auto window=ENGINE->windows().topWindow<CHeroWindow>()){if(action==63)window->close();else if(action==64){for(const auto & set:window->artSets)if(set)set->putBackPickedArtifact();}else if(window->curHero&&GAME->interface()&&window->curHero->getOwner()==GAME->interface()->playerID&&a>=0&&a<=int(ArtifactPosition::BACKPACK_START)+int(window->curHero->artifactsInBackpack.size()))window->clickPressedOnArtPlace(window->curHero,ArtifactPosition(a),true,false,false,window->pos.center());lastPublished=0;}return;}
  if(action==40){if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>())tavern->close();lastPublished=0;return;}
  // Closing a presentation only needs the window manager. It must also work
  // while player callbacks are temporarily unavailable during a transition.
