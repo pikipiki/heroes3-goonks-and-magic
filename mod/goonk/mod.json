@@ -1,6 +1,6 @@
 {
-  "name": "Château Goonk",
-  "description": "Sept peluches et leurs évolutions : Paingpaing, Bobope, Bubu, La gros maille maille et leurs amis.",
+  "name": "Goonk Castle",
+  "description": "Seven plush creatures and their upgrades: Paingpaing, Bobope, Bubu, Big Maille Maille and friends.",
   "author": "Création personnelle",
   "version": "0.3.0",
   "modType": "Town",
@@ -16,5 +16,11 @@
   "heroes": [
     "config/heroes.json"
   ],
-  "keepDisabled": false
+  "keepDisabled": false,
+  "french": {
+    "translations": [
+      "translation/french.json"
+    ],
+    "name": "Goonk Castle — traduction française"
+  }
 }

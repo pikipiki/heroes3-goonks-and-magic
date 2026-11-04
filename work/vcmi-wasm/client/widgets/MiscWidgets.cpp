@@ -672,6 +672,7 @@ MoraleLuckBox::MoraleLuckBox(bool Morale, const Rect &r, bool Small)
 
 CCreaturePic::CCreaturePic(int x, int y, const CCreature * cre, bool Big, bool Animated)
 {
+	mobileCreature=cre;
 	OBJECT_CONSTRUCTION;
 	pos.x+=x;
 	pos.y+=y;

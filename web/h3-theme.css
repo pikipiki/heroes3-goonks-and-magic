@@ -101,17 +101,34 @@
 #mobile-app .dialog-close{flex:0 0 44px;width:44px;min-height:44px;padding:0;font-size:22px;touch-action:manipulation}
 #mobile-app .native-dialog-close-hit{position:absolute;z-index:3;min-width:0;min-height:0;margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;transform:none;touch-action:manipulation}
 #mobile-app .native-dialog-close-hit:focus-visible{outline:2px solid #ffe9aa;outline-offset:1px}
-
-/* Autosave status must never intercept troop transfers or the panel close button. */
-#save-toast{pointer-events:none}
-
-/* The adventure minimap shares the native world/fog, with room beside touch controls. */
+/* Comfortable, consistent touch targets; saving never intercepts a gesture. */
+#save-toast{pointer-events:none!important}
+#mobile-app button,#game-menu button{min-height:52px;min-width:48px;touch-action:manipulation}
+#mobile-app .sheet-head{min-height:64px;flex:0 0 auto;gap:12px}
+#mobile-app .sheet-head button,#mobile-app .dialog-close,#mobile-app .recruit-close,#game-menu header button{width:56px;min-width:56px;min-height:56px;padding:0;font-size:26px}
+#mobile-app .sheet-body{padding:16px;scroll-padding:16px;padding-bottom:max(20px,env(safe-area-inset-bottom))}
+#mobile-app .mobile-nav button{min-height:56px!important;font-size:15px!important}
+#mobile-app .army-grid{gap:10px}#mobile-app .army-grid button{min-height:90px!important;font-size:16px}
 #mobile-app[data-mode=map] .scene-tools{display:grid;grid-template-columns:repeat(2,minmax(52px,1fr));width:158px;gap:6px;top:8px;left:8px}
 #mobile-app[data-mode=map] .scene-tools button{min-height:48px;min-width:0;padding:6px;font-size:14px}
-#mobile-app[data-mode=map] #mobile-overview{display:block;width:116px;height:116px;top:8px;right:8px;border:3px ridge #c5a558;border-radius:0;background:#080906;touch-action:none;box-shadow:0 2px 8px #000a;image-rendering:pixelated}
-#mobile-app[data-mode=map] #mobile-overview[hidden]{display:none}
+#mobile-app[data-mode=map] #mobile-overview{display:block;width:116px;height:116px;top:8px;right:8px;border:3px ridge #c5a558;border-radius:0;background:#080906;touch-action:none;box-shadow:0 2px 8px #000a}
+@media(orientation:landscape) and (max-height:600px){#mobile-app[data-mode=map] #mobile-overview{width:100px;height:100px}#mobile-app .mobile-nav button{min-height:50px!important}}
+/* Dedicated full-screen creature screens, with real native animated portraits. */
+.creature-presentation{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;min-height:0;background:linear-gradient(#381d12b0,#1c150ed9),url('./h3-theme/stone.png');overflow:hidden}
+.creature-view-head{display:flex;align-items:center;gap:12px;padding:8px 12px;border-bottom:2px ridge #c8a860;flex:0 0 auto}.creature-view-head h2{margin:0;flex:1;color:#ffe6a0;font-size:20px}.creature-view-head button{width:56px;padding:0;font-size:26px}
+#mobile-app[data-creature-view=fort] .scene-tools,#mobile-app[data-creature-view=recruit] .scene-tools,#mobile-app[data-creature-view=creature] .scene-tools,#mobile-app[data-creature-view=fort] .scene-hint,#mobile-app[data-creature-view=recruit] .scene-hint,#mobile-app[data-creature-view=creature] .scene-hint{display:none}
+.fort-roster{overflow:auto;overscroll-behavior:contain;touch-action:pan-y;padding:12px;display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+.fort-creature{min-width:0;padding:10px;border:2px ridge #c7a65e;background:#18120bb5}.fort-creature h3{font-size:20px;color:#ffe5a0;margin:0 0 8px}.fort-creature-art{display:grid;grid-template-columns:minmax(120px,1fr) minmax(105px,1fr);gap:10px}.fort-creature-art canvas{width:100%;aspect-ratio:1/1;border:1px solid #a98b47;min-width:0}.creature-stats{display:grid;gap:4px;margin:0}.creature-stats>div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #a3864940}.creature-stats dt{color:#e1cda2;font-size:14px}.creature-stats dd{margin:0;font-weight:bold;color:#fff1c9}.fort-creature footer{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.fort-unit-price,.featured-price{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px}.creature-price{display:inline-flex;align-items:center;gap:5px}.creature-price img{width:24px;height:22px;image-rendering:pixelated}.unit-available{font-size:14px;color:#f0d68f;margin:8px 0 0}
+.featured-creature{display:grid;grid-template-rows:minmax(140px,1fr) auto;min-height:0;flex:1;overflow:auto;touch-action:pan-y;padding:10px 14px;gap:12px}.creature-stage{min-height:0;display:flex;justify-content:center;align-items:center}.creature-stage canvas{height:100%;max-height:100%;max-width:100%;aspect-ratio:1/1;border:3px ridge #c9a751}.creature-details h3{font-size:22px;color:#ffe39a;margin:0 0 6px}.creature-details .creature-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.creature-details .creature-stats>div{display:block}.creature-description{font-size:14px;line-height:1.4;color:#e8d8b5;margin:8px 0}.creature-details .featured-price{font-size:15px}
+.recruit-controls{flex:0 0 auto;padding:8px 12px 12px;border-top:1px solid #b39350}.creature-presentation .recruit-choices{position:static;display:flex;overflow-x:auto;gap:8px;padding:0 0 6px}.creature-presentation .recruit-choices button{flex:0 0 auto;min-height:48px;font-size:15px}.creature-presentation .mobile-recruit-amount{position:static;width:auto;margin:0;padding:10px;border-radius:0;background:#20170fbf}.creature-presentation .mobile-recruit-amount input[type=number]{min-height:52px;width:100px;font-size:20px}.creature-presentation .recruit-summary{font-size:14px}.recruit-variants,.creature-roster{display:flex;gap:8px;overflow-x:auto;flex:0 0 auto;padding:8px}.creature-roster button{flex:0 0 auto;font-size:14px}
+.army-slot{display:grid;gap:5px;min-width:0}.army-unit-info{font-size:14px!important;min-height:48px!important}
+@media(orientation:landscape){.fort-roster{grid-template-columns:repeat(2,minmax(0,1fr))}.featured-creature{grid-template-columns:minmax(160px,1fr) minmax(190px,1fr);grid-template-rows:minmax(0,1fr)}.creature-details{overflow:auto}.creature-stage canvas{width:auto;height:100%}.creature-presentation .recruit-controls{padding:6px 10px}.creature-presentation .mobile-recruit-amount{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:6px}.creature-presentation .mobile-recruit-amount input[type=range]{width:100%}.creature-presentation .recruit-summary{grid-column:1/-1;margin:0}.creature-view-head{padding:4px 8px}.creature-view-head button{min-height:48px}.creature-details .creature-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-height:650px) and (orientation:portrait){.creature-description{display:none}.creature-view-head{padding:4px 8px}.creature-details h3{display:none}.featured-creature{padding:6px 10px;gap:5px}.recruit-controls{padding:5px 8px}.creature-presentation .mobile-recruit-amount{padding:6px}.creature-presentation .recruit-summary{margin:3px 0 0}}
+
 #mobile-app[data-mode=map] #mobile-overview:focus-visible{outline:3px solid #ffe894;outline-offset:3px}
-@media(orientation:landscape) and (max-height:600px){#mobile-app[data-mode=map] #mobile-overview{width:100px;height:100px}}
+
+#mobile-app[data-mode=map] #mobile-overview{image-rendering:pixelated}
+#mobile-app[data-mode=map] #mobile-overview[hidden]{display:none}
 
 /* Army commands stay at the top; creature actions stay next to its portrait. */
 .battle-team-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}

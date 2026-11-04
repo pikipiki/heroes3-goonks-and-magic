@@ -108,6 +108,10 @@ private:
 
 };
 
+const CCreature * CStackWindow::getMobileCreature() const { return info->creature; }
+const CStackInstance * CStackWindow::getMobileStack() const { return info->stackNode; }
+unsigned CStackWindow::getMobileCount() const { return info->creatureCount; }
+
 CCommanderSkillIcon::CCommanderSkillIcon(std::shared_ptr<CIntObject> object_, bool isMasterAbility_, std::function<void()> callback)
 	: object(),
 	  isMasterAbility(isMasterAbility_),

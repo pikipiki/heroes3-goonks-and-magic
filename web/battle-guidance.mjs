@@ -1,14 +1,15 @@
+import {translate} from './i18n.mjs';
 import {battleCapabilities} from './battle-phase.mjs';
 export function battleGuidance(state){
  const actor=state.activeStack===undefined?null:(state.battleUnits||[]).find(unit=>unit.stackId===state.activeStack);
- const cap=battleCapabilities(state),ready=!!actor&&!actor.enemy&&cap.move&&(!cap.tactics||cap.endTactics);
+ const cap=battleCapabilities(state),ready=!!actor&&!actor.enemy&&!state.spellTargeting&&cap.move&&(!cap.tactics||cap.endTactics);
  const occupied=new Set((state.battleUnits||[]).flatMap(unit=>unit.occupied||[]));
  // Native reachability includes tactics, speed, obstacles, wide stacks and defended gates.
  const cells=ready?(state.battleCells||[]).filter(cell=>cell.reachable&&!occupied.has(cell.hex)):[];
  return {actor,ready,cells,label:cap.tactics?'À placer':'À jouer'};
 }
 export function paintActiveCreature(ctx,guidance,layout){
- const {actor,ready,label}=guidance;if(!ready||!actor)return;
+ const {actor,ready}=guidance,label=translate(guidance.label);if(!ready||!actor)return;
  const x=layout.dx+(actor.x-layout.x)*layout.scale,y=layout.dy+(actor.y-layout.y)*layout.scale;
  // Do not pin an offscreen actor label to the edge of a target's close-up.
  if(x+44*layout.scale<layout.dx||x-44*layout.scale>layout.dx+layout.w*layout.scale||y+16*layout.scale<layout.dy||y-88*layout.scale>layout.dy+layout.h*layout.scale)return;

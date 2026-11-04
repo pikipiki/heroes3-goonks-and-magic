@@ -826,8 +826,8 @@
       "moatAbility": "castleMoat",
       "buildings": {
         "mageGuild1": {
-          "name": "Guilde des sortilèges 1",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Mage Guild 1",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -835,8 +835,8 @@
           }
         },
         "mageGuild2": {
-          "name": "Guilde des sortilèges 2",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Mage Guild 2",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -844,8 +844,8 @@
           }
         },
         "mageGuild3": {
-          "name": "Guilde des sortilèges 3",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Mage Guild 3",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -853,8 +853,8 @@
           }
         },
         "mageGuild4": {
-          "name": "Guilde des sortilèges 4",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Mage Guild 4",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -862,8 +862,8 @@
           }
         },
         "tavern": {
-          "name": "Taverne des doudous",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Plush Tavern",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -871,8 +871,8 @@
           }
         },
         "shipyard": {
-          "name": "Chantier des petits bateaux",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Little Boat Shipyard",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -880,8 +880,8 @@
           }
         },
         "fort": {
-          "name": "Remparts Goonks",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Goonk Ramparts",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -889,8 +889,8 @@
           }
         },
         "citadel": {
-          "name": "Citadelle des nez",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Citadel of Noses",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -898,8 +898,8 @@
           }
         },
         "castle": {
-          "name": "Château des sept Goonks",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Castle of the Seven Goonks",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -907,13 +907,13 @@
           }
         },
         "villageHall": {
-          "name": "Maison des Goonks",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Goonk House",
+          "description": "A building of Goonk Castle.",
           "cost": {}
         },
         "townHall": {
-          "name": "Hôtel des nez",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Town Hall of Noses",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -921,8 +921,8 @@
           }
         },
         "cityHall": {
-          "name": "Palais des peluches",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Plush Palace",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -930,8 +930,8 @@
           }
         },
         "capitol": {
-          "name": "Grand palais Goonk",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Goonk Grand Palace",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -939,8 +939,8 @@
           }
         },
         "marketplace": {
-          "name": "Marché des peluches",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Plush Marketplace",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -952,8 +952,8 @@
             "ore": 1,
             "wood": 1
           },
-          "name": "Réserve des doudous",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Plush Storehouse",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -962,8 +962,8 @@
         },
         "blacksmith": {
           "warMachine": "ballista",
-          "name": "Forge Goonk",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Goonk Forge",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -982,8 +982,8 @@
           "requires": [
             "shipyard"
           ],
-          "name": "Phare des peluches",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Plush Lighthouse",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -992,8 +992,8 @@
         },
         "horde1": {
           "upgrades": "dwellingLvl3",
-          "name": "Cibles des orages",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Storm Targets",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -1005,8 +1005,8 @@
           "requires": [
             "horde1"
           ],
-          "name": "Cibles royales",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Royal Targets",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -1014,8 +1014,8 @@
           }
         },
         "ship": {
-          "name": "Bateau Goonk",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Goonk Boat",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -1046,8 +1046,8 @@
               }
             ]
           },
-          "name": "Écurie des nez",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Nose Stables",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -1068,8 +1068,8 @@
             }
           ],
           "upgrades": "tavern",
-          "name": "Grande taverne des Goonks",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Grand Goonk Tavern",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -1084,8 +1084,8 @@
               "propagator": "PLAYER"
             }
           ],
-          "name": "Grand nez sacré",
-          "description": "Bâtiment du Château Goonk.",
+          "name": "Great Sacred Nose",
+          "description": "A building of Goonk Castle.",
           "cost": {
             "gold": 1000,
             "wood": 5,
@@ -1096,8 +1096,8 @@
           "requires": [
             "fort"
           ],
-          "name": "Atelier des nez",
-          "description": "Frappe au corps à corps avec son grand nez. Évolution : deux coups de nez par attaque.",
+          "name": "Nose Workshop",
+          "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
           "cost": {
             "gold": 210,
             "wood": 4,
@@ -1108,8 +1108,8 @@
           "requires": [
             "dwellingLvl1"
           ],
-          "name": "Forge des épées-lances",
-          "description": "Combat avec une épée-lance. Son arme frappe aussi la case derrière la cible.",
+          "name": "Sword-Lance Forge",
+          "description": "Fights with a sword-lance, also striking the hex behind the target.",
           "cost": {
             "gold": 420,
             "wood": 5,
@@ -1120,8 +1120,8 @@
           "requires": [
             "dwellingLvl2"
           ],
-          "name": "Archerie des orages",
-          "description": "Tire des flèches-éclairs, puis déclenche une explosion magique sur la cible et ses voisins. Attention aux alliés proches.",
+          "name": "Storm Archery Range",
+          "description": "Fires lightning arrows, triggering a magical explosion on the target and nearby units. Watch out for nearby allies.",
           "cost": {
             "gold": 660,
             "wood": 6,
@@ -1132,8 +1132,8 @@
           "requires": [
             "dwellingLvl3"
           ],
-          "name": "Jardin des pets",
-          "description": "Attaque uniquement avec ses pets. Son nuage affaiblit la cible ; son évolution la ralentit aussi.",
+          "name": "Fart Garden",
+          "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
           "cost": {
             "gold": 990,
             "wood": 7,
@@ -1144,8 +1144,8 @@
           "requires": [
             "dwellingLvl4"
           ],
-          "name": "Laboratoire du vomi",
-          "description": "Crache un jet de vomi cartoon à distance qui ronge la défense. Son évolution ajoute du poison.",
+          "name": "Vomit Laboratory",
+          "description": "Spits a ranged cartoon vomit jet that reduces defence. The upgraded form also poisons.",
           "cost": {
             "gold": 1500,
             "wood": 8,
@@ -1156,8 +1156,8 @@
           "requires": [
             "dwellingLvl5"
           ],
-          "name": "Carrière de Bobope",
-          "description": "Lance de gros cailloux comme un Cyclope. Son évolution peut aussi tirer sur les remparts en siège.",
+          "name": "Bobope’s Quarry",
+          "description": "Throws large rocks like a Cyclops. The upgraded form can also bombard siege walls.",
           "cost": {
             "gold": 2550,
             "wood": 9,
@@ -1168,8 +1168,8 @@
           "requires": [
             "dwellingLvl6"
           ],
-          "name": "Tour des braises",
-          "description": "Lance du feu à distance et peut lancer Boule de feu. Son évolution maîtrise aussi Inferno.",
+          "name": "Ember Tower",
+          "description": "Fires ranged flames and can cast Fireball. The upgraded form also masters Inferno.",
           "cost": {
             "gold": 6600,
             "wood": 10,
@@ -1178,8 +1178,8 @@
         },
         "dwellingUpLvl1": {
           "upgrades": "dwellingLvl1",
-          "name": "Atelier des nez royale",
-          "description": "Frappe au corps à corps avec son grand nez. Évolution : deux coups de nez par attaque.",
+          "name": "Nose Workshop Royal",
+          "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
           "cost": {
             "gold": 210,
             "wood": 4,
@@ -1188,8 +1188,8 @@
         },
         "dwellingUpLvl2": {
           "upgrades": "dwellingLvl2",
-          "name": "Forge des épées-lances royale",
-          "description": "Combat avec une épée-lance. Son arme frappe aussi la case derrière la cible.",
+          "name": "Sword-Lance Forge Royal",
+          "description": "Fights with a sword-lance, also striking the hex behind the target.",
           "cost": {
             "gold": 420,
             "wood": 5,
@@ -1198,8 +1198,8 @@
         },
         "dwellingUpLvl3": {
           "upgrades": "dwellingLvl3",
-          "name": "Archerie des orages royale",
-          "description": "Tire des flèches-éclairs, puis déclenche une explosion magique sur la cible et ses voisins. Attention aux alliés proches.",
+          "name": "Storm Archery Range Royal",
+          "description": "Fires lightning arrows, triggering a magical explosion on the target and nearby units. Watch out for nearby allies.",
           "cost": {
             "gold": 660,
             "wood": 6,
@@ -1208,8 +1208,8 @@
         },
         "dwellingUpLvl4": {
           "upgrades": "dwellingLvl4",
-          "name": "Jardin des pets royale",
-          "description": "Attaque uniquement avec ses pets. Son nuage affaiblit la cible ; son évolution la ralentit aussi.",
+          "name": "Fart Garden Royal",
+          "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
           "cost": {
             "gold": 990,
             "wood": 7,
@@ -1218,8 +1218,8 @@
         },
         "dwellingUpLvl5": {
           "upgrades": "dwellingLvl5",
-          "name": "Laboratoire du vomi royale",
-          "description": "Crache un jet de vomi cartoon à distance qui ronge la défense. Son évolution ajoute du poison.",
+          "name": "Vomit Laboratory Royal",
+          "description": "Spits a ranged cartoon vomit jet that reduces defence. The upgraded form also poisons.",
           "cost": {
             "gold": 1500,
             "wood": 8,
@@ -1228,8 +1228,8 @@
         },
         "dwellingUpLvl6": {
           "upgrades": "dwellingLvl6",
-          "name": "Carrière de Bobope royale",
-          "description": "Lance de gros cailloux comme un Cyclope. Son évolution peut aussi tirer sur les remparts en siège.",
+          "name": "Bobope’s Quarry Royal",
+          "description": "Throws large rocks like a Cyclops. The upgraded form can also bombard siege walls.",
           "cost": {
             "gold": 2550,
             "wood": 9,
@@ -1238,8 +1238,8 @@
         },
         "dwellingUpLvl7": {
           "upgrades": "dwellingLvl7",
-          "name": "Tour des braises royale",
-          "description": "Lance du feu à distance et peut lancer Boule de feu. Son évolution maîtrise aussi Inferno.",
+          "name": "Ember Tower Royal",
+          "description": "Fires ranged flames and can cast Fireball. The upgraded form also masters Inferno.",
           "cost": {
             "gold": 6600,
             "wood": 10,
@@ -1354,12 +1354,12 @@
         "towerIconLarge": "goonk/blue-large.png"
       },
       "names": [
-        "Goonkbourg",
+        "Goonkburg",
         "Fort Paingpaing",
-        "Roc-Bobope",
-        "Bubuville",
-        "Maille-la-Braise",
-        "La Cité des Sept Nez"
+        "Bobope Rock",
+        "Bubutown",
+        "Maille Ember",
+        "City of Seven Noses"
       ],
       "tavern": {
         "core:knight": 15,
@@ -1388,7 +1388,7 @@
         }
       }
     },
-    "name": "Château Goonk",
-    "description": "Le royaume des peluches : nez, cailloux, feu et catastrophes magiques."
+    "name": "Goonk Castle",
+    "description": "The plush kingdom: noses, rocks, fire and magical disasters."
   }
 }

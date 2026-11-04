@@ -30,10 +30,10 @@ export function installRuntimeScheduling(module){
         error?reject(error):resolve();
       });
     }),
-    onError:error=>stats.errors.push(String(error))
+    onError:error=>{stats.errors.push(String(error));if(stats.errors.length>20)stats.errors.shift();}
   });
   module.persistLocalSave=path=>{
-    const toast=document.querySelector('#save-toast');let failed=false;toast?.classList.remove('hidden','opacity-0');toast?.querySelector('.save-toast__subtitle')?.replaceChildren('Enregistrement sur cet appareil…');
+    const toast=document.querySelector('#save-toast');let failed=false;clearTimeout(module._goonkToastTimer);module._goonkToastTimer=setTimeout(()=>toast?.classList.add('hidden','opacity-0'),250);toast?.classList.remove('hidden','opacity-0');toast?.querySelector('.save-toast__subtitle')?.replaceChildren('Enregistrement sur cet appareil…');
     return persist(path).then(async()=>{
       window.dispatchEvent(new CustomEvent('goonk-save-persisted',{detail:{path,ok:true}}));
       let key;try{key=localStorage.getItem('mp.v8key');}catch{}
@@ -45,7 +45,7 @@ export function installRuntimeScheduling(module){
       module.HEAPU8.set(encoded,namePtr);module.HEAPU8.set(bytes,dataPtr);
       await module.fsUpdate(namePtr,dataPtr,bytes.length);
     }).catch(error=>{
-      failed=true;window.dispatchEvent(new CustomEvent('goonk-save-persisted',{detail:{path,ok:false,error:String(error)}}));console.error('Save persistence failed',error);
+      failed=true;clearTimeout(module._goonkToastTimer);toast?.classList.remove('hidden','opacity-0');window.dispatchEvent(new CustomEvent('goonk-save-persisted',{detail:{path,ok:false,error:String(error)}}));console.error('Save persistence failed',error);
       toast?.querySelector('.save-toast__subtitle')?.replaceChildren('Sauvegarde locale non enregistrée. Réessaie avant de fermer le jeu.');
     }).finally(()=>{if(!failed){toast?.classList.add('opacity-0');setTimeout(()=>toast?.classList.add('hidden'),180);}});
   };

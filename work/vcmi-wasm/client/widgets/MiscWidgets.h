@@ -161,6 +161,7 @@ public:
 /// draws picture with creature on background, use Animated=true to get animation
 class CCreaturePic : public CIntObject
 {
+	const CCreature * mobileCreature=nullptr;
 private:
 	std::shared_ptr<CPicture> bg;
 	std::shared_ptr<CCreatureAnim> anim; //displayed animation
@@ -170,6 +171,7 @@ private:
 public:
 	CCreaturePic(int x, int y, const CCreature * cre, bool Big=true, bool Animated=true);
 	void setAmount(int newAmount);
+	const CCreature * getMobileCreature() const { return mobileCreature; }
 };
 
 class CreatureTooltip : public CIntObject

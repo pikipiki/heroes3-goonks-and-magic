@@ -136,3 +136,5 @@ fs.writeFileSync(path.join(out,'goonk-units.json'),JSON.stringify(units,null,2))
 console.log(JSON.stringify({mod,mapfile,units:units.length,evolutions:units.length}));
 fs.mkdirSync(path.join(out,'goonk-art'),{recursive:true});
 for(const [key,file]of Object.entries(assets)){const destination=path.join(out,'goonk-art',key+'.png');if(path.resolve(file)!==path.resolve(destination))fs.copyFileSync(file,destination);}
+
+await import('../../scripts/localize-goonk.mjs');

@@ -23,3 +23,14 @@
 
 /* Exploration pauses camera following until a native action starts or this button is used. */
 #mobile-app .battle-follow-action{position:absolute;right:8px;bottom:76px;z-index:2;min-height:44px;font-size:13px;background:#332313;border-color:#ffe082}
+
+@media(orientation:landscape){
+ #mobile-app[data-mode=battle][data-battle-layout=dual] .mobile-play{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:22px minmax(0,1fr) 62px;gap:0 6px}
+ #mobile-app[data-mode=battle][data-battle-layout=dual] .battle-strategic-view{grid-column:1;grid-row:1/3}
+ #mobile-app[data-mode=battle][data-battle-layout=dual] .battle-detail-label{grid-column:2;grid-row:1}
+ #mobile-app[data-mode=battle][data-battle-layout=dual] #mobile-scene{grid-column:2;grid-row:2}
+ #mobile-app[data-mode=battle][data-battle-layout=dual] .battle-panel{grid-column:1/3;grid-row:3;height:62px;max-height:62px;grid-template-columns:48px minmax(0,1fr) 100px}
+ #mobile-app[data-mode=battle][data-battle-layout=dual] .battle-turn{font-size:13px}
+ #mobile-app[data-mode=battle][data-battle-layout=dual] .battle-tools{display:flex;grid-column:3;grid-row:1/3}
+ #mobile-app[data-mode=battle][data-battle-layout=dual] .mobile-top{display:flex}
+}

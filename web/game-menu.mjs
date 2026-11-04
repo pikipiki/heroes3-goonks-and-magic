@@ -1,3 +1,4 @@
+import {getLanguage,setLanguage} from './i18n.mjs';
 import {MAP_SPEEDS,createMapSettings} from './map-settings.mjs';
 import {protectMenuButtons} from './menu-press.mjs';
 import {bindPress} from './mobile-press.mjs';
@@ -8,20 +9,24 @@ import {opfsList} from '../opfs-worker.js';
 import {formatStorage,storageSummary,storageGuide} from './game-storage.mjs';
 const muteKey='heroes-goonk.audio-muted';
 function mountGameMenu(){
+ if(!document.querySelector('#mobile-app')&&(new URLSearchParams(location.search).get('mobile')==='1'||matchMedia('(max-width: 960px), (pointer: coarse)').matches)){window.addEventListener('goonk-mobile-mounted',mountGameMenu,{once:true});return;}
+ if(document.querySelector('#game-menu-toggle'))return;
   let state={},tab='settings',initialAudioApplied=false,pendingAudio=null,audioPhase='loading';
   let muted=false;try{muted=localStorage.getItem(muteKey)==='true';}catch{}
   const toggle=document.createElement('button');toggle.id='game-menu-toggle';toggle.textContent='☰';toggle.setAttribute('aria-label','Menu du jeu');
   const brand=document.querySelector('#mobile-app .mobile-brand');if(brand)brand.replaceWith(toggle);else document.body.append(toggle);
   const dialog=document.createElement('dialog');dialog.id='game-menu';dialog.setAttribute('aria-labelledby','game-menu-title');
-  dialog.innerHTML='<header><h2 id="game-menu-title">Heroes Goonk</h2><button data-menu="close" aria-label="Fermer le menu">✕</button></header><p class="autosave-status" aria-live="polite">Sauvegarde automatique : toutes les 10 secondes</p><nav aria-label="Rubriques du menu"><button data-menu="settings">Réglages</button><button data-menu="cheats">Codes de triche</button><button data-menu="storage">Stockage du jeu</button></nav><div class="game-menu-body"></div><p class="game-menu-status" role="status"></p>';
+  dialog.innerHTML='<header><h2 id="game-menu-title">Heroes Goonk</h2><button data-menu="close" aria-label="Fermer le menu">✕</button></header><p class="autosave-status" aria-live="polite">Sauvegarde automatique : toutes les 10 secondes</p><nav aria-label="Rubriques du menu"><button data-menu="settings">Réglages</button><button data-menu="cheats">Codes de triche</button><button data-menu="storage">Stockage du jeu</button></nav><button data-menu="new-game" class="new-game-in-session">New game</button><div class="game-menu-body"></div><p class="game-menu-status" role="status"></p>';
   document.body.append(dialog);
   const content=dialog.querySelector('.game-menu-body'),status=dialog.querySelector('.game-menu-status');
   const command=(action,value=0,preview=0)=>window.Module?._vcmiMobileCommand?.(action,value,preview,0,0,0);
   const movement=createMapSettings({send:value=>command(46,value.moveTime,value.hideEnemyMoves?1:0)});
   const audio=installAudioRecovery({isMuted:()=>muted,onChange:info=>{audioPhase=info.phase;if(dialog.open&&tab==='settings')render();}});
   function render(){
+    dialog.querySelector('[data-menu=new-game]').hidden=!state.day;
     dialog.querySelector('[data-menu=settings]').setAttribute('aria-pressed',String(tab==='settings'));
     dialog.querySelector('[data-menu=cheats]').setAttribute('aria-pressed',String(tab==='cheats'));dialog.querySelector('[data-menu=storage]').setAttribute('aria-pressed',String(tab==='storage'));
+    if(content.dataset.view==='new-game'&&tab==='settings')return;
     if(tab==='storage'){content.dataset.view='storage';
       if(content.dataset.storage!=='ready'){content.dataset.storage='ready';content.innerHTML=storageGuide(location.hostname)+'<dl class="storage-sizes"><div><dt>Fichiers du jeu</dt><dd data-storage-game>Calcul en cours…</dd></div><div><dt>Sauvegardes</dt><dd data-storage-saves>Calcul en cours…</dd></div></dl><p>Pour libérer cet espace en gardant tes sauvegardes, ouvre la gestion du stockage. Elle ferme le jeu. Enregistre ta partie avant de continuer.</p><button class="storage-manage primary" data-menu="manage-storage">Quitter le jeu et gérer le stockage</button><p class="storage-combat" hidden>Termine le combat avant de libérer l’espace du jeu.</p>';opfsList(ROOT).then(entries=>{if(tab!=='storage')return;const value=storageSummary(entries);content.querySelector('[data-storage-game]').textContent=formatStorage(value.gameBytes);content.querySelector('[data-storage-saves]').textContent=formatStorage(value.saveBytes)+' · '+value.saveFiles+' fichier(s)';}).catch(()=>{if(tab==='storage')for(const e of content.querySelectorAll('[data-storage-game],[data-storage-saves]'))e.textContent='Mesure indisponible';});}
       content.querySelector('[data-menu=manage-storage]').disabled=state.mode==='battle'||state.mode==='dialog';content.querySelector('.storage-combat').hidden=!['battle','dialog'].includes(state.mode);return;
@@ -29,8 +34,9 @@ function mountGameMenu(){
     delete content.dataset.storage;
     if(tab==='settings'){
       if(content.dataset.view!=='settings'){
-        content.dataset.view='settings';content.innerHTML='<section class="map-movement-settings"><h3>Déplacements sur la carte</h3><label class="map-speed-label">Vitesse de marche des héros<select data-map-speed aria-label="Vitesse de marche des héros">'+MAP_SPEEDS.map(speed=>'<option value="'+speed.value+'">'+speed.label+'</option>').join('')+'</select></label><p>La vitesse choisie s’applique à tes héros et à tes adversaires.</p><label><input type="checkbox" data-hide-enemy> Masquer les déplacements ennemis</label><p>Les adversaires jouent normalement, sans animation de marche ni suivi de caméra.</p><p class="map-settings-health" role="status"></p></section>'+'<h3>Musique et effets sonores</h3><p>Ce réglage est conservé sur cet appareil.</p><button class="sound-toggle primary" data-menu="sound" role="switch" aria-label="Son"></button><p class="audio-health" role="status"></p>';
+        content.dataset.view='settings';content.innerHTML='<label class=language-setting>Language<select data-language><option value=en>English</option><option value=fr>Français</option></select></label><p>Native game text uses this language the next time you open the game.</p><section class="map-movement-settings"><h3>Déplacements sur la carte</h3><label class="map-speed-label">Vitesse de marche des héros<select data-map-speed aria-label="Vitesse de marche des héros">'+MAP_SPEEDS.map(speed=>'<option value="'+speed.value+'">'+speed.label+'</option>').join('')+'</select></label><p>La vitesse choisie s’applique à tes héros et à tes adversaires.</p><label><input type="checkbox" data-hide-enemy> Masquer les déplacements ennemis</label><p>Les adversaires jouent normalement, sans animation de marche ni suivi de caméra.</p><p class="map-settings-health" role="status"></p></section>'+'<h3>Musique et effets sonores</h3><p>Ce réglage est conservé sur cet appareil.</p><button class="sound-toggle primary" data-menu="sound" role="switch" aria-label="Son"></button><p class="audio-health" role="status"></p>';
       }
+      content.querySelector('[data-language]').value=getLanguage();
       const prefs=movement.current,speed=content.querySelector('[data-map-speed]'),hide=content.querySelector('[data-hide-enemy]');speed.disabled=hide.disabled=!prefs.ready;if(document.activeElement!==speed)speed.value=String(prefs.moveTime);hide.checked=prefs.hideEnemyMoves;content.querySelector('.map-settings-health').textContent=!prefs.ready?'Chargement des réglages…':prefs.pending?'Application des réglages…':'Réglages conservés sur cet appareil.';
       const button=content.querySelector('[data-menu=sound]');button.textContent=muted?'🔇 Son coupé':'🔊 Son activé';button.setAttribute('aria-checked',String(!muted));button.setAttribute('aria-busy',String(pendingAudio!==null));button.disabled=!initialAudioApplied||pendingAudio!==null;
       content.querySelector('.audio-health').textContent=muted?'Musique et effets coupés.':audioPhase==='paused'?'Audio en pause. Coupe puis réactive le son avec ce bouton.':audioPhase==='closed'?'Audio indisponible : recharge le jeu.':audioPhase==='loading'?'Initialisation audio…':state.soundVolume===0&&state.musicVolume===0?'Volume du jeu à zéro. Coupe puis réactive le son avec ce bouton.':'Audio du jeu prêt.';
@@ -41,7 +47,7 @@ function mountGameMenu(){
         const reason=unavailableReason(cheat,state);
         return '<article class="game-cheat"><h3>'+cheat.title+'</h3><p>'+cheat.description+'</p><code>'+cheat.code+'</code><button data-cheat="'+cheat.id+'" '+(reason?'disabled':'')+' aria-label="'+escape('Appliquer : '+cheat.title)+'">'+(reason||'Appliquer')+'</button></article>';
       }).join('');
-      if(content.innerHTML!==html)content.innerHTML=html;
+      if(content._sourceMarkup!==html){content._sourceMarkup=html;content.innerHTML=html;}
     }
   }
   const enable=()=>{if(window.Module?._vcmiMobileEnable)window.Module._vcmiMobileEnable(window.goonkMobileActive?1:2);};
@@ -62,13 +68,15 @@ function mountGameMenu(){
     if(!button?.isConnected||button.disabled)return;
     if(button.dataset.cheat!==undefined){const cheat=cheatCodes.find(x=>x.id===Number(button.dataset.cheat));if(!cheat||unavailableReason(cheat,state))return;command(29,cheat.id);status.textContent='Code envoyé au moteur : '+cheat.code;return;}
     const action=button.dataset.menu;
+    if(action==='new-game'){tab='settings';content.dataset.view='new-game';content.innerHTML='<h3>Start a new game?</h3><p>The current session will end. Your existing saved games will be kept. Save first if you want to keep your latest progress.</p><button data-menu=confirm-new-game>Start new game</button><button data-menu=settings>Cancel</button>';return;}
+    if(action==='confirm-new-game'){button.disabled=true;button.setAttribute('aria-busy','true');const url=new URL(location.href);url.searchParams.set('new-game','1');location.assign(url);return;}
     if(action==='close'){dialog.close();toggle.focus();}
     if(action==='manage-storage'&&!['battle','dialog'].includes(state.mode)){location.assign(new URL('../storage.html',import.meta.url));return;}
-    if(action==='settings'||action==='cheats'||action==='storage'){tab=action;status.textContent='';render();}
+    if(action==='settings'||action==='cheats'||action==='storage'){if(content.dataset.view==='new-game')delete content.dataset.view;tab=action;status.textContent='';render();}
     if(action==='sound'){muted=!muted;pendingAudio=muted;try{localStorage.setItem(muteKey,String(muted));}catch{}command(28,muted?1:0);if(!muted)void audio.resume({repair:true}).then(ok=>{if(ok&&!muted)command(28,0,1);if(!muted)status.textContent=ok?'Son réactivé.':'Coupe puis réactive le son pour relancer l’audio.';});audio.observe();render();status.textContent=muted?'Musique et effets coupés.':'Son demandé : reprise de l’audio…';}
 
   }
-  dialog.addEventListener('change',event=>{if(event.target.matches('[data-map-speed],[data-hide-enemy]')){const patch=event.target.matches('[data-map-speed]')?{moveTime:Number(event.target.value)}:{hideEnemyMoves:event.target.checked};const stored=movement.change(patch);render();status.textContent=stored?'Réglages de déplacement mis à jour.':'Réglages appliqués pour cette session.';}});
+  dialog.addEventListener('change',event=>{if(event.target.matches('[data-language]')){setLanguage(event.target.value);return;}if(event.target.matches('[data-map-speed],[data-hide-enemy]')){const patch=event.target.matches('[data-map-speed]')?{moveTime:Number(event.target.value)}:{hideEnemyMoves:event.target.checked};const stored=movement.change(patch);render();status.textContent=stored?'Réglages de déplacement mis à jour.':'Réglages appliqués pour cette session.';}});
   dialog.addEventListener('keydown',event=>event.stopPropagation());
 }
 const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

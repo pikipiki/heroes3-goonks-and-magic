@@ -16,6 +16,7 @@ VCMI_LIB_NAMESPACE_BEGIN
 
 class CGHeroInstance;
 class CSpell;
+class JsonNode;
 
 VCMI_LIB_NAMESPACE_END
 
@@ -36,6 +37,7 @@ class CSpellWindow : public CWindowObject, public IVideoHolder
 {
 	class SpellArea : public CIntObject
 	{
+		friend class CSpellWindow;
 		const CSpell * mySpell;
 		int schoolLevel; //range: 0 none, 3 - expert
 		CSpellWindow * owner;
@@ -136,6 +138,8 @@ public:
 	CSpellWindow(const CGHeroInstance * _myHero, CPlayerInterface * _myInt, bool openOnBattleSpells = true, const std::function<void(SpellID)> & onSpellSelect = nullptr);
 	~CSpellWindow();
 
+	JsonNode mobileSnapshot();
+	void mobileSelectSpell(int id);
 	void fexitb();
 	void fadvSpellsb();
 	void fbattleSpellsb();

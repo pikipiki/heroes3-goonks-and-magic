@@ -1923,3 +1923,5 @@ void CPlayerInterface::responseStatistic(StatisticDataSet & statistic)
 {
 	ENGINE->windows().createAndPushWindow<CStatisticScreen>(statistic);
 }
+
+bool CPlayerInterface::mobileHeroMoving() const { return movementController && movementController->isHeroMoving(); }

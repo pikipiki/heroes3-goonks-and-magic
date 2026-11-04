@@ -1,3 +1,4 @@
+import {translate} from './i18n.mjs';
 import {BATTLE_HEX_VERTICES} from './battle-scene.mjs';
 const valid=p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y);
 const center=points=>({x:(Math.min(...points.map(p=>p.x))+Math.max(...points.map(p=>p.x)))/2,y:(Math.min(...points.map(p=>p.y))+Math.max(...points.map(p=>p.y)))/2-28});
@@ -5,7 +6,7 @@ export function createBattleDirector({clock=()=>performance.now()}={}){
  let manual=null,pending=null,sequence=null,wasBattle=false,nativeActive=false,lastActor=null;
  function actor(state){return (state.battleUnits||[]).find(u=>u.stackId===state.activeStack)||state.focus||{x:400,y:277};}
  function reset(){manual=null;pending=null;sequence=null;wasBattle=false;nativeActive=false;lastActor=null;}
- function describe(state,point){const a=actor(state),unit=(state.battleUnits||[]).find(u=>point&&Math.hypot(u.x-point.x,u.y-point.y)<18);return {kind:unit&&unit.stackId!==state.activeStack?'attack':'move',actor:a,targets:unit&&unit.stackId!==state.activeStack?[unit]:[],destination:point,path:state.battleCamera?.previewPath||[],preview:true};}
+ function describe(state,point){const a=actor(state),unit=(state.battleUnits||[]).find(u=>point&&Math.hypot(u.x-point.x,u.y-point.y)<18);return {kind:state.spellTargeting?'spell':unit&&unit.stackId!==state.activeStack?'attack':'move',actor:a,targets:unit&&unit.stackId!==state.activeStack?[unit]:[],destination:point,path:state.battleCamera?.previewPath||[],preview:true};}
  return {
   explore(point){manual={...point};},follow(){manual=null;},reset,
   confirm(state,point){manual=null;pending={...describe(state,point),until:clock()+5000};},
@@ -38,7 +39,7 @@ export function paintBattleAction(ctx,view,layout){
  if(view.kind==='spell')for(const target of targets)for(const cell of target.cells||[target]){
   ctx.beginPath();BATTLE_HEX_VERTICES.forEach(([x,y],i)=>{const p=pos({x:cell.x+x,y:cell.y+y});i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);});ctx.closePath();ctx.fillStyle='#d8b3ff55';ctx.fill();ctx.strokeStyle='#e4caff';ctx.lineWidth=1.5;ctx.stroke();
  }
- function mark(point,color,label){const p=pos(point),r=Math.max(8,22*layout.scale);if(p.x+r<layout.dx||p.x-r>layout.dx+layout.w*layout.scale||p.y+r<layout.dy||p.y-r>layout.dy+layout.h*layout.scale)return;ctx.beginPath();ctx.ellipse(p.x,p.y+8*layout.scale,r,r*.45,0,0,Math.PI*2);ctx.strokeStyle='#21170d';ctx.lineWidth=5;ctx.stroke();ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.stroke();if(!label)return;ctx.font='12px Georgia';const width=ctx.measureText(label).width+10,left=Math.max(layout.dx+2,Math.min(layout.dx+layout.w*layout.scale-width-2,p.x+12)),top=Math.max(layout.dy+2,Math.min(layout.dy+layout.h*layout.scale-20,p.y-30*layout.scale));ctx.fillStyle='#231b12';ctx.fillRect(left,top,width,18);ctx.fillStyle=color;ctx.textAlign='left';ctx.textBaseline='middle';ctx.fillText(label,left+5,top+9);}
+ function mark(point,color,label){if(label)label=translate(label);const p=pos(point),r=Math.max(8,22*layout.scale);if(p.x+r<layout.dx||p.x-r>layout.dx+layout.w*layout.scale||p.y+r<layout.dy||p.y-r>layout.dy+layout.h*layout.scale)return;ctx.beginPath();ctx.ellipse(p.x,p.y+8*layout.scale,r,r*.45,0,0,Math.PI*2);ctx.strokeStyle='#21170d';ctx.lineWidth=5;ctx.stroke();ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.stroke();if(!label)return;ctx.font='12px Georgia';const width=ctx.measureText(label).width+10,left=Math.max(layout.dx+2,Math.min(layout.dx+layout.w*layout.scale-width-2,p.x+12)),top=Math.max(layout.dy+2,Math.min(layout.dy+layout.h*layout.scale-20,p.y-30*layout.scale));ctx.fillStyle='#231b12';ctx.fillRect(left,top,width,18);ctx.fillStyle=color;ctx.textAlign='left';ctx.textBaseline='middle';ctx.fillText(label,left+5,top+9);}
  const destination=targets[0]||view.destination;
  if(actor&&valid(destination)){
   const path=view.kind==='move'&&view.path?.length?view.path:[actor,destination];

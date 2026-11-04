@@ -1973,7 +1973,7 @@ void LabeledValue::hover(bool on)
 }
 
 CFortScreen::CFortScreen(const CGTownInstance * town):
-	CWindowObject(PLAYER_COLORED | BORDERED, getBgName(town))
+	CWindowObject(PLAYER_COLORED | BORDERED, getBgName(town)), mobileTown(town)
 {
 	OBJECT_CONSTRUCTION;
 	ui32 fortSize = static_cast<ui32>(town->creatures.size());

@@ -1,0 +1,75 @@
+/* Tactile controls keep Heroes III materials, with consistent accessible targets. */
+#mobile-app button,#game-menu button{min-height:48px;min-width:48px;touch-action:manipulation;line-height:1.2}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ffe08b;outline-offset:3px}
+button[aria-busy=true]{position:relative;opacity:.65;cursor:progress;padding-inline-end:34px!important}
+button[aria-busy=true]::after{content:'';position:absolute;right:10px;top:calc(50% - 8px);width:14px;height:14px;border:2px solid #8c784b;border-top-color:#ffe8a2;border-radius:50%;animation:goonk-busy .7s linear infinite}
+@keyframes goonk-busy{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){button[aria-busy=true]::after{animation:none}}
+#mobile-app .unit-portrait{display:block;width:100%;height:100%;min-width:0;min-height:0;max-height:160px;object-fit:contain}
+#mobile-app .army-slot-art{min-height:56px}#mobile-app .army-slot-art canvas{height:100%;max-height:135px;width:auto;max-width:100%;aspect-ratio:1}
+#mobile-app .mobile-menu{box-sizing:border-box;overflow:auto;overscroll-behavior:contain;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:10px;padding:16px;max-height:100%;width:100%;max-width:680px;margin:auto;touch-action:pan-y}
+#mobile-app .mobile-menu[hidden]{display:none!important}
+#mobile-app .mobile-menu label,.custom-game-options label{display:flex;flex-direction:column;align-items:stretch;gap:6px;text-align:left;min-width:0;margin:4px 0}
+#mobile-app .mobile-menu select,.language-setting select{box-sizing:border-box;width:100%;max-width:100%;min-height:48px;border:2px ridge #b89c5d;background:#24190e;color:#ffedb6;font:16px Georgia,serif;padding:6px}
+.custom-game-options{display:flex;flex-direction:column;gap:10px;min-width:0;padding:12px;border:2px ridge #b89c5d}.custom-game-options p{font-size:14px!important}.custom-game-options input[type=checkbox]{width:22px;height:22px}.campaign-list{display:grid;gap:10px}.language-setting{display:grid;gap:8px;margin:0 0 20px}
+#mobile-app[data-mode=town] #town-overview,#mobile-app[data-town-layout=portrait] #town-overview{left:0;right:0;width:100%;max-width:none}
+#mobile-app[data-mode=town] .town-recruit-strip,#mobile-app[data-town-layout=portrait] .town-recruit-strip{width:100%;padding:5px;display:flex;gap:6px}
+#mobile-app .town-recruit-strip button{flex:1 0 124px;min-width:124px;max-width:none;display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px}
+#mobile-app .town-recruit-strip img{width:36px;height:32px;object-fit:contain;flex-shrink:0}
+#mobile-app .battle-tools{grid-template-columns:minmax(0,1fr)!important}
+#mobile-app[data-mode=spellbook] .scene-tools,#mobile-app[data-mode=spellbook] #mobile-scene,#mobile-app[data-mode=spellbook] .scene-hint,#mobile-app[data-mode=spellbook] .mobile-nav{display:none!important}
+#mobile-app[data-mode=spellbook]{grid-template-rows:auto minmax(0,1fr)}
+.mobile-spellbook{position:absolute;inset:0;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:10px;padding:10px;box-sizing:border-box;background:#332013 url('./h3-theme/stone.png');color:#ffe8ad;z-index:3;overflow:hidden}
+.mobile-spellbook[hidden]{display:none}.mobile-spellbook header{display:flex;align-items:center;justify-content:space-between;gap:10px}.mobile-spellbook h2{margin:0;font-size:22px}.mobile-spellbook h2 small{font-size:14px;margin-left:12px}
+.spell-schools{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.spell-schools button{padding:6px 2px!important;font-size:14px}.spell-schools [aria-pressed=true]{outline:2px solid #ffe08b;outline-offset:-4px;background-color:#8b3522}
+.spell-list{overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;display:flex;flex-direction:column;gap:8px;min-height:0}
+.spell-row{display:flex;flex:0 0 auto;gap:12px;align-items:center;padding:12px!important;width:100%;text-align:left;font-family:Georgia,serif}.spell-row>span:last-child{display:flex;flex:1;flex-direction:column;gap:5px}.spell-row strong{font-size:18px}.spell-row small{font-size:14px;color:#f6d282}.spell-row span span{font-size:14px;line-height:1.5}.spell-symbol{font-size:38px;color:#ffe08b;flex:0 0 42px;text-align:center}.mobile-spellbook footer{display:flex;align-items:center;justify-content:space-between;gap:6px}.mobile-spellbook footer button{flex:1;padding:7px;font-size:14px}
+.equipment-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.equipment-grid .mobile-card{margin:0;min-width:0}.equipment-grid h3{font-size:17px}.equipment-grid p{font-size:14px;line-height:1.5}.new-game-in-session{width:100%;margin:8px 0}
+@media(orientation:landscape) and (max-height:600px){
+ .goonk-mobile #mobile-app[data-mode=town]{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto}
+ #mobile-app[data-mode=town] .mobile-top{grid-column:1;grid-row:1;min-height:0}
+ #mobile-app[data-mode=town] .mobile-play{grid-column:1;grid-row:2;min-height:0}
+ #mobile-app[data-mode=town] .mobile-nav{grid-column:1;grid-row:3;flex-direction:row;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:4px max(8px,env(safe-area-inset-right)) 4px max(8px,env(safe-area-inset-left));border-top:2px ridge #b89c5d;border-left:0;gap:6px}
+ #mobile-app[data-mode=town] .mobile-nav button{min-height:48px!important;padding:4px;display:flex;align-items:center;justify-content:center;gap:8px}
+ #mobile-app[data-mode=town] .mobile-calendar{font-size:11px;padding:0;flex-basis:100%;line-height:14px}
+ #mobile-app[data-mode=town] #town-overview{height:58px}#mobile-app[data-mode=town] .town-recruit-strip button{min-height:44px}
+ .equipment-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ #mobile-app[data-mode=spellbook]{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}#mobile-app[data-mode=spellbook] .mobile-play{grid-column:1;grid-row:2}
+ .mobile-spellbook{grid-template-columns:120px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;gap:6px}.mobile-spellbook header{grid-column:1/3}.spell-schools{grid-column:1;grid-row:2;grid-template-columns:1fr;overflow:auto}.spell-list{grid-column:2;grid-row:2}.mobile-spellbook footer{grid-column:1/3}
+}
+#save-toast{pointer-events:none!important;transition:opacity .08s linear!important}
+
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-panel{position:relative;z-index:3;min-width:0;min-height:0;overflow:hidden}
+@media(orientation:landscape){
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .mobile-play{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:22px minmax(0,1fr) 64px;gap:0 6px}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-strategic-view{grid-column:1;grid-row:1/3;min-height:0;overflow:hidden}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-detail-label{grid-column:2;grid-row:1}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] #mobile-scene{grid-column:2;grid-row:2;width:100%;height:100%;max-height:100%;min-height:0;align-self:stretch;position:relative;z-index:1}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-panel{display:grid;grid-column:1/3;grid-row:3;grid-template-columns:48px minmax(0,1fr) 96px;grid-template-rows:22px minmax(0,1fr);height:64px;max-height:64px;padding:4px 7px;gap:0 7px}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] #battle-creature-detail{grid-column:1;grid-row:1/3;width:46px;height:52px;min-height:0;margin:0;order:0}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-turn{grid-column:2;grid-row:1;font-size:13px;margin:0}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-selection{grid-column:2;grid-row:2;font-size:11px;margin:0}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-tools{grid-column:3;grid-row:1/3;display:flex;align-items:center;margin:0}
+}
+/* Landscape towns give the panorama the full height; shortcuts span the viewport. */
+@media(orientation:landscape) and (max-height:600px){
+ html.goonk-mobile #mobile-app[data-mode=town]{grid-template-columns:minmax(0,1fr) 108px;grid-template-rows:auto minmax(0,1fr) calc(58px + env(safe-area-inset-bottom,0px))}
+ html.goonk-mobile #mobile-app[data-mode=town] .mobile-top{grid-column:1/3;grid-row:1}
+ html.goonk-mobile #mobile-app[data-mode=town] .mobile-play{grid-column:1;grid-row:2;overflow:visible}
+ html.goonk-mobile #mobile-app[data-mode=town] #mobile-scene{width:100%;height:100%;min-height:0;max-height:100%}
+ html.goonk-mobile #mobile-app[data-mode=town] .mobile-nav{grid-column:2;grid-row:2;display:flex;flex-direction:column;overflow:auto;border-top:0;border-left:2px ridge #ba974b;padding:4px;gap:5px}
+ html.goonk-mobile #mobile-app[data-mode=town] .mobile-nav button{flex:1;min-height:48px!important;flex-direction:column;gap:2px;font-size:12px}
+ html.goonk-mobile #mobile-app[data-mode=town] .mobile-nav button img{height:22px;width:28px}
+ html.goonk-mobile #mobile-app[data-mode=town] #town-overview{position:fixed;left:0;right:0;bottom:0;width:100vw;height:calc(58px + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+}
+
+#mobile-app .mobile-nav:empty{display:none!important}
+
+@media(orientation:landscape){
+ .mobile-spellbook{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto;gap:5px;padding:6px 10px}
+ .mobile-spellbook header{grid-column:1;grid-row:1}
+ .mobile-spellbook .spell-schools{grid-column:1;grid-row:2;grid-template-columns:repeat(5,minmax(0,1fr));overflow:visible}
+ .mobile-spellbook .spell-list{grid-column:1;grid-row:3}
+ .mobile-spellbook footer{grid-column:1;grid-row:4}
+ .mobile-spellbook .spell-row{padding:8px 12px!important}
+}

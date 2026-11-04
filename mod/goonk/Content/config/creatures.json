@@ -4,7 +4,7 @@
       "singular": "Paingpaing",
       "plural": "Paingpaing"
     },
-    "description": "Frappe au corps à corps avec son grand nez. Évolution : deux coups de nez par attaque.",
+    "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
     "faction": "goonk",
     "level": 1,
     "attack": 5,
@@ -53,10 +53,10 @@
   },
   "paingpaingRoyal": {
     "name": {
-      "singular": "Paingpaing, Bélier royal",
-      "plural": "Paingpaing, Bélier royal"
+      "singular": "Paingpaing, Royal Ram",
+      "plural": "Paingpaing, Royal Ram"
     },
-    "description": "Frappe au corps à corps avec son grand nez. Évolution : deux coups de nez par attaque.",
+    "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
     "faction": "goonk",
     "level": 1,
     "attack": 8,
@@ -110,7 +110,7 @@
       "singular": "Picpique",
       "plural": "Picpique"
     },
-    "description": "Combat avec une épée-lance. Son arme frappe aussi la case derrière la cible.",
+    "description": "Fights with a sword-lance, also striking the hex behind the target.",
     "faction": "goonk",
     "level": 2,
     "attack": 8,
@@ -163,10 +163,10 @@
   },
   "picpiqueRoyal": {
     "name": {
-      "singular": "Picpique, Paladin des lances",
-      "plural": "Picpique, Paladin des lances"
+      "singular": "Picpique, Lance Paladin",
+      "plural": "Picpique, Lance Paladin"
     },
-    "description": "Combat avec une épée-lance. Son arme frappe aussi la case derrière la cible.",
+    "description": "Fights with a sword-lance, also striking the hex behind the target.",
     "faction": "goonk",
     "level": 2,
     "attack": 11,
@@ -222,7 +222,7 @@
       "singular": "Zinzéclair",
       "plural": "Zinzéclair"
     },
-    "description": "Tire des flèches-éclairs, puis déclenche une explosion magique sur la cible et ses voisins. Attention aux alliés proches.",
+    "description": "Fires lightning arrows, triggering a magical explosion on the target and nearby units. Watch out for nearby allies.",
     "faction": "goonk",
     "level": 3,
     "attack": 9,
@@ -304,10 +304,10 @@
   },
   "zinzeclairRoyal": {
     "name": {
-      "singular": "Zinzéclair, Tempête explosive",
-      "plural": "Zinzéclair, Tempête explosive"
+      "singular": "Zinzéclair, Explosive Storm",
+      "plural": "Zinzéclair, Explosive Storm"
     },
-    "description": "Tire des flèches-éclairs, puis déclenche une explosion magique sur la cible et ses voisins. Attention aux alliés proches.",
+    "description": "Fires lightning arrows, triggering a magical explosion on the target and nearby units. Watch out for nearby allies.",
     "faction": "goonk",
     "level": 3,
     "attack": 12,
@@ -398,7 +398,7 @@
       "singular": "Bubu",
       "plural": "Bubu"
     },
-    "description": "Attaque uniquement avec ses pets. Son nuage affaiblit la cible ; son évolution la ralentit aussi.",
+    "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
     "faction": "goonk",
     "level": 4,
     "attack": 10,
@@ -495,10 +495,10 @@
   },
   "bubuRoyal": {
     "name": {
-      "singular": "Bubu, Grand pétomancien",
-      "plural": "Bubu, Grand pétomancien"
+      "singular": "Bubu, Grand Fartomancer",
+      "plural": "Bubu, Grand Fartomancer"
     },
-    "description": "Attaque uniquement avec ses pets. Son nuage affaiblit la cible ; son évolution la ralentit aussi.",
+    "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
     "faction": "goonk",
     "level": 4,
     "attack": 13,
@@ -604,7 +604,7 @@
       "singular": "Glouglou",
       "plural": "Glouglou"
     },
-    "description": "Crache un jet de vomi cartoon à distance qui ronge la défense. Son évolution ajoute du poison.",
+    "description": "Spits a ranged cartoon vomit jet that reduces defence. The upgraded form also poisons.",
     "faction": "goonk",
     "level": 5,
     "attack": 12,
@@ -701,10 +701,10 @@
   },
   "glouglouRoyal": {
     "name": {
-      "singular": "Glouglou, Alchimiste acide",
-      "plural": "Glouglou, Alchimiste acide"
+      "singular": "Glouglou, Acid Alchemist",
+      "plural": "Glouglou, Acid Alchemist"
     },
-    "description": "Crache un jet de vomi cartoon à distance qui ronge la défense. Son évolution ajoute du poison.",
+    "description": "Spits a ranged cartoon vomit jet that reduces defence. The upgraded form also poisons.",
     "faction": "goonk",
     "level": 5,
     "attack": 15,
@@ -810,7 +810,7 @@
       "singular": "Bobope",
       "plural": "Bobope"
     },
-    "description": "Lance de gros cailloux comme un Cyclope. Son évolution peut aussi tirer sur les remparts en siège.",
+    "description": "Throws large rocks like a Cyclops. The upgraded form can also bombard siege walls.",
     "faction": "goonk",
     "level": 6,
     "attack": 15,
@@ -883,10 +883,10 @@
   },
   "bobopeRoyal": {
     "name": {
-      "singular": "Bobope, Roi des rochers",
-      "plural": "Bobope, Roi des rochers"
+      "singular": "Bobope, Rock King",
+      "plural": "Bobope, Rock King"
     },
-    "description": "Lance de gros cailloux comme un Cyclope. Son évolution peut aussi tirer sur les remparts en siège.",
+    "description": "Throws large rocks like a Cyclops. The upgraded form can also bombard siege walls.",
     "faction": "goonk",
     "level": 6,
     "attack": 18,
@@ -960,10 +960,10 @@
   },
   "maillemaille": {
     "name": {
-      "singular": "La gros maille maille",
-      "plural": "La gros maille maille"
+      "singular": "Big Maille Maille",
+      "plural": "Big Maille Maille"
     },
-    "description": "Lance du feu à distance et peut lancer Boule de feu. Son évolution maîtrise aussi Inferno.",
+    "description": "Fires ranged flames and can cast Fireball. The upgraded form also masters Inferno.",
     "faction": "goonk",
     "level": 7,
     "attack": 20,
@@ -1068,10 +1068,10 @@
   },
   "maillemailleRoyal": {
     "name": {
-      "singular": "La gros maille maille, Archimage du brasier",
-      "plural": "La gros maille maille, Archimage du brasier"
+      "singular": "Big Maille Maille, Blaze Archmage",
+      "plural": "Big Maille Maille, Blaze Archmage"
     },
-    "description": "Lance du feu à distance et peut lancer Boule de feu. Son évolution maîtrise aussi Inferno.",
+    "description": "Fires ranged flames and can cast Fireball. The upgraded form also masters Inferno.",
     "faction": "goonk",
     "level": 7,
     "attack": 23,

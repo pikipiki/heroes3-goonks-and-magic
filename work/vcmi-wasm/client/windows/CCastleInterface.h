@@ -343,6 +343,7 @@ public:
 /// The fort screen where you can afford units
 class CFortScreen : public CStatusbarWindow
 {
+	const CGTownInstance * mobileTown;
 	class RecruitArea : public CIntObject
 	{
 		const CGTownInstance * town;
@@ -382,6 +383,7 @@ public:
 		for(const auto & area : recAreas) result.push_back(area->pos);
 		return result;
 	}
+	const CGTownInstance * getMobileTown() const { return mobileTown; }
 
 	void creaturesChangedEventHandler();
 };

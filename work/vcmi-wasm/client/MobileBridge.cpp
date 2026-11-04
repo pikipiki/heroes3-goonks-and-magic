@@ -6,10 +6,20 @@
 #include <SDL_timer.h>
 #include <SDL_surface.h>
 #include "render/Canvas.h"
+#include "render/IImage.h"
+#include "render/IRenderHandler.h"
+#include "windows/CSpellWindow.h"
+#include "lobby/RandomMapTab.h"
+#include "lobby/CBonusSelection.h"
+#include "../lib/rmg/CMapGenOptions.h"
+#include "../lib/campaign/CampaignHandler.h"
+#include "../lib/entities/artifact/CArtifact.h"
+#include "../lib/entities/artifact/CArtifactInstance.h"
 #include "../lib/battle/AccessibilityInfo.h"
 #include "../lib/battle/IBattleState.h"
 #include <atomic>
 #include "GameEngine.h"
+#include "GameLibrary.h"
 #include "media/ISoundPlayer.h"
 #include "media/IMusicPlayer.h"
 #include "../lib/StartInfo.h"
@@ -23,6 +33,8 @@
 #include "gui/Shortcut.h"
 #include "adventureMap/AdventureMapInterface.h"
 #include "adventureMap/CMinimap.h"
+#include "widgets/MiscWidgets.h"
+#include "windows/CCreatureWindow.h"
 #include "mainmenu/CMainMenu.h"
 #include "lobby/CLobbyScreen.h"
 #include "windows/CCastleInterface.h"
@@ -56,12 +68,28 @@
 namespace {
 bool mobileEnabled=false,stateEnabled=false,audioMuted=false;
 ui32 previousSoundVolume=75,previousMusicVolume=75;
-bool mapsListed=false,savesListed=false;std::vector<std::pair<std::string,std::string>> mobileMaps,mobileSaves;
+bool mapsListed=false,savesListed=false;std::set<int> portraitIds;std::vector<std::pair<std::string,std::string>> mobileCampaigns;std::vector<std::pair<std::string,std::string>> mobileMaps,mobileSaves;
 uint32_t lastPublished=0,lastSent=0;
 std::string lastSnapshot,pendingDefaultMap;
 std::atomic_bool snapshotPending{false};
 JsonNode rect(const Rect & r){JsonNode n;n["x"].Integer()=r.x;n["y"].Integer()=r.y;n["w"].Integer()=r.w;n["h"].Integer()=r.h;return n;}
-JsonNode creature(const CCreature * c,int count){JsonNode n;n["name"].String()=c->getNameSingularTranslated();n["id"].Integer()=c->getId().getNum();n["icon"].String()=c->largeIconName;n["count"].Integer()=count;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())n["cost"].Vector().push_back(JsonNode(double(c->getRecruitCost(resource))));return n;}
+JsonNode creature(const CCreature * c,int count){portraitIds.insert(c->getId().getNum());JsonNode n;n["shooter"].Bool()=c->hasBonusOfType(BonusType::SHOOTER);n["name"].String()=c->getNameSingularTranslated();n["id"].Integer()=c->getId().getNum();n["icon"].String()=c->largeIconName;n["key"].String()=c->getJsonKey();n["description"].String()=c->getDescriptionTranslated();n["count"].Integer()=count;n["attack"].Integer()=c->getAttack(false);n["defense"].Integer()=c->getDefense(false);n["health"].Integer()=c->getMaxHealth();n["speed"].Integer()=c->getMovementRange();n["damageMin"].Integer()=c->getMinDamage(false);n["damageMax"].Integer()=c->getMaxDamage(false);for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())n["cost"].Vector().push_back(JsonNode(double(c->getRecruitCost(resource))));return n;}
+void mobilePreviews(CIntObject * node,JsonNode & result){
+ if(auto picture=dynamic_cast<CCreaturePic*>(node)){if(auto c=picture->getMobileCreature()){auto item=creature(c,1);item["preview"]=rect(picture->pos);result.Vector().push_back(item);}return;}
+ for(auto child:node->children)mobilePreviews(child,result);
+}
+void publishPortraits()
+{
+ static std::set<int> previous; if(portraitIds.empty()||previous==portraitIds)return;previous=portraitIds;
+ std::vector<int> ids;for(int id:portraitIds)if(ids.size()<96)ids.push_back(id);
+ const int width=768,height=((ids.size()+7)/8)*96;const size_t prefix=ids.size()*4,bytes=width*height*4;
+ auto surface=SDL_CreateRGBSurfaceWithFormat(0,width,height,32,SDL_PIXELFORMAT_ARGB8888);if(!surface)return;SDL_FillRect(surface,nullptr,0);
+ {auto canvas=Canvas::createFromSurface(surface,CanvasScalingPolicy::IGNORE);for(size_t i=0;i<ids.size();i++)try{auto c=CreatureID(ids[i]).toCreature();auto image=ENGINE->renderHandler().loadImage(AnimationPath::builtin("TWCRPORT"),c->getIconIndex(),0,EImageBlitMode::SIMPLE);if(image){const auto dims=image->dimensions();auto icon=SDL_CreateRGBSurfaceWithFormat(0,dims.x,dims.y,32,SDL_PIXELFORMAT_ARGB8888);if(icon){SDL_FillRect(icon,nullptr,0);{auto iconCanvas=Canvas::createFromSurface(icon,CanvasScalingPolicy::IGNORE);iconCanvas.draw(image,Point(0,0));}const double scale=std::min(92.0/dims.x,92.0/dims.y);SDL_Rect target{int(i%8)*96+(96-int(dims.x*scale))/2,int(i/8)*96+(96-int(dims.y*scale))/2,int(dims.x*scale),int(dims.y*scale)};SDL_SetSurfaceBlendMode(icon,SDL_BLENDMODE_NONE);SDL_BlitScaled(icon,nullptr,surface,&target);SDL_FreeSurface(icon);}}}catch(const std::exception &){} }
+ auto rgba=SDL_ConvertSurfaceFormat(surface,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(surface);if(!rgba)return;
+ auto packet=static_cast<uint8_t*>(malloc(prefix+bytes));if(packet){for(size_t i=0;i<ids.size();i++){int32_t id=ids[i];memcpy(packet+i*4,&id,4);}memcpy(packet+prefix,rgba->pixels,bytes);
+ MAIN_THREAD_ASYNC_EM_ASM({try{const ptr=$0;const n=$3;window.goonkPortraitIds=new Map(Array.from(HEAP32.subarray(ptr/4,ptr/4+n),(id,i)=>[id,i]));const c=window.goonkPortraitAtlas||(window.goonkPortraitAtlas=document.createElement('canvas'));c.width=$1;c.height=$2;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+n*4,ptr+n*4+$1*$2*4)), $1,$2),0,0);window.dispatchEvent(new Event('goonk-portraits'));}finally{_free($0);}},packet,width,height,ids.size());}
+ SDL_FreeSurface(rgba);
+}
 JsonNode army(const CArmedInstance * a,const std::string & name){JsonNode n;n["id"].Integer()=a->id.getNum();n["name"].String()=name;for(int i=0;i<7;i++){auto c=a->getCreature(SlotID(i));n["slots"].Vector().push_back(c?creature(c,a->getStackCount(SlotID(i))):JsonNode());}return n;}
 void shortcut(EShortcut key){ENGINE->events().dispatchShortcutPressed({key});ENGINE->events().dispatchShortcutReleased({key});}
 }
@@ -107,14 +135,24 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileAtlasAck(){atlasPending.store(fal
 void publishMobileState(){
  if(!stateEnabled||!ENGINE||!GAME||snapshotPending.load()||SDL_GetTicks()-lastPublished<180)return;lastPublished=SDL_GetTicks();
  if(audioMuted){if(ENGINE->sound().getVolume()!=0)ENGINE->sound().setVolume(0);if(ENGINE->music().getVolume()!=0)ENGINE->music().setVolume(0);}
- JsonNode n;n["mapSettings"]["moveTime"].Integer()=settings["adventure"]["heroMoveTime"].Integer();n["mapSettings"]["enemyMoveTime"].Integer()=settings["adventure"]["enemyMoveTime"].Integer();n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top)n["rect"]=rect(top->pos);
- auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();auto recruitWindow=ENGINE->windows().topWindow<CRecruitmentWindow>();
- if(ENGINE->windows().topWindow<CLobbyScreen>())n["mode"].String()=GAME->server().screenType==ESelectionScreen::loadGame?"load":"lobby";
+ portraitIds.clear();JsonNode n;n["mapSettings"]["moveTime"].Integer()=settings["adventure"]["heroMoveTime"].Integer();n["mapSettings"]["enemyMoveTime"].Integer()=settings["adventure"]["enemyMoveTime"].Integer();n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top)n["rect"]=rect(top->pos);
+ auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();auto recruitWindow=ENGINE->windows().topWindow<CRecruitmentWindow>();auto fortWindow=ENGINE->windows().topWindow<CFortScreen>();auto creatureWindow=ENGINE->windows().topWindow<CStackWindow>();auto spellWindow=ENGINE->windows().topWindow<CSpellWindow>();
+ if(ENGINE->windows().topWindow<CLobbyScreen>())n["mode"].String()=GAME->server().screenType==ESelectionScreen::loadGame?"load":GAME->server().screenType==ESelectionScreen::campaignList?"campaign":"lobby";
+ else if(spellWindow){n["mode"].String()="spellbook";n["spellbook"]=spellWindow->mobileSnapshot();}
  else if(recruitWindow)n["mode"].String()="recruit";
+ else if(fortWindow)n["mode"].String()="fort";
+ else if(creatureWindow)n["mode"].String()="creature";
  else if(townWindow)n["mode"].String()="town";
  else if(battleWindow)n["mode"].String()="battle";
  else if(ENGINE->windows().topWindow<AdventureMapInterface>())n["mode"].String()="map";
- else if(p)n["mode"].String()="dialog";
+ else if(p||ENGINE->windows().topWindow<CBonusSelection>())n["mode"].String()="dialog";
+ if(top&&(fortWindow||creatureWindow||recruitWindow))mobilePreviews(top.get(),n["previewUnits"]);
+ if(creatureWindow&&creatureWindow->getMobileCreature()){
+  auto item=creature(creatureWindow->getMobileCreature(),creatureWindow->getMobileCount());
+  if(auto stack=creatureWindow->getMobileStack()){const bool shooter=stack->hasBonusOfType(BonusType::SHOOTER);item["attack"].Integer()=stack->getAttack(shooter);item["defense"].Integer()=stack->getDefense(shooter);item["health"].Integer()=stack->getMaxHealth();item["speed"].Integer()=stack->getMovementRange();item["damageMin"].Integer()=stack->getMinDamage(shooter);item["damageMax"].Integer()=stack->getMaxDamage(shooter);}
+  n["creatureUnit"]=item;
+ }
+ n["sessionState"].Integer()=static_cast<int>(GAME->server().getState());
  if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>()){
   n["dialogKind"].String()="tavern";n["dialogTitle"].String()="Taverne";
   if(tavern->cancel)n["dialogCloseRect"]=rect(tavern->cancel->pos);
@@ -129,7 +167,7 @@ void publishMobileState(){
   if(!mapsListed){mapsListed=true;const auto files=CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path){return path.getType()==EResType::MAP&&path.getName().find("MAPS/")==0;});for(const auto & file:files){try{CMapInfo info;info.mapInit(file.getOriginalName());if(info.amountOfHumanControllablePlayers>0)mobileMaps.emplace_back(file.getOriginalName(),info.getNameForList());}catch(const std::exception &){} }std::sort(mobileMaps.begin(),mobileMaps.end(),[](const auto & a,const auto & b){return a.second<b.second;});}
   for(size_t i=0;i<mobileMaps.size();i++){JsonNode entry;entry["index"].Integer()=i;entry["name"].String()=mobileMaps[i].second;n["maps"].Vector().push_back(entry);}
   if(GAME->server().mi){
-   auto & server=GAME->server();n["selectedMap"].String()=server.mi->getNameForList();n["difficulty"].Integer()=server.si->difficulty;
+   auto & server=GAME->server();n["customMap"].Bool()=server.mi->isRandomMap;n["selectedMap"].String()=server.mi->getNameForList();n["difficulty"].Integer()=server.si->difficulty;
    const auto color=server.myFirstColor();
    if(server.si->playerInfos.count(color)){
     const auto & allowed=server.getPlayerInfo(color).allowedFactions;
@@ -139,17 +177,23 @@ void publishMobileState(){
    }
   }
  }
+ if(n["mode"].String()=="lobby"&&GAME->server().mi&&GAME->server().si){auto & server=GAME->server();for(const auto & player:server.si->playerInfos){JsonNode row;row["color"].Integer()=player.first.getNum();row["name"].String()=player.second.name;row["faction"].Integer()=player.second.castle.getNum();for(auto id:server.getPlayerInfo(player.first).allowedFactions){auto faction=id.toFaction();JsonNode item;item["id"].Integer()=id.getNum();item["name"].String()=faction->getNameTranslated();row["factions"].Vector().push_back(item);}n["players"].Vector().push_back(row);}}
+ if(n["mode"].String()=="campaign"){
+ n["lobbyReady"].Bool()=GAME->server().getState()==EClientState::LOBBY;
+ if(mobileCampaigns.empty()){for(const auto & file:CResourceHandler::get()->getFilteredFiles([](const ResourcePath & p){return p.getType()==EResType::CAMPAIGN;}))try{CMapInfo info;info.fileURI=file.getOriginalName();info.campaign=CampaignHandler::getHeader(info.fileURI);mobileCampaigns.emplace_back(file.getOriginalName(),info.getNameForList());}catch(const std::exception &){} }
+ for(size_t i=0;i<mobileCampaigns.size();i++){JsonNode row;row["index"].Integer()=i;row["name"].String()=mobileCampaigns[i].second;n["campaigns"].Vector().push_back(row);}
+ }
  if(n["mode"].String()=="load"){
   n["lobbyReady"].Bool()=GAME->server().getState()==EClientState::LOBBY;
   if(!savesListed){savesListed=true;mobileSaves.clear();const auto files=CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path){return path.getType()==EResType::SAVEGAME;});for(const auto & file:files){try{CMapInfo info;info.saveInit(file);mobileSaves.emplace_back(file.getOriginalName(),info.getNameForList());}catch(const std::exception &){} }std::sort(mobileSaves.begin(),mobileSaves.end());}
-  for(size_t i=0;i<mobileSaves.size();i++){JsonNode entry;entry["index"].Integer()=i;entry["name"].String()=mobileSaves[i].second;n["maps"].Vector().push_back(entry);}if(GAME->server().mi){const auto selected=ResourcePath(GAME->server().mi->fileURI,EResType::SAVEGAME).getName();for(size_t i=0;i<mobileSaves.size();i++)if(ResourcePath(mobileSaves[i].first,EResType::SAVEGAME).getName()==selected){n["selectedMap"].String()=mobileSaves[i].second;n["selectedIndex"].Integer()=i;break;}}
+  for(size_t i=0;i<mobileSaves.size();i++){JsonNode entry;entry["index"].Integer()=i;entry["name"].String()=mobileSaves[i].second;entry["file"].String()=mobileSaves[i].first;n["maps"].Vector().push_back(entry);}if(GAME->server().mi){const auto selected=ResourcePath(GAME->server().mi->fileURI,EResType::SAVEGAME).getName();for(size_t i=0;i<mobileSaves.size();i++)if(ResourcePath(mobileSaves[i].first,EResType::SAVEGAME).getName()==selected){n["selectedMap"].String()=mobileSaves[i].second;n["selectedIndex"].Integer()=i;break;}}
  }else savesListed=false;
  if(recruitWindow){
   if(const auto c=recruitWindow->getRecruitCreature())n["recruitUnit"]=creature(c,recruitWindow->getRecruitAvailable());
   n["recruitAmount"].Integer()=recruitWindow->getRecruitAmount();n["recruitMaximum"].Integer()=recruitWindow->getRecruitMaximum();
  }
  if(p&&p->cb&&p->localState){n["day"].Integer()=p->cb->getDate(Date::DAY);
-  n["turn"].Bool()=p->makingTurn; n["autosaveAllowed"].Bool()=p->makingTurn&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>());
+  n["heroMoving"].Bool()=p->mobileHeroMoving();n["turn"].Bool()=p->makingTurn; n["autosaveAllowed"].Bool()=p->makingTurn&&!n["heroMoving"].Bool()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>());
   n["cheatsAllowed"].Bool()=p->cb->getStartInfo()->extraOptionsInfo.cheatsAllowed;
   n["cheatReady"].Bool()=p->makingTurn&&(n["mode"].String()=="map"||n["mode"].String()=="town");
   if(p->localState->getCurrentTown())n["selectedTownName"].String()=p->localState->getCurrentTown()->getNameTranslated();
@@ -162,13 +206,18 @@ void publishMobileState(){
   if(n["mode"].String()=="map"&&adventureInt){auto mini=adventureInt->getMobileMinimap();if(mini){auto size=p->cb->getMapSize();auto & m=n["mapOverview"];m["rect"]=rect(mini->pos);m["view"]=rect(adventureInt->getMobileMapRect());m["viewport"]=rect(mini->mobileVisibleArea());m["width"].Integer()=size.x;m["height"].Integer()=size.y;m["level"].Integer()=mini->mobileLevel();}}
   const auto hero=p->localState->getCurrentHero();
   if(hero){n["heroName"].String()=hero->getNameTranslated();n["movement"].Integer()=hero->movementPointsRemaining();n["heroId"].Integer()=hero->id.getNum();n["armies"].Vector().push_back(army(hero,hero->getNameTranslated()));if(p->localState->hasPath(hero)){n["hasPath"].Bool()=true;n["pathTurns"].Integer()=p->localState->getPath(hero).lastNode().turns;}}
-  int index=0;for(auto h:p->localState->getWanderingHeroes()){JsonNode item;item["name"].String()=h->getNameTranslated();item["index"].Integer()=index++;item["movement"].Integer()=h->movementPointsRemaining();n["heroes"].Vector().push_back(item);}
+  if(hero){for(const auto & slot:hero->artifactsWorn){auto artifact=slot.second.getArt();if(!artifact)continue;auto type=artifact->getType();JsonNode item;item["slot"].Integer()=slot.first.getNum();item["name"].String()=type->getNameTranslated();item["description"].String()=type->getDescriptionTranslated();item["icon"].Integer()=type->getIconIndex();n["equipment"].Vector().push_back(item);}n["backpackCount"].Integer()=hero->artifactsInBackpack.size();}
+  int index=0;for(auto h:p->localState->getWanderingHeroes()){JsonNode item;item["name"].String()=h->getNameTranslated();item["index"].Integer()=index++;item["movement"].Integer()=h->movementPointsRemaining();if(h->movementPointsRemaining()>0)n["anyHeroCanMove"].Bool()=true;n["heroes"].Vector().push_back(item);}
   index=0;for(auto t:p->localState->getOwnedTowns()){JsonNode item;item["name"].String()=t->getNameTranslated();item["index"].Integer()=index++;n["towns"].Vector().push_back(item);}
-  if(townWindow){const auto town=townWindow->town;n["townName"].String()=town->getNameTranslated();n["townFaction"].String()=town->getFaction()->getJsonKey();n["armies"].Vector().clear();n["armies"].Vector().push_back(army(town->getUpperArmy(),"Garnison"));if(town->getVisitingHero())n["armies"].Vector().push_back(army(town->getVisitingHero(),town->getVisitingHero()->getNameTranslated()));
-   for(const auto & entry:town->getTown()->buildings){if(!entry.second||entry.first.getNum()<0)continue;JsonNode b;b["id"].Integer()=entry.first.getNum();b["name"].String()=entry.second->getNameTranslated();b["key"].String()=entry.second->getJsonKey();b["description"].String()=entry.second->getDescriptionTranslated();b["built"].Bool()=town->hasBuilt(entry.first);b["allowed"].Bool()=p->cb->canBuildStructure(town,entry.first)==EBuildingState::ALLOWED;b["state"].Integer()=static_cast<int>(p->cb->canBuildStructure(town,entry.first));for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())b["cost"].Vector().push_back(JsonNode(double(town->getBuildingCost(entry.first)[resource])));n["buildings"].Vector().push_back(b);}
+  if(townWindow||fortWindow){const auto town=townWindow?townWindow->town:fortWindow->getMobileTown();n["townName"].String()=town->getNameTranslated();n["townFaction"].String()=town->getFaction()->getJsonKey();n["armies"].Vector().clear();n["armies"].Vector().push_back(army(town->getUpperArmy(),"Garnison"));if(town->getVisitingHero())n["armies"].Vector().push_back(army(town->getVisitingHero(),town->getVisitingHero()->getNameTranslated()));
+   for(const auto & entry:town->getTown()->buildings){if(!entry.second||entry.first.getNum()<0)continue;JsonNode b;b["id"].Integer()=entry.first.getNum();b["name"].String()=entry.second->getNameTranslated();b["key"].String()=entry.second->getJsonKey();b["description"].String()=entry.second->getDescriptionTranslated();b["built"].Bool()=town->hasBuilt(entry.first);const auto buildState=p->cb->canBuildStructure(town,entry.first);b["allowed"].Bool()=buildState==EBuildingState::ALLOWED;b["state"].Integer()=static_cast<int>(buildState);for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())b["cost"].Vector().push_back(JsonNode(double(town->getBuildingCost(entry.first)[resource])));n["buildings"].Vector().push_back(b);}
+   if(fortWindow){for(size_t level=0;level<town->getTown()->creatures.size();level++){
+    const auto & available=town->creatures[level].second;auto c=!available.empty()?available.back().toCreature():town->getTown()->creatures[level].front().toCreature();
+    auto row=creature(c,town->creatures[level].first);row["level"].Integer()=level;row["built"].Bool()=!available.empty();n["fortRows"].Vector().push_back(row);
+   }}
    for(size_t level=0;level<town->creatures.size();level++)for(size_t variant=0;variant<town->creatures[level].second.size();variant++){auto c=town->creatures[level].second[variant].toCreature();JsonNode item=creature(c,town->creatures[level].first);item["level"].Integer()=level;item["variant"].Integer()=variant;n["recruits"].Vector().push_back(item);}
   }
-  if(battleWindow&&CPlayerInterface::battleInt){const auto b=CPlayerInterface::battleInt;n["battleCamera"]=b->mobileCameraSnapshot();const bool tactics=b->tacticsMode||b->getBattle()->battleTacticDist()!=0;
+  if(battleWindow&&CPlayerInterface::battleInt){const auto b=CPlayerInterface::battleInt;n["battleCamera"]=b->mobileCameraSnapshot();n["spellTargeting"].Bool()=b->actionsController->heroSpellcastingModeActive()||b->actionsController->creatureSpellcastingModeActive();const bool tactics=b->tacticsMode||b->getBattle()->battleTacticDist()!=0;
    const bool ownsTactics=b->getBattle()->battleTacticDist()>0&&b->getBattle()->sideToPlayer(b->getBattle()->battleGetTacticsSide())==p->playerID;
    n["tacticsMode"].Bool()=tactics;n["canEndTactics"].Bool()=b->tacticsMode&&ownsTactics&&!b->openingPlaying()&&!b->hasAnimations();
    const bool autoOn=b->curInt&&b->curInt->isAutoFightOn;
@@ -180,12 +229,12 @@ void publishMobileState(){
    const auto caster=b->currentHero();n["heroHasSpellbook"].Bool()=caster&&caster->hasSpellbook();if(caster)n["heroMana"].Integer()=caster->mana;
    const auto spellProblem=caster?b->getBattle()->battleCanCastSpell(caster,spells::Mode::HERO):ESpellCastProblem::NO_HERO_TO_CAST_SPELL;
    n["heroCanCast"].Bool()=!tactics&&caster&&(spellProblem==ESpellCastProblem::OK||spellProblem==ESpellCastProblem::MAGIC_IS_BLOCKED);
-   n["canAct"].Bool()=b->makingTurn();n["round"].Integer()=b->round;n["battlePlayerAttacks"].Bool()=b->getBattle()->getBattle()->getSidePlayer(BattleSide::ATTACKER)==p->playerID;const auto active=b->stacksController->getActiveStack();n["creatureCanCast"].Bool()=!tactics&&active&&active->hasBonusOfType(BonusType::SPELLCASTER)&&active->canCast();if(active){n["activeUnit"]=creature(active->unitType(),active->getCount());n["activeStack"].Integer()=active->unitId();const auto center=b->fieldController->hexPositionAbsolute(active->getPosition()).center();n["focus"]["x"].Integer()=center.x;n["focus"]["y"].Integer()=center.y;}
+   n["canAct"].Bool()=b->makingTurn();n["round"].Integer()=b->round;n["battlePlayerAttacks"].Bool()=b->getBattle()->getBattle()->getSidePlayer(BattleSide::ATTACKER)==p->playerID;const auto active=b->stacksController->getActiveStack();n["creatureCanCast"].Bool()=!tactics&&active&&active->hasBonusOfType(BonusType::SPELLCASTER)&&active->canCast();if(active){n["activeUnit"]=creature(active->unitType(),active->getCount());n["activeUnit"]["remainingShots"].Integer()=active->shots.available();n["activeUnit"]["canShoot"].Bool()=b->getBattle()->battleCanShoot(active);n["activeStack"].Integer()=active->unitId();const auto center=b->fieldController->hexPositionAbsolute(active->getPosition()).center();n["focus"]["x"].Integer()=center.x;n["focus"]["y"].Integer()=center.y;}
    for(const auto stack:b->getBattle()->battleGetAllStacks()){if(stack->getCount()<=0||!stack->getPosition().isValid())continue;auto item=creature(stack->unitType(),stack->getCount());item["stackId"].Integer()=stack->unitId();item["eraSlot"].Integer()=stack->sourceMassSlot();item["currentHealth"].Integer()=stack->getFirstHPleft();item["maximumHealth"].Integer()=stack->getMaxHealth();item["cloned"].Bool()=stack->isClone();item["remainingCasts"].Integer()=stack->casts.available();item["remainingShots"].Integer()=stack->shots.available();item["speed"].Integer()=stack->getMovementRange();item["remainingRetaliations"].Integer()=stack->counterAttacks.available();item["attack"].Integer()=stack->getAttack(false);item["defense"].Integer()=stack->getDefense(false);item["morale"].Integer()=stack->moraleVal();for(const auto hex:stack->getHexes())item["occupied"].Vector().push_back(JsonNode(double(hex.toInt())));const auto center=b->fieldController->hexPositionAbsolute(stack->getPosition()).center();item["x"].Integer()=center.x;item["y"].Integer()=center.y;item["enemy"].Bool()=stack->getOwner()!=p->playerID;n["battleUnits"].Vector().push_back(item);}const auto accessibility=b->getBattle()->getAccessibility();const auto reachable=active?b->getBattle()->battleGetAvailableHexes(active,false):BattleHexArray();
    for(int row=0;row<11;row++)for(int col=1;col<16;col++){const BattleHex hex(col+17*row);const auto center=b->fieldController->hexPositionAbsolute(hex).center();JsonNode cell;cell["hex"].Integer()=hex.toInt();cell["x"].Integer()=center.x;cell["y"].Integer()=center.y;cell["kind"].Integer()=int(accessibility[hex.toInt()]);cell["reachable"].Bool()=active&&reachable.contains(hex);n["battleCells"].Vector().push_back(cell);}
-   const auto hovered=b->fieldController->getHoveredStack();if(hovered)n["targetUnit"]=creature(hovered->unitType(),hovered->getCount());}
+   const auto hovered=b->fieldController->getHoveredStack();if(hovered)n["targetUnit"]=creature(hovered->unitType(),hovered->getCount());if(active)for(auto & unit:n["battleUnits"].Vector()){const BattleHex position(unit["occupied"].Vector().empty()?0:unit["occupied"].Vector()[0].Integer());unit["canShootAt"].Bool()=b->getBattle()->battleCanShoot(active,position);unit["canMeleeAt"].Bool()=b->getBattle()->battleCanAttackHex(reachable,active,position);}}
  }
- const auto text=n.toCompactString();
+ publishPortraits();const auto text=n.toCompactString();
  if(text==lastSnapshot&&SDL_GetTicks()-lastSent<1000)return;
  auto * snapshot=static_cast<char *>(malloc(text.size()+1));if(!snapshot)return;
  memcpy(snapshot,text.c_str(),text.size()+1);lastSnapshot=text;lastSent=SDL_GetTicks();snapshotPending.store(true);
@@ -228,7 +277,17 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   {Settings adventure=settings.write["adventure"];adventure["heroMoveTime"].Float()=a;adventure["enemyMoveTime"].Float()=b?-1:a;}
   lastPublished=0;return;
  }
- if(action==20){if(GAME&&!GAME->interface())CMainMenu::openLobby(ESelectionScreen::newGame,true,{"Goonk"},ELoadMode::NONE,false);return;}
+ if(auto spell=ENGINE->windows().topWindow<CSpellWindow>()){
+  if(action==49){spell->mobileSelectSpell(a);lastPublished=0;return;}
+  if(action==50){if(a<0)spell->fLcornerb();else spell->fRcornerb();lastPublished=0;return;}
+  if(action==51){const std::array<SpellSchool,5> schools={SpellSchool::ANY,SpellSchool::AIR,SpellSchool::EARTH,SpellSchool::FIRE,SpellSchool::WATER};if(a>=0&&a<5)spell->selectSchool(schools[a]);lastPublished=0;return;}
+ }
+ if(action==57&&GAME&&GAME->server().getState()==EClientState::LOBBY){auto & server=GAME->server();PlayerColor color(a);if(server.si->playerInfos.count(color)&&(b==-1||server.getPlayerInfo(color).allowedFactions.count(FactionID(b))))server.setPlayerOption(LobbyChangePlayerOption::TOWN_ID,b,color);lastPublished=0;return;}
+ if(action==47){if(GAME&&!GAME->interface())CMainMenu::openLobby(ESelectionScreen::campaignList,true,{"Goonk"},ELoadMode::NONE,false);return;}
+ if(action==52){if(auto lobby=ENGINE->windows().topWindow<CLobbyScreen>())if(GAME->server().screenType==ESelectionScreen::campaignList&&a>=0&&a<int(mobileCampaigns.size())){GAME->server().setCampaignState(CampaignHandler::getCampaign(mobileCampaigns[a].first));}return;}
+ if(action==48){if(auto lobby=ENGINE->windows().topWindow<CLobbyScreen>())if(lobby->tabRand&&GAME->server().getState()==EClientState::LOBBY&&a>=2&&a<=8&&b>=1&&b<=a&&(c==36||c==72||c==108||c==144)){
+ auto options=std::make_shared<CMapGenOptions>();options->setWidth(c);options->setHeight(c);options->setLevels(d?2:1);options->setHumanOrCpuPlayerCount(b);options->setCompOnlyPlayerCount(a-b);options->setTeamCount(0);options->setCompOnlyTeamCount(0);for(int i=0;i<b;i++)options->setPlayerTypeForStandardPlayer(PlayerColor(i),EPlayerType::HUMAN);if(e>=0&&GAME->server().getPlayerInfo(PlayerColor(0)).allowedFactions.count(FactionID(e)))options->setStartingTownForPlayer(PlayerColor(0),FactionID(e));lobby->tabRand->setMapGenOptions(options);lobby->tabRand->updateMapInfoByHost();lastPublished=0;}return;}
+ if(action==20){if(GAME&&!GAME->interface()){std::vector<std::string> names;for(int i=0;i<std::clamp(a,1,8);i++)names.push_back("Player "+std::to_string(i+1));CMainMenu::openLobby(ESelectionScreen::newGame,true,names,ELoadMode::NONE,false);}return;}
  if(action==21){if(GAME&&GAME->server().getState()==EClientState::LOBBY){auto info=std::make_shared<CMapInfo>();info->mapInit("MAPS/001-Goonks");pendingDefaultMap="Goonks";GAME->server().setMapInfo(info);}return;}
  if(action==22){if(GAME&&GAME->server().getState()==EClientState::LOBBY)GAME->server().sendStartGame();return;}
  if(action==24){if(GAME&&GAME->server().getState()==EClientState::LOBBY&&a>=0&&a<int(mobileMaps.size())){auto info=std::make_shared<CMapInfo>();info->mapInit(mobileMaps[a].first);pendingDefaultMap=info->getNameForList()=="Goonks"?"Goonks":"";GAME->server().setMapInfo(info);}return;}
@@ -238,7 +297,14 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==23){if(GAME&&!GAME->interface())CMainMenu::openLobby(ESelectionScreen::loadGame,true,{"Goonk"},ELoadMode::SINGLE,false);return;}
  auto p=GAME?GAME->interface():nullptr;if(!p||!p->cb||!p->localState)return;
  const auto hero=p->localState->getCurrentHero();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battle= CPlayerInterface::battleInt;
- if(action==34){const bool allowed=p->makingTurn&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>());if(allowed)p->cb->save("Saves/Goonk-auto",false);MAIN_THREAD_ASYNC_EM_ASM({window.dispatchEvent(new CustomEvent('goonk-autosave-accepted',{detail:{id:$0,accepted:!!$1}}));},a,allowed);return;}
+ if(action==54&&townWindow&&p->makingTurn){ENGINE->windows().createAndPushWindow<CFortScreen>(townWindow->town);lastPublished=0;return;}
+ if(action==55&&hero&&ENGINE->windows().topWindow<AdventureMapInterface>()){p->openHeroWindow(hero);return;}
+ if(action==56&&ENGINE->windows().topWindow<AdventureMapInterface>()&&a>=0&&a<int(p->localState->getOwnedTowns().size())){adventureInt->centerOnObject(p->localState->getOwnedTown(a));return;}
+ if(action==53&&p->makingTurn&&(townWindow||ENGINE->windows().topWindow<CFortScreen>())){
+ const auto town=townWindow?townWindow->town:ENGINE->windows().topWindow<CFortScreen>()->getMobileTown();if(town->getOwner()!=p->playerID)return;auto budget=p->cb->getResourceAmount();auto dest=town->getUpperArmy();std::set<CreatureID> types;int free=0;for(int i=0;i<7;i++){auto c=dest->getCreature(SlotID(i));if(c)types.insert(c->getId());else free++;}
+ for(size_t level=0;level<town->creatures.size();level++){const auto & row=town->creatures[level];if(row.second.empty()||row.first<=0)continue;const auto id=row.second.back();if(!types.count(id)&&free==0)continue;const auto creature=id.toCreature();int count=row.first;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects()){const auto cost=creature->getRecruitCost(resource);if(cost>0)count=std::min(count,int(budget[resource]/cost));}if(count<=0)continue;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())budget[resource]-=count*creature->getRecruitCost(resource);if(!types.count(id)){types.insert(id);free--;}p->cb->recruitCreatures(town,dest,id,count,level);}
+ lastPublished=0;return;}
+ if(action==34){const bool allowed=p->makingTurn&&!p->mobileHeroMoving()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>());if(allowed)p->cb->save("Saves/Goonk-auto",false);MAIN_THREAD_ASYNC_EM_ASM({window.dispatchEvent(new CustomEvent('goonk-autosave-accepted',{detail:{id:$0,accepted:!!$1}}));},a,allowed);return;}
  if(action==29){
   static const std::array<std::string,8> codes={"vcmiresources 100","vcmimove","vcmimap","vcmispells","vcmibuild","vcmilevel 1","vcmiluck","vcmimorale"};
   if(a<0||a>=int(codes.size())||!p->makingTurn||!p->cb->getStartInfo()->extraOptionsInfo.cheatsAllowed)return;
@@ -248,6 +314,15 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   else{if(a!=0&&a!=2&&!hero)return;p->cb->sendMessage(codes[a],hero);}
   return;
  }
+ if(action==41){
+  const auto army=dynamic_cast<const CArmedInstance*>(p->cb->getObj(ObjectInstanceID(a)));
+  if(!army||army->getOwner()!=p->playerID||b<0||b>=7||!army->hasStackAtSlot(SlotID(b)))return;
+  if(auto old=ENGINE->windows().topWindow<CStackWindow>())std::static_pointer_cast<CWindowObject>(old)->close();
+  if(!ENGINE->windows().topWindow<AdventureMapInterface>()&&!townWindow)return;
+  ENGINE->windows().createAndPushWindow<CStackWindow>(&army->getStack(SlotID(b)),false);lastPublished=0;return;
+ }
+ if(action==42&&(ENGINE->windows().topWindow<CFortScreen>()||ENGINE->windows().topWindow<CRecruitmentWindow>())){if(a>=0&&a<int(LIBRARY->creh->objects.size()))ENGINE->windows().createAndPushWindow<CStackWindow>(CreatureID(a).toCreature(),false);lastPublished=0;return;}
+ if(action==43){if(auto object=ENGINE->windows().topWindow<CWindowObject>())if(dynamic_cast<CStackWindow*>(object.get())||dynamic_cast<CFortScreen*>(object.get()))object->close();lastPublished=0;return;}
  if(action==2&&ENGINE->windows().topWindow<AdventureMapInterface>()&&hero&&p->localState->hasPath(hero)&&p->makingTurn)shortcut(EShortcut::ADVENTURE_MOVE_HERO);
  if(action==3&&ENGINE->windows().topWindow<AdventureMapInterface>()&&p->makingTurn)p->cb->endTurn();
  if(action==4&&a>=0&&a<int(p->localState->getWanderingHeroes().size())&&ENGINE->windows().topWindow<AdventureMapInterface>()){const auto h=p->localState->getWanderingHero(a);p->localState->setSelection(h);adventureInt->centerOnObject(h);}
@@ -262,8 +337,9 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==39){if(townWindow&&townWindow->builds&&p->makingTurn&&townWindow->town->getOwner()==p->playerID&&a>=0&&townWindow->town->getTown()->buildings.count(BuildingID(a))&&townWindow->town->hasBuilt(BuildingID(a)))townWindow->builds->buildingClicked(BuildingID(a));lastPublished=0;return;}
  if(action==8&&townWindow&&townWindow->town->getOwner()==p->playerID&&p->cb->canBuildStructure(townWindow->town,BuildingID(a))==EBuildingState::ALLOWED)p->cb->buildBuilding(townWindow->town,BuildingID(a));
  if(action==9&&townWindow&&townWindow->town->getOwner()==p->playerID){const auto t=townWindow->town;if(a>=0&&a<int(t->creatures.size())&&b>=0&&b<int(t->creatures[a].second.size())&&c>0){const auto id=t->creatures[a].second[b];p->cb->recruitCreatures(t,t->getUpperArmy(),id,std::min(c,int(t->creatures[a].first)),a);}}
- if(action==30&&townWindow&&p->makingTurn&&townWindow->town->getOwner()==p->playerID){
-  const auto town=townWindow->town;
+ if(action==30&&(townWindow||ENGINE->windows().topWindow<CFortScreen>())&&p->makingTurn){
+  const auto town=townWindow?townWindow->town:ENGINE->windows().topWindow<CFortScreen>()->getMobileTown();
+  if(town->getOwner()!=p->playerID)return;
   if(a>=0&&a<int(town->creatures.size())&&!town->creatures[a].second.empty()){
    const auto recruit=[town,a](CreatureID id,int count){GAME->interface()->cb->recruitCreatures(town,town->getUpperArmy(),id,count,a);};
    ENGINE->windows().createAndPushWindow<CRecruitmentWindow>(town,a,town->getUpperArmy(),recruit,nullptr,-87);

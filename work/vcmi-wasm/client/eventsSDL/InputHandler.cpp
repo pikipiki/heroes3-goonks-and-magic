@@ -10,8 +10,8 @@
 
 #include "StdInc.h"
 #include "InputHandler.h"
-#include "../MobileBridge.h"
 #include "BrowserEventQueue.h"
+#include "../MobileBridge.h"
 #ifdef VCMI_HTML5_BUILD
 #include "../../lib/html5/html5.h"
 #endif
@@ -245,14 +245,13 @@ bool InputHandler::ignoreEventsUntilInput()
 void InputHandler::preprocessEvent(const SDL_Event & ev)
 {
 #ifdef VCMI_EMSCRIPTEN
- // The HTML presentation owns mobile pointer input. Only explicit bridge
- // commands may click the native UI underneath menus and touch controls.
- if(isMobilePresentationActive() && (ev.type==SDL_MOUSEMOTION || ev.type==SDL_MOUSEBUTTONDOWN || ev.type==SDL_MOUSEBUTTONUP || ev.type==SDL_MOUSEWHEEL || ev.type==SDL_FINGERDOWN || ev.type==SDL_FINGERUP || ev.type==SDL_FINGERMOTION)) return;
+ // HTML controls own touch/pointer/keyboard input. Raw SDL copies would hit
+ // unrelated controls behind the mobile overlay a second time.
+ if(isMobilePresentationActive() && (ev.type==SDL_MOUSEMOTION || ev.type==SDL_MOUSEBUTTONDOWN || ev.type==SDL_MOUSEBUTTONUP || ev.type==SDL_MOUSEWHEEL || ev.type==SDL_FINGERDOWN || ev.type==SDL_FINGERUP || ev.type==SDL_FINGERMOTION || ev.type==SDL_KEYDOWN || ev.type==SDL_KEYUP || ev.type==SDL_TEXTINPUT || ev.type==SDL_TEXTEDITING)) return;
 #endif
-
 	if(ev.type == SDL_QUIT)
 	{
-#ifndef VCMI_EMSCRIPTEN
+		#ifndef VCMI_EMSCRIPTEN
 		std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
 #endif
 #ifdef VCMI_ANDROID
@@ -264,7 +263,7 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 	}
 	else if(ev.type == SDL_APP_WILLENTERBACKGROUND)
 	{
-#ifndef VCMI_EMSCRIPTEN
+		#ifndef VCMI_EMSCRIPTEN
 		std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
 #endif
 		ENGINE->user().onAppPaused();
@@ -275,8 +274,8 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 		if(ev.key.keysym.sym == SDLK_F4 && (ev.key.keysym.mod & KMOD_ALT))
 		{
 			// FIXME: dead code? Looks like intercepted by OS/SDL and delivered as SDL_Quit instead?
-#ifndef VCMI_EMSCRIPTEN
-			std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+			#ifndef VCMI_EMSCRIPTEN
+		std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
 #endif
 			ENGINE->user().onShutdownRequested(true);
 			return;
@@ -284,8 +283,8 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 
 		if(ev.key.keysym.scancode == SDL_SCANCODE_AC_BACK && !settings["input"]["handleBackRightMouseButton"].Bool())
 		{
-#ifndef VCMI_EMSCRIPTEN
-			std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+			#ifndef VCMI_EMSCRIPTEN
+		std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
 #endif
 			ENGINE->user().onShutdownRequested(true);
 			return;
@@ -293,7 +292,7 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 	}
 	else if(ev.type == SDL_USEREVENT)
 	{
-#ifndef VCMI_EMSCRIPTEN
+		#ifndef VCMI_EMSCRIPTEN
 		std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
 #endif
 		handleUserEvent(ev.user);
@@ -314,8 +313,8 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 			case SDL_WINDOWEVENT_RESTORED:
 #ifndef VCMI_IOS
 			{
-#ifndef VCMI_EMSCRIPTEN
-				std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+				#ifndef VCMI_EMSCRIPTEN
+		std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
 #endif
 				ENGINE->onScreenResize(false, false);
 			}
@@ -323,8 +322,8 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 				break;
 			case SDL_WINDOWEVENT_SIZE_CHANGED:
 			{
-#ifndef VCMI_EMSCRIPTEN
-				std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+				#ifndef VCMI_EMSCRIPTEN
+		std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
 #endif
 #ifdef VCMI_MOBILE
 				ENGINE->onScreenResize(true, false);
@@ -335,8 +334,8 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 				break;
 			case SDL_WINDOWEVENT_FOCUS_GAINED:
 			{
-#ifndef VCMI_EMSCRIPTEN
-				std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+				#ifndef VCMI_EMSCRIPTEN
+		std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
 #endif
 				if(settings["general"]["audioMuteFocus"].Bool()) {
 					ENGINE->music().setVolume(settings["general"]["music"].Integer());
@@ -346,8 +345,8 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 				break;
 			case SDL_WINDOWEVENT_FOCUS_LOST:
 			{
-#ifndef VCMI_EMSCRIPTEN
-				std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+				#ifndef VCMI_EMSCRIPTEN
+		std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
 #endif
 				if(settings["general"]["audioMuteFocus"].Bool()) {
 					ENGINE->music().setVolume(0);
@@ -360,7 +359,7 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 	}
 	else if(ev.type == SDL_SYSWMEVENT)
 	{
-#ifndef VCMI_EMSCRIPTEN
+		#ifndef VCMI_EMSCRIPTEN
 		std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
 #endif
 		if(!settings["session"]["headless"].Bool() && settings["general"]["notifications"].Bool())
@@ -388,7 +387,7 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 	//preprocessing
 	if(ev.type == SDL_MOUSEMOTION)
 	{
-#ifndef VCMI_EMSCRIPTEN
+		#ifndef VCMI_EMSCRIPTEN
 		std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
 #endif
 		ENGINE->cursor().cursorMove(ev.motion.x, ev.motion.y);

@@ -17,3 +17,7 @@ test('Rotation surfaces settle once while drawing coordinates remain correct',()
 test('Large touch displays keep a bounded canvas pixel budget',()=>{
  const s=createCanvasSizer(),canvas={width:0,height:0};s.fit(canvas,1600,1200,3);assert(canvas.width*canvas.height<=2003000);assert(canvas.width>0&&canvas.height>0);
 });
+
+test('Mobile framebuffer preservation is configured even before the translated UI finishes loading',()=>{
+ const previous=globalThis.window;try{globalThis.window={location:{search:'?mobile=1'},matchMedia:()=>({matches:true})};let options;const canvas={getContext:(type,value)=>{options=value;return 'context';}};configureMobileSource(canvas,undefined);canvas.getContext('webgl2',{alpha:false});assert.equal(options.preserveDrawingBuffer,true);assert.equal(window.goonkMobileActive,true);}finally{if(previous===undefined)delete globalThis.window;else globalThis.window=previous;}
+});

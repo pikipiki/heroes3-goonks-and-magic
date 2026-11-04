@@ -403,3 +403,14 @@ rechargement de la sauvegarde. Il produit les mesures mémoire, les tâches long
 un profil CPU et une capture dans `GOONK_REPORT_DIR`. `GOONK_CPU_THROTTLE=4`
 ralentit le thread navigateur via CDP pour compléter la simulation mobile.
 Ces essais ne remplacent pas une mesure sur un téléphone physique.
+
+
+### Version 0.4.24 — mobile towns, armies and spellbook
+
+English is the default; Settings provides an English/French selector. Native game text applies on the next opening. The native engine archive for this version is `outputs/vcmi-wasm-goonk-0.4.24-engine.tar.gz`, including the OPFS memory improvements described above.
+
+Town shortcuts span the screen: Build, Recruitment Hall, Mage Guild and Marketplace. Native animated creature previews fill recruitment and inspection views; original and modded army portraits use the native icon atlas as a fallback. Recruit All asks for confirmation and respects available resources and army slots. Landscape towns and the optional dual combat view use the available screen area; the whole battlefield remains the default.
+
+Combat uses one confirmation action for movement, melee, ranged attacks and spell targets. Magic opens the native spellbook through accessible spell rows, five school filters and previous/next pages. The bridge retains native validation. Game date/week information, equipment, direct access to a single owned town, campaigns and vertical custom-map settings are available. Rotation cancels unfinished taps rather than redirecting them to newly positioned buttons. Saving avoids hero movement, and its notification lasts at most 250 ms unless saving fails. Returning to a live tab retains the running game.
+
+Validation: `ninja -j32 html5`, `npm test` (272 passed, 16 optional host checks skipped), `npm run verify:web`. `work/browser-tests/mobile-upgrade-e2e.mjs` checks Chromium and WebKit layouts, direct spellbook access, portraits, bulk-recruit confirmation and language switching. `mobile-upgrade-native-e2e.mjs` runs the real engine: animated previews, recruitment, building-window cycles, a cast spell, a completed fight and tab resume. Configure `CHROME_PATH`, `WEBKIT_PATH`, `GOONK_TEST_ORIGIN` and optionally `GOONK_REPORT_DIR`; a local build must allow that test origin. `GOONK_WINDOW_CYCLES` defaults to 30. After warmup, the measured JS heap stabilized during 30 building/recruitment cycles, with a constant 288 MiB WASM buffer and stable canvas count. This is a bounded regression check, not a claim that every leak or frame stall is eliminated. A generated four-player/two-human map and the 21 original campaign entries/scenario selection were also checked. No complete campaign or physical iPhone test is claimed.
