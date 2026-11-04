@@ -10,6 +10,9 @@
 #include "StdInc.h"
 
 #include "SelectionTab.h"
+#ifdef VCMI_EMSCRIPTEN
+#include "../MobileBridge.h"
+#endif
 #include "CSelectionBase.h"
 #include "CLobbyScreen.h"
 #include "BattleOnlyModeTab.h"
@@ -921,6 +924,13 @@ void SelectionTab::parseMaps(const std::unordered_set<ResourcePath> & files)
 	allItems.clear();
 	for(auto & file : files)
 	{
+#ifdef VCMI_EMSCRIPTEN
+        // The mobile catalogue is published incrementally by MobileBridge.
+        // Seed the hidden native list with bundled defaults instead of parsing
+        // hundreds of headers twice before the player can choose a map.
+        if(isMobilePresentationActive() && file.getName().find("001-GOONKS")==std::string::npos && file.getName().find("000-GOONK")==std::string::npos)
+            continue;
+#endif
 		try
 		{
 			auto mapInfo = std::make_shared<ElementInfo>();

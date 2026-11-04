@@ -6,7 +6,7 @@ export function listLocalSaves(FS){
  }).sort((a,b)=>b.modified-a.modified||a.name.localeCompare(b.name));}catch{return[];}
 }
 // Boot-only recovery. Foregrounding a live engine never sends a load command.
-export function createSessionRecovery({listSaves,command,onStatus=()=>{},manual=false,newGame=false,custom=null,onChooseAlternative=()=>{},clock=()=>Date.now()}){
+export function createSessionRecovery({listSaves,command,onStatus=()=>{},manual=false,newGame=false,campaign=false,custom=null,onChooseAlternative=()=>{},clock=()=>Date.now()}){
  let phase='idle',checked=false,candidates=[],chosen=null,lastProgress=clock();
  const status=(value,error)=>{phase=value;lastProgress=clock();onStatus({phase,error,save:chosen?.name,busy:['opening','selecting','starting','custom-opening','custom-configuring'].includes(phase),canDismiss:true});};
  const fail=error=>status('failed',error);
@@ -20,6 +20,7 @@ export function createSessionRecovery({listSaves,command,onStatus=()=>{},manual=
    if(!checked){
     checked=true;
     if(custom&&state.mode==='menu'){status('custom-opening');command(20,custom[1]);return;}
+    if(campaign&&state.mode==='menu'){status('dismissed');command(47);return;}
     if(newGame&&state.mode==='menu'){status('dismissed');command(20);return;}
     if(manual&&state.mode==='menu'){status('dismissed');command(23);return;}
     if(state.mode!=='menu'){status('done');return;}
@@ -50,10 +51,10 @@ export function installSessionRecovery({win=window,doc=document}={}){
  const dialog=doc.createElement('dialog');dialog.className='session-recovery';dialog.setAttribute('aria-labelledby','session-recovery-title');
  dialog.innerHTML='<h2 id="session-recovery-title">Reprise de ta partie</h2><p class="session-recovery-message" role="status" aria-live="polite"></p><button type="button">Choisir une autre partie</button>';
  doc.body.append(dialog);const message=dialog.querySelector('p'),button=dialog.querySelector('button');
- const url=new URL(win.location.href),manual=url.searchParams.get('choose-save')==='1',newGame=url.searchParams.get('new-game')==='1';if(newGame){url.searchParams.delete('new-game');win.history.replaceState(null,'',url.href);}if(manual){url.searchParams.delete('choose-save');win.history.replaceState(null,'',url.href);}
+ const url=new URL(win.location.href),manual=url.searchParams.get('choose-save')==='1',newGame=url.searchParams.get('new-game')==='1',campaign=url.searchParams.get('new-campaign')==='1';if(campaign){url.searchParams.delete('new-campaign');win.history.replaceState(null,'',url.href);}if(newGame){url.searchParams.delete('new-game');win.history.replaceState(null,'',url.href);}if(manual){url.searchParams.delete('choose-save');win.history.replaceState(null,'',url.href);}
  let custom=null;try{const value=JSON.parse(url.searchParams.get('custom-game'));if(Array.isArray(value)&&value.length===5&&value.every(Number.isInteger)&&value[0]>=2&&value[0]<=8&&value[1]>=1&&value[1]<=value[0]&&[36,72,108,144].includes(value[2]))custom=value;}catch{}if(custom){url.searchParams.delete('custom-game');win.history.replaceState(null,'',url.href);}
  let lastState=null;
- const recovery=createSessionRecovery({manual,newGame,custom,onChooseAlternative:({restarting})=>{if(restarting){const next=new URL(win.location.href);next.searchParams.set('choose-save','1');win.location.replace(next.href);}else if(lastState)win.dispatchEvent(new CustomEvent('goonk-state',{detail:lastState}));},listSaves:()=>listLocalSaves(win.Module?.FS),command:(a,b=0,c=0,d=0,e=0,f=0)=>win.Module?._vcmiMobileCommand?.(a,b,c,d,e,f),onStatus:info=>{
+ const recovery=createSessionRecovery({manual,newGame,campaign,custom,onChooseAlternative:({restarting})=>{if(restarting){const next=new URL(win.location.href);next.searchParams.set('choose-save','1');win.location.replace(next.href);}else if(lastState)win.dispatchEvent(new CustomEvent('goonk-state',{detail:lastState}));},listSaves:()=>listLocalSaves(win.Module?.FS),command:(a,b=0,c=0,d=0,e=0,f=0)=>win.Module?._vcmiMobileCommand?.(a,b,c,d,e,f),onStatus:info=>{
   win.goonkSessionRecovery=info;
   const show=info.busy||info.phase==='failed';dialog.dataset.busy=String(info.busy);button.disabled=!info.canDismiss;
   message.textContent=info.error||(['custom-opening','custom-configuring'].includes(info.phase)?'Preparing game options…':null)||(info.phase==='starting'?'Chargement de la dernière sauvegarde…':'Recherche de la dernière sauvegarde enregistrée sur cet appareil…');

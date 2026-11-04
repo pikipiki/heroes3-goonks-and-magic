@@ -39,6 +39,7 @@
 #include "lobby/CLobbyScreen.h"
 #include "windows/CCastleInterface.h"
 #include "windows/GUIClasses.h"
+#include "windows/InfoWindows.h"
 #include "widgets/Buttons.h"
 #include "windows/CHeroWindow.h"
 #include "battle/BattleInterface.h"
@@ -68,6 +69,7 @@
 namespace {
 bool mobileEnabled=false,stateEnabled=false,audioMuted=false;
 ui32 previousSoundVolume=75,previousMusicVolume=75;
+std::vector<ResourcePath> pendingMobileMaps;size_t mobileMapCursor=0;
 bool mapsListed=false,savesListed=false;std::set<int> portraitIds;std::vector<std::pair<std::string,std::string>> mobileCampaigns;std::vector<std::pair<std::string,std::string>> mobileMaps,mobileSaves;
 uint32_t lastPublished=0,lastSent=0;
 std::string lastSnapshot,pendingDefaultMap;
@@ -138,6 +140,8 @@ void publishMobileState(){
  portraitIds.clear();JsonNode n;n["mapSettings"]["moveTime"].Integer()=settings["adventure"]["heroMoveTime"].Integer();n["mapSettings"]["enemyMoveTime"].Integer()=settings["adventure"]["enemyMoveTime"].Integer();n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top)n["rect"]=rect(top->pos);
  auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();auto recruitWindow=ENGINE->windows().topWindow<CRecruitmentWindow>();auto fortWindow=ENGINE->windows().topWindow<CFortScreen>();auto creatureWindow=ENGINE->windows().topWindow<CStackWindow>();auto spellWindow=ENGINE->windows().topWindow<CSpellWindow>();
  if(ENGINE->windows().topWindow<CLobbyScreen>())n["mode"].String()=GAME->server().screenType==ESelectionScreen::loadGame?"load":GAME->server().screenType==ESelectionScreen::campaignList?"campaign":"lobby";
+ else if(ENGINE->windows().topWindow<CSimpleJoinScreen>())n["mode"].String()="connecting";
+ else if(ENGINE->windows().topWindow<CInfoWindow>()){n["mode"].String()="dialog";n["dialogTitle"].String()="Game message";}
  else if(spellWindow){n["mode"].String()="spellbook";n["spellbook"]=spellWindow->mobileSnapshot();}
  else if(recruitWindow)n["mode"].String()="recruit";
  else if(fortWindow)n["mode"].String()="fort";
@@ -152,7 +156,7 @@ void publishMobileState(){
   if(auto stack=creatureWindow->getMobileStack()){const bool shooter=stack->hasBonusOfType(BonusType::SHOOTER);item["attack"].Integer()=stack->getAttack(shooter);item["defense"].Integer()=stack->getDefense(shooter);item["health"].Integer()=stack->getMaxHealth();item["speed"].Integer()=stack->getMovementRange();item["damageMin"].Integer()=stack->getMinDamage(shooter);item["damageMax"].Integer()=stack->getMaxDamage(shooter);}
   n["creatureUnit"]=item;
  }
- n["sessionState"].Integer()=static_cast<int>(GAME->server().getState());
+ n["sessionState"].Integer()=static_cast<int>(GAME->server().getState());if(n["mode"].String()=="connecting")n["launchAction"].Integer()=GAME->server().screenType==ESelectionScreen::loadGame?23:GAME->server().screenType==ESelectionScreen::campaignList?47:20;
  if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>()){
   n["dialogKind"].String()="tavern";n["dialogTitle"].String()="Taverne";
   if(tavern->cancel)n["dialogCloseRect"]=rect(tavern->cancel->pos);
@@ -164,7 +168,14 @@ void publishMobileState(){
  }
  if(n["mode"].String()=="lobby"){
   n["lobbyReady"].Bool()=GAME->server().getState()==EClientState::LOBBY;
-  if(!mapsListed){mapsListed=true;const auto files=CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path){return path.getType()==EResType::MAP&&path.getName().find("MAPS/")==0;});for(const auto & file:files){try{CMapInfo info;info.mapInit(file.getOriginalName());if(info.amountOfHumanControllablePlayers>0)mobileMaps.emplace_back(file.getOriginalName(),info.getNameForList());}catch(const std::exception &){} }std::sort(mobileMaps.begin(),mobileMaps.end(),[](const auto & a,const auto & b){return a.second<b.second;});}
+  if(!mapsListed){mapsListed=true;const auto files=CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path){return path.getType()==EResType::MAP&&path.getName().find("MAPS/")==0;});pendingMobileMaps.assign(files.begin(),files.end());
+   const auto priority=[](const ResourcePath & path){const auto name=path.getName();return name.find("001-GOONKS")!=std::string::npos?0:name.find("000-GOONK")!=std::string::npos?1:2;};
+   std::stable_sort(pendingMobileMaps.begin(),pendingMobileMaps.end(),[&](const auto & a,const auto & b){return priority(a)<priority(b);});}
+  // Keep the engine responsive while cataloguing hundreds of installed maps.
+  // Append-only indices stay valid while the remaining headers are read.
+  const auto catalogueStart=SDL_GetTicks();int loadedThisTick=0;
+  while(mobileMapCursor<pendingMobileMaps.size()&&loadedThisTick<4){const auto & file=pendingMobileMaps[mobileMapCursor++];++loadedThisTick;try{CMapInfo info;info.mapInit(file.getOriginalName());if(info.amountOfHumanControllablePlayers>0)mobileMaps.emplace_back(file.getOriginalName(),info.getNameForList());}catch(const std::exception &){} if(SDL_GetTicks()-catalogueStart>=8)break;}
+  n["mapsLoading"].Bool()=mobileMapCursor<pendingMobileMaps.size();n["mapsScanned"].Integer()=mobileMapCursor;n["mapsTotal"].Integer()=pendingMobileMaps.size();
   for(size_t i=0;i<mobileMaps.size();i++){JsonNode entry;entry["index"].Integer()=i;entry["name"].String()=mobileMaps[i].second;n["maps"].Vector().push_back(entry);}
   if(GAME->server().mi){
    auto & server=GAME->server();n["customMap"].Bool()=server.mi->isRandomMap;n["selectedMap"].String()=server.mi->getNameForList();n["difficulty"].Integer()=server.si->difficulty;
@@ -283,6 +294,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   if(action==51){const std::array<SpellSchool,5> schools={SpellSchool::ANY,SpellSchool::AIR,SpellSchool::EARTH,SpellSchool::FIRE,SpellSchool::WATER};if(a>=0&&a<5)spell->selectSchool(schools[a]);lastPublished=0;return;}
  }
  if(action==57&&GAME&&GAME->server().getState()==EClientState::LOBBY){auto & server=GAME->server();PlayerColor color(a);if(server.si->playerInfos.count(color)&&(b==-1||server.getPlayerInfo(color).allowedFactions.count(FactionID(b))))server.setPlayerOption(LobbyChangePlayerOption::TOWN_ID,b,color);lastPublished=0;return;}
+ if((action==20||action==23||action==47)&&GAME&&(ENGINE->windows().topWindow<CSimpleJoinScreen>()||ENGINE->windows().topWindow<CLobbyScreen>()||ENGINE->windows().topWindow<CBonusSelection>()||ENGINE->windows().topWindow<CInfoWindow>()||GAME->server().getState()==EClientState::CONNECTING))return;
  if(action==47){if(GAME&&!GAME->interface())CMainMenu::openLobby(ESelectionScreen::campaignList,true,{"Goonk"},ELoadMode::NONE,false);return;}
  if(action==52){if(auto lobby=ENGINE->windows().topWindow<CLobbyScreen>())if(GAME->server().screenType==ESelectionScreen::campaignList&&a>=0&&a<int(mobileCampaigns.size())){GAME->server().setCampaignState(CampaignHandler::getCampaign(mobileCampaigns[a].first));}return;}
  if(action==48){if(auto lobby=ENGINE->windows().topWindow<CLobbyScreen>())if(lobby->tabRand&&GAME->server().getState()==EClientState::LOBBY&&a>=2&&a<=8&&b>=1&&b<=a&&(c==36||c==72||c==108||c==144)){

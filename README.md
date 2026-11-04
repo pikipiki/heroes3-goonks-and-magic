@@ -428,3 +428,12 @@ Regression checks: `tests/touch-geometry.test.mjs`, `tests/mobile-press.test.mjs
 The map's Castle centering action no longer starts a loader: it changes only the camera, not the game fields previously used as acknowledgements. Spellbook paging/filtering and zero-cost recruitment now acknowledge their loading controls through the actual page/school/army state. `tests/action-feedback.test.mjs` covers these cases.
 
 A fresh native stress run performed three normal construction days, seven creature purchases, twenty recruitment-window cycles, rotation and saved-game recovery. It did not reproduce a spontaneous restart; WASM memory remained at 256 MiB, the asset cache at or below 16 MiB and ordinary VFS data below 4 MiB. This desktop-browser run does not establish the cause of a reported phone restart or rule out phone memory pressure.
+
+
+### Version 0.4.27 — bounded menu opening and incremental map catalogue
+
+The hidden native mobile selector seeds only the bundled Goonk maps. The mobile bridge publishes the remaining map headers in append-only batches of at most four per tick (or an 8 ms budget), keeping indices stable while more maps arrive. Desktop native selection retains its full list. Connection screens and native information/error dialogs are now represented explicitly instead of remaining behind the mobile home screen. Duplicate new/load/campaign requests are ignored while a join/lobby/dialog is already open.
+
+A menu launch disables competing actions and shows progress. After 25 seconds without a successful opening, it stops the spinner and offers an explicit fresh-runtime retry, retaining saves and cached game files. It does not reload automatically. Session-recovery openings have the same bounded wait; campaign retries preserve their destination.
+
+Validation: `ninja -j32 html5`, 286 unit checks passed, 16 optional host checks skipped, and `verify:web`. `work/browser-tests/menu-launch-e2e.mjs` covers stalled opening, duplicate requests, explicit retry and native-error presentation in Chromium/WebKit. `menu-launch-native-e2e.mjs` observes the real partial catalogue, stable IDs, a started game, saved-game loading and opening one of the 21 original campaigns. Initial options were available after roughly 0.4–0.5 s on the test Mac, with 4 of 357 maps catalogued; this is not a phone performance guarantee. Both scripts accept the browser/origin environment variables used by the other browser scenarios; the native scenario also accepts `GOONK_REPORT_DIR`. The engine archive is `outputs/vcmi-wasm-goonk-0.4.27-engine.tar.gz`.

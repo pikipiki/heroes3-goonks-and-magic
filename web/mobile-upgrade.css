@@ -79,3 +79,7 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-view{flex:0 0 auto;min-width:110px;white-space:nowrap}
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-calendar{flex:0 0 100%;width:100%;box-sizing:border-box}
 }
+
+.menu-launch-status{position:absolute;inset:auto 12px 12px;z-index:8;padding:14px;background:#24180cf5;border:2px ridge #c9a34d;color:#fff0bb;font:16px/1.45 Georgia,serif;max-height:80%;overflow:auto}.menu-launch-status[hidden]{display:none}.menu-launch-status h2{font-size:20px;margin:0 0 8px}.menu-launch-status p{margin:0 0 10px}.menu-launch-status progress{width:100%;accent-color:#ddbd61}.menu-launch-status button{width:100%;min-height:52px}
+
+#mobile-app[data-mode=connecting] .scene-tools,#mobile-app[data-mode=connecting] .scene-hint,#mobile-app[data-mode=connecting] #mobile-overview{display:none!important}#mobile-app[data-mode=connecting] .mobile-play{grid-column:1/-1}
