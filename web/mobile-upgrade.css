@@ -129,3 +129,20 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
  #mobile-app[data-mode=map] .mobile-nav{grid-template-rows:auto repeat(3,minmax(44px,1fr));overflow-y:auto}
  #mobile-app .hero-movement-item{flex-basis:100%;box-sizing:border-box;justify-content:space-between;padding:0 4px;gap:4px;min-height:32px}
 }
+/* Spell icons and responsive cards, with pagination always outside the list. */
+.mobile-spellbook .spell-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:7px}
+.mobile-spellbook .spell-row{min-width:0;flex-direction:column;align-items:stretch;gap:5px;padding:8px!important}
+.mobile-spellbook .spell-row>span:last-child{min-width:0}
+.mobile-spellbook .spell-row strong{font-size:16px;overflow-wrap:anywhere}
+.mobile-spellbook .spell-row small,.mobile-spellbook .spell-row span span{font-size:12px;line-height:1.35}
+.mobile-spellbook .spell-symbol{display:flex;justify-content:center;flex:0 0 64px;height:64px}
+.mobile-spellbook .spell-symbol img,.mobile-spellbook .spell-symbol canvas{width:65px;height:64px;object-fit:contain;image-rendering:auto}
+.mobile-spellbook footer{display:flex;flex-direction:column;align-items:stretch;gap:5px}
+.mobile-spellbook .spell-pagination{display:flex;align-items:center;gap:6px;justify-content:space-between}
+.mobile-spellbook footer button{min-height:44px!important;font-size:13px!important}
+.mobile-spellbook [data-reuse]{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(orientation:landscape){.mobile-spellbook .spell-list{grid-template-columns:repeat(3,minmax(0,1fr))}.mobile-spellbook .spell-row{flex-direction:row;align-items:start}.mobile-spellbook .spell-symbol{flex-basis:48px;height:48px}.mobile-spellbook .spell-symbol img,.mobile-spellbook .spell-symbol canvas{width:48px;height:48px}.mobile-spellbook footer{flex-direction:row}.mobile-spellbook .spell-pagination{flex:2;min-width:0}.mobile-spellbook [data-reuse]{flex:1;min-width:0}}
+
+/* Menus open as complete pages rather than a side sheet. */
+#mobile-app .mobile-sheet{inset:var(--mobile-top-height,60px) 0 0;transition:none;animation:none}
+#mobile-app .sheet-head [data-ui=sheet-back]{width:auto;flex:0 0 auto;font-size:15px;min-width:72px;padding:4px 8px}

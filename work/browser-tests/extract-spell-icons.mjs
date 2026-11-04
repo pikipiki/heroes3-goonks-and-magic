@@ -1,0 +1,3 @@
+import fs from'node:fs';import sharp from'sharp';import{readDefFrame}from'../../scripts/era-bridge/def-frame.mjs';
+const bytes=fs.readFileSync('mod/wake-of-gods/Mods/heroes3DataPatch/content/sprites/spells.def');fs.mkdirSync('web/h3-theme/spells',{recursive:true});let count=0;
+for(let id=0;id<200;id++){let frame;try{frame=readDefFrame(bytes,id);}catch(error){if(error.message.includes('missing frame'))break;throw error;}await sharp(frame.rgba,{raw:{width:frame.width,height:frame.height,channels:4}}).png().toFile(`web/h3-theme/spells/${id}.png`);count++;}console.log('Extracted',count,'native spell icons');
