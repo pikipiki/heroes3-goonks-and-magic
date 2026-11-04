@@ -1233,7 +1233,7 @@
           "requires": [
             "dwellingLvl5"
           ],
-          "name": "Bobope’s Quarry",
+          "name": "DioupDioup’s Quarry",
           "description": "Throws large rocks like a Cyclops. The upgraded form can also bombard siege walls.",
           "cost": {
             "gold": 2550,
@@ -1305,7 +1305,7 @@
         },
         "dwellingUpLvl6": {
           "upgrades": "dwellingLvl6",
-          "name": "Bobope’s Quarry Royal",
+          "name": "DioupDioup’s Quarry Royal",
           "description": "Throws large rocks like a Cyclops. The upgraded form can also bombard siege walls.",
           "cost": {
             "gold": 2550,
@@ -1357,8 +1357,8 @@
         },
         "dwellingUp2Lvl3": {
           "upgrades": "dwellingUpLvl3",
-          "name": "Zinzéclair, Storm Sovereign Sanctuary",
-          "description": "Allows recruitment and paid upgrades to Zinzéclair, Storm Sovereign.",
+          "name": "Sonic, Storm Sovereign Sanctuary",
+          "description": "Allows recruitment and paid upgrades to Sonic, Storm Sovereign.",
           "cost": {
             "gold": 1908,
             "wood": 8,
@@ -1385,8 +1385,8 @@
         },
         "dwellingUp2Lvl5": {
           "upgrades": "dwellingUpLvl5",
-          "name": "Glouglou, Grand Alchemist Sanctuary",
-          "description": "Allows recruitment and paid upgrades to Glouglou, Grand Alchemist.",
+          "name": "Bobope, Grand Alchemist Sanctuary",
+          "description": "Allows recruitment and paid upgrades to Bobope, Grand Alchemist.",
           "cost": {
             "gold": 4340,
             "wood": 10,
@@ -1400,8 +1400,8 @@
         },
         "dwellingUp2Lvl6": {
           "upgrades": "dwellingUpLvl6",
-          "name": "Bobope, Crystal Rock Emperor Sanctuary",
-          "description": "Allows recruitment and paid upgrades to Bobope, Crystal Rock Emperor.",
+          "name": "DioupDioup, Crystal Rock Emperor Sanctuary",
+          "description": "Allows recruitment and paid upgrades to DioupDioup, Crystal Rock Emperor.",
           "cost": {
             "gold": 7380,
             "wood": 11,
@@ -1534,7 +1534,7 @@
       "names": [
         "Goonkburg",
         "Fort Paingpaing",
-        "Bobope Rock",
+        "DioupDioup Rock",
         "Bubutown",
         "Maille Ember",
         "City of Seven Noses"

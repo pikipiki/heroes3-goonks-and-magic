@@ -18,7 +18,7 @@ export async function buildGoonkPoses({imageDir,artDir,grades=['base','royal','e
   return {file,...info,bounds,columns};
  };
  const tileAt=async(sheet,row,col)=>sharp(sheet.file).extract({left:sheet.columns[row][col],top:sheet.bounds[row],width:sheet.columns[row][col+1]-sheet.columns[row][col],height:sheet.bounds[row+1]-sheet.bounds[row]}).png().toBuffer();
- // Focused anatomical corrections override the legacy Bobope storyboard only.
+ // Focused anatomical corrections override the legacy DioupDioup storyboard only.
  const bobopeTile=async(kind,index=0)=>{
   const file=path.join(artDir,'bobope-base-'+kind+'-v5.png');
   const {width,height}=await sharp(file).metadata();
