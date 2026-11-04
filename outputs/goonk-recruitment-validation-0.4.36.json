@@ -1,0 +1,59 @@
+{
+  "version": "0.4.36",
+  "nativeBuild": "ninja -j32 html5 passed",
+  "unitTests": {
+    "passed": 305,
+    "skipped": 16,
+    "failed": 0
+  },
+  "native": {
+    "finalSanctuaries": 7,
+    "recruitableForms": 21,
+    "paidUpgradeChains": 7,
+    "exactResourceCosts": true,
+    "detailsStayOpen": true,
+    "unbuiltPurchaseRejected": true,
+    "fullGarrisonBlocksNewType": true,
+    "galleryPurchaseStaysOpen": true,
+    "eraBridgeVersion": 2,
+    "catalogueXAndBackRegression": "passed",
+    "allFormsVisibleBeforeConstruction": true
+  },
+  "layouts": {
+    "engines": [
+      "Chromium",
+      "WebKit"
+    ],
+    "viewports": [
+      "430x873",
+      "932x430",
+      "568x320",
+      "320x740"
+    ],
+    "sixVariantFamily": "all forms on one accessible row",
+    "pendingPurchase": "single dispatch until acknowledgement"
+  },
+  "art": {
+    "source": "built-in image_gen.imagegen",
+    "specifications": "outputs/goonk-art/exalted-designs.json",
+    "review": "21 canonical poses and base/royal/final walk and attack sheets inspected; single isolated body per built frame",
+    "maxArms": 2,
+    "maxFeet": 2
+  },
+  "compatibility": {
+    "auditedTum035Data": "preserved",
+    "existingPrivateSave": "loaded and catalogue close cycled 15 times",
+    "physicalIPhoneNewLayout": "not claimed"
+  },
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "b595b274327246b3",
+    "wasm": "vcmiclient.4697b03d2f77fbd3.wasm",
+    "sha256": "4697b03d2f77fbd392878edd47e2d3d842e67e2418aa9eb9691eac2210b95aee",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  }
+}

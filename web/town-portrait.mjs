@@ -8,13 +8,13 @@ export const TOWN_SITES=[
  ['hall',['villageHall','townHall','cityHall','capitol'],.18,.44,.27,.15],
  ['market',['marketplace'],.50,.44,.24,.12],
  ['forge',['blacksmith'],.83,.44,.20,.12],
- ['dwelling1',['dwellingLvl1','dwellingUpLvl1'],.17,.62,.25,.14],
- ['dwelling2',['dwellingLvl2','dwellingUpLvl2'],.50,.62,.25,.14],
- ['dwelling3',['dwellingLvl3','dwellingUpLvl3'],.83,.62,.25,.14],
- ['dwelling4',['dwellingLvl4','dwellingUpLvl4'],.17,.92,.25,.15],
- ['dwelling5',['dwellingLvl5','dwellingUpLvl5'],.50,.92,.25,.14],
- ['dwelling6',['dwellingLvl6','dwellingUpLvl6'],.83,.92,.27,.13],
- ['dwelling7',['dwellingLvl7','dwellingUpLvl7'],.84,.315,.21,.18],
+ ['dwelling1',['dwellingLvl1','dwellingUpLvl1','dwellingUp2Lvl1'],.17,.62,.25,.14],
+ ['dwelling2',['dwellingLvl2','dwellingUpLvl2','dwellingUp2Lvl2'],.50,.62,.25,.14],
+ ['dwelling3',['dwellingLvl3','dwellingUpLvl3','dwellingUp2Lvl3'],.83,.62,.25,.14],
+ ['dwelling4',['dwellingLvl4','dwellingUpLvl4','dwellingUp2Lvl4'],.17,.92,.25,.15],
+ ['dwelling5',['dwellingLvl5','dwellingUpLvl5','dwellingUp2Lvl5'],.50,.92,.25,.14],
+ ['dwelling6',['dwellingLvl6','dwellingUpLvl6','dwellingUp2Lvl6'],.83,.92,.27,.13],
+ ['dwelling7',['dwellingLvl7','dwellingUpLvl7','dwellingUp2Lvl7'],.84,.315,.21,.18],
  ['tavern',['tavern','special3'],.10,.76,.18,.11],
  ['silo',['resourceSilo'],.30,.76,.12,.09],
  ['stable',['special2'],.50,.76,.16,.10],
@@ -23,7 +23,7 @@ export const TOWN_SITES=[
 ];
 const localKey=b=>String(b.key||'').split(':').at(-1);
 export function isGoonkTown(state){return state.townFaction==='goonk:goonk'||(state.buildings||[]).some(b=>String(b.key).startsWith('goonk:'));}
-export function townPortraitBuildings(width,height,buildings=[]){const result=[];for(const [site,variants,x,y,maxW,maxH]of TOWN_SITES){const building=[...variants].reverse().map(key=>buildings.find(b=>b.built&&localKey(b)===key)).find(Boolean);if(!building)continue;const key=localKey(building),artKey=buildingSizes[key]?key:key==='mageGuild5'?'mageGuild4':key,[sw,sh]=buildingSizes[artKey]||[90,100],scale=Math.min(width*maxW/sw,height*(height<480&&site==='dwelling4'?.13:maxH)/sh),w=sw*scale,h=sh*scale,left=Math.max(0,Math.min(width-w,width*x-w/2)),top=Math.max(0,Math.min(height-h,height*y-h)),hitW=Math.max(44,w),hitH=Math.max(44,h);result.push({...building,key,artKey,site,x:left,y:top,w,h,hit:{x:Math.max(0,Math.min(width-hitW,left+w/2-hitW/2)),y:Math.max(0,Math.min(height-hitH,top+h/2-hitH/2)),w:hitW,h:hitH}});}return result;}
+export function townPortraitBuildings(width,height,buildings=[]){const result=[];for(const [site,variants,x,y,maxW,maxH]of TOWN_SITES){const building=[...variants].reverse().map(key=>buildings.find(b=>b.built&&localKey(b)===key)).find(Boolean);if(!building)continue;const key=localKey(building),artKey=buildingSizes[key]?key:buildingSizes[key.replace('Up2','Up')]?key.replace('Up2','Up'):key==='mageGuild5'?'mageGuild4':key,[sw,sh]=buildingSizes[artKey]||[90,100],scale=Math.min(width*maxW/sw,height*(height<480&&site==='dwelling4'?.13:maxH)/sh),w=sw*scale,h=sh*scale,left=Math.max(0,Math.min(width-w,width*x-w/2)),top=Math.max(0,Math.min(height-h,height*y-h)),hitW=Math.max(44,w),hitH=Math.max(44,h);result.push({...building,key,artKey,site,x:left,y:top,w,h,hit:{x:Math.max(0,Math.min(width-hitW,left+w/2-hitW/2)),y:Math.max(0,Math.min(height-hitH,top+h/2-hitH/2)),w:hitW,h:hitH}});}return result;}
 export function portraitTownFaction(state){if(isGoonkTown(state))return 'goonk';const key=String(state.townFaction||'').split(':').at(-1);return townBuildingArt[key]?key:null;}
 export const supportsTownPortrait=state=>!!portraitTownFaction(state);
 export function factionPortraitBuildings(width,height,buildings,faction){

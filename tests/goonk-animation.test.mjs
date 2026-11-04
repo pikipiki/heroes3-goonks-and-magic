@@ -8,7 +8,7 @@ test('Creature backgrounds preserve the original 100-pixel-wide preview geometry
 test('All Goonks have distinct walking and attack poses, animated idle frames and bounded native frames',()=>{
  for(const creature of Object.values(creatures)){
   assert.equal(creature.graphics.animationTime.idle,reference.idleFramesPerSecond);
-  const stem=creature.graphics.animation.split('/').at(-1),{movement}=motionProfile(stem.replace(/-evo$/,''),stem.endsWith('-evo'));
+  const stem=creature.graphics.animation.split('/').at(-1),{movement}=motionProfile(stem.replace(/-(evo|exalted)$/,''),/-evo$|-exalted$/.test(stem));
   const config=JSON.parse(fs.readFileSync(base+'Sprites/'+creature.graphics.animation+'.json'));
   for(const [group,minimum] of [[0,Math.min(6,movement.groups[0])],[2,4],[12,Math.min(6,movement.groups[12])]]){
    const sequence=config.sequences.find(s=>s.group===group);assert(sequence);const hashes=new Set();

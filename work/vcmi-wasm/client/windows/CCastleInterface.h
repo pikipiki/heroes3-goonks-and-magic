@@ -344,6 +344,8 @@ public:
 class CFortScreen : public CStatusbarWindow
 {
 	const CGTownInstance * mobileTown;
+	std::shared_ptr<CCreaturePic> mobilePreview;
+	const CCreature * mobilePreviewCreature = nullptr;
 	class RecruitArea : public CIntObject
 	{
 		const CGTownInstance * town;
@@ -384,6 +386,8 @@ public:
 		return result;
 	}
 	const CGTownInstance * getMobileTown() const { return mobileTown; }
+	void mobileSelectCreature(const CCreature * creature);
+	const CCreature * getMobilePreviewCreature() const { return mobilePreviewCreature; }
 
 	void creaturesChangedEventHandler();
 };

@@ -2034,6 +2034,16 @@ CFortScreen::CFortScreen(const CGTownInstance * town):
 	statusbar = CGStatusBar::create(statusbarBackground);
 }
 
+void CFortScreen::mobileSelectCreature(const CCreature * creature)
+{
+	if (!creature || mobilePreviewCreature == creature) return;
+	mobilePreview.reset();
+	OBJECT_CONSTRUCTION;
+	mobilePreview = std::make_shared<CCreaturePic>(330, 220, creature, true, true);
+	mobilePreviewCreature = creature;
+	redraw();
+}
+
 ImagePath CFortScreen::getBgName(const CGTownInstance * town)
 {
 	ui32 fortSize = static_cast<ui32>(town->creatures.size());

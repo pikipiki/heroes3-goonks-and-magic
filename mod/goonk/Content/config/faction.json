@@ -607,6 +607,69 @@
           "border": "goonk/outline-dwellingUpLvl7.png",
           "area": "goonk/hit-dwellingUpLvl7.png",
           "campaignBonus": "goonk/card-dwellingUpLvl7.png"
+        },
+        "dwellingUp2Lvl1": {
+          "animation": "goonk/structure-dwellingUpLvl1",
+          "x": 12,
+          "y": 272,
+          "z": 362,
+          "border": "goonk/outline-dwellingUpLvl1.png",
+          "area": "goonk/hit-dwellingUpLvl1.png",
+          "campaignBonus": "goonk/card-dwellingUpLvl1.png"
+        },
+        "dwellingUp2Lvl2": {
+          "animation": "goonk/structure-dwellingUpLvl2",
+          "x": 245,
+          "y": 125,
+          "z": 210,
+          "border": "goonk/outline-dwellingUpLvl2.png",
+          "area": "goonk/hit-dwellingUpLvl2.png",
+          "campaignBonus": "goonk/card-dwellingUpLvl2.png"
+        },
+        "dwellingUp2Lvl3": {
+          "animation": "goonk/structure-dwellingUpLvl3",
+          "x": 30,
+          "y": 86,
+          "z": 166,
+          "border": "goonk/outline-dwellingUpLvl3.png",
+          "area": "goonk/hit-dwellingUpLvl3.png",
+          "campaignBonus": "goonk/card-dwellingUpLvl3.png"
+        },
+        "dwellingUp2Lvl4": {
+          "animation": "goonk/structure-dwellingUpLvl4",
+          "x": 567,
+          "y": 237,
+          "z": 350,
+          "border": "goonk/outline-dwellingUpLvl4.png",
+          "area": "goonk/hit-dwellingUpLvl4.png",
+          "campaignBonus": "goonk/card-dwellingUpLvl4.png"
+        },
+        "dwellingUp2Lvl5": {
+          "animation": "goonk/structure-dwellingUpLvl5",
+          "x": 435,
+          "y": 274,
+          "z": 358,
+          "border": "goonk/outline-dwellingUpLvl5.png",
+          "area": "goonk/hit-dwellingUpLvl5.png",
+          "campaignBonus": "goonk/card-dwellingUpLvl5.png"
+        },
+        "dwellingUp2Lvl6": {
+          "animation": "goonk/structure-dwellingUpLvl6",
+          "x": 645,
+          "y": 126,
+          "z": 226,
+          "border": "goonk/outline-dwellingUpLvl6.png",
+          "area": "goonk/hit-dwellingUpLvl6.png",
+          "campaignBonus": "goonk/card-dwellingUpLvl6.png"
+        },
+        "dwellingUp2Lvl7": {
+          "animation": "goonk/structure-dwellingUpLvl7",
+          "x": 295,
+          "y": 39,
+          "z": 174,
+          "border": "goonk/outline-dwellingUpLvl7.png",
+          "area": "goonk/hit-dwellingUpLvl7.png",
+          "campaignBonus": "goonk/card-dwellingUpLvl7.png"
         }
       },
       "musicTheme": [
@@ -672,64 +735,78 @@
         [
           [
             "dwellingLvl1",
-            "dwellingUpLvl1"
+            "dwellingUpLvl1",
+            "dwellingUp2Lvl1"
           ],
           [
             "dwellingLvl2",
-            "dwellingUpLvl2"
+            "dwellingUpLvl2",
+            "dwellingUp2Lvl2"
           ],
           [
             "dwellingLvl3",
-            "dwellingUpLvl3"
+            "dwellingUpLvl3",
+            "dwellingUp2Lvl3"
           ],
           [
             "dwellingLvl4",
-            "dwellingUpLvl4"
+            "dwellingUpLvl4",
+            "dwellingUp2Lvl4"
           ]
         ],
         [
           [
             "dwellingLvl5",
-            "dwellingUpLvl5"
+            "dwellingUpLvl5",
+            "dwellingUp2Lvl5"
           ],
           [
             "dwellingLvl6",
-            "dwellingUpLvl6"
+            "dwellingUpLvl6",
+            "dwellingUp2Lvl6"
           ],
           [
             "dwellingLvl7",
-            "dwellingUpLvl7"
+            "dwellingUpLvl7",
+            "dwellingUp2Lvl7"
           ]
         ]
       ],
       "creatures": [
         [
           "paingpaing",
-          "paingpaingRoyal"
+          "paingpaingRoyal",
+          "paingpaingExalted"
         ],
         [
           "picpique",
-          "picpiqueRoyal"
+          "picpiqueRoyal",
+          "picpiqueExalted"
         ],
         [
           "zinzeclair",
-          "zinzeclairRoyal"
+          "zinzeclairRoyal",
+          "zinzeclairExalted"
         ],
         [
           "bubu",
-          "bubuRoyal"
+          "bubuRoyal",
+          "bubuExalted"
         ],
         [
           "glouglou",
-          "glouglouRoyal"
+          "glouglouRoyal",
+          "glouglouExalted"
         ],
         [
           "bobope",
-          "bobopeRoyal"
+          "bobopeRoyal",
+          "bobopeExalted"
         ],
         [
           "maillemaille",
-          "maillemailleRoyal"
+          "maillemailleRoyal",
+          "maillemailleExalted"
         ]
       ],
       "horde": [
@@ -1249,7 +1326,108 @@
         "horde2": null,
         "horde2Upgr": null,
         "mageGuild5": null,
-        "special4": null
+        "special4": null,
+        "dwellingUp2Lvl1": {
+          "upgrades": "dwellingUpLvl1",
+          "name": "Paingpaing, Nose Emperor Sanctuary",
+          "description": "Allows recruitment and paid upgrades to Paingpaing, Nose Emperor.",
+          "cost": {
+            "gold": 608,
+            "wood": 6,
+            "ore": 6
+          },
+          "id": 44,
+          "requires": [
+            "castle"
+          ]
+        },
+        "dwellingUp2Lvl2": {
+          "upgrades": "dwellingUpLvl2",
+          "name": "Picpique, Crystal Lancer Sanctuary",
+          "description": "Allows recruitment and paid upgrades to Picpique, Crystal Lancer.",
+          "cost": {
+            "gold": 1216,
+            "wood": 7,
+            "ore": 7
+          },
+          "id": 45,
+          "requires": [
+            "castle"
+          ]
+        },
+        "dwellingUp2Lvl3": {
+          "upgrades": "dwellingUpLvl3",
+          "name": "Zinzéclair, Storm Sovereign Sanctuary",
+          "description": "Allows recruitment and paid upgrades to Zinzéclair, Storm Sovereign.",
+          "cost": {
+            "gold": 1908,
+            "wood": 8,
+            "ore": 8
+          },
+          "id": 46,
+          "requires": [
+            "castle"
+          ]
+        },
+        "dwellingUp2Lvl4": {
+          "upgrades": "dwellingUpLvl4",
+          "name": "Bubu, Supreme Fartomancer Sanctuary",
+          "description": "Allows recruitment and paid upgrades to Bubu, Supreme Fartomancer.",
+          "cost": {
+            "gold": 2864,
+            "wood": 9,
+            "ore": 9
+          },
+          "id": 47,
+          "requires": [
+            "castle"
+          ]
+        },
+        "dwellingUp2Lvl5": {
+          "upgrades": "dwellingUpLvl5",
+          "name": "Glouglou, Grand Alchemist Sanctuary",
+          "description": "Allows recruitment and paid upgrades to Glouglou, Grand Alchemist.",
+          "cost": {
+            "gold": 4340,
+            "wood": 10,
+            "ore": 10,
+            "crystal": 7
+          },
+          "id": 48,
+          "requires": [
+            "castle"
+          ]
+        },
+        "dwellingUp2Lvl6": {
+          "upgrades": "dwellingUpLvl6",
+          "name": "Bobope, Crystal Rock Emperor Sanctuary",
+          "description": "Allows recruitment and paid upgrades to Bobope, Crystal Rock Emperor.",
+          "cost": {
+            "gold": 7380,
+            "wood": 11,
+            "ore": 11,
+            "crystal": 8
+          },
+          "id": 49,
+          "requires": [
+            "castle"
+          ]
+        },
+        "dwellingUp2Lvl7": {
+          "upgrades": "dwellingUpLvl7",
+          "name": "Big Maille Maille, Phoenix Archmage Sanctuary",
+          "description": "Allows recruitment and paid upgrades to Big Maille Maille, Phoenix Archmage.",
+          "cost": {
+            "gold": 19096,
+            "wood": 12,
+            "ore": 12,
+            "crystal": 9
+          },
+          "id": 50,
+          "requires": [
+            "castle"
+          ]
+        }
       },
       "siege": {
         "shooter": "bobope",

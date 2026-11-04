@@ -1,0 +1,16 @@
+{
+  "tool": "image_gen.imagegen",
+  "purpose": "Seven visibly different and imposing third forms, with at most two arms and two feet per creature",
+  "walk": "exalted-walk-v3.png",
+  "attack": "exalted-attack-v3.png",
+  "forms": [
+    "Paingpaing: gilded ram plate, ruby nose guard, imperial crown",
+    "Picpique: amethyst crystal plate, turquoise crystal spear",
+    "Zinz\u00e9clair: swept cyan hair, storm armour, lightning bow",
+    "Bubu: emerald gas armour, golden mushroom helmet and backpack canisters",
+    "Glouglou: bronze alchemical exosuit, glowing potion tank",
+    "Bobope: amethyst armour, emerald crown, crystal boulder",
+    "Big Maille Maille: sunburst crown and incandescent archmage armour"
+  ],
+  "anatomy": "Each frame contains one complete body, one head, two arms and two feet maximum. No crossfaded bodies, extra hands, wings or detached sprite fragments."
+}

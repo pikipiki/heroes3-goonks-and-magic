@@ -64,6 +64,7 @@
 #include "../lib/entities/faction/CFaction.h"
 #include "../lib/networkPacks/PacksForLobby.h"
 #include "../lib/entities/building/CBuilding.h"
+#include "../lib/texts/CGeneralTextHandler.h"
 #include "../lib/mapping/CMapInfo.h"
 #include "../lib/pathfinder/CGPathNode.h"
 
@@ -249,7 +250,20 @@ void publishMobileState(){
   index=0;for(auto t:p->localState->getOwnedTowns()){JsonNode item;item["name"].String()=t->getNameTranslated();item["index"].Integer()=index++;n["towns"].Vector().push_back(item);}
   if(townWindow||fortWindow){const auto town=townWindow?townWindow->town:fortWindow->getMobileTown();n["townName"].String()=town->getNameTranslated();n["townFaction"].String()=town->getFaction()->getJsonKey();mobileTownArmies(n,town);
    for(const auto & entry:town->getTown()->buildings){if(!entry.second||entry.first.getNum()<0)continue;JsonNode b;b["id"].Integer()=entry.first.getNum();b["name"].String()=entry.second->getNameTranslated();b["key"].String()=entry.second->getJsonKey();b["baseId"].Integer()=entry.second->getBase().getNum();b["upgradeId"].Integer()=entry.second->upgrade.getNum();b["description"].String()=entry.second->getDescriptionTranslated();b["built"].Bool()=town->hasBuilt(entry.first);const auto buildState=p->cb->canBuildStructure(town,entry.first);b["allowed"].Bool()=buildState==EBuildingState::ALLOWED;b["state"].Integer()=static_cast<int>(buildState);for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())b["cost"].Vector().push_back(JsonNode(double(town->getBuildingCost(entry.first)[resource])));n["buildings"].Vector().push_back(b);}
-   if(fortWindow){for(size_t level=0;level<town->getTown()->creatures.size();level++){
+   if(fortWindow){
+    if(const auto selected=fortWindow->getMobilePreviewCreature())n["fortSelectedId"].Integer()=selected->getId().getNum();
+    for(size_t level=0;level<town->getTown()->creatures.size();level++){
+     JsonNode family;family["level"].Integer()=level;family["count"].Integer()=town->creatures[level].first;
+     const auto & available=town->creatures[level].second;
+     const auto & roster=town->getTown()->creatures[level];
+     for(size_t rank=0;rank<roster.size();rank++){
+      const auto id=roster[rank];auto variant=creature(id.toCreature(),town->creatures[level].first);variant["rank"].Integer()=rank;variant["level"].Integer()=level;variant["built"].Bool()=std::find(available.begin(),available.end(),id)!=available.end();
+      const auto bid=BuildingID(BuildingID::getDwellingFromLevel(level,rank));if(town->getTown()->buildings.count(bid))variant["requiredBuilding"].String()=town->getTown()->buildings.at(bid)->getNameTranslated();
+      family["variants"].Vector().push_back(variant);
+     }
+     n["fortFamilies"].Vector().push_back(family);
+    }
+    for(size_t level=0;level<town->getTown()->creatures.size();level++){
     const auto & available=town->creatures[level].second;auto c=!available.empty()?available.back().toCreature():town->getTown()->creatures[level].front().toCreature();
     auto row=creature(c,town->creatures[level].first);row["level"].Integer()=level;row["built"].Bool()=!available.empty();n["fortRows"].Vector().push_back(row);
    }}
@@ -340,6 +354,21 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  auto p=GAME?GAME->interface():nullptr;if(!p||!p->cb||!p->localState)return;
  const auto hero=p->localState->getCurrentHero();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battle= CPlayerInterface::battleInt;
  if(action==54&&townWindow&&p->makingTurn){ENGINE->windows().createAndPushWindow<CFortScreen>(townWindow->town);lastPublished=0;return;}
+ // Family gallery actions stay in the fort; the server remains authoritative
+ // for ownership, stock, resources and available army slots.
+ if((action==60||action==61)&&ENGINE->windows().topWindow<CFortScreen>()){
+  const auto fort=ENGINE->windows().topWindow<CFortScreen>();const auto town=fort->getMobileTown();
+  if(town->getOwner()!=p->playerID||a<0||a>=int(town->getTown()->creatures.size()))return;
+  const CreatureID id(b);const auto & roster=town->getTown()->creatures[a];if(std::find(roster.begin(),roster.end(),id)==roster.end())return;
+  if(action==60)fort->mobileSelectCreature(id.toCreature());
+  else if(p->makingTurn&&c>0){
+   const auto & row=town->creatures[a];if(row.first<=0||std::find(row.second.begin(),row.second.end(),id)==row.second.end())return;
+   const auto destination=town->getUpperArmy();
+   if(!destination->getSlotFor(id).validSlot()&&id.toCreature()->warMachine==ArtifactID::NONE){p->showInfoDialog(LIBRARY->generaltexth->allTexts[17]);return;}
+   p->cb->recruitCreatures(town,destination,id,std::min(c,int(row.first)),a);
+  }
+  lastPublished=0;return;
+ }
  if(action==55&&hero&&ENGINE->windows().topWindow<AdventureMapInterface>()){p->openHeroWindow(hero);return;}
  if(action==56&&ENGINE->windows().topWindow<AdventureMapInterface>()&&a>=0&&a<int(p->localState->getOwnedTowns().size())){adventureInt->centerOnObject(p->localState->getOwnedTown(a));return;}
  if(action==53&&p->makingTurn&&(townWindow||ENGINE->windows().topWindow<CFortScreen>())){

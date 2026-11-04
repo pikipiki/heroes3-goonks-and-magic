@@ -74,3 +74,7 @@ Les travaux H, nouveau tirage de peur, Ghost, nouveaux acteurs/artefacts/objets/
 Known checkpoint limitation: existing cfg HATE semantics for source IDs 202/219 (flat versus percentage) remain under separate review. This data-only release does not correct those mechanics or claim complete TUM compatibility.
 
 Le démarrage 0.4.35 a été vérifié sur dix cartes de test ordinaires : 66 identités, 462 mesures, 63 coûts et neuf villes, sans erreur native de niveau ERROR ni erreur JavaScript. Ces cartes corrigent uniquement leurs noms d’instances et références, ainsi que la création normale du héros IA ; la carte publiée reste inchangée. Un contrôle séparé du chargement et de la ville Castle conserve les 132 avertissements complets de la base 2da1e91 et du candidat : leurs ensembles sont identiques, sans nouvel avertissement ni identifiant non résolu. Cette comparaison ne signifie pas que la base est exempte d’avertissements de schéma ou de ressources.
+
+### Moteur 0.4.36 — galerie de recrutement
+
+Le moteur a ensuite été recompilé pour les aperçus de familles et les achats de la nouvelle galerie. L’ABI ERA reste en version 2 : aucun adaptateur de créature futur ni fichier de données ERA supplémentaire n’est activé par cette évolution d’interface. Les identités du moteur courant et du moteur 0.4.34 de la livraison de données 0.4.35 sont conservées séparément dans les métadonnées de provenance.

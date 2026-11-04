@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "maxArms": 2,
+  "maxFeet": 2,
+  "grades": [
+    "base",
+    "royal",
+    "exalted"
+  ],
+  "families": [
+    {
+      "id": "paingpaing",
+      "key": "pink"
+    },
+    {
+      "id": "picpique",
+      "key": "lancer"
+    },
+    {
+      "id": "zinzeclair",
+      "key": "archer"
+    },
+    {
+      "id": "bubu",
+      "key": "fart"
+    },
+    {
+      "id": "glouglou",
+      "key": "vomit"
+    },
+    {
+      "id": "bobope",
+      "key": "blue"
+    },
+    {
+      "id": "maillemaille",
+      "key": "fire"
+    }
+  ],
+  "notes": "One isolated full-body sprite per frame; no crossfaded bodies. Projectile-only storyboard cells are replaced with complete follow-through poses."
+}

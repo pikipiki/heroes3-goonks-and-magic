@@ -13,3 +13,5 @@ test('All nine original factions have portrait layouts with complete in-bounds n
  }
 });
 test('A third-upgrade dwelling replaces its earlier stages in the same portrait family',async()=>{const{factionPortraitBuildings}=await import('../web/town-portrait.mjs');const b=[{id:1,baseId:1,upgradeId:-1,key:'core:dwellingLvl1',built:true},{id:2,baseId:1,upgradeId:1,key:'core:dwellingUpLvl1',built:true},{id:3,baseId:1,upgradeId:2,key:'third-upgrades:dwellingUp2Lvl1',built:true}];const rows=factionPortraitBuildings(390,590,b,'castle');assert.equal(rows.length,1);assert.equal(rows[0].id,3);assert.equal(rows[0].artKey,'dwellingUp2Lvl1');});
+
+test('Goonk final sanctuary keeps the highest dwelling click target and existing coloured building art',()=>{const rows=townPortraitBuildings(430,590,[{id:30,key:'goonk:dwellingLvl1',built:true},{id:37,key:'goonk:dwellingUpLvl1',built:true},{id:44,key:'goonk:dwellingUp2Lvl1',built:true}]);assert.equal(rows.length,1);assert.equal(rows[0].id,44);assert.equal(rows[0].artKey,'dwellingUpLvl1');});

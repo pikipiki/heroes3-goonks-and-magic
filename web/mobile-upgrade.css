@@ -1,3 +1,4 @@
+@import url('./recruitment-families.css');
 /* Tactile controls keep Heroes III materials, with consistent accessible targets. */
 #mobile-app button,#game-menu button{min-height:48px;min-width:48px;touch-action:manipulation;line-height:1.2}
 button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ffe08b;outline-offset:3px}

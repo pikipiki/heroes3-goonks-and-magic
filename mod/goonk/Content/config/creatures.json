@@ -103,7 +103,10 @@
       "move": "PIKEMOVE.wav",
       "wince": "PIKEWNCE.wav",
       "shoot": "goonk/nose.wav"
-    }
+    },
+    "upgrades": [
+      "paingpaingExalted"
+    ]
   },
   "picpique": {
     "name": {
@@ -215,7 +218,10 @@
       "move": "PIKEMOVE.wav",
       "wince": "PIKEWNCE.wav",
       "shoot": "goonk/spear.wav"
-    }
+    },
+    "upgrades": [
+      "picpiqueExalted"
+    ]
   },
   "zinzeclair": {
     "name": {
@@ -391,7 +397,10 @@
       "wince": "PIKEWNCE.wav",
       "shoot": "goonk/lightning.wav"
     },
-    "shots": 16
+    "shots": 16,
+    "upgrades": [
+      "zinzeclairExalted"
+    ]
   },
   "bubu": {
     "name": {
@@ -597,7 +606,10 @@
       "wince": "PIKEWNCE.wav",
       "shoot": "goonk/fart.wav"
     },
-    "shots": 12
+    "shots": 12,
+    "upgrades": [
+      "bubuExalted"
+    ]
   },
   "glouglou": {
     "name": {
@@ -803,7 +815,10 @@
       "wince": "PIKEWNCE.wav",
       "shoot": "goonk/vomit.wav"
     },
-    "shots": 16
+    "shots": 16,
+    "upgrades": [
+      "glouglouExalted"
+    ]
   },
   "bobope": {
     "name": {
@@ -956,7 +971,10 @@
       "wince": "PIKEWNCE.wav",
       "shoot": "goonk/boulder.wav"
     },
-    "shots": 16
+    "shots": 16,
+    "upgrades": [
+      "bobopeExalted"
+    ]
   },
   "maillemaille": {
     "name": {
@@ -1120,6 +1138,606 @@
       "map": "goonk/fire-map",
       "iconSmall": "goonk/fire-evo-small.png",
       "iconLarge": "goonk/fire-evo-large.png",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "missile": {
+        "frameAngles": [
+          90,
+          45,
+          0,
+          -45,
+          -90
+        ],
+        "offset": {
+          "upperX": 20,
+          "upperY": -45,
+          "middleX": 25,
+          "middleY": -35,
+          "lowerX": 20,
+          "lowerY": -25
+        },
+        "attackClimaxFrame": 9,
+        "ray": [
+          {
+            "start": [
+              255,
+              135,
+              30,
+              255
+            ],
+            "end": [
+              255,
+              30,
+              20,
+              190
+            ]
+          }
+        ]
+      }
+    },
+    "sound": {
+      "attack": "goonk/fire.wav",
+      "defend": "PIKEDFND.wav",
+      "killed": "PIKEKILL.wav",
+      "move": "PIKEMOVE.wav",
+      "wince": "PIKEWNCE.wav",
+      "shoot": "goonk/fire.wav"
+    },
+    "shots": 16,
+    "upgrades": [
+      "maillemailleExalted"
+    ]
+  },
+  "paingpaingExalted": {
+    "name": {
+      "singular": "Paingpaing, Nose Emperor",
+      "plural": "Paingpaing, Nose Emperor"
+    },
+    "description": "Imperial plush armour and three nose strikes per attack.",
+    "faction": "goonk",
+    "level": 1,
+    "attack": 11,
+    "defense": 11,
+    "hitPoints": 22,
+    "speed": 7,
+    "damage": {
+      "min": 4,
+      "max": 7
+    },
+    "growth": 16,
+    "horde": 2,
+    "cost": {
+      "gold": 152
+    },
+    "fightValue": 189,
+    "aiValue": 189,
+    "advMapAmount": {
+      "min": 3,
+      "max": 8
+    },
+    "abilities": {
+      "doubleNose": {
+        "type": "ADDITIONAL_ATTACK",
+        "val": 2
+      }
+    },
+    "graphics": {
+      "animation": "goonk/pink-exalted",
+      "map": "goonk/pink-exalted-map",
+      "iconSmall": "goonk/pink-exalted-small.png",
+      "iconLarge": "goonk/pink-exalted-large.png",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      }
+    },
+    "sound": {
+      "attack": "goonk/nose.wav",
+      "defend": "PIKEDFND.wav",
+      "killed": "PIKEKILL.wav",
+      "move": "PIKEMOVE.wav",
+      "wince": "PIKEWNCE.wav",
+      "shoot": "goonk/nose.wav"
+    }
+  },
+  "picpiqueExalted": {
+    "name": {
+      "singular": "Picpique, Crystal Lancer",
+      "plural": "Picpique, Crystal Lancer"
+    },
+    "description": "A crystal spear also strikes the unit behind the target. Enemies cannot retaliate.",
+    "faction": "goonk",
+    "level": 2,
+    "attack": 14,
+    "defense": 13,
+    "hitPoints": 45,
+    "speed": 8,
+    "damage": {
+      "min": 7,
+      "max": 12
+    },
+    "growth": 10,
+    "horde": 2,
+    "cost": {
+      "gold": 304
+    },
+    "fightValue": 627,
+    "aiValue": 627,
+    "advMapAmount": {
+      "min": 3,
+      "max": 8
+    },
+    "abilities": {
+      "piercingLance": {
+        "type": "TWO_HEX_ATTACK_BREATH"
+      },
+      "noRetaliation": {
+        "type": "BLOCKS_RETALIATION"
+      }
+    },
+    "graphics": {
+      "animation": "goonk/lancer-exalted",
+      "map": "goonk/lancer-exalted-map",
+      "iconSmall": "goonk/lancer-exalted-small.png",
+      "iconLarge": "goonk/lancer-exalted-large.png",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.9,
+        "attack": 1,
+        "idle": 10
+      }
+    },
+    "sound": {
+      "attack": "goonk/spear.wav",
+      "defend": "PIKEDFND.wav",
+      "killed": "PIKEKILL.wav",
+      "move": "PIKEMOVE.wav",
+      "wince": "PIKEWNCE.wav",
+      "shoot": "goonk/spear.wav"
+    }
+  },
+  "zinzeclairExalted": {
+    "name": {
+      "singular": "Zinzéclair, Storm Sovereign",
+      "plural": "Zinzéclair, Storm Sovereign"
+    },
+    "description": "Lightning arrows trigger explosive magic and a lightning strike. Keep allies clear of the blast.",
+    "faction": "goonk",
+    "level": 3,
+    "attack": 15,
+    "defense": 13,
+    "hitPoints": 53,
+    "speed": 8,
+    "damage": {
+      "min": 10,
+      "max": 14
+    },
+    "growth": 8,
+    "horde": 2,
+    "cost": {
+      "gold": 477
+    },
+    "fightValue": 846,
+    "aiValue": 846,
+    "advMapAmount": {
+      "min": 3,
+      "max": 8
+    },
+    "abilities": {
+      "shooter": {
+        "type": "SHOOTER"
+      },
+      "explosiveArrow": {
+        "type": "SPELL_AFTER_ATTACK",
+        "subtype": "spell.fireball",
+        "val": 100,
+        "addInfo": [
+          3,
+          0
+        ]
+      },
+      "stormArrow": {
+        "type": "SPELL_AFTER_ATTACK",
+        "subtype": "spell.lightningBolt",
+        "val": 100,
+        "addInfo": [
+          2,
+          0
+        ]
+      }
+    },
+    "graphics": {
+      "animation": "goonk/archer-exalted",
+      "map": "goonk/archer-exalted-map",
+      "iconSmall": "goonk/archer-exalted-small.png",
+      "iconLarge": "goonk/archer-exalted-large.png",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "missile": {
+        "frameAngles": [
+          90,
+          45,
+          0,
+          -45,
+          -90
+        ],
+        "offset": {
+          "upperX": 20,
+          "upperY": -45,
+          "middleX": 25,
+          "middleY": -35,
+          "lowerX": 20,
+          "lowerY": -25
+        },
+        "attackClimaxFrame": 7,
+        "projectile": "goonk/lightning-arrow"
+      }
+    },
+    "sound": {
+      "attack": "goonk/lightning.wav",
+      "defend": "PIKEDFND.wav",
+      "killed": "PIKEKILL.wav",
+      "move": "PIKEMOVE.wav",
+      "wince": "PIKEWNCE.wav",
+      "shoot": "goonk/lightning.wav"
+    },
+    "shots": 16
+  },
+  "bubuExalted": {
+    "name": {
+      "singular": "Bubu, Supreme Fartomancer",
+      "plural": "Bubu, Supreme Fartomancer"
+    },
+    "description": "Toxic gas clouds weaken and slow the target. Reinforced emerald armour protects this supreme fartomancer.",
+    "faction": "goonk",
+    "level": 4,
+    "attack": 16,
+    "defense": 18,
+    "hitPoints": 88,
+    "speed": 7,
+    "damage": {
+      "min": 13,
+      "max": 20
+    },
+    "growth": 6,
+    "horde": 2,
+    "cost": {
+      "gold": 716
+    },
+    "fightValue": 1568,
+    "aiValue": 1568,
+    "advMapAmount": {
+      "min": 3,
+      "max": 8
+    },
+    "abilities": {
+      "shooter": {
+        "type": "SHOOTER"
+      },
+      "stinky": {
+        "type": "SPELL_AFTER_ATTACK",
+        "subtype": "spell.weakness",
+        "val": 100,
+        "addInfo": [
+          3,
+          0
+        ]
+      },
+      "stifling": {
+        "type": "SPELL_AFTER_ATTACK",
+        "subtype": "spell.slow",
+        "val": 100,
+        "addInfo": [
+          2,
+          0
+        ]
+      }
+    },
+    "graphics": {
+      "animation": "goonk/fart-exalted",
+      "map": "goonk/fart-exalted-map",
+      "iconSmall": "goonk/fart-exalted-small.png",
+      "iconLarge": "goonk/fart-exalted-large.png",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1.28,
+        "attack": 1,
+        "idle": 10
+      },
+      "missile": {
+        "frameAngles": [
+          90,
+          45,
+          0,
+          -45,
+          -90
+        ],
+        "offset": {
+          "upperX": 20,
+          "upperY": -45,
+          "middleX": 25,
+          "middleY": -35,
+          "lowerX": 20,
+          "lowerY": -25
+        },
+        "attackClimaxFrame": 4,
+        "ray": [
+          {
+            "start": [
+              150,
+              245,
+              60,
+              220
+            ],
+            "end": [
+              60,
+              170,
+              35,
+              160
+            ]
+          }
+        ]
+      }
+    },
+    "sound": {
+      "attack": "goonk/fart.wav",
+      "defend": "PIKEDFND.wav",
+      "killed": "PIKEKILL.wav",
+      "move": "PIKEMOVE.wav",
+      "wince": "PIKEWNCE.wav",
+      "shoot": "goonk/fart.wav"
+    },
+    "shots": 12
+  },
+  "glouglouExalted": {
+    "name": {
+      "singular": "Glouglou, Grand Alchemist",
+      "plural": "Glouglou, Grand Alchemist"
+    },
+    "description": "Acid vomit erodes defence and poisons the target. A glowing alchemy tank feeds the grand alchemist.",
+    "faction": "goonk",
+    "level": 5,
+    "attack": 18,
+    "defense": 16,
+    "hitPoints": 115,
+    "speed": 8,
+    "damage": {
+      "min": 18,
+      "max": 25
+    },
+    "growth": 4,
+    "horde": 2,
+    "cost": {
+      "gold": 1085
+    },
+    "fightValue": 2446,
+    "aiValue": 2446,
+    "advMapAmount": {
+      "min": 3,
+      "max": 8
+    },
+    "abilities": {
+      "shooter": {
+        "type": "SHOOTER"
+      },
+      "acid": {
+        "type": "SPELL_AFTER_ATTACK",
+        "subtype": "spell.acidBreath",
+        "val": 100,
+        "addInfo": [
+          1,
+          0
+        ]
+      },
+      "poison": {
+        "type": "SPELL_AFTER_ATTACK",
+        "subtype": "spell.poison",
+        "val": 100,
+        "addInfo": [
+          1,
+          0
+        ]
+      }
+    },
+    "graphics": {
+      "animation": "goonk/vomit-exalted",
+      "map": "goonk/vomit-exalted-map",
+      "iconSmall": "goonk/vomit-exalted-small.png",
+      "iconLarge": "goonk/vomit-exalted-large.png",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1.28,
+        "attack": 1,
+        "idle": 10
+      },
+      "missile": {
+        "frameAngles": [
+          90,
+          45,
+          0,
+          -45,
+          -90
+        ],
+        "offset": {
+          "upperX": 20,
+          "upperY": -45,
+          "middleX": 25,
+          "middleY": -35,
+          "lowerX": 20,
+          "lowerY": -25
+        },
+        "attackClimaxFrame": 5,
+        "ray": [
+          {
+            "start": [
+              150,
+              245,
+              60,
+              220
+            ],
+            "end": [
+              60,
+              170,
+              35,
+              160
+            ]
+          }
+        ]
+      }
+    },
+    "sound": {
+      "attack": "goonk/vomit.wav",
+      "defend": "PIKEDFND.wav",
+      "killed": "PIKEKILL.wav",
+      "move": "PIKEMOVE.wav",
+      "wince": "PIKEWNCE.wav",
+      "shoot": "goonk/vomit.wav"
+    },
+    "shots": 16
+  },
+  "bobopeExalted": {
+    "name": {
+      "singular": "Bobope, Crystal Rock Emperor",
+      "plural": "Bobope, Crystal Rock Emperor"
+    },
+    "description": "Hurls crystal boulders and can bombard fortress walls during a siege.",
+    "faction": "goonk",
+    "level": 6,
+    "attack": 21,
+    "defense": 20,
+    "hitPoints": 176,
+    "speed": 8,
+    "damage": {
+      "min": 26,
+      "max": 36
+    },
+    "growth": 3,
+    "horde": 2,
+    "cost": {
+      "gold": 1845,
+      "crystal": 1
+    },
+    "fightValue": 4704,
+    "aiValue": 4704,
+    "advMapAmount": {
+      "min": 3,
+      "max": 8
+    },
+    "abilities": {
+      "shooter": {
+        "type": "SHOOTER"
+      },
+      "siege": {
+        "type": "CATAPULT",
+        "subtype": "spell.cyclopsShot"
+      }
+    },
+    "graphics": {
+      "animation": "goonk/blue-exalted",
+      "map": "goonk/blue-exalted-map",
+      "iconSmall": "goonk/blue-exalted-small.png",
+      "iconLarge": "goonk/blue-exalted-large.png",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "missile": {
+        "frameAngles": [
+          90,
+          45,
+          0,
+          -45,
+          -90
+        ],
+        "offset": {
+          "upperX": 20,
+          "upperY": -45,
+          "middleX": 25,
+          "middleY": -35,
+          "lowerX": 20,
+          "lowerY": -25
+        },
+        "attackClimaxFrame": 7,
+        "projectile": "PCYCLBX.DEF"
+      }
+    },
+    "sound": {
+      "attack": "goonk/boulder.wav",
+      "defend": "PIKEDFND.wav",
+      "killed": "PIKEKILL.wav",
+      "move": "PIKEMOVE.wav",
+      "wince": "PIKEWNCE.wav",
+      "shoot": "goonk/boulder.wav"
+    },
+    "shots": 16
+  },
+  "maillemailleExalted": {
+    "name": {
+      "singular": "Big Maille Maille, Phoenix Archmage",
+      "plural": "Big Maille Maille, Phoenix Archmage"
+    },
+    "description": "Ranged flames and six casts of mastered Inferno, protected by radiant archmage armour.",
+    "faction": "goonk",
+    "level": 7,
+    "attack": 26,
+    "defense": 24,
+    "hitPoints": 316,
+    "speed": 10,
+    "damage": {
+      "min": 40,
+      "max": 57
+    },
+    "growth": 2,
+    "horde": 2,
+    "cost": {
+      "gold": 4774,
+      "crystal": 1
+    },
+    "fightValue": 11290,
+    "aiValue": 11290,
+    "advMapAmount": {
+      "min": 3,
+      "max": 8
+    },
+    "abilities": {
+      "shooter": {
+        "type": "SHOOTER"
+      },
+      "fireMagic": {
+        "type": "SPELLCASTER",
+        "subtype": "spell.inferno",
+        "val": 3
+      },
+      "casts": {
+        "type": "CASTS",
+        "val": 6
+      },
+      "power": {
+        "type": "CREATURE_SPELL_POWER",
+        "val": 100
+      },
+      "fireproof": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "spell.fireball"
+      }
+    },
+    "graphics": {
+      "animation": "goonk/fire-exalted",
+      "map": "goonk/fire-exalted-map",
+      "iconSmall": "goonk/fire-exalted-small.png",
+      "iconLarge": "goonk/fire-exalted-large.png",
       "timeBetweenFidgets": 1,
       "animationTime": {
         "walk": 1,

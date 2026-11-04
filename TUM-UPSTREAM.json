@@ -99,10 +99,10 @@
       "notWarningFree": true
     }
   },
-  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.34-engine.tar.gz",
-  "engineArchiveSHA256": "3d9dacebf1855ccee5adb51cab47ebb29d6af97552824ad2b5f7a94ecbc7ab89",
-  "wasmSHA256": "e5ded71899389b2847e89d1098b0176e4ebe8a40696db019ca6138a8a8eddfb8",
-  "engineAttribution": "Unchanged published Main0.4.34 archive from base2da1e91, including catalogue fakeNode lifetime fix; no native compilation in this data-only release.",
+  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.36-engine.tar.gz",
+  "engineArchiveSHA256": "98536a95ea4e31ae0562b240c445691d4463068a432e5efe3f4b090a542ac37d",
+  "wasmSHA256": "4697b03d2f77fbd392878edd47e2d3d842e67e2418aa9eb9691eac2210b95aee",
+  "engineAttribution": "Recompiled 0.4.36 for native recruitment-family previews and validated purchases. The ERA bridge remains version 2; no future ERA creature adapters or data are activated by this UI change.",
   "priorDataOnlyReview": {
     "release": "0.4.34",
     "baseCommit": "6bfa181327f9e7e97dcc8e993c55ec28c8ab6491",
@@ -112,5 +112,11 @@
   },
   "knownCheckpointLimitations": [
     "Existing 202/219 cfgPersonalHate is flat damage in the supplied DLL, whereas the unchanged baseline engine/data uses percentage HATE. This pre-existing mismatch is explicitly excluded from this data-only correction, together with global H/XP/RNG changes. No complete creature or TUM3.5 compatibility claim."
-  ]
+  ],
+  "previousRuntimeReference": {
+    "engineArchive": "outputs/vcmi-wasm-goonk-0.4.34-engine.tar.gz",
+    "engineArchiveSHA256": "3d9dacebf1855ccee5adb51cab47ebb29d6af97552824ad2b5f7a94ecbc7ab89",
+    "wasmSHA256": "e5ded71899389b2847e89d1098b0176e4ebe8a40696db019ca6138a8a8eddfb8",
+    "engineAttribution": "Unchanged published Main0.4.34 archive from base2da1e91, including catalogue fakeNode lifetime fix; no native compilation in this data-only release."
+  }
 }
