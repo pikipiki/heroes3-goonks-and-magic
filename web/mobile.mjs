@@ -1,3 +1,4 @@
+import {heroMovementSummary} from './hero-movement.mjs';
 import {createMenuLaunch,restartLaunchURL} from './menu-launch.mjs';
 import {touchGeometry,sameTouchGeometry,localPointer} from './touch-geometry.mjs';
 import {createLobbyOptions} from './lobby-options.mjs';
@@ -65,7 +66,7 @@ function mount(){
  const btn=(text,ui,primary=false,disabled=false)=>`<button data-ui="${ui}" ${disabled?'disabled':''} class="${primary?'primary':''}">${text}</button>`;
  function controls(){
   const m=state.mode,cap=battleCapabilities(effectiveBattle()),target=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),blocked=!state.spellTargeting&&target?.enemy&&target.canShootAt===false&&target.canMeleeAt===false;let items;
-  if(m==='map')items=[btn('➤ Marcher','move',true,!state.hasPath||!state.turn),btn('♟ Héros','heroes'),btn('♜ Villes','towns'),btn('♟ Armée','army',false,!state.turn||!state.armies?.length),btn('💾 Sauvegarder','save',false,!state.turn),btn('☀ Terminer le tour','endturn',false,!state.turn)];
+  if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn('➤ Marcher','move',true,!state.hasPath||!state.turn),btn('♟ Héros','heroes'),btn('♜ Villes','towns'),btn('♟ Armée','army',false,!state.turn||!state.armies?.length),btn('☀ Terminer le tour','endturn',false,!state.turn)];
   else if(m==='fort'||m==='creature')items=[btn('↩ Back','presentation-back')];
   else if(m==='dialog'&&state.dialogKind==='fort')items=[btn('Retour au château','back')];
   else if(m==='town')items=[['Construire','build','town-hall'],['Recruter des héros','recruit-heroes','town-fort'],['Armées','army','town-split'],['Carte','back','town-exit']].map(([label,ui,icon])=>`<button data-ui="${ui}" class="town-action"><img src="./web/h3-theme/${icon}.png" alt=""><span>${label}</span></button>`);

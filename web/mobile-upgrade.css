@@ -115,3 +115,17 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
  #mobile-app .recruit-variants{grid-template-columns:repeat(var(--variant-count),minmax(0,1fr))}
 }
 .creature-upgrade:only-child{grid-column:1/-1}
+
+/* Native movement values replace the manual Save shortcut on the map. */
+#mobile-app[data-mode=map] .hero-movement-summary{grid-column:1/-1;min-width:0;border-bottom:1px solid #b59750;padding:0 0 4px;color:#f5df9e}
+#mobile-app .hero-movement-list{display:flex;gap:6px;list-style:none;margin:0;padding:0;overflow-x:auto;overscroll-behavior:contain;touch-action:pan-x;scrollbar-width:thin}
+#mobile-app .hero-movement-item{flex:0 0 auto;display:flex;align-items:center;gap:8px;min-height:32px;padding:0 8px;border:1px solid #8f7847;background:#20180edb;font-size:13px;white-space:nowrap}
+#mobile-app .hero-movement-item strong{font-size:13px;font-weight:600}
+#mobile-app .hero-movement-item span{font-variant-numeric:tabular-nums}
+#mobile-app .hero-movement-item.is-active{border-color:#f4d36d;box-shadow:inset 0 -2px #f4d36d}
+#mobile-app .hero-movement-item.is-exhausted{color:#c8c0ac}
+#mobile-app[data-mode=map] .mobile-nav>[data-ui=endturn]{grid-column:span 2}
+@media(orientation:landscape) and (max-height:600px){
+ #mobile-app[data-mode=map] .mobile-nav{grid-template-rows:auto repeat(3,minmax(44px,1fr));overflow-y:auto}
+ #mobile-app .hero-movement-item{flex-basis:100%;box-sizing:border-box;justify-content:space-between;padding:0 4px;gap:4px;min-height:32px}
+}
