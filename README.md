@@ -421,3 +421,10 @@ Validation: `ninja -j32 html5`, `npm test` (272 passed, 16 optional host checks 
 Pointer actions now require a completed press/release pair in the same viewport geometry. This includes Safari touch compatibility clicks with `detail=0`, which previously escaped the temporary suppression after rotation. Keyboard activation stays available. Menus, direct controls and combat controls reject gestures started before a viewport change, including a landscape/portrait round trip that restores the original button coordinates. Duplicate resize events do not cancel a new gesture. Canvas input uses the current displayed rectangle and accepts input only after that geometry has been painted.
 
 Regression checks: `tests/touch-geometry.test.mjs`, `tests/mobile-press.test.mjs` and `work/browser-tests/rotation-targets-e2e.mjs`. The latter reproduces the old misdirected army activation, then checks physical button-center taps at 390×844, 844×390 and 568×320 under Chromium/WebKit. Use `CHROME_PATH`, `WEBKIT_PATH` and `GOONK_TEST_ORIGIN` as for the 0.4.24 browser checks. The WebAssembly binary remains the verified 0.4.24 engine.
+
+
+### Version 0.4.26 — action feedback
+
+The map's Castle centering action no longer starts a loader: it changes only the camera, not the game fields previously used as acknowledgements. Spellbook paging/filtering and zero-cost recruitment now acknowledge their loading controls through the actual page/school/army state. `tests/action-feedback.test.mjs` covers these cases.
+
+A fresh native stress run performed three normal construction days, seven creature purchases, twenty recruitment-window cycles, rotation and saved-game recovery. It did not reproduce a spontaneous restart; WASM memory remained at 256 MiB, the asset cache at or below 16 MiB and ordinary VFS data below 4 MiB. This desktop-browser run does not establish the cause of a reported phone restart or rule out phone memory pressure.
