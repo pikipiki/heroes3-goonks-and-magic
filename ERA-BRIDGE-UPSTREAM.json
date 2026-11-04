@@ -84,7 +84,7 @@
       "passed": 9,
       "evidence": "outputs/native-evidence/towns038/report.json",
       "wasmSHA256": "9b35c0b49206b3c38f10e45cf470d823e5407e839736aae5656215363512acc5",
-      "scope": "bounded town purchases/recruitment/save-load atXP0;nonzeroXPcross-flow remains pending"
+      "scope": "Nine bounded town purchase/recruit/save-load cases atXP0;additional nonzeroXP regression separately verified in earnedExperiencePersistence."
     }
   },
   "limitations": [
@@ -321,5 +321,29 @@
       "evidence": "outputs/data-only-0.4.35/startup-native-evidence.json",
       "notWarningFree": true
     }
+  },
+  "earnedExperiencePersistence": {
+    "status": "verified",
+    "evidence": "outputs/native-evidence/earned-xp-persistence/report.json",
+    "cases": 2,
+    "productionPerUnitXP": [
+      200,
+      150,
+      100
+    ],
+    "acceleratedControlPerUnitXP": [
+      100,
+      75,
+      50
+    ],
+    "acceleratedControlRanks": [
+      10,
+      8,
+      6
+    ],
+    "sourceCaseProfilesUnchanged": true,
+    "saveReloadEffectiveBonusesPreserved": true,
+    "nativeCodeChanged": false,
+    "scope": "One Castle chain with real earned XP;rank-threshold control is fixture-only,not a balance change or full ERA guarantee."
   }
 }

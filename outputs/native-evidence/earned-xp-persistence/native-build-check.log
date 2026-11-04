@@ -1,0 +1,5 @@
+[1/5] cd /tmp/era-bridge-source/emscripten && /usr/bin/cmake -DGIT_SHA1="" -P /tmp/era-bridge-source/cmake_modules/Version.cmake
+-- -- -- Start of Git information
+-- GIT_SHA1: GITDIR-NOTFOUND
+-- -- -- End of Git information
+[2/2] cd /tmp/era-bridge-source/emscripten && rm -rf html5 && mkdir html5 && cp bin/vcmiclient.js html5/vcmiclient.js && cp bin/vcmiclient.js.symbols html5/vcmiclient.js.symbols && cp bin/vcmiclient.wasm html5/vcmiclient.wasm && cp /tmp/era-bridge-source/lib/html5/index.html html5/game.html && cp /tmp/era-bridge-source/lib/html5/mini-lz4.js html5/mini-lz4.js && cp /tmp/era-bridge-source/lib/html5/opfs-worker.js html5/opfs-worker.js && cp /tmp/era-bridge-source/lib/html5/dialogs.js html5/dialogs.js && cp /tmp/era-bridge-source/lib/html5/dosvcmi.png html5/ && python3 /emsdk/upstream/emscripten/tools/file_packager.py html5/vcmiclient.data --no-node --from-emcc --preload /tmp/era-bridge-source/config@config --preload /tmp/era-bridge-source/Mods@Mods --js-output="html5/vcmiclient.data.js"

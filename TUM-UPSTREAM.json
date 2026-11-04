@@ -141,5 +141,29 @@
       "evidence": "outputs/data-only-0.4.35/startup-native-evidence.json",
       "notWarningFree": true
     }
+  },
+  "earnedExperiencePersistence": {
+    "status": "verified",
+    "evidence": "outputs/native-evidence/earned-xp-persistence/report.json",
+    "cases": 2,
+    "productionPerUnitXP": [
+      200,
+      150,
+      100
+    ],
+    "acceleratedControlPerUnitXP": [
+      100,
+      75,
+      50
+    ],
+    "acceleratedControlRanks": [
+      10,
+      8,
+      6
+    ],
+    "sourceCaseProfilesUnchanged": true,
+    "saveReloadEffectiveBonusesPreserved": true,
+    "nativeCodeChanged": false,
+    "scope": "One Castle chain with real earned XP;rank-threshold control is fixture-only,not a balance change or full ERA guarantee."
   }
 }
