@@ -1,0 +1,15 @@
+{
+  "sourceCfgSha256": {
+    "201.cfg": "1302bd871bd6072b3f508bbb1e6f4e40875e2f5c6412a31737dffaa0223f4002",
+    "206.cfg": "7a39a49cf4e15dd044608b7dafb15f6c3d1e9080b85cf6b34b0633aedf123d9f",
+    "215.cfg": "10bb6ece5c9e377013fd6977d56635c78c8ca8e6a3eb79ffc62434379a2f54ba",
+    "225.cfg": "5a333b69455aff7fb43b3835a1197e39cce863386d7dd6077c2806830f457edf",
+    "229.cfg": "3b558344bbb59383957b9030f325fcb8c1aa399a115f22641f742a822a360195",
+    "291.cfg": "3b6178b5e7780b628aca4d29023286817ea8ac930f6991c7a17cb89e064ca4ca"
+  },
+  "tumCommit": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+  "shippedAmethystSHA256": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+  "amethystREA": "ev_c644e43c4ddd1f0b575defaaa29215bfecf3fb9613112db8e6872cdd9e6017e6",
+  "shippedParserProof": "StringFearless=VA1003F868;1001E2A2..1001E2DC strstr/atoi after9chars and writes source-index byte to10EA1118. The shipped fear-immunity callback10015800 reads that same table.",
+  "sourceExecutableSHA256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+}

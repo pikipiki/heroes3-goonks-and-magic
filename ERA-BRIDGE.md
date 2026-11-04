@@ -62,3 +62,15 @@ L'audit retourne le code 2 tant que la compatibilité intégrale est incomplète
 - Plugin livré Amethyst : SHA-256 `82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180`.
 
 Les conclusions tirées de la DLL et de l'exécutable sont des observations statiques. Aucun essai Windows ERA avec ses plugins n'a été exécuté dans cet environnement. Les essais de jeu rapportés concernent VCMI/WebAssembly.
+
+## Corrections de données 0.4.35
+
+Cette livraison conserve le moteur publié 0.4.34 et le contenu de la base 2da1e91 : 12 créatures TUM, 56 artefacts, 28 configurations d’objets, 234 profils XP et cinq villes à quatrième évolution. Elle ajoute uniquement 66 corrections numériques de créatures déjà enregistrées, les 63 coûts source des troisièmes évolutions des neuf villes (62 prix changés) et six immunités Fearless=1 représentées par FEARFUL0/INDEPENDENT_MIN. Les chaînes, prérequis, graphismes, identifiants et autres tableaux restent inchangés.
+
+Le catalogue des données identifie le moteur auquel il correspond ; le chargeur refuse un moteur différent avant synchronisation. Aucun nouveau code natif n’est requis. Les preuves historiques sont attribuées à leurs moteurs respectifs dans outputs/data-only-0.4.35 ; elles ne prétendent pas être une nouvelle campagne de combats sur le moteur publié. Ce snapshot est vérifié par les tests Node et prepare/build/verify.
+
+Les travaux H, nouveau tirage de peur, Ghost, nouveaux acteurs/artefacts/objets/villes et valeurs globales d’expérience en cours restent exclus. Le support complet ERA 3.5 demeure inachevé.
+
+Known checkpoint limitation: existing cfg HATE semantics for source IDs 202/219 (flat versus percentage) remain under separate review. This data-only release does not correct those mechanics or claim complete TUM compatibility.
+
+Le démarrage 0.4.35 a été vérifié sur dix cartes de test ordinaires : 66 identités, 462 mesures, 63 coûts et neuf villes, sans erreur native de niveau ERROR ni erreur JavaScript. Ces cartes corrigent uniquement leurs noms d’instances et références, ainsi que la création normale du héros IA ; la carte publiée reste inchangée. Un contrôle séparé du chargement et de la ville Castle conserve les 132 avertissements complets de la base 2da1e91 et du candidat : leurs ensembles sont identiques, sans nouvel avertissement ni identifiant non résolu. Cette comparaison ne signifie pas que la base est exempte d’avertissements de schéma ou de ressources.

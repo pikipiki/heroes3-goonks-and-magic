@@ -1,0 +1,85 @@
+{
+  "core:conflux": {
+    "town": {
+      "buildings": {
+        "dwellingUp2Lvl1": {
+          "cost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 2,
+            "gems": 2,
+            "gold": 1200
+          }
+        },
+        "dwellingUp2Lvl2": {
+          "cost": {
+            "wood": 5,
+            "mercury": 3,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 3,
+            "gold": 2000
+          }
+        },
+        "dwellingUp2Lvl3": {
+          "cost": {
+            "wood": 0,
+            "mercury": 6,
+            "ore": 10,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 2500
+          }
+        },
+        "dwellingUp2Lvl4": {
+          "cost": {
+            "wood": 5,
+            "mercury": 5,
+            "ore": 10,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 2400
+          }
+        },
+        "dwellingUp2Lvl5": {
+          "cost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 10,
+            "sulfur": 10,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 2300
+          }
+        },
+        "dwellingUp2Lvl6": {
+          "cost": {
+            "wood": 0,
+            "mercury": 7,
+            "ore": 0,
+            "sulfur": 7,
+            "crystal": 7,
+            "gems": 7,
+            "gold": 5000
+          }
+        },
+        "dwellingUp2Lvl7": {
+          "cost": {
+            "wood": 10,
+            "mercury": 20,
+            "ore": 10,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 15000
+          }
+        }
+      }
+    }
+  }
+}

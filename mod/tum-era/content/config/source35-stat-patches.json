@@ -1,0 +1,554 @@
+{
+  "core:centaur": {
+    "shots": 12
+  },
+  "core:centaurCaptain": {
+    "shots": 12
+  },
+  "wake-of-gods.level8units:supremeArchangel": {
+    "hitPoints": 350,
+    "aiValue": 10976,
+    "fightValue": 8070,
+    "damage": {
+      "min": 50,
+      "max": 50
+    },
+    "cost": {
+      "gold": 7500
+    }
+  },
+  "wake-of-gods.level8units:diamondDragon": {
+    "hitPoints": 350,
+    "aiValue": 10749,
+    "fightValue": 8205,
+    "damage": {
+      "min": 40,
+      "max": 50
+    },
+    "cost": {
+      "gold": 6000
+    }
+  },
+  "wake-of-gods.level8units:lordOfThunder": {
+    "hitPoints": 350,
+    "aiValue": 9800,
+    "fightValue": 7800,
+    "damage": {
+      "min": 40,
+      "max": 60
+    },
+    "cost": {
+      "gold": 7500
+    }
+  },
+  "wake-of-gods.level8units:hellBaron": {
+    "hitPoints": 250,
+    "speed": 18,
+    "aiValue": 9237,
+    "fightValue": 8068,
+    "damage": {
+      "min": 30,
+      "max": 40
+    },
+    "cost": {
+      "gold": 6500
+    }
+  },
+  "wake-of-gods.level8units:bloodDragon": {
+    "hitPoints": 250,
+    "speed": 15,
+    "aiValue": 6578,
+    "fightValue": 4987,
+    "cost": {
+      "gold": 4000
+    }
+  },
+  "wake-of-gods.level8units:darknessDragon": {
+    "hitPoints": 400,
+    "aiValue": 11032,
+    "fightValue": 8578,
+    "damage": {
+      "min": 40,
+      "max": 50
+    },
+    "cost": {
+      "gold": 6000
+    }
+  },
+  "wake-of-gods.level8units:ghostBehemoth": {
+    "hitPoints": 350,
+    "speed": 11,
+    "aiValue": 9462,
+    "fightValue": 8134,
+    "damage": {
+      "min": 30,
+      "max": 50
+    },
+    "cost": {
+      "gold": 5000
+    }
+  },
+  "wake-of-gods.level8units:hellHydra": {
+    "hitPoints": 325,
+    "speed": 9,
+    "aiValue": 8194,
+    "fightValue": 7956,
+    "damage": {
+      "min": 25,
+      "max": 45
+    },
+    "cost": {
+      "gold": 5500
+    }
+  },
+  "wake-of-gods.level8units:sacredPhoenix": {
+    "hitPoints": 300,
+    "aiValue": 8967,
+    "fightValue": 7865
+  },
+  "wake-of-gods.creatures:gorynych": {
+    "hitPoints": 500,
+    "attack": 25,
+    "defense": 30,
+    "speed": 14,
+    "aiValue": 12931,
+    "fightValue": 12272,
+    "damage": {
+      "max": 50
+    },
+    "cost": {
+      "crystal": 5,
+      "gold": 7000
+    }
+  },
+  "wake-of-gods.creatures:nightmare": {
+    "shots": 0
+  },
+  "wake-of-gods.creatures:santaGremlin": {
+    "aiValue": 300,
+    "fightValue": 300,
+    "shots": 0
+  },
+  "wake-of-gods.creatures:sylvanCentaur": {
+    "hitPoints": 12,
+    "attack": 7,
+    "growth": 14,
+    "aiValue": 165,
+    "fightValue": 130,
+    "damage": {
+      "min": 2,
+      "max": 4
+    },
+    "cost": {
+      "gold": 125
+    }
+  },
+  "wake-of-gods.creatures:wogSorceress": {
+    "fightValue": 800
+  },
+  "wake-of-gods.creatures:werewolf": {
+    "hitPoints": 30,
+    "attack": 11,
+    "defense": 10,
+    "growth": 5,
+    "aiValue": 576,
+    "fightValue": 554,
+    "damage": {
+      "max": 11
+    },
+    "cost": {
+      "gold": 350
+    }
+  },
+  "third-upgrades:tumRoyalHalberdier": {
+    "attack": 6,
+    "aiValue": 149,
+    "damage": {
+      "max": 3
+    },
+    "cost": {
+      "gold": 85
+    }
+  },
+  "third-upgrades:tumCrossbowman": {
+    "attack": 6
+  },
+  "third-upgrades:tumCeasarGriffin": {
+    "hitPoints": 30,
+    "aiValue": 575,
+    "damage": {
+      "min": 3
+    }
+  },
+  "third-upgrades:tumHolyChampion": {
+    "hitPoints": 120,
+    "speed": 11,
+    "damage": {
+      "min": 25,
+      "max": 30
+    },
+    "cost": {
+      "gold": 2000
+    }
+  },
+  "third-upgrades:tumBerserkerDwarf": {
+    "hitPoints": 20,
+    "defense": 7,
+    "damage": {
+      "min": 2,
+      "max": 4
+    },
+    "cost": {
+      "gold": 160
+    }
+  },
+  "third-upgrades:tumGoldenPegasus": {
+    "hitPoints": 30,
+    "damage": {
+      "min": 5,
+      "max": 9
+    }
+  },
+  "third-upgrades:tumElderDendroid": {
+    "hitPoints": 70,
+    "attack": 10,
+    "defense": 12,
+    "damage": {
+      "min": 10,
+      "max": 14
+    },
+    "cost": {
+      "gold": 550
+    }
+  },
+  "third-upgrades:tumLegendaryUnicorn": {
+    "hitPoints": 110,
+    "aiValue": 2436,
+    "fightValue": 2436
+  },
+  "third-upgrades:tumMarbleGargoyle": {
+    "hitPoints": 20,
+    "attack": 8,
+    "defense": 8,
+    "aiValue": 221,
+    "fightValue": 175,
+    "damage": {
+      "max": 3
+    },
+    "cost": {
+      "gold": 170
+    }
+  },
+  "third-upgrades:tumSteelGolem": {
+    "hitPoints": 40,
+    "damage": {
+      "min": 4,
+      "max": 5
+    },
+    "cost": {
+      "gold": 250
+    }
+  },
+  "third-upgrades:tumArcaneGenie": {
+    "attack": 13,
+    "defense": 12,
+    "speed": 12,
+    "aiValue": 1318,
+    "fightValue": 1047,
+    "damage": {
+      "min": 13,
+      "max": 16
+    }
+  },
+  "third-upgrades:tumNagaEmpress": {
+    "hitPoints": 120,
+    "attack": 17,
+    "defense": 14,
+    "speed": 8,
+    "damage": {
+      "min": 30,
+      "max": 30
+    }
+  },
+  "third-upgrades:tumVermin": {
+    "attack": 5,
+    "speed": 8,
+    "damage": {
+      "min": 1,
+      "max": 2
+    }
+  },
+  "third-upgrades:tumWingedMagog": {
+    "attack": 7,
+    "defense": 4,
+    "speed": 8,
+    "damage": {
+      "min": 2,
+      "max": 4
+    },
+    "cost": {
+      "gold": 250
+    }
+  },
+  "third-upgrades:tumAstralCerberus": {
+    "damage": {
+      "min": 2
+    }
+  },
+  "third-upgrades:tumSharpHornedDemon": {
+    "damage": {
+      "max": 9
+    }
+  },
+  "third-upgrades:tumPitMaster": {
+    "hitPoints": 50,
+    "growth": 3,
+    "damage": {
+      "min": 13
+    },
+    "cost": {
+      "gold": 800
+    }
+  },
+  "third-upgrades:tumEfreetRajah": {
+    "attack": 17,
+    "defense": 15,
+    "speed": 14,
+    "damage": {
+      "min": 16,
+      "max": 24
+    }
+  },
+  "third-upgrades:tumSkeletonKnight": {
+    "defense": 7,
+    "speed": 6,
+    "damage": {
+      "min": 1
+    }
+  },
+  "third-upgrades:tumNosferatu": {
+    "hitPoints": 45,
+    "aiValue": 1047,
+    "fightValue": 847
+  },
+  "third-upgrades:tumLichKing": {
+    "attack": 13,
+    "damage": {
+      "min": 11
+    },
+    "cost": {
+      "gold": 700
+    }
+  },
+  "third-upgrades:tumPhosphorescentTroglodyte": {
+    "aiValue": 98,
+    "fightValue": 98,
+    "damage": {
+      "max": 3
+    }
+  },
+  "third-upgrades:tumMonstrousEye": {
+    "attack": 10,
+    "speed": 8,
+    "aiValue": 413,
+    "fightValue": 332
+  },
+  "third-upgrades:tumHarpySanguinary": {
+    "aiValue": 209,
+    "fightValue": 254,
+    "damage": {
+      "min": 1
+    },
+    "cost": {
+      "gold": 190
+    }
+  },
+  "third-upgrades:tumMedusaEmpress": {
+    "speed": 7,
+    "aiValue": 750,
+    "fightValue": 549
+  },
+  "third-upgrades:tumBlackMinotaur": {
+    "speed": 9,
+    "aiValue": 1388,
+    "fightValue": 1157,
+    "damage": {
+      "min": 12
+    },
+    "cost": {
+      "gold": 620
+    }
+  },
+  "third-upgrades:tumChimera": {
+    "hitPoints": 80,
+    "attack": 18,
+    "defense": 14,
+    "speed": 12,
+    "aiValue": 2589,
+    "fightValue": 2248,
+    "damage": {
+      "min": 14,
+      "max": 20
+    },
+    "cost": {
+      "gold": 1380
+    }
+  },
+  "third-upgrades:tumHobgoblinOverlord": {
+    "defense": 4,
+    "speed": 8
+  },
+  "third-upgrades:tumWolfRiderKiller": {
+    "attack": 8,
+    "defense": 6
+  },
+  "third-upgrades:tumOrcLeader": {
+    "attack": 8,
+    "speed": 6,
+    "damage": {
+      "min": 2
+    },
+    "cost": {
+      "gold": 180
+    }
+  },
+  "third-upgrades:tumElderOgre": {
+    "attack": 13,
+    "defense": 7,
+    "damage": {
+      "min": 6
+    }
+  },
+  "third-upgrades:tumLightningbird": {
+    "hitPoints": 65,
+    "attack": 14,
+    "speed": 12
+  },
+  "third-upgrades:tumCyclopsEmperor": {
+    "hitPoints": 75,
+    "attack": 18,
+    "speed": 9,
+    "damage": {
+      "min": 16
+    }
+  },
+  "third-upgrades:tumEliteLizard": {
+    "defense": 8,
+    "speed": 7,
+    "damage": {
+      "min": 2
+    }
+  },
+  "third-upgrades:tumChaoticDragonFly": {
+    "hitPoints": 25,
+    "attack": 9,
+    "defense": 11,
+    "speed": 14,
+    "damage": {
+      "min": 2,
+      "max": 5
+    }
+  },
+  "third-upgrades:tumLavaBasilisk": {
+    "hitPoints": 40,
+    "attack": 13,
+    "speed": 8,
+    "damage": {
+      "min": 6,
+      "max": 10
+    }
+  },
+  "third-upgrades:tumHurricaneElemental": {
+    "speed": 9,
+    "aiValue": 631,
+    "fightValue": 421
+  },
+  "third-upgrades:tumLifeElemental": {
+    "speed": 7,
+    "cost": {
+      "gold": 400
+    }
+  },
+  "third-upgrades:tumPlasmaElemental": {
+    "attack": 14
+  },
+  "third-upgrades:tumMineralElemental": {
+    "attack": 12,
+    "speed": 7,
+    "growth": 4,
+    "damage": {
+      "min": 7,
+      "max": 11
+    }
+  },
+  "third-upgrades:tumVoidElemental": {
+    "attack": 16,
+    "defense": 14,
+    "damage": {
+      "min": 15,
+      "max": 25
+    }
+  },
+  "third-upgrades:tumGrandmasterGremlin": {
+    "attack": 4,
+    "shots": 10,
+    "damage": {
+      "max": 2
+    }
+  },
+  "third-upgrades:tumSharpshooterElf": {
+    "speed": 8,
+    "damage": {
+      "min": 3
+    }
+  },
+  "third-upgrades:tumSupremeArchMage": {
+    "hitPoints": 30,
+    "attack": 12,
+    "speed": 8,
+    "damage": {
+      "min": 7,
+      "max": 9
+    },
+    "cost": {
+      "gold": 500
+    }
+  },
+  "third-upgrades:tumSpecter": {
+    "attack": 8,
+    "defense": 8,
+    "damage": {
+      "max": 5
+    }
+  },
+  "third-upgrades:tumInquisitor": {
+    "attack": 13,
+    "defense": 13,
+    "speed": 7,
+    "damage": {
+      "min": 7
+    }
+  },
+  "third-upgrades:tumCentaurGeneral": {
+    "hitPoints": 10,
+    "attack": 6,
+    "speed": 9,
+    "damage": {
+      "min": 2,
+      "max": 3
+    }
+  },
+  "third-upgrades:tumHighPriest": {
+    "hitPoints": 30,
+    "attack": 12,
+    "aiValue": 870,
+    "fightValue": 620
+  },
+  "third-upgrades:tumGnollShaman": {
+    "hitPoints": 8,
+    "speed": 6,
+    "damage": {
+      "max": 3
+    }
+  }
+}

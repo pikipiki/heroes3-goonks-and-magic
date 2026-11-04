@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "scope": "63 costs only; candidate inactive, native purchase tests pending gate",
+  "tumGitCommit": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+  "pluginSourceCommit": "99e949d9d910556e57d19914b41976d5a07da577",
+  "shippedPlugin": {
+    "relative": "EraPlugins/new_towns.era",
+    "sha256": "4f5b3fbba77a018b3373f1ee5cfe89f20016f6f7e38b4155e7cca98add3c1b17"
+  },
+  "reaEvidence": "ev_013c851f14631689973acac524876e846b13efe671de8e85b73fda9e38754a3f",
+  "method": "Read-only objdump inspection of exact shipped PE. Full retained canonical bundle and disassembly exported locally; no shared Hopper target opened. Source repository and shipped DLL are separately identified; whole-version equivalence is not asserted.",
+  "sourceFiles": {
+    "new-towns-config.cpp": "3a76417322fc8877d79d741b4b451fe9f721add429a0684a54cd7acf5cb649c2",
+    "h3-constants.hpp": "ca38b43f19915def26ab6316272d2a98be35d8926c8e0dc5e331e98a88475151",
+    "new-towns-hooks.cpp": "fc29e3900752b6c1212c2d69a254cb8b528979c129617484e496dc5dd965dd7e",
+    "new-towns-buildings.cpp": "0f16e6f7e02a6f38a5d00049dd6387f1af039fe5897aa9410a92886c93c6570f",
+    "new-towns-main.cpp": "4be5bba6783a6fddcf0cd1664943665297c5bbfc3a9a28be26d249edf96db706",
+    "new-towns-town.h": "eb73e1fb2d2613de9d59cebf9eef170333badb996f4748417b811d52b065fba6",
+    "new-towns-resources.h": "e78d2289d7af6b8b4880fcdeb8ae56a07c4b068a4e73096fdb6bbfb1a1f4cf99"
+  },
+  "facts": [
+    {
+      "source": "new-towns-config.cpp:595..601",
+      "fact": "For index0..63, BuildingCost(index+64) parses seven integers into new_buildings_cost[town][index][0..6], with optional separate eighth Mithril field."
+    },
+    {
+      "source": "new-towns-config.cpp:82..",
+      "fact": "ParseStr uses strstr and selects first substring, including commented tokens. Strict importer rejects duplicates/noncanonical ambiguity."
+    },
+    {
+      "source": "h3-constants.hpp:766..778",
+      "fact": "NH3Resources order is wood,mercury,ore,sulfur,crystal,gems,gold."
+    },
+    {
+      "binary": "10016803..100168D7",
+      "fact": "Formats index+64, iterates seven resources, destination base100A2FF0 +town*0x700 +index*0x1C +resource*4."
+    },
+    {
+      "binary": "1000DD80..1000DDBF",
+      "fact": "Integer extraction writes through destination, including mov ecx,(eax) at1000DDAD. Valid values replace rather than add."
+    },
+    {
+      "binary": "100168D9..100168F3",
+      "fact": "Optional eighth value is parsed separately into Mithril requirements."
+    },
+    {
+      "binary": "1002FB40..1002FB9F",
+      "fact": "For building64..127, original hook005BF811 substitutes pointer to same full seven-resource table and continues005BF84C."
+    },
+    {
+      "source": "new-towns-hooks.cpp:1367..1387",
+      "fact": "can_afford_new_building compares each of seven player resource counts against direct table costs."
+    },
+    {
+      "source": "new-towns-hooks.cpp:2075..2102",
+      "fact": "Town_AIBuildingBuilt_hook subtracts exactly the seven table elements after affordability; no normalization or extra cost added."
+    },
+    {
+      "source": "new-towns-hooks.cpp:2146..2154",
+      "fact": "town_GetResourcesRequirements_hook copies28bytes, seven signed32-bit elements."
+    },
+    {
+      "native": "lib/entities/faction/CTownHandler.cpp:284 +lib/ResourceSet.cpp:41..48",
+      "fact": "Native building resources resolve from cost dictionary. Emitting all seven explicit zeros prevents obsolete dictionary components surviving merge."
+    }
+  ],
+  "sourceRecords": [
+    {
+      "source": "Data/towns/0.cfg",
+      "townId": 0,
+      "town": "castle",
+      "sha256": "05c5cff6316a24c65b08fbcb41fa2c55118cc08d81d5dbc654bffb15426dc623"
+    },
+    {
+      "source": "Data/towns/1.cfg",
+      "townId": 1,
+      "town": "rampart",
+      "sha256": "c904d9529e13088dfc3289dc365abf25939ceaf6b633485104502b8d3a8dc9e7"
+    },
+    {
+      "source": "Data/towns/2.cfg",
+      "townId": 2,
+      "town": "tower",
+      "sha256": "2f3e8de7928d28c2d06572d750687d133b401094047f72c7e0440a4410a1bd4b"
+    },
+    {
+      "source": "Data/towns/3.cfg",
+      "townId": 3,
+      "town": "inferno",
+      "sha256": "5b7d0fb109a280730baba123d5b3ef5ef274a8725467abdbb52d7e3f5b5eab70"
+    },
+    {
+      "source": "Data/towns/4.cfg",
+      "townId": 4,
+      "town": "necropolis",
+      "sha256": "898aa4de0968943f3620c0dd0fcf0335322dea3c4b771dec168db956e613c2a9"
+    },
+    {
+      "source": "Data/towns/5.cfg",
+      "townId": 5,
+      "town": "dungeon",
+      "sha256": "7dd6080767e01e9cbc24b4c363a72b0d8bb70bf5a14095e1eccb9d422f6d9d5c"
+    },
+    {
+      "source": "Data/towns/6.cfg",
+      "townId": 6,
+      "town": "stronghold",
+      "sha256": "9bc617808334077c271cfb05e177f93c0fc508c7107e52a82d20f1e7cd3562e0"
+    },
+    {
+      "source": "Data/towns/7.cfg",
+      "townId": 7,
+      "town": "fortress",
+      "sha256": "f5c7373fa83d4f3030297e845ff78f2aafd060f892c7bbd1a85dc201b65c55b2"
+    },
+    {
+      "source": "Data/towns/8.cfg",
+      "townId": 8,
+      "town": "conflux",
+      "sha256": "465551387ed75f513e35973f16cdf2b6667d2a2bca16ea2f9a472a4f80b0e11b"
+    }
+  ],
+  "nativeInputs": [
+    {
+      "modId": "third-upgrades",
+      "file": "config/town-screen/necropolis/factions",
+      "sha256": "63d69bfa6daf2c9112a8f07a1e27256e0426e6f695a61f7507a806798df18edd"
+    },
+    {
+      "modId": "third-upgrades",
+      "file": "config/town-screen/fortress/factions",
+      "sha256": "370e2f33a7b585ca25ee9371581cddcf89493b2198a3faeecce9d798024e38d9"
+    },
+    {
+      "modId": "third-upgrades",
+      "file": "config/town-screen/rampart/factions",
+      "sha256": "d0cfade282c5eaf66c6d10d8b76bd146b4e2547a9ea28583d4d30a7bbc3b1aee"
+    },
+    {
+      "modId": "third-upgrades",
+      "file": "config/town-screen/inferno/factions",
+      "sha256": "9c8a57458883303bc723583f941ecaa40b43c5717fe3f14ec50073f06d1536f1"
+    },
+    {
+      "modId": "third-upgrades",
+      "file": "config/town-screen/tower/factions",
+      "sha256": "628721f99ca3234b79747eb79c6a67df5feb62b6b361e5f9a0a93e7b60fba53d"
+    },
+    {
+      "modId": "third-upgrades",
+      "file": "config/town-screen/conflux/factions",
+      "sha256": "9a582325cf27b9daa1cd4d0292204ff0334ae3414fb2c9646272555971dc8ed7"
+    },
+    {
+      "modId": "third-upgrades",
+      "file": "config/town-screen/castle/factions",
+      "sha256": "155e76b5f780b1f1c348c3fb1ce0e453acd310cd25606132ac3b251d3986f36e"
+    },
+    {
+      "modId": "third-upgrades",
+      "file": "config/town-screen/dungeon/factions",
+      "sha256": "858d7034a60ec15ac8a61982afbfef5d3b11eabeb5640a9131a0d5ede13c87b7"
+    },
+    {
+      "modId": "third-upgrades",
+      "file": "config/town-screen/stronghold/factions",
+      "sha256": "4a156c1921f93988e25e8574bc3d9152ebd30c44459552d1503b2a28921d92c5"
+    },
+    {
+      "modId": "tum-era",
+      "file": "config/necropolis.json",
+      "sha256": "70efe56eb20dbbdd01a377350099eb115e5be213c0003142630d5fbf40318067"
+    },
+    {
+      "modId": "tum-era",
+      "file": "config/conflux.json",
+      "sha256": "d9c1b02f284b280a54e616305deb2770d117b5bfd1e0f214c5c8d537bf5cec92"
+    },
+    {
+      "modId": "tum-era",
+      "file": "config/inferno.json",
+      "sha256": "242ce9d69d94a7b446c656d36310454c9181819ec23bd885ac5644794dbc9fbe"
+    },
+    {
+      "modId": "tum-era",
+      "file": "config/castle.json",
+      "sha256": "ff1629cb47ef66f8f01d455717f3e39618f3286e94b8feec8807d4ce232361c2"
+    },
+    {
+      "modId": "tum-era",
+      "file": "config/stronghold.json",
+      "sha256": "10bc502ef452085da6d19be03afe599d5a1875f0a1f92e14caff7339db115e1f"
+    },
+    {
+      "modId": "tum-era",
+      "file": "config/rampart.json",
+      "sha256": "8cb1ba4415bf3e9c53fd192a443b0c0f8ae4bbb7c7dde6b3978a9e64a89f4282"
+    },
+    {
+      "modId": "tum-era",
+      "file": "config/fortress.json",
+      "sha256": "7f4ed87d191f633bd580277535f2ca1bd74f35642fd5a49bbe6cc4bdfa640e10"
+    }
+  ],
+  "activation": false,
+  "nativePurchaseProof": false
+}

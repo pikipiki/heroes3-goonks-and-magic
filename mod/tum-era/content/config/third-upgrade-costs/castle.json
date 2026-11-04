@@ -1,0 +1,85 @@
+{
+  "core:castle": {
+    "town": {
+      "buildings": {
+        "dwellingUp2Lvl1": {
+          "cost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 5,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1500
+          }
+        },
+        "dwellingUp2Lvl2": {
+          "cost": {
+            "wood": 5,
+            "mercury": 0,
+            "ore": 5,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 1500
+          }
+        },
+        "dwellingUp2Lvl3": {
+          "cost": {
+            "wood": 10,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 2000
+          }
+        },
+        "dwellingUp2Lvl4": {
+          "cost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 5,
+            "sulfur": 0,
+            "crystal": 5,
+            "gems": 0,
+            "gold": 2500
+          }
+        },
+        "dwellingUp2Lvl5": {
+          "cost": {
+            "wood": 3,
+            "mercury": 5,
+            "ore": 3,
+            "sulfur": 5,
+            "crystal": 3,
+            "gems": 3,
+            "gold": 2000
+          }
+        },
+        "dwellingUp2Lvl6": {
+          "cost": {
+            "wood": 15,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 5000
+          }
+        },
+        "dwellingUp2Lvl7": {
+          "cost": {
+            "wood": 0,
+            "mercury": 10,
+            "ore": 0,
+            "sulfur": 10,
+            "crystal": 10,
+            "gems": 10,
+            "gold": 15000
+          }
+        }
+      }
+    }
+  }
+}

@@ -23,7 +23,7 @@ for(const name of ['vcmiclient.data.js','vcmiclient.wasm','vcmiclient.data','vcm
 html=html.replace(/vcmiclient\.(?:data\.js|wasm|data|js)/g,name=>runtimeNames[name]);
 const moduleFiles=fs.readdirSync(path.join(dist,'web')).filter(name=>/\.(mjs|js)$/.test(name)).sort();
 const runtimeVersion=createRuntimeVersion(html,[...moduleFiles.map(name=>['web/'+name,fs.readFileSync(path.join(dist,'web',name))]),...fs.readdirSync(dist).filter(name=>/\.(mjs|js)$/.test(name)).map(name=>[name,fs.readFileSync(path.join(dist,name))])]);
-fs.writeFileSync(path.join(dist,'engine-build.json'),JSON.stringify({memoryVersion:1,runtimeVersion,wasm:runtimeNames['vcmiclient.wasm'],sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(dist,runtimeNames['vcmiclient.wasm']))).digest('hex'),mobile:{width:800,height:600},assetCacheBytes:16*1024*1024}));
+const engineBuild={memoryVersion:1,runtimeVersion,wasm:runtimeNames['vcmiclient.wasm'],sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(dist,runtimeNames['vcmiclient.wasm']))).digest('hex'),mobile:{width:800,height:600},assetCacheBytes:16*1024*1024};manifest.engine=engineBuild;fs.writeFileSync(path.join(dist,'engine-build.json'),JSON.stringify(engineBuild));
 for(const name of fs.readdirSync(path.join(dist,'web')).filter(name=>/\.(mjs|js)$/.test(name))){const file=path.join(dist,'web',name);fs.writeFileSync(file,versionModuleImports(fs.readFileSync(file,'utf8'),runtimeVersion));}
 html=versionScriptTags(versionModuleImports(html,runtimeVersion),runtimeVersion);
 fs.copyFileSync('web/hosting-bootstrap.mjs',path.join(dist,'hosting-bootstrap.mjs'));

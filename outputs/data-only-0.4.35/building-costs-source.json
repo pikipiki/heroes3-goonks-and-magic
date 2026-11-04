@@ -1,0 +1,2292 @@
+{
+  "schemaVersion": 1,
+  "counts": {
+    "towns": 9,
+    "buildings": 63,
+    "changed": 62,
+    "unchanged": 1
+  },
+  "resourceOrder": [
+    "wood",
+    "mercury",
+    "ore",
+    "sulfur",
+    "crystal",
+    "gems",
+    "gold"
+  ],
+  "sources": [
+    {
+      "source": "Data/towns/0.cfg",
+      "townId": 0,
+      "town": "castle",
+      "sha256": "05c5cff6316a24c65b08fbcb41fa2c55118cc08d81d5dbc654bffb15426dc623"
+    },
+    {
+      "source": "Data/towns/1.cfg",
+      "townId": 1,
+      "town": "rampart",
+      "sha256": "c904d9529e13088dfc3289dc365abf25939ceaf6b633485104502b8d3a8dc9e7"
+    },
+    {
+      "source": "Data/towns/2.cfg",
+      "townId": 2,
+      "town": "tower",
+      "sha256": "2f3e8de7928d28c2d06572d750687d133b401094047f72c7e0440a4410a1bd4b"
+    },
+    {
+      "source": "Data/towns/3.cfg",
+      "townId": 3,
+      "town": "inferno",
+      "sha256": "5b7d0fb109a280730baba123d5b3ef5ef274a8725467abdbb52d7e3f5b5eab70"
+    },
+    {
+      "source": "Data/towns/4.cfg",
+      "townId": 4,
+      "town": "necropolis",
+      "sha256": "898aa4de0968943f3620c0dd0fcf0335322dea3c4b771dec168db956e613c2a9"
+    },
+    {
+      "source": "Data/towns/5.cfg",
+      "townId": 5,
+      "town": "dungeon",
+      "sha256": "7dd6080767e01e9cbc24b4c363a72b0d8bb70bf5a14095e1eccb9d422f6d9d5c"
+    },
+    {
+      "source": "Data/towns/6.cfg",
+      "townId": 6,
+      "town": "stronghold",
+      "sha256": "9bc617808334077c271cfb05e177f93c0fc508c7107e52a82d20f1e7cd3562e0"
+    },
+    {
+      "source": "Data/towns/7.cfg",
+      "townId": 7,
+      "town": "fortress",
+      "sha256": "f5c7373fa83d4f3030297e845ff78f2aafd060f892c7bbd1a85dc201b65c55b2"
+    },
+    {
+      "source": "Data/towns/8.cfg",
+      "townId": 8,
+      "town": "conflux",
+      "sha256": "465551387ed75f513e35973f16cdf2b6667d2a2bca16ea2f9a472a4f80b0e11b"
+    }
+  ],
+  "rows": [
+    {
+      "sourceId": 64,
+      "level": 1,
+      "nativeKey": "dwellingUp2Lvl1",
+      "nativeId": 44,
+      "townId": 0,
+      "town": "castle",
+      "source": "Data/towns/0.cfg",
+      "line": 27,
+      "sourceRaw": "0  0 5 0 0 0  1500",
+      "before": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 15,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1500
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1500
+      },
+      "changed": true,
+      "changedResources": [
+        "ore"
+      ]
+    },
+    {
+      "sourceId": 65,
+      "level": 2,
+      "nativeKey": "dwellingUp2Lvl2",
+      "nativeId": 45,
+      "townId": 0,
+      "town": "castle",
+      "source": "Data/towns/0.cfg",
+      "line": 28,
+      "sourceRaw": "5 0 5 0 0 0  1500",
+      "before": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2000
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1500
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 66,
+      "level": 3,
+      "nativeKey": "dwellingUp2Lvl3",
+      "nativeId": 46,
+      "townId": 0,
+      "town": "castle",
+      "source": "Data/towns/0.cfg",
+      "line": 29,
+      "sourceRaw": "10  0 0 0 0 0  2000",
+      "before": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2000
+      },
+      "after": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore"
+      ]
+    },
+    {
+      "sourceId": 67,
+      "level": 4,
+      "nativeKey": "dwellingUp2Lvl4",
+      "nativeId": 47,
+      "townId": 0,
+      "town": "castle",
+      "source": "Data/towns/0.cfg",
+      "line": 30,
+      "sourceRaw": "0  0 5 0 5 0  2500",
+      "before": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 5,
+        "gems": 0,
+        "gold": 4000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 5,
+        "gems": 0,
+        "gold": 2500
+      },
+      "changed": true,
+      "changedResources": [
+        "ore",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 68,
+      "level": 5,
+      "nativeKey": "dwellingUp2Lvl5",
+      "nativeId": 48,
+      "townId": 0,
+      "town": "castle",
+      "source": "Data/towns/0.cfg",
+      "line": 31,
+      "sourceRaw": "3  5 3  5 3 3  2000",
+      "before": {
+        "wood": 7,
+        "mercury": 4,
+        "ore": 7,
+        "sulfur": 4,
+        "crystal": 4,
+        "gems": 4,
+        "gold": 4000
+      },
+      "after": {
+        "wood": 3,
+        "mercury": 5,
+        "ore": 3,
+        "sulfur": 5,
+        "crystal": 3,
+        "gems": 3,
+        "gold": 2000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "mercury",
+        "ore",
+        "sulfur",
+        "crystal",
+        "gems",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 69,
+      "level": 6,
+      "nativeKey": "dwellingUp2Lvl6",
+      "nativeId": 49,
+      "townId": 0,
+      "town": "castle",
+      "source": "Data/towns/0.cfg",
+      "line": 32,
+      "sourceRaw": "15 0 0  0 0 0  5000",
+      "before": {
+        "wood": 30,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 8000
+      },
+      "after": {
+        "wood": 15,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 5000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 70,
+      "level": 7,
+      "nativeKey": "dwellingUp2Lvl7",
+      "nativeId": 50,
+      "townId": 0,
+      "town": "castle",
+      "source": "Data/towns/0.cfg",
+      "line": 33,
+      "sourceRaw": "0 10 0  10 10 10 15000",
+      "before": {
+        "wood": 0,
+        "mercury": 20,
+        "ore": 0,
+        "sulfur": 20,
+        "crystal": 20,
+        "gems": 20,
+        "gold": 40000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 10,
+        "ore": 0,
+        "sulfur": 10,
+        "crystal": 10,
+        "gems": 10,
+        "gold": 15000
+      },
+      "changed": true,
+      "changedResources": [
+        "mercury",
+        "sulfur",
+        "crystal",
+        "gems",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 64,
+      "level": 1,
+      "nativeKey": "dwellingUp2Lvl1",
+      "nativeId": 44,
+      "townId": 1,
+      "town": "rampart",
+      "source": "Data/towns/1.cfg",
+      "line": 27,
+      "sourceRaw": "5 0 0  0 0  0  1500",
+      "before": {
+        "wood": 15,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1500
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1500
+      },
+      "changed": true,
+      "changedResources": [
+        "wood"
+      ]
+    },
+    {
+      "sourceId": 65,
+      "level": 2,
+      "nativeKey": "dwellingUp2Lvl2",
+      "nativeId": 45,
+      "townId": 1,
+      "town": "rampart",
+      "source": "Data/towns/1.cfg",
+      "line": 28,
+      "sourceRaw": "5 0 0  0 0  0  1500",
+      "before": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2000
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1500
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 66,
+      "level": 3,
+      "nativeKey": "dwellingUp2Lvl3",
+      "nativeId": 46,
+      "townId": 1,
+      "town": "rampart",
+      "source": "Data/towns/1.cfg",
+      "line": 29,
+      "sourceRaw": "15 0 0  0 5  0  2000",
+      "before": {
+        "wood": 20,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 3000
+      },
+      "after": {
+        "wood": 15,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 5,
+        "gems": 0,
+        "gold": 2000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "crystal",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 67,
+      "level": 4,
+      "nativeKey": "dwellingUp2Lvl4",
+      "nativeId": 47,
+      "townId": 1,
+      "town": "rampart",
+      "source": "Data/towns/1.cfg",
+      "line": 30,
+      "sourceRaw": "0  0 0  0 5 0  2000",
+      "before": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 15,
+        "gems": 0,
+        "gold": 4000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 5,
+        "gems": 0,
+        "gold": 2000
+      },
+      "changed": true,
+      "changedResources": [
+        "crystal",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 68,
+      "level": 5,
+      "nativeKey": "dwellingUp2Lvl5",
+      "nativeId": 48,
+      "townId": 1,
+      "town": "rampart",
+      "source": "Data/towns/1.cfg",
+      "line": 31,
+      "sourceRaw": "0  0 0  0 0  0  3000",
+      "before": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 4000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 3000
+      },
+      "changed": true,
+      "changedResources": [
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 69,
+      "level": 6,
+      "nativeKey": "dwellingUp2Lvl6",
+      "nativeId": 49,
+      "townId": 1,
+      "town": "rampart",
+      "source": "Data/towns/1.cfg",
+      "line": 32,
+      "sourceRaw": "0  0 0  0 0  10 5000",
+      "before": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 15,
+        "gold": 7000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 10,
+        "gold": 5000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "gems",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 70,
+      "level": 7,
+      "nativeKey": "dwellingUp2Lvl7",
+      "nativeId": 50,
+      "townId": 1,
+      "town": "rampart",
+      "source": "Data/towns/1.cfg",
+      "line": 33,
+      "sourceRaw": "0  0 30 0 30 0  15000",
+      "before": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 60,
+        "sulfur": 0,
+        "crystal": 40,
+        "gems": 0,
+        "gold": 30000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 30,
+        "sulfur": 0,
+        "crystal": 30,
+        "gems": 0,
+        "gold": 15000
+      },
+      "changed": true,
+      "changedResources": [
+        "ore",
+        "crystal",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 64,
+      "level": 1,
+      "nativeKey": "dwellingUp2Lvl1",
+      "nativeId": 44,
+      "townId": 2,
+      "town": "tower",
+      "source": "Data/towns/2.cfg",
+      "line": 27,
+      "sourceRaw": "5  0 0  0 0 0  1500",
+      "before": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1300
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1500
+      },
+      "changed": true,
+      "changedResources": [
+        "ore",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 65,
+      "level": 2,
+      "nativeKey": "dwellingUp2Lvl2",
+      "nativeId": 45,
+      "townId": 2,
+      "town": "tower",
+      "source": "Data/towns/2.cfg",
+      "line": 28,
+      "sourceRaw": "0  0 10 0 0 0  1500",
+      "before": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 15,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2500
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1500
+      },
+      "changed": true,
+      "changedResources": [
+        "ore",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 66,
+      "level": 3,
+      "nativeKey": "dwellingUp2Lvl3",
+      "nativeId": 46,
+      "townId": 2,
+      "town": "tower",
+      "source": "Data/towns/2.cfg",
+      "line": 29,
+      "sourceRaw": "0  2 5  2 0 0  2000",
+      "before": {
+        "wood": 10,
+        "mercury": 5,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 4000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 2,
+        "ore": 5,
+        "sulfur": 2,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "mercury",
+        "ore",
+        "sulfur",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 67,
+      "level": 4,
+      "nativeKey": "dwellingUp2Lvl4",
+      "nativeId": 47,
+      "townId": 2,
+      "town": "tower",
+      "source": "Data/towns/2.cfg",
+      "line": 30,
+      "sourceRaw": "5  3 5  3 3 3  2500",
+      "before": {
+        "wood": 10,
+        "mercury": 5,
+        "ore": 5,
+        "sulfur": 5,
+        "crystal": 5,
+        "gems": 5,
+        "gold": 4500
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 3,
+        "ore": 5,
+        "sulfur": 3,
+        "crystal": 3,
+        "gems": 3,
+        "gold": 2500
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "mercury",
+        "sulfur",
+        "crystal",
+        "gems",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 68,
+      "level": 5,
+      "nativeKey": "dwellingUp2Lvl5",
+      "nativeId": 48,
+      "townId": 2,
+      "town": "tower",
+      "source": "Data/towns/2.cfg",
+      "line": 31,
+      "sourceRaw": "0  0 0  0 5 5  2500",
+      "before": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 6,
+        "gems": 6,
+        "gold": 5000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 5,
+        "gems": 5,
+        "gold": 2500
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "crystal",
+        "gems",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 69,
+      "level": 6,
+      "nativeKey": "dwellingUp2Lvl6",
+      "nativeId": 49,
+      "townId": 2,
+      "town": "tower",
+      "source": "Data/towns/2.cfg",
+      "line": 32,
+      "sourceRaw": "0  4 0  4 4 4  3000",
+      "before": {
+        "wood": 5,
+        "mercury": 5,
+        "ore": 5,
+        "sulfur": 5,
+        "crystal": 5,
+        "gems": 5,
+        "gold": 7000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 4,
+        "ore": 0,
+        "sulfur": 4,
+        "crystal": 4,
+        "gems": 4,
+        "gold": 3000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "mercury",
+        "ore",
+        "sulfur",
+        "crystal",
+        "gems",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 70,
+      "level": 7,
+      "nativeKey": "dwellingUp2Lvl7",
+      "nativeId": 50,
+      "townId": 2,
+      "town": "tower",
+      "source": "Data/towns/2.cfg",
+      "line": 33,
+      "sourceRaw": "5 0 5 0 0 25 20000",
+      "before": {
+        "wood": 15,
+        "mercury": 0,
+        "ore": 15,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 40,
+        "gold": 30000
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 25,
+        "gold": 20000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "gems",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 64,
+      "level": 1,
+      "nativeKey": "dwellingUp2Lvl1",
+      "nativeId": 44,
+      "townId": 3,
+      "town": "inferno",
+      "source": "Data/towns/3.cfg",
+      "line": 27,
+      "sourceRaw": "0  0  5  0 0  0  1200",
+      "before": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1300
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1200
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 65,
+      "level": 2,
+      "nativeKey": "dwellingUp2Lvl2",
+      "nativeId": 45,
+      "townId": 3,
+      "town": "inferno",
+      "source": "Data/towns/3.cfg",
+      "line": 28,
+      "sourceRaw": "0  3  5  0 0  0  1500",
+      "before": {
+        "wood": 0,
+        "mercury": 5,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 3,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1500
+      },
+      "changed": true,
+      "changedResources": [
+        "mercury",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 66,
+      "level": 3,
+      "nativeKey": "dwellingUp2Lvl3",
+      "nativeId": 46,
+      "townId": 3,
+      "town": "inferno",
+      "source": "Data/towns/3.cfg",
+      "line": 29,
+      "sourceRaw": "5 0  0  3 0  0  2000",
+      "before": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 5,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 3000
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 3,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "sulfur",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 67,
+      "level": 4,
+      "nativeKey": "dwellingUp2Lvl4",
+      "nativeId": 47,
+      "townId": 3,
+      "town": "inferno",
+      "source": "Data/towns/3.cfg",
+      "line": 30,
+      "sourceRaw": "10 0  10 0 0  0  2500",
+      "before": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 4000
+      },
+      "after": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2500
+      },
+      "changed": true,
+      "changedResources": [
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 68,
+      "level": 5,
+      "nativeKey": "dwellingUp2Lvl5",
+      "nativeId": 48,
+      "townId": 3,
+      "town": "inferno",
+      "source": "Data/towns/3.cfg",
+      "line": 31,
+      "sourceRaw": "0  5  0  5 0  0  3000",
+      "before": {
+        "wood": 0,
+        "mercury": 5,
+        "ore": 0,
+        "sulfur": 5,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 6000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 5,
+        "ore": 0,
+        "sulfur": 5,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 3000
+      },
+      "changed": true,
+      "changedResources": [
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 69,
+      "level": 6,
+      "nativeKey": "dwellingUp2Lvl6",
+      "nativeId": 49,
+      "townId": 3,
+      "town": "inferno",
+      "source": "Data/towns/3.cfg",
+      "line": 32,
+      "sourceRaw": "0  5  10 5 0  5  7000",
+      "before": {
+        "wood": 0,
+        "mercury": 8,
+        "ore": 15,
+        "sulfur": 8,
+        "crystal": 0,
+        "gems": 8,
+        "gold": 7000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 5,
+        "ore": 10,
+        "sulfur": 5,
+        "crystal": 0,
+        "gems": 5,
+        "gold": 7000
+      },
+      "changed": true,
+      "changedResources": [
+        "mercury",
+        "ore",
+        "sulfur",
+        "gems"
+      ]
+    },
+    {
+      "sourceId": 70,
+      "level": 7,
+      "nativeKey": "dwellingUp2Lvl7",
+      "nativeId": 50,
+      "townId": 3,
+      "town": "inferno",
+      "source": "Data/towns/3.cfg",
+      "line": 33,
+      "sourceRaw": "5 20 5 0 0  0  15000",
+      "before": {
+        "wood": 15,
+        "mercury": 40,
+        "ore": 15,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 35000
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 20,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 15000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "mercury",
+        "ore",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 64,
+      "level": 1,
+      "nativeKey": "dwellingUp2Lvl1",
+      "nativeId": 44,
+      "townId": 4,
+      "town": "necropolis",
+      "source": "Data/towns/4.cfg",
+      "line": 27,
+      "sourceRaw": "0 0  5 0  0  0  1500",
+      "before": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1400
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1500
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 65,
+      "level": 2,
+      "nativeKey": "dwellingUp2Lvl2",
+      "nativeId": 45,
+      "townId": 4,
+      "town": "necropolis",
+      "source": "Data/towns/4.cfg",
+      "line": 28,
+      "sourceRaw": "5  0  5 0  0  0  1500",
+      "before": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2000
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1500
+      },
+      "changed": true,
+      "changedResources": [
+        "ore",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 66,
+      "level": 3,
+      "nativeKey": "dwellingUp2Lvl3",
+      "nativeId": 46,
+      "townId": 4,
+      "town": "necropolis",
+      "source": "Data/towns/4.cfg",
+      "line": 29,
+      "sourceRaw": "0  5  0  0  0  0  2000",
+      "before": {
+        "wood": 5,
+        "mercury": 5,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 3000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 5,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 67,
+      "level": 4,
+      "nativeKey": "dwellingUp2Lvl4",
+      "nativeId": 47,
+      "townId": 4,
+      "town": "necropolis",
+      "source": "Data/towns/4.cfg",
+      "line": 30,
+      "sourceRaw": "10 0  0  0  10 10 2500",
+      "before": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 10,
+        "gems": 10,
+        "gold": 4000
+      },
+      "after": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 10,
+        "gems": 10,
+        "gold": 2500
+      },
+      "changed": true,
+      "changedResources": [
+        "ore",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 68,
+      "level": 5,
+      "nativeKey": "dwellingUp2Lvl5",
+      "nativeId": 48,
+      "townId": 4,
+      "town": "necropolis",
+      "source": "Data/towns/4.cfg",
+      "line": 31,
+      "sourceRaw": "0  0  10 6 0  0  3000",
+      "before": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 15,
+        "sulfur": 15,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 4000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 6,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 3000
+      },
+      "changed": true,
+      "changedResources": [
+        "ore",
+        "sulfur",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 69,
+      "level": 6,
+      "nativeKey": "dwellingUp2Lvl6",
+      "nativeId": 49,
+      "townId": 4,
+      "town": "necropolis",
+      "source": "Data/towns/4.cfg",
+      "line": 32,
+      "sourceRaw": "0 4  10 4  4  4  4500",
+      "before": {
+        "wood": 15,
+        "mercury": 2,
+        "ore": 15,
+        "sulfur": 2,
+        "crystal": 2,
+        "gems": 2,
+        "gold": 9000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 4,
+        "ore": 10,
+        "sulfur": 4,
+        "crystal": 4,
+        "gems": 4,
+        "gold": 4500
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "mercury",
+        "ore",
+        "sulfur",
+        "crystal",
+        "gems",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 70,
+      "level": 7,
+      "nativeKey": "dwellingUp2Lvl7",
+      "nativeId": 50,
+      "townId": 4,
+      "town": "necropolis",
+      "source": "Data/towns/4.cfg",
+      "line": 33,
+      "sourceRaw": "5 15 5 0  0  0  15000",
+      "before": {
+        "wood": 10,
+        "mercury": 25,
+        "ore": 10,
+        "sulfur": 5,
+        "crystal": 5,
+        "gems": 5,
+        "gold": 25000
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 15,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 15000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "mercury",
+        "ore",
+        "sulfur",
+        "crystal",
+        "gems",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 64,
+      "level": 1,
+      "nativeKey": "dwellingUp2Lvl1",
+      "nativeId": 44,
+      "townId": 5,
+      "town": "dungeon",
+      "source": "Data/towns/5.cfg",
+      "line": 27,
+      "sourceRaw": "5 0  0  0  0  0  1500",
+      "before": {
+        "wood": 15,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1400
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1500
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 65,
+      "level": 2,
+      "nativeKey": "dwellingUp2Lvl2",
+      "nativeId": 45,
+      "townId": 5,
+      "town": "dungeon",
+      "source": "Data/towns/5.cfg",
+      "line": 28,
+      "sourceRaw": "0  0  0  0  2  2  1500",
+      "before": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 2,
+        "crystal": 2,
+        "gems": 0,
+        "gold": 2000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 2,
+        "gems": 2,
+        "gold": 1500
+      },
+      "changed": true,
+      "changedResources": [
+        "sulfur",
+        "gems",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 66,
+      "level": 3,
+      "nativeKey": "dwellingUp2Lvl3",
+      "nativeId": 46,
+      "townId": 5,
+      "town": "dungeon",
+      "source": "Data/towns/5.cfg",
+      "line": 29,
+      "sourceRaw": "2  2  2  2  2  2  2000",
+      "before": {
+        "wood": 2,
+        "mercury": 2,
+        "ore": 2,
+        "sulfur": 2,
+        "crystal": 2,
+        "gems": 2,
+        "gold": 2000
+      },
+      "after": {
+        "wood": 2,
+        "mercury": 2,
+        "ore": 2,
+        "sulfur": 2,
+        "crystal": 2,
+        "gems": 2,
+        "gold": 2000
+      },
+      "changed": false,
+      "changedResources": []
+    },
+    {
+      "sourceId": 67,
+      "level": 4,
+      "nativeKey": "dwellingUp2Lvl4",
+      "nativeId": 47,
+      "townId": 5,
+      "town": "dungeon",
+      "source": "Data/towns/5.cfg",
+      "line": 30,
+      "sourceRaw": "10 0  10 0  0 0  2500",
+      "before": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 3500
+      },
+      "after": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2500
+      },
+      "changed": true,
+      "changedResources": [
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 68,
+      "level": 5,
+      "nativeKey": "dwellingUp2Lvl5",
+      "nativeId": 48,
+      "townId": 5,
+      "town": "dungeon",
+      "source": "Data/towns/5.cfg",
+      "line": 31,
+      "sourceRaw": "0  0  10 0  0  10 3000",
+      "before": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 15,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 15,
+        "gold": 7000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 10,
+        "gold": 3000
+      },
+      "changed": true,
+      "changedResources": [
+        "ore",
+        "gems",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 69,
+      "level": 6,
+      "nativeKey": "dwellingUp2Lvl6",
+      "nativeId": 49,
+      "townId": 5,
+      "town": "dungeon",
+      "source": "Data/towns/5.cfg",
+      "line": 32,
+      "sourceRaw": "5 5 5 5 0  0  5000",
+      "before": {
+        "wood": 10,
+        "mercury": 10,
+        "ore": 10,
+        "sulfur": 10,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 6000
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 5,
+        "ore": 5,
+        "sulfur": 5,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 5000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "mercury",
+        "ore",
+        "sulfur",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 70,
+      "level": 7,
+      "nativeKey": "dwellingUp2Lvl7",
+      "nativeId": 50,
+      "townId": 5,
+      "town": "dungeon",
+      "source": "Data/towns/5.cfg",
+      "line": 33,
+      "sourceRaw": "15 0  15 25 0  0  15000",
+      "before": {
+        "wood": 30,
+        "mercury": 0,
+        "ore": 30,
+        "sulfur": 40,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 30000
+      },
+      "after": {
+        "wood": 15,
+        "mercury": 0,
+        "ore": 15,
+        "sulfur": 25,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 15000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "sulfur",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 64,
+      "level": 1,
+      "nativeKey": "dwellingUp2Lvl1",
+      "nativeId": 44,
+      "townId": 6,
+      "town": "stronghold",
+      "source": "Data/towns/6.cfg",
+      "line": 27,
+      "sourceRaw": "5 0  5 0  0  0  1300",
+      "before": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1200
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1300
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 65,
+      "level": 2,
+      "nativeKey": "dwellingUp2Lvl2",
+      "nativeId": 45,
+      "townId": 6,
+      "town": "stronghold",
+      "source": "Data/towns/6.cfg",
+      "line": 28,
+      "sourceRaw": "5 0 5  0  0  0  1500",
+      "before": {
+        "wood": 15,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2000
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1500
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 66,
+      "level": 3,
+      "nativeKey": "dwellingUp2Lvl3",
+      "nativeId": 46,
+      "townId": 6,
+      "town": "stronghold",
+      "source": "Data/towns/6.cfg",
+      "line": 29,
+      "sourceRaw": "4  0  7  0  0  0  1500",
+      "before": {
+        "wood": 7,
+        "mercury": 0,
+        "ore": 7,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2000
+      },
+      "after": {
+        "wood": 4,
+        "mercury": 0,
+        "ore": 7,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1500
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 67,
+      "level": 4,
+      "nativeKey": "dwellingUp2Lvl4",
+      "nativeId": 47,
+      "townId": 6,
+      "town": "stronghold",
+      "source": "Data/towns/6.cfg",
+      "line": 30,
+      "sourceRaw": "10 0  5  0  0  5  2500",
+      "before": {
+        "wood": 25,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 5,
+        "gold": 4000
+      },
+      "after": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 5,
+        "gold": 2500
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 68,
+      "level": 5,
+      "nativeKey": "dwellingUp2Lvl5",
+      "nativeId": 48,
+      "townId": 6,
+      "town": "stronghold",
+      "source": "Data/towns/6.cfg",
+      "line": 31,
+      "sourceRaw": "5  0  10 0  5  5  3000",
+      "before": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 15,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 4500
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 5,
+        "gems": 5,
+        "gold": 3000
+      },
+      "changed": true,
+      "changedResources": [
+        "ore",
+        "crystal",
+        "gems",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 69,
+      "level": 6,
+      "nativeKey": "dwellingUp2Lvl6",
+      "nativeId": 49,
+      "townId": 6,
+      "town": "stronghold",
+      "source": "Data/towns/6.cfg",
+      "line": 32,
+      "sourceRaw": "0  0  15 0  10 0  5000",
+      "before": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 25,
+        "sulfur": 0,
+        "crystal": 20,
+        "gems": 0,
+        "gold": 7500
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 15,
+        "sulfur": 0,
+        "crystal": 10,
+        "gems": 0,
+        "gold": 5000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "crystal",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 70,
+      "level": 7,
+      "nativeKey": "dwellingUp2Lvl7",
+      "nativeId": 50,
+      "townId": 6,
+      "town": "stronghold",
+      "source": "Data/towns/6.cfg",
+      "line": 33,
+      "sourceRaw": "10 0  10 0  15 0  15000",
+      "before": {
+        "wood": 20,
+        "mercury": 0,
+        "ore": 20,
+        "sulfur": 0,
+        "crystal": 30,
+        "gems": 0,
+        "gold": 25000
+      },
+      "after": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 15,
+        "gems": 0,
+        "gold": 15000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "crystal",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 64,
+      "level": 1,
+      "nativeKey": "dwellingUp2Lvl1",
+      "nativeId": 44,
+      "townId": 7,
+      "town": "fortress",
+      "source": "Data/towns/7.cfg",
+      "line": 27,
+      "sourceRaw": "5 0  0  0  1  1  1400",
+      "before": {
+        "wood": 20,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1400
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 1,
+        "gems": 1,
+        "gold": 1400
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "crystal",
+        "gems"
+      ]
+    },
+    {
+      "sourceId": 65,
+      "level": 2,
+      "nativeKey": "dwellingUp2Lvl2",
+      "nativeId": 45,
+      "townId": 7,
+      "town": "fortress",
+      "source": "Data/towns/7.cfg",
+      "line": 28,
+      "sourceRaw": "10 0  0  0  0  0  1600",
+      "before": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2000
+      },
+      "after": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1600
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 66,
+      "level": 3,
+      "nativeKey": "dwellingUp2Lvl3",
+      "nativeId": 46,
+      "townId": 7,
+      "town": "fortress",
+      "source": "Data/towns/7.cfg",
+      "line": 29,
+      "sourceRaw": "5  3  0  3  0  0  2000",
+      "before": {
+        "wood": 5,
+        "mercury": 4,
+        "ore": 0,
+        "sulfur": 4,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2000
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 3,
+        "ore": 0,
+        "sulfur": 3,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2000
+      },
+      "changed": true,
+      "changedResources": [
+        "mercury",
+        "sulfur"
+      ]
+    },
+    {
+      "sourceId": 67,
+      "level": 4,
+      "nativeKey": "dwellingUp2Lvl4",
+      "nativeId": 47,
+      "townId": 7,
+      "town": "fortress",
+      "source": "Data/towns/7.cfg",
+      "line": 30,
+      "sourceRaw": "5 0  5 5  0  0  2500",
+      "before": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 15,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 4000
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 0,
+        "ore": 5,
+        "sulfur": 5,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2500
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "sulfur",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 68,
+      "level": 5,
+      "nativeKey": "dwellingUp2Lvl5",
+      "nativeId": 48,
+      "townId": 7,
+      "town": "fortress",
+      "source": "Data/towns/7.cfg",
+      "line": 31,
+      "sourceRaw": "10 5  10 5  0  0  3000",
+      "before": {
+        "wood": 15,
+        "mercury": 5,
+        "ore": 15,
+        "sulfur": 5,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 4500
+      },
+      "after": {
+        "wood": 10,
+        "mercury": 5,
+        "ore": 10,
+        "sulfur": 5,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 3000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 69,
+      "level": 6,
+      "nativeKey": "dwellingUp2Lvl6",
+      "nativeId": 49,
+      "townId": 7,
+      "town": "fortress",
+      "source": "Data/towns/7.cfg",
+      "line": 32,
+      "sourceRaw": "15 5 0  10  0  0  4500",
+      "before": {
+        "wood": 25,
+        "mercury": 10,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 7500
+      },
+      "after": {
+        "wood": 15,
+        "mercury": 5,
+        "ore": 0,
+        "sulfur": 10,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 4500
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "mercury",
+        "sulfur",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 70,
+      "level": 7,
+      "nativeKey": "dwellingUp2Lvl7",
+      "nativeId": 50,
+      "townId": 7,
+      "town": "fortress",
+      "source": "Data/towns/7.cfg",
+      "line": 33,
+      "sourceRaw": "10 0  10 15 0  0  15000",
+      "before": {
+        "wood": 20,
+        "mercury": 0,
+        "ore": 20,
+        "sulfur": 30,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 25000
+      },
+      "after": {
+        "wood": 10,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 15,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 15000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "sulfur",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 64,
+      "level": 1,
+      "nativeKey": "dwellingUp2Lvl1",
+      "nativeId": 44,
+      "townId": 8,
+      "town": "conflux",
+      "source": "Data/towns/8.cfg",
+      "line": 27,
+      "sourceRaw": "0  0  0  0  2  2  1200",
+      "before": {
+        "wood": 2,
+        "mercury": 0,
+        "ore": 2,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1300
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 2,
+        "gems": 2,
+        "gold": 1200
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "crystal",
+        "gems",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 65,
+      "level": 2,
+      "nativeKey": "dwellingUp2Lvl2",
+      "nativeId": 45,
+      "townId": 8,
+      "town": "conflux",
+      "source": "Data/towns/8.cfg",
+      "line": 28,
+      "sourceRaw": "5  3  0  0  0  3  2000",
+      "before": {
+        "wood": 2,
+        "mercury": 2,
+        "ore": 5,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 2,
+        "gold": 3000
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 3,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 3,
+        "gold": 2000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "mercury",
+        "ore",
+        "gems",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 66,
+      "level": 3,
+      "nativeKey": "dwellingUp2Lvl3",
+      "nativeId": 46,
+      "townId": 8,
+      "town": "conflux",
+      "source": "Data/towns/8.cfg",
+      "line": 29,
+      "sourceRaw": "0  6  10 0  0  0  2500",
+      "before": {
+        "wood": 0,
+        "mercury": 5,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 3500
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 6,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2500
+      },
+      "changed": true,
+      "changedResources": [
+        "mercury",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 67,
+      "level": 4,
+      "nativeKey": "dwellingUp2Lvl4",
+      "nativeId": 47,
+      "townId": 8,
+      "town": "conflux",
+      "source": "Data/towns/8.cfg",
+      "line": 30,
+      "sourceRaw": "5  5  10 0  0  0  2400",
+      "before": {
+        "wood": 5,
+        "mercury": 5,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 4000
+      },
+      "after": {
+        "wood": 5,
+        "mercury": 5,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2400
+      },
+      "changed": true,
+      "changedResources": [
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 68,
+      "level": 5,
+      "nativeKey": "dwellingUp2Lvl5",
+      "nativeId": 48,
+      "townId": 8,
+      "town": "conflux",
+      "source": "Data/towns/8.cfg",
+      "line": 31,
+      "sourceRaw": "0  0  10 10  0  0  2300",
+      "before": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 5,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 3000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 10,
+        "sulfur": 10,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 2300
+      },
+      "changed": true,
+      "changedResources": [
+        "sulfur",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 69,
+      "level": 6,
+      "nativeKey": "dwellingUp2Lvl6",
+      "nativeId": 49,
+      "townId": 8,
+      "town": "conflux",
+      "source": "Data/towns/8.cfg",
+      "line": 32,
+      "sourceRaw": "0 7  0  7  7  7  5000",
+      "before": {
+        "wood": 5,
+        "mercury": 5,
+        "ore": 5,
+        "sulfur": 5,
+        "crystal": 5,
+        "gems": 5,
+        "gold": 6000
+      },
+      "after": {
+        "wood": 0,
+        "mercury": 7,
+        "ore": 0,
+        "sulfur": 7,
+        "crystal": 7,
+        "gems": 7,
+        "gold": 5000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "mercury",
+        "ore",
+        "sulfur",
+        "crystal",
+        "gems",
+        "gold"
+      ]
+    },
+    {
+      "sourceId": 70,
+      "level": 7,
+      "nativeKey": "dwellingUp2Lvl7",
+      "nativeId": 50,
+      "townId": 8,
+      "town": "conflux",
+      "source": "Data/towns/8.cfg",
+      "line": 33,
+      "sourceRaw": "10 20 10 0  0  0  15000",
+      "before": {
+        "wood": 20,
+        "mercury": 20,
+        "ore": 20,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 25000
+      },
+      "after": {
+        "wood": 10,
+        "mercury": 20,
+        "ore": 10,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 15000
+      },
+      "changed": true,
+      "changedResources": [
+        "wood",
+        "ore",
+        "gold"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4487 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.35",
+  "baseCommit": "2da1e91c12811c7e7c04f599ab33aa7aa2ed150d",
+  "startedAt": "2026-11-04T19:32:39.676Z",
+  "finishedAt": "2026-11-04T19:34:09.028Z",
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "ed20a99639f7d634",
+    "wasm": "vcmiclient.e5ded71899389b28.wasm",
+    "sha256": "e5ded71899389b2847e89d1098b0176e4ebe8a40696db019ca6138a8a8eddfb8",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "bridgeABI": 2,
+  "origin": "http://127.0.0.1:8877",
+  "originPolicy": "Local test origin admitted through existing GOONK_TEST_ORIGIN build option; selected source has no hardcoded test origin.",
+  "browserPolicy": {
+    "context": "fresh owned context on dedicated Chrome9224; all10pages created and closed by this harness",
+    "defaultContextTouched": false,
+    "saveDeletion": false,
+    "engineMutation": false,
+    "dataOverrides": false,
+    "fixtureMapOnly": true
+  },
+  "runtimeGuard": {
+    "matchingManifestAccepted": true,
+    "engineManifestEqualToServedBuild": true,
+    "all11ActivePatchFilesHashMatchedInNativeFS": true,
+    "tests": "Three unit tests cover exact match and rejection of missing or inconsistent engine/data pairs."
+  },
+  "actualData": [
+    {
+      "file": "source35-stat-patches.json",
+      "sha256": "a7f64e771d1bff6296ebc35da78ace83cad14f3d3a49276227845851c5279ffd"
+    },
+    {
+      "file": "source-fearless-six.json",
+      "sha256": "4113d5768660b1f00932237b998bf9deef06b7206ee055d5fd4a4359877cccac"
+    },
+    {
+      "file": "third-upgrade-costs/castle.json",
+      "sha256": "5412811d8d039a76c2dd348d869eb285e9476ae848a05e5d69276a5a3022c058"
+    },
+    {
+      "file": "third-upgrade-costs/rampart.json",
+      "sha256": "3932935eb0d8011d8c0f2972d51c2cd4d7b269aaec4c73560ad6380688cb1885"
+    },
+    {
+      "file": "third-upgrade-costs/tower.json",
+      "sha256": "e9c2f962dc7ea1724a0be72c9630f9d7468a3540a000cbfaaf11577b3d5514c9"
+    },
+    {
+      "file": "third-upgrade-costs/inferno.json",
+      "sha256": "163b126fadebad3304f5cff0354b5e58fe615995b119b0bceddef16403e744c2"
+    },
+    {
+      "file": "third-upgrade-costs/necropolis.json",
+      "sha256": "33d1b916c7c61a20ed6da75cb86e51dc63a89afc57a18ca98cb2c0e1cda9d6b3"
+    },
+    {
+      "file": "third-upgrade-costs/dungeon.json",
+      "sha256": "e549099ccbcd3f69b5e47f4cb326e988ac0e2902c05f6852dbbded8b7e070311"
+    },
+    {
+      "file": "third-upgrade-costs/stronghold.json",
+      "sha256": "e6d8a66cc5e6939bd4e8090081161c715511b9b88cb348eb87e082d3d3eb8530"
+    },
+    {
+      "file": "third-upgrade-costs/fortress.json",
+      "sha256": "63db3840dc68328feb1caa172f2d75f02530be759d80720cdb3deb604534aa4e"
+    },
+    {
+      "file": "third-upgrade-costs/conflux.json",
+      "sha256": "4dc7afc5222838c6a87d142f02f3153da2948e838934b9817ec125dcf1d31c18"
+    }
+  ],
+  "summary": {
+    "passed": true,
+    "resolvedIdentities": 66,
+    "scalarObservations": 462,
+    "uniqueNativeCosts": 63,
+    "towns": 9,
+    "pageErrors": 0,
+    "nativeErrors": 0
+  },
+  "observabilityLimit": "Published Main0.4.34 exposes HP,attack,defense,speed,damage min/max andcost. Growth,AI/FV andshots are verified by frozen source contracts and explicitly attributed historical native evidence; no absent native getter is claimed.",
+  "nativeErrorFilter": "\\] ERROR |failed to resolve identifier|identifier.*does not exists?|unknown identifier|unresolved|fatal error|schema.*error",
+  "fixtures": {
+    "scope": "Ordinary VMAP inputs only, installed into the owned engine FS after startup. No published map or game definitions modified.",
+    "corrections": [
+      "Removed unused purchase-budget map event and custom town name without localization.",
+      "Normalized instanceName suffixes and header references to native _<integer> format.",
+      "Enabled normal mainTown.generateHero for AI player so any ordinary starting artifact has a recipient."
+    ],
+    "knownBaselineMapLimitation": "Published baseline map retains non-numeric instance names; CMap::parseUidCounter logs ERROR for those names. The fixture corrections above are not a production map correction and this data-only release does not claim to close that baseline issue."
+  },
+  "cases": [
+    {
+      "index": 0,
+      "town": "castle",
+      "keys": [
+        "core:centaur",
+        "core:centaurCaptain",
+        "wake-of-gods.level8units:supremeArchangel",
+        "wake-of-gods.level8units:diamondDragon",
+        "wake-of-gods.level8units:lordOfThunder",
+        "wake-of-gods.level8units:hellBaron",
+        "wake-of-gods.level8units:bloodDragon"
+      ],
+      "passed": true,
+      "manifestPreserved": true,
+      "scalarFields": [
+        {
+          "key": "core:centaur",
+          "field": "health",
+          "actual": 8
+        },
+        {
+          "key": "core:centaur",
+          "field": "attack",
+          "actual": 5
+        },
+        {
+          "key": "core:centaur",
+          "field": "defense",
+          "actual": 3
+        },
+        {
+          "key": "core:centaur",
+          "field": "speed",
+          "actual": 6
+        },
+        {
+          "key": "core:centaur",
+          "field": "damageMin",
+          "actual": 2
+        },
+        {
+          "key": "core:centaur",
+          "field": "damageMax",
+          "actual": 3
+        },
+        {
+          "key": "core:centaur",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            70,
+            0
+          ]
+        },
+        {
+          "key": "core:centaurCaptain",
+          "field": "health",
+          "actual": 10
+        },
+        {
+          "key": "core:centaurCaptain",
+          "field": "attack",
+          "actual": 6
+        },
+        {
+          "key": "core:centaurCaptain",
+          "field": "defense",
+          "actual": 3
+        },
+        {
+          "key": "core:centaurCaptain",
+          "field": "speed",
+          "actual": 8
+        },
+        {
+          "key": "core:centaurCaptain",
+          "field": "damageMin",
+          "actual": 2
+        },
+        {
+          "key": "core:centaurCaptain",
+          "field": "damageMax",
+          "actual": 3
+        },
+        {
+          "key": "core:centaurCaptain",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            90,
+            0
+          ]
+        },
+        {
+          "key": "wake-of-gods.level8units:supremeArchangel",
+          "field": "health",
+          "actual": 350
+        },
+        {
+          "key": "wake-of-gods.level8units:supremeArchangel",
+          "field": "attack",
+          "actual": 40
+        },
+        {
+          "key": "wake-of-gods.level8units:supremeArchangel",
+          "field": "defense",
+          "actual": 40
+        },
+        {
+          "key": "wake-of-gods.level8units:supremeArchangel",
+          "field": "speed",
+          "actual": 18
+        },
+        {
+          "key": "wake-of-gods.level8units:supremeArchangel",
+          "field": "damageMin",
+          "actual": 50
+        },
+        {
+          "key": "wake-of-gods.level8units:supremeArchangel",
+          "field": "damageMax",
+          "actual": 50
+        },
+        {
+          "key": "wake-of-gods.level8units:supremeArchangel",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            7500,
+            0
+          ]
+        },
+        {
+          "key": "wake-of-gods.level8units:diamondDragon",
+          "field": "health",
+          "actual": 350
+        },
+        {
+          "key": "wake-of-gods.level8units:diamondDragon",
+          "field": "attack",
+          "actual": 36
+        },
+        {
+          "key": "wake-of-gods.level8units:diamondDragon",
+          "field": "defense",
+          "actual": 36
+        },
+        {
+          "key": "wake-of-gods.level8units:diamondDragon",
+          "field": "speed",
+          "actual": 16
+        },
+        {
+          "key": "wake-of-gods.level8units:diamondDragon",
+          "field": "damageMin",
+          "actual": 40
+        },
+        {
+          "key": "wake-of-gods.level8units:diamondDragon",
+          "field": "damageMax",
+          "actual": 50
+        },
+        {
+          "key": "wake-of-gods.level8units:diamondDragon",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            3,
+            0,
+            6000,
+            0
+          ]
+        },
+        {
+          "key": "wake-of-gods.level8units:lordOfThunder",
+          "field": "health",
+          "actual": 350
+        },
+        {
+          "key": "wake-of-gods.level8units:lordOfThunder",
+          "field": "attack",
+          "actual": 32
+        },
+        {
+          "key": "wake-of-gods.level8units:lordOfThunder",
+          "field": "defense",
+          "actual": 32
+        },
+        {
+          "key": "wake-of-gods.level8units:lordOfThunder",
+          "field": "speed",
+          "actual": 12
+        },
+        {
+          "key": "wake-of-gods.level8units:lordOfThunder",
+          "field": "damageMin",
+          "actual": 40
+        },
+        {
+          "key": "wake-of-gods.level8units:lordOfThunder",
+          "field": "damageMax",
+          "actual": 60
+        },
+        {
+          "key": "wake-of-gods.level8units:lordOfThunder",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            3,
+            7500,
+            0
+          ]
+        },
+        {
+          "key": "wake-of-gods.level8units:hellBaron",
+          "field": "health",
+          "actual": 250
+        },
+        {
+          "key": "wake-of-gods.level8units:hellBaron",
+          "field": "attack",
+          "actual": 35
+        },
+        {
+          "key": "wake-of-gods.level8units:hellBaron",
+          "field": "defense",
+          "actual": 37
+        },
+        {
+          "key": "wake-of-gods.level8units:hellBaron",
+          "field": "speed",
+          "actual": 18
+        },
+        {
+          "key": "wake-of-gods.level8units:hellBaron",
+          "field": "damageMin",
+          "actual": 30
+        },
+        {
+          "key": "wake-of-gods.level8units:hellBaron",
+          "field": "damageMax",
+          "actual": 40
+        },
+        {
+          "key": "wake-of-gods.level8units:hellBaron",
+          "field": "cost",
+          "actual": [
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            6500,
+            0
+          ]
+        },
+        {
+          "key": "wake-of-gods.level8units:bloodDragon",
+          "field": "health",
+          "actual": 250
+        },
+        {
+          "key": "wake-of-gods.level8units:bloodDragon",
+          "field": "attack",
+          "actual": 25
+        },
+        {
+          "key": "wake-of-gods.level8units:bloodDragon",
+          "field": "defense",
+          "actual": 23
+        },
+        {
+          "key": "wake-of-gods.level8units:bloodDragon",
+          "field": "speed",
+          "actual": 15
+        },
+        {
+          "key": "wake-of-gods.level8units:bloodDragon",
+          "field": "damageMin",
+          "actual": 38
+        },
+        {
+          "key": "wake-of-gods.level8units:bloodDragon",
+          "field": "damageMax",
+          "actual": 75
+        },
+        {
+          "key": "wake-of-gods.level8units:bloodDragon",
+          "field": "cost",
+          "actual": [
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            4000,
+            0
+          ]
+        }
+      ],
+      "costs": [
+        {
+          "key": "third-upgrades:dwellingUp2Lvl1",
+          "id": 44,
+          "cost": [
+            0,
+            0,
+            5,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl2",
+          "id": 45,
+          "cost": [
+            5,
+            0,
+            5,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl3",
+          "id": 46,
+          "cost": [
+            10,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl4",
+          "id": 47,
+          "cost": [
+            0,
+            0,
+            5,
+            0,
+            5,
+            0,
+            2500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl5",
+          "id": 48,
+          "cost": [
+            3,
+            5,
+            3,
+            5,
+            3,
+            3,
+            2000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl6",
+          "id": 49,
+          "cost": [
+            15,
+            0,
+            0,
+            0,
+            0,
+            0,
+            5000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl7",
+          "id": 50,
+          "cost": [
+            0,
+            10,
+            0,
+            10,
+            10,
+            10,
+            15000,
+            0
+          ]
+        }
+      ],
+      "pageErrors": [],
+      "nativeErrors": []
+    },
+    {
+      "index": 1,
+      "town": "rampart",
+      "keys": [
+        "wake-of-gods.level8units:darknessDragon",
+        "wake-of-gods.level8units:ghostBehemoth",
+        "wake-of-gods.level8units:hellHydra",
+        "wake-of-gods.level8units:sacredPhoenix",
+        "wake-of-gods.creatures:gorynych",
+        "wake-of-gods.creatures:nightmare",
+        "wake-of-gods.creatures:santaGremlin"
+      ],
+      "passed": true,
+      "manifestPreserved": true,
+      "scalarFields": [
+        {
+          "key": "wake-of-gods.level8units:darknessDragon",
+          "field": "health",
+          "actual": 400
+        },
+        {
+          "key": "wake-of-gods.level8units:darknessDragon",
+          "field": "attack",
+          "actual": 33
+        },
+        {
+          "key": "wake-of-gods.level8units:darknessDragon",
+          "field": "defense",
+          "actual": 33
+        },
+        {
+          "key": "wake-of-gods.level8units:darknessDragon",
+          "field": "speed",
+          "actual": 15
+        },
+        {
+          "key": "wake-of-gods.level8units:darknessDragon",
+          "field": "damageMin",
+          "actual": 40
+        },
+        {
+          "key": "wake-of-gods.level8units:darknessDragon",
+          "field": "damageMax",
+          "actual": 50
+        },
+        {
+          "key": "wake-of-gods.level8units:darknessDragon",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            6000,
+            0
+          ]
+        },
+        {
+          "key": "wake-of-gods.level8units:ghostBehemoth",
+          "field": "health",
+          "actual": 350
+        },
+        {
+          "key": "wake-of-gods.level8units:ghostBehemoth",
+          "field": "attack",
+          "actual": 25
+        },
+        {
+          "key": "wake-of-gods.level8units:ghostBehemoth",
+          "field": "defense",
+          "actual": 25
+        },
+        {
+          "key": "wake-of-gods.level8units:ghostBehemoth",
+          "field": "speed",
+          "actual": 11
+        },
+        {
+          "key": "wake-of-gods.level8units:ghostBehemoth",
+          "field": "damageMin",
+          "actual": 30
+        },
+        {
+          "key": "wake-of-gods.level8units:ghostBehemoth",
+          "field": "damageMax",
+          "actual": 50
+        },
+        {
+          "key": "wake-of-gods.level8units:ghostBehemoth",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            5000,
+            0
+          ]
+        },
+        {
+          "key": "wake-of-gods.level8units:hellHydra",
+          "field": "health",
+          "actual": 325
+        },
+        {
+          "key": "wake-of-gods.level8units:hellHydra",
+          "field": "attack",
+          "actual": 25
+        },
+        {
+          "key": "wake-of-gods.level8units:hellHydra",
+          "field": "defense",
+          "actual": 27
+        },
+        {
+          "key": "wake-of-gods.level8units:hellHydra",
+          "field": "speed",
+          "actual": 9
+        },
+        {
+          "key": "wake-of-gods.level8units:hellHydra",
+          "field": "damageMin",
+          "actual": 25
+        },
+        {
+          "key": "wake-of-gods.level8units:hellHydra",
+          "field": "damageMax",
+          "actual": 45
+        },
+        {
+          "key": "wake-of-gods.level8units:hellHydra",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            5500,
+            0
+          ]
+        },
+        {
+          "key": "wake-of-gods.level8units:sacredPhoenix",
+          "field": "health",
+          "actual": 300
+        },
+        {
+          "key": "wake-of-gods.level8units:sacredPhoenix",
+          "field": "attack",
+          "actual": 28
+        },
+        {
+          "key": "wake-of-gods.level8units:sacredPhoenix",
+          "field": "defense",
+          "actual": 28
+        },
+        {
+          "key": "wake-of-gods.level8units:sacredPhoenix",
+          "field": "speed",
+          "actual": 21
+        },
+        {
+          "key": "wake-of-gods.level8units:sacredPhoenix",
+          "field": "damageMin",
+          "actual": 45
+        },
+        {
+          "key": "wake-of-gods.level8units:sacredPhoenix",
+          "field": "damageMax",
+          "actual": 60
+        },
+        {
+          "key": "wake-of-gods.level8units:sacredPhoenix",
+          "field": "cost",
+          "actual": [
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            5000,
+            0
+          ]
+        },
+        {
+          "key": "wake-of-gods.creatures:gorynych",
+          "field": "health",
+          "actual": 500
+        },
+        {
+          "key": "wake-of-gods.creatures:gorynych",
+          "field": "attack",
+          "actual": 25
+        },
+        {
+          "key": "wake-of-gods.creatures:gorynych",
+          "field": "defense",
+          "actual": 30
+        },
+        {
+          "key": "wake-of-gods.creatures:gorynych",
+          "field": "speed",
+          "actual": 14
+        },
+        {
+          "key": "wake-of-gods.creatures:gorynych",
+          "field": "damageMin",
+          "actual": 25
+        },
+        {
+          "key": "wake-of-gods.creatures:gorynych",
+          "field": "damageMax",
+          "actual": 50
+        },
+        {
+          "key": "wake-of-gods.creatures:gorynych",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            5,
+            0,
+            7000,
+            0
+          ]
+        },
+        {
+          "key": "wake-of-gods.creatures:nightmare",
+          "field": "health",
+          "actual": 110
+        },
+        {
+          "key": "wake-of-gods.creatures:nightmare",
+          "field": "attack",
+          "actual": 18
+        },
+        {
+          "key": "wake-of-gods.creatures:nightmare",
+          "field": "defense",
+          "actual": 16
+        },
+        {
+          "key": "wake-of-gods.creatures:nightmare",
+          "field": "speed",
+          "actual": 9
+        },
+        {
+          "key": "wake-of-gods.creatures:nightmare",
+          "field": "damageMin",
+          "actual": 20
+        },
+        {
+          "key": "wake-of-gods.creatures:nightmare",
+          "field": "damageMax",
+          "actual": 24
+        },
+        {
+          "key": "wake-of-gods.creatures:nightmare",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "wake-of-gods.creatures:santaGremlin",
+          "field": "health",
+          "actual": 5
+        },
+        {
+          "key": "wake-of-gods.creatures:santaGremlin",
+          "field": "attack",
+          "actual": 5
+        },
+        {
+          "key": "wake-of-gods.creatures:santaGremlin",
+          "field": "defense",
+          "actual": 5
+        },
+        {
+          "key": "wake-of-gods.creatures:santaGremlin",
+          "field": "speed",
+          "actual": 5
+        },
+        {
+          "key": "wake-of-gods.creatures:santaGremlin",
+          "field": "damageMin",
+          "actual": 2
+        },
+        {
+          "key": "wake-of-gods.creatures:santaGremlin",
+          "field": "damageMax",
+          "actual": 3
+        },
+        {
+          "key": "wake-of-gods.creatures:santaGremlin",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            200,
+            0
+          ]
+        }
+      ],
+      "costs": [
+        {
+          "key": "third-upgrades:dwellingUp2Lvl1",
+          "id": 44,
+          "cost": [
+            5,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl2",
+          "id": 45,
+          "cost": [
+            5,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl3",
+          "id": 46,
+          "cost": [
+            15,
+            0,
+            0,
+            0,
+            5,
+            0,
+            2000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl4",
+          "id": 47,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            5,
+            0,
+            2000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl5",
+          "id": 48,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl6",
+          "id": 49,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            10,
+            5000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl7",
+          "id": 50,
+          "cost": [
+            0,
+            0,
+            30,
+            0,
+            30,
+            0,
+            15000,
+            0
+          ]
+        }
+      ],
+      "pageErrors": [],
+      "nativeErrors": []
+    },
+    {
+      "index": 2,
+      "town": "tower",
+      "keys": [
+        "wake-of-gods.creatures:sylvanCentaur",
+        "wake-of-gods.creatures:wogSorceress",
+        "wake-of-gods.creatures:werewolf",
+        "third-upgrades:tumRoyalHalberdier",
+        "third-upgrades:tumCrossbowman",
+        "third-upgrades:tumCeasarGriffin",
+        "third-upgrades:tumHolyChampion"
+      ],
+      "passed": true,
+      "manifestPreserved": true,
+      "scalarFields": [
+        {
+          "key": "wake-of-gods.creatures:sylvanCentaur",
+          "field": "health",
+          "actual": 12
+        },
+        {
+          "key": "wake-of-gods.creatures:sylvanCentaur",
+          "field": "attack",
+          "actual": 7
+        },
+        {
+          "key": "wake-of-gods.creatures:sylvanCentaur",
+          "field": "defense",
+          "actual": 5
+        },
+        {
+          "key": "wake-of-gods.creatures:sylvanCentaur",
+          "field": "speed",
+          "actual": 8
+        },
+        {
+          "key": "wake-of-gods.creatures:sylvanCentaur",
+          "field": "damageMin",
+          "actual": 2
+        },
+        {
+          "key": "wake-of-gods.creatures:sylvanCentaur",
+          "field": "damageMax",
+          "actual": 4
+        },
+        {
+          "key": "wake-of-gods.creatures:sylvanCentaur",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            125,
+            0
+          ]
+        },
+        {
+          "key": "wake-of-gods.creatures:wogSorceress",
+          "field": "health",
+          "actual": 35
+        },
+        {
+          "key": "wake-of-gods.creatures:wogSorceress",
+          "field": "attack",
+          "actual": 15
+        },
+        {
+          "key": "wake-of-gods.creatures:wogSorceress",
+          "field": "defense",
+          "actual": 13
+        },
+        {
+          "key": "wake-of-gods.creatures:wogSorceress",
+          "field": "speed",
+          "actual": 8
+        },
+        {
+          "key": "wake-of-gods.creatures:wogSorceress",
+          "field": "damageMin",
+          "actual": 10
+        },
+        {
+          "key": "wake-of-gods.creatures:wogSorceress",
+          "field": "damageMax",
+          "actual": 13
+        },
+        {
+          "key": "wake-of-gods.creatures:wogSorceress",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            600,
+            0
+          ]
+        },
+        {
+          "key": "wake-of-gods.creatures:werewolf",
+          "field": "health",
+          "actual": 30
+        },
+        {
+          "key": "wake-of-gods.creatures:werewolf",
+          "field": "attack",
+          "actual": 11
+        },
+        {
+          "key": "wake-of-gods.creatures:werewolf",
+          "field": "defense",
+          "actual": 10
+        },
+        {
+          "key": "wake-of-gods.creatures:werewolf",
+          "field": "speed",
+          "actual": 7
+        },
+        {
+          "key": "wake-of-gods.creatures:werewolf",
+          "field": "damageMin",
+          "actual": 6
+        },
+        {
+          "key": "wake-of-gods.creatures:werewolf",
+          "field": "damageMax",
+          "actual": 11
+        },
+        {
+          "key": "wake-of-gods.creatures:werewolf",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            350,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumRoyalHalberdier",
+          "field": "health",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumRoyalHalberdier",
+          "field": "attack",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumRoyalHalberdier",
+          "field": "defense",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumRoyalHalberdier",
+          "field": "speed",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumRoyalHalberdier",
+          "field": "damageMin",
+          "actual": 2
+        },
+        {
+          "key": "third-upgrades:tumRoyalHalberdier",
+          "field": "damageMax",
+          "actual": 3
+        },
+        {
+          "key": "third-upgrades:tumRoyalHalberdier",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            85,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumCrossbowman",
+          "field": "health",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumCrossbowman",
+          "field": "attack",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumCrossbowman",
+          "field": "defense",
+          "actual": 4
+        },
+        {
+          "key": "third-upgrades:tumCrossbowman",
+          "field": "speed",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumCrossbowman",
+          "field": "damageMin",
+          "actual": 2
+        },
+        {
+          "key": "third-upgrades:tumCrossbowman",
+          "field": "damageMax",
+          "actual": 3
+        },
+        {
+          "key": "third-upgrades:tumCrossbowman",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            200,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumCeasarGriffin",
+          "field": "health",
+          "actual": 30
+        },
+        {
+          "key": "third-upgrades:tumCeasarGriffin",
+          "field": "attack",
+          "actual": 9
+        },
+        {
+          "key": "third-upgrades:tumCeasarGriffin",
+          "field": "defense",
+          "actual": 9
+        },
+        {
+          "key": "third-upgrades:tumCeasarGriffin",
+          "field": "speed",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumCeasarGriffin",
+          "field": "damageMin",
+          "actual": 3
+        },
+        {
+          "key": "third-upgrades:tumCeasarGriffin",
+          "field": "damageMax",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumCeasarGriffin",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            280,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumHolyChampion",
+          "field": "health",
+          "actual": 120
+        },
+        {
+          "key": "third-upgrades:tumHolyChampion",
+          "field": "attack",
+          "actual": 16
+        },
+        {
+          "key": "third-upgrades:tumHolyChampion",
+          "field": "defense",
+          "actual": 16
+        },
+        {
+          "key": "third-upgrades:tumHolyChampion",
+          "field": "speed",
+          "actual": 11
+        },
+        {
+          "key": "third-upgrades:tumHolyChampion",
+          "field": "damageMin",
+          "actual": 25
+        },
+        {
+          "key": "third-upgrades:tumHolyChampion",
+          "field": "damageMax",
+          "actual": 30
+        },
+        {
+          "key": "third-upgrades:tumHolyChampion",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2000,
+            0
+          ]
+        }
+      ],
+      "costs": [
+        {
+          "key": "third-upgrades:dwellingUp2Lvl1",
+          "id": 44,
+          "cost": [
+            5,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl2",
+          "id": 45,
+          "cost": [
+            0,
+            0,
+            10,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl3",
+          "id": 46,
+          "cost": [
+            0,
+            2,
+            5,
+            2,
+            0,
+            0,
+            2000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl4",
+          "id": 47,
+          "cost": [
+            5,
+            3,
+            5,
+            3,
+            3,
+            3,
+            2500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl5",
+          "id": 48,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            5,
+            5,
+            2500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl6",
+          "id": 49,
+          "cost": [
+            0,
+            4,
+            0,
+            4,
+            4,
+            4,
+            3000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl7",
+          "id": 50,
+          "cost": [
+            5,
+            0,
+            5,
+            0,
+            0,
+            25,
+            20000,
+            0
+          ]
+        }
+      ],
+      "pageErrors": [],
+      "nativeErrors": []
+    },
+    {
+      "index": 3,
+      "town": "inferno",
+      "keys": [
+        "third-upgrades:tumBerserkerDwarf",
+        "third-upgrades:tumGoldenPegasus",
+        "third-upgrades:tumElderDendroid",
+        "third-upgrades:tumLegendaryUnicorn",
+        "third-upgrades:tumMarbleGargoyle",
+        "third-upgrades:tumSteelGolem",
+        "third-upgrades:tumArcaneGenie"
+      ],
+      "passed": true,
+      "manifestPreserved": true,
+      "scalarFields": [
+        {
+          "key": "third-upgrades:tumBerserkerDwarf",
+          "field": "health",
+          "actual": 20
+        },
+        {
+          "key": "third-upgrades:tumBerserkerDwarf",
+          "field": "attack",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumBerserkerDwarf",
+          "field": "defense",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumBerserkerDwarf",
+          "field": "speed",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumBerserkerDwarf",
+          "field": "damageMin",
+          "actual": 2
+        },
+        {
+          "key": "third-upgrades:tumBerserkerDwarf",
+          "field": "damageMax",
+          "actual": 4
+        },
+        {
+          "key": "third-upgrades:tumBerserkerDwarf",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            160,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumGoldenPegasus",
+          "field": "health",
+          "actual": 30
+        },
+        {
+          "key": "third-upgrades:tumGoldenPegasus",
+          "field": "attack",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumGoldenPegasus",
+          "field": "defense",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumGoldenPegasus",
+          "field": "speed",
+          "actual": 15
+        },
+        {
+          "key": "third-upgrades:tumGoldenPegasus",
+          "field": "damageMin",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumGoldenPegasus",
+          "field": "damageMax",
+          "actual": 9
+        },
+        {
+          "key": "third-upgrades:tumGoldenPegasus",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            315,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumElderDendroid",
+          "field": "health",
+          "actual": 70
+        },
+        {
+          "key": "third-upgrades:tumElderDendroid",
+          "field": "attack",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumElderDendroid",
+          "field": "defense",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumElderDendroid",
+          "field": "speed",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumElderDendroid",
+          "field": "damageMin",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumElderDendroid",
+          "field": "damageMax",
+          "actual": 14
+        },
+        {
+          "key": "third-upgrades:tumElderDendroid",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            550,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumLegendaryUnicorn",
+          "field": "health",
+          "actual": 110
+        },
+        {
+          "key": "third-upgrades:tumLegendaryUnicorn",
+          "field": "attack",
+          "actual": 16
+        },
+        {
+          "key": "third-upgrades:tumLegendaryUnicorn",
+          "field": "defense",
+          "actual": 14
+        },
+        {
+          "key": "third-upgrades:tumLegendaryUnicorn",
+          "field": "speed",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumLegendaryUnicorn",
+          "field": "damageMin",
+          "actual": 20
+        },
+        {
+          "key": "third-upgrades:tumLegendaryUnicorn",
+          "field": "damageMax",
+          "actual": 22
+        },
+        {
+          "key": "third-upgrades:tumLegendaryUnicorn",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1100,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumMarbleGargoyle",
+          "field": "health",
+          "actual": 20
+        },
+        {
+          "key": "third-upgrades:tumMarbleGargoyle",
+          "field": "attack",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumMarbleGargoyle",
+          "field": "defense",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumMarbleGargoyle",
+          "field": "speed",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumMarbleGargoyle",
+          "field": "damageMin",
+          "actual": 2
+        },
+        {
+          "key": "third-upgrades:tumMarbleGargoyle",
+          "field": "damageMax",
+          "actual": 3
+        },
+        {
+          "key": "third-upgrades:tumMarbleGargoyle",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            170,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumSteelGolem",
+          "field": "health",
+          "actual": 40
+        },
+        {
+          "key": "third-upgrades:tumSteelGolem",
+          "field": "attack",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumSteelGolem",
+          "field": "defense",
+          "actual": 11
+        },
+        {
+          "key": "third-upgrades:tumSteelGolem",
+          "field": "speed",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumSteelGolem",
+          "field": "damageMin",
+          "actual": 4
+        },
+        {
+          "key": "third-upgrades:tumSteelGolem",
+          "field": "damageMax",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumSteelGolem",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            250,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumArcaneGenie",
+          "field": "health",
+          "actual": 55
+        },
+        {
+          "key": "third-upgrades:tumArcaneGenie",
+          "field": "attack",
+          "actual": 13
+        },
+        {
+          "key": "third-upgrades:tumArcaneGenie",
+          "field": "defense",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumArcaneGenie",
+          "field": "speed",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumArcaneGenie",
+          "field": "damageMin",
+          "actual": 13
+        },
+        {
+          "key": "third-upgrades:tumArcaneGenie",
+          "field": "damageMax",
+          "actual": 16
+        },
+        {
+          "key": "third-upgrades:tumArcaneGenie",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            920,
+            0
+          ]
+        }
+      ],
+      "costs": [
+        {
+          "key": "third-upgrades:dwellingUp2Lvl1",
+          "id": 44,
+          "cost": [
+            0,
+            0,
+            5,
+            0,
+            0,
+            0,
+            1200,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl2",
+          "id": 45,
+          "cost": [
+            0,
+            3,
+            5,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl3",
+          "id": 46,
+          "cost": [
+            5,
+            0,
+            0,
+            3,
+            0,
+            0,
+            2000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl4",
+          "id": 47,
+          "cost": [
+            10,
+            0,
+            10,
+            0,
+            0,
+            0,
+            2500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl5",
+          "id": 48,
+          "cost": [
+            0,
+            5,
+            0,
+            5,
+            0,
+            0,
+            3000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl6",
+          "id": 49,
+          "cost": [
+            0,
+            5,
+            10,
+            5,
+            0,
+            5,
+            7000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl7",
+          "id": 50,
+          "cost": [
+            5,
+            20,
+            5,
+            0,
+            0,
+            0,
+            15000,
+            0
+          ]
+        }
+      ],
+      "pageErrors": [],
+      "nativeErrors": []
+    },
+    {
+      "index": 4,
+      "town": "necropolis",
+      "keys": [
+        "third-upgrades:tumNagaEmpress",
+        "third-upgrades:tumVermin",
+        "third-upgrades:tumWingedMagog",
+        "third-upgrades:tumAstralCerberus",
+        "third-upgrades:tumSharpHornedDemon",
+        "third-upgrades:tumPitMaster",
+        "third-upgrades:tumEfreetRajah"
+      ],
+      "passed": true,
+      "manifestPreserved": true,
+      "scalarFields": [
+        {
+          "key": "third-upgrades:tumNagaEmpress",
+          "field": "health",
+          "actual": 120
+        },
+        {
+          "key": "third-upgrades:tumNagaEmpress",
+          "field": "attack",
+          "actual": 17
+        },
+        {
+          "key": "third-upgrades:tumNagaEmpress",
+          "field": "defense",
+          "actual": 14
+        },
+        {
+          "key": "third-upgrades:tumNagaEmpress",
+          "field": "speed",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumNagaEmpress",
+          "field": "damageMin",
+          "actual": 30
+        },
+        {
+          "key": "third-upgrades:tumNagaEmpress",
+          "field": "damageMax",
+          "actual": 30
+        },
+        {
+          "key": "third-upgrades:tumNagaEmpress",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2400,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumVermin",
+          "field": "health",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumVermin",
+          "field": "attack",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumVermin",
+          "field": "defense",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumVermin",
+          "field": "speed",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumVermin",
+          "field": "damageMin",
+          "actual": 1
+        },
+        {
+          "key": "third-upgrades:tumVermin",
+          "field": "damageMax",
+          "actual": 2
+        },
+        {
+          "key": "third-upgrades:tumVermin",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            90,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumWingedMagog",
+          "field": "health",
+          "actual": 13
+        },
+        {
+          "key": "third-upgrades:tumWingedMagog",
+          "field": "attack",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumWingedMagog",
+          "field": "defense",
+          "actual": 4
+        },
+        {
+          "key": "third-upgrades:tumWingedMagog",
+          "field": "speed",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumWingedMagog",
+          "field": "damageMin",
+          "actual": 2
+        },
+        {
+          "key": "third-upgrades:tumWingedMagog",
+          "field": "damageMax",
+          "actual": 4
+        },
+        {
+          "key": "third-upgrades:tumWingedMagog",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            250,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumAstralCerberus",
+          "field": "health",
+          "actual": 25
+        },
+        {
+          "key": "third-upgrades:tumAstralCerberus",
+          "field": "attack",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumAstralCerberus",
+          "field": "defense",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumAstralCerberus",
+          "field": "speed",
+          "actual": 9
+        },
+        {
+          "key": "third-upgrades:tumAstralCerberus",
+          "field": "damageMin",
+          "actual": 2
+        },
+        {
+          "key": "third-upgrades:tumAstralCerberus",
+          "field": "damageMax",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumAstralCerberus",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            280,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumSharpHornedDemon",
+          "field": "health",
+          "actual": 45
+        },
+        {
+          "key": "third-upgrades:tumSharpHornedDemon",
+          "field": "attack",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumSharpHornedDemon",
+          "field": "defense",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumSharpHornedDemon",
+          "field": "speed",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumSharpHornedDemon",
+          "field": "damageMin",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumSharpHornedDemon",
+          "field": "damageMax",
+          "actual": 9
+        },
+        {
+          "key": "third-upgrades:tumSharpHornedDemon",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            300,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumPitMaster",
+          "field": "health",
+          "actual": 50
+        },
+        {
+          "key": "third-upgrades:tumPitMaster",
+          "field": "attack",
+          "actual": 13
+        },
+        {
+          "key": "third-upgrades:tumPitMaster",
+          "field": "defense",
+          "actual": 13
+        },
+        {
+          "key": "third-upgrades:tumPitMaster",
+          "field": "speed",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumPitMaster",
+          "field": "damageMin",
+          "actual": 13
+        },
+        {
+          "key": "third-upgrades:tumPitMaster",
+          "field": "damageMax",
+          "actual": 17
+        },
+        {
+          "key": "third-upgrades:tumPitMaster",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            800,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumEfreetRajah",
+          "field": "health",
+          "actual": 100
+        },
+        {
+          "key": "third-upgrades:tumEfreetRajah",
+          "field": "attack",
+          "actual": 17
+        },
+        {
+          "key": "third-upgrades:tumEfreetRajah",
+          "field": "defense",
+          "actual": 15
+        },
+        {
+          "key": "third-upgrades:tumEfreetRajah",
+          "field": "speed",
+          "actual": 14
+        },
+        {
+          "key": "third-upgrades:tumEfreetRajah",
+          "field": "damageMin",
+          "actual": 16
+        },
+        {
+          "key": "third-upgrades:tumEfreetRajah",
+          "field": "damageMax",
+          "actual": 24
+        },
+        {
+          "key": "third-upgrades:tumEfreetRajah",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1300,
+            0
+          ]
+        }
+      ],
+      "costs": [
+        {
+          "key": "third-upgrades:dwellingUp2Lvl1",
+          "id": 44,
+          "cost": [
+            0,
+            0,
+            5,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl2",
+          "id": 45,
+          "cost": [
+            5,
+            0,
+            5,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl3",
+          "id": 46,
+          "cost": [
+            0,
+            5,
+            0,
+            0,
+            0,
+            0,
+            2000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl4",
+          "id": 47,
+          "cost": [
+            10,
+            0,
+            0,
+            0,
+            10,
+            10,
+            2500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl5",
+          "id": 48,
+          "cost": [
+            0,
+            0,
+            10,
+            6,
+            0,
+            0,
+            3000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl6",
+          "id": 49,
+          "cost": [
+            0,
+            4,
+            10,
+            4,
+            4,
+            4,
+            4500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl7",
+          "id": 50,
+          "cost": [
+            5,
+            15,
+            5,
+            0,
+            0,
+            0,
+            15000,
+            0
+          ]
+        }
+      ],
+      "pageErrors": [],
+      "nativeErrors": []
+    },
+    {
+      "index": 5,
+      "town": "dungeon",
+      "keys": [
+        "third-upgrades:tumSkeletonKnight",
+        "third-upgrades:tumNosferatu",
+        "third-upgrades:tumLichKing",
+        "third-upgrades:tumPhosphorescentTroglodyte",
+        "third-upgrades:tumMonstrousEye",
+        "third-upgrades:tumHarpySanguinary",
+        "third-upgrades:tumMedusaEmpress"
+      ],
+      "passed": true,
+      "manifestPreserved": true,
+      "scalarFields": [
+        {
+          "key": "third-upgrades:tumSkeletonKnight",
+          "field": "health",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumSkeletonKnight",
+          "field": "attack",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumSkeletonKnight",
+          "field": "defense",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumSkeletonKnight",
+          "field": "speed",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumSkeletonKnight",
+          "field": "damageMin",
+          "actual": 1
+        },
+        {
+          "key": "third-upgrades:tumSkeletonKnight",
+          "field": "damageMax",
+          "actual": 3
+        },
+        {
+          "key": "third-upgrades:tumSkeletonKnight",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            95,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumNosferatu",
+          "field": "health",
+          "actual": 45
+        },
+        {
+          "key": "third-upgrades:tumNosferatu",
+          "field": "attack",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumNosferatu",
+          "field": "defense",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumNosferatu",
+          "field": "speed",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumNosferatu",
+          "field": "damageMin",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumNosferatu",
+          "field": "damageMax",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumNosferatu",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            550,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumLichKing",
+          "field": "health",
+          "actual": 45
+        },
+        {
+          "key": "third-upgrades:tumLichKing",
+          "field": "attack",
+          "actual": 13
+        },
+        {
+          "key": "third-upgrades:tumLichKing",
+          "field": "defense",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumLichKing",
+          "field": "speed",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumLichKing",
+          "field": "damageMin",
+          "actual": 11
+        },
+        {
+          "key": "third-upgrades:tumLichKing",
+          "field": "damageMax",
+          "actual": 15
+        },
+        {
+          "key": "third-upgrades:tumLichKing",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            700,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumPhosphorescentTroglodyte",
+          "field": "health",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumPhosphorescentTroglodyte",
+          "field": "attack",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumPhosphorescentTroglodyte",
+          "field": "defense",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumPhosphorescentTroglodyte",
+          "field": "speed",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumPhosphorescentTroglodyte",
+          "field": "damageMin",
+          "actual": 1
+        },
+        {
+          "key": "third-upgrades:tumPhosphorescentTroglodyte",
+          "field": "damageMax",
+          "actual": 3
+        },
+        {
+          "key": "third-upgrades:tumPhosphorescentTroglodyte",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            75,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumMonstrousEye",
+          "field": "health",
+          "actual": 22
+        },
+        {
+          "key": "third-upgrades:tumMonstrousEye",
+          "field": "attack",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumMonstrousEye",
+          "field": "defense",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumMonstrousEye",
+          "field": "speed",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumMonstrousEye",
+          "field": "damageMin",
+          "actual": 3
+        },
+        {
+          "key": "third-upgrades:tumMonstrousEye",
+          "field": "damageMax",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumMonstrousEye",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            330,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumHarpySanguinary",
+          "field": "health",
+          "actual": 14
+        },
+        {
+          "key": "third-upgrades:tumHarpySanguinary",
+          "field": "attack",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumHarpySanguinary",
+          "field": "defense",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumHarpySanguinary",
+          "field": "speed",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumHarpySanguinary",
+          "field": "damageMin",
+          "actual": 1
+        },
+        {
+          "key": "third-upgrades:tumHarpySanguinary",
+          "field": "damageMax",
+          "actual": 4
+        },
+        {
+          "key": "third-upgrades:tumHarpySanguinary",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            190,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumMedusaEmpress",
+          "field": "health",
+          "actual": 35
+        },
+        {
+          "key": "third-upgrades:tumMedusaEmpress",
+          "field": "attack",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumMedusaEmpress",
+          "field": "defense",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumMedusaEmpress",
+          "field": "speed",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumMedusaEmpress",
+          "field": "damageMin",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumMedusaEmpress",
+          "field": "damageMax",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumMedusaEmpress",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            370,
+            0
+          ]
+        }
+      ],
+      "costs": [
+        {
+          "key": "third-upgrades:dwellingUp2Lvl1",
+          "id": 44,
+          "cost": [
+            5,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl2",
+          "id": 45,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            2,
+            2,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl3",
+          "id": 46,
+          "cost": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl4",
+          "id": 47,
+          "cost": [
+            10,
+            0,
+            10,
+            0,
+            0,
+            0,
+            2500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl5",
+          "id": 48,
+          "cost": [
+            0,
+            0,
+            10,
+            0,
+            0,
+            10,
+            3000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl6",
+          "id": 49,
+          "cost": [
+            5,
+            5,
+            5,
+            5,
+            0,
+            0,
+            5000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl7",
+          "id": 50,
+          "cost": [
+            15,
+            0,
+            15,
+            25,
+            0,
+            0,
+            15000,
+            0
+          ]
+        }
+      ],
+      "pageErrors": [],
+      "nativeErrors": []
+    },
+    {
+      "index": 6,
+      "town": "stronghold",
+      "keys": [
+        "third-upgrades:tumBlackMinotaur",
+        "third-upgrades:tumChimera",
+        "third-upgrades:tumHobgoblinOverlord",
+        "third-upgrades:tumWolfRiderKiller",
+        "third-upgrades:tumOrcLeader",
+        "third-upgrades:tumElderOgre",
+        "third-upgrades:tumLightningbird"
+      ],
+      "passed": true,
+      "manifestPreserved": true,
+      "scalarFields": [
+        {
+          "key": "third-upgrades:tumBlackMinotaur",
+          "field": "health",
+          "actual": 50
+        },
+        {
+          "key": "third-upgrades:tumBlackMinotaur",
+          "field": "attack",
+          "actual": 15
+        },
+        {
+          "key": "third-upgrades:tumBlackMinotaur",
+          "field": "defense",
+          "actual": 15
+        },
+        {
+          "key": "third-upgrades:tumBlackMinotaur",
+          "field": "speed",
+          "actual": 9
+        },
+        {
+          "key": "third-upgrades:tumBlackMinotaur",
+          "field": "damageMin",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumBlackMinotaur",
+          "field": "damageMax",
+          "actual": 20
+        },
+        {
+          "key": "third-upgrades:tumBlackMinotaur",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            620,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumChimera",
+          "field": "health",
+          "actual": 80
+        },
+        {
+          "key": "third-upgrades:tumChimera",
+          "field": "attack",
+          "actual": 18
+        },
+        {
+          "key": "third-upgrades:tumChimera",
+          "field": "defense",
+          "actual": 14
+        },
+        {
+          "key": "third-upgrades:tumChimera",
+          "field": "speed",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumChimera",
+          "field": "damageMin",
+          "actual": 14
+        },
+        {
+          "key": "third-upgrades:tumChimera",
+          "field": "damageMax",
+          "actual": 20
+        },
+        {
+          "key": "third-upgrades:tumChimera",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1380,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumHobgoblinOverlord",
+          "field": "health",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumHobgoblinOverlord",
+          "field": "attack",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumHobgoblinOverlord",
+          "field": "defense",
+          "actual": 4
+        },
+        {
+          "key": "third-upgrades:tumHobgoblinOverlord",
+          "field": "speed",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumHobgoblinOverlord",
+          "field": "damageMin",
+          "actual": 1
+        },
+        {
+          "key": "third-upgrades:tumHobgoblinOverlord",
+          "field": "damageMax",
+          "actual": 2
+        },
+        {
+          "key": "third-upgrades:tumHobgoblinOverlord",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            70,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumWolfRiderKiller",
+          "field": "health",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumWolfRiderKiller",
+          "field": "attack",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumWolfRiderKiller",
+          "field": "defense",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumWolfRiderKiller",
+          "field": "speed",
+          "actual": 9
+        },
+        {
+          "key": "third-upgrades:tumWolfRiderKiller",
+          "field": "damageMin",
+          "actual": 4
+        },
+        {
+          "key": "third-upgrades:tumWolfRiderKiller",
+          "field": "damageMax",
+          "actual": 4
+        },
+        {
+          "key": "third-upgrades:tumWolfRiderKiller",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            185,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumOrcLeader",
+          "field": "health",
+          "actual": 25
+        },
+        {
+          "key": "third-upgrades:tumOrcLeader",
+          "field": "attack",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumOrcLeader",
+          "field": "defense",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumOrcLeader",
+          "field": "speed",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumOrcLeader",
+          "field": "damageMin",
+          "actual": 2
+        },
+        {
+          "key": "third-upgrades:tumOrcLeader",
+          "field": "damageMax",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumOrcLeader",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            180,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumElderOgre",
+          "field": "health",
+          "actual": 65
+        },
+        {
+          "key": "third-upgrades:tumElderOgre",
+          "field": "attack",
+          "actual": 13
+        },
+        {
+          "key": "third-upgrades:tumElderOgre",
+          "field": "defense",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumElderOgre",
+          "field": "speed",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumElderOgre",
+          "field": "damageMin",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumElderOgre",
+          "field": "damageMax",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumElderOgre",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            640,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumLightningbird",
+          "field": "health",
+          "actual": 65
+        },
+        {
+          "key": "third-upgrades:tumLightningbird",
+          "field": "attack",
+          "actual": 14
+        },
+        {
+          "key": "third-upgrades:tumLightningbird",
+          "field": "defense",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumLightningbird",
+          "field": "speed",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumLightningbird",
+          "field": "damageMin",
+          "actual": 11
+        },
+        {
+          "key": "third-upgrades:tumLightningbird",
+          "field": "damageMax",
+          "actual": 15
+        },
+        {
+          "key": "third-upgrades:tumLightningbird",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            930,
+            0
+          ]
+        }
+      ],
+      "costs": [
+        {
+          "key": "third-upgrades:dwellingUp2Lvl1",
+          "id": 44,
+          "cost": [
+            5,
+            0,
+            5,
+            0,
+            0,
+            0,
+            1300,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl2",
+          "id": 45,
+          "cost": [
+            5,
+            0,
+            5,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl3",
+          "id": 46,
+          "cost": [
+            4,
+            0,
+            7,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl4",
+          "id": 47,
+          "cost": [
+            10,
+            0,
+            5,
+            0,
+            0,
+            5,
+            2500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl5",
+          "id": 48,
+          "cost": [
+            5,
+            0,
+            10,
+            0,
+            5,
+            5,
+            3000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl6",
+          "id": 49,
+          "cost": [
+            0,
+            0,
+            15,
+            0,
+            10,
+            0,
+            5000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl7",
+          "id": 50,
+          "cost": [
+            10,
+            0,
+            10,
+            0,
+            15,
+            0,
+            15000,
+            0
+          ]
+        }
+      ],
+      "pageErrors": [],
+      "nativeErrors": []
+    },
+    {
+      "index": 7,
+      "town": "fortress",
+      "keys": [
+        "third-upgrades:tumCyclopsEmperor",
+        "third-upgrades:tumEliteLizard",
+        "third-upgrades:tumChaoticDragonFly",
+        "third-upgrades:tumLavaBasilisk",
+        "third-upgrades:tumHurricaneElemental",
+        "third-upgrades:tumLifeElemental",
+        "third-upgrades:tumPlasmaElemental"
+      ],
+      "passed": true,
+      "manifestPreserved": true,
+      "scalarFields": [
+        {
+          "key": "third-upgrades:tumCyclopsEmperor",
+          "field": "health",
+          "actual": 75
+        },
+        {
+          "key": "third-upgrades:tumCyclopsEmperor",
+          "field": "attack",
+          "actual": 18
+        },
+        {
+          "key": "third-upgrades:tumCyclopsEmperor",
+          "field": "defense",
+          "actual": 15
+        },
+        {
+          "key": "third-upgrades:tumCyclopsEmperor",
+          "field": "speed",
+          "actual": 9
+        },
+        {
+          "key": "third-upgrades:tumCyclopsEmperor",
+          "field": "damageMin",
+          "actual": 16
+        },
+        {
+          "key": "third-upgrades:tumCyclopsEmperor",
+          "field": "damageMax",
+          "actual": 20
+        },
+        {
+          "key": "third-upgrades:tumCyclopsEmperor",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumEliteLizard",
+          "field": "health",
+          "actual": 20
+        },
+        {
+          "key": "third-upgrades:tumEliteLizard",
+          "field": "attack",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumEliteLizard",
+          "field": "defense",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumEliteLizard",
+          "field": "speed",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumEliteLizard",
+          "field": "damageMin",
+          "actual": 2
+        },
+        {
+          "key": "third-upgrades:tumEliteLizard",
+          "field": "damageMax",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumEliteLizard",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            260,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumChaoticDragonFly",
+          "field": "health",
+          "actual": 25
+        },
+        {
+          "key": "third-upgrades:tumChaoticDragonFly",
+          "field": "attack",
+          "actual": 9
+        },
+        {
+          "key": "third-upgrades:tumChaoticDragonFly",
+          "field": "defense",
+          "actual": 11
+        },
+        {
+          "key": "third-upgrades:tumChaoticDragonFly",
+          "field": "speed",
+          "actual": 14
+        },
+        {
+          "key": "third-upgrades:tumChaoticDragonFly",
+          "field": "damageMin",
+          "actual": 2
+        },
+        {
+          "key": "third-upgrades:tumChaoticDragonFly",
+          "field": "damageMax",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumChaoticDragonFly",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            367,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumLavaBasilisk",
+          "field": "health",
+          "actual": 40
+        },
+        {
+          "key": "third-upgrades:tumLavaBasilisk",
+          "field": "attack",
+          "actual": 13
+        },
+        {
+          "key": "third-upgrades:tumLavaBasilisk",
+          "field": "defense",
+          "actual": 13
+        },
+        {
+          "key": "third-upgrades:tumLavaBasilisk",
+          "field": "speed",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumLavaBasilisk",
+          "field": "damageMin",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumLavaBasilisk",
+          "field": "damageMax",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumLavaBasilisk",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            620,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumHurricaneElemental",
+          "field": "health",
+          "actual": 30
+        },
+        {
+          "key": "third-upgrades:tumHurricaneElemental",
+          "field": "attack",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumHurricaneElemental",
+          "field": "defense",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumHurricaneElemental",
+          "field": "speed",
+          "actual": 9
+        },
+        {
+          "key": "third-upgrades:tumHurricaneElemental",
+          "field": "damageMin",
+          "actual": 3
+        },
+        {
+          "key": "third-upgrades:tumHurricaneElemental",
+          "field": "damageMax",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumHurricaneElemental",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            325,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumLifeElemental",
+          "field": "health",
+          "actual": 30
+        },
+        {
+          "key": "third-upgrades:tumLifeElemental",
+          "field": "attack",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumLifeElemental",
+          "field": "defense",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumLifeElemental",
+          "field": "speed",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumLifeElemental",
+          "field": "damageMin",
+          "actual": 3
+        },
+        {
+          "key": "third-upgrades:tumLifeElemental",
+          "field": "damageMax",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumLifeElemental",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            400,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumPlasmaElemental",
+          "field": "health",
+          "actual": 35
+        },
+        {
+          "key": "third-upgrades:tumPlasmaElemental",
+          "field": "attack",
+          "actual": 14
+        },
+        {
+          "key": "third-upgrades:tumPlasmaElemental",
+          "field": "defense",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumPlasmaElemental",
+          "field": "speed",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumPlasmaElemental",
+          "field": "damageMin",
+          "actual": 4
+        },
+        {
+          "key": "third-upgrades:tumPlasmaElemental",
+          "field": "damageMax",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumPlasmaElemental",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            500,
+            0
+          ]
+        }
+      ],
+      "costs": [
+        {
+          "key": "third-upgrades:dwellingUp2Lvl1",
+          "id": 44,
+          "cost": [
+            5,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1400,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl2",
+          "id": 45,
+          "cost": [
+            10,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1600,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl3",
+          "id": 46,
+          "cost": [
+            5,
+            3,
+            0,
+            3,
+            0,
+            0,
+            2000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl4",
+          "id": 47,
+          "cost": [
+            5,
+            0,
+            5,
+            5,
+            0,
+            0,
+            2500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl5",
+          "id": 48,
+          "cost": [
+            10,
+            5,
+            10,
+            5,
+            0,
+            0,
+            3000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl6",
+          "id": 49,
+          "cost": [
+            15,
+            5,
+            0,
+            10,
+            0,
+            0,
+            4500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl7",
+          "id": 50,
+          "cost": [
+            10,
+            0,
+            10,
+            15,
+            0,
+            0,
+            15000,
+            0
+          ]
+        }
+      ],
+      "pageErrors": [],
+      "nativeErrors": []
+    },
+    {
+      "index": 8,
+      "town": "conflux",
+      "keys": [
+        "third-upgrades:tumMineralElemental",
+        "third-upgrades:tumVoidElemental",
+        "third-upgrades:tumGrandmasterGremlin",
+        "third-upgrades:tumSharpshooterElf",
+        "third-upgrades:tumSupremeArchMage",
+        "third-upgrades:tumSpecter",
+        "third-upgrades:tumInquisitor"
+      ],
+      "passed": true,
+      "manifestPreserved": true,
+      "scalarFields": [
+        {
+          "key": "third-upgrades:tumMineralElemental",
+          "field": "health",
+          "actual": 40
+        },
+        {
+          "key": "third-upgrades:tumMineralElemental",
+          "field": "attack",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumMineralElemental",
+          "field": "defense",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumMineralElemental",
+          "field": "speed",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumMineralElemental",
+          "field": "damageMin",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumMineralElemental",
+          "field": "damageMax",
+          "actual": 11
+        },
+        {
+          "key": "third-upgrades:tumMineralElemental",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            650,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumVoidElemental",
+          "field": "health",
+          "actual": 90
+        },
+        {
+          "key": "third-upgrades:tumVoidElemental",
+          "field": "attack",
+          "actual": 16
+        },
+        {
+          "key": "third-upgrades:tumVoidElemental",
+          "field": "defense",
+          "actual": 14
+        },
+        {
+          "key": "third-upgrades:tumVoidElemental",
+          "field": "speed",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumVoidElemental",
+          "field": "damageMin",
+          "actual": 15
+        },
+        {
+          "key": "third-upgrades:tumVoidElemental",
+          "field": "damageMax",
+          "actual": 25
+        },
+        {
+          "key": "third-upgrades:tumVoidElemental",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumGrandmasterGremlin",
+          "field": "health",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumGrandmasterGremlin",
+          "field": "attack",
+          "actual": 4
+        },
+        {
+          "key": "third-upgrades:tumGrandmasterGremlin",
+          "field": "defense",
+          "actual": 4
+        },
+        {
+          "key": "third-upgrades:tumGrandmasterGremlin",
+          "field": "speed",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumGrandmasterGremlin",
+          "field": "damageMin",
+          "actual": 1
+        },
+        {
+          "key": "third-upgrades:tumGrandmasterGremlin",
+          "field": "damageMax",
+          "actual": 2
+        },
+        {
+          "key": "third-upgrades:tumGrandmasterGremlin",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumSharpshooterElf",
+          "field": "health",
+          "actual": 15
+        },
+        {
+          "key": "third-upgrades:tumSharpshooterElf",
+          "field": "attack",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumSharpshooterElf",
+          "field": "defense",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumSharpshooterElf",
+          "field": "speed",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumSharpshooterElf",
+          "field": "damageMin",
+          "actual": 3
+        },
+        {
+          "key": "third-upgrades:tumSharpshooterElf",
+          "field": "damageMax",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumSharpshooterElf",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumSupremeArchMage",
+          "field": "health",
+          "actual": 30
+        },
+        {
+          "key": "third-upgrades:tumSupremeArchMage",
+          "field": "attack",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumSupremeArchMage",
+          "field": "defense",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumSupremeArchMage",
+          "field": "speed",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumSupremeArchMage",
+          "field": "damageMin",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumSupremeArchMage",
+          "field": "damageMax",
+          "actual": 9
+        },
+        {
+          "key": "third-upgrades:tumSupremeArchMage",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumSpecter",
+          "field": "health",
+          "actual": 20
+        },
+        {
+          "key": "third-upgrades:tumSpecter",
+          "field": "attack",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumSpecter",
+          "field": "defense",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumSpecter",
+          "field": "speed",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumSpecter",
+          "field": "damageMin",
+          "actual": 3
+        },
+        {
+          "key": "third-upgrades:tumSpecter",
+          "field": "damageMax",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumSpecter",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            260,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumInquisitor",
+          "field": "health",
+          "actual": 35
+        },
+        {
+          "key": "third-upgrades:tumInquisitor",
+          "field": "attack",
+          "actual": 13
+        },
+        {
+          "key": "third-upgrades:tumInquisitor",
+          "field": "defense",
+          "actual": 13
+        },
+        {
+          "key": "third-upgrades:tumInquisitor",
+          "field": "speed",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumInquisitor",
+          "field": "damageMin",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumInquisitor",
+          "field": "damageMax",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumInquisitor",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            420,
+            0
+          ]
+        }
+      ],
+      "costs": [
+        {
+          "key": "third-upgrades:dwellingUp2Lvl1",
+          "id": 44,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            2,
+            2,
+            1200,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl2",
+          "id": 45,
+          "cost": [
+            5,
+            3,
+            0,
+            0,
+            0,
+            3,
+            2000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl3",
+          "id": 46,
+          "cost": [
+            0,
+            6,
+            10,
+            0,
+            0,
+            0,
+            2500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl4",
+          "id": 47,
+          "cost": [
+            5,
+            5,
+            10,
+            0,
+            0,
+            0,
+            2400,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl5",
+          "id": 48,
+          "cost": [
+            0,
+            0,
+            10,
+            10,
+            0,
+            0,
+            2300,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl6",
+          "id": 49,
+          "cost": [
+            0,
+            7,
+            0,
+            7,
+            7,
+            7,
+            5000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl7",
+          "id": 50,
+          "cost": [
+            10,
+            20,
+            10,
+            0,
+            0,
+            0,
+            15000,
+            0
+          ]
+        }
+      ],
+      "pageErrors": [],
+      "nativeErrors": []
+    },
+    {
+      "index": 9,
+      "town": "castle",
+      "keys": [
+        "third-upgrades:tumCentaurGeneral",
+        "third-upgrades:tumHighPriest",
+        "third-upgrades:tumGnollShaman"
+      ],
+      "passed": true,
+      "manifestPreserved": true,
+      "scalarFields": [
+        {
+          "key": "third-upgrades:tumCentaurGeneral",
+          "field": "health",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumCentaurGeneral",
+          "field": "attack",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumCentaurGeneral",
+          "field": "defense",
+          "actual": 4
+        },
+        {
+          "key": "third-upgrades:tumCentaurGeneral",
+          "field": "speed",
+          "actual": 9
+        },
+        {
+          "key": "third-upgrades:tumCentaurGeneral",
+          "field": "damageMin",
+          "actual": 2
+        },
+        {
+          "key": "third-upgrades:tumCentaurGeneral",
+          "field": "damageMax",
+          "actual": 3
+        },
+        {
+          "key": "third-upgrades:tumCentaurGeneral",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumHighPriest",
+          "field": "health",
+          "actual": 30
+        },
+        {
+          "key": "third-upgrades:tumHighPriest",
+          "field": "attack",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumHighPriest",
+          "field": "defense",
+          "actual": 10
+        },
+        {
+          "key": "third-upgrades:tumHighPriest",
+          "field": "speed",
+          "actual": 7
+        },
+        {
+          "key": "third-upgrades:tumHighPriest",
+          "field": "damageMin",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumHighPriest",
+          "field": "damageMax",
+          "actual": 12
+        },
+        {
+          "key": "third-upgrades:tumHighPriest",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            550,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:tumGnollShaman",
+          "field": "health",
+          "actual": 8
+        },
+        {
+          "key": "third-upgrades:tumGnollShaman",
+          "field": "attack",
+          "actual": 5
+        },
+        {
+          "key": "third-upgrades:tumGnollShaman",
+          "field": "defense",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumGnollShaman",
+          "field": "speed",
+          "actual": 6
+        },
+        {
+          "key": "third-upgrades:tumGnollShaman",
+          "field": "damageMin",
+          "actual": 2
+        },
+        {
+          "key": "third-upgrades:tumGnollShaman",
+          "field": "damageMax",
+          "actual": 3
+        },
+        {
+          "key": "third-upgrades:tumGnollShaman",
+          "field": "cost",
+          "actual": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            80,
+            0
+          ]
+        }
+      ],
+      "costs": [
+        {
+          "key": "third-upgrades:dwellingUp2Lvl1",
+          "id": 44,
+          "cost": [
+            0,
+            0,
+            5,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl2",
+          "id": 45,
+          "cost": [
+            5,
+            0,
+            5,
+            0,
+            0,
+            0,
+            1500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl3",
+          "id": 46,
+          "cost": [
+            10,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl4",
+          "id": 47,
+          "cost": [
+            0,
+            0,
+            5,
+            0,
+            5,
+            0,
+            2500,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl5",
+          "id": 48,
+          "cost": [
+            3,
+            5,
+            3,
+            5,
+            3,
+            3,
+            2000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl6",
+          "id": 49,
+          "cost": [
+            15,
+            0,
+            0,
+            0,
+            0,
+            0,
+            5000,
+            0
+          ]
+        },
+        {
+          "key": "third-upgrades:dwellingUp2Lvl7",
+          "id": 50,
+          "cost": [
+            0,
+            10,
+            0,
+            10,
+            10,
+            10,
+            15000,
+            0
+          ]
+        }
+      ],
+      "pageErrors": [],
+      "nativeErrors": []
+    }
+  ],
+  "nativeDiagnosticBaselineComparison": {
+    "schemaVersion": 1,
+    "scope": "One normalized ordinary Castle map on identical Main0.4.34 engine: full boot/mod validation plus native town. Baseline changes only the native FS manifest to pinned2da before main; candidate contains the reviewed66/63/6 overlays. Not a nine-town warning-free claim.",
+    "engineSHA256": "e5ded71899389b2847e89d1098b0176e4ebe8a40696db019ca6138a8a8eddfb8",
+    "baseline": {
+      "manifestControl": "Pinned2da original mod manifest; all definitions otherwise identical to candidate packaged bytes",
+      "passed": true,
+      "warningRecords": [
+        "WARN [MainGUI] mod - Data in wake-of-gods is invalid!",
+        "WARN [MainGUI] mod - At /japanese\n\t Error: Required entry name is missing\nAt /vietnamese\n\t Error: Required entry name is missing",
+        "WARN [MainGUI] global - \t\tParsing mod: Issues found! (wake-of-gods)",
+        "WARN [MainGUI] mod - CONFIG/CREATURES/DEATHKNIGHTUP is not valid JSON!",
+        "WARN [MainGUI] mod - At line 93, position 21 warning: Duplicate element encountered!\nAt line 95, position 10 warning: Duplicate element encountered!\nAt line 96, position 9 warning: Duplicate element encountered!",
+        "WARN [MainGUI] mod - Data in tum-era is invalid!",
+        "WARN [MainGUI] mod - At /french\n\t Error: Required entry name is missing",
+        "WARN [MainGUI] mod - Redundant namespace definition for redBonesDragon",
+        "WARN [MainGUI] global - \t\tParsing mod: Issues found! (tum-era)",
+        "WARN [MainGUI] mod - Data in wake-of-gods.woggraphicfix.wf_mapobjects is invalid!",
+        "WARN [MainGUI] mod - At /german\n\t Error: Required entry name is missing\nAt /japanese\n\t Error: Required entry name is missing\nAt /portuguese\n\t Error: Required entry name is missing\nAt /russian\n\t Error: Required entry name is missing\nAt /spanish\n\t Error: Required entry name is missing\nAt /turkish\n\t Error: Required entry name is missing\nAt /ukrainian\n\t Error: Required entry name is missing\nAt /vietnamese\n\t Error: Required entry name is missing",
+        "WARN [MainGUI] global - \t\tParsing mod: Issues found! (wake-of-gods.woggraphicfix.wf_mapobjects)",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'tum-era': Town building 'dwellingUp3Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in castle is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'tum-era': Town building 'dwellingUp3Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in conflux is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in dungeon is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in fortress is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'tum-era': Town building 'dwellingUp3Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in inferno is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'tum-era': Town building 'dwellingUp3Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in necropolis is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde1Upgr2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2Upgr2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in rampart is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'tum-era': Town building 'dwellingUp3Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in stronghold is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde1Upgr2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in tower is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Dwelling tum-era:eraDwelling20_2 has template tum-era/objects/Crdw25 which is not valid for a random dwelling! Dwellings must not block tiles outside 2x2 range and must be visitable in bottom row. Change dwelling mask or mark dwelling as 'bannedForRandomDwelling'",
+        "WARN [MainGUI] global - \t\tLoading mod: Issues found! (core)",
+        "WARN [MainGUI] mod - Data in goonk is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"\" was not found",
+        "WARN [MainGUI] global - \t\tLoading mod: Issues found! (goonk)",
+        "WARN [MainGUI] mod - Data in skeletalTransformation is invalid!",
+        "WARN [MainGUI] mod - At /levels/advanced/battleEffects/skeletalTransformation\n\t Error: Failed to pass all schemas\n<tested schemas>\nAt /levels/advanced/battleEffects/skeletalTransformation\n\t Error: Unknown entry found: 'eraCorpseTransform'. Perhaps you meant 'id'?\n<end of schema>\nAt /levels/basic/battleEffects/skeletalTransformation\n\t Error: Failed to pass all schemas\n<tested schemas>\nAt /levels/basic/battleEffects/skeletalTransformation\n\t Error: Unknown entry found: 'eraCorpseTransform'. Perhaps you meant 'id'?\n<end of schema>\nAt /levels/expert/battleEffects/skeletalTransformation\n\t Error: Failed to pass all schemas\n<tested schemas>\nAt /levels/expert/battleEffects/skeletalTransformation\n\t Error: Unknown entry found: 'eraCorpseTransform'. Perhaps you meant 'id'?\n<end of schema>\nAt /levels/none/battleEffects/skeletalTransformation\n\t Error: Failed to pass all schemas\n<tested schemas>\nAt /levels/none/battleEffects/skeletalTransformation\n\t Error: Unknown entry found: 'eraCorpseTransform'. Perhaps you meant 'id'?\n<end of schema>",
+        "WARN [MainGUI] global - \t\tLoading mod: Issues found! (tum-era)",
+        "WARN [MainGUI] mod - Bonus type ENCHANTED does not supports addInfo!",
+        "WARN [MainGUI] mod - Bonus type ENCHANTED does not supports addInfo!",
+        "WARN [runNetwork] mod - header.json is not valid JSON!",
+        "WARN [runNetwork] mod - At line 1, position 85 warning: Unknown escape sequence!\nAt line 1, position 124 warning: Unknown escape sequence!\nAt line 1, position 161 warning: Unknown escape sequence!\nAt line 1, position 700 warning: Unknown escape sequence!",
+        "WARN [MainGUI] mod - header.json is not valid JSON!",
+        "WARN [MainGUI] mod - At line 1, position 85 warning: Unknown escape sequence!\nAt line 1, position 124 warning: Unknown escape sequence!\nAt line 1, position 161 warning: Unknown escape sequence!\nAt line 1, position 700 warning: Unknown escape sequence!",
+        "WARN [MainGUI] mod - header.json is not valid JSON!",
+        "WARN [MainGUI] mod - At line 1, position 85 warning: Unknown escape sequence!\nAt line 1, position 124 warning: Unknown escape sequence!\nAt line 1, position 161 warning: Unknown escape sequence!\nAt line 1, position 700 warning: Unknown escape sequence!",
+        "WARN [runServer] mod - header.json is not valid JSON!",
+        "WARN [runServer] mod - At line 1, position 85 warning: Unknown escape sequence!\nAt line 1, position 124 warning: Unknown escape sequence!\nAt line 1, position 161 warning: Unknown escape sequence!\nAt line 1, position 700 warning: Unknown escape sequence!"
+      ],
+      "nativeLogSHA256": "82fdd1608014d3e918056413e2e78ac6bfe8e3420b0efabd14802d9b2ba5ddaf"
+    },
+    "candidate": {
+      "dataOverrides": false,
+      "passed": true,
+      "warningRecords": [
+        "WARN [MainGUI] mod - Data in wake-of-gods is invalid!",
+        "WARN [MainGUI] mod - At /japanese\n\t Error: Required entry name is missing\nAt /vietnamese\n\t Error: Required entry name is missing",
+        "WARN [MainGUI] global - \t\tParsing mod: Issues found! (wake-of-gods)",
+        "WARN [MainGUI] mod - CONFIG/CREATURES/DEATHKNIGHTUP is not valid JSON!",
+        "WARN [MainGUI] mod - At line 93, position 21 warning: Duplicate element encountered!\nAt line 95, position 10 warning: Duplicate element encountered!\nAt line 96, position 9 warning: Duplicate element encountered!",
+        "WARN [MainGUI] mod - Data in tum-era is invalid!",
+        "WARN [MainGUI] mod - At /french\n\t Error: Required entry name is missing",
+        "WARN [MainGUI] mod - Redundant namespace definition for redBonesDragon",
+        "WARN [MainGUI] global - \t\tParsing mod: Issues found! (tum-era)",
+        "WARN [MainGUI] mod - Data in wake-of-gods.woggraphicfix.wf_mapobjects is invalid!",
+        "WARN [MainGUI] mod - At /german\n\t Error: Required entry name is missing\nAt /japanese\n\t Error: Required entry name is missing\nAt /portuguese\n\t Error: Required entry name is missing\nAt /russian\n\t Error: Required entry name is missing\nAt /spanish\n\t Error: Required entry name is missing\nAt /turkish\n\t Error: Required entry name is missing\nAt /ukrainian\n\t Error: Required entry name is missing\nAt /vietnamese\n\t Error: Required entry name is missing",
+        "WARN [MainGUI] global - \t\tParsing mod: Issues found! (wake-of-gods.woggraphicfix.wf_mapobjects)",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'tum-era': Town building 'dwellingUp3Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in castle is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'tum-era': Town building 'dwellingUp3Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in conflux is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in dungeon is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in fortress is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'tum-era': Town building 'dwellingUp3Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in inferno is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'tum-era': Town building 'dwellingUp3Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in necropolis is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde1Upgr2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2Upgr2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in rampart is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'tum-era': Town building 'dwellingUp3Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in stronghold is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde1Upgr2' has specified 'id' field for a predefined building! Ignoring this field.",
+        "WARN [MainGUI] mod - Data in tower is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found",
+        "WARN [MainGUI] mod - Dwelling tum-era:eraDwelling20_2 has template tum-era/objects/Crdw25 which is not valid for a random dwelling! Dwellings must not block tiles outside 2x2 range and must be visitable in bottom row. Change dwelling mask or mark dwelling as 'bannedForRandomDwelling'",
+        "WARN [MainGUI] global - \t\tLoading mod: Issues found! (core)",
+        "WARN [MainGUI] mod - Data in goonk is invalid!",
+        "WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"\" was not found",
+        "WARN [MainGUI] global - \t\tLoading mod: Issues found! (goonk)",
+        "WARN [MainGUI] mod - Data in skeletalTransformation is invalid!",
+        "WARN [MainGUI] mod - At /levels/advanced/battleEffects/skeletalTransformation\n\t Error: Failed to pass all schemas\n<tested schemas>\nAt /levels/advanced/battleEffects/skeletalTransformation\n\t Error: Unknown entry found: 'eraCorpseTransform'. Perhaps you meant 'id'?\n<end of schema>\nAt /levels/basic/battleEffects/skeletalTransformation\n\t Error: Failed to pass all schemas\n<tested schemas>\nAt /levels/basic/battleEffects/skeletalTransformation\n\t Error: Unknown entry found: 'eraCorpseTransform'. Perhaps you meant 'id'?\n<end of schema>\nAt /levels/expert/battleEffects/skeletalTransformation\n\t Error: Failed to pass all schemas\n<tested schemas>\nAt /levels/expert/battleEffects/skeletalTransformation\n\t Error: Unknown entry found: 'eraCorpseTransform'. Perhaps you meant 'id'?\n<end of schema>\nAt /levels/none/battleEffects/skeletalTransformation\n\t Error: Failed to pass all schemas\n<tested schemas>\nAt /levels/none/battleEffects/skeletalTransformation\n\t Error: Unknown entry found: 'eraCorpseTransform'. Perhaps you meant 'id'?\n<end of schema>",
+        "WARN [MainGUI] global - \t\tLoading mod: Issues found! (tum-era)",
+        "WARN [MainGUI] mod - Bonus type ENCHANTED does not supports addInfo!",
+        "WARN [MainGUI] mod - Bonus type ENCHANTED does not supports addInfo!",
+        "WARN [runNetwork] mod - header.json is not valid JSON!",
+        "WARN [runNetwork] mod - At line 1, position 85 warning: Unknown escape sequence!\nAt line 1, position 124 warning: Unknown escape sequence!\nAt line 1, position 161 warning: Unknown escape sequence!\nAt line 1, position 700 warning: Unknown escape sequence!",
+        "WARN [MainGUI] mod - header.json is not valid JSON!",
+        "WARN [MainGUI] mod - At line 1, position 85 warning: Unknown escape sequence!\nAt line 1, position 124 warning: Unknown escape sequence!\nAt line 1, position 161 warning: Unknown escape sequence!\nAt line 1, position 700 warning: Unknown escape sequence!",
+        "WARN [MainGUI] mod - header.json is not valid JSON!",
+        "WARN [MainGUI] mod - At line 1, position 85 warning: Unknown escape sequence!\nAt line 1, position 124 warning: Unknown escape sequence!\nAt line 1, position 161 warning: Unknown escape sequence!\nAt line 1, position 700 warning: Unknown escape sequence!",
+        "WARN [runServer] mod - header.json is not valid JSON!",
+        "WARN [runServer] mod - At line 1, position 85 warning: Unknown escape sequence!\nAt line 1, position 124 warning: Unknown escape sequence!\nAt line 1, position 161 warning: Unknown escape sequence!\nAt line 1, position 700 warning: Unknown escape sequence!"
+      ],
+      "nativeLogSHA256": "13c6a0de05f681cd2bf47cada011d93af185738b80031ef03fbd1c81f1686ab4"
+    },
+    "extraCandidateWarnings": [],
+    "removedWarnings": [],
+    "sameWarningMultiset": true,
+    "nativeErrors": [],
+    "knownBaselineIssues": [
+      "WoG Japanese/Vietnamese submod metadata names missing",
+      "tum-era French submod metadata name missing",
+      "Pre-existing creature duplicate JSON elements, artifact/schema and creature skeletalTransformation warnings",
+      "Missing optional tavern video names from core town data"
+    ],
+    "conclusion": "No new native warning records on this boot/map/town control"
+  }
+}

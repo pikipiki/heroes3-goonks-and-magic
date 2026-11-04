@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 1,
+  "activation": false,
+  "scope": "Six existing WotC FEARFUL0/INDEPENDENT_MIN corrections only.12paired native controls. New RNG/Ghost excluded.",
+  "testedEngineSHA256": "63cb9a92100e7d47fb24ac01374ea4116d30d572d950fefaf7061dbb9eb37b17",
+  "file": "content/config/source-fearless-six.json",
+  "bytes": 1154,
+  "sha256": "4113d5768660b1f00932237b998bf9deef06b7206ee055d5fd4a4359877cccac",
+  "manifestAppendOnly": {
+    "creatures": [
+      "config/source-fearless-six.json"
+    ]
+  },
+  "sourceIds": [
+    201,
+    206,
+    215,
+    225,
+    229,
+    291
+  ],
+  "rows": [
+    {
+      "eraId": 201,
+      "nativeId": "third-upgrades:tumHolyChampion",
+      "sourceCfg": "Data/Creatures/201.cfg",
+      "sourceFlags": 17,
+      "sourceFearless": 1,
+      "beforeIntrinsicFearless": [],
+      "beforeInertAlias": false,
+      "patch": {
+        "abilities": {
+          "eraSourceFearless": {
+            "type": "FEARFUL",
+            "val": 0,
+            "valueType": "INDEPENDENT_MIN"
+          }
+        }
+      },
+      "controls": [
+        {
+          "id": "tumHolyChampion-original",
+          "patched": false,
+          "passed": true,
+          "actorActionsByRound": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        {
+          "id": "tumHolyChampion-patched",
+          "patched": true,
+          "passed": true,
+          "actorActionsByRound": {
+            "1": 1,
+            "2": 1,
+            "3": 1
+          }
+        }
+      ]
+    },
+    {
+      "eraId": 206,
+      "nativeId": "third-upgrades:tumLegendaryUnicorn",
+      "sourceCfg": "Data/Creatures/206.cfg",
+      "sourceFlags": 17,
+      "sourceFearless": 1,
+      "beforeIntrinsicFearless": [],
+      "beforeInertAlias": true,
+      "patch": {
+        "abilities": {
+          "eraSourceFearless": {
+            "type": "FEARFUL",
+            "val": 0,
+            "valueType": "INDEPENDENT_MIN"
+          }
+        }
+      },
+      "controls": [
+        {
+          "id": "tumLegendaryUnicorn-original",
+          "patched": false,
+          "passed": true,
+          "actorActionsByRound": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        {
+          "id": "tumLegendaryUnicorn-patched",
+          "patched": true,
+          "passed": true,
+          "actorActionsByRound": {
+            "1": 1,
+            "2": 1,
+            "3": 1
+          }
+        }
+      ]
+    },
+    {
+      "eraId": 215,
+      "nativeId": "third-upgrades:tumAstralCerberus",
+      "sourceCfg": "Data/Creatures/215.cfg",
+      "sourceFlags": 589841,
+      "sourceFearless": 1,
+      "beforeIntrinsicFearless": [],
+      "beforeInertAlias": true,
+      "patch": {
+        "abilities": {
+          "eraSourceFearless": {
+            "type": "FEARFUL",
+            "val": 0,
+            "valueType": "INDEPENDENT_MIN"
+          }
+        }
+      },
+      "controls": [
+        {
+          "id": "tumAstralCerberus-original",
+          "patched": false,
+          "passed": true,
+          "actorActionsByRound": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        {
+          "id": "tumAstralCerberus-patched",
+          "patched": true,
+          "passed": true,
+          "actorActionsByRound": {
+            "1": 1,
+            "2": 1,
+            "3": 1
+          }
+        }
+      ]
+    },
+    {
+      "eraId": 225,
+      "nativeId": "third-upgrades:tumPhosphorescentTroglodyte",
+      "sourceCfg": "Data/Creatures/225.cfg",
+      "sourceFlags": 16,
+      "sourceFearless": 1,
+      "beforeIntrinsicFearless": [],
+      "beforeInertAlias": true,
+      "patch": {
+        "abilities": {
+          "eraSourceFearless": {
+            "type": "FEARFUL",
+            "val": 0,
+            "valueType": "INDEPENDENT_MIN"
+          }
+        }
+      },
+      "controls": [
+        {
+          "id": "tumPhosphorescentTroglodyte-original",
+          "patched": false,
+          "passed": true,
+          "actorActionsByRound": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        {
+          "id": "tumPhosphorescentTroglodyte-patched",
+          "patched": true,
+          "passed": true,
+          "actorActionsByRound": {
+            "1": 1,
+            "2": 1,
+            "3": 1
+          }
+        }
+      ]
+    },
+    {
+      "eraId": 229,
+      "nativeId": "third-upgrades:tumBlackMinotaur",
+      "sourceCfg": "Data/Creatures/229.cfg",
+      "sourceFlags": 16,
+      "sourceFearless": 1,
+      "beforeIntrinsicFearless": [],
+      "beforeInertAlias": true,
+      "patch": {
+        "abilities": {
+          "eraSourceFearless": {
+            "type": "FEARFUL",
+            "val": 0,
+            "valueType": "INDEPENDENT_MIN"
+          }
+        }
+      },
+      "controls": [
+        {
+          "id": "tumBlackMinotaur-original",
+          "patched": false,
+          "passed": true,
+          "actorActionsByRound": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        {
+          "id": "tumBlackMinotaur-patched",
+          "patched": true,
+          "passed": true,
+          "actorActionsByRound": {
+            "1": 1,
+            "2": 1,
+            "3": 1
+          }
+        }
+      ]
+    },
+    {
+      "eraId": 291,
+      "nativeId": "third-upgrades:tumInquisitor",
+      "sourceCfg": "Data/Creatures/291.cfg",
+      "sourceFlags": 32784,
+      "sourceFearless": 1,
+      "beforeIntrinsicFearless": [],
+      "beforeInertAlias": false,
+      "patch": {
+        "abilities": {
+          "eraSourceFearless": {
+            "type": "FEARFUL",
+            "val": 0,
+            "valueType": "INDEPENDENT_MIN"
+          }
+        }
+      },
+      "controls": [
+        {
+          "id": "tumInquisitor-original",
+          "patched": false,
+          "passed": true,
+          "actorActionsByRound": {
+            "1": 0,
+            "2": 0,
+            "3": 0
+          }
+        },
+        {
+          "id": "tumInquisitor-patched",
+          "patched": true,
+          "passed": true,
+          "actorActionsByRound": {
+            "1": 1,
+            "2": 1,
+            "3": 1
+          }
+        }
+      ]
+    }
+  ],
+  "unrelatedActiveCountersMustStayUnchanged": [
+    "tumCreatures",
+    "artifacts",
+    "objectConfigurations",
+    "experienceProfiles"
+  ],
+  "ghostExcluded": true,
+  "productionRngRegistryExcluded": true,
+  "sourceModuleDefaultsExcluded": true,
+  "historicalEvidenceOnly": "Controls ran on named engine, not newly on published0.4.33. Only existing core bonus representation used."
+}

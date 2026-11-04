@@ -25,14 +25,25 @@
     "config/tum-fear-baseline.json",
     "config/resource-generation.json",
     "config/ancestral-behemoth.json",
-    "config/undead-morale-creatures.json"
+    "config/undead-morale-creatures.json",
+    "config/source35-stat-patches.json",
+    "config/source-fearless-six.json"
   ],
   "factions": [
     "config/necropolis.json",
     "config/conflux.json",
     "config/inferno.json",
     "config/castle.json",
-    "config/stronghold.json"
+    "config/stronghold.json",
+    "config/third-upgrade-costs/castle.json",
+    "config/third-upgrade-costs/rampart.json",
+    "config/third-upgrade-costs/tower.json",
+    "config/third-upgrade-costs/inferno.json",
+    "config/third-upgrade-costs/necropolis.json",
+    "config/third-upgrade-costs/dungeon.json",
+    "config/third-upgrade-costs/stronghold.json",
+    "config/third-upgrade-costs/fortress.json",
+    "config/third-upgrade-costs/conflux.json"
   ],
   "artifacts": [
     "config/native-artifacts.json"

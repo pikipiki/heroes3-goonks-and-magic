@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "appVersion": "0.4.35",
+  "baseCommit": "2da1e91c12811c7e7c04f599ab33aa7aa2ed150d",
+  "snapshotMethod": "git archive, no .git/worktree/index/commit/push",
+  "nativeArchive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.34-engine.tar.gz",
+    "sha256": "3d9dacebf1855ccee5adb51cab47ebb29d6af97552824ad2b5f7a94ecbc7ab89",
+    "gitBlob": "61af70445c4f54f7188a8ce18c81c42525feade1",
+    "unchangedFromBase": true
+  },
+  "packagedEngine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "ed20a99639f7d634",
+    "wasm": "vcmiclient.e5ded71899389b28.wasm",
+    "sha256": "e5ded71899389b2847e89d1098b0176e4ebe8a40696db019ca6138a8a8eddfb8",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "prepareWebUnchangedFromBase": true,
+  "content": {
+    "tumCreatures": 12,
+    "artifacts": 56,
+    "objectConfigurations": 28,
+    "experienceProfiles": 234,
+    "fourthUpgradeTowns": [
+      "config/necropolis.json",
+      "config/conflux.json",
+      "config/inferno.json",
+      "config/castle.json",
+      "config/stronghold.json"
+    ],
+    "scalarCorrections": 66,
+    "thirdUpgradeCosts": 63,
+    "changedCosts": 62,
+    "intrinsicFearlessCorrections": 6
+  },
+  "scopeAudit": {
+    "otherManifestFieldsIdentical": true,
+    "allOtherExistingModJsonBytesIdentical": true,
+    "otherModJsonChecked": 801,
+    "changedUnrelatedJson": [],
+    "webSourceIsRealDirectory": true,
+    "nativeCodeChanged": false,
+    "mainFakeNodeLifetimeFixPreserved": true,
+    "savesIncluded": false,
+    "baseGameDataChanged": false
+  },
+  "verification": {
+    "node": {
+      "total": 317,
+      "pass": 301,
+      "skip": 16,
+      "fail": 0
+    },
+    "prepareWeb": "PASS",
+    "buildWeb": "PASS",
+    "verifyWeb": "PASS",
+    "runtimeGuardTests": 3,
+    "nativeStartup": {
+      "passed": true,
+      "resolvedIdentities": 66,
+      "scalarObservations": 462,
+      "uniqueNativeCosts": 63,
+      "towns": 9,
+      "pageErrors": 0,
+      "nativeErrors": 0
+    },
+    "nativeDiagnosticComparison": {
+      "baselineWARN": 132,
+      "candidateWARN": 132,
+      "newWarnings": 0,
+      "scope": "Full startup and one Castle town, identical Main34 baseline/candidate; not a warning-free baseline claim"
+    }
+  },
+  "evidenceAttribution": "Historical native numeric/cost/immunity proofs retain their original hashes. New startup uses the unchanged published Main0.4.34 engine. No HATE/H/RNG or complete TUM compatibility claim.",
+  "knownLimitations": [
+    "Baseline cfgHATE percentage mismatch on202/219 is not changed by data-only.",
+    "Published map instance-name suffix issues remain; smoke uses explicitly normalized ordinary throwaway fixtures."
+  ]
+}

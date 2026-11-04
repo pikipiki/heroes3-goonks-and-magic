@@ -1,0 +1,4445 @@
+{
+  "schemaVersion": 1,
+  "scope": "Historical native evidence for these66numeric corrections only; expanded roster and engine data excluded.",
+  "engineSHA256": "f4cced630978aeca9d40c5cc85f112c56827d8562e667c5d421b759a3f9f746c",
+  "sourceArchiveSHA256": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+  "sourceReportSHA256": "3b3f566848243e7b91f5953382f8207990124534f237e52e0bd84e20f722f351",
+  "patchFileSHA256": "a7f64e771d1bff6296ebc35da78ace83cad14f3d3a49276227845851c5279ffd",
+  "statInjection": false,
+  "passed": true,
+  "count": 66,
+  "checks": [
+    {
+      "eraId": 14,
+      "nativeId": "core:centaur",
+      "expected": {
+        "key": "core:centaur",
+        "count": 1,
+        "health": 8,
+        "attack": 5,
+        "defense": 3,
+        "speed": 6,
+        "damageMin": 2,
+        "damageMax": 3,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          70
+        ]
+      },
+      "sourceStats": {
+        "growth": 14,
+        "aiValue": 100,
+        "fightValue": 100,
+        "shots": 12
+      },
+      "patchedFields": [
+        "shots"
+      ],
+      "actual": {
+        "aiValue": 100,
+        "attack": 5,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          70,
+          0
+        ],
+        "damageMax": 3,
+        "damageMin": 2,
+        "defense": 3,
+        "fightValue": 100,
+        "growth": 14,
+        "health": 8,
+        "key": "core:centaur",
+        "shots": 12,
+        "speed": 6
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 15,
+      "nativeId": "core:centaurCaptain",
+      "expected": {
+        "key": "core:centaurCaptain",
+        "count": 1,
+        "health": 10,
+        "attack": 6,
+        "defense": 3,
+        "speed": 8,
+        "damageMin": 2,
+        "damageMax": 3,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          90
+        ]
+      },
+      "sourceStats": {
+        "growth": 14,
+        "aiValue": 138,
+        "fightValue": 115,
+        "shots": 12
+      },
+      "patchedFields": [
+        "shots"
+      ],
+      "actual": {
+        "aiValue": 138,
+        "attack": 6,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          90,
+          0
+        ],
+        "damageMax": 3,
+        "damageMin": 2,
+        "defense": 3,
+        "fightValue": 115,
+        "growth": 14,
+        "health": 10,
+        "key": "core:centaurCaptain",
+        "shots": 12,
+        "speed": 8
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 150,
+      "nativeId": "wake-of-gods.level8units:supremeArchangel",
+      "expected": {
+        "key": "wake-of-gods.level8units:supremeArchangel",
+        "count": 1,
+        "health": 350,
+        "attack": 40,
+        "defense": 40,
+        "speed": 18,
+        "damageMin": 50,
+        "damageMax": 50,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          7500
+        ]
+      },
+      "sourceStats": {
+        "growth": 1,
+        "aiValue": 10976,
+        "fightValue": 8070,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "aiValue",
+        "fightValue",
+        "damage.min",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 10976,
+        "attack": 40,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          7500,
+          0
+        ],
+        "damageMax": 50,
+        "damageMin": 50,
+        "defense": 40,
+        "fightValue": 8070,
+        "growth": 1,
+        "health": 350,
+        "key": "wake-of-gods.level8units:supremeArchangel",
+        "shots": 0,
+        "speed": 18
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 151,
+      "nativeId": "wake-of-gods.level8units:diamondDragon",
+      "expected": {
+        "key": "wake-of-gods.level8units:diamondDragon",
+        "count": 1,
+        "health": 350,
+        "attack": 36,
+        "defense": 36,
+        "speed": 16,
+        "damageMin": 40,
+        "damageMax": 50,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          6000
+        ]
+      },
+      "sourceStats": {
+        "growth": 1,
+        "aiValue": 10749,
+        "fightValue": 8205,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "aiValue",
+        "fightValue",
+        "damage.min",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 10749,
+        "attack": 36,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          6000,
+          0
+        ],
+        "damageMax": 50,
+        "damageMin": 40,
+        "defense": 36,
+        "fightValue": 8205,
+        "growth": 1,
+        "health": 350,
+        "key": "wake-of-gods.level8units:diamondDragon",
+        "shots": 0,
+        "speed": 16
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 152,
+      "nativeId": "wake-of-gods.level8units:lordOfThunder",
+      "expected": {
+        "key": "wake-of-gods.level8units:lordOfThunder",
+        "count": 1,
+        "health": 350,
+        "attack": 32,
+        "defense": 32,
+        "speed": 12,
+        "damageMin": 40,
+        "damageMax": 60,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          7500
+        ]
+      },
+      "sourceStats": {
+        "growth": 1,
+        "aiValue": 9800,
+        "fightValue": 7800,
+        "shots": 24
+      },
+      "patchedFields": [
+        "hitPoints",
+        "aiValue",
+        "fightValue",
+        "damage.min",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 9800,
+        "attack": 32,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          7500,
+          0
+        ],
+        "damageMax": 60,
+        "damageMin": 40,
+        "defense": 32,
+        "fightValue": 7800,
+        "growth": 1,
+        "health": 350,
+        "key": "wake-of-gods.level8units:lordOfThunder",
+        "shots": 24,
+        "speed": 12
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 153,
+      "nativeId": "wake-of-gods.level8units:hellBaron",
+      "expected": {
+        "key": "wake-of-gods.level8units:hellBaron",
+        "count": 1,
+        "health": 250,
+        "attack": 35,
+        "defense": 37,
+        "speed": 18,
+        "damageMin": 30,
+        "damageMax": 40,
+        "cost": [
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          6500
+        ]
+      },
+      "sourceStats": {
+        "growth": 1,
+        "aiValue": 9237,
+        "fightValue": 8068,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "speed",
+        "aiValue",
+        "fightValue",
+        "damage.min",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 9237,
+        "attack": 35,
+        "cost": [
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          6500,
+          0
+        ],
+        "damageMax": 40,
+        "damageMin": 30,
+        "defense": 37,
+        "fightValue": 8068,
+        "growth": 1,
+        "health": 250,
+        "key": "wake-of-gods.level8units:hellBaron",
+        "shots": 0,
+        "speed": 18
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 154,
+      "nativeId": "wake-of-gods.level8units:bloodDragon",
+      "expected": {
+        "key": "wake-of-gods.level8units:bloodDragon",
+        "count": 1,
+        "health": 250,
+        "attack": 25,
+        "defense": 23,
+        "speed": 15,
+        "damageMin": 38,
+        "damageMax": 75,
+        "cost": [
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          4000
+        ]
+      },
+      "sourceStats": {
+        "growth": 1,
+        "aiValue": 6578,
+        "fightValue": 4987,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "speed",
+        "aiValue",
+        "fightValue",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 6578,
+        "attack": 25,
+        "cost": [
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          4000,
+          0
+        ],
+        "damageMax": 75,
+        "damageMin": 38,
+        "defense": 23,
+        "fightValue": 4987,
+        "growth": 1,
+        "health": 250,
+        "key": "wake-of-gods.level8units:bloodDragon",
+        "shots": 0,
+        "speed": 15
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 155,
+      "nativeId": "wake-of-gods.level8units:darknessDragon",
+      "expected": {
+        "key": "wake-of-gods.level8units:darknessDragon",
+        "count": 1,
+        "health": 400,
+        "attack": 33,
+        "defense": 33,
+        "speed": 15,
+        "damageMin": 40,
+        "damageMax": 50,
+        "cost": [
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          6000
+        ]
+      },
+      "sourceStats": {
+        "growth": 1,
+        "aiValue": 11032,
+        "fightValue": 8578,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "aiValue",
+        "fightValue",
+        "damage.min",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 11032,
+        "attack": 33,
+        "cost": [
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          6000,
+          0
+        ],
+        "damageMax": 50,
+        "damageMin": 40,
+        "defense": 33,
+        "fightValue": 8578,
+        "growth": 1,
+        "health": 400,
+        "key": "wake-of-gods.level8units:darknessDragon",
+        "shots": 0,
+        "speed": 15
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 156,
+      "nativeId": "wake-of-gods.level8units:ghostBehemoth",
+      "expected": {
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "count": 1,
+        "health": 350,
+        "attack": 25,
+        "defense": 25,
+        "speed": 11,
+        "damageMin": 30,
+        "damageMax": 50,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          5000
+        ]
+      },
+      "sourceStats": {
+        "growth": 1,
+        "aiValue": 9462,
+        "fightValue": 8134,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "speed",
+        "aiValue",
+        "fightValue",
+        "damage.min",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 9462,
+        "attack": 25,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          5000,
+          0
+        ],
+        "damageMax": 50,
+        "damageMin": 30,
+        "defense": 25,
+        "fightValue": 8134,
+        "growth": 1,
+        "health": 350,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "shots": 0,
+        "speed": 11
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 157,
+      "nativeId": "wake-of-gods.level8units:hellHydra",
+      "expected": {
+        "key": "wake-of-gods.level8units:hellHydra",
+        "count": 1,
+        "health": 325,
+        "attack": 25,
+        "defense": 27,
+        "speed": 9,
+        "damageMin": 25,
+        "damageMax": 45,
+        "cost": [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          5500
+        ]
+      },
+      "sourceStats": {
+        "growth": 1,
+        "aiValue": 8194,
+        "fightValue": 7956,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "speed",
+        "aiValue",
+        "fightValue",
+        "damage.min",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 8194,
+        "attack": 25,
+        "cost": [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          5500,
+          0
+        ],
+        "damageMax": 45,
+        "damageMin": 25,
+        "defense": 27,
+        "fightValue": 7956,
+        "growth": 1,
+        "health": 325,
+        "key": "wake-of-gods.level8units:hellHydra",
+        "shots": 0,
+        "speed": 9
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 158,
+      "nativeId": "wake-of-gods.level8units:sacredPhoenix",
+      "expected": {
+        "key": "wake-of-gods.level8units:sacredPhoenix",
+        "count": 1,
+        "health": 300,
+        "attack": 28,
+        "defense": 28,
+        "speed": 21,
+        "damageMin": 45,
+        "damageMax": 60,
+        "cost": [
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          5000
+        ]
+      },
+      "sourceStats": {
+        "growth": 1,
+        "aiValue": 8967,
+        "fightValue": 7865,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "aiValue",
+        "fightValue"
+      ],
+      "actual": {
+        "aiValue": 8967,
+        "attack": 28,
+        "cost": [
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          5000,
+          0
+        ],
+        "damageMax": 60,
+        "damageMin": 45,
+        "defense": 28,
+        "fightValue": 7865,
+        "growth": 1,
+        "health": 300,
+        "key": "wake-of-gods.level8units:sacredPhoenix",
+        "shots": 0,
+        "speed": 21
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 168,
+      "nativeId": "wake-of-gods.creatures:gorynych",
+      "expected": {
+        "key": "wake-of-gods.creatures:gorynych",
+        "count": 1,
+        "health": 500,
+        "attack": 25,
+        "defense": 30,
+        "speed": 14,
+        "damageMin": 25,
+        "damageMax": 50,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          5,
+          0,
+          7000
+        ]
+      },
+      "sourceStats": {
+        "growth": 1,
+        "aiValue": 12931,
+        "fightValue": 12272,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "attack",
+        "defense",
+        "speed",
+        "aiValue",
+        "fightValue",
+        "damage.max",
+        "cost.crystal",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 12931,
+        "attack": 25,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          5,
+          0,
+          7000,
+          0
+        ],
+        "damageMax": 50,
+        "damageMin": 25,
+        "defense": 30,
+        "fightValue": 12272,
+        "growth": 1,
+        "health": 500,
+        "key": "wake-of-gods.creatures:gorynych",
+        "shots": 0,
+        "speed": 14
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 172,
+      "nativeId": "wake-of-gods.creatures:nightmare",
+      "expected": {
+        "key": "wake-of-gods.creatures:nightmare",
+        "count": 1,
+        "health": 110,
+        "attack": 18,
+        "defense": 16,
+        "speed": 9,
+        "damageMin": 20,
+        "damageMax": 24,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1500
+        ]
+      },
+      "sourceStats": {
+        "growth": 2,
+        "aiValue": 2400,
+        "fightValue": 2050,
+        "shots": 0
+      },
+      "patchedFields": [
+        "shots"
+      ],
+      "actual": {
+        "aiValue": 2400,
+        "attack": 18,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1500,
+          0
+        ],
+        "damageMax": 24,
+        "damageMin": 20,
+        "defense": 16,
+        "fightValue": 2050,
+        "growth": 2,
+        "health": 110,
+        "key": "wake-of-gods.creatures:nightmare",
+        "shots": 0,
+        "speed": 9
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 173,
+      "nativeId": "wake-of-gods.creatures:santaGremlin",
+      "expected": {
+        "key": "wake-of-gods.creatures:santaGremlin",
+        "count": 1,
+        "health": 5,
+        "attack": 5,
+        "defense": 5,
+        "speed": 5,
+        "damageMin": 2,
+        "damageMax": 3,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          200
+        ]
+      },
+      "sourceStats": {
+        "growth": 16,
+        "aiValue": 300,
+        "fightValue": 300,
+        "shots": 0
+      },
+      "patchedFields": [
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "actual": {
+        "aiValue": 300,
+        "attack": 5,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          200,
+          0
+        ],
+        "damageMax": 3,
+        "damageMin": 2,
+        "defense": 5,
+        "fightValue": 300,
+        "growth": 16,
+        "health": 5,
+        "key": "wake-of-gods.creatures:santaGremlin",
+        "shots": 0,
+        "speed": 5
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 192,
+      "nativeId": "wake-of-gods.creatures:sylvanCentaur",
+      "expected": {
+        "key": "wake-of-gods.creatures:sylvanCentaur",
+        "count": 1,
+        "health": 12,
+        "attack": 7,
+        "defense": 5,
+        "speed": 8,
+        "damageMin": 2,
+        "damageMax": 4,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          125
+        ]
+      },
+      "sourceStats": {
+        "growth": 14,
+        "aiValue": 165,
+        "fightValue": 130,
+        "shots": 24
+      },
+      "patchedFields": [
+        "hitPoints",
+        "attack",
+        "growth",
+        "aiValue",
+        "fightValue",
+        "damage.min",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 165,
+        "attack": 7,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          125,
+          0
+        ],
+        "damageMax": 4,
+        "damageMin": 2,
+        "defense": 5,
+        "fightValue": 130,
+        "growth": 14,
+        "health": 12,
+        "key": "wake-of-gods.creatures:sylvanCentaur",
+        "shots": 24,
+        "speed": 8
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 193,
+      "nativeId": "wake-of-gods.creatures:wogSorceress",
+      "expected": {
+        "key": "wake-of-gods.creatures:wogSorceress",
+        "count": 1,
+        "health": 35,
+        "attack": 15,
+        "defense": 13,
+        "speed": 8,
+        "damageMin": 10,
+        "damageMax": 13,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          600
+        ]
+      },
+      "sourceStats": {
+        "growth": 2,
+        "aiValue": 1150,
+        "fightValue": 800,
+        "shots": 24
+      },
+      "patchedFields": [
+        "fightValue"
+      ],
+      "actual": {
+        "aiValue": 1150,
+        "attack": 15,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          600,
+          0
+        ],
+        "damageMax": 13,
+        "damageMin": 10,
+        "defense": 13,
+        "fightValue": 800,
+        "growth": 2,
+        "health": 35,
+        "key": "wake-of-gods.creatures:wogSorceress",
+        "shots": 24,
+        "speed": 8
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 194,
+      "nativeId": "wake-of-gods.creatures:werewolf",
+      "expected": {
+        "key": "wake-of-gods.creatures:werewolf",
+        "count": 1,
+        "health": 30,
+        "attack": 11,
+        "defense": 10,
+        "speed": 7,
+        "damageMin": 6,
+        "damageMax": 11,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          350
+        ]
+      },
+      "sourceStats": {
+        "growth": 5,
+        "aiValue": 576,
+        "fightValue": 554,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "attack",
+        "defense",
+        "growth",
+        "aiValue",
+        "fightValue",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 576,
+        "attack": 11,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          350,
+          0
+        ],
+        "damageMax": 11,
+        "damageMin": 6,
+        "defense": 10,
+        "fightValue": 554,
+        "growth": 5,
+        "health": 30,
+        "key": "wake-of-gods.creatures:werewolf",
+        "shots": 0,
+        "speed": 7
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 197,
+      "nativeId": "third-upgrades:tumRoyalHalberdier",
+      "expected": {
+        "key": "third-upgrades:tumRoyalHalberdier",
+        "count": 1,
+        "health": 10,
+        "attack": 6,
+        "defense": 6,
+        "speed": 6,
+        "damageMin": 2,
+        "damageMax": 3,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          85
+        ]
+      },
+      "sourceStats": {
+        "growth": 14,
+        "aiValue": 149,
+        "fightValue": 149,
+        "shots": 0
+      },
+      "patchedFields": [
+        "attack",
+        "aiValue",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 149,
+        "attack": 6,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          85,
+          0
+        ],
+        "damageMax": 3,
+        "damageMin": 2,
+        "defense": 6,
+        "fightValue": 149,
+        "growth": 14,
+        "health": 10,
+        "key": "third-upgrades:tumRoyalHalberdier",
+        "shots": 0,
+        "speed": 6
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 198,
+      "nativeId": "third-upgrades:tumCrossbowman",
+      "expected": {
+        "key": "third-upgrades:tumCrossbowman",
+        "count": 1,
+        "health": 10,
+        "attack": 6,
+        "defense": 4,
+        "speed": 7,
+        "damageMin": 2,
+        "damageMax": 3,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          200
+        ]
+      },
+      "sourceStats": {
+        "growth": 9,
+        "aiValue": 278,
+        "fightValue": 232,
+        "shots": 24
+      },
+      "patchedFields": [
+        "attack"
+      ],
+      "actual": {
+        "aiValue": 278,
+        "attack": 6,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          200,
+          0
+        ],
+        "damageMax": 3,
+        "damageMin": 2,
+        "defense": 4,
+        "fightValue": 232,
+        "growth": 9,
+        "health": 10,
+        "key": "third-upgrades:tumCrossbowman",
+        "shots": 24,
+        "speed": 7
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 199,
+      "nativeId": "third-upgrades:tumCeasarGriffin",
+      "expected": {
+        "key": "third-upgrades:tumCeasarGriffin",
+        "count": 1,
+        "health": 30,
+        "attack": 9,
+        "defense": 9,
+        "speed": 10,
+        "damageMin": 3,
+        "damageMax": 6,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          280
+        ]
+      },
+      "sourceStats": {
+        "growth": 7,
+        "aiValue": 575,
+        "fightValue": 491,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "aiValue",
+        "damage.min"
+      ],
+      "actual": {
+        "aiValue": 575,
+        "attack": 9,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          280,
+          0
+        ],
+        "damageMax": 6,
+        "damageMin": 3,
+        "defense": 9,
+        "fightValue": 491,
+        "growth": 7,
+        "health": 30,
+        "key": "third-upgrades:tumCeasarGriffin",
+        "shots": 0,
+        "speed": 10
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 201,
+      "nativeId": "third-upgrades:tumHolyChampion",
+      "expected": {
+        "key": "third-upgrades:tumHolyChampion",
+        "count": 1,
+        "health": 120,
+        "attack": 16,
+        "defense": 16,
+        "speed": 11,
+        "damageMin": 25,
+        "damageMax": 30,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2000
+        ]
+      },
+      "sourceStats": {
+        "growth": 2,
+        "aiValue": 2820,
+        "fightValue": 2520,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "speed",
+        "damage.min",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 2820,
+        "attack": 16,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2000,
+          0
+        ],
+        "damageMax": 30,
+        "damageMin": 25,
+        "defense": 16,
+        "fightValue": 2520,
+        "growth": 2,
+        "health": 120,
+        "key": "third-upgrades:tumHolyChampion",
+        "shots": 0,
+        "speed": 11
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 203,
+      "nativeId": "third-upgrades:tumBerserkerDwarf",
+      "expected": {
+        "key": "third-upgrades:tumBerserkerDwarf",
+        "count": 1,
+        "health": 20,
+        "attack": 8,
+        "defense": 7,
+        "speed": 6,
+        "damageMin": 2,
+        "damageMax": 4,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          160
+        ]
+      },
+      "sourceStats": {
+        "growth": 8,
+        "aiValue": 274,
+        "fightValue": 274,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "defense",
+        "damage.min",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 274,
+        "attack": 8,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          160,
+          0
+        ],
+        "damageMax": 4,
+        "damageMin": 2,
+        "defense": 7,
+        "fightValue": 274,
+        "growth": 8,
+        "health": 20,
+        "key": "third-upgrades:tumBerserkerDwarf",
+        "shots": 0,
+        "speed": 6
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 204,
+      "nativeId": "third-upgrades:tumGoldenPegasus",
+      "expected": {
+        "key": "third-upgrades:tumGoldenPegasus",
+        "count": 1,
+        "health": 30,
+        "attack": 10,
+        "defense": 10,
+        "speed": 15,
+        "damageMin": 5,
+        "damageMax": 9,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          315
+        ]
+      },
+      "sourceStats": {
+        "growth": 5,
+        "aiValue": 718,
+        "fightValue": 564,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "damage.min",
+        "damage.max"
+      ],
+      "actual": {
+        "aiValue": 718,
+        "attack": 10,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          315,
+          0
+        ],
+        "damageMax": 9,
+        "damageMin": 5,
+        "defense": 10,
+        "fightValue": 564,
+        "growth": 5,
+        "health": 30,
+        "key": "third-upgrades:tumGoldenPegasus",
+        "shots": 0,
+        "speed": 15
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 205,
+      "nativeId": "third-upgrades:tumElderDendroid",
+      "expected": {
+        "key": "third-upgrades:tumElderDendroid",
+        "count": 1,
+        "health": 70,
+        "attack": 10,
+        "defense": 12,
+        "speed": 5,
+        "damageMin": 10,
+        "damageMax": 14,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          550
+        ]
+      },
+      "sourceStats": {
+        "growth": 3,
+        "aiValue": 1043,
+        "fightValue": 994,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "attack",
+        "defense",
+        "damage.min",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 1043,
+        "attack": 10,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          550,
+          0
+        ],
+        "damageMax": 14,
+        "damageMin": 10,
+        "defense": 12,
+        "fightValue": 994,
+        "growth": 3,
+        "health": 70,
+        "key": "third-upgrades:tumElderDendroid",
+        "shots": 0,
+        "speed": 5
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 206,
+      "nativeId": "third-upgrades:tumLegendaryUnicorn",
+      "expected": {
+        "key": "third-upgrades:tumLegendaryUnicorn",
+        "count": 1,
+        "health": 110,
+        "attack": 16,
+        "defense": 14,
+        "speed": 10,
+        "damageMin": 20,
+        "damageMax": 22,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1100
+        ]
+      },
+      "sourceStats": {
+        "growth": 2,
+        "aiValue": 2436,
+        "fightValue": 2436,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "aiValue",
+        "fightValue"
+      ],
+      "actual": {
+        "aiValue": 2436,
+        "attack": 16,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1100,
+          0
+        ],
+        "damageMax": 22,
+        "damageMin": 20,
+        "defense": 14,
+        "fightValue": 2436,
+        "growth": 2,
+        "health": 110,
+        "key": "third-upgrades:tumLegendaryUnicorn",
+        "shots": 0,
+        "speed": 10
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 208,
+      "nativeId": "third-upgrades:tumMarbleGargoyle",
+      "expected": {
+        "key": "third-upgrades:tumMarbleGargoyle",
+        "count": 1,
+        "health": 20,
+        "attack": 8,
+        "defense": 8,
+        "speed": 10,
+        "damageMin": 2,
+        "damageMax": 3,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          170
+        ]
+      },
+      "sourceStats": {
+        "growth": 9,
+        "aiValue": 221,
+        "fightValue": 175,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "attack",
+        "defense",
+        "aiValue",
+        "fightValue",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 221,
+        "attack": 8,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          170,
+          0
+        ],
+        "damageMax": 3,
+        "damageMin": 2,
+        "defense": 8,
+        "fightValue": 175,
+        "growth": 9,
+        "health": 20,
+        "key": "third-upgrades:tumMarbleGargoyle",
+        "shots": 0,
+        "speed": 10
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 209,
+      "nativeId": "third-upgrades:tumSteelGolem",
+      "expected": {
+        "key": "third-upgrades:tumSteelGolem",
+        "count": 1,
+        "health": 40,
+        "attack": 10,
+        "defense": 11,
+        "speed": 6,
+        "damageMin": 4,
+        "damageMax": 5,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          250
+        ]
+      },
+      "sourceStats": {
+        "growth": 6,
+        "aiValue": 597,
+        "fightValue": 597,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "damage.min",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 597,
+        "attack": 10,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          250,
+          0
+        ],
+        "damageMax": 5,
+        "damageMin": 4,
+        "defense": 11,
+        "fightValue": 597,
+        "growth": 6,
+        "health": 40,
+        "key": "third-upgrades:tumSteelGolem",
+        "shots": 0,
+        "speed": 6
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 210,
+      "nativeId": "third-upgrades:tumArcaneGenie",
+      "expected": {
+        "key": "third-upgrades:tumArcaneGenie",
+        "count": 1,
+        "health": 55,
+        "attack": 13,
+        "defense": 12,
+        "speed": 12,
+        "damageMin": 13,
+        "damageMax": 16,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          920
+        ]
+      },
+      "sourceStats": {
+        "growth": 3,
+        "aiValue": 1318,
+        "fightValue": 1047,
+        "shots": 0
+      },
+      "patchedFields": [
+        "attack",
+        "defense",
+        "speed",
+        "aiValue",
+        "fightValue",
+        "damage.min",
+        "damage.max"
+      ],
+      "actual": {
+        "aiValue": 1318,
+        "attack": 13,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          920,
+          0
+        ],
+        "damageMax": 16,
+        "damageMin": 13,
+        "defense": 12,
+        "fightValue": 1047,
+        "growth": 3,
+        "health": 55,
+        "key": "third-upgrades:tumArcaneGenie",
+        "shots": 0,
+        "speed": 12
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 211,
+      "nativeId": "third-upgrades:tumNagaEmpress",
+      "expected": {
+        "key": "third-upgrades:tumNagaEmpress",
+        "count": 1,
+        "health": 120,
+        "attack": 17,
+        "defense": 14,
+        "speed": 8,
+        "damageMin": 30,
+        "damageMax": 30,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2400
+        ]
+      },
+      "sourceStats": {
+        "growth": 2,
+        "aiValue": 4118,
+        "fightValue": 3603,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "attack",
+        "defense",
+        "speed",
+        "damage.min",
+        "damage.max"
+      ],
+      "actual": {
+        "aiValue": 4118,
+        "attack": 17,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2400,
+          0
+        ],
+        "damageMax": 30,
+        "damageMin": 30,
+        "defense": 14,
+        "fightValue": 3603,
+        "growth": 2,
+        "health": 120,
+        "key": "third-upgrades:tumNagaEmpress",
+        "shots": 0,
+        "speed": 8
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 213,
+      "nativeId": "third-upgrades:tumVermin",
+      "expected": {
+        "key": "third-upgrades:tumVermin",
+        "count": 1,
+        "health": 6,
+        "attack": 5,
+        "defense": 5,
+        "speed": 8,
+        "damageMin": 1,
+        "damageMax": 2,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          90
+        ]
+      },
+      "sourceStats": {
+        "growth": 15,
+        "aiValue": 90,
+        "fightValue": 97,
+        "shots": 0
+      },
+      "patchedFields": [
+        "attack",
+        "speed",
+        "damage.min",
+        "damage.max"
+      ],
+      "actual": {
+        "aiValue": 90,
+        "attack": 5,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          90,
+          0
+        ],
+        "damageMax": 2,
+        "damageMin": 1,
+        "defense": 5,
+        "fightValue": 97,
+        "growth": 15,
+        "health": 6,
+        "key": "third-upgrades:tumVermin",
+        "shots": 0,
+        "speed": 8
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 214,
+      "nativeId": "third-upgrades:tumWingedMagog",
+      "expected": {
+        "key": "third-upgrades:tumWingedMagog",
+        "count": 1,
+        "health": 13,
+        "attack": 7,
+        "defense": 4,
+        "speed": 8,
+        "damageMin": 2,
+        "damageMax": 4,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          250
+        ]
+      },
+      "sourceStats": {
+        "growth": 8,
+        "aiValue": 420,
+        "fightValue": 343,
+        "shots": 24
+      },
+      "patchedFields": [
+        "attack",
+        "defense",
+        "speed",
+        "damage.min",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 420,
+        "attack": 7,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          250,
+          0
+        ],
+        "damageMax": 4,
+        "damageMin": 2,
+        "defense": 4,
+        "fightValue": 343,
+        "growth": 8,
+        "health": 13,
+        "key": "third-upgrades:tumWingedMagog",
+        "shots": 24,
+        "speed": 8
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 215,
+      "nativeId": "third-upgrades:tumAstralCerberus",
+      "expected": {
+        "key": "third-upgrades:tumAstralCerberus",
+        "count": 1,
+        "health": 25,
+        "attack": 12,
+        "defense": 8,
+        "speed": 9,
+        "damageMin": 2,
+        "damageMax": 7,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          280
+        ]
+      },
+      "sourceStats": {
+        "growth": 5,
+        "aiValue": 478,
+        "fightValue": 425,
+        "shots": 0
+      },
+      "patchedFields": [
+        "damage.min"
+      ],
+      "actual": {
+        "aiValue": 478,
+        "attack": 12,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          280,
+          0
+        ],
+        "damageMax": 7,
+        "damageMin": 2,
+        "defense": 8,
+        "fightValue": 425,
+        "growth": 5,
+        "health": 25,
+        "key": "third-upgrades:tumAstralCerberus",
+        "shots": 0,
+        "speed": 9
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 216,
+      "nativeId": "third-upgrades:tumSharpHornedDemon",
+      "expected": {
+        "key": "third-upgrades:tumSharpHornedDemon",
+        "count": 1,
+        "health": 45,
+        "attack": 10,
+        "defense": 10,
+        "speed": 8,
+        "damageMin": 7,
+        "damageMax": 9,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          300
+        ]
+      },
+      "sourceStats": {
+        "growth": 4,
+        "aiValue": 720,
+        "fightValue": 720,
+        "shots": 0
+      },
+      "patchedFields": [
+        "damage.max"
+      ],
+      "actual": {
+        "aiValue": 720,
+        "attack": 10,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          300,
+          0
+        ],
+        "damageMax": 9,
+        "damageMin": 7,
+        "defense": 10,
+        "fightValue": 720,
+        "growth": 4,
+        "health": 45,
+        "key": "third-upgrades:tumSharpHornedDemon",
+        "shots": 0,
+        "speed": 8
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 217,
+      "nativeId": "third-upgrades:tumPitMaster",
+      "expected": {
+        "key": "third-upgrades:tumPitMaster",
+        "count": 1,
+        "health": 50,
+        "attack": 13,
+        "defense": 13,
+        "speed": 8,
+        "damageMin": 13,
+        "damageMax": 17,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          800
+        ]
+      },
+      "sourceStats": {
+        "growth": 3,
+        "aiValue": 1513,
+        "fightValue": 1320,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "growth",
+        "damage.min",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 1513,
+        "attack": 13,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          800,
+          0
+        ],
+        "damageMax": 17,
+        "damageMin": 13,
+        "defense": 13,
+        "fightValue": 1320,
+        "growth": 3,
+        "health": 50,
+        "key": "third-upgrades:tumPitMaster",
+        "shots": 0,
+        "speed": 8
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 218,
+      "nativeId": "third-upgrades:tumEfreetRajah",
+      "expected": {
+        "key": "third-upgrades:tumEfreetRajah",
+        "count": 1,
+        "health": 100,
+        "attack": 17,
+        "defense": 15,
+        "speed": 14,
+        "damageMin": 16,
+        "damageMax": 24,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1300
+        ]
+      },
+      "sourceStats": {
+        "growth": 2,
+        "aiValue": 2402,
+        "fightValue": 2002,
+        "shots": 0
+      },
+      "patchedFields": [
+        "attack",
+        "defense",
+        "speed",
+        "damage.min",
+        "damage.max"
+      ],
+      "actual": {
+        "aiValue": 2402,
+        "attack": 17,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1300,
+          0
+        ],
+        "damageMax": 24,
+        "damageMin": 16,
+        "defense": 15,
+        "fightValue": 2002,
+        "growth": 2,
+        "health": 100,
+        "key": "third-upgrades:tumEfreetRajah",
+        "shots": 0,
+        "speed": 14
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 220,
+      "nativeId": "third-upgrades:tumSkeletonKnight",
+      "expected": {
+        "key": "third-upgrades:tumSkeletonKnight",
+        "count": 1,
+        "health": 6,
+        "attack": 7,
+        "defense": 7,
+        "speed": 6,
+        "damageMin": 1,
+        "damageMax": 3,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          95
+        ]
+      },
+      "sourceStats": {
+        "growth": 12,
+        "aiValue": 110,
+        "fightValue": 110,
+        "shots": 0
+      },
+      "patchedFields": [
+        "defense",
+        "speed",
+        "damage.min"
+      ],
+      "actual": {
+        "aiValue": 110,
+        "attack": 7,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          95,
+          0
+        ],
+        "damageMax": 3,
+        "damageMin": 1,
+        "defense": 7,
+        "fightValue": 110,
+        "growth": 12,
+        "health": 6,
+        "key": "third-upgrades:tumSkeletonKnight",
+        "shots": 0,
+        "speed": 6
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 221,
+      "nativeId": "third-upgrades:tumNosferatu",
+      "expected": {
+        "key": "third-upgrades:tumNosferatu",
+        "count": 1,
+        "health": 45,
+        "attack": 12,
+        "defense": 12,
+        "speed": 10,
+        "damageMin": 5,
+        "damageMax": 8,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          550
+        ]
+      },
+      "sourceStats": {
+        "growth": 4,
+        "aiValue": 1047,
+        "fightValue": 847,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "aiValue",
+        "fightValue"
+      ],
+      "actual": {
+        "aiValue": 1047,
+        "attack": 12,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          550,
+          0
+        ],
+        "damageMax": 8,
+        "damageMin": 5,
+        "defense": 12,
+        "fightValue": 847,
+        "growth": 4,
+        "health": 45,
+        "key": "third-upgrades:tumNosferatu",
+        "shots": 0,
+        "speed": 10
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 222,
+      "nativeId": "third-upgrades:tumLichKing",
+      "expected": {
+        "key": "third-upgrades:tumLichKing",
+        "count": 1,
+        "health": 45,
+        "attack": 13,
+        "defense": 10,
+        "speed": 8,
+        "damageMin": 11,
+        "damageMax": 15,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          700
+        ]
+      },
+      "sourceStats": {
+        "growth": 3,
+        "aiValue": 1402,
+        "fightValue": 1155,
+        "shots": 24
+      },
+      "patchedFields": [
+        "attack",
+        "damage.min",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 1402,
+        "attack": 13,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          700,
+          0
+        ],
+        "damageMax": 15,
+        "damageMin": 11,
+        "defense": 10,
+        "fightValue": 1155,
+        "growth": 3,
+        "health": 45,
+        "key": "third-upgrades:tumLichKing",
+        "shots": 24,
+        "speed": 8
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 225,
+      "nativeId": "third-upgrades:tumPhosphorescentTroglodyte",
+      "expected": {
+        "key": "third-upgrades:tumPhosphorescentTroglodyte",
+        "count": 1,
+        "health": 6,
+        "attack": 5,
+        "defense": 5,
+        "speed": 6,
+        "damageMin": 1,
+        "damageMax": 3,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          75
+        ]
+      },
+      "sourceStats": {
+        "growth": 14,
+        "aiValue": 98,
+        "fightValue": 98,
+        "shots": 0
+      },
+      "patchedFields": [
+        "aiValue",
+        "fightValue",
+        "damage.max"
+      ],
+      "actual": {
+        "aiValue": 98,
+        "attack": 5,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          75,
+          0
+        ],
+        "damageMax": 3,
+        "damageMin": 1,
+        "defense": 5,
+        "fightValue": 98,
+        "growth": 14,
+        "health": 6,
+        "key": "third-upgrades:tumPhosphorescentTroglodyte",
+        "shots": 0,
+        "speed": 6
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 226,
+      "nativeId": "third-upgrades:tumMonstrousEye",
+      "expected": {
+        "key": "third-upgrades:tumMonstrousEye",
+        "count": 1,
+        "health": 22,
+        "attack": 10,
+        "defense": 10,
+        "speed": 8,
+        "damageMin": 3,
+        "damageMax": 5,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          330
+        ]
+      },
+      "sourceStats": {
+        "growth": 7,
+        "aiValue": 413,
+        "fightValue": 332,
+        "shots": 24
+      },
+      "patchedFields": [
+        "attack",
+        "speed",
+        "aiValue",
+        "fightValue"
+      ],
+      "actual": {
+        "aiValue": 413,
+        "attack": 10,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          330,
+          0
+        ],
+        "damageMax": 5,
+        "damageMin": 3,
+        "defense": 10,
+        "fightValue": 332,
+        "growth": 7,
+        "health": 22,
+        "key": "third-upgrades:tumMonstrousEye",
+        "shots": 24,
+        "speed": 8
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 227,
+      "nativeId": "third-upgrades:tumHarpySanguinary",
+      "expected": {
+        "key": "third-upgrades:tumHarpySanguinary",
+        "count": 1,
+        "health": 14,
+        "attack": 8,
+        "defense": 6,
+        "speed": 10,
+        "damageMin": 1,
+        "damageMax": 4,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          190
+        ]
+      },
+      "sourceStats": {
+        "growth": 8,
+        "aiValue": 209,
+        "fightValue": 254,
+        "shots": 0
+      },
+      "patchedFields": [
+        "aiValue",
+        "fightValue",
+        "damage.min",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 209,
+        "attack": 8,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          190,
+          0
+        ],
+        "damageMax": 4,
+        "damageMin": 1,
+        "defense": 6,
+        "fightValue": 254,
+        "growth": 8,
+        "health": 14,
+        "key": "third-upgrades:tumHarpySanguinary",
+        "shots": 0,
+        "speed": 10
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 228,
+      "nativeId": "third-upgrades:tumMedusaEmpress",
+      "expected": {
+        "key": "third-upgrades:tumMedusaEmpress",
+        "count": 1,
+        "health": 35,
+        "attack": 10,
+        "defense": 10,
+        "speed": 7,
+        "damageMin": 6,
+        "damageMax": 8,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          370
+        ]
+      },
+      "sourceStats": {
+        "growth": 4,
+        "aiValue": 750,
+        "fightValue": 549,
+        "shots": 16
+      },
+      "patchedFields": [
+        "speed",
+        "aiValue",
+        "fightValue"
+      ],
+      "actual": {
+        "aiValue": 750,
+        "attack": 10,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          370,
+          0
+        ],
+        "damageMax": 8,
+        "damageMin": 6,
+        "defense": 10,
+        "fightValue": 549,
+        "growth": 4,
+        "health": 35,
+        "key": "third-upgrades:tumMedusaEmpress",
+        "shots": 16,
+        "speed": 7
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 229,
+      "nativeId": "third-upgrades:tumBlackMinotaur",
+      "expected": {
+        "key": "third-upgrades:tumBlackMinotaur",
+        "count": 1,
+        "health": 50,
+        "attack": 15,
+        "defense": 15,
+        "speed": 9,
+        "damageMin": 12,
+        "damageMax": 20,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          620
+        ]
+      },
+      "sourceStats": {
+        "growth": 3,
+        "aiValue": 1388,
+        "fightValue": 1157,
+        "shots": 0
+      },
+      "patchedFields": [
+        "speed",
+        "aiValue",
+        "fightValue",
+        "damage.min",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 1388,
+        "attack": 15,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          620,
+          0
+        ],
+        "damageMax": 20,
+        "damageMin": 12,
+        "defense": 15,
+        "fightValue": 1157,
+        "growth": 3,
+        "health": 50,
+        "key": "third-upgrades:tumBlackMinotaur",
+        "shots": 0,
+        "speed": 9
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 230,
+      "nativeId": "third-upgrades:tumChimera",
+      "expected": {
+        "key": "third-upgrades:tumChimera",
+        "count": 1,
+        "health": 80,
+        "attack": 18,
+        "defense": 14,
+        "speed": 12,
+        "damageMin": 14,
+        "damageMax": 20,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1380
+        ]
+      },
+      "sourceStats": {
+        "growth": 2,
+        "aiValue": 2589,
+        "fightValue": 2248,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "attack",
+        "defense",
+        "speed",
+        "aiValue",
+        "fightValue",
+        "damage.min",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 2589,
+        "attack": 18,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1380,
+          0
+        ],
+        "damageMax": 20,
+        "damageMin": 14,
+        "defense": 14,
+        "fightValue": 2248,
+        "growth": 2,
+        "health": 80,
+        "key": "third-upgrades:tumChimera",
+        "shots": 0,
+        "speed": 12
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 232,
+      "nativeId": "third-upgrades:tumHobgoblinOverlord",
+      "expected": {
+        "key": "third-upgrades:tumHobgoblinOverlord",
+        "count": 1,
+        "health": 5,
+        "attack": 6,
+        "defense": 4,
+        "speed": 8,
+        "damageMin": 1,
+        "damageMax": 2,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          70
+        ]
+      },
+      "sourceStats": {
+        "growth": 15,
+        "aiValue": 117,
+        "fightValue": 106,
+        "shots": 0
+      },
+      "patchedFields": [
+        "defense",
+        "speed"
+      ],
+      "actual": {
+        "aiValue": 117,
+        "attack": 6,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          70,
+          0
+        ],
+        "damageMax": 2,
+        "damageMin": 1,
+        "defense": 4,
+        "fightValue": 106,
+        "growth": 15,
+        "health": 5,
+        "key": "third-upgrades:tumHobgoblinOverlord",
+        "shots": 0,
+        "speed": 8
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 233,
+      "nativeId": "third-upgrades:tumWolfRiderKiller",
+      "expected": {
+        "key": "third-upgrades:tumWolfRiderKiller",
+        "count": 1,
+        "health": 10,
+        "attack": 8,
+        "defense": 6,
+        "speed": 9,
+        "damageMin": 4,
+        "damageMax": 4,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          185
+        ]
+      },
+      "sourceStats": {
+        "growth": 9,
+        "aiValue": 263,
+        "fightValue": 226,
+        "shots": 0
+      },
+      "patchedFields": [
+        "attack",
+        "defense"
+      ],
+      "actual": {
+        "aiValue": 263,
+        "attack": 8,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          185,
+          0
+        ],
+        "damageMax": 4,
+        "damageMin": 4,
+        "defense": 6,
+        "fightValue": 226,
+        "growth": 9,
+        "health": 10,
+        "key": "third-upgrades:tumWolfRiderKiller",
+        "shots": 0,
+        "speed": 9
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 234,
+      "nativeId": "third-upgrades:tumOrcLeader",
+      "expected": {
+        "key": "third-upgrades:tumOrcLeader",
+        "count": 1,
+        "health": 25,
+        "attack": 8,
+        "defense": 6,
+        "speed": 6,
+        "damageMin": 2,
+        "damageMax": 5,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          180
+        ]
+      },
+      "sourceStats": {
+        "growth": 7,
+        "aiValue": 312,
+        "fightValue": 260,
+        "shots": 24
+      },
+      "patchedFields": [
+        "attack",
+        "speed",
+        "damage.min",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 312,
+        "attack": 8,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          180,
+          0
+        ],
+        "damageMax": 5,
+        "damageMin": 2,
+        "defense": 6,
+        "fightValue": 260,
+        "growth": 7,
+        "health": 25,
+        "key": "third-upgrades:tumOrcLeader",
+        "shots": 24,
+        "speed": 6
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 235,
+      "nativeId": "third-upgrades:tumElderOgre",
+      "expected": {
+        "key": "third-upgrades:tumElderOgre",
+        "count": 1,
+        "health": 65,
+        "attack": 13,
+        "defense": 7,
+        "speed": 6,
+        "damageMin": 6,
+        "damageMax": 12,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          640
+        ]
+      },
+      "sourceStats": {
+        "growth": 4,
+        "aiValue": 873,
+        "fightValue": 873,
+        "shots": 0
+      },
+      "patchedFields": [
+        "attack",
+        "defense",
+        "damage.min"
+      ],
+      "actual": {
+        "aiValue": 873,
+        "attack": 13,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          640,
+          0
+        ],
+        "damageMax": 12,
+        "damageMin": 6,
+        "defense": 7,
+        "fightValue": 873,
+        "growth": 4,
+        "health": 65,
+        "key": "third-upgrades:tumElderOgre",
+        "shots": 0,
+        "speed": 6
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 236,
+      "nativeId": "third-upgrades:tumLightningbird",
+      "expected": {
+        "key": "third-upgrades:tumLightningbird",
+        "count": 1,
+        "health": 65,
+        "attack": 14,
+        "defense": 12,
+        "speed": 12,
+        "damageMin": 11,
+        "damageMax": 15,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          930
+        ]
+      },
+      "sourceStats": {
+        "growth": 3,
+        "aiValue": 1437,
+        "fightValue": 1129,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "attack",
+        "speed"
+      ],
+      "actual": {
+        "aiValue": 1437,
+        "attack": 14,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          930,
+          0
+        ],
+        "damageMax": 15,
+        "damageMin": 11,
+        "defense": 12,
+        "fightValue": 1129,
+        "growth": 3,
+        "health": 65,
+        "key": "third-upgrades:tumLightningbird",
+        "shots": 0,
+        "speed": 12
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 237,
+      "nativeId": "third-upgrades:tumCyclopsEmperor",
+      "expected": {
+        "key": "third-upgrades:tumCyclopsEmperor",
+        "count": 1,
+        "health": 75,
+        "attack": 18,
+        "defense": 15,
+        "speed": 9,
+        "damageMin": 16,
+        "damageMax": 20,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1500
+        ]
+      },
+      "sourceStats": {
+        "growth": 2,
+        "aiValue": 1521,
+        "fightValue": 1230,
+        "shots": 24
+      },
+      "patchedFields": [
+        "hitPoints",
+        "attack",
+        "speed",
+        "damage.min"
+      ],
+      "actual": {
+        "aiValue": 1521,
+        "attack": 18,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1500,
+          0
+        ],
+        "damageMax": 20,
+        "damageMin": 16,
+        "defense": 15,
+        "fightValue": 1230,
+        "growth": 2,
+        "health": 75,
+        "key": "third-upgrades:tumCyclopsEmperor",
+        "shots": 24,
+        "speed": 9
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 240,
+      "nativeId": "third-upgrades:tumEliteLizard",
+      "expected": {
+        "key": "third-upgrades:tumEliteLizard",
+        "count": 1,
+        "health": 20,
+        "attack": 6,
+        "defense": 8,
+        "speed": 7,
+        "damageMin": 2,
+        "damageMax": 5,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          260
+        ]
+      },
+      "sourceStats": {
+        "growth": 9,
+        "aiValue": 260,
+        "fightValue": 169,
+        "shots": 24
+      },
+      "patchedFields": [
+        "defense",
+        "speed",
+        "damage.min"
+      ],
+      "actual": {
+        "aiValue": 260,
+        "attack": 6,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          260,
+          0
+        ],
+        "damageMax": 5,
+        "damageMin": 2,
+        "defense": 8,
+        "fightValue": 169,
+        "growth": 9,
+        "health": 20,
+        "key": "third-upgrades:tumEliteLizard",
+        "shots": 24,
+        "speed": 7
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 241,
+      "nativeId": "third-upgrades:tumChaoticDragonFly",
+      "expected": {
+        "key": "third-upgrades:tumChaoticDragonFly",
+        "count": 1,
+        "health": 25,
+        "attack": 9,
+        "defense": 11,
+        "speed": 14,
+        "damageMin": 2,
+        "damageMax": 5,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          367
+        ]
+      },
+      "sourceStats": {
+        "growth": 8,
+        "aiValue": 405,
+        "fightValue": 325,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "attack",
+        "defense",
+        "speed",
+        "damage.min",
+        "damage.max"
+      ],
+      "actual": {
+        "aiValue": 405,
+        "attack": 9,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          367,
+          0
+        ],
+        "damageMax": 5,
+        "damageMin": 2,
+        "defense": 11,
+        "fightValue": 325,
+        "growth": 8,
+        "health": 25,
+        "key": "third-upgrades:tumChaoticDragonFly",
+        "shots": 0,
+        "speed": 14
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 242,
+      "nativeId": "third-upgrades:tumLavaBasilisk",
+      "expected": {
+        "key": "third-upgrades:tumLavaBasilisk",
+        "count": 1,
+        "health": 40,
+        "attack": 13,
+        "defense": 13,
+        "speed": 8,
+        "damageMin": 6,
+        "damageMax": 10,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          620
+        ]
+      },
+      "sourceStats": {
+        "growth": 4,
+        "aiValue": 928,
+        "fightValue": 729,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "attack",
+        "speed",
+        "damage.min",
+        "damage.max"
+      ],
+      "actual": {
+        "aiValue": 928,
+        "attack": 13,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          620,
+          0
+        ],
+        "damageMax": 10,
+        "damageMin": 6,
+        "defense": 13,
+        "fightValue": 729,
+        "growth": 4,
+        "health": 40,
+        "key": "third-upgrades:tumLavaBasilisk",
+        "shots": 0,
+        "speed": 8
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 247,
+      "nativeId": "third-upgrades:tumHurricaneElemental",
+      "expected": {
+        "key": "third-upgrades:tumHurricaneElemental",
+        "count": 1,
+        "health": 30,
+        "attack": 10,
+        "defense": 10,
+        "speed": 9,
+        "damageMin": 3,
+        "damageMax": 8,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          325
+        ]
+      },
+      "sourceStats": {
+        "growth": 6,
+        "aiValue": 631,
+        "fightValue": 421,
+        "shots": 24
+      },
+      "patchedFields": [
+        "speed",
+        "aiValue",
+        "fightValue"
+      ],
+      "actual": {
+        "aiValue": 631,
+        "attack": 10,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          325,
+          0
+        ],
+        "damageMax": 8,
+        "damageMin": 3,
+        "defense": 10,
+        "fightValue": 421,
+        "growth": 6,
+        "health": 30,
+        "key": "third-upgrades:tumHurricaneElemental",
+        "shots": 24,
+        "speed": 9
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 248,
+      "nativeId": "third-upgrades:tumLifeElemental",
+      "expected": {
+        "key": "third-upgrades:tumLifeElemental",
+        "count": 1,
+        "health": 30,
+        "attack": 10,
+        "defense": 10,
+        "speed": 7,
+        "damageMin": 3,
+        "damageMax": 7,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          400
+        ]
+      },
+      "sourceStats": {
+        "growth": 6,
+        "aiValue": 498,
+        "fightValue": 410,
+        "shots": 24
+      },
+      "patchedFields": [
+        "speed",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 498,
+        "attack": 10,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          400,
+          0
+        ],
+        "damageMax": 7,
+        "damageMin": 3,
+        "defense": 10,
+        "fightValue": 410,
+        "growth": 6,
+        "health": 30,
+        "key": "third-upgrades:tumLifeElemental",
+        "shots": 24,
+        "speed": 7
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 249,
+      "nativeId": "third-upgrades:tumPlasmaElemental",
+      "expected": {
+        "key": "third-upgrades:tumPlasmaElemental",
+        "count": 1,
+        "health": 35,
+        "attack": 14,
+        "defense": 10,
+        "speed": 10,
+        "damageMin": 4,
+        "damageMax": 6,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          500
+        ]
+      },
+      "sourceStats": {
+        "growth": 5,
+        "aiValue": 794,
+        "fightValue": 604,
+        "shots": 0
+      },
+      "patchedFields": [
+        "attack"
+      ],
+      "actual": {
+        "aiValue": 794,
+        "attack": 14,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          500,
+          0
+        ],
+        "damageMax": 6,
+        "damageMin": 4,
+        "defense": 10,
+        "fightValue": 604,
+        "growth": 5,
+        "health": 35,
+        "key": "third-upgrades:tumPlasmaElemental",
+        "shots": 0,
+        "speed": 10
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 250,
+      "nativeId": "third-upgrades:tumMineralElemental",
+      "expected": {
+        "key": "third-upgrades:tumMineralElemental",
+        "count": 1,
+        "health": 40,
+        "attack": 12,
+        "defense": 12,
+        "speed": 7,
+        "damageMin": 7,
+        "damageMax": 11,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          650
+        ]
+      },
+      "sourceStats": {
+        "growth": 4,
+        "aiValue": 637,
+        "fightValue": 637,
+        "shots": 0
+      },
+      "patchedFields": [
+        "attack",
+        "speed",
+        "growth",
+        "damage.min",
+        "damage.max"
+      ],
+      "actual": {
+        "aiValue": 637,
+        "attack": 12,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          650,
+          0
+        ],
+        "damageMax": 11,
+        "damageMin": 7,
+        "defense": 12,
+        "fightValue": 637,
+        "growth": 4,
+        "health": 40,
+        "key": "third-upgrades:tumMineralElemental",
+        "shots": 0,
+        "speed": 7
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 251,
+      "nativeId": "third-upgrades:tumVoidElemental",
+      "expected": {
+        "key": "third-upgrades:tumVoidElemental",
+        "count": 1,
+        "health": 90,
+        "attack": 16,
+        "defense": 14,
+        "speed": 10,
+        "damageMin": 15,
+        "damageMax": 25,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1500
+        ]
+      },
+      "sourceStats": {
+        "growth": 2,
+        "aiValue": 2816,
+        "fightValue": 2414,
+        "shots": 0
+      },
+      "patchedFields": [
+        "attack",
+        "defense",
+        "damage.min",
+        "damage.max"
+      ],
+      "actual": {
+        "aiValue": 2816,
+        "attack": 16,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1500,
+          0
+        ],
+        "damageMax": 25,
+        "damageMin": 15,
+        "defense": 14,
+        "fightValue": 2414,
+        "growth": 2,
+        "health": 90,
+        "key": "third-upgrades:tumVoidElemental",
+        "shots": 0,
+        "speed": 10
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 255,
+      "nativeId": "third-upgrades:tumGrandmasterGremlin",
+      "expected": {
+        "key": "third-upgrades:tumGrandmasterGremlin",
+        "count": 1,
+        "health": 6,
+        "attack": 4,
+        "defense": 4,
+        "speed": 5,
+        "damageMin": 1,
+        "damageMax": 2,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          60
+        ]
+      },
+      "sourceStats": {
+        "growth": 16,
+        "aiValue": 80,
+        "fightValue": 70,
+        "shots": 10
+      },
+      "patchedFields": [
+        "attack",
+        "shots",
+        "damage.max"
+      ],
+      "actual": {
+        "aiValue": 80,
+        "attack": 4,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          60,
+          0
+        ],
+        "damageMax": 2,
+        "damageMin": 1,
+        "defense": 4,
+        "fightValue": 70,
+        "growth": 16,
+        "health": 6,
+        "key": "third-upgrades:tumGrandmasterGremlin",
+        "shots": 10,
+        "speed": 5
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 256,
+      "nativeId": "third-upgrades:tumSharpshooterElf",
+      "expected": {
+        "key": "third-upgrades:tumSharpshooterElf",
+        "count": 1,
+        "health": 15,
+        "attack": 10,
+        "defense": 5,
+        "speed": 8,
+        "damageMin": 3,
+        "damageMax": 5,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          255
+        ]
+      },
+      "sourceStats": {
+        "growth": 7,
+        "aiValue": 370,
+        "fightValue": 230,
+        "shots": 24
+      },
+      "patchedFields": [
+        "speed",
+        "damage.min"
+      ],
+      "actual": {
+        "aiValue": 370,
+        "attack": 10,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          255,
+          0
+        ],
+        "damageMax": 5,
+        "damageMin": 3,
+        "defense": 5,
+        "fightValue": 230,
+        "growth": 7,
+        "health": 15,
+        "key": "third-upgrades:tumSharpshooterElf",
+        "shots": 24,
+        "speed": 8
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 257,
+      "nativeId": "third-upgrades:tumSupremeArchMage",
+      "expected": {
+        "key": "third-upgrades:tumSupremeArchMage",
+        "count": 1,
+        "health": 30,
+        "attack": 12,
+        "defense": 10,
+        "speed": 8,
+        "damageMin": 7,
+        "damageMax": 9,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          500
+        ]
+      },
+      "sourceStats": {
+        "growth": 4,
+        "aiValue": 740,
+        "fightValue": 620,
+        "shots": 24
+      },
+      "patchedFields": [
+        "hitPoints",
+        "attack",
+        "speed",
+        "damage.min",
+        "damage.max",
+        "cost.gold"
+      ],
+      "actual": {
+        "aiValue": 740,
+        "attack": 12,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          500,
+          0
+        ],
+        "damageMax": 9,
+        "damageMin": 7,
+        "defense": 10,
+        "fightValue": 620,
+        "growth": 4,
+        "health": 30,
+        "key": "third-upgrades:tumSupremeArchMage",
+        "shots": 24,
+        "speed": 8
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 261,
+      "nativeId": "third-upgrades:tumSpecter",
+      "expected": {
+        "key": "third-upgrades:tumSpecter",
+        "count": 1,
+        "health": 20,
+        "attack": 8,
+        "defense": 8,
+        "speed": 8,
+        "damageMin": 3,
+        "damageMax": 5,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          260
+        ]
+      },
+      "sourceStats": {
+        "growth": 7,
+        "aiValue": 345,
+        "fightValue": 295,
+        "shots": 0
+      },
+      "patchedFields": [
+        "attack",
+        "defense",
+        "damage.max"
+      ],
+      "actual": {
+        "aiValue": 345,
+        "attack": 8,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          260,
+          0
+        ],
+        "damageMax": 5,
+        "damageMin": 3,
+        "defense": 8,
+        "fightValue": 295,
+        "growth": 7,
+        "health": 20,
+        "key": "third-upgrades:tumSpecter",
+        "shots": 0,
+        "speed": 8
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 291,
+      "nativeId": "third-upgrades:tumInquisitor",
+      "expected": {
+        "key": "third-upgrades:tumInquisitor",
+        "count": 1,
+        "health": 35,
+        "attack": 13,
+        "defense": 13,
+        "speed": 7,
+        "damageMin": 7,
+        "damageMax": 10,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          420
+        ]
+      },
+      "sourceStats": {
+        "growth": 4,
+        "aiValue": 595,
+        "fightValue": 595,
+        "shots": 0
+      },
+      "patchedFields": [
+        "attack",
+        "defense",
+        "speed",
+        "damage.min"
+      ],
+      "actual": {
+        "aiValue": 595,
+        "attack": 13,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          420,
+          0
+        ],
+        "damageMax": 10,
+        "damageMin": 7,
+        "defense": 13,
+        "fightValue": 595,
+        "growth": 4,
+        "health": 35,
+        "key": "third-upgrades:tumInquisitor",
+        "shots": 0,
+        "speed": 7
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 293,
+      "nativeId": "third-upgrades:tumCentaurGeneral",
+      "expected": {
+        "key": "third-upgrades:tumCentaurGeneral",
+        "count": 1,
+        "health": 10,
+        "attack": 6,
+        "defense": 4,
+        "speed": 9,
+        "damageMin": 2,
+        "damageMax": 3,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          100
+        ]
+      },
+      "sourceStats": {
+        "growth": 14,
+        "aiValue": 170,
+        "fightValue": 150,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "attack",
+        "speed",
+        "damage.min",
+        "damage.max"
+      ],
+      "actual": {
+        "aiValue": 170,
+        "attack": 6,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          100,
+          0
+        ],
+        "damageMax": 3,
+        "damageMin": 2,
+        "defense": 4,
+        "fightValue": 150,
+        "growth": 14,
+        "health": 10,
+        "key": "third-upgrades:tumCentaurGeneral",
+        "shots": 0,
+        "speed": 9
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 320,
+      "nativeId": "third-upgrades:tumHighPriest",
+      "expected": {
+        "key": "third-upgrades:tumHighPriest",
+        "count": 1,
+        "health": 30,
+        "attack": 12,
+        "defense": 10,
+        "speed": 7,
+        "damageMin": 12,
+        "damageMax": 12,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          550
+        ]
+      },
+      "sourceStats": {
+        "growth": 3,
+        "aiValue": 870,
+        "fightValue": 620,
+        "shots": 24
+      },
+      "patchedFields": [
+        "hitPoints",
+        "attack",
+        "aiValue",
+        "fightValue"
+      ],
+      "actual": {
+        "aiValue": 870,
+        "attack": 12,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          550,
+          0
+        ],
+        "damageMax": 12,
+        "damageMin": 12,
+        "defense": 10,
+        "fightValue": 620,
+        "growth": 3,
+        "health": 30,
+        "key": "third-upgrades:tumHighPriest",
+        "shots": 24,
+        "speed": 7
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    },
+    {
+      "eraId": 321,
+      "nativeId": "third-upgrades:tumGnollShaman",
+      "expected": {
+        "key": "third-upgrades:tumGnollShaman",
+        "count": 1,
+        "health": 8,
+        "attack": 5,
+        "defense": 6,
+        "speed": 6,
+        "damageMin": 2,
+        "damageMax": 3,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          80
+        ]
+      },
+      "sourceStats": {
+        "growth": 12,
+        "aiValue": 95,
+        "fightValue": 95,
+        "shots": 0
+      },
+      "patchedFields": [
+        "hitPoints",
+        "speed",
+        "damage.max"
+      ],
+      "actual": {
+        "aiValue": 95,
+        "attack": 5,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          80,
+          0
+        ],
+        "damageMax": 3,
+        "damageMin": 2,
+        "defense": 6,
+        "fightValue": 95,
+        "growth": 12,
+        "health": 8,
+        "key": "third-upgrades:tumGnollShaman",
+        "shots": 0,
+        "speed": 6
+      },
+      "differences": [],
+      "observedExtendedFields": [
+        "growth",
+        "aiValue",
+        "fightValue",
+        "shots"
+      ],
+      "missingExtendedFields": [],
+      "completeExtendedSnapshot": true
+    }
+  ]
+}

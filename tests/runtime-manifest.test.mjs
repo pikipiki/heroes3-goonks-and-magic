@@ -1,0 +1,5 @@
+import test from'node:test';import assert from'node:assert/strict';import{assertRuntimeManifest}from'../web/runtime-manifest.mjs';
+const hash='0123456789abcdef'+'a'.repeat(48),engine={wasm:'vcmiclient.0123456789abcdef.wasm',sha256:hash},base='https://example.org/heroes/game.html';
+test('matches the exact engine under root and subpath hosting',()=>{const manifest={engine};assert.equal(assertRuntimeManifest(manifest,'./'+engine.wasm,base),engine);assert.equal(assertRuntimeManifest(manifest,'https://example.org/other/'+engine.wasm,base),engine);});
+test('cached game with a different engine refuses new data',()=>{assert.throws(()=>assertRuntimeManifest({engine},'./vcmiclient.1111111111111111.wasm',base),e=>e.code==='RUNTIME_DATA_MISMATCH');});
+test('missing or inconsistent engine metadata cannot silently use old data',()=>{for(const e of[undefined,{...engine,sha256:'bad'},{...engine,sha256:'b'.repeat(64)},{...engine,wasm:'vcmiclient.wasm'}])assert.throws(()=>assertRuntimeManifest({engine:e},'./'+engine.wasm,base),e=>e.code==='RUNTIME_DATA_MISMATCH');assert.throws(()=>assertRuntimeManifest({engine},undefined,base));});

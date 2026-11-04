@@ -23,5 +23,5 @@ const eraWasm=fs.readdirSync('dist').find(name=>/^vcmiclient\.[a-f0-9]+\.wasm$/.
 
 assert.equal(exportedI32Constant(fs.readFileSync('dist/'+eraWasm),eraExport[1],WebAssembly.Module.imports(eraModule).filter(item=>item.kind==='function').length),2,'La version native du bridge ERA doit être 2.');
 
-const build=JSON.parse(fs.readFileSync('dist/engine-build.json'));assert.equal(build.sha256,crypto.createHash('sha256').update(fs.readFileSync('dist/'+build.wasm)).digest('hex'));assert.deepEqual(build.mobile,{width:800,height:600});
+const build=JSON.parse(fs.readFileSync('dist/engine-build.json'));assert.deepEqual(manifest.engine,build,'Les données doivent cibler exactement le moteur publié.');assert.equal(build.sha256,crypto.createHash('sha256').update(fs.readFileSync('dist/'+build.wasm)).digest('hex'));assert.deepEqual(build.mobile,{width:800,height:600});
 const memoryExport=fs.readFileSync('dist/'+eraJS,'utf8').match(/Module\["_vcmiWebMemoryVersion"\]\s*=\s*wasmExports\["([^"]+)"\]/);assert(memoryExport,'Le moteur doit inclure le chargement à la demande');assert.equal(exportedI32Constant(fs.readFileSync('dist/'+eraWasm),memoryExport[1],WebAssembly.Module.imports(eraModule).filter(item=>item.kind==='function').length),1);
