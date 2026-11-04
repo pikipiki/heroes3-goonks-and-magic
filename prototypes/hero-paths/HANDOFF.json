@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "updatedAtUTC": "2026-11-04T22:35:08.017590+00:00",
+  "branch": "prototype/hero-paths-poc",
+  "baseCommit": "b0db0815c39f40e69af96de793ec45496cdd2a4d",
+  "status": "Validated locally; dedicated branch delivery",
+  "scope": "One manual sanctuary choice per hero from level5;Army/Magic/Economy;normal game untouched",
+  "implementation": "Native configurable reward object;visitMode bonus;permanent marker;native primary stats and hero income;noC++change",
+  "proof": "prototypes/hero-paths/evidence/report.json",
+  "cases": 4,
+  "passed": 4,
+  "errors": 0,
+  "warnings": "120baseline;1additional nonblocking existing-engine AI movement warning in economy case",
+  "nativeWasmSHA256": "9b35c0b49206b3c38f10e45cf470d823e5407e839736aae5656215363512acc5",
+  "nativeBuild": "ninja-j32html5 PASS",
+  "mainChanges": false,
+  "userInstruction": "Separate Git branch explicitly overrides repository default to publish on main. Do not merge or deploy to main.",
+  "next": [
+    "Keep prototype isolated; do not merge or deploy to main without a new user request",
+    "See README.md for launch and test commands; all four native cases passed"
+  ]
+}

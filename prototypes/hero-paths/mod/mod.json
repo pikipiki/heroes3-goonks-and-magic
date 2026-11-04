@@ -1,0 +1,14 @@
+{
+  "name": "POC — Voies des héros",
+  "description": "Prototype isolé : un choix permanent au sanctuaire à partir du niveau5.",
+  "author": "Heroes Goonk",
+  "version": "0.1.0",
+  "modType": "Mechanics",
+  "compatibility": {
+    "min": "1.7.3"
+  },
+  "keepDisabled": true,
+  "objects": [
+    "config/hero-paths.json"
+  ]
+}
