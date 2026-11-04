@@ -92,7 +92,7 @@ void publishPortraits()
  MAIN_THREAD_ASYNC_EM_ASM({try{const ptr=$0;const n=$3;window.goonkPortraitIds=new Map(Array.from(HEAP32.subarray(ptr/4,ptr/4+n),(id,i)=>[id,i]));const c=window.goonkPortraitAtlas||(window.goonkPortraitAtlas=document.createElement('canvas'));c.width=$1;c.height=$2;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+n*4,ptr+n*4+$1*$2*4)), $1,$2),0,0);window.dispatchEvent(new Event('goonk-portraits'));}finally{_free($0);}},packet,width,height,ids.size());}
  SDL_FreeSurface(rgba);
 }
-JsonNode army(const CArmedInstance * a,const std::string & name){JsonNode n;n["id"].Integer()=a->id.getNum();n["name"].String()=name;for(int i=0;i<7;i++){auto c=a->getCreature(SlotID(i));n["slots"].Vector().push_back(c?creature(c,a->getStackCount(SlotID(i))):JsonNode());}return n;}
+JsonNode army(const CArmedInstance * a,const std::string & name){JsonNode n;n["id"].Integer()=a->id.getNum();n["name"].String()=name;n["needsLastStack"].Bool()=a->needsLastStack();for(int i=0;i<7;i++){auto c=a->getCreature(SlotID(i));n["slots"].Vector().push_back(c?creature(c,a->getStackCount(SlotID(i))):JsonNode());}return n;}
 void shortcut(EShortcut key){ENGINE->events().dispatchShortcutPressed({key});ENGINE->events().dispatchShortcutReleased({key});}
 }
 std::atomic_bool atlasPending{false};
@@ -363,6 +363,13 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   if(action==33)recruitment->close();
  }
 
+ if(action==58&&townWindow&&p->makingTurn&&a!=b){
+  const auto upper=townWindow->town->getUpperArmy();const auto visitor=townWindow->town->getVisitingHero();
+  const CArmedInstance * from=upper->id.getNum()==a?upper:visitor;
+  const CArmedInstance * to=upper->id.getNum()==b?upper:visitor;
+  if(from&&to&&from!=to&&from->id.getNum()==a&&to->id.getNum()==b&&from->getOwner()==p->playerID&&to->getOwner()==p->playerID&&!from->Slots().empty())p->cb->bulkMoveArmy(from->id,to->id,from->Slots().begin()->first);
+  lastPublished=0;return;
+ }
  if((action==10||action==11)&&a>=0&&c>=0&&b>=0&&b<7&&d>=0&&d<7){const auto from=dynamic_cast<const CArmedInstance*>(p->cb->getObj(ObjectInstanceID(a)));const auto to=dynamic_cast<const CArmedInstance*>(p->cb->getObj(ObjectInstanceID(c)));if(from&&to&&from->getOwner()==p->playerID&&to->getOwner()==p->playerID&&from->hasStackAtSlot(SlotID(b))){if(action==10)p->cb->mergeOrSwapStacks(from,to,SlotID(b),SlotID(d));else if(e>0&&e<from->getStackCount(SlotID(b))&&!to->hasStackAtSlot(SlotID(d)))p->cb->splitStack(from,to,SlotID(b),SlotID(d),e);}}
  if(ENGINE->windows().topWindow<BattleWindow>()&&battle){
   const bool tactics=battle->tacticsMode||battle->getBattle()->battleTacticDist()!=0;

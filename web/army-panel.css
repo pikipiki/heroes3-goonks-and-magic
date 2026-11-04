@@ -2,7 +2,7 @@
 #mobile-app[data-sheet=army] .mobile-sheet{inset:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) 0 env(safe-area-inset-left,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 #mobile-app[data-sheet=army] .sheet-head{min-height:0;padding:4px 8px;gap:8px}
 #mobile-app[data-sheet=army] .sheet-head h2{font-size:20px}
-#mobile-app[data-sheet=army] .sheet-body{display:flex;min-height:0;padding:8px;overflow:hidden;touch-action:manipulation}
+#mobile-app[data-sheet=army] .sheet-body{display:flex;flex:1;min-height:0;padding:8px;overflow:hidden;touch-action:manipulation}
 .army-panel{user-select:none;-webkit-user-select:none;flex:1;min-width:0;min-height:0;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:8px}
 .army-rosters{display:grid;grid-auto-rows:minmax(0,1fr);gap:12px;min-height:0;min-width:0}
 .army-roster{display:flex;flex-direction:column;min-height:0;min-width:0;gap:4px}
@@ -37,4 +37,20 @@
  .army-slot-name{-webkit-line-clamp:1;max-height:14px}.army-slot-count{bottom:18px;font-size:14px;line-height:18px}
 }
 
-@media(orientation:portrait){#mobile-app[data-sheet=army] .army-panel[data-army-count="1"] .army-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(4,minmax(44px,1fr))}}
+
+/* Two complete armies stay visible, rather than growing the sheet to fit
+   portrait image intrinsic sizes. The sheet's flex child must be allowed to shrink. */
+#mobile-app[data-sheet=army] .army-grid{height:0;min-height:0}
+#mobile-app[data-sheet=army] .army-slot-art img{height:100%;max-height:100%;width:auto;max-width:100%;object-fit:contain}
+#mobile-app[data-sheet=army] .army-transfer-all{flex:0 0 auto;width:100%;min-height:44px;padding:4px 8px;font-size:14px;line-height:18px}
+.army-absent{justify-content:center;border:1px solid var(--line);padding:10px;box-sizing:border-box;text-align:center}
+.army-absent p{margin:4px 0;font-size:14px;line-height:20px}
+@media(orientation:landscape) and (max-height:430px){
+ #mobile-app[data-sheet=army] .sheet-head{padding:2px 8px}
+ #mobile-app[data-sheet=army] .sheet-head button{min-height:44px;width:44px;height:44px}
+ #mobile-app[data-sheet=army] .army-selection{font-size:12px;line-height:15px}
+ .army-slot-name{-webkit-line-clamp:1;max-height:14px}.army-slot-count{bottom:18px}
+ .army-dock{gap:6px}.army-panel{gap:4px}.army-rosters{gap:6px}
+}
+#mobile-app[data-sheet=army] .army-slot-art{min-height:0}
+#mobile-app[data-sheet=army] .army-slot-art canvas{min-height:0;max-height:100%;height:100%;width:auto;max-width:100%;object-fit:contain}

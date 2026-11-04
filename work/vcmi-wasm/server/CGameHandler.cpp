@@ -1859,7 +1859,7 @@ bool CGameHandler::bulkMoveArmy(ObjectInstanceID srcArmy, ObjectInstanceID destA
 	}
 
 	// all troops were moved, but we can't leave source hero without troops - undo movement of 1 unit from srcSlot
-	if (allTroopsMoved)
+	if (allTroopsMoved && armySrc->needsLastStack())
 	{
 		if (armySrc->getStack(srcSlot).getCount() == 1)
 		{

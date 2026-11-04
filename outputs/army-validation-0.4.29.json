@@ -1,0 +1,62 @@
+{
+  "version": "0.4.29",
+  "date": "2026-11-04",
+  "changes": [
+    "Split can be enabled before selecting a troop, and remains enabled while choosing a troop.",
+    "Both seven-slot armies fit in portrait and landscape without sheet scrolling.",
+    "Bulk transfer commands in both directions use the native server transaction.",
+    "Garrisons may be emptied; heroes keep one creature.",
+    "A town without a visiting hero shows an explicit absent-hero panel and disabled transfer control."
+  ],
+  "validation": {
+    "nativeBuild": "ninja -j32 html5 passed",
+    "unit": {
+      "passed": 291,
+      "skipped": 16,
+      "failed": 0
+    },
+    "browserUI": {
+      "chromium": "passed",
+      "webkit": "passed",
+      "sizes": [
+        [
+          430,
+          873
+        ],
+        [
+          932,
+          430
+        ],
+        [
+          568,
+          320
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "checks": [
+        "14 slots visible with large portrait images",
+        "all controls inside viewport",
+        "no sheet scroll",
+        "Split toggled by real touch input before selection",
+        "Split mode preserved after selection",
+        "bulk command emitted, panel stays open"
+      ]
+    },
+    "nativeGame": {
+      "split": "passed",
+      "garrisonToHero": "garrison fully emptied",
+      "heroToGarrison": "hero retained exactly one creature",
+      "totalCreaturesBeforeAndAfter": 32,
+      "panelRemainedOpen": true,
+      "javascriptErrors": []
+    },
+    "rotationRegression": {
+      "chromium": "passed",
+      "webkit": "passed"
+    },
+    "physicalIPhone": "awaiting published-version check"
+  }
+}
