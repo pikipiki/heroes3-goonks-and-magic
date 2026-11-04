@@ -1,6 +1,7 @@
 """Build the deterministic, symmetric Goonks XL duel. No saved games are inputs."""
 from pathlib import Path
 import json, random, zipfile
+from hero_paths_maps import apply as apply_hero_paths
 ROOT=Path(__file__).resolve().parents[1]
 N=144
 rng=random.Random(71031)
@@ -29,7 +30,9 @@ for color,location,can in [('red',(17,17),'PlayerOnly'),('blue',(126,126),'AIOnl
  header['players'][color]={'canPlay':can,'allowedFactions':{'anyOf':factions},'randomFaction':True,'mainTown':{'x':x,'y':y,'l':0,'generateHero':True}}
  add('randomTown','core:object',x,y,'AVCranx0.def',{'owner':color,'name':'Goonkbourg' if color=='red' else 'Bastion du rival','hasFort':True},color+'Home')
 for i,(x,y) in enumerate(places[2:]):
- add('randomTown','core:object',x,y,'AVCranx0.def',{'owner':'neutral','name':['Clairière des peluches','Bois du crépuscule','Roc-Bobope','Val de Bubu','Les Braises','Haut-Paingpaing'][i],'hasFort':True,'army':[{'type':'core:pikeman','amount':25}]})
+ add('randomTown','core:object',x,y,'AVCranx0.def',{'owner':'neutral','name':['Clairière des peluches','Bois du crépuscule','Roc-DioupDioup','Val de Bubu','Les Braises','Haut-Paingpaing'][i],'hasFort':True,'army':[{'type':'core:pikeman','amount':25}]})
+# Keep the paired sanctuaries and their approaches free during generation.
+for x,y in [(22,24),(121,119)]:reserved|=area(x,y,2)
 # Each side has the same seven mines and starter supplies.
 mines=[('sawmill','AVMsawg0.def',-5,8),('orePit','AVMore0.def',8,5),('goldMine','AVMgold0.def',13,17),('crystalCavern','AVMcrys0.def',21,5),('gemPond','AVMgems0.def',7,25),('alchemistLab','AVMalch0.def',25,16),('sulfurDune','AVMsulf0.def',18,28)]
 for side in [0,1]:
@@ -84,6 +87,7 @@ translations={'mapName':'Goonks'}
 for o in objects:
  if 'name' in o['options']:translations[o['options']['name']]=o['options']['name']
 contents={'header.json':header,'objects.json':objects,'surface_terrain.json':terrain,'english.json':translations,'french.json':translations}
+apply_hero_paths(contents, '001-Goonks.vmap')
 # Stable zip metadata keeps repeated builds byte-identical.
 with zipfile.ZipFile(ROOT/'maps/001-Goonks.vmap','w',zipfile.ZIP_DEFLATED) as z:
  for name,value in contents.items():

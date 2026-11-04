@@ -1,0 +1,1019 @@
+{
+  "cases": [
+    {
+      "name": "000 - Château Goonk",
+      "errors": [],
+      "before": {
+        "day": 1,
+        "gold": 20900
+      },
+      "sanctuaryVisitVerified": true,
+      "nativeErrors": [
+        {
+          "level": "ERROR",
+          "text": "[2026-Nov-04 23:51:21.905000] ERROR [runServer] global - Cannot pick native hero for red. Picking any..."
+        }
+      ],
+      "knownMapDiagnostics": [
+        {
+          "level": "ERROR",
+          "text": "[2026-Nov-04 23:51:21.905000] ERROR [runServer] global - Cannot pick native hero for red. Picking any..."
+        }
+      ],
+      "unexpectedNativeErrors": [],
+      "warnings": [
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.283000] WARN [MainGUI] mod - Data in wake-of-gods is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.284000] WARN [MainGUI] mod - At /japanese\n\t Error: Required entry name is missing\nAt /vietnamese\n\t Error: Required entry name is missing\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.284000] WARN [MainGUI] global - \t\tParsing mod: Issues found! (wake-of-gods)"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.304000] WARN [MainGUI] mod - CONFIG/CREATURES/DEATHKNIGHTUP is not valid JSON!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.304000] WARN [MainGUI] mod - At line 93, position 21 warning: Duplicate element encountered!\nAt line 95, position 10 warning: Duplicate element encountered!\nAt line 96, position 9 warning: Duplicate element encountered!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.310000] WARN [MainGUI] mod - Redundant namespace definition for redBonesDragon"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.313000] WARN [MainGUI] mod - Data in wake-of-gods.woggraphicfix.wf_mapobjects is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.313000] WARN [MainGUI] mod - At /german\n\t Error: Required entry name is missing\nAt /japanese\n\t Error: Required entry name is missing\nAt /portuguese\n\t Error: Required entry name is missing\nAt /russian\n\t Error: Required entry name is missing\nAt /spanish\n\t Error: Required entry name is missing\nAt /turkish\n\t Error: Required entry name is missing\nAt /ukrainian\n\t Error: Required entry name is missing\nAt /vietnamese\n\t Error: Required entry name is missing\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.317000] WARN [MainGUI] global - \t\tParsing mod: Issues found! (wake-of-gods.woggraphicfix.wf_mapobjects)"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.384000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.384000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.384000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.384000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.384000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.384000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.384000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.384000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.384000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.385000] WARN [MainGUI] mod - Data in castle is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.386000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.388000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.388000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.389000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.389000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.389000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.389000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.389000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.389000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.389000] WARN [MainGUI] mod - Data in conflux is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.390000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.391000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.391000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.391000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.391000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.391000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.391000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.392000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.392000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.392000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.392000] WARN [MainGUI] mod - Data in dungeon is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.392000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.394000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.394000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.394000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.394000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.394000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.394000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.394000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.394000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.394000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.395000] WARN [MainGUI] mod - Data in fortress is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.395000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.397000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.397000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.397000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.397000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.397000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.397000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.397000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.397000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.398000] WARN [MainGUI] mod - Data in inferno is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.398000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.399000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.399000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.399000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.399000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.399000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.399000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.400000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.400000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.400000] WARN [MainGUI] mod - Data in necropolis is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.400000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.402000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.402000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.402000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.402000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.402000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.402000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.402000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.402000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.402000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde1Upgr2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.402000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2Upgr2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.403000] WARN [MainGUI] mod - Data in rampart is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.403000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.405000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.405000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.405000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.405000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.405000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.405000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.405000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.405000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.405000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.406000] WARN [MainGUI] mod - Data in stronghold is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.406000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.408000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.408000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.408000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.408000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.408000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.408000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.408000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.408000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.408000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde1Upgr2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.409000] WARN [MainGUI] mod - Data in tower is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.409000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.430000] WARN [MainGUI] mod - Dwelling tum-era:eraDwelling20_2 has template tum-era/objects/Crdw25 which is not valid for a random dwelling! Dwellings must not block tiles outside 2x2 range and must be visitable in bottom row. Change dwelling mask or mark dwelling as 'bannedForRandomDwelling'"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.466000] WARN [MainGUI] global - \t\tLoading mod: Issues found! (core)"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.469000] WARN [MainGUI] mod - Mod 'goonk': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.469000] WARN [MainGUI] mod - Mod 'goonk': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.469000] WARN [MainGUI] mod - Mod 'goonk': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.469000] WARN [MainGUI] mod - Mod 'goonk': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.469000] WARN [MainGUI] mod - Mod 'goonk': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.469000] WARN [MainGUI] mod - Mod 'goonk': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.469000] WARN [MainGUI] mod - Mod 'goonk': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.470000] WARN [MainGUI] mod - Data in goonk is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.470000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.472000] WARN [MainGUI] global - \t\tLoading mod: Issues found! (goonk)"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.549000] WARN [MainGUI] mod - Bonus type ENCHANTED does not supports addInfo!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:20.551000] WARN [MainGUI] mod - Bonus type ENCHANTED does not supports addInfo!"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Goonks",
+      "errors": [],
+      "before": {
+        "day": 1,
+        "gold": 20000
+      },
+      "startVerified": true,
+      "limit": "Duel verifies normal start and native map load; sanctuary approaches covered by BFS, rewards by four native fixture cases",
+      "nativeErrors": [
+        {
+          "level": "ERROR",
+          "text": "[2026-Nov-04 23:51:29.345000] ERROR [runServer] global - Cannot pick native hero for red. Picking any..."
+        }
+      ],
+      "knownMapDiagnostics": [
+        {
+          "level": "ERROR",
+          "text": "[2026-Nov-04 23:51:29.345000] ERROR [runServer] global - Cannot pick native hero for red. Picking any..."
+        }
+      ],
+      "unexpectedNativeErrors": [],
+      "warnings": [
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.739000] WARN [MainGUI] mod - Data in wake-of-gods is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.739000] WARN [MainGUI] mod - At /japanese\n\t Error: Required entry name is missing\nAt /vietnamese\n\t Error: Required entry name is missing\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.740000] WARN [MainGUI] global - \t\tParsing mod: Issues found! (wake-of-gods)"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.759000] WARN [MainGUI] mod - CONFIG/CREATURES/DEATHKNIGHTUP is not valid JSON!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.759000] WARN [MainGUI] mod - At line 93, position 21 warning: Duplicate element encountered!\nAt line 95, position 10 warning: Duplicate element encountered!\nAt line 96, position 9 warning: Duplicate element encountered!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.765000] WARN [MainGUI] mod - Redundant namespace definition for redBonesDragon"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.768000] WARN [MainGUI] mod - Data in wake-of-gods.woggraphicfix.wf_mapobjects is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.768000] WARN [MainGUI] mod - At /german\n\t Error: Required entry name is missing\nAt /japanese\n\t Error: Required entry name is missing\nAt /portuguese\n\t Error: Required entry name is missing\nAt /russian\n\t Error: Required entry name is missing\nAt /spanish\n\t Error: Required entry name is missing\nAt /turkish\n\t Error: Required entry name is missing\nAt /ukrainian\n\t Error: Required entry name is missing\nAt /vietnamese\n\t Error: Required entry name is missing\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.772000] WARN [MainGUI] global - \t\tParsing mod: Issues found! (wake-of-gods.woggraphicfix.wf_mapobjects)"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.838000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.838000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.838000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.838000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.838000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.838000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.838000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.838000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.839000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.840000] WARN [MainGUI] mod - Data in castle is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.840000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.843000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.843000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.843000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.843000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.843000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.843000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.843000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.843000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.844000] WARN [MainGUI] mod - Data in conflux is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.844000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.845000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.845000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.845000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.845000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.846000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.846000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.846000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.846000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.846000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.846000] WARN [MainGUI] mod - Data in dungeon is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.846000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.848000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.848000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.848000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.848000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.848000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.848000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.848000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.848000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.848000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.849000] WARN [MainGUI] mod - Data in fortress is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.849000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.851000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.851000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.851000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.851000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.851000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.851000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.851000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.851000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.852000] WARN [MainGUI] mod - Data in inferno is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.852000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.853000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.854000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.854000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.854000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.854000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.854000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.854000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.854000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.855000] WARN [MainGUI] mod - Data in necropolis is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.855000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.856000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.856000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.856000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.856000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.856000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.857000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.857000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.857000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.857000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde1Upgr2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.857000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2Upgr2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.857000] WARN [MainGUI] mod - Data in rampart is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.858000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.859000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.859000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.859000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.859000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.859000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.859000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.859000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.860000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.860000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.860000] WARN [MainGUI] mod - Data in stronghold is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.860000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.862000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.862000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.862000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.862000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.862000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.862000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.862000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.862000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.862000] WARN [MainGUI] mod - Mod 'third-upgrades': Town building 'horde1Upgr2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.863000] WARN [MainGUI] mod - Data in tower is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.863000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"TAVERN.BIK\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.883000] WARN [MainGUI] mod - Dwelling tum-era:eraDwelling20_2 has template tum-era/objects/Crdw25 which is not valid for a random dwelling! Dwellings must not block tiles outside 2x2 range and must be visitable in bottom row. Change dwelling mask or mark dwelling as 'bannedForRandomDwelling'"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.920000] WARN [MainGUI] global - \t\tLoading mod: Issues found! (core)"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.922000] WARN [MainGUI] mod - Mod 'goonk': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.922000] WARN [MainGUI] mod - Mod 'goonk': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.922000] WARN [MainGUI] mod - Mod 'goonk': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.922000] WARN [MainGUI] mod - Mod 'goonk': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.922000] WARN [MainGUI] mod - Mod 'goonk': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.922000] WARN [MainGUI] mod - Mod 'goonk': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.923000] WARN [MainGUI] mod - Mod 'goonk': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.924000] WARN [MainGUI] mod - Data in goonk is invalid!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.924000] WARN [MainGUI] mod - At /town/tavernVideo\n\t Error: Video file \"\" was not found\n"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.925000] WARN [MainGUI] global - \t\tLoading mod: Issues found! (goonk)"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.978000] WARN [MainGUI] mod - Bonus type ENCHANTED does not supports addInfo!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:27.980000] WARN [MainGUI] mod - Bonus type ENCHANTED does not supports addInfo!"
+        },
+        {
+          "level": "WARN",
+          "text": "[2026-Nov-04 23:51:29.278000] WARN [runServer] global - Cannot find free hero of appropriate faction for player red - trying to get first available..."
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Voies des héros",
+  "description": "Une voie permanente par héros dès le niveau 5 : Armée, Magie ou Économie. Visitez un sanctuaire sur les nouvelles cartes Goonk et Goonks.",
+  "author": "Heroes Goonk",
+  "version": "1.0.0",
+  "modType": "Mechanics",
+  "compatibility": {
+    "min": "1.7.3"
+  },
+  "keepDisabled": false,
+  "objects": [
+    "config/hero-paths.json"
+  ]
+}

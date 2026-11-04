@@ -1,0 +1,95 @@
+{
+  "heroPathShrine": {
+    "name": "Sanctuaire des voies",
+    "handler": "configurable",
+    "types": {
+      "sanctuary": {
+        "name": "Sanctuaire des voies",
+        "aiValue": 1000,
+        "templates": {
+          "chest": {
+            "animation": "AVTchst0.def",
+            "mask": [
+              "A"
+            ],
+            "visitableFrom": [
+              "+++",
+              "+-+",
+              "+++"
+            ]
+          }
+        },
+        "blockedVisitable": true,
+        "visitMode": "bonus",
+        "selectMode": "selectPlayer",
+        "canRefuse": true,
+        "onSelectMessage": "{Choisissez votre voie}\nArmée : +2 Attaque.\nMagie : +2 Puissance magique.\nÉconomie : 250 or maintenant et +250 or/jour.\n\nChoix définitif pour ce héros, même aux autres sanctuaires.",
+        "onEmptyMessage": "{Niveau 5 requis}\nRevenez lorsque ce héros aura atteint le niveau 5.",
+        "onVisitedMessage": "{Voie déjà choisie}\nCe héros a déjà sa voie. Son choix est définitif.",
+        "rewards": [
+          {
+            "limiter": {
+              "heroLevel": 5
+            },
+            "message": "{Voie de l’armée}\nAttaque du héros : +2, définitivement.",
+            "primary": {
+              "attack": 2
+            },
+            "bonuses": [
+              {
+                "type": "PRIMARY_SKILL",
+                "subtype": "primarySkill.attack",
+                "val": 0,
+                "duration": "PERMANENT",
+                "description": "Voie définitive : Armée"
+              }
+            ]
+          },
+          {
+            "limiter": {
+              "heroLevel": 5
+            },
+            "message": "{Voie de la magie}\nPuissance magique : +2, définitivement.",
+            "primary": {
+              "spellpower": 2
+            },
+            "bonuses": [
+              {
+                "type": "PRIMARY_SKILL",
+                "subtype": "primarySkill.attack",
+                "val": 0,
+                "duration": "PERMANENT",
+                "description": "Voie définitive : Magie"
+              }
+            ]
+          },
+          {
+            "limiter": {
+              "heroLevel": 5
+            },
+            "message": "{Voie de l’économie}\n250 or maintenant puis +250 or/jour tant que ce héros vous appartient.",
+            "resources": {
+              "gold": 250
+            },
+            "bonuses": [
+              {
+                "type": "PRIMARY_SKILL",
+                "subtype": "primarySkill.attack",
+                "val": 0,
+                "duration": "PERMANENT",
+                "description": "Voie définitive : Économie"
+              },
+              {
+                "type": "GENERATE_RESOURCE",
+                "subtype": "core:gold",
+                "val": 250,
+                "duration": "PERMANENT",
+                "description": "Voie Économie : +250 or/jour"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

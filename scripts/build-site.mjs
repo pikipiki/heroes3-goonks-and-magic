@@ -1,4 +1,5 @@
 import {versionModuleImports,versionScriptTags,createRuntimeVersion} from './version-runtime.mjs';
+import {execFileSync} from 'node:child_process';
 import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';
 import {scriptPolicy,applyScriptPolicy,authorizeExternalScripts} from './script-policy.mjs';
 import {packSmallAssets} from './asset-packs.mjs';
@@ -9,6 +10,8 @@ if(!fs.existsSync(root))throw Error('Extraire le moteur précompilé dans work/v
 fs.rmSync(dist,{recursive:true,force:true});fs.cpSync(root,dist,{recursive:true});fs.cpSync('web',path.join(dist,'web'),{recursive:true});
 // Public builds include the Goonk/WoG mods and showcase map.
 const publicData=path.resolve('work/public-data');fs.rmSync(publicData,{recursive:true,force:true});fs.mkdirSync(publicData+'/Maps',{recursive:true});fs.cpSync('mod',publicData+'/Mods',{recursive:true});for(const file of fs.readdirSync('maps').filter(f=>f.endsWith('.vmap')))fs.copyFileSync('maps/'+file,publicData+'/Maps/'+file);
+// Normalize runtime object identifiers and their references without rewriting source fixtures or saves.
+execFileSync('python3',['scripts/normalize-map-instances.py',publicData+'/Maps']);
 const manifest=makeManifest(publicData,{includeBase:false});
 for(const file of manifest.files)file.url='.'+file.url;
 for(const file of manifest.files){const target=path.join(dist,decodeURIComponent(file.url));fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(path.join(publicData,file.path),target);}

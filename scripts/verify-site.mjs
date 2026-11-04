@@ -25,3 +25,7 @@ assert.equal(exportedI32Constant(fs.readFileSync('dist/'+eraWasm),eraExport[1],W
 
 const build=JSON.parse(fs.readFileSync('dist/engine-build.json'));assert.deepEqual(manifest.engine,build,'Les données doivent cibler exactement le moteur publié.');assert.equal(build.sha256,crypto.createHash('sha256').update(fs.readFileSync('dist/'+build.wasm)).digest('hex'));assert.deepEqual(build.mobile,{width:800,height:600});
 const memoryExport=fs.readFileSync('dist/'+eraJS,'utf8').match(/Module\["_vcmiWebMemoryVersion"\]\s*=\s*wasmExports\["([^"]+)"\]/);assert(memoryExport,'Le moteur doit inclure le chargement à la demande');assert.equal(exportedI32Constant(fs.readFileSync('dist/'+eraWasm),memoryExport[1],WebAssembly.Module.imports(eraModule).filter(item=>item.kind==='function').length),1);
+
+assert(manifest.files.some(f=>f.path==='Mods/hero-paths/mod.json'),'Voies des héros manquant');
+assert(manifest.files.some(f=>f.path==='Mods/hero-paths/content/config/hero-paths.json'),'Récompenses des voies manquantes');
+assert(!manifest.files.some(f=>f.path.startsWith('Mods/hero-paths-poc/')||/Maps\/900-hero-paths-/.test(f.path)),'Les fixtures du prototype ne doivent pas être publiées');

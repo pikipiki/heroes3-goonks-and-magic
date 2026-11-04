@@ -14,8 +14,9 @@ export function renderPage(root){
  const modSettingsPath='/home/web_user/.config/vcmi/modSettings.json';let modSettings;
  try{modSettings=JSON.parse(FS.readFile(modSettingsPath,{encoding:'utf8'}));}catch{modSettings={activePreset:'default',presets:{default:{mods:['core','vcmi'],settings:{}}}};}
  const preset=modSettings.activePreset||'default';modSettings.presets ||= {};modSettings.presets[preset] ||= {mods:['core','vcmi'],settings:{}};
- modSettings.presets[preset].mods=Array.from(new Set([...(modSettings.presets[preset].mods||[]).filter(id=>id!=='wog'),'goonk','wake-of-gods','third-upgrades','tum-era']));
+ modSettings.presets[preset].mods=Array.from(new Set([...(modSettings.presets[preset].mods||[]).filter(id=>id!=='wog'),'goonk','wake-of-gods','third-upgrades','tum-era','hero-paths']));
  modSettings.presets[preset].settings ||= {};
+ modSettings.presets[preset].settings['hero-paths']=true;
  modSettings.presets[preset].settings['wake-of-gods'] ||= {};
  for(const child of ['level8units','creatures','messengersandemissaries','stackexperience'])modSettings.presets[preset].settings['wake-of-gods'][child]=true;
  modSettings.presets[preset].settings['wake-of-gods'].mithril=true;
