@@ -1,0 +1,436 @@
+{
+  "scope": "Synthetic v0.4.46 save loaded after hero paths withdrawal",
+  "errors": [],
+  "before": {
+    "aiValue": 80,
+    "attack": 4,
+    "cost": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      60,
+      0
+    ],
+    "count": 100,
+    "damageMax": 3,
+    "damageMin": 1,
+    "defense": 5,
+    "description": "",
+    "experience": 0,
+    "experiencePerUnit": 0,
+    "experienceRank": 0,
+    "fightValue": 100,
+    "growth": 14,
+    "health": 10,
+    "icon": "",
+    "id": 0,
+    "key": "core:pikeman",
+    "name": "Pikeman",
+    "nativeFlags": {
+      "attacksAllAdjacent": false,
+      "blocksRetaliation": false,
+      "chargeImmune": true,
+      "flying": false,
+      "living": true,
+      "mindImmune": false,
+      "noMorale": false,
+      "nonLiving": false,
+      "undead": false
+    },
+    "shooter": false,
+    "shots": 0,
+    "speed": 4
+  },
+  "chosen": {
+    "aiValue": 80,
+    "attack": 6,
+    "cost": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      60,
+      0
+    ],
+    "count": 100,
+    "damageMax": 3,
+    "damageMin": 1,
+    "defense": 5,
+    "description": "",
+    "experience": 0,
+    "experiencePerUnit": 0,
+    "experienceRank": 0,
+    "fightValue": 100,
+    "growth": 14,
+    "health": 10,
+    "icon": "",
+    "id": 0,
+    "key": "core:pikeman",
+    "name": "Pikeman",
+    "nativeFlags": {
+      "attacksAllAdjacent": false,
+      "blocksRetaliation": false,
+      "chargeImmune": true,
+      "flying": false,
+      "living": true,
+      "mindImmune": false,
+      "noMorale": false,
+      "nonLiving": false,
+      "undead": false
+    },
+    "shooter": false,
+    "shots": 0,
+    "speed": 4
+  },
+  "reloaded": {
+    "anyHeroCanMove": true,
+    "armies": [
+      {
+        "id": 1,
+        "name": "Orrin",
+        "needsLastStack": true,
+        "slots": [
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 100,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 4
+          },
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "audioMuted": false,
+    "autosaveAllowed": true,
+    "backpackCount": 0,
+    "cheatReady": true,
+    "cheatsAllowed": true,
+    "day": 1,
+    "equipment": [
+      {
+        "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+        "icon": 3,
+        "name": "Catapult",
+        "slot": 16
+      },
+      {
+        "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+        "icon": 0,
+        "name": "Spell Book",
+        "slot": 17
+      }
+    ],
+    "heroId": 1,
+    "heroMoving": false,
+    "heroName": "Orrin",
+    "heroes": [
+      {
+        "index": 0,
+        "movement": 1260,
+        "name": "Orrin"
+      },
+      {
+        "index": 1,
+        "movement": 1560,
+        "name": "Valeska"
+      }
+    ],
+    "mapOverview": {
+      "height": 36,
+      "level": 0,
+      "rect": {
+        "h": 144,
+        "w": 144,
+        "x": 630,
+        "y": 26
+      },
+      "view": {
+        "h": 546,
+        "w": 594,
+        "x": 7,
+        "y": 7
+      },
+      "viewport": {
+        "h": 19,
+        "w": 20,
+        "x": 1,
+        "y": 2
+      },
+      "width": 36
+    },
+    "mapSettings": {
+      "enemyMoveTime": 150,
+      "moveTime": 150
+    },
+    "mode": "map",
+    "movement": 1260,
+    "musicVolume": 88,
+    "rect": {
+      "h": 600,
+      "w": 800,
+      "x": 0,
+      "y": 0
+    },
+    "resourceTypes": [
+      {
+        "icon": "",
+        "id": 0,
+        "key": "wood",
+        "name": "Wood",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 1,
+        "key": "mercury",
+        "name": "Mercury",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 2,
+        "key": "ore",
+        "name": "Ore",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 3,
+        "key": "sulfur",
+        "name": "Sulfur",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 4,
+        "key": "crystal",
+        "name": "Crystal",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 5,
+        "key": "gems",
+        "name": "Gems",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 6,
+        "key": "gold",
+        "name": "Gold",
+        "scope": "core"
+      },
+      {
+        "icon": "mithril/small.png",
+        "id": 7,
+        "key": "mithril",
+        "name": "Mithril",
+        "scope": "wake-of-gods.mithril"
+      }
+    ],
+    "resources": [
+      27,
+      10,
+      27,
+      10,
+      10,
+      10,
+      20000,
+      0
+    ],
+    "sessionState": 6,
+    "soundVolume": 88,
+    "towns": [
+      {
+        "index": 0,
+        "name": "Goonkbourg"
+      }
+    ],
+    "turn": true
+  },
+  "loaded": {
+    "aiValue": 80,
+    "attack": 6,
+    "cost": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      60,
+      0
+    ],
+    "count": 100,
+    "damageMax": 3,
+    "damageMin": 1,
+    "defense": 5,
+    "description": "",
+    "experience": 0,
+    "experiencePerUnit": 0,
+    "experienceRank": 0,
+    "fightValue": 100,
+    "growth": 14,
+    "health": 10,
+    "icon": "",
+    "id": 0,
+    "key": "core:pikeman",
+    "name": "Pikeman",
+    "nativeFlags": {
+      "attacksAllAdjacent": false,
+      "blocksRetaliation": false,
+      "chargeImmune": true,
+      "flying": false,
+      "living": true,
+      "mindImmune": false,
+      "noMorale": false,
+      "nonLiving": false,
+      "undead": false
+    },
+    "shooter": false,
+    "shots": 0,
+    "speed": 4
+  },
+  "preset": {
+    "mods": [
+      "core",
+      "vcmi",
+      "goonk",
+      "wake-of-gods",
+      "third-upgrades",
+      "tum-era",
+      "hero-paths"
+    ],
+    "settings": {
+      "hero-paths": {},
+      "third-upgrades": {
+        "hota-comp": false,
+        "new-creatures": true,
+        "tow-comp": false,
+        "tow-comp.transformationaltar": false,
+        "tow-hota-comp": false,
+        "wog-comp": true
+      },
+      "wake-of-gods": {
+        "animatedobjects": true,
+        "animatedtrees": true,
+        "artifacts": true,
+        "artifacts.bonuses icons": true,
+        "battledecorations": true,
+        "cheats": true,
+        "commanders": true,
+        "commanders.bonuses icons": true,
+        "commanders.newstonesgraphic": true,
+        "creaturebanks": true,
+        "creatures": true,
+        "creatures.bonuses icons": true,
+        "h2icons": false,
+        "heroes3datapatch": true,
+        "heroes3datapatch.heroes3datapatchera": true,
+        "level8units": true,
+        "level8units.bonuses icons": true,
+        "mainmenu": true,
+        "mainmenu.aitheme": false,
+        "mapdecorations": true,
+        "mapobjects": true,
+        "maps": false,
+        "mapsupport": true,
+        "mapsupport.commanderssupport": true,
+        "mapsupport.stackartifactssupport": true,
+        "mapsupport.warmachinesonmapsupport": true,
+        "messengersandemissaries": true,
+        "messengersandemissaries.bonuses icons": true,
+        "messengersandemissaries.vivid-battlefields": true,
+        "mithril": true,
+        "mithril.asphaltmine": false,
+        "mithril.deadlandmine": false,
+        "mithril.dunemine": false,
+        "mithril.fieldsofglorymine": false,
+        "mithril.heatherthicketmine": false,
+        "mithril.highlandsmine": false,
+        "mithril.icelandmine": false,
+        "mithril.meadlandmine": false,
+        "mithril.plateaulandmine": false,
+        "mithril.shallowsmine": false,
+        "mithril.spoiledlandmine": false,
+        "mithril.stardustmine": false,
+        "mithril.terracemine": false,
+        "mithril.wastelandmine": false,
+        "stackartifacts": true,
+        "stackartifacts.stackartifactindication": false,
+        "stackexperience": true,
+        "stackexperience.stackexperienceicons": true,
+        "vividbattlefields": true,
+        "vividbattlefields.vivid-battlefields-8th-level": true,
+        "warmachinesonmap": true,
+        "woggraphicfix": true,
+        "woggraphicfix.wf_animatedobjects": true,
+        "woggraphicfix.wf_animatedtrees": true,
+        "woggraphicfix.wf_arrow": true,
+        "woggraphicfix.wf_artifacts": true,
+        "woggraphicfix.wf_battledecorations": true,
+        "woggraphicfix.wf_commanders": true,
+        "woggraphicfix.wf_creatures": true,
+        "woggraphicfix.wf_h3creatures": true,
+        "woggraphicfix.wf_heroes": true,
+        "woggraphicfix.wf_heroes3datapatch": true,
+        "woggraphicfix.wf_level8units": true,
+        "woggraphicfix.wf_mapdecorations": true,
+        "woggraphicfix.wf_mapobjects": true,
+        "woggraphicfix.wf_messengersandemissaries": true,
+        "woggraphicfix.wf_stackartifacts": true,
+        "woggraphicfix.wf_stackartifacts.warlordsbanner": true
+      }
+    }
+  },
+  "nativeErrors": [],
+  "passed": true
+}

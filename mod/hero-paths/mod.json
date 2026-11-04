@@ -1,13 +1,13 @@
 {
-  "name": "Voies des héros",
-  "description": "Une voie permanente par héros dès le niveau 5 : Armée, Magie ou Économie. Visitez un sanctuaire sur les nouvelles cartes Goonk et Goonks.",
+  "name": "Voies des héros — compatibilité des anciennes parties",
+  "description": "Définitions conservées pour les sauvegardes de la version 0.4.46. Aucun sanctuaire ajouté aux nouvelles cartes et aucune activation automatique.",
   "author": "Heroes Goonk",
   "version": "1.0.0",
   "modType": "Mechanics",
   "compatibility": {
     "min": "1.7.3"
   },
-  "keepDisabled": false,
+  "keepDisabled": true,
   "objects": [
     "config/hero-paths.json"
   ]

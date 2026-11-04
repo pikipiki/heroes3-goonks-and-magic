@@ -1,69 +1,56 @@
 {
-  "status": "Implementation and production build validated; migration commit ready. Publication SHA and Pages result recorded in local TUM-HANDOFF.json after push.",
-  "scope": "Permanent Army/Magic/Economy sanctuary choice from level 5, one per hero, on bundled new-game maps; not a full Wheel tree",
-  "baseCommit": "a204d61f806b39f0496d2d59bb09511337cca814",
-  "prototypeBranch": "prototype/hero-paths-poc",
-  "prototypeCommit": "5cccbe8f943fb8cb6119d2ca4ce88a31878d7a64",
-  "implementation": "Native configurable reward object with per-type permanent marker; no C++ change",
-  "tests": {
-    "nativeCases": 4,
-    "nativePassed": 4,
+  "status": "Hero paths withdrawn from new games; implementation verified. Publication tracked in local TUM reports.",
+  "dateUTC": "2026-11-04T23:09:10.104392+00:00",
+  "baseCommit": "88a11ad9e934f5715f0f6398f52038802f12ff81",
+  "scope": "Remove sanctuaries, descriptions, dependencies and generator activation from new bundled maps; preserve old-save compatibility and independent stability fixes.",
+  "archivedBranches": {
+    "prototype/hero-paths-poc": "5cccbe8f943fb8cb6119d2ca4ce88a31878d7a64",
+    "feature/hero-paths-integration": "88a11ad9e934f5715f0f6398f52038802f12ff81"
+  },
+  "compatibility": {
+    "definitions": "mod/hero-paths",
+    "keepDisabled": true,
+    "forcedActivationRemoved": true,
+    "existingPresetsPreserved": true,
+    "oldSaveBonusesPreserved": true,
+    "noPersonalSavesReadOrRewritten": true
+  },
+  "retainedFixes": [
+    "scripts/normalize-map-instances.py object IDs and hero references",
+    "Neutral owner default normalization in public build",
+    "Roc-DioupDioup naming in duel generator"
+  ],
+  "validation": {
     "nodePassed": 386,
     "nodeSkipped": 22,
     "nodeFailed": 0,
-    "warningsPerNativeCase": 120,
-    "newWarnings": 0,
-    "mapSmokeCases": 2,
-    "mapSmokePassed": 2,
-    "mapSmokeScope": "Showcase sanctuary gate at level1; Duel boot/load. Duel sanctuary access covered by BFS, rewards by four native production cases.",
-    "knownMapErrors": [
-      {
-        "map": "000 - Château Goonk",
-        "diagnostics": [
-          "[runServer] global - Cannot pick native hero for red. Picking any..."
-        ]
-      },
-      {
-        "map": "Goonks",
-        "diagnostics": [
-          "[runServer] global - Cannot pick native hero for red. Picking any..."
-        ]
-      }
-    ],
-    "unexpectedMapErrors": 0,
-    "originalObjectsPreserved": {
-      "showcase": 5,
-      "duel": 554
-    },
-    "publicBuild": "PASS; no prototype bootstrap or fixture maps in bundle",
-    "engineChanged": false
+    "oldSaveNativePassed": true,
+    "oldAttack": 6,
+    "reloadedAttack": 6,
+    "oldSaveNativeErrors": [],
+    "freshInstallNativePassed": true,
+    "freshPresetHasPaths": false,
+    "formerSanctuaryTileWalkable": true,
+    "build": "PASS",
+    "verify": "PASS",
+    "nativeEngineChanged": false,
+    "wasmSHA256": "9b35c0b49206b3c38f10e45cf470d823e5407e839736aae5656215363512acc5"
   },
+  "evidence": "outputs/native-evidence/hero-paths-withdrawal",
   "quota": {
-    "observedUsedPercent": 39,
-    "remainingPercent": 61,
+    "usedPercent": 40,
+    "remainingPercent": 60,
     "windowDays": 7,
     "source": "Codex get_usage_limits",
-    "conversationTokenCounter": "Unavailable",
-    "thresholdPolicy": "During active work, record handoff at <=10% remaining and before exhaustion if detectable; checkpoints already saved."
+    "conversationTokenCounter": "Unavailable"
   },
-  "next": [
-    "Verify GitHub Pages after focused main publication",
-    "No additional feature expansion is required for this migration"
+  "concurrentWork": "Uncommitted equipment, spellbook, calendar, release version and engine work in user checkout is excluded and must be preserved. No engine rebuild or package version change in this withdrawal.",
+  "remaining": [
+    "Verify GitHub Pages after push and update local handoff"
   ],
   "limits": [
-    "No retroactive map object insertion into old saves",
-    "No rewriting imported maps or campaigns",
-    "No auto prompt at level-up",
-    "No physical iPhone or full-campaign validation"
-  ],
-  "updatedAtUTC": "2026-11-04T22:52:01.410685+00:00",
-  "integrationBranch": "feature/hero-paths-integration",
-  "paths": {
-    "instructions": "HERO-PATHS.md",
-    "nativeEvidence": "outputs/native-evidence/hero-paths/report.json",
-    "mapsEvidence": "outputs/native-evidence/hero-paths/map-smoke-report.json",
-    "fixtures": "outputs/native-fixtures/hero-paths",
-    "nativeTest": "work/browser-tests/hero-paths-e2e.mjs",
-    "mapSmokeTest": "work/browser-tests/hero-paths-map-smoke.mjs"
-  }
+    "Existing v0.4.46 saves keep sanctuaries and choices by design",
+    "No physical iPhone or full-campaign validation",
+    "No new hero specialization work authorized by this withdrawal"
+  ]
 }

@@ -1,39 +1,21 @@
-# Voies permanentes des héros
+# Retrait des voies expérimentales
 
-Dès le niveau 5, visitez le **Sanctuaire des voies** près de votre ville de départ. Chaque héros choisit définitivement une voie :
+Après le retrait du 5 novembre 2026, les nouvelles parties des deux cartes fournies ne proposent plus les voies Armée, Magie et Économie. Les sanctuaires, leur description, la dépendance des cartes et leur génération ont été retirés. Le jeu n’active plus automatiquement le mod.
 
-- **Armée** : +2 Attaque du héros, appliqués à ses troupes.
-- **Magie** : +2 Puissance magique du héros.
-- **Économie** : 250 or immédiatement puis 250 or par jour tant que le héros vous appartient.
+Le code expérimental complet et ses preuves restent archivés sur les branches `prototype/hero-paths-poc` (5cccbe8) et `feature/hero-paths-integration` (88a11ad). Il n’y a pas de développement supplémentaire de l’arbre Wheel.
 
-Vous pouvez fermer la fenêtre sans choisir et revenir plus tard. Un second sanctuaire ne permet pas un second choix. Chaque héros fait son propre choix ; il le conserve lors des sauvegardes et rechargements.
+## Anciennes sauvegardes
 
-Les sanctuaires sont disponibles dans les **nouvelles parties** des deux cartes fournies : Château Goonk (11,11 et 27,31) et Goonks (22,24 et 121,119). La carte duel conserve deux emplacements symétriques, accessibles pour les deux camps. Le dessin réutilise un coffre natif Heroes III ; son nom et sa fenêtre indiquent le sanctuaire. La règle est la même pour toutes les factions disponibles.
+Les deux fichiers du mod `mod/hero-paths` restent distribués uniquement pour la compatibilité des parties créées avec la version 0.4.46. Leurs identifiants, statistiques et bonus sont conservés. Une ancienne partie garde ses sanctuaires et ses choix ; aucun objet ou bonus n’est effacé rétroactivement. Le mod est désactivé par défaut pour une installation neuve. Les presets existants restent conservés pour éviter de désactiver un mod requis par une sauvegarde.
 
-Une ancienne sauvegarde garde les objets de sa carte : elle ne reçoit pas ces sanctuaires rétroactivement. Les cartes importées et les campagnes ne sont pas réécrites. Il n’y a pas de fenêtre automatique à la montée de niveau, d’arbre Wheel complet, de nouvelle compétence secondaire ni de réinitialisation des voies. Les valeurs constituent un premier équilibrage et pourront être ajustées séparément.
+Les sauvegardes personnelles ne sont ni lues ni réécrites par le retrait. Une suppression ultérieure de ces définitions nécessiterait une stratégie de compatibilité distincte.
 
-## Maintenance
+## Corrections conservées
 
-Le mod `mod/hero-paths` repose sur les récompenses natives VCMI : `visitMode: bonus`, marqueur permanent par type d’objet, statistiques primaires et `GENERATE_RESOURCE`. Aucun nouveau format de sauvegarde ni patch du moteur. Les changements de propriétaire suivent les règles natives des bonus du héros. Le bootstrap normal active le mod dans le preset courant sans effacer les autres mods ou les sauvegardes.
+La normalisation des noms internes d’objets et des références aux héros, ainsi que la correction du propriétaire neutre au build, sont indépendantes des voies et restent actives. Le renommage Roc-DioupDioup est conservé dans le générateur. Aucun changement du moteur, de l’expérience des troupes ou des évolutions avancées des villes.
 
-`scripts/hero_paths_maps.py` ajoute les sanctuaires aux cartes fournies de façon idempotente, vérifie les emplacements et déclare la dépendance de carte. Le générateur `scripts/build-goonks-map.py` réserve leurs approches et réutilise ce module. Le build normalise aussi les identifiants internes des objets et leurs références dans les cartes publiées, sans réécrire les cartes sources ou les sauvegardes. Il omet aussi la chaîne de propriétaire `neutral`, invalide pour ce champ : l’absence du champ conserve le propriétaire neutre natif. Les tests vérifient les accès, l’absence de collision des sanctuaires, la symétrie des ressources et l’unicité des marqueurs.
+Validation : tests de retrait et de normalisation, suite Node, build et vérification du bundle. Le test natif de compatibilité utilise uniquement une sauvegarde synthétique créée dans son propre contexte de navigateur ; voir `HERO-PATHS-HANDOFF.json` pour le résultat final.
 
-```sh
-node --test tests/hero-paths.test.mjs tests/goonks-map.test.mjs
-npm test
-npm run prepare:web
-npm run build:web
-npm run verify:web
-```
+Pour reproduire le test de compatibilité, préparer deux builds isolés : l’ancien commit `88a11ad` avec ses fixtures natives dans `maps`, puis le build de retrait sans ces fixtures. Servir les deux successivement à la même origine de test. Lancer `work/browser-tests/hero-paths-withdrawal-compatibility-e2e.mjs PROJECT SORTIE_NEUVE` avec `GAME_ORIGIN` et `CDP_URL`. Le test crée `old-save-ready` après une sauvegarde native ; basculer alors le serveur vers le build de retrait et créer `new-build-ready` dans SORTIE_NEUVE. Le test recharge et vérifie le bonus. Aucun octet de sauvegarde n’est exporté dans les preuves.
 
-Le test natif `work/browser-tests/hero-paths-e2e.mjs` utilise les fixtures de `outputs/native-fixtures/hero-paths`, le mod de production et un navigateur CDP dédié. Pour reproduire, copier les deux fixtures dans `maps` dans une copie de travail jetable, construire avec `GOONK_TEST_ORIGIN=http://127.0.0.1:8796`, puis lancer le serveur statique sur ce port. Les fixtures ne doivent pas être publiées dans `maps`.
-
-```sh
-PORT=8796 node work/browser-tests/static-server.mjs
-GAME_ORIGIN=http://127.0.0.1:8796 CDP_URL=http://127.0.0.1:9227 \
-node work/browser-tests/hero-paths-e2e.mjs . /tmp/hero-paths-proof
-```
-
-Le test crée et ferme uniquement son propre contexte. Il vérifie les trois effets dans de vrais combats/tours, le verrou au niveau 4, deux héros indépendants, deux sanctuaires, la sauvegarde et le rechargement. Lire `outputs/native-evidence/hero-paths/report.json` pour les résultats et avertissements. Un iPhone physique et une campagne complète ne sont pas couverts.
-
-Les cartes Goonk préexistantes peuvent encore journaliser le repli du recrutement natif (aucune classe de héros propre à la faction Goonk) et, sur la carte de découverte, un bonus de départ artefact sans héros dans le camp bleu. Le test de cartes conserve ces diagnostics connus et échoue sur toute autre erreur native ; ils ne doivent pas être présentés comme un journal sans erreur. Les quatre tests des voies ne rencontrent aucune erreur native.
+Le test `work/browser-tests/hero-paths-withdrawal-new-game-e2e.mjs PROJECT SORTIE_NEUVE` utilise un autre contexte neuf, vérifie que le mod n’est pas activé, puis fait marcher le héros sur l’ancien emplacement. Utiliser un navigateur CDP de test dédié ; les deux scripts ferment uniquement leur propre contexte.

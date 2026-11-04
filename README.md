@@ -466,4 +466,4 @@ Two real WebAssembly cases close the remaining nonzero-XP check, without changin
 Both cases have zero detected JS/native errors. `ninja -j32 html5` passed and the published WASM hash remained unchanged. See `outputs/native-evidence/earned-xp-persistence/report.json` and the reusable `work/browser-tests/tum-earned-xp-upgrade-e2e.md`. The test fixture handles legitimate morale extra actions and Castle-stables arrival messages. Evidence records its bounded scope and distinguishes the original executed harness from reporting/context-safety cleanup in the reusable one. This is not an assertion of complete ERA compatibility.
 
 
-Les nouvelles parties des deux cartes fournies proposent les [Voies permanentes des héros](HERO-PATHS.md) : un choix au sanctuaire dès le niveau 5 entre Armée, Magie et Économie. Les sauvegardes existantes ne reçoivent pas de nouveaux objets rétroactivement.
+Les trois voies expérimentales ont été retirées des nouvelles parties. Leur prototype reste archivé ; seules les définitions nécessaires aux sauvegardes de la version 0.4.46 sont conservées. Voir [la note de retrait](HERO-PATHS.md).
