@@ -13,6 +13,10 @@
 
 VCMI_LIB_NAMESPACE_BEGIN
 
+#ifdef EMSCRIPTEN
+extern "C" int EMSCRIPTEN_KEEPALIVE vcmiWebMemoryVersion() { return 1; }
+#endif
+
 namespace {
     SDL_Surface *copySurface(SDL_Surface *surf) {
         SDL_Surface *copy = SDL_CreateRGBSurfaceWithFormat(0, surf->w, surf->h, surf->format->BitsPerPixel,
@@ -128,7 +132,7 @@ SDL_Surface *html5::loadPng(unsigned char *bytes, int length, const std::string&
 
 void html5::savePng(SDL_Surface *surf, const std::string &filename) {
     if (generatedSurfaces.contains(filename)) {
-        delete generatedSurfaces[filename];
+        SDL_FreeSurface(generatedSurfaces[filename]);
     } else {
         FILE *f = fopen(filename.c_str(), "wb");
         if (f) {

@@ -12,7 +12,11 @@
     "Bounded asynchronous UI state notifications; unchanged snapshots deduplicated",
     "Nonblocking save notification and coalesced local persistence without unused cloud copies",
     "Web mouse cursor updates occur after motion-event coalescing",
-    "Web frame lock uses try_lock to avoid browser-blocking ownership races"
+    "Web frame lock uses try_lock to avoid browser-blocking ownership races",
+    "OPFS File snapshots with on-demand 64 KiB reads and a bounded 16 MiB LRU; writable saves stay in MEMFS",
+    "Lightweight 800x600 mobile source with native scaling 1 and 256 MiB initial WebAssembly memory",
+    "Generated SDL surfaces released with SDL_FreeSurface",
+    "Native memory ABI and SHA-256 build identity checked against the deployed engine"
   ],
   "license": "VCMI engine: GPL-2.0-or-later; see work/vcmi-wasm/license.txt",
   "vendoredDependencies": {

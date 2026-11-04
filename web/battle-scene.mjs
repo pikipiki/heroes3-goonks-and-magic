@@ -25,6 +25,7 @@ export function paintBattleGrid(ctx,cells,layout,units=[],occlusion=[]){
  ctx.strokeStyle='#16160ed9';ctx.lineWidth=2;ctx.stroke();ctx.strokeStyle='#f8e8af85';ctx.lineWidth=.8;ctx.stroke();ctx.restore();
 }
 export function configureMobileBattle(FS,enabled){if(!enabled)return;const path='/home/web_user/.config/vcmi/settings.json';let value={};try{const existing=FS.readFile(path,{encoding:'utf8'});if(existing.trim())value=JSON.parse(existing);}catch(error){if(FS.analyzePath(path).exists)throw error;}
+ value.video={...value.video,useHdTextures:false,upscalingFilter:'none',resolution:{...value.video?.resolution,scaling:100}};
  value.battle={...value.battle,cellBorders:false,stackRange:false,movementHighlightOnHover:false,rangeLimitHighlightOnHover:false,stickyHeroInfoWindows:false,showQueue:false,queueSize:'small',queueSmallSlots:8};FS.writeFile(path,JSON.stringify(value));}
 
 export function drawUnit(ctx,unit,atlas,ids,x,y,size){

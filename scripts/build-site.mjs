@@ -1,3 +1,4 @@
+import {versionModuleImports,versionScriptTags,createRuntimeVersion} from './version-runtime.mjs';
 import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';
 import {scriptPolicy,applyScriptPolicy,authorizeExternalScripts} from './script-policy.mjs';
 import {packSmallAssets} from './asset-packs.mjs';
@@ -20,9 +21,15 @@ packSmallAssets(manifest.files,file=>fs.readFileSync(path.join(publicData,file.p
 let html=renderPage(root);const runtimeNames={};
 for(const name of ['vcmiclient.data.js','vcmiclient.wasm','vcmiclient.data','vcmiclient.js']){const bytes=fs.readFileSync(path.join(dist,name)),hash=crypto.createHash('sha256').update(bytes).digest('hex').slice(0,16),hashed=name.replace(/(\.[^.]+)$/,'.'+hash+'$1');fs.renameSync(path.join(dist,name),path.join(dist,hashed));runtimeNames[name]=hashed;}
 html=html.replace(/vcmiclient\.(?:data\.js|wasm|data|js)/g,name=>runtimeNames[name]);
+const moduleFiles=fs.readdirSync(path.join(dist,'web')).filter(name=>/\.(mjs|js)$/.test(name)).sort();
+const runtimeVersion=createRuntimeVersion(html,[...moduleFiles.map(name=>['web/'+name,fs.readFileSync(path.join(dist,'web',name))]),...fs.readdirSync(dist).filter(name=>/\.(mjs|js)$/.test(name)).map(name=>[name,fs.readFileSync(path.join(dist,name))])]);
+fs.writeFileSync(path.join(dist,'engine-build.json'),JSON.stringify({memoryVersion:1,runtimeVersion,wasm:runtimeNames['vcmiclient.wasm'],sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(dist,runtimeNames['vcmiclient.wasm']))).digest('hex'),mobile:{width:800,height:600},assetCacheBytes:16*1024*1024}));
+for(const name of fs.readdirSync(path.join(dist,'web')).filter(name=>/\.(mjs|js)$/.test(name))){const file=path.join(dist,'web',name);fs.writeFileSync(file,versionModuleImports(fs.readFileSync(file,'utf8'),runtimeVersion));}
+html=versionScriptTags(versionModuleImports(html,runtimeVersion),runtimeVersion);
 fs.copyFileSync('web/hosting-bootstrap.mjs',path.join(dist,'hosting-bootstrap.mjs'));
 let index=fs.readFileSync('web/hosting-index.html','utf8');let storagePage=fs.readFileSync('web/storage.html','utf8');
-const loadScript=url=>fs.readFileSync(path.join(dist,url)),gameScripts=authorizeExternalScripts(html,loadScript),indexScripts=authorizeExternalScripts(index,loadScript);
+index=versionScriptTags(versionModuleImports(index,runtimeVersion),runtimeVersion);storagePage=versionScriptTags(versionModuleImports(storagePage,runtimeVersion),runtimeVersion);
+const loadScript=url=>fs.readFileSync(path.join(dist,url.split('?')[0])),gameScripts=authorizeExternalScripts(html,loadScript),indexScripts=authorizeExternalScripts(index,loadScript);
 html=gameScripts.html;index=indexScripts.html;const rootScripts=fs.readdirSync(dist).filter(name=>/\.(mjs|js)$/.test(name));
 const scriptBases=['https://heroes3-goonks-and-magic.netlify.app','https://pikipiki.github.io/heroes3-goonks-and-magic'];
 if(process.env.GOONK_TEST_ORIGIN)scriptBases.push(new URL(process.env.GOONK_TEST_ORIGIN).origin);

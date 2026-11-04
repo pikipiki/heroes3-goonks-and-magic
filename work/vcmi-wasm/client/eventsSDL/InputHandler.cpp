@@ -304,9 +304,9 @@ void InputHandler::preprocessEvent(const SDL_Event & ev)
 	{
 #ifdef VCMI_HTML5_BUILD
 		// Safari can emit window-size/restored events during rotation although
-		// the mobile source canvas remains 1600x1200. Do not recreate its
+		// the mobile source canvas remains fixed. Do not recreate its
 		// textures or wait on the interface mutex for those DOM-only changes.
-		if(html5::getGoonkRenderScale() > 1 &&
+		if(html5::getGoonkRenderScale() > 0 &&
 			(ev.window.event == SDL_WINDOWEVENT_SIZE_CHANGED || ev.window.event == SDL_WINDOWEVENT_RESTORED))
 			return;
 #endif

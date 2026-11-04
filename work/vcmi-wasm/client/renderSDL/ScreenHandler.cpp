@@ -100,7 +100,7 @@ int ScreenHandler::getInterfaceScalingPercentage() const
 {
 #ifdef VCMI_HTML5_BUILD
 	// Keep the touch interface at 800x600 logical points, with a Retina framebuffer.
-	if (html5::getGoonkRenderScale() > 1) return html5::getGoonkRenderScale() * 100;
+	if (html5::getGoonkRenderScale() > 0) return html5::getGoonkRenderScale() * 100;
 #endif
 	auto [minimalScaling, maximalScaling] = getSupportedScalingRange();
 
@@ -148,7 +148,7 @@ Point ScreenHandler::getPreferredLogicalResolution() const
 int ScreenHandler::getScalingFactor() const
 {
 #ifdef VCMI_HTML5_BUILD
-	if (html5::getGoonkRenderScale() > 1) return html5::getGoonkRenderScale();
+	if (html5::getGoonkRenderScale() > 0) return html5::getGoonkRenderScale();
 #endif
 	switch (upscalingFilter)
 	{

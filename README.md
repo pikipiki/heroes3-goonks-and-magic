@@ -364,3 +364,42 @@ La grille utilise les dimensions natives réelles des créatures et des cadavres
 La reprise après changement d’onglet évite également une attente bloquante sur le verrou de l’interface : les événements SDL de focus/visibilité sont différés si un worker détient ce verrou, puis traités dans l’ordre, par lots de 64 au maximum par image. Les callbacks ne reprennent pas ce verrou une seconde fois sur Emscripten. Le comportement des autres plateformes reste inchangé.
 
 Le test natif `browser-event-queue.test.mjs` reproduit le cas où un worker attend le navigateur en conservant le verrou. `background-resume-e2e.mjs` simule perte de visibilité, suspension et reprise dans une vraie partie, y compris sur le résultat de combat ; il vérifie les nouveaux états du moteur et le retour à la carte avec Valider, sans rechargement. Une validation physique Safari/iPhone reste nécessaire.
+
+
+## Mémoire mobile et données lues à la demande
+
+Les données installées restent sur OPFS. Au démarrage, le moteur récupère des
+snapshots `File` des ressources de plus de 4 Kio, puis ne lit que les blocs demandés
+par VCMI. Le cache LRU commun est limité à 16 Mio, avec des blocs de 64 Kio :
+les archives LOD/SND et les images ne sont plus toutes recopiées dans MEMFS.
+Les petits fichiers de 4 Kio ou moins restent chargés pour éviter de multiplier
+les lectures synchrones de minuscules métadonnées (environ 3,5 Mio au total).
+La lecture native étant synchrone, les défauts de cache lisent de petits fragments
+Blob locaux par XHR synchrone ; aucune requête réseau n'est faite pendant ces
+lectures. Les URL temporaires sont révoquées immédiatement. Les sauvegardes et
+les réglages restent inscriptibles ; modifier une ressource matérialise uniquement
+ce fichier, sans rendre le reste du catalogue résident. La troncature ne charge
+pas l'ancien contenu. La vérification de l'installation et le fonctionnement hors
+ligne restent assurés par OPFS.
+
+La présentation tactile utilise une source fixe de 800 × 600 et une échelle native
+1, sans textures HD ni suréchantillonnage xBRZ dans le moteur. L'interface HTML
+reste adaptée à la densité de l'écran. L'espace initial WebAssembly passe de
+512 à 256 Mio et peut toujours croître par pas de 32 Mio. Cette réservation
+n'est pas une mesure de la mémoire physique résidente du navigateur.
+
+Le moteur est `outputs/vcmi-wasm-goonk-mobile-memory-engine.tar.gz`.
+`engine-build.json` identifie le WASM publié par son SHA-256 ; la version native
+`vcmiWebMemoryVersion()` vaut 1 et est contrôlée au démarrage et par `verify:web`.
+Le cache des images exportées libère désormais ses surfaces via `SDL_FreeSurface`.
+Les imports des modules et du worker OPFS portent la version du moteur pour
+éviter de mélanger un ancien worker en cache avec une nouvelle version du jeu.
+
+Après `npm run prepare:web && npm run build:web && npm run verify:web`, le scénario
+`work/browser-tests/mobile-memory-e2e.mjs` peut cibler une version locale ou publiée
+avec `GAME_URL`. Il vérifie trois constructions normales sur trois jours, une ville entièrement bâtie,
+sept achats réels, vingt cycles de recrutement, trois tailles d'écran et le
+rechargement de la sauvegarde. Il produit les mesures mémoire, les tâches longues,
+un profil CPU et une capture dans `GOONK_REPORT_DIR`. `GOONK_CPU_THROTTLE=4`
+ralentit le thread navigateur via CDP pour compléter la simulation mobile.
+Ces essais ne remplacent pas une mesure sur un téléphone physique.

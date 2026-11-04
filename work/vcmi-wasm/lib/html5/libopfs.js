@@ -344,6 +344,14 @@ const onmessage = async (event) => {
         closeCachedHandle();
         postSuccess(type, requestId, { contents }, contents.map((c) => c.buffer));
       } break;
+      case 'file': {
+        const {root,path}=payload;
+        const {dir,name}=await getParentDirectory(root,path,false);
+        const handle=await dir.getFileHandle(name);
+        const blob=await handle.getFile();
+        const {timestamp,mode}=getMeta(root,path);
+        postSuccess(type,requestId,{timestamp,mode,blob});
+      } break;
       case 'read': {
         let length = payload.length;
         const { root, path, offset = 0 } = payload;
@@ -658,6 +666,7 @@ self.onmessage = (event) => onmessage(event).catch(console.error);
         if (FS.isDir(stat.mode)) {
           return callback(null, { 'timestamp': stat.mtime, 'mode': stat.mode });
         } else if (FS.isFile(stat.mode)) {
+          node.goonkMaterialize?.();
           node.contents = MEMFS.getFileDataAsTypedArray(node);
           return callback(null, { 'timestamp': stat.mtime, 'mode': stat.mode, 'contents': node.contents });
         } else {
@@ -669,7 +678,8 @@ self.onmessage = (event) => onmessage(event).catch(console.error);
           if (FS.isDir(entry['mode'])) {
             FS.mkdirTree(path, entry['mode']);
           } else if (FS.isFile(entry['mode'])) {
-            FS.writeFile(path, entry['contents'], { canOwn: true });
+            if(entry.blob) Module.installLazyAsset(path,entry);
+            else FS.writeFile(path, entry['contents'], { canOwn: true });
           } else {
             return callback(new Error('node type not supported'));
           }
@@ -699,7 +709,7 @@ self.onmessage = (event) => onmessage(event).catch(console.error);
       },
       loadRemoteEntry: (mount, path, callback) => {
         if (path.startsWith(mount.opts.root)) {
-          OPFS.callWorker('read', {
+          OPFS.callWorker(Module.isLazyAsset?.(path) ? 'file' : 'read', {
             root: mount.opts.root,
             path: path.substring(mount.opts.root.length),
           }, callback);

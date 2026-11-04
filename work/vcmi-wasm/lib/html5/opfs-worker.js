@@ -315,6 +315,14 @@ const onmessage = async (event) => {
         closeCachedHandle();
         postSuccess(type, requestId, { contents }, contents.map((c) => c.buffer));
       } break;
+      case 'file': {
+        const {root,path}=payload;
+        const {dir,name}=await getParentDirectory(root,path,false);
+        const handle=await dir.getFileHandle(name);
+        const blob=await handle.getFile();
+        const {timestamp,mode}=getMeta(root,path);
+        postSuccess(type,requestId,{timestamp,mode,blob});
+      } break;
       case 'read': {
         let length = payload.length;
         const { root, path, offset = 0 } = payload;
