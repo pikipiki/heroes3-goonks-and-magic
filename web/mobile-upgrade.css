@@ -73,3 +73,9 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
  .mobile-spellbook footer{grid-column:1;grid-row:4}
  .mobile-spellbook .spell-row{padding:8px 12px!important}
 }
+
+@media(orientation:landscape) and (max-height:600px){
+ html.goonk-mobile #mobile-app[data-mode=battle][data-has-calendar=true] .mobile-top{flex-wrap:wrap;row-gap:0}
+ html.goonk-mobile #mobile-app[data-mode=battle] .battle-view{flex:0 0 auto;min-width:110px;white-space:nowrap}
+ html.goonk-mobile #mobile-app[data-mode=battle] .mobile-calendar{flex:0 0 100%;width:100%;box-sizing:border-box}
+}
