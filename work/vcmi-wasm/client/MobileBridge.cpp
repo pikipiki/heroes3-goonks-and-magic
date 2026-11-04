@@ -54,6 +54,7 @@
 #include "../lib/GameLibrary.h"
 #include "../lib/entities/ResourceTypeHandler.h"
 #include "../lib/CStack.h"
+#include "../lib/gameState/UpgradeInfo.h"
 #include "../lib/spells/CSpellHandler.h"
 #include "../lib/battle/CPlayerBattleCallback.h"
 #include "../lib/callback/CCallback.h"
@@ -166,6 +167,14 @@ void publishMobileState(){
  if(creatureWindow&&creatureWindow->getMobileCreature()){
   auto item=creature(creatureWindow->getMobileCreature(),creatureWindow->getMobileCount());
   if(auto stack=creatureWindow->getMobileStack()){const bool shooter=stack->hasBonusOfType(BonusType::SHOOTER);item["attack"].Integer()=stack->getAttack(shooter);item["defense"].Integer()=stack->getDefense(shooter);item["health"].Integer()=stack->getMaxHealth();item["speed"].Integer()=stack->getMovementRange();item["damageMin"].Integer()=stack->getMinDamage(shooter);item["damageMax"].Integer()=stack->getMaxDamage(shooter);}
+  if(p&&p->cb)if(const auto stack=creatureWindow->getMobileStack())if(const auto armyObject=stack->getArmy())if(armyObject->getOwner()==p->playerID){
+   const auto slot=armyObject->findStack(stack);UpgradeInfo upgrades(stack->getCreature()->getId());p->cb->fillUpgradeInfo(armyObject,slot,upgrades);
+   for(const auto id:upgrades.getAvailableUpgrades()){
+    auto upgrade=creature(id.toCreature(),stack->getCount());const auto total=upgrades.getUpgradeCostsFor(id)*stack->getCount();upgrade["cost"].Vector().clear();
+    for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())upgrade["cost"].Vector().push_back(JsonNode(double(total[resource])));
+    upgrade["affordable"].Bool()=p->makingTurn&&p->cb->getResourceAmount().canAfford(total);n["creatureUpgrades"].Vector().push_back(upgrade);
+   }
+  }
   n["creatureUnit"]=item;
  }
  n["sessionState"].Integer()=static_cast<int>(GAME->server().getState());if(n["mode"].String()=="connecting")n["launchAction"].Integer()=GAME->server().screenType==ESelectionScreen::loadGame?23:GAME->server().screenType==ESelectionScreen::campaignList?47:20;
@@ -345,6 +354,13 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   if(auto old=ENGINE->windows().topWindow<CStackWindow>())std::static_pointer_cast<CWindowObject>(old)->close();
   if(!ENGINE->windows().topWindow<AdventureMapInterface>()&&!townWindow)return;
   ENGINE->windows().createAndPushWindow<CStackWindow>(&army->getStack(SlotID(b)),false);lastPublished=0;return;
+ }
+ if(action==59&&p->makingTurn){
+  if(const auto window=ENGINE->windows().topWindow<CStackWindow>())if(const auto stack=window->getMobileStack())if(const auto armyObject=stack->getArmy())if(armyObject->getOwner()==p->playerID){
+   const auto slot=armyObject->findStack(stack);UpgradeInfo upgrades(stack->getCreature()->getId());p->cb->fillUpgradeInfo(armyObject,slot,upgrades);const CreatureID target(a);
+   const auto & available=upgrades.getAvailableUpgrades();if(std::find(available.begin(),available.end(),target)!=available.end()&&p->cb->getResourceAmount().canAfford(upgrades.getUpgradeCostsFor(target)*stack->getCount())){p->cb->upgradeCreature(armyObject,slot,target);std::static_pointer_cast<CWindowObject>(window)->close();}
+  }
+  lastPublished=0;return;
  }
  if(action==42&&(ENGINE->windows().topWindow<CFortScreen>()||ENGINE->windows().topWindow<CRecruitmentWindow>())){if(a>=0&&a<int(LIBRARY->creh->objects.size()))ENGINE->windows().createAndPushWindow<CStackWindow>(CreatureID(a).toCreature(),false);lastPublished=0;return;}
  if(action==43){if(auto object=ENGINE->windows().topWindow<CWindowObject>())if(dynamic_cast<CStackWindow*>(object.get())||dynamic_cast<CFortScreen*>(object.get()))object->close();lastPublished=0;return;}

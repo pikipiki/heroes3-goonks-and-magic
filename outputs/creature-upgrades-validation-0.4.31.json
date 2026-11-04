@@ -1,0 +1,41 @@
+{
+  "version": "0.4.31",
+  "date": "2026-11-04",
+  "changes": [
+    "Creature detail has no navigation links to other army creatures.",
+    "Recruitment for a dwelling shows only its native creature family variants.",
+    "Available stack upgrades and total resource prices come from the engine.",
+    "Upgrade purchase revalidates ownership, availability, player turn and affordability before the native server request."
+  ],
+  "validation": {
+    "nativeBuild": "ninja -j32 html5 passed",
+    "unit": {
+      "passed": 291,
+      "skipped": 16,
+      "failed": 0
+    },
+    "browserUI": {
+      "chromium": "passed",
+      "webkit": "passed",
+      "checks": [
+        "no cross-creature links",
+        "unaffordable upgrade disabled",
+        "affordable upgrade sends command and disables double tap",
+        "only selected family variants",
+        "portrait and landscape"
+      ]
+    },
+    "nativeGame": {
+      "upgrade": "Paingpaing to Royal Ram",
+      "count": 3,
+      "totalGoldDebited": 84,
+      "otherResourcesDebited": 0,
+      "stackCountUnchanged": true,
+      "invalidTargetRejectedWithoutPayment": true,
+      "familyOnlyRecruitment": true,
+      "familyVariantSelection": "passed",
+      "javascriptErrors": []
+    },
+    "physicalIPhone": "not retested for this version"
+  }
+}
