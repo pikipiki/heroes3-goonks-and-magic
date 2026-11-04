@@ -54,3 +54,5 @@
 }
 #mobile-app[data-sheet=army] .army-slot-art{min-height:0}
 #mobile-app[data-sheet=army] .army-slot-art canvas{min-height:0;max-height:100%;height:100%;width:auto;max-width:100%;object-fit:contain}
+
+.army-split-toggle:has(input:disabled){opacity:.45;cursor:default}

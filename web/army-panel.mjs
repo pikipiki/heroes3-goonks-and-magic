@@ -9,13 +9,13 @@ export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransfe
  const status=document.createElement('p');status.className='army-selection';status.setAttribute('role','status');status.textContent='Choisis une troupe, puis sa destination.';
  const tools=document.createElement('div');tools.className='army-transfer-tools';
  const splitLabel=document.createElement('label');splitLabel.className='army-split-toggle';
- const split=document.createElement('input');split.id='army-split';split.type='checkbox';splitLabel.append(split,'Scinder');
+ const split=document.createElement('input');split.id='army-split';split.type='checkbox';split.disabled=true;splitLabel.append(split,'Scinder');
  const amount=document.createElement('input');amount.type='number';amount.min='1';amount.step='1';amount.value='1';amount.disabled=true;amount.setAttribute('aria-label','Nombre de créatures à séparer');
  const info=document.createElement('button');info.type='button';info.textContent='Fiche';info.disabled=true;info.hidden=!onInfo;
  tools.append(splitLabel,amount,info);dock.append(status,tools);panel.append(rosters,dock);body.replaceChildren(panel);
  let selection=null,pending=false;const buttons=[];
  const select=record=>{
-  selection=record;amount.disabled=!split.checked||!record||record.unit.count<2;amount.max=String(record?record.unit.count-1:1);amount.value=String(record?Math.max(1,Math.floor(record.unit.count/2)):1);info.disabled=!record||!onInfo;
+  selection=record;split.disabled=!record||record.unit.count<2;if(split.disabled)split.checked=false;amount.disabled=!split.checked||!record||record.unit.count<2;amount.max=String(record?record.unit.count-1:1);amount.value=String(record?Math.max(1,Math.floor(record.unit.count/2)):1);info.disabled=!record||!onInfo;
   status.textContent=record?`${record.unit.name} × ${record.unit.count} · Choisis la destination.`:'Choisis une troupe, puis sa destination.';
   for(const item of buttons){const active=!!record&&item.army===record.army&&item.slot===record.slot;item.button.classList.toggle('selected',active);item.button.setAttribute('aria-pressed',String(active));}
  };
