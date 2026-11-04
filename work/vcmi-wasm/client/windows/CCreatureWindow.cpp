@@ -109,7 +109,13 @@ private:
 };
 
 const CCreature * CStackWindow::getMobileCreature() const { return info->creature; }
-const CStackInstance * CStackWindow::getMobileStack() const { return info->stackNode; }
+const CStackInstance * CStackWindow::getMobileStack() const
+{
+	// Catalogue previews own a synthetic stack. It must never be treated as a
+	// live army stack: refreshing the window would leave the replacement
+	// pointing at the synthetic stack destroyed with the original window.
+	return fakeNode ? nullptr : info->stackNode;
+}
 unsigned CStackWindow::getMobileCount() const { return info->creatureCount; }
 
 CCommanderSkillIcon::CCommanderSkillIcon(std::shared_ptr<CIntObject> object_, bool isMasterAbility_, std::function<void()> callback)
