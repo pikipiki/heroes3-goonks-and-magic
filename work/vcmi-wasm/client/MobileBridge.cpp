@@ -294,6 +294,9 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  // A dedicated cancel operation cannot also accept a dialog or close the town
  // below it. Ignore delayed taps once the taverne is no longer on top.
  if(action==40){if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>())tavern->close();lastPublished=0;return;}
+ // Closing a presentation only needs the window manager. It must also work
+ // while player callbacks are temporarily unavailable during a transition.
+ if(action==43){if(auto object=ENGINE->windows().topWindow<CWindowObject>())if(dynamic_cast<CStackWindow*>(object.get())||dynamic_cast<CFortScreen*>(object.get()))object->close();lastPublished=0;return;}
  if(action==28){
   const bool mute=a!=0;const auto sound=ENGINE->sound().getVolume(),music=ENGINE->music().getVolume();
   if(mute&&!audioMuted){previousSoundVolume=sound;previousMusicVolume=music;}
@@ -368,7 +371,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   lastPublished=0;return;
  }
  if(action==42&&(ENGINE->windows().topWindow<CFortScreen>()||ENGINE->windows().topWindow<CRecruitmentWindow>())){if(a>=0&&a<int(LIBRARY->creh->objects.size()))ENGINE->windows().createAndPushWindow<CStackWindow>(CreatureID(a).toCreature(),false);lastPublished=0;return;}
- if(action==43){if(auto object=ENGINE->windows().topWindow<CWindowObject>())if(dynamic_cast<CStackWindow*>(object.get())||dynamic_cast<CFortScreen*>(object.get()))object->close();lastPublished=0;return;}
+
  if(action==2&&ENGINE->windows().topWindow<AdventureMapInterface>()&&hero&&p->localState->hasPath(hero)&&p->makingTurn)shortcut(EShortcut::ADVENTURE_MOVE_HERO);
  if(action==3&&ENGINE->windows().topWindow<AdventureMapInterface>()&&p->makingTurn)p->cb->endTurn();
  if(action==4&&a>=0&&a<int(p->localState->getWanderingHeroes().size())&&ENGINE->windows().topWindow<AdventureMapInterface>()){const auto h=p->localState->getWanderingHero(a);p->localState->setSelection(h);adventureInt->centerOnObject(h);}

@@ -83,7 +83,7 @@ function mount(){
     next.forEach((button,i)=>{const old=current[i];old.disabled=button.disabled;old.className=button.className;if(old._sourceMarkup!==button.innerHTML){old._sourceMarkup=button.innerHTML;old.innerHTML=button.innerHTML;}});
    }else nav.replaceChildren(...next);
    navHTML=html;
-  }feedback.paint();
+  }const presentationBack=nav.querySelector('[data-ui=presentation-back]');if(presentationBack&&!presentationBack.dataset.directPress)bindPress(presentationBack,()=>command(43));feedback.paint();
  }
  function update(next){
   if(feedback.starting&&next.mode==='menu')return;feedback.observe(next);launch.observe(next);

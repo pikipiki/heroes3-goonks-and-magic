@@ -1,0 +1,56 @@
+{
+  "version": "0.4.33",
+  "date": "2026-11-04",
+  "changes": [
+    "X and Back use direct paired-touch handlers rather than shared menu dispatch.",
+    "Native presentation closing is handled before player callback readiness checks.",
+    "Upgrade choices and dwelling variants use two columns in portrait.",
+    "Landscape creature detail uses full-width upgrade rows and a bottom Back control.",
+    "A single upgrade spans the row."
+  ],
+  "validation": {
+    "nativeBuild": "ninja -j32 html5 passed",
+    "unitTests": {
+      "passed": 293,
+      "skipped": 16,
+      "failed": 0
+    },
+    "browserTests": {
+      "chromium": "passed",
+      "webkit": "passed",
+      "viewports": [
+        [
+          430,
+          873
+        ],
+        [
+          932,
+          430
+        ],
+        [
+          568,
+          320
+        ]
+      ],
+      "checks": [
+        "two portrait columns",
+        "landscape full-width row",
+        "family variant layout",
+        "one close command per tap",
+        "keyboard close"
+      ]
+    },
+    "nativeGame": [
+      "two paid upgrades without automatic closure",
+      "X closes upgraded stack",
+      "Back closes upgraded stack",
+      "X closes catalogue detail to recruitment hall",
+      "Back closes catalogue detail to recruitment hall"
+    ],
+    "physicalIPhone": {
+      "connected": false,
+      "reportedFailureReproduced": false,
+      "retestRequested": true
+    }
+  }
+}
