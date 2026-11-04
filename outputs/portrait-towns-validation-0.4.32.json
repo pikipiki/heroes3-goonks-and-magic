@@ -1,0 +1,103 @@
+{
+  "version": "0.4.32",
+  "date": "2026-11-04",
+  "changes": [
+    "Creature detail remains open after upgrades; native animation and available upgrades refresh after server confirmation.",
+    "Nine original factions receive generated vertical terrain backgrounds and separate original/TUM building sprites.",
+    "Only built highest-stage buildings are rendered; native building clicks and classic landscape views remain.",
+    "Image references are bounded to the active town faction."
+  ],
+  "validation": {
+    "nativeBuild": "ninja -j32 html5 passed",
+    "unitTests": {
+      "passed": 293,
+      "skipped": 16,
+      "failed": 0
+    },
+    "consecutivePaidUpgrades": {
+      "chain": [
+        "Pikeman",
+        "Halberdier",
+        "Royal Halberdier"
+      ],
+      "count": 3,
+      "bothPaymentsExact": true,
+      "windowStayedOpen": true,
+      "animationRefreshed": true
+    },
+    "nativeTowns": [
+      {
+        "faction": "castle",
+        "initialBuildings": 4,
+        "completeBuildings": 18,
+        "nativeDwellingClick": true,
+        "portraitLandscapePortrait": true
+      },
+      {
+        "faction": "rampart",
+        "initialBuildings": 5,
+        "completeBuildings": 17,
+        "nativeDwellingClick": true,
+        "portraitLandscapePortrait": true
+      },
+      {
+        "faction": "tower",
+        "initialBuildings": 5,
+        "completeBuildings": 19,
+        "nativeDwellingClick": true,
+        "portraitLandscapePortrait": true
+      },
+      {
+        "faction": "inferno",
+        "initialBuildings": 5,
+        "completeBuildings": 18,
+        "nativeDwellingClick": true,
+        "portraitLandscapePortrait": true
+      },
+      {
+        "faction": "necropolis",
+        "initialBuildings": 4,
+        "completeBuildings": 19,
+        "nativeDwellingClick": true,
+        "portraitLandscapePortrait": true
+      },
+      {
+        "faction": "dungeon",
+        "initialBuildings": 4,
+        "completeBuildings": 19,
+        "nativeDwellingClick": true,
+        "portraitLandscapePortrait": true
+      },
+      {
+        "faction": "stronghold",
+        "initialBuildings": 4,
+        "completeBuildings": 19,
+        "nativeDwellingClick": true,
+        "portraitLandscapePortrait": true
+      },
+      {
+        "faction": "fortress",
+        "initialBuildings": 4,
+        "completeBuildings": 19,
+        "nativeDwellingClick": true,
+        "portraitLandscapePortrait": true
+      },
+      {
+        "faction": "conflux",
+        "initialBuildings": 5,
+        "completeBuildings": 18,
+        "nativeDwellingClick": true,
+        "portraitLandscapePortrait": true
+      }
+    ],
+    "webkitTowns": "all nine factions passed portrait rendering, native command dispatch and rotation",
+    "visualQA": "Nine native town screenshots reviewed; original masks applied and tiny native sprites have capped enlargement.",
+    "physicalIPhone": "not retested for this release"
+  },
+  "generation": {
+    "tool": "built-in image_gen",
+    "prompts": "outputs/town-background-prompts.json",
+    "backgrounds": "web/town/<faction>/portrait-v1.webp",
+    "goonk": "Existing portrait scene preserved"
+  }
+}
