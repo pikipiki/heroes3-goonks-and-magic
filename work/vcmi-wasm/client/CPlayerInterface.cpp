@@ -315,6 +315,11 @@ void CPlayerInterface::yourTurn(QueryID queryID)
 			humanPlayersCount++;
 
 	bool hotseatWait = humanPlayersCount > 1;
+#ifdef VCMI_EMSCRIPTEN
+	// Remote web players have their own screen. A blocking handover dialog
+	// stalls the turn acknowledgement and leaves the other client waiting.
+	hotseatWait = hotseatWait && !GAME->server().inLobbyRoom();
+#endif
 
 		GAME->setInterfaceInstance(this);
 

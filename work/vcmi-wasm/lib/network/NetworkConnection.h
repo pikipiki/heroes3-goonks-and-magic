@@ -21,6 +21,9 @@ class NetworkConnection final : public INetworkConnection, public std::enable_sh
 	std::list<std::vector<std::byte>> dataToSend;
 	std::shared_ptr<NetworkSocket> socket;
 	std::shared_ptr<NetworkTimer> timer;
+#ifdef VCMI_EMSCRIPTEN
+	std::chrono::steady_clock::time_point nextHeartbeat;
+#endif
 	std::mutex writeMutex;
 
 	NetworkBuffer readBuffer;

@@ -12,6 +12,8 @@
 
 VCMI_LIB_NAMESPACE_BEGIN
 
+static constexpr auto heartbeatInterval = std::chrono::seconds(10);
+
 NetworkConnection::NetworkConnection(INetworkConnectionListener & listener, const std::shared_ptr<NetworkSocket> & socket, NetworkContext & context)
 	: socket(socket)
 	, timer(std::make_shared<NetworkTimer>(context))
@@ -45,6 +47,9 @@ NetworkConnection::NetworkConnection(INetworkConnectionListener & listener, cons
 
 void NetworkConnection::start()
 {
+#ifdef VCMI_EMSCRIPTEN
+	nextHeartbeat = std::chrono::steady_clock::now() + heartbeatInterval;
+#endif
 	heartbeat();
 	startReceiving();
 }
@@ -59,9 +64,13 @@ void NetworkConnection::startReceiving()
 
 void NetworkConnection::heartbeat()
 {
-	constexpr auto heartbeatInterval = std::chrono::seconds(10);
-
+#ifdef VCMI_EMSCRIPTEN
+	// Browser WebSocket input can be queued before the Asio reactor wakes.
+	// Poll the emulated socket regularly without sending extra heartbeats.
+	timer->expires_after(std::chrono::milliseconds(50));
+#else
 	timer->expires_after(heartbeatInterval);
+#endif
 	timer->async_wait( [self = weak_from_this()](const auto & ec)
 	{
 		if (ec)
@@ -71,7 +80,16 @@ void NetworkConnection::heartbeat()
 		if (!locked)
 			return;
 
+#ifdef VCMI_EMSCRIPTEN
+		const auto now = std::chrono::steady_clock::now();
+		if (now >= locked->nextHeartbeat)
+		{
+			locked->sendPacket({});
+			locked->nextHeartbeat = now + heartbeatInterval;
+		}
+#else
 		locked->sendPacket({});
+#endif
 		locked->heartbeat();
 	});
 }

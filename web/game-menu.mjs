@@ -20,6 +20,9 @@ function mountGameMenu(){
   const dialog=document.createElement('dialog');dialog.id='game-menu';dialog.setAttribute('aria-labelledby','game-menu-title');
   dialog.innerHTML='<header><button data-menu="back" hidden>← Back</button><h2 id="game-menu-title">Heroes Goonk</h2><button data-menu="close" aria-label="Fermer le menu">✕</button></header><p class="autosave-status" aria-live="polite">Sauvegarde automatique : toutes les 10 secondes</p><nav aria-label="Rubriques du menu"><button data-menu="settings">Réglages</button><button data-menu="cheats">Codes de triche</button><button data-menu="storage">Stockage du jeu</button><button data-menu="new-game" class="new-game-in-session">New game</button></nav><div class="game-menu-body"></div><p class="game-menu-status" role="status"></p>';
   document.body.append(dialog);
+  const onlineTurn=document.createElement('p');
+  onlineTurn.className='desktop-online-turn';onlineTurn.hidden=true;onlineTurn.setAttribute('role','status');
+  document.body.append(onlineTurn);
   const content=dialog.querySelector('.game-menu-body'),status=dialog.querySelector('.game-menu-status');
   const command=(action,value=0,preview=0)=>window.Module?._vcmiMobileCommand?.(action,value,preview,0,0,0);
   const turnNotifications=createTurnNotifications({language:getLanguage});
@@ -72,6 +75,12 @@ function mountGameMenu(){
   const timer=setInterval(()=>{enable();if(initialAudioApplied)clearInterval(timer);},250);
   window.addEventListener('goonk-state',event=>{
     state=event.detail;movement.observe(state.mapSettings);
+    const waiting=!isMobileLayout()&&state.onlineGame&&state.mode==='map'&&!state.turn;
+    onlineTurn.hidden=!waiting;
+    if(waiting){
+      const text=getLanguage()==='fr'?'Tour de l’autre joueur…':'Waiting for the other player’s turn…';
+      if(onlineTurn.textContent!==text)onlineTurn.textContent=text;
+    }else if(onlineTurn.textContent)onlineTurn.textContent='';
     void turnNotifications.update(state);
     if(newGamePending&&['connecting','lobby','menu'].includes(state.mode)){newGamePending=false;dialog.close();}
     if(!initialAudioApplied){initialAudioApplied=true;if(muted){pendingAudio=true;command(28,1);}}
