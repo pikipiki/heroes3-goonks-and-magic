@@ -60,7 +60,7 @@ for(const file of ['index.html','game.html','storage.html']){
 const shellFiles=['index.html','game.html','storage.html','asset-manifest.json','engine-build.json',
  'hosting-bootstrap.mjs','opfs-worker.js','mini-lz4.js','dialogs.js','dosvcmi.png',...Object.values(runtimeNames),
  ...fs.readdirSync(path.join(dist,'web'),{recursive:true,withFileTypes:true})
-   .filter(entry=>entry.isFile()&&entry.name!=='coi-serviceworker.js')
+   .filter(entry=>entry.isFile()&&entry.name!=='coi-serviceworker.js'&&!entry.name.endsWith('.html'))
    .map(entry=>path.relative(dist,path.join(entry.parentPath,entry.name)).split(path.sep).map(encodeURIComponent).join('/'))];
 const shellHashes=Object.fromEntries(shellFiles.sort().map(file=>[file,crypto.createHash('sha256').update(fs.readFileSync(path.join(dist,decodeURIComponent(file)))).digest('base64')]));
 const worker=fs.readFileSync('web/coi-serviceworker.js','utf8');
