@@ -1787,6 +1787,115 @@
       "wince": "PIKEWNCE.wav",
       "shoot": "goonk/fire.wav"
     },
-    "shots": 16
+    "shots": 16,
+    "upgrades": [
+      "maillemailleSolar"
+    ]
+  },
+  "maillemailleSolar": {
+    "name": {
+      "singular": "Big Maille Maille, Living Sun",
+      "plural": "Big Maille Maille, Living Sun"
+    },
+    "description": "Ranged solar flames, seven casts of mastered Inferno, and immunity to fire spells.",
+    "faction": "goonk",
+    "level": 7,
+    "attack": 32,
+    "defense": 30,
+    "hitPoints": 460,
+    "speed": 11,
+    "damage": {
+      "min": 52,
+      "max": 73
+    },
+    "growth": 2,
+    "horde": 2,
+    "cost": {
+      "gold": 6800,
+      "crystal": 2
+    },
+    "fightValue": 17000,
+    "aiValue": 17000,
+    "advMapAmount": {
+      "min": 3,
+      "max": 8
+    },
+    "abilities": {
+      "shooter": {
+        "type": "SHOOTER"
+      },
+      "fireMagic": {
+        "type": "SPELLCASTER",
+        "subtype": "spell.inferno",
+        "val": 3
+      },
+      "casts": {
+        "type": "CASTS",
+        "val": 7
+      },
+      "power": {
+        "type": "CREATURE_SPELL_POWER",
+        "val": 100
+      },
+      "fireproof": {
+        "type": "SPELL_SCHOOL_IMMUNITY",
+        "subtype": "spellSchool.fire"
+      }
+    },
+    "graphics": {
+      "animation": "goonk/fire-solar",
+      "map": "goonk/fire-solar-map",
+      "iconSmall": "goonk/fire-solar-small.png",
+      "iconLarge": "goonk/fire-solar-large.png",
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "missile": {
+        "frameAngles": [
+          90,
+          45,
+          0,
+          -45,
+          -90
+        ],
+        "offset": {
+          "upperX": 20,
+          "upperY": -45,
+          "middleX": 25,
+          "middleY": -35,
+          "lowerX": 20,
+          "lowerY": -25
+        },
+        "attackClimaxFrame": 9,
+        "ray": [
+          {
+            "start": [
+              255,
+              135,
+              30,
+              255
+            ],
+            "end": [
+              255,
+              30,
+              20,
+              190
+            ]
+          }
+        ]
+      }
+    },
+    "sound": {
+      "attack": "goonk/fire.wav",
+      "defend": "PIKEDFND.wav",
+      "killed": "PIKEKILL.wav",
+      "move": "PIKEMOVE.wav",
+      "wince": "PIKEWNCE.wav",
+      "shoot": "goonk/fire.wav"
+    },
+    "shots": 20
   }
 }

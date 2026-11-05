@@ -670,6 +670,17 @@
           "border": "goonk/outline-dwellingUpLvl7.png",
           "area": "goonk/hit-dwellingUpLvl7.png",
           "campaignBonus": "goonk/card-dwellingUpLvl7.png"
+        },
+        "dwellingUp3Lvl7": {
+          "animation": "goonk/structure-dwellingUpLvl7",
+          "x": 295,
+          "y": 39,
+          "z": 174,
+          "border": "goonk/outline-dwellingUpLvl7.png",
+          "area": "goonk/hit-dwellingUpLvl7.png",
+          "campaignBonus": "goonk/card-dwellingUpLvl7.png",
+          "builds": "dwellingUp3Lvl7",
+          "hidden": false
         }
       },
       "musicTheme": [
@@ -768,7 +779,8 @@
           [
             "dwellingLvl7",
             "dwellingUpLvl7",
-            "dwellingUp2Lvl7"
+            "dwellingUp2Lvl7",
+            "dwellingUp3Lvl7"
           ]
         ]
       ],
@@ -806,7 +818,8 @@
         [
           "maillemaille",
           "maillemailleRoyal",
-          "maillemailleExalted"
+          "maillemailleExalted",
+          "maillemailleSolar"
         ]
       ],
       "horde": [
@@ -1427,6 +1440,21 @@
           "requires": [
             "castle"
           ]
+        },
+        "dwellingUp3Lvl7": {
+          "id": 57,
+          "upgrades": "dwellingUp2Lvl7",
+          "requires": [
+            "dwellingUp2Lvl7"
+          ],
+          "name": "Solar Crucible",
+          "description": "Allows recruitment and paid upgrades to Big Maille Maille, Living Sun.",
+          "cost": {
+            "gold": 24000,
+            "wood": 15,
+            "ore": 15,
+            "crystal": 12
+          }
         }
       },
       "siege": {

@@ -22,7 +22,7 @@ export async function buildCreatureIcons(imageDir, keys, grades=['','-evo']) {
 if (process.argv[1]&&path.resolve(process.argv[1])===path.resolve(new URL(import.meta.url).pathname)) {
  const imageDir=path.resolve(process.argv[2]||'../../mod/goonk/Content/Sprites/goonk');
  const creatures=JSON.parse(fs.readFileSync(path.resolve(imageDir,'../../config/creatures.json')));
- const keys=[...new Set(Object.values(creatures).map(c=>path.basename(c.graphics.animation).replace(/-(evo|exalted)$/,'')))];
+ const keys=[...new Set(Object.values(creatures).filter(c=>c.graphics.animation!=='goonk/fire-solar').map(c=>path.basename(c.graphics.animation).replace(/-(evo|exalted)$/,'')))];
  const grades=Object.values(creatures).some(c=>c.graphics.animation.endsWith('-exalted'))?['','-evo','-exalted']:['','-evo'];
  await buildCreatureIcons(imageDir,keys,grades);
  console.log('Transparent native creature icons rebuilt:',keys.length*grades.length*2);

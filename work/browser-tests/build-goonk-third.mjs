@@ -19,7 +19,8 @@ for(const[row,[base,key,name,french]]of families.entries()){
  if(base==='maillemaille'){unit.abilities.casts.val=6;unit.abilities.fireMagic.val=3;}
  const stem=key+'-exalted';unit.graphics.animation='goonk/'+stem;unit.graphics.map='goonk/'+stem+'-map';unit.graphics.iconSmall='goonk/'+stem+'-small.png';unit.graphics.iconLarge='goonk/'+stem+'-large.png';creatures[id]=unit;
  fr['creatures.goonk.'+id+'.name.singular']=french;fr['creatures.goonk.'+id+'.name.plural']=french;fr['creatures.goonk.'+id+'.description']=descriptions[row][1];
- town.creatures[row]=[base,base+'Royal',id];const bkey='dwellingUp2Lvl'+(row+1),prior='dwellingUpLvl'+(row+1),b=structuredClone(town.buildings[prior]);
+ town.creatures[row]=[base,base+'Royal',id,...town.creatures[row].slice(3)];
+ if(town.creatures[row][3])unit.upgrades=[town.creatures[row][3]];const bkey='dwellingUp2Lvl'+(row+1),prior='dwellingUpLvl'+(row+1),b=structuredClone(town.buildings[prior]);
  b.id=44+row;b.upgrades=prior;b.requires=['castle'];b.name=name+' Sanctuary';b.description='Allows recruitment and paid upgrades to '+name+'.';b.cost={gold:Math.round(unit.cost.gold*4),wood:6+row,ore:6+row};if(row>=4)b.cost.crystal=3+row;
  town.buildings[bkey]=b;town.structures[bkey]=structuredClone(town.structures[prior]);
  for(const line of town.hallSlots)for(const slot of line)if(slot.includes(prior)&&!slot.includes(bkey))slot.push(bkey);
@@ -27,7 +28,7 @@ for(const[row,[base,key,name,french]]of families.entries()){
  const config=path.join(imageDir,stem+'.json');if(!fs.existsSync(config))fs.copyFileSync(path.join(imageDir,key+'-evo.json'),config);
 }
 const cards=read('Content/Sprites/goonk/building-cards-v2.json');for(let row=0;row<7;row++)cards.sequences[0].frames[44+row]=cards.sequences[0].frames[37+row];write('Content/Sprites/goonk/building-cards-v2.json',cards);
-write('Content/config/creatures.json',creatures);write('Content/config/faction.json',faction);write('Content/translation/french.json',fr);const manifest=read('mod.json');manifest.version='0.4.1';manifest.description='Seven plush creature families, each with three forms, native recruitment and paid upgrades.';write('mod.json',manifest);
+write('Content/config/creatures.json',creatures);write('Content/config/faction.json',faction);write('Content/translation/french.json',fr);const manifest=read('mod.json');if(!creatures.maillemailleSolar){manifest.version='0.4.1';manifest.description='Seven plush creature families, each with three forms, native recruitment and paid upgrades.';}write('mod.json',manifest);
 if(process.env.GOONK_SKIP_SPRITES!=='1')await buildGoonkPoses({imageDir,artDir:path.join(root,'outputs/goonk-art'),grades:['exalted']});
-write('anatomy.json',{version:2,maxArms:2,maxFeet:2,scope:'All 21 forms, including original base and royal forms',states:['walk','idle','fidget','attack','shoot','hit','defend','death','map','small icon','large icon'],grades:['base','royal','exalted'],families:families.map(([id,key])=>({id,key})),notes:'One isolated full-body sprite per frame; no crossfaded bodies. Projectile-only storyboard cells are replaced with complete follow-through poses.'});
+if(!creatures.maillemailleSolar)write('anatomy.json',{version:2,maxArms:2,maxFeet:2,scope:'All 21 forms, including original base and royal forms',states:['walk','idle','fidget','attack','shoot','hit','defend','death','map','small icon','large icon'],grades:['base','royal','exalted'],families:families.map(([id,key])=>({id,key})),notes:'One isolated full-body sprite per frame; no crossfaded bodies. Projectile-only storyboard cells are replaced with complete follow-through poses.'});
 console.log('Built seven complete third-upgrade chains and three grades of isolated Goonk poses');

@@ -30,7 +30,8 @@ export function applyCreatureTiming(creature,key,royal=false){const {movement,sh
 export function rebuildMotionProfiles(imageDir){
  const file=path.resolve(imageDir,'../../config/creatures.json'),creatures=JSON.parse(fs.readFileSync(file));
  for(const creature of Object.values(creatures)){
-  const stem=path.basename(creature.graphics.animation),royal=/-evo$|-exalted$/.test(stem),key=stem.replace(/-(evo|exalted)$/,'');const config=path.join(imageDir,stem+'.json');
+  const stem=path.basename(creature.graphics.animation);if(stem==='fire-solar')continue;
+  const royal=/-evo$|-exalted$/.test(stem),key=stem.replace(/-(evo|exalted)$/,'');const config=path.join(imageDir,stem+'.json');
   fs.writeFileSync(config,JSON.stringify(applyMotionProfile(JSON.parse(fs.readFileSync(config)),stem,key,royal),null,2)+'\n');applyCreatureTiming(creature,key,royal);creature.graphics.map='goonk/'+stem+'-map';
  }
  fs.writeFileSync(file,JSON.stringify(creatures,null,2)+'\n');return creatures;

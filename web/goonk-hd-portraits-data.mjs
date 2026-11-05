@@ -146,5 +146,12 @@ export default {
     "y": 535,
     "w": 384,
     "h": 417
+  },
+  "maillemaillesolar": {
+    "file": "h3-theme/goonks/solar-v1.webp",
+    "x": 0,
+    "y": 0,
+    "w": 384,
+    "h": 384
   }
 };

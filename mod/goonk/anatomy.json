@@ -2,7 +2,7 @@
   "version": 2,
   "maxArms": 2,
   "maxFeet": 2,
-  "scope": "All 21 forms, including original base and royal forms",
+  "scope": "All 22 forms, including the tier-seven solar form",
   "states": [
     "walk",
     "idle",
@@ -19,7 +19,8 @@
   "grades": [
     "base",
     "royal",
-    "exalted"
+    "exalted",
+    "solar"
   ],
   "families": [
     {
