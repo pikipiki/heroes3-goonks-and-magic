@@ -1,0 +1,27 @@
+#mobile-app:is([data-mode=campaign-scenario],[data-mode=campaign-intro],[data-mode=campaign-loading]){grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
+#mobile-app:is([data-mode=campaign-scenario],[data-mode=campaign-intro],[data-mode=campaign-loading]) .mobile-play{grid-column:1/-1;grid-row:2}
+#mobile-app:is([data-mode=campaign-scenario],[data-mode=campaign-intro],[data-mode=campaign-loading]) :is(.mobile-nav,.scene-tools,.scene-hint,#mobile-scene){display:none!important}
+#mobile-app .campaign-setup{position:absolute;inset:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;color:#ffebbb;background:#291d13 url('./h3-theme/stone.png');overflow:hidden;z-index:4}
+#mobile-app .campaign-setup[hidden]{display:none!important}
+#mobile-app .campaign-setup>header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;border-bottom:2px ridge #ba9855;background:#301c11}
+#mobile-app .campaign-setup>header small{font-size:12px;color:#d6bc84}
+#mobile-app .campaign-setup h1{font-size:22px;line-height:1.2;margin:3px 0;color:#ffe5a2}
+#mobile-app .campaign-setup button{min-width:48px;min-height:48px}
+#mobile-app .campaign-body{display:grid;grid-template-rows:minmax(140px,.8fr) minmax(0,1.2fr);min-height:0;gap:0}
+#mobile-app .campaign-regions{min-height:0;border-bottom:2px ridge #ad8e50;background:#19130c}
+#mobile-app .campaign-map{display:block;width:100%;height:100%;min-height:0}
+#mobile-app .campaign-scroll{overflow:auto;min-height:0;overscroll-behavior:contain;touch-action:pan-y;padding:12px;display:flex;flex-direction:column;gap:12px}
+#mobile-app .campaign-scroll label{display:flex;flex-direction:column;gap:6px;font-size:14px}
+#mobile-app .campaign-scroll select{width:100%;min-height:48px;font:16px Georgia,serif;color:#ffedbc;background:#1c140c;border:2px ridge #b89a56;padding:8px}
+#mobile-app .campaign-scroll h2{font-size:18px;line-height:1.2;margin:0;color:#ffe3a0}
+#mobile-app .campaign-scroll p{margin:0;font-size:14px;line-height:1.4;overflow-wrap:anywhere}
+#mobile-app .campaign-bonuses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#mobile-app .campaign-bonuses button{display:flex;flex-direction:column;align-items:center;gap:5px;padding:5px;min-width:0;font-size:12px;line-height:1.3}
+#mobile-app .campaign-bonuses canvas{width:58px;height:64px;max-width:100%;object-fit:contain}
+#mobile-app .campaign-setup>footer{display:flex;flex-direction:column;gap:6px;padding:8px 12px max(8px,env(safe-area-inset-bottom));border-top:3px ridge #c4a460;background:#24180e}
+#mobile-app .campaign-setup>footer p{margin:0;font-size:13px;line-height:1.3}
+#mobile-app .campaign-setup>footer .primary{min-height:56px;border:3px ridge #e7c47a;font-weight:700}
+#mobile-app .campaign-interlude{min-height:0;overflow:auto;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:16px;padding:12px}
+#mobile-app .campaign-video{display:block;width:100%;height:65%;min-height:120px}
+#mobile-app .campaign-interlude p{font-size:15px;line-height:1.4}
+@media(orientation:landscape){#mobile-app .campaign-body{grid-template-columns:minmax(0,1fr) minmax(260px,1.4fr);grid-template-rows:minmax(0,1fr)}#mobile-app .campaign-regions{border-bottom:0;border-right:2px ridge #ad8e50}#mobile-app .campaign-setup>header{padding:5px 10px}#mobile-app .campaign-setup h1{font-size:18px}#mobile-app .campaign-setup>footer{flex-direction:row;align-items:center;justify-content:space-between}#mobile-app .campaign-setup>footer .primary{width:45%}#mobile-app .campaign-setup>footer p{max-width:50%}}

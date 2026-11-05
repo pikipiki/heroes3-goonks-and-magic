@@ -93,6 +93,7 @@ public:
 	std::shared_ptr<CLabel> labelChooseBonus;
 	std::shared_ptr<CToggleGroup> groupBonuses;
 	std::vector<std::shared_ptr<CLabel>> groupBonusesLabels;
+	std::vector<std::string> mobileBonusDescriptions;
 	std::shared_ptr<CLabel> labelDifficulty;
 	std::array<std::shared_ptr<CAnimImage>, 5> difficultyIcons;
 	std::array<std::shared_ptr<LRClickableArea>, 5> difficultyIconAreas;

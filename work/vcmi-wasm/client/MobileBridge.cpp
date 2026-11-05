@@ -11,6 +11,9 @@
 #include "windows/CSpellWindow.h"
 #include "lobby/RandomMapTab.h"
 #include "lobby/CBonusSelection.h"
+#include "mainmenu/CPrologEpilogVideo.h"
+#include "../lib/campaign/CampaignState.h"
+#include "widgets/TextControls.h"
 #include "../lib/rmg/CMapGenOptions.h"
 #include "../lib/campaign/CampaignHandler.h"
 #include "../lib/entities/artifact/CArtifact.h"
@@ -179,6 +182,9 @@ void publishMobileState(){
  }
  if(ENGINE->windows().topWindow<CLobbyScreen>())n["mode"].String()=GAME->server().screenType==ESelectionScreen::loadGame?"load":GAME->server().screenType==ESelectionScreen::campaignList?"campaign":"lobby";
  else if(ENGINE->windows().topWindow<CSimpleJoinScreen>())n["mode"].String()="connecting";
+ else if(ENGINE->windows().topWindow<CBonusSelection>())n["mode"].String()="campaign-scenario";
+ else if((ENGINE->windows().topWindow<CPrologEpilogVideo>()||ENGINE->windows().topWindow<VideoWindow>())&&GAME->server().si&&GAME->server().si->campState)n["mode"].String()="campaign-intro";
+ else if(ENGINE->windows().topWindow<CLoadingScreen>()&&GAME->server().si&&GAME->server().si->campState)n["mode"].String()="campaign-loading";
  else if(ENGINE->windows().topWindow<CInfoWindow>()){n["mode"].String()="dialog";n["dialogTitle"].String()="Game message";}
  else if(spellWindow){n["mode"].String()="spellbook";n["spellbook"]=spellWindow->mobileSnapshot();}
  else if(recruitWindow)n["mode"].String()="recruit";
@@ -236,6 +242,14 @@ void publishMobileState(){
   }
  }
  if(n["mode"].String()=="lobby"&&GAME->server().mi&&GAME->server().si){auto & server=GAME->server();for(const auto & player:server.si->playerInfos){JsonNode row;row["color"].Integer()=player.first.getNum();row["name"].String()=player.second.name;row["faction"].Integer()=player.second.castle.getNum();for(auto id:server.getPlayerInfo(player.first).allowedFactions){auto faction=id.toFaction();JsonNode item;item["id"].Integer()=id.getNum();item["name"].String()=faction->getNameTranslated();row["factions"].Vector().push_back(item);}n["players"].Vector().push_back(row);}}
+ if(auto selection=ENGINE->windows().topWindow<CBonusSelection>()){
+  const auto campaign=selection->getCampaign();auto & data=n["campaignScenario"];
+  data["name"].String()=campaign->getNameTranslated();data["description"].String()=campaign->getDescriptionTranslated();data["selected"].Integer()=GAME->server().campaignMap.getNum();data["bonus"].Integer()=GAME->server().campaignBonus;data["difficulty"].Integer()=GAME->server().si->difficulty;data["chooseDifficulty"].Bool()=campaign->playerSelectedDifficulty();
+  data["scenarioName"].String()=GAME->server().mi?GAME->server().mi->getNameTranslated():"";data["scenarioDescription"].String()=GAME->server().mi?GAME->server().mi->getDescriptionTranslated():"";
+  data["canStart"].Bool()=selection->buttonStart->isActive()&&!selection->buttonStart->isBlocked();data["mapRect"]=rect(Rect(selection->pos.x,selection->pos.y,456,600));data["scenarios"].Vector();data["bonuses"].Vector();
+  for(const auto id:campaign->allScenarios()){JsonNode item;item["id"].Integer()=id.getNum();item["name"].String()=campaign->scenario(id).scenarioName.toString();item["available"].Bool()=campaign->isAvailable(id);item["completed"].Bool()=campaign->isConquered(id);data["scenarios"].Vector().push_back(item);}
+  for(const auto & entry:selection->groupBonuses->buttons){JsonNode item;item["id"].Integer()=entry.first;if(entry.first>=0&&entry.first<int(selection->mobileBonusDescriptions.size()))item["description"].String()=selection->mobileBonusDescriptions[entry.first];if(auto button=std::dynamic_pointer_cast<CToggleButton>(entry.second))item["rect"]=rect(button->pos);data["bonuses"].Vector().push_back(item);}
+ }
  if(n["mode"].String()=="campaign"){
  n["lobbyReady"].Bool()=GAME->server().getState()==EClientState::LOBBY;
  if(mobileCampaigns.empty()){for(const auto & file:CResourceHandler::get()->getFilteredFiles([](const ResourcePath & p){return p.getType()==EResType::CAMPAIGN;}))try{CMapInfo info;info.fileURI=file.getOriginalName();info.campaign=CampaignHandler::getHeader(info.fileURI);mobileCampaigns.emplace_back(file.getOriginalName(),info.getNameForList());}catch(const std::exception &){} }
@@ -367,6 +381,16 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  }
  if(action==57&&GAME&&GAME->server().getState()==EClientState::LOBBY){auto & server=GAME->server();PlayerColor color(a);if(server.si->playerInfos.count(color)&&(b==-1||server.getPlayerInfo(color).allowedFactions.count(FactionID(b))))server.setPlayerOption(LobbyChangePlayerOption::TOWN_ID,b,color);lastPublished=0;return;}
  if((action==20||action==23||action==47)&&GAME&&(ENGINE->windows().topWindow<CSimpleJoinScreen>()||ENGINE->windows().topWindow<CLobbyScreen>()||ENGINE->windows().topWindow<CBonusSelection>()||ENGINE->windows().topWindow<CInfoWindow>()||GAME->server().getState()==EClientState::CONNECTING))return;
+ if(action>=65&&action<=69){
+  if(action==68){if(auto video=ENGINE->windows().topWindow<CPrologEpilogVideo>())video->clickPressed(ENGINE->getCursorPosition());else if(auto video=ENGINE->windows().topWindow<VideoWindow>())video->clickPressed(ENGINE->getCursorPosition());lastPublished=0;return;}
+  if(auto selection=ENGINE->windows().topWindow<CBonusSelection>()){
+   const auto campaign=selection->getCampaign();
+   if(action==65&&campaign->allScenarios().count(CampaignScenarioID(a))&&campaign->isAvailable(CampaignScenarioID(a)))GAME->server().setCampaignMap(CampaignScenarioID(a));
+   if(action==66&&selection->groupBonuses->buttons.count(a))GAME->server().setCampaignBonus(a);
+   if(action==67&&selection->buttonStart->isActive()&&!selection->buttonStart->isBlocked())selection->startMap();
+   if(action==69&&campaign->playerSelectedDifficulty()&&a>=0&&a<=4&&GAME->server().getState()!=EClientState::GAMEPLAY)GAME->server().setDifficulty(a);
+  }lastPublished=0;return;
+ }
  if(action==47){if(GAME&&!GAME->interface())CMainMenu::openLobby(ESelectionScreen::campaignList,true,{"Goonk"},ELoadMode::NONE,false);return;}
  if(action==52){if(auto lobby=ENGINE->windows().topWindow<CLobbyScreen>())if(GAME->server().screenType==ESelectionScreen::campaignList&&a>=0&&a<int(mobileCampaigns.size())){GAME->server().setCampaignState(CampaignHandler::getCampaign(mobileCampaigns[a].first));}return;}
  if(action==48){if(auto lobby=ENGINE->windows().topWindow<CLobbyScreen>())if(lobby->tabRand&&GAME->server().getState()==EClientState::LOBBY&&a>=2&&a<=8&&b>=1&&b<=a&&(c==36||c==72||c==108||c==144)){

@@ -156,6 +156,7 @@ CBonusSelection::CBonusSelection()
 
 void CBonusSelection::createBonusesIcons()
 {
+	mobileBonusDescriptions.clear();
 	OBJECT_CONSTRUCTION;
 	const CampaignScenario & scenario = getCampaign()->scenario(GAME->server().campaignMap);
 	const std::vector<CampaignBonus> & bonDescs = scenario.travelOptions.bonusesToChoose;
@@ -386,6 +387,7 @@ void CBonusSelection::createBonusesIcons()
 			 bonusType == CampaignBonusType::MONSTER ||
 			 (bonusType == CampaignBonusType::HERO && bonus.getValue<CampaignBonusStartingHero>().hero != HeroTypeID::CAMP_RANDOM.getNum()));
 		
+		mobileBonusDescriptions.push_back(desc.toString());
 		auto tooltip = useComponentPopup ? CButton::tooltip() : CButton::tooltip(desc.toString(), desc.toString());
 
 		auto bonusButton = std::make_shared<CToggleButton>(Point(475 + i * 68, 455), AnimationPath::builtin("campaignBonusSelection"), tooltip, nullptr, EShortcut::NONE, false, [this](){
