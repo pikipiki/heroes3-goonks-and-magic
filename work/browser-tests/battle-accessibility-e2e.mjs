@@ -9,7 +9,7 @@ try{for(const kind of ['chromium','webkit']){
  let browser;try{browser=await(kind==='chromium'?chromium.launch({headless:true,...(process.env.CHROME_PATH?{executablePath:process.env.CHROME_PATH}:{})}):webkit.launch({headless:true,...(process.env.WEBKIT_PATH?{executablePath:process.env.WEBKIT_PATH}:{})}));}catch(e){throw new Error(kind+': '+e.message);}
  const page=await browser.newPage({viewport:{width:390,height:844},hasTouch:true,deviceScaleFactor:3});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
- await page.route('**/touchfixture?mobile=1',r=>r.fulfill({contentType:'text/html',body:'<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/web/mobile.css"><link rel="stylesheet" href="/web/h3-theme.css"><canvas id="canvas" width="1600" height="1200"></canvas><script>window.calls=[];window.Module={_vcmiMobileEnable(){},_vcmiMobileCommand(...a){calls.push(["command",...a])},_vcmiMobilePointer(...a){calls.push(["pointer",...a])}};const ctx=document.querySelector("canvas").getContext("2d");ctx.fillStyle="#456734";ctx.fillRect(0,0,1600,1200);</script><script type="module" src="/web/mobile.mjs"></script>'}));
+ await page.route('**/touchfixture?mobile=1',r=>r.fulfill({contentType:'text/html',body:'<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/web/mobile.css"><link rel="stylesheet" href="/web/h3-theme.css"><link rel="stylesheet" href="/web/mobile-upgrade.css"><canvas id="canvas" width="1600" height="1200"></canvas><script>window.calls=[];window.Module={_vcmiMobileEnable(){},_vcmiMobileCommand(...a){calls.push(["command",...a])},_vcmiMobilePointer(...a){calls.push(["pointer",...a])}};const ctx=document.querySelector("canvas").getContext("2d");ctx.fillStyle="#456734";ctx.fillRect(0,0,1600,1200);</script><script type="module" src="/web/mobile.mjs"></script>'}));
  await page.goto(origin+'/touchfixture?mobile=1');await page.waitForSelector('#mobile-app');
  await page.evaluate(()=>{const cells=[];for(let r=0;r<11;r++)for(let c=1;c<16;c++)cells.push({hex:r*17+c,x:36+(r%2===0?22:0)+44*c,y:112+42*r,reachable:true});window.dispatchEvent(new CustomEvent('goonk-state',{detail:{mode:'battle',round:1,canAct:true,canRetreat:true,canAutoCombat:true,activeStack:1,activeUnit:{id:1,name:'Bobope',count:4},focus:{x:102,y:490},battleUnits:[{stackId:1,id:1,name:'Bobope',count:4,x:102,y:490,occupied:[154],enemy:false}],battleCells:cells}}));});
  await page.waitForTimeout(150);await page.locator('[data-ui=battle-view]').tap();await page.waitForTimeout(250);
@@ -46,6 +46,13 @@ try{for(const kind of ['chromium','webkit']){
   const all=ctx.getImageData(380,245,80,75).data;let gold=0;for(let i=0;i<all.length;i+=4)if(all[i]>200&&all[i+1]>160&&all[i+2]<180)gold++;
   return{changed,gold};
  });if(pixel.changed!==0||!pixel.gold)throw Error('Grid body occlusion failed '+JSON.stringify(pixel));
+ // A request sent just before a native transition must not need a second tap.
+ await update({mode:'battle',round:1,autoCombat:false,canAutoCombat:true,canAct:true});
+ const beforeRetry=await countAuto();await auto.tap();await update({canAutoCombat:false});
+ if(await auto.getAttribute('aria-busy')!=='true'||!await auto.isDisabled())throw Error('Native transition discarded the first autocombat press');
+ await page.waitForTimeout(600);if(await countAuto()!==beforeRetry+1)throw Error('Unavailable engine must not receive retries');
+ await update({canAutoCombat:true});await page.waitForFunction(n=>calls.filter(c=>c[0]==='command'&&c[1]===44).length>=n,beforeRetry+2);
+ await update({autoCombat:true});if(await auto.getAttribute('aria-busy')!=='false'||!await auto.isEnabled())throw Error('Autocombat acknowledgement must release the control');
  if(errors.length)throw Error(errors.join(';'));
  console.log(kind,'PASS: no retargeted clicks, auto once, drag cancellation, keyboard, large hit targets, rotations, zero grid pixels over corpse',pixel);
  await browser.close();
