@@ -10,8 +10,7 @@ const sheets = [
   ['conflux-late', [
     'core:earthelemental', 'core:magmaelemental', 'third-upgrades:tummineralelemental',
     'core:psychicelemental', 'core:magicelemental', 'third-upgrades:tumvoidelemental',
-    'core:firebird', 'core:phoenix', 'wake-of-gods.level8units:sacredphoenix',
-    'tum-era:divinephoenix'
+    'core:firebird', 'core:phoenix', 'wake-of-gods.level8units:sacredphoenix'
   ]],
   ['dungeon-early', [
     'core:troglodyte', 'core:infernaltroglodyte', 'third-upgrades:tumphosphorescenttroglodyte',
@@ -100,7 +99,7 @@ const sheets = [
 ];
 
 const cell = 362;
-export default Object.fromEntries(sheets.flatMap(([sheet, keys]) =>
+const portraits = Object.fromEntries(sheets.flatMap(([sheet, keys]) =>
   keys.map((key, index) => [key, {
     file: 'h3-theme/faction-creatures/' + sheet + '-v1.webp',
     x: index % 3 * cell + 2,
@@ -109,3 +108,13 @@ export default Object.fromEntries(sheets.flatMap(([sheet, keys]) =>
     h: cell - 4
   }])
 ));
+
+portraits['tum-era:divinephoenix'] = {
+  file: 'h3-theme/faction-creatures/divine-phoenix-v1.webp',
+  x: 0,
+  y: 0,
+  w: 768,
+  h: 768
+};
+
+export default portraits;
