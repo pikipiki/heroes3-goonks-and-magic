@@ -5,12 +5,14 @@ export function createOnlineLogin(root, command) {
   panel.className = 'online-login';
   panel.hidden = true;
   panel.innerHTML = `<form><header><h2>Online</h2><button type="button" data-close aria-label="Back">✕</button></header>
-    <label><span></span><input name="nickname" type="text" autocomplete="nickname" minlength="4" maxlength="20" pattern="[A-Za-z0-9]+"></label>
+    <label><span></span><input name="nickname" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="online-name-help" minlength="4" maxlength="20" pattern="[A-Za-z0-9]+"><small id="online-name-help"></small></label>
     <button type="submit" class="primary"></button><p role="status" aria-live="polite"></p></form>`;
   root.querySelector('.mobile-play').append(panel);
   const form = panel.querySelector('form');
   const input = form.elements.nickname;
   const label = panel.querySelector('label');
+  const caption = label.querySelector('span');
+  const help = label.querySelector('small');
   const submit = panel.querySelector('[type=submit]');
   const close = panel.querySelector('[data-close]');
   const status = panel.querySelector('[role=status]');
@@ -20,9 +22,12 @@ export function createOnlineLogin(root, command) {
     const french = getLanguage() === 'fr';
     const pending = submitting || state.onlinePending;
     label.hidden = Boolean(state.onlineHasAccount);
-    label.querySelector('span').textContent = french ? 'Nom de joueur' : 'Player name';
-    input.required = !label.hidden;
-    input.disabled = pending;
+    const labelText = french ? 'Nom de joueur' : 'Player name';
+    const helpText = french ? '4 à 20 lettres (A–Z) ou chiffres, sans espaces.' : '4–20 letters (A–Z) or digits, no spaces.';
+    if (caption.textContent !== labelText) caption.textContent = labelText;
+    if (help.textContent !== helpText) help.textContent = helpText;
+    input.toggleAttribute('required', !label.hidden);
+    input.toggleAttribute('disabled', Boolean(pending));
     close.disabled = pending;
     submit.disabled = pending;
     submit.textContent = pending ? (french ? 'Connexion…' : 'Connecting…') : (french ? 'Se connecter' : 'Connect');
@@ -30,7 +35,10 @@ export function createOnlineLogin(root, command) {
     status.textContent = state.onlineStatus || '';
   }
   close.addEventListener('click', () => command(76));
-  form.addEventListener('keydown', event => event.stopPropagation());
+  // SDL also listens for keypress and may cancel the browser’s text insertion.
+  for (const type of ['keydown', 'keypress', 'keyup']) {
+    form.addEventListener(type, event => event.stopPropagation());
+  }
   form.addEventListener('submit', event => {
     event.preventDefault();
     if (panel.hidden || submitting || state.onlinePending) return;
