@@ -76,3 +76,5 @@
  #mobile-app .hero-extra-equipment .hero-artifact-slot{min-height:48px}
 }
 @media(orientation:landscape){#mobile-app .hero-body-stage .hero-artifact-slot{width:min(76px,100%)}}
+
+.hero-bag-tabs:not(:has([data-hero-classic])){grid-template-columns:repeat(2,minmax(0,1fr))}

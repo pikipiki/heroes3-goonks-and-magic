@@ -2,8 +2,10 @@ export const canCloseTavern=state=>state?.mode==='dialog'&&state.dialogKind==='t
 // Preserve the native icon's position but give a finger a stable 44px target.
 // Coordinates remain logical game points regardless of framebuffer resolution.
 export function nativeCloseTarget(state,layout,width,height){
- const r=state?.dialogCloseRect;
- if(!canCloseTavern(state)||!layout||!r||r.w<=0||r.h<=0)return null;
+ return canCloseTavern(state)?nativeDialogTarget(state.dialogCloseRect,layout,width,height):null;
+}
+export function nativeDialogTarget(r,layout,width,height){
+ if(!layout||!r||r.w<=0||r.h<=0)return null;
  const cx=layout.dx+(r.x+r.w/2-layout.x)*layout.scale,cy=layout.dy+(r.y+r.h/2-layout.y)*layout.scale;
  if(cx<0||cy<0||cx>width||cy>height)return null;
  const w=Math.min(width,Math.max(44,r.w*layout.scale)),h=Math.min(height,Math.max(44,r.h*layout.scale));

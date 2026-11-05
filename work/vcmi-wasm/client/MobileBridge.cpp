@@ -213,6 +213,15 @@ void publishMobileState(){
  if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>()){
   n["dialogKind"].String()="tavern";n["dialogTitle"].String()="Taverne";
   if(tavern->cancel)n["dialogCloseRect"]=rect(tavern->cancel->pos);
+  const std::array portraits={tavern->h1,tavern->h2};
+  for(int index=0;index<int(portraits.size());index++)
+  {
+   const auto & portrait=portraits[index];
+   if(!portrait||!portrait->h)continue;
+   auto & candidate=n["tavernHeroes"][std::to_string(index)];
+   candidate["name"].String()=portrait->h->getNameTranslated();
+   candidate["rect"]=rect(portrait->pos);
+  }
  }
 
  if(auto fort=ENGINE->windows().topWindow<CFortScreen>()){
@@ -361,6 +370,20 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  // below it. Ignore delayed taps once the taverne is no longer on top.
  if(action==62||action==63||action==64){if(auto window=ENGINE->windows().topWindow<CHeroWindow>()){if(action==63)window->close();else if(action==64){for(const auto & set:window->artSets)if(set)set->putBackPickedArtifact();}else if(window->curHero&&GAME->interface()&&window->curHero->getOwner()==GAME->interface()->playerID&&a>=0&&a<=int(ArtifactPosition::BACKPACK_START)+int(window->curHero->artifactsInBackpack.size()))window->clickPressedOnArtPlace(window->curHero,ArtifactPosition(a),true,false,false,window->pos.center());lastPublished=0;}return;}
  if(action==40){if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>())tavern->close();lastPublished=0;return;}
+ if(action==72)
+ {
+  if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>())
+  {
+   const auto portrait=a==0?tavern->h1:a==1?tavern->h2:nullptr;
+   if(portrait&&portrait->h)
+   {
+    tavern->selected=a;
+    ENGINE->windows().createAndPushWindow<CHeroWindow>(portrait->h);
+   }
+  }
+  lastPublished=0;
+  return;
+ }
  // Closing a presentation only needs the window manager. It must also work
  // while player callbacks are temporarily unavailable during a transition.
  if(action==43){if(auto object=ENGINE->windows().topWindow<CWindowObject>())if(dynamic_cast<CStackWindow*>(object.get())||dynamic_cast<CFortScreen*>(object.get()))object->close();lastPublished=0;return;}
