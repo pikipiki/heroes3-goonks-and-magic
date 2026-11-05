@@ -113,8 +113,26 @@ self.addEventListener('fetch', event => {
   })());
 });
 
+const turnNotificationTag = 'heroes-goonk-online-turn';
+
+self.addEventListener('push', event => {
+  let message;
+  try {
+    message = event.data?.json();
+  } catch {
+    return;
+  }
+  if (message?.type !== 'goonk.turn-started.v1') return;
+
+  event.waitUntil(self.registration.showNotification('Heroes Goonk', {
+    body: message.language === 'fr' ? 'C’est à toi de jouer.' : 'It’s your turn.',
+    icon: fileURL('dosvcmi.png').href,
+    tag: turnNotificationTag,
+  }));
+});
+
 self.addEventListener('notificationclick', event => {
-  if (event.notification.tag !== 'heroes-goonk-online-turn') return;
+  if (event.notification.tag !== turnNotificationTag) return;
   event.notification.close();
   event.waitUntil((async () => {
     const windows = await self.clients.matchAll({type: 'window', includeUncontrolled: true});
