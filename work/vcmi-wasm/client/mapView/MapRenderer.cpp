@@ -17,6 +17,8 @@
 #include "../CPlayerInterface.h"
 #include "../CServerHandler.h"
 #include "../GameInstance.h"
+#include "../MobileBridge.h"
+#include "../PlayerLocalState.h"
 #include "../Client.h"
 #include "../GameEngine.h"
 #include "../render/CAnimation.h"
@@ -605,6 +607,17 @@ MapRendererOverlay::MapRendererOverlay()
 {
 }
 
+static bool showSelectedHeroMarker(IMapRendererContext & context, const int3 & coordinates)
+{
+	if(!isMobilePresentationActive() || !context.showBorder())
+		return false;
+
+	const auto * player = GAME->interface();
+	const auto * hero = player->localState->getCurrentHero();
+	return player->makingTurn && hero && !hero->isGarrisoned()
+		&& hero->visitablePos() == coordinates && !player->mobileHeroMoving() && context.isVisible(coordinates);
+}
+
 void MapRendererOverlay::renderTile(IMapRendererContext & context, Canvas & target, const int3 & coordinates)
 {
 	if(context.showGrid())
@@ -640,6 +653,19 @@ void MapRendererOverlay::renderTile(IMapRendererContext & context, Canvas & targ
 
 	if (context.showSpellRange(coordinates))
 		target.draw(imageSpellRange, Point(0,0));
+
+	if (showSelectedHeroMarker(context, coordinates))
+	{
+		const std::array<Point, 9> ring = {{{3, 25}, {7, 22}, {24, 22}, {28, 25}, {28, 27},
+			{24, 30}, {7, 30}, {3, 27}, {3, 25}}};
+		const ColorRGBA shadow(36, 22, 8);
+		const ColorRGBA gold(255, 225, 113);
+		for(size_t i = 1; i < ring.size(); ++i)
+			for(const auto & offset : {Point(-1, 0), Point(1, 0), Point(0, -1), Point(0, 1)})
+				target.drawLine(ring[i - 1] + offset, ring[i] + offset, shadow, shadow);
+		for(size_t i = 1; i < ring.size(); ++i)
+			target.drawLine(ring[i - 1], ring[i], gold, gold);
+	}
 }
 
 uint8_t MapRendererOverlay::checksum(IMapRendererContext & context, const int3 & coordinates)
@@ -660,6 +686,9 @@ uint8_t MapRendererOverlay::checksum(IMapRendererContext & context, const int3 &
 
 	if (context.showInvisible())
 		result += 16;
+
+	if (showSelectedHeroMarker(context, coordinates))
+		result += 32;
 
 	return result;
 }

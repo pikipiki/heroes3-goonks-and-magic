@@ -126,7 +126,6 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
 #mobile-app .hero-movement-item{flex:0 0 auto;display:flex;align-items:center;gap:8px;min-height:32px;padding:0 8px;border:1px solid #8f7847;background:#20180edb;font-size:13px;white-space:nowrap}
 #mobile-app .hero-movement-item strong{font-size:13px;font-weight:600}
 #mobile-app .hero-movement-item span{font-variant-numeric:tabular-nums}
-#mobile-app .hero-movement-item.is-active{border-color:#f4d36d;box-shadow:inset 0 -2px #f4d36d}
 #mobile-app .hero-movement-item.is-exhausted{color:#c8c0ac}
 #mobile-app[data-mode=map] .mobile-nav>[data-ui=endturn]{grid-column:span 2}
 @media(orientation:landscape) and (max-height:600px){
@@ -179,6 +178,11 @@ html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=target]{gri
 #mobile-app .hero-movement-item[data-movement-band=high]{background:#183a24;color:#d8f6bb;border-color:#6baf74}
 #mobile-app .hero-movement-item[data-movement-band=medium]{background:#49351b;color:#ffe3a0;border-color:#c49f53}
 #mobile-app .hero-movement-item[data-movement-band=low],#mobile-app .hero-movement-item[data-movement-band=empty]{background:#48201c;color:#ffd0bf;border-color:#c67a68}
+#mobile-app .hero-movement-item.is-active[data-movement-band] {
+ border-color:#ffe18a;
+ box-shadow:inset 0 0 0 2px #ffe18a;
+}
+#mobile-app .hero-selected-mark{color:#ffe18a;font-weight:bold}
 /* Reserve enough room when both hero magic and a creature ability are available. */
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-panel:has([data-ui=creature-spell]:not([hidden])){grid-template-columns:48px minmax(0,1fr) 144px}
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-tools{min-width:0;width:100%;gap:6px}
