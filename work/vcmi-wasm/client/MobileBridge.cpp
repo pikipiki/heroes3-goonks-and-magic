@@ -407,6 +407,17 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==52){if(auto lobby=ENGINE->windows().topWindow<CLobbyScreen>())if(GAME->server().screenType==ESelectionScreen::campaignList&&a>=0&&a<int(mobileCampaigns.size())){GAME->server().setCampaignState(CampaignHandler::getCampaign(mobileCampaigns[a].first));}return;}
  if(action==48){if(auto lobby=ENGINE->windows().topWindow<CLobbyScreen>())if(lobby->tabRand&&GAME->server().getState()==EClientState::LOBBY&&a>=2&&a<=8&&b>=1&&b<=a&&(c==36||c==72||c==108||c==144)){
  auto options=std::make_shared<CMapGenOptions>();options->setWidth(c);options->setHeight(c);options->setLevels(d?2:1);options->setHumanOrCpuPlayerCount(b);options->setCompOnlyPlayerCount(a-b);options->setTeamCount(0);options->setCompOnlyTeamCount(0);for(int i=0;i<b;i++)options->setPlayerTypeForStandardPlayer(PlayerColor(i),EPlayerType::HUMAN);if(e>=0&&GAME->server().getPlayerInfo(PlayerColor(0)).allowedFactions.count(FactionID(e)))options->setStartingTownForPlayer(PlayerColor(0),FactionID(e));lobby->tabRand->setMapGenOptions(options);lobby->tabRand->updateMapInfoByHost();lastPublished=0;}return;}
+ if(action==71)
+ {
+  if(GAME&&GAME->interface()&&GAME->server().getState()==EClientState::GAMEPLAY)
+  {
+   GAME->server().endGameplay();
+   pendingDefaultMap.clear();
+   CMainMenu::openLobby(ESelectionScreen::newGame,true,{"Player 1"},ELoadMode::NONE,false);
+   lastPublished=0;
+  }
+  return;
+ }
  if(action==20){if(GAME&&!GAME->interface()){std::vector<std::string> names;for(int i=0;i<std::clamp(a,1,8);i++)names.push_back("Player "+std::to_string(i+1));CMainMenu::openLobby(ESelectionScreen::newGame,true,names,ELoadMode::NONE,false);}return;}
  if(action==21){if(GAME&&GAME->server().getState()==EClientState::LOBBY){auto info=std::make_shared<CMapInfo>();info->mapInit("MAPS/001-Goonks");pendingDefaultMap="Goonks";GAME->server().setMapInfo(info);}return;}
  if(action==22){if(GAME&&GAME->server().getState()==EClientState::LOBBY)GAME->server().sendStartGame();return;}

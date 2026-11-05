@@ -45,7 +45,7 @@ export function createLobbyChoices({menu,getState}){
    await Promise.all([...dialog.querySelectorAll('.lobby-faction-art img')].map(image=>image.decode().catch(()=>{image.hidden=true;})));
    if(pendingOpen!==opening)return;
    cancelOpening();
-   if(!s.isConnected||s.disabled||getState().mode!=='lobby')return;
+   if(!s.isConnected||!button.isConnected||s.disabled||getState().mode!=='lobby')return;
   }
   source=s;dialog.showModal();const active=dialog.querySelector('[data-choice-value][aria-pressed=true]');active?.focus({preventScroll:true});active?.scrollIntoView({block:'nearest'});
  }

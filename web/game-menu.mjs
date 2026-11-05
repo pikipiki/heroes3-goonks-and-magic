@@ -11,7 +11,7 @@ const muteKey='heroes-goonk.audio-muted';
 function mountGameMenu(){
  if(!document.querySelector('#mobile-app')&&(new URLSearchParams(location.search).get('mobile')==='1'||matchMedia('(max-width: 960px), (pointer: coarse)').matches)){window.addEventListener('goonk-mobile-mounted',mountGameMenu,{once:true});return;}
  if(document.querySelector('#game-menu-toggle'))return;
-  let state={},tab='home',initialAudioApplied=false,pendingAudio=null,audioPhase='loading';
+  let state={},tab='home',initialAudioApplied=false,newGamePending=false,pendingAudio=null,audioPhase='loading';
   let muted=false;try{muted=localStorage.getItem(muteKey)==='true';}catch{}
   const toggle=document.createElement('button');toggle.id='game-menu-toggle';toggle.textContent='☰';toggle.setAttribute('aria-label','Menu du jeu');
   const brand=document.querySelector('#mobile-app .mobile-brand');if(brand)brand.replaceWith(toggle);else document.body.append(toggle);
@@ -61,6 +61,7 @@ function mountGameMenu(){
   const timer=setInterval(()=>{enable();if(initialAudioApplied)clearInterval(timer);},250);
   window.addEventListener('goonk-state',event=>{
     state=event.detail;movement.observe(state.mapSettings);
+    if(newGamePending&&['connecting','lobby','menu'].includes(state.mode)){newGamePending=false;dialog.close();}
     if(!initialAudioApplied){initialAudioApplied=true;if(muted){pendingAudio=true;command(28,1);}}
     else if(pendingAudio!==null){if(state.audioMuted===pendingAudio)pendingAudio=null;}
     else if(typeof state.audioMuted==='boolean')muted=state.audioMuted;
@@ -78,7 +79,10 @@ function mountGameMenu(){
     if(action==='back'){tab=tab==='storage-help'?'storage':'home';delete content.dataset.view;render();return;}
     if(action==='storage-help'){tab='storage-help';render();return;}
     if(action==='new-game'){tab='new-game';render();content.dataset.view='new-game';content.innerHTML='<h3>Start a new game?</h3><p>The current session will end. Your existing saved games will be kept. Save first if you want to keep your latest progress.</p><button data-menu=confirm-new-game>Start new game</button><button data-menu=back>Back</button>';return;}
-    if(action==='confirm-new-game'){button.disabled=true;button.setAttribute('aria-busy','true');const url=new URL(location.href);url.searchParams.set('new-game','1');location.assign(url);return;}
+    if(action==='confirm-new-game'){
+      if(newGamePending||!state.day||!window.Module?._vcmiMobileCommand)return;
+      newGamePending=true;button.disabled=true;button.setAttribute('aria-busy','true');command(71);return;
+    }
     if(action==='close'){dialog.close();toggle.focus();}
     if(action==='manage-storage'&&!['battle','dialog'].includes(state.mode)){location.assign(new URL('../storage.html',import.meta.url));return;}
     if(action==='settings'||action==='cheats'||action==='storage'){if(content.dataset.view==='new-game')delete content.dataset.view;tab=action;status.textContent='';render();}
