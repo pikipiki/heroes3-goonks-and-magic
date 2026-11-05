@@ -1,3 +1,5 @@
+// Decode the paper-doll silhouette while the game initializes, before opening equipment.
+if(typeof Image!=='undefined'){const silhouette=new Image();silhouette.src=new URL('./h3-theme/hero-silhouette.svg',import.meta.url).href;silhouette.decode?.().catch(()=>{});}
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const names=['Head','Shoulders','Neck','Right hand','Left hand','Torso','Right ring','Left ring','Feet','Accessory 1','Accessory 2','Accessory 3','Accessory 4','Ballista','Ammo cart','First aid tent','Catapult','Spellbook','Accessory 5'];
 export function createHeroEquipment({root,command,onViewChange=()=>{}}){
