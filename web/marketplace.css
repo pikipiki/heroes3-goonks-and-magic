@@ -1,0 +1,65 @@
+html.goonk-mobile #mobile-app[data-market-view=mobile] {
+ grid-template-columns:minmax(0,1fr);
+ grid-template-rows:minmax(0,1fr);
+}
+#mobile-app[data-market-view=mobile] :is(.mobile-top,.mobile-nav,#mobile-scene,.scene-tools,.scene-hint,#mobile-overview) {display:none!important}
+#mobile-app[data-mode=market] :is(.town-portrait-buildings,.town-view,#town-overview) {display:none!important}
+#mobile-app[data-market-view=mobile] .mobile-play {grid-column:1;grid-row:1}
+.market-page {
+ position:absolute;inset:0;box-sizing:border-box;z-index:4;
+ display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:8px;
+ padding:6px max(8px,env(safe-area-inset-right)) calc(6px + var(--safe-bottom)) max(8px,env(safe-area-inset-left));
+ background:#2b1a10 url('./h3-theme/stone.png');color:#f9e5b6;
+}
+.market-header {
+ display:flex;align-items:center;gap:8px;padding:4px 6px;
+ background:linear-gradient(#87311c,#41170f);border:2px ridge #c6a45b;
+}
+.market-header img {width:30px;height:29px;object-fit:contain}
+.market-header h2 {flex:1;min-width:0;margin:0;font-size:clamp(18px,5vw,26px);line-height:1.05;color:#ffe5a4}
+#mobile-app .market-page button {min-width:44px;min-height:44px!important;padding:3px 5px;font-size:14px}
+#mobile-app .market-page [data-market=close] {font-size:20px}
+.market-sides {
+ display:grid;grid-template-rows:repeat(2,minmax(0,1fr));gap:8px;min-height:0;
+}
+.market-sides>section {
+ display:grid;grid-template-rows:auto minmax(0,1fr);min-height:0;min-width:0;
+ border:1px solid #b7934d;background:#20150fd9;padding:6px;
+}
+.market-sides h3 {margin:0 0 4px;color:#ffe5a4;font-size:17px}
+.market-grid {
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(44px,1fr);gap:4px;min-height:0;
+}
+#mobile-app .market-grid button {
+ display:grid;place-content:center;justify-items:center;gap:1px;min-width:0;
+ text-align:center;line-height:1.1;overflow-wrap:anywhere;
+}
+.market-grid img {width:clamp(20px,5.6vw,36px);height:clamp(18px,5vw,32px);object-fit:contain}
+.market-grid small {color:#e5c788;font-size:12px}
+#mobile-app .market-grid button[aria-pressed=true] {
+ border:2px solid #ffe5a1;box-shadow:inset 0 0 0 1px #c59549;background:linear-gradient(#853421,#502014);
+}
+.market-deal {display:grid;gap:6px;min-width:0;border:2px ridge #bd9952;background:#21160de6;padding:6px}
+.market-total {display:grid;place-items:center;text-align:center;color:#ffe2a0;min-height:28px;font-size:15px;line-height:1.15}
+.market-order {display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
+.market-stepper {display:grid;grid-template-columns:44px minmax(48px,1fr) 44px 50px;gap:4px;min-width:0}
+.market-stepper input {
+ min-width:0;width:100%;box-sizing:border-box;border:2px ridge #bd9952;background:#20150c;
+ color:#fff0bd;font:inherit;text-align:center;padding:3px;appearance:textfield;
+}
+.market-stepper input::-webkit-inner-spin-button {appearance:none}
+@media(orientation:landscape) {
+ .market-page {gap:5px}
+ .market-sides {grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,1fr);gap:5px}
+ .market-sides>section {padding:4px}
+ .market-grid img {width:24px;height:21px}
+ .market-order {grid-template-columns:minmax(0,1fr) minmax(110px,.6fr)}
+}
+@media(max-height:400px) and (orientation:landscape) {
+ .market-header {padding:1px 5px}
+ .market-sides h3 {font-size:14px;margin-bottom:2px}
+ #mobile-app .market-grid button {font-size:12px}
+ .market-grid small {font-size:10px}
+ .market-deal {padding:3px;gap:3px}
+ .market-total {min-height:19px;font-size:13px}
+}

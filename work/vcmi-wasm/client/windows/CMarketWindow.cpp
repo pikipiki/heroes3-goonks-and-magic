@@ -64,6 +64,11 @@ CMarketWindow::CMarketWindow(const IMarket * market, const CGHeroInstance * hero
 	statusbar = CGStatusBar::create(std::make_shared<CPicture>(background->getSurface(), Rect(8, pos.h - 26, pos.w - 16, 19), 8, pos.h - 26));
 }
 
+const CMarketBase * CMarketWindow::mobileResourceMarket() const
+{
+	return dynamic_cast<const CMarketResources *>(marketWidget.get());
+}
+
 void CMarketWindow::updateArtifacts()
 {
 	update();

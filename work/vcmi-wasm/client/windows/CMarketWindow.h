@@ -16,6 +16,7 @@ class CMarketWindow final : public CStatusbarWindow, public CWindowWithArtifacts
 {
 public:
 	CMarketWindow(const IMarket * market, const CGHeroInstance * hero, const std::function<void()> & onWindowClosed, EMarketMode mode);
+	const CMarketBase * mobileResourceMarket() const;
 	void updateResources() override;
 	void updateArtifacts() override;
 	void updateGarrisons() override;

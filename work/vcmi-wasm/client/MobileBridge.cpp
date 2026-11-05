@@ -9,6 +9,7 @@
 #include "render/IImage.h"
 #include "render/IRenderHandler.h"
 #include "windows/CSpellWindow.h"
+#include "windows/CMarketWindow.h"
 #include "lobby/RandomMapTab.h"
 #include "lobby/CBonusSelection.h"
 #include "mainmenu/CPrologEpilogVideo.h"
@@ -63,6 +64,7 @@
 #include "../lib/callback/CCallback.h"
 #include "../lib/mapObjects/CGHeroInstance.h"
 #include "../lib/mapObjects/CGTownInstance.h"
+#include "../lib/mapObjects/IMarket.h"
 #include "../lib/entities/faction/CTown.h"
 #include "../lib/entities/faction/CFaction.h"
 #include "../lib/networkPacks/PacksForLobby.h"
@@ -170,6 +172,18 @@ void publishMobileBattleAtlas(){
 // Version of native ERA services actually linked into this engine.
 extern "C" int EMSCRIPTEN_KEEPALIVE vcmiEraBridgeVersion(){return 2;}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileAtlasAck(){atlasPending.store(false);}
+static const CMarketBase * mobileResourceMarket()
+{
+ if(auto window=ENGINE->windows().topWindow<CMarketWindow>())
+  return window->mobileResourceMarket();
+ return nullptr;
+}
+
+static bool mobileMarketQuote(const CMarketBase & widget,GameResID from,GameResID to,int & give,int & receive)
+{
+ return from!=to&&widget.market->getOffer(from.getNum(),to.getNum(),give,receive,EMarketMode::RESOURCE_RESOURCE)&&give>0&&receive>0;
+}
+
 void publishMobileState(){
  if(!stateEnabled||!ENGINE||!GAME||snapshotPending.load()||SDL_GetTicks()-lastPublished<180)return;lastPublished=SDL_GetTicks();
  if(audioMuted){if(ENGINE->sound().getVolume()!=0)ENGINE->sound().setVolume(0);if(ENGINE->music().getVolume()!=0)ENGINE->music().setVolume(0);}
@@ -186,6 +200,23 @@ void publishMobileState(){
  else if((ENGINE->windows().topWindow<CPrologEpilogVideo>()||ENGINE->windows().topWindow<VideoWindow>())&&GAME->server().si&&GAME->server().si->campState)n["mode"].String()="campaign-intro";
  else if(ENGINE->windows().topWindow<CLoadingScreen>()&&GAME->server().si&&GAME->server().si->campState)n["mode"].String()="campaign-loading";
  else if(ENGINE->windows().topWindow<CInfoWindow>()){n["mode"].String()="dialog";n["dialogTitle"].String()="Game message";}
+ else if(const auto market=mobileResourceMarket())
+ {
+  n["mode"].String()="market";
+  const auto & resources=LIBRARY->resourceTypeHandler->getAllObjects();
+  auto & quotes=n["marketQuotes"].Vector();
+  for(const auto from:resources)
+   for(const auto to:resources)
+   {
+    int give=0,receive=0;
+    if(mobileMarketQuote(*market,from,to,give,receive))
+    {
+     JsonNode quote;
+     quote.Vector()={JsonNode(double(from.getNum())),JsonNode(double(to.getNum())),JsonNode(double(give)),JsonNode(double(receive))};
+     quotes.push_back(std::move(quote));
+    }
+   }
+ }
  else if(spellWindow){n["mode"].String()="spellbook";n["spellbook"]=spellWindow->mobileSnapshot();}
  else if(recruitWindow)n["mode"].String()="recruit";
  else if(fortWindow)n["mode"].String()="fort";
@@ -386,6 +417,27 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  }
  // Closing a presentation only needs the window manager. It must also work
  // while player callbacks are temporarily unavailable during a transition.
+ if(action==74)
+ {
+  if(auto window=ENGINE->windows().topWindow<CMarketWindow>())window->close();
+  lastPublished=0;
+  return;
+ }
+ if(action==73)
+ {
+  const auto market=mobileResourceMarket();
+  const auto player=GAME?GAME->interface():nullptr;
+  if(!market||!player||!player->makingTurn||c<=0)return;
+  const auto & resources=LIBRARY->resourceTypeHandler->getAllObjects();
+  const GameResID from(a),to(b);
+  if(!vstd::contains(resources,from)||!vstd::contains(resources,to))return;
+  int give=0,receive=0;
+  if(!mobileMarketQuote(*market,from,to,give,receive)||give!=d||receive!=e)return;
+  if(c>player->cb->getResourceAmount(from)/give)return;
+  if(c>std::numeric_limits<int>::max()/std::max(give,receive))return;
+  player->cb->trade(market->market->getObjInstanceID(),EMarketMode::RESOURCE_RESOURCE,from,to,c*give,market->hero);
+  return;
+ }
  if(action==43){if(auto object=ENGINE->windows().topWindow<CWindowObject>())if(dynamic_cast<CStackWindow*>(object.get())||dynamic_cast<CFortScreen*>(object.get()))object->close();lastPublished=0;return;}
  if(action==28){
   const bool mute=a!=0;const auto sound=ENGINE->sound().getVolume(),music=ENGINE->music().getVolume();
