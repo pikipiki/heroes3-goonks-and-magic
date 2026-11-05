@@ -173,3 +173,8 @@ html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=target]{gri
 #mobile-app .hero-movement-summary .hero-scroll{flex:0 0 44px;width:44px;min-height:44px;padding:0;font-size:24px}
 #mobile-app .hero-scroll[hidden]{display:none}
 #mobile-app .hero-movement-item>button span{font-size:13px;line-height:1.2;margin:0}
+
+/* Colour supplements the exact remaining MP number and the active outline. */
+#mobile-app .hero-movement-item[data-movement-band=high]{background:#183a24;color:#d8f6bb;border-color:#6baf74}
+#mobile-app .hero-movement-item[data-movement-band=medium]{background:#49351b;color:#ffe3a0;border-color:#c49f53}
+#mobile-app .hero-movement-item[data-movement-band=low],#mobile-app .hero-movement-item[data-movement-band=empty]{background:#48201c;color:#ffd0bf;border-color:#c67a68}

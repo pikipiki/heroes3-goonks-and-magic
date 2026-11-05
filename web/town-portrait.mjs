@@ -51,14 +51,19 @@ export function createTownPortrait({root,scene,asset,command,getState}){
  const image=url=>{if(!url)return null;if(!images.has(url)){const img=new Image();img.src=url;images.set(url,img);}return images.get(url);};
  const ready=img=>img?.complete&&img.naturalWidth>0;
  const backgrounds=new Map();
+ backgrounds.set('goonk',image(new URL('./town/portrait-v2.webp',import.meta.url).href));
  return {
   paint(ctx,width,height,state,enabled){
    const faction=portraitTownFaction(state);
    if(!enabled||state.mode!=='town'||!faction||root.clientWidth>=root.clientHeight){overlay.hidden=true;delete root.dataset.townLayout;return false;}
-   if(activeFaction!==faction){activeFaction=faction;images.clear();backgrounds.clear();buttons.clear();overlay.replaceChildren();hovered=null;signature='';}
+   if(activeFaction!==faction){activeFaction=faction;images.clear();const warmed=backgrounds.get(faction);backgrounds.clear();if(warmed)backgrounds.set(faction,warmed);buttons.clear();overlay.replaceChildren();hovered=null;signature='';}
    if(!backgrounds.has(faction))backgrounds.set(faction,image(new URL(faction==='goonk'?'./town/portrait-v2.webp':'./town/'+faction+'/portrait-v1.webp',import.meta.url).href));const background=backgrounds.get(faction);
    const buildings=factionPortraitBuildings(width,height,state.buildings,faction);const artwork=buildings.map(b=>({b,picture:image(faction==='goonk'?asset('goonk/structure-'+b.artKey+'.png'):new URL('./town/'+faction+'/structures/'+b.artKey+'.webp',import.meta.url).href),outline:faction==='goonk'?image(asset('goonk/outline-'+b.artKey+'.png')):null}));
-   if(!ready(background)||artwork.some(item=>!ready(item.picture))){overlay.hidden=true;delete root.dataset.townLayout;return false;}
+   if(!ready(background)||artwork.some(item=>!ready(item.picture))){
+    overlay.hidden=true;root.dataset.townLayout='portrait';ctx.clearRect(0,0,width,height);ctx.fillStyle='#291d13';ctx.fillRect(0,0,width,height);
+    if(ready(background)){const scale=Math.max(width/background.naturalWidth,height/background.naturalHeight),bw=width/scale,bh=height/scale;ctx.drawImage(background,(background.naturalWidth-bw)/2,(background.naturalHeight-bh)/2,bw,bh,0,0,width,height);}
+    return true; // Consume the frame: never flash the native landscape scene.
+   }
    root.dataset.townLayout='portrait';overlay.dataset.faction=faction;overlay.hidden=false;overlay.style.width=width+'px';overlay.style.height=height+'px';
    const scale=Math.max(width/background.naturalWidth,height/background.naturalHeight),bw=width/scale,bh=height/scale;ctx.drawImage(background,(background.naturalWidth-bw)/2,(background.naturalHeight-bh)/2,bw,bh,0,0,width,height);
    for(const {b,picture,outline}of artwork){ctx.drawImage(picture,b.x,b.y,b.w,b.h);if(hovered===b.id){if(ready(outline))ctx.drawImage(outline,b.x,b.y,b.w,b.h);else{ctx.save();ctx.shadowColor='#ffe78a';ctx.shadowBlur=8;ctx.drawImage(picture,b.x,b.y,b.w,b.h);ctx.restore();}}}

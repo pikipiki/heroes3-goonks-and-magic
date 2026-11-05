@@ -18,6 +18,7 @@ places=[(17,17),(126,126),(43,28),(100,115),(27,88),(116,55),(67,47),(76,96)]
 for x,y in places:reserved|=area(x,y,9)
 def add(kind,sub,x,y,animation,options=None,name=None):
  template=templates[animation]
+ if kind in ['town','randomTown']:options={**(options or {}),'possibleSpells':list(json.loads((ROOT/'mod/goonk/Content/config/spell-chances.json').read_text()))}
  obj={'type':'core:'+kind,'subtype':sub,'instanceName':name or 'goonksObject'+str(len(objects)),'x':x,'y':y,'l':0,'template':template,'options':options or {}}
  objects.append(obj)
  for iy,row in enumerate(template['mask']):

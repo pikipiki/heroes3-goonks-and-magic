@@ -23,6 +23,8 @@
 #include "../../lib/constants/Enumerations.h"
 #include "../../lib/entities/artifact/CArtHandler.h"
 #include "../../lib/entities/building/CBuilding.h"
+#include "../../lib/entities/faction/CFaction.h"
+#include <vstd/RNG.h>
 #include "../../lib/entities/hero/CHeroHandler.h"
 #include "../../lib/entities/ResourceTypeHandler.h"
 #include "../../lib/gameState/CGameState.h"
@@ -403,6 +405,25 @@ void PlayerMessageProcessor::cheatBuildTown(PlayerColor player, const CGTownInst
 {
 	if (!town)
 		return;
+
+	// Older Goonk saves generated no spells because their faction had no gain chances.
+	// Repair only wholly empty guilds, using map-allowed spells and authoritative packs.
+	if(town->getFaction()->getModScope() == "goonk" &&
+		std::all_of(town->spells.begin(), town->spells.end(), [](const auto & level){return level.empty();}))
+	{
+		std::vector<std::vector<SpellID>> levels(GameConstants::SPELL_LEVELS);
+		for(const auto & spell : LIBRARY->spellh->objects)
+			if(spell && spell->getLevel() > 0 && spell->getLevel() <= GameConstants::SPELL_LEVELS &&
+				!spell->isSpecial() && !spell->isCreatureAbility() && gameHandler->gameInfo().isAllowed(spell->id) &&
+				spell->getProbability(town->getFactionID()) > 0)
+				levels[spell->getLevel()-1].push_back(spell->id);
+		for(int level=0;level<GameConstants::SPELL_LEVELS;++level)
+			if(!levels[level].empty())
+			{
+				RandomGeneratorUtil::randomShuffle(levels[level],gameHandler->getRandomGenerator());
+				gameHandler->setResearchedSpells(town,level,levels[level],false);
+			}
+	}
 
 	for (auto & build : town->getTown()->buildings)
 	{

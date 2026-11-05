@@ -13,6 +13,7 @@ const mod=path.join(game,'Mods/goonk');
 const out=path.resolve('../../outputs');
 const assets=JSON.parse(fs.readFileSync(path.join(work,'goonk-reference/assets.json')));
 const write=(relative,data)=>{const file=path.join(mod,relative);fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,JSON.stringify(data,null,2));};
+const spellChances=JSON.parse(fs.readFileSync('../../mod/goonk/Content/config/spell-chances.json','utf8'));write('Content/config/spell-chances.json',spellChances);
 const sourceSounds=path.resolve('../../mod/goonk/Content/Sounds');if(fs.existsSync(sourceSounds))fs.cpSync(sourceSounds,path.join(mod,'Content/Sounds'),{recursive:true});
 const imageDir=path.join(mod,'Content/Sprites/goonk');fs.mkdirSync(imageDir,{recursive:true});
 const blue=[91,85,195],pink=[200,65,154],clear={r:0,g:0,b:0,alpha:0};
@@ -113,7 +114,7 @@ for(const u of units){for(const [prefix,upgrade] of [['dwellingLvl',false],['dwe
 town.buildings.villageHall.cost={};town.buildings.villageHall.name='Maison des Goonks';town.buildings.townHall.name='Hôtel des nez';town.buildings.cityHall.name='Palais des peluches';town.buildings.capitol.name='Grand palais Goonk';town.buildings.tavern.name='Taverne des doudous';
 await buildTown({town,faction,assets,units,png,write,imageDir,repo,out});
 write('Content/config/faction.json',{goonk:faction});
-write('mod.json',{name:'Château Goonk',description:'Sept peluches et leurs évolutions : Paingpaing, DioupDioup, Bubu, La gros maille maille et leurs amis.',author:'Création personnelle',version:'0.3.0',modType:'Town',compatibility:{min:'1.7.3'},factions:['config/faction.json'],creatures:['config/creatures.json'],heroes:['config/heroes.json'],keepDisabled:false});
+write('mod.json',{name:'Château Goonk',description:'Sept peluches et leurs évolutions : Paingpaing, DioupDioup, Bubu, La gros maille maille et leurs amis.',author:'Création personnelle',version:'0.3.0',modType:'Town',compatibility:{min:'1.7.3'},factions:['config/faction.json'],creatures:['config/creatures.json'],heroes:['config/heroes.json'],spells:['config/spell-chances.json'],keepDisabled:false});
 write('Content/config/heroes.json',{gardienGoonk:{class:'core:knight',female:false,special:false,texts:{name:'Gardien des Goonks',biography:'Protecteur du royaume des sept nez.',specialty:{name:'Paingpaing',description:'Renforce les unités Paingpaing.',tooltip:'{Paingpaing}\nSpécialiste des coups de nez.'}},images:{large:'goonk/pink-large.png',small:'goonk/pink-small.png',specialtySmall:'goonk/pink-small.png',specialtyLarge:'goonk/pink-large.png'},army:[{creature:'paingpaing',min:20,max:20},{creature:'bobope',min:3,max:3}],skills:[{skill:'core:leadership',level:'basic'}],specialty:{creature:'paingpaing'}}});
 // Small native VCMI showcase map, separate from existing campaigns and saves.
 const mapdir=path.join(work,'goonk-map');fs.mkdirSync(mapdir,{recursive:true});
@@ -121,14 +122,14 @@ const header={versionMajor:3,versionMinor:0,name:'000 - Château Goonk',descript
 const tmpl=(animation,mask)=>({animation,mask,visitableFrom:['+++','+-+','+++']});
 const buildings=['villageHall','tavern','fort','dwellingLvl1'];
 const objects=[
- {type:'core:town',subtype:'goonk:goonk',instanceName:'goonkTown',x:9,y:9,l:0,template:tmpl('goonk/map-town-v2',['VVVVVV','VVBBVV','VBBBBV','VBBBAV']),options:{owner:'red',name:'Goonkbourg',buildings:{allOf:buildings.map(b=>'goonk:'+b)}}},
+ {type:'core:town',subtype:'goonk:goonk',instanceName:'goonkTown',x:9,y:9,l:0,template:tmpl('goonk/map-town-v2',['VVVVVV','VVBBVV','VBBBBV','VBBBAV']),options:{owner:'red',name:'Goonkbourg',possibleSpells:Object.keys(spellChances),buildings:{allOf:buildings.map(b=>'goonk:'+b)}}},
  {type:'core:hero',subtype:'core:knight',instanceName:'goonkHero',x:9,y:11,l:0,template:tmpl('AH00_E.DEF',['AV']),options:{owner:'red',type:'goonk:gardienGoonk',army:units.map(u=>({type:'goonk:'+u.id,amount:u.level===1?30:u.level===7?3:6}))}},
  {type:'core:town',subtype:'core:castle',instanceName:'enemyTown',x:29,y:29,l:0,template:tmpl('AVCCAST0.DEF',['VVVVVV','VVBBVV','VBBBBV','VBBBAV']),options:{owner:'blue',name:'Fort des gardes',hasFort:true,army:[{type:'core:pikeman',amount:20}]}},
  {type:'core:monster',subtype:'goonk:paingpaing',instanceName:'trainingGuard',x:13,y:11,l:0,template:tmpl('goonk/pink-map',['A']),options:{amount:12,character:'savage',neverFlees:true}},
  {type:'core:monster',subtype:'core:ogre',instanceName:'trainingOgre',x:13,y:15,l:0,template:tmpl('AVWogrX0.DEF',['A']),options:{army:[{type:'core:ogre',amount:15}],amount:15,character:5}}
 ];
 const translations={};
-for(const obj of objects){if(obj.type==='core:town'){translations[obj.options.name]=obj.options.name;}if(obj.type==='core:monster'){obj.options.character='savage';obj.options.neverFlees=true;obj.options.noGrowing=true;}}
+for(const obj of objects){if(obj.type==='core:town'){obj.options.possibleSpells=Object.keys(spellChances);translations[obj.options.name]=obj.options.name;}if(obj.type==='core:monster'){obj.options.character='savage';obj.options.neverFlees=true;obj.options.noGrowing=true;}}
 for(const [file,value]of Object.entries({'header.json':header,'objects.json':objects,'english.json':translations,'french.json':translations,'surface_terrain.json':Array.from({length:36},()=>Array(36).fill('gr0_'))})){fs.writeFileSync(path.join(mapdir,file),JSON.stringify(value));}
 const mapfile=path.join(game,'Maps/000-Goonk.vmap');
 execFileSync('/usr/bin/zip',['-q','-j',mapfile,...fs.readdirSync(mapdir).map(f=>path.join(mapdir,f))]);

@@ -165,7 +165,10 @@ void GameStatePackVisitor::visitSetResearchedSpells(SetResearchedSpells & pack)
 {
 	CGTownInstance *town = gs.getTown(pack.tid);
 
+	const bool restoringEmptyLevel = town->spells[pack.level].empty();
 	town->spells[pack.level] = pack.spells;
+	if(restoringEmptyLevel)
+		return; // Initial restoration is not a paid spell-research attempt.
 	town->spellResearchCounterDay++;
 	if(pack.accepted)
 	{
