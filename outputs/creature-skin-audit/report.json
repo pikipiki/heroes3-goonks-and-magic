@@ -1,0 +1,1673 @@
+{
+  "scope": "Nine native castle evolution rosters with Third Upgrades + TUM ERA; WoG level-8 Graphics Fix enabled, TUM overrides applied last.",
+  "families": 63,
+  "creatures": 198,
+  "originalGraphicFixDuplicates": [
+    {
+      "faction": "fortress",
+      "tier": 7,
+      "lower": "wake-of-gods.level8units:hellHydra",
+      "final": "tum-era:nightmareHydra",
+      "replacement": "mod/wake-of-gods/Mods/wogGraphicFix/Mods/wf_level8Units/content/sprites/creatures/hellHydra/zm157z.def",
+      "sha256": "539bdf53da237405d2093915a576cb8a4fc365802aee8cc5552db9531c761b66"
+    },
+    {
+      "faction": "necropolis",
+      "tier": 7,
+      "lower": "wake-of-gods.level8units:bloodDragon",
+      "final": "tum-era:redBonesDragon",
+      "replacement": "mod/wake-of-gods/Mods/wogGraphicFix/Mods/wf_level8Units/content/sprites/creatures/bloodDragon/zm154z.def",
+      "sha256": "d19517335a8f77cc304f34f02af9bbb7bf5c08035d66ab76a4985c357097b285"
+    },
+    {
+      "faction": "tower",
+      "tier": 7,
+      "lower": "wake-of-gods.level8units:lordOfThunder",
+      "final": "tum-era:guardianOfZeus",
+      "replacement": "mod/wake-of-gods/Mods/wogGraphicFix/Mods/wf_level8Units/content/sprites/creatures/lordOfThunder/ZM152Z.DEF",
+      "sha256": "9fd28c1069a1767688f8dc03f401b1741cb26d7ec2f06109d593f671cae294fb"
+    }
+  ],
+  "duplicates": [],
+  "unresolved": [],
+  "rosters": [
+    {
+      "faction": "castle",
+      "tier": 1,
+      "units": [
+        {
+          "id": "core:pikeman",
+          "resource": "H3sprite.lod:CPKMAN.def",
+          "animationSha256": "f6fa622a5452b561beeb285bc234c14d728a301576357b9b41c6d0ae8b01b94c",
+          "firstFrameSha256": "b9e34e9f39cc8507d1fe649c31696d28541c6b60279a76ef520ddae968b02ce4"
+        },
+        {
+          "id": "core:halberdier",
+          "resource": "H3sprite.lod:chalbd.def",
+          "animationSha256": "baade14cb59ab928713496c81cbba0d8f7112a23acfd03ccd0031e3d6977d022",
+          "firstFrameSha256": "bfa5d67986db1d69b519facf0c3e00b63d449171c6228e5825f4c5e921fb9e0a"
+        },
+        {
+          "id": "third-upgrades:tumRoyalHalberdier",
+          "name": "Royal Halberdier",
+          "resource": "mod/third-upgrades/content/sprites/creatures/castle/battle/cr197.def",
+          "animationSha256": "aa203f0d2c321caa14727bc77989a426c175844f578d5cd6ddab05c17f5c932f",
+          "firstFrameSha256": "05b2cca67a6ce2f9443f67a71604a8bec9a9131d2cbe77a6646ce23e08232d6a"
+        }
+      ]
+    },
+    {
+      "faction": "castle",
+      "tier": 2,
+      "units": [
+        {
+          "id": "core:archer",
+          "resource": "H3sprite.lod:CLCBOW.def",
+          "animationSha256": "19d0bf685e3c510eb3cee6c73164ae8f30ce97c7c30841aba4f9f4c0fda6407c",
+          "firstFrameSha256": "626ddd7201a214a254682bafc2f213802ae2c6957fab43d35d36c140c1088714"
+        },
+        {
+          "id": "core:marksman",
+          "resource": "H3sprite.lod:CHCBOW.def",
+          "animationSha256": "e05b0e12b6902b89684852a5f596afdc9002b61eb6219da05896d0dfc59c7bcf",
+          "firstFrameSha256": "3e1f3a412ef26c2bb30de32e369703f04804c95c725d8d64d5772d5b32ec645e"
+        },
+        {
+          "id": "third-upgrades:tumCrossbowman",
+          "name": "Crossbowman",
+          "resource": "mod/third-upgrades/content/sprites/creatures/castle/battle/cr198.def",
+          "animationSha256": "e3c5d77d4bea9d506be76706fdb88cc7809b339e83eca0e1252e84442bec2a98",
+          "firstFrameSha256": "b6971f12cb9df14370f7cd3af7781ed653d7faa1ed677168b8aff17313836f68"
+        }
+      ]
+    },
+    {
+      "faction": "castle",
+      "tier": 3,
+      "units": [
+        {
+          "id": "core:griffin",
+          "resource": "H3sprite.lod:CGRIFF.def",
+          "animationSha256": "6b2caaff58ead63f9ec2c737379c1f09ebaa231e662cf26395d876bb3e3e3c4c",
+          "firstFrameSha256": "b4727b802fe54300151a86d3bd5c3c625e37dd6acc1a99c1330478f6fbe44754"
+        },
+        {
+          "id": "core:royalGriffin",
+          "resource": "H3sprite.lod:Crgrif.def",
+          "animationSha256": "e80ca08a4291bb760a84de3dfb99b74fa6a832266b2913c3ba9fd76556d5b9c6",
+          "firstFrameSha256": "582b37900c49256ddd75a26d0687f02775ff43a7477d5961251bbef552994f1b"
+        },
+        {
+          "id": "third-upgrades:tumCeasarGriffin",
+          "name": "Cesar Griffin",
+          "resource": "mod/third-upgrades/content/sprites/creatures/castle/battle/cr199.def",
+          "animationSha256": "5f4ad2e66bfe2c12ed55b69bd6803783fc28880cd3f932c8b9c7d474dd0752df",
+          "firstFrameSha256": "a97e3e83cbfa8fd433815a1a395cf1620194f1d6407cbf6b6b004f7cb2b52d36"
+        }
+      ]
+    },
+    {
+      "faction": "castle",
+      "tier": 4,
+      "units": [
+        {
+          "id": "core:swordsman",
+          "resource": "H3sprite.lod:Csword.def",
+          "animationSha256": "f1b3ba4a5bf31ca76f2ebd56d219e0d56551d66939c55efae9eecc79a2395da3",
+          "firstFrameSha256": "0a27f6ba91e987368dd15eafb73e98b81c0499d1bb743fe41b4fdd239ac28cad"
+        },
+        {
+          "id": "core:crusader",
+          "resource": "H3sprite.lod:Ccrusd.def",
+          "animationSha256": "db0e8149ec873fa85458a6ce67ad432af02ee58a1ad165805fd813b0b88638a1",
+          "firstFrameSha256": "34d85c918e1846c2b791d46d4dc5c79df57e0d27dbb05acca5d6b264abde58f6"
+        },
+        {
+          "id": "third-upgrades:tumInquisitor",
+          "name": "Inquisitor",
+          "resource": "mod/third-upgrades/content/sprites/creatures/castle/battle/Cr291.def",
+          "animationSha256": "900f715957d6970693f8e9d82a57b07034a36ed45aae5d14ff5984c7bb944729",
+          "firstFrameSha256": "99ffa5da6d2ca5272f3556fee72850fe8d438200c76f40d28fb21dc9db5a8b06"
+        }
+      ]
+    },
+    {
+      "faction": "castle",
+      "tier": 5,
+      "units": [
+        {
+          "id": "core:monk",
+          "resource": "H3sprite.lod:Cmonkk.def",
+          "animationSha256": "d11b9cce2da77a8df59e1a274a678cc653031311974f0ba0165f7f89d790fe9f",
+          "firstFrameSha256": "5c30e97dfd2f23148f74ae269b4dadc97a7689886ad2a36953934b3a02710584"
+        },
+        {
+          "id": "core:zealot",
+          "resource": "H3sprite.lod:Czealt.def",
+          "animationSha256": "91ad028e9befb07b7ab122f48d322d90d329f2d5b9684c6b87c812cd23a48e70",
+          "firstFrameSha256": "4331cadcd6767f4b7f5947644e98cbbc4d82a7a0a9eed2f190d79984bf5b938b"
+        },
+        {
+          "id": "third-upgrades:tumHighPriest",
+          "name": "High Priest",
+          "resource": "mod/third-upgrades/content/sprites/creatures/castle/battle/cr320.def",
+          "animationSha256": "277edb139e84cb4c1afb3ea0b6a2ff662a4e6ca3f15f5fdfdf65785ec6114982",
+          "firstFrameSha256": "bc8dfdfe1287d83bd093a487a85aacb494767536d5cddf627bff81ad352a5957"
+        }
+      ]
+    },
+    {
+      "faction": "castle",
+      "tier": 6,
+      "units": [
+        {
+          "id": "core:cavalier",
+          "resource": "H3sprite.lod:CCAVLR.def",
+          "animationSha256": "1120a4437a05b1f960aeb2668a8895423c9ff66ab4c0e249f687ad84d69da167",
+          "firstFrameSha256": "b4685866bc907975f7463e881d39408cdd5da60252b07cbaa1a5cb41755d1082"
+        },
+        {
+          "id": "core:champion",
+          "resource": "H3sprite.lod:CCHAMP.def",
+          "animationSha256": "6066d9fa5b4679c4a30982b62eca5890848ac9257246bc9a8c3f984379907a3f",
+          "firstFrameSha256": "9e254783c56806408a808d2619246a793cc77c3f9505e081704e43f9ddb2b424"
+        },
+        {
+          "id": "third-upgrades:tumHolyChampion",
+          "name": "Holy Champion",
+          "resource": "mod/third-upgrades/content/sprites/creatures/castle/battle/cr201.def",
+          "animationSha256": "eca1f46b2620550df489117683dd456210ae245416c842f77803b7413c051d5f",
+          "firstFrameSha256": "7895504de48485cb943ba25746164c5415d5a82dee8aef3134076ae83b2ea3a5"
+        }
+      ]
+    },
+    {
+      "faction": "castle",
+      "tier": 7,
+      "units": [
+        {
+          "id": "core:angel",
+          "resource": "H3sprite.lod:cangel.def",
+          "animationSha256": "a804ed3408a60e333021ca0d1aae140e152515ac31229f90f64c16ba547152ba",
+          "firstFrameSha256": "8b7b853ed0bee15935e6b4b462c833cfe73fcd1bdf69ee98148c4bf4e7aa3e81"
+        },
+        {
+          "id": "core:archangel",
+          "resource": "H3sprite.lod:CRANGL.def",
+          "animationSha256": "398b24abe436e4c180cef74afbb38c23f665e9f40c0291226adac3f67055b36c",
+          "firstFrameSha256": "77190273dc725796ecdbce5710f9f57ec47f8800d309396246e00f5438127232"
+        },
+        {
+          "id": "wake-of-gods.level8units:supremeArchangel",
+          "name": "Supreme Archangel",
+          "resource": "mod/wake-of-gods/Mods/wogGraphicFix/Mods/wf_level8Units/content/sprites/creatures/supremeArchangel/zm150z.def",
+          "animationSha256": "96296c066b62b376b1f6d8a995015c3adf930c4af6792fa943d1a9f6fcb09d00",
+          "firstFrameSha256": "00ab30780ffb31fec82e3b17b88fbdb795f766e4e6c97eacdfea88ac2f62e3ce"
+        },
+        {
+          "id": "tum-era:cherub",
+          "name": "Cherub",
+          "resource": "mod/tum-era/content/Sprites/tum-era/creatures/202/battle.def",
+          "animationSha256": "ff3c174096b83dde16f920b99a33e4e25baa0c21e53c8d1a1631c0ba193b4de7",
+          "firstFrameSha256": "4d6eeac1dcaf4774c1d7b4e592f42d2b559664fb73001680bda6155a05504645"
+        }
+      ]
+    },
+    {
+      "faction": "conflux",
+      "tier": 1,
+      "units": [
+        {
+          "id": "core:pixie",
+          "resource": "H3ab_spr.lod:Cpixie.def",
+          "animationSha256": "c00a0484a4aef68318a37e171b946395c910e2c9c52b0b6ceb37318914cf7fe4",
+          "firstFrameSha256": "2fa23f914af33a7ee2b86171da017dcf9173db9e03600966f23266dcbb588550"
+        },
+        {
+          "id": "core:sprite",
+          "resource": "H3ab_spr.lod:CSprite.def",
+          "animationSha256": "a2dfc50bd2ed090fbf50a0b8e52fce830620e9c7a5ffe418a581c744e2f89fac",
+          "firstFrameSha256": "599db1b50361791451231818e172a8b720956b420199a7f23820f4aae5c8ac60"
+        },
+        {
+          "id": "third-upgrades:tumFairy",
+          "name": "Fairy",
+          "resource": "mod/third-upgrades/content/sprites/creatures/conflux/battle/cr246.def",
+          "animationSha256": "f0817d4a7f0bce991f038617fd2dc43e2911c66dc376845d836a1b4d6678efcc",
+          "firstFrameSha256": "59e4e02f510e4d99ad961b91a8f758edaf1127027b9d13854b084a460bf907dd"
+        }
+      ]
+    },
+    {
+      "faction": "conflux",
+      "tier": 2,
+      "units": [
+        {
+          "id": "core:airElemental",
+          "resource": "H3sprite.lod:CAELEM.def",
+          "animationSha256": "985995b40af3986b8beac32ea4d957f580f129e7d31aea229b3943c20dd4f7b2",
+          "firstFrameSha256": "f81a609dce286d158e682964ba86def0561dab447c4bcb98e65ae17282e2f4a3"
+        },
+        {
+          "id": "core:stormElemental",
+          "resource": "H3ab_spr.lod:Cstorm.def",
+          "animationSha256": "0e14054575a56aa4081824dad6c3189c7ee9014b3da0302fcddf079705d53614",
+          "firstFrameSha256": "d4986e7acf6bf2967938db8ba2acd43b9cf78e077657ed85c4c2c6f7b56bc701"
+        },
+        {
+          "id": "third-upgrades:tumHurricaneElemental",
+          "name": "Hurricane Elemental",
+          "resource": "mod/third-upgrades/content/sprites/creatures/conflux/battle/cr247.def",
+          "animationSha256": "a520721a0061068dad96047f26b3c923fe4e914aef429c76c18d7fcfc1b2955c",
+          "firstFrameSha256": "abc949005af52fc93da047493e7825e0d3b361168034e78efc275d565031e319"
+        }
+      ]
+    },
+    {
+      "faction": "conflux",
+      "tier": 3,
+      "units": [
+        {
+          "id": "core:waterElemental",
+          "resource": "H3sprite.lod:CWELEM.def",
+          "animationSha256": "144cd3671b32012ca73702d139dec2a92e82963547eb6567e84cc297ea5fd8d0",
+          "firstFrameSha256": "84e3205b94fbb64edfbbb6f9da03884c7279e0a9a987a7194b2e82d3b3b5ae9f"
+        },
+        {
+          "id": "core:iceElemental",
+          "resource": "H3ab_spr.lod:CIcee.def",
+          "animationSha256": "599aafe79f52c02d7b091a83335adb59048a9496427d29541d64733aba18a8f2",
+          "firstFrameSha256": "26ff50247c5936cb40a59120791dfa629c2c33a056b73343fc88c93582142ed6"
+        },
+        {
+          "id": "third-upgrades:tumLifeElemental",
+          "name": "Cryogenic Elemental",
+          "resource": "mod/third-upgrades/content/sprites/creatures/conflux/battle/cr248.def",
+          "animationSha256": "4423c9d5f312b262cb4e59b50ee349b63ae08d83d846fd5aac484af78ead7970",
+          "firstFrameSha256": "ded7ebace56bd1b12abd8efa90338e6abd9db4c2ed4349898ff818b4b7bb044b"
+        }
+      ]
+    },
+    {
+      "faction": "conflux",
+      "tier": 4,
+      "units": [
+        {
+          "id": "core:fireElemental",
+          "resource": "H3sprite.lod:CFELEM.def",
+          "animationSha256": "2f7f6fa3bd9c0f553c334bf23bf6eb726f7b6948dda03e2d99638df206a5b8c7",
+          "firstFrameSha256": "98c9b8a172d937cf6e0926e09381724fa9425f412e6b41b39499a65bf887929b"
+        },
+        {
+          "id": "core:energyElemental",
+          "resource": "H3ab_spr.lod:Cnrg.def",
+          "animationSha256": "9b2827cf3bdd4aa69615956ffa69ac917dd47277ea454d82c64dd66e20e568e9",
+          "firstFrameSha256": "5a9a1711ac42c5840d190306479b571d65f824e085ae59b16a1f5cc3dcb6462d"
+        },
+        {
+          "id": "third-upgrades:tumPlasmaElemental",
+          "name": "Plasma Elemental",
+          "resource": "mod/third-upgrades/content/sprites/creatures/conflux/battle/cr249.def",
+          "animationSha256": "948f5114d275393616bfa15c9cd4fbe94bc6087c366fca29e1dadd13574658c4",
+          "firstFrameSha256": "14c04331ffe72766c2893e96e8495fbef36cffd8d3a4390383738e6e4fac77c8"
+        }
+      ]
+    },
+    {
+      "faction": "conflux",
+      "tier": 5,
+      "units": [
+        {
+          "id": "core:earthElemental",
+          "resource": "H3sprite.lod:CEELEM.def",
+          "animationSha256": "b48ddb1a28cc57129c134150e6402b6c085b4f98225a16862123286662d6015a",
+          "firstFrameSha256": "f8415e8385daf3c21d2e3ab3dd945d5446333d625d42aa67d84a917cbcf37555"
+        },
+        {
+          "id": "core:magmaElemental",
+          "resource": "H3ab_spr.lod:Cstone.def",
+          "animationSha256": "9915d68067ee8b9007062cb0ef50a3964e0d4e5ce8cf475b7708822c912d6d5e",
+          "firstFrameSha256": "62fb5dc1fa4e514833ab9adc4d8a2e5adf9cdfabf39c938d83df967e8955e966"
+        },
+        {
+          "id": "third-upgrades:tumMineralElemental",
+          "name": "Lava Elemental",
+          "resource": "mod/third-upgrades/content/sprites/creatures/conflux/battle/cr250.def",
+          "animationSha256": "d0aa580350b7e391dad3e11b2a9260ac8773d08d7775376b87791cc58b2abcdc",
+          "firstFrameSha256": "7081265e0e3aa8721c08ada66ec211d7e98b20ba07b79b0916a1644fb37083f7"
+        }
+      ]
+    },
+    {
+      "faction": "conflux",
+      "tier": 6,
+      "units": [
+        {
+          "id": "core:psychicElemental",
+          "resource": "H3ab_spr.lod:Cpsyel.def",
+          "animationSha256": "5c16db67f787c4c4699ae60186863f3d9398f1941bec28ce03fc8279294449c3",
+          "firstFrameSha256": "7e3c9df328a5165629b6aec3cdad6c562d23b0e6ee7ad206d75009b25cdb1bf2"
+        },
+        {
+          "id": "core:magicElemental",
+          "resource": "H3ab_spr.lod:Cmagel.def",
+          "animationSha256": "29d2fb91283ea822e5d0c286f9b46d2ca25b3317697d1b9a25ff853e55a11033",
+          "firstFrameSha256": "0759636a40eac88827aa79aa8b33dd44e2a34d53556b4ae9c123d8a90aa6ef0f"
+        },
+        {
+          "id": "third-upgrades:tumVoidElemental",
+          "name": "Void Elemental",
+          "resource": "mod/third-upgrades/content/sprites/creatures/conflux/battle/cr251.DEF",
+          "animationSha256": "2e122fa2a9d566edea91227c56a4a9fd2ce2b7d29035c109c5bc13224a07fd4f",
+          "firstFrameSha256": "7afaf0302467282b48d4d7a39c767049e86a50b835b65962e663f8ace21673ff"
+        }
+      ]
+    },
+    {
+      "faction": "conflux",
+      "tier": 7,
+      "units": [
+        {
+          "id": "core:firebird",
+          "resource": "H3ab_spr.lod:CFBIRD.DEF",
+          "animationSha256": "fecd66c313c0157b1b6d4459cd225ec77b2824dfae38255d4e79971c93aed135",
+          "firstFrameSha256": "4e6f5310931f9d36a92400809e96005b0a2b9474770559945ccf0793435e069d"
+        },
+        {
+          "id": "core:phoenix",
+          "resource": "H3ab_spr.lod:Cphx.def",
+          "animationSha256": "946c7a38d0938f7e8a29d23d1e1a1ce9ae050e851aa5c73ab017d5d4de2fe5f9",
+          "firstFrameSha256": "5c2eaa5394329c29067eb605833f6f9bf691ef3669581b6ae0ad186284e8df30"
+        },
+        {
+          "id": "wake-of-gods.level8units:sacredPhoenix",
+          "name": "Sacred Phoenix",
+          "resource": "mod/wake-of-gods/Mods/wogGraphicFix/Mods/wf_level8Units/content/sprites/creatures/sacredPhoenix/zm158z.def",
+          "animationSha256": "0174b5f91c08fb8c5f0cb5f0ae290bfa06afe3d66a36021a7fa3134e0caecea4",
+          "firstFrameSha256": "e65ad12c0b2a465d3dc826062bab26f39c94f22d2d6a156ded41a658f04fb168"
+        },
+        {
+          "id": "tum-era:divinePhoenix",
+          "name": "Divine Phoenix",
+          "resource": "mod/tum-era/content/Sprites/tum-era/divine-phoenix/cr252.def",
+          "animationSha256": "c092619ac2080e08d47c6939a66e7b23cb71e27c0308641110bf1f1f5188772a",
+          "firstFrameSha256": "2e8f18a4151362d3341dcdd63bf914dc06988ac2473f15a62041420a36ff9697"
+        }
+      ]
+    },
+    {
+      "faction": "dungeon",
+      "tier": 1,
+      "units": [
+        {
+          "id": "core:troglodyte",
+          "resource": "H3sprite.lod:Ctrogl.def",
+          "animationSha256": "a13006c7da6d6dd5326e3e506af4fb863da5ffcbd1529d08acd078129b16ca3f",
+          "firstFrameSha256": "4897a32fc1da916e0dbebbd36fef29f431eeb46c1501b179f4b6889669af66ab"
+        },
+        {
+          "id": "core:infernalTroglodyte",
+          "resource": "H3sprite.lod:Citrog.def",
+          "animationSha256": "c82efda3111ca6852070726204cff861b9d66440528f7f296dbe18a219664b0d",
+          "firstFrameSha256": "2398ac96e2eab220b37fabe0345aa4e083c754824bd1d726fe63b1d1bd345e5d"
+        },
+        {
+          "id": "third-upgrades:tumPhosphorescentTroglodyte",
+          "name": "Phosphorescent Troglodyte",
+          "resource": "mod/third-upgrades/content/sprites/creatures/dungeon/battle/CR225.def",
+          "animationSha256": "833ddd0adbd222467f4a10a13870a83ae4409637c679380600a8e88f367d299e",
+          "firstFrameSha256": "cb2ac0c46144af0e68832ec919e754e5480b64878678f9080d0c30f23de4abfd"
+        }
+      ]
+    },
+    {
+      "faction": "dungeon",
+      "tier": 2,
+      "units": [
+        {
+          "id": "core:harpy",
+          "resource": "H3sprite.lod:CHARPY.def",
+          "animationSha256": "0c11272d9f77e59ffd7dba0b441bfd3732a8f2e6f120d4e1e7188cc3e5369165",
+          "firstFrameSha256": "642baa6cba828283a8980c3e69ee7474f69cfae19820c1ae003270cd4674d24d"
+        },
+        {
+          "id": "core:harpyHag",
+          "resource": "H3sprite.lod:CHARPH.def",
+          "animationSha256": "03d727f0981464a1f8d9133d81a9b97440c5ad57cebfc7258e01757fc190271c",
+          "firstFrameSha256": "c661fe759f23d2809d2c4ec64c0dd97852f69c4f146e6f489d9b33cd71179b33"
+        },
+        {
+          "id": "third-upgrades:tumHarpySanguinary",
+          "name": "Harpy Sanguinary",
+          "resource": "mod/third-upgrades/content/sprites/creatures/dungeon/battle/cr227.def",
+          "animationSha256": "f811d08cb96c2559aa742e497330ac81c6ac2c83fdd8dd77d9ca6c5fc52bb083",
+          "firstFrameSha256": "794de09fc097f0df68537ea72e944dc79765e5adaff387d9c3c39359c4c3bc47"
+        }
+      ]
+    },
+    {
+      "faction": "dungeon",
+      "tier": 3,
+      "units": [
+        {
+          "id": "core:beholder",
+          "resource": "H3sprite.lod:cbehol.def",
+          "animationSha256": "b525298ad566dcefa829a45542d4979af7c08a278beac8944ee36fa121f1ff44",
+          "firstFrameSha256": "e2190f40f9112c1e7f23ea0af5e8a7f003b8b4855b5d99f1ff66e2302a7d506d"
+        },
+        {
+          "id": "core:evilEye",
+          "resource": "H3sprite.lod:Ceveye.def",
+          "animationSha256": "43d7cb8002400e30bc3d93bea2b9c5263288c0cd17ecdf32961a34d8469193d2",
+          "firstFrameSha256": "40fa375ad2070c40f29c101c3c3b059d8bce2f02b11da601619b23370b192003"
+        },
+        {
+          "id": "third-upgrades:tumMonstrousEye",
+          "name": "Monstrous Eye",
+          "resource": "mod/third-upgrades/content/sprites/creatures/dungeon/battle/cr226.DEF",
+          "animationSha256": "c455234b3f5902e9d668bd5aece755512cdd2fcf87d77d0dde8c8c4502dca027",
+          "firstFrameSha256": "0587dc4ada9ed2d020dfb3a78ff19e36e7dbca9aff009f5a6c862559c6ae0d7c"
+        }
+      ]
+    },
+    {
+      "faction": "dungeon",
+      "tier": 4,
+      "units": [
+        {
+          "id": "core:medusa",
+          "resource": "H3sprite.lod:Cmedus.def",
+          "animationSha256": "9f3a2931afe31ed632a26ad005c208670f8c07419eedc6f8d0e9d33c5ff2a2e9",
+          "firstFrameSha256": "802e8b1fd061650b3ae3e8962c8dc6032339da02ed0b00a6234f6e604de697f7"
+        },
+        {
+          "id": "core:medusaQueen",
+          "resource": "H3sprite.lod:Cmeduq.def",
+          "animationSha256": "4339b6624529ebdea24ea0117dbb61f3345a24827caa6b047665d0cac4ff907b",
+          "firstFrameSha256": "0dc3300200e92a1758d53e6b0c3b9abd6f0b2e5a207bf0ae642fcedb91d18ddf"
+        },
+        {
+          "id": "third-upgrades:tumMedusaEmpress",
+          "name": "Medusa Empress",
+          "resource": "mod/third-upgrades/content/sprites/creatures/dungeon/battle/cr228.def",
+          "animationSha256": "50e0b4fa1ddfdd4cc75dddd29410295e563498d6d4a2029a10920c01bc554c48",
+          "firstFrameSha256": "81e876a3909d686f2e78b9b3e3ef9982cb1cb9917418da8fc5456dccdf99cb11"
+        }
+      ]
+    },
+    {
+      "faction": "dungeon",
+      "tier": 5,
+      "units": [
+        {
+          "id": "core:minotaur",
+          "resource": "H3sprite.lod:CMINOT.def",
+          "animationSha256": "9304b26af4a98bfd456efcaa1cf5b18d928a0aa4bc0366223877ceac9115bc38",
+          "firstFrameSha256": "5626ae8bd97fd6299ec942e89b225daf9a537ff8e6971e73ae7c6a7ccd341e29"
+        },
+        {
+          "id": "core:minotaurKing",
+          "resource": "H3sprite.lod:Cminok.def",
+          "animationSha256": "d74d510f7e3a3952abe3480c316ba6b31bbd20eb7d55c26b0c74783edbbdf7f8",
+          "firstFrameSha256": "a98e49f2e018ac976c37ff0adf3d8a9f0a63d08fa085932c8d00f14823a8d93c"
+        },
+        {
+          "id": "third-upgrades:tumBlackMinotaur",
+          "name": "Black Minotaur",
+          "resource": "mod/third-upgrades/content/sprites/creatures/dungeon/battle/cr229.DEF",
+          "animationSha256": "ab2d26a32439998eefa8eeffc3598adaf9797132f2ceb006969b62db52b265d2",
+          "firstFrameSha256": "9026fba102d5968bf6cf5f7abc952e24e67b1fba29d44dd37628939a1643d42a"
+        }
+      ]
+    },
+    {
+      "faction": "dungeon",
+      "tier": 6,
+      "units": [
+        {
+          "id": "core:manticore",
+          "resource": "H3sprite.lod:CMCORE.def",
+          "animationSha256": "aa77457cdcbf9c2b81b2b133a8bd285d97f5341a772789e9a0908e0c696f8ffe",
+          "firstFrameSha256": "4db7290f8b447f760f9f167f118fe6b15e9ab319146ecf5fd0f493fed4ca1866"
+        },
+        {
+          "id": "core:scorpicore",
+          "resource": "H3sprite.lod:CCMCOR.def",
+          "animationSha256": "588f56380d30e0a0519801225ccbbfa30757996a8ec0aa0718d68106f31cf746",
+          "firstFrameSha256": "9b24fb9674fb7e7bf05345d5daaf321cb82c9e299c9bb016223a3868edda70fe"
+        },
+        {
+          "id": "third-upgrades:tumChimera",
+          "name": "Chimera",
+          "resource": "mod/third-upgrades/content/sprites/creatures/dungeon/battle/cr230.def",
+          "animationSha256": "7d922fa74b340a61e02330c9ed8347f30b996539c653d123498cdf7f119bb7e9",
+          "firstFrameSha256": "4c95704c0bb1b15b04a87046cb53f92a0e0b3546c47771bd9dba4954b7341779"
+        }
+      ]
+    },
+    {
+      "faction": "dungeon",
+      "tier": 7,
+      "units": [
+        {
+          "id": "core:redDragon",
+          "resource": "H3sprite.lod:CRDRGN.def",
+          "animationSha256": "434cf98ef1981b476dac398da0f2ff1f468fcb5e2a81c66896b0a9f4e0e21fff",
+          "firstFrameSha256": "d0aa43a2e9f92a475e8d1ac77471ee4723d970518f6cd8dfd1c7a9676232e623"
+        },
+        {
+          "id": "core:blackDragon",
+          "resource": "H3sprite.lod:CBDRGN.def",
+          "animationSha256": "6d18fa6818985cdf0bb1be6deb94fda9b6ef2a850affb91d582a4f1ae745bd14",
+          "firstFrameSha256": "bd6134494c39fcf46f66ce8fc62de31da2d6c065f4eb19b280ebe8f39f1e6781"
+        },
+        {
+          "id": "wake-of-gods.level8units:darknessDragon",
+          "name": "Darkness Dragon",
+          "resource": "mod/wake-of-gods/Mods/wogGraphicFix/Mods/wf_level8Units/content/sprites/creatures/darknessDragon/zm155z.def",
+          "animationSha256": "adba8cf14548198d48353667c899b91c0a048e64f162cf5798147c5fdea7c3d3",
+          "firstFrameSha256": "c817ab2e9c3cf76110b1ff6e4c885276e11dc032ec28ce24ee624541e47ebd1a"
+        },
+        {
+          "id": "tum-era:chasmDragon",
+          "name": "Chasm Dragon",
+          "resource": "mod/tum-era/content/Sprites/tum-era/chasm-dragon/cr231.def",
+          "animationSha256": "c241161124be3d34a187654fc645445edf315e87fdb55a50e9dc0b9cd0e10208",
+          "firstFrameSha256": "3d625703b9f11bf1ef22b307f2a8f0d3b078801ba20103fdf5f587e79db3b2f4"
+        }
+      ]
+    },
+    {
+      "faction": "fortress",
+      "tier": 1,
+      "units": [
+        {
+          "id": "core:gnoll",
+          "resource": "H3sprite.lod:CGNOLL.def",
+          "animationSha256": "8ce7af0c516e7eb12b9d90541933f71bba58a3cf2882486efded63eb5c66c723",
+          "firstFrameSha256": "0d44682ed1f107ed0c7611ea690cd8a08ead4596d6fd275d939ed3eb0759c433"
+        },
+        {
+          "id": "core:gnollMarauder",
+          "resource": "H3sprite.lod:CGNOLM.def",
+          "animationSha256": "176452dcc4764917e65b32821b4aac929e79ddb4b4f3c0ee2404c475271d7631",
+          "firstFrameSha256": "74e823cdf21964d31962192f78a9226986d9a0614f76ecf047f84d97c28ada95"
+        },
+        {
+          "id": "third-upgrades:tumGnollShaman",
+          "name": "Gnoll Shaman",
+          "resource": "mod/third-upgrades/content/sprites/creatures/fortress/battle/cr321.def",
+          "animationSha256": "1ab424664de04dafa0c72bfffab3435f24ea54c6cb3fdddc3dbd8eff873feb4f",
+          "firstFrameSha256": "cdfc80cf36f44b5ed189830882dae3ae4cad5988470a5dc8d544402d7161c383"
+        }
+      ]
+    },
+    {
+      "faction": "fortress",
+      "tier": 2,
+      "units": [
+        {
+          "id": "core:lizardman",
+          "resource": "H3sprite.lod:CPLIZA.def",
+          "animationSha256": "915acd2d632a5fb0afa75d9a7b891121fe2441a28c573deaef83406fd8a38537",
+          "firstFrameSha256": "ccc754834f13fcc520134e0945ee3189fe5c8812a8ee985a016b84430f2dd9fb"
+        },
+        {
+          "id": "core:lizardWarrior",
+          "resource": "H3sprite.lod:CALIZA.def",
+          "animationSha256": "84fcb8cfce5892a0dcee082c647aec3fa78abefe3ee2d7cd2d8eca8b23433a14",
+          "firstFrameSha256": "cf5ab5ed97cf38d53495372d1cc2bf08443fbeda27426af57efd6d7ca9be82d2"
+        },
+        {
+          "id": "third-upgrades:tumEliteLizard",
+          "name": "Elite Lizard",
+          "resource": "mod/third-upgrades/content/sprites/creatures/fortress/battle/cr240.def",
+          "animationSha256": "4b3a1ce37ccdb32159ee388d1a0a76fdd0005b82749ede97083f25d0f121a7c5",
+          "firstFrameSha256": "943696a366338cdf1765680dd633ef600abb4a015c7c6bd3d41cd7d585bc98c8"
+        }
+      ]
+    },
+    {
+      "faction": "fortress",
+      "tier": 3,
+      "units": [
+        {
+          "id": "core:serpentFly",
+          "resource": "H3sprite.lod:CDRFLY.def",
+          "animationSha256": "323a176729bf94584925f805bf307945598be3d628ec43160b61a08411dfb168",
+          "firstFrameSha256": "754ae063940dadfbec340e9dca396a936216a8f978d98cf48b4afcb3f3a31ca1"
+        },
+        {
+          "id": "core:fireDragonFly",
+          "resource": "H3sprite.lod:CDRFIR.def",
+          "animationSha256": "8b2ff2c95f6f255a0ec7d7f19bd5ffa947e4e57ccc634e31e93833f7bb738652",
+          "firstFrameSha256": "7ea909dad87389752e7262d7b2277dec19df09f039a7748afa1ed19b7e71fcdb"
+        },
+        {
+          "id": "third-upgrades:tumChaoticDragonFly",
+          "name": "Chaotic Dragon Fly",
+          "resource": "mod/third-upgrades/content/sprites/creatures/fortress/battle/cr241.def",
+          "animationSha256": "28ddff7461f1de28730f7b8fd03a5d4b59b2a9debc6fb9172b6b51d001563bee",
+          "firstFrameSha256": "9b15e9755ef51de9ce93567395bf89d60a3c56376125ca8d39503f5df75df5fa"
+        }
+      ]
+    },
+    {
+      "faction": "fortress",
+      "tier": 4,
+      "units": [
+        {
+          "id": "core:basilisk",
+          "resource": "H3sprite.lod:CBASIL.def",
+          "animationSha256": "8c0927bfff3a7c764b059ed3ba72a1548d8f22b92892e45eb62bbee471db47ad",
+          "firstFrameSha256": "367b98f108117c41dd7d0882b12e014d4c47d937f29ec34f9b94cd2981761acb"
+        },
+        {
+          "id": "core:greaterBasilisk",
+          "resource": "H3sprite.lod:CGBASI.def",
+          "animationSha256": "2b0168a768c86e0e1a6e5f6a802513f520ebbee69ac2d2f2342152bc79ecfa69",
+          "firstFrameSha256": "b9779dc63ade3b29bbbde5d368e548cea3ea89780fbd350417544c127fa7f853"
+        },
+        {
+          "id": "third-upgrades:tumLavaBasilisk",
+          "name": "Lava Basilisk",
+          "resource": "mod/third-upgrades/content/sprites/creatures/fortress/battle/cr242.def",
+          "animationSha256": "d11482fd389096664887a9e74893db6ed154198c404eeb1ee48f877826529bfb",
+          "firstFrameSha256": "91f9ca7232c6b09db5d515baeea4587a0ea149b1e30825ee37580bcf2e8166ae"
+        }
+      ]
+    },
+    {
+      "faction": "fortress",
+      "tier": 5,
+      "units": [
+        {
+          "id": "core:gorgon",
+          "resource": "H3sprite.lod:Ccgorg.def",
+          "animationSha256": "d5ff6156162db4548f818644ec859a7b487027b1d5096dfc27f6412a7e450183",
+          "firstFrameSha256": "2ebc87f25b5b37ee36fb65a07fc39ae3c7e68ec4ca3c374526abd02f4651b077"
+        },
+        {
+          "id": "core:mightyGorgon",
+          "resource": "H3sprite.lod:Cbgog.def",
+          "animationSha256": "b512562977c364af698143b1d3e3ffb6b5c909e553036de8f0d5f874ae7a8efe",
+          "firstFrameSha256": "1d152938929d280ec3f65713d18316d6ee4a973d46cf8ed3907ec9bdab7936bd"
+        },
+        {
+          "id": "third-upgrades:tumCatopleba",
+          "name": "Catopleba",
+          "resource": "mod/third-upgrades/content/sprites/creatures/fortress/battle/cr244.def",
+          "animationSha256": "a795015bf8df1929a6f25cb29edd92b2073d974e301c48a46663d3de74cca831",
+          "firstFrameSha256": "763a79d7215048ed59227fe841707b2664970d3df3f374d06b9a02c66e7822b9"
+        }
+      ]
+    },
+    {
+      "faction": "fortress",
+      "tier": 6,
+      "units": [
+        {
+          "id": "core:wyvern",
+          "resource": "H3sprite.lod:CWYVER.def",
+          "animationSha256": "76385ea2a7f0f4d8e5320b87236384733e7b8144060de12a26155a1d9772b780",
+          "firstFrameSha256": "8be83e4f11c817841bc327f911071c34a0bf0d140f701f43b69f84f59282eb33"
+        },
+        {
+          "id": "core:wyvernMonarch",
+          "resource": "H3sprite.lod:CWYVMN.def",
+          "animationSha256": "8619de8090930bbff6e9e0f8ae734ab1057409bd029d2d391685c54f7ce739a8",
+          "firstFrameSha256": "6a98b1a0ccd09d05c0077abcc1c1ebcbef2fdadbb50ba4d4cf724ef24b10979c"
+        },
+        {
+          "id": "third-upgrades:tumAcidWyvern",
+          "name": "Acid Wyvern",
+          "resource": "mod/third-upgrades/content/sprites/creatures/fortress/battle/cr243.def",
+          "animationSha256": "265fcc52de6eafaa1b3b7c2d808bc428e97d0d08215e0cff460af1bf6875adcc",
+          "firstFrameSha256": "a775350983428ffe72b9f6bc065df5c03f2a61924f9b818b0831f4567f9f941b"
+        }
+      ]
+    },
+    {
+      "faction": "fortress",
+      "tier": 7,
+      "units": [
+        {
+          "id": "core:hydra",
+          "resource": "H3sprite.lod:CHYDRA.def",
+          "animationSha256": "d66feac8cf84527de2455d8b30fbf648e460591fbcfa0b2058f63b902c44f433",
+          "firstFrameSha256": "abc004c88bbedda3a9f029f71478f3b17e7056e891ac6ef2bfb43be094de3a20"
+        },
+        {
+          "id": "core:chaosHydra",
+          "resource": "H3sprite.lod:cchydr.def",
+          "animationSha256": "36d79edf74083fb3e298cac7cd9854da4b6c28ab27f44ec6f6b26d723318185d",
+          "firstFrameSha256": "10aeb412e0e399f9ca66e3dc8bd3aa575ebd57eadd5ee83adb9f6bb2a4d6c98a"
+        },
+        {
+          "id": "wake-of-gods.level8units:hellHydra",
+          "name": "Hell Hydra",
+          "resource": "mod/tum-era/content/Sprites/tum-era/source-level8/hellHydra/battle.def",
+          "animationSha256": "a32792f8e8c3c311da5689bbc7996355fb719a55d53565aa047e33f6803d6fd0",
+          "firstFrameSha256": "c06fef09a5a56c4e541178384498b57cfbb489a9080c1d52a87612bb34d79e54"
+        },
+        {
+          "id": "tum-era:nightmareHydra",
+          "name": "Nightmare Hydra",
+          "resource": "mod/tum-era/content/Sprites/tum-era/nightmare-hydra/cr245.def",
+          "animationSha256": "539bdf53da237405d2093915a576cb8a4fc365802aee8cc5552db9531c761b66",
+          "firstFrameSha256": "d48ad9a348f2a7ecd38305745c072a48dffefe3d05a890719bde733f2dd78758"
+        }
+      ]
+    },
+    {
+      "faction": "inferno",
+      "tier": 1,
+      "units": [
+        {
+          "id": "core:imp",
+          "resource": "H3sprite.lod:CIMP.def",
+          "animationSha256": "9429fa399fc7ac3c74d59fa4b31ee7f3e9d5fedc9661cef9aa04ef2e17ce6520",
+          "firstFrameSha256": "1a2f561c5b342eca8022a8fbdcff6d46e5caa0621de8d8f695995a1c00cf11c2"
+        },
+        {
+          "id": "core:familiar",
+          "resource": "H3sprite.lod:CFAMIL.def",
+          "animationSha256": "44c4e1db367e58daa13db19bad44a67918302cd3f31e1ff9ba29f5d6825ebae8",
+          "firstFrameSha256": "f7408548efc9692d0f86c04359a4ddc47ca005706519c41986c17941dc634c2d"
+        },
+        {
+          "id": "third-upgrades:tumVermin",
+          "name": "Vermin",
+          "resource": "mod/third-upgrades/content/sprites/creatures/inferno/battle/cr213.DEF",
+          "animationSha256": "ab9d40e507b26115dd0003370c1952424ee352685acbfbf35cc2cc6ac24404f3",
+          "firstFrameSha256": "e1312807a2b54a2850e74af81a9f1f98ceae2289867ec12d312d2998436e4864"
+        }
+      ]
+    },
+    {
+      "faction": "inferno",
+      "tier": 2,
+      "units": [
+        {
+          "id": "core:gog",
+          "resource": "H3sprite.lod:CGOG.def",
+          "animationSha256": "b3d1427a9fc450f217c5f9d5be164ebcaaf40b8955111a814cdb1f5e348aa2d2",
+          "firstFrameSha256": "9c5227e43abbffc168b5b2ad993b74dfc6e1696f2730083d2efa173e0f906e39"
+        },
+        {
+          "id": "core:magog",
+          "resource": "H3sprite.lod:CMAGOG.def",
+          "animationSha256": "846325e1ebfedaf68758d427b581d4fcdd246a9ace44a5fae338e6ab50971f58",
+          "firstFrameSha256": "c48b9b7afdad919c50953dc262e86df06c54e436c2ebee401c42f17a5d5d5d70"
+        },
+        {
+          "id": "third-upgrades:tumWingedMagog",
+          "name": "Winged Magog",
+          "resource": "mod/third-upgrades/content/sprites/creatures/inferno/battle/cr214.def",
+          "animationSha256": "11bcdb4c3ffc677450a23007c341f0659d0530dd1bedc30c51d05411e654fe08",
+          "firstFrameSha256": "b8a452de49914e5f47cc9d6c6e9e909307b107994acdd16de856f9e80a068d57"
+        }
+      ]
+    },
+    {
+      "faction": "inferno",
+      "tier": 3,
+      "units": [
+        {
+          "id": "core:hellHound",
+          "resource": "H3sprite.lod:CHHOUN.def",
+          "animationSha256": "2c08d629ba74eb73c06b80dd14f389fae3d1ffc6ede55d6ea018590861ca1cb6",
+          "firstFrameSha256": "2335a4e7d9002bb146147579a561c7b0a9e6f68b8a5cf71ab54b07b5aff3ec8a"
+        },
+        {
+          "id": "core:cerberus",
+          "resource": "H3sprite.lod:CCERBU.def",
+          "animationSha256": "8862bbb05bc19ae4a3553f5d0ba9c6b97fadc6e0eb9ad9a88e3cbe89c2ebe3ff",
+          "firstFrameSha256": "fab977ad3dad5cc34f35a42b491db9325f8dc20a1a0870f2c7d38e7dad399343"
+        },
+        {
+          "id": "third-upgrades:tumAstralCerberus",
+          "name": "Astral Cerberus",
+          "resource": "mod/third-upgrades/content/sprites/creatures/inferno/battle/cr215.def",
+          "animationSha256": "e8bc56603c0701ca07ce39922f0a12449c9a6aa450c3918671d5e52122d0c15e",
+          "firstFrameSha256": "3ecdaebecc4caaf4d52e780d3dae8cebc2a866d3c93a99b9dc06809343a8cfe1"
+        }
+      ]
+    },
+    {
+      "faction": "inferno",
+      "tier": 4,
+      "units": [
+        {
+          "id": "core:demon",
+          "resource": "H3sprite.lod:COHDEM.def",
+          "animationSha256": "6f6e51736588ed7cbe231b3646e0140ab1250f9dbbdc641866b2ae0161a5fa3d",
+          "firstFrameSha256": "0ba7f71b1e0212bdc72e9d11344a5f1a72f861a98553bee5e8abf33ea7eebf2a"
+        },
+        {
+          "id": "core:hornedDemon",
+          "resource": "H3sprite.lod:CTHDEM.def",
+          "animationSha256": "0d184adf30293012287dda2aefb2d5271a8692ee5f67ef053006fdefe387db49",
+          "firstFrameSha256": "7187f7913c65b0bbcb5359da9f51d6cee969fa9e790c9ee692c98ba176a82a48"
+        },
+        {
+          "id": "third-upgrades:tumSharpHornedDemon",
+          "name": "Sharp-Horned Demon",
+          "resource": "mod/third-upgrades/content/sprites/creatures/inferno/battle/cr216.def",
+          "animationSha256": "d391da766285c32768c4d32b24055862c10866e68f9809e8f822de5c3374750a",
+          "firstFrameSha256": "203f88635b6d13994d6de32ca29612be8b2a772401f4b4745e02fe2e34278081"
+        }
+      ]
+    },
+    {
+      "faction": "inferno",
+      "tier": 5,
+      "units": [
+        {
+          "id": "core:pitFiend",
+          "resource": "H3sprite.lod:CPFIEN.def",
+          "animationSha256": "452f9e4219e8d185cf28314ae037c4cc617cb92e7f1d3685be1923807d0d21ed",
+          "firstFrameSha256": "a674b52b9a505c4808de45a6adc014ce5daa6ba4d980e68d2877faf4f5373178"
+        },
+        {
+          "id": "core:pitLord",
+          "resource": "H3sprite.lod:CPFOE.def",
+          "animationSha256": "57fdcb1d6992fae9803f19fbd75fe1622501719a6d06d2faf239eae199180ac9",
+          "firstFrameSha256": "089ca277ee8cf8bad1d13e3b2d98766a33d55d8b95607c1f7697b70659fa1668"
+        },
+        {
+          "id": "third-upgrades:tumPitMaster",
+          "name": "Pit Master",
+          "resource": "mod/third-upgrades/content/sprites/creatures/inferno/battle/cr217.def",
+          "animationSha256": "fb38096ae1df622a1acf4503890b5149d8c0b61ae4264a1807bc1393f38b1320",
+          "firstFrameSha256": "7411332d9297dcbe2a9768de392575e627c6d1fc5db903e8e59cbb09f7f8ea9e"
+        }
+      ]
+    },
+    {
+      "faction": "inferno",
+      "tier": 6,
+      "units": [
+        {
+          "id": "core:efreet",
+          "resource": "H3sprite.lod:cefree.def",
+          "animationSha256": "80c19655af16e8cffd0f25102bf5c95caef1ed390a9ef148c0c76456365f46b6",
+          "firstFrameSha256": "94badc62b7d433c82ab639b0c905808e9b60aa548960830ede79656a2df69cae"
+        },
+        {
+          "id": "core:efreetSultan",
+          "resource": "H3sprite.lod:cefres.def",
+          "animationSha256": "87f353ca223f6235d727c7a1330f00a39e26db21e4511f839b22b7ddeecf199a",
+          "firstFrameSha256": "69fbd97b33f142f55c33d7f4dfbacc16dcda270c6d41d096e63464d1e5b16611"
+        },
+        {
+          "id": "third-upgrades:tumEfreetRajah",
+          "name": "Efreet Rajah",
+          "resource": "mod/third-upgrades/content/sprites/creatures/inferno/battle/cr218.def",
+          "animationSha256": "0ca51f04454117dcc8541d4c90746a132dcd166f380389fb1decd9d2d8f0246d",
+          "firstFrameSha256": "26fade92bd8b9d145a897b7d16baa5231ce1d5c83111bb292400f72043dbc1f4"
+        }
+      ]
+    },
+    {
+      "faction": "inferno",
+      "tier": 7,
+      "units": [
+        {
+          "id": "core:devil",
+          "resource": "H3sprite.lod:CDEVIL.def",
+          "animationSha256": "dcd0ab7f43515848617f0aa877f0a2238673b2c47c6621d80c62c29ec1714073",
+          "firstFrameSha256": "ba1a3e12fb090b40cfe1e1964bc35cd450fb5ce10c73e68c45e227e5b7bc65ad"
+        },
+        {
+          "id": "core:archDevil",
+          "resource": "H3sprite.lod:CADEVL.def",
+          "animationSha256": "9f3900673ead754763c25de82cb290d28d340f525c7583d7151c509eff5915e0",
+          "firstFrameSha256": "156618f4025e5faca89bc330e8e72ed5cb17cc9f51a610771af4f56564e0f50c"
+        },
+        {
+          "id": "wake-of-gods.level8units:hellBaron",
+          "name": "Hell Baron",
+          "resource": "mod/tum-era/content/Sprites/tum-era/source-level8/hellBaron/battle.def",
+          "animationSha256": "4a0d8bd68de59470d0955f0419b199d2bf536e5aa5708c6a02bd26b5064d74fe",
+          "firstFrameSha256": "0f71a900e2fc073a0290e0bc2e1c6a880d6b63ee425ab85344fed08757f6a48c"
+        },
+        {
+          "id": "tum-era:antichrist",
+          "name": "Antichrist",
+          "resource": "mod/tum-era/content/Sprites/tum-era/antichrist/cr219.def",
+          "animationSha256": "b46fccb558527d2dad1329b09098d10a843564ff211bb3bb357c73ec6c3dc19f",
+          "firstFrameSha256": "943696a366338cdf1765680dd633ef600abb4a015c7c6bd3d41cd7d585bc98c8"
+        }
+      ]
+    },
+    {
+      "faction": "necropolis",
+      "tier": 1,
+      "units": [
+        {
+          "id": "core:skeleton",
+          "resource": "H3sprite.lod:CSKELE.def",
+          "animationSha256": "3cb2a3ad4a4faaec0cc38c0cb38a71a7c2e67e93ac88ba9d389f5157e302df78",
+          "firstFrameSha256": "caf92870889ee6319256811323d999722931d1feb95427678ba84e5c71f565a3"
+        },
+        {
+          "id": "core:skeletonWarrior",
+          "resource": "H3sprite.lod:CWSKEL.def",
+          "animationSha256": "d5b4ddf69f1688af80350ba98d941b4ae1fddb191b3956d45c49580e13798489",
+          "firstFrameSha256": "324072cb46d4491986e5b151c169e780521c43d3863ad00e1ab49f84802a8a8c"
+        },
+        {
+          "id": "third-upgrades:tumSkeletonKnight",
+          "name": "Skeleton Knight",
+          "resource": "mod/third-upgrades/content/sprites/creatures/necropolis/battle/cr220.def",
+          "animationSha256": "b3b279915f7056d7014815dbc7f1fd0b26327e8421578f53e03311c83f7a17b2",
+          "firstFrameSha256": "0b7be31f4abb0d814470d198e70497082c60a42b8b432b8df3374d3d55ad940e"
+        }
+      ]
+    },
+    {
+      "faction": "necropolis",
+      "tier": 2,
+      "units": [
+        {
+          "id": "core:walkingDead",
+          "resource": "H3sprite.lod:CZOMBI.def",
+          "animationSha256": "fee70e4ce759b793b42def1dae19e77b3ca65baca71016d88184772c35800266",
+          "firstFrameSha256": "121d21814d15716fec88109cc1023a1c8477c1f8a5b1da9a739557be278cef3f"
+        },
+        {
+          "id": "core:zombieLord",
+          "resource": "H3sprite.lod:CZOMLO.def",
+          "animationSha256": "3ae05f80407ef6d79615186805df8e4c17fd49ea9c1d489494ea6e6c63eaa3f8",
+          "firstFrameSha256": "1072cea10d1e955c39794f601a61c7da4b6b5a7dbd9899b3766e9c14a7481679"
+        },
+        {
+          "id": "third-upgrades:tumGhoul",
+          "name": "Ghoul",
+          "resource": "mod/third-upgrades/content/sprites/creatures/necropolis/battle/cr329.def",
+          "animationSha256": "2fc811b764571085b2f631f4d777610317b6da644adb1bc223619c02c2d5c175",
+          "firstFrameSha256": "8b4e80974b7bd58b2e638d6594793a8b44db3171d96898aad9b53ef5df92bf8a"
+        }
+      ]
+    },
+    {
+      "faction": "necropolis",
+      "tier": 3,
+      "units": [
+        {
+          "id": "core:wight",
+          "resource": "H3sprite.lod:CWIGHT.def",
+          "animationSha256": "211ff3e4d786b50fdd3666b2f8b2e80ef44a455b47eb4f9560a562a305b52bdb",
+          "firstFrameSha256": "44e70bee7fc639cb8cfe499b65caded2d7d8624c9a47fc9b40a2393efa55127c"
+        },
+        {
+          "id": "core:wraith",
+          "resource": "H3sprite.lod:CWRAIT.def",
+          "animationSha256": "9148c306d115fd514964cea16d0c6d9ed6b336365ef3e7ef592797bc52c2e47e",
+          "firstFrameSha256": "0765720bd8ea2372bf9ad21e583225d569b51729ee26c9301884c347c08a44d2"
+        },
+        {
+          "id": "third-upgrades:tumSpecter",
+          "name": "Specter",
+          "resource": "mod/third-upgrades/content/sprites/creatures/necropolis/battle/cr261.DEF",
+          "animationSha256": "7e3a65645b11c0eb58c401920c61e7ab19cce185ac837a888fdab0fdb0a07167",
+          "firstFrameSha256": "597b65c5b4b61f19f0089722e7f57c22bf828f95e966e93477bd666d07bbfced"
+        }
+      ]
+    },
+    {
+      "faction": "necropolis",
+      "tier": 4,
+      "units": [
+        {
+          "id": "core:vampire",
+          "resource": "H3sprite.lod:CVAMP.def",
+          "animationSha256": "5d0d2c832aa0e9d6cf1757d281d242b300cbfb89120e9462dc1726452a9ef476",
+          "firstFrameSha256": "fd498511fe1583d980cccf9d828dd4d846fad5e59db088b49eb97b0f1421b64c"
+        },
+        {
+          "id": "core:vampireLord",
+          "resource": "H3sprite.lod:CNOSFE.def",
+          "animationSha256": "7f3fe9079b255ad09ded551a82017580087905f0e6f4484aad90b357b84a0cfa",
+          "firstFrameSha256": "b81c1ba70913e1bfc0185db15866afdf872e7b231e508ee3eb43a34afcdb0fcb"
+        },
+        {
+          "id": "third-upgrades:tumNosferatu",
+          "name": "Nosferatu",
+          "resource": "mod/third-upgrades/content/sprites/creatures/necropolis/battle/cr221.def",
+          "animationSha256": "02ec785fc3bb2f99655dc16e94b9a04bdcc9ba7149816f8f50efe16abbc8d47c",
+          "firstFrameSha256": "ec05aa719c4c68a3898f7fe3e7e951a97071c78b66bcb7d0b066765e75153339"
+        }
+      ]
+    },
+    {
+      "faction": "necropolis",
+      "tier": 5,
+      "units": [
+        {
+          "id": "core:lich",
+          "resource": "H3sprite.lod:CLICH.def",
+          "animationSha256": "409506a7915b25cb0a3fd7c722e378dd0735e26757c1896aba8d2bcd45ef9d54",
+          "firstFrameSha256": "de7cc31a1c6293ad0bfd2e8e4fbbb4130e4e69db75df8f79253dedfac04d284a"
+        },
+        {
+          "id": "core:powerLich",
+          "resource": "H3sprite.lod:CPLICH.def",
+          "animationSha256": "9a6074cb1741c358ec7e8b2627a7810d00213b8fe8a826b3e32c6697148abf47",
+          "firstFrameSha256": "5033720b1f3e2ec6cac61165b5ca9c3e81404e55c64719c5fffc524b90c75bd8"
+        },
+        {
+          "id": "third-upgrades:tumLichKing",
+          "name": "Lich King",
+          "resource": "mod/third-upgrades/content/sprites/creatures/necropolis/battle/cr222.def",
+          "animationSha256": "61c738510e7cf27634ee28ae2c1f4e8a65b86f307d48063b1be5999f252bb451",
+          "firstFrameSha256": "f0d775107c00ab148de43d4b0ca7fafcce9311454ee9489220718a3b287503a9"
+        }
+      ]
+    },
+    {
+      "faction": "necropolis",
+      "tier": 6,
+      "units": [
+        {
+          "id": "core:blackKnight",
+          "resource": "H3sprite.lod:CBKNIG.def",
+          "animationSha256": "68758791ac3be0ae5426797775cb7c564e6220d0e54154adac6d6094f68742c4",
+          "firstFrameSha256": "92f03ccdf33c60722ffea2692a727a43feb7a9f009475f1e6fe6ac0bde3f669e"
+        },
+        {
+          "id": "core:dreadKnight",
+          "resource": "H3sprite.lod:CBLORD.def",
+          "animationSha256": "898d935bc0945dad26f591df2a5e9a525d0d4564f3b2eff4986825ff845e56c8",
+          "firstFrameSha256": "52e911599f9fdcb2357f7ba0176d8daa4709aa9eda169173c1313832fb751fa8"
+        },
+        {
+          "id": "third-upgrades:tumDeathKnight",
+          "name": "Death Knight",
+          "resource": "mod/third-upgrades/content/sprites/creatures/necropolis/battle/cr223.def",
+          "animationSha256": "d9fa860a9cad52fa849359bcb8563b34b52a466022b56ee2cb2103affef0499a",
+          "firstFrameSha256": "dcabe6ec1d1d98be941e70f5d15d362a46faa56a9f6db10bfd367e6cd43105ca"
+        }
+      ]
+    },
+    {
+      "faction": "necropolis",
+      "tier": 7,
+      "units": [
+        {
+          "id": "core:boneDragon",
+          "resource": "H3sprite.lod:CNDRGN.def",
+          "animationSha256": "58135b0772daff477ca118434052631255fd6e8de89d405529fa7b068f23bf3a",
+          "firstFrameSha256": "ad387f352e6db4332b3879429d8748653265e7b86027ed7c3d6423412c4cfa94"
+        },
+        {
+          "id": "core:ghostDragon",
+          "resource": "H3sprite.lod:CHDRGN.def",
+          "animationSha256": "1edebaea4cf6bdcaafd1247434486b26fd1156a27d5434f07b65b7240b0ed660",
+          "firstFrameSha256": "11948abf290c21cb228fc39db79f8d29e95815798bfce433c4164c4702901bce"
+        },
+        {
+          "id": "wake-of-gods.level8units:bloodDragon",
+          "name": "Blood Dragon",
+          "resource": "mod/tum-era/content/Sprites/tum-era/source-level8/bloodDragon/battle.def",
+          "animationSha256": "de88da3f4f013a61c49fb1392f5fc9ceb74f1ab018dd9e81b3efb632b1166428",
+          "firstFrameSha256": "6ea3033ccf512f87cd902e0a50a2f869f51edaf4bf6da07c5fd10d25578bf3bc"
+        },
+        {
+          "id": "tum-era:redBonesDragon",
+          "name": "Red Bones Dragon",
+          "resource": "mod/tum-era/content/Sprites/tum-era/cr224.def",
+          "animationSha256": "d19517335a8f77cc304f34f02af9bbb7bf5c08035d66ab76a4985c357097b285",
+          "firstFrameSha256": "648752ce08ed07aadf605e287303987665821ec533448fa2ab27ee2117660f26"
+        }
+      ]
+    },
+    {
+      "faction": "rampart",
+      "tier": 1,
+      "units": [
+        {
+          "id": "core:centaur",
+          "resource": "H3sprite.lod:CCENTR.def",
+          "animationSha256": "b363c106a8cf3607ccf5d620365368622a33e81871e555572e6aac568d876a36",
+          "firstFrameSha256": "49f16758924d75ba62021c2df97ed8f157c4896f0e2ae630a7ea25aebd8222e2"
+        },
+        {
+          "id": "core:centaurCaptain",
+          "resource": "H3sprite.lod:CECENT.def",
+          "animationSha256": "fa06441a758b5c9497312be857b2da1d101ab517c1bae2e273b1df1fbfb47a9a",
+          "firstFrameSha256": "b9436e6dec3efb59e02979831fb1c9e53ad0270b723ee5f3356951760d958501"
+        },
+        {
+          "id": "third-upgrades:tumCentaurGeneral",
+          "name": "Centaur General",
+          "resource": "mod/third-upgrades/content/sprites/creatures/rampart/battle/CR293.def",
+          "animationSha256": "e83745be5d78fe6834a8696a48595b12c7f7e10686a0e51f0c276baea5290d08",
+          "firstFrameSha256": "b0f46fc10e3c216689eb70773f04e8b8a04b9034bd5f55a6094a8fd3caaefa86"
+        }
+      ]
+    },
+    {
+      "faction": "rampart",
+      "tier": 2,
+      "units": [
+        {
+          "id": "core:dwarf",
+          "resource": "H3sprite.lod:CDWARF.def",
+          "animationSha256": "e9d2d96eda69847c1ac7d9f79bc5fad95491fc2975d076e6ea777edb60cee3f8",
+          "firstFrameSha256": "6180db576de329a49905ed11d53127aa8645f05ae581d7e451646e980a7584e8"
+        },
+        {
+          "id": "core:battleDwarf",
+          "resource": "H3sprite.lod:CBDWAR.def",
+          "animationSha256": "0810e24aa259818de7cce3deee00fd507ce65740cabe05fed7924b036412b446",
+          "firstFrameSha256": "fe1834773a26f92aa71a55ffc15e247f238c4d11a784d80ba03b030015c2fdbb"
+        },
+        {
+          "id": "third-upgrades:tumBerserkerDwarf",
+          "name": "Dwarf Chieftain",
+          "resource": "mod/third-upgrades/content/sprites/creatures/rampart/battle/cr203.def",
+          "animationSha256": "e8c43b862204a861ae315c61fd9f287104f6c2abe040c3a337ea71d57adb7683",
+          "firstFrameSha256": "f03a33a8c32de14960c6adfa0d8fdf3749b93234acac42231cca92fc42c8a175"
+        }
+      ]
+    },
+    {
+      "faction": "rampart",
+      "tier": 3,
+      "units": [
+        {
+          "id": "core:woodElf",
+          "resource": "H3sprite.lod:CELF.def",
+          "animationSha256": "774e71a65e5a6a9f86b73519033722dc1a702d48cf7822df0eda27f3663bfcf8",
+          "firstFrameSha256": "aa8a786dcbe2660238a567152173f4dfa5c517d3c9c128a784b24f0fabb50fe4"
+        },
+        {
+          "id": "core:grandElf",
+          "resource": "H3sprite.lod:CGRELF.def",
+          "animationSha256": "6835b1c4675cc3307bbbaaf53925d70240c4ad6d5a64c6a78ff83620e3f04828",
+          "firstFrameSha256": "00b96f2e6bff428dfcdd7fd34b7fa6668d38b0fc4b8f07978f01ce6285aabc0e"
+        },
+        {
+          "id": "third-upgrades:tumSharpshooterElf",
+          "name": "Noble Elf",
+          "resource": "mod/third-upgrades/content/sprites/creatures/rampart/battle/cr256.def",
+          "animationSha256": "c61a8d28fc65bba0a28afadb36097e497d5cd1a3ba5414d842c5d9a475a6d771",
+          "firstFrameSha256": "004a85216686c94588ab2f6449d40453de2cdca3656955c21e9492be5798ceda"
+        }
+      ]
+    },
+    {
+      "faction": "rampart",
+      "tier": 4,
+      "units": [
+        {
+          "id": "core:pegasus",
+          "resource": "H3sprite.lod:CPEGAS.def",
+          "animationSha256": "5856f954350306c221306d84ec01f9305b3cea68a8e383db9f92ae62b2a4062d",
+          "firstFrameSha256": "48b8ecdf741c3bc9f3ba116fa4f432d856efbbaaf0045e267acbe645fffc56b8"
+        },
+        {
+          "id": "core:silverPegasus",
+          "resource": "H3sprite.lod:CAPEGS.def",
+          "animationSha256": "baba98078e6adf769d775af1678161510a90d35646232fafcd9be6a35788f98f",
+          "firstFrameSha256": "fd85880eb6f6dbc582bbcf9cd7d91b3240103485edc67f75c76c426e58ea4897"
+        },
+        {
+          "id": "third-upgrades:tumGoldenPegasus",
+          "name": "Golden Pegasus",
+          "resource": "mod/third-upgrades/content/sprites/creatures/rampart/battle/cr204.def",
+          "animationSha256": "ffa3d53dd96e69479f6a01997a38ab26eb0352491a5fef2c2cd5b9c3708d7362",
+          "firstFrameSha256": "4afe7a73ff617f10105b615ed5d38493c77902c6fb1c5eed5b5852c603b46f31"
+        }
+      ]
+    },
+    {
+      "faction": "rampart",
+      "tier": 5,
+      "units": [
+        {
+          "id": "core:dendroidGuard",
+          "resource": "H3sprite.lod:CTREE.def",
+          "animationSha256": "754ab0d558e15ca7ff90025f835761695dee54e063d2cdb56eb5fd064a6f39d0",
+          "firstFrameSha256": "d63c034840c9dc0fa64e0bea07b6136892ed5a2e088823b619f58af14357583d"
+        },
+        {
+          "id": "core:dendroidSoldier",
+          "resource": "H3sprite.lod:CBTREE.def",
+          "animationSha256": "f6658f66a554c2b165f5eaa11401be6527ee332bad6c7cbe4f2449cb867df846",
+          "firstFrameSha256": "fb6bef3d092b17b4eec8d0d101ed38ab7679cf48cfbcef52111e7de23f44a60b"
+        },
+        {
+          "id": "third-upgrades:tumElderDendroid",
+          "name": "Elder Dendroid",
+          "resource": "mod/third-upgrades/content/sprites/creatures/rampart/battle/cr205.DEF",
+          "animationSha256": "a936376ea0b06b7c88a936b5049f6e4ab87406311e93714e19085c108a1cbb51",
+          "firstFrameSha256": "8e37594ce3c4844c44114b31e1fd71ea8010367563e41becd74aca910368d82a"
+        }
+      ]
+    },
+    {
+      "faction": "rampart",
+      "tier": 6,
+      "units": [
+        {
+          "id": "core:unicorn",
+          "resource": "H3sprite.lod:CUNICO.def",
+          "animationSha256": "30f873a67242a5fe0b15e3cf4b1a3b67d4d9616f5954073e0c5a42aaa9a9e2ff",
+          "firstFrameSha256": "d24f79a80af7d79eaf6d1338e1fd28234c8417bee9f47228e6690a526df7dc61"
+        },
+        {
+          "id": "core:warUnicorn",
+          "resource": "H3sprite.lod:CWUNIC.def",
+          "animationSha256": "7d21bd7d265892a876901ed82933733fda78f2e9601f40be5e66411fbf5eace6",
+          "firstFrameSha256": "408e251bc54f8dbf923e13337e7169b26f89f5d258cd457649e2147e8623f8a1"
+        },
+        {
+          "id": "third-upgrades:tumLegendaryUnicorn",
+          "name": "Legendary Unicorn",
+          "resource": "mod/third-upgrades/content/sprites/creatures/rampart/battle/cr206.def",
+          "animationSha256": "a7e76d314924a2077e4005bdb547e0bcc0f269e68286bba25cb1af67aedfd11d",
+          "firstFrameSha256": "0375c4b285ffe0753c0e6bf8aa8c3db0e7ed10c2ed6fd62e605a3b64a6b2a417"
+        }
+      ]
+    },
+    {
+      "faction": "rampart",
+      "tier": 7,
+      "units": [
+        {
+          "id": "core:greenDragon",
+          "resource": "H3sprite.lod:CGDRAG.def",
+          "animationSha256": "04a19855b56246e7fc65da42b67a73a4097164b31432e494a40c993b57643e54",
+          "firstFrameSha256": "3d80a964a0e26e5a88f8a7729b48ff237933916e42e756f8626ac2978d485cad"
+        },
+        {
+          "id": "core:goldDragon",
+          "resource": "H3sprite.lod:CDDRAG.def",
+          "animationSha256": "6e4f7fe87f35a0375310ed79c647a9dc9878aa11ad499416874accc9fce0a44f",
+          "firstFrameSha256": "a53bc5c924758c699073792c8491930bdb4cd93ccbf0da87f324ebe938c2ff6c"
+        },
+        {
+          "id": "wake-of-gods.level8units:diamondDragon",
+          "name": "Diamond Dragon",
+          "resource": "mod/wake-of-gods/Mods/wogGraphicFix/Mods/wf_level8Units/content/sprites/creatures/diamondDragon/zm151z.def",
+          "animationSha256": "8971e40f8766b8b09e69fa4c08bcc522933885ca9f183ffb715bb2a658989f43",
+          "firstFrameSha256": "00108c7b0beb302acb8ddf5920bc51f1358c71d1cd244f41264af0bb3b0a1131"
+        },
+        {
+          "id": "tum-era:gemDragon",
+          "name": "Brilliant Diamond Dragon",
+          "resource": "mod/tum-era/content/Sprites/tum-era/gem-dragon/cr207.def",
+          "animationSha256": "ba3ec42efe898e68fe49342086c767f95409638efecdaf7f68bd9fb597300a9d",
+          "firstFrameSha256": "6dfca296e39e10b30180b29c7005a75eef0e3cfa74b3d2796df652131b134c15"
+        }
+      ]
+    },
+    {
+      "faction": "stronghold",
+      "tier": 1,
+      "units": [
+        {
+          "id": "core:goblin",
+          "resource": "H3sprite.lod:CGOBLI.def",
+          "animationSha256": "2b8766c51768b6f700cd8964f7f6b28df2312adfd627d24a967754fc7bd6696c",
+          "firstFrameSha256": "3d578ef8fdbb4625c144cea345acc48de953f31ff25b297c161be95ce6ac2c06"
+        },
+        {
+          "id": "core:hobgoblin",
+          "resource": "H3sprite.lod:CHGOBL.def",
+          "animationSha256": "350091cfe3b79e38895b18cfd392f4b5b8d5bc907a4dc51a69822dc1f28c79eb",
+          "firstFrameSha256": "99553f1eef162c58d5e28ae0f7cd96bf272e689021f1ebeb4815df6515cf1ebe"
+        },
+        {
+          "id": "third-upgrades:tumHobgoblinOverlord",
+          "name": "Hobgoblin Overlord",
+          "resource": "mod/third-upgrades/content/sprites/creatures/stronghold/battle/cr232.def",
+          "animationSha256": "c44143b2cca93bab6687289fedc443cdc279ea9575371faf9c6dc516da740474",
+          "firstFrameSha256": "c5283b029768d0c6d56ce2c138b380e40b20d139fabe9e900db3261360fb3a8f"
+        }
+      ]
+    },
+    {
+      "faction": "stronghold",
+      "tier": 2,
+      "units": [
+        {
+          "id": "core:goblinWolfRider",
+          "resource": "H3sprite.lod:CBWLFR.def",
+          "animationSha256": "213ed673aae60c40d68307f74d6fb68d568ac91406158f5c185e8109c63b9abe",
+          "firstFrameSha256": "dc69d2c32db5991ea53dc7916768eb6c67cb444a0080146913303343e5d4d3f3"
+        },
+        {
+          "id": "core:hobgoblinWolfRider",
+          "resource": "H3sprite.lod:CUWLFR.def",
+          "animationSha256": "3b1cefce7fe181167d2fecdf37d627296dd7bc800fc8d63c93f5e688c731ad87",
+          "firstFrameSha256": "de1efaee82c7855b228cfb8c9c8132798811dec6846c99cff9da8c907b1137a3"
+        },
+        {
+          "id": "third-upgrades:tumWolfRiderKiller",
+          "name": "Wolf Captain",
+          "resource": "mod/third-upgrades/content/sprites/creatures/stronghold/battle/cr233.def",
+          "animationSha256": "2a1b023009e72da4e12759397271270504b223b48f08912b2bf608ee653e945b",
+          "firstFrameSha256": "11184a6af9349639950932cca6aff546db290242b612d18a5062f031225214e2"
+        }
+      ]
+    },
+    {
+      "faction": "stronghold",
+      "tier": 3,
+      "units": [
+        {
+          "id": "core:orc",
+          "resource": "H3sprite.lod:CORC.def",
+          "animationSha256": "30cf53e5f2f5cb98d05bd14e3e8fb27a84d1f6a3fb33a74798c3e221fdd97680",
+          "firstFrameSha256": "b296c8729b64cf5d4fb556c4749548998a6bbd4a0fff6131e36e1d022871cd9b"
+        },
+        {
+          "id": "core:orcChieftain",
+          "resource": "H3sprite.lod:CORCCH.def",
+          "animationSha256": "fe03f3869d8a7a73a0cdcf8c49f01cfb99c8b41a0579050b406a2160441b0fc7",
+          "firstFrameSha256": "c92f47246f4f43de5b3fb90ae58a704926aa6b2f37b8fd4b5e3d92b824a96bd0"
+        },
+        {
+          "id": "third-upgrades:tumOrcLeader",
+          "name": "Orc Leader",
+          "resource": "mod/third-upgrades/content/sprites/creatures/stronghold/battle/cr234.def",
+          "animationSha256": "827411d824d8450a225ef6c9e4afd6ef94f6815658edb3305e2606aeec3984c9",
+          "firstFrameSha256": "880eb5f1a036631b53e084aca462d57f28a2cb3d686448a4f7197ee8142637c1"
+        }
+      ]
+    },
+    {
+      "faction": "stronghold",
+      "tier": 4,
+      "units": [
+        {
+          "id": "core:ogre",
+          "resource": "H3sprite.lod:COGRE.def",
+          "animationSha256": "445d01dc03ce35edd71f00d6050dab6f1f9f4087f899d622d2e332c489ff5855",
+          "firstFrameSha256": "bff57e62da9e4846313a0a805f844210cb76a36e799682315bd84ad63b86ce77"
+        },
+        {
+          "id": "core:ogreMage",
+          "resource": "H3sprite.lod:COGMAG.def",
+          "animationSha256": "8196a8e264e8bd7b277aa015d9a7f6cb6bb17961cc78b9c06fe73b02e6fc883e",
+          "firstFrameSha256": "5cbef3bb01cf0b22144ad137ad5d5e7a8336461f52859d528689f26a4929005a"
+        },
+        {
+          "id": "third-upgrades:tumElderOgre",
+          "name": "Elder Ogre",
+          "resource": "mod/third-upgrades/content/sprites/creatures/stronghold/battle/cr235.def",
+          "animationSha256": "48a948232c8eac52440d9f671335bcb3f8e2cbe675e52a4c6b4aba1684a76beb",
+          "firstFrameSha256": "2236ac67b07bd7b6f9b57265e1dc30ec502d3a7416a3d56c60d1ec49643c2ef0"
+        }
+      ]
+    },
+    {
+      "faction": "stronghold",
+      "tier": 5,
+      "units": [
+        {
+          "id": "core:roc",
+          "resource": "H3sprite.lod:CROC.def",
+          "animationSha256": "c50f4590ff5a75bdf08613294db5eabbe184d16d3fe96b2675660b9511274c29",
+          "firstFrameSha256": "7196953f918887319728261c4786f8b8f84728df88344c2604a520519ac0cc28"
+        },
+        {
+          "id": "core:thunderbird",
+          "resource": "H3sprite.lod:CTBIRD.def",
+          "animationSha256": "aa2d468ce13b35e134802ee38a92d0ba5b35c1e8f224a726a907eaae71c6eb90",
+          "firstFrameSha256": "6ce42b4891d1e07286a598d53f2cb0ec58d56dd69430f199b0a1a30ce8bfc20d"
+        },
+        {
+          "id": "third-upgrades:tumLightningbird",
+          "name": "Lightningbird",
+          "resource": "mod/third-upgrades/content/sprites/creatures/stronghold/battle/cr236.def",
+          "animationSha256": "8927c8dcaade1083bdd8c02371ca9f54bd3c9ed1f11d6b3d02b23c705093e70f",
+          "firstFrameSha256": "3a51ab9f9fdf2ed80b850ea600ac3dc2c781827fe866e34e05d17ca9016382ba"
+        }
+      ]
+    },
+    {
+      "faction": "stronghold",
+      "tier": 6,
+      "units": [
+        {
+          "id": "core:cyclop",
+          "resource": "H3sprite.lod:CCYCLR.def",
+          "animationSha256": "3eb966185a56e7a1617264e391200a44932c5138336e11b94d08330b63de08e3",
+          "firstFrameSha256": "715139e63f07b8ae8ac7bdc36603b9046e4f2e8b9b65098c146809e5a8193475"
+        },
+        {
+          "id": "core:cyclopKing",
+          "resource": "H3sprite.lod:CcyclLor.def",
+          "animationSha256": "5fa4bc170424390ad2aca3392ae617172797df1705447f89f5062fd16bffadb8",
+          "firstFrameSha256": "667c81563cc67fa9a86e350dc930af7bafced4c59410545b4b5ca4612db9ddcd"
+        },
+        {
+          "id": "third-upgrades:tumCyclopsEmperor",
+          "name": "Cyclops Emperor",
+          "resource": "mod/third-upgrades/content/sprites/creatures/stronghold/battle/cr237.def",
+          "animationSha256": "b7305feb15f2894bf6539ad5dcf448dca02ec9468fc49531d4e9aa1a9bfd7c27",
+          "firstFrameSha256": "f4c3455f6122a3cf9bacfb5c0b7db22718711b3acc94f1473fa41d9ecb38d173"
+        }
+      ]
+    },
+    {
+      "faction": "stronghold",
+      "tier": 7,
+      "units": [
+        {
+          "id": "core:behemoth",
+          "resource": "H3sprite.lod:CYBEHE.def",
+          "animationSha256": "91577eb045391e03786abff84c82ba090a0cccedd508efe6f21eb0f97f9959ca",
+          "firstFrameSha256": "855b5f45dd5ed0a6b77b70240b6e8a5ab4d92b721febeaf403277cab706efed6"
+        },
+        {
+          "id": "core:ancientBehemoth",
+          "resource": "H3sprite.lod:CABEHE.def",
+          "animationSha256": "7f69d9981d838505499ca26f570637ca3b2d5681eaa0c64196a1b90a571d8b35",
+          "firstFrameSha256": "d23d71264adb56a34e20e45a33e32a970d1548b19f6ceaafaa5db55237c91e6e"
+        },
+        {
+          "id": "wake-of-gods.level8units:ghostBehemoth",
+          "name": "Ghost Behemot",
+          "resource": "mod/wake-of-gods/Mods/level8Units/content/sprites/creatures/ghostBehemoth/zm156z.def",
+          "animationSha256": "f67b7c359fdddacfe5034e5aad83667114544d8568825e94bcbb2f529d95d754",
+          "firstFrameSha256": "fb274d998c12e2bea6632f20f6d5a4b5bb9e85cd989705b74209fc742c2b1b86"
+        },
+        {
+          "id": "tum-era:ancestralBehemoth",
+          "name": "Ancestral Behemoth",
+          "resource": "mod/tum-era/content/Sprites/tum-era/ancestral-behemoth/cr238.def",
+          "animationSha256": "c3d15d2421016a258516735241509e3d7b5bf7cd90de516861e5592d3310f598",
+          "firstFrameSha256": "3a55cce59d611a9e2eddc21c1065ed6a43773fde1339a7f1b7cee733195ce54c"
+        }
+      ]
+    },
+    {
+      "faction": "tower",
+      "tier": 1,
+      "units": [
+        {
+          "id": "core:gremlin",
+          "resource": "H3sprite.lod:CGREMA.def",
+          "animationSha256": "94d323d3fbe4d2fd8ace429b94205790266daa9557fa94a7c22b125a4dc91454",
+          "firstFrameSha256": "35e20101dffa40ff69508c4314c0b1742259fa0cb851724695f702e01d60d80c"
+        },
+        {
+          "id": "core:masterGremlin",
+          "resource": "H3sprite.lod:CGREMM.def",
+          "animationSha256": "1b491b88b808472f9650427bf47212e8c1cae1e7329168ac5d39f6df519ba8c4",
+          "firstFrameSha256": "59dc5252e4fd22f5fd91ccc162c75a1314f698916e32c56f61d57902fd7a9e59"
+        },
+        {
+          "id": "third-upgrades:tumGrandmasterGremlin",
+          "name": "Grandmaster Gremlin",
+          "resource": "mod/third-upgrades/content/sprites/creatures/tower/battle/cr255.DEF",
+          "animationSha256": "a81844a2476f7bc8440c61eb169f222f8a6866f8e6d9686294c2e90975b978e6",
+          "firstFrameSha256": "654e7751e6af33f323741bf85c827893321e0804460ec866776bfb5ee4dfb58d"
+        }
+      ]
+    },
+    {
+      "faction": "tower",
+      "tier": 2,
+      "units": [
+        {
+          "id": "core:stoneGargoyle",
+          "resource": "H3sprite.lod:CGARGO.def",
+          "animationSha256": "6e96ca1c8f206ffa0bfdd166ae982eebfda23ec33baa41e6c5b1509b5d53a5eb",
+          "firstFrameSha256": "f89999a556d0d4d58f90b2e24fde4573d59b1e9a86ad5aa66bf8131436278a59"
+        },
+        {
+          "id": "core:obsidianGargoyle",
+          "resource": "H3sprite.lod:COGARG.def",
+          "animationSha256": "4afda5a18f71c2951c7de5dd8430413376b2e9b5e72e603e72582c220b5557b4",
+          "firstFrameSha256": "1ec94a498361d605fd5e7b39c8cb054ff862a7ca5511856bea8d5b6b4e650c12"
+        },
+        {
+          "id": "third-upgrades:tumMarbleGargoyle",
+          "name": "Marble Gargoyle",
+          "resource": "mod/third-upgrades/content/sprites/creatures/tower/battle/cr208.def",
+          "animationSha256": "5d3f8878ef381f5668a5fd351801142a170bab3e8a47e87c49cf6a5a764db70f",
+          "firstFrameSha256": "0e32f6669bae9fb0627e302bc10101f4a6051d6598f731b15ec43676ecef7f04"
+        }
+      ]
+    },
+    {
+      "faction": "tower",
+      "tier": 3,
+      "units": [
+        {
+          "id": "core:ironGolem",
+          "resource": "H3sprite.lod:CSGOLE.def",
+          "animationSha256": "b2c7b78af9991745b07479bb9b3a45f50f98ec6279ceba771dd2e8cd11bf77a8",
+          "firstFrameSha256": "59f2f77bc3b253c21562f1dd679f8c97322f2f5e3e8d0928d7144e0e8e5fe63e"
+        },
+        {
+          "id": "core:stoneGolem",
+          "resource": "H3sprite.lod:CIGOLE.def",
+          "animationSha256": "b199ce40bc84e587e4a5d898e9fa0810d00a17f994826b12c777b7f84aa0cf50",
+          "firstFrameSha256": "83de1aac929381248e0df780991c5041a873e354e9a1b1bc766fd4aaa39b28b1"
+        },
+        {
+          "id": "third-upgrades:tumSteelGolem",
+          "name": "Mithril Golem",
+          "resource": "mod/third-upgrades/content/sprites/creatures/tower/battle/cr209.def",
+          "animationSha256": "2646f6198e2771efcf62d34f7fcaf9c74260f0f442e243e89a21f83b3f3eec5f",
+          "firstFrameSha256": "b1d54e5d534cdc4a9d5cdde2a028fbcb1549c791310fd07d30deeb7e87076f33"
+        }
+      ]
+    },
+    {
+      "faction": "tower",
+      "tier": 4,
+      "units": [
+        {
+          "id": "core:mage",
+          "resource": "H3sprite.lod:CMAGE.def",
+          "animationSha256": "2167d069e88999505467d8e9bb17fdc66b54259eaf07d821b0f0154a384c403f",
+          "firstFrameSha256": "f6bc63cf239e6a7c611224b0f80b7342080df510e278bf4db351db3b3fe0b357"
+        },
+        {
+          "id": "core:archMage",
+          "resource": "H3sprite.lod:CAMAGE.def",
+          "animationSha256": "0fd126c360ec31a7718f8f4bd30fd3546a35b03e136dbb76504b6c0ad4b098ff",
+          "firstFrameSha256": "29fd964710c26e2047de681ce3dacf2e83692fa0c812d5fd7919621bff00a1a2"
+        },
+        {
+          "id": "third-upgrades:tumSupremeArchMage",
+          "name": "Supreme Arch Mage",
+          "resource": "mod/third-upgrades/content/sprites/creatures/tower/battle/cr257.def",
+          "animationSha256": "b3cbd5efb369ec7b4e85a2471d8bf48d56b7972f27aec8ae6980724e24ec1497",
+          "firstFrameSha256": "e9444877b227737b8643f7dd3109c7c469d07eaeae169eef4ac7d8edbb17255f"
+        }
+      ]
+    },
+    {
+      "faction": "tower",
+      "tier": 5,
+      "units": [
+        {
+          "id": "core:genie",
+          "resource": "H3sprite.lod:CGENIE.def",
+          "animationSha256": "97a854512a888898b4bf4d7c83156edcf5091a6c498210c6dce03194090ac13b",
+          "firstFrameSha256": "afa7c18e5e20bfd5f010555616e9f560b06dccc53c5c85179bb29f015b1d2874"
+        },
+        {
+          "id": "core:masterGenie",
+          "resource": "H3sprite.lod:CSULTA.def",
+          "animationSha256": "fd115a740052281c425518652573206207de867eb5b14a1b667e506b2787f4b6",
+          "firstFrameSha256": "0e958de5baecd91ae6d801bdbb19da139de63f7d5cf123eaf821976236e604ee"
+        },
+        {
+          "id": "third-upgrades:tumArcaneGenie",
+          "name": "Arcane Genie",
+          "resource": "mod/third-upgrades/content/sprites/creatures/tower/battle/cr210.def",
+          "animationSha256": "1502abaf9b9495a455233f0cc92a5b5ea845ebf1393b3b81ac978d25d757d85e",
+          "firstFrameSha256": "d566b80fe780c788bc59287b6b1ab4252d951d3f336d5da446c9cfa9ba099937"
+        }
+      ]
+    },
+    {
+      "faction": "tower",
+      "tier": 6,
+      "units": [
+        {
+          "id": "core:naga",
+          "resource": "H3sprite.lod:CNAGA.def",
+          "animationSha256": "adaa5f8872bdfb574ded612605098ca4dabd2c3a62ea6808e1fc2bb7069a73f4",
+          "firstFrameSha256": "b0216566a938efe11c44f8e36407659ee7bf26dc0bec89d604aded086706537d"
+        },
+        {
+          "id": "core:nagaQueen",
+          "resource": "H3sprite.lod:CNAGAG.def",
+          "animationSha256": "0b9b2e60ca91b34408491e1a76f86e5f79da19ba34d2f9add46051f82f06aeb5",
+          "firstFrameSha256": "b861c749cbcc45f03f41d4d235b0c392317ca6f8c1a64170d09e6889c4b722c5"
+        },
+        {
+          "id": "third-upgrades:tumNagaEmpress",
+          "name": "Naga Empress",
+          "resource": "mod/third-upgrades/content/sprites/creatures/tower/battle/cr211.def",
+          "animationSha256": "244f1904e33d6bcb5f06c8fcec2225b1aa49798fcae7d830c5900c0eb8a7bd2a",
+          "firstFrameSha256": "a1d782ea3a044a2787a1189472beeb36be6061d62aa1b492d0b501812bb90eaa"
+        }
+      ]
+    },
+    {
+      "faction": "tower",
+      "tier": 7,
+      "units": [
+        {
+          "id": "core:giant",
+          "resource": "H3sprite.lod:CLTITA.def",
+          "animationSha256": "a2dadbae5b38584200d14f4edf97152b77d4b32dcab3ac276a4b958995dcfb48",
+          "firstFrameSha256": "cbcbb739696b071ba71ba7e44185d63dce85ac21e9ac4b2f4e7a05a04e674477"
+        },
+        {
+          "id": "core:titan",
+          "resource": "H3sprite.lod:CGTITA.def",
+          "animationSha256": "f8a597990a4fd9207bcfff7cbbde928c7f5aa8527a52d7aab93a20c71606507e",
+          "firstFrameSha256": "df543b4d449c9bd7b41ddc3347a9beacfdb94401b190a6177a3b2a53ef32c9f1"
+        },
+        {
+          "id": "wake-of-gods.level8units:lordOfThunder",
+          "name": "Lord of Thunder",
+          "resource": "mod/tum-era/content/Sprites/tum-era/source-level8/lordOfThunder/battle.def",
+          "animationSha256": "271244f017865cd9bcccc2b7ddd2f0592083013c6b011890858641adcde9a6a1",
+          "firstFrameSha256": "0b4210933f930874dc7f84bd7bf1b043a8d425473769db8ef8a860aa9abee65c"
+        },
+        {
+          "id": "tum-era:guardianOfZeus",
+          "name": "Master of Thunder",
+          "resource": "mod/tum-era/content/Sprites/tum-era/guardian-zeus/cr212.def",
+          "animationSha256": "9fd28c1069a1767688f8dc03f401b1741cb26d7ec2f06109d593f671cae294fb",
+          "firstFrameSha256": "c934390a19e989786d19397c768bed331ab9234843a87b3e43903cdae4697ad4"
+        }
+      ]
+    }
+  ]
+}

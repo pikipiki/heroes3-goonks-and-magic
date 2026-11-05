@@ -1,0 +1,42 @@
+{
+  "wake-of-gods.level8units:lordOfThunder": {
+    "graphics": {
+      "animation": "tum-era/source-level8/lordOfThunder/battle.def",
+      "map": "tum-era/source-level8/lordOfThunder/map.def",
+      "mapAttackFromRight": "tum-era/source-level8/lordOfThunder/attack-right.png",
+      "mapAttackFromLeft": "tum-era/source-level8/lordOfThunder/attack-left.png",
+      "iconSmall": "tum-era/source-level8/lordOfThunder/small.png",
+      "iconLarge": "tum-era/source-level8/lordOfThunder/large.png"
+    }
+  },
+  "wake-of-gods.level8units:hellBaron": {
+    "graphics": {
+      "animation": "tum-era/source-level8/hellBaron/battle.def",
+      "map": "tum-era/source-level8/hellBaron/map.def",
+      "mapAttackFromRight": "tum-era/source-level8/hellBaron/attack-right.png",
+      "mapAttackFromLeft": "tum-era/source-level8/hellBaron/attack-left.png",
+      "iconSmall": "tum-era/source-level8/hellBaron/small.png",
+      "iconLarge": "tum-era/source-level8/hellBaron/large.png"
+    }
+  },
+  "wake-of-gods.level8units:bloodDragon": {
+    "graphics": {
+      "animation": "tum-era/source-level8/bloodDragon/battle.def",
+      "map": "tum-era/source-level8/bloodDragon/map.def",
+      "mapAttackFromRight": "tum-era/source-level8/bloodDragon/attack-right.png",
+      "mapAttackFromLeft": "tum-era/source-level8/bloodDragon/attack-left.png",
+      "iconSmall": "tum-era/source-level8/bloodDragon/small.png",
+      "iconLarge": "tum-era/source-level8/bloodDragon/large.png"
+    }
+  },
+  "wake-of-gods.level8units:hellHydra": {
+    "graphics": {
+      "animation": "tum-era/source-level8/hellHydra/battle.def",
+      "map": "tum-era/source-level8/hellHydra/map.def",
+      "mapAttackFromRight": "tum-era/source-level8/hellHydra/attack-right.png",
+      "mapAttackFromLeft": "tum-era/source-level8/hellHydra/attack-left.png",
+      "iconSmall": "tum-era/source-level8/hellHydra/small.png",
+      "iconLarge": "tum-era/source-level8/hellHydra/large.png"
+    }
+  }
+}

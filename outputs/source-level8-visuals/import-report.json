@@ -1,0 +1,154 @@
+{
+  "archiveSha256": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+  "policy": "Graphics only; retain all statistics, upgrades, abilities and timing.",
+  "creatures": [
+    {
+      "eraId": 152,
+      "key": "lordOfThunder",
+      "final": "guardianOfZeus",
+      "assets": [
+        {
+          "field": "animation",
+          "source": "AmeCre.pac:zm152z.DEF",
+          "sha256": "271244f017865cd9bcccc2b7ddd2f0592083013c6b011890858641adcde9a6a1"
+        },
+        {
+          "field": "map",
+          "source": "AmeCre.pac:zmm152z.DEF",
+          "sha256": "aa88598ab2e5cc43e78aba08e4fee9f21a6790d3aefccfff04f2fc021ba23e67"
+        },
+        {
+          "field": "mapAttackFromRight",
+          "source": "mod/wake-of-gods/Mods/level8Units/content/sprites/avwattak/ZAvW152a.png",
+          "sha256": "1238a4edce82e5df40fe427ece575ac100498dec90ba50fcb6e99f7930e7bc0a"
+        },
+        {
+          "field": "mapAttackFromLeft",
+          "source": "mod/wake-of-gods/Mods/level8Units/content/sprites/avwattak/ZAvW152b.png",
+          "sha256": "fcc7cc96cbda79fd04819d9fcf4dfcf021c55aaf4010d76ead81566b67e19eea"
+        },
+        {
+          "field": "iconSmall",
+          "source": "AmeCre.pac:cprsmall.def:154",
+          "rgbaSha256": "42e7e5e593e408d50b26d678b54ce942013c0ab28c24db6b39d51c2d2ed73787"
+        },
+        {
+          "field": "iconLarge",
+          "source": "AmeCre.pac:twcrport.def:154",
+          "rgbaSha256": "b33addb991c20ae2587131fd87775b0da6b4899ee35c8c3f5a08dd9dd773cc54"
+        }
+      ]
+    },
+    {
+      "eraId": 153,
+      "key": "hellBaron",
+      "final": "antichrist",
+      "assets": [
+        {
+          "field": "animation",
+          "source": "mod/wake-of-gods/Mods/level8Units/content/sprites/creatures/hellBaron/zm153z.def",
+          "sha256": "4a0d8bd68de59470d0955f0419b199d2bf536e5aa5708c6a02bd26b5064d74fe"
+        },
+        {
+          "field": "map",
+          "source": "mod/wake-of-gods/Mods/level8Units/content/sprites/creatures/hellBaron/zmm153z.def",
+          "sha256": "b0c2171aa9debb2901e7751b64290a4c2d15bf51c14df055176756454202604d"
+        },
+        {
+          "field": "mapAttackFromRight",
+          "source": "mod/wake-of-gods/Mods/level8Units/content/sprites/avwattak/ZAvW153a.png",
+          "sha256": "f557d091346fd4f1353a1f81cae26db813c90d0016dc231547626a95fb29b02d"
+        },
+        {
+          "field": "mapAttackFromLeft",
+          "source": "mod/wake-of-gods/Mods/level8Units/content/sprites/avwattak/ZAvW153b.png",
+          "sha256": "9f4051c2b30d624aec28a5af88ce314643b0af59131e99ff058020ef89d679f7"
+        },
+        {
+          "field": "iconSmall",
+          "source": "AmeCre.pac:cprsmall.def:155",
+          "rgbaSha256": "8601fe1ec230eaecb836defc171fff11c6c798f71b825af56b3a20739ceb532d"
+        },
+        {
+          "field": "iconLarge",
+          "source": "AmeCre.pac:twcrport.def:155",
+          "rgbaSha256": "0c59f2aba605c0671720cf11c1eff65c0642e3fbec0077b31e42a5e6c60466a4"
+        }
+      ]
+    },
+    {
+      "eraId": 154,
+      "key": "bloodDragon",
+      "final": "redBonesDragon",
+      "assets": [
+        {
+          "field": "animation",
+          "source": "AmeCre.pac:zm154z.def",
+          "sha256": "de88da3f4f013a61c49fb1392f5fc9ceb74f1ab018dd9e81b3efb632b1166428"
+        },
+        {
+          "field": "map",
+          "source": "AmeCre.pac:zmm154z.def",
+          "sha256": "f7bfae59440e067cf89bcdda2835d2e09ed4afc63e431b237e4a74dfc04e7db3"
+        },
+        {
+          "field": "mapAttackFromRight",
+          "source": "mod/wake-of-gods/Mods/level8Units/content/sprites/avwattak/ZAvW154a.png",
+          "sha256": "358d3a29898ee111b22d151f855b8e0e5e273f54c16b6aaafa10a644783d709d"
+        },
+        {
+          "field": "mapAttackFromLeft",
+          "source": "mod/wake-of-gods/Mods/level8Units/content/sprites/avwattak/ZAvW154b.png",
+          "sha256": "626f7aacc89668a5e6eaa8e270593f7d2fc43d3c1a3641bf8b249e3eba6a1053"
+        },
+        {
+          "field": "iconSmall",
+          "source": "AmeCre.pac:cprsmall.def:156",
+          "rgbaSha256": "702f4049815c1550255c38119f0d2ce8845a29a1dfbba69eb218e89d6574ec0e"
+        },
+        {
+          "field": "iconLarge",
+          "source": "AmeCre.pac:twcrport.def:156",
+          "rgbaSha256": "01b4a590e5cb99d3db6699478702949845e1951910678bbac54cd01a8a43e930"
+        }
+      ]
+    },
+    {
+      "eraId": 157,
+      "key": "hellHydra",
+      "final": "nightmareHydra",
+      "assets": [
+        {
+          "field": "animation",
+          "source": "mod/wake-of-gods/Mods/level8Units/content/sprites/creatures/hellHydra/zm157z.def",
+          "sha256": "a32792f8e8c3c311da5689bbc7996355fb719a55d53565aa047e33f6803d6fd0"
+        },
+        {
+          "field": "map",
+          "source": "mod/wake-of-gods/Mods/level8Units/content/sprites/creatures/hellHydra/zmm157z.def",
+          "sha256": "f436f4377e5bd7a120eb964de94f7d1119be90782c8f0330b4bf011b781e2aea"
+        },
+        {
+          "field": "mapAttackFromRight",
+          "source": "mod/wake-of-gods/Mods/level8Units/content/sprites/avwattak/ZAvW157a.png",
+          "sha256": "6a4ea13ddd8dcd60d2c1fcd8ebcc2520bbc2e858eb456ed6e1dcd8a0792a8a3a"
+        },
+        {
+          "field": "mapAttackFromLeft",
+          "source": "mod/wake-of-gods/Mods/level8Units/content/sprites/avwattak/ZAvW157b.png",
+          "sha256": "91c22eb43bb100db83335baa691899ba7501daa6965b2627ed0bf2a527a00322"
+        },
+        {
+          "field": "iconSmall",
+          "source": "AmeCre.pac:cprsmall.def:159",
+          "rgbaSha256": "7b49012fefb506cae5c13fba8514f3c42ac6f943036050b204ba9437c8b05844"
+        },
+        {
+          "field": "iconLarge",
+          "source": "AmeCre.pac:twcrport.def:159",
+          "rgbaSha256": "75bc58c5254b4142420fe77c8382f35d89a388ac8cd6ce4e0527bbdebbca6449"
+        }
+      ]
+    }
+  ]
+}
