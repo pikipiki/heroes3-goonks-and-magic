@@ -196,6 +196,9 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
 /* Keep mana distinct from the hero’s movement points in both orientations. */
 #mobile-app .mobile-movement{display:grid;gap:2px;text-align:right}
 #mobile-app .map-mana-points,#mobile-app .hero-mana{color:#c3ddff;font-variant-numeric:tabular-nums}
+#mobile-app .hero-magic-status{display:grid;justify-items:start;gap:2px}
+#mobile-app .hero-movement-item>button .hero-no-spellbook{padding:1px 4px;border:1px solid #e1ac77;background:#281b13;color:#ffe0b5;font-size:11px;font-weight:600}
+
 
 /* Give the adventure map the full height in mobile landscape. */
 @media (orientation:landscape) and (max-height:600px) {

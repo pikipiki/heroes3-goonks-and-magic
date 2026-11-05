@@ -11,3 +11,18 @@ test('Only the selected hero is marked when two heroes have the same display nam
  assert.match(html,/data-hero-index="1" aria-pressed="true"[^>]*><span class="hero-selected-mark"/);
  assert.equal((html.match(/class="hero-selected-mark"/g)||[]).length,1);
 });
+
+test('The no-spellbook badge is independent of mana and hero selection',()=>{
+ const state={heroId:1,heroName:'Rion',turn:true,heroes:[
+  {id:1,name:'Rion',mana:20,manaLimit:20,hasSpellbook:false},
+  {id:2,name:'Catherine',mana:0,manaLimit:10,hasSpellbook:false},
+  {id:3,name:'Solmyr',mana:0,manaLimit:30,hasSpellbook:true},
+  {id:4,name:'Astral',mana:5,manaLimit:15}
+ ]};
+ const html=heroMovementSummary(state);
+ assert.match(html,/Rion.*?Mana 20\/20<\/span><span class="hero-no-spellbook">No spellbook/);
+ assert.match(html,/Catherine.*?Mana 0\/10<\/span><span class="hero-no-spellbook">No spellbook/);
+ assert.equal((html.match(/No spellbook/g)||[]).length,2);
+ assert.equal((heroMovementSummary(state,'fr').match(/Sans grimoire/g)||[]).length,2);
+ assert.match(heroMovementSummary({heroName:'Rion',heroHasSpellbook:false}),/No spellbook/);
+});
