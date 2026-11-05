@@ -22,10 +22,12 @@
 .hero-artifact-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.hero-artifact-actions button{min-height:44px;font-size:14px}
 @media(orientation:landscape){.hero-equipment-page{grid-template-columns:minmax(0,1.5fr) minmax(230px,1fr);grid-template-rows:78px 50px minmax(0,1fr)}.hero-card-head{grid-column:2;grid-row:1;padding:5px 7px;gap:6px}.hero-card-head canvas{width:43px;flex-basis:43px;height:52px}.hero-card-head h2{font-size:17px}.hero-card-head button{padding:4px;min-width:44px}.hero-primary{grid-column:2;grid-row:2;padding:5px 7px}.hero-bag-tabs{grid-column:1;grid-row:1;align-content:center;border-right:1px solid #92723f}.hero-equipment-grid{grid-column:1;grid-row:2/4;grid-template-columns:repeat(3,minmax(0,1fr));border-right:1px solid #92723f}.hero-artifact-detail{grid-column:2;grid-row:3;padding:5px 7px}.hero-artifact-detail h3{font-size:14px;line-height:17px}.hero-artifact-description{font-size:12px;line-height:16px}.hero-artifact-actions{gap:4px}.hero-artifact-actions button{font-size:12px;padding:4px}}
 
+#mobile-app .hero-mobile-switch{display:none}
+#mobile-app[data-mode=hero][data-hero-view=classic] .hero-mobile-switch{display:block;flex-shrink:0;min-height:48px}
 #mobile-app[data-mode=hero][data-hero-view=classic]{grid-template-rows:auto minmax(0,1fr) auto}
 #mobile-app[data-mode=hero][data-hero-view=classic] #mobile-scene{display:block!important}
 #mobile-app[data-mode=hero][data-hero-view=classic] .scene-tools{display:flex!important}
-#mobile-app[data-mode=hero][data-hero-view=classic] .mobile-nav{display:grid!important;grid-column:1/-1;grid-row:3;grid-template-columns:repeat(4,minmax(0,1fr))}
+#mobile-app[data-mode=hero][data-hero-view=classic] .mobile-nav{display:grid!important;grid-column:1/-1;grid-row:3;grid-template-columns:repeat(3,minmax(0,1fr))}
 
 /* A paper doll keeps the native body slots in their anatomical positions. */
 .hero-equipment-page[data-inventory=worn] .hero-equipment-grid{display:block;padding:6px}
