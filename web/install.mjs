@@ -5,6 +5,11 @@ import {syncAssets} from './asset-cache.mjs';
 import {downloadFetch} from './download-fetch.mjs';
 import {createLoadingView} from './loading.mjs';
 const status=text=>{const el=document.querySelector('#status');if(el)el.textContent=text;};
+// Netlify already supplies isolation headers, so direct visits also install the worker.
+if ('serviceWorker' in navigator && window.crossOriginIsolated) {
+ navigator.serviceWorker.register(new URL('../coi-serviceworker.js',import.meta.url),{updateViaCache:'none'})
+  .catch(error=>console.warn('Offline cache unavailable:',error.message));
+}
 const gameStorageHeld=holdGameStorage();
 const prepare=async()=>{
  await gameStorageHeld;

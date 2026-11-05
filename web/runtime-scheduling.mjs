@@ -25,7 +25,7 @@ const opfsCall=run=>new Promise((resolve,reject)=>run((error,value)=>error?rejec
 export async function persistSaveFiles(module,paths){
   const {FS,OPFS}=module;
   const canWriteDirectly=OPFS?.loadLocalEntry&&OPFS.storeRemoteEntry&&OPFS.callWorker
-    && paths.every(path=>path.toLowerCase()===saveRoot+'/saves/goonk-auto.vsgm1');
+    && paths.every(path=>['goonk-auto','goonk-online-auto'].some(name=>path.toLowerCase()===saveRoot+'/saves/'+name+'.vsgm1'));
   if(!canWriteDirectly)return opfsCall(done=>FS.syncfs(false,done));
   const mount=FS.lookupPath(saveRoot).node.mount;
   if(mount?.opts?.root!==saveRoot||mount.opts.folder)return opfsCall(done=>FS.syncfs(false,done));

@@ -24,7 +24,7 @@ export function createSessionRecovery({listSaves,command,onStatus=()=>{},manual=
     if(newGame&&state.mode==='menu'){status('dismissed');command(20);return;}
     if(manual&&state.mode==='menu'){status('dismissed');command(23);return;}
     if(state.mode!=='menu'){status('done');return;}
-    try{candidates=listSaves();if(!candidates.length){status('done');return;}status('opening');command(23);}catch(error){fail(String(error));}
+    try{candidates=listSaves().filter(save=>save.name!=='goonk-online-auto');if(!candidates.length){status('done');return;}status('opening');command(23);}catch(error){fail(String(error));}
     return;
    }
    if(phase==='custom-opening'){if(state.mode==='lobby'&&state.lobbyReady){status('custom-configuring');command(48,...custom);}return;}

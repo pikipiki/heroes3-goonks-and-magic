@@ -48,5 +48,22 @@ console.log('Site statique créé dans dist — données Heroes III et mods héb
 
 fs.writeFileSync(path.join(dist,'index.html'),index);
 fs.copyFileSync('web/hosting-bootstrap.mjs',path.join(dist,'hosting-bootstrap.mjs'));
-fs.copyFileSync('web/coi-serviceworker.js',path.join(dist,'coi-serviceworker.js'));
+// Stamp HTML so a CDN-injected snippet cannot invalidate the whole cache install.
+const htmlVersions={};
+for(const file of ['index.html','game.html','storage.html']){
+ const target=path.join(dist,file),content=fs.readFileSync(target,'utf8');
+ const version=crypto.createHash('sha256').update(content).digest('hex').slice(0,24);
+ htmlVersions[file]=version;
+ fs.writeFileSync(target,content.replace(/<head>/i,'<head><meta name="goonk-release" content="'+version+'">'));
+}
+// Hash the final files, including integrity attributes and the generated manifest.
+const shellFiles=['index.html','game.html','storage.html','asset-manifest.json','engine-build.json',
+ 'hosting-bootstrap.mjs','opfs-worker.js','mini-lz4.js','dialogs.js','dosvcmi.png',...Object.values(runtimeNames),
+ ...fs.readdirSync(path.join(dist,'web'),{recursive:true,withFileTypes:true})
+   .filter(entry=>entry.isFile()&&entry.name!=='coi-serviceworker.js')
+   .map(entry=>path.relative(dist,path.join(entry.parentPath,entry.name)).split(path.sep).map(encodeURIComponent).join('/'))];
+const shellHashes=Object.fromEntries(shellFiles.sort().map(file=>[file,crypto.createHash('sha256').update(fs.readFileSync(path.join(dist,decodeURIComponent(file)))).digest('base64')]));
+const worker=fs.readFileSync('web/coi-serviceworker.js','utf8');
+const shellId=crypto.createHash('sha256').update(worker).update(JSON.stringify(shellHashes)).digest('hex').slice(0,24);
+fs.writeFileSync(path.join(dist,'coi-serviceworker.js'),worker.replace('/* OFFLINE_RELEASE */ null',JSON.stringify({id:shellId,files:shellHashes,htmlVersions})));
 fs.writeFileSync(path.join(dist,'.nojekyll'),'');

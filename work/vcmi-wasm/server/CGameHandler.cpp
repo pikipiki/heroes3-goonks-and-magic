@@ -4250,7 +4250,7 @@ bool CGameHandler::isBlockedByQueries(const CPackForServer *pack, PlayerColor pl
  // A quiet browser checkpoint may run while the owned-town UI is open.
  // Ongoing battles remain excluded: their query state is not serialized.
  if(const auto save=dynamic_cast<const SaveGame *>(pack))
-  if(save->fname=="Saves/Goonk-auto"&&!save->notifySuccess&&!gameState().getBattle(player))return false;
+  if((save->fname=="Saves/Goonk-auto"||save->fname=="Saves/Goonk-online-auto")&&!save->notifySuccess&&!gameState().getBattle(player))return false;
 #endif
 
 	if (dynamic_cast<const PlayerMessage *>(pack) != nullptr)

@@ -37,3 +37,10 @@ test('A deliberate new game skips automatic recovery without deleting saved game
 test('Custom hotseat settings wait for lobby acknowledgement before being exposed',()=>{const commands=[];const options=[4,2,144,1,-1];const r=createSessionRecovery({custom:options,listSaves:()=>[],command:(...args)=>commands.push(args)});r.update({mode:'menu'});assert.deepEqual(commands,[[20,2]]);assert(r.intercept);r.update({mode:'lobby',lobbyReady:false});assert.equal(commands.length,1);r.update({mode:'lobby',lobbyReady:true});assert.deepEqual(commands.at(-1),[48,...options]);assert(r.intercept);r.update({mode:'lobby',lobbyReady:true,customMap:true});assert(!r.intercept);r.update({mode:'lobby',lobbyReady:true,customMap:true});assert.equal(commands.length,2);});
 
 test('A campaign retry opens campaigns once instead of restoring a saved game',()=>{const commands=[];const r=createSessionRecovery({campaign:true,listSaves:()=>{throw Error('No automatic save selection');},command:(...args)=>commands.push(args)});r.update({mode:'menu'});r.update({mode:'menu'});assert.deepEqual(commands,[[47]]);});
+
+test('Boot recovery leaves the latest online checkpoint for a multiplayer room',()=>{
+ const {r,commands}=fixture([{name:'goonk-online-auto',modified:30}]);
+ r.update({mode:'menu'});
+ assert.deepEqual(commands,[]);
+ assert.equal(r.phase,'done');
+});
