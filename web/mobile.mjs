@@ -1,3 +1,4 @@
+import {createOnlineLogin} from './online-login.mjs';
 import {createMarketplace} from './marketplace.mjs';
 import{createLobbyChoices}from'./lobby-choices.mjs';
 import{createHeroTransition,opensMobileWindow}from'./hero-transition.mjs';
@@ -81,9 +82,12 @@ function mount(){
  const cost=c=>formatResourceCost(c,state.resourceTypes);
  const btn=(text,ui,primary=false,disabled=false)=>`<button data-ui="${ui}" ${disabled?'disabled':''} class="${primary?'primary':''}">${text}</button>`;
  const paintHeroMovement=watchHeroMovement(nav);
+ const onlineLogin=createOnlineLogin(root,command);
  function controls(){
   const m=state.mode,cap=battleCapabilities(effectiveBattle()),target=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),blocked=!state.spellTargeting&&target?.enemy&&target.canShootAt===false&&target.canMeleeAt===false;let items;
   if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn('➤ Marcher','move',true,!state.hasPath||!state.turn),btn('Équipement','heroes'),btn('♜ Villes','towns'),btn('♟ Armée','army',false,!state.turn||!state.armies?.length),btn('☀ Terminer le tour','endturn',false,!state.turn)];
+  else if(m==='online-lobby'&&state.onlineInvitation)items=[btn(getLanguage()==='fr'?'Invitation de '+escape(state.onlineInvitation):'Invitation from '+escape(state.onlineInvitation),'online-invitation',true),btn('↩ Back','back')];
+  else if(m==='online-lobby'&&state.onlineMatch)items=[...(state.onlineHost?[btn('Goonks Online','online-scenario'),btn(getLanguage()==='fr'?'Commencer':'Start game','begin',true,!state.selectedMap)]:[]),btn('↩ Back','back'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
   else if(m==='market')items=[btn('Mobile view','market-mobile'),btn('↩ Back','market-back')];
   else if(m==='hero')items=[btn('↩ Back','hero-back'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
   else if(m==='fort'||m==='creature')items=[btn('↩ Back','presentation-back')];
@@ -95,7 +99,7 @@ function mount(){
   else if(m==='campaign')items=[btn('Back','back')];
   else if(m==='lobby')items=[btn('♜ Goonks XL','demo',true),btn('▶ Commencer','begin'),btn('✓ Valider','accept'),btn('↩ Retour','back')];
   else items=[btn('✓ Valider','accept',true),btn('↩ Retour','back'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
-  if(['menu','lobby','load','campaign','spellbook','connecting'].includes(m))items=[];
+  if(['menu','lobby','load','campaign','spellbook','connecting','online-login'].includes(m))items=[];
   const heroScroll=nav.querySelector('.hero-movement-list')?.scrollLeft||0;
   const html=items.join('');if(navHTML!==html){
    const template=document.createElement('template');template.innerHTML=html;
@@ -135,6 +139,9 @@ function mount(){
   lobbyOptions.update(state,!!requestedMapName||pendingFaction!==null);lobbyChoices.update(state);renderLaunch(launch.pending);
   if(state.mode==='menu'&&['campaign','lobby','load','connecting'].includes(menu.dataset.kind)){menu.dataset.kind='menu';menu.innerHTML='<h1>Le royaume des Goonks</h1><p>Explore, construis et mène tes peluches au combat.</p><button class="primary" data-action="20">Nouvelle aventure</button><button data-action="23">Charger une partie</button><button data-action="47">Mode campagne</button>';}
   
+  if(state.mode==='menu'&&window.goonkOnlineConfigured&&!menu.querySelector('[data-action="75"]')){
+   const online=document.createElement('button');online.type='button';online.dataset.action='75';online.textContent='Online';menu.append(online);
+  }
   if(change){if(!['lobby','load'].includes(state.mode))requestedMapName=null;mode=state.mode;if(mode==='battle'){if(!battleSession){window.goonkBattleSpriteBounds=[];command(15);battleCamera=null;battleView='whole';}battleSession=true;}if(mode==='town')townWhole=true;selectedPoint=null;zoom=1;focus=null;if(sheetKind)closeSheet();}
   if(state.mode==='battle'&&(change||changedActor||changedPhase)){selectedPoint=null;battleMove=false;const actor=battleGuidance(state).actor;if(actor){focus=state.focus||actor;battleCamera={...focus};}}
   root.querySelector('.dialog-close').hidden=!canCloseTavern(state);
@@ -143,7 +150,7 @@ function mount(){
    for(const button of tavernHeroButtons)button.hidden=true;
   }
   root.querySelector('.recruit-close').hidden=state.mode!=='recruit';
-  creatureView.update(state);spellbook.update(state);heroEquipment.update(state);campaignSetup.update(state);marketplace.update(state);
+  creatureView.update(state);spellbook.update(state);heroEquipment.update(state);campaignSetup.update(state);marketplace.update(state);onlineLogin.update(state);
   if(detailReturn==='army'&&['map','town'].includes(state.mode)){detailReturn='';showList('army');}
   const choices=root.querySelector('.recruit-choices');choices.hidden=true;
 
@@ -236,6 +243,8 @@ function mount(){
   if(ui==='town-fort'){command(54);return;}
   if(ui==='town-guild'||ui==='town-market'){const matches=ui==='town-guild'?['mageGuild1','mageGuild2','mageGuild3','mageGuild4','mageGuild5']:['marketplace'];const building=(state.buildings||[]).filter(b=>b.built&&matches.includes(String(b.key).split(':').at(-1))).at(-1);if(building)command(39,building.id);else notify('Build this structure first.');return;}
   if(ui==='recruit-heroes'){const tavern=state.buildings?.find(b=>String(b.key).split(':').at(-1)==='tavern'&&b.built);if(state.mode==='town'&&state.turn&&tavern)command(39,tavern.id);else notify('Construis une taverne pour recruter des héros.');return;}
+  if(ui==='online-invitation'){command(78);return;}
+  if(ui==='online-scenario'){command(77);return;}
   if(ui==='market-mobile'){marketplace.showMobile();return;}if(ui==='market-back'){command(74);return;}
   if(ui==='hero-mobile'){heroEquipment.showMobile();return;}if(ui==='hero-back'){command(63);return;}
   if(ui==='native-equipment'){closeSheet();command(55);return;}
@@ -257,7 +266,7 @@ function mount(){
  scene.addEventListener('pointercancel',event=>{pointers.delete(event.pointerId);gesture=null;initialDistance=0;});
  overview.addEventListener('pointerdown',event=>{const r=overview.getBoundingClientRect();if(state.mode==='map'){event.preventDefault();event.stopPropagation();if(!state.turn)return;const point=mapOverviewTarget(state.mapOverview,event.clientX-r.left-overview.clientLeft,event.clientY-r.top-overview.clientTop,overview.clientWidth,overview.clientHeight);if(point){mapPan.cancel();focus=null;selectedPoint=null;pointer(point,4);}return;}if(state.mode==='battle'){battleView='close';focus={x:(event.clientX-r.left)/r.width*800,y:(event.clientY-r.top)/r.height*555};return;}if(state.mode==='town'){townWhole=false;focus={x:(event.clientX-r.left)/r.width*800,y:187};return;}focus={x:(event.clientX-r.left)/r.width*800,y:45+(event.clientY-r.top)/r.height*510};if(zoom===1)zoom=2;});
  overview.addEventListener('keydown',event=>{if(state.mode!=='map'||!state.turn)return;const steps={ArrowLeft:[-24,0],ArrowRight:[24,0],ArrowUp:[0,-24],ArrowDown:[0,24]},step=steps[event.key];if(!step)return;event.preventDefault();event.stopPropagation();const area=mapOverviewViewport(state.mapOverview,layout,240,240);if(!area)return;const point=mapOverviewTarget(state.mapOverview,Math.max(0,Math.min(239,area.x+area.w/2+step[0])),Math.max(0,Math.min(239,area.y+area.h/2+step[1])),240,240);if(point){mapPan.cancel();focus=null;selectedPoint=null;pointer(point,4);}});
- function frame(time){requestAnimationFrame(frame);if(document.hidden||!original.width)return;if(heroTransition.frame())return;paintCreaturePortraits(root);if(spellbook.active||marketplace.active)return;if(campaignSetup.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}if(heroEquipment.paint(original)||creatureView.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}lastFrame=time;const tracking=director.frame(state,selectedPoint);dualBattle.sync();if(nativeFort.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}const w=scene.clientWidth,h=scene.clientHeight;if(!w||!h||!portraitTown.prepare(state,townPortraitEnabled))return;const pixels=sceneSize.fit(scene,w,h,Math.min(devicePixelRatio||1,2));
+ function frame(time){requestAnimationFrame(frame);if(document.hidden||!original.width)return;if(heroTransition.frame())return;paintCreaturePortraits(root);if(spellbook.active||marketplace.active||onlineLogin.active)return;if(campaignSetup.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}if(heroEquipment.paint(original)||creatureView.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}lastFrame=time;const tracking=director.frame(state,selectedPoint);dualBattle.sync();if(nativeFort.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}const w=scene.clientWidth,h=scene.clientHeight;if(!w||!h||!portraitTown.prepare(state,townPortraitEnabled))return;const pixels=sceneSize.fit(scene,w,h,Math.min(devicePixelRatio||1,2));
 
   ctx.setTransform(pixels.x,0,0,pixels.y,0,0);if(portraitTown.paint(ctx,w,h,state,townPortraitEnabled)){layout=null;overview.hidden=true;const view=root.querySelector('.town-view');view.textContent='Vue classique';view.setAttribute('aria-pressed','true');return;}
   region=getRegion();let z=zoom;if(state.mode==='map'){const base=Math.min(w/region.w,h/region.h);const scale=landscapeMap.matches?Math.max(w/region.w,h/region.h):Math.min(1.4,Math.max(.8,Math.min(w/320,h/420)));z=zoom*scale/base;}if(state.mode==='battle'){const target=battleView==='close'?tracking.focus:battleFocus(state,focus,battleCamera);if(!battleCamera)battleCamera={...target};else{const factor=cameraMotion.matches?1:.28;battleCamera.x+=(target.x-battleCamera.x)*factor;battleCamera.y+=(target.y-battleCamera.y)*factor;}}layout=state.mode==='battle'?((dualBattle.active||battleView==='close')?(()=>{const next=fitBattleDetail(w,h,battleCamera,tracking.points);battleDetailScale+=(next.scale-battleDetailScale)*(cameraMotion.matches?1:.18);return fitBattleDetail(w,h,battleCamera,tracking.points,battleDetailScale);})():fitNativeBattle(w,h,battleCamera,battleView)):state.mode==='town'?fitTown(w,h,focus,townWhole):fitRegion(w,h,region,state.mode==='battle'?1:z,state.mode==='battle'?null:focus);ctx.setTransform(pixels.x,0,0,pixels.y,0,0);ctx.clearRect(0,0,w,h);const sx=original.width/800,sy=original.height/600;ctx.drawImage(original,layout.x*sx,layout.y*sy,layout.w*sx,layout.h*sy,layout.dx,layout.dy,layout.w*layout.scale,layout.h*layout.scale);

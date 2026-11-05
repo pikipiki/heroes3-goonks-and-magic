@@ -87,8 +87,18 @@ int ServerThreadRunner::exitCode()
 	return 0;
 }
 
+#ifdef VCMI_EMSCRIPTEN
+bool ServerThreadRunner::readyForLocalClient() const
+{
+	return !lobbyMode || server->isWebLobbyReady();
+}
+#endif
+
 void ServerThreadRunner::connect(INetworkHandler & network, INetworkClientListener & listener)
 {
+#ifdef VCMI_EMSCRIPTEN
+	network.createInternalConnection(listener, server->getNetworkServer());
+#else
 	if (lobbyMode)
 	{
 		std::string host = settings["server"]["localHostname"].String();
@@ -101,6 +111,7 @@ void ServerThreadRunner::connect(INetworkHandler & network, INetworkClientListen
 	{
 		network.createInternalConnection(listener, server->getNetworkServer());
 	}
+#endif
 }
 
 #ifdef ENABLE_SERVER_PROCESS

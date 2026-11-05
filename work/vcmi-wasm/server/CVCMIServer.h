@@ -46,6 +46,9 @@ class CVCMIServer : public LobbyInfo, public INetworkServerListener, public INet
 	/// Handles connection with global lobby. Must be constructed and destroyed after network handler
 	std::unique_ptr<GlobalLobbyProcessor> lobbyProcessor;
 
+#ifdef VCMI_EMSCRIPTEN
+	std::atomic_bool webLobbyReady{false};
+#endif
 	EServerState state = EServerState::LOBBY;
 
 	std::shared_ptr<GameConnection> findConnection(const std::shared_ptr<INetworkConnection> &);
@@ -79,6 +82,10 @@ public:
 	std::vector<std::shared_ptr<GameConnection>> activeConnections;
 
 	uint16_t prepare(bool connectToLobby, bool listenForConnections);
+#ifdef VCMI_EMSCRIPTEN
+	void markWebLobbyReady() { webLobbyReady.store(true); }
+	bool isWebLobbyReady() const { return webLobbyReady.load(); }
+#endif
 
 	// INetworkListener impl
 	void onDisconnected(const std::shared_ptr<INetworkConnection> & connection, const std::string & errorMessage) override;

@@ -8,6 +8,9 @@
  *
  */
 #include "StdInc.h"
+#ifdef VCMI_EMSCRIPTEN
+#include "globalLobby/GlobalLobbyServerSetup.h"
+#endif
 #include "CServerHandler.h"
 
 #include "CPlayerInterface.h"
@@ -220,6 +223,14 @@ void CServerHandler::connectToServer(const std::string & addr, const ui16 port)
 	}
 	else
 	{
+#ifdef VCMI_EMSCRIPTEN
+		if (serverMode == EServerMode::LOBBY_HOST)
+		{
+			webLobbyConnectDeadline = std::chrono::steady_clock::now() + std::chrono::seconds(12);
+			networkHandler->createTimer(*this, std::chrono::milliseconds(100));
+			return;
+		}
+#endif
 		serverRunner->connect(*networkHandler, *this);
 	}
 }
@@ -257,6 +268,24 @@ void CServerHandler::onTimer()
 		return;
 	}
 
+#ifdef VCMI_EMSCRIPTEN
+	if (serverMode == EServerMode::LOBBY_HOST && serverRunner && !serverRunner->readyForLocalClient())
+	{
+		if (std::chrono::steady_clock::now() < webLobbyConnectDeadline)
+		{
+			networkHandler->createTimer(*this, std::chrono::milliseconds(100));
+			return;
+		}
+		setState(EClientState::CONNECTION_CANCELLED);
+		serverRunner->wait();
+		serverRunner.reset();
+		setState(EClientState::NONE);
+		if (ENGINE->windows().topWindow<GlobalLobbyServerSetup>())
+			ENGINE->windows().popWindows(1);
+		CInfoWindow::showInfoDialog(LIBRARY->generaltexth->translate("vcmi.mainMenu.serverConnectionFailed"), {});
+		return;
+	}
+#endif
 	assert(isServerLocal());
 	serverRunner->connect(*networkHandler, *this);
 }

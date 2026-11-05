@@ -128,6 +128,9 @@ class CServerHandler final : public IServerAPI, public LobbyInfo, public INetwor
 	ui16 serverPort;
 
 	bool isServerLocal() const;
+#ifdef VCMI_EMSCRIPTEN
+	std::chrono::steady_clock::time_point webLobbyConnectDeadline;
+#endif
 
 public:
 	/// High-level connection overlay that is capable of (de)serializing network data

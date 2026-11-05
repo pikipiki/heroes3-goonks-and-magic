@@ -99,7 +99,11 @@ void GlobalLobbyProcessor::receiveServerLoginSuccess(const JsonNode & json)
 {
 	// no-op, wait just for any new commands from lobby
 	logGlobal->info("Lobby: Successfully connected to lobby server");
+#ifdef VCMI_EMSCRIPTEN
+	owner.markWebLobbyReady();
+#else
 	owner.startAcceptingIncomingConnections(true);
+#endif
 }
 
 void GlobalLobbyProcessor::receiveAccountJoinsRoom(const JsonNode & json)

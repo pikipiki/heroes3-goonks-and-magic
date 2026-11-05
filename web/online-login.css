@@ -1,0 +1,21 @@
+html.goonk-mobile #mobile-app[data-mode=online-login] {
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:minmax(0,1fr);
+}
+#mobile-app[data-mode=online-login] :is(.mobile-top,.mobile-nav,#mobile-scene,.scene-tools,.scene-hint) {display:none!important}
+#mobile-app[data-mode=online-login] .mobile-play {grid-area:1/1}
+.online-login {
+  position:absolute;inset:0;display:grid;place-items:center;padding:12px;
+  background:#291b11 url('./h3-theme/stone.png');
+}
+.online-login form {
+  display:grid;gap:12px;width:min(100%,400px);box-sizing:border-box;padding:14px;
+  border:3px ridge #c9a960;background:#271910;
+}
+.online-login header {display:flex;align-items:center;justify-content:space-between}
+.online-login h2,.online-login p {margin:0;color:#ffe3a4}
+.online-login label {display:grid;gap:6px}
+.online-login input {
+  min-height:44px;min-width:0;box-sizing:border-box;background:#171109;color:#ffe9aa;
+  border:2px ridge #bd9952;font:16px Georgia,serif;padding:6px 10px;
+}

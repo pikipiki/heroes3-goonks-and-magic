@@ -39,6 +39,11 @@ class GlobalLobbyLoginWindow : public CWindowObject
 
 public:
 	GlobalLobbyLoginWindow();
+#ifdef VCMI_EMSCRIPTEN
+	void loginFromWeb(const std::string & name);
+	bool webLoginPending() const;
+	std::string webLoginStatus() const;
+#endif
 
 	void onConnectionSuccess();
 	void onLoginSuccess();

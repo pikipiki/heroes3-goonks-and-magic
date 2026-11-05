@@ -52,6 +52,12 @@ Validation locale des deux hébergements : `outputs/hosting-validation.json`. Se
 
 Références : [déploiement Netlify](https://docs.netlify.com/deploy/create-deploys/), [workflow GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages), [isolation WebAssembly](https://developer.mozilla.org/en-US/docs/Web/API/Window/crossOriginIsolated).
 
+## Multijoueur web
+
+Pour activer le bouton **Online** sur mobile, définir `GOONK_LOBBY_RELAY=wss://<hôte>/lobby` dans les variables de compilation Netlify et dans les variables GitHub Actions du dépôt. Déployer le [relais Docker](https://github.com/pikipiki/heroes-goonk-relay) sur un service compatible WebSocket avec TLS et autoriser les origines du jeu. Sans cette variable, le bouton reste masqué sur mobile.
+
+Dans un salon privé, l’hôte peut choisir **Goonks Online**, inviter un autre joueur connecté par son pseudo dans **Invite Players**, puis démarrer la partie. L’invité ouvre son invitation et confirme l’entrée dans le salon.
+
 ## Wake of Gods
 
 WoG **9.1.82**, branche officielle `vcmi-1.7`, est inclus dans `mod/wake-of-gods/`. La 9.1.83 vise VCMI 1.8 et ne convient pas au moteur 1.7.3 actuel. La provenance exacte figure dans `WOG-UPSTREAM.json`.

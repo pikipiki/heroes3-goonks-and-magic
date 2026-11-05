@@ -19,6 +19,8 @@ jobs:
           node-version: '22'
       - uses: actions/configure-pages@v5
       - name: Test and build the public game
+        env:
+          GOONK_LOBBY_RELAY: ${{ vars.GOONK_LOBBY_RELAY }}
         run: npm test && npm run prepare:web && npm run build:web && npm run verify:web
       - uses: actions/upload-pages-artifact@v4
         with:

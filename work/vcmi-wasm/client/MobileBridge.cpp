@@ -23,6 +23,11 @@
 #include "../lib/battle/IBattleState.h"
 #include <atomic>
 #include "GameEngine.h"
+#include "globalLobby/GlobalLobbyClient.h"
+#include "globalLobby/GlobalLobbyLoginWindow.h"
+#include "globalLobby/GlobalLobbyRoomWindow.h"
+#include "globalLobby/GlobalLobbyServerSetup.h"
+#include "globalLobby/GlobalLobbyWindow.h"
 #include "GameLibrary.h"
 #include "media/ISoundPlayer.h"
 #include "media/IMusicPlayer.h"
@@ -184,6 +189,14 @@ static bool mobileMarketQuote(const CMarketBase & widget,GameResID from,GameResI
  return from!=to&&widget.market->getOffer(from.getNum(),to.getNum(),give,receive,EMarketMode::RESOURCE_RESOURCE)&&give>0&&receive>0;
 }
 
+static const GlobalLobbyRoom * mobileInvitedRoom(GlobalLobbyClient & lobby)
+{
+ for(const auto & room : lobby.getActiveRooms())
+  if(room.statusID == "private" && room.participants.size() < room.playerLimit && lobby.isInvitedToRoom(room.gameRoomID))
+   return &room;
+ return nullptr;
+}
+
 void publishMobileState(){
  if(!stateEnabled||!ENGINE||!GAME||snapshotPending.load()||SDL_GetTicks()-lastPublished<180)return;lastPublished=SDL_GetTicks();
  if(audioMuted){if(ENGINE->sound().getVolume()!=0)ENGINE->sound().setVolume(0);if(ENGINE->music().getVolume()!=0)ENGINE->music().setVolume(0);}
@@ -194,7 +207,33 @@ void publishMobileState(){
  if(creatureWindow&&!CPlayerInterface::battleInt)if(const auto stack=creatureWindow->getMobileStack())if(stack->getCreature()!=creatureWindow->getMobileCreature()||stack->getCount()!=creatureWindow->getMobileCount()){
   std::static_pointer_cast<CWindowObject>(creatureWindow)->close();ENGINE->windows().createAndPushWindow<CStackWindow>(stack,false);creatureWindow=ENGINE->windows().topWindow<CStackWindow>();top=creatureWindow;n["rect"]=rect(top->pos);
  }
- if(ENGINE->windows().topWindow<CLobbyScreen>())n["mode"].String()=GAME->server().screenType==ESelectionScreen::loadGame?"load":GAME->server().screenType==ESelectionScreen::campaignList?"campaign":"lobby";
+ if(auto onlineLogin=ENGINE->windows().topWindow<GlobalLobbyLoginWindow>())
+ {
+  n["mode"].String()="online-login";
+  n["dialogTitle"].String()="Online";
+  n["onlineHasAccount"].Bool()=!GAME->server().getGlobalLobby().getAccountID().empty();
+  n["onlinePending"].Bool()=onlineLogin->webLoginPending();
+  n["onlineStatus"].String()=onlineLogin->webLoginStatus();
+ }
+ else if(ENGINE->windows().topWindow<GlobalLobbyWindow>()||ENGINE->windows().topWindow<GlobalLobbyServerSetup>()||ENGINE->windows().topWindow<GlobalLobbyRoomWindow>())
+ {
+  n["mode"].String()="online-lobby";
+  n["dialogTitle"].String()="Online";
+  if(ENGINE->windows().topWindow<GlobalLobbyWindow>())
+   if(const auto room=mobileInvitedRoom(GAME->server().getGlobalLobby()))
+    n["onlineInvitation"].String()=room->hostAccountDisplayName;
+ }
+ else if(ENGINE->windows().topWindow<CLobbyScreen>())
+ {
+  const auto & server=GAME->server();
+  n["mode"].String()=server.inLobbyRoom()?"online-lobby":server.screenType==ESelectionScreen::loadGame?"load":server.screenType==ESelectionScreen::campaignList?"campaign":"lobby";
+  if(server.inLobbyRoom())
+  {
+   n["onlineMatch"].Bool()=true;
+   n["onlineHost"].Bool()=server.isHost();
+   if(server.mi)n["selectedMap"].String()=server.mi->getNameForList();
+  }
+ }
  else if(ENGINE->windows().topWindow<CSimpleJoinScreen>())n["mode"].String()="connecting";
  else if(ENGINE->windows().topWindow<CBonusSelection>())n["mode"].String()="campaign-scenario";
  else if((ENGINE->windows().topWindow<CPrologEpilogVideo>()||ENGINE->windows().topWindow<VideoWindow>())&&GAME->server().si&&GAME->server().si->campState)n["mode"].String()="campaign-intro";
@@ -395,6 +434,16 @@ bool isMobilePresentationActive(){return mobileEnabled;}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileEnable(int enabled){if(ENGINE)ENGINE->dispatchMainThread([enabled](){mobileEnabled=enabled==1;stateEnabled=enabled!=0;lastPublished=0;});}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePointer(int x,int y,int action){if(ENGINE)ENGINE->dispatchMainThread([x,y,action](){if(action==4&&(!GAME||!GAME->interface()||!GAME->interface()->makingTurn||!ENGINE->windows().topWindow<AdventureMapInterface>()))return;Point point(x,y);ENGINE->events().dispatchMouseMoved(Point(0,0),point);if(action==1||action==4){ENGINE->events().dispatchMouseLeftButtonPressed(point,4);ENGINE->events().dispatchMouseLeftButtonReleased(point,4);}if(action==2)ENGINE->events().dispatchShowPopup(point,4);if(action==3)ENGINE->events().dispatchClosePopup(point);});}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePan(int dx,int dy){if(ENGINE)ENGINE->dispatchMainThread([dx,dy](){Point p(300,260),distance(dx,dy);ENGINE->events().dispatchGesturePanningStarted(p);ENGINE->events().dispatchGesturePanning(p,p+distance,distance);ENGINE->events().dispatchGesturePanningEnded(p,p+distance);});}
+extern "C" void EMSCRIPTEN_KEEPALIVE vcmiOnlineLogin(const char * name, int length)
+{
+ if(!ENGINE||!name||length<0||length>80)return;
+ const std::string text(name,length);
+ if(std::any_of(text.begin(),text.end(),[](unsigned char c){return c<32||c==127||c=='{'||c=='}';}))return;
+ ENGINE->dispatchMainThread([text](){
+  if(auto window=ENGINE->windows().topWindow<GlobalLobbyLoginWindow>())window->loginFromWeb(text);
+ });
+}
+
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,int c,int d,int e){if(!ENGINE)return;ENGINE->dispatchMainThread([action,a,b,c,d,e](){
  if(action==0){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});return;}if(action==1){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});return;}
  // A dedicated cancel operation cannot also accept a dialog or close the town
@@ -417,6 +466,35 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  }
  // Closing a presentation only needs the window manager. It must also work
  // while player callbacks are temporarily unavailable during a transition.
+ if(action==75)
+ {
+  if(GAME&&!GAME->interface()&&!ENGINE->windows().topWindow<GlobalLobbyLoginWindow>()&&!ENGINE->windows().topWindow<GlobalLobbyWindow>())
+   GAME->server().getGlobalLobby().activateInterface();
+  return;
+ }
+ if(action==78)
+ {
+  if(auto window=ENGINE->windows().topWindow<GlobalLobbyWindow>())
+   if(const auto room=mobileInvitedRoom(GAME->server().getGlobalLobby()))
+    ENGINE->windows().createAndPushWindow<GlobalLobbyRoomWindow>(window.get(),room->gameRoomID);
+  return;
+ }
+ if(action==77)
+ {
+  if(GAME&&ENGINE->windows().topWindow<CLobbyScreen>()&&GAME->server().inLobbyRoom()&&GAME->server().isHost()&&GAME->server().getState()==EClientState::LOBBY)
+  {
+   auto map=std::make_shared<CMapInfo>();
+   map->mapInit("MAPS/002-Goonks-Online");
+   GAME->server().setMapInfo(map);
+  }
+  return;
+ }
+ if(action==76)
+ {
+  if(auto window=ENGINE->windows().topWindow<GlobalLobbyLoginWindow>())
+   if(!window->webLoginPending())window->close();
+  return;
+ }
  if(action==74)
  {
   if(auto window=ENGINE->windows().topWindow<CMarketWindow>())window->close();

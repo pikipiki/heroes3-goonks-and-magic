@@ -28,6 +28,9 @@ public:
 	virtual int exitCode() = 0;
 
 	virtual void connect(INetworkHandler & network, INetworkClientListener & listener) = 0;
+#ifdef VCMI_EMSCRIPTEN
+	virtual bool readyForLocalClient() const { return true; }
+#endif
 
 	virtual ~IServerRunner() = default;
 };
@@ -47,6 +50,9 @@ public:
 	int exitCode() override;
 
 	void connect(INetworkHandler & network, INetworkClientListener & listener) override;
+#ifdef VCMI_EMSCRIPTEN
+	bool readyForLocalClient() const override;
+#endif
 
 	ServerThreadRunner();
 	~ServerThreadRunner();

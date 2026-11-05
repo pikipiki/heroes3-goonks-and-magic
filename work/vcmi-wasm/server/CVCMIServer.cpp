@@ -93,6 +93,10 @@ CVCMIServer::~CVCMIServer()
 
 uint16_t CVCMIServer::prepare(bool connectToLobby, bool listenForConnections) {
 	if(connectToLobby) {
+#ifdef VCMI_EMSCRIPTEN
+		// The host connects in-process. Remote peers are forwarded by the lobby.
+		startAcceptingIncomingConnections(false);
+#endif
 		lobbyProcessor = std::make_unique<GlobalLobbyProcessor>(*this);
 		return 0;
 	} else {

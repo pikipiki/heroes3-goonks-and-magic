@@ -146,3 +146,31 @@ void GlobalLobbyLoginWindow::onConnectionFailed(const std::string & reason)
 	buttonClose->block(false);
 	buttonLogin->block(false);
 }
+
+#ifdef VCMI_EMSCRIPTEN
+void GlobalLobbyLoginWindow::loginFromWeb(const std::string & name)
+{
+	if (webLoginPending())
+		return;
+	if (GAME->server().getGlobalLobby().getAccountID().empty())
+	{
+		if (name.empty())
+			return;
+		inputUsername->setText(name);
+		toggleMode->setSelected(0);
+	}
+	else
+		toggleMode->setSelected(1);
+	onLogin();
+}
+
+bool GlobalLobbyLoginWindow::webLoginPending() const
+{
+	return buttonClose->isBlocked();
+}
+
+std::string GlobalLobbyLoginWindow::webLoginStatus() const
+{
+	return labelStatus->label->getText();
+}
+#endif
