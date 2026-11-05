@@ -130,7 +130,6 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
 #mobile-app .hero-movement-item.is-exhausted{color:#c8c0ac}
 #mobile-app[data-mode=map] .mobile-nav>[data-ui=endturn]{grid-column:span 2}
 @media(orientation:landscape) and (max-height:600px){
- #mobile-app[data-mode=map] .mobile-nav{grid-template-rows:auto repeat(3,minmax(44px,1fr));overflow-y:auto}
  #mobile-app .hero-movement-item{flex-basis:100%;box-sizing:border-box;justify-content:space-between;padding:0 4px;gap:4px;min-height:32px}
 }
 /* Spell icons and responsive cards, with pagination always outside the list. */
@@ -193,3 +192,68 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
 /* Keep mana distinct from the hero’s movement points in both orientations. */
 #mobile-app .mobile-movement{display:grid;gap:2px;text-align:right}
 #mobile-app .map-mana-points,#mobile-app .hero-mana{color:#c3ddff;font-variant-numeric:tabular-nums}
+
+/* Give the adventure map the full height in mobile landscape. */
+@media (orientation:landscape) and (max-height:600px) {
+ .goonk-mobile #mobile-app[data-mode=map] {
+  --map-safe-left:env(safe-area-inset-left,0px);
+  --map-safe-right:env(safe-area-inset-right,0px);
+  --map-safe-top:env(safe-area-inset-top,0px);
+  --map-sidebar:calc(clamp(206px,27vw,244px) + var(--map-safe-right));
+  grid-template-columns:minmax(0,1fr) var(--map-sidebar);
+  grid-template-rows:auto minmax(0,1fr);
+  padding:0;
+ }
+ #mobile-app[data-mode=map] .mobile-play{grid-row:1/-1}
+ #mobile-app[data-mode=map] .mobile-top {
+  grid-column:2;
+  grid-row:1;
+  display:grid;
+  grid-template-columns:44px minmax(0,1fr) auto;
+  grid-template-rows:auto;
+  grid-auto-rows:auto;
+  gap:2px 6px;
+  padding:calc(3px + var(--map-safe-top)) calc(5px + var(--map-safe-right)) 2px 5px;
+  border-left:1px solid #b59750;
+ }
+ #mobile-app[data-mode=map] .mobile-top>#game-menu-toggle{min-width:44px!important;min-height:44px!important}
+ #mobile-app[data-mode=map] .mobile-title{grid-column:2;grid-row:1;min-width:0}
+ #mobile-app[data-mode=map] .mobile-movement{grid-column:3;grid-row:1}
+ #mobile-app[data-mode=map] .mobile-resources{grid-column:1/-1;grid-row:2;width:100%;min-width:0;max-width:none}
+ #mobile-app[data-mode=map] .mobile-calendar{grid-row:3;flex-direction:column;align-items:flex-start;gap:0;padding:1px 0;font-size:11px;line-height:13px}
+ #mobile-app[data-mode=map] .mobile-nav {
+  --map-action-rows:minmax(44px,1fr) minmax(44px,1fr) minmax(calc(44px + var(--safe-bottom)),1fr);
+  grid-template-columns:minmax(0,1fr) minmax(0,calc((100% + var(--map-safe-right) - 4px)/2));
+  grid-template-rows:var(--map-action-rows);
+  gap:4px;
+  overflow-y:auto;
+  padding:4px 5px;
+ }
+ #mobile-app[data-mode=map] .mobile-nav:has(.hero-movement-summary){grid-template-rows:auto var(--map-action-rows)}
+ #mobile-app[data-mode=map] .hero-movement-summary{margin-right:var(--map-safe-right)}
+ /* Paint the frames to the edge while keeping the labels inside the safe area. */
+ #mobile-app[data-mode=map] .mobile-nav>:is([data-ui=heroes],[data-ui=army],[data-ui=endturn]) {
+  padding-right:calc(4px + var(--map-safe-right))!important;
+ }
+ #mobile-app[data-mode=map] .mobile-nav>[data-ui=endturn]{padding-bottom:calc(8px + var(--safe-bottom))!important}
+ #mobile-app[data-mode=map] .mobile-nav>:is([data-ui=heroes],[data-ui=army],[data-ui=endturn])[aria-busy=true]::after{right:calc(10px + var(--map-safe-right))}
+ #mobile-app[data-mode=map] .mobile-play .scene-tools {
+  top:calc(8px + var(--map-safe-top));
+  left:calc(8px + var(--map-safe-left));
+  width:min(200px,calc(100% - 124px - var(--map-safe-left)));
+ }
+ #mobile-app[data-mode=map] #mobile-overview{top:calc(8px + var(--map-safe-top))}
+ #mobile-app[data-mode=map] .scene-hint{left:calc(8px + var(--map-safe-left));bottom:calc(8px + var(--safe-bottom))}
+ #mobile-app[data-mode=map] .toast-mobile{right:calc(var(--map-sidebar) + 8px);left:calc(8px + var(--map-safe-left))}
+}
+@media (orientation:landscape) and (max-height:340px) {
+ #mobile-app[data-mode=map] .mobile-nav {
+  --map-action-rows:minmax(44px,1fr) minmax(calc(44px + var(--safe-bottom)),1fr);
+  grid-template-columns:repeat(2,minmax(0,1fr)) minmax(0,calc((100% + 2 * var(--map-safe-right) - 8px)/3));
+ }
+ #mobile-app[data-mode=map] .mobile-nav>:is([data-ui=heroes],[data-ui=army]){padding-right:4px!important}
+ #mobile-app[data-mode=map] .mobile-nav>[data-ui=towns]{padding-right:calc(4px + var(--map-safe-right))!important}
+ #mobile-app[data-mode=map] .mobile-nav>[data-ui=army]{padding-bottom:calc(8px + var(--safe-bottom))!important}
+ #mobile-app[data-mode=map] .mobile-nav>:is([data-ui=heroes],[data-ui=army])[aria-busy=true]::after{right:10px}
+ #mobile-app[data-mode=map] .mobile-nav>[data-ui=towns][aria-busy=true]::after{right:calc(10px + var(--map-safe-right))}
+}
