@@ -1,3 +1,4 @@
+import {inlineBootScreen} from './boot-screen.mjs';
 import {versionModuleImports,versionScriptTags,createRuntimeVersion} from './version-runtime.mjs';
 import {execFileSync} from 'node:child_process';
 import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';
@@ -30,7 +31,7 @@ const engineBuild={memoryVersion:1,runtimeVersion,wasm:runtimeNames['vcmiclient.
 for(const name of fs.readdirSync(path.join(dist,'web')).filter(name=>/\.(mjs|js)$/.test(name))){const file=path.join(dist,'web',name);fs.writeFileSync(file,versionModuleImports(fs.readFileSync(file,'utf8'),runtimeVersion));}
 html=versionScriptTags(versionModuleImports(html,runtimeVersion),runtimeVersion);
 fs.copyFileSync('web/hosting-bootstrap.mjs',path.join(dist,'hosting-bootstrap.mjs'));
-let index=fs.readFileSync('web/hosting-index.html','utf8');let storagePage=fs.readFileSync('web/storage.html','utf8');
+let index=inlineBootScreen(fs.readFileSync('web/hosting-index.html','utf8'));let storagePage=fs.readFileSync('web/storage.html','utf8');
 index=versionScriptTags(versionModuleImports(index,runtimeVersion),runtimeVersion);storagePage=versionScriptTags(versionModuleImports(storagePage,runtimeVersion),runtimeVersion);
 const loadScript=url=>fs.readFileSync(path.join(dist,url.split('?')[0])),gameScripts=authorizeExternalScripts(html,loadScript),indexScripts=authorizeExternalScripts(index,loadScript);
 html=gameScripts.html;index=indexScripts.html;const rootScripts=fs.readdirSync(dist).filter(name=>/\.(mjs|js)$/.test(name));
