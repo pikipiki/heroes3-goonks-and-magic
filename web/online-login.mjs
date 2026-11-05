@@ -1,15 +1,27 @@
 import {getLanguage} from './i18n.mjs';
 
+export function guardOnlineNameKeyboard(window) {
+  // Register before SDL so its capture listeners cannot cancel native text input.
+  const intercept = event => {
+    if (window.document.activeElement?.matches('.online-login:not([hidden]) input[data-online-name]')) {
+      event.stopImmediatePropagation();
+    }
+  };
+  for (const type of ['keydown', 'keypress', 'keyup']) {
+    window.addEventListener(type, intercept, {capture: true});
+  }
+}
+
 export function createOnlineLogin(root, command) {
   const panel = document.createElement('section');
   panel.className = 'online-login';
   panel.hidden = true;
   panel.innerHTML = `<form><header><h2>Online</h2><button type="button" data-close aria-label="Back">✕</button></header>
-    <label><span></span><input name="nickname" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="online-name-help" minlength="4" maxlength="20" pattern="[A-Za-z0-9]+"><small id="online-name-help"></small></label>
+    <label><span></span><input name="player-name" data-online-name type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="online-name-help" minlength="4" maxlength="20" pattern="[A-Za-z0-9]+"><small id="online-name-help"></small></label>
     <button type="submit" class="primary"></button><p role="status" aria-live="polite"></p></form>`;
   root.querySelector('.mobile-play').append(panel);
   const form = panel.querySelector('form');
-  const input = form.elements.nickname;
+  const input = form.querySelector('[data-online-name]');
   const label = panel.querySelector('label');
   const caption = label.querySelector('span');
   const help = label.querySelector('small');
@@ -35,10 +47,6 @@ export function createOnlineLogin(root, command) {
     status.textContent = state.onlineStatus || '';
   }
   close.addEventListener('click', () => command(76));
-  // SDL also listens for keypress and may cancel the browser’s text insertion.
-  for (const type of ['keydown', 'keypress', 'keyup']) {
-    form.addEventListener(type, event => event.stopPropagation());
-  }
   form.addEventListener('submit', event => {
     event.preventDefault();
     if (panel.hidden || submitting || state.onlinePending) return;

@@ -46,6 +46,6 @@ export function renderPage(root){
  html=html.replace('module._vcmiOnCanvasResize();','if(!window.goonkMobileActive)module._vcmiOnCanvasResize();');
  html=html.replace('module.getWidth = () => currentCanvasSize.width;', 'module.getWidth = () => window.goonkMobileActive ? 800 : currentCanvasSize.width;').replace('module.getHeight = () => currentCanvasSize.height;', 'module.getHeight = () => window.goonkMobileActive ? 600 : currentCanvasSize.height;');
  html=html.replace('module.callMain(["--disable-video"]);', 'module.getGoonkRenderScale = () => window.goonkMobileActive ? 1 : 0;module.callMain(["--disable-video"]);');
- html=html.replace('DOSVCMI(window.Module);', `import {configureMobileSource} from './web/mobile-render.mjs';configureMobileSource(document.querySelector('#canvas'),window.goonkMobileActive);if(!window.crossOriginIsolated){const entry=new URL('./',location.href);entry.search=location.search;entry.hash=location.hash;location.replace(entry);}else{DOSVCMI(window.Module);}`);
+ html=html.replace('DOSVCMI(window.Module);', `import {configureMobileSource} from './web/mobile-render.mjs';import {guardOnlineNameKeyboard} from './web/online-login.mjs';guardOnlineNameKeyboard(window);configureMobileSource(document.querySelector('#canvas'),window.goonkMobileActive);if(!window.crossOriginIsolated){const entry=new URL('./',location.href);entry.search=location.search;entry.hash=location.hash;location.replace(entry);}else{DOSVCMI(window.Module);}`);
  return html;
 }
