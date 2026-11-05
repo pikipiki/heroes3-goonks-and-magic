@@ -214,3 +214,21 @@ void GlobalLobbyRoomWindow::onClose()
 {
 	close();
 }
+
+std::string GlobalLobbyRoomWindow::getJoinError() const
+{
+	auto & lobby = GAME->server().getGlobalLobby();
+	const auto & rooms = lobby.getActiveRooms();
+	const auto room = std::find_if(rooms.begin(), rooms.end(), [this](const auto & entry){ return entry.gameRoomID == roomUUID; });
+	if (room == rooms.end())
+		return LIBRARY->generaltexth->translate("vcmi.lobby.preview.error.busy");
+
+	auto error = getJoinRoomErrorMessage(*room, modVerificationList);
+	return error.empty() ? error : LIBRARY->generaltexth->translate(error);
+}
+
+void GlobalLobbyRoomWindow::joinFromWeb()
+{
+	if (getJoinError().empty())
+		onJoin();
+}

@@ -1,0 +1,56 @@
+html.goonk-mobile #mobile-app[data-mobile-online] {
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:auto minmax(0,1fr);
+}
+#mobile-app[data-mobile-online] .mobile-play {grid-column:1/-1;grid-row:2;min-height:0}
+#mobile-app[data-mobile-online] :is(.mobile-nav,#mobile-scene,.scene-tools,.scene-hint) {display:none!important}
+.online-lobby {
+  box-sizing:border-box;position:absolute;inset:0;display:grid;
+  grid-template-rows:auto minmax(0,1fr) auto;
+  color:#ffebb4;background:#21160e url('./h3-theme/stone.png');
+}
+.online-lobby header,.online-lobby-actions {
+  display:flex;align-items:center;gap:8px;justify-content:space-between;
+  padding:8px 12px;border-block-end:1px solid #b79753;background:#281b10;
+}
+.online-lobby h2,.online-lobby h3,.online-lobby p {margin:0}
+.online-lobby h2 {font-size:1.35rem}
+.online-lobby h3 {font-size:1rem;color:#ffe5a2}
+.online-lobby p {color:#f3dfb3;overflow-wrap:anywhere}
+.online-lobby-body {min-height:0;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;padding:10px 12px}
+.online-lobby-body section {
+  display:grid;align-content:start;gap:8px;margin-bottom:8px;
+  padding:10px;border:1px solid #a7894e;background:#21170fee;
+}
+.online-lobby-body section:last-child {margin-bottom:0}
+.online-lobby-body ul {margin:0;padding-inline-start:20px}
+.online-lobby .online-list {display:grid;gap:6px;min-width:0}
+.online-lobby .online-list button {width:100%;text-align:start;overflow-wrap:anywhere}
+.online-lobby label {display:grid;gap:6px}
+.online-lobby input {
+  min-height:44px;width:100%;box-sizing:border-box;background:#171109;color:#ffe9aa;
+  border:2px ridge #bd9952;font:16px Georgia,serif;padding:6px 10px;
+}
+.online-pair,.online-player-count {display:grid;gap:5px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.online-player-count {grid-template-columns:repeat(4,minmax(0,1fr))}
+.online-lobby-actions {
+  border-block-end:0;border-block-start:2px ridge #b79753;
+  padding-bottom:calc(8px + var(--safe-bottom, 0px));
+}
+.online-lobby-actions .primary {flex:1;max-width:20rem;margin-inline-start:auto}
+@media (orientation:landscape) and (max-height:600px) {
+  .online-lobby-body {
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-content:start;
+  }
+  .online-lobby-body section {margin:0;min-width:0}
+  .online-lobby[data-online-view=create] .online-lobby-body {grid-template-columns:1.3fr 1fr 1fr}
+  .online-lobby[data-online-view=invite] .online-lobby-body {display:block}
+  .online-lobby[data-online-view=invite] .online-list {grid-template-columns:repeat(2,minmax(0,1fr))}
+  #mobile-app .online-lobby button {min-height:44px}
+}
+#mobile-app .online-lobby button[aria-pressed=true] {
+  outline:2px solid #f4d68c;outline-offset:-3px;box-shadow:inset 0 0 0 80px #8e371a52;
+}
+#mobile-app .online-lobby button.primary {
+  outline:2px solid #e3bf71;outline-offset:-3px;
+}

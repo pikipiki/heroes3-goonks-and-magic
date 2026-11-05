@@ -189,6 +189,17 @@ static bool mobileMarketQuote(const CMarketBase & widget,GameResID from,GameResI
  return from!=to&&widget.market->getOffer(from.getNum(),to.getNum(),give,receive,EMarketMode::RESOURCE_RESOURCE)&&give>0&&receive>0;
 }
 
+static JsonNode mobileOnlineRoom(const GlobalLobbyRoom & room)
+{
+ JsonNode result;
+ result["id"].String()=room.gameRoomID;
+ result["host"].String()=room.hostAccountDisplayName;
+ result["name"].String()=room.description;
+ result["size"].Integer()=room.participants.size();
+ result["limit"].Integer()=room.playerLimit;
+ return result;
+}
+
 static const GlobalLobbyRoom * mobileInvitedRoom(GlobalLobbyClient & lobby)
 {
  for(const auto & room : lobby.getActiveRooms())
@@ -219,6 +230,35 @@ void publishMobileState(){
  {
   n["mode"].String()="online-lobby";
   n["dialogTitle"].String()="Online";
+  auto & lobby=GAME->server().getGlobalLobby();
+  if(mobileEnabled)
+  {
+   n["onlineAccount"].String()=lobby.getAccountDisplayName();
+   if(auto setup=ENGINE->windows().topWindow<GlobalLobbyServerSetup>())
+   {
+    n["onlinePage"].String()="create";
+    n["onlineCreating"].Bool()=setup->isCreating();
+   }
+   else if(auto preview=ENGINE->windows().topWindow<GlobalLobbyRoomWindow>())
+   {
+    n["onlinePage"].String()="preview";
+    n["onlineJoinError"].String()=preview->getJoinError();
+    for(const auto & room:lobby.getActiveRooms())
+     if(room.gameRoomID==preview->getRoomID())n["onlinePreview"]=mobileOnlineRoom(room);
+   }
+   else if(!GAME->server().inGame())
+   {
+    n["onlinePage"].String()="browser";
+    for(const auto & room:lobby.getActiveRooms())
+    {
+     if(room.participants.size()>=room.playerLimit)continue;
+     if(room.statusID=="private"&&lobby.isInvitedToRoom(room.gameRoomID))
+      n["onlineInvites"].Vector().push_back(mobileOnlineRoom(room));
+     else if(room.statusID=="public")
+      n["onlineRooms"].Vector().push_back(mobileOnlineRoom(room));
+    }
+   }
+  }
   if(ENGINE->windows().topWindow<GlobalLobbyWindow>())
   {
    n["onlineCanCreate"].Bool()=!GAME->server().inGame();
@@ -234,6 +274,31 @@ void publishMobileState(){
   {
    n["onlineMatch"].Bool()=true;
    n["onlineHost"].Bool()=server.isHost();
+   if(mobileEnabled)
+   {
+    n["onlinePage"].String()="match";
+    n["onlinePlayerCount"].Integer()=server.playerNames.size();
+    auto & lobby=GAME->server().getGlobalLobby();
+    const auto & rooms=lobby.getActiveRooms();
+    auto room=std::find_if(rooms.begin(),rooms.end(),[&](const auto & entry){return entry.gameRoomID==lobby.getCurrentGameRoomID();});
+    if(room!=rooms.end())
+    {
+     n["onlineRoomLimit"].Integer()=room->playerLimit;
+     for(const auto & player:room->participants)n["onlinePlayers"].Vector().emplace_back(player.displayName);
+    }
+    if(server.isHost())
+    {
+     for(const auto & account:lobby.getActiveAccounts())
+     {
+      if(account.accountID==lobby.getAccountID())continue;
+      JsonNode entry;
+      entry["id"].String()=account.accountID;
+      entry["name"].String()=account.displayName;
+      if(room!=rooms.end())entry["invited"].Bool()=std::any_of(room->invited.begin(),room->invited.end(),[&](const auto & player){return player.accountID==account.accountID;});
+      n["onlineInviteCandidates"].Vector().push_back(std::move(entry));
+     }
+    }
+   }
    n["onlineLoading"].Bool()=server.screenType==ESelectionScreen::loadGame;
    if(server.isHost()&&server.screenType==ESelectionScreen::loadGame)
     n["onlineSaveAvailable"].Bool()=CResourceHandler::get()->existsResource(ResourcePath("SAVES/GOONK-ONLINE-AUTO",EResType::SAVEGAME));
@@ -462,6 +527,36 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiOnlineLogin(const char * name, int leng
  });
 }
 
+extern "C" void EMSCRIPTEN_KEEPALIVE vcmiOnlineRoomAction(int action, const char * id, int length)
+{
+ if(!ENGINE||!id||length<1||length>128)return;
+ const std::string key(id,length);
+ ENGINE->dispatchMainThread([action,key](){
+  auto & server=GAME->server();
+  auto & lobby=server.getGlobalLobby();
+  if(action==0)
+  {
+   auto window=ENGINE->windows().topWindow<GlobalLobbyWindow>();
+   if(!window||server.inGame())return;
+   const auto & rooms=lobby.getActiveRooms();
+   const auto room=std::find_if(rooms.begin(),rooms.end(),[&](const auto & entry){return entry.gameRoomID==key;});
+   if(room!=rooms.end()&&(room->statusID=="public"||(room->statusID=="private"&&lobby.isInvitedToRoom(key))))
+    ENGINE->windows().createAndPushWindow<GlobalLobbyRoomWindow>(window.get(),key);
+  }
+  if(action==1&&ENGINE->windows().topWindow<CLobbyScreen>()&&server.inLobbyRoom()&&server.isHost())
+  {
+   const auto & accounts=lobby.getActiveAccounts();
+   const auto account=std::find_if(accounts.begin(),accounts.end(),[&](const auto & entry){return entry.accountID==key;});
+   if(account==accounts.end()||key==lobby.getAccountID())return;
+   JsonNode message;
+   message["type"].String()="sendInvite";
+   message["accountID"].String()=key;
+   lobby.sendMessage(message);
+  }
+  lastPublished=0;
+ });
+}
+
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,int c,int d,int e){if(!ENGINE)return;ENGINE->dispatchMainThread([action,a,b,c,d,e](){
  if(action==0){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});return;}if(action==1){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});return;}
  // A dedicated cancel operation cannot also accept a dialog or close the town
@@ -488,6 +583,18 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  {
   if(GAME&&!GAME->interface()&&!ENGINE->windows().topWindow<GlobalLobbyLoginWindow>()&&!ENGINE->windows().topWindow<GlobalLobbyWindow>())
    GAME->server().getGlobalLobby().activateInterface();
+  return;
+ }
+ if(action==82)
+ {
+  if(auto setup=ENGINE->windows().topWindow<GlobalLobbyServerSetup>())setup->createFromWeb(a,b!=0,c!=0);
+  lastPublished=0;
+  return;
+ }
+ if(action==83)
+ {
+  if(auto preview=ENGINE->windows().topWindow<GlobalLobbyRoomWindow>())preview->joinFromWeb();
+  lastPublished=0;
   return;
  }
  if(action==81)

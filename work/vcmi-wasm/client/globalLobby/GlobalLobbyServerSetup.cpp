@@ -144,3 +144,19 @@ void GlobalLobbyServerSetup::onClose()
 {
 	close();
 }
+
+void GlobalLobbyServerSetup::createFromWeb(int limit, bool privateRoom, bool loadGame)
+{
+	if (isCreating() || limit < 2 || limit > 8)
+		return;
+
+	togglePlayerLimit->setSelected(limit);
+	toggleRoomType->setSelected(privateRoom ? 1 : 0);
+	toggleGameMode->setSelected(loadGame ? 1 : 0);
+	onCreate();
+}
+
+bool GlobalLobbyServerSetup::isCreating() const
+{
+	return buttonCreate->isBlocked();
+}

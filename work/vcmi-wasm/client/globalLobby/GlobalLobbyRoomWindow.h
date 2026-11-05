@@ -86,4 +86,7 @@ class GlobalLobbyRoomWindow : public CWindowObject
 
 public:
 	GlobalLobbyRoomWindow(GlobalLobbyWindow * window, const std::string & roomUUID);
+	const std::string & getRoomID() const { return roomUUID; }
+	std::string getJoinError() const;
+	void joinFromWeb();
 };

@@ -3,7 +3,7 @@ import {getLanguage} from './i18n.mjs';
 export function guardOnlineNameKeyboard(window) {
   // Register before SDL so its capture listeners cannot cancel native text input.
   const intercept = event => {
-    if (window.document.activeElement?.matches('.online-login:not([hidden]) input[data-online-name]')) {
+    if (window.document.activeElement?.matches('.online-login:not([hidden]) input[data-online-name], .online-lobby:not([hidden]) input[data-online-player-search]')) {
       event.stopImmediatePropagation();
     }
   };

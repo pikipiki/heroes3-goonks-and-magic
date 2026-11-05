@@ -46,4 +46,6 @@ class GlobalLobbyServerSetup : public CWindowObject
 
 public:
 	GlobalLobbyServerSetup();
+	void createFromWeb(int limit, bool privateRoom, bool loadGame);
+	bool isCreating() const;
 };
