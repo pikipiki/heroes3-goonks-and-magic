@@ -154,7 +154,7 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
 /* Primary confirmation keeps the same hit area in every battle phase. */
 html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:56px 48px;gap:6px}
 html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=target]{grid-column:1/-1;grid-row:1;min-height:56px!important;height:56px;box-sizing:border-box}
-#mobile-app [data-ui=target],#mobile-app [data-ui=confirm-recruit],#mobile-app [data-hall-buy],#mobile-app [data-ui=accept]{border:4px ridge #ffe18a;border-image:none;box-shadow:inset 0 0 0 1px #60491b;box-sizing:border-box}
+#mobile-app[data-mode=town] .mobile-nav [data-ui=back],#mobile-app [data-ui=target],#mobile-app [data-ui=confirm-recruit],#mobile-app [data-hall-buy],#mobile-app [data-ui=accept]{border:4px ridge #ffe18a;border-image:none;box-shadow:inset 0 0 0 1px #60491b;box-sizing:border-box}
 @media(orientation:landscape) and (max-height:600px){html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav{grid-template-columns:minmax(0,1fr);grid-template-rows:56px repeat(3,minmax(44px,1fr));align-content:stretch}html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=target]{grid-column:1;grid-row:1}}
 
 /* Repeat is a book-level action, kept at the top in either orientation. */
