@@ -1,0 +1,13 @@
+{
+  "id": "../game.html",
+  "name": "Heroes Goonk",
+  "short_name": "Heroes Goonk",
+  "start_url": "../game.html",
+  "scope": "../",
+  "display": "standalone",
+  "background_color": "#120e1c",
+  "theme_color": "#2b1c12",
+  "icons": [
+    {"src": "../dosvcmi.png", "sizes": "256x256", "type": "image/png", "purpose": "any"}
+  ]
+}

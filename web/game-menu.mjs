@@ -1,3 +1,4 @@
+import {createTurnNotifications} from './turn-notifications.mjs';
 import {getLanguage,setLanguage} from './i18n.mjs';
 import {MAP_SPEEDS,createMapSettings} from './map-settings.mjs';
 import {protectMenuButtons} from './menu-press.mjs';
@@ -20,6 +21,7 @@ function mountGameMenu(){
   document.body.append(dialog);
   const content=dialog.querySelector('.game-menu-body'),status=dialog.querySelector('.game-menu-status');
   const command=(action,value=0,preview=0)=>window.Module?._vcmiMobileCommand?.(action,value,preview,0,0,0);
+  const turnNotifications=createTurnNotifications({language:getLanguage});
   const movement=createMapSettings({send:value=>command(46,value.moveTime,value.hideEnemyMoves?1:0)});
   const audio=installAudioRecovery({isMuted:()=>muted,onChange:info=>{audioPhase=info.phase;if(dialog.open&&tab==='settings')render();}});
   function render(){
@@ -36,7 +38,7 @@ function mountGameMenu(){
     delete content.dataset.storage;
     if(tab==='settings'){
       if(content.dataset.view!=='settings'){
-        content.dataset.view='settings';content.innerHTML='<label class=language-setting>Language<select data-language><option value=en>English</option><option value=fr>Français</option></select></label><p>Native game text uses this language the next time you open the game.</p><section class="map-movement-settings"><h3>Déplacements sur la carte</h3><label class="map-speed-label">Vitesse de marche des héros<select data-map-speed aria-label="Vitesse de marche des héros">'+MAP_SPEEDS.map(speed=>'<option value="'+speed.value+'">'+speed.label+'</option>').join('')+'</select></label><p>La vitesse choisie s’applique à tes héros et à tes adversaires.</p><label><input type="checkbox" data-hide-enemy aria-describedby="enemy-movement-help"> Masquer les déplacements ennemis</label><p id="enemy-movement-help"></p><p class="map-settings-health" role="status"></p></section>'+'<h3>Musique et effets sonores</h3><p>Ce réglage est conservé sur cet appareil.</p><button class="sound-toggle primary" data-menu="sound" role="switch" aria-label="Son"></button><p class="audio-health" role="status"></p>';
+        content.dataset.view='settings';content.innerHTML='<label class=language-setting>Language<select data-language><option value=en>English</option><option value=fr>Français</option></select></label><p>Native game text uses this language the next time you open the game.</p><section class="map-movement-settings"><h3>Déplacements sur la carte</h3><label class="map-speed-label">Vitesse de marche des héros<select data-map-speed aria-label="Vitesse de marche des héros">'+MAP_SPEEDS.map(speed=>'<option value="'+speed.value+'">'+speed.label+'</option>').join('')+'</select></label><p>La vitesse choisie s’applique à tes héros et à tes adversaires.</p><label><input type="checkbox" data-hide-enemy aria-describedby="enemy-movement-help"> Masquer les déplacements ennemis</label><p id="enemy-movement-help"></p><p class="map-settings-health" role="status"></p></section>'+'<h3>Musique et effets sonores</h3><p>Ce réglage est conservé sur cet appareil.</p><button class="sound-toggle primary" data-menu="sound" role="switch" aria-label="Son"></button><p class="audio-health" role="status"></p><h3 data-turn-heading></h3><button data-menu="turn-notifications" role="switch"></button><p data-turn-help></p>';
       }
       content.querySelector('[data-language]').value=getLanguage();
       const prefs=movement.current,speed=content.querySelector('[data-map-speed]'),hide=content.querySelector('[data-hide-enemy]');speed.disabled=hide.disabled=!prefs.ready;if(document.activeElement!==speed)speed.value=String(prefs.moveTime);hide.checked=prefs.hideEnemyMoves;
@@ -46,6 +48,14 @@ function mountGameMenu(){
       content.querySelector('.map-settings-health').textContent=!prefs.ready?'Chargement des réglages…':prefs.pending?'Application des réglages…':'Réglages conservés sur cet appareil.';
       const button=content.querySelector('[data-menu=sound]');button.textContent=muted?'🔇 Son coupé':'🔊 Son activé';button.setAttribute('aria-checked',String(!muted));button.setAttribute('aria-busy',String(pendingAudio!==null));button.disabled=!initialAudioApplied||pendingAudio!==null;
       content.querySelector('.audio-health').textContent=muted?'Musique et effets coupés.':audioPhase==='paused'?'Audio en pause. Coupe puis réactive le son avec ce bouton.':audioPhase==='closed'?'Audio indisponible : recharge le jeu.':audioPhase==='loading'?'Initialisation audio…':state.soundVolume===0&&state.musicVolume===0?'Volume du jeu à zéro. Coupe puis réactive le son avec ce bouton.':'Audio du jeu prêt.';
+      const fr=getLanguage()==='fr', alerts=content.querySelector('[data-menu=turn-notifications]');
+      content.querySelector('[data-turn-heading]').textContent=fr?'Notifications de tour':'Turn notifications';
+      alerts.textContent=turnNotifications.enabled?(fr?'Notifications activées':'Notifications on'):(fr?'Activer les notifications':'Enable notifications');
+      alerts.setAttribute('aria-checked',String(turnNotifications.enabled));
+      alerts.disabled=!turnNotifications.supported||turnNotifications.pending;
+      content.querySelector('[data-turn-help]').textContent=fr
+        ?'Alertes en multijoueur quand le jeu tourne en arrière-plan. Sur iPhone, ouvre le jeu depuis l’écran d’accueil.'
+        :'Alerts during online games while the game is running in the background. On iPhone, open the game from the Home Screen.';
     }else{
       const context=state.townName||state.selectedTownName||state.heroName||'Aucune partie sélectionnée';
       const html='<p>'+escape(context)+'</p><p>Utiliser un code marque cette partie comme trichée.</p>'+cheatCodes.map(cheat=>{
@@ -61,6 +71,7 @@ function mountGameMenu(){
   const timer=setInterval(()=>{enable();if(initialAudioApplied)clearInterval(timer);},250);
   window.addEventListener('goonk-state',event=>{
     state=event.detail;movement.observe(state.mapSettings);
+    void turnNotifications.update(state);
     if(newGamePending&&['connecting','lobby','menu'].includes(state.mode)){newGamePending=false;dialog.close();}
     if(!initialAudioApplied){initialAudioApplied=true;if(muted){pendingAudio=true;command(28,1);}}
     else if(pendingAudio!==null){if(state.audioMuted===pendingAudio)pendingAudio=null;}
@@ -86,6 +97,17 @@ function mountGameMenu(){
     if(action==='close'){dialog.close();toggle.focus();}
     if(action==='manage-storage'&&!['battle','dialog'].includes(state.mode)){location.assign(new URL('../storage.html',import.meta.url));return;}
     if(action==='settings'||action==='cheats'||action==='storage'){if(content.dataset.view==='new-game')delete content.dataset.view;tab=action;status.textContent='';render();}
+    if(action==='turn-notifications'){
+      const change=turnNotifications.toggle();
+      render();
+      void change.then(enabled=>{
+        const fr=getLanguage()==='fr';
+        status.textContent=enabled?(fr?'Notifications activées.':'Notifications enabled.')
+          :(fr?'Notifications désactivées. Vérifie l’autorisation du navigateur si nécessaire.':'Notifications off. Check browser permissions if needed.');
+        render();
+      });
+      return;
+    }
     if(action==='sound'){muted=!muted;pendingAudio=muted;try{localStorage.setItem(muteKey,String(muted));}catch{}command(28,muted?1:0);if(!muted)void audio.resume({repair:true}).then(ok=>{if(ok&&!muted)command(28,0,1);if(!muted)status.textContent=ok?'Son réactivé.':'Coupe puis réactive le son pour relancer l’audio.';});audio.observe();render();status.textContent=muted?'Musique et effets coupés.':'Son demandé : reprise de l’audio…';}
 
   }

@@ -46,7 +46,7 @@ Les données téléchargées portent une empreinte de contenu et sont vérifiée
 
 La même archive fonctionne à la racine d’un domaine et dans un chemin de projet, comme `https://ton-compte.github.io/heroes-goonk/`. Les liens sont relatifs. Sur GitHub Pages, le premier accès prépare un service worker limité au dossier du jeu, puis relance la page pour activer les threads WebAssembly. Sur Netlify, les en-têtes du serveur activent directement ces fonctions. Utiliser l’adresse HTTPS publiée. Si le navigateur bloque les service workers sur GitHub Pages, un message et un bouton Réessayer apparaissent.
 
-Après un premier lancement connecté complet, le solo peut démarrer hors ligne sur le même site et dans le même navigateur. Le service worker conserve le moteur et l’interface, tandis que les données et sauvegardes restent dans le stockage local du jeu. Une mise à jour est préparée en ligne et s’applique après fermeture des onglets du jeu. Si elle change des données, le premier lancement de cette version doit rester connecté le temps de les installer. Netlify et GitHub Pages disposent de stockages séparés.
+Après un premier lancement connecté complet, le solo peut démarrer hors ligne sur le même site et dans le même navigateur. Le service worker conserve le moteur et l’interface, tandis que les données et sauvegardes restent dans le stockage local du jeu. Une mise à jour est préparée en ligne et s’applique après fermeture des onglets du jeu. Si elle change des données, le premier lancement de cette version doit rester connecté le temps de les installer. Netlify et GitHub Pages disposent de stockages séparés. Les navigateurs, profils et sessions privées gardent également des installations distinctes. La gestion intégrée libère les données du jeu et son cache hors ligne dans le profil courant et conserve les sauvegardes. Ouvrir le jeu après cette suppression déclenche une nouvelle installation.
 
 Validation locale des deux hébergements : `outputs/hosting-validation.json`. Serveur Netlify simulé : `node work/browser-tests/static-server.mjs`. Serveur GitHub Pages simulé sans en-têtes spéciaux : `PORT=8768 BASE_PATH=/heroes-goonk/ ISOLATION_HEADERS=0 node work/browser-tests/static-server.mjs`.
 
@@ -59,6 +59,8 @@ Le bouton **Online** utilise le [relais Docker](https://github.com/pikipiki/hero
 Dans un salon privé, l’hôte peut choisir **Goonks Online**, inviter un autre joueur connecté par son pseudo dans **Invite Players**, puis démarrer la partie. L’invité ouvre son invitation et confirme l’entrée dans le salon.
 
 L’hôte peut régler le chronomètre avant le départ. Les options vont d’une à dix minutes, avec un mode sans limite. La dernière sauvegarde automatique en ligne est conservée dans le navigateur de l’hôte pendant ses tours. Pour reprendre après fermeture, l’hôte ouvre un nouveau salon privé en mode **Load game**, choisit **Last online save**, invite l’autre joueur puis lance **Resume game**.
+
+Active **Turn notifications** dans les réglages du jeu pour recevoir une notification système au début de ton tour si le client reçoit encore les événements en arrière-plan. Sur iPhone, ouvre le jeu depuis l’écran d’accueil et accorde l’autorisation depuis ce bouton.
 
 ## Wake of Gods
 

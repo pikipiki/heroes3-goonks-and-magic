@@ -17,6 +17,18 @@ export function formatStorageFiles(count,language=getLanguage()){
 export function isGameData(path){const relative=path.startsWith(ROOT+'/')?path.slice(ROOT.length+1):path;return /^(Data|Maps|Mp3|Mods)\//.test(relative)&&relative.split('/').every(part=>part&&part!=='.'&&part!=='..');}
 export function storageSummary(entries){const summary={gameBytes:0,saveBytes:0,otherBytes:0,gameFiles:0,saveFiles:0};for(const [path,file]of Object.entries(entries)){if(file.isDir)continue;const bytes=Math.max(0,Number(file.length)||0),relative=path.startsWith(ROOT+'/')?path.slice(ROOT.length+1):path;if(isGameData(path)){summary.gameBytes+=bytes;summary.gameFiles++;}else if(/^Saves\//i.test(relative)){summary.saveBytes+=bytes;summary.saveFiles++;}else summary.otherBytes+=bytes;}return summary;}
 export async function removeGameData({opfs,storage,onProgress=()=>{}}){const entries=await opfs.list(ROOT),files=Object.entries(entries).filter(([path,file])=>!file.isDir&&path.startsWith(ROOT+'/')&&isGameData(path));let removedBytes=0,count=0;try{for(const [path,file]of files){await opfs.unlink(ROOT,path.slice(ROOT.length+1));removedBytes+=Math.max(0,Number(file.length)||0);onProgress({removedBytes,count:++count,total:files.length});}}finally{await opfs.flush(ROOT);storage.removeItem(ASSET_INDEX);}return{removedBytes,count};}
+// Keep cleanup within the current site's game directory on shared hosts.
+export async function offlineShellCaches({cacheStorage=globalThis.caches,scope=new URL('../',import.meta.url)}={}){
+ const prefix='heroes-goonk-shell:'+scope.pathname+':';
+ return (await cacheStorage?.keys()||[]).filter(name=>name.startsWith(prefix));
+}
+export async function removeOfflineShell({cacheStorage=globalThis.caches,serviceWorker=navigator.serviceWorker,scope=new URL('../',import.meta.url)}={}){
+ const registration=await serviceWorker?.getRegistration(scope.href);
+ if(registration?.scope===scope.href)await registration.unregister();
+ const names=await offlineShellCaches({cacheStorage,scope});
+ await Promise.all(names.map(name=>cacheStorage.delete(name)));
+ return names.length;
+}
 // A manager can acquire an exclusive lock only after all game tabs have closed.
 export function holdGameStorage({locks=navigator.locks,target=window}={}){
  if(!locks)return Promise.resolve(false);

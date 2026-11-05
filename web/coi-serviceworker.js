@@ -71,8 +71,7 @@ let installedImages;
 async function readInstalledImage(file) {
   if (!navigator.storage?.getDirectory || !shell.has('asset-manifest.json')) return;
   installedImages ??= (async () => {
-    const cache = await caches.open(cacheName);
-    const catalogue = await cache.match(cacheKey('asset-manifest.json', shell.get('asset-manifest.json')));
+    const catalogue = await caches.match(cacheKey('asset-manifest.json', shell.get('asset-manifest.json')), {cacheName});
     const manifest = await catalogue.json();
     return new Map(manifest.files.filter(entry => entry.url && entry.path.startsWith('Mods/') &&
       imageTypes[entry.path.split('.').at(-1)?.toLowerCase()]).map(entry => [fileURL(entry.url).pathname, entry]));
@@ -99,8 +98,7 @@ self.addEventListener('fetch', event => {
   const digest = shell.get(file);
   event.respondWith((async () => {
     if (digest && !request.headers.has('range')) {
-      const cache = await caches.open(cacheName);
-      const response = await cache.match(cacheKey(file, digest));
+      const response = await caches.match(cacheKey(file, digest), {cacheName});
       if (response) return isolated(response);
     }
     try {
@@ -112,5 +110,16 @@ self.addEventListener('fetch', event => {
       }
       throw error;
     }
+  })());
+});
+
+self.addEventListener('notificationclick', event => {
+  if (event.notification.tag !== 'heroes-goonk-online-turn') return;
+  event.notification.close();
+  event.waitUntil((async () => {
+    const windows = await self.clients.matchAll({type: 'window', includeUncontrolled: true});
+    const game = windows.find(client => new URL(client.url).pathname === fileURL('game.html').pathname);
+    if (game) await game.focus();
+    else await self.clients.openWindow(fileURL('game.html').href);
   })());
 });
