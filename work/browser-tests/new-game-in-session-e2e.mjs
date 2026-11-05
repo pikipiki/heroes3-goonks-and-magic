@@ -37,7 +37,9 @@ try {
  await page.locator('[data-menu=confirm-new-game]').tap();
  await waitForLobby();
  await sameSession();
- console.log('PASS in-session new game with the same WebAssembly instance');
+ await setting('mobile-faction-select').locator('figure img[src$="/goonk.webp"]').waitFor();
+ await wait(() => [...document.querySelectorAll('[data-setting=mobile-faction-select] figure img')].every(img => img.complete && img.naturalWidth > 0));
+ console.log('PASS in-session new game with the same WebAssembly instance and decoded default castle');
 
  const factions = await page.evaluate(() => goonkMobileState.factions);
  assert(factions.length > 2);
