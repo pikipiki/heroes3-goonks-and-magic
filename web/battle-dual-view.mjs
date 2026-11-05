@@ -3,7 +3,7 @@ import {paintBattleFloor} from './battle-floor.mjs';
 import {paintBattleAction} from './battle-director.mjs';
 import {fitRegion,scenePoint} from './mobile-layout.mjs';
 import {NATIVE_BATTLE_REGION,fitNativeBattle,paintBattleGrid,paintMovementRange} from './battle-scene.mjs';
-import {battleGuidance,paintActiveCreature} from './battle-guidance.mjs';
+import {battleGuidance,paintActiveCreature,paintShotTargets} from './battle-guidance.mjs';
 
 // Keep native pixel geometry: one CSS pixel per engine coordinate makes a hex
 // 44 pixels wide even when the portrait detail pane is short.
@@ -49,7 +49,7 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
  canvas.addEventListener('keydown',event=>{const delta={ArrowLeft:[-88,0],ArrowRight:[88,0],ArrowUp:[0,-84],ArrowDown:[0,84]}[event.key];if(!active||!delta||!currentLayout)return;event.preventDefault();const view=lastDetail||{x:0,y:0,w:800,h:555};onFocus({x:Math.max(0,Math.min(800,view.x+view.w/2+delta[0])),y:Math.max(0,Math.min(555,view.y+view.h/2+delta[1]))});});
  let lastDetail=null;
  function paint(original,detail,selected,view){const enabled=sync();follow.hidden=!view?.manual||getView()!=='close';const text=view?.label||'Vue rapprochée · Choisissez une case ou une cible';if(detailLabel.textContent!==text)detailLabel.textContent=text;if(!enabled)return;const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;const pixels=surfaceSize.fit(canvas,w,h,Math.min(devicePixelRatio||1,2));ctx.setTransform(pixels.x,0,0,pixels.y,0,0);ctx.clearRect(0,0,w,h);currentLayout=fitNativeBattle(w,h,null,'whole');const l=currentLayout;ctx.drawImage(original,0,0,original.width,original.height*555/600,l.dx,l.dy,l.w*l.scale,l.h*l.scale);
-  const state=getState(),guidance=battleGuidance(state);paintBattleFloor(ctx,state,l);paintActiveCreature(ctx,guidance,l);paintBattleAction(ctx,view,l);
+  const state=getState(),guidance=battleGuidance(state);paintBattleFloor(ctx,state,l);paintShotTargets(ctx,guidance.shotTargets,l);paintActiveCreature(ctx,guidance,l);paintBattleAction(ctx,view,l);
   if(selected){ctx.strokeStyle='#fff0ae';ctx.lineWidth=2;ctx.beginPath();ctx.arc(l.dx+selected.x*l.scale,l.dy+selected.y*l.scale,10,0,Math.PI*2);ctx.stroke();}
   if(detail){lastDetail=detail;ctx.save();ctx.strokeStyle='#fff0ae';ctx.lineWidth=1.5;ctx.setLineDash([4,3]);ctx.strokeRect(l.dx+detail.x*l.scale,l.dy+detail.y*l.scale,detail.w*l.scale,detail.h*l.scale);ctx.restore();}
  }

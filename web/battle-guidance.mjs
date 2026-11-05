@@ -6,7 +6,8 @@ export function battleGuidance(state){
  const occupied=new Set((state.battleUnits||[]).flatMap(unit=>unit.occupied||[]));
  // Native reachability includes tactics, speed, obstacles, wide stacks and defended gates.
  const cells=ready?(state.battleCells||[]).filter(cell=>cell.reachable&&!occupied.has(cell.hex)):[];
- return {actor,ready,cells,label:cap.tactics?'À placer':'À jouer'};
+ const shotTargets=ready&&cap.combatReady?(state.battleUnits||[]).filter(unit=>unit.enemy&&unit.canShootAt===true):[];
+ return {actor,ready,cells,shotTargets,label:cap.tactics?'À placer':'À jouer'};
 }
 export function paintActiveCreature(ctx,guidance,layout){
  const {actor,ready}=guidance,label=translate(guidance.label);if(!ready||!actor)return;
@@ -20,4 +21,35 @@ export function paintActiveCreature(ctx,guidance,layout){
  const left=Math.max(layout.dx+3,Math.min(layout.dx+layout.w*layout.scale-width-3,right+width<=layout.dx+layout.w*layout.scale-3?right:x-bodyRadius-width-8));
  const top=Math.max(layout.dy+3,Math.min(layout.dy+layout.h*layout.scale-height-3,y-56*layout.scale));
  ctx.fillStyle='#2d1b09';ctx.fillRect(left,top,width,height);ctx.strokeStyle='#ffe082';ctx.lineWidth=2;ctx.strokeRect(left,top,width,height);ctx.fillStyle='#fff0c2';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(label,left+width/2,top+height/2);ctx.restore();
+}
+
+export function paintShotTargets(ctx,targets,layout){
+ if(!targets.length)return;
+ const {dx,dy,w,h,scale}=layout,radius=Math.max(6,Math.min(10,9*scale));
+ ctx.save();
+ ctx.beginPath();
+ ctx.rect(dx,dy,w*scale,h*scale);
+ ctx.clip();
+ ctx.beginPath();
+ for(const target of targets){
+  const x=dx+(target.x-layout.x)*scale,y=dy+(target.y+14-layout.y)*scale;
+  if(x<dx||x>dx+w*scale||y<dy||y>dy+h*scale)continue;
+  ctx.moveTo(x+radius,y);
+  ctx.arc(x,y,radius,0,Math.PI*2);
+  ctx.moveTo(x-radius-3,y);
+  ctx.lineTo(x-radius+3,y);
+  ctx.moveTo(x+radius-3,y);
+  ctx.lineTo(x+radius+3,y);
+  ctx.moveTo(x,y-radius-3);
+  ctx.lineTo(x,y-radius+3);
+  ctx.moveTo(x,y+radius-3);
+  ctx.lineTo(x,y+radius+3);
+ }
+ ctx.strokeStyle='#102735';
+ ctx.lineWidth=4;
+ ctx.stroke();
+ ctx.strokeStyle='#b2f5ff';
+ ctx.lineWidth=2;
+ ctx.stroke();
+ ctx.restore();
 }
