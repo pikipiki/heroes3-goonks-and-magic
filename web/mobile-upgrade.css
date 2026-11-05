@@ -180,3 +180,12 @@ html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=target]{gri
 #mobile-app .hero-movement-item[data-movement-band=high]{background:#183a24;color:#d8f6bb;border-color:#6baf74}
 #mobile-app .hero-movement-item[data-movement-band=medium]{background:#49351b;color:#ffe3a0;border-color:#c49f53}
 #mobile-app .hero-movement-item[data-movement-band=low],#mobile-app .hero-movement-item[data-movement-band=empty]{background:#48201c;color:#ffd0bf;border-color:#c67a68}
+/* Reserve enough room when both hero magic and a creature ability are available. */
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-panel:has([data-ui=creature-spell]:not([hidden])){grid-template-columns:48px minmax(0,1fr) 144px}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-tools{min-width:0;width:100%;gap:6px}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-tools button{flex:1 1 0;width:0!important;min-width:44px;box-sizing:border-box;white-space:normal;overflow-wrap:anywhere}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-tools{grid-template-columns:repeat(2,minmax(0,1fr))!important;min-width:0}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-tools button{min-width:44px;max-width:100%;box-sizing:border-box;white-space:normal;overflow-wrap:anywhere}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-tools:not(:has([data-ui=creature-spell]:not([hidden]))) [data-ui=battle-magic]{grid-column:1/-1}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=native] .battle-panel{grid-template-rows:minmax(0,1fr) 52px}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=native] #battle-creature-detail{max-height:100%}
