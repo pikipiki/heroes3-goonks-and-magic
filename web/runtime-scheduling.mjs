@@ -7,9 +7,9 @@ export function createSaveScheduler({sync,schedule=fn=>setTimeout(fn,0),onError=
     if(running||scheduled||!pending.size)return;
     scheduled=true;schedule(async()=>{
       scheduled=false;running=true;
-      const batch=[...pending.values()];pending.clear();
-      try{await sync();for(const item of batch)item.resolve();}
-      catch(error){onError(error);for(const item of batch)item.reject(error);}
+      const batch=[...pending];pending.clear();
+      try{await sync(batch.map(([path])=>path));for(const [,item] of batch)item.resolve();}
+      catch(error){onError(error);for(const [,item] of batch)item.reject(error);}
       finally{running=false;kick();}
     });
   }
@@ -19,17 +19,38 @@ export function createSaveScheduler({sync,schedule=fn=>setTimeout(fn,0),onError=
     kick();
   });
 }
+const saveRoot='/home/web_user/.local/share/vcmi';
+const opfsCall=run=>new Promise((resolve,reject)=>run((error,value)=>error?reject(error):resolve(value)));
+
+export async function persistSaveFiles(module,paths){
+  const {FS,OPFS}=module;
+  const canWriteDirectly=OPFS?.loadLocalEntry&&OPFS.storeRemoteEntry&&OPFS.callWorker
+    && paths.every(path=>path.toLowerCase()===saveRoot+'/saves/goonk-auto.vsgm1');
+  if(!canWriteDirectly)return opfsCall(done=>FS.syncfs(false,done));
+  const mount=FS.lookupPath(saveRoot).node.mount;
+  if(mount?.opts?.root!==saveRoot||mount.opts.folder)return opfsCall(done=>FS.syncfs(false,done));
+
+  // The engine has already closed these saves. Reuse the mounted OPFS worker
+  // so autosave touches only the files it changed and flushes the same metadata.
+  for(const path of paths){
+    const entry=await opfsCall(done=>OPFS.loadLocalEntry(path,done));
+    await opfsCall(done=>OPFS.storeRemoteEntry(mount,path,entry,done));
+  }
+  await opfsCall(done=>OPFS.callWorker('flush',{root:saveRoot},done));
+}
+
 export function installRuntimeScheduling(module){
   const stats=window.goonkRuntimeStats={saves:[],errors:[]};
   const persist=createSaveScheduler({
-    sync:()=>new Promise((resolve,reject)=>{
+    sync:async paths=>{
       const start=performance.now();
-      module.FS.syncfs(false,error=>{
-        stats.saves.push({at:Date.now(),durationMs:Math.round(performance.now()-start),ok:!error});
+      let ok=false;
+      try{await persistSaveFiles(module,paths);ok=true;}
+      finally{
+        stats.saves.push({at:Date.now(),durationMs:Math.round(performance.now()-start),ok});
         if(stats.saves.length>40)stats.saves.shift();
-        error?reject(error):resolve();
-      });
-    }),
+      }
+    },
     onError:error=>{stats.errors.push(String(error));if(stats.errors.length>20)stats.errors.shift();}
   });
   module.persistLocalSave=path=>{
