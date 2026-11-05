@@ -47,26 +47,33 @@ export function factionPortraitBuildings(width,height,buildings,faction){
 }
 export function createTownPortrait({root,scene,asset,command,getState}){
  const overlay=document.createElement('section');overlay.className='town-portrait-buildings';overlay.setAttribute('aria-label','Bâtiments de la ville');overlay.hidden=true;root.querySelector('.mobile-play').append(overlay);
- const images=new Map(),buttons=new Map();let hovered=null,signature='',activeFaction=null;
- const image=url=>{if(!url)return null;if(!images.has(url)){const img=new Image();img.src=url;images.set(url,img);}return images.get(url);};
- const ready=img=>img?.complete&&img.naturalWidth>0;
+ const images=new Map(),buttons=new Map(),decoded=new WeakSet(),failed=new WeakSet();let hovered=null,signature='',activeFaction=null;
+ const image=url=>{if(!url)return null;if(!images.has(url)){const img=new Image();img.addEventListener('error',()=>failed.add(img),{once:true});img.addEventListener('load',()=>{if(img.decode)img.decode().then(()=>decoded.add(img),()=>failed.add(img));else decoded.add(img);},{once:true});img.src=url;images.set(url,img);}return images.get(url);};
+ const ready=img=>img?.complete&&img.naturalWidth>0&&decoded.has(img);
+ const settled=img=>!img||ready(img)||failed.has(img);
  const backgrounds=new Map();
  backgrounds.set('goonk',image(new URL('./town/portrait-v2.webp',import.meta.url).href));
- return {
+ const assets=(state,width,height)=>{
+  const faction=portraitTownFaction(state);
+  if(activeFaction!==faction){activeFaction=faction;images.clear();buttons.clear();overlay.replaceChildren();hovered=null;signature='';}
+  if(!backgrounds.has(faction))backgrounds.set(faction,image(new URL(faction==='goonk'?'./town/portrait-v2.webp':'./town/'+faction+'/portrait-v1.webp',import.meta.url).href));
+  const buildings=factionPortraitBuildings(width,height,state.buildings||[],faction);
+  return {faction,background:backgrounds.get(faction),buildings,artwork:buildings.map(b=>({b,picture:image(faction==='goonk'?asset('goonk/structure-'+b.artKey+'.png'):new URL('./town/'+faction+'/structures/'+b.artKey+'.webp',import.meta.url).href),outline:faction==='goonk'?image(asset('goonk/outline-'+b.artKey+'.png')):null}))};
+ };
+ const prepare=(state,enabled=true)=>{
+  if(!enabled||state.mode!=='town'||!portraitTownFaction(state)||root.clientWidth>=root.clientHeight)return true;
+  const {background,artwork}=assets(state,scene.clientWidth||root.clientWidth,scene.clientHeight||root.clientHeight);
+  return settled(background)&&artwork.every(item=>settled(item.picture));
+ };
+ return {prepare,
   paint(ctx,width,height,state,enabled){
    const faction=portraitTownFaction(state);
    if(!enabled||state.mode!=='town'||!faction||root.clientWidth>=root.clientHeight){overlay.hidden=true;delete root.dataset.townLayout;return false;}
-   if(activeFaction!==faction){activeFaction=faction;images.clear();const warmed=backgrounds.get(faction);backgrounds.clear();if(warmed)backgrounds.set(faction,warmed);buttons.clear();overlay.replaceChildren();hovered=null;signature='';}
-   if(!backgrounds.has(faction))backgrounds.set(faction,image(new URL(faction==='goonk'?'./town/portrait-v2.webp':'./town/'+faction+'/portrait-v1.webp',import.meta.url).href));const background=backgrounds.get(faction);
-   const buildings=factionPortraitBuildings(width,height,state.buildings,faction);const artwork=buildings.map(b=>({b,picture:image(faction==='goonk'?asset('goonk/structure-'+b.artKey+'.png'):new URL('./town/'+faction+'/structures/'+b.artKey+'.webp',import.meta.url).href),outline:faction==='goonk'?image(asset('goonk/outline-'+b.artKey+'.png')):null}));
-   if(!ready(background)||artwork.some(item=>!ready(item.picture))){
-    overlay.hidden=true;root.dataset.townLayout='portrait';ctx.clearRect(0,0,width,height);ctx.fillStyle='#291d13';ctx.fillRect(0,0,width,height);
-    if(ready(background)){const scale=Math.max(width/background.naturalWidth,height/background.naturalHeight),bw=width/scale,bh=height/scale;ctx.drawImage(background,(background.naturalWidth-bw)/2,(background.naturalHeight-bh)/2,bw,bh,0,0,width,height);}
-    return true; // Consume the frame: never flash the native landscape scene.
-   }
+   const {background,buildings,artwork}=assets(state,width,height);
+   if(!settled(background)||artwork.some(item=>!settled(item.picture))){overlay.hidden=true;return true;}
    root.dataset.townLayout='portrait';overlay.dataset.faction=faction;overlay.hidden=false;overlay.style.width=width+'px';overlay.style.height=height+'px';
-   const scale=Math.max(width/background.naturalWidth,height/background.naturalHeight),bw=width/scale,bh=height/scale;ctx.drawImage(background,(background.naturalWidth-bw)/2,(background.naturalHeight-bh)/2,bw,bh,0,0,width,height);
-   for(const {b,picture,outline}of artwork){ctx.drawImage(picture,b.x,b.y,b.w,b.h);if(hovered===b.id){if(ready(outline))ctx.drawImage(outline,b.x,b.y,b.w,b.h);else{ctx.save();ctx.shadowColor='#ffe78a';ctx.shadowBlur=8;ctx.drawImage(picture,b.x,b.y,b.w,b.h);ctx.restore();}}}
+   const scale=Math.max(width/background.naturalWidth,height/background.naturalHeight),bw=width/scale,bh=height/scale;if(ready(background))ctx.drawImage(background,(background.naturalWidth-bw)/2,(background.naturalHeight-bh)/2,bw,bh,0,0,width,height);
+   for(const {b,picture,outline}of artwork){if(!ready(picture))continue;ctx.drawImage(picture,b.x,b.y,b.w,b.h);if(hovered===b.id){if(ready(outline))ctx.drawImage(outline,b.x,b.y,b.w,b.h);else{ctx.save();ctx.shadowColor='#ffe78a';ctx.shadowBlur=8;ctx.drawImage(picture,b.x,b.y,b.w,b.h);ctx.restore();}}}
    const next=JSON.stringify([faction,width,height,!!state.turn,buildings.map(b=>[b.id,b.name])]);
    if(signature!==next){signature=next;const active=new Set(buildings.map(b=>b.id));for(const [id,button]of buttons)if(!active.has(id)){button.remove();buttons.delete(id);if(hovered===id)hovered=null;}
     for(const b of buildings){let button=buttons.get(b.id);if(!button){button=document.createElement('button');button.className='town-building-hit';button.dataset.townBuilding=b.id;const label=document.createElement('span');label.className='town-building-name';button.append(label);button.addEventListener('pointerenter',()=>hovered=b.id);button.addEventListener('pointerleave',()=>hovered=null);button.addEventListener('focus',()=>hovered=b.id);button.addEventListener('blur',()=>hovered=null);button.addEventListener('click',event=>{event.stopPropagation();const current=getState();if(current.mode==='town'&&current.turn&&current.buildings?.some(record=>record.id===b.id&&record.built)){hovered=b.id;command(39,b.id);}});buttons.set(b.id,button);overlay.append(button);}
