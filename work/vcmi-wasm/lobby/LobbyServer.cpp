@@ -635,7 +635,7 @@ void LobbyServer::receiveServerLogin(const NetworkConnectionPtr & connection, co
 
 	auto clientCookieStatus = database->getAccountCookieStatus(accountID, accountCookie);
 
-	if(clientCookieStatus == LobbyCookieStatus::INVALID)
+	if(clientCookieStatus == LobbyCookieStatus::INVALID || !database->getGameRoomHostAccount(gameRoomID).empty())
 	{
 		sendOperationFailed(connection, "Invalid credentials");
 	}
@@ -689,30 +689,23 @@ void LobbyServer::receiveServerProxyLogin(const NetworkConnectionPtr & connectio
 	std::string guestAccountID = json["guestAccountID"].String();
 	std::string accountCookie = json["accountCookie"].String();
 
-	// FIXME: find host account ID and validate his cookie
-	//auto clientCookieStatus = database->getAccountCookieStatus(hostAccountID, accountCookie, accountCookieLifetime);
-
-	//if(clientCookieStatus != LobbyCookieStatus::INVALID)
+	const auto targetAccount = findAccount(guestAccountID);
+	const auto hostAccountID = database->getGameRoomHostAccount(gameRoomID);
+	if(!targetAccount || !findGameRoom(gameRoomID)
+		|| database->getAccountCookieStatus(hostAccountID, accountCookie) == LobbyCookieStatus::INVALID
+		|| !database->isPlayerInGameRoom(guestAccountID, gameRoomID))
 	{
-		NetworkConnectionPtr targetAccount = findAccount(guestAccountID);
-
-		if(targetAccount == nullptr)
-		{
-			sendOperationFailed(connection, "Invalid credentials");
-			return; // unknown / disconnected account
-		}
-
-		sendJoinRoomSuccess(targetAccount, gameRoomID, true);
-
-		AwaitingProxyState proxy;
-		proxy.accountID = guestAccountID;
-		proxy.roomID = gameRoomID;
-		proxy.roomConnection = connection;
-		awaitingProxies.push_back(proxy);
+		sendOperationFailed(connection, "Invalid credentials");
 		return;
 	}
 
-	//connection->close();
+	sendJoinRoomSuccess(targetAccount, gameRoomID, true);
+
+	AwaitingProxyState proxy;
+	proxy.accountID = guestAccountID;
+	proxy.roomID = gameRoomID;
+	proxy.roomConnection = connection;
+	awaitingProxies.push_back(proxy);
 }
 
 void LobbyServer::receiveActivateGameRoom(const NetworkConnectionPtr & connection, const JsonNode & json)
@@ -720,6 +713,9 @@ void LobbyServer::receiveActivateGameRoom(const NetworkConnectionPtr & connectio
 	std::string hostAccountID = json["hostAccountID"].String();
 	std::string accountID = activeAccounts[connection];
 	int playerLimit = json["playerLimit"].Integer();
+
+	if(accountID != hostAccountID)
+		return sendOperationFailed(connection, "Invalid credentials");
 
 	if(database->isPlayerInGameRoom(accountID))
 		return sendOperationFailed(connection, "Player already in the room!");

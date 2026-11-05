@@ -53,7 +53,7 @@ class LobbyDatabase
 	SQLiteStatementPtr countRoomTotalSlotsStatement;
 
 	SQLiteStatementPtr isAccountCookieValidStatement;
-	SQLiteStatementPtr isGameRoomCookieValidStatement;
+	SQLiteStatementPtr getGameRoomHostAccountStatement;
 	SQLiteStatementPtr isPlayerInGameRoomStatement;
 	SQLiteStatementPtr isPlayerInAnyGameRoomStatement;
 	SQLiteStatementPtr isAccountIDExistsStatement;
@@ -96,6 +96,7 @@ public:
 	std::string getAccountGameRoom(const std::string & accountID);
 	std::string getAccountDisplayName(const std::string & accountID);
 
+	std::string getGameRoomHostAccount(const std::string & roomID);
 	LobbyCookieStatus getAccountCookieStatus(const std::string & accountID, const std::string & accessCookieUUID);
 	LobbyInviteStatus getAccountInviteStatus(const std::string & accountID, const std::string & roomID);
 	LobbyRoomState getGameRoomStatus(const std::string & roomID);

@@ -310,6 +310,12 @@ void LobbyDatabase::prepareStatements()
 		WHERE accountID = ? AND cookieUUID = ?
 	)");
 
+	getGameRoomHostAccountStatement = database->prepare(R"(
+		SELECT hostAccountID
+		FROM gameRooms
+		WHERE roomID = ?
+	)");
+
 	isPlayerInGameRoomStatement = database->prepare(R"(
 		SELECT COUNT(accountID)
 		FROM gameRoomPlayers grp
@@ -477,6 +483,18 @@ std::string LobbyDatabase::getAccountDisplayName(const std::string & accountID)
 	if(getAccountDisplayNameStatement->execute())
 		getAccountDisplayNameStatement->getColumns(result);
 	getAccountDisplayNameStatement->reset();
+
+	return result;
+}
+
+std::string LobbyDatabase::getGameRoomHostAccount(const std::string & roomID)
+{
+	std::string result;
+
+	getGameRoomHostAccountStatement->setBinds(roomID);
+	if(getGameRoomHostAccountStatement->execute())
+		getGameRoomHostAccountStatement->getColumns(result);
+	getGameRoomHostAccountStatement->reset();
 
 	return result;
 }
