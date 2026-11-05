@@ -1,4 +1,4 @@
-import{createHeroTransition}from'./hero-transition.mjs';
+import{createHeroTransition,opensMobileWindow}from'./hero-transition.mjs';
 import{hasHDCreaturePortrait}from'./goonk-hd-portraits.mjs';
 import {createBattleAutocombat} from './battle-autocombat.mjs';
 import {createCampaignSetup} from './campaign-setup.mjs';
@@ -54,7 +54,7 @@ function mount(){
  const launchStatus=document.createElement('section');launchStatus.className='menu-launch-status';launchStatus.hidden=true;launchStatus.setAttribute('role','status');root.querySelector('.mobile-play').append(launchStatus);
  function renderLaunch(value){const active=!!value;for(const button of root.querySelectorAll('.mobile-menu [data-action]')){button.disabled=active;if(active&&!value.failed&&Number(button.dataset.action)===value.action)button.setAttribute('aria-busy','true');else button.removeAttribute('aria-busy');}if(!value){launchStatus.hidden=true;delete launchStatus.dataset.phase;return;}launchStatus.hidden=false;const phase=value.action+':'+value.failed;if(launchStatus.dataset.phase===phase)return;launchStatus.dataset.phase=phase;launchStatus.innerHTML=value.failed?'<h2>Game options did not open</h2><p>The game is not responding. Restart to try again. Your local saves and downloaded game files will be kept.</p><button data-ui="restart-launch">Restart and try again</button>':'<p>Opening game options…</p><progress aria-label="Opening game options"></progress>';}
  const launch=createMenuLaunch({onChange:value=>{if(value?.failed)feedback.clear();renderLaunch(value);}});setInterval(()=>{if(!document.hidden)launch.tick();},500);
- const command=(a,b=0,c=0,d=0,e=0,f=0)=>{if(!launch.begin(a,state.mode))return;feedback.begin(a,state);window.Module?._vcmiMobileCommand?.(a,b,c,d,e,f);};
+ const command=(a,b=0,c=0,d=0,e=0,f=0)=>{if(!launch.begin(a,state.mode))return;feedback.begin(a,state);if(opensMobileWindow(a,b))heroTransition.begin(state.mode);window.Module?._vcmiMobileCommand?.(a,b,c,d,e,f);};
  const autocombat=createBattleAutocombat({command,onChange:value=>{pendingAuto=value;renderBattlePanel();controls();},onError:message=>notify(message)});
  const spellRecovery=createSpellTargetingRecovery({command:(action,value=0)=>{if(action===44)autocombat.request(state,!!value);else command(action,value);},onChange:()=>{renderBattlePanel();controls();},onError:message=>notify(message)});
  setInterval(()=>{spellRecovery.update(state);autocombat.update(state);},250);

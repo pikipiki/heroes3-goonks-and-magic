@@ -1,7 +1,17 @@
-// Native state is published before its canvas is presented. Keep the previous
-// mobile view intact until a complete presentation frame has passed.
-export function createHeroTransition(apply){let pending=null,frames=0;return{
- receive(next,currentMode){if(next.mode==='hero'&&currentMode!=='hero'){if(!pending)frames=0;pending=next;return;}pending=null;frames=0;apply(next);},
- frame(){if(!pending)return false;if(++frames<2)return true;const next=pending;pending=null;frames=0;apply(next);return false;},
- get pending(){return !!pending;}
+// Native windows can render before their throttled snapshot reaches the browser.
+// Freeze the already presented mobile view from the opening command until the
+// new snapshot and its canvas are ready. A rejected/no-op command cannot stall it.
+const adapted=new Set(['map','battle','hero','spellbook','fort','recruit','creature','town','campaign-scenario']);
+export function opensMobileWindow(action,value=0){return [0,5,30,33,39,41,42,43,49,54,55,63].includes(action)||action===14&&value===0||action===62&&value===17;}
+export function createHeroTransition(apply,{now=()=>performance.now(),timeout=2000}={}){let pending=null,frames=0,waiting=null;return{
+ begin(currentMode){if(!waiting)waiting={mode:currentMode,until:now()+timeout};},
+ receive(next,currentMode){
+  if(waiting&&next.mode===waiting.mode&&now()<waiting.until)return;
+  waiting=null;
+  if(adapted.has(next.mode)&&currentMode!==next.mode){if(pending?.mode!==next.mode)frames=0;pending=next;return;}
+  pending=null;frames=0;apply(next);
+ },
+ frame(){if(waiting){if(now()<waiting.until)return true;waiting=null;}
+  if(!pending)return false;if(++frames<2)return true;const next=pending;pending=null;frames=0;apply(next);return false;},
+ get pending(){return !!pending||!!waiting;}
 };}
