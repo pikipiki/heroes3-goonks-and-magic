@@ -1,3 +1,4 @@
+@import url('./lobby-choices.css');
 /* Heroes III materials with a predictable mobile form and a persistent action bar. */
 #mobile-app:is([data-mode=lobby],[data-mode=load]){grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
 #mobile-app:is([data-mode=lobby],[data-mode=load]) .mobile-play{grid-column:1/-1;grid-row:2}

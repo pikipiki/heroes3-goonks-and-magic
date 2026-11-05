@@ -1,0 +1,59 @@
+/* Native Heroes materials, with readable cards and thumb-sized choices. */
+#mobile-app .lobby-native-label{display:none!important}
+#mobile-app .lobby-setting{min-width:0;width:100%;container-type:inline-size}
+#mobile-app .lobby-setting h3{display:flex;align-items:center;gap:8px;color:#f6dc98;font-size:15px;margin:0 0 8px;font-weight:normal}
+#mobile-app .lobby-setting[hidden]{display:none!important}
+#mobile-app .lobby-choice-card{display:flex;align-items:stretch;gap:12px;min-height:100px!important;text-align:left;padding:0!important;overflow:hidden;border:2px ridge #c5a364;background:linear-gradient(100deg,#392316,#1b120c)}
+#mobile-app .lobby-choice-card>span{display:flex;flex:1;flex-direction:column;justify-content:center;gap:4px;padding:10px 10px 10px 0;min-width:0}
+#mobile-app .lobby-choice-card small{font:11px/1.3 system-ui,sans-serif;color:#c8b993;letter-spacing:.05em;text-transform:uppercase}
+#mobile-app .lobby-choice-card strong{font-size:20px;line-height:1.2;overflow-wrap:anywhere;color:#fff0ba}
+#mobile-app .lobby-choice-card em{font:13px/1.3 Georgia,serif;color:#e3bc67;font-style:normal}
+#mobile-app .lobby-choice-card .lobby-castle-art{width:112px;min-height:112px;max-height:145px;object-fit:cover;object-position:50% 38%;border-right:1px solid #bb975a;flex-shrink:0}
+#mobile-app .lobby-choice-card .lobby-map-emblem{width:56px;height:56px;align-self:center;object-fit:contain;margin:14px 0 14px 12px}
+#mobile-app .lobby-choice-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+#mobile-app .lobby-choice-tiles button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-width:0;min-height:68px!important;padding:8px 4px!important;font-size:13px;overflow-wrap:anywhere}
+#mobile-app .lobby-tile-symbol{color:#e0bb6c;font:12px/1.2 Georgia,serif;letter-spacing:1px}
+#mobile-app .lobby-choice-tiles [aria-pressed=true]{outline:1px solid #ffe1a1;outline-offset:-5px;border-color:#ffe1a1;background:linear-gradient(#813020,#42170f);box-shadow:inset 0 0 12px #f2cf6b22}
+#mobile-app .lobby-choice-help{font-size:13px!important;line-height:1.3!important;margin:8px 0 0!important;max-width:none!important;color:#d9c498}
+#mobile-app .lobby-counter{display:grid;grid-template-columns:52px minmax(0,1fr) 52px;gap:8px;border:1px solid #8e713e;background:#130e09;padding:6px}
+#mobile-app .lobby-counter button{font-size:24px;padding:4px!important;min-height:52px!important}
+#mobile-app .lobby-counter output{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#f7df9e}
+#mobile-app .lobby-counter output strong{font-size:26px;line-height:1.1}
+#mobile-app .lobby-counter output span{font-size:11px;color:#cdbc94}
+#mobile-app [data-custom-generate]{border:3px ridge #ecc87b;background:linear-gradient(#7b2c1c,#40170d);font-weight:bold}
+#mobile-app .lobby-picker{position:fixed;inset:8px;margin:auto;width:min(760px,calc(100% - 16px));max-width:none;height:min(760px,calc(100dvh - 16px));max-height:calc(100dvh - 16px);box-sizing:border-box;padding:0;border:4px ridge #d5b773;background:#25190e url('./h3-theme/stone.png');color:#ffedbe;box-shadow:0 15px 60px #000a;font-family:Georgia,serif}
+#mobile-app .lobby-picker[open]{display:flex;flex-direction:column}
+#mobile-app .lobby-picker::backdrop{background:#080604cc}
+#mobile-app .lobby-picker header{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:2px ridge #bf9c59;background:linear-gradient(#76291d,#41160f)}
+#mobile-app .lobby-picker h2{flex:1;font-size:21px;margin:0;min-width:0}
+#mobile-app .lobby-picker header button{width:48px;flex:0 0 48px;min-height:48px;padding:0;font-size:24px;margin:0}
+#mobile-app .lobby-picker-search{display:flex;flex-direction:column;gap:5px;align-items:stretch;box-sizing:border-box;padding:10px 12px;margin:0;width:100%;max-width:none;color:#ddca9a;font-size:12px}
+#mobile-app .lobby-picker-search input{min-height:48px;box-sizing:border-box;min-width:0;width:100%;border:2px inset #b99a60;background:#140e09;color:#fff0c2;font:16px Georgia,serif;padding:8px 12px}
+#mobile-app .lobby-picker-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:12px;overflow-y:auto;overscroll-behavior:contain;min-height:0;align-content:start;touch-action:pan-y}
+#mobile-app .lobby-picker-grid button{position:relative;display:flex;flex-direction:column;gap:7px;align-items:stretch;min-width:0;width:100%;min-height:70px;margin:0;padding:0 0 10px;font-size:15px;overflow:hidden}
+#mobile-app .lobby-picker-grid button img{width:100%;height:112px;object-fit:cover;object-position:50% 38%}
+#mobile-app .lobby-picker-grid button>span{padding:0 8px;overflow-wrap:anywhere;text-align:center}
+#mobile-app .lobby-choice-check{position:absolute;top:5px;right:5px;color:#fff0b4;font-size:20px;text-shadow:1px 1px 2px #000}
+#mobile-app .lobby-picker[data-kind=map] .lobby-picker-grid{grid-template-columns:1fr}
+#mobile-app .lobby-picker[data-kind=map] .lobby-picker-grid button{flex-direction:row;align-items:center;text-align:left;padding:8px 36px 8px 8px}
+#mobile-app .lobby-picker[data-kind=map] .lobby-picker-grid button img{width:40px;height:40px;object-fit:contain}
+#mobile-app .lobby-picker footer{margin-top:auto;border-top:1px solid #b99a60;padding:8px 12px}
+#mobile-app .lobby-picker footer button{min-height:48px;width:100%;margin:0}
+@container(min-width:400px){#mobile-app .lobby-choice-tiles{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(orientation:landscape) and (min-width:560px){#mobile-app .lobby-picker-grid{grid-template-columns:repeat(4,minmax(0,1fr))}#mobile-app .lobby-picker-grid button img{height:90px}#mobile-app .lobby-picker[data-kind=map] .lobby-picker-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#mobile-app .lobby-choice-card .lobby-castle-art{width:96px;min-height:96px}}
+
+#mobile-app .lobby-setting[aria-busy=true] h3::after{content:"";width:12px;height:12px;border:2px solid #a38448;border-top-color:#ffe6ab;border-radius:50%;animation:lobby-wait .8s linear infinite}
+@keyframes lobby-wait{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){#mobile-app .lobby-setting[aria-busy=true] h3::after{animation:none}}
+
+#mobile-app .lobby-faction-art{position:relative;display:block;flex-shrink:0;width:100%;height:112px;margin:0;overflow:hidden;background:#181109}
+#mobile-app .lobby-faction-art>img:first-child{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;opacity:.8}
+#mobile-app .lobby-faction-art>.lobby-castle-symbol{position:absolute;left:10%;bottom:3px;width:80%;height:94%;object-fit:contain;filter:drop-shadow(0 3px 3px #0008)}
+#mobile-app .lobby-choice-card>.lobby-faction-art{width:112px;height:124px;align-self:stretch;border-right:1px solid #ad8b50}
+@media(orientation:landscape) and (min-width:560px){#mobile-app .lobby-picker .lobby-faction-art{height:90px}}
+
+#mobile-app .lobby-picker-empty{padding:12px;color:#d9c498;font-size:15px;max-width:none}
+/* Let the illustration and its name define the row, rather than squeezing all factions into the modal height. */
+#mobile-app .lobby-picker-grid{grid-auto-rows:max-content}
+#mobile-app .lobby-picker[data-kind=castle] .lobby-picker-grid button{min-height:160px!important}
+@media(orientation:landscape) and (min-width:560px){#mobile-app .lobby-picker[data-kind=castle] .lobby-picker-grid button{min-height:140px!important}}
