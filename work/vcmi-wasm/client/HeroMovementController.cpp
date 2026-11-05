@@ -11,6 +11,7 @@
 #include "HeroMovementController.h"
 
 #include "CPlayerInterface.h"
+#include "CServerHandler.h"
 #include "PlayerLocalState.h"
 #include "adventureMap/AdventureMapInterface.h"
 #include "eventsSDL/InputHandler.h"
@@ -353,7 +354,12 @@ void HeroMovementController::sendMovementRequest(const CGHeroInstance * h, const
 	assert(duringMovement == true);
 
 	int heroMovementSpeed = settings["adventure"]["heroMoveTime"].Integer();
-	bool useMovementBatching = heroMovementSpeed == 0;
+	const bool instantMovement = heroMovementSpeed == 0;
+	bool batchAnimatedMovement = false;
+#ifdef VCMI_EMSCRIPTEN
+	batchAnimatedMovement = GAME->server().inLobbyRoom() && GAME->server().isGuest();
+#endif
+	constexpr size_t maxAnimatedSteps = 3;
 
 	const auto & currNode = path.currNode();
 	const auto & nextNode = path.nextNode();
@@ -369,7 +375,7 @@ void HeroMovementController::sendMovementRequest(const CGHeroInstance * h, const
 		return;
 	}
 
-	if (!useMovementBatching)
+	if (!instantMovement && !batchAnimatedMovement)
 	{
 		updateMovementSound(h, currNode.coord, nextNode.coord, nextNode.action);
 
@@ -402,14 +408,18 @@ void HeroMovementController::sendMovementRequest(const CGHeroInstance * h, const
 		if (useTransitHere != useTransitAtStart)
 			break;
 
-		int3 coord = h->convertFromVisitablePos(node.coord);
-		pathToMove.push_back(coord);
+		const bool hasEncounter = (!instantMovement && node.action != EPathNodeAction::NORMAL)
+			|| GAME->interface()->cb->guardingCreaturePosition(node.coord) != int3(-1, -1, -1)
+			|| !GAME->interface()->cb->getVisitableObjs(node.coord).empty();
 
-		if (GAME->interface()->cb->guardingCreaturePosition(node.coord) != int3(-1, -1, -1))
-			break; // we reached zone-of-control of wandering monster
+		// Submit an interaction on its own, after the preceding steps are confirmed.
+		// Keep animated batches short so that the player can still interrupt a walk.
+		if (!instantMovement && hasEncounter && !pathToMove.empty())
+			break;
 
-		if (!GAME->interface()->cb->getVisitableObjs(node.coord).empty())
-			break; // we reached event, garrison or some other visitable object - end this movement batch
+		pathToMove.push_back(h->convertFromVisitablePos(node.coord));
+		if (hasEncounter || (!instantMovement && pathToMove.size() == maxAnimatedSteps))
+			break;
 	}
 
 	assert(!pathToMove.empty());
