@@ -1,8 +1,19 @@
 import {ROOT} from './asset-cache.mjs';
+import {getLanguage} from './i18n.mjs';
 export const GAME_NAME='HEROES GOONK';
 export const STORAGE_LOCK='heroes-goonk-running';
 export const ASSET_INDEX='heroes-goonk.asset-index.v1';
-export function formatStorage(bytes){if(!Number.isFinite(bytes))return 'Indisponible';if(bytes<1048576)return new Intl.NumberFormat('fr-FR',{maximumFractionDigits:1}).format(bytes/1024)+' Ko';return new Intl.NumberFormat('fr-FR',{maximumFractionDigits:1}).format(bytes/1048576)+' Mo';}
+export function formatStorage(bytes,language=getLanguage()){
+ const french=language==='fr';
+ if(!Number.isFinite(bytes))return french?'Indisponible':'Unavailable';
+ const small=bytes<1048576;
+ const size=new Intl.NumberFormat(french?'fr-FR':'en',{maximumFractionDigits:1}).format(bytes/(small?1024:1048576));
+ return size+' '+(small?(french?'Ko':'KB'):(french?'Mo':'MB'));
+}
+export function formatStorageFiles(count,language=getLanguage()){
+ const french=language==='fr';
+ return new Intl.NumberFormat(french?'fr-FR':'en').format(count)+' '+(french?(count===1?'fichier':'fichiers'):(count===1?'file':'files'));
+}
 export function isGameData(path){const relative=path.startsWith(ROOT+'/')?path.slice(ROOT.length+1):path;return /^(Data|Maps|Mp3|Mods)\//.test(relative)&&relative.split('/').every(part=>part&&part!=='.'&&part!=='..');}
 export function storageSummary(entries){const summary={gameBytes:0,saveBytes:0,otherBytes:0,gameFiles:0,saveFiles:0};for(const [path,file]of Object.entries(entries)){if(file.isDir)continue;const bytes=Math.max(0,Number(file.length)||0),relative=path.startsWith(ROOT+'/')?path.slice(ROOT.length+1):path;if(isGameData(path)){summary.gameBytes+=bytes;summary.gameFiles++;}else if(/^Saves\//i.test(relative)){summary.saveBytes+=bytes;summary.saveFiles++;}else summary.otherBytes+=bytes;}return summary;}
 export async function removeGameData({opfs,storage,onProgress=()=>{}}){const entries=await opfs.list(ROOT),files=Object.entries(entries).filter(([path,file])=>!file.isDir&&path.startsWith(ROOT+'/')&&isGameData(path));let removedBytes=0,count=0;try{for(const [path,file]of files){await opfs.unlink(ROOT,path.slice(ROOT.length+1));removedBytes+=Math.max(0,Number(file.length)||0);onProgress({removedBytes,count:++count,total:files.length});}}finally{await opfs.flush(ROOT);storage.removeItem(ASSET_INDEX);}return{removedBytes,count};}

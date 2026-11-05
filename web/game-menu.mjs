@@ -6,7 +6,7 @@ import {installAudioRecovery} from './audio-recovery.mjs';
 import {cheatCodes,unavailableReason} from './cheat-codes.mjs';
 import {ROOT} from './asset-cache.mjs';
 import {opfsList} from '../opfs-worker.js';
-import {formatStorage,storageSummary,storageGuide,storageHelp} from './game-storage.mjs';
+import {formatStorage,formatStorageFiles,storageSummary,storageGuide,storageHelp} from './game-storage.mjs';
 const muteKey='heroes-goonk.audio-muted';
 function mountGameMenu(){
  if(!document.querySelector('#mobile-app')&&(new URLSearchParams(location.search).get('mobile')==='1'||matchMedia('(max-width: 960px), (pointer: coarse)').matches)){window.addEventListener('goonk-mobile-mounted',mountGameMenu,{once:true});return;}
@@ -30,7 +30,7 @@ function mountGameMenu(){
     dialog.querySelector('[data-menu=cheats]').setAttribute('aria-pressed',String(tab==='cheats'));dialog.querySelector('[data-menu=storage]').setAttribute('aria-pressed',String(tab==='storage'));
     if(tab==='new-game')return;
     if(tab==='storage'){content.dataset.view='storage';
-      if(content.dataset.storage!=='ready'){content.dataset.storage='ready';content.innerHTML=storageGuide(location.hostname)+'<dl class="storage-sizes"><div><dt>Fichiers du jeu</dt><dd data-storage-game>Calcul en cours…</dd></div><div><dt>Sauvegardes</dt><dd data-storage-saves>Calcul en cours…</dd></div></dl><p>Pour libérer cet espace en gardant tes sauvegardes, ouvre la gestion du stockage. Elle ferme le jeu. Enregistre ta partie avant de continuer.</p><button class="storage-manage primary" data-menu="manage-storage">Quitter le jeu et gérer le stockage</button><p class="storage-combat" hidden>Termine le combat avant de libérer l’espace du jeu.</p>';opfsList(ROOT).then(entries=>{if(tab!=='storage')return;const value=storageSummary(entries);content.querySelector('[data-storage-game]').textContent=formatStorage(value.gameBytes);content.querySelector('[data-storage-saves]').textContent=formatStorage(value.saveBytes)+' · '+value.saveFiles+' fichier(s)';}).catch(()=>{if(tab==='storage')for(const e of content.querySelectorAll('[data-storage-game],[data-storage-saves]'))e.textContent='Mesure indisponible';});}
+      if(content.dataset.storage!=='ready'){content.dataset.storage='ready';content.innerHTML=storageGuide(location.hostname)+'<dl class="storage-sizes"><div><dt>Fichiers du jeu</dt><dd data-storage-game>Calcul en cours…</dd></div><div><dt>Sauvegardes</dt><dd data-storage-saves>Calcul en cours…</dd></div></dl><p>Pour libérer cet espace en gardant tes sauvegardes, ouvre la gestion du stockage. Elle ferme le jeu. Enregistre ta partie avant de continuer.</p><button class="storage-manage primary" data-menu="manage-storage">Quitter le jeu et gérer le stockage</button><p class="storage-combat" hidden>Termine le combat avant de libérer l’espace du jeu.</p>';opfsList(ROOT).then(entries=>{if(tab!=='storage')return;const value=storageSummary(entries);content.querySelector('[data-storage-game]').textContent=formatStorage(value.gameBytes);content.querySelector('[data-storage-saves]').textContent=formatStorage(value.saveBytes)+' · '+formatStorageFiles(value.saveFiles);}).catch(()=>{if(tab==='storage')for(const e of content.querySelectorAll('[data-storage-game],[data-storage-saves]'))e.textContent='Mesure indisponible';});}
       content.querySelector('[data-menu=manage-storage]').disabled=state.mode==='battle'||state.mode==='dialog';content.querySelector('.storage-combat').hidden=!['battle','dialog'].includes(state.mode);return;
     }
     delete content.dataset.storage;
