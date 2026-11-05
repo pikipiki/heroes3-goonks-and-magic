@@ -1,5 +1,6 @@
 import {isMobileLayout} from './mobile-render.mjs';
 import {createTurnNotifications} from './turn-notifications.mjs';
+import {mountHostedTurnNotifications} from './hosted-turn-notifications.mjs';
 import {getLanguage,setLanguage} from './i18n.mjs';
 import {MAP_SPEEDS,createMapSettings} from './map-settings.mjs';
 import {protectMenuButtons} from './menu-press.mjs';
@@ -25,6 +26,7 @@ function mountGameMenu(){
   document.body.append(onlineTurn);
   const content=dialog.querySelector('.game-menu-body'),status=dialog.querySelector('.game-menu-status');
   const command=(action,value=0,preview=0)=>window.Module?._vcmiMobileCommand?.(action,value,preview,0,0,0);
+  let hostedAlerts;
   const turnNotifications=createTurnNotifications({language:getLanguage});
   const movement=createMapSettings({send:value=>command(46,value.moveTime,value.hideEnemyMoves?1:0)});
   const audio=installAudioRecovery({isMuted:()=>muted,onChange:info=>{audioPhase=info.phase;if(dialog.open&&tab==='settings')render();}});
@@ -43,6 +45,7 @@ function mountGameMenu(){
     if(tab==='settings'){
       if(content.dataset.view!=='settings'){
         content.dataset.view='settings';content.innerHTML='<label class=language-setting>Language<select data-language><option value=en>English</option><option value=fr>Français</option></select></label><p>Native game text uses this language the next time you open the game.</p><section class="map-movement-settings"><h3>Déplacements sur la carte</h3><label class="map-speed-label">Vitesse de marche des héros<select data-map-speed aria-label="Vitesse de marche des héros">'+MAP_SPEEDS.map(speed=>'<option value="'+speed.value+'">'+speed.label+'</option>').join('')+'</select></label><p>La vitesse choisie s’applique à tes héros et à tes adversaires.</p><label><input type="checkbox" data-hide-enemy aria-describedby="enemy-movement-help"> Masquer les déplacements ennemis</label><p id="enemy-movement-help"></p><p class="map-settings-health" role="status"></p></section>'+'<h3>Musique et effets sonores</h3><p>Ce réglage est conservé sur cet appareil.</p><button class="sound-toggle primary" data-menu="sound" role="switch" aria-label="Son"></button><p class="audio-health" role="status"></p><h3 data-turn-heading></h3><button data-menu="turn-notifications" role="switch"></button><p data-turn-help></p>';
+        if(window.goonkHostedAlerts)hostedAlerts=mountHostedTurnNotifications(content,window.goonkHostedAlerts,getLanguage);
       }
       content.querySelector('[data-language]').value=getLanguage();
       const prefs=movement.current,speed=content.querySelector('[data-map-speed]'),hide=content.querySelector('[data-hide-enemy]');speed.disabled=hide.disabled=!prefs.ready;if(document.activeElement!==speed)speed.value=String(prefs.moveTime);hide.checked=prefs.hideEnemyMoves;
@@ -95,6 +98,7 @@ function mountGameMenu(){
   bindPress(toggle,()=>{menuPresses.cancel();tab='home';render();status.textContent='';if(!dialog.open)dialog.showModal();});
   function activateMenuButton(button){
     if(!button?.isConnected||button.disabled)return;
+    if(hostedAlerts?.(button))return;
     if(button.dataset.cheat!==undefined){const cheat=cheatCodes.find(x=>x.id===Number(button.dataset.cheat));if(!cheat||unavailableReason(cheat,state))return;command(29,cheat.id);status.textContent='Code envoyé au moteur : '+cheat.code;return;}
     const action=button.dataset.menu;
     if(action==='back'){tab=tab==='storage-help'?'storage':'home';delete content.dataset.view;render();return;}

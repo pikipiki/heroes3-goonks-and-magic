@@ -21,6 +21,8 @@ jobs:
       - name: Test and build the public game
         env:
           GOONK_LOBBY_RELAY: ${{ vars.GOONK_LOBBY_RELAY }}
+          GOONK_HOSTED_ENDPOINT: ${{ vars.GOONK_HOSTED_ENDPOINT }}
+          GOONK_PUSH_PUBLIC_KEY: ${{ vars.GOONK_PUSH_PUBLIC_KEY }}
         run: npm test && npm run prepare:web && npm run build:web && npm run verify:web
       - uses: actions/upload-pages-artifact@v4
         with:

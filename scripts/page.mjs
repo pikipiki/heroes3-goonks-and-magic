@@ -12,6 +12,15 @@ export function renderPage(root){
   html=html.replace('url: "wss://cloud.dos.zone:8443/vcmi-wss"','url: '+JSON.stringify(url.href));
   html=html.replace('const v8Endpoint =','window.goonkOnlineConfigured = true;\n    const v8Endpoint =');
  }
+ const hostedEndpoint=process.env.GOONK_HOSTED_ENDPOINT;
+ if(hostedEndpoint){
+  const url=new URL(hostedEndpoint), publicKey=process.env.GOONK_PUSH_PUBLIC_KEY;
+  const testURL=url.protocol==='http:'&&['localhost','127.0.0.1','[::1]'].includes(url.hostname)&&process.env.GOONK_TEST_ORIGIN;
+  if((url.protocol!=='https:'&&!testURL)||url.username||url.password||url.search||url.hash||
+    url.pathname!=='/hosted/turn-notifications'||!/^[A-Za-z0-9_-]{87}$/.test(publicKey??''))
+   throw new Error('Configure a trusted hosted notification endpoint and public VAPID key.');
+  html=html.replace('const v8Endpoint =','window.goonkHostedAlerts = '+JSON.stringify({endpoint:url.href,publicKey})+';\n    const v8Endpoint =');
+ }
  html=html.replace(/quitGame: \(\) => \{[\s\S]*?\n      \},/, "quitGame: () => { location.href = new URL('./', location.href).href; },");
  html=html.replace('const module = {',"const module = { mainScriptUrlOrBlob: new URL('./vcmiclient.js', location.href).href,");
  html=html.replace(/window\.VCMI_WASM_URL\s*=.*?;/g,"window.VCMI_WASM_URL = './vcmiclient.wasm';").replace(/window\.VCMI_DATA_URL\s*=.*?;/g,"window.VCMI_DATA_URL = './vcmiclient.data';");
