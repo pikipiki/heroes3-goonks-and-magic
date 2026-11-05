@@ -144,7 +144,7 @@ size_t CMenuScreen::getActiveTab() const
 //function for std::string -> std::function conversion for main menu
 static std::function<void()> genCommand(CMenuScreen * menu, std::vector<std::string> menuType, const std::string & string)
 {
-	static const std::vector<std::string> commandType = {"to", "campaigns", "start", "load", "exit", "highscores"};
+	static const std::vector<std::string> commandType = {"to", "campaigns", "start", "load", "exit", "highscores", "online"};
 
 	static const std::vector<std::string> gameType = {"single", "multi", "campaign", "tutorial", "battle"};
 
@@ -218,6 +218,10 @@ static std::function<void()> genCommand(CMenuScreen * menu, std::vector<std::str
 			case 5: //highscores
 			{
 				return []() { CMainMenu::openHighScoreScreen(); };
+			}
+			case 6: //online
+			{
+				return []() { GAME->server().getGlobalLobby().activateInterface(); };
 			}
 			}
 		}

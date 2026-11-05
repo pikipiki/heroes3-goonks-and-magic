@@ -70,10 +70,10 @@
 					{
 						"x" : 557,
 						"y" : 359,
-						"name" : "ZMENUCR",
-						"shortcut" : "mainMenuCredits",
-						"help" : 6,
-						"command" : "to credits"
+						"name" : "goonk-menu-online",
+						"shortcut" : "mainMenuLobby",
+						"help" : 265,
+						"command" : "online"
 					},
 					{
 						"x" : 586,

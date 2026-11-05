@@ -36,8 +36,8 @@ import {bindPress,protectTouchClicks} from './mobile-press.mjs';
 import {fitNativeBattle,nativeBattleClose,paintMovementRange,paintBattleGrid,battleFocus,drawUnit,NATIVE_BATTLE_REGION} from './battle-scene.mjs';
 import {installAutosave} from './autosave.mjs';
 import {fitRegion,fitTown,scenePoint,buildReason,mapDrag,battleHex} from './mobile-layout.mjs';
-const query=new URLSearchParams(location.search),media=matchMedia('(max-width: 960px), (pointer: coarse)');
-window.goonkMobileActive=query.get('mobile')==='1'||(query.get('mobile')!=='0'&&media.matches);
+import {isMobileLayout} from './mobile-render.mjs';
+isMobileLayout();
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function mount(){
  installAutosave();

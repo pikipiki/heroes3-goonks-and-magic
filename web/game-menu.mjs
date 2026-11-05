@@ -1,3 +1,4 @@
+import {isMobileLayout} from './mobile-render.mjs';
 import {createTurnNotifications} from './turn-notifications.mjs';
 import {getLanguage,setLanguage} from './i18n.mjs';
 import {MAP_SPEEDS,createMapSettings} from './map-settings.mjs';
@@ -10,7 +11,7 @@ import {opfsList} from '../opfs-worker.js';
 import {formatStorage,formatStorageFiles,storageSummary,storageGuide,storageHelp} from './game-storage.mjs';
 const muteKey='heroes-goonk.audio-muted';
 function mountGameMenu(){
- if(!document.querySelector('#mobile-app')&&(new URLSearchParams(location.search).get('mobile')==='1'||matchMedia('(max-width: 960px), (pointer: coarse)').matches)){window.addEventListener('goonk-mobile-mounted',mountGameMenu,{once:true});return;}
+ if(!document.querySelector('#mobile-app')&&isMobileLayout()){window.addEventListener('goonk-mobile-mounted',mountGameMenu,{once:true});return;}
  if(document.querySelector('#game-menu-toggle'))return;
   let state={},tab='home',initialAudioApplied=false,newGamePending=false,pendingAudio=null,audioPhase='loading';
   let muted=false;try{muted=localStorage.getItem(muteKey)==='true';}catch{}
