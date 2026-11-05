@@ -62,6 +62,29 @@ L’hôte peut régler le chronomètre avant le départ. Les options vont d’un
 
 Active **Turn notifications** dans les réglages du jeu pour recevoir une notification système au début de ton tour si le client reçoit encore les événements en arrière-plan. Sur iPhone, ouvre le jeu depuis l’écran d’accueil et accorde l’autorisation depuis ce bouton.
 
+### Moteur dédié en développement
+
+Le Dockerfile natif compile `vcmiserver` et `vcmilobby` sans client graphique. Construire l’image depuis la racine du dépôt.
+
+```sh
+docker build -f work/vcmi-wasm/docker/BuildGoonkServer.dockerfile \
+  -t heroes-goonk-native work/vcmi-wasm
+docker run --rm heroes-goonk-native --version
+```
+
+Pour tester le chargement sans ouvrir de port, monter les répertoires qui contiennent chacun un dossier `vcmi`. Placer les cartes et mods de la même version que le client dans le premier, et les données Heroes III dans le second. Le profil VCMI de test doit activer le même ensemble de mods que le client.
+
+```sh
+docker run --rm \
+  --mount "type=bind,src=${GOONK_DATA_ROOT},dst=/game,readonly" \
+  --mount "type=bind,src=${H3_DATA_ROOT},dst=/base,readonly" \
+  --mount "type=bind,src=${GOONK_CONFIG_ROOT},dst=/config,readonly" \
+  -e XDG_DATA_DIRS=/game:/base -e XDG_CONFIG_HOME=/config \
+  heroes-goonk-native --dummy-run
+```
+
+Le serveur peut produire un point de reprise à chaque début de tour humain avec `--turn-checkpoint`. Le superviseur du dépôt relais sait transférer ces points de reprise vers R2. L’attribution des places à la reconnexion, le démarrage depuis la sauvegarde restaurée et l’envoi Web Push restent à raccorder avant d’ouvrir le service aux joueurs.
+
 ## Wake of Gods
 
 WoG **9.1.82**, branche officielle `vcmi-1.7`, est inclus dans `mod/wake-of-gods/`. La 9.1.83 vise VCMI 1.8 et ne convient pas au moteur 1.7.3 actuel. La provenance exacte figure dans `WOG-UPSTREAM.json`.
