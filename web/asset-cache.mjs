@@ -3,6 +3,7 @@ export async function syncAssets({manifest,opfs,storage,fetcher=fetch,onProgress
  const key='heroes-goonk.asset-index.v1';let previous={};try{previous=JSON.parse(storage.getItem(key)||'{}');}catch{}
  // Validate the complete catalogue before starting any concurrent writes.
  for(const file of manifest.files)if(!/^(Data|Maps|Mp3|Mods)\//.test(file.path)||file.path.split('/').some(p=>!p||p==='.'||p==='..'))throw Error('Chemin de données incorrect');
+ const manifestPaths=new Set(manifest.files.map(file=>file.path));
  const existing=await opfs.list(ROOT),next={...previous},pending=[],active=new Map(),samples=[];
  let downloaded=0,received=0,reused=0,completed=0,completedBytes=0,cursor=0,sinceFlush=0,failure,checkpoint=Promise.resolve();
  const total=manifest.files.length,totalBytes=manifest.files.reduce((sum,f)=>sum+f.size,0);
@@ -10,6 +11,8 @@ export async function syncAssets({manifest,opfs,storage,fetcher=fetch,onProgress
  samples.push([now(),0]);
  const emit=(phase='download')=>{const time=now();samples.push([time,received]);const current=[...active.values()].map(f=>{f.samples.push([time,f.loaded]);return{file:f.file,size:f.size,loaded:f.loaded,speed:speed(f.samples,time),state:f.state};});const loaded=completedBytes+current.reduce((s,f)=>s+Math.min(f.size,f.loaded),0);onProgress({file:current[0]?.file,downloaded,received,reused,total,completed,remaining:total-completed,totalBytes,loaded,percent:phase==='ready'?100:Math.min(99.9,totalBytes?loaded/totalBytes*100:0),speed:speed(samples,time),active:current,phase});};
  for(const file of manifest.files){const local=existing[ROOT+'/'+file.path];if(previous[file.path]?.hash===file.hash&&local?.length===file.size){reused++;completed++;completedBytes+=file.size;}else pending.push(file);}
+ const obsolete=opfs.unlink?Object.keys(previous).filter(path=>!manifestPaths.has(path)&&/^(Mods|Maps)\//.test(path)):[];
+ if(!pending.length&&!obsolete.length){emit('ready');return {downloaded,reused,files:total};}
  let io=Promise.resolve();const disk=fn=>{const task=io.then(fn);io=task.catch(()=>{});return task;};
  const save=()=>{sinceFlush=0;const snapshot=JSON.stringify(next);checkpoint=checkpoint.then(async()=>{await disk(()=>opfs.flush(ROOT));try{storage.setItem(key,snapshot);}catch{}});return checkpoint;};
  const read=async(response,size,item)=>{
@@ -54,7 +57,7 @@ export async function syncAssets({manifest,opfs,storage,fetcher=fetch,onProgress
   await Promise.all(Array.from({length:Math.min(pending.length,Math.max(1,Math.min(8,Math.floor(concurrency)||1)))},worker));
   // Settle in-flight writes before recording any verified files, even on failure.
   await save();if(failure)throw failure;
-  if(opfs.unlink){const current=new Set(manifest.files.map(f=>f.path));for(const old of Object.keys(previous))if(!current.has(old)&&/^(Mods|Maps)\//.test(old)){await disk(()=>opfs.unlink(ROOT,old));delete next[old];}}
+  for(const old of obsolete){await disk(()=>opfs.unlink(ROOT,old));delete next[old];}
   emit('save');await save();emit('ready');return {downloaded,reused,files:total};
  }finally{clearInterval(timer);}
 }

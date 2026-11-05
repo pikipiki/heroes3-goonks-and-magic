@@ -2,6 +2,15 @@ import {test} from 'node:test';import assert from 'node:assert/strict';import cr
 const digest=async x=>crypto.createHash('sha256').update(x).digest('hex');
 async function fixture(){const data=Buffer.from('abcdefgh'),chunks=[];for(let offset=0;offset<data.length;offset+=4)chunks.push({offset,size:4,hash:await digest(data.subarray(offset,offset+4))});const file={path:'Data/h3sprite.lod',size:8,hash:await digest(data),url:'/data/hash/file',chunks};let index='',network=0;const entries={},writes=[];const storage={getItem:()=>index,setItem:(_,v)=>index=v};const opfs={list:async()=>entries,write:async(_,p,o,b,size)=>{writes.push([p,o,b.length]);entries[ROOT+'/'+p]={length:size};},flush:async()=>{}};const fetcher=async(_,options)=>{network++;const [,a,b]=options.headers.Range.match(/bytes=(\d+)-(\d+)/);return new Response(data.subarray(+a,+b+1),{status:206});};return {file,manifest:{files:[file]},storage,opfs,fetcher,digest,writes,entries,network:()=>network};}
 test('A cold install verifies chunks; a warm launch makes zero asset requests',async()=>{const f=await fixture();assert.equal((await syncAssets(f)).downloaded,8);assert.equal(f.network(),2);assert.equal((await syncAssets(f)).reused,1);assert.equal(f.network(),2);delete f.entries[ROOT+'/'+f.file.path];assert.equal((await syncAssets(f)).downloaded,8);});
+test('An unchanged warm cache is not flushed, but obsolete files are still removed',async()=>{
+ const f=await fixture(),removed=[];
+ let flushes=0;f.opfs.flush=async()=>{flushes++;};
+ f.opfs.unlink=async(_,path)=>removed.push(path);
+ await syncAssets(f);flushes=0;
+ await syncAssets(f);assert.equal(flushes,0);
+ const prior=JSON.parse(f.storage.getItem());prior['Mods/old/file']={size:0,hash:'old'};f.storage.setItem('',JSON.stringify(prior));
+ await syncAssets(f);assert.deepEqual(removed,['Mods/old/file']);assert(flushes>0);
+});
 test('Changed versions update only changed files',async()=>{const f=await fixture();await syncAssets(f);f.file.hash='new-version';await syncAssets(f);assert.equal(f.network(),4);});
 test('Corrupt and interrupted downloads never validate an incomplete file',async()=>{const f=await fixture();await assert.rejects(syncAssets({...f,fetcher:async()=>new Response('xxxx',{status:206})}),/altérées/);assert.equal(f.writes.length,0);let call=0;await assert.rejects(syncAssets({...f,fetcher:async(...args)=>{if(++call===2)throw Error('offline');return f.fetcher(...args);}}),/offline/);assert.equal((await syncAssets(f)).downloaded,8);});
 test('A server without range support downloads a large file once',async()=>{const f=await fixture();let calls=0;await syncAssets({...f,fetcher:async()=>{calls++;return new Response('abcdefgh');}});assert.equal(calls,1);assert.deepEqual(f.writes.map(x=>x[1]),[0,4]);});

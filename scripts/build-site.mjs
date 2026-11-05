@@ -9,6 +9,8 @@ import {makeManifest} from './assets.mjs';import {renderPage} from './page.mjs';
 const root=path.resolve(process.env.GOONK_ENGINE_DIR||'work/vcmi-wasm/emscripten/html5'),data=path.resolve('work/game-data/homm3eng/home/web_user/.local/share/vcmi'),dist=path.resolve('dist');
 if(!fs.existsSync(root))throw Error('Extraire le moteur précompilé dans work/vcmi-wasm/emscripten/ avant de construire le site.');
 fs.rmSync(dist,{recursive:true,force:true});fs.cpSync(root,dist,{recursive:true});fs.cpSync('web',path.join(dist,'web'),{recursive:true});
+// Use the same OPFS worker for the web installer and the engine's startup mount.
+fs.copyFileSync('work/vcmi-wasm/lib/html5/opfs-worker.js',path.join(dist,'opfs-worker.js'));
 // Public builds include the Goonk/WoG mods and showcase map.
 const publicData=path.resolve('work/public-data');fs.rmSync(publicData,{recursive:true,force:true});fs.mkdirSync(publicData+'/Maps',{recursive:true});fs.cpSync('mod',publicData+'/Mods',{recursive:true});for(const file of fs.readdirSync('maps').filter(f=>f.endsWith('.vmap')))fs.copyFileSync('maps/'+file,publicData+'/Maps/'+file);
 // Normalize runtime object identifiers and their references without rewriting source fixtures or saves.

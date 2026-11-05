@@ -3,6 +3,7 @@ const OPFS_TIMESTAMPS_FILE = '.emscripten-opfs-stats';
 const textDecoder = new TextDecoder();
 const textEncoder = new TextEncoder();
 const rootDirectoryCache = new Map();
+const mountHandles = new Map();
 
 function splitPath(path) {
   if (!path) return [];
@@ -340,8 +341,29 @@ const onmessage = async (event) => {
         }
         postSuccess(type, requestId, { deleted: true });
       } break;
+      case 'mount-files': {
+        const { root, files } = payload;
+        const handles = mountHandles.get(root);
+        const entries = await Promise.all(files.map(async ({path, lazy}) => {
+          const handle = handles?.get(path);
+          const meta = getMeta(root, path);
+          if (!handle || !meta) return null;
+          try {
+            const blob = await handle.getFile();
+            return lazy ? {...meta, blob} : {...meta, contents: new Uint8Array(await blob.arrayBuffer())};
+          } catch {
+            return null;
+          }
+        }));
+        postSuccess(type, requestId, entries, entries.flatMap(entry => entry?.contents ? [entry.contents.buffer] : []));
+      } break;
+      case 'release-mount': {
+        mountHandles.delete(payload.root);
+        postSuccess(type, requestId, {});
+      } break;
       case 'list': {
-        const { root } = payload;
+        const { root, retainFileHandles } = payload;
+        const handles = retainFileHandles ? new Map() : null;
         const { dir: rootDir, meta } = await getRootDirectory(root, true);
         const entries = {};
         let metaChanged = false;
@@ -396,6 +418,7 @@ const onmessage = async (event) => {
                 }
                 ensureParentDirsInMeta(path, fileMeta.timestamp.getTime());
                 entries[root + '/' + path] = fileMeta;
+                handles?.set('/' + path, handle);
               }
             }
           }
@@ -411,6 +434,7 @@ const onmessage = async (event) => {
         if (metaChanged) {
           await flushMeta(root);
         }
+        if (handles) mountHandles.set(root, handles);
         postSuccess(type, requestId, entries);
       } break;
       case 'flush': {
