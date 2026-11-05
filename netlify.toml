@@ -3,3 +3,6 @@
   publish = "dist"
 [build.environment]
   NODE_VERSION = "22"
+
+[context.production.environment]
+  GOONK_LOBBY_RELAY = "wss://heroes-goonk-relay.onrender.com/lobby"

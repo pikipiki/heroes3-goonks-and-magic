@@ -54,7 +54,7 @@ Références : [déploiement Netlify](https://docs.netlify.com/deploy/create-dep
 
 ## Multijoueur web
 
-Pour activer le bouton **Online** sur mobile, définir `GOONK_LOBBY_RELAY=wss://<hôte>/lobby` dans les variables de compilation Netlify et dans les variables GitHub Actions du dépôt. Déployer le [relais Docker](https://github.com/pikipiki/heroes-goonk-relay) sur un service compatible WebSocket avec TLS et autoriser les origines du jeu. Sans cette variable, le bouton reste masqué sur mobile.
+Le bouton **Online** utilise le [relais Docker](https://github.com/pikipiki/heroes-goonk-relay) hébergé sur Render. L’adresse publique `GOONK_LOBBY_RELAY` est définie dans `netlify.toml` pour la production Netlify et dans les variables GitHub Actions pour GitHub Pages. Pour un autre déploiement, configurer une adresse `wss://<hôte>/lobby` et autoriser l’origine du site sur le relais. Sans cette variable, le bouton reste masqué sur mobile.
 
 Dans un salon privé, l’hôte peut choisir **Goonks Online**, inviter un autre joueur connecté par son pseudo dans **Invite Players**, puis démarrer la partie. L’invité ouvre son invitation et confirme l’entrée dans le salon.
 
