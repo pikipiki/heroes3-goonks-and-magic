@@ -1,3 +1,4 @@
+import{hasHDCreaturePortrait}from'./goonk-hd-portraits.mjs';
 import {createBattleAutocombat} from './battle-autocombat.mjs';
 import {createCampaignSetup} from './campaign-setup.mjs';
 import {createHeroEquipment} from './hero-equipment.mjs';
@@ -70,7 +71,7 @@ function mount(){
  const heroEquipment=createHeroEquipment({root,command,onViewChange:()=>controls()});
  const nativeFort=createNativeFort({root,getState:()=>state,pointer});
  const portraitTown=createTownPortrait({root,scene,asset,command,getState:()=>state});
- const portrait=unit=>{const url=asset(unit?.icon);return url?`<img data-native-portrait="${Number(unit.id)}" src="${escape(url)}" alt="${escape(unit.name)}">`:creaturePortrait(unit);};
+ const portrait=unit=>{if(hasHDCreaturePortrait(unit))return creaturePortrait(unit);const url=asset(unit?.icon);return url?`<img data-native-portrait="${Number(unit.id)}" src="${escape(url)}" alt="${escape(unit.name)}">`:creaturePortrait(unit);};
  root.addEventListener('error',event=>{const image=event.target;if(image.matches?.('img[data-native-portrait]')){const holder=document.createElement('span');holder.innerHTML=creaturePortrait({id:Number(image.dataset.nativePortrait),name:image.alt});image.replaceWith(holder.firstElementChild);}},true);
  const cost=c=>formatResourceCost(c,state.resourceTypes);
  const btn=(text,ui,primary=false,disabled=false)=>`<button data-ui="${ui}" ${disabled?'disabled':''} class="${primary?'primary':''}">${text}</button>`;
