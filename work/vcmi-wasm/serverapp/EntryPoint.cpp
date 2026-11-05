@@ -9,7 +9,7 @@
  */
 #include "StdInc.h"
 
-#include "../server/CVCMIServer.h"
+#include "TurnCheckpointServer.h"
 
 #include "../lib/CConsoleHandler.h"
 #include "../lib/logging/CBasicLogConfigurator.h"
@@ -30,6 +30,7 @@ static void handleCommandOptions(int argc, const char * argv[], boost::program_o
 	("version,v", "display version information and exit")
 	("run-by-client", "indicate that server launched by client on same machine")
 	("dummy-run", "Shutdown immediately after loading was sucessful")
+	("turn-checkpoint", "Save to Hosted-Turn.vsgm1 when a human turn starts (one game per user data directory)")
 	("port", boost::program_options::value<ui16>(), "port at which server will listen to connections from client")
 	("lobby", "start server in lobby mode in which server connects to a global lobby");
 
@@ -93,7 +94,7 @@ int main(int argc, const char * argv[])
 		if(opts.count("port"))
 			port = opts["port"].as<uint16_t>();
 
-		CVCMIServer server(port, runByClient);
+		TurnCheckpointServer server(port, runByClient, opts.count("turn-checkpoint") != 0);
 		server.prepare(connectToLobby, true);
 		server.run();
 
