@@ -375,6 +375,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   lastPublished=0;return;
  }
  if(auto spell=ENGINE->windows().topWindow<CSpellWindow>()){
+  if(action==70){if(!CPlayerInterface::battleInt&&(a==0||a==1)){if(a)spell->fbattleSpellsb();else spell->fadvSpellsb();}lastPublished=0;return;}
   if(action==49){spell->mobileSelectSpell(a);lastPublished=0;return;}
   if(action==50){if(a<0)spell->fLcornerb();else spell->fRcornerb();lastPublished=0;return;}
   if(action==51){const std::array<SpellSchool,5> schools={SpellSchool::ANY,SpellSchool::AIR,SpellSchool::EARTH,SpellSchool::FIRE,SpellSchool::WATER};if(a>=0&&a<5)spell->selectSchool(schools[a]);lastPublished=0;return;}

@@ -874,7 +874,7 @@ void CSpellWindow::SpellArea::setSpell(const CSpell * spell)
 
 JsonNode CSpellWindow::mobileSnapshot()
 {
- JsonNode n;n["pages"].Integer()=pagesWithinCurrentTab();n["page"].Integer()=currentPage;n["school"].Integer()=selectedTab.getNum();n["mana"].Integer()=myHero->mana;
+ JsonNode n;n["pages"].Integer()=pagesWithinCurrentTab();n["page"].Integer()=currentPage;n["school"].Integer()=selectedTab.getNum();n["mana"].Integer()=myHero->mana;n["inCombat"].Bool()=myInt->battleInt!=nullptr;n["combatSpells"].Bool()=battleSpellsOnly;
  for(const auto & area:spellAreas)if(area&&area->mySpell){const auto spell=area->mySpell;JsonNode row;row["id"].Integer()=spell->id.getNum();row["name"].String()=spell->getNameTranslated();row["description"].String()=spell->getDescriptionTranslated(area->schoolLevel);row["level"].Integer()=spell->getLevel();row["cost"].Integer()=myInt->cb->getSpellCost(spell,myHero);row["enabled"].Bool()=row["cost"].Integer()<=myHero->mana;row["x"].Integer()=area->pos.x;row["y"].Integer()=area->pos.y;row["w"].Integer()=area->pos.w;row["h"].Integer()=area->pos.h;n["spells"].Vector().push_back(row);}
  return n;
 }

@@ -1,0 +1,23 @@
+import{chromium}from'playwright-core';import assert from'node:assert/strict';import{execFileSync}from'node:child_process';
+const fixture=execFileSync('python3',['-c',`import zipfile,json,io
+out=io.BytesIO()
+with zipfile.ZipFile('maps/000-Goonk.vmap')as src,zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED)as dst:
+ for name in src.namelist():
+  data=src.read(name)
+  if name=='objects.json':
+   objects=json.loads(data)
+   for o in objects:
+    if o.get('instanceName')=='goonkHero':o['options']['artifacts']={'rightHand':'core:centaurAxe','spellbook':'core:spellBook'}
+   data=json.dumps(objects).encode()
+  dst.writestr(name,data)
+print('',end='')
+import sys
+sys.stdout.buffer.write(out.getvalue())`]);
+const b=await chromium.launch({executablePath:process.env.CHROME_PATH,args:['--no-sandbox']}),p=await b.newPage({viewport:{width:390,height:844},hasTouch:true}),errors=[];p.on('pageerror',e=>errors.push(e.message));p.setDefaultTimeout(120000);const wait=f=>p.waitForFunction(f,null,{timeout:120000}),cmd=(...a)=>p.evaluate(a=>Module._vcmiMobileCommand(...a),[...a,...Array(6-a.length).fill(0)]);
+try{await p.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8783')+'/game.html?mobile=1');await wait(()=>window.goonkMobileState?.mode==='menu'&&window.goonkSessionRecovery?.phase==='done');console.log('Native engine ready');await p.evaluate(bytes=>Module.FS.writeFile('/home/web_user/.local/share/vcmi/Maps/000-Goonk.vmap',new Uint8Array(bytes)),[...fixture]);await cmd(20,1);await wait(()=>goonkMobileState.maps?.some(m=>m.name.startsWith('000')));await cmd(24,await p.evaluate(()=>goonkMobileState.maps.find(m=>m.name.startsWith('000')).index));await p.waitForTimeout(300);await cmd(22);await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.heroName);await p.locator('[data-ui=heroes]').tap();await wait(()=>goonkMobileState.mode==='hero'&&goonkMobileState.heroWindow?.slots.length===19);console.log('Native hero page ready');
+for(const size of[{width:390,height:844},{width:844,height:390}]){await p.setViewportSize(size);await p.waitForTimeout(200);await p.locator('[data-hero-slot="17"]').tap();await wait(()=>goonkMobileState.mode==='spellbook');assert.equal(await p.evaluate(()=>goonkMobileState.spellbook.inCombat),false);assert(await p.locator('.spell-contexts').isVisible());await p.locator('[data-close-book]').tap();await wait(()=>goonkMobileState.mode==='hero');assert(await p.locator('.hero-equipment-page').isVisible());}
+console.log('PASS native book opens from equipment with one tap and returns in both orientations');
+await p.locator('[data-hero-close]').tap();await wait(()=>goonkMobileState.mode==='map');await cmd(29,3);await p.waitForTimeout(250);await p.locator('[data-ui=heroes]').tap();await wait(()=>goonkMobileState.mode==='hero');await p.locator('[data-hero-slot="17"]').tap();await wait(()=>goonkMobileState.mode==='spellbook');const mana=await p.evaluate(()=>goonkMobileState.spellbook.mana);
+for(const type of[1,0]){await p.locator('[data-spell-context="'+type+'"]').tap();await p.waitForFunction(type=>goonkMobileState.spellbook.combatSpells===!!type&&goonkMobileState.spellbook.spells?.length,type);assert.equal(await p.evaluate(()=>goonkMobileState.spellbook.mana),mana);}
+await p.screenshot({path:'/private/tmp/goonk-hero-book-native.png'});await p.locator('[data-close-book]').tap();await wait(()=>goonkMobileState.mode==='hero');await p.locator('[data-hero-close]').tap();await wait(()=>goonkMobileState.mode==='map');assert.deepEqual(errors,[]);console.log('PASS native adventure/combat lists preserve mana and return to the running map');
+}catch(e){console.log('STATE',await p.evaluate(()=>goonkMobileState));throw e;}finally{await b.close();}

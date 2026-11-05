@@ -52,3 +52,17 @@
  #mobile-app .mobile-spellbook .spell-content{grid-template-columns:minmax(0,1.8fr) minmax(180px,1fr);grid-template-rows:minmax(0,1fr)}
  #mobile-app .mobile-spellbook .spell-selection{grid-column:2;grid-row:1}
 }
+/* Outside battle, preserve both native spell lists when opening a hero's book. */
+#mobile-app .mobile-spellbook .spell-contexts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;grid-column:1/-1;grid-row:3}
+#mobile-app .mobile-spellbook[data-browsing=true]{grid-template-rows:44px 44px 44px 44px minmax(0,1fr) 108px}
+#mobile-app .mobile-spellbook[data-browsing=true] .spell-schools{grid-row:4}
+#mobile-app .mobile-spellbook[data-browsing=true] .spell-content{grid-row:5}
+#mobile-app .mobile-spellbook[data-browsing=true]>footer{grid-row:6}
+@media(orientation:landscape){
+ #mobile-app .mobile-spellbook[data-browsing=true]{grid-template-rows:44px 44px 44px minmax(0,1fr) 56px}
+ #mobile-app .mobile-spellbook[data-browsing=true] .spell-contexts{grid-row:2}
+ #mobile-app .mobile-spellbook[data-browsing=true] .spell-schools{grid-row:3}
+ #mobile-app .mobile-spellbook[data-browsing=true] .spell-content{grid-row:4}
+ #mobile-app .mobile-spellbook[data-browsing=true]>footer{grid-row:5}
+}
+#mobile-app .mobile-spellbook [data-close-book]{min-width:44px;flex-shrink:0}
