@@ -104,7 +104,7 @@ BattleWindow::BattleWindow(BattleInterface & Owner)
 
 	addShortcut(EShortcut::BATTLE_TOGGLE_QUEUE, [this](){ this->toggleQueueVisibility();});
 	addShortcut(EShortcut::BATTLE_TOGGLE_HEROES_STATS, [this](){ this->toggleStickyHeroWindowsVisibility();});
-	addShortcut(EShortcut::BATTLE_USE_CREATURE_SPELL, [this](){ this->owner.actionsController->enterCreatureCastingMode(); });
+	addShortcut(EShortcut::BATTLE_USE_CREATURE_SPELL, [this](){ if(owner.curInt && !owner.curInt->isAutoFightOn && !owner.curInt->autofightingAI && owner.makingTurn()) owner.actionsController->enterCreatureCastingMode(); });
 	addShortcut(EShortcut::GLOBAL_CANCEL, [this](){ this->owner.actionsController->endCastingSpell(); });
 	addShortcut(EShortcut::ADVENTURE_QUICK_LOAD, [this](){
 		//allow quick load only on player turn while no animations are ongoing
@@ -663,6 +663,9 @@ void BattleWindow::bAutofightf()
 
 void BattleWindow::bSpellf()
 {
+	if(!owner.curInt || owner.curInt->isAutoFightOn || owner.curInt->autofightingAI)
+		return;
+
 	if (owner.actionsController->heroSpellcastingModeActive())
 		return;
 

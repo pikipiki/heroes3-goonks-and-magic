@@ -808,6 +808,9 @@ void BattleInterface::requestAutofightingAIToTakeAction()
 
 void BattleInterface::castThisSpell(SpellID spellID)
 {
+	if(!curInt || curInt->isAutoFightOn || curInt->autofightingAI)
+		return;
+
 	actionsController->castThisSpell(spellID);
 }
 
