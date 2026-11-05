@@ -43,6 +43,20 @@ export function renderPage(root){
  html=html.replace('<div id="status"></div>', '<div id="status" role="status">Loading Heroes Goonk…</div>');
  html=inlineBootScreen(html);
  // Touch presentation rotates its own canvas; its 800x600 engine must stay intact.
+ // Fit the native 4:3 selection panel with room for its outer border.
+ // Resize through SDL so mouse input and the rendered buttons share the same geometry.
+ html=html.replace('let currentCanvasSize =', 'let fitDesktopSelection = false;let currentCanvasSize =');
+ html=html.replace('currentCanvasSize = {\n            width:', `const scale = fitDesktopSelection ? Math.max(1, Math.min(cssWidth * dpi / 840, cssHeight * dpi / 640)) : 1;
+          currentCanvasSize = {
+            width:`);
+ html=html.replace('Math.round(cssWidth * dpi)', 'Math.round(cssWidth * dpi / scale)').replace('Math.round(cssHeight * dpi)', 'Math.round(cssHeight * dpi / scale)');
+ html=html.replace('canvasResizeObserver.observe(module.canvas);', `canvasResizeObserver.observe(module.canvas);
+        if(!window.goonkMobileActive)window.addEventListener('goonk-state', ({detail}) => {
+          const fit = ['lobby', 'load', 'campaign'].includes(detail.mode) || detail.onlineMatch === true;
+          if(fit === fitDesktopSelection) return;
+          fitDesktopSelection = fit;
+          handleResize();
+        });`);
  html=html.replace('module._vcmiOnCanvasResize();','if(!window.goonkMobileActive)module._vcmiOnCanvasResize();');
  html=html.replace('module.getWidth = () => currentCanvasSize.width;', 'module.getWidth = () => window.goonkMobileActive ? 800 : currentCanvasSize.width;').replace('module.getHeight = () => currentCanvasSize.height;', 'module.getHeight = () => window.goonkMobileActive ? 600 : currentCanvasSize.height;');
  html=html.replace('module.callMain(["--disable-video"]);', 'module.getGoonkRenderScale = () => window.goonkMobileActive ? 1 : 0;module.callMain(["--disable-video"]);');
