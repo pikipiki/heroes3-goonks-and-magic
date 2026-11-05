@@ -16,7 +16,22 @@ export function createLobbyChoices({menu,getState}){
  function update(state){if(!['lobby','load'].includes(state.mode)){if(dialog?.open)close();for(const [s,c]of controls)if(!s.isConnected){c.remove();controls.delete(s);}return;}
   for(const [s,c]of controls)if(!s.isConnected){c.remove();controls.delete(s);if(source===s)close();}
   for(const s of menu.querySelectorAll('select')){let c=controls.get(s);if(!c){c=document.createElement('section');c.className='lobby-setting';c.tabIndex=-1;c.dataset.setting=s.id||(s.dataset.playerCastle!==undefined?'player-'+s.dataset.playerCastle:s.hasAttribute('data-custom-players')?'players':s.hasAttribute('data-custom-humans')?'humans':'size');s.closest('label').classList.add('lobby-native-label');s.closest('label').after(c);controls.set(s,c);}
-   c.hidden=s.closest('label').hidden;c.setAttribute('aria-busy',String(s.dataset.updating==='true'));const list=options(s),key=JSON.stringify([list,s.value,s.disabled,s.dataset.updating,title(s),faction(s)?illustration(s,s.value):null]);if(c._key===key)continue;c._key=key;
+   c.hidden=s.closest('label').hidden;c.setAttribute('aria-busy',String(s.dataset.updating==='true'));
+   if(s.id==='mobile-map-select'){
+    if(c.dataset.control!=='map'){
+     c.dataset.control='map';
+     c.innerHTML='<h3></h3><button type="button" class="lobby-choice-card" aria-haspopup="dialog"><img class="lobby-map-emblem" src="./web/h3-theme/adventure-map.svg" alt=""><span><small></small><strong></strong><em></em></span></button>';
+     c.querySelector('button').onclick=()=>open(s);
+    }
+    const load=state.mode==='load',label=state.customMap?state.selectedMap:s.selectedOptions[0]?.textContent;
+    for(const [selector,text] of [['h3',title(s)],['small',load?'Saved adventure':'Selected scenario'],['strong',label||'Choose…'],['em',load?'Choose save ›':'Browse maps ›']]){
+     const node=c.querySelector(selector);
+     if(node._sourceText!==text){node._sourceText=text;node.textContent=text;}
+    }
+    c.querySelector('button').disabled=s.disabled||!s.options.length;
+    continue;
+   }
+   const list=options(s),key=JSON.stringify([list,s.value,s.disabled,s.dataset.updating,title(s),faction(s)?illustration(s,s.value):null]);if(c._key===key)continue;c._key=key;
    const heading=`<h3>${s.dataset.playerCastle!==undefined?`<i class="lobby-player-colour" data-player-colour="${Number(s.dataset.playerCastle)}" aria-hidden="true"></i>`:''}${esc(title(s))}</h3>`;
    if(s.id==='mobile-difficulty'||s.hasAttribute('data-custom-size')){const isDifficulty=s.id==='mobile-difficulty';c.dataset.control='tiles';c.innerHTML=heading+`<div class="lobby-choice-tiles" role="group" aria-label="${esc(title(s))}">${list.map((o,i)=>`<button type="button" data-tile-value="${esc(o.value)}" aria-pressed="${s.value===o.value}" ${s.disabled||o.disabled?'disabled':''}><span class="lobby-tile-symbol" aria-hidden="true">${isDifficulty?'◆'.repeat(i+1):['S','M','L','XL'][i]}</span><strong>${esc(o.label)}</strong></button>`).join('')}</div>`+(isDifficulty?`<p class="lobby-choice-help">${difficulty[Number(s.value)]||''}</p>`:'');c.querySelectorAll('[data-tile-value]').forEach(b=>b.onclick=()=>change(s,b.dataset.tileValue));
    }else if(s.hasAttribute('data-custom-players')||s.hasAttribute('data-custom-humans')){c.dataset.control='counter';const index=list.findIndex(o=>o.value===s.value);c.innerHTML=heading+`<div class="lobby-counter"><button type="button" data-counter="-1" aria-label="Decrease ${esc(title(s))}" ${s.disabled||index<=0?'disabled':''}>−</button><output aria-live="polite"><strong>${esc(s.value)}</strong><span>${s.hasAttribute('data-custom-humans')?'Human players':'Players'}</span></output><button type="button" data-counter="1" aria-label="Increase ${esc(title(s))}" ${s.disabled||index>=list.length-1?'disabled':''}>+</button></div>`;c.querySelectorAll('[data-counter]').forEach(b=>b.onclick=()=>{const i=list.findIndex(o=>o.value===s.value),next=list[i+Number(b.dataset.counter)];if(next)change(s,next.value);});

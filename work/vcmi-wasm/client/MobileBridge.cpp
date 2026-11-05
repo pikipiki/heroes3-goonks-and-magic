@@ -232,6 +232,15 @@ void publishMobileState(){
   for(size_t i=0;i<mobileMaps.size();i++){JsonNode entry;entry["index"].Integer()=i;entry["name"].String()=mobileMaps[i].second;n["maps"].Vector().push_back(entry);}
   if(GAME->server().mi){
    auto & server=GAME->server();n["customMap"].Bool()=server.mi->isRandomMap;n["selectedMap"].String()=server.mi->getNameForList();n["difficulty"].Integer()=server.si->difficulty;
+   n["lobbyHumanCount"].Integer()=server.playerNames.size();
+   if(server.mi->isRandomMap && server.si->mapGenOptions){
+    const auto & options=*server.si->mapGenOptions;
+    auto & config=n["customMapOptions"];
+    config["players"].Integer()=options.getMaxPlayersCount();
+    config["humans"].Integer()=options.getHumanOrCpuPlayerCount();
+    config["size"].Integer()=options.getWidth();
+    config["levels"].Integer()=options.getLevels();
+   }
    const auto color=server.myFirstColor();
    if(server.si->playerInfos.count(color)){
     const auto & allowed=server.getPlayerInfo(color).allowedFactions;
