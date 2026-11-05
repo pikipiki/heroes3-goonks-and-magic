@@ -220,8 +220,11 @@ void publishMobileState(){
   n["mode"].String()="online-lobby";
   n["dialogTitle"].String()="Online";
   if(ENGINE->windows().topWindow<GlobalLobbyWindow>())
+  {
+   n["onlineCanCreate"].Bool()=!GAME->server().inGame();
    if(const auto room=mobileInvitedRoom(GAME->server().getGlobalLobby()))
     n["onlineInvitation"].String()=room->hostAccountDisplayName;
+  }
  }
  else if(ENGINE->windows().topWindow<CLobbyScreen>())
  {
@@ -485,6 +488,13 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  {
   if(GAME&&!GAME->interface()&&!ENGINE->windows().topWindow<GlobalLobbyLoginWindow>()&&!ENGINE->windows().topWindow<GlobalLobbyWindow>())
    GAME->server().getGlobalLobby().activateInterface();
+  return;
+ }
+ if(action==81)
+ {
+  if(auto window=ENGINE->windows().topWindow<GlobalLobbyWindow>())
+   if(!GAME->server().inGame())
+    window->doCreateGameRoom();
   return;
  }
  if(action==78)

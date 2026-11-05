@@ -87,7 +87,12 @@ function mount(){
  function controls(){
   const m=state.mode,cap=battleCapabilities(effectiveBattle()),target=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),blocked=!state.spellTargeting&&target?.enemy&&target.canShootAt===false&&target.canMeleeAt===false;let items;
   if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn('➤ Marcher','move',true,!state.hasPath||!state.turn),btn('Équipement','heroes'),btn('♜ Villes','towns'),btn('♟ Armée','army',false,!state.turn||!state.armies?.length),btn('☀ Terminer le tour','endturn',false,!state.turn)];
-  else if(m==='online-lobby'&&state.onlineInvitation)items=[btn(getLanguage()==='fr'?'Invitation de '+escape(state.onlineInvitation):'Invitation from '+escape(state.onlineInvitation),'online-invitation',true),btn('↩ Back','back')];
+  else if(m==='online-lobby'&&(state.onlineCanCreate||state.onlineInvitation)){
+   const fr=getLanguage()==='fr';
+   items=[...(state.onlineCanCreate?[btn(fr?'Créer une partie':'Create game','online-create',!state.onlineInvitation)]:[]),
+    ...(state.onlineInvitation?[btn((fr?'Invitation de ':'Invitation from ')+escape(state.onlineInvitation),'online-invitation',true)]:[]),
+    btn('↩ Back','back')];
+  }
   else if(m==='online-lobby'&&state.onlineMatch){
    const fr=getLanguage()==='fr', minutes=state.onlineTurnMinutes||0;
    const timerLabel=(fr?'Chrono':'Turn timer')+' · '+(minutes?minutes+' min':fr?'désactivé':'off');
@@ -254,6 +259,7 @@ function mount(){
   if(ui==='town-fort'){command(54);return;}
   if(ui==='town-guild'||ui==='town-market'){const matches=ui==='town-guild'?['mageGuild1','mageGuild2','mageGuild3','mageGuild4','mageGuild5']:['marketplace'];const building=(state.buildings||[]).filter(b=>b.built&&matches.includes(String(b.key).split(':').at(-1))).at(-1);if(building)command(39,building.id);else notify('Build this structure first.');return;}
   if(ui==='recruit-heroes'){const tavern=state.buildings?.find(b=>String(b.key).split(':').at(-1)==='tavern'&&b.built);if(state.mode==='town'&&state.turn&&tavern)command(39,tavern.id);else notify('Construis une taverne pour recruter des héros.');return;}
+  if(ui==='online-create'){command(81);return;}
   if(ui==='online-save'){command(80);return;}
   if(ui==='online-timer'){command(79,turnLimits[(turnLimits.indexOf(state.onlineTurnMinutes||0)+1)%turnLimits.length]);return;}
   if(ui==='online-invitation'){command(78);return;}

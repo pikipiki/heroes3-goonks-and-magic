@@ -19,3 +19,20 @@ html.goonk-mobile #mobile-app[data-mode=online-login] {
   min-height:44px;min-width:0;box-sizing:border-box;background:#171109;color:#ffe9aa;
   border:2px ridge #bd9952;font:16px Georgia,serif;padding:6px 10px;
 }
+#mobile-app[data-mode=online-lobby] .mobile-nav {
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+}
+#mobile-app[data-mode=online-lobby] .mobile-nav button {
+  flex:0 1 9rem;max-width:100%;min-width:0;text-align:center;
+}
+@media (orientation:landscape) and (max-height:600px) {
+  html.goonk-mobile #mobile-app[data-mode=online-lobby] {
+    grid-template-columns:minmax(0,1fr) clamp(8rem, 20vw, 11rem);
+  }
+  #mobile-app[data-mode=online-lobby] .mobile-nav {
+    flex-wrap:nowrap;justify-content:safe center;
+  }
+  #mobile-app[data-mode=online-lobby] .mobile-nav button {
+    flex:0 0 auto;width:100%;
+  }
+}
