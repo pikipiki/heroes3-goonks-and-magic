@@ -20,7 +20,9 @@
 #mobile-app .campaign-bonuses canvas{width:58px;height:64px;max-width:100%;object-fit:contain}
 #mobile-app .campaign-setup>footer{display:flex;flex-direction:column;gap:6px;padding:8px 12px max(8px,env(safe-area-inset-bottom));border-top:3px ridge #c4a460;background:#24180e}
 #mobile-app .campaign-setup>footer p{margin:0;font-size:13px;line-height:1.3}
-#mobile-app .campaign-setup>footer .primary{min-height:56px;border:3px ridge #e7c47a;font-weight:700}
+#mobile-app .campaign-setup>footer .primary{min-height:56px;font-weight:700}
+#mobile-app .campaign-setup>footer .primary,
+#mobile-app .campaign-bonuses [aria-pressed=true]{border:3px ridge #e7c47a}
 #mobile-app .campaign-interlude{min-height:0;overflow:auto;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:16px;padding:12px}
 #mobile-app .campaign-video{display:block;width:100%;height:65%;min-height:120px}
 #mobile-app .campaign-interlude p{font-size:15px;line-height:1.4}
