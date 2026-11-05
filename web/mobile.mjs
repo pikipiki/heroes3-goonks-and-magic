@@ -143,7 +143,7 @@ function mount(){
 
 
   
-  const hint=state.mode==='recruit'?'Choisis la quantité, puis confirme. Les recrues rejoignent la garnison.':state.mode==='map'?(state.hasPath?`Trajet choisi${state.pathTurns?' · '+state.pathTurns+' jour(s)':''}. Confirme avec Marcher.`:'Touche une case ou un château pour préparer un trajet. Ouvre tes châteaux avec Villes.'):state.mode==='battle'?(state.targetUnit?`${state.targetUnit.name} × ${state.targetUnit.count} — Confirme ton action.`:'Glisse pour voir le champ de bataille. Touche une case, puis confirme.'):state.mode==='town'?'Construis et recrute avec les commandes ci-dessous.':'Pince pour zoomer. Glisse pour atteindre les commandes.';
+  const hint=state.mode==='recruit'?'Choisis la quantité, puis confirme. Les recrues rejoignent la garnison.':state.mode==='map'?(!state.turn?'Tour adverse en cours…':state.hasPath?`Trajet choisi${state.pathTurns?' · '+state.pathTurns+' jour(s)':''}. Confirme avec Marcher.`:'Touche une case ou un château pour préparer un trajet. Ouvre tes châteaux avec Villes.'):state.mode==='battle'?(state.targetUnit?`${state.targetUnit.name} × ${state.targetUnit.count} — Confirme ton action.`:'Glisse pour voir le champ de bataille. Touche une case, puis confirme.'):state.mode==='town'?'Construis et recrute avec les commandes ci-dessous.':'Pince pour zoomer. Glisse pour atteindre les commandes.';
   root.querySelector('.scene-hint').textContent=hint;controls();if(sheetKind==='army'&&armySignature!==JSON.stringify(state.armies||[]))refreshArmy();
  }
  const heroTransition=createHeroTransition(update,{ready:next=>portraitTown.prepare(next,townPortraitEnabled)});
