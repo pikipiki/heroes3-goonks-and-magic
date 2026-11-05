@@ -47,13 +47,14 @@ function mountGameMenu(){
       const button=content.querySelector('[data-menu=sound]');button.textContent=muted?'🔇 Son coupé':'🔊 Son activé';button.setAttribute('aria-checked',String(!muted));button.setAttribute('aria-busy',String(pendingAudio!==null));button.disabled=!initialAudioApplied||pendingAudio!==null;
       content.querySelector('.audio-health').textContent=muted?'Musique et effets coupés.':audioPhase==='paused'?'Audio en pause. Coupe puis réactive le son avec ce bouton.':audioPhase==='closed'?'Audio indisponible : recharge le jeu.':audioPhase==='loading'?'Initialisation audio…':state.soundVolume===0&&state.musicVolume===0?'Volume du jeu à zéro. Coupe puis réactive le son avec ce bouton.':'Audio du jeu prêt.';
     }else{
-      content.dataset.view='cheats';
       const context=state.townName||state.selectedTownName||state.heroName||'Aucune partie sélectionnée';
       const html='<p>'+escape(context)+'</p><p>Utiliser un code marque cette partie comme trichée.</p>'+cheatCodes.map(cheat=>{
         const reason=unavailableReason(cheat,state);
         return '<article class="game-cheat"><h3>'+cheat.title+'</h3><p>'+cheat.description+'</p><code>'+cheat.code+'</code><button data-cheat="'+cheat.id+'" '+(reason?'disabled':'')+' aria-label="'+escape('Appliquer : '+cheat.title)+'">'+(reason||'Appliquer')+'</button></article>';
       }).join('');
-      if(content._sourceMarkup!==html){content._sourceMarkup=html;content.innerHTML=html;}
+      if(content.dataset.view!=='cheats'||content._sourceMarkup!==html){
+        content.dataset.view='cheats';content._sourceMarkup=html;content.innerHTML=html;
+      }
     }
   }
   const enable=()=>{if(window.Module?._vcmiMobileEnable)window.Module._vcmiMobileEnable(window.goonkMobileActive?1:2);};

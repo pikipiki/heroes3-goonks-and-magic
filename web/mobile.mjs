@@ -82,7 +82,7 @@ function mount(){
  const paintHeroMovement=watchHeroMovement(nav);
  function controls(){
   const m=state.mode,cap=battleCapabilities(effectiveBattle()),target=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),blocked=!state.spellTargeting&&target?.enemy&&target.canShootAt===false&&target.canMeleeAt===false;let items;
-  if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn('➤ Marcher','move',true,!state.hasPath||!state.turn),btn('♟ Héros','heroes'),btn('♜ Villes','towns'),btn('♟ Armée','army',false,!state.turn||!state.armies?.length),btn('☀ Terminer le tour','endturn',false,!state.turn)];
+  if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn('➤ Marcher','move',true,!state.hasPath||!state.turn),btn('Équipement','heroes'),btn('♜ Villes','towns'),btn('♟ Armée','army',false,!state.turn||!state.armies?.length),btn('☀ Terminer le tour','endturn',false,!state.turn)];
   else if(m==='hero')items=[btn('Equipment','hero-mobile'),btn('↩ Back','hero-back'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
   else if(m==='fort'||m==='creature')items=[btn('↩ Back','presentation-back')];
   else if(m==='dialog'&&state.dialogKind==='fort')items=[btn('Retour au château','back')];

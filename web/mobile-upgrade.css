@@ -253,9 +253,10 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
 @media (orientation:landscape) and (max-height:340px) {
  #mobile-app[data-mode=map] .mobile-nav {
   --map-action-rows:minmax(44px,1fr) minmax(calc(44px + var(--safe-bottom)),1fr);
-  grid-template-columns:repeat(2,minmax(0,1fr)) minmax(0,calc((100% + 2 * var(--map-safe-right) - 8px)/3));
+  grid-template-columns:minmax(0,1fr) minmax(0,1.25fr) minmax(0,calc((100% + 2 * var(--map-safe-right) - 8px)/3));
  }
- #mobile-app[data-mode=map] .mobile-nav>:is([data-ui=heroes],[data-ui=army]){padding-right:4px!important}
+ #mobile-app[data-mode=map] .mobile-nav>[data-ui=heroes]{padding-inline:0!important;font-size:11px!important}
+ #mobile-app[data-mode=map] .mobile-nav>[data-ui=army]{padding-right:4px!important}
  #mobile-app[data-mode=map] .mobile-nav>[data-ui=towns]{padding-right:calc(4px + var(--map-safe-right))!important}
  #mobile-app[data-mode=map] .mobile-nav>[data-ui=army]{padding-bottom:calc(8px + var(--safe-bottom))!important}
  #mobile-app[data-mode=map] .mobile-nav>:is([data-ui=heroes],[data-ui=army])[aria-busy=true]::after{right:10px}
