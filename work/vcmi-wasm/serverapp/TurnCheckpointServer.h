@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <fstream>
+
 #include "../lib/CPlayerState.h"
 #include "../lib/VCMIDirs.h"
 #include "../lib/callback/GameRandomizer.h"
@@ -48,6 +50,13 @@ public:
 			gh->gameState().saveGame(save);
 			save.save(*gh);
 			save.write(staging);
+			// Keep the turn marker and save in one atomic replacement. The VCMI
+			// reader consumes the serialized state and ignores the trailing marker.
+			std::ofstream marker(staging.c_str(), std::ios::binary | std::ios::app);
+			marker.exceptions(std::ios::failbit | std::ios::badbit);
+			marker << "\nGOONK-TURN/1 " << static_cast<int>(turn->player.getNum())
+				<< ' ' << gh->gameState().getDate() << '\n';
+			marker.close();
 			boost::filesystem::rename(staging, checkpoint);
 		}
 		catch(const std::exception & error)
