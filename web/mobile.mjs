@@ -34,7 +34,7 @@ import {paintMapOverview,mapOverviewTarget,mapOverviewViewport} from './map-over
 import {anchorMobileViewport,coalesceViewportResize,createMapPan,enableFullscreenOnPlay} from './mobile-viewport.mjs';
 import {canCloseTavern,nativeCloseTarget,nativeDialogTarget} from './native-dialog.mjs';
 import {renderResources,formatResourceCost} from './resources.mjs';
-import {createTownPortrait,isGoonkTown,supportsTownPortrait} from './town-portrait.mjs';
+import {createTownPortrait,isGoonkTown,supportsTownPortrait,townBuildingCardImage} from './town-portrait.mjs';
 import {battleCapabilities,battleTeamCapabilities} from './battle-phase.mjs';
 import {bindPress,protectTouchClicks} from './mobile-press.mjs';
 import {fitNativeBattle,nativeBattleClose,paintMovementRange,paintBattleGrid,battleFocus,drawUnit,NATIVE_BATTLE_REGION} from './battle-scene.mjs';
@@ -254,7 +254,7 @@ function mount(){
   const seconds=Math.ceil(Math.max(0,state.turnRemainingMs||0)/1000);
   const countdown=state.mode==='map'&&state.turnRemainingMs!==undefined
    ? Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0')+' · ' : '';
-  root.querySelector('.scene-hint').textContent=countdown+hint;controls();if(sheetKind==='army'&&(changedTurn||armySignature!==JSON.stringify(state.armies||[])))refreshArmy();if(sheetKind==='build'&&changedTurn)showList('build',true);
+  root.querySelector('.scene-hint').textContent=countdown+hint;controls();if(sheetKind==='army'&&(changedTurn||armySignature!==JSON.stringify(state.armies||[])))refreshArmy();if(sheetKind==='build'&&changedTurn)renderBuildingCards();
  }
  const heroTransition=createHeroTransition(update,{ready:next=>portraitTown.prepare(next,townPortraitEnabled)});
  window.addEventListener('goonk-state',event=>heroTransition.receive(event.detail,state.mode));
@@ -286,14 +286,62 @@ function mount(){
   if(army!==undefined&&slot!==undefined)body.querySelector('[data-army="'+army+'"][data-slot="'+slot+'"]')?.focus({preventScroll:true});
  }
  root.addEventListener('goonk-recruit-all',()=>{if(!state.turn)return;openSheet('recruit-all','Recruit all creatures');body.innerHTML='<p>Recruit all available creatures you can afford, using the highest available upgrades? They will join the garrison. Army space and resource costs still apply.</p>'+btn('Recruit all','confirm-recruit-all',true)+btn('Cancel','close-sheet');});
+ let buildingTab='unbuilt';
+ function showBuildings(tab){
+  if(state.mode!=='town')return;
+  buildingTab=tab;
+  openSheet('build','Bâtiments');
+  renderBuildingCards();
+ }
+ function renderBuildingCards(){
+  body.innerHTML='<div class="building-tabs" role="group" aria-label="Bâtiments">'+
+   ['built','unbuilt'].map(tab=>`<button type="button" data-building-tab="${tab}" aria-pressed="${tab===buildingTab}">${tab==='built'?'Construits':'À construire'}</button>`).join('')+'</div>';
+  const tabs=body.querySelector('.building-tabs');
+  tabs.onclick=event=>{
+   const tab=event.target.closest('[data-building-tab]')?.dataset.buildingTab;
+   if(!tab||tab===buildingTab)return;
+   buildingTab=tab;
+   renderBuildingCards();
+   body.scrollTop=0;
+   body.querySelector('[aria-pressed="true"]').focus({preventScroll:true});
+  };
+  const built=buildingTab==='built';
+  if(!built&&!state.turn)body.insertAdjacentHTML('beforeend','<p>Disponible à ton tour</p>');
+  const buildings=(state.buildings||[]).filter(b=>!!b.built===built).sort((a,b)=>Number(b.allowed)-Number(a.allowed));
+  if(!buildings.length){
+   const message=document.createElement('p');
+   message.textContent=built?'Aucun bâtiment construit.':'Tous les bâtiments sont déjà construits.';
+   body.append(message);
+   return;
+  }
+  const cards=document.createElement('div');
+  cards.className='building-cards';
+  const fallback='./web/h3-theme/town-hall.png';
+  for(const building of buildings){
+   const card=document.createElement('article');
+   card.className='mobile-card';card.dataset.buildingId=building.id;
+   const image=townBuildingCardImage(state,building,asset)||fallback;
+   card.innerHTML=`<img class="building-card-image" src="${escape(image)}" alt="" loading="lazy"><h3>${escape(building.name)}</h3><p>${escape(building.description)}</p>`+
+    (built?'<footer><button type="button">Voir</button></footer>':
+     `<footer><span class="resource-cost">${escape(cost(building.cost))}</span>${building.allowed?'':`<small>${escape(buildReason(building.state))}</small>`}<button type="button" class="primary" ${state.turn&&building.allowed?'':'disabled'}>Construire</button></footer>`);
+   card.querySelector('img').addEventListener('error',event=>{event.currentTarget.src=fallback;},{once:true});
+   card.querySelector('button').onclick=()=>{
+    const current=state.buildings?.find(b=>b.id===building.id);
+    if(state.mode!=='town'||!current)return;
+    if(built&&current.built){closeSheet();command(39,current.id);}
+    else if(!built&&!current.built&&current.allowed&&state.turn){
+     command(8,current.id);closeSheet();notify('Construction demandée : '+current.name);
+    }
+   };
+   cards.append(card);
+  }
+  body.append(cards);
+ }
  function showList(kind,refresh=false){
   if(kind==='towns'&&state.towns?.length===1){command(5,state.towns[0].index);return;}
   if(kind==='heroes'){if(state.mode==='map'&&(state.heroName||state.heroes?.length)){closeSheet();if(!state.heroName)command(4,state.heroes[0].index);command(55);}else notify('Select a hero on the map first.');return;}
   if(kind==='heroes'||kind==='towns'){openSheet(kind,kind==='heroes'?'Tes héros':'Tes villes');for(const item of state[kind]||[]){const el=document.createElement('button');el.className='mobile-card';el.style.width='100%';el.textContent=item.name+(kind==='heroes'?` · ${item.movement} points`:'');el.onclick=()=>{command(kind==='heroes'?4:5,item.index);closeSheet();};body.append(el);}if(!body.children.length)body.textContent='Aucun élément disponible.';}
-  if(kind==='build'){if(!refresh)openSheet(kind,'Construire');else body.replaceChildren();if(!state.turn)body.insertAdjacentHTML('beforeend','<p>Disponible à ton tour</p>');
-   const unbuilt=(state.buildings||[]).filter(b=>!b.built),available=unbuilt.filter(b=>b.allowed);
-   if(!available.length){const message=document.createElement('p');message.className='build-empty';message.textContent=unbuilt.length?'Aucun bâtiment ne peut être construit pour le moment.':'Tous les bâtiments sont déjà construits.';body.append(message);if(unbuilt.length){const reasons=document.createElement('p');reasons.textContent=[...new Set(unbuilt.map(b=>buildReason(b.state)))].join(' · ');body.append(reasons);}}
-   for(const building of available){const article=document.createElement('article');article.className='mobile-card';article.dataset.buildingId=building.id;article.innerHTML=`${building.key?.startsWith('goonk:')&&asset('goonk/card-'+building.key.split(':').at(-1)+'.png')?`<img class="building-card-image" src="${escape(asset('goonk/card-'+building.key.split(':').at(-1)+'.png'))}" alt="">`:''}<h3>${escape(building.name)}</h3><p>${escape(building.description)}</p><footer><span class="resource-cost">${escape(cost(building.cost))}</span><button class="primary" ${state.turn?'':'disabled'}>Construire</button></footer>`;article.querySelector('button').onclick=()=>{const current=state.buildings?.find(b=>b.id===building.id);if(state.mode!=='town'||!state.turn||!current?.allowed||current.built)return;command(8,building.id);closeSheet();notify('Construction demandée : '+building.name);};body.append(article);}}
+  if(kind==='build')showBuildings('unbuilt');
   if(kind==='recruit'){openRecruit();return;}
 
 
@@ -351,17 +399,7 @@ function mount(){
   }
   if(ui==='confirm-recruit-all'){closeSheet();if(!state.turn)return;command(53);notify('Recruitment requested.');return;}
   if(ui==='town-fort'){command(54);return;}
-  if(ui==='town-buildings'&&state.mode==='town'){
-   openSheet('town-buildings','Bâtiments');
-   for(const building of state.buildings||[]){
-    if(!building.built)continue;
-    const button=document.createElement('button');
-    button.className='mobile-card';button.textContent=building.name;
-    bindPress(button,()=>{closeSheet();command(39,building.id);});
-    body.append(button);
-   }
-   return;
-  }
+  if(ui==='town-buildings'){showBuildings('built');return;}
   if(ui?.startsWith('tavern-equipment-')&&canCloseTavern(state)){
    const index=Number(ui.at(-1));
    if(state.tavernHeroes?.[index])command(72,index);

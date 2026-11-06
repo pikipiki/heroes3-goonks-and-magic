@@ -1,6 +1,73 @@
-import{chromium,webkit}from'playwright-core';import assert from'node:assert/strict';import fs from'node:fs';import path from'node:path';
-for(const kind of['chromium','webkit']){const browser=await(kind==='webkit'?webkit.launch({executablePath:process.env.WEBKIT_PATH}):chromium.launch({executablePath:process.env.CHROME_PATH,args:['--no-sandbox']}));try{const p=await browser.newPage({viewport:{width:390,height:844},hasTouch:true}),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.route('**/web/**',r=>{const file=path.resolve('web',new URL(r.request().url()).pathname.split('/web/')[1]);return fs.existsSync(file)?r.fulfill({path:file}):r.abort();});await p.route('**/build-direct-test?mobile=1',r=>r.fulfill({contentType:'text/html',body:'<!doctype html><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=/web/mobile.css><link rel=stylesheet href=/web/h3-theme.css><link rel=stylesheet href=/web/mobile-upgrade.css><canvas id=canvas width=800 height=600></canvas><script>window.calls=[];Module={_vcmiMobileEnable(){},_vcmiMobileCommand(...a){calls.push(a)}};</script><script type=module src=/web/mobile.mjs></script>'}));await p.goto('http://127.0.0.1:8783/build-direct-test?mobile=1');await p.waitForSelector('#mobile-app');
-for(const faction of['core:castle','goonk:goonk'])for(const size of[{width:390,height:844},{width:844,height:390}]){await p.setViewportSize(size);await p.evaluate(faction=>{window.calls=[];window.buildState={mode:'town',townFaction:faction,townName:'Town',turn:true,armies:[],resources:[30,15,30,15,15,15,20000],buildings:[{id:10,key:faction.split(':')[0]+':villageHall',name:'Hall',built:true,allowed:false,state:4},{id:0,key:'core:mageGuild1',name:'Mage guild',description:'Learn spells',built:false,allowed:true,cost:[0,0,0,0,0,0,2000]},{id:27,key:'core:marketplace',name:'Marketplace',built:false,allowed:true,cost:[0,0,0,0,0,0,500]},{id:31,key:'core:dwellingUpLvl1',name:'Locked evolution',built:false,allowed:false,state:8,cost:[]}]};window.sendBuild=()=>dispatchEvent(new CustomEvent('goonk-state',{detail:structuredClone(buildState)}));sendBuild();},faction);await p.waitForFunction(()=>window.goonkMobileState?.mode==='town');await p.locator('.mobile-nav [data-ui=build]').tap();const cards=p.locator('.mobile-sheet:not([hidden]) [data-building-id]');assert.equal(await cards.count(),2);assert.match(await cards.first().innerText(),/Mage guild/);assert(!(await p.locator('.sheet-body').innerText()).includes('Locked evolution'));assert.equal(await p.locator('.sheet-body>button').count(),0,'No intermediate native hall menu');await cards.first().locator('button').tap();assert.deepEqual((await p.evaluate(()=>calls)).map(a=>a.slice(0,2)),[[8,0]],'One tap constructs the chosen building directly');assert(await p.locator('.mobile-sheet').isHidden());
-await p.evaluate(()=>{buildState.buildings.forEach(b=>{b.allowed=false;b.state=5;});sendBuild();});await p.locator('.mobile-nav [data-ui=build]').tap();assert(await p.locator('.build-empty').isVisible());assert.equal(await p.locator('[data-building-id]').count(),0);await p.locator('[data-ui=close-sheet]').tap();await p.evaluate(()=>{buildState.buildings.forEach(b=>b.built=true);sendBuild();});await p.locator('.mobile-nav [data-ui=build]').tap();assert.match(await p.locator('.build-empty').innerText(),/All buildings are already constructed/);await p.locator('[data-ui=close-sheet]').tap();console.log('PASS',kind,faction,size.width+'x'+size.height,'direct available buildings, one native build command and clear empty states');}
-assert.deepEqual(errors,[]);
-}finally{await browser.close();}}
+import {chromium,webkit} from 'playwright-core';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+
+for(const [kind,launcher] of Object.entries({chromium,webkit})){
+ const browser=await launcher.launch(kind==='webkit'?{executablePath:process.env.WEBKIT_PATH}:{executablePath:process.env.CHROME_PATH,args:['--no-sandbox']});
+ try{
+  const page=await browser.newPage({viewport:{width:390,height:844},hasTouch:true}),errors=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  await page.route('**/web/**',route=>{
+   const file=path.resolve('web',new URL(route.request().url()).pathname.split('/web/')[1]);
+   return fs.existsSync(file)?route.fulfill({path:file}):route.abort();
+  });
+  await page.route('**/build-direct-test?mobile=1',route=>route.fulfill({contentType:'text/html',body:`<!doctype html>
+   <meta name=viewport content="width=device-width,initial-scale=1">
+   <link rel=stylesheet href=/web/mobile.css><link rel=stylesheet href=/web/h3-theme.css><link rel=stylesheet href=/web/mobile-upgrade.css>
+   <canvas id=canvas width=800 height=600></canvas>
+   <script>window.calls=[];Module={_vcmiMobileEnable(){},_vcmiMobileCommand(...a){calls.push(a)}};</script>
+   <script type=module src=/web/mobile.mjs></script>`}));
+  await page.goto('http://127.0.0.1:8783/build-direct-test?mobile=1');
+  await page.waitForSelector('#mobile-app');
+  const button=ui=>page.locator('[data-ui="'+ui+'"]:visible').first();
+  const card=id=>page.locator('.mobile-sheet:not([hidden]) [data-building-id="'+id+'"]');
+  const tab=name=>page.locator('[data-building-tab="'+name+'"]');
+  const commands=()=>page.evaluate(()=>calls.map(args=>args.slice(0,2)));
+  const returnFromInspection=async()=>{
+   await page.evaluate(()=>dispatchEvent(new CustomEvent('goonk-state',{detail:{...buildState,mode:'dialog'}})));
+   await page.waitForFunction(()=>goonkMobileState.mode==='dialog');
+   await page.evaluate(()=>sendBuild());
+   await page.waitForFunction(()=>goonkMobileState.mode==='town');
+  };
+  for(const faction of ['core:tower','goonk:goonk'])for(const size of [{width:390,height:844},{width:844,height:390}]){
+   await page.setViewportSize(size);
+   await page.evaluate(faction=>{
+    window.calls=[];
+    window.buildState={mode:'town',townFaction:faction,townName:'Town',turn:false,armies:[],resources:[30,15,30,15,15,15,20000],buildings:[
+     {id:16,key:'core:blacksmith',name:'Blacksmith',description:'War machines',built:true,allowed:false,state:4},
+     {id:0,key:'core:mageGuild1',name:'Mage guild',description:'Learn spells',built:false,allowed:true,cost:[0,0,0,0,0,0,2000]},
+     {id:31,key:'core:dwellingUpLvl1',name:'Locked evolution',built:false,allowed:false,state:8,cost:[]},
+    ]};
+    window.sendBuild=()=>dispatchEvent(new CustomEvent('goonk-state',{detail:structuredClone(buildState)}));
+    sendBuild();
+   },faction);
+   await page.waitForFunction(()=>window.goonkMobileState?.mode==='town'&&!goonkMobileState.turn);
+   if(size.width<size.height){
+    await page.locator('[data-town-building="16"]').tap();
+    assert.deepEqual(await commands(),[[39,16]],'Direct inspection works during the opponent’s turn');
+    await returnFromInspection();
+   }
+   await button('build').tap();
+   assert.equal(await tab('unbuilt').getAttribute('aria-pressed'),'true');
+   assert.match(await card(0).innerText(),/Mage guild/);
+   assert(await card(0).locator('button').isDisabled());
+   assert(await card(31).locator('button').isDisabled());
+   await tab('built').tap();
+   assert.match(await card(16).innerText(),/Blacksmith/);
+   const image=card(16).locator('img');
+   await page.waitForFunction(()=>document.querySelector('[data-building-id="16"] img')?.naturalWidth>0);
+   if(faction==='core:tower')assert.match(await image.getAttribute('src'),/tower\/structures\/blacksmith\.webp$/);
+   await card(16).locator('button').tap();
+   assert.deepEqual((await commands()).at(-1),[39,16]);
+   await returnFromInspection();
+   await button('build').tap();
+   await page.evaluate(()=>{buildState.turn=true;sendBuild();});
+   await card(0).locator('button:enabled').tap();
+   assert.deepEqual((await commands()).at(-1),[8,0],'Building is allowed once the player’s turn begins');
+   assert(await page.locator('.mobile-sheet').isHidden());
+   console.log('PASS',kind,faction,size.width+'x'+size.height);
+  }
+  assert.deepEqual(errors,[]);
+ }finally{await browser.close();}
+}
