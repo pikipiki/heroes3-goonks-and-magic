@@ -250,6 +250,8 @@ void CServerHandler::onConnectionFailed(const std::string & errorMessage)
 	{
 		// remote server refused connection - show error message
 		setState(EClientState::NONE);
+		if(serverMode == EServerMode::HOSTED_GUEST)
+			return; // The web join panel reports the failure and allows another attempt.
 		CInfoWindow::showInfoDialog(LIBRARY->generaltexth->translate("vcmi.mainMenu.serverConnectionFailed"), {});
 	}
 }
@@ -717,6 +719,8 @@ void CServerHandler::endGameplay()
 
 	client->endGame();
 	client.reset();
+	if(serverMode == EServerMode::HOSTED_GUEST)
+		setState(EClientState::NONE);
 
 	if (GAME->mainmenu())
 	{
@@ -986,6 +990,14 @@ void CServerHandler::onDisconnected(const std::shared_ptr<INetworkConnection> & 
 
 	logNetwork->error("Lost connection to server! Connection has been closed");
 
+	const bool hosted = serverMode == EServerMode::HOSTED_GUEST;
+	if(hosted && !client)
+	{
+		networkConnection.reset();
+		logicConnection.reset();
+		setState(EClientState::NONE);
+		return;
+	}
 	if(client)
 	{
 		endGameplay();

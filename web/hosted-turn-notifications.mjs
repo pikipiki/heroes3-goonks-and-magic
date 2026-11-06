@@ -9,6 +9,46 @@ export function requestedHostedMatch(search = location.search) {
   return matchPattern.test(match ?? '') ? match : null;
 }
 
+function connectHostedMatch(runtime, destination, token, onLoading) {
+  return new Promise((resolve, reject) => {
+    const sockets = runtime.websocket;
+    const {url, subprotocol} = sockets;
+    const restoreSettings = () => { sockets.url = url; sockets.subprotocol = subprotocol; };
+    let started = false;
+    const finish = (error) => {
+      clearTimeout(timeout);
+      restoreSettings();
+      for (const event of ['open', 'close', 'error']) sockets.on(event, undefined);
+      window.removeEventListener('goonk-state', update);
+      if (error) reject(error);
+      else resolve();
+    };
+    const update = ({detail: state}) => {
+      if (state.sessionState === 6 && state.onlineGame) {
+        finish();
+      } else if (state.sessionState === 0 && started) {
+        finish(new Error('Game connection ended.'));
+      } else if (state.sessionState > 0) {
+        started = true;
+        if (state.sessionState === 5) onLoading();
+      }
+    };
+    const failed = () => finish(new Error('Game connection rejected.'));
+    const timeout = setTimeout(() => finish(new Error('Game connection timed out.')), 35000);
+    try {
+      window.addEventListener('goonk-state', update);
+      sockets.on('open', () => { restoreSettings(); onLoading(); });
+      sockets.on('close', failed);
+      sockets.on('error', failed);
+      sockets.url = destination.href;
+      sockets.subprotocol = 'binary, goonk.' + token;
+      runtime._vcmiJoinHostedMatch();
+    } catch (error) {
+      finish(error);
+    }
+  });
+}
+
 export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint, publicKey}, language, onJoining, requested = null) {
   if (!endpoint || !publicKey) return;
   const fr = language() === 'fr';
@@ -20,6 +60,11 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   const [paste, enable, disable, join] = field.querySelectorAll('button');
   const help = field.querySelector('small');
   const status = field.querySelector('[role=status]');
+  const loader = document.createElement('p');
+  loader.className = 'hosted-match-loading';
+  loader.setAttribute('role', 'status');
+  loader.hidden = true;
+  field.prepend(loader);
   const chooser = document.createElement('label');
   const select = document.createElement('select');
   const start = document.createElement('button');
@@ -223,7 +268,15 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     if (pending || !seatCodePattern.test(token) || (scenario && start.disabled) || !runtime?._vcmiJoinHostedMatch) return;
     input.blur();
     pending = true;
+    status.textContent = '';
+    const showLoading = (french, english) => {
+      loader.hidden = false;
+      const message = fr ? french : english;
+      if (loader.textContent !== message) loader.textContent = message;
+    };
+    showLoading('Vérification de l’accès…', 'Checking access…');
     render();
+    let opening = false;
     try {
       if (scenario) {
         const {response} = await hostedRequest(token, {method: 'POST', headers: {'Content-Type': 'application/json'},
@@ -237,7 +290,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       let result = await hostedRequest(token, {}, remembered?.endpoint);
       let response = result.response.ok ? await result.response.json() : null;
       for (let retry = 0; retry < 24 && response?.poolStatus === 'starting' && input.isConnected; retry++) {
-        status.textContent = fr ? 'Démarrage de la partie dédiée…' : 'Starting the dedicated match…';
+        showLoading('Démarrage de la partie dédiée…', 'Starting the dedicated match…');
         await new Promise(resolve => setTimeout(resolve, 1500));
         if (!input.isConnected) return;
         result = await hostedRequest(token, {}, result.target);
@@ -277,32 +330,22 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       if (playable !== true) throw new Error('Match unavailable.');
       const destination = new URL('/hosted/game/' + matchId, target);
       destination.protocol = destination.protocol === 'https:' ? 'wss:' : 'ws:';
-      const sockets = runtime.websocket;
-      const {url, subprotocol} = sockets;
-      const restore = () => {
-        sockets.url = url;
-        sockets.subprotocol = subprotocol;
-        sockets.on('open', undefined);
-        sockets.on('error', undefined);
-        clearTimeout(timeout);
-      };
-      const timeout = setTimeout(restore, 15000);
-      sockets.on('open', () => {
-        restore();
-        remember(matchId, token, target, name, players);
-      });
-      sockets.on('error', restore);
-      sockets.url = destination.href;
-      sockets.subprotocol = 'binary, goonk.' + token;
-      runtime._vcmiJoinHostedMatch();
+      opening = true;
+      showLoading('Connexion à la partie…', 'Connecting to the match…');
+      await connectHostedMatch(runtime, destination, token, () => showLoading('Chargement de la partie…', 'Loading the match…'));
+      remember(matchId, token, target, name, players);
       const gameURL = new URL(location.href);
       gameURL.searchParams.set('match', matchId);
-      history.replaceState(history.state, '', gameURL);
+      try { history.replaceState(history.state, '', gameURL); } catch {}
       input.value = '';
       onJoining();
     } catch {
-      status.textContent = fr ? 'Partie indisponible. Vérifie le code et réessaie.' : 'Match unavailable. Check your code and try again.';
+      status.textContent = opening
+        ? (fr ? 'La connexion à la partie a été interrompue. Réessaie.' : 'The game connection was interrupted. Try again.')
+        : (fr ? 'Partie indisponible. Vérifie le code et réessaie.' : 'Match unavailable. Check your code and try again.');
+      if (input.isConnected) status.scrollIntoView({block: 'nearest'});
     } finally {
+      loader.hidden = true;
       pending = false;
       render();
     }

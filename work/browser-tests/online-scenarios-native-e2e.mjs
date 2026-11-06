@@ -27,7 +27,15 @@ try {
     const simulateHostedSocket = () => page.evaluate(() => {
       const listeners = new Map();
       Module.websocket.on = (event, callback) => listeners.set(event, callback);
-      Module._vcmiJoinHostedMatch = () => listeners.get('open')?.();
+      Module._vcmiJoinHostedMatch = () => {
+        listeners.get('open')?.();
+        setTimeout(() => {
+          if (window.testRejectHosted) listeners.get('close')?.();
+          else window.dispatchEvent(new CustomEvent('goonk-state', {detail: {
+            ...window.goonkMobileState, sessionState: 6, onlineGame: true,
+          }}));
+        }, 750);
+      };
     });
     await page.route(endpoint, route => {
       const headers = {'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
@@ -86,7 +94,15 @@ try {
     await simulateHostedSocket();
     await entry.tap();
     await seat.fill(hostCode);
-    await page.getByRole('button', {name: 'Join match', exact: true}).tap();
+    const join = page.getByRole('button', {name: 'Join match', exact: true});
+    await page.evaluate(() => { window.testRejectHosted = true; });
+    await join.tap();
+    await page.getByText('Loading the match…', {exact: true}).waitFor();
+    assert(await seat.isVisible());
+    await page.getByText('The game connection was interrupted. Try again.', {exact: true}).waitFor();
+    assert.equal(await seat.inputValue(), hostCode);
+    await page.evaluate(() => { window.testRejectHosted = false; });
+    await join.tap();
     await seat.waitFor({state: 'detached'});
     await page.reload();
     const resume = page.getByRole('button', {name: 'Resume match', exact: true});

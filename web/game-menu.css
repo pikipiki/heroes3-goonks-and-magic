@@ -30,3 +30,13 @@
 #game-menu .hosted-match-settings p{margin:0;overflow-wrap:anywhere}
 #game-menu .hosted-match-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10rem),1fr));gap:6px}
 #game-menu .hosted-match-actions > :is(select,p){grid-column:1/-1}
+
+#game-menu .hosted-match-loading{
+  position:sticky;top:0;z-index:1;display:flex;align-items:center;gap:10px;min-height:44px;padding:6px 10px;
+  color:#fff0c2;background:#2c1e13;border:1px solid #b59750;
+}
+#game-menu .hosted-match-loading::before{
+  content:'';flex:0 0 18px;height:18px;box-sizing:border-box;border:2px solid #8c784b;
+  border-top-color:#ffe8a2;border-radius:50%;animation:goonk-busy .7s linear infinite;
+}
+@media(prefers-reduced-motion:reduce){#game-menu .hosted-match-loading::before{animation:none}}

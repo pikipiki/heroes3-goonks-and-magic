@@ -224,10 +224,11 @@ public:
 
 	void onDisconnected(const NetworkConnectionPtr & connection, const std::string &) override
 	{
-		pending.erase(connection);
+		const bool wasPending = pending.erase(connection) != 0;
 		if(const auto seat = authorized.find(connection); seat != authorized.end())
 		{
-			gh->uiReadyForDialogs.erase(seat->second);
+			if(!wasPending)
+				gh->uiReadyForDialogs.erase(seat->second);
 			authorized.erase(seat);
 		}
 		std::erase_if(activeConnections, [&](const auto & client) { return client->isMyConnection(connection); });
@@ -257,8 +258,7 @@ public:
 				difference |= std::to_integer<unsigned>(message[i + 1]) ^ static_cast<unsigned char>(gatewayKey[i]);
 
 			const PlayerColor color(std::to_integer<int>(message.front()) - '0');
-			if(difference || !color.isValidPlayer() || !si->playerInfos.contains(color)
-				|| std::any_of(authorized.begin(), authorized.end(), [color](const auto & entry) { return entry.second == color; }))
+			if(difference || !color.isValidPlayer() || !si->playerInfos.contains(color))
 			{
 				connection->close();
 				return;
@@ -314,6 +314,8 @@ private:
 	{
 		if(message.size() > 4096 || !gh->gameState().currentBattles.empty())
 		{
+			if(!gh->gameState().currentBattles.empty())
+				logNetwork->info("Hosted join rejected during active battle for seat %d", color.getNum());
 			connection->close();
 			return;
 		}
@@ -323,8 +325,22 @@ private:
 		auto * hello = dynamic_cast<LobbyClientConnected *>(pack.get());
 		if(!hello || hello->version != ESerializationVersion::CURRENT)
 		{
+			logNetwork->info("Hosted join rejected for invalid or incompatible hello from seat %d", color.getNum());
 			connection->close();
 			return;
+		}
+
+		// A valid reconnect can replace a socket left open when a phone was suspended.
+		const auto previous = std::find_if(authorized.begin(), authorized.end(), [&](const auto & entry)
+		{
+			return entry.second == color && !pending.contains(entry.first);
+		});
+		if(previous != authorized.end())
+		{
+			const auto old = previous->first;
+			onDisconnected(old, "Seat reconnected");
+			old->close();
+			logNetwork->info("Replaced previous hosted connection for seat %d", color.getNum());
 		}
 
 		client->connectionID = connectionFor(color);
