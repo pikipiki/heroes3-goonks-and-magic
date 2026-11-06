@@ -157,11 +157,11 @@ function mount(){
   if(state.mode==='menu'&&['campaign','lobby','load','connecting'].includes(menu.dataset.kind)){menu.dataset.kind='menu';menu.innerHTML='<h1>Le royaume des Goonks</h1><p>Explore, construis et mène tes peluches au combat.</p><button class="primary" data-action="20">Nouvelle aventure</button><button data-action="23">Charger une partie</button><button data-action="47">Mode campagne</button>';}
   
   if(state.mode==='menu'&&window.goonkOnlineConfigured&&!menu.querySelector('[data-action="75"]')){
-   const online=document.createElement('button');online.type='button';online.dataset.action='75';online.textContent='Online';menu.append(online);
+   const online=document.createElement('button');online.type='button';online.dataset.action='75';online.textContent='Multijoueur sur l’appareil de l’hôte';menu.append(online);
   }
   if(state.mode==='menu'&&window.goonkHostedAlerts&&!menu.querySelector('[data-open-hosted-match]')){
    const hosted=document.createElement('button');hosted.type='button';hosted.dataset.openHostedMatch='';
-   hosted.textContent=getLanguage()==='fr'?'Partie dédiée':'Hosted match';
+   hosted.textContent='Multijoueur sur serveur dédié';
    bindPress(hosted,()=>window.dispatchEvent(new Event('goonk-open-hosted-match')));
    menu.append(hosted);
   }

@@ -54,8 +54,10 @@ try {
       return route.fulfill({status: 200, headers, json: {matchId, playable,
         ...(!playable ? {scenarioStatus: 'choose', scenarios: [map]} : {})}});
     });
-    const entry = page.locator('.mobile-menu [data-action="75"] + [data-open-hosted-match]');
+    const entry = page.getByRole('button', {name: 'Multiplayer on a dedicated server', exact: true});
     await entry.tap();
+    await page.getByRole('heading', {name: 'Multiplayer on a dedicated server', exact: true}).waitFor();
+    await page.getByText('The server keeps the match available when the host closes the game.').waitFor();
     const seat = page.locator('#game-menu input[data-hosted-seat-code]');
     const {menuAllowed, touchSized} = await seat.evaluate(input => ({
       menuAllowed: input.dispatchEvent(new Event('contextmenu', {bubbles: true, cancelable: true})),
@@ -168,7 +170,9 @@ try {
   });
   assert.equal(await page.locator('#mobile-map-select option').filter({hasText: /^Goonks?( Online)?$/}).count(), 0);
   await page.locator('.lobby-footer [data-ui=back]').tap();
-  await page.getByRole('button', {name: 'Online', exact: true}).tap();
+  await page.getByRole('button', {name: 'Multiplayer on the host’s device', exact: true}).tap();
+  await page.getByRole('heading', {name: 'Multiplayer on the host’s device', exact: true}).waitFor();
+  await page.getByText('The host needs to keep the game open during the match.').waitFor();
   await page.locator('.online-login input').fill('ScenarioHost' + String(Date.now()).slice(-6));
   await page.locator('.online-login [type=submit]').tap();
   await panel.locator('[data-room-action=create]').tap();

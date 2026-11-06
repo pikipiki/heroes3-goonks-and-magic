@@ -16,7 +16,8 @@ export function createOnlineLogin(root, command) {
   const panel = document.createElement('section');
   panel.className = 'online-login';
   panel.hidden = true;
-  panel.innerHTML = `<form><header><h2>Online</h2><button type="button" data-close aria-label="Back">✕</button></header>
+  panel.innerHTML = `<form><header><h2>Multijoueur sur l’appareil de l’hôte</h2><button type="button" data-close aria-label="Back">✕</button></header>
+    <p>L’hôte doit garder le jeu ouvert pendant la partie.</p>
     <label><span></span><input name="player-name" data-online-name type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="online-name-help" minlength="4" maxlength="20" pattern="[A-Za-z0-9]+"><small id="online-name-help"></small></label>
     <button type="submit" class="primary"></button><p role="status" aria-live="polite"></p></form>`;
   root.querySelector('.mobile-play').append(panel);

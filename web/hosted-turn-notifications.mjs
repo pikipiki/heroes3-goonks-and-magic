@@ -86,7 +86,9 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     : 'If you remove the code, you’ll need to enter it again to resume this match on this device.';
   forget.setAttribute('aria-describedby', savedCodeHelp.id);
   savedActions.append(savedMatch, occupancy, resume, forget, savedCodeHelp);
-  field.prepend(savedActions);
+  const intro = document.createElement('p');
+  intro.textContent = 'Le serveur garde la partie disponible quand l’hôte ferme le jeu.';
+  field.prepend(intro, savedActions);
   chooser.append(fr ? 'Scénario de la partie dédiée' : 'Hosted match scenario', select);
   start.type = 'button';
   start.textContent = fr ? 'Lancer avec ce scénario' : 'Start with this scenario';
