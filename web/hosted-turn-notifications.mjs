@@ -9,6 +9,7 @@ function normalizeSeatCode(value) {
   return shortSeatCodePattern.test(short) ? short : '';
 }
 const rememberedSeatKey = 'heroes-goonk.hosted-seat';
+const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
 const matchPattern = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 
 export function requestedHostedMatch(search = location.search) {
@@ -22,6 +23,7 @@ function connectHostedMatch(runtime, destination, token, onLoading) {
     const {url, subprotocol} = sockets;
     const restoreSettings = () => { sockets.url = url; sockets.subprotocol = subprotocol; };
     let started = false;
+    let timeout;
     const finish = (error) => {
       clearTimeout(timeout);
       restoreSettings();
@@ -41,10 +43,18 @@ function connectHostedMatch(runtime, destination, token, onLoading) {
       }
     };
     const failed = () => finish(new Error('Game connection rejected.'));
-    const timeout = setTimeout(() => finish(new Error('Game connection timed out.')), 35000);
+    const timeLimit = ms => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => finish(new Error('Game connection timed out.')), ms);
+    };
+    timeLimit(30000);
     try {
       window.addEventListener('goonk-state', update);
-      sockets.on('open', () => { restoreSettings(); onLoading(); });
+      sockets.on('open', () => {
+        restoreSettings();
+        timeLimit(90000);
+        onLoading();
+      });
       sockets.on('close', failed);
       sockets.on('error', failed);
       sockets.url = destination.href;
@@ -79,12 +89,13 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   createMode.setAttribute('aria-controls', createPanel.id);
   joinMode.setAttribute('aria-controls', field.id);
   function showMode(mode) {
+    modes.hidden = intro.hidden = Boolean(mode);
+    container.scrollTop = 0;
     createPanel.hidden = mode !== 'create';
     field.hidden = mode !== 'join';
     createMode.setAttribute('aria-expanded', String(!createPanel.hidden));
     joinMode.setAttribute('aria-expanded', String(!field.hidden));
   }
-  showMode(requested ? 'join' : null);
   field.className = 'hosted-match-settings';
   field.innerHTML = '<label><span></span><input type="password" data-hosted-seat-code autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="hosted-seat-code-help"></label><button type="button" class="hosted-paste"></button><small id="hosted-seat-code-help"></small><div class="hosted-match-actions"><button type="button"></button><button type="button"></button></div><p role="status"></p>';
   const input = field.querySelector('input');
@@ -120,6 +131,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   savedActions.append(savedMatch, occupancy, resume, forget, savedCodeHelp);
   const intro = document.createElement('p');
   intro.textContent = 'Le serveur garde la partie disponible quand l’hôte ferme le jeu.';
+  showMode(requested ? 'join' : null);
   field.prepend(savedActions);
   chooser.append(fr ? 'Scénario de la partie dédiée' : 'Hosted match scenario', select);
   start.type = 'button';
@@ -389,9 +401,15 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       }
       let result = await hostedRequest(token, {}, remembered?.endpoint);
       let response = result.response.ok ? await result.response.json() : null;
-      for (let retry = 0; retry < 24 && response?.poolStatus === 'starting' && input.isConnected; retry++) {
+      const startupDeadline = Date.now() + 90000;
+      while (response?.poolStatus === 'starting' || (result.target === poolEndpoint && [502, 503, 504].includes(result.response.status))) {
+        if (Date.now() >= startupDeadline) {
+          status.textContent = fr ? 'Le serveur met trop de temps à démarrer la partie. Réessaie dans un instant.'
+            : 'The server is taking too long to start the match. Try again shortly.';
+          return;
+        }
         showLoading('Démarrage de la partie dédiée…', 'Starting the dedicated match…');
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        await pause(1500);
         if (!input.isConnected) return;
         result = await hostedRequest(token, {}, result.target);
         response = result.response.ok ? await result.response.json() : null;
@@ -432,7 +450,17 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       destination.protocol = destination.protocol === 'https:' ? 'wss:' : 'ws:';
       opening = true;
       showLoading('Connexion à la partie…', 'Connecting to the match…');
-      await connectHostedMatch(runtime, destination, token, () => showLoading('Chargement de la partie…', 'Loading the match…'));
+      const loadMatch = () => connectHostedMatch(runtime, destination, token,
+        () => showLoading('Chargement de la partie…', 'Loading the match…'));
+      try {
+        await loadMatch();
+      } catch (error) {
+        showLoading('Nouvelle tentative de connexion…', 'Retrying the connection…');
+        await pause(1000);
+        if (!input.isConnected) return;
+        if (window.goonkGameMenuState?.native?.sessionState !== 0) throw error;
+        await loadMatch();
+      }
       remember(matchId, token, target, name, players);
       const gameURL = new URL(location.href);
       gameURL.searchParams.set('match', matchId);
@@ -451,7 +479,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     }
   }
 
-  return button => {
+  function activate(button) {
     if (button === joinMode) {
       showMode('join');
       void refreshAlerts(true);
@@ -487,5 +515,16 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     if (button !== alerts) return false;
     void toggleAlerts();
     return true;
+  }
+
+  return {
+    activate,
+    back() {
+      if (modes.hidden) {
+        if (!pending) showMode(null);
+        return true;
+      }
+      return false;
+    },
   };
 }

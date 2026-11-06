@@ -123,11 +123,14 @@ function mountGameMenu(){
   bindPress(toggle,()=>{menuPresses.cancel();tab='home';render();status.textContent='';if(!dialog.open)dialog.showModal();});
   function activateMenuButton(button){
     if(!button?.isConnected||button.disabled)return;
-    if(hostedAlerts?.(button))return;
+    if(hostedAlerts?.activate(button))return;
     if(button.dataset.cheat!==undefined){const cheat=cheatCodes.find(x=>x.id===Number(button.dataset.cheat));if(!cheat||unavailableReason(cheat,state))return;command(29,cheat.id);status.textContent='Code envoyé au moteur : '+cheat.code;return;}
     const action=button.dataset.menu;
     if(action==='hosted-match'){openHostedMatch();return;}
-    if(action==='back'&&tab==='hosted-match'&&window.goonkMobileActive){dialog.close();return;}
+    if(action==='back'&&tab==='hosted-match'){
+      if(hostedAlerts?.back())return;
+      if(window.goonkMobileActive){dialog.close();return;}
+    }
     if(action==='back'){tab=tab==='storage-help'?'storage':'home';delete content.dataset.view;render();return;}
     if(action==='storage-help'){tab='storage-help';render();return;}
     if(action==='new-game'){tab='new-game';render();content.dataset.view='new-game';content.innerHTML='<h3>Start a new game?</h3><p>The current session will end. Your existing saved games will be kept. Save first if you want to keep your latest progress.</p><button data-menu=confirm-new-game>Start new game</button><button data-menu=back>Back</button>';return;}

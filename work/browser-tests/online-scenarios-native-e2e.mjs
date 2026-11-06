@@ -38,9 +38,12 @@ try {
       Module.websocket.on = (event, callback) => listeners.set(event, callback);
       Module._vcmiJoinHostedMatch = () => {
         listeners.get('open')?.();
+        window.testHostedAttempts = (window.testHostedAttempts || 0) + 1;
         setTimeout(() => {
-          if (window.testRejectHosted) listeners.get('close')?.();
-          else window.dispatchEvent(new CustomEvent('goonk-state', {detail: {
+          if (window.testRejectHosted || window.testHostedFailures > 0) {
+            if (window.testHostedFailures > 0) window.testHostedFailures--;
+            listeners.get('close')?.();
+          } else window.dispatchEvent(new CustomEvent('goonk-state', {detail: {
             ...window.goonkMobileState, sessionState: 6, onlineGame: true,
           }}));
         }, 750);
@@ -151,8 +154,11 @@ try {
     assert.equal(await alerts.getAttribute('aria-checked'), 'false');
     await simulateHostedSocket();
     assert.equal(await seat.inputValue(), '');
+    await page.evaluate(() => { window.testHostedFailures = 1; });
     await resume.tap();
+    await page.getByText('Retrying the connection…', {exact: true}).waitFor();
     await seat.waitFor({state: 'detached'});
+    assert.equal(await page.evaluate(() => window.testHostedAttempts), 2);
     revoke = true;
     await openMultiplayer();
     await dedicated.tap();
@@ -171,7 +177,7 @@ try {
       {id: 'medium', name: 'Medium map', width: 72, castles: [[{id: 0, name: 'Castle'}], [{id: 3, name: 'Inferno'}]]},
       {id: 'small', name: 'Small map', width: 36, castles: [[{id: 0, name: 'Castle'}, {id: 1, name: 'Rampart'}], [{id: 3, name: 'Inferno'}, {id: 4, name: 'Necropolis'}]]},
     ];
-    let request;
+    let request, attempts = 0;
     await page.route(new RegExp(new URL(poolEndpoint).origin + '/hosted/matches'), route => {
       const headers = {'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Authorization, Content-Type'};
@@ -187,6 +193,7 @@ try {
       if (route.request().method() === 'OPTIONS') return route.fulfill({status: 204, headers});
       const preview = new URL(route.request().url()).searchParams.has('preview');
       assert.equal(route.request().headers().authorization, 'Bearer ' + codes[preview ? 0 : 1].code.replaceAll('-', ''));
+      if (!preview && attempts++ === 0) return route.fulfill({status: 503, headers});
       return route.fulfill({status: 200, headers, json: {matchId, players: 2, connectedPlayers: 1, poolStatus: 'busy'}});
     });
     await openMultiplayer();
@@ -195,8 +202,11 @@ try {
     const createNew = page.getByRole('button', {name: 'Create new game', exact: true});
     const joinExisting = page.getByRole('button', {name: 'Join existing game', exact: true});
     const seat = page.locator('[data-hosted-seat-code]');
+    const back = page.locator('#game-menu [data-menu=back]');
     await createNew.tap();
     assert(await seat.isHidden());
+    assert(await createNew.isHidden());
+    assert(await joinExisting.isHidden());
     await page.locator('[data-create-map] option[value=small]').waitFor({state: 'attached'});
     assert.equal(await page.locator('[data-create-map]').inputValue(), 'small');
     await page.locator('[data-create-castles] select').first().selectOption('1');
@@ -206,14 +216,22 @@ try {
     assert.deepEqual(request.factions, [1, null]);
     assert.equal(request.players, 2);
     assert.equal(request.codeFormat, 'short');
+    await back.tap();
+    assert(await createNew.isVisible());
+    assert(await joinExisting.isVisible());
     await joinExisting.tap();
+    assert(await joinExisting.isHidden());
+    assert(await createNew.isHidden());
     assert(await seat.isVisible());
     assert(await page.locator('[data-create-codes]').isHidden());
     assert(await page.getByRole('button', {name: 'Resume match', exact: true}).isVisible());
     await page.getByText('1 of 2 players connected', {exact: true}).waitFor();
     await seat.fill('b4ol 8nyz qw2s');
     await page.getByRole('button', {name: 'Join match', exact: true}).tap();
+    await page.getByText('Starting the dedicated match…', {exact: true}).waitFor();
     await page.getByText('Another match is using the server.', {exact: false}).waitFor();
+    await back.tap();
+    assert(await createNew.isVisible());
     await createNew.tap();
     assert(await page.locator('[data-create-codes] [data-seat="1"]').isVisible());
     await page.locator('#game-menu [data-menu=close]').tap();
