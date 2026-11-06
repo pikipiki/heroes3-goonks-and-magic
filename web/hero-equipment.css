@@ -56,17 +56,48 @@
 .hero-extra-equipment .hero-artifact-slot strong{display:none}
 .hero-extra-equipment .hero-artifact-slot .hero-empty{line-height:30px;font-size:22px}
 @media(orientation:landscape){
- .hero-equipment-page{grid-template-columns:minmax(0,1.7fr) minmax(220px,1fr);grid-template-rows:64px 44px minmax(0,1fr)}
- .hero-body-layout{display:grid;grid-template-columns:minmax(170px,1fr) minmax(95px,.48fr);gap:6px}
- .hero-body-stage{grid-template-rows:repeat(5,48px);gap:3px;border-bottom:0;padding:0}
- #mobile-app .hero-body-stage .hero-artifact-slot{width:54px;height:48px}
- .hero-body-stage .hero-artifact-slot canvas{width:30px;height:30px;flex-basis:30px}
- .hero-body-stage .hero-artifact-slot .hero-empty{line-height:28px;font-size:20px}
- .hero-extra-equipment>div{grid-template-columns:repeat(2,minmax(0,1fr));gap:3px}
- #mobile-app .hero-extra-equipment .hero-artifact-slot{min-height:44px}
- .hero-extra-equipment .hero-artifact-slot small{font-size:10px;line-height:11px}
+ .hero-equipment-page{grid-template-columns:minmax(0,1fr) clamp(164px,35%,350px);grid-template-rows:56px 44px minmax(0,1fr);bottom:var(--safe-bottom)}
+ .hero-card-head{padding-block:3px}
+ .hero-card-head canvas{height:44px}
+ .hero-card-head p,.hero-card-head span{display:block;margin-top:1px;line-height:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .hero-primary{gap:2px}
+ .hero-primary dt{font-size:10px}
+ #mobile-app .hero-artifact-actions button{font-size:12px;padding:3px}
+ .hero-bag-tabs{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 60px;padding-inline:4px;gap:4px}
+ #mobile-app .hero-bag-tabs button{min-height:44px;min-width:44px;padding:2px 4px}
+ .hero-equipment-page[data-inventory=worn] .hero-equipment-grid{container:hero-inventory / size;padding:4px}
+ .hero-body-layout{display:grid;grid-template-columns:minmax(138px,1fr) minmax(138px,.85fr);grid-template-rows:minmax(0,1fr);gap:4px;height:100%;max-height:370px}
+ .hero-body-stage,.hero-extra-equipment>div{display:grid;grid-template-columns:repeat(3,minmax(44px,1fr));grid-template-rows:repeat(4,minmax(44px,1fr));gap:3px}
+ .hero-body-stage{align-items:stretch;border-bottom:0;padding:0}
+ .hero-body-stage [data-hero-slot="8"]{grid-row:4}
+ .hero-extra-equipment{display:grid;grid-template-rows:auto minmax(0,1fr)}
+ .hero-extra-equipment h3{margin:0 0 2px;font-size:11px;line-height:13px}
+ #mobile-app .hero-body-layout .hero-artifact-slot{min-width:44px;min-height:44px;height:auto;justify-content:center}
+ #mobile-app .hero-body-stage .hero-artifact-slot{width:min(76px,100%)}
+ .hero-body-layout .hero-artifact-slot small{font-size:11px;line-height:12px}
+ .hero-body-layout .hero-artifact-slot .hero-empty{line-height:18px;font-size:20px}
+ .hero-body-layout .hero-artifact-slot canvas{width:21px;height:21px;flex-basis:21px}
+ #mobile-app .hero-extra-equipment .hero-artifact-slot{padding:1px}
+ .hero-extra-equipment .hero-artifact-slot small{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-size:10px;line-height:11px}
+ .hero-extra-equipment .hero-artifact-slot .hero-empty{line-height:16px}
+ .hero-extra-equipment .hero-artifact-slot canvas{width:16px;height:16px;flex-basis:16px}
+}
+
+@container hero-inventory (min-height:250px){
+ .hero-body-layout .hero-artifact-slot canvas{width:28px;height:28px;flex-basis:28px}
+ .hero-extra-equipment .hero-artifact-slot small{font-size:12px;line-height:13px}
  .hero-extra-equipment .hero-artifact-slot .hero-empty{line-height:22px}
- .hero-extra-equipment .hero-artifact-slot canvas{width:24px;height:24px;flex-basis:24px}
+}
+
+/* Short browser viewports can fit the same targets in three rows. */
+@container hero-inventory (max-height:200px) and (min-width:327px){
+ .hero-body-layout{grid-template-columns:minmax(138px,.85fr) minmax(185px,1fr)}
+ .hero-body-stage,.hero-extra-equipment>div{grid-template-rows:repeat(3,minmax(44px,1fr))}
+ .hero-body-stage [data-hero-slot="1"]{grid-row:1}
+ .hero-body-stage [data-hero-slot="2"]{grid-area:1/3}
+ .hero-body-stage :is([data-hero-slot="3"],[data-hero-slot="4"],[data-hero-slot="5"]){grid-row:2}
+ .hero-body-stage :is([data-hero-slot="6"],[data-hero-slot="7"],[data-hero-slot="8"]){grid-row:3}
+ .hero-extra-equipment>div{grid-template-columns:repeat(4,minmax(44px,1fr))}
 }
 @media(orientation:portrait){
  .hero-body-stage{grid-template-rows:repeat(5,54px)}
@@ -75,6 +106,4 @@
  .hero-body-stage .hero-artifact-slot .hero-empty{line-height:30px}
  #mobile-app .hero-extra-equipment .hero-artifact-slot{min-height:48px}
 }
-@media(orientation:landscape){#mobile-app .hero-body-stage .hero-artifact-slot{width:min(76px,100%)}}
-
 .hero-bag-tabs:not(:has([data-hero-classic])){grid-template-columns:repeat(2,minmax(0,1fr))}
