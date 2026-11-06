@@ -6,5 +6,6 @@
 
 [context.production.environment]
   GOONK_LOBBY_RELAY = "wss://heroes-goonk-relay.onrender.com/lobby"
+GOONK_HOSTED_POOL_ENDPOINT = "https://heroes-goonk-hosted-matches-krve.onrender.com/hosted/turn-notifications"
 GOONK_HOSTED_ENDPOINT = "https://heroes-goonk-dedicated-jrre.onrender.com/hosted/turn-notifications"
 GOONK_PUSH_PUBLIC_KEY = "BMD5-Kd8GqFEHRPyDR3f-jj2TVgqRSgKtajdx6mXk_W50cn6-HlKpQAfKsPaf3yOphLezEUaqxOH_399B3ux2zY"
