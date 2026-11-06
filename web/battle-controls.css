@@ -1,11 +1,21 @@
-/* Larger, separated hit targets. Portrait: view on the right, auto on the left. */
-html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top{grid-template-columns:56px minmax(0,1fr) 124px;row-gap:14px;column-gap:10px;padding:8px;min-height:0}
-html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top>#game-menu-toggle{width:56px;min-width:56px;min-height:56px!important}
-html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-view{width:124px;min-height:56px!important;font-size:15px!important;padding:7px!important;white-space:normal}
-html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-team-actions{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12px}
-html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-team-actions button{min-height:56px!important;padding:7px!important;font-size:16px;white-space:normal;line-height:1.2}
-html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] [data-ui=battle-auto]{grid-column:1;grid-row:1}
-html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] [data-ui=battle-retreat]{grid-column:2;grid-row:1}
+/* Keep all four combat commands on one row, including on narrow phones. */
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top{
+ display:grid;grid-template-columns:44px minmax(0,1fr) minmax(0,1.6fr);gap:4px 6px;align-items:stretch;min-height:0;
+ padding:4px max(8px,env(safe-area-inset-right)) 4px max(8px,env(safe-area-inset-left))
+}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-title{display:none}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top>#game-menu-toggle{width:44px;min-width:44px;min-height:44px!important}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-view{grid-column:2;grid-row:1}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-team-actions{
+ display:grid;grid-column:3;grid-row:1;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:6px;min-width:0
+}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-view,
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-team-actions button{
+ width:100%;min-width:44px;min-height:44px!important;padding:3px 4px!important;
+ font-size:clamp(12px,3.6vw,15px)!important;line-height:1.1;white-space:normal
+}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] [data-ui=battle-retreat]{grid-column:2}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-calendar{grid-row:2}
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-tools button{min-height:52px!important;font-size:14px!important}
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-follow-action{min-height:56px!important;font-size:15px}
 @media(orientation:portrait){
@@ -14,24 +24,12 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-nav .primary{grid-column:1/-1;min-height:56px!important}
 }
 @media(orientation:portrait) and (max-height:650px){
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top{grid-template-columns:52px minmax(0,1fr) 112px;row-gap:10px;column-gap:8px;padding:5px 8px}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top>#game-menu-toggle{width:52px;min-width:52px;min-height:52px!important}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-view{width:112px;min-height:52px!important}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-team-actions button{min-height:52px!important;font-size:15px}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-nav{gap:6px;padding:5px 7px calc(5px + var(--safe-bottom))}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-nav button{min-height:48px!important;font-size:14px!important}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-nav .primary{min-height:52px!important}
 }
 @media(orientation:landscape) and (max-height:600px){
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top{display:grid;grid-template-columns:44px minmax(0,1fr) auto auto;row-gap:3px;column-gap:8px;padding:4px max(8px,env(safe-area-inset-right)) 4px max(8px,env(safe-area-inset-left))}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]{grid-template-rows:auto minmax(0,1fr);grid-template-columns:minmax(0,1fr) 112px}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top>#game-menu-toggle{width:44px;min-width:44px;min-height:44px!important}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-calendar{grid-row:2}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-view{width:auto;min-width:96px;min-height:44px!important}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-team-actions{display:flex;grid-column:4;grid-row:1;gap:6px}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-team-actions button{min-height:44px!important;min-width:80px;font-size:14px}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] [data-ui=battle-retreat]{order:1}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] [data-ui=battle-auto]{order:0}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-nav{gap:4px}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-nav button{min-height:44px!important;font-size:14px!important}
 }
