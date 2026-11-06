@@ -31,6 +31,13 @@
 #game-menu .hosted-match-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10rem),1fr));gap:6px}
 #game-menu .hosted-match-actions > :is(select,p){grid-column:1/-1}
 
+#game-menu .hosted-alert-indicator:not([hidden]){
+  display:inline-block;padding:1px 6px;border:1px solid currentColor;border-radius:3px;
+  color:#f4d89d;font-size:.85em;white-space:nowrap;
+}
+#game-menu .hosted-alert-indicator[data-state=on]{color:#d9f6ba;background:#29391c}
+#game-menu .hosted-alert-indicator[data-state=off]{color:#ffcec4;background:#49221a}
+
 #game-menu .hosted-match-loading{
   position:sticky;top:0;z-index:1;display:flex;align-items:center;gap:10px;min-height:44px;padding:6px 10px;
   color:#fff0c2;background:#2c1e13;border:1px solid #b59750;

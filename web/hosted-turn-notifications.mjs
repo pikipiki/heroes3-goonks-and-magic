@@ -148,6 +148,10 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   status.before(chooser, start);
   field.querySelector('label span').textContent = fr ? 'Code de la partie' : 'Game code';
   const alertsLabel = fr ? 'Alertes de tour' : 'Turn alerts';
+  const alertsCaption = document.createTextNode(alertsLabel + ' ');
+  const alertsIndicator = document.createElement('strong');
+  alertsIndicator.className = 'hosted-alert-indicator';
+  alerts.append(alertsCaption, alertsIndicator);
   const alertsHelp = document.createElement('p');
   alertsHelp.id = 'hosted-turn-alerts-help';
   alerts.setAttribute('aria-describedby', alertsHelp.id);
@@ -247,19 +251,25 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     const {token} = alertSeat();
     const {enabled, checking} = alertsState;
     alerts.disabled = !token || pending || checking;
-    if (typeof enabled === 'boolean') {
+    const known = typeof enabled === 'boolean';
+    alertsIndicator.hidden = !token;
+    alertsIndicator.dataset.state = known ? (enabled ? 'on' : 'off') : 'unknown';
+    alertsIndicator.textContent = known
+      ? (enabled ? (fr ? 'Activées' : 'On') : (fr ? 'Désactivées' : 'Off'))
+      : checking ? (fr ? 'Vérification…' : 'Checking…') : (fr ? 'Non vérifiées' : 'Unverified');
+    if (known) {
       alerts.setAttribute('role', 'switch');
       alerts.setAttribute('aria-checked', String(enabled));
       alerts.setAttribute('aria-label', alertsLabel);
-      alerts.textContent = alertsLabel + ' · ' + (fr ? (enabled ? 'Activées' : 'Désactivées') : (enabled ? 'On' : 'Off'));
+      alertsCaption.data = alertsLabel + ' ';
     } else {
       for (const attribute of ['role', 'aria-checked', 'aria-label']) alerts.removeAttribute(attribute);
-      alerts.textContent = checking ? (fr ? 'Vérification des alertes…' : 'Checking turn alerts…')
-        : token ? (fr ? 'Vérifier les alertes' : 'Check turn alerts') : alertsLabel;
+      alertsCaption.data = token && !checking
+        ? (fr ? 'Vérifier les alertes ' : 'Check turn alerts ') : alertsLabel + ' ';
     }
     alertsHelp.textContent = token
-      ? (fr ? 'Active les alertes sur cet appareil. Les couper les arrête pour cette place sur tous les appareils.'
-        : 'Switch on to get alerts on this device. Switching off stops alerts for this seat on any device.')
+      ? (fr ? 'État des alertes pour cette place. Active-les sur cet appareil. Les couper les arrête sur tous les appareils.'
+        : 'Alert status for this seat. Switch on to receive alerts on this device. Switching off stops them on all devices.')
       : (fr ? 'Saisis ton code ou choisis une partie mémorisée pour régler les alertes.'
         : 'Enter your seat code or select a saved game to manage turn alerts.');
     join.disabled = !valid || pending || !window.Module?._vcmiJoinHostedMatch;

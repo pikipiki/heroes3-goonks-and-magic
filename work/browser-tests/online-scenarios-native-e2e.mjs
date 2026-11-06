@@ -106,12 +106,14 @@ try {
     await seat.fill(hostCode);
     await alerts.waitFor();
     assert.equal(await alerts.getAttribute('aria-checked'), 'false');
+    assert(await alerts.getByText('Off', {exact: true}).isVisible());
     await alerts.tap();
     await page.getByText('Notifications are unavailable here.', {exact: false}).waitFor();
     await page.evaluate(() => { window.testPushReady = true; });
     await alerts.tap();
     await page.getByText('Alerts enabled for this seat.', {exact: true}).waitFor();
     assert.equal(await alerts.getAttribute('aria-checked'), 'true');
+    assert(await alerts.getByText('On', {exact: true}).isVisible());
     await seat.fill(hostCode);
     await page.getByRole('button', {name: 'Join match', exact: true}).tap();
     await page.getByLabel('Hosted match scenario').selectOption(map.id);
