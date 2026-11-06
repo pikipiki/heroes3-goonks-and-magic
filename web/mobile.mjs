@@ -147,6 +147,7 @@ function mount(){
     ...(state.turn?[btn(fr?'Recruter le héros sélectionné':'Recruit selected hero','accept',true)]:[]),btn('↩ Back','back')];
   }
   else if(m==='dialog'&&state.dialogKind==='fort')items=[btn('Retour au château','back')];
+  else if(m==='dialog'&&state.dialogKind==='commander')items=[btn('↩ Back','presentation-back'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
   else if(m==='dialog'&&state.dialogKind==='commander-level-up'){
    const fr=getLanguage()==='fr';
    items=[btn(fr?'✓ Valider la compétence':'✓ Confirm skill','accept',true),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];

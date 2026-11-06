@@ -109,6 +109,7 @@ private:
 };
 
 bool CStackWindow::isCommanderLevelUp() const { return info->levelupInfo.has_value(); }
+bool CStackWindow::isCommander() const { return info->commander != nullptr; }
 const CCreature * CStackWindow::getMobileCreature() const { return info->creature; }
 const CStackInstance * CStackWindow::getMobileStack() const
 {

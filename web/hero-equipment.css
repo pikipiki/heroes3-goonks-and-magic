@@ -17,6 +17,9 @@
 .hero-vitals .hero-icon{width:14px;height:14px}
 .hero-bag-tabs{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr) minmax(0,1.2fr) minmax(0,.75fr);gap:4px;padding:3px 8px}
 #mobile-app .hero-bag-tabs button{font-size:clamp(11px,3.4vw,14px);line-height:1.1;padding:3px;min-width:0}
+.hero-bag-tabs:has([data-hero-commander]){grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr) minmax(0,1.2fr) minmax(0,.75fr) 44px}
+#mobile-app .hero-bag-tabs [data-hero-commander]{display:grid;place-items:center}
+.hero-bag-tabs [data-hero-commander] .hero-icon{width:36px;height:36px}
 #mobile-app .hero-bag-tabs button[aria-pressed=true]{border-color:#ffe49a;box-shadow:inset 0 0 0 1px #d8ac59;font-weight:700}
 .hero-equipment-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:120px;gap:6px;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;min-height:0;padding:8px;align-content:start}
 #mobile-app .hero-artifact-slot{display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px;min-width:0;overflow:hidden;white-space:normal}

@@ -200,6 +200,7 @@ class CStackWindow : public CWindowObject
 
 public:
 	bool isCommanderLevelUp() const;
+	bool isCommander() const;
 	const CCreature * getMobileCreature() const;
 	const CStackInstance * getMobileStack() const;
 	unsigned getMobileCount() const;

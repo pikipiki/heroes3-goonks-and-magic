@@ -154,10 +154,10 @@ void publishArtifactIcons()
 // Keep the mobile sheet on the same animation frames as CHeroWindow.
 using HeroIconFrames = std::vector<std::pair<std::string, int>>;
 
-void addHeroIcon(HeroIconFrames & frames, JsonNode & index, const char * animation, int frame)
+void addHeroIcon(HeroIconFrames & frames, JsonNode & index, const char * resource, int frame = -1)
 {
  index.Integer() = frames.size();
- frames.emplace_back(animation, frame);
+ frames.emplace_back(resource, frame);
 }
 
 void publishHeroIcons(const HeroIconFrames & frames)
@@ -176,8 +176,10 @@ void publishHeroIcons(const HeroIconFrames & frames)
   auto canvas = Canvas::createFromSurface(surface, CanvasScalingPolicy::IGNORE);
   for(size_t i = 0; i < frames.size(); ++i)
   {
-   const auto & [animation, frame] = frames[i];
-   auto image = ENGINE->renderHandler().loadImage(AnimationPath::builtin(animation), frame, 0, EImageBlitMode::COLORKEY);
+   const auto & [resource, frame] = frames[i];
+   auto & renderer = ENGINE->renderHandler();
+   auto image = frame < 0 ? renderer.loadImage(ImagePath::builtin(resource), EImageBlitMode::COLORKEY)
+                          : renderer.loadImage(AnimationPath::builtin(resource), frame, 0, EImageBlitMode::COLORKEY);
    if(!image)
     continue;
    auto size = image->dimensions();
@@ -520,6 +522,11 @@ void publishMobileState(){
   n["mode"].String()="dialog";
   n["dialogKind"].String()="commander-level-up";
  }
+ else if(creatureWindow&&creatureWindow->isCommander()&&!CPlayerInterface::battleInt){
+  n["mode"].String()="dialog";
+  n["dialogKind"].String()="commander";
+  n["dialogTitle"].String()=creatureWindow->getMobileCreature()->getNameSingularTranslated();
+ }
  else if(creatureWindow)n["mode"].String()="creature";
  else if(townWindow)n["mode"].String()="town";
  else if(heroWindow)n["mode"].String()="hero";
@@ -697,6 +704,8 @@ void publishMobileState(){
     addHeroIcon(icons, entry["icon"], "SECSKILL", skill->getIconIndex(level - 1));
     skills.push_back(std::move(entry));
    }
+   if(h["owned"].Bool() && hero->getCommander())
+    addHeroIcon(icons, h["commanderIcon"], "heroWindow/commanderButtonIcon");
    publishHeroIcons(icons);
    const auto picked=heroWindow->getPickedArtifact();if(picked){h["picked"]["name"].String()=picked->getType()->getNameTranslated();h["picked"]["icon"].Integer()=picked->getType()->getIconIndex();artifactIconIds.insert(picked->getType()->getIconIndex());}
    auto addSlot=[&](int index,bool backpack){const auto position=ArtifactPosition(index);const auto art=hero->getArt(position,false);JsonNode item;item["slot"].Integer()=index;bool locked=false;for(const auto & set:heroWindow->artSets)if(set)if(auto place=set->getArtPlace(position)){locked=place->isLocked();break;}item["locked"].Bool()=locked;item["movable"].Bool()=art&&!locked&&index!=int(ArtifactPosition::SPELLBOOK)&&index!=int(ArtifactPosition::MACH4);item["allowed"].Bool()=picked&&!locked&&picked->canBePutAt(hero,position,true);if(art){const auto type=art->getType();item["name"].String()=type->getNameTranslated();item["description"].String()=type->getDescriptionTranslated();item["icon"].Integer()=type->getIconIndex();artifactIconIds.insert(type->getIconIndex());}h[backpack?"backpack":"slots"].Vector().push_back(item);};
@@ -848,6 +857,18 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  // A dedicated cancel operation cannot also accept a dialog or close the town
  // below it. Ignore delayed taps once the taverne is no longer on top.
  if(action==62||action==63||action==64){if(auto window=ENGINE->windows().topWindow<CHeroWindow>()){if(action==63)window->close();else if(action==64){for(const auto & set:window->artSets)if(set)set->putBackPickedArtifact();}else if(window->curHero&&GAME->interface()&&window->curHero->getOwner()==GAME->interface()->playerID&&a>=0&&a<=int(ArtifactPosition::BACKPACK_START)+int(window->curHero->artifactsInBackpack.size()))window->clickPressedOnArtPlace(window->curHero,ArtifactPosition(a),true,false,false,window->pos.center());lastPublished=0;}return;}
+ if(action==85)
+ {
+  const auto player=GAME->interface();
+  const auto window=ENGINE->windows().topWindow<CHeroWindow>();
+  if(player && window && window->curHero && window->curHero->getOwner()==player->playerID
+     && window->curHero->getCommander() && !window->getPickedArtifact())
+  {
+   window->commanderWindow();
+   lastPublished=0;
+  }
+  return;
+ }
  if(action==40){if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>())tavern->close();lastPublished=0;return;}
  if(action==72)
  {
