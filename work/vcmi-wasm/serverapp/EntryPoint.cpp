@@ -30,6 +30,8 @@ static void handleCommandOptions(int argc, const char * argv[], boost::program_o
 	("version,v", "display version information and exit")
 	("run-by-client", "indicate that server launched by client on same machine")
 	("dummy-run", "Shutdown immediately after loading was sucessful")
+	("hosted-seats", boost::program_options::value<std::string>(), "Map colors authorized by the dedicated gateway")
+	("hosted-map", boost::program_options::value<std::string>(), "Start a new dedicated match on the named map")
 	("hosted-restore", "Restore a dedicated match and accept authenticated loopback connections")
 	("verify-turn-checkpoint", "Load and validate the hosted save without opening a network listener")
 	("turn-checkpoint", "Save to Hosted-Turn.vsgm1 when a human turn starts (one game per user data directory)")
@@ -103,14 +105,16 @@ int main(int argc, const char * argv[])
 			exitCode = 1;
 		}
 	}
-	else if(opts.count("hosted-restore"))
+	else if(opts.count("hosted-restore") || opts.count("hosted-map"))
 	{
 		try
 		{
 			const auto * key = std::getenv("GOONK_HOSTED_GATEWAY_KEY");
 			const auto port = opts.count("port") ? opts["port"].as<uint16_t>() : settings["server"]["localPort"].Integer();
 			HostedRestoreServer server(port, key ? key : "");
-			server.restore();
+			if(!opts.count("hosted-seats") || (opts.count("hosted-restore") && opts.count("hosted-map")))
+				throw std::runtime_error("Specify hosted seats and exactly one hosted start mode");
+			server.start(opts.count("hosted-map") ? opts["hosted-map"].as<std::string>() : "", opts["hosted-seats"].as<std::string>());
 			server.run();
 		}
 		catch(const std::exception & error)

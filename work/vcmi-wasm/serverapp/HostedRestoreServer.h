@@ -34,26 +34,61 @@ public:
 			throw std::runtime_error("Invalid hosted gateway key");
 	}
 
-	void restore()
+	void start(const std::string & mapName, const std::string & colors)
 	{
-		loadTurnCheckpoint();
-		if(si->playerInfos.size() < 2 || si->turnTimerInfo.isEnabled() || !gh->gameState().currentBattles.empty()
-			|| gh->gameInfo().getMapHeader()->battleOnly)
-			throw std::runtime_error("Hosted restore requires a turn checkpoint of a multiplayer adventure without timers");
-
-		for(const auto & [color, player] : si->playerInfos)
+		std::set<PlayerColor> seats;
+		for(const auto color : colors)
 		{
-			if(!color.isValidPlayer() || player.connectedPlayerIDs.size() != 1 || !player.isControlledByHuman())
-				throw std::runtime_error("Hosted restore requires one human per map color");
-			if(!playerNames.emplace(*player.connectedPlayerIDs.begin(), ClientPlayer{connectionFor(color), player.name}).second)
-				throw std::runtime_error("Hosted restore found a shared player assignment");
+			if(color < '0' || color > '7' || !seats.emplace(color - '0').second)
+				throw std::runtime_error("Invalid hosted seat roster");
+		}
+		if(seats.size() < 2)
+			throw std::runtime_error("Hosted matches require at least two seats");
+
+		if(mapName.empty())
+			loadTurnCheckpoint();
+		else
+		{
+			auto map = std::make_shared<CMapInfo>();
+			map->mapInit(mapName);
+			if(map->mapHeader->battleOnly || map->amountOfPlayersOnMap != seats.size())
+				throw std::runtime_error("The hosted map must have exactly one slot per seat");
+			si->mode = EStartMode::NEW_GAME;
+			si->difficulty = 1;
+			for(const auto color : seats)
+			{
+				const auto id = vstd::next(PlayerConnectionID::FIRST_HUMAN, color.getNum());
+				playerNames.emplace(id, ClientPlayer{connectionFor(color), color.toString()});
+			}
+			updateStartInfoOnMapChange(map);
 		}
 
+		if(si->playerInfos.size() != seats.size() || si->turnTimerInfo.isEnabled()
+			|| si->simturnsInfo.requiredTurns || si->simturnsInfo.optionalTurns
+			|| mi->mapHeader->battleOnly || (gh && !gh->gameState().currentBattles.empty()))
+			throw std::runtime_error("Hosted matches require a sequential multiplayer adventure without timers");
+
+		playerNames.clear();
+		for(const auto & [color, player] : si->playerInfos)
+		{
+			if(!seats.contains(color) || player.connectedPlayerIDs.size() != 1 || !player.isControlledByHuman())
+				throw std::runtime_error("Hosted roster and human map slots do not match");
+			if(!playerNames.emplace(*player.connectedPlayerIDs.begin(), ClientPlayer{connectionFor(color), player.name}).second)
+				throw std::runtime_error("Hosted match found a shared player assignment");
+		}
+
+		if(!mapName.empty())
+		{
+			verifyStateBeforeStart(false);
+			if(!prepareToStartGame())
+				throw std::runtime_error("The hosted map could not be started");
+			ready = true;
+		}
 		startGameImmediately();
 		ready = true;
 		prepare(false, false);
 		const auto port = getNetworkServer().start(getPort(), true);
-		logGlobal->info("Hosted restore listening on loopback port %d", port);
+		logGlobal->info("Hosted match listening on loopback port %d", port);
 	}
 
 	void applyPack(CPackForClient & pack) override
@@ -167,6 +202,8 @@ private:
 
 		LobbyUpdateState statePack;
 		statePack.state = static_cast<const LobbyState &>(*this);
+		statePack.state.si = std::make_shared<StartInfo>(*si);
+		statePack.state.si->mode = EStartMode::LOAD_GAME;
 		client->sendPack(statePack);
 
 		LobbyStartGame start;
