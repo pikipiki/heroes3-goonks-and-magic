@@ -2,7 +2,8 @@ const configured=new WeakSet();
 
 export function isMobileLayout(win=window){
  const choice=new URLSearchParams(win.location.search).get('mobile');
- return win.goonkMobileActive??=choice==='1'||(choice!=='0'&&win.matchMedia('(max-width: 960px), (pointer: coarse)').matches);
+ const mobileDevice=win.navigator?.userAgentData?.mobile||/Android/i.test(win.navigator?.userAgent||'');
+ return win.goonkMobileActive??=choice==='1'||(choice!=='0'&&(mobileDevice||win.matchMedia('(max-width: 960px), (pointer: coarse)').matches));
 }
 // The touch view samples this canvas on its own animation frame, after WebGL
 // presentation. Safari may have cleared a non-preserved drawing buffer by then.

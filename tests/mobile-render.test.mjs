@@ -1,4 +1,4 @@
-import {test} from 'node:test';import assert from 'node:assert/strict';import {configureMobileSource,createCanvasSizer} from '../web/mobile-render.mjs';
+import {test} from 'node:test';import assert from 'node:assert/strict';import {configureMobileSource,createCanvasSizer,isMobileLayout} from '../web/mobile-render.mjs';
 test('Only the mobile engine canvas preserves WebGL frames, before the first context is created',()=>{
  const calls=[],canvas={getContext:(...args)=>{calls.push(args);return 'context';}};configureMobileSource(canvas,false);canvas.getContext('webgl',{alpha:false});assert.equal(calls[0][1].preserveDrawingBuffer,undefined);
  configureMobileSource(canvas,true);const method=canvas.getContext;configureMobileSource(canvas,true);assert.equal(canvas.getContext,method);
@@ -20,4 +20,11 @@ test('Large touch displays keep a bounded canvas pixel budget',()=>{
 
 test('Mobile framebuffer preservation is configured even before the translated UI finishes loading',()=>{
  const previous=globalThis.window;try{globalThis.window={location:{search:'?mobile=1'},matchMedia:()=>({matches:true})};let options;const canvas={getContext:(type,value)=>{options=value;return 'context';}};configureMobileSource(canvas,undefined);canvas.getContext('webgl2',{alpha:false});assert.equal(options.preserveDrawingBuffer,true);assert.equal(window.goonkMobileActive,true);}finally{if(previous===undefined)delete globalThis.window;else globalThis.window=previous;}
+});
+
+test('Android stays in the touch layout even when the viewport and pointer query look like desktop',()=>{
+ const win={location:{search:''},navigator:{userAgent:'Mozilla/5.0 (Linux; Android 15)'},matchMedia:()=>({matches:false})};
+ assert.equal(isMobileLayout(win),true);
+ assert.equal(isMobileLayout({...win,goonkMobileActive:undefined,location:{search:'?mobile=0'}}),false);
+ assert.equal(isMobileLayout({...win,goonkMobileActive:undefined,navigator:{userAgent:'Desktop'}}),false);
 });

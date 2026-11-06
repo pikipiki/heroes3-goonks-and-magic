@@ -20,11 +20,21 @@ export function createMapPan(send,{schedule=fn=>requestAnimationFrame(fn)}={}){
 // at the current scroll origin instead: client rects and finger coordinates then
 // share the same origin. This also follows browser toolbar/keyboard resizing.
 export function anchorMobileViewport(root,win=window){
- const viewport=win.visualViewport;let pending=false,disposed=false;
+ const viewport=win.visualViewport;let pending=false,disposed=false,lastLayoutWidth;
  function update(){
-  if(disposed||(viewport&&Math.abs(viewport.scale-1)>.01))return;
-  const width=viewport?.width??win.innerWidth,height=viewport?.height??win.innerHeight;
+  if(disposed)return;
+  const layout=win.document?.documentElement;
+  const layoutWidth=layout?.clientWidth||win.innerWidth;
+  const layoutHeight=layout?.clientHeight||win.innerHeight;
+  const scale=viewport?.scale??1;
+  const zoomed=Math.abs(scale-1)>.01;
+  // A rotation can change the layout before Chromium reports the new
+  // visual viewport. Use the new layout instead of retaining the old size.
+  if(scale>1.01&&layoutWidth===lastLayoutWidth)return;
+  const width=zoomed?layoutWidth:(viewport?.width??layoutWidth);
+  const height=scale<.99?Math.min(layoutHeight,viewport.height*scale):zoomed?layoutHeight:(viewport?.height??layoutHeight);
   if(!(width>0&&height>0))return;
+  lastLayoutWidth=layoutWidth;
   const next={position:'absolute',inset:'auto',left:(win.scrollX||0)+'px',top:(win.scrollY||0)+'px',width:width+'px',height:height+'px'};
   for(const [name,value] of Object.entries(next))if(root.style[name]!==value)root.style[name]=value;
  }

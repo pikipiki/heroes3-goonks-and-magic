@@ -46,10 +46,26 @@ test('Document anchor keeps mobile buttons in client coordinates after iOS Home 
  // or writing window scroll position. Native pinch zoom is left alone.
  viewport.height=500;viewport.dispatchEvent(new Event('resize'));queue.shift()();assert.equal(values.height,'500px');
  viewport.scale=2;viewport.width=215;viewport.dispatchEvent(new Event('resize'));queue.shift()();assert.equal(values.width,'430px');
- viewport.scale=1;viewport.width=430;viewport.height=873;win.dispatchEvent(new Event('pageshow'));queue.shift()();assert.equal(values.height,'873px');
+ win.innerWidth=873;win.innerHeight=360;win.dispatchEvent(new Event('orientationchange'));queue.shift()();assert.equal(values.width,'873px');assert.equal(values.height,'360px');
+ win.innerWidth=430;win.innerHeight=873;viewport.scale=1;viewport.width=430;viewport.height=873;win.dispatchEvent(new Event('pageshow'));queue.shift()();assert.equal(values.height,'873px');
  anchor.dispose();win.dispatchEvent(new Event('resize'));assert.equal(queue.length,0);
 });
 test('Mobile document anchor works without visualViewport in desktop browsers',async()=>{
  const {anchorMobileViewport}=await import('../web/mobile-viewport.mjs');const win=new EventTarget();Object.assign(win,{innerWidth:800,innerHeight:600,scrollX:0,scrollY:0,requestAnimationFrame:f=>f()});const root={style:{}};
  const anchor=anchorMobileViewport(root,win);assert.equal(root.style.width,'800px');assert.equal(root.style.height,'600px');win.innerWidth=600;win.innerHeight=800;win.dispatchEvent(new Event('resize'));assert.equal(root.style.height,'800px');anchor.dispose();
+});
+
+test('Android rotation shrinks the app even while overflow keeps innerWidth at the old size',async()=>{
+ const {anchorMobileViewport}=await import('../web/mobile-viewport.mjs');
+ const win=new EventTarget(),viewport=new EventTarget(),layout={clientWidth:844,clientHeight:360};
+ Object.assign(viewport,{width:844,height:360,scale:1});
+ Object.assign(win,{document:{documentElement:layout},innerWidth:844,innerHeight:360,visualViewport:viewport,requestAnimationFrame:f=>f()});
+ const root={style:{}};
+ anchorMobileViewport(root,win);
+ assert.equal(root.style.width,'844px');
+ Object.assign(layout,{clientWidth:360,clientHeight:650});
+ Object.assign(viewport,{width:844,height:1300,scale:.5});
+ viewport.dispatchEvent(new Event('resize'));
+ assert.equal(root.style.width,'360px');
+ assert.equal(root.style.height,'650px');
 });
