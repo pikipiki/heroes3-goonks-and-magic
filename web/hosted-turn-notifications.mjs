@@ -23,6 +23,7 @@ function connectHostedMatch(runtime, destination, token, onLoading) {
     const {url, subprotocol} = sockets;
     const restoreSettings = () => { sockets.url = url; sockets.subprotocol = subprotocol; };
     let started = false;
+    let opened = false;
     let timeout;
     const finish = (error) => {
       clearTimeout(timeout);
@@ -36,32 +37,33 @@ function connectHostedMatch(runtime, destination, token, onLoading) {
       if (state.sessionState === 6 && state.onlineGame) {
         finish();
       } else if (state.sessionState === 0 && started) {
-        finish(new Error('Game connection ended.'));
+        fail('engine-ended');
       } else if (state.sessionState > 0) {
         started = true;
         if (state.sessionState === 5) onLoading();
       }
     };
-    const failed = () => finish(new Error('Game connection rejected.'));
+    const fail = phase => finish(new Error('Hosted connection failed.', {cause: phase}));
     const timeLimit = ms => {
       clearTimeout(timeout);
-      timeout = setTimeout(() => finish(new Error('Game connection timed out.')), ms);
+      timeout = setTimeout(() => fail(opened ? 'load-timeout' : 'socket-timeout'), ms);
     };
     timeLimit(30000);
     try {
       window.addEventListener('goonk-state', update);
       sockets.on('open', () => {
+        opened = true;
         restoreSettings();
         timeLimit(90000);
         onLoading();
       });
-      sockets.on('close', failed);
-      sockets.on('error', failed);
+      sockets.on('close', () => fail('socket-closed'));
+      sockets.on('error', () => fail('socket-error'));
       sockets.url = destination.href;
       sockets.subprotocol = 'binary, goonk.' + token;
       runtime._vcmiJoinHostedMatch();
-    } catch (error) {
-      finish(error);
+    } catch {
+      fail('engine-error');
     }
   });
 }
@@ -198,8 +200,8 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       }
     }, () => joinMatch({remembered: createdSeat}));
 
-  async function hostedRequest(token, options, knownEndpoint, query = '') {
-    const send = target => fetch(target + query, {
+  async function hostedRequest(token, options, knownEndpoint, query = '', attempt) {
+    const send = target => fetch(target + (attempt && target === poolEndpoint ? '?attempt=' + attempt : query), {
       credentials: 'omit', redirect: 'error', signal: AbortSignal.timeout(target === poolEndpoint ? 55000 : 10000),
       ...options, headers: {Authorization: 'Bearer ' + token, ...options?.headers},
     });
@@ -396,6 +398,11 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     showLoading('Vérification de l’accès…', 'Checking access…');
     render();
     let opening = false;
+    const attempt = crypto.randomUUID();
+    const startedAt = performance.now();
+    let tracePool = Boolean(poolEndpoint && (remembered?.endpoint === poolEndpoint || invitation ||
+      (!remembered && (shortSeatCodePattern.test(token) || token.startsWith('HG')))));
+    let outcome = 'request-error';
     try {
       if (scenario) {
         const {response} = await hostedRequest(token, {method: 'POST', headers: {'Content-Type': 'application/json'},
@@ -439,11 +446,13 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
         try { sessionStorage.removeItem(key); } catch {}
         input.value = '';
       }
-      let result = await hostedRequest(token, {}, remembered?.endpoint);
+      let result = await hostedRequest(token, {}, remembered?.endpoint, '', attempt);
+      tracePool = result.target === poolEndpoint;
       let response = result.response.ok ? await result.response.json() : null;
       const startupDeadline = Date.now() + 90000;
       while (response?.poolStatus === 'starting' || (result.target === poolEndpoint && [502, 503, 504].includes(result.response.status))) {
         if (Date.now() >= startupDeadline) {
+          outcome = 'server-timeout';
           status.textContent = fr ? 'Le serveur met trop de temps à démarrer la partie. Réessaie dans un instant.'
             : 'The server is taking too long to start the match. Try again shortly.';
           return;
@@ -451,7 +460,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
         showLoading('Démarrage de la partie dédiée…', 'Starting the dedicated match…');
         await pause(1500);
         if (!input.isConnected) return;
-        result = await hostedRequest(token, {}, result.target);
+        result = await hostedRequest(token, {}, result.target, '', attempt);
         response = result.response.ok ? await result.response.json() : null;
       }
       const {target} = result;
@@ -481,6 +490,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
         return;
       }
       if (response.poolStatus === 'busy') {
+        outcome = 'busy';
         status.textContent = fr ? 'Une autre partie utilise le serveur. Réessaie quand ses joueurs sont déconnectés.' :
           'Another match is using the server. Try again when its players are disconnected.';
         return;
@@ -488,6 +498,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       if (playable !== true) throw new Error('Match unavailable.');
       const destination = new URL('/hosted/game/' + matchId, target);
       destination.protocol = destination.protocol === 'https:' ? 'wss:' : 'ws:';
+      if (tracePool) destination.searchParams.set('attempt', attempt);
       opening = true;
       showLoading('Connexion à la partie…', 'Connecting to the match…');
       const loadMatch = () => connectHostedMatch(runtime, destination, token,
@@ -501,18 +512,27 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
         if (window.goonkGameMenuState?.native?.sessionState !== 0) throw error;
         await loadMatch();
       }
+      outcome = 'connected';
       remember(matchId, token, target, name, players);
       const gameURL = new URL(location.href);
       gameURL.searchParams.set('match', matchId);
       try { history.replaceState(history.state, '', gameURL); } catch {}
       input.value = '';
       onJoining();
-    } catch {
+    } catch (error) {
+      if (opening) outcome = error.cause ?? 'engine-error';
       status.textContent = opening
         ? (fr ? 'La connexion à la partie a été interrompue. Réessaie.' : 'The game connection was interrupted. Try again.')
         : (fr ? 'Partie indisponible. Vérifie le code et réessaie.' : 'Match unavailable. Check your code and try again.');
       if (input.isConnected) status.scrollIntoView({block: 'nearest'});
     } finally {
+      if (tracePool) {
+        const ms = Math.round(performance.now() - startedAt);
+        const query = '?' + new URLSearchParams({attempt, result: outcome, ms});
+        console.info('Hosted connection', {attempt, outcome, ms});
+        if (token) void hostedRequest(token, {method: 'POST', keepalive: true}, poolEndpoint, query).catch(() => {});
+        if (outcome !== 'connected' && status.textContent) status.textContent += ' · Ref. ' + attempt.slice(0, 8);
+      }
       loader.hidden = true;
       pending = false;
       render();

@@ -179,6 +179,7 @@ try {
       {id: 'small', name: 'Small map', width: 36, castles: [[{id: 0, name: 'Castle'}, {id: 1, name: 'Rampart'}], [{id: 3, name: 'Inferno'}, {id: 4, name: 'Necropolis'}]]},
     ];
     let request, attempts = 0;
+    const reports = [];
     await page.route(new RegExp(new URL(poolEndpoint).origin + '/hosted/matches'), route => {
       const headers = {'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Authorization, Content-Type'};
@@ -192,13 +193,19 @@ try {
       request = route.request().postDataJSON();
       return route.fulfill({status: 201, headers, json: {matchId, hostToken, codes}});
     });
-    await page.route(url => url.href === poolEndpoint || url.href === poolEndpoint + '?preview=1', route => {
-      const headers = {'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    await page.route(url => url.href === poolEndpoint || url.href.startsWith(poolEndpoint + '?'), route => {
+      const headers = {'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Authorization'};
       if (route.request().method() === 'OPTIONS') return route.fulfill({status: 204, headers});
-      const preview = new URL(route.request().url()).searchParams.has('preview');
+      const params = new URL(route.request().url()).searchParams;
+      const preview = params.has('preview');
       const token = route.request().headers().authorization?.slice(7);
       assert([hostToken, guestToken].includes(token));
+      if (params.has('alerts')) return route.fulfill({status: 200, headers, json: {matchId, alertsEnabled: false}});
+      if (route.request().method() === 'POST') {
+        reports.push({attempt: params.get('attempt'), result: params.get('result')});
+        return route.fulfill({status: 204, headers});
+      }
       if (!preview && attempts++ === 0) return route.fulfill({status: 503, headers});
       return route.fulfill({status: 200, headers, json: {matchId, players: 2, connectedPlayers: 1,
         playable: token === hostToken, poolStatus: token === hostToken ? 'ready' : 'busy'}});
@@ -234,16 +241,22 @@ try {
     assert(await page.getByRole('button', {name: 'Resume match', exact: true}).isVisible());
     await page.getByText('1 of 2 players connected', {exact: true}).waitFor();
     await seat.fill('kmrt');
+    const guestReport = page.waitForResponse(response => new URL(response.url()).searchParams.get('result') === 'busy');
     await page.getByRole('button', {name: 'Join match', exact: true}).tap();
-    await page.getByText('Another match is using the server.', {exact: false}).waitFor();
+    await page.getByText(/Another match is using the server.*Ref\. [a-f0-9]{8}/).waitFor();
+    await guestReport;
     await back.tap();
     assert(await createNew.isVisible());
     await createNew.tap();
     assert(await page.locator('[data-create-codes] [data-seat="1"]').isVisible());
     assert(await page.getByRole('button', {name: 'Paste code', exact: true}).isHidden());
     await simulateHostedSocket();
+    const hostReport = page.waitForResponse(response => new URL(response.url()).searchParams.get('result') === 'connected');
     await page.getByRole('button', {name: 'Launch game', exact: true}).tap();
     await seat.waitFor({state: 'detached'});
+    await hostReport;
+    assert.deepEqual(reports.map(report => report.result), ['busy', 'connected']);
+    assert(reports.every(report => /^[a-f0-9-]{36}$/.test(report.attempt)));
   }
 
   const multiplayerBack = page.locator('[data-multiplayer-back]');
