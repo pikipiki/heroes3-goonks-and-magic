@@ -71,7 +71,7 @@ public:
 	}
 };
 
-CVCMIServer::CVCMIServer(uint16_t port, bool runByClient)
+CVCMIServer::CVCMIServer(uint16_t port, bool runByClient, bool discover)
 	: currentClientId(GameConnectionID::FIRST_CONNECTION)
 	, currentPlayerId(PlayerConnectionID::FIRST_HUMAN)
 	, port(port)
@@ -82,7 +82,7 @@ CVCMIServer::CVCMIServer(uint16_t port, bool runByClient)
 
 	networkHandler = INetworkHandler::createHandler();
 
-	if(state == EServerState::LOBBY)
+	if(discover && state == EServerState::LOBBY)
 		startDiscoveryListener();
 }
 

@@ -95,7 +95,7 @@ public:
 
 	std::shared_ptr<CGameHandler> gh;
 
-	CVCMIServer(uint16_t port, bool runByClient);
+	CVCMIServer(uint16_t port, bool runByClient, bool discover = true);
 	~CVCMIServer();
 
 	void run();

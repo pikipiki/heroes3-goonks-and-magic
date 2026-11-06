@@ -30,6 +30,7 @@ static void handleCommandOptions(int argc, const char * argv[], boost::program_o
 	("version,v", "display version information and exit")
 	("run-by-client", "indicate that server launched by client on same machine")
 	("dummy-run", "Shutdown immediately after loading was sucessful")
+	("verify-turn-checkpoint", "Load and validate the hosted save without opening a network listener")
 	("turn-checkpoint", "Save to Hosted-Turn.vsgm1 when a human turn starts (one game per user data directory)")
 	("port", boost::program_options::value<ui16>(), "port at which server will listen to connections from client")
 	("lobby", "start server in lobby mode in which server connects to a global lobby");
@@ -43,6 +44,7 @@ static void handleCommandOptions(int argc, const char * argv[], boost::program_o
 		catch(boost::program_options::error & e)
 		{
 			std::cerr << "Failure during parsing command-line options:\n" << e.what() << std::endl;
+			exit(1);
 		}
 	}
 
@@ -86,7 +88,21 @@ int main(int argc, const char * argv[])
 
 	LIBRARY->initializeLibrary();
 
-	if(!opts.count("dummy-run"))
+	int exitCode = 0;
+	if(opts.count("verify-turn-checkpoint"))
+	{
+		try
+		{
+			TurnCheckpointServer server(0, false, false, false);
+			server.loadTurnCheckpoint();
+		}
+		catch(const std::exception & error)
+		{
+			logGlobal->error("Hosted checkpoint rejected: %s", error.what());
+			exitCode = 1;
+		}
+	}
+	else if(!opts.count("dummy-run"))
 	{
 		bool connectToLobby = opts.count("lobby");
 		bool runByClient = opts.count("runByClient");
@@ -104,5 +120,5 @@ int main(int argc, const char * argv[])
 	logConfigurator.deconfigure();
 
 	delete LIBRARY;
-	return 0;
+	return exitCode;
 }
