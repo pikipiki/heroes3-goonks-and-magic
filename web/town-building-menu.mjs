@@ -116,6 +116,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const visible = filter ? current.filter(building => category(building) === filter) : current;
     const filters = ['', ...categories.filter(name => current.some(building => category(building) === name))];
     const builtCount = buildings.filter(building => building.built).length;
+    const grail = buildings.find(isGrail);
     const available = tab === 'unbuilt' ? visible.filter(building => state.turn && building.allowed) : [];
     const other = visible.filter(building => !available.includes(building));
     const grouped = categories.map(name => group(state, name, other.filter(building => category(building) === name))).join('');
@@ -123,6 +124,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     return `<div class="building-controls"><div class="building-tabs" role="group" aria-label="Bâtiments">
       <button type="button" data-building-tab="built" aria-pressed="${tab === 'built'}">${count('Construits', builtCount)}</button>
       <button type="button" data-building-tab="unbuilt" aria-pressed="${tab === 'unbuilt'}">${count('À construire', buildings.length - builtCount)}</button>
+      ${grail ? '<button type="button" data-building-grail>Graal</button>' : ''}
       </div><div class="building-filters" role="group" aria-label="Familles de bâtiments">
       ${filters.map(name => `<button type="button" data-building-filter="${name}" aria-pressed="${name === filter}">${name || 'Tous'}</button>`).join('')}
       </div></div>
@@ -166,8 +168,9 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
         render(current);
         body.scrollTop = 0;
         body.querySelector(buildingTab !== undefined ? '[data-building-tab][aria-pressed=true]' : '[data-building-filter][aria-pressed=true]')?.focus({preventScroll:true});
-      } else if (buildingId !== undefined) {
-        selected = Number(buildingId);
+      } else if (buildingId !== undefined || button.hasAttribute('data-building-grail')) {
+        selected = buildingId !== undefined ? Number(buildingId) : current.buildings?.find(isGrail)?.id;
+        if (selected === undefined) { selected = null; return; }
         listScroll = body.scrollTop;
         render(current);
         body.scrollTop = 0;
@@ -224,7 +227,9 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     selected = null;
     render(getState());
     body.scrollTop = listScroll;
-    body.querySelector(`[data-building-id="${id}"]`)?.focus({preventScroll:true});
+    const tile = body.querySelector(`[data-building-id="${id}"]`);
+    const target = tile?.getClientRects().length ? tile : body.querySelector('[data-building-grail]');
+    target?.focus({preventScroll:true});
     return true;
   }
   return {warm, open, update, back, cancel() { pending = null; }};

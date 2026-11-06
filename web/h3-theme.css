@@ -80,6 +80,8 @@
 #mobile-app .town-building-hit:focus-visible{outline:2px solid #ffe599;outline-offset:1px}
 .town-building-name{display:none!important;position:absolute;left:50%;bottom:-3px;transform:translateY(100%);padding:4px 7px;border:1px solid #ddbe73;background:#20150ef2;color:#ffe9aa;font:12px/1.2 Georgia;white-space:normal;text-align:center;pointer-events:none;z-index:3}
 #mobile-app .town-building-hit:hover .town-building-name,#mobile-app .town-building-hit:focus-visible .town-building-name{display:block!important}
+#mobile-app .town-building-hit[data-town-grail]{z-index:2}
+#mobile-app [data-town-grail] .town-building-name{display:block!important;bottom:0;transform:none;border-color:#f4d98b;box-shadow:0 1px 6px #2f1a0e;font-weight:bold}
 #mobile-app[data-town-layout=portrait] .town-view{display:none}
 #mobile-app[data-town-layout=portrait] .town-recruit-strip{width:calc(100% - 116px)}
 /* Original Heroes III resource art, with one compact count per resource. */

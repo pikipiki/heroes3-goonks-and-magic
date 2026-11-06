@@ -5,7 +5,7 @@ import{townBuildingArt}from'./town/building-art.mjs';
 export const TOWN_SITES=[
  ['fort',['fort','citadel','castle'],.52,.28,.40,.20],
  ['guild',['mageGuild1','mageGuild2','mageGuild3','mageGuild4','mageGuild5'],.17,.28,.21,.21],
- ['grail',['grail'],.86,.09,.11,.055],
+ ['grail',['grail'],.86,.135,.20,.135],
  ['hall',['villageHall','townHall','cityHall','capitol'],.18,.44,.27,.15],
  ['market',['marketplace'],.50,.44,.24,.12],
  ['forge',['blacksmith'],.83,.44,.20,.12],
@@ -85,7 +85,7 @@ export function createTownPortrait({root,scene,asset,command,getState}){
    const next=JSON.stringify([faction,width,height,buildings.map(b=>[b.id,b.name])]);
    if(signature!==next){signature=next;const active=new Set(buildings.map(b=>b.id));for(const [id,button]of buttons)if(!active.has(id)){button.remove();buttons.delete(id);if(hovered===id)hovered=null;}
     for(const b of buildings){let button=buttons.get(b.id);if(!button){button=document.createElement('button');button.className='town-building-hit';button.dataset.townBuilding=b.id;const label=document.createElement('span');label.className='town-building-name';button.append(label);button.addEventListener('pointerenter',()=>hovered=b.id);button.addEventListener('pointerleave',()=>hovered=null);button.addEventListener('focus',()=>hovered=b.id);button.addEventListener('blur',()=>hovered=null);button.addEventListener('click',event=>{event.stopPropagation();const current=getState();if(current.mode==='town'&&current.buildings?.some(record=>record.id===b.id&&record.built)){hovered=b.id;command(39,b.id);}});buttons.set(b.id,button);overlay.append(button);}
-     const name=plainGameText(b.name);button.setAttribute('aria-label',name);const nameLabel=button.querySelector('span'),labelWidth=Math.min(180,Math.max(70,name.length*6.5+16));nameLabel.textContent=name;nameLabel.style.width=labelWidth+'px';nameLabel.style.left=(Math.max(6,Math.min(width-labelWidth-6,b.hit.x+b.hit.w/2-labelWidth/2))-b.hit.x)+'px';Object.assign(button.style,{left:b.hit.x+'px',top:b.hit.y+'px',width:b.hit.w+'px',height:b.hit.h+'px'});
+     const name=plainGameText(b.name),isGrail=faction==='goonk'&&b.site==='grail';button.setAttribute('aria-label',name);button.toggleAttribute('data-town-grail',isGrail);const nameLabel=button.querySelector('span'),labelWidth=isGrail?64:Math.min(180,Math.max(70,name.length*6.5+16));nameLabel.textContent=isGrail?'Graal':name;nameLabel.style.width=labelWidth+'px';nameLabel.style.left=(Math.max(6,Math.min(width-labelWidth-6,b.hit.x+b.hit.w/2-labelWidth/2))-b.hit.x)+'px';Object.assign(button.style,{left:b.hit.x+'px',top:b.hit.y+'px',width:b.hit.w+'px',height:b.hit.h+'px'});
     }
    }
    return true;
