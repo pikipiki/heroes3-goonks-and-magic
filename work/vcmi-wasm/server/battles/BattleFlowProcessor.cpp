@@ -24,6 +24,7 @@
 #include "BattleProcessor.h"
 
 #include "../CGameHandler.h"
+#include "../IGameServer.h"
 #include "../TurnTimerHandler.h"
 
 #include "../../lib/CStack.h"
@@ -158,6 +159,11 @@ void BattleFlowProcessor::onBattleStarted(const CBattleInfoCallback & battle)
 
 	if (battle.battleGetTacticDist() == 0)
 		onTacticsEnded(battle);
+	else if(gameHandler->gameServer().controlsNeutralBattles() && battle.sideToPlayer(battle.battleGetTacticsSide()) == PlayerColor::NEUTRAL)
+	{
+		owner->makeAutomaticBattleAction(battle, BattleAction::makeEndOFTacticPhase(battle.battleGetTacticsSide()));
+		onTacticsEnded(battle);
+	}
 }
 
 void BattleFlowProcessor::trySummonGuardians(const CBattleInfoCallback & battle, const CStack * stack)
@@ -469,7 +475,8 @@ bool BattleFlowProcessor::tryMakeAutomaticAction(const CBattleInfoCallback & bat
 	if(tryActivateBerserkPenalty(battle, next))
 		return true;
 
-	if(handleForcedCpuControlledUnit(battle, next))
+	const bool serverControlled = gameHandler->gameServer().controlsNeutralBattles() && battle.battleGetOwner(next) == PlayerColor::NEUTRAL;
+	if(!serverControlled && handleForcedCpuControlledUnit(battle, next))
 		return true;
 
 	stackTurnTrigger(battle, next); //various effects
@@ -477,6 +484,13 @@ bool BattleFlowProcessor::tryMakeAutomaticAction(const CBattleInfoCallback & bat
 	if(next->fear)
 	{
 		makeStackDoNothing(battle, next); //end immediately if stack was affected by fear
+		return true;
+	}
+
+	if(serverControlled)
+	{
+		if(next->alive() && !handleForcedCpuControlledUnit(battle, next, true))
+			makeStackDoNothing(battle, next);
 		return true;
 	}
 
@@ -545,39 +559,37 @@ bool BattleFlowProcessor::tryActivateBerserkPenalty(const CBattleInfoCallback & 
 	return false;
 }
 
-bool BattleFlowProcessor::handleForcedCpuControlledUnit(const CBattleInfoCallback & battle, const CStack * next)
+bool BattleFlowProcessor::handleForcedCpuControlledUnit(const CBattleInfoCallback & battle, const CStack * next, bool serverControlled)
 {
-	if (tryMakeAutomaticActionOfRangedUnit(battle, next))
+	if (serverControlled && (tryMakeAutomaticActionOfCatapult(battle, next) || tryMakeAutomaticActionOfFirstAidTent(battle, next)))
 		return true;
 
-	if (tryMakeAutomaticActionOfMeleeUnit(battle, next))
+	if (tryMakeAutomaticActionOfRangedUnit(battle, next, serverControlled))
 		return true;
 
-	if (tryMakeAutomaticActionOfCatapult(battle, next))
+	if (tryMakeAutomaticActionOfMeleeUnit(battle, next, serverControlled))
 		return true;
 
-	if (tryMakeAutomaticActionOfFirstAidTent(battle, next))
-		return true;
-
-	return false;
+	return !serverControlled && (tryMakeAutomaticActionOfCatapult(battle, next) || tryMakeAutomaticActionOfFirstAidTent(battle, next));
 }
 
-bool BattleFlowProcessor::tryMakeAutomaticActionOfRangedUnit(const CBattleInfoCallback & battle, const CStack * next) //TODO: optimize readability based on tryMakeAutomaticActionOfMeleeUnit
+bool BattleFlowProcessor::tryMakeAutomaticActionOfRangedUnit(const CBattleInfoCallback & battle, const CStack * next, bool serverControlled) //TODO: optimize readability based on tryMakeAutomaticActionOfMeleeUnit
 {
 	const CGHeroInstance * curOwner = battle.battleGetOwnerHero(next);
 	const CreatureID stackCreatureId = next->unitType()->getId();
 
-	if (next->hasBonusOfType(BonusType::CPU_CONTROLLED) && (battle.battleCanShoot(next) || !next->isMeleeAttacker())
-		&& (!curOwner || !gameHandler->randomizer->rollCombatAbility(curOwner->id, curOwner->valOfBonuses(BonusType::MANUAL_CONTROL, BonusSubtypeID(stackCreatureId)))))
+	if ((serverControlled || next->hasBonusOfType(BonusType::CPU_CONTROLLED)) && (battle.battleCanShoot(next) || !next->isMeleeAttacker())
+		&& (serverControlled || !curOwner || !gameHandler->randomizer->rollCombatAbility(curOwner->id, curOwner->valOfBonuses(BonusType::MANUAL_CONTROL, BonusSubtypeID(stackCreatureId)))))
 	{
 		BattleAction attack;
 		attack.actionType = EActionType::SHOOT;
 		attack.side = next->unitSide();
 		attack.stackNumber = next->unitId();
 
-		const TStacks possibleTargets = battle.battleGetStacksIf([&next, &battle](const CStack * s)
+		const TStacks possibleTargets = battle.battleGetStacksIf([&next, &battle, serverControlled](const CStack * s)
 		{
-			return s->unitOwner() != next->unitOwner() && s->isValidTarget() && battle.battleCanShoot(next, s->getPosition());
+			const bool enemy = serverControlled ? battle.battleMatchOwner(next, s) : s->unitOwner() != next->unitOwner();
+			return enemy && s->isValidTarget() && battle.battleCanShoot(next, s->getPosition());
 		});
 
 		struct TargetInfo
@@ -667,7 +679,7 @@ bool BattleFlowProcessor::tryMakeAutomaticActionOfRangedUnit(const CBattleInfoCa
 	return false;
 }
 
-bool BattleFlowProcessor::tryMakeAutomaticActionOfMeleeUnit(const CBattleInfoCallback & battle, const CStack * actingStack)
+bool BattleFlowProcessor::tryMakeAutomaticActionOfMeleeUnit(const CBattleInfoCallback & battle, const CStack * actingStack, bool serverControlled)
 {
 	struct TargetInfo
 	{
@@ -690,17 +702,18 @@ bool BattleFlowProcessor::tryMakeAutomaticActionOfMeleeUnit(const CBattleInfoCal
 	const CGHeroInstance * curOwner = battle.battleGetOwnerHero(actingStack);
 	const CreatureID stackCreatureId = actingStack->unitType()->getId();
 
-	if (!actingStack->hasBonusOfType(BonusType::CPU_CONTROLLED) || battle.battleCanShoot(actingStack))
+	if ((!serverControlled && !actingStack->hasBonusOfType(BonusType::CPU_CONTROLLED)) || battle.battleCanShoot(actingStack))
 		return false;
 
-	if (curOwner && gameHandler->randomizer->rollCombatAbility(curOwner->id, curOwner->valOfBonuses(BonusType::MANUAL_CONTROL, BonusSubtypeID(stackCreatureId))))
+	if (!serverControlled && curOwner && gameHandler->randomizer->rollCombatAbility(curOwner->id, curOwner->valOfBonuses(BonusType::MANUAL_CONTROL, BonusSubtypeID(stackCreatureId))))
 		return false;
 
 	ReachabilityInfo reachabilityCache = battle.getReachability(actingStack);
 
-	const TStacks possibleTargets = battle.battleGetStacksIf([&actingStack, &battle](const CStack * s)
+	const TStacks possibleTargets = battle.battleGetStacksIf([&actingStack, &battle, serverControlled](const CStack * s)
 	{
-		return s->unitOwner() != actingStack->unitOwner() && s->isValidTarget()
+		const bool enemy = serverControlled ? battle.battleMatchOwner(actingStack, s) : s->unitOwner() != actingStack->unitOwner();
+		return enemy && s->isValidTarget()
 		&& (!battle.isEnemyUnitWithinSpecifiedRange(actingStack->position, s, actingStack->getMovementRange())
 		|| (battle.isEnemyUnitWithinSpecifiedRange(actingStack->position, s, actingStack->getMovementRange()) && !s->getAttackableHexes(actingStack).empty()));
 	});
@@ -713,6 +726,8 @@ bool BattleFlowProcessor::tryMakeAutomaticActionOfMeleeUnit(const CBattleInfoCal
 		bool isParalyzed = possibleTarget->hasBonusOfType(BonusType::NOT_ACTIVE) && !isMachine;
 
 		BattleHexArray attackableHexes = possibleTarget->getAttackableHexes(actingStack);
+		if(attackableHexes.empty())
+			continue;
 		BattleHex closestTargetAdjacentHex = boost::min_element(attackableHexes, [&reachabilityCache](const BattleHex & lhs, const BattleHex & rhs)
 		{
 			return reachabilityCache.distances[lhs.toInt()] < reachabilityCache.distances[rhs.toInt()];
@@ -751,6 +766,7 @@ bool BattleFlowProcessor::tryMakeAutomaticActionOfMeleeUnit(const CBattleInfoCal
 			if(intermediaryHex == BattleHex::INVALID)
 			{
 				makeStackDoNothing(battle, actingStack);
+				return true;
 			}
 
 			BattleAction moveAction = BattleAction::makeMove(actingStack, intermediaryHex);

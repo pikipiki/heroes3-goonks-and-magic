@@ -157,6 +157,8 @@ public:
 			CVCMIServer::applyPack(pack);
 	}
 
+	bool controlsNeutralBattles() const override { return true; }
+
 	bool isEncounterPendingFor(const PlayerColor & color) const override
 	{
 		return waitingEncounter && waitingEncounter->attacker == color;

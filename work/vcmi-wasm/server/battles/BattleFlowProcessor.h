@@ -40,9 +40,9 @@ class BattleFlowProcessor : boost::noncopyable
 	bool tryMakeAutomaticAction(const CBattleInfoCallback & battle, const CStack * stack);
 	bool tryActivateMoralePenalty(const CBattleInfoCallback & battle, const CStack * stack);
 	bool tryActivateBerserkPenalty(const CBattleInfoCallback & battle, const CStack * stack);
-	bool handleForcedCpuControlledUnit(const CBattleInfoCallback & battle, const CStack * stack);
-	bool tryMakeAutomaticActionOfRangedUnit(const CBattleInfoCallback & battle, const CStack * stack);
-	bool tryMakeAutomaticActionOfMeleeUnit(const CBattleInfoCallback& battle, const CStack* actingStack);
+	bool handleForcedCpuControlledUnit(const CBattleInfoCallback & battle, const CStack * stack, bool serverControlled = false);
+	bool tryMakeAutomaticActionOfRangedUnit(const CBattleInfoCallback & battle, const CStack * stack, bool serverControlled);
+	bool tryMakeAutomaticActionOfMeleeUnit(const CBattleInfoCallback & battle, const CStack * actingStack, bool serverControlled);
 	bool tryMakeAutomaticActionOfCatapult(const CBattleInfoCallback & battle, const CStack * stack);
 	bool tryMakeAutomaticActionOfFirstAidTent(const CBattleInfoCallback & battle, const CStack * stack);
 

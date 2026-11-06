@@ -37,6 +37,7 @@ public:
 	virtual bool isPlayerHost(const PlayerColor & color) const = 0;
 	virtual bool hasPlayerAt(PlayerColor player, GameConnectionID connectionID) const = 0;
 	virtual bool hasBothPlayersAtSameConnection(PlayerColor left, PlayerColor right) const = 0;
+	virtual bool controlsNeutralBattles() const { return false; }
 	virtual bool isEncounterPendingFor(const PlayerColor &) const { return false; }
 	virtual bool deferAttackWhenAbsent(const PlayerColor &, const PlayerColor &, const ObjectInstanceID &, const int3 &) { return false; }
 	virtual void applyPack(CPackForClient & pack) = 0;
