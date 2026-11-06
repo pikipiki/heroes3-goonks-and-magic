@@ -44,3 +44,12 @@ test('Boot recovery leaves the latest online checkpoint for a multiplayer room',
  assert.deepEqual(commands,[]);
  assert.equal(r.phase,'done');
 });
+
+test('A hosted match link leaves the menu available even when a local save exists',()=>{
+ const commands=[];
+ const recovery=createSessionRecovery({hosted:true,listSaves:()=>{throw Error('Local saves must not take over a hosted link');},command:(...args)=>commands.push(args)});
+ recovery.update({mode:'menu'});
+ assert.equal(recovery.phase,'done');
+ assert(!recovery.intercept);
+ assert.deepEqual(commands,[]);
+});

@@ -1,7 +1,7 @@
 const matchPattern = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 
-export function requestedHostedMatch() {
-  const match = new URLSearchParams(location.search).get('match');
+export function requestedHostedMatch(search = location.search) {
+  const match = new URLSearchParams(search).get('match');
   return matchPattern.test(match ?? '') ? match : null;
 }
 
