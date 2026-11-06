@@ -1,9 +1,3 @@
-/* Put the resources beside the menu and use the second row for the calendar. */
-#mobile-app[data-mode=fort][data-has-resources=true] .mobile-top{display:grid;grid-template-columns:40px minmax(0,1fr);grid-template-rows:auto auto}
-#mobile-app[data-mode=fort] .mobile-title{display:none}
-#mobile-app[data-mode=fort][data-has-resources=true] .mobile-resources{grid-column:2;grid-row:1;min-width:0;width:100%;max-width:calc(50px * var(--resource-count,7))}
-#mobile-app[data-mode=fort][data-has-resources=true] .mobile-calendar{grid-row:2}
-
 /* One complete evolution chain per row; only the family list scrolls. */
 #mobile-app .hall-layout{display:grid;grid-template-rows:minmax(0,1fr) auto;flex:1;min-height:0;overflow:hidden}
 #mobile-app .hall-families{min-width:0;min-height:0;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;padding:8px;display:flex;flex-direction:column;gap:8px}

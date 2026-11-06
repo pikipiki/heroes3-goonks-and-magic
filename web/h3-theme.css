@@ -88,12 +88,16 @@
 .mobile-resource{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;line-height:1}
 .mobile-resource img{display:block;width:22px;height:20px;object-fit:contain;image-rendering:pixelated}
 .resource-quantity{display:block;font:12px/14px Georgia,"Times New Roman",serif;font-variant-numeric:tabular-nums;color:#fff0ad;white-space:nowrap}
-#mobile-app[data-has-resources=true] .mobile-top{display:grid;grid-template-columns:40px minmax(0,1fr) auto;grid-template-rows:40px 34px;column-gap:8px;row-gap:0;padding:3px 8px}
-#mobile-app[data-has-resources=true] .mobile-title{grid-column:2;grid-row:1;min-width:0}
-#mobile-app[data-has-resources=true] .mobile-resources{grid-column:1/-1;grid-row:2;width:100%}
-#mobile-app[data-has-resources=true] .recruit-close{grid-column:3;grid-row:1}
-@media(max-width:360px) and (orientation:portrait){#mobile-app[data-has-resources=true] .mobile-top{grid-template-rows:40px 28px;padding:3px 6px}.mobile-resource img{height:16px;width:20px}.resource-quantity{font-size:11px;line-height:12px}}
-@media(orientation:landscape) and (max-height:600px){#mobile-app[data-has-resources=true] .mobile-top{display:flex;flex-wrap:nowrap;gap:6px;padding:3px 8px}#mobile-app[data-has-resources=true] .mobile-title{flex:1 1 90px;max-width:180px;min-width:0}#mobile-app[data-has-resources=true] .mobile-resources{flex:1 1 300px;min-width:calc(35px * var(--resource-count,7));max-width:calc(50px * var(--resource-count,7));width:auto}.mobile-resource img{width:20px;height:17px}.resource-quantity{font-size:11px;line-height:12px}}
+/* Use the recruitment hall header wherever the mobile HUD shows resources. */
+#mobile-app[data-has-resources=true] .mobile-top{display:grid;grid-template-columns:40px minmax(0,1fr) auto;grid-template-rows:minmax(40px,auto) auto;column-gap:6px;row-gap:0;padding:3px 8px}
+#mobile-app[data-has-resources=true] .mobile-title,#mobile-app[data-mode=map] .mobile-title,#mobile-app[data-mode=fort] .mobile-title{display:none}
+#mobile-app[data-has-resources=true] .mobile-resources{grid-column:2;grid-row:1;width:100%;max-width:calc(50px * var(--resource-count,7));grid-template-columns:repeat(var(--resource-count,7),minmax(20px,1fr));overflow-x:auto;scrollbar-width:none;touch-action:pan-x}
+#mobile-app[data-has-resources=true] :is(.dialog-close,.recruit-close){grid-column:3;grid-row:1;width:44px;min-width:44px;min-height:44px;font-size:22px}
+.mobile-resources .resource-quantity{max-width:100%;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:360px) and (orientation:portrait),(orientation:landscape) and (max-height:600px){
+ .mobile-resource img{height:16px;width:20px}
+ .resource-quantity{font-size:11px;line-height:12px}
+}
 
 /* Touch targets follow the native cancel icon without painting over its art. */
 #mobile-app .dialog-close{flex:0 0 44px;width:44px;min-height:44px;padding:0;font-size:22px;touch-action:manipulation}

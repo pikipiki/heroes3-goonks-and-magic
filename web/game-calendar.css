@@ -1,14 +1,10 @@
-#mobile-app .mobile-calendar{grid-column:1/-1;grid-row:3;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2px 10px;width:100%;min-width:0;padding:3px 0 2px;border-top:1px solid #b5975060;color:#ffe6a1;font:12px/16px Georgia,"Times New Roman",serif;font-variant-numeric:tabular-nums}
+#mobile-app .mobile-calendar{grid-column:1/-1;grid-row:2;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2px 6px;box-sizing:border-box;width:100%;min-width:0;padding:3px 0 2px;border-top:1px solid #b5975060;color:#ffe6a1;font:12px/16px Georgia,"Times New Roman",serif;font-variant-numeric:tabular-nums}
 #mobile-app .mobile-calendar span{white-space:nowrap}
 #mobile-app .calendar-next-week{color:#e1cba2}
-@media(orientation:landscape) and (max-height:600px){.goonk-mobile #mobile-app[data-has-calendar=true]{grid-template-rows:auto minmax(0,1fr)}#mobile-app[data-has-calendar=true][data-has-resources=true] .mobile-top{flex-wrap:wrap;row-gap:0}#mobile-app .mobile-calendar{flex:0 0 100%;box-sizing:border-box}}
-
-#mobile-app .mobile-calendar .calendar-compact{display:none}
-#mobile-app[data-mode=map] .mobile-title{display:none}
-#mobile-app[data-mode=map] .mobile-calendar{grid-column:2;grid-row:1;flex-flow:column nowrap;align-items:flex-start;justify-content:center;gap:0;padding:0;border:0;font-size:11px;line-height:13px}
-#mobile-app[data-mode=map] .mobile-calendar span{white-space:normal}
-@media(orientation:portrait){#mobile-app[data-mode=map][data-has-resources=true] .mobile-top{grid-template-columns:40px minmax(0,1fr)}}
 @media(orientation:landscape) and (max-height:600px){
+ .goonk-mobile #mobile-app[data-has-calendar=true]{grid-template-rows:auto minmax(0,1fr)}
+ #mobile-app .mobile-calendar{font-size:11px;line-height:14px}
  #mobile-app[data-mode=map] .mobile-calendar span:not(.calendar-compact){display:none}
  #mobile-app[data-mode=map] .mobile-calendar .calendar-compact{display:block}
 }
+#mobile-app .mobile-calendar .calendar-compact{display:none}

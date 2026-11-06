@@ -11,14 +11,15 @@ for(const kind of ['chromium','webkit']){
  await page.setViewportSize(size);await page.waitForTimeout(180);assert.equal(await page.locator('.mobile-top .mobile-movement').count(),0);assert.equal(await page.locator('.hero-mana').first().textContent(),'Mana 0/10');assert.equal(await page.locator('.mobile-nav [data-ui=save]').count(),0);assert.equal(await page.locator('.hero-movement-item').count(),3);assert.equal(await page.locator('.hero-movement-item strong').first().textContent(),'Ax sis <test>');assert.match(await page.locator('.hero-movement-item.is-exhausted').textContent(),/Gunnar0 MP/);
  for(const rect of await page.locator('.mobile-nav>button').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().toJSON()))){assert(rect.width>=44&&rect.height>=44);assert(rect.x>=0&&rect.y>=0&&rect.right<=size.width+1&&rect.bottom<=size.height+1,'Actions stay within viewport');}
  const calendar=page.locator('.mobile-calendar');
- assert.equal(await page.locator('.mobile-title').isVisible(),false,'The calendar replaces the header hero name');
+ assert.equal(await page.locator('.mobile-title').isVisible(),false,'The compact HUD replaces the header hero name');
  const [menu,date,resources,top,play]=await Promise.all(['#game-menu-toggle','.mobile-calendar','.mobile-resources','.mobile-top','.mobile-play'].map(selector=>page.locator(selector).boundingBox()));
- assert(date.x>=menu.x+menu.width&&date.x+date.width<=top.x+top.width+1,'The calendar fits beside the menu');
- assert(date.y>=menu.y-1&&date.y+date.height<=menu.y+menu.height+1,'The calendar shares the menu row');
- assert(resources.y>=date.y+date.height-1,'Resources stay beneath the calendar');
+ assert(resources.x>=menu.x+menu.width&&resources.x+resources.width<=top.x+top.width+1,'The resources fit beside the menu');
+ assert(resources.y>=menu.y-1&&resources.y+resources.height<=menu.y+menu.height+1,'The resources share the menu row');
+ assert(date.x<=menu.x+1&&date.y>=menu.y+menu.height-1,'The calendar spans the row below the menu');
+ assert(await page.locator('.mobile-resources').evaluate(el=>el.scrollWidth<=el.clientWidth+1),'All eight resources fit without scrolling');
  if(size.width<size.height){
   assert.match(await calendar.innerText(),/Day 2\/7 · Week 3 · Month 1/);
-  assert(Math.abs(play.y-(resources.y+resources.height))<12,'The map starts directly after the resources');
+  assert(Math.abs(play.y-(date.y+date.height))<8,'The map starts directly after the calendar');
  }else{
   assert.match(await calendar.innerText(),/Day 2\/7 · W3 · M1/);
   assert(Math.abs(play.y-top.y)<1&&play.height>=size.height-2,'Landscape map uses the full height');
@@ -36,6 +37,34 @@ for(const kind of ['chromium','webkit']){
  await page.evaluate(async()=>{const{setLanguage}=await import('/web/i18n.mjs');setLanguage('fr');send();});assert.match(await page.locator('.hero-movement-item').first().textContent(),/0 PM/);assert.equal(await page.locator('.hero-mana').first().textContent(),'Magie 0/10');
  await page.locator('[data-ui=heroes]').tap();assert.equal((await page.evaluate(()=>calls.at(-1)))[0],55,'Heroes opens equipment directly, including with several heroes');assert.equal(await page.locator('.mobile-sheet:not([hidden])').count(),0);
  await page.evaluate(()=>dispatchEvent(new CustomEvent('goonk-state',{detail:{mode:'town',turn:true,townFaction:'goonk:goonk',townName:'Goonkbourg',buildings:[],resources:[],armies:[],day:1}})));await page.waitForSelector('.town-recruit-strip');assert.equal(await page.locator('.town-recruit-strip [data-ui=build]').count(),0);assert.equal(await page.locator('.mobile-nav [data-ui=build]').count(),1);
+ const headers=[
+  {mode:'town',townName:'Goonkbourg',buildings:[]},
+  {mode:'fort',fortRows:[],fortFamilies:[]},
+  {mode:'recruit',recruitUnit:{id:98,name:'Gnoll',count:12},recruits:[]},
+  {mode:'creature',creatureUnit:{id:98,name:'Gnoll',count:12}},
+  {mode:'dialog',dialogKind:'tavern'},
+  {mode:'spellbook',spellbook:{page:0,pages:1,spells:[]}}
+ ];
+ for(const size of [{width:320,height:740},{width:568,height:320}]){
+  await page.setViewportSize(size);
+  await page.waitForTimeout(180);
+  for(const header of headers){
+   await page.evaluate(header=>dispatchEvent(new CustomEvent('goonk-state',{detail:{
+    ...header,day:16,turn:true,resources:[20,10,20,10,10,10,118300,100],armies:[]
+   }})),header);
+   await page.waitForFunction(mode=>window.goonkMobileState?.mode===mode,header.mode);
+   const [menu,resources,date]=await Promise.all(['#game-menu-toggle','.mobile-resources','.mobile-calendar'].map(selector=>page.locator(selector).boundingBox()));
+   assert(await page.locator('.mobile-title').isHidden(),header.mode+' uses the compact header');
+   assert(resources.x>=menu.x+menu.width&&resources.x+resources.width<=size.width,header.mode+' resources fit beside the menu '+JSON.stringify({size,menu,resources}));
+   assert(resources.y>=menu.y-1&&resources.y+resources.height<=menu.y+menu.height+1,header.mode+' resources share the menu row');
+   assert(date.y>=menu.y+menu.height-1,header.mode+' calendar is below the menu');
+   assert(await page.locator('.mobile-resources').evaluate(el=>el.scrollWidth<=el.clientWidth+1),header.mode+' displays every resource');
+   if(header.dialogKind==='tavern'){
+    const close=await page.locator('.dialog-close').boundingBox();
+    assert(close.x>=resources.x+resources.width&&close.y+close.height<=date.y+1,'Tavern close stays beside the resources');
+   }
+  }
+ }
  await page.screenshot({path:'/private/tmp/goonk-hero-movement-'+kind+'.png'});assert.deepEqual(errors,[]);console.log('PASS',kind,'movement updates, exhausted heroes, EN/FR, five portrait/landscape viewports and working actions');
  }finally{await browser.close();}
 }
