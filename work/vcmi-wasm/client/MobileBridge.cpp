@@ -151,6 +151,67 @@ void publishArtifactIcons()
  MAIN_THREAD_ASYNC_EM_ASM({try{const ptr=$0;const n=$3;window.goonkArtifactIds=new Map(Array.from(HEAP32.subarray(ptr/4,ptr/4+n),(id,i)=>[id,i]));const c=window.goonkArtifactAtlas||(window.goonkArtifactAtlas=document.createElement('canvas'));c.width=$1;c.height=$2;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+n*4,ptr+n*4+$1*$2*4)), $1,$2),0,0);window.dispatchEvent(new Event('goonk-artifacts'));}finally{_free($0);}},packet,width,height,ids.size());}
  SDL_FreeSurface(rgba);
 }
+// Keep the mobile sheet on the same animation frames as CHeroWindow.
+using HeroIconFrames = std::vector<std::pair<std::string, int>>;
+
+void addHeroIcon(HeroIconFrames & frames, JsonNode & index, const char * animation, int frame)
+{
+ index.Integer() = frames.size();
+ frames.emplace_back(animation, frame);
+}
+
+void publishHeroIcons(const HeroIconFrames & frames)
+{
+ static HeroIconFrames previous;
+ if(frames.empty() || frames == previous)
+  return;
+
+ constexpr int cell = 48, columns = 8, width = cell * columns;
+ const int height = ((frames.size() + columns - 1) / columns) * cell;
+ auto surface = SDL_CreateRGBSurfaceWithFormat(0, width, height, 32, SDL_PIXELFORMAT_RGBA32);
+ if(!surface)
+  return;
+ SDL_FillRect(surface, nullptr, 0);
+ {
+  auto canvas = Canvas::createFromSurface(surface, CanvasScalingPolicy::IGNORE);
+  for(size_t i = 0; i < frames.size(); ++i)
+  {
+   const auto & [animation, frame] = frames[i];
+   auto image = ENGINE->renderHandler().loadImage(AnimationPath::builtin(animation), frame, 0, EImageBlitMode::COLORKEY);
+   if(!image)
+    continue;
+   auto size = image->dimensions();
+   const int longest = std::max(size.x, size.y);
+   if(longest > cell)
+   {
+    size = Point(std::max(1, size.x * cell / longest), std::max(1, size.y * cell / longest));
+    image->scaleTo(size, EScalingAlgorithm::BILINEAR);
+   }
+   canvas.draw(image, Point(int(i % columns) * cell + (cell - size.x) / 2, int(i / columns) * cell + (cell - size.y) / 2));
+  }
+ }
+
+ const size_t bytes = width * height * 4;
+ auto pixels = malloc(bytes);
+ if(pixels)
+ {
+  memcpy(pixels, surface->pixels, bytes);
+  MAIN_THREAD_ASYNC_EM_ASM({
+   try {
+    const canvas = document.createElement('canvas');
+    canvas.width = $1;
+    canvas.height = $2;
+    canvas.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice($0, $0 + $1 * $2 * 4)), $1, $2), 0, 0);
+    window.goonkHeroIconAtlas = canvas;
+   } finally {
+    _free($0);
+   }
+  }, pixels, width, height);
+  previous = frames;
+ }
+ SDL_FreeSurface(surface);
+}
+
 void mobileStackExperience(JsonNode & node,const CStackInstance * stack)
 {
  if(!stack)return;
@@ -601,8 +662,24 @@ void publishMobileState(){
   if(hero){n["heroName"].String()=hero->getNameTranslated();n["heroMana"].Integer()=hero->mana;n["heroManaLimit"].Integer()=hero->manaLimit();n["heroHasSpellbook"].Bool()=hero->hasSpellbook();n["movement"].Integer()=hero->movementPointsRemaining();n["heroId"].Integer()=hero->id.getNum();n["armies"].Vector().push_back(army(hero,hero->getNameTranslated()));if(p->localState->hasPath(hero)){n["hasPath"].Bool()=true;n["pathTurns"].Integer()=p->localState->getPath(hero).lastNode().turns;}}
   if(n["mode"].String()=="map"&&hero){const auto town=mobileResidentTown(hero);if(town&&town->getOwner()==p->playerID)mobileTownArmies(n,town);}
   if(heroWindow&&hero){auto & h=n["heroWindow"];h["owned"].Bool()=hero->getOwner()==p->playerID;h["name"].String()=hero->getNameTranslated();h["className"].String()=hero->getClassNameTranslated();h["level"].Integer()=hero->level;h["mana"].Integer()=hero->mana;h["manaLimit"].Integer()=hero->manaLimit();h["portrait"]=rect(Rect(heroWindow->pos.x+19,heroWindow->pos.y+19,58,64));
-   for(int i=0;i<4;i++)h["primarySkills"].Vector().push_back(JsonNode(double(hero->getPrimSkillLevel(static_cast<PrimarySkill>(i)))));
+   HeroIconFrames icons;
+   for(int i = 0; i < 4; ++i)
+   {
+    h["primarySkills"].Vector().push_back(JsonNode(double(hero->getPrimSkillLevel(static_cast<PrimarySkill>(i)))));
+    JsonNode icon;
+    addHeroIcon(icons, icon, "PSKIL42", i == 3 ? 5 : i);
+    h["primaryIcons"].Vector().push_back(std::move(icon));
+   }
    h["experience"].Integer()=hero->exp;
+   addHeroIcon(icons, h["experienceIcon"], "PSKIL42", 4);
+   addHeroIcon(icons, h["manaIcon"], "PSKIL42", 3);
+   addHeroIcon(icons, h["specialty"]["icon"], "UN44", hero->getHeroType()->imageIndex);
+   const int morale = hero->hasBonusOfType(BonusType::NO_MORALE) ? 0 : hero->moraleVal();
+   const int luck = hero->luckVal();
+   h["morale"]["value"].Integer() = morale;
+   h["luck"]["value"].Integer() = luck;
+   addHeroIcon(icons, h["morale"]["icon"], "IMRL42", std::clamp(morale + 3, 0, 6));
+   addHeroIcon(icons, h["luck"]["icon"], "ILCK42", std::clamp(luck + 3, 0, 6));
    h["specialty"]["name"].String()=hero->getHeroType()->getSpecialtyNameTranslated();
    h["specialty"]["description"].String()=hero->getHeroType()->getSpecialtyDescriptionTranslated();
    auto & skills=h["skills"].Vector();
@@ -617,8 +694,10 @@ void publishMobileState(){
     entry["name"].String()=skill->getNameTranslated();
     entry["mastery"].String()=LIBRARY->generaltexth->levels[level-1];
     entry["description"].String()=skill->getDescriptionTranslated(level);
+    addHeroIcon(icons, entry["icon"], "SECSKILL", skill->getIconIndex(level - 1));
     skills.push_back(std::move(entry));
    }
+   publishHeroIcons(icons);
    const auto picked=heroWindow->getPickedArtifact();if(picked){h["picked"]["name"].String()=picked->getType()->getNameTranslated();h["picked"]["icon"].Integer()=picked->getType()->getIconIndex();artifactIconIds.insert(picked->getType()->getIconIndex());}
    auto addSlot=[&](int index,bool backpack){const auto position=ArtifactPosition(index);const auto art=hero->getArt(position,false);JsonNode item;item["slot"].Integer()=index;bool locked=false;for(const auto & set:heroWindow->artSets)if(set)if(auto place=set->getArtPlace(position)){locked=place->isLocked();break;}item["locked"].Bool()=locked;item["movable"].Bool()=art&&!locked&&index!=int(ArtifactPosition::SPELLBOOK)&&index!=int(ArtifactPosition::MACH4);item["allowed"].Bool()=picked&&!locked&&picked->canBePutAt(hero,position,true);if(art){const auto type=art->getType();item["name"].String()=type->getNameTranslated();item["description"].String()=type->getDescriptionTranslated();item["icon"].Integer()=type->getIconIndex();artifactIconIds.insert(type->getIconIndex());}h[backpack?"backpack":"slots"].Vector().push_back(item);};
    for(int i=0;i<19;i++)addSlot(i,false);for(size_t i=0;i<=hero->artifactsInBackpack.size();i++)addSlot(int(ArtifactPosition::BACKPACK_START)+int(i),true);

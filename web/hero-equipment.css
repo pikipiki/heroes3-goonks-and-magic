@@ -4,13 +4,17 @@
 #mobile-app[data-mode=hero] .mobile-play{grid-column:1;grid-row:2}
 #mobile-app[data-mode=hero] #mobile-scene,#mobile-app[data-mode=hero] .scene-tools,#mobile-app[data-mode=hero] .scene-hint,#mobile-app[data-mode=hero] .mobile-nav,#mobile-app[data-mode=hero] .mobile-resources,#mobile-app[data-mode=hero] .mobile-calendar{display:none!important}
 .hero-card-head{display:flex;align-items:center;gap:10px;padding:6px 10px;border-bottom:1px solid #9a7e46;min-width:0}
-.hero-card-head canvas{width:52px;height:60px;flex:0 0 52px;border:2px ridge #d7b66e}
+.hero-card-head .hero-face{width:52px;height:60px;flex:0 0 52px;border:2px ridge #d7b66e}
 .hero-card-head>div{flex:1;min-width:0}.hero-card-head h2{font-size:20px;line-height:1.1;margin:0;color:#ffe5a2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .hero-card-head p,.hero-card-head span{font-size:12px;margin:4px 0 0;line-height:1.25}.hero-card-head button{font-size:14px;flex-shrink:0}
-.hero-primary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0;padding:5px 10px;gap:6px;border-bottom:1px solid #92723f}
+.hero-primary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0;padding:3px 10px;gap:6px;border-bottom:1px solid #92723f}
 .hero-primary>div{display:grid;align-content:center;justify-items:center;min-width:0;padding:2px;border:1px solid #aa8748;background:linear-gradient(#3a2a17,#21160e)}
 .hero-primary dt{font-size:11px;line-height:1.1;color:#e5cc91}
-.hero-primary dd{font-size:20px;line-height:1;font-weight:700;color:#fff0bb;font-variant-numeric:tabular-nums;margin:2px 0 0}
+.hero-primary dd{display:flex;align-items:center;gap:3px;font-size:20px;line-height:1;font-weight:700;color:#fff0bb;font-variant-numeric:tabular-nums;margin:2px 0 0}
+.hero-icon{display:block;width:23px;height:23px;object-fit:contain}
+.hero-vitals{display:flex;align-items:center;flex-wrap:wrap;gap:0 6px}
+.hero-vitals span{display:inline-flex;align-items:center;gap:2px}
+.hero-vitals .hero-icon{width:14px;height:14px}
 .hero-bag-tabs{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr) minmax(0,1.2fr) minmax(0,.75fr);gap:4px;padding:3px 8px}
 #mobile-app .hero-bag-tabs button{font-size:clamp(11px,3.4vw,14px);line-height:1.1;padding:3px;min-width:0}
 #mobile-app .hero-bag-tabs button[aria-pressed=true]{border-color:#ffe49a;box-shadow:inset 0 0 0 1px #d8ac59;font-weight:700}
@@ -24,7 +28,7 @@
 .hero-artifact-detail h3{font-size:16px;line-height:20px;margin:0;max-height:40px;overflow:auto}
 .hero-artifact-description{font-size:14px;line-height:19px;margin:0;flex:1;min-height:0;overflow:auto;touch-action:pan-y;overscroll-behavior:contain}
 .hero-artifact-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.hero-artifact-actions button{min-height:44px;font-size:14px}
-@media(orientation:landscape){.hero-equipment-page{grid-template-columns:minmax(0,1.5fr) minmax(230px,1fr);grid-template-rows:78px 50px minmax(0,1fr)}.hero-card-head{grid-column:2;grid-row:1;padding:5px 7px;gap:6px}.hero-card-head canvas{width:43px;flex-basis:43px;height:52px}.hero-card-head h2{font-size:17px}.hero-card-head button{padding:4px;min-width:44px}.hero-primary{grid-column:2;grid-row:2;padding:5px 7px}.hero-bag-tabs{grid-column:1;grid-row:1;align-content:center;border-right:1px solid #92723f}.hero-equipment-grid{grid-column:1;grid-row:2/4;grid-template-columns:repeat(3,minmax(0,1fr));border-right:1px solid #92723f}.hero-artifact-detail{grid-column:2;grid-row:3;padding:5px 7px}.hero-artifact-detail h3{font-size:14px;line-height:17px}.hero-artifact-description{font-size:12px;line-height:16px}.hero-artifact-actions{gap:4px}.hero-artifact-actions button{font-size:12px;padding:4px}}
+@media(orientation:landscape){.hero-equipment-page{grid-template-columns:minmax(0,1.5fr) minmax(230px,1fr);grid-template-rows:78px 50px minmax(0,1fr)}.hero-card-head{grid-column:2;grid-row:1;padding:5px 7px;gap:6px}.hero-card-head .hero-face{width:43px;flex-basis:43px;height:52px}.hero-card-head h2{font-size:17px}.hero-card-head button{padding:4px;min-width:44px}.hero-primary{grid-column:2;grid-row:2;padding:5px 7px}.hero-bag-tabs{grid-column:1;grid-row:1;align-content:center;border-right:1px solid #92723f}.hero-equipment-grid{grid-column:1;grid-row:2/4;grid-template-columns:repeat(3,minmax(0,1fr));border-right:1px solid #92723f}.hero-artifact-detail{grid-column:2;grid-row:3;padding:5px 7px}.hero-artifact-detail h3{font-size:14px;line-height:17px}.hero-artifact-description{font-size:12px;line-height:16px}.hero-artifact-actions{gap:4px}.hero-artifact-actions button{font-size:12px;padding:4px}}
 
 #mobile-app .hero-mobile-switch{display:none}
 #mobile-app[data-mode=hero][data-hero-view=classic] .hero-mobile-switch{display:block;flex-shrink:0;min-height:48px}
@@ -61,11 +65,14 @@
 .hero-extra-equipment .hero-artifact-slot .hero-empty{line-height:30px;font-size:22px}
 @media(orientation:landscape){
  .hero-equipment-page{grid-template-columns:minmax(0,1fr) clamp(164px,35%,350px);grid-template-rows:56px 44px minmax(0,1fr);bottom:var(--safe-bottom)}
- .hero-card-head{padding-block:3px}
- .hero-card-head canvas{height:44px}
- .hero-card-head p,.hero-card-head span{display:block;margin-top:1px;line-height:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
- .hero-primary{gap:2px}
- .hero-primary dt{font-size:10px}
+ .hero-card-head{padding-block:2px}
+ .hero-card-head h2{font-size:16px}
+ .hero-card-head .hero-face{height:44px}
+ .hero-card-head p,.hero-card-head span{margin-top:0;font-size:11px;line-height:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .hero-vitals .hero-icon{width:11px;height:11px}
+ .hero-primary{gap:2px;padding-block:2px}
+ .hero-primary dt{font-size:clamp(8px,1.4vw,11px)}
+ .hero-primary .hero-icon{width:18px;height:18px}
  #mobile-app .hero-artifact-actions button{font-size:12px;padding:3px}
  .hero-bag-tabs{padding-inline:4px;gap:4px}
  #mobile-app .hero-bag-tabs button{min-height:44px;min-width:44px;padding:2px 4px}
@@ -116,8 +123,13 @@
 .hero-bag-help{grid-column:1/-1;margin:0 0 4px;padding:8px 10px;border:1px solid #a5844a;background:#21170e;color:#e9d4a1;font-size:13px;line-height:1.35}
 .hero-artifact-detail[hidden]{display:none}
 .hero-equipment-page[data-inventory=skills] .hero-equipment-grid{display:block}
-.hero-specialty,.hero-secondary li{padding:8px 10px;border:1px solid #a5844a;background:#24180ed9}
+.hero-specialty,.hero-secondary li{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;border:1px solid #a5844a;background:#24180ed9}
 .hero-specialty{margin-bottom:10px}
+.hero-specialty>div,.hero-secondary li>div{min-width:0}
+.hero-specialty .hero-icon,.hero-secondary .hero-icon{width:44px;height:44px;flex:none}
+.hero-combat-stats{display:flex;gap:6px;margin:0 0 10px}
+.hero-combat-stats>div{display:flex;align-items:center;justify-content:space-between;gap:5px;flex:1;padding:4px 8px;border:1px solid #a5844a;background:#24180ed9}
+.hero-combat-stats dd{display:flex;align-items:center;gap:3px;margin:0;font-weight:700}
 .hero-specialty h3,.hero-secondary h3{margin:0 0 5px;font-size:15px;color:#e7cb8c}
 .hero-specialty strong,.hero-secondary h4{font-size:16px;color:#ffebbb}
 .hero-specialty p,.hero-secondary p{margin:4px 0 0;font-size:13px;line-height:1.4;white-space:pre-line;overflow-wrap:anywhere}
