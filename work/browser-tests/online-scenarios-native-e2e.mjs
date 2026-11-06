@@ -32,7 +32,7 @@ try {
     const hostCode = 'H'.repeat(43);
     const map = {id: 'Maps/Alternate', name: 'Alternate scenario'};
     const matchId = '4b723f1c-987b-4213-b3bb-df22d36f21b1';
-    let submitted, playable = false, revoke = false;
+    let submitted, playable = false, revoke = false, alertsEnabled = false;
     const simulateHostedSocket = () => page.evaluate(() => {
       const listeners = new Map();
       Module.websocket.on = (event, callback) => listeners.set(event, callback);
@@ -46,13 +46,18 @@ try {
         }, 750);
       };
     });
-    await page.route(endpoint, route => {
-      const headers = {'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
+    await page.route(url => url.href === endpoint || url.href === endpoint + '?alerts=1', route => {
+      const headers = {'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
         'Access-Control-Allow-Headers': 'Authorization, Content-Type'};
       if (route.request().method() === 'OPTIONS') return route.fulfill({status: 204, headers});
       assert.equal(route.request().headers().authorization, 'Bearer ' + hostCode);
       if (route.request().method() === 'PUT') {
         assert.equal(route.request().postDataJSON().subscription.endpoint, 'https://example.invalid/push');
+        alertsEnabled = true;
+        return route.fulfill({status: 204, headers});
+      }
+      if (route.request().method() === 'DELETE') {
+        alertsEnabled = false;
         return route.fulfill({status: 204, headers});
       }
       if (route.request().method() === 'POST') {
@@ -60,6 +65,9 @@ try {
         return route.fulfill({status: 204, headers});
       }
       if (revoke) return route.fulfill({status: 401, headers});
+      if (new URL(route.request().url()).searchParams.has('alerts')) {
+        return route.fulfill({status: 200, headers, json: {matchId, alertsEnabled}});
+      }
       return route.fulfill({status: 200, headers, json: {matchId, playable,
         ...(!playable ? {scenarioStatus: 'choose', scenarios: [map]} : {})}});
     });
@@ -90,16 +98,18 @@ try {
     assert(touchSized, 'Seat code uses a touch-sized input and a font that avoids focus zoom');
     await seat.pressSequentially('bad');
     assert.equal(await seat.inputValue(), 'bad');
-    const enable = page.getByRole('button', {name: 'Enable turn alerts', exact: true});
-    assert(await enable.isDisabled());
+    assert(await page.getByRole('button', {name: 'Turn alerts', exact: true}).isDisabled());
+    const alerts = page.getByRole('switch', {name: 'Turn alerts', exact: true});
     await page.getByRole('button', {name: 'Paste code', exact: true}).tap();
     await wait(code => document.querySelector('[data-hosted-seat-code]').value === code, hostCode);
-    assert(await enable.isEnabled());
-    await enable.tap();
+    await alerts.waitFor();
+    assert.equal(await alerts.getAttribute('aria-checked'), 'false');
+    await alerts.tap();
     await page.getByText('Notifications are unavailable here.', {exact: false}).waitFor();
     await page.evaluate(() => { window.testPushReady = true; });
-    await enable.tap();
+    await alerts.tap();
     await page.getByText('Alerts enabled for this seat.', {exact: true}).waitFor();
+    assert.equal(await alerts.getAttribute('aria-checked'), 'true');
     await seat.fill(hostCode);
     await page.getByRole('button', {name: 'Join match', exact: true}).tap();
     await page.getByLabel('Hosted match scenario').selectOption(map.id);
@@ -134,6 +144,11 @@ try {
     await page.reload();
     const resume = page.getByRole('button', {name: 'Resume match', exact: true});
     await resume.waitFor();
+    await alerts.waitFor();
+    assert.equal(await alerts.getAttribute('aria-checked'), 'true');
+    await alerts.tap();
+    await page.getByText('Alerts disabled for this seat.', {exact: true}).waitFor();
+    assert.equal(await alerts.getAttribute('aria-checked'), 'false');
     await simulateHostedSocket();
     assert.equal(await seat.inputValue(), '');
     await resume.tap();

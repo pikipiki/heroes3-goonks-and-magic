@@ -86,10 +86,10 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   }
   showMode(requested ? 'join' : null);
   field.className = 'hosted-match-settings';
-  field.innerHTML = '<label><span></span><input type="password" data-hosted-seat-code autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="hosted-seat-code-help"></label><button type="button" class="hosted-paste"></button><small id="hosted-seat-code-help"></small><div class="hosted-match-actions"><button type="button"></button><button type="button"></button><button type="button"></button></div><p role="status"></p>';
+  field.innerHTML = '<label><span></span><input type="password" data-hosted-seat-code autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="hosted-seat-code-help"></label><button type="button" class="hosted-paste"></button><small id="hosted-seat-code-help"></small><div class="hosted-match-actions"><button type="button"></button><button type="button"></button></div><p role="status"></p>';
   const input = field.querySelector('input');
   input.placeholder = 'XXXX-XXXX-XXXX';
-  const [paste, enable, disable, join] = field.querySelectorAll('button');
+  const [paste, join, alerts] = field.querySelectorAll('button');
   const help = field.querySelector('small');
   const status = field.querySelector('[role=status]');
   const loader = document.createElement('p');
@@ -129,16 +129,11 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   field.querySelector('label span').textContent = fr ? 'Code de ta place' : 'Your seat code';
   paste.textContent = fr ? 'Coller le code' : 'Paste code';
   paste.hidden = !navigator.clipboard?.readText;
-  enable.textContent = fr ? 'Activer les alertes de tour' : 'Enable turn alerts';
-  disable.textContent = fr ? 'Couper les alertes de tour' : 'Turn off turn alerts';
+  const alertsLabel = fr ? 'Alertes de tour' : 'Turn alerts';
   const alertsHelp = document.createElement('p');
   alertsHelp.id = 'hosted-turn-alerts-help';
-  alertsHelp.textContent = fr
-    ? 'Les alertes te préviennent sur cet appareil quand c’est ton tour. Les couper les arrête pour cette place sur tous les appareils.'
-    : 'Turn alerts notify you on this device when it’s your turn. Turning them off stops alerts for this seat on any device.';
-  enable.setAttribute('aria-describedby', alertsHelp.id);
-  disable.setAttribute('aria-describedby', alertsHelp.id);
-  enable.parentElement.after(alertsHelp);
+  alerts.setAttribute('aria-describedby', alertsHelp.id);
+  alerts.parentElement.after(alertsHelp);
   join.textContent = fr ? 'Rejoindre la partie' : 'Join match';
   const {serviceWorker} = navigator;
   layout.append(modes, intro, createPanel, field);
@@ -166,6 +161,10 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   let manager;
   let pending = false;
   const seatCode = () => normalizeSeatCode(input.value);
+  const alertSeat = () => input.value.trim() ? {token: seatCode()} : {
+    token: normalizeSeatCode(saved?.token ?? ''), endpoint: saved?.endpoint,
+  };
+  let alertsState = {};
   function remember(matchId, token, target, name, players) {
     const seats = rememberedSeats();
     const previous = seats.find(item => sameMatch(item, {matchId, endpoint: target}));
@@ -173,10 +172,16 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     try { localStorage.setItem(rememberedSeatKey, JSON.stringify([saved, ...seats.filter(item => !sameMatch(item, saved))].slice(0, 101))); } catch {}
   }
   const creationAction = mountHostedMatchCreation(createPanel, createMode, poolEndpoint, fr,
-    (matchId, token, name, players) => { remember(matchId, token, poolEndpoint, name, players); render(); void updateOccupancy(); });
+    (matchId, token, name, players) => {
+      remember(matchId, token, poolEndpoint, name, players);
+      if (!field.hidden) {
+        void refreshAlerts();
+        void updateOccupancy();
+      }
+    });
 
-  async function hostedRequest(token, options, knownEndpoint) {
-    const send = target => fetch(target, {
+  async function hostedRequest(token, options, knownEndpoint, query = '') {
+    const send = target => fetch(target + query, {
       credentials: 'omit', redirect: 'error', signal: AbortSignal.timeout(target === poolEndpoint ? 55000 : 10000),
       ...options, headers: {Authorization: 'Bearer ' + token, ...options?.headers},
     });
@@ -209,21 +214,60 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     resume.disabled = pending || !window.Module?._vcmiJoinHostedMatch;
     forget.disabled = pending;
     paste.disabled = pending;
-    enable.disabled = !valid || pending;
-    disable.disabled = !valid || pending;
+    const {token} = alertSeat();
+    const {enabled, checking} = alertsState;
+    alerts.disabled = !token || pending || checking;
+    if (typeof enabled === 'boolean') {
+      alerts.setAttribute('role', 'switch');
+      alerts.setAttribute('aria-checked', String(enabled));
+      alerts.setAttribute('aria-label', alertsLabel);
+      alerts.textContent = alertsLabel + ' · ' + (fr ? (enabled ? 'Activées' : 'Désactivées') : (enabled ? 'On' : 'Off'));
+    } else {
+      for (const attribute of ['role', 'aria-checked', 'aria-label']) alerts.removeAttribute(attribute);
+      alerts.textContent = checking ? (fr ? 'Vérification des alertes…' : 'Checking turn alerts…')
+        : token ? (fr ? 'Vérifier les alertes' : 'Check turn alerts') : alertsLabel;
+    }
+    alertsHelp.textContent = token
+      ? (fr ? 'Active les alertes sur cet appareil. Les couper les arrête pour cette place sur tous les appareils.'
+        : 'Switch on to get alerts on this device. Switching off stops alerts for this seat on any device.')
+      : (fr ? 'Saisis ton code ou choisis une partie mémorisée pour régler les alertes.'
+        : 'Enter your seat code or select a saved game to manage turn alerts.');
     join.disabled = !valid || pending || !window.Module?._vcmiJoinHostedMatch;
     start.disabled = !valid || !select.value || pending;
     select.disabled = pending;
     input.disabled = createMode.disabled = joinMode.disabled = pending;
   };
+  async function refreshAlerts(force = false) {
+    const {token, endpoint} = alertSeat();
+    if (!force && token === alertsState.token && endpoint === alertsState.endpoint) {
+      render();
+      return;
+    }
+    const request = {token, endpoint, checking: Boolean(token)};
+    alertsState = request;
+    render();
+    if (!token) return;
+    try {
+      const {response, target} = await hostedRequest(token, {}, endpoint, '?alerts=1');
+      if (!response.ok) return;
+      const {matchId, alertsEnabled} = await response.json();
+      if (matchPattern.test(matchId) && (!requested || requested === matchId) && typeof alertsEnabled === 'boolean') {
+        request.enabled = alertsEnabled;
+        request.target = target;
+      }
+    } catch {
+      // A failed lookup leaves the state unknown and can be retried.
+    } finally {
+      request.checking = false;
+      if (alertsState === request && input.isConnected) render();
+    }
+  }
   async function updateOccupancy() {
     const selected = saved;
     occupancy.textContent = selected?.players ? selected.players + (fr ? ' places' : ' seats') : '';
     if (!selected || selected.endpoint !== poolEndpoint) return;
     try {
-      const url = new URL(selected.endpoint);
-      url.searchParams.set('preview', '1');
-      const {response} = await hostedRequest(selected.token, {}, url.href);
+      const {response} = await hostedRequest(selected.token, {}, selected.endpoint, '?preview=1');
       if (!response.ok) return;
       const {matchId, players, connectedPlayers} = await response.json();
       if (saved === selected && matchId === selected.matchId && Number.isInteger(players) && Number.isInteger(connectedPlayers)) {
@@ -234,13 +278,14 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   const codeChanged = () => {
     chooser.hidden = start.hidden = true;
     status.textContent = '';
-    render();
+    void refreshAlerts();
   };
   for (const type of ['input', 'change']) input.addEventListener(type, codeChanged);
   select.addEventListener('change', render);
   savedMatch.addEventListener('change', () => {
     saved = availableSeats().find(item => item.matchId === savedMatch.value);
-    render();
+    input.value = '';
+    codeChanged();
     void updateOccupancy();
   });
   serviceWorker?.getRegistration().then(registration => {
@@ -248,7 +293,10 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   }).catch(() => {});
   serviceWorker?.ready.then(registration => { manager = registration.pushManager; });
   render();
-  if (requested) void updateOccupancy();
+  if (requested) {
+    void refreshAlerts();
+    void updateOccupancy();
+  }
 
   async function pasteCode() {
     try {
@@ -263,12 +311,16 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     }
   }
 
-  async function change(enabled) {
-    if (pending) return;
-    const token = seatCode();
-    if (!token) return;
-    input.blur();
+  async function toggleAlerts() {
+    const current = alertsState;
+    if (pending || !current.token || current.checking) return;
+    if (typeof current.enabled !== 'boolean') {
+      await refreshAlerts(true);
+      return;
+    }
+    const enabled = !current.enabled;
     pending = true;
+    input.blur();
     render();
     try {
       if (enabled) {
@@ -290,13 +342,13 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       }
       // Request permission on the tap when the registration is ready.
       const subscription = enabled ? await manager.subscribe({userVisibleOnly: true, applicationServerKey}) : undefined;
-      const {response} = await hostedRequest(token, {
+      const {response} = await hostedRequest(current.token, {
         method: enabled ? 'PUT' : 'DELETE',
         headers: {'Content-Type': 'application/json'},
         body: subscription ? JSON.stringify({subscription: subscription.toJSON(), language: language()}) : undefined,
-      });
+      }, current.target);
       if (!response.ok) throw new Error('Registration rejected.');
-      input.value = '';
+      current.enabled = enabled;
       status.textContent = enabled
         ? (fr ? 'Alertes activées pour cette place.' : 'Alerts enabled for this seat.')
         : (fr ? 'Alertes désactivées pour cette place.' : 'Alerts disabled for this seat.');
@@ -402,6 +454,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   return button => {
     if (button === joinMode) {
       showMode('join');
+      void refreshAlerts(true);
       void updateOccupancy();
       return true;
     }
@@ -424,15 +477,15 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       saved = availableSeats()[0];
       void updateOccupancy();
       status.textContent = fr ? 'Code effacé sur cet appareil.' : 'Saved code removed from this device.';
-      render();
+      void refreshAlerts();
       return true;
     }
     if (button === join) {
       void joinMatch();
       return true;
     }
-    if (button !== enable && button !== disable) return false;
-    void change(button === enable);
+    if (button !== alerts) return false;
+    void toggleAlerts();
     return true;
   };
 }
