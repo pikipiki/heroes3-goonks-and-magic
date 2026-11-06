@@ -173,7 +173,7 @@ try {
   if (poolEndpoint) {
     const matchId = '527329c6-19f9-4284-9aa0-dace75c66a32';
     const hostToken = 'HG' + 'R'.repeat(41), guestToken = 'HG' + 'B'.repeat(41);
-    const codes = [{seat: 1, code: 'KMRT'}];
+    const roomCode = 'KMRT';
     const scenarios = [
       {id: 'medium', name: 'Medium map', width: 72, castles: [[{id: 0, name: 'Castle'}], [{id: 3, name: 'Inferno'}]]},
       {id: 'small', name: 'Small map', width: 36, castles: [[{id: 0, name: 'Castle'}, {id: 1, name: 'Rampart'}], [{id: 3, name: 'Inferno'}, {id: 4, name: 'Necropolis'}]]},
@@ -187,11 +187,11 @@ try {
       assert.equal(route.request().headers().authorization, undefined);
       if (route.request().method() === 'GET') return route.fulfill({status: 200, headers, json: {scenarios}});
       if (new URL(route.request().url()).pathname.endsWith('/claim')) {
-        assert.equal(route.request().postDataJSON().code, 'KMRT');
+        assert.equal(route.request().postDataJSON().code, roomCode);
         return route.fulfill({status: 200, headers, json: {matchId, players: 2, token: guestToken}});
       }
       request = route.request().postDataJSON();
-      return route.fulfill({status: 201, headers, json: {matchId, hostToken, codes}});
+      return route.fulfill({status: 201, headers, json: {matchId, hostToken, roomCode}});
     });
     await page.route(url => url.href === poolEndpoint || url.href.startsWith(poolEndpoint + '?'), route => {
       const headers = {'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
@@ -224,12 +224,13 @@ try {
     await page.locator('[data-create-map] option[value=small]').waitFor({state: 'attached'});
     assert.equal(await page.locator('[data-create-map]').inputValue(), 'small');
     await page.locator('[data-create-castles] select').first().selectOption('1');
-    await page.getByRole('button', {name: 'Create match and get codes', exact: true}).tap();
-    await page.locator('[data-create-codes] [data-seat="1"]').tap();
-    assert.equal(await page.evaluate(() => window.testCopied), codes[0].code);
+    await page.getByRole('button', {name: 'Create match and get code', exact: true}).tap();
+    await page.getByRole('button', {name: 'Copy code', exact: true}).tap();
+    assert.equal(await page.evaluate(() => window.testCopied), roomCode);
+    assert.equal(await page.locator('[data-create-codes] input').count(), 1);
     assert.deepEqual(request.factions, [1, null]);
     assert.equal(request.players, 2);
-    assert.equal(request.codeFormat, 'invite');
+    assert.equal(request.codeFormat, 'room');
     await back.tap();
     assert(await createNew.isVisible());
     assert(await joinExisting.isVisible());
@@ -248,7 +249,7 @@ try {
     await back.tap();
     assert(await createNew.isVisible());
     await createNew.tap();
-    assert(await page.locator('[data-create-codes] [data-seat="1"]').isVisible());
+    assert(await page.locator('[data-create-codes] [data-create-match=copy]').isVisible());
     assert(await page.getByRole('button', {name: 'Paste code', exact: true}).isHidden());
     await page.evaluate(() => {
       const schedule = window.setTimeout.bind(window);
@@ -260,7 +261,7 @@ try {
     await launch.tap();
     await timeoutReport;
     assert(await page.getByRole('button', {name: 'Reload and retry', exact: true}).isHidden());
-    assert(await page.locator('[data-create-codes] [data-seat="1"]').isVisible());
+    assert(await page.locator('[data-create-codes] [data-create-match=copy]').isVisible());
     await simulateHostedSocket();
     const hostReport = page.waitForResponse(response => new URL(response.url()).searchParams.get('result') === 'connected');
     await launch.tap();
