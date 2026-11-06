@@ -161,7 +161,7 @@ public:
 	/// Creates an instance of TCP client that allows to establish single outgoing connection to a remote port
 	/// On success: INetworkTimerListener::onConnectionEstablished() will be called, established connection provided as parameter
 	/// On failure: INetworkTimerListener::onConnectionFailed will be called with human-readable error message
-	virtual void connectToRemote(INetworkClientListener & listener, const std::string & host, uint16_t port) = 0;
+	virtual void connectToRemote(INetworkClientListener & listener, const std::string & host, uint16_t port, std::chrono::milliseconds timeout = {}) = 0;
 
 	/// Creates an instance of internal connection that is connected to a network server, but uses intra-process communication instead of TCP
 	/// On success INetworkTimerListener::onConnectionEstablished() will be called asynchronously, established connection provided as parameter

@@ -21,6 +21,7 @@ class NetworkConnection final : public INetworkConnection, public std::enable_sh
 	std::list<std::vector<std::byte>> dataToSend;
 	std::shared_ptr<NetworkSocket> socket;
 	std::shared_ptr<NetworkTimer> timer;
+	std::chrono::steady_clock::time_point firstPacketDeadline = std::chrono::steady_clock::time_point::max();
 #ifdef VCMI_EMSCRIPTEN
 	std::chrono::steady_clock::time_point nextHeartbeat;
 #endif
@@ -43,7 +44,7 @@ class NetworkConnection final : public INetworkConnection, public std::enable_sh
 public:
 	NetworkConnection(INetworkConnectionListener & listener, const std::shared_ptr<NetworkSocket> & socket, NetworkContext & context);
 
-	void start();
+	void start(std::chrono::steady_clock::time_point deadline = std::chrono::steady_clock::time_point::max());
 	void close() override;
 	void sendPacket(const std::vector<std::byte> & message) override;
 	void setAsyncWritesEnabled(bool on) override;

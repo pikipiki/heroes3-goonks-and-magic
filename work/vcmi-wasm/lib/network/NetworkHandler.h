@@ -21,7 +21,7 @@ public:
 	NetworkHandler();
 
 	std::unique_ptr<INetworkServer> createServerTCP(INetworkServerListener & listener) override;
-	void connectToRemote(INetworkClientListener & listener, const std::string & host, uint16_t port) override;
+	void connectToRemote(INetworkClientListener & listener, const std::string & host, uint16_t port, std::chrono::milliseconds timeout = {}) override;
 	void createInternalConnection(INetworkClientListener & listener, INetworkServer & server) override;
 	std::shared_ptr<INetworkConnection> createAsyncConnection(INetworkConnectionListener & listener) override;
 	void createTimer(INetworkTimerListener & listener, std::chrono::milliseconds duration) override;

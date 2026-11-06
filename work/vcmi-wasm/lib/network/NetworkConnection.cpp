@@ -45,8 +45,9 @@ NetworkConnection::NetworkConnection(INetworkConnectionListener & listener, cons
 #endif
 }
 
-void NetworkConnection::start()
+void NetworkConnection::start(std::chrono::steady_clock::time_point deadline)
 {
+	firstPacketDeadline = deadline;
 #ifdef VCMI_EMSCRIPTEN
 	nextHeartbeat = std::chrono::steady_clock::now() + heartbeatInterval;
 #endif
@@ -80,8 +81,14 @@ void NetworkConnection::heartbeat()
 		if (!locked)
 			return;
 
-#ifdef VCMI_EMSCRIPTEN
 		const auto now = std::chrono::steady_clock::now();
+		if (now >= locked->firstPacketDeadline)
+		{
+			locked->onError("Timed out waiting for the first server packet");
+			return;
+		}
+
+#ifdef VCMI_EMSCRIPTEN
 		if (now >= locked->nextHeartbeat)
 		{
 			locked->sendPacket({});
@@ -144,6 +151,7 @@ void NetworkConnection::onPacketReceived(const boost::system::error_code & ec, u
 
 	std::vector<std::byte> message(expectedPacketSize);
 	readBuffer.sgetn(reinterpret_cast<char *>(message.data()), expectedPacketSize);
+	firstPacketDeadline = std::chrono::steady_clock::time_point::max();
 	listener.onPacketReceived(shared_from_this(), message);
 
 	startReceiving();

@@ -250,35 +250,21 @@ try {
     await createNew.tap();
     assert(await page.locator('[data-create-codes] [data-seat="1"]').isVisible());
     assert(await page.getByRole('button', {name: 'Paste code', exact: true}).isHidden());
-    await page.addInitScript(() => {
-      const reconnectKey = 'heroes-goonk.hosted-reconnect';
-      if (!sessionStorage.getItem(reconnectKey)) return;
-      const install = ({detail: state}) => {
-        if (state.mode !== 'menu' || !window.Module?._vcmiJoinHostedMatch) return;
-        window.removeEventListener('goonk-state', install);
-        const listeners = new Map();
-        Module.websocket.on = (event, callback) => listeners.set(event, callback);
-        Module._vcmiJoinHostedMatch = () => {
-          listeners.get('open')?.();
-          setTimeout(() => window.dispatchEvent(new CustomEvent('goonk-state', {
-            detail: {...state, sessionState: 6, onlineGame: true},
-          })), 250);
-        };
-      };
-      window.addEventListener('goonk-state', install);
-    });
     await page.evaluate(() => {
       const schedule = window.setTimeout.bind(window);
       window.setTimeout = (callback, delay, ...args) => schedule(callback, delay === 30000 ? 25 : delay, ...args);
       Module._vcmiJoinHostedMatch = () => {};
     });
     const timeoutReport = page.waitForResponse(response => new URL(response.url()).searchParams.get('result') === 'socket-timeout');
-    await page.getByRole('button', {name: 'Launch game', exact: true}).tap();
+    const launch = page.getByRole('button', {name: 'Launch game', exact: true});
+    await launch.tap();
     await timeoutReport;
+    assert(await page.getByRole('button', {name: 'Reload and retry', exact: true}).isHidden());
+    assert(await page.locator('[data-create-codes] [data-seat="1"]').isVisible());
+    await simulateHostedSocket();
     const hostReport = page.waitForResponse(response => new URL(response.url()).searchParams.get('result') === 'connected');
-    await page.getByRole('button', {name: 'Reload and retry', exact: true}).tap();
+    await launch.tap();
     await hostReport;
-    assert.equal(await page.evaluate(() => sessionStorage.getItem('heroes-goonk.hosted-reconnect')), null);
     await seat.waitFor({state: 'detached'});
     assert.deepEqual(reports.map(report => report.result), ['busy', 'socket-timeout', 'connected']);
     assert(reports.every(report => /^[a-f0-9-]{36}$/.test(report.attempt)));

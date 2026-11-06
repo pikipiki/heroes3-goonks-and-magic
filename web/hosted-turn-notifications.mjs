@@ -9,7 +9,6 @@ function normalizeSeatCode(value) {
   return shortSeatCodePattern.test(short) ? short : '';
 }
 const rememberedSeatKey = 'heroes-goonk.hosted-seat';
-const reconnectKey = 'heroes-goonk.hosted-reconnect';
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
 const matchPattern = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 
@@ -94,7 +93,6 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   function showMode(mode) {
     modes.hidden = intro.hidden = Boolean(mode);
     status.textContent = '';
-    retryReload.hidden = true;
     container.scrollTop = 0;
     createPanel.hidden = mode !== 'create';
     field.hidden = mode !== 'join';
@@ -108,10 +106,6 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   const [paste, join, alerts] = field.querySelectorAll('button');
   const help = field.querySelector('small');
   const status = field.querySelector('[role=status]');
-  const retryReload = document.createElement('button');
-  retryReload.type = 'button';
-  retryReload.textContent = fr ? 'Recharger et réessayer' : 'Reload and retry';
-  retryReload.hidden = true;
   const loader = document.createElement('p');
   loader.className = 'hosted-match-loading';
   loader.setAttribute('role', 'status');
@@ -156,7 +150,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   alerts.parentElement.after(alertsHelp);
   join.textContent = fr ? 'Rejoindre la partie' : 'Join match';
   const {serviceWorker} = navigator;
-  layout.append(modes, intro, loader, createPanel, field, status, retryReload);
+  layout.append(modes, intro, loader, createPanel, field, status);
   container.append(layout);
 
   function rememberedSeats() {
@@ -177,7 +171,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     } catch {}
   }
 
-  let saved = availableSeats()[0], createdSeat, reloadSeat;
+  let saved = availableSeats()[0], createdSeat;
   const claims = new Map();
   let manager;
   let pending = false;
@@ -320,16 +314,8 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   serviceWorker?.ready.then(registration => { manager = registration.pushManager; });
   render();
   if (requested) {
-    let reconnect = false;
-    try {
-      reconnect = sessionStorage.getItem(reconnectKey) === requested;
-      if (reconnect) sessionStorage.removeItem(reconnectKey);
-    } catch {}
-    if (reconnect && saved) void joinMatch({remembered: saved});
-    else {
-      void refreshAlerts();
-      void updateOccupancy();
-    }
+    void refreshAlerts();
+    void updateOccupancy();
   }
 
   async function pasteCode() {
@@ -404,8 +390,6 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     input.blur();
     pending = true;
     status.textContent = '';
-    retryReload.hidden = true;
-    reloadSeat = undefined;
     const showLoading = (french, english) => {
       loader.hidden = false;
       const message = fr ? french : english;
@@ -516,7 +500,6 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       destination.protocol = destination.protocol === 'https:' ? 'wss:' : 'ws:';
       if (tracePool) destination.searchParams.set('attempt', attempt);
       opening = true;
-      reloadSeat = {matchId, token, target, name, players};
       showLoading('Connexion à la partie…', 'Connecting to the match…');
       const loadMatch = () => connectHostedMatch(runtime, destination, token,
         () => showLoading('Chargement de la partie…', 'Loading the match…'));
@@ -537,8 +520,11 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       input.value = '';
       onJoining();
     } catch (error) {
-      if (opening) outcome = error.cause ?? 'engine-error';
-      retryReload.hidden = outcome !== 'socket-timeout';
+      if (opening) {
+        outcome = error.cause ?? 'engine-error';
+        // Keep the button disabled while the engine publishes the disconnected state.
+        if (window.goonkGameMenuState?.native?.sessionState > 0) await pause(1000);
+      }
       status.textContent = opening
         ? (fr ? 'La connexion à la partie a été interrompue. Réessaie.' : 'The game connection was interrupted. Try again.')
         : (fr ? 'Partie indisponible. Vérifie le code et réessaie.' : 'Match unavailable. Check your code and try again.');
@@ -558,27 +544,6 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   }
 
   function activate(button) {
-    if (button === retryReload) {
-      if (!reloadSeat || pending) return true;
-      const {matchId, token, target, name, players} = reloadSeat;
-      remember(matchId, token, target, name, players);
-      if (!rememberedSeats().some(seat => seat.matchId === matchId && seat.token === token)) {
-        status.textContent = fr ? 'Impossible de mémoriser cette partie avant de recharger.'
-          : 'Could not save this match before reloading.';
-        return true;
-      }
-      try {
-        const url = new URL(location.href);
-        url.searchParams.set('match', matchId);
-        sessionStorage.setItem(reconnectKey, matchId);
-        history.replaceState(history.state, '', url);
-        location.reload();
-      } catch {
-        status.textContent = fr ? 'Impossible de recharger automatiquement. Reprends la partie depuis le menu.'
-          : 'Could not reload automatically. Resume the match from the menu.';
-      }
-      return true;
-    }
     if (button === joinMode) {
       showMode('join');
       void refreshAlerts(true);

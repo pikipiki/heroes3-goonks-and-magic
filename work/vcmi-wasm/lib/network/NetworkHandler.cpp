@@ -37,33 +37,60 @@ std::shared_ptr<INetworkConnection> NetworkHandler::createAsyncConnection(INetwo
 	return loopbackConnection;
 }
 
-void NetworkHandler::connectToRemote(INetworkClientListener & listener, const std::string & host, uint16_t port)
+void NetworkHandler::connectToRemote(INetworkClientListener & listener, const std::string & host, uint16_t port, std::chrono::milliseconds timeout)
 {
 	auto socket = std::make_shared<NetworkSocket>(*context);
 	auto resolver = std::make_shared<boost::asio::ip::tcp::resolver>(*context);
+	std::shared_ptr<NetworkTimer> timer;
+	if (timeout.count() > 0)
+		timer = std::make_shared<NetworkTimer>(*context, timeout);
+	auto completed = std::make_shared<bool>(false);
+	const auto deadline = timer ? timer->expiry() : std::chrono::steady_clock::time_point::max();
 
-	resolver->async_resolve(host, std::to_string(port),
-	[this, &listener, resolver, socket](const boost::system::error_code& error, const boost::asio::ip::tcp::resolver::results_type & endpoints)
+	const auto finish = [this, socket, timer, completed, deadline, &listener](const boost::system::error_code & error)
 	{
+		if (std::exchange(*completed, true))
+			return;
+		if (timer)
+			timer->cancel();
 		if (error)
 		{
 			listener.onConnectionFailed(error.message());
 			return;
 		}
+		auto connection = std::make_shared<NetworkConnection>(listener, socket, *context);
+		connection->start(deadline);
+		listener.onConnectionEstablished(connection);
+	};
 
-		boost::asio::async_connect(*socket, endpoints, [this, socket, &listener](const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint)
+	if (timer)
+	{
+		timer->async_wait([resolver, socket, completed, finish](const boost::system::error_code & error)
 		{
+			if (error || *completed)
+				return;
+			resolver->cancel();
+			boost::system::error_code ignored;
+			socket->close(ignored);
+			finish(boost::asio::error::timed_out);
+		});
+	}
+
+	resolver->async_resolve(host, std::to_string(port),
+		[resolver, socket, completed, finish](const boost::system::error_code & error, const boost::asio::ip::tcp::resolver::results_type & endpoints)
+		{
+			if (*completed)
+				return;
 			if (error)
 			{
-				listener.onConnectionFailed(error.message());
+				finish(error);
 				return;
 			}
-			auto connection = std::make_shared<NetworkConnection>(listener, socket, *context);
-			connection->start();
-
-			listener.onConnectionEstablished(connection);
+			boost::asio::async_connect(*socket, endpoints, [finish](const boost::system::error_code & connectError, const boost::asio::ip::tcp::endpoint &)
+			{
+				finish(connectError);
+			});
 		});
-	});
 }
 
 void NetworkHandler::run()

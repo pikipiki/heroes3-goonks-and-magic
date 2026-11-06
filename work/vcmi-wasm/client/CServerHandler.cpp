@@ -219,7 +219,8 @@ void CServerHandler::connectToServer(const std::string & addr, const ui16 port)
 		Settings remotePort = settings.write["server"]["remotePort"];
 		remotePort->Integer() = port;
 
-		networkHandler->connectToRemote(*this, addr, port);
+		const auto timeout = serverMode == EServerMode::HOSTED_GUEST ? std::chrono::seconds(20) : std::chrono::seconds(0);
+		networkHandler->connectToRemote(*this, addr, port, timeout);
 	}
 	else
 	{
