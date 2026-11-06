@@ -35,9 +35,9 @@ for(const [kind,launcher] of Object.entries({chromium,webkit})){
    await page.evaluate(faction=>{
     window.calls=[];
     window.buildState={mode:'town',townFaction:faction,townName:'Town',turn:false,armies:[],resources:[30,15,30,15,15,15,20000],buildings:[
-     {id:16,key:'core:blacksmith',name:'Blacksmith',description:'War machines',built:true,allowed:false,state:4},
+     {id:16,key:'core:blacksmith',name:'{Blacksmith}',description:'War machines',built:true,allowed:false,state:4},
      {id:0,key:'core:mageGuild1',name:'Mage guild',description:'Learn spells',built:false,allowed:true,cost:[0,0,0,0,0,0,2000]},
-     {id:31,key:'core:dwellingUpLvl1',name:'Locked evolution',built:false,allowed:false,state:8,cost:[]},
+     {id:31,key:'core:dwellingUpLvl1',name:'{Adv. Goblin Barracks}',description:'Recruit {Hobgoblin Overlords}.',built:false,allowed:false,state:8,cost:[]},
     ]};
     window.sendBuild=()=>dispatchEvent(new CustomEvent('goonk-state',{detail:structuredClone(buildState)}));
     sendBuild();
@@ -45,6 +45,7 @@ for(const [kind,launcher] of Object.entries({chromium,webkit})){
    await page.waitForFunction(()=>window.goonkMobileState?.mode==='town'&&!goonkMobileState.turn);
    assert.equal(await page.locator('[data-ui=town-buildings]').count(),0);
    if(size.width<size.height){
+    assert.equal(await page.locator('[data-town-building="16"]').getAttribute('aria-label'),'Blacksmith');
     await page.locator('[data-town-building="16"]').tap();
     assert.deepEqual(await commands(),[[39,16]],'Direct inspection works during the opponent’s turn');
     await returnFromInspection();
@@ -53,6 +54,8 @@ for(const [kind,launcher] of Object.entries({chromium,webkit})){
    assert.equal(await tab('unbuilt').getAttribute('aria-pressed'),'true');
    assert.match(await card(0).innerText(),/Mage guild/);
    assert(await card(0).locator('button').isDisabled());
+   assert.equal(await card(31).locator('h3').textContent(),'Adv. Goblin Barracks');
+   assert.equal(await card(31).locator('p').textContent(),'Recruit Hobgoblin Overlords.');
    assert(await card(31).locator('button').isDisabled());
    await tab('built').tap();
    assert.match(await card(16).innerText(),/Blacksmith/);

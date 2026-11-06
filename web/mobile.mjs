@@ -1,3 +1,4 @@
+import {plainGameText} from './game-text.mjs';
 import {deleteSoloAutosave} from './runtime-scheduling.mjs';
 import {isVisibleScenario,savedGameTitle,scenarioTitle} from './scenario-title.mjs';
 import {createOnlineLogin} from './online-login.mjs';
@@ -315,7 +316,7 @@ function mount(){
    const card=document.createElement('article');
    card.className='mobile-card';card.dataset.buildingId=building.id;
    const image=townBuildingCardImage(state,building,asset)||fallback;
-   card.innerHTML=`<img class="building-card-image" src="${escape(image)}" alt="" loading="lazy"><h3>${escape(building.name)}</h3><p>${escape(building.description)}</p>`+
+   card.innerHTML=`<img class="building-card-image" src="${escape(image)}" alt="" loading="lazy"><h3>${escape(plainGameText(building.name))}</h3><p>${escape(plainGameText(building.description))}</p>`+
     (built?'<footer><button type="button">Voir</button></footer>':
      `<footer><span class="resource-cost">${escape(cost(building.cost))}</span>${building.allowed?'':`<small>${escape(buildReason(building.state))}</small>`}<button type="button" class="primary" ${state.turn&&building.allowed?'':'disabled'}>Construire</button></footer>`);
    card.querySelector('img').addEventListener('error',event=>{event.currentTarget.src=fallback;},{once:true});
@@ -324,7 +325,7 @@ function mount(){
     if(state.mode!=='town'||!current)return;
     if(built&&current.built){closeSheet();command(39,current.id);}
     else if(!built&&!current.built&&current.allowed&&state.turn){
-     command(8,current.id);closeSheet();notify('Construction demandée : '+current.name);
+     command(8,current.id);closeSheet();notify('Construction demandée : '+plainGameText(current.name));
     }
    };
    cards.append(card);

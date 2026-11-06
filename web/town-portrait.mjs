@@ -1,3 +1,4 @@
+import{plainGameText}from'./game-text.mjs';
 import{buildingSizes}from'./town-building-sizes.mjs';
 import{townBuildingArt}from'./town/building-art.mjs';
 // Anchors describe complete buildings, with a common baseline on each terrace.
@@ -84,7 +85,7 @@ export function createTownPortrait({root,scene,asset,command,getState}){
    const next=JSON.stringify([faction,width,height,buildings.map(b=>[b.id,b.name])]);
    if(signature!==next){signature=next;const active=new Set(buildings.map(b=>b.id));for(const [id,button]of buttons)if(!active.has(id)){button.remove();buttons.delete(id);if(hovered===id)hovered=null;}
     for(const b of buildings){let button=buttons.get(b.id);if(!button){button=document.createElement('button');button.className='town-building-hit';button.dataset.townBuilding=b.id;const label=document.createElement('span');label.className='town-building-name';button.append(label);button.addEventListener('pointerenter',()=>hovered=b.id);button.addEventListener('pointerleave',()=>hovered=null);button.addEventListener('focus',()=>hovered=b.id);button.addEventListener('blur',()=>hovered=null);button.addEventListener('click',event=>{event.stopPropagation();const current=getState();if(current.mode==='town'&&current.buildings?.some(record=>record.id===b.id&&record.built)){hovered=b.id;command(39,b.id);}});buttons.set(b.id,button);overlay.append(button);}
-     button.setAttribute('aria-label',b.name);const nameLabel=button.querySelector('span'),labelWidth=Math.min(180,Math.max(70,b.name.length*6.5+16));nameLabel.textContent=b.name;nameLabel.style.width=labelWidth+'px';nameLabel.style.left=(Math.max(6,Math.min(width-labelWidth-6,b.hit.x+b.hit.w/2-labelWidth/2))-b.hit.x)+'px';Object.assign(button.style,{left:b.hit.x+'px',top:b.hit.y+'px',width:b.hit.w+'px',height:b.hit.h+'px'});
+     const name=plainGameText(b.name);button.setAttribute('aria-label',name);const nameLabel=button.querySelector('span'),labelWidth=Math.min(180,Math.max(70,name.length*6.5+16));nameLabel.textContent=name;nameLabel.style.width=labelWidth+'px';nameLabel.style.left=(Math.max(6,Math.min(width-labelWidth-6,b.hit.x+b.hit.w/2-labelWidth/2))-b.hit.x)+'px';Object.assign(button.style,{left:b.hit.x+'px',top:b.hit.y+'px',width:b.hit.w+'px',height:b.hit.h+'px'});
     }
    }
    return true;

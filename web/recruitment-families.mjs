@@ -1,3 +1,4 @@
+import{plainGameText}from'./game-text.mjs';
 import{bindPress}from'./mobile-press.mjs';
 export function recruitmentFamilies(state){return state.fortFamilies?.length?state.fortFamilies:(state.fortRows||[]).map(row=>({level:row.level,count:row.count,variants:(state.recruits||[]).filter(u=>u.level===row.level).map((u,rank)=>({...u,rank,built:true})).concat([])})).map(f=>({...f,variants:f.variants.length?f.variants:[state.fortRows.find(u=>u.level===f.level)]}));}
 export function recruitMaximum(unit,resources=[]){if(!unit?.built)return 0;let count=Math.max(0,Math.floor(unit.count||0));for(const[i,cost]of(unit.cost||[]).entries())if(cost>0)count=Math.min(count,Math.floor((resources[i]||0)/cost));return count;}
@@ -24,7 +25,7 @@ export function createRecruitmentHall({panel,command,prices,stats}){
    detail.querySelector('input').addEventListener('input',event=>{amount=Math.max(0,Math.min(recruitMaximum(unit(),state.resources),Math.floor(Number(event.target.value)||0)));renderSelection();});
    press('[data-hall-buy]',()=>{const latest=unit();if(pending||!latest||!state.turn||amount<1)return;pending={id:latest.id,count:latest.count,armies:JSON.stringify(state.armies),started:Date.now()};renderSelection();command(61,latest.level,latest.id,amount);});
   }
-  detail.querySelector('.hall-stock').textContent=u.built?(hasRoom?`${u.count} available · Shared stock`:'Garrison full · Move troops to your hero'):`Requires: ${u.requiredBuilding||'Dwelling for this form'}`;
+  detail.querySelector('.hall-stock').textContent=u.built?(hasRoom?`${u.count} available · Shared stock`:'Garrison full · Move troops to your hero'):`Requires: ${plainGameText(u.requiredBuilding)||'Dwelling for this form'}`;
   detail.dataset.locked=String(!u.built);const input=detail.querySelector('input');input.max=maximum;if(document.activeElement!==input)input.value=amount;
   detail.querySelector('.hall-total').innerHTML='<span>'+(amount?'Total':'Cost per creature')+'</span>'+(prices(u,amount||1,state.resourceTypes)||'<span>Free</span>');
   const buy=detail.querySelector('[data-hall-buy]');buy.textContent=pending?'Recruiting…':!state.turn?'Disponible à ton tour':!u.built?'Dwelling required':!u.count?'Sold out':!maximum?'Not enough resources':`Recruit ${amount}`;buy.disabled=!!pending||!state.turn||!maximum||!amount||!hasRoom;buy.toggleAttribute('aria-busy',!!pending);
