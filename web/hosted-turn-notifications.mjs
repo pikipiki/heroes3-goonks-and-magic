@@ -18,15 +18,19 @@ export function requestedHostedMatch(search = location.search) {
   return matchPattern.test(match ?? '') ? match : null;
 }
 
-function connectHostedMatch(runtime, destination, token, onLoading) {
+function connectHostedMatch(runtime, destination, token, onLoading, trace) {
   return new Promise((resolve, reject) => {
     const sockets = runtime.websocket;
     const {url, subprotocol} = sockets;
     const restoreSettings = () => { sockets.url = url; sockets.subprotocol = subprotocol; };
     let started = false;
     let opened = false;
+    let finished = false;
     let timeout;
     const finish = (error) => {
+      if (finished) return;
+      finished = true;
+      trace.opened = opened;
       clearTimeout(timeout);
       restoreSettings();
       for (const event of ['open', 'close', 'error']) sockets.on(event, undefined);
@@ -35,6 +39,7 @@ function connectHostedMatch(runtime, destination, token, onLoading) {
       else resolve();
     };
     const update = ({detail: state}) => {
+      if (Number.isInteger(state.sessionState)) trace.engineState = state.sessionState;
       if (state.sessionState === 6 && state.onlineGame) {
         finish();
       } else if (state.sessionState === 0 && started) {
@@ -185,6 +190,8 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     token: normalizeSeatCode(saved?.token ?? ''), endpoint: saved?.endpoint,
   };
   let alertsState = {};
+  let backgroundRequests = new AbortController();
+  let previousReport;
   function remember(matchId, token, target, name, players) {
     const seats = rememberedSeats();
     const previous = seats.find(item => sameMatch(item, {matchId, endpoint: target}));
@@ -207,7 +214,9 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       const init = {credentials: 'omit', redirect: 'error',
         ...options, headers: {Authorization: 'Bearer ' + token, ...options?.headers}};
       if (attempt && target === poolEndpoint && onWait) return requestHostedMatch(url, init, onWait);
-      return fetch(url, {...init, signal: AbortSignal.timeout(target === poolEndpoint ? 55000 : 10000)});
+      const timeout = AbortSignal.timeout(target === poolEndpoint ? 55000 : 10000);
+      const signal = init.signal && AbortSignal.any ? AbortSignal.any([timeout, init.signal]) : timeout;
+      return fetch(url, {...init, signal});
     };
     let target = knownEndpoint || (poolEndpoint && (shortSeatCodePattern.test(token) || token.startsWith('HG')) ? poolEndpoint : endpoint);
     let response = await send(target);
@@ -262,6 +271,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     input.disabled = createMode.disabled = joinMode.disabled = pending;
   };
   async function refreshAlerts(force = false) {
+    if (pending) return;
     const {token, endpoint} = alertSeat();
     if (!force && token === alertsState.token && endpoint === alertsState.endpoint) {
       render();
@@ -272,7 +282,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     render();
     if (!token) return;
     try {
-      const {response, target} = await hostedRequest(token, {}, endpoint, '?alerts=1');
+      const {response, target} = await hostedRequest(token, {signal: backgroundRequests.signal}, endpoint, '?alerts=1');
       if (!response.ok) return;
       const {matchId, alertsEnabled} = await response.json();
       if (matchPattern.test(matchId) && (!requested || requested === matchId) && typeof alertsEnabled === 'boolean') {
@@ -287,11 +297,12 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     }
   }
   async function updateOccupancy() {
+    if (pending) return;
     const selected = saved;
     occupancy.textContent = selected?.players ? selected.players + (fr ? ' places' : ' seats') : '';
     if (!selected || selected.endpoint !== poolEndpoint) return;
     try {
-      const {response} = await hostedRequest(selected.token, {}, selected.endpoint, '?preview=1');
+      const {response} = await hostedRequest(selected.token, {signal: backgroundRequests.signal}, selected.endpoint, '?preview=1');
       if (!response.ok) return;
       const {matchId, players, connectedPlayers} = await response.json();
       if (saved === selected && matchId === selected.matchId && Number.isInteger(players) && Number.isInteger(connectedPlayers)) {
@@ -393,6 +404,10 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     if (pending || (!token && !invitation) || (scenario && start.disabled) || !runtime?._vcmiJoinHostedMatch) return;
     input.blur();
     pending = true;
+    // Safari can fail the WebSocket upgrade while another HTTP request to the
+    // same origin is in flight. Cancel UI lookups before querying readiness.
+    backgroundRequests.abort();
+    backgroundRequests = new AbortController();
     status.textContent = '';
     const showLoading = (french, english) => {
       loader.hidden = false;
@@ -408,7 +423,10 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     let tracePool = Boolean(poolEndpoint && (remembered?.endpoint === poolEndpoint || invitation ||
       (!remembered && (shortSeatCodePattern.test(token) || token.startsWith('HG')))));
     let outcome = 'request-error';
+    let socketAttempts = 0;
+    const socketTrace = {};
     try {
+      await previousReport;
       if (scenario) {
         const {response} = await hostedRequest(token, {method: 'POST', headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({scenario})}, endpoint);
@@ -508,14 +526,21 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       if (tracePool) destination.searchParams.set('attempt', attempt);
       opening = true;
       showLoading('Connexion à la partie…', 'Connecting to the match…');
-      const loadMatch = () => connectHostedMatch(runtime, destination, token,
-        () => showLoading('Chargement de la partie…', 'Loading the match…'));
+      const loadMatch = () => {
+        socketAttempts++;
+        socketTrace.engineState = window.goonkGameMenuState?.native?.sessionState;
+        return connectHostedMatch(runtime, destination, token,
+          () => showLoading('Chargement de la partie…', 'Loading the match…'), socketTrace);
+      };
       try {
         await loadMatch();
       } catch (error) {
         showLoading('Nouvelle tentative de connexion…', 'Retrying the connection…');
-        await pause(1000);
-        if (!input.isConnected) return;
+        const retryDeadline = performance.now() + 5000;
+        do {
+          await pause(250);
+          if (!input.isConnected) return;
+        } while (window.goonkGameMenuState?.native?.sessionState !== 0 && performance.now() < retryDeadline);
         if (window.goonkGameMenuState?.native?.sessionState !== 0) throw error;
         await loadMatch();
       }
@@ -539,9 +564,12 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     } finally {
       if (tracePool) {
         const ms = Math.round(performance.now() - startedAt);
-        const query = '?' + new URLSearchParams({attempt, result: outcome, ms});
-        console.info('Hosted connection', {attempt, outcome, ms});
-        if (token) void hostedRequest(token, {method: 'POST', keepalive: true}, poolEndpoint, query).catch(() => {});
+        const details = {sockets: socketAttempts, engine: socketTrace.engineState ?? '', opened: Number(Boolean(socketTrace.opened))};
+        const query = '?' + new URLSearchParams({attempt, result: outcome, ms, ...details});
+        console.info('Hosted connection', {attempt, outcome, ms, ...details});
+        if (token) previousReport = hostedRequest(token, {
+          method: 'POST', keepalive: true, signal: AbortSignal.timeout(2000),
+        }, poolEndpoint, query).then(({response}) => response.text()).catch(() => {});
         if (outcome !== 'connected' && status.textContent) status.textContent += ' · Ref. ' + attempt.slice(0, 8);
       }
       loader.hidden = true;

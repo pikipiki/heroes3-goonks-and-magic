@@ -203,7 +203,7 @@ try {
       assert([hostToken, guestToken].includes(token));
       if (params.has('alerts')) return route.fulfill({status: 200, headers, json: {matchId, alertsEnabled: false}});
       if (route.request().method() === 'POST') {
-        reports.push({attempt: params.get('attempt'), result: params.get('result')});
+        reports.push({attempt: params.get('attempt'), result: params.get('result'), sockets: params.get('sockets')});
         return route.fulfill({status: 204, headers});
       }
       if (!preview && attempts++ === 0) return route.fulfill({status: 503, headers});
@@ -234,6 +234,17 @@ try {
     await back.tap();
     assert(await createNew.isVisible());
     assert(await joinExisting.isVisible());
+    await page.evaluate(() => {
+      const fetch = window.fetch;
+      window.fetch = (url, options) => {
+        if (!String(url).endsWith('?alerts=1') || window.testAlertLookupStarted) return fetch(url, options);
+        window.testAlertLookupStarted = true;
+        return new Promise((_resolve, reject) => options.signal.addEventListener('abort', () => {
+          window.testAlertLookupCancelled = true;
+          reject(options.signal.reason);
+        }, {once: true}));
+      };
+    });
     await joinExisting.tap();
     assert(await joinExisting.isHidden());
     assert(await createNew.isHidden());
@@ -244,6 +255,7 @@ try {
     await seat.fill('kmrt');
     const guestReport = page.waitForResponse(response => new URL(response.url()).searchParams.get('result') === 'busy');
     await page.getByRole('button', {name: 'Join match', exact: true}).tap();
+    await page.waitForFunction(() => window.testAlertLookupCancelled);
     await page.getByText(/Another match is using the server.*Ref\. [a-f0-9]{8}/).waitFor();
     await guestReport;
     await back.tap();
@@ -268,6 +280,7 @@ try {
     await hostReport;
     await seat.waitFor({state: 'detached'});
     assert.deepEqual(reports.map(report => report.result), ['busy', 'socket-timeout', 'connected']);
+    assert.deepEqual(reports.map(report => report.sockets), ['0', '2', '1']);
     assert(reports.every(report => /^[a-f0-9-]{36}$/.test(report.attempt)));
   }
 
