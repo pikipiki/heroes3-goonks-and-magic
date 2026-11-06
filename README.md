@@ -56,13 +56,15 @@ Références : [déploiement Netlify](https://docs.netlify.com/deploy/create-dep
 
 Le bouton **Online** utilise le [relais Docker](https://github.com/pikipiki/heroes-goonk-relay) hébergé sur Render. L’adresse publique `GOONK_LOBBY_RELAY` est définie dans `netlify.toml` pour la production Netlify et dans les variables GitHub Actions pour GitHub Pages. Pour un autre déploiement, configurer une adresse `wss://<hôte>/lobby` et autoriser l’origine du site sur le relais. Sans cette variable, le bouton reste masqué sur mobile.
 
-Dans un salon privé, l’hôte peut choisir **Goonks Online**, inviter un autre joueur connecté par son pseudo dans **Invite Players**, puis démarrer la partie. L’invité ouvre son invitation et confirme l’entrée dans le salon.
+Dans un nouveau salon privé, l’hôte ouvre **Choose scenario** et choisit une carte avec assez de places humaines pour la capacité du salon. Il invite ensuite les autres joueurs par leur pseudo dans **Invite Players** et démarre la partie. Les invités ouvrent leur invitation et confirment leur entrée dans le salon.
 
 L’hôte peut régler le chronomètre avant le départ. Les options vont d’une à dix minutes, avec un mode sans limite. La dernière sauvegarde automatique en ligne est conservée dans le navigateur de l’hôte pendant ses tours. Pour reprendre après fermeture, l’hôte ouvre un nouveau salon privé en mode **Load game**, choisit **Last online save**, invite l’autre joueur puis lance **Resume game**.
 
 Active **Turn notifications** dans les réglages du jeu pour recevoir une notification système au début de ton tour si le client reçoit encore les événements en arrière-plan. Sur iPhone, ouvre le jeu depuis l’écran d’accueil et accorde l’autorisation depuis ce bouton.
 
 ### Moteur dédié en développement
+
+Pour une nouvelle partie dédiée qui attend une carte, l’hôte saisit son code de place dans les réglages du jeu, puis choisit un scénario compatible avec les places du serveur. Les parties déjà sauvegardées reprennent sur leur carte d’origine.
 
 Le Dockerfile natif compile `vcmiserver` et `vcmilobby` sans client graphique. Construire l’image depuis la racine du dépôt.
 

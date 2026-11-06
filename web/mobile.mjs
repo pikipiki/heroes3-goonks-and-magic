@@ -100,7 +100,7 @@ function mount(){
   else if(m==='online-lobby'&&state.onlineMatch){
    const fr=getLanguage()==='fr', minutes=state.onlineTurnMinutes||0;
    const timerLabel=(fr?'Chrono':'Turn timer')+' · '+(minutes?minutes+' min':fr?'désactivé':'off');
-   items=[...(state.onlineHost&&!state.onlineLoading?[btn('Goonks Online','online-scenario'),btn(timerLabel,'online-timer',false,!state.selectedMap)]:[]),
+   items=[...(state.onlineHost&&!state.onlineLoading?[btn(fr?'Choisir un scénario':'Choose a scenario','online-scenario',false,!state.onlineRoomLimit),btn(timerLabel,'online-timer',false,!state.selectedMap)]:[]),
     ...(state.onlineHost&&state.onlineLoading&&state.onlineSaveAvailable?[btn(fr?'Dernière partie en ligne':'Last online save','online-save')]:[]),
     ...(state.onlineHost?[btn(state.onlineLoading?(fr?'Reprendre':'Resume game'):(fr?'Commencer':'Start game'),'begin',true,!state.selectedMap||(state.onlineLoading&&!state.onlineCanResume))]:[]),
     btn('↩ Back','back')];
@@ -280,7 +280,7 @@ function mount(){
   if(ui==='online-save'){command(80);return;}
   if(ui==='online-timer'){command(79,turnLimits[(turnLimits.indexOf(state.onlineTurnMinutes||0)+1)%turnLimits.length]);return;}
   if(ui==='online-invitation'){command(78);return;}
-  if(ui==='online-scenario'){command(77);return;}
+  if(ui==='online-scenario'){onlineLobby.openScenarios();return;}
   if(ui==='market-mobile'){marketplace.showMobile();return;}if(ui==='market-back'){command(74);return;}
   if(ui==='hero-mobile'){heroEquipment.showMobile();return;}if(ui==='hero-back'){command(63);return;}
   if(ui==='native-equipment'){closeSheet();command(55);return;}

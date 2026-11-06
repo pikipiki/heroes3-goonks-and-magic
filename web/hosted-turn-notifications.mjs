@@ -14,6 +14,14 @@ export function mountHostedTurnNotifications(container, {endpoint, publicKey}, l
   const input = field.querySelector('input');
   const [enable, disable, join] = field.querySelectorAll('button');
   const status = field.querySelector('[role=status]');
+  const chooser = document.createElement('label');
+  const select = document.createElement('select');
+  const start = document.createElement('button');
+  chooser.append(fr ? 'Scénario de la partie dédiée' : 'Hosted match scenario', select);
+  start.type = 'button';
+  start.textContent = fr ? 'Lancer avec ce scénario' : 'Start with this scenario';
+  chooser.hidden = start.hidden = true;
+  status.before(chooser, start);
   field.querySelector('h3').textContent = fr ? 'Partie dédiée' : 'Hosted match';
   field.querySelector('label span').textContent = fr ? 'Code de ta place' : 'Your seat code';
   enable.textContent = fr ? 'Activer sur cet appareil' : 'Enable on this device';
@@ -30,9 +38,12 @@ export function mountHostedTurnNotifications(container, {endpoint, publicKey}, l
     enable.disabled = !valid || !manager || pending;
     disable.disabled = !valid || pending;
     join.disabled = !valid || pending || !window.Module?._vcmiJoinHostedMatch;
+    start.disabled = !valid || !select.value || pending;
+    select.disabled = pending;
     input.disabled = pending;
   };
-  input.addEventListener('input', render);
+  input.addEventListener('input', () => { chooser.hidden = start.hidden = true; render(); });
+  select.addEventListener('change', render);
   if (canSubscribe) navigator.serviceWorker.ready.then(registration => {
     manager = registration.pushManager;
     render();
@@ -70,22 +81,45 @@ export function mountHostedTurnNotifications(container, {endpoint, publicKey}, l
     }
   }
 
-  async function joinMatch() {
+  async function joinMatch(scenario) {
     const token = input.value.trim();
     const runtime = window.Module;
-    if (join.disabled || !runtime?._vcmiJoinHostedMatch) return;
+    if (join.disabled || (scenario && start.disabled) || !runtime?._vcmiJoinHostedMatch) return;
     pending = true;
     render();
     try {
-      const result = await fetch(endpoint, {
-        headers: {Authorization: 'Bearer ' + token}, credentials: 'omit', redirect: 'error',
-        signal: AbortSignal.timeout(10000),
+      const request = options => fetch(endpoint, {
+        credentials: 'omit', redirect: 'error', signal: AbortSignal.timeout(10000), ...options,
+        headers: {Authorization: 'Bearer ' + token, ...options?.headers},
       });
+      if (scenario) {
+        const result = await request({method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({scenario})});
+        if (!result.ok) throw new Error('Scenario rejected.');
+        chooser.hidden = start.hidden = true;
+        status.textContent = fr ? 'Le serveur démarre le scénario. Réessaie de rejoindre dans un instant.' :
+          'The server is starting the scenario. Try joining again in a moment.';
+        return;
+      }
+      const result = await request();
       if (!result.ok) throw new Error('Seat rejected.');
-      const {matchId, playable} = await result.json();
+      const {matchId, playable, scenarioStatus, scenarios} = await result.json();
       const requested = requestedHostedMatch();
-      if (playable !== true || !matchPattern.test(matchId) || (requested && requested !== matchId))
+      if (!matchPattern.test(matchId) || (requested && requested !== matchId))
         throw new Error('Wrong or unavailable match.');
+      if (playable !== true && scenarioStatus) {
+        if (Array.isArray(scenarios) && scenarios.length) {
+          select.replaceChildren(...scenarios.map(scenario => new Option(scenario.name, scenario.id)));
+          chooser.hidden = start.hidden = false;
+          status.textContent = fr ? 'Choisis la carte que le serveur doit démarrer.' : 'Choose the map for the server to start.';
+        } else {
+          chooser.hidden = start.hidden = true;
+          status.textContent = scenarioStatus === 'choose'
+            ? (fr ? 'L’hôte doit choisir un scénario.' : 'The host must choose a scenario.')
+            : (fr ? 'Le serveur prépare la partie. Réessaie dans un instant.' : 'The server is preparing the match. Try again in a moment.');
+        }
+        return;
+      }
+      if (playable !== true) throw new Error('Match unavailable.');
       const destination = new URL('/hosted/game/' + matchId, endpoint);
       destination.protocol = destination.protocol === 'https:' ? 'wss:' : 'ws:';
       const sockets = runtime.websocket;
@@ -117,6 +151,10 @@ export function mountHostedTurnNotifications(container, {endpoint, publicKey}, l
   }
 
   return button => {
+    if (button === start) {
+      void joinMatch(select.value);
+      return true;
+    }
     if (button === join) {
       void joinMatch();
       return true;

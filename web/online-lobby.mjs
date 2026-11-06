@@ -32,7 +32,7 @@ export function createOnlineLobby(root, command) {
   const title = panel.querySelector('h2');
   const account = panel.querySelector('[data-online-account]');
   let state = {}, page = '', classicMode = false, sending = '', pendingTimer;
-  let limit = 2, privateRoom = true, loadGame = false, inviteView = false;
+  let limit = 2, privateRoom = true, loadGame = false, roomView = '', pendingScenario;
   const requested = new Map();
   const t = (english, french) => getLanguage() === 'fr' ? french : english;
   const button = (label, action, {primary = false, disabled = false, pressed, id} = {}) =>
@@ -61,20 +61,30 @@ export function createOnlineLobby(root, command) {
     body.querySelector('[data-no-players]').hidden = found;
   }
 
+  function renderScenarios() {
+    const query = body.querySelector('[data-online-scenario-search]').value.trim().toLocaleLowerCase();
+    const scenarios = (state.onlineScenarios || []).filter(map => map.name.toLocaleLowerCase().includes(query));
+    write(body.querySelector('[data-online-scenarios]'), scenarios.map(map =>
+      button(`${map.name} · ${map.humanSeats} ${t('human seats', 'places humaines')}`, 'choose-scenario', {
+        id: String(map.index), pressed: map.index === state.onlineScenarioIndex, disabled: !!sending,
+      })).join('') || `<p>${state.mapsLoading ? t('Loading scenarios…', 'Chargement des scénarios…') :
+        t('No matching scenario for this room.', 'Aucun scénario correspondant pour ce salon.')}</p>`);
+  }
+
   function render() {
     panel.hidden = !page || classicMode;
     root.toggleAttribute('data-mobile-online', !panel.hidden);
     if (panel.hidden) return;
-    const view = page === 'match' && inviteView ? 'invite' : page;
+    const view = page === 'match' && roomView ? roomView : page;
     panel.dataset.onlineView = view;
     title.textContent = {
       browser: t('Rooms and invitations', 'Salons et invitations'), create: t('Create a room', 'Créer un salon'),
       preview: t('Join a room', 'Rejoindre un salon'), match: t('Your room', 'Ton salon'),
-      invite: t('Invite players', 'Inviter des joueurs')
+      invite: t('Invite players', 'Inviter des joueurs'), scenario: t('Choose a scenario', 'Choisir un scénario')
     }[view];
     account.textContent = state.onlineAccount || '';
     classic.textContent = t('Classic view', 'Vue classique');
-    classic.hidden = view === 'invite' || !!sending || !!state.onlineCreating;
+    classic.hidden = view === 'invite' || view === 'scenario' || !!sending || !!state.onlineCreating;
     if (view === 'browser') {
       const invitations = state.onlineInvites || [];
       const rooms = state.onlineRooms || [];
@@ -114,6 +124,13 @@ export function createOnlineLobby(root, command) {
       }).join(''));
       filterPlayers();
       write(footer, button(t('Back to room', 'Retour au salon'), 'room'));
+    } else if (view === 'scenario') {
+      if (!body.querySelector('[data-online-scenario-search]')) {
+        write(body, `<label>${t('Search maps', 'Chercher une carte')}<input type="search" data-online-scenario-search></label><div class="online-list" data-online-scenarios></div>`);
+        body.querySelector('input').addEventListener('input', renderScenarios);
+      }
+      renderScenarios();
+      write(footer, button(t('Back to room', 'Retour au salon'), 'room', {disabled: !!sending}));
     } else {
       const count = state.onlinePlayerCount || 0;
       const limitLabel = state.onlineRoomLimit ? `${count}/${state.onlineRoomLimit}` : String(count);
@@ -123,9 +140,9 @@ export function createOnlineLobby(root, command) {
         ${count < 2 ? `<p>${t('Waiting for another player to join.', 'En attente d’un autre joueur.')}</p>` : ''}
         ${state.onlineHost ? button(t('Invite players', 'Inviter des joueurs'), 'invite') : ''}</section>
         <section><h3>${t('Scenario', 'Scénario')}</h3><p>${escape(state.selectedMap || t('No scenario selected.', 'Aucun scénario sélectionné.'))}</p>
-        ${state.onlineHost && !state.onlineLoading ? `<div class="online-pair">${button('Goonks Online', 'scenario', {pressed:state.selectedMap === 'Goonks Online'})}${button(`${t('Turn timer', 'Chrono')} · ${minutes ? minutes + ' min' : t('Off', 'Désactivé')}`, 'timer', {disabled:!state.selectedMap})}</div>` : ''}
+        ${state.onlineHost && !state.onlineLoading ? `<div class="online-pair">${button(t('Choose a scenario', 'Choisir un scénario'), 'scenario', {disabled: !state.onlineRoomLimit})}${button(`${t('Turn timer', 'Chrono')} · ${minutes ? minutes + ' min' : t('Off', 'Désactivé')}`, 'timer', {disabled:!state.selectedMap})}</div>` : ''}
         ${state.onlineHost && state.onlineLoading && state.onlineSaveAvailable ? button(t('Last online save', 'Dernière sauvegarde en ligne'), 'save') : ''}</section>`);
-      const canStart = count >= 2 && !!state.selectedMap && (!state.onlineLoading || state.onlineCanResume);
+      const canStart = count >= 2 && !!state.selectedMap && (state.onlineLoading ? state.onlineCanResume : state.onlineScenarioFits !== false);
       write(footer, back() + (state.onlineHost ? button(
         sending ? t('Starting…', 'Démarrage…') : state.onlineLoading ? t('Resume game', 'Reprendre') : t('Start game', 'Commencer'),
         'start', {primary:true, disabled:!canStart || !!sending}
@@ -139,6 +156,14 @@ export function createOnlineLobby(root, command) {
     clearTimeout(pendingTimer);
     pendingTimer = setTimeout(() => { sending = ''; render(); }, 6000);
     command(...args);
+  }
+
+  function openScenarios() {
+    if (page !== 'match' || !state.onlineHost || state.onlineLoading || !state.onlineRoomLimit) return;
+    classicMode = false;
+    roomView = 'scenario';
+    render();
+    body.scrollTop = 0;
   }
 
   panel.addEventListener('click', event => {
@@ -155,9 +180,16 @@ export function createOnlineLobby(root, command) {
       case 'confirm-room': begin(action, 82, limit, Number(privateRoom), Number(loadGame)); break;
       case 'preview': sendRoomAction(0, id); break;
       case 'join': begin(action, 83); break;
-      case 'invite': case 'room': inviteView = action === 'invite'; render(); body.scrollTop = 0; break;
+      case 'invite': case 'room': roomView = action === 'invite' ? action : ''; render(); body.scrollTop = 0; break;
       case 'send-invite': requested.set(id, Date.now() + 6000); sendRoomAction(1, id); render(); break;
-      case 'scenario': command(77); break;
+      case 'scenario': openScenarios(); break;
+      case 'choose-scenario': {
+        const index = Number(id);
+        if (index === state.onlineScenarioIndex) { roomView = ''; render(); break; }
+        pendingScenario = index;
+        begin(action, 84, index);
+        break;
+      }
       case 'timer': command(79, turnLimits[(turnLimits.indexOf(state.onlineTurnMinutes || 0) + 1) % turnLimits.length]); break;
       case 'save': command(80); break;
       case 'start': begin(action, 22); break;
@@ -168,18 +200,25 @@ export function createOnlineLobby(root, command) {
     get active() { return !panel.hidden; },
     get classic() { return classicMode && !!page; },
     show() { classicMode = false; render(); },
+    openScenarios,
     update(next) {
       state = next;
       const newPage = next.mode === 'online-lobby' && window.Module?._vcmiOnlineRoomAction ? next.onlinePage || '' : '';
       if (newPage !== page) {
         clearTimeout(pendingTimer);
         sending = '';
-        inviteView = false;
+        roomView = '';
+        pendingScenario = undefined;
         requested.clear();
         if (!newPage) classicMode = false;
         if (newPage === 'create') { limit = 2; privateRoom = true; loadGame = false; }
         page = newPage;
         body.scrollTop = 0;
+      }
+      if (pendingScenario !== undefined && pendingScenario === next.onlineScenarioIndex) {
+        clearTimeout(pendingTimer);
+        sending = roomView = '';
+        pendingScenario = undefined;
       }
       render();
     }

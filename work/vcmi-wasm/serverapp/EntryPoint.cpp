@@ -16,8 +16,10 @@
 #include "../lib/VCMIDirs.h"
 #include "../lib/GameLibrary.h"
 #include "../lib/CConfigHandler.h"
+#include "../lib/json/JsonNode.h"
 
 #include <boost/program_options.hpp>
+#include <iostream>
 
 static const std::string SERVER_NAME_AFFIX = "server";
 static const std::string SERVER_NAME = GameConstants::VCMI_VERSION + std::string(" (") + SERVER_NAME_AFFIX + ')';
@@ -32,6 +34,7 @@ static void handleCommandOptions(int argc, const char * argv[], boost::program_o
 	("dummy-run", "Shutdown immediately after loading was sucessful")
 	("hosted-seats", boost::program_options::value<std::string>(), "Map colors authorized by the dedicated gateway")
 	("hosted-map", boost::program_options::value<std::string>(), "Start a new dedicated match on the named map")
+	("hosted-scenarios", boost::program_options::value<std::string>(), "List maps compatible with the given dedicated seat colors")
 	("hosted-restore", "Restore a dedicated match and accept authenticated loopback connections")
 	("verify-turn-checkpoint", "Load and validate the hosted save without opening a network listener")
 	("turn-checkpoint", "Save to Hosted-Turn.vsgm1 when a human turn starts (one game per user data directory)")
@@ -92,7 +95,49 @@ int main(int argc, const char * argv[])
 	LIBRARY->initializeLibrary();
 
 	int exitCode = 0;
-	if(opts.count("verify-turn-checkpoint"))
+	if(opts.count("hosted-scenarios"))
+	{
+		try
+		{
+			const auto seats = HostedRestoreServer::parseSeats(opts["hosted-scenarios"].as<std::string>());
+			auto files = CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path)
+			{
+				return path.getType() == EResType::MAP && path.getName().starts_with("MAPS/");
+			});
+			std::vector<std::pair<std::string, std::string>> maps;
+			for(const auto & file : files)
+			{
+				try
+				{
+					CMapInfo map;
+					map.mapInit(file.getOriginalName());
+					if(HostedRestoreServer::supportsMap(map, seats))
+						maps.emplace_back(map.getNameForList(), file.getOriginalName());
+				}
+				catch(const std::exception &)
+				{
+					// A map supplied by an incompatible mod must not hide the catalogue.
+				}
+			}
+			std::sort(maps.begin(), maps.end());
+			JsonNode catalogue;
+			auto & entries = catalogue.Vector();
+			for(const auto & [name, file] : maps)
+			{
+				JsonNode row;
+				row["name"].String() = name.empty() ? file : name;
+				row["id"].String() = file;
+				entries.push_back(std::move(row));
+			}
+			std::cout << "GOONK_SCENARIOS " << catalogue.toCompactString() << std::endl;
+		}
+		catch(const std::exception & error)
+		{
+			logGlobal->error("Hosted scenario catalogue failed: %s", error.what());
+			exitCode = 1;
+		}
+	}
+	else if(opts.count("verify-turn-checkpoint"))
 	{
 		try
 		{

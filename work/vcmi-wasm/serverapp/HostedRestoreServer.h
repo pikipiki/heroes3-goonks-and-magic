@@ -34,7 +34,7 @@ public:
 			throw std::runtime_error("Invalid hosted gateway key");
 	}
 
-	void start(const std::string & mapName, const std::string & colors)
+	static std::set<PlayerColor> parseSeats(const std::string & colors)
 	{
 		std::set<PlayerColor> seats;
 		for(const auto color : colors)
@@ -44,15 +44,30 @@ public:
 		}
 		if(seats.size() < 2)
 			throw std::runtime_error("Hosted matches require at least two seats");
+		return seats;
+	}
 
+	static bool supportsMap(const CMapInfo & map, const std::set<PlayerColor> & seats)
+	{
+		if(!map.mapHeader || map.mapHeader->battleOnly || map.amountOfPlayersOnMap != seats.size())
+			return false;
+		return std::all_of(seats.begin(), seats.end(), [&](PlayerColor color)
+		{
+			return map.mapHeader->players.at(color.getNum()).canHumanPlay;
+		});
+	}
+
+	void start(const std::string & mapName, const std::string & colors)
+	{
+		const auto seats = parseSeats(colors);
 		if(mapName.empty())
 			loadTurnCheckpoint();
 		else
 		{
 			auto map = std::make_shared<CMapInfo>();
 			map->mapInit(mapName);
-			if(map->mapHeader->battleOnly || map->amountOfPlayersOnMap != seats.size())
-				throw std::runtime_error("The hosted map must have exactly one slot per seat");
+			if(!supportsMap(*map, seats))
+				throw std::runtime_error("The hosted map must have exactly the configured human seats");
 			si->mode = EStartMode::NEW_GAME;
 			si->difficulty = 1;
 			for(const auto color : seats)

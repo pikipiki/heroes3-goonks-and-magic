@@ -82,7 +82,14 @@ namespace {
 bool mobileEnabled=false,stateEnabled=false,audioMuted=false;
 ui32 previousSoundVolume=75,previousMusicVolume=75;
 std::vector<ResourcePath> pendingMobileMaps;size_t mobileMapCursor=0;
-bool mapsListed=false,savesListed=false;std::set<int> portraitIds,artifactIconIds;std::vector<std::pair<std::string,std::string>> mobileCampaigns;std::vector<std::pair<std::string,std::string>> mobileMaps,mobileSaves;
+struct MobileScenario
+{
+ std::string file, name;
+ int humanSeats;
+ bool battleOnly;
+};
+std::vector<MobileScenario> mobileMaps;
+bool mapsListed=false,savesListed=false;std::set<int> portraitIds,artifactIconIds;std::vector<std::pair<std::string,std::string>> mobileCampaigns,mobileSaves;
 uint32_t lastPublished=0,lastSent=0;
 std::string lastSnapshot,pendingDefaultMap;
 std::atomic_bool snapshotPending{false};
@@ -208,6 +215,55 @@ static const GlobalLobbyRoom * mobileInvitedRoom(GlobalLobbyClient & lobby)
  return nullptr;
 }
 
+static const GlobalLobbyRoom * mobileCurrentRoom(GlobalLobbyClient & lobby)
+{
+ const auto & rooms=lobby.getActiveRooms();
+ const auto room=std::find_if(rooms.begin(),rooms.end(),[&](const auto & entry){return entry.gameRoomID==lobby.getCurrentGameRoomID();});
+ return room==rooms.end()?nullptr:&*room;
+}
+
+static void publishMobileScenarios(JsonNode & state, int roomLimit = 0, const CMapInfo * selected = nullptr)
+{
+ if(!mapsListed){
+  mapsListed=true;
+  const auto files=CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path){return path.getType()==EResType::MAP&&path.getName().find("MAPS/")==0;});
+  pendingMobileMaps.assign(files.begin(),files.end());
+  const auto priority=[](const ResourcePath & path){
+   const auto name=path.getName();
+   return name.find("001-GOONKS")!=std::string::npos?0:name.find("000-GOONK")!=std::string::npos?1:name.find("002-GOONKS-ONLINE")!=std::string::npos?2:3;
+  };
+  std::stable_sort(pendingMobileMaps.begin(),pendingMobileMaps.end(),[&](const auto & a,const auto & b){return priority(a)<priority(b);});
+ }
+ const auto start=SDL_GetTicks();
+ for(int loaded=0;mobileMapCursor<pendingMobileMaps.size()&&loaded<4;++loaded){
+  const auto & file=pendingMobileMaps[mobileMapCursor++];
+  try{
+   CMapInfo info;
+   info.mapInit(file.getOriginalName());
+   if(info.amountOfHumanControllablePlayers>0)
+    mobileMaps.push_back({file.getOriginalName(),info.getNameForList(),static_cast<int>(info.amountOfHumanControllablePlayers),info.mapHeader->battleOnly});
+  }catch(const std::exception &){}
+  if(SDL_GetTicks()-start>=8)break;
+ }
+ state["mapsLoading"].Bool()=mobileMapCursor<pendingMobileMaps.size();
+ state["mapsScanned"].Integer()=mobileMapCursor;
+ state["mapsTotal"].Integer()=pendingMobileMaps.size();
+ auto & maps=state[roomLimit?"onlineScenarios":"maps"].Vector();
+ for(size_t i=0;i<mobileMaps.size();++i){
+  const auto & map=mobileMaps[i];
+  if(roomLimit&&(map.humanSeats<roomLimit||map.battleOnly))continue;
+  JsonNode entry;
+  entry["index"].Integer()=i;
+  entry["name"].String()=map.name;
+  if(roomLimit){
+   entry["humanSeats"].Integer()=map.humanSeats;
+   if(selected&&ResourcePath(map.file,EResType::MAP)==ResourcePath(selected->fileURI,EResType::MAP))
+    state["onlineScenarioIndex"].Integer()=i;
+  }
+  maps.push_back(std::move(entry));
+ }
+}
+
 void publishMobileState(){
  if(!stateEnabled||!ENGINE||!GAME||snapshotPending.load()||SDL_GetTicks()-lastPublished<180)return;lastPublished=SDL_GetTicks();
  if(audioMuted){if(ENGINE->sound().getVolume()!=0)ENGINE->sound().setVolume(0);if(ENGINE->music().getVolume()!=0)ENGINE->music().setVolume(0);}
@@ -279,12 +335,16 @@ void publishMobileState(){
     n["onlinePage"].String()="match";
     n["onlinePlayerCount"].Integer()=server.playerNames.size();
     auto & lobby=GAME->server().getGlobalLobby();
-    const auto & rooms=lobby.getActiveRooms();
-    auto room=std::find_if(rooms.begin(),rooms.end(),[&](const auto & entry){return entry.gameRoomID==lobby.getCurrentGameRoomID();});
-    if(room!=rooms.end())
+    const auto room=mobileCurrentRoom(lobby);
+    if(room)
     {
      n["onlineRoomLimit"].Integer()=room->playerLimit;
      for(const auto & player:room->participants)n["onlinePlayers"].Vector().emplace_back(player.displayName);
+     if(server.isHost()&&server.screenType==ESelectionScreen::newGame&&room->playerLimit>=2)
+     {
+      publishMobileScenarios(n,room->playerLimit,server.mi.get());
+      n["onlineScenarioFits"].Bool()=server.mi&&server.mi->mapHeader&&!server.mi->mapHeader->battleOnly&&server.mi->amountOfHumanControllablePlayers>=room->playerLimit;
+     }
     }
     if(server.isHost())
     {
@@ -294,7 +354,7 @@ void publishMobileState(){
       JsonNode entry;
       entry["id"].String()=account.accountID;
       entry["name"].String()=account.displayName;
-      if(room!=rooms.end())entry["invited"].Bool()=std::any_of(room->invited.begin(),room->invited.end(),[&](const auto & player){return player.accountID==account.accountID;});
+      if(room)entry["invited"].Bool()=std::any_of(room->invited.begin(),room->invited.end(),[&](const auto & player){return player.accountID==account.accountID;});
       n["onlineInviteCandidates"].Vector().push_back(std::move(entry));
      }
     }
@@ -388,15 +448,9 @@ void publishMobileState(){
  }
  if(n["mode"].String()=="lobby"){
   n["lobbyReady"].Bool()=GAME->server().getState()==EClientState::LOBBY;
-  if(!mapsListed){mapsListed=true;const auto files=CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path){return path.getType()==EResType::MAP&&path.getName().find("MAPS/")==0;});pendingMobileMaps.assign(files.begin(),files.end());
-   const auto priority=[](const ResourcePath & path){const auto name=path.getName();return name.find("001-GOONKS")!=std::string::npos?0:name.find("000-GOONK")!=std::string::npos?1:2;};
-   std::stable_sort(pendingMobileMaps.begin(),pendingMobileMaps.end(),[&](const auto & a,const auto & b){return priority(a)<priority(b);});}
   // Keep the engine responsive while cataloguing hundreds of installed maps.
   // Append-only indices stay valid while the remaining headers are read.
-  const auto catalogueStart=SDL_GetTicks();int loadedThisTick=0;
-  while(mobileMapCursor<pendingMobileMaps.size()&&loadedThisTick<4){const auto & file=pendingMobileMaps[mobileMapCursor++];++loadedThisTick;try{CMapInfo info;info.mapInit(file.getOriginalName());if(info.amountOfHumanControllablePlayers>0)mobileMaps.emplace_back(file.getOriginalName(),info.getNameForList());}catch(const std::exception &){} if(SDL_GetTicks()-catalogueStart>=8)break;}
-  n["mapsLoading"].Bool()=mobileMapCursor<pendingMobileMaps.size();n["mapsScanned"].Integer()=mobileMapCursor;n["mapsTotal"].Integer()=pendingMobileMaps.size();
-  for(size_t i=0;i<mobileMaps.size();i++){JsonNode entry;entry["index"].Integer()=i;entry["name"].String()=mobileMaps[i].second;n["maps"].Vector().push_back(entry);}
+  publishMobileScenarios(n);
   if(GAME->server().mi){
    auto & server=GAME->server();n["customMap"].Bool()=server.mi->isRandomMap;n["selectedMap"].String()=server.mi->getNameForList();n["difficulty"].Integer()=server.si->difficulty;
    n["lobbyHumanCount"].Integer()=server.playerNames.size();
@@ -672,6 +726,23 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   }
   return;
  }
+ if(action==84)
+ {
+  auto & server=GAME->server();
+  if(ENGINE->windows().topWindow<CLobbyScreen>()&&server.inLobbyRoom()&&server.isHost()&&
+     server.getState()==EClientState::LOBBY&&server.screenType==ESelectionScreen::newGame&&a>=0&&a<int(mobileMaps.size()))
+  {
+   const auto room=mobileCurrentRoom(server.getGlobalLobby());
+   const auto & chosen=mobileMaps[a];
+   if(room&&room->playerLimit>=2&&!chosen.battleOnly&&chosen.humanSeats>=room->playerLimit)
+   {
+    auto map=std::make_shared<CMapInfo>();
+    map->mapInit(chosen.file);
+    server.setMapInfo(map);
+   }
+  }
+  return;
+ }
  if(action==76)
  {
   if(auto window=ENGINE->windows().topWindow<GlobalLobbyLoginWindow>())
@@ -762,7 +833,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==20){if(GAME&&!GAME->interface()){std::vector<std::string> names;for(int i=0;i<std::clamp(a,1,8);i++)names.push_back("Player "+std::to_string(i+1));CMainMenu::openLobby(ESelectionScreen::newGame,true,names,ELoadMode::NONE,false);}return;}
  if(action==21){if(GAME&&GAME->server().getState()==EClientState::LOBBY){auto info=std::make_shared<CMapInfo>();info->mapInit("MAPS/001-Goonks");pendingDefaultMap="Goonks";GAME->server().setMapInfo(info);}return;}
  if(action==22){if(GAME&&GAME->server().getState()==EClientState::LOBBY)GAME->server().sendStartGame();return;}
- if(action==24){if(GAME&&GAME->server().getState()==EClientState::LOBBY&&a>=0&&a<int(mobileMaps.size())){auto info=std::make_shared<CMapInfo>();info->mapInit(mobileMaps[a].first);pendingDefaultMap=info->getNameForList()=="Goonks"?"Goonks":"";GAME->server().setMapInfo(info);}return;}
+ if(action==24){if(GAME&&!GAME->server().inLobbyRoom()&&GAME->server().getState()==EClientState::LOBBY&&a>=0&&a<int(mobileMaps.size())){auto info=std::make_shared<CMapInfo>();info->mapInit(mobileMaps[a].file);pendingDefaultMap=info->getNameForList()=="Goonks"?"Goonks":"";GAME->server().setMapInfo(info);}return;}
  if(action==25){if(GAME&&GAME->server().getState()==EClientState::LOBBY&&a>=0&&a<=4)GAME->server().setDifficulty(a);return;}
  if(action==37){if(GAME&&GAME->server().getState()==EClientState::LOBBY&&GAME->server().mi){auto & server=GAME->server();const auto color=server.myFirstColor();if(server.si->playerInfos.count(color)&&(server.getPlayerInfo(color).allowedFactions.count(FactionID(a))||(a==-1&&server.getPlayerInfo(color).isFactionRandom)))server.setPlayerOption(LobbyChangePlayerOption::TOWN_ID,a,color);}return;}
  if(action==27){if(GAME&&GAME->server().getState()==EClientState::LOBBY&&GAME->server().screenType==ESelectionScreen::loadGame&&a>=0&&a<int(mobileSaves.size())){auto info=std::make_shared<CMapInfo>();info->saveInit(ResourcePath(mobileSaves[a].first,EResType::SAVEGAME));GAME->server().setMapInfo(info);}return;}
