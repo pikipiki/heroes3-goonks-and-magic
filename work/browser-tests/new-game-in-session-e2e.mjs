@@ -51,8 +51,8 @@ try {
  await page.locator('[data-action="20"]').tap();
  await waitForLobby();
  await sameSession();
- await setting('mobile-faction-select').locator('figure img:visible').waitFor();
- await wait(() => [...document.querySelectorAll('[data-setting=mobile-faction-select] figure img')].every(img => img.complete && img.naturalWidth > 0));
+ await setting('mobile-faction-select').locator('figure img:visible').first().waitFor();
+ await wait(() => [...document.querySelectorAll('[data-setting=mobile-faction-select] figure img')].filter(img => !img.hidden).every(img => img.complete && img.naturalWidth > 0));
  console.log('PASS autosave stays available and a new adventure opens with the same WebAssembly instance');
 
  const factions = await page.evaluate(() => goonkMobileState.factions);
@@ -78,6 +78,8 @@ try {
  await waitForLobby();
  console.log('PASS', factions.length, 'castle choices, difficulty, map search, back and both orientations');
 
+ const randomMap = page.locator('.custom-game-options');
+ if (await randomMap.getAttribute('open') === null) await randomMap.locator('summary').tap();
  await setting('players').locator('[data-counter="1"]').tap();
  await setting('size').locator('[data-tile-value="72"]').tap();
  await page.locator('[data-custom-underground]').check();
