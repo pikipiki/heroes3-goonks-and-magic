@@ -18,6 +18,28 @@ function category({key}) {
   return 'Spéciaux';
 }
 
+const buildingText = text => plainGameText(text).replaceAll('{}', '').trim();
+const name = building => buildingText(building.name);
+const description = building => buildingText(building.description);
+const visibleBuildings = buildings => (buildings || []).filter(building => name(building) || description(building));
+
+function buildingCards(buildings) {
+  const groups = new Map();
+  return buildings.flatMap(building => {
+    const label = name(building);
+    if (!building.built || !label) return [building];
+    const key = label.toLocaleLowerCase();
+    const group = groups.get(key);
+    if (group) {
+      if (!group.variants.some(variant => description(variant) === description(building))) group.variants.push(building);
+      return [];
+    }
+    const first = {...building, variants: [building]};
+    groups.set(key, first);
+    return [first];
+  });
+}
+
 export function createTownBuildingMenu({body, getState, asset, backButton, canOpen, openSheet, closeSheet, command, notify}) {
   const images = new Map(), urls = new Map();
   let tab = 'unbuilt', filter = '', selected = null, lockedOpen = false;
@@ -49,7 +71,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     }
     const resourceArt = resourceDescriptors([0,0,0,0,0,0,0], state.resourceTypes).map(iconURL).filter(Boolean);
     return [preload(fallback), ...resourceArt.map(preload),
-      ...(state.buildings || []).map(building => preload(artURL(state, building)))];
+      ...visibleBuildings(state.buildings).map(building => preload(artURL(state, building)))];
   }
   function picture(state, building) {
     const url = artURL(state, building);
@@ -57,7 +79,6 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     return decoded ? `<img class="building-card-image" src="${escape(decoded)}" alt="">` : '<span class="building-card-image"></span>';
   }
   const count = (label, amount) => `${label} <span class="building-count">${amount}</span>`;
-  const description = building => plainGameText(building.description).trim();
   const iconURL = resource => resourceIconURL(resource, window.goonkAssetURLs);
   function cost(state, building) {
     const rows = resourceDescriptors(building.cost, state.resourceTypes).filter(resource => resource.value);
@@ -69,12 +90,15 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
         : `<span>${resource.value} ${name}</span>`;
     }).join('')}</span>`;
   }
+  const displayName = building => name(building) || 'Bâtiment sans nom';
   function tile(state, building) {
     const text = description(building);
     const summary = text.match(/^[\s\S]*?[.!?](?=\s|$)/)?.[0] || text;
-    const caption = building.built ? '' : building.allowed ? cost(state, building) : `<small>${escape(buildReason(building.state))}</small>`;
+    const variants = building.variants?.length ?? 0;
+    const caption = building.built ? (variants > 1 ? `<small>${variants} variantes</small>` : '') :
+      building.allowed ? cost(state, building) : `<small>${escape(buildReason(building.state))}</small>`;
     return `<button type="button" class="building-tile" data-building-id="${building.id}">${picture(state, building)}
-      <strong>${escape(plainGameText(building.name))}</strong>
+      <strong>${escape(displayName(building))}</strong>
       <span class="building-summary">${escape(summary)}</span>
       ${caption}</button>`;
   }
@@ -105,16 +129,19 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
   }
   function detail(state, building) {
     const reason = building.built ? '' : !building.allowed ? buildReason(building.state) : !state.turn ? 'Disponible à ton tour' : '';
+    const descriptions = [...new Set((building.variants || [building]).map(description).filter(Boolean))];
+    const effects = descriptions.length > 1 ? `<h4>Effets selon la variante</h4><ul>${descriptions.map(text => `<li>${escape(text)}</li>`).join('')}</ul>` :
+      (descriptions.length ? `<p>${escape(descriptions[0])}</p>` : '');
     return `<article class="building-detail">${picture(state, building)}
-        <div><h3>${escape(plainGameText(building.name))}</h3>
-        <p>${escape(description(building))}</p>
+        <div><h3>${escape(displayName(building))}</h3>
+        ${effects}
         ${building.built ? '' : cost(state, building)}
         ${reason ? `<p class="building-reason">${escape(reason)}</p>` : ''}
         <button type="button" class="primary" data-building-action ${reason ? 'disabled' : ''}>${building.built ? 'Voir' : 'Construire'}</button>
         </div></article>`;
   }
   function render(state) {
-    const buildings = state.buildings || [];
+    const buildings = buildingCards(visibleBuildings(state.buildings));
     const building = buildings.find(item => item.id === selected);
     const panel = document.createElement('div');
     panel.className = 'building-menu';

@@ -36,6 +36,8 @@ for(const [kind,launcher] of Object.entries({chromium,webkit})){
     window.calls=[];
     window.buildState={mode:'town',townFaction:faction,townName:'Town',turn:false,armies:[],resources:[30,15,30,15,15,15,20000],buildings:[
      {id:16,key:'core:blacksmith',name:'{Blacksmith}',description:'War machines',built:true,allowed:false,state:4},
+     {id:17,key:'core:extraCityHall',name:'{}',description:' ',built:true,allowed:false,state:4},
+     {id:18,key:'core:warMachineUpgrade',name:'Blacksmith',description:'Upgraded war machines.',built:true,allowed:false,state:4},
      {id:0,key:'core:mageGuild1',name:'Mage guild',description:'Learn spells',built:false,allowed:true,cost:[0,0,0,0,0,0,2000]},
      {id:5,key:'core:tavern',name:'Tavern',built:false,allowed:false,state:2,cost:[5,0,0,0,0,0,500]},
      {id:31,key:'core:dwellingUpLvl1',name:'{Adv. Goblin Barracks}',description:'Recruit {Hobgoblin Overlords}.',built:false,allowed:false,state:8,cost:[]},
@@ -67,12 +69,15 @@ for(const [kind,launcher] of Object.entries({chromium,webkit})){
    assert.deepEqual(await commands(),beforeDetail,'Opening a building never constructs it');
    await button('sheet-back').tap();
    await tab('built').tap();
-   assert.match(await card(16).innerText(),/Blacksmith/);
+   assert.match(await card(16).innerText(),/Blacksmith.*2 variants/s);
+   assert.equal(await card(17).count(),0);
+   assert.equal(await card(18).count(),0);
+   assert.match(await tab('built').innerText(),/Built 1/);
    const image=card(16).locator('img');
    await page.waitForFunction(()=>document.querySelector('[data-building-id="16"] img')?.naturalWidth>0);
    if(faction==='core:tower')assert.match(await image.getAttribute('src'),/tower\/structures\/blacksmith\.webp$/);
    await card(16).tap();
-   assert.match(await page.locator('.building-detail').innerText(),/War machines/);
+   assert.deepEqual(await page.locator('.building-detail li').allTextContents(),['War machines','Upgraded war machines.']);
    assert.deepEqual(await commands(),beforeDetail);
    await page.locator('[data-building-action]').tap();
    assert.deepEqual((await commands()).at(-1),[39,16]);

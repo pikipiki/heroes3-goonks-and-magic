@@ -44,6 +44,9 @@
 .building-detail .building-card-image{height:clamp(85px,28vw,176px)}
 .building-detail>div{display:grid;gap:8px;min-width:0}
 .building-detail h3{font-size:22px}
+.building-detail h4,.building-detail ul{margin:0}
+.building-detail ul{padding-inline-start:20px;color:var(--muted)}
+.building-detail li+li{margin-top:6px}
 .building-reason{color:var(--gold)!important}
 @media(orientation:landscape) and (max-height:600px){
  #mobile-app[data-sheet=build] .sheet-head{min-height:0;padding:3px 8px}
