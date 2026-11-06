@@ -111,6 +111,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   input.placeholder = 'XXXX';
   const [paste, join, alerts] = field.querySelectorAll('button');
   const help = field.querySelector('small');
+  help.setAttribute('aria-live', 'polite');
   const status = field.querySelector('[role=status]');
   const loader = document.createElement('p');
   loader.className = 'hosted-match-loading';
@@ -190,6 +191,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     token: normalizeSeatCode(saved?.token ?? ''), endpoint: saved?.endpoint,
   };
   let alertsState = {};
+  let pasteHint = '';
   let backgroundRequests = new AbortController();
   let previousReport;
   function remember(matchId, token, target, name, players) {
@@ -228,9 +230,9 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   }
   const render = () => {
     const valid = Boolean(seatCode() || inviteCode());
-    const hint = input.value && !valid
+    const hint = pasteHint || (input.value && !valid
       ? (fr ? 'Saisis les quatre lettres de la partie ou colle ton ancien code.' : 'Enter the four-letter game code or paste your previous code.')
-      : '';
+      : '');
     if (help.textContent !== hint) help.textContent = hint;
     const seats = availableSeats();
     savedMatch.hidden = !seats.length;
@@ -311,6 +313,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     } catch {}
   }
   const codeChanged = () => {
+    pasteHint = '';
     chooser.hidden = start.hidden = true;
     status.textContent = '';
     void refreshAlerts();
@@ -335,15 +338,22 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
 
   async function pasteCode() {
     try {
-      const code = await navigator.clipboard.readText();
-      if (!code.trim() || pending || !input.isConnected) return;
-      input.value = code.replace(/\s/g, '');
-      codeChanged();
+      const code = (await navigator.clipboard.readText()).replace(/\s/g, '');
+      if (pending || !input.isConnected) return;
+      if (code) {
+        input.value = code;
+        codeChanged();
+        return;
+      }
+      pasteHint = fr ? 'Le presse-papiers est vide. Copie le code ou saisis-le ici.' :
+        'The clipboard is empty. Copy the code or type it here.';
     } catch {
-      input.focus();
-      status.textContent = fr ? 'Fais un appui long sur le champ, puis choisis Coller.' :
-        'Touch and hold the field, then choose Paste.';
+      if (pending || !input.isConnected) return;
+      pasteHint = fr ? 'Fais un appui long sur le champ, puis choisis Coller, ou saisis le code.' :
+        'Touch and hold the field and choose Paste, or type the code.';
     }
+    input.focus();
+    render();
   }
 
   async function toggleAlerts() {
