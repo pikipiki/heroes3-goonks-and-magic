@@ -49,6 +49,7 @@
  #mobile-app[data-sheet=build] .sheet-head{min-height:0;padding:3px 8px}
  #mobile-app[data-sheet=build] .sheet-head button{min-height:44px}
  .building-controls{grid-template-columns:max-content minmax(0,1fr);align-items:start}
+ .building-tabs button{flex:1 0 auto}
  .building-detail{grid-template-columns:minmax(100px,24%) minmax(0,1fr)}
  .building-detail .building-card-image{height:clamp(90px,31dvh,160px)}
 }
