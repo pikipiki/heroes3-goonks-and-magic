@@ -620,7 +620,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiJoinHostedMatch()
  if(!ENGINE||!GAME)return;
  ENGINE->dispatchMainThread([](){
   auto & server=GAME->server();
-  if(server.inGame()||server.getState()!=EClientState::NONE)return;
+  if(!server.canJoinHostedMatch())return;
   server.resetStateForLobby(EStartMode::LOAD_GAME,ESelectionScreen::loadGame,EServerMode::HOSTED_GUEST,{});
   // The WebSocket URL and subprotocol are configured by the page. A numeric
   // address avoids DNS resolution in the browser socket shim.

@@ -205,6 +205,15 @@ void CServerHandler::startLocalServerAndConnect(bool connectToLobby)
 	logNetwork->trace("\tWaiting for connection");
 }
 
+bool CServerHandler::canJoinHostedMatch() const
+{
+	const auto currentState = getState();
+	// Leaving a local game can leave DISCONNECTING set after its resources
+	// have been released. A hosted join can then initialize a new session.
+	return (currentState == EClientState::NONE || currentState == EClientState::DISCONNECTING)
+		&& !client && !networkConnection && !logicConnection && !serverRunner;
+}
+
 void CServerHandler::connectToServer(const std::string & addr, const ui16 port)
 {
 	setState(EClientState::CONNECTING);
@@ -956,11 +965,11 @@ public:
 	}
 };
 
-void CServerHandler::onPacketReceived(const std::shared_ptr<INetworkConnection> &, const std::vector<std::byte> & message)
+void CServerHandler::onPacketReceived(const std::shared_ptr<INetworkConnection> & connection, const std::vector<std::byte> & message)
 {
 	std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
 
-	if(getState() == EClientState::DISCONNECTING)
+	if(connection != networkConnection || getState() == EClientState::DISCONNECTING)
 		return;
 
 	auto pack = logicConnection->retrievePack(message);

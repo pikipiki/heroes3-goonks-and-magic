@@ -158,6 +158,7 @@ public:
 	void resetStateForLobby(EStartMode mode, ESelectionScreen screen, EServerMode serverMode, const std::vector<std::string> & playerNames);
 	void startLocalServerAndConnect(bool connectToLobby);
 	void connectToServer(const std::string & addr, const ui16 port);
+	bool canJoinHostedMatch() const;
 	void enableLagCompensation(bool on);
 
 	GameChatHandler & getGameChat();
