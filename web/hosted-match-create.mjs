@@ -1,10 +1,9 @@
-export function mountHostedMatchCreation(root, endpoint, fr, onCreated) {
+export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated) {
   if (!endpoint) return;
   const t = (en, french) => fr ? french : en;
   const section = document.createElement('section');
   section.className = 'hosted-match-settings';
-  section.innerHTML = '<button type="button" data-create-match="open"></button><div class="hosted-match-settings" data-create-form hidden><label><span></span><select data-create-players></select></label><label><span></span><select data-create-map></select></label><div class="hosted-match-settings" data-create-castles></div><button type="button" class="primary" data-create-match="submit"></button></div><div class="hosted-match-settings" data-create-codes hidden></div><p role="status"></p>';
-  const open = section.querySelector('[data-create-match=open]');
+  section.innerHTML = '<div class="hosted-match-settings" data-create-form hidden><label><span></span><select data-create-players></select></label><label><span></span><select data-create-map></select></label><div class="hosted-match-settings" data-create-castles></div><button type="button" class="primary" data-create-match="submit"></button></div><div class="hosted-match-settings" data-create-codes hidden></div><p role="status"></p>';
   const submit = section.querySelector('[data-create-match=submit]');
   const form = section.querySelector('[data-create-form]');
   const players = section.querySelector('[data-create-players]');
@@ -12,9 +11,11 @@ export function mountHostedMatchCreation(root, endpoint, fr, onCreated) {
   const castles = section.querySelector('[data-create-castles]');
   const codes = section.querySelector('[data-create-codes]');
   const status = section.querySelector('[role=status]');
+  const another = document.createElement('button');
+  another.type = 'button';
+  another.textContent = t('Create another game', 'Créer une autre partie');
   const colors = fr ? ['Rouge', 'Bleu', 'Beige', 'Vert', 'Orange', 'Violet', 'Turquoise', 'Rose'] :
     ['Red', 'Blue', 'Tan', 'Green', 'Orange', 'Purple', 'Teal', 'Pink'];
-  open.textContent = t('Create a hosted match', 'Créer une partie dédiée');
   submit.textContent = t('Create match and get codes', 'Créer la partie et obtenir les codes');
   players.previousElementSibling.textContent = t('Number of players', 'Nombre de joueurs');
   map.previousElementSibling.textContent = t('Scenario', 'Scénario');
@@ -22,7 +23,7 @@ export function mountHostedMatchCreation(root, endpoint, fr, onCreated) {
   root.prepend(section);
   let scenarios = [], invited = [], pending = false, requestId, previousRequest;
   function render() {
-    open.disabled = players.disabled = map.disabled = pending;
+    players.disabled = map.disabled = pending;
     submit.disabled = pending || !map.value;
     for (const input of castles.querySelectorAll('select')) input.disabled = pending;
   }
@@ -96,7 +97,7 @@ export function mountHostedMatchCreation(root, endpoint, fr, onCreated) {
         copy.textContent = t('Copy code', 'Copier le code');
         row.append(colors[seat], value, copy);
         return row;
-      }));
+      }), another);
       form.hidden = true;
       codes.hidden = false;
       status.textContent = t('Match created. Keep the codes and share only each player’s own code.',
@@ -110,9 +111,13 @@ export function mountHostedMatchCreation(root, endpoint, fr, onCreated) {
   players.addEventListener('change', () => void listMaps());
   map.addEventListener('change', showCastles);
   return button => {
+    if (button === open) {
+      if (codes.hidden && !map.options.length) void listMaps();
+      return true;
+    }
     if (!section.contains(button)) return false;
-    if (button === open) void listMaps();
     if (button === submit) void create();
+    if (button === another) void listMaps();
     if (button.dataset.createMatch === 'copy') {
       const input = button.previousElementSibling;
       if (navigator.clipboard?.writeText) navigator.clipboard.writeText(input.value).then(() => {

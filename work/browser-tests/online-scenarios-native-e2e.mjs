@@ -59,6 +59,10 @@ try {
     await page.getByRole('heading', {name: 'Multiplayer on a dedicated server', exact: true}).waitFor();
     await page.getByText('The server keeps the match available when the host closes the game.').waitFor();
     const seat = page.locator('#game-menu input[data-hosted-seat-code]');
+    const joinExisting = page.getByRole('button', {name: 'Join existing game', exact: true});
+    assert(await seat.isHidden());
+    await joinExisting.tap();
+    assert(await seat.isVisible());
     const {menuAllowed, touchSized} = await seat.evaluate(input => ({
       menuAllowed: input.dispatchEvent(new Event('contextmenu', {bubbles: true, cancelable: true})),
       touchSized: input.offsetHeight >= 48 && parseFloat(getComputedStyle(input).fontSize) >= 16,
@@ -95,6 +99,7 @@ try {
     playable = true;
     await simulateHostedSocket();
     await entry.tap();
+    await joinExisting.tap();
     await seat.fill(hostCode);
     const join = page.getByRole('button', {name: 'Join match', exact: true});
     await page.evaluate(() => { window.testRejectHosted = true; });
@@ -115,6 +120,7 @@ try {
     await seat.waitFor({state: 'detached'});
     revoke = true;
     await entry.tap();
+    await joinExisting.tap();
     await resume.tap();
     await page.getByText('This access has expired. Enter your seat code.').waitFor();
     assert(await resume.isHidden());
@@ -148,7 +154,11 @@ try {
     });
     await page.locator('[data-open-hosted-match]').tap();
     assert.equal(await page.locator('[data-hosted-seat-code]').inputValue(), '');
-    await page.getByRole('button', {name: 'Create a hosted match', exact: true}).tap();
+    const createNew = page.getByRole('button', {name: 'Create new game', exact: true});
+    const joinExisting = page.getByRole('button', {name: 'Join existing game', exact: true});
+    const seat = page.locator('[data-hosted-seat-code]');
+    await createNew.tap();
+    assert(await seat.isHidden());
     await page.locator('[data-create-map] option[value=small]').waitFor({state: 'attached'});
     assert.equal(await page.locator('[data-create-map]').inputValue(), 'small');
     await page.locator('[data-create-castles] select').first().selectOption('1');
@@ -157,8 +167,13 @@ try {
     assert.equal(await page.evaluate(() => window.testCopied), codes[1].code);
     assert.deepEqual(request.factions, [1, null]);
     assert.equal(request.players, 2);
+    await joinExisting.tap();
+    assert(await seat.isVisible());
+    assert(await page.locator('[data-create-codes]').isHidden());
     assert(await page.getByRole('button', {name: 'Resume match', exact: true}).isVisible());
     await page.getByText('1 of 2 players connected', {exact: true}).waitFor();
+    await createNew.tap();
+    assert(await page.locator('[data-create-codes] [data-seat="1"]').isVisible());
     await page.locator('#game-menu [data-menu=close]').tap();
   }
 

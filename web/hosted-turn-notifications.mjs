@@ -53,7 +53,31 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   if (!endpoint || !publicKey) return;
   const fr = language() === 'fr';
   const applicationServerKey = Uint8Array.from(atob(publicKey.replace(/-/g, '+').replace(/_/g, '/')), c => c.charCodeAt(0));
+  const layout = document.createElement('div');
+  layout.className = 'hosted-match-settings';
+  const modes = document.createElement('div');
+  modes.className = 'hosted-match-actions';
+  const createMode = document.createElement('button');
+  const joinMode = document.createElement('button');
+  createMode.type = joinMode.type = 'button';
+  createMode.textContent = fr ? 'Créer une partie' : 'Create new game';
+  joinMode.textContent = fr ? 'Rejoindre une partie existante' : 'Join existing game';
+  createMode.hidden = !poolEndpoint;
+  modes.append(createMode, joinMode);
+
+  const createPanel = document.createElement('div');
+  createPanel.id = 'hosted-create-panel';
   const field = document.createElement('section');
+  field.id = 'hosted-join-panel';
+  createMode.setAttribute('aria-controls', createPanel.id);
+  joinMode.setAttribute('aria-controls', field.id);
+  function showMode(mode) {
+    createPanel.hidden = mode !== 'create';
+    field.hidden = mode !== 'join';
+    createMode.setAttribute('aria-expanded', String(!createPanel.hidden));
+    joinMode.setAttribute('aria-expanded', String(!field.hidden));
+  }
+  showMode(requested ? 'join' : null);
   field.className = 'hosted-match-settings';
   field.innerHTML = '<label><span></span><input type="password" data-hosted-seat-code autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="hosted-seat-code-help"></label><button type="button" class="hosted-paste"></button><small id="hosted-seat-code-help"></small><div class="hosted-match-actions"><button type="button"></button><button type="button"></button><button type="button"></button></div><p role="status"></p>';
   const input = field.querySelector('input');
@@ -88,7 +112,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   savedActions.append(savedMatch, occupancy, resume, forget, savedCodeHelp);
   const intro = document.createElement('p');
   intro.textContent = 'Le serveur garde la partie disponible quand l’hôte ferme le jeu.';
-  field.prepend(intro, savedActions);
+  field.prepend(savedActions);
   chooser.append(fr ? 'Scénario de la partie dédiée' : 'Hosted match scenario', select);
   start.type = 'button';
   start.textContent = fr ? 'Lancer avec ce scénario' : 'Start with this scenario';
@@ -109,7 +133,8 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   enable.parentElement.after(alertsHelp);
   join.textContent = fr ? 'Rejoindre la partie' : 'Join match';
   const {serviceWorker} = navigator;
-  container.append(field);
+  layout.append(modes, intro, createPanel, field);
+  container.append(layout);
 
   function rememberedSeats() {
     try {
@@ -139,7 +164,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     saved = {endpoint: target, matchId, token, name: name || previous?.name, players: players || previous?.players};
     try { localStorage.setItem(rememberedSeatKey, JSON.stringify([saved, ...seats.filter(item => !sameMatch(item, saved))].slice(0, 101))); } catch {}
   }
-  const creationAction = mountHostedMatchCreation(field, poolEndpoint, fr,
+  const creationAction = mountHostedMatchCreation(createPanel, createMode, poolEndpoint, fr,
     (matchId, token, name, players) => { remember(matchId, token, poolEndpoint, name, players); render(); void updateOccupancy(); });
 
   async function hostedRequest(token, options, knownEndpoint) {
@@ -181,7 +206,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     join.disabled = !valid || pending || !window.Module?._vcmiJoinHostedMatch;
     start.disabled = !valid || !select.value || pending;
     select.disabled = pending;
-    input.disabled = pending;
+    input.disabled = createMode.disabled = joinMode.disabled = pending;
   };
   async function updateOccupancy() {
     const selected = saved;
@@ -215,7 +240,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   }).catch(() => {});
   serviceWorker?.ready.then(registration => { manager = registration.pushManager; });
   render();
-  void updateOccupancy();
+  if (requested) void updateOccupancy();
 
   async function pasteCode() {
     try {
@@ -367,6 +392,12 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   }
 
   return button => {
+    if (button === joinMode) {
+      showMode('join');
+      void updateOccupancy();
+      return true;
+    }
+    if (button === createMode) showMode('create');
     if (creationAction?.(button)) return true;
     if (button === paste) {
       void pasteCode();
