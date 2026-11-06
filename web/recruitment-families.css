@@ -1,3 +1,9 @@
+/* Put the resources beside the menu and use the second row for the calendar. */
+#mobile-app[data-mode=fort][data-has-resources=true] .mobile-top{display:grid;grid-template-columns:40px minmax(0,1fr);grid-template-rows:auto auto}
+#mobile-app[data-mode=fort] .mobile-title{display:none}
+#mobile-app[data-mode=fort][data-has-resources=true] .mobile-resources{grid-column:2;grid-row:1;min-width:0;width:100%;max-width:calc(50px * var(--resource-count,7))}
+#mobile-app[data-mode=fort][data-has-resources=true] .mobile-calendar{grid-row:2}
+
 /* One complete evolution chain per row; only the family list scrolls. */
 #mobile-app .hall-layout{display:grid;grid-template-rows:minmax(0,1fr) auto;flex:1;min-height:0;overflow:hidden}
 #mobile-app .hall-families{min-width:0;min-height:0;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;padding:8px;display:flex;flex-direction:column;gap:8px}
@@ -73,8 +79,8 @@
 #mobile-app .hall-actions{align-self:end;height:48px}
 #mobile-app .hall-form canvas{height:64px}
 
-/* Fit two families in portrait when there is room. Keep art legible on short screens. */
-#mobile-app .hall-families{display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:max(var(--hall-row-height,220px),194px);align-content:start;box-sizing:border-box}
+/* Fit two families in portrait when there is room. Give illustrations a taller minimum on short portrait screens. */
+#mobile-app .hall-families{display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:max(var(--hall-row-height,220px),210px);align-content:start;box-sizing:border-box}
 #mobile-app .hall-family{min-height:0;display:grid;grid-template-rows:20px minmax(0,1fr)}
 #mobile-app .hall-forms{min-height:0;align-items:stretch}
 #mobile-app .hall-form{display:grid;grid-template-rows:16px minmax(40px,1fr) minmax(28px,auto) 20px;min-height:0;gap:2px;justify-items:center}
@@ -90,3 +96,11 @@
 #mobile-app .hall-form .hall-art canvas{position:absolute;inset:0;width:100%;height:100%;max-height:100%;min-height:0}
 
 #mobile-app .hall-form{grid-template-columns:minmax(0,1fr);justify-content:stretch}
+
+
+@media(orientation:landscape) and (max-height:360px){
+ #mobile-app .hall-detail{grid-template-columns:minmax(0,1fr) auto}
+ #mobile-app .hall-feature,#mobile-app .hall-quantity,#mobile-app .hall-actions{grid-column:1/-1}
+ #mobile-app .hall-stock{grid-column:1;grid-row:2}
+ #mobile-app .hall-total{grid-column:2;grid-row:2;align-self:start;gap:4px}
+}
