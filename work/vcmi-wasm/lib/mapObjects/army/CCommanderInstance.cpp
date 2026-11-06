@@ -74,7 +74,7 @@ ArtBearer CCommanderInstance::bearerType() const
 
 bool CCommanderInstance::gainsLevel() const
 {
-	return getTotalExperience() >= LIBRARY->heroh->reqExp(level + 1);
+	return level < LIBRARY->heroh->maxSupportedLevel() && getTotalExperience() >= LIBRARY->heroh->reqExp(level + 1);
 }
 
 VCMI_LIB_NAMESPACE_END

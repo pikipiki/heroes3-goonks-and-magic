@@ -2211,6 +2211,7 @@ void CMageGuildScreen::updateSpells(ObjectInstanceID tID)
 
 	spells.clear();
 	emptyScrolls.clear();
+	auroraBorealisScrolls.clear();
 
 	const CGTownInstance * town = GAME->interface()->cb->getTown(townId);
 
@@ -2246,6 +2247,34 @@ void CMageGuildScreen::updateSpells(ObjectInstanceID tID)
 	}
 
 	redraw();
+}
+
+JsonNode CMageGuildScreen::mobileSnapshot() const
+{
+	const auto * town = GAME->interface()->cb->getTown(townId);
+	JsonNode result;
+	result["town"].Integer() = townId.getNum();
+	result["levels"].Integer() = town->getTown()->mageLevel;
+	result["built"].Integer() = town->mageGuildLevel();
+	for(const auto & scroll : spells)
+	{
+		const auto * spell = scroll->getSpell();
+		const auto center = scroll->pos.center();
+		JsonNode row;
+		row["id"].Integer() = spell->id.getNum();
+		row["name"].String() = spell->getNameTranslated();
+		row["level"].Integer() = spell->getLevel();
+		row["x"].Integer() = center.x;
+		row["y"].Integer() = center.y;
+		result["spells"].Vector().push_back(std::move(row));
+	}
+	if(!auroraBorealisScrolls.empty())
+	{
+		const auto center = auroraBorealisScrolls.front()->pos.center();
+		result["allSpells"]["x"].Integer() = center.x;
+		result["allSpells"]["y"].Integer() = center.y;
+	}
+	return result;
 }
 
 CMageGuildScreen::ScrollAllSpells::ScrollAllSpells(Point position, const std::string & buildingName)

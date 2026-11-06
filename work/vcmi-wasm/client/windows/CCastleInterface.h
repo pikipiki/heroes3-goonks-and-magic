@@ -20,6 +20,7 @@ class CSpell;
 struct CStructure;
 class CGHeroInstance;
 class CCreature;
+class JsonNode;
 
 VCMI_LIB_NAMESPACE_END
 
@@ -403,6 +404,7 @@ class CMageGuildScreen : public CStatusbarWindow
 
 	public:
 		Scroll(Point position, const CSpell *Spell, ObjectInstanceID townId);
+		const CSpell * getSpell() const { return spell; }
 		void clickPressed(const Point & cursorPosition) override;
 		void showPopupWindow(const Point & cursorPosition) override;
 		void hover(bool on) override;
@@ -430,6 +432,7 @@ class CMageGuildScreen : public CStatusbarWindow
 public:
 	CMageGuildScreen(CCastleInterface * owner, const ImagePath & image);
 	void updateSpells(ObjectInstanceID tID);
+	JsonNode mobileSnapshot() const;
 };
 
 /// The blacksmith window where you can buy available in town war machine

@@ -337,16 +337,24 @@ void publishMobileState(){
    }
  }
  else if(spellWindow){n["mode"].String()="spellbook";n["spellbook"]=spellWindow->mobileSnapshot();}
+ else if(const auto guild=ENGINE->windows().topWindow<CMageGuildScreen>()){
+  n["mode"].String()="mage-guild";
+  n["mageGuild"]=guild->mobileSnapshot();
+ }
  else if(recruitWindow)n["mode"].String()="recruit";
  else if(fortWindow)n["mode"].String()="fort";
+ else if(creatureWindow&&creatureWindow->isCommanderLevelUp()){
+  n["mode"].String()="dialog";
+  n["dialogKind"].String()="commander-level-up";
+ }
  else if(creatureWindow)n["mode"].String()="creature";
  else if(townWindow)n["mode"].String()="town";
  else if(heroWindow)n["mode"].String()="hero";
  else if(battleWindow)n["mode"].String()="battle";
  else if(ENGINE->windows().topWindow<AdventureMapInterface>())n["mode"].String()="map";
  else if(p||ENGINE->windows().topWindow<CBonusSelection>())n["mode"].String()="dialog";
- if(top&&(fortWindow||creatureWindow||recruitWindow))mobilePreviews(top.get(),n["previewUnits"]);
- if(creatureWindow&&creatureWindow->getMobileCreature()){
+ if(top&&(fortWindow||recruitWindow||n["mode"].String()=="creature"))mobilePreviews(top.get(),n["previewUnits"]);
+ if(n["mode"].String()=="creature"&&creatureWindow->getMobileCreature()){
   auto item=creature(creatureWindow->getMobileCreature(),creatureWindow->getMobileCount());
   if(auto stack=creatureWindow->getMobileStack()){mobileStackExperience(item,stack);const bool shooter=stack->hasBonusOfType(BonusType::SHOOTER);item["attack"].Integer()=stack->getAttack(shooter);item["defense"].Integer()=stack->getDefense(shooter);item["health"].Integer()=stack->getMaxHealth();item["speed"].Integer()=stack->getMovementRange();item["damageMin"].Integer()=stack->getMinDamage(shooter);item["damageMax"].Integer()=stack->getMaxDamage(shooter);}
   if(p&&p->cb&&!CPlayerInterface::battleInt)if(const auto stack=creatureWindow->getMobileStack())if(const auto armyObject=stack->getArmy())if(armyObject->getOwner()==p->playerID){
@@ -691,7 +699,12 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   player->cb->trade(market->market->getObjInstanceID(),EMarketMode::RESOURCE_RESOURCE,from,to,c*give,market->hero);
   return;
  }
- if(action==43){if(auto object=ENGINE->windows().topWindow<CWindowObject>())if(dynamic_cast<CStackWindow*>(object.get())||dynamic_cast<CFortScreen*>(object.get()))object->close();lastPublished=0;return;}
+ if(action==43){
+  const auto stackWindow=ENGINE->windows().topWindow<CStackWindow>();
+  if(stackWindow&&!stackWindow->isCommanderLevelUp())std::static_pointer_cast<CWindowObject>(stackWindow)->close();
+  if(const auto fort=ENGINE->windows().topWindow<CFortScreen>();!stackWindow&&fort)std::static_pointer_cast<CWindowObject>(fort)->close();
+  lastPublished=0;return;
+ }
  if(action==28){
   const bool mute=a!=0;const auto sound=ENGINE->sound().getVolume(),music=ENGINE->music().getVolume();
   if(mute&&!audioMuted){previousSoundVolume=sound;previousMusicVolume=music;}
@@ -791,7 +804,10 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==41){
   const auto army=dynamic_cast<const CArmedInstance*>(p->cb->getObj(ObjectInstanceID(a)));
   if(!army||army->getOwner()!=p->playerID||b<0||b>=7||!army->hasStackAtSlot(SlotID(b)))return;
-  if(auto old=ENGINE->windows().topWindow<CStackWindow>())std::static_pointer_cast<CWindowObject>(old)->close();
+  if(auto old=ENGINE->windows().topWindow<CStackWindow>()){
+   if(old->isCommanderLevelUp())return;
+   std::static_pointer_cast<CWindowObject>(old)->close();
+  }
   if(!ENGINE->windows().topWindow<AdventureMapInterface>()&&!townWindow)return;
   ENGINE->windows().createAndPushWindow<CStackWindow>(&army->getStack(SlotID(b)),false);lastPublished=0;return;
  }

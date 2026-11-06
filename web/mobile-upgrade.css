@@ -1,6 +1,7 @@
 @import url('./campaign-setup.css');
 @import url('./lobby.css');
 @import url('./spellbook.css');
+@import url('./mage-guild.css');
 @import url('./hero-equipment.css');
 @import url('./recruitment-families.css');
 /* Tactile controls keep Heroes III materials, with consistent accessible targets. */
@@ -277,4 +278,28 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
   grid-template-columns:repeat(3,minmax(0,1fr));
  }
  #mobile-app[data-mode=map] .mobile-nav>[data-ui=endturn]{grid-column:span 2}
+}
+
+/* Dwelling recruitment gives the live creature the main stage in both orientations. */
+#mobile-app[data-mode=recruit] .featured-creature{grid-template-rows:minmax(0,1fr) auto;gap:5px;padding:5px 8px;overflow:hidden}
+#mobile-app[data-mode=recruit] .creature-stage canvas{box-sizing:border-box;width:100%;height:100%;aspect-ratio:auto}
+#mobile-app[data-mode=recruit] .creature-details{max-height:clamp(56px,14vh,96px);overflow:auto;touch-action:pan-y}
+#mobile-app[data-mode=recruit] .creature-details h3{display:none}
+#mobile-app[data-mode=recruit] .creature-details .creature-stats{grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}
+#mobile-app[data-mode=recruit] .creature-stats dt{font-size:12px}
+#mobile-app[data-mode=recruit] .recruit-controls{padding:4px 8px}
+#mobile-app[data-mode=recruit] .recruit-variants{display:flex;overflow-x:auto;touch-action:pan-x;gap:4px;padding:3px 0}
+#mobile-app[data-mode=recruit] .recruit-variants button{flex:1 0 auto;min-width:72px;max-width:65%;min-height:44px;padding:2px 6px}
+#mobile-app[data-mode=recruit] .mobile-recruit-amount{display:grid;box-sizing:border-box;width:100%;grid-template-columns:minmax(118px,1fr) minmax(0,1fr);align-items:center;gap:3px;padding:4px}
+#mobile-app[data-mode=recruit] .mobile-recruit-amount label{gap:4px}
+#mobile-app[data-mode=recruit] .mobile-recruit-amount input[type=number]{box-sizing:border-box;width:clamp(48px,12vw,72px);min-height:44px;padding:0 4px}
+#mobile-app[data-mode=recruit] .recruit-summary{grid-column:1/-1;margin:0}
+@media(orientation:landscape){
+ #mobile-app[data-mode=recruit] .creature-presentation:not([hidden]){display:grid;grid-template-columns:minmax(0,1.6fr) minmax(185px,1fr);grid-template-rows:auto minmax(0,1fr) auto}
+ #mobile-app[data-mode=recruit] .featured-creature{display:contents}
+ #mobile-app[data-mode=recruit] .creature-view-head{grid-column:2;grid-row:1;min-width:0}
+ #mobile-app[data-mode=recruit] .creature-stage{grid-column:1;grid-row:1/-1;padding:4px;min-width:0}
+ #mobile-app[data-mode=recruit] .creature-details{grid-column:2;grid-row:2;max-height:none;padding:4px 6px}
+ #mobile-app[data-mode=recruit] .creature-details .creature-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+ #mobile-app[data-mode=recruit] .recruit-controls{grid-column:2;grid-row:3;min-width:0;padding:3px 4px}
 }

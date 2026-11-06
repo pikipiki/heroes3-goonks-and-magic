@@ -199,6 +199,7 @@ class CStackWindow : public CWindowObject
 	std::string getCommanderSkillDescription(int skillIndex, int skillLevel);
 
 public:
+	bool isCommanderLevelUp() const;
 	const CCreature * getMobileCreature() const;
 	const CStackInstance * getMobileStack() const;
 	unsigned getMobileCount() const;

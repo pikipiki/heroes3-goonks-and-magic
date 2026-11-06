@@ -108,13 +108,14 @@ private:
 
 };
 
+bool CStackWindow::isCommanderLevelUp() const { return info->levelupInfo.has_value(); }
 const CCreature * CStackWindow::getMobileCreature() const { return info->creature; }
 const CStackInstance * CStackWindow::getMobileStack() const
 {
 	// Catalogue previews own a synthetic stack. It must never be treated as a
 	// live army stack: refreshing the window would leave the replacement
 	// pointing at the synthetic stack destroyed with the original window.
-	return fakeNode ? nullptr : info->stackNode;
+	return fakeNode || isCommanderLevelUp() ? nullptr : info->stackNode;
 }
 unsigned CStackWindow::getMobileCount() const { return info->creatureCount; }
 
