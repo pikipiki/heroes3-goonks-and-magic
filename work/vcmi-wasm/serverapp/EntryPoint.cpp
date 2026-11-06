@@ -129,7 +129,9 @@ int main(int argc, const char * argv[])
 				row["id"].String() = file;
 				entries.push_back(std::move(row));
 			}
-			std::cout << "GOONK_SCENARIOS " << catalogue.toCompactString() << std::endl;
+			auto json = catalogue.toCompactString();
+			std::erase(json, '\n');
+			std::cout << "\nGOONK_SCENARIOS " << json << std::endl;
 		}
 		catch(const std::exception & error)
 		{
