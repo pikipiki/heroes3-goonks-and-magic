@@ -186,14 +186,14 @@ try {
       {id: 'medium', name: 'Medium map', width: 72, castles: [[{id: 0, name: 'Castle'}], [{id: 3, name: 'Inferno'}]]},
       {id: 'small', name: 'Small map', width: 36, castles: [[{id: 0, name: 'Castle'}, {id: 1, name: 'Rampart'}], [{id: 3, name: 'Inferno'}, {id: 4, name: 'Necropolis'}]]},
     ];
-    let request, attempts = 0;
+    let request, attempts = 0, catalogueAttempts = 0;
     const reports = [];
     await page.route(new RegExp(new URL(poolEndpoint).origin + '/hosted/matches'), route => {
       const headers = {'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Authorization, Content-Type'};
       if (route.request().method() === 'OPTIONS') return route.fulfill({status: 204, headers});
       assert.equal(route.request().headers().authorization, undefined);
-      if (route.request().method() === 'GET') return route.fulfill({status: 200, headers, json: {scenarios}});
+      if (route.request().method() === 'GET') return route.fulfill({status: ++catalogueAttempts === 1 ? 500 : 200, headers, json: {scenarios}});
       if (new URL(route.request().url()).pathname.endsWith('/claim')) {
         assert.equal(route.request().postDataJSON().code, roomCode);
         return route.fulfill({status: 200, headers, json: {matchId, players: 2, token: guestToken}});
@@ -229,6 +229,9 @@ try {
     assert(await seat.isHidden());
     assert(await createNew.isHidden());
     assert(await joinExisting.isHidden());
+    const retryCatalogue = page.getByRole('button', {name: 'Retry loading scenarios', exact: true});
+    await retryCatalogue.tap();
+    assert(await retryCatalogue.isHidden());
     await page.locator('[data-create-map] option[value=small]').waitFor({state: 'attached'});
     assert.equal(await page.locator('[data-create-map]').inputValue(), 'small');
     await page.locator('[data-create-castles] select').first().selectOption('1');

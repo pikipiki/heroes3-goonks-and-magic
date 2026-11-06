@@ -13,6 +13,11 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   const castles = section.querySelector('[data-create-castles]');
   const codes = section.querySelector('[data-create-codes]');
   const status = section.querySelector('[role=status]');
+  const retry = document.createElement('button');
+  retry.type = 'button';
+  retry.textContent = t('Retry loading scenarios', 'Réessayer de charger les scénarios');
+  retry.hidden = true;
+  status.after(retry);
   const launch = document.createElement('button');
   launch.type = 'button';
   launch.textContent = t('Launch game', 'Lancer la partie');
@@ -26,15 +31,17 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   root.prepend(section);
   let scenarios = [], pending = false, requestId, previousRequest;
   function render() {
-    players.disabled = map.disabled = pending;
+    players.disabled = pending;
+    map.disabled = pending || !map.options.length;
     submit.disabled = pending || !map.value;
     for (const input of castles.querySelectorAll('select')) input.disabled = pending;
   }
+  const showServerWait = () => {
+    status.textContent = t('Waiting for the dedicated server…', 'En attente du serveur dédié…');
+  };
   const request = (path, options) => requestHostedMatch(new URL('/hosted/matches' + path, endpoint), {
     credentials: 'omit', redirect: 'error', ...options,
-  }, () => {
-    status.textContent = t('Waiting for the dedicated server…', 'En attente du serveur dédié…');
-  });
+  }, showServerWait);
   function showCastles() {
     const selected = scenarios.find(scenario => scenario.id === map.value);
     castles.replaceChildren(...(selected?.castles ?? []).map((choices, seat) => {
@@ -51,21 +58,27 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
     if (pending) return;
     pending = true;
     form.hidden = false;
-    codes.hidden = true;
+    codes.hidden = retry.hidden = true;
     status.textContent = t('Loading scenarios…', 'Chargement des scénarios…');
+    const waiting = setTimeout(showServerWait, 5000);
     render();
     try {
       const result = await request('?players=' + players.value);
       if (!result.ok) throw Error('Catalogue unavailable.');
-      ({scenarios} = await result.json());
+      const catalogue = await result.json();
+      if (!Array.isArray(catalogue.scenarios)) throw Error('Invalid catalogue.');
+      scenarios = catalogue.scenarios;
       map.replaceChildren(...scenarios.map(item => new Option(item.name, item.id)));
       const preferred = scenarios.find(item => item.width === 36 && item.castles?.every(choices => choices?.length > 1));
       if (preferred) map.value = preferred.id;
       status.textContent = scenarios.length ? '' : t('No compatible scenario for this player count.', 'Aucune carte compatible avec ce nombre de joueurs.');
     } catch {
+      scenarios = [];
       map.replaceChildren();
-      status.textContent = t('The hosted server is unavailable. Try again shortly.', 'Le serveur dédié est indisponible. Réessaie dans un instant.');
+      status.textContent = t('Could not load the scenario list.', 'Impossible de charger la liste des scénarios.');
+      retry.hidden = false;
     } finally {
+      clearTimeout(waiting);
       pending = false;
       showCastles();
     }
@@ -127,6 +140,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
     }
     if (!section.contains(button)) return false;
     if (button === submit) void create();
+    if (button === retry) void listMaps();
     if (button === launch) {
       launch.disabled = true;
       void onLaunch().finally(() => { launch.disabled = false; });
