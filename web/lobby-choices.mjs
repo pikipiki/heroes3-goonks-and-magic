@@ -1,3 +1,5 @@
+import {getLanguage} from './i18n.mjs';
+
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const townKeys=new Set(['castle','rampart','tower','inferno','necropolis','dungeon','stronghold','fortress','conflux']);
 const difficulty=['A relaxed adventure','The classic challenge','Plan every move','For experienced heroes','Every resource matters'];
@@ -5,7 +7,12 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
  const controls=new Map(),artwork=new Map();
  let dialog=null,source=null,pendingOpen=null;
  const options=s=>[...s.options].map(o=>({value:o.value,label:o.textContent,disabled:o.disabled}));
- const factionKey=(s,value)=>{const state=getState(),p=state.players?.find(p=>String(p.color)===s.dataset.playerCastle),name=p?.factions?.find(f=>String(f.id)===value)?.name;return state.factions?.find(f=>String(f.id)===value||name&&f.name===name)?.key?.split(':').at(-1);};
+ const factionKey=(s,value)=>{
+  const state=getState(),player=state.players?.find(p=>String(p.color)===s.dataset.playerCastle);
+  const option=player?.factions?.find(f=>String(f.id)===value);
+  const key=option?.key??state.factions?.find(f=>String(f.id)===value)?.key;
+  return key?.split(':').at(-1);
+ };
  const artPaths=(s,value)=>{
   const key=factionKey(s,value);
   const backdrop=key==='goonk'||townKeys.has(key)?'./web/h3-theme/lobby/'+key+'.webp':'./web/h3-theme/stone.png';
@@ -79,8 +86,24 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
   const isFaction=faction(s),button=controls.get(s)?.querySelector('button');
   const opening=isFaction?{select:s,button}:null;
   if(opening){pendingOpen=opening;button.setAttribute('aria-busy','true');}
-  if(!dialog?.isConnected){dialog=document.createElement('dialog');dialog.className='lobby-picker';dialog.setAttribute('aria-labelledby','lobby-picker-title');dialog.innerHTML='<header><h2 id="lobby-picker-title"></h2><button type="button" data-picker-close aria-label="Close choices">✕</button></header><label class="lobby-picker-search">Search<input type="search" aria-label="Search choices" placeholder="Search…"></label><div class="lobby-picker-grid" role="group"></div><p class="lobby-picker-empty" hidden>No matching choices.</p><footer><button type="button" data-picker-back>← Back</button></footer>';menu.append(dialog);dialog.querySelector('[data-picker-close]').onclick=close;dialog.querySelector('[data-picker-back]').onclick=close;dialog.addEventListener('cancel',()=>source=null);dialog.querySelector('input').oninput=()=>{const q=dialog.querySelector('input').value.toLocaleLowerCase();for(const b of dialog.querySelectorAll('[data-choice-value]'))b.hidden=!b.textContent.toLocaleLowerCase().includes(q);dialog.querySelector('.lobby-picker-empty').hidden=[...dialog.querySelectorAll('[data-choice-value]')].some(b=>!b.hidden);};dialog.querySelector('.lobby-picker-grid').onclick=e=>{const b=e.target.closest('[data-choice-value]');if(!b||b.disabled||!source)return;const selected=source,value=b.dataset.choiceValue;close();change(selected,value);};}
-  dialog.dataset.kind=isFaction?'castle':'map';dialog.querySelector('h2').textContent=title(s);dialog.querySelector('.lobby-picker-grid').setAttribute('aria-label',title(s));dialog.querySelector('.lobby-picker-search').hidden=isFaction;dialog.querySelector('input').value='';dialog.querySelector('.lobby-picker-empty').hidden=true;dialog.querySelector('.lobby-picker-grid').innerHTML=options(s).map(o=>`<button type="button" data-choice-value="${esc(o.value)}" aria-pressed="${o.value===s.value}" ${o.disabled?'disabled':''}>${isFaction?art(s,o.value):'<img src="./web/h3-theme/adventure-map.svg" alt="">'}<span>${esc(o.label)}</span><span class="lobby-choice-check" aria-hidden="true">${o.value===s.value?'✓':''}</span></button>`).join('');
+  if(!dialog?.isConnected){dialog=document.createElement('dialog');dialog.className='lobby-picker';dialog.setAttribute('aria-labelledby','lobby-picker-title');dialog.innerHTML='<header><h2 id="lobby-picker-title"></h2><button type="button" data-picker-close aria-label="Close choices">✕</button></header><label class="lobby-picker-search">Search<input type="search" aria-label="Search choices" placeholder="Search…"></label><div class="lobby-picker-grid" role="group"></div><p class="lobby-picker-empty" hidden>No matching choices.</p><footer><button type="button" data-picker-back>← Back</button></footer>';menu.append(dialog);dialog.querySelector('[data-picker-close]').onclick=close;dialog.querySelector('[data-picker-back]').onclick=close;dialog.addEventListener('cancel',()=>source=null);dialog.querySelector('input').oninput=()=>{const q=dialog.querySelector('input').value.toLocaleLowerCase();for(const b of dialog.querySelectorAll('[data-choice-value]'))b.hidden=!b.querySelector('.lobby-choice-name').textContent.toLocaleLowerCase().includes(q);dialog.querySelector('.lobby-picker-empty').hidden=[...dialog.querySelectorAll('[data-choice-value]')].some(b=>!b.hidden);};dialog.querySelector('.lobby-picker-grid').onclick=e=>{const b=e.target.closest('[data-choice-value]');if(!b||b.disabled||!source)return;const selected=source,value=b.dataset.choiceValue;close();change(selected,value);};}
+  dialog.dataset.kind=isFaction?'castle':'map';
+  dialog.querySelector('h2').textContent=title(s);
+  dialog.querySelector('.lobby-picker-grid').setAttribute('aria-label',title(s));
+  dialog.querySelector('.lobby-picker-search').hidden=isFaction;
+  dialog.querySelector('input').value='';
+  dialog.querySelector('.lobby-picker-empty').hidden=true;
+  const state=getState();
+  const maps=new Map((!isFaction&&state.mode==='lobby'?state.maps??[]:[]).map(map=>[String(map.index),map]));
+  const playerLabel=getLanguage()==='fr'?['joueur','joueurs']:['player','players'];
+  dialog.querySelector('.lobby-picker-grid').innerHTML=options(s).map(o=>{
+   const map=maps.get(o.value);
+   const name=`<span class="lobby-choice-name">${esc(o.label)}</span>`;
+   const details=map?.players>0&&map.width>0&&map.height>0
+    ?`<small class="lobby-map-meta">${esc(map.players)} ${playerLabel[Number(map.players!==1)]} · ${esc(map.width)} × ${esc(map.height)}</small>`:'';
+   const copy=isFaction?name:`<span class="lobby-choice-copy">${name}${details}</span>`;
+   return `<button type="button" data-choice-value="${esc(o.value)}" aria-pressed="${o.value===s.value}" ${o.disabled?'disabled':''}>${isFaction?art(s,o.value):'<img src="./web/h3-theme/adventure-map.svg" alt="">'}${copy}<span class="lobby-choice-check" aria-hidden="true">${o.value===s.value?'✓':''}</span></button>`;
+  }).join('');
   if(opening){
    await Promise.all([...dialog.querySelectorAll('.lobby-faction-art img')].map(image=>image.decode().catch(()=>{image.hidden=true;})));
    if(pendingOpen!==opening)return;

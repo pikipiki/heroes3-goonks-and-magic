@@ -90,7 +90,7 @@ struct MobileScenario
  std::string file, name;
  int humanSeats;
  bool battleOnly, castleChoice, soloCastleChoice;
- int width;
+ int width, height, players;
 };
 std::vector<MobileScenario> mobileMaps;
 bool mapsListed=false,savesListed=false;std::set<int> portraitIds,artifactIconIds;std::vector<std::pair<std::string,std::string>> mobileCampaigns;
@@ -336,7 +336,8 @@ static void publishMobileScenarios(JsonNode & state, int roomLimit = 0, const CM
      return !player.canHumanPlay||allowsCastleChoice(player);
     });
     mobileMaps.push_back({file.getOriginalName(),info.getNameForList(),static_cast<int>(info.amountOfHumanControllablePlayers),
-                          info.mapHeader->battleOnly,castleChoice,players.front().canHumanPlay&&allowsCastleChoice(players.front()),info.mapHeader->width});
+                          info.mapHeader->battleOnly,castleChoice,players.front().canHumanPlay&&allowsCastleChoice(players.front()),
+                          info.mapHeader->width,info.mapHeader->height,static_cast<int>(info.amountOfPlayersOnMap)});
    }
   }catch(const std::exception &){}
   if(SDL_GetTicks()-start>=8)break;
@@ -352,6 +353,8 @@ static void publishMobileScenarios(JsonNode & state, int roomLimit = 0, const CM
   entry["index"].Integer()=i;
   entry["name"].String()=map.name;
   entry["width"].Integer()=map.width;
+  entry["height"].Integer()=map.height;
+  entry["players"].Integer()=map.players;
   entry["castleChoice"].Bool()=roomLimit?map.castleChoice:map.soloCastleChoice;
   if(roomLimit){
    entry["humanSeats"].Integer()=map.humanSeats;
@@ -593,7 +596,7 @@ void publishMobileState(){
    }
   }
  }
- if(n["mode"].String()=="lobby"&&GAME->server().mi&&GAME->server().si){auto & server=GAME->server();for(const auto & player:server.si->playerInfos){JsonNode row;row["color"].Integer()=player.first.getNum();row["name"].String()=player.second.name;row["faction"].Integer()=player.second.castle.getNum();for(auto id:server.getPlayerInfo(player.first).allowedFactions){auto faction=id.toFaction();JsonNode item;item["id"].Integer()=id.getNum();item["name"].String()=faction->getNameTranslated();row["factions"].Vector().push_back(item);}n["players"].Vector().push_back(row);}}
+ if(n["mode"].String()=="lobby"&&GAME->server().mi&&GAME->server().si){auto & server=GAME->server();for(const auto & player:server.si->playerInfos){JsonNode row;row["color"].Integer()=player.first.getNum();row["name"].String()=player.second.name;row["faction"].Integer()=player.second.castle.getNum();for(auto id:server.getPlayerInfo(player.first).allowedFactions){auto faction=id.toFaction();JsonNode item;item["id"].Integer()=id.getNum();item["name"].String()=faction->getNameTranslated();item["key"].String()=faction->getJsonKey();row["factions"].Vector().push_back(item);}n["players"].Vector().push_back(row);}}
  if(auto selection=ENGINE->windows().topWindow<CBonusSelection>()){
   const auto campaign=selection->getCampaign();auto & data=n["campaignScenario"];
   data["name"].String()=campaign->getNameTranslated();data["description"].String()=campaign->getDescriptionTranslated();data["selected"].Integer()=GAME->server().campaignMap.getNum();data["bonus"].Integer()=GAME->server().campaignBonus;data["difficulty"].Integer()=GAME->server().si->difficulty;data["chooseDifficulty"].Bool()=campaign->playerSelectedDifficulty();
