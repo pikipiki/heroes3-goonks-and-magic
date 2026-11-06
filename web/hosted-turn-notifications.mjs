@@ -73,13 +73,19 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   const forget = document.createElement('button');
   const savedMatch = document.createElement('select');
   const occupancy = document.createElement('p');
+  const savedCodeHelp = document.createElement('p');
   savedMatch.setAttribute('aria-label', fr ? 'Partie à reprendre' : 'Match to resume');
   savedActions.className = 'hosted-match-actions';
   resume.type = forget.type = 'button';
   resume.className = 'primary';
   resume.textContent = fr ? 'Reprendre la partie' : 'Resume match';
-  forget.textContent = fr ? 'Oublier cet accès' : 'Forget this access';
-  savedActions.append(savedMatch, occupancy, resume, forget);
+  forget.textContent = fr ? 'Effacer le code mémorisé' : 'Remove saved code';
+  savedCodeHelp.id = 'hosted-saved-code-help';
+  savedCodeHelp.textContent = fr
+    ? 'Après avoir effacé le code, tu devras le ressaisir pour reprendre cette partie sur cet appareil.'
+    : 'If you remove the code, you’ll need to enter it again to resume this match on this device.';
+  forget.setAttribute('aria-describedby', savedCodeHelp.id);
+  savedActions.append(savedMatch, occupancy, resume, forget, savedCodeHelp);
   field.prepend(savedActions);
   chooser.append(fr ? 'Scénario de la partie dédiée' : 'Hosted match scenario', select);
   start.type = 'button';
@@ -89,8 +95,16 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   field.querySelector('label span').textContent = fr ? 'Code de ta place' : 'Your seat code';
   paste.textContent = fr ? 'Coller le code' : 'Paste code';
   paste.hidden = !navigator.clipboard?.readText;
-  enable.textContent = fr ? 'Activer sur cet appareil' : 'Enable on this device';
-  disable.textContent = fr ? 'Désactiver pour cette place' : 'Disable for this seat';
+  enable.textContent = fr ? 'Activer les alertes de tour' : 'Enable turn alerts';
+  disable.textContent = fr ? 'Couper les alertes de tour' : 'Turn off turn alerts';
+  const alertsHelp = document.createElement('p');
+  alertsHelp.id = 'hosted-turn-alerts-help';
+  alertsHelp.textContent = fr
+    ? 'Les alertes te préviennent sur cet appareil quand c’est ton tour. Les couper les arrête pour cette place sur tous les appareils.'
+    : 'Turn alerts notify you on this device when it’s your turn. Turning them off stops alerts for this seat on any device.';
+  enable.setAttribute('aria-describedby', alertsHelp.id);
+  disable.setAttribute('aria-describedby', alertsHelp.id);
+  enable.parentElement.after(alertsHelp);
   join.textContent = fr ? 'Rejoindre la partie' : 'Join match';
   const {serviceWorker} = navigator;
   container.append(field);
@@ -368,7 +382,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       forgetSeat(saved);
       saved = availableSeats()[0];
       void updateOccupancy();
-      status.textContent = fr ? 'Accès oublié sur cet appareil.' : 'Access forgotten on this device.';
+      status.textContent = fr ? 'Code effacé sur cet appareil.' : 'Saved code removed from this device.';
       render();
       return true;
     }

@@ -65,7 +65,7 @@ try {
     assert(touchSized, 'Seat code uses a touch-sized input and a font that avoids focus zoom');
     await seat.pressSequentially('bad');
     assert.equal(await seat.inputValue(), 'bad');
-    const enable = page.getByRole('button', {name: 'Enable on this device', exact: true});
+    const enable = page.getByRole('button', {name: 'Enable turn alerts', exact: true});
     assert(await enable.isDisabled());
     await page.getByRole('button', {name: 'Paste code', exact: true}).tap();
     await wait(code => document.querySelector('[data-hosted-seat-code]').value === code, hostCode);
