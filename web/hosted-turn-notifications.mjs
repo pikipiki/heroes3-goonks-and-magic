@@ -112,6 +112,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   const [join, alerts] = field.querySelectorAll('button');
   // Let the browser deliver the click even if the keyboard changes the viewport.
   join.dataset.nativeClick = alerts.dataset.nativeClick = '';
+  join.dataset.hostedPlay = '';
   const status = field.querySelector('[role=status]');
   const loader = document.createElement('p');
   loader.className = 'hosted-match-loading';

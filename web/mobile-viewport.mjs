@@ -39,8 +39,24 @@ export function anchorMobileViewport(root,win=window){
   for(const [name,value] of Object.entries(next))if(root.style[name]!==value)root.style[name]=value;
  }
  function schedule(){if(disposed||pending)return;pending=true;win.requestAnimationFrame(()=>{pending=false;update();});}
- const bindings=[[win,'resize'],[win,'orientationchange'],[win,'scroll'],[win,'pageshow'],[viewport,'resize'],[viewport,'scroll']].filter(([target])=>target);
+ const bindings=[[win,'resize'],[win,'orientationchange'],[win,'scroll'],[win,'pageshow'],[win,'fullscreenchange'],[viewport,'resize'],[viewport,'scroll']].filter(([target])=>target);
  for(const [target,event] of bindings)target.addEventListener(event,schedule,{passive:true});
  update();
  return{update:schedule,dispose(){disposed=true;for(const [target,event] of bindings)target.removeEventListener(event,schedule);}};
+}
+
+export function enableFullscreenOnPlay(win=window){
+ const doc=win.document;
+ const surface=doc.documentElement;
+ if(!doc.fullscreenEnabled||typeof surface.requestFullscreen!=='function')return;
+ if(win.navigator.standalone||win.matchMedia('(display-mode: standalone), (display-mode: fullscreen)').matches)return;
+ let requested=false;
+ doc.addEventListener('click',event=>{
+  if(requested||!event.isTrusted||doc.fullscreenElement)return;
+  const button=event.target.closest?.('button:is([data-ui="begin"],[data-campaign-start],[data-room-action="start"],[data-hosted-play])');
+  if(!button||button.disabled)return;
+  // Request during the trusted click, before the game starts loading.
+  requested=true;
+  surface.requestFullscreen({navigationUI:'hide'}).catch(()=>{requested=false;});
+ },{capture:true});
 }
