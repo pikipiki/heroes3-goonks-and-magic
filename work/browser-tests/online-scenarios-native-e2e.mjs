@@ -7,6 +7,15 @@ const browser = await chromium.launch({executablePath: process.env.CHROME_PATH, 
 const page = await browser.newPage({viewport: {width: 390, height: 844}, hasTouch: true, isMobile: true});
 const wait = (fn, arg) => page.waitForFunction(fn, arg, {timeout: 90000});
 const panel = page.locator('.online-lobby');
+const multiplayer = page.getByRole('button', {name: 'Multiplayer', exact: true});
+const dedicated = page.getByRole('button', {name: 'Dedicated server', exact: true});
+const hostDevice = page.getByRole('button', {name: 'Host device', exact: true});
+async function openMultiplayer() {
+  const heading = page.getByRole('heading', {name: 'Multiplayer', exact: true});
+  await multiplayer.or(heading).waitFor();
+  if (await multiplayer.isVisible()) await multiplayer.tap();
+  await heading.waitFor();
+}
 
 try {
   await page.addInitScript(() => {
@@ -54,8 +63,18 @@ try {
       return route.fulfill({status: 200, headers, json: {matchId, playable,
         ...(!playable ? {scenarioStatus: 'choose', scenarios: [map]} : {})}});
     });
-    const entry = page.getByRole('button', {name: 'Multiplayer on a dedicated server', exact: true});
-    await entry.tap();
+    assert(await multiplayer.isVisible());
+    assert(await dedicated.isHidden());
+    assert(await hostDevice.isHidden());
+    await openMultiplayer();
+    await page.setViewportSize({width: 844, height: 390});
+    assert(await dedicated.isVisible());
+    assert(await hostDevice.isVisible());
+    await page.getByRole('button', {name: 'Back', exact: true}).tap();
+    await page.setViewportSize({width: 390, height: 844});
+    assert(await multiplayer.isVisible());
+    await openMultiplayer();
+    await dedicated.tap();
     await page.getByRole('heading', {name: 'Multiplayer on a dedicated server', exact: true}).waitFor();
     await page.getByText('The server keeps the match available when the host closes the game.').waitFor();
     const seat = page.locator('#game-menu input[data-hosted-seat-code]');
@@ -98,7 +117,8 @@ try {
     await page.setViewportSize({width: 390, height: 844});
     playable = true;
     await simulateHostedSocket();
-    await entry.tap();
+    await openMultiplayer();
+    await dedicated.tap();
     await joinExisting.tap();
     await seat.fill(hostCode);
     const join = page.getByRole('button', {name: 'Join match', exact: true});
@@ -119,7 +139,8 @@ try {
     await resume.tap();
     await seat.waitFor({state: 'detached'});
     revoke = true;
-    await entry.tap();
+    await openMultiplayer();
+    await dedicated.tap();
     await joinExisting.tap();
     await resume.tap();
     await page.getByText('This access has expired. Enter your seat code.').waitFor();
@@ -153,7 +174,8 @@ try {
       assert.equal(route.request().headers().authorization, 'Bearer ' + codes[preview ? 0 : 1].code.replaceAll('-', ''));
       return route.fulfill({status: 200, headers, json: {matchId, players: 2, connectedPlayers: 1, poolStatus: 'busy'}});
     });
-    await page.locator('[data-open-hosted-match]').tap();
+    await openMultiplayer();
+    await dedicated.tap();
     assert.equal(await page.locator('[data-hosted-seat-code]').inputValue(), '');
     const createNew = page.getByRole('button', {name: 'Create new game', exact: true});
     const joinExisting = page.getByRole('button', {name: 'Join existing game', exact: true});
@@ -182,6 +204,8 @@ try {
     await page.locator('#game-menu [data-menu=close]').tap();
   }
 
+  const multiplayerBack = page.locator('[data-multiplayer-back]');
+  if (await multiplayerBack.isVisible()) await multiplayerBack.tap();
   await page.locator('.mobile-menu [data-action="20"]').tap();
   await wait(() => {
     const state = window.goonkMobileState;
@@ -190,7 +214,8 @@ try {
   });
   assert.equal(await page.locator('#mobile-map-select option').filter({hasText: /^Goonks?( Online)?$/}).count(), 0);
   await page.locator('.lobby-footer [data-ui=back]').tap();
-  await page.getByRole('button', {name: 'Multiplayer on the host’s device', exact: true}).tap();
+  await openMultiplayer();
+  await hostDevice.tap();
   await page.getByRole('heading', {name: 'Multiplayer on the host’s device', exact: true}).waitFor();
   await page.getByText('The host needs to keep the game open during the match.').waitFor();
   await page.locator('.online-login input').fill('ScenarioHost' + String(Date.now()).slice(-6));
