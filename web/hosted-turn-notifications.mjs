@@ -124,7 +124,6 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     try { localStorage.setItem(rememberedSeatKey, JSON.stringify([saved, ...seats.filter(item => !sameMatch(item, saved))].slice(0, 101))); } catch {}
   }
   const creationAction = mountHostedMatchCreation(field, poolEndpoint, fr,
-    () => seatCode() || rememberedSeats().find(item => item.endpoint === endpoint)?.token || '',
     (matchId, token, name, players) => { remember(matchId, token, poolEndpoint, name, players); render(); void updateOccupancy(); });
 
   async function hostedRequest(token, options, knownEndpoint) {

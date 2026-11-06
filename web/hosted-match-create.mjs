@@ -1,4 +1,4 @@
-export function mountHostedMatchCreation(root, endpoint, fr, getCode, onCreated) {
+export function mountHostedMatchCreation(root, endpoint, fr, onCreated) {
   if (!endpoint) return;
   const t = (en, french) => fr ? french : en;
   const section = document.createElement('section');
@@ -28,7 +28,6 @@ export function mountHostedMatchCreation(root, endpoint, fr, getCode, onCreated)
   }
   const request = (path, options) => fetch(new URL('/hosted/matches' + path, endpoint), {
     credentials: 'omit', redirect: 'error', signal: AbortSignal.timeout(55000), ...options,
-    headers: {Authorization: 'Bearer ' + getCode(), ...options?.headers},
   });
   function showCastles() {
     const selected = scenarios.find(scenario => scenario.id === map.value);
@@ -44,10 +43,6 @@ export function mountHostedMatchCreation(root, endpoint, fr, getCode, onCreated)
   }
   async function listMaps() {
     if (pending) return;
-    if (!/^[A-Za-z0-9_-]{43}$/.test(getCode())) {
-      status.textContent = t('Enter your existing host code below to create a match.', 'Saisis ton code d’hôte existant ci-dessous pour créer une partie.');
-      return;
-    }
     pending = true;
     form.hidden = false;
     codes.hidden = true;
@@ -55,11 +50,6 @@ export function mountHostedMatchCreation(root, endpoint, fr, getCode, onCreated)
     render();
     try {
       const result = await request('?players=' + players.value);
-      if (result.status === 403) {
-        form.hidden = true;
-        status.textContent = t('This code cannot create a match.', 'Ce code ne permet pas de créer une partie.');
-        return;
-      }
       if (!result.ok) throw Error('Catalogue unavailable.');
       ({scenarios} = await result.json());
       map.replaceChildren(...scenarios.map(item => new Option(item.name, item.id)));
@@ -88,6 +78,7 @@ export function mountHostedMatchCreation(root, endpoint, fr, getCode, onCreated)
       const result = await response.json().catch(() => ({}));
       if (!response.ok) {
         status.textContent = result.error === 'full' ? t('All dedicated slots are in use.', 'Toutes les places de sauvegarde dédiées sont occupées.') :
+          result.error === 'rate-limit' ? t('Too many matches were created recently. Try again later.', 'Trop de parties ont été créées récemment. Réessaie plus tard.') :
           t('Could not create the match. Try again.', 'La création a échoué. Réessaie.');
         return;
       }

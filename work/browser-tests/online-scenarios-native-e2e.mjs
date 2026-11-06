@@ -121,7 +121,6 @@ try {
 
   const poolEndpoint = await page.evaluate(() => window.goonkHostedAlerts?.poolEndpoint);
   if (poolEndpoint) {
-    const primaryCode = 'H'.repeat(43);
     const matchId = '527329c6-19f9-4284-9aa0-dace75c66a32';
     const codes = [{seat: 0, code: 'HG' + 'R'.repeat(41)}, {seat: 1, code: 'HG' + 'B'.repeat(41)}];
     const scenarios = [
@@ -133,7 +132,7 @@ try {
       const headers = {'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Authorization, Content-Type'};
       if (route.request().method() === 'OPTIONS') return route.fulfill({status: 204, headers});
-      assert.equal(route.request().headers().authorization, 'Bearer ' + primaryCode);
+      assert.equal(route.request().headers().authorization, undefined);
       if (route.request().method() === 'GET') return route.fulfill({status: 200, headers, json: {scenarios}});
       request = route.request().postDataJSON();
       return route.fulfill({status: 201, headers, json: {matchId, codes}});
@@ -146,7 +145,7 @@ try {
       return route.fulfill({status: 200, headers, json: {matchId, players: 2, connectedPlayers: 1}});
     });
     await page.locator('[data-open-hosted-match]').tap();
-    await page.locator('[data-hosted-seat-code]').fill(primaryCode);
+    assert.equal(await page.locator('[data-hosted-seat-code]').inputValue(), '');
     await page.getByRole('button', {name: 'Create a hosted match', exact: true}).tap();
     await page.locator('[data-create-map] option[value=small]').waitFor({state: 'attached'});
     assert.equal(await page.locator('[data-create-map]').inputValue(), 'small');
