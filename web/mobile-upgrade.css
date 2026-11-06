@@ -216,8 +216,7 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=native] #battle-creature-detail{max-height:100%}
 
 /* Keep mana distinct from the hero’s movement points in both orientations. */
-#mobile-app .mobile-movement{display:grid;gap:2px;text-align:right}
-#mobile-app .map-mana-points,#mobile-app .hero-mana{color:#c3ddff;font-variant-numeric:tabular-nums}
+#mobile-app .hero-mana{color:#c3ddff;font-variant-numeric:tabular-nums}
 #mobile-app .hero-magic-status{display:grid;justify-items:start;gap:2px}
 #mobile-app .hero-movement-item>button .hero-no-spellbook{padding:1px 4px;border:1px solid #e1ac77;background:#281b13;color:#ffe0b5;font-size:11px;font-weight:600}
 
@@ -240,7 +239,7 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
   grid-column:2;
   grid-row:1;
   display:grid;
-  grid-template-columns:44px minmax(0,1fr) auto;
+  grid-template-columns:44px minmax(0,1fr);
   grid-template-rows:auto;
   grid-auto-rows:auto;
   gap:2px 6px;
@@ -248,7 +247,6 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
   border-left:1px solid #b59750;
  }
  #mobile-app[data-mode=map] .mobile-top>#game-menu-toggle{min-width:44px!important;min-height:44px!important}
- #mobile-app[data-mode=map] .mobile-movement{grid-column:3;grid-row:1;text-align:center}
  #mobile-app[data-mode=map] .mobile-resources{grid-column:1/-1;grid-row:2;width:100%;min-width:0;max-width:none}
  #mobile-app[data-mode=map] .mobile-nav {
   --map-action-rows:repeat(3,minmax(44px,1fr));

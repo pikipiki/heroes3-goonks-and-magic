@@ -7,6 +7,7 @@
 #mobile-app[data-mode=map] .mobile-title{display:none}
 #mobile-app[data-mode=map] .mobile-calendar{grid-column:2;grid-row:1;flex-flow:column nowrap;align-items:flex-start;justify-content:center;gap:0;padding:0;border:0;font-size:11px;line-height:13px}
 #mobile-app[data-mode=map] .mobile-calendar span{white-space:normal}
+@media(orientation:portrait){#mobile-app[data-mode=map][data-has-resources=true] .mobile-top{grid-template-columns:40px minmax(0,1fr)}}
 @media(orientation:landscape) and (max-height:600px){
  #mobile-app[data-mode=map] .mobile-calendar span:not(.calendar-compact){display:none}
  #mobile-app[data-mode=map] .mobile-calendar .calendar-compact{display:block}
