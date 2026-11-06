@@ -21,7 +21,10 @@ export function createCreaturePresentation({root,command,pointer,openRecruit}){
  panel.addEventListener('click',event=>{const b=event.target.closest('button');if(!b||b.disabled)return;
   if(b.hasAttribute('data-recruit-all'))root.dispatchEvent(new CustomEvent('goonk-recruit-all'));
   if(b.dataset.recruit!==undefined)openRecruit(Number(b.dataset.recruit));
-  if(b.dataset.typeInfo!==undefined)command(42,Number(b.dataset.typeInfo));
+  if(b.dataset.typeInfo!==undefined){
+   if(state.mode==='fort')hall.rememberScroll();
+   command(42,Number(b.dataset.typeInfo));
+  }
   if(b.dataset.upgrade!==undefined){b.disabled=true;b.setAttribute('aria-busy','true');command(59,Number(b.dataset.upgrade));}
   if(b.dataset.variant!==undefined){const u=state.previewUnits?.[Number(b.dataset.variant)];if(u?.preview)pointer({x:u.preview.x+u.preview.w/2,y:u.preview.y+u.preview.h/2},1);}
   if(b.dataset.presentationClose!==undefined)command(state.mode==='recruit'?33:43);

@@ -6,7 +6,10 @@ const rankName=n=>['I','II','III','IV','V','VI'][n]||String(n+1);
 export function createRecruitmentHall({panel,command,prices,stats}){
  const resizeRows=()=>{const list=panel.querySelector('.hall-families');if(!list)return;const style=getComputedStyle(list),rows=matchMedia('(orientation:landscape)').matches?1:2,space=list.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);list.style.setProperty('--hall-row-height',Math.max(130,Math.floor((space-(rows-1)*8)/rows))+'px');};
  const rowObserver=new ResizeObserver(resizeRows);
- let state={},families=[],selectedId=null,amount=1,signature='',pending=null;
+ let state={},families=[],selectedId=null,amount=1,signature='',pending=null,savedScroll=null;
+ // Remember the same point in the roster if rotation changes the row height.
+ const rowStep=list=>(list.firstElementChild?.getBoundingClientRect().height||0)+(parseFloat(getComputedStyle(list).rowGap)||0);
+ const readScroll=list=>list?{top:list.scrollTop,step:rowStep(list)}:null;
  const unit=()=>families.flatMap(f=>f.variants).find(u=>u.id===selectedId);
  const select=(id,preview=true)=>{if(selectedId===id)return;selectedId=id;amount=1;if(preview){const u=unit();if(u)command(60,u.level,u.id);}renderSelection();};
  const renderSelection=()=>{
@@ -29,11 +32,18 @@ export function createRecruitmentHall({panel,command,prices,stats}){
  };
  return{update(next){state=next;families=recruitmentFamilies(state);if(pending){const u=families.flatMap(f=>f.variants).find(u=>u.id===pending.id);if(u?.count!==pending.count||JSON.stringify(state.armies)!==pending.armies||Date.now()-pending.started>5000)pending=null;}
   const key=JSON.stringify(families.map(f=>[f.level,f.variants.map(u=>[u.id,u.built,u.name]) ]));
-  if(key!==signature||!panel.querySelector('.hall-layout')){signature=key;const old=panel.querySelector('.hall-layout'),scroll=old?.querySelector('.hall-families')?.scrollTop||0;if(old){for(const canvas of old.querySelectorAll('canvas')){canvas.width=0;canvas.height=0;}old.remove();}panel.insertAdjacentHTML('beforeend','<div class="hall-layout"><div class="hall-families" aria-label="Creature evolution families">'+families.map(f=>`<section class="hall-family"><div class="hall-family-label"><h3>Tier ${f.level+1}</h3><span data-family-stock="${f.level}"></span></div><div class="hall-forms" style="--forms:${f.variants.length}">`+f.variants.map(u=>`<button class="hall-form" data-family-select="${u.id}" aria-pressed="false" aria-label="${esc(u.name)}, form ${rankName(u.rank)}${u.built?'':', dwelling required'}"><span class="hall-rank">${rankName(u.rank)}${u.built?'':' · 🔒'}</span><span class="hall-art"><canvas data-hall-icon="${u.id}" aria-hidden="true"></canvas></span><span class="hall-form-name">${esc(u.name)}</span><span class="hall-form-price">${prices(u,1,state.resourceTypes)}</span></button>`).join('')+'</div></section>').join('')+'</div><section class="hall-detail" aria-label="Selected creature recruitment"></section></div>');
-   for(const b of panel.querySelectorAll('[data-family-select]')){bindPress(b,()=>select(Number(b.dataset.familySelect)));b.addEventListener('focus',()=>select(Number(b.dataset.familySelect)));}panel.querySelector('.hall-families').scrollTop=scroll;rowObserver.disconnect();rowObserver.observe(panel.querySelector('.hall-families'));resizeRows();
+  let scroll;
+  if(key!==signature||!panel.querySelector('.hall-layout')){signature=key;const old=panel.querySelector('.hall-layout');
+   scroll=old?readScroll(old.querySelector('.hall-families')):savedScroll;
+   if(!old)savedScroll=null;if(old){for(const canvas of old.querySelectorAll('canvas')){canvas.width=0;canvas.height=0;}old.remove();}panel.insertAdjacentHTML('beforeend','<div class="hall-layout"><div class="hall-families" aria-label="Creature evolution families">'+families.map(f=>`<section class="hall-family"><div class="hall-family-label"><h3>Tier ${f.level+1}</h3><span data-family-stock="${f.level}"></span></div><div class="hall-forms" style="--forms:${f.variants.length}">`+f.variants.map(u=>`<button class="hall-form" data-family-select="${u.id}" aria-pressed="false" aria-label="${esc(u.name)}, form ${rankName(u.rank)}${u.built?'':', dwelling required'}"><span class="hall-rank">${rankName(u.rank)}${u.built?'':' · 🔒'}</span><span class="hall-art"><canvas data-hall-icon="${u.id}" aria-hidden="true"></canvas></span><span class="hall-form-name">${esc(u.name)}</span><span class="hall-form-price">${prices(u,1,state.resourceTypes)}</span></button>`).join('')+'</div></section>').join('')+'</div><section class="hall-detail" aria-label="Selected creature recruitment"></section></div>');
+   for(const b of panel.querySelectorAll('[data-family-select]')){bindPress(b,()=>select(Number(b.dataset.familySelect)));b.addEventListener('focus',()=>select(Number(b.dataset.familySelect)));}rowObserver.disconnect();rowObserver.observe(panel.querySelector('.hall-families'));
   }
   for(const f of families){const line=panel.querySelector(`[data-family-stock="${f.level}"]`);if(line)line.textContent=f.count+' available';}
   if(!unit()){const first=families.find(f=>f.variants.some(u=>u.built))||families[0];const u=first?.variants.filter(u=>u.built).at(-1)||first?.variants[0];if(u)select(u.id);}
   else renderSelection();resizeRows();
- },reset(){rowObserver.disconnect();signature='';pending=null;selectedId=null;},get canvases(){return[...panel.querySelectorAll('[data-hall-preview],[data-hall-icon]')];}};
+  if(scroll){
+   const list=panel.querySelector('.hall-families'),step=rowStep(list);
+   list.scrollTop=scroll.step&&step?scroll.top*step/scroll.step:scroll.top;
+  }
+ },rememberScroll(){savedScroll=readScroll(panel.querySelector('.hall-families'));},reset(){rowObserver.disconnect();signature='';pending=null;selectedId=null;savedScroll=null;},get canvases(){return[...panel.querySelectorAll('[data-hall-preview],[data-hall-icon]')];}};
 }
