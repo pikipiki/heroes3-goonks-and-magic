@@ -515,7 +515,9 @@ void CGameHandler::handleReceivedPack(GameConnectionID connection, CPackForServe
 	);
 	gameServer().sendPack(received, connection);
 
-	if(isBlockedByQueries(&pack, pack.player))
+	if((gameServer().isEncounterPendingFor(pack.player)
+			&& !dynamic_cast<AdvInterfaceReady *>(&pack))
+		|| isBlockedByQueries(&pack, pack.player))
 	{
 		sendPackageResponse(false);
 	}
@@ -972,6 +974,23 @@ bool CGameHandler::moveHero(ObjectInstanceID hid, int3 dst, EMovementMode moveme
 
 	if (transit && !canFly && !(canWalkOnSea && t.isWater()) && !CGTeleport::isTeleport(objectToVisit))
 		return complainRet("Hero cannot transit over this tile!");
+
+	// Stop before changing the hero position or the defending garrison so a
+	// dedicated match can save and replay this exact step after reconnect.
+	if(!transit && movementMode == EMovementMode::STANDARD && objectToVisit)
+	{
+		const auto defender = objectToVisit->getOwner();
+		const auto * town = dynamic_cast<const CGTownInstance *>(objectToVisit);
+		const bool startsBattle = objectToVisit->ID == Obj::HERO
+			|| (town && (town->armedGarrison() || town->getVisitingHero()));
+		if(startsBattle && defender.isValidPlayer()
+			&& gameInfo().getPlayerRelations(defender, h->getOwner()) == PlayerRelations::ENEMIES
+			&& gameServer().deferAttackWhenAbsent(h->getOwner(), defender, hid, dst))
+		{
+			sendAndApply(tmh);
+			return true;
+		}
+	}
 
 	//several generic blocks of code
 

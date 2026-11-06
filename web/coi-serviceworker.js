@@ -138,11 +138,14 @@ self.addEventListener('push', event => {
   } catch {
     return;
   }
-  if (message?.type !== 'goonk.turn-started.v1') return;
+  const encounter = message?.type === 'goonk.encounter-waiting.v1';
+  if (!encounter && message?.type !== 'goonk.turn-started.v1') return;
 
   const match = hostedMatchPattern.test(message.matchId ?? '') ? message.matchId : null;
   event.waitUntil(self.registration.showNotification('Heroes Goonk', {
-    body: message.language === 'fr' ? 'C’est à toi de jouer.' : 'It’s your turn.',
+    body: encounter
+      ? (message.language === 'fr' ? 'Une attaque attend ton retour.' : 'An attack is waiting for you to rejoin.')
+      : (message.language === 'fr' ? 'C’est à toi de jouer.' : 'It’s your turn.'),
     icon: fileURL('dosvcmi.png').href,
     tag: match ? turnNotificationTag + ':' + match : turnNotificationTag,
     ...(match ? {data: {match}} : {}),

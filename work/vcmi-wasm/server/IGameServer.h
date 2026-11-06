@@ -13,6 +13,8 @@
 
 VCMI_LIB_NAMESPACE_BEGIN
 class PlayerColor;
+class ObjectInstanceID;
+class int3;
 struct CPackForClient;
 
 VCMI_LIB_NAMESPACE_END
@@ -35,6 +37,8 @@ public:
 	virtual bool isPlayerHost(const PlayerColor & color) const = 0;
 	virtual bool hasPlayerAt(PlayerColor player, GameConnectionID connectionID) const = 0;
 	virtual bool hasBothPlayersAtSameConnection(PlayerColor left, PlayerColor right) const = 0;
+	virtual bool isEncounterPendingFor(const PlayerColor &) const { return false; }
+	virtual bool deferAttackWhenAbsent(const PlayerColor &, const PlayerColor &, const ObjectInstanceID &, const int3 &) { return false; }
 	virtual void applyPack(CPackForClient & pack) = 0;
 	virtual void sendPack(CPackForClient & pack, GameConnectionID connectionID) = 0;
 };

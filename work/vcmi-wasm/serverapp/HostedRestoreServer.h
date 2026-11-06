@@ -9,6 +9,8 @@
 #include "TurnCheckpointServer.h"
 
 #include "../lib/mapping/CMapHeader.h"
+#include "../lib/mapObjects/CGHeroInstance.h"
+#include "../server/queries/QueriesProcessor.h"
 #include "../lib/networkPacks/PacksForLobby.h"
 #include "../lib/serializer/GameConnection.h"
 
@@ -19,6 +21,23 @@ class HostedRestoreServer final : public TurnCheckpointServer
 	std::map<NetworkConnectionPtr, Clock::time_point> pending;
 	std::map<NetworkConnectionPtr, PlayerColor> authorized;
 	bool ready = false;
+
+	struct Encounter
+	{
+		PlayerColor attacker;
+		PlayerColor defender;
+		ObjectInstanceID hero;
+		int3 destination;
+	};
+	std::optional<Encounter> waitingEncounter;
+	std::optional<PlayerColor> completedEncounter;
+
+	bool connected(PlayerColor color) const
+	{
+		return std::any_of(activeConnections.begin(), activeConnections.end(), [color](const auto & client) {
+			return client->connectionID == connectionFor(color);
+		});
+	}
 
 	static GameConnectionID connectionFor(PlayerColor color)
 	{
@@ -99,6 +118,8 @@ public:
 				throw std::runtime_error("The hosted map could not be started");
 			ready = true;
 		}
+		if(mapName.empty())
+			restoreEncounter(seats);
 		startGameImmediately();
 		ready = true;
 		prepare(false, false);
@@ -109,9 +130,42 @@ public:
 	void applyPack(CPackForClient & pack) override
 	{
 		if(ready)
+		{
 			TurnCheckpointServer::applyPack(pack);
+			if(dynamic_cast<const PlayerStartsTurn *>(&pack))
+				completedEncounter.reset();
+		}
 		else
 			CVCMIServer::applyPack(pack);
+	}
+
+	bool isEncounterPendingFor(const PlayerColor & color) const override
+	{
+		return waitingEncounter && waitingEncounter->attacker == color;
+	}
+
+	bool deferAttackWhenAbsent(const PlayerColor & attacker, const PlayerColor & defender,
+		const ObjectInstanceID & hero, const int3 & destination) override
+	{
+		if(connected(defender))
+			return false;
+
+		InfoWindow message;
+		message.player = attacker;
+		message.text.appendRawString("Attack paused until the defending player reconnects.");
+		if(!waitingEncounter)
+		{
+			std::ostringstream marker;
+			marker << "\nGOONK-ENCOUNTER/1 " << static_cast<int>(attacker.getNum())
+				<< ' ' << static_cast<int>(defender.getNum()) << ' ' << hero.getNum()
+				<< ' ' << destination.x << ' ' << destination.y << ' ' << destination.z;
+			if(writeCheckpoint(attacker, marker.str()))
+				waitingEncounter = Encounter{attacker, defender, hero, destination};
+			else
+				message.text = MetaString::createFromRawString("The waiting attack could not be saved. Try again.");
+		}
+		sendPack(message, connectionFor(attacker));
+		return true;
 	}
 
 	void onNewConnection(const NetworkConnectionPtr & connection) override
@@ -135,13 +189,29 @@ public:
 		for(const auto & connection : expired)
 			connection->close();
 
+		if(waitingEncounter && connected(waitingEncounter->attacker) && connected(waitingEncounter->defender)
+			&& gh->uiReadyForDialogs.contains(waitingEncounter->attacker)
+			&& gh->uiReadyForDialogs.contains(waitingEncounter->defender))
+		{
+			const auto encounter = *std::exchange(waitingEncounter, std::nullopt);
+			gh->moveHero(encounter.hero, encounter.destination, EMovementMode::STANDARD, false, encounter.attacker);
+			completedEncounter = encounter.attacker;
+		}
+		if(completedEncounter && gh->gameState().currentBattles.empty() && gh->queries->allQueries().empty()
+			&& gh->turnOrder->isPlayerMakingTurn(*completedEncounter) && writeCheckpoint(*completedEncounter))
+			completedEncounter.reset();
+
 		CVCMIServer::onTimer();
 	}
 
 	void onDisconnected(const NetworkConnectionPtr & connection, const std::string &) override
 	{
 		pending.erase(connection);
-		authorized.erase(connection);
+		if(const auto seat = authorized.find(connection); seat != authorized.end())
+		{
+			gh->uiReadyForDialogs.erase(seat->second);
+			authorized.erase(seat);
+		}
 		std::erase_if(activeConnections, [&](const auto & client) { return client->isMyConnection(connection); });
 	}
 
@@ -191,6 +261,37 @@ public:
 	}
 
 private:
+	void restoreEncounter(const std::set<PlayerColor> & seats)
+	{
+		const auto file = VCMIDirs::get().userSavePath() / "Hosted-Turn.vsgm1";
+		std::ifstream input(file.c_str(), std::ios::binary | std::ios::ate);
+		const auto length = std::min<std::streamoff>(input.tellg(), 256);
+		if(length < 1)
+			throw std::runtime_error("Could not read hosted encounter marker");
+		input.seekg(-length, std::ios::end);
+		std::string trailer(length, '\0');
+		if(!input.read(trailer.data(), length))
+			throw std::runtime_error("Could not read hosted encounter marker");
+		const std::string prefix = "\nGOONK-ENCOUNTER/1 ";
+		const auto marker = trailer.rfind(prefix);
+		const auto turn = trailer.rfind("\nGOONK-TURN/1 ");
+		if(marker == std::string::npos || turn == std::string::npos || marker > turn)
+			return;
+
+		std::istringstream fields(trailer.substr(marker + prefix.size(), turn - marker - prefix.size()));
+		int attacker, defender, hero;
+		int3 destination;
+		if(!(fields >> attacker >> defender >> hero >> destination.x >> destination.y >> destination.z)
+			|| fields.peek() != EOF || attacker < 0 || attacker > 7 || defender < 0 || defender > 7
+			|| attacker == defender || hero < 0 || !seats.contains(PlayerColor(attacker)) || !seats.contains(PlayerColor(defender))
+			|| !gh->gameState().isInTheMap(destination) || !gh->turnOrder->isPlayerMakingTurn(PlayerColor(attacker)))
+			throw std::runtime_error("Invalid hosted encounter marker");
+		const auto * attackerHero = gh->gameInfo().getHero(ObjectInstanceID(hero));
+		if(!attackerHero || attackerHero->getOwner() != PlayerColor(attacker))
+			throw std::runtime_error("Hosted encounter attacker does not match the save");
+		waitingEncounter = Encounter{PlayerColor(attacker), PlayerColor(defender), ObjectInstanceID(hero), destination};
+	}
+
 	void admit(const NetworkConnectionPtr & connection, PlayerColor color, const std::vector<std::byte> & message)
 	{
 		if(message.size() > 4096 || !gh->gameState().currentBattles.empty())

@@ -58,4 +58,8 @@ test('A turn push shows a notification without an open game and opens the correc
   await dispatch('notificationclick', {notification: {...notifications[1], close() {}}});
   assert.deepEqual(opened, [scope + 'game.html', scope + 'game.html?match=' + matchId]);
 
+  await dispatch('push', {data: {json: () => ({...payload, matchId, type: 'goonk.encounter-waiting.v1'})}});
+  assert.equal(notifications[2].body, 'Une attaque attend ton retour.');
+  assert.equal(notifications[2].data.match, matchId);
+
 });

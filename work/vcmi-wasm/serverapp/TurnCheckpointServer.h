@@ -96,6 +96,12 @@ public:
 		if(!turn || !gh->gameInfo().getPlayerState(turn->player)->isHuman())
 			return;
 
+		writeCheckpoint(turn->player);
+	}
+
+protected:
+	bool writeCheckpoint(PlayerColor active, const std::string & extra = {})
+	{
 		const auto directory = VCMIDirs::get().userSavePath();
 		const auto checkpoint = directory / "Hosted-Turn.vsgm1";
 		const auto staging = directory / "Hosted-Turn.tmp";
@@ -109,14 +115,16 @@ public:
 			// reader consumes the serialized state and ignores the trailing marker.
 			std::ofstream marker(staging.c_str(), std::ios::binary | std::ios::app);
 			marker.exceptions(std::ios::failbit | std::ios::badbit);
-			marker << "\nGOONK-TURN/1 " << static_cast<int>(turn->player.getNum())
+			marker << extra << "\nGOONK-TURN/1 " << static_cast<int>(active.getNum())
 				<< ' ' << gh->gameState().getDate() << '\n';
 			marker.close();
 			boost::filesystem::rename(staging, checkpoint);
+			return true;
 		}
 		catch(const std::exception & error)
 		{
 			logGlobal->error("Failed to replace hosted turn checkpoint: %s", error.what());
+			return false;
 		}
 	}
 

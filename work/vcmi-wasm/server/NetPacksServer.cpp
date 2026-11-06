@@ -11,6 +11,7 @@
 #include "ServerNetPackVisitors.h"
 
 #include "CGameHandler.h"
+#include "IGameServer.h"
 #include "battles/BattleProcessor.h"
 #include "processors/HeroPoolProcessor.h"
 #include "processors/PlayerMessageProcessor.h"
@@ -66,6 +67,12 @@ void ApplyGhNetPackVisitor::visitMoveHero(MoveHero & pack)
 		if (!gh.moveHero(pack.hid, dest, EMovementMode::STANDARD, pack.transit, pack.player))
 		{
 			result = false;
+			return;
+		}
+
+		if(gh.gameServer().isEncounterPendingFor(pack.player))
+		{
+			result = true;
 			return;
 		}
 
