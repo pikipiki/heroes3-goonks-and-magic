@@ -43,6 +43,7 @@ for(const [kind,launcher] of Object.entries({chromium,webkit})){
     sendBuild();
    },faction);
    await page.waitForFunction(()=>window.goonkMobileState?.mode==='town'&&!goonkMobileState.turn);
+   assert.equal(await page.locator('[data-ui=town-buildings]').count(),0);
    if(size.width<size.height){
     await page.locator('[data-town-building="16"]').tap();
     assert.deepEqual(await commands(),[[39,16]],'Direct inspection works during the opponent’s turn');
