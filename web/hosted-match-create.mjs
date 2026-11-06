@@ -1,4 +1,4 @@
-export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated) {
+export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, onLaunch) {
   if (!endpoint) return;
   const t = (en, french) => fr ? french : en;
   const section = document.createElement('section');
@@ -11,9 +11,10 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated) {
   const castles = section.querySelector('[data-create-castles]');
   const codes = section.querySelector('[data-create-codes]');
   const status = section.querySelector('[role=status]');
-  const another = document.createElement('button');
-  another.type = 'button';
-  another.textContent = t('Create another game', 'Créer une autre partie');
+  const launch = document.createElement('button');
+  launch.type = 'button';
+  launch.textContent = t('Launch game', 'Lancer la partie');
+  launch.className = 'primary';
   const colors = fr ? ['Rouge', 'Bleu', 'Beige', 'Vert', 'Orange', 'Violet', 'Turquoise', 'Rose'] :
     ['Red', 'Blue', 'Tan', 'Green', 'Orange', 'Purple', 'Teal', 'Pink'];
   submit.textContent = t('Create match and get codes', 'Créer la partie et obtenir les codes');
@@ -75,7 +76,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated) {
     render();
     try {
       const response = await request('', {method: 'POST', headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({...settings, requestId, codeFormat: 'short'})});
+        body: JSON.stringify({...settings, requestId, codeFormat: 'invite'})});
       const result = await response.json().catch(() => ({}));
       if (!response.ok) {
         status.textContent = result.error === 'full' ? t('All dedicated slots are in use.', 'Toutes les places de sauvegarde dédiées sont occupées.') :
@@ -84,6 +85,8 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated) {
         return;
       }
       invited = result.codes;
+      const hostToken = result.hostToken ?? invited?.[0]?.code;
+      if (!hostToken || !Array.isArray(invited)) throw Error('Invalid match response.');
       codes.replaceChildren(...invited.map(({seat, code}) => {
         const row = document.createElement('label');
         const value = document.createElement('input');
@@ -97,12 +100,12 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated) {
         copy.textContent = t('Copy code', 'Copier le code');
         row.append(colors[seat], value, copy);
         return row;
-      }), another);
+      }), launch);
       form.hidden = true;
       codes.hidden = false;
-      status.textContent = t('Match created. Keep the codes and share only each player’s own code.',
-        'Partie créée. Garde les codes et partage avec chaque joueur uniquement le sien.');
-      onCreated(result.matchId, invited[0].code, scenarios.find(item => item.id === settings.scenario)?.name, settings.players);
+      status.textContent = t('Share each invitation code with its player, then launch the game.',
+        'Partage son code avec chaque joueur, puis lance la partie.');
+      onCreated(result.matchId, hostToken, scenarios.find(item => item.id === settings.scenario)?.name, settings.players);
       previousRequest = undefined;
     } catch {
       status.textContent = t('Could not create the match. Try again.', 'La création a échoué. Réessaie.');
@@ -117,7 +120,10 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated) {
     }
     if (!section.contains(button)) return false;
     if (button === submit) void create();
-    if (button === another) void listMaps();
+    if (button === launch) {
+      launch.disabled = true;
+      void onLaunch().finally(() => { launch.disabled = false; });
+    }
     if (button.dataset.createMatch === 'copy') {
       const input = button.previousElementSibling;
       if (navigator.clipboard?.writeText) navigator.clipboard.writeText(input.value).then(() => {

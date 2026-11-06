@@ -90,6 +90,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   joinMode.setAttribute('aria-controls', field.id);
   function showMode(mode) {
     modes.hidden = intro.hidden = Boolean(mode);
+    status.textContent = '';
     container.scrollTop = 0;
     createPanel.hidden = mode !== 'create';
     field.hidden = mode !== 'join';
@@ -99,7 +100,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   field.className = 'hosted-match-settings';
   field.innerHTML = '<label><span></span><input type="password" data-hosted-seat-code autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="hosted-seat-code-help"></label><button type="button" class="hosted-paste"></button><small id="hosted-seat-code-help"></small><div class="hosted-match-actions"><button type="button"></button><button type="button"></button></div><p role="status"></p>';
   const input = field.querySelector('input');
-  input.placeholder = 'XXXX-XXXX-XXXX';
+  input.placeholder = 'XXXX';
   const [paste, join, alerts] = field.querySelectorAll('button');
   const help = field.querySelector('small');
   const status = field.querySelector('[role=status]');
@@ -107,7 +108,6 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   loader.className = 'hosted-match-loading';
   loader.setAttribute('role', 'status');
   loader.hidden = true;
-  field.prepend(loader);
   const chooser = document.createElement('label');
   const select = document.createElement('select');
   const start = document.createElement('button');
@@ -148,7 +148,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   alerts.parentElement.after(alertsHelp);
   join.textContent = fr ? 'Rejoindre la partie' : 'Join match';
   const {serviceWorker} = navigator;
-  layout.append(modes, intro, createPanel, field);
+  layout.append(modes, intro, loader, createPanel, field, status);
   container.append(layout);
 
   function rememberedSeats() {
@@ -169,10 +169,15 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     } catch {}
   }
 
-  let saved = availableSeats()[0];
+  let saved = availableSeats()[0], createdSeat;
+  const claims = new Map();
   let manager;
   let pending = false;
   const seatCode = () => normalizeSeatCode(input.value);
+  const inviteCode = () => {
+    const code = input.value.trim().toUpperCase();
+    return poolEndpoint && /^[A-Z]{4}$/.test(code) && new Set(code).size === 4 ? code : '';
+  };
   const alertSeat = () => input.value.trim() ? {token: seatCode()} : {
     token: normalizeSeatCode(saved?.token ?? ''), endpoint: saved?.endpoint,
   };
@@ -186,11 +191,12 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   const creationAction = mountHostedMatchCreation(createPanel, createMode, poolEndpoint, fr,
     (matchId, token, name, players) => {
       remember(matchId, token, poolEndpoint, name, players);
+      createdSeat = saved;
       if (!field.hidden) {
         void refreshAlerts();
         void updateOccupancy();
       }
-    });
+    }, () => joinMatch({remembered: createdSeat}));
 
   async function hostedRequest(token, options, knownEndpoint, query = '') {
     const send = target => fetch(target + query, {
@@ -206,9 +212,9 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     return {response, target};
   }
   const render = () => {
-    const valid = Boolean(seatCode());
+    const valid = Boolean(seatCode() || inviteCode());
     const hint = input.value && !valid
-      ? (fr ? 'Saisis les 12 caractères de ton code court ou colle ton ancien code.' : 'Enter the 12 characters of your short code or paste your previous code.')
+      ? (fr ? 'Saisis les quatre lettres de ton invitation ou colle ton ancien code.' : 'Enter the four letters of your invitation or paste your previous code.')
       : '';
     if (help.textContent !== hint) help.textContent = hint;
     const seats = availableSeats();
@@ -375,9 +381,10 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   }
 
   async function joinMatch({scenario, remembered} = {}) {
-    const token = remembered ? normalizeSeatCode(remembered.token) : seatCode();
+    let token = remembered ? normalizeSeatCode(remembered.token) : seatCode();
+    const invitation = !remembered && inviteCode();
     const runtime = window.Module;
-    if (pending || !token || (scenario && start.disabled) || !runtime?._vcmiJoinHostedMatch) return;
+    if (pending || (!token && !invitation) || (scenario && start.disabled) || !runtime?._vcmiJoinHostedMatch) return;
     input.blur();
     pending = true;
     status.textContent = '';
@@ -398,6 +405,39 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
         status.textContent = fr ? 'Le serveur démarre le scénario. Réessaie de rejoindre dans un instant.' :
           'The server is starting the scenario. Try joining again in a moment.';
         return;
+      }
+      if (invitation) {
+        const key = 'heroes-goonk.invite.' + invitation;
+        let claimId = claims.get(invitation);
+        if (!claimId) {
+          claimId = crypto.randomUUID();
+          try {
+            claimId = sessionStorage.getItem(key) || claimId;
+            sessionStorage.setItem(key, claimId);
+          } catch {}
+          claims.set(invitation, claimId);
+        }
+        const response = await fetch(new URL('/hosted/matches/claim', poolEndpoint), {
+          method: 'POST', credentials: 'omit', redirect: 'error', signal: AbortSignal.timeout(55000),
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({code: invitation, claimId}),
+        });
+        const claim = await response.json();
+        if (!response.ok) {
+          status.textContent = claim.error === 'host-offline'
+            ? (fr ? 'Demande à l’hôte de lancer la partie avant de rejoindre.' : 'Ask the host to launch the game before joining.')
+            : response.status === 401
+              ? (fr ? 'Invitation inconnue ou déjà utilisée.' : 'This invitation is invalid or has already been used.')
+              : (fr ? 'Impossible de vérifier l’invitation pour le moment. Réessaie plus tard.' : 'Could not verify the invitation right now. Try again later.');
+          return;
+        }
+        if (!matchPattern.test(claim.matchId) || !normalizeSeatCode(claim.token ?? '')) throw new Error('Invalid invitation response.');
+        remember(claim.matchId, claim.token, poolEndpoint, claim.name, claim.players);
+        remembered = saved;
+        token = saved.token;
+        claims.delete(invitation);
+        try { sessionStorage.removeItem(key); } catch {}
+        input.value = '';
       }
       let result = await hostedRequest(token, {}, remembered?.endpoint);
       let response = result.response.ok ? await result.response.json() : null;
