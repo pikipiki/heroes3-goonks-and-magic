@@ -290,6 +290,7 @@ public:
 	int selected;//0 (left) or 1 (right)
 	int oldSelected;//0 (left) or 1 (right)
 	bool recruitTurn = false;
+	std::string recruitBlockReason;
 	void updateRecruitAvailability();
 
 	std::shared_ptr<CButton> thiefGuild;

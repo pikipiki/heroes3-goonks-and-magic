@@ -1,17 +1,73 @@
-import{chromium,webkit}from'playwright-core';import assert from'node:assert/strict';import fs from'node:fs';
-const report={},state={mode:'dialog',dialogKind:'tavern',dialogTitle:'Taverne',rect:{x:203,y:48,w:395,h:504},dialogCloseRect:{x:513,y:476,w:64,h:32}};
-for(const kind of ['chromium','webkit']){
- const browser=kind==='webkit'?await webkit.launch({headless:true,executablePath:'/Users/sevenone./Library/Caches/ms-playwright/webkit-2215/pw_run.sh'}):await chromium.connectOverCDP('http://127.0.0.1:9224'),context=await browser.newContext({viewport:{width:390,height:844},hasTouch:true}),p=await context.newPage();report[kind]={errors:[],sizes:[]};p.on('pageerror',e=>report[kind].errors.push(e.message));
- try{
-  await p.route('**/tavern-touch-test?mobile=1',r=>r.fulfill({contentType:'text/html',body:`<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/web/mobile.css"><link rel="stylesheet" href="/web/h3-theme.css"></head><body><canvas id="canvas" width="1600" height="1200"></canvas><script>window.calls=[];window.Module={_vcmiMobileEnable(){},_vcmiMobileCommand(...a){calls.push(a)},_vcmiMobilePointer(...a){calls.push(['pointer',...a])}};window.goonkAssetsReady=Promise.resolve();window.goonkAssetURLs=[];</script><script type="module" src="/web/mobile.mjs"></script></body></html>`}));
-  await p.goto('http://127.0.0.1:8767/tavern-touch-test?mobile=1');await p.waitForSelector('#mobile-app');
-  await p.evaluate(s=>{window.fixture=s;window.dispatchEvent(new CustomEvent('goonk-state',{detail:s}));},state);
-  for(const [width,height]of [[390,844],[844,390],[320,568],[568,320]]){
-   await p.setViewportSize({width,height});await p.waitForTimeout(150);const hit=await p.locator('.native-dialog-close-hit').boundingBox();assert(hit.width>=44&&hit.height>=44);assert(hit.x>=0&&hit.y>=0&&hit.x+hit.width<=width&&hit.y+hit.height<=height);
-   const before=await p.evaluate(()=>calls.length);await p.touchscreen.tap(hit.x+hit.width/2,hit.y+2);await p.waitForTimeout(50);assert.deepEqual(await p.evaluate(n=>calls.slice(n),before),[[40,0,0,0,0,0]]);report[kind].sizes.push({width,height,hit});
+import {chromium, webkit} from 'playwright-core';
+import assert from 'node:assert/strict';
+
+const origin = process.env.TEST_ORIGIN || 'http://127.0.0.1:8784';
+const state = {
+  mode: 'dialog', dialogKind: 'tavern', turn: false,
+  rect: {x: 203, y: 48, w: 395, h: 504},
+  dialogCloseRect: {x: 513, y: 476, w: 64, h: 32},
+  tavern: {cost: 2500, canRecruit: true, rumor: 'A rumor from the barkeep.'},
+  tavernHeroes: {
+    0: {id: 31, name: 'Melodia', className: 'Druid', level: 1, rect: {x: 250, y: 380, w: 58, h: 64}},
+    1: {id: 32, name: 'Ryland', className: 'Ranger', level: 1, rect: {x: 335, y: 380, w: 58, h: 64}},
+  },
+};
+const sizes = [[390, 844], [844, 390], [320, 568], [568, 320]];
+for (const [kind, engine, executablePath] of [
+  ['chromium', chromium, process.env.CHROME_PATH],
+  ['webkit', webkit, process.env.WEBKIT_PATH],
+]) {
+  const browser = await engine.launch({executablePath});
+  try {
+    const page = await browser.newPage({viewport: {width: 390, height: 844}, hasTouch: true});
+    const errors = [];
+    page.on('pageerror', error => errors.push(error.message));
+    await page.route('**/tavern-touch-test?mobile=1', route => route.fulfill({
+      contentType: 'text/html',
+      body: `<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="/web/mobile.css"><link rel="stylesheet" href="/web/h3-theme.css">
+        <canvas id="canvas" width="800" height="600"></canvas>
+        <script>window.calls=[];window.Module={_vcmiMobileEnable(){},_vcmiMobileCommand(...args){calls.push(args)}};
+        window.goonkAssetsReady=Promise.resolve();window.goonkAssetURLs=[];</script>
+        <script type="module" src="/web/mobile.mjs"></script>`,
+    }));
+    await page.goto(origin + '/tavern-touch-test?mobile=1');
+    await page.waitForSelector('#mobile-app');
+    const publish = detail => page.evaluate(detail => dispatchEvent(new CustomEvent('goonk-state', {detail})), detail);
+    const panel = page.locator('.mobile-tavern');
+    const equipment = panel.locator('[data-tavern-equipment="1"]');
+    const recruit = panel.locator('[data-tavern-recruit="1"]');
+    const close = panel.locator('[data-tavern-close]');
+    await publish(state);
+    assert.equal(await panel.locator('h3').allTextContents().then(names => names.join(', ')), 'Melodia, Ryland');
+    assert(await panel.getByRole('status').isVisible());
+    assert(await recruit.isDisabled());
+    await publish({...state, turn: true});
+    for (const [width, height] of sizes) {
+      await page.setViewportSize({width, height});
+      await page.waitForFunction(([w, h]) => {
+        const close = document.querySelector('[data-tavern-close]').getBoundingClientRect();
+        return close.right <= w && close.bottom <= h && innerWidth === w && innerHeight === h;
+      }, [width, height]);
+      for (const target of [close, ...await panel.locator('.tavern-actions button').all()]) {
+        const {x, y, width: w, height: h} = await target.boundingBox();
+        assert(w >= 44 && h >= 44 && x >= 0 && y >= 0 && x + w <= width && y + h <= height, JSON.stringify({width, height, x, y, w, h}));
+      }
+      assert(await page.locator('#mobile-app .scene-tools').isHidden());
+    }
+    await recruit.tap();
+    assert.deepEqual(await page.evaluate(() => calls.at(-1)), [86, 1, 32, 0, 0, 0]);
+    await publish(state);
+    assert(await recruit.isDisabled());
+    await equipment.tap();
+    assert.deepEqual(await page.evaluate(() => calls.at(-1)), [72, 1, 0, 0, 0, 0]);
+    await close.tap();
+    assert.deepEqual(await page.evaluate(() => calls.at(-1)), [40, 0, 0, 0, 0, 0]);
+    await publish({mode: 'town'});
+    await panel.waitFor({state: 'hidden'});
+    assert.deepEqual(errors, []);
+    console.log('PASS', kind, sizes);
+  } finally {
+    await browser.close();
   }
-  const header=p.getByRole('button',{name:'Fermer la taverne',exact:true}),box=await header.boundingBox(),before=await p.evaluate(()=>calls.length);await p.mouse.move(box.x+box.width/2,box.y+box.height/2);await p.mouse.down();await p.evaluate(()=>window.dispatchEvent(new CustomEvent('goonk-state',{detail:{...fixture,resources:[20,10,20,10,10,10,20000]}})));await p.waitForTimeout(350);await p.mouse.up();assert.deepEqual(await p.evaluate(n=>calls.slice(n),before),[[40,0,0,0,0,0]]);
-  await p.evaluate(()=>window.dispatchEvent(new CustomEvent('goonk-state',{detail:{mode:'dialog',rect:fixture.rect}})));assert(await header.isHidden());assert(await p.locator('.native-dialog-close-hit').isHidden());assert.deepEqual(report[kind].errors,[]);
- }finally{await context.close();await browser.close();}
 }
-fs.writeFileSync(new URL('../../outputs/tavern-touch-layout-e2e.json',import.meta.url),JSON.stringify(report,null,2));console.log(JSON.stringify(report));

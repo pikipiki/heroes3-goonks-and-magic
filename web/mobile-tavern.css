@@ -1,0 +1,37 @@
+html.goonk-mobile #mobile-app[data-mobile-tavern]{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
+#mobile-app[data-mobile-tavern] .mobile-top{grid-column:1}
+#mobile-app[data-mobile-tavern] .mobile-play{grid-column:1;grid-row:2}
+#mobile-app[data-mobile-tavern] :is(.mobile-nav,.scene-tools,.scene-hint,#mobile-overview){display:none}
+#mobile-app[data-mobile-tavern] #mobile-scene{visibility:hidden}
+.mobile-tavern{position:absolute;inset:0;z-index:4;box-sizing:border-box;display:grid;align-content:start;gap:10px;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;padding:8px max(10px,env(safe-area-inset-right)) max(10px,var(--safe-bottom)) max(10px,env(safe-area-inset-left));background:#291d13 url('./h3-theme/stone.png');color:#ffebbb}
+.mobile-tavern>*{width:100%;max-width:760px;margin:0 auto;box-sizing:border-box}
+.tavern-header{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:8px;border-bottom:1px solid var(--line);padding-bottom:7px}
+.tavern-header h2{margin:0;font-size:clamp(18px,5vw,25px)}
+.tavern-cost{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--gold)}
+.tavern-cost img{width:19px;height:19px;object-fit:contain}
+#mobile-app .mobile-tavern button,.tavern-extras summary{min-height:44px;min-width:44px;padding:5px 7px}
+.tavern-heroes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.tavern-hero{display:flex;flex-direction:column;justify-content:space-between;gap:9px;min-width:0;padding:9px;border:1px solid var(--line);background:#281b12a6}
+.tavern-identity{display:grid;justify-items:center;text-align:center;gap:7px;min-width:0}
+.tavern-identity canvas{display:block;width:auto;height:clamp(78px,16dvh,146px);aspect-ratio:58/64;max-width:100%;background:#23170d;border:2px ridge #c9a864;image-rendering:pixelated}
+.tavern-identity h3,.tavern-identity p,.tavern-extras p{margin:0;overflow-wrap:anywhere}
+.tavern-status{overflow-wrap:anywhere}
+.tavern-identity h3{font-size:clamp(16px,4vw,22px);color:var(--gold)}
+.tavern-identity p,.tavern-status,.tavern-extras p{color:var(--muted);font-size:14px}
+.tavern-actions{display:grid;gap:5px}
+.tavern-extras{display:flex;gap:6px;flex-wrap:wrap;align-items:start}
+.tavern-extras summary{box-sizing:border-box;align-content:center;border:1px solid var(--line);cursor:pointer}
+.tavern-extras details[open]{flex-basis:100%}
+.tavern-extras p{padding:7px 0}
+@media(orientation:landscape){
+ .mobile-tavern{gap:6px;padding-top:4px}
+ .tavern-header{padding-bottom:3px}
+ .tavern-hero{padding:6px;gap:5px}
+ .tavern-identity{grid-template-columns:auto minmax(0,1fr);align-items:center;justify-items:start;text-align:start}
+ .tavern-identity canvas{height:clamp(60px,21dvh,110px)}
+ .tavern-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(orientation:landscape) and (max-height:360px){
+ .mobile-tavern{gap:4px;padding-top:2px}
+ .tavern-identity canvas{height:60px}
+}

@@ -8,12 +8,12 @@ try{
  await p.waitForTimeout(300);await p.screenshot({path:out('town-hd-portrait.png')});
  const art=await p.evaluate(async()=>{const entry=window.goonkAssetURLs.find(e=>e.path.endsWith('/Sprites2x/goonk/structure-dwellingLvl1.png'));const img=new Image();img.src=entry.url;await img.decode();return{path:entry.path,width:img.naturalWidth,height:img.naturalHeight};});assert.equal(art.width,190);assert.equal(art.height,180);report.art=art;
  const tav=await p.evaluate(()=>goonkMobileState.buildings.find(b=>b.built&&/:tavern$/.test(b.key)));assert(tav);
- const open=async()=>{await p.evaluate(id=>Module._vcmiMobileCommand(39,id,0,0,0,0),tav.id);await wait(()=>goonkMobileState.dialogKind==='tavern');await p.waitForFunction(()=>!document.querySelector('.native-dialog-close-hit').hidden);await p.waitForTimeout(100);};
- for(const [width,height,zoom]of [[390,844,false],[844,390,false],[320,568,true]]){
-  await p.setViewportSize({width,height});await open();if(zoom){await click('Zoomer');await click('Dézoomer');}
-  const hit=await p.locator('.native-dialog-close-hit').boundingBox();assert(hit.width>=44&&hit.height>=44);report.closed.push({width,height,hit});
+ const open=async()=>{await p.evaluate(id=>Module._vcmiMobileCommand(39,id,0,0,0,0),tav.id);await wait(()=>goonkMobileState.dialogKind==='tavern');await p.locator('[data-tavern-close]').waitFor();await p.waitForTimeout(100);};
+ for(const [width,height]of [[390,844],[844,390],[320,568]]){
+  await p.setViewportSize({width,height});await open();
+  const hit=await p.locator('[data-tavern-close]').boundingBox();assert(hit.width>=44&&hit.height>=44);report.closed.push({width,height,hit});
   await p.screenshot({path:out('tavern-close-'+width+'.png')});
-  // The extra area above the original icon must also close it.
+  // A tap near the edge of the close button must also close it.
   await p.touchscreen.tap(hit.x+hit.width/2,hit.y+3);await wait(()=>goonkMobileState.mode==='town');
  }
  await p.setViewportSize({width:390,height:844});await open();await p.setViewportSize({width:844,height:390});await p.waitForTimeout(200);await p.setViewportSize({width:390,height:844});await p.waitForTimeout(200);

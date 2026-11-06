@@ -595,15 +595,21 @@ CTavernWindow::CTavernWindow(const CGObjectInstance * TavernObj, const std::func
 void CTavernWindow::updateRecruitAvailability()
 {
 	recruitTurn = GAME->interface()->makingTurn;
+	recruitBlockReason.clear();
 	recruit->block(false);
+	const auto blockRecruit = [this](const std::string & reason)
+	{
+		recruitBlockReason = reason;
+		recruit->addHoverText(EButtonState::NORMAL, reason);
+		recruit->block(true);
+	};
 	if(!GAME->interface()->makingTurn)
 	{
 		recruit->block(true);
 	}
 	else if(GAME->interface()->cb->getResourceAmount(EGameResID::GOLD) < GameConstants::HERO_GOLD_COST) //not enough gold
 	{
-		recruit->addHoverText(EButtonState::NORMAL, LIBRARY->generaltexth->tavernInfo[0]); //Cannot afford a Hero
-		recruit->block(true);
+		blockRecruit(LIBRARY->generaltexth->tavernInfo[0]); //Cannot afford a Hero
 	}
 	else if(GAME->interface()->cb->howManyHeroes(true) >= GAME->interface()->cb->getSettings().getInteger(EGameSettings::HEROES_PER_PLAYER_TOTAL_CAP))
 	{
@@ -612,8 +618,7 @@ void CTavernWindow::updateRecruitAvailability()
 		message.replaceNumber(GAME->interface()->cb->howManyHeroes(true));
 
 		//Cannot recruit. You already have %d Heroes.
-		recruit->addHoverText(EButtonState::NORMAL, message.toString());
-		recruit->block(true);
+		blockRecruit(message.toString());
 	}
 	else if(GAME->interface()->cb->howManyHeroes(false) >= GAME->interface()->cb->getSettings().getInteger(EGameSettings::HEROES_PER_PLAYER_ON_MAP_CAP))
 	{
@@ -621,13 +626,11 @@ void CTavernWindow::updateRecruitAvailability()
 		message.appendTextID("core.tvrninfo.1");
 		message.replaceNumber(GAME->interface()->cb->howManyHeroes(false));
 
-		recruit->addHoverText(EButtonState::NORMAL, message.toString());
-		recruit->block(true);
+		blockRecruit(message.toString());
 	}
 	else if(dynamic_cast<const CGTownInstance *>(tavernObj) && dynamic_cast<const CGTownInstance *>(tavernObj)->getVisitingHero())
 	{
-		recruit->addHoverText(EButtonState::NORMAL, LIBRARY->generaltexth->tavernInfo[2]); //Cannot recruit. You already have a Hero in this town.
-		recruit->block(true);
+		blockRecruit(LIBRARY->generaltexth->tavernInfo[2]); //Cannot recruit. You already have a Hero in this town.
 	}
 	else
 	{

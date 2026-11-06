@@ -76,6 +76,7 @@
 #include "../lib/entities/faction/CFaction.h"
 #include "../lib/networkPacks/PacksForLobby.h"
 #include "../lib/entities/building/CBuilding.h"
+#include "../lib/GameConstants.h"
 #include "../lib/texts/CGeneralTextHandler.h"
 #include "../lib/mapping/CMapInfo.h"
 #include "../lib/mapping/GoonkScenario.h"
@@ -559,7 +560,13 @@ void publishMobileState(){
  n["sessionState"].Integer()=static_cast<int>(GAME->server().getState());if(n["mode"].String()=="connecting")n["launchAction"].Integer()=GAME->server().screenType==ESelectionScreen::loadGame?23:GAME->server().screenType==ESelectionScreen::campaignList?47:20;
  if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>()){
   n["dialogKind"].String()="tavern";n["dialogTitle"].String()="Taverne";
-  if(tavern->cancel)n["dialogCloseRect"]=rect(tavern->cancel->pos);
+  auto & details=n["tavern"];
+  details["cost"].Integer()=GameConstants::HERO_GOLD_COST;
+  details["canRecruit"].Bool()=p&&p->makingTurn&&tavern->recruit&&!tavern->recruit->isBlocked();
+  details["recruitReason"].String()=tavern->recruitBlockReason;
+  if(tavern->rumor&&tavern->rumor->label)details["rumor"].String()=tavern->rumor->label->getText();
+  if(tavern->thiefGuild)details["thievesGuild"]=rect(tavern->thiefGuild->pos);
+  if(tavern->inviteHeroImageArea)details["invite"]=rect(tavern->inviteHeroImageArea->pos);
   const std::array portraits={tavern->h1,tavern->h2};
   for(int index=0;index<int(portraits.size());index++)
   {
@@ -567,6 +574,9 @@ void publishMobileState(){
    if(!portrait||!portrait->h)continue;
    auto & candidate=n["tavernHeroes"][std::to_string(index)];
    candidate["name"].String()=portrait->h->getNameTranslated();
+   candidate["className"].String()=portrait->h->getClassNameTranslated();
+   candidate["level"].Integer()=portrait->h->level;
+   candidate["id"].Integer()=portrait->h->getHeroTypeID().getNum();
    candidate["rect"]=rect(portrait->pos);
   }
  }
@@ -885,6 +895,21 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   return;
  }
  if(action==40){if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>())tavern->close();lastPublished=0;return;}
+ if(action==86)
+ {
+  if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>())
+  {
+   const auto portrait=a==0?tavern->h1:a==1?tavern->h2:nullptr;
+   if(portrait&&portrait->h&&portrait->h->getHeroTypeID().getNum()==b)
+   {
+    tavern->selected=a;
+    tavern->updateRecruitAvailability();
+    tavern->recruitb();
+   }
+  }
+  lastPublished=0;
+  return;
+ }
  if(action==72)
  {
   if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>())
