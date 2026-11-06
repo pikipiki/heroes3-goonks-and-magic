@@ -148,3 +148,5 @@
 .mobile-resource img[hidden],.mobile-resource .resource-name[hidden]{display:none}.resource-name{max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:10px;line-height:20px;white-space:nowrap}
 
 #mobile-app .ranged-indicator{color:#b2f5ff}
+#mobile-app .spell-ally-indicator{color:#b9ff9a}
+#mobile-app .spell-enemy-indicator{color:#ffc0ff}

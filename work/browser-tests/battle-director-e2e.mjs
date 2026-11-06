@@ -63,6 +63,25 @@ try{for(const kind of ['chromium','webkit']){
  await confirm.tap();
  const aimed=await page.evaluate(()=>calls.some(c=>c[0]==='pointer'&&c[1]===718&&c[2]===196&&c[3]===1));
  if(!aimed)throw Error('Confirm did not send the selected target');
+ const currentCells=await page.evaluate(()=>goonkMobileState.battleCells);
+ const targets=page.locator('.mobile-nav [data-ui=targets]');
+ const sheet=page.locator('.mobile-sheet');
+ await targets.tap();
+ await sheet.locator('.ranged-indicator').filter({hasText:"◎ Tir sans déplacement"}).waitFor();
+ await sheet.locator('[data-ui=close-sheet]').tap();
+ for(const offensive of [false,true]){
+  await update({spellTargeting:true,selectedSpell:offensive?'Éclair':'Précision',battleCells:[ally,enemy].map((unit,i)=>({
+   x:unit.x,y:unit.y,hex:i+1,spellTarget:unit.enemy===offensive,
+  }))});
+  const legend=offensive?'◇ Ennemis':'+ Alliés';
+  const badge=offensive?'.spell-enemy-indicator':'.spell-ally-indicator';
+  await page.locator('.battle-selection').filter({hasText:legend}).waitFor();
+  await targets.tap();
+  await sheet.locator(badge).waitFor();
+  if(await sheet.locator('.ranged-indicator').count())throw Error('Ranged reticle in spell targeting mode');
+  await sheet.locator('[data-ui=close-sheet]').tap();
+ }
+ await update({spellTargeting:false,battleCells:currentCells});
  await update({battleCamera:{sequence:2,active:true,kind:'attack',actor:enemy,targets:[ally]}});await page.waitForTimeout(300);if(!(await page.locator('#battle-detail-description').textContent()).includes('Bobope'))throw Error('Enemy attack target');
  await update({battleCamera:{sequence:3,active:true,kind:'spell',actor:null,label:'Explosion',targets:[ally,enemy]}});await page.waitForTimeout(900);if(!(await page.locator('#battle-detail-description').textContent()).includes('2 cibles'))throw Error('Area spell targets');
  if(process.env.GOONK_TEST_OUTPUT)await page.screenshot({path:path.join(process.env.GOONK_TEST_OUTPUT,'battle-director-'+kind+'.png')});

@@ -19,3 +19,18 @@ test('Shot guidance follows native legality and disappears outside manual attack
   assert.deepEqual(battleGuidance({...combat,...next}).shotTargets,[]);
  }
 });
+
+
+test('Spell markers classify native legal targets separately from ranged attacks',()=>{
+ const ally={...actor,x:102,y:196},enemy={stackId:3,x:718,y:196,enemy:true,canShootAt:true};
+ const cells=[{x:ally.x,y:ally.y},{x:enemy.x,y:enemy.y}];
+ const battle={...state,tacticsMode:false,round:1,battleUnits:[ally,enemy],battleCells:cells};
+ for(const [allowed,expected] of [[[true,false],[ally]],[[false,true],[enemy]],[[true,true],[ally,enemy]],[[undefined,undefined],[]]]){
+  const targeting={...battle,spellTargeting:true,battleCells:cells.map((cell,i)=>({...cell,spellTarget:allowed[i]}))};
+  assert.deepEqual(battleGuidance(targeting).spellTargets,expected);
+  assert.deepEqual(battleGuidance(targeting).shotTargets,[]);
+  assert.deepEqual(battleGuidance({...targeting,autoCombat:true}).spellTargets,[]);
+ }
+ assert.deepEqual(battleGuidance(battle).shotTargets,[enemy]);
+ assert.deepEqual(battleGuidance(battle).spellTargets,[]);
+});
