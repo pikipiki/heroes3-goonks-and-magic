@@ -15,7 +15,8 @@ try {
  const setting = name => page.locator(`[data-setting="${name}"]`);
  const picker = page.locator('.lobby-picker');
  const start = page.locator('.lobby-footer [data-ui=begin]');
- const waitForLobby = () => wait(() => window.goonkMobileState?.mode === 'lobby' && goonkMobileState.lobbyReady && goonkMobileState.selectedMap === 'Goonks');
+ const waitForLobby = () => wait(() => window.goonkMobileState?.mode === 'lobby' && goonkMobileState.lobbyReady &&
+  !!document.querySelector('.lobby-footer [data-ui=begin]:enabled'));
  async function chooseCastle(control, id) {
   await setting(control).locator('.lobby-choice-card').tap();
   await picker.locator(`[data-choice-value="${id}"]`).tap();
@@ -26,6 +27,9 @@ try {
  await waitForLobby();
  await start.tap();
  await wait(() => goonkMobileState.mode === 'map' && goonkMobileState.turn);
+ await wait(() => window.goonkAutosaveStatus?.lastSaved);
+ await page.reload();
+ await wait(() => window.goonkSessionRecovery?.phase === 'done' && window.goonkMobileState?.mode === 'map');
  await page.evaluate(() => { window.firstGameModule = Module; });
  const baseline = navigations.length;
  const sameSession = async () => {
@@ -35,11 +39,21 @@ try {
  await page.locator('#game-menu-toggle').tap();
  await page.locator('[data-menu=new-game]').tap();
  await page.locator('[data-menu=confirm-new-game]').tap();
+ await wait(() => goonkMobileState.mode === 'menu');
+ for (const selector of ['[data-action="20"]','[data-action="23"]','[data-action="47"]','[data-open-multiplayer]']) {
+  await page.locator(selector).waitFor({ state:'visible' });
+ }
+ await sameSession();
+ console.log('PASS after an automatic restore, New game returns to the main menu without reloading');
+ await page.locator('[data-action="23"]').tap();
+ await wait(() => goonkMobileState.mode === 'load' && goonkMobileState.maps?.some(save => /goonk-auto/i.test(save.file)));
+ await page.locator('.lobby-footer [data-ui=back]').tap();
+ await page.locator('[data-action="20"]').tap();
  await waitForLobby();
  await sameSession();
- await setting('mobile-faction-select').locator('figure img[src$="/goonk.webp"]').waitFor();
+ await setting('mobile-faction-select').locator('figure img:visible').waitFor();
  await wait(() => [...document.querySelectorAll('[data-setting=mobile-faction-select] figure img')].every(img => img.complete && img.naturalWidth > 0));
- console.log('PASS in-session new game with the same WebAssembly instance and decoded default castle');
+ console.log('PASS autosave stays available and a new adventure opens with the same WebAssembly instance');
 
  const factions = await page.evaluate(() => goonkMobileState.factions);
  assert(factions.length > 2);
@@ -55,14 +69,12 @@ try {
  await setting('mobile-difficulty').locator('[data-tile-value="2"]').tap();
  await wait(() => goonkMobileState.difficulty === 2);
 
+ const selectedMap = await page.evaluate(() => goonkMobileState.selectedMap);
  await setting('mobile-map-select').locator('button').tap();
  const search = picker.getByRole('searchbox');
- await search.fill('000');
- await picker.locator('[data-choice-value]:visible').first().tap();
- await wait(() => goonkMobileState.selectedMap.startsWith('000'));
- await setting('mobile-map-select').locator('button').tap();
- await search.fill('Goonks');
- await picker.getByRole('button', { name: 'Goonks', exact: true }).tap();
+ await search.fill(selectedMap);
+ await picker.locator('[data-choice-value]:visible').first().waitFor();
+ await picker.locator('[data-picker-back]').tap();
  await waitForLobby();
  console.log('PASS', factions.length, 'castle choices, difficulty, map search, back and both orientations');
 

@@ -133,7 +133,7 @@ function mountGameMenu(){
     }
     if(action==='back'){tab=tab==='storage-help'?'storage':'home';delete content.dataset.view;render();return;}
     if(action==='storage-help'){tab='storage-help';render();return;}
-    if(action==='new-game'){tab='new-game';render();content.dataset.view='new-game';content.innerHTML='<h3>Start a new game?</h3><p>The current session will end. Your existing saved games will be kept. Save first if you want to keep your latest progress.</p><button data-menu=confirm-new-game>Start new game</button><button data-menu=back>Back</button>';return;}
+    if(action==='new-game'){tab='new-game';render();content.dataset.view='new-game';content.innerHTML='<h3>Retourner au menu principal ?</h3><p>The current session will end. Your existing saved games will be kept. Save first if you want to keep your latest progress.</p><button data-menu=confirm-new-game>Retour au menu principal</button><button data-menu=back>Back</button>';return;}
     if(action==='confirm-new-game'){
       if(newGamePending||!state.day||!window.Module?._vcmiMobileCommand)return;
       newGamePending=true;button.disabled=true;button.setAttribute('aria-busy','true');command(71);return;

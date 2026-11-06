@@ -1060,7 +1060,8 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   {
    GAME->server().endGameplay();
    pendingDefaultMap.clear();
-   CMainMenu::openLobby(ESelectionScreen::newGame,true,{"Player 1"},ELoadMode::NONE,false);
+   if(auto mainMenu=GAME->mainmenu())
+    mainMenu->menu->switchToTab("main");
    lastPublished=0;
   }
   return;
