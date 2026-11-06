@@ -22,6 +22,7 @@
 #include "UnitActionPanel.h"
 
 #include "../CPlayerInterface.h"
+#include "../CServerHandler.h"
 #include "../GameEngine.h"
 #include "../GameInstance.h"
 #include "../adventureMap/CInGameConsole.h"
@@ -635,7 +636,11 @@ void BattleWindow::setPossibleActions(const std::vector<PossiblePlayerBattleActi
 
 void BattleWindow::bAutofightf()
 {
-	if (owner.actionsController->heroSpellcastingModeActive())
+	if (owner.openingPlaying() || !owner.curInt || owner.actionsController->heroSpellcastingModeActive())
+		return;
+
+	if (GAME->server().inLobbyRoom() && !owner.curInt->isAutoFightOn && !owner.tacticsMode
+		&& (owner.round <= 0 || !owner.makingTurn() || owner.hasAnimations()))
 		return;
 
 	if(settings["battle"]["endWithAutocombat"].Bool() && onlyOnePlayerHuman)

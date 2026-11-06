@@ -95,6 +95,25 @@ bool mapsListed=false,savesListed=false;std::set<int> portraitIds,artifactIconId
 uint32_t lastPublished=0,lastSent=0;
 std::string lastSnapshot,pendingDefaultMap;
 std::atomic_bool snapshotPending{false};
+bool canToggleMobileAutocombat(BattleInterface & battle, bool tactics, bool canPlace)
+{
+ if(!battle.curInt || battle.openingPlaying() || battle.actionsController->heroSpellcastingModeActive())
+  return false;
+ const bool autoOn = battle.curInt->isAutoFightOn;
+ if(!autoOn && battle.curInt->autofightingAI)
+  return false;
+ if(tactics)
+  return canPlace && !settings["battle"]["endWithAutocombat"].Bool();
+ if(battle.round <= 0)
+  return false;
+
+ // During a network battle, wait for a local stack that can accept the first order.
+ const bool ready = battle.makingTurn() && !battle.hasAnimations();
+ if(GAME->server().inLobbyRoom())
+  return autoOn || ready;
+ return !settings["battle"]["endWithAutocombat"].Bool() || (!autoOn && ready);
+}
+
 JsonNode rect(const Rect & r){JsonNode n;n["x"].Integer()=r.x;n["y"].Integer()=r.y;n["w"].Integer()=r.w;n["h"].Integer()=r.h;return n;}
 JsonNode creature(const CCreature * c,int count){portraitIds.insert(c->getId().getNum());JsonNode n;n["shooter"].Bool()=c->hasBonusOfType(BonusType::SHOOTER);n["name"].String()=c->getNameSingularTranslated();n["id"].Integer()=c->getId().getNum();n["icon"].String()=c->largeIconName;n["key"].String()=c->getJsonKey();n["description"].String()=c->getDescriptionTranslated();n["count"].Integer()=count;n["attack"].Integer()=c->getAttack(false);n["defense"].Integer()=c->getDefense(false);n["health"].Integer()=c->getMaxHealth();n["speed"].Integer()=c->getMovementRange();n["damageMin"].Integer()=c->getMinDamage(false);n["damageMax"].Integer()=c->getMaxDamage(false);n["growth"].Integer()=c->getGrowth();n["aiValue"].Integer()=c->getAIValue();n["fightValue"].Integer()=c->getFightValue();n["shots"].Integer()=c->getBaseShots();n["nativeFlags"]["living"].Bool()=c->hasBonusOfType(BonusType::LIVING);n["nativeFlags"]["undead"].Bool()=c->hasBonusOfType(BonusType::UNDEAD);n["nativeFlags"]["nonLiving"].Bool()=c->hasBonusOfType(BonusType::NON_LIVING);n["nativeFlags"]["mindImmune"].Bool()=c->hasBonusOfType(BonusType::MIND_IMMUNITY);n["nativeFlags"]["noMorale"].Bool()=c->hasBonusOfType(BonusType::NO_MORALE);n["nativeFlags"]["flying"].Bool()=c->hasBonusOfType(BonusType::FLYING);n["nativeFlags"]["blocksRetaliation"].Bool()=c->hasBonusOfType(BonusType::BLOCKS_RETALIATION);n["nativeFlags"]["attacksAllAdjacent"].Bool()=c->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT);n["nativeFlags"]["chargeImmune"].Bool()=c->hasBonusOfType(BonusType::CHARGE_IMMUNITY);for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())n["cost"].Vector().push_back(JsonNode(double(c->getRecruitCost(resource))));return n;}
 void mobilePreviews(CIntObject * node,JsonNode & result){
@@ -576,9 +595,9 @@ void publishMobileState(){
    n["tacticsMode"].Bool()=tactics;n["canEndTactics"].Bool()=b->tacticsMode&&ownsTactics&&!b->openingPlaying()&&!b->hasAnimations();
    const bool autoOn=b->curInt&&b->curInt->isAutoFightOn;
    const bool manualControl=b->curInt&&!autoOn&&!b->curInt->autofightingAI;n["manualControl"].Bool()=manualControl;
-   const bool autoReady=b->curInt&&!b->openingPlaying()&&!b->actionsController->heroSpellcastingModeActive()&&(autoOn||!b->curInt->autofightingAI)&&
-    (tactics?ownsTactics&&b->tacticsMode&&!b->hasAnimations()&&!settings["battle"]["endWithAutocombat"].Bool():b->round>0&&(!settings["battle"]["endWithAutocombat"].Bool()||(b->makingTurn()&&!b->hasAnimations())));
-   n["autoCombat"].Bool()=autoOn;n["canAutoCombat"].Bool()=autoReady;
+   const bool canPlace=ownsTactics&&b->tacticsMode&&!b->hasAnimations();
+   n["autoCombat"].Bool()=autoOn;n["canAutoCombat"].Bool()=canToggleMobileAutocombat(*b,tactics,canPlace);
+   n["canQueueAutoCombat"].Bool()=server.inLobbyRoom()&&b->openingPlaying()&&manualControl&&!tactics;
    n["canRetreat"].Bool()=!tactics&&b->round>0&&b->makingTurn()&&!b->hasAnimations()&&b->getBattle()->battleCanFlee();
    n["canUseMagic"].Bool()=manualControl&&!tactics&&b->round>0&&b->makingTurn()&&!b->openingPlaying()&&!b->hasAnimations();
    const auto caster=b->currentHero();n["heroHasSpellbook"].Bool()=caster&&caster->hasSpellbook();if(caster)n["heroMana"].Integer()=caster->mana;
@@ -963,11 +982,8 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   const bool combatReady=manualControl&&!tactics&&battle->round>0&&battle->makingTurn()&&!battle->openingPlaying()&&!battle->hasAnimations();
   const bool ownsTactics=battle->getBattle()->battleTacticDist()>0&&battle->getBattle()->sideToPlayer(battle->getBattle()->battleGetTacticsSide())==p->playerID;
   const bool canPlace=battle->tacticsMode&&ownsTactics&&battle->getBattle()->battleTacticDist()>0&&!battle->openingPlaying()&&!battle->hasAnimations();
-  if(action==44&&battle->curInt&&!battle->openingPlaying()&&!battle->actionsController->heroSpellcastingModeActive()){
-   const bool autoOn=battle->curInt->isAutoFightOn;
-   const bool allowed=(autoOn||!battle->curInt->autofightingAI)&&(tactics?canPlace&&!settings["battle"]["endWithAutocombat"].Bool():battle->round>0&&(!settings["battle"]["endWithAutocombat"].Bool()||combatReady));
-   if(allowed&&autoOn!=(a!=0))shortcut(EShortcut::BATTLE_AUTOCOMBAT);
-  }
+  if(action==44&&canToggleMobileAutocombat(*battle,tactics,canPlace)&&battle->curInt->isAutoFightOn!=(a!=0))
+   shortcut(EShortcut::BATTLE_AUTOCOMBAT);
   if(action==12&&combatReady)battle->giveCommand(EActionType::WAIT);
   if(action==13&&combatReady)battle->giveCommand(EActionType::DEFEND);
   if(action==14&&combatReady)shortcut(a==1?EShortcut::BATTLE_USE_CREATURE_SPELL:EShortcut::BATTLE_CAST_SPELL);
