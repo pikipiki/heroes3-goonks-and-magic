@@ -164,6 +164,12 @@ function mount(){
   if(state.mode==='menu'&&window.goonkOnlineConfigured&&!menu.querySelector('[data-action="75"]')){
    const online=document.createElement('button');online.type='button';online.dataset.action='75';online.textContent='Online';menu.append(online);
   }
+  if(state.mode==='menu'&&window.goonkHostedAlerts&&!menu.querySelector('[data-open-hosted-match]')){
+   const hosted=document.createElement('button');hosted.type='button';hosted.dataset.openHostedMatch='';
+   hosted.textContent=getLanguage()==='fr'?'Partie dédiée':'Hosted match';
+   bindPress(hosted,()=>window.dispatchEvent(new Event('goonk-open-hosted-match')));
+   menu.append(hosted);
+  }
   if(change){if(!['lobby','load'].includes(state.mode))requestedMapName=null;mode=state.mode;if(mode==='battle'){if(!battleSession){window.goonkBattleSpriteBounds=[];command(15);battleCamera=null;battleView='whole';}battleSession=true;}if(mode==='town')townWhole=true;selectedPoint=null;zoom=1;focus=null;if(sheetKind)closeSheet();}
   if(state.mode==='battle'&&(change||changedActor||changedPhase)){selectedPoint=null;battleMove=false;const actor=battleGuidance(state).actor;if(actor){focus=state.focus||actor;battleCamera={...focus};}}
   root.querySelector('.dialog-close').hidden=!canCloseTavern(state);

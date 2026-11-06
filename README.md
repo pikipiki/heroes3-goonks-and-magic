@@ -64,7 +64,7 @@ Active **Turn notifications** dans les réglages du jeu pour recevoir une notifi
 
 ### Moteur dédié en développement
 
-Pour une nouvelle partie dédiée qui attend une carte, l’hôte saisit son code de place dans les réglages du jeu, puis choisit un scénario compatible avec les places du serveur. Les parties déjà sauvegardées reprennent sur leur carte d’origine.
+Pour une nouvelle partie dédiée qui attend une carte, l’hôte ouvre **Hosted match** sous **Online** sur mobile, saisit son code de place, puis choisit un scénario compatible avec les places du serveur. Après une première connexion réussie, **Reprendre la partie** dans ce même écran retrouve la dernière partie dédiée sur cet appareil. Les parties déjà sauvegardées reprennent sur leur carte d’origine.
 
 Le Dockerfile natif compile `vcmiserver` et `vcmilobby` sans client graphique. Construire l’image depuis la racine du dépôt.
 
