@@ -75,7 +75,7 @@ function mount(){
  const asset=icon=>{if(!icon)return '';const entries=window.goonkAssetURLs||[];const key=icon.toLowerCase(),match=entries.find(e=>e.path.toLowerCase().endsWith('/sprites2x/'+key))||entries.find(e=>e.path.toLowerCase().endsWith('/sprites/'+key));return match?.url||'';};
  const creatureView=createCreaturePresentation({root,command,pointer,openRecruit});
  const spellbook=createMobileSpellbook({root,command});
- const mageGuild=createMageGuild({root,command,pointer});
+ const mageGuild=createMageGuild({root,command,pointer,resetView:()=>{zoom=1;focus=null;resetGestures();}});
  const campaignSetup=createCampaignSetup({root,command});
  const heroEquipment=createHeroEquipment({root,command,onViewChange:()=>controls()});
  const nativeFort=createNativeFort({root,getState:()=>state,pointer});
@@ -264,6 +264,13 @@ function mount(){
   if(ui==='battle-auto'){if(canCancelSpell(state)){cancelSpell(44,1);return;}if(!battleTeamCapabilities(state).auto||pendingAuto!==null)return;autocombat.request(state,!state.autoCombat);return;}
   if(ui==='battle-retreat'||ui==='native-retreat'){if(canCancelSpell(state)&&state.canRetreat===true){cancelSpell(38);return;}if(!battleCapabilities(effectiveBattle()).combatReady||state.canRetreat===false)return;closeSheet();command(38);return;}
   if(['native-options','native-surrender'].includes(ui)){closeSheet();pointer({x:{'native-options':20,'native-retreat':125,'native-surrender':75}[ui],y:575},1);return;}
+  if(ui==='creature-info'&&state.mode==='recruit'&&state.recruitUnit?.description){
+   openSheet('creature-info',state.recruitUnit.name);
+   const description=document.createElement('p');
+   description.textContent=state.recruitUnit.description;
+   body.append(description);
+   return;
+  }
   if(ui==='confirm-recruit-all'){closeSheet();command(53);notify('Recruitment requested.');return;}
   if(ui==='town-fort'){command(54);return;}
   if(ui==='town-guild'||ui==='town-market'){const matches=ui==='town-guild'?['mageGuild1','mageGuild2','mageGuild3','mageGuild4','mageGuild5']:['marketplace'];const building=(state.buildings||[]).filter(b=>b.built&&matches.includes(String(b.key).split(':').at(-1))).at(-1);if(building)command(39,building.id);else notify('Build this structure first.');return;}

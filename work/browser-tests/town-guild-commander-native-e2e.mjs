@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {chromium} from 'playwright-core';
+import {fitRegion} from '../../web/mobile-layout.mjs';
 
 const browser = await chromium.launch({executablePath: process.env.CHROME_PATH, args: ['--no-sandbox']});
 const page = await browser.newPage({viewport: {width: 390, height: 844}, hasTouch: true});
@@ -32,11 +33,23 @@ try {
   await command(39, dwelling.id);
   await wait(() => goonkMobileState.mode === 'recruit' && goonkMobileState.previewUnits?.some(unit => unit.id === goonkMobileState.recruitUnit.id && unit.preview?.w));
   const canvas = page.locator('.creature-presentation .creature-stage canvas');
-  for (const viewport of [{width: 390, height: 844}, {width: 844, height: 390}]) {
+  const shooter = await page.evaluate(() => goonkMobileState.previewUnits.findIndex(unit => unit.shooter));
+  assert(shooter >= 0, 'A ranged variant is available');
+  await page.locator(`[data-variant="${shooter}"]`).tap();
+  await wait(() => goonkMobileState.recruitUnit?.shooter === true);
+  for (const viewport of [{width: 390, height: 844}, {width: 844, height: 390}, {width: 568, height: 320}]) {
     await page.setViewportSize(viewport);
     await canvas.waitFor();
     const bounds = await canvas.boundingBox();
-    assert(bounds.width >= 225 && bounds.height >= 175, JSON.stringify(bounds));
+    assert(bounds.width >= 220 && bounds.height >= 110, JSON.stringify(bounds));
+    const stats = await page.locator('.creature-details').evaluate(details => {
+      const bounds = details.closest('.creature-presentation').getBoundingClientRect();
+      const controls = details.closest('.creature-presentation').querySelector('.mobile-recruit-amount').getBoundingClientRect();
+      const price = details.querySelector('.featured-price').getBoundingClientRect();
+      return {fits: price.bottom <= Math.min(bounds.bottom, controls.top) + 1,
+        scrolls: details.scrollHeight > details.clientHeight + 1, overflow: getComputedStyle(details).overflowY};
+    });
+    assert(stats.fits && !stats.scrolls && stats.overflow === 'visible', JSON.stringify(stats));
   }
   await page.locator('[data-presentation-close]').tap();
   await wait(() => goonkMobileState.mode === 'town');
@@ -45,6 +58,7 @@ try {
   await page.locator('[data-ui=town-guild]').tap();
   await wait(() => goonkMobileState.mode === 'mage-guild' && goonkMobileState.mageGuild.spells?.length);
   const guild = page.locator('.mobile-mage-guild');
+  await page.locator('#mobile-app').evaluate(root => root.style.setProperty('--safe-bottom', '22px'));
   for (const viewport of [{width: 320, height: 568}, {width: 568, height: 320}, {width: 844, height: 390}]) {
     await page.setViewportSize(viewport);
     const levels = guild.locator('[data-guild-level]');
@@ -53,13 +67,30 @@ try {
       await tab.tap();
       const layout = await guild.evaluate(panel => {
         const bounds = panel.getBoundingClientRect();
-        return {height: panel.clientHeight, scrollHeight: panel.scrollHeight, fits: [...panel.querySelectorAll('button')].every(button => {
+        return {height: panel.clientHeight, scrollHeight: panel.scrollHeight,
+          coversBottom: Math.abs(bounds.bottom - panel.closest('#mobile-app').getBoundingClientRect().bottom) < 1,
+          fits: [...panel.querySelectorAll('button')].every(button => {
           const rect = button.getBoundingClientRect();
           return rect.width >= 44 && rect.height >= 44 && rect.bottom <= bounds.bottom + 1;
         })};
       });
-      assert(layout.fits && layout.scrollHeight <= layout.height + 1, JSON.stringify(layout));
+      assert(layout.fits && layout.coversBottom && layout.scrollHeight <= layout.height + 1, JSON.stringify(layout));
     }
+    const toggle = guild.locator('[data-guild-view]');
+    await toggle.tap();
+    assert.equal(await levels.count(), 0);
+    const scene = page.locator('#mobile-scene');
+    assert(await scene.isVisible());
+    const size = await scene.boundingBox();
+    const {rect, spell} = await page.evaluate(() => ({rect: goonkMobileState.rect, spell: goonkMobileState.mageGuild.spells[0]}));
+    const layout = fitRegion(size.width, size.height, rect);
+    await scene.tap({position: {x: layout.dx + (spell.x - layout.x) * layout.scale, y: layout.dy + (spell.y - layout.y) * layout.scale}});
+    await wait(() => goonkMobileState.mode === 'dialog');
+    await accept.tap();
+    await wait(() => goonkMobileState.mode === 'mage-guild');
+    assert.equal(await levels.count(), 0);
+    await toggle.tap();
+    assert.equal(await guild.locator('[data-guild-level="5"]').getAttribute('aria-pressed'), 'true');
   }
   await guild.locator('[data-guild-spell]').first().tap();
   await wait(() => goonkMobileState.mode === 'dialog');

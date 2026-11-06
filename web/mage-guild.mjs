@@ -6,13 +6,13 @@ const escapeText = value => String(value).replace(/[&<>"']/g, char => ({
 }[char]));
 const pageSize = 6;
 
-export function createMageGuild({root, command, pointer}) {
+export function createMageGuild({root, command, pointer, resetView}) {
   const panel = document.createElement('section');
   panel.className = 'mobile-mage-guild';
   panel.hidden = true;
   root.querySelector('.mobile-play').append(panel);
 
-  let guild, level = 1, page = 0, signature = '';
+  let guild, level = 1, page = 0, signature = '', classic = false;
   function render() {
     const fr = getLanguage() === 'fr';
     const title = fr ? 'Guilde des sortilèges' : 'Mage Guild';
@@ -20,8 +20,9 @@ export function createMageGuild({root, command, pointer}) {
     const pages = Math.max(1, Math.ceil(spells.length / pageSize));
     page = Math.min(page, pages - 1);
     panel.setAttribute('aria-label', title);
-    panel.innerHTML = `
-      <header><h2>${title}</h2><button data-guild-close aria-label="${fr ? 'Fermer' : 'Close'}">✕</button></header>
+    const viewLabel = classic ? (fr ? 'Vue mobile' : 'Mobile view') : (fr ? 'Vue classique' : 'Classic view');
+    const header = `<header><h2>${title}</h2><button data-guild-view>${viewLabel}</button><button data-guild-close aria-label="${fr ? 'Fermer' : 'Close'}">✕</button></header>`;
+    panel.innerHTML = classic ? header : `${header}
       <nav aria-label="${fr ? 'Niveaux de sorts' : 'Spell levels'}">${Array.from({length: guild.levels}, (_, i) => {
         const number = i + 1, name = (fr ? 'Niveau ' : 'Level ') + number;
         const locked = number > guild.built && !guild.allSpells;
@@ -44,6 +45,13 @@ export function createMageGuild({root, command, pointer}) {
     const button = event.target.closest('button');
     if (!button || panel.hidden) return;
     if (button.hasAttribute('data-guild-close')) command(0);
+    if (button.hasAttribute('data-guild-view')) {
+      classic = !classic;
+      root.dataset.mageGuildView = classic ? 'classic' : 'mobile';
+      resetView();
+      render();
+      panel.querySelector('[data-guild-view]').focus({preventScroll: true});
+    }
     if (button.dataset.guildLevel) {
       level = Number(button.dataset.guildLevel);
       page = 0;
@@ -64,7 +72,15 @@ export function createMageGuild({root, command, pointer}) {
   return {
     update(state) {
       panel.hidden = state.mode !== 'mage-guild';
-      if (panel.hidden) return;
+      if (panel.hidden) {
+        if (state.mode === 'town' && classic) {
+          classic = false;
+          signature = '';
+        }
+        delete root.dataset.mageGuildView;
+        return;
+      }
+      root.dataset.mageGuildView = classic ? 'classic' : 'mobile';
       const next = state.mageGuild;
       if (next.town !== guild?.town || level > next.levels) { level = 1; page = 0; }
       guild = next;
@@ -73,6 +89,6 @@ export function createMageGuild({root, command, pointer}) {
       signature = key;
       render();
     },
-    get active() { return !panel.hidden; },
+    get active() { return !panel.hidden && !classic; },
   };
 }
