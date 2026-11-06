@@ -54,9 +54,6 @@ class CMinimap : public CIntObject
 	void mouseDragged(const Point & cursorPosition, const Point & lastUpdateDistance) override;
 	std::vector<ObjectInstanceID> getVisibleHeroes();
 
-	/// relocates center of adventure map screen to currently hovered tile
-	void moveAdvMapSelection(const Point & positionGlobal);
-
 protected:
 	/// computes coordinates of tile below cursor pos
 	int3 pixelToTile(const Point & cursorPos) const;
@@ -66,6 +63,9 @@ protected:
 
 public:
 	explicit CMinimap(const Rect & position);
+
+	/// relocates center of adventure map screen to currently hovered tile
+	void moveAdvMapSelection(const Point & positionGlobal);
 	const Rect & mobileVisibleArea() const { return screenArea; }
 	int mobileLevel() const { return level; }
 

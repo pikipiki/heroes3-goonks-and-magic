@@ -682,7 +682,28 @@ void publishMobileState(){
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileStateAck(){snapshotPending.store(false);}
 bool isMobilePresentationActive(){return mobileEnabled;}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileEnable(int enabled){if(ENGINE)ENGINE->dispatchMainThread([enabled](){mobileEnabled=enabled==1;stateEnabled=enabled!=0;lastPublished=0;});}
-extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePointer(int x,int y,int action){if(ENGINE)ENGINE->dispatchMainThread([x,y,action](){if(action==4&&(!GAME||!GAME->interface()||!GAME->interface()->makingTurn||!ENGINE->windows().topWindow<AdventureMapInterface>()))return;Point point(x,y);ENGINE->events().dispatchMouseMoved(Point(0,0),point);if(action==1||action==4){ENGINE->events().dispatchMouseLeftButtonPressed(point,4);ENGINE->events().dispatchMouseLeftButtonReleased(point,4);}if(action==2)ENGINE->events().dispatchShowPopup(point,4);if(action==3)ENGINE->events().dispatchClosePopup(point);});}
+extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePointer(int x,int y,int action)
+{
+ if(!ENGINE)return;
+ ENGINE->dispatchMainThread([x,y,action](){
+  const Point point(x,y);
+  if(action==5){
+   // The minimap moves the camera locally, even when adventure orders are locked.
+   if(GAME&&GAME->interface())if(const auto map=ENGINE->windows().topWindow<AdventureMapInterface>())
+    if(const auto mini=map->getMobileMinimap();mini&&mini->pos.isInside(point))
+     mini->moveAdvMapSelection(point);
+   return;
+  }
+  if(action==4&&(!GAME||!GAME->interface()||!GAME->interface()->makingTurn||!ENGINE->windows().topWindow<AdventureMapInterface>()))return;
+  ENGINE->events().dispatchMouseMoved(Point(0,0),point);
+  if(action==1||action==4){
+   ENGINE->events().dispatchMouseLeftButtonPressed(point,4);
+   ENGINE->events().dispatchMouseLeftButtonReleased(point,4);
+  }
+  if(action==2)ENGINE->events().dispatchShowPopup(point,4);
+  if(action==3)ENGINE->events().dispatchClosePopup(point);
+ });
+}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePan(int dx,int dy){if(ENGINE)ENGINE->dispatchMainThread([dx,dy](){Point p(300,260),distance(dx,dy);ENGINE->events().dispatchGesturePanningStarted(p);ENGINE->events().dispatchGesturePanning(p,p+distance,distance);ENGINE->events().dispatchGesturePanningEnded(p,p+distance);});}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiOnlineLogin(const char * name, int length)
 {
