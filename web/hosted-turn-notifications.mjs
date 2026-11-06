@@ -106,11 +106,10 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     joinMode.setAttribute('aria-expanded', String(!field.hidden));
   }
   field.className = 'hosted-match-settings';
-  field.innerHTML = '<label><span></span><input type="password" data-hosted-seat-code autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="hosted-seat-code-help"></label><small id="hosted-seat-code-help"></small><div class="hosted-match-actions"><button type="button"></button><button type="button"></button></div><p role="status"></p>';
+  field.innerHTML = '<label><span></span><input type="password" data-hosted-seat-code autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></label><div class="hosted-match-actions"><button type="button"></button><button type="button"></button></div><p role="status"></p>';
   const input = field.querySelector('input');
   input.placeholder = 'XXXX';
   const [join, alerts] = field.querySelectorAll('button');
-  const help = field.querySelector('small');
   const status = field.querySelector('[role=status]');
   const loader = document.createElement('p');
   loader.className = 'hosted-match-loading';
@@ -148,14 +147,17 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   status.before(chooser, start);
   field.querySelector('label span').textContent = fr ? 'Code de la partie' : 'Game code';
   const alertsLabel = fr ? 'Alertes de tour' : 'Turn alerts';
-  const alertsCaption = document.createTextNode(alertsLabel + ' ');
+  alerts.textContent = alertsLabel;
+  const alertsStatus = document.createElement('p');
+  alertsStatus.id = 'hosted-turn-alerts-status';
+  alertsStatus.setAttribute('role', 'status');
   const alertsIndicator = document.createElement('strong');
   alertsIndicator.className = 'hosted-alert-indicator';
-  alerts.append(alertsCaption, alertsIndicator);
+  alertsStatus.append(alertsLabel + ' · ', alertsIndicator);
   const alertsHelp = document.createElement('p');
   alertsHelp.id = 'hosted-turn-alerts-help';
-  alerts.setAttribute('aria-describedby', alertsHelp.id);
-  alerts.parentElement.after(alertsHelp);
+  alerts.setAttribute('aria-describedby', alertsStatus.id + ' ' + alertsHelp.id);
+  alerts.parentElement.after(alertsStatus, alertsHelp);
   join.textContent = fr ? 'Rejoindre la partie' : 'Join match';
   const {serviceWorker} = navigator;
   layout.append(modes, intro, loader, createPanel, field, status);
@@ -230,10 +232,6 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   }
   const render = () => {
     const valid = Boolean(seatCode() || inviteCode());
-    const hint = input.value && !valid
-      ? (fr ? 'Saisis les quatre lettres de la partie ou colle ton ancien code.' : 'Enter the four-letter game code or paste your previous code.')
-      : '';
-    if (help.textContent !== hint) help.textContent = hint;
     const seats = availableSeats();
     savedMatch.hidden = !seats.length;
     const key = JSON.stringify(seats.map(item => [item.matchId, item.name, item.players]));
@@ -248,31 +246,26 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     savedActions.hidden = !saved;
     resume.disabled = pending || !window.Module?._vcmiJoinHostedMatch;
     forget.disabled = pending;
-    const {token} = alertSeat();
-    const {enabled, checking} = alertsState;
-    alerts.disabled = !token || pending || checking;
+    const {token, endpoint} = alertSeat();
+    const {enabled, checking} = alertsState.token === token && alertsState.endpoint === endpoint ? alertsState : {};
     const known = typeof enabled === 'boolean';
-    alertsIndicator.hidden = !token;
-    alertsIndicator.dataset.state = known ? (enabled ? 'on' : 'off') : 'unknown';
-    alertsIndicator.textContent = known
+    const alertText = known
       ? (enabled ? (fr ? 'Activées' : 'On') : (fr ? 'Désactivées' : 'Off'))
       : checking ? (fr ? 'Vérification…' : 'Checking…') : (fr ? 'Non vérifiées' : 'Unverified');
+    alertsIndicator.dataset.state = known ? (enabled ? 'on' : 'off') : 'unknown';
+    if (alertsIndicator.textContent !== alertText) alertsIndicator.textContent = alertText;
     if (known) {
       alerts.setAttribute('role', 'switch');
       alerts.setAttribute('aria-checked', String(enabled));
-      alerts.setAttribute('aria-label', alertsLabel);
-      alertsCaption.data = alertsLabel + ' ';
     } else {
-      for (const attribute of ['role', 'aria-checked', 'aria-label']) alerts.removeAttribute(attribute);
-      alertsCaption.data = token && !checking
-        ? (fr ? 'Vérifier les alertes ' : 'Check turn alerts ') : alertsLabel + ' ';
+      alerts.removeAttribute('role');
+      alerts.removeAttribute('aria-checked');
     }
     alertsHelp.textContent = token
       ? (fr ? 'État des alertes pour cette place. Active-les sur cet appareil. Les couper les arrête sur tous les appareils.'
         : 'Alert status for this seat. Switch on to receive alerts on this device. Switching off stops them on all devices.')
-      : (fr ? 'Saisis ton code ou choisis une partie mémorisée pour régler les alertes.'
-        : 'Enter your seat code or select a saved game to manage turn alerts.');
-    join.disabled = !valid || pending || !window.Module?._vcmiJoinHostedMatch;
+      : (fr ? 'Rejoins une partie ou sélectionne une partie mémorisée pour régler les alertes.'
+        : 'Join a game or select a saved game to manage turn alerts.');
     start.disabled = !valid || !select.value || pending;
     select.disabled = pending;
     input.disabled = createMode.disabled = joinMode.disabled = pending;
@@ -341,9 +334,16 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   }
 
   async function toggleAlerts() {
+    if (pending || alertsState.checking) return;
+    const {token, endpoint} = alertSeat();
+    if (!token) {
+      status.textContent = fr ? 'Rejoins la partie pour régler les alertes de ta place.' :
+        'Join the match first to manage alerts for your seat.';
+      return;
+    }
     const current = alertsState;
-    if (pending || !current.token || current.checking) return;
-    if (typeof current.enabled !== 'boolean') {
+    if (current.token !== token || current.endpoint !== endpoint || typeof current.enabled !== 'boolean') {
+      status.textContent = '';
       await refreshAlerts(true);
       return;
     }
@@ -395,7 +395,18 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     let token = remembered ? normalizeSeatCode(remembered.token) : seatCode();
     const invitation = !remembered && inviteCode();
     const runtime = window.Module;
-    if (pending || (!token && !invitation) || (scenario && start.disabled) || !runtime?._vcmiJoinHostedMatch) return;
+    if (pending || (scenario && start.disabled)) return;
+    if (!token && !invitation) {
+      status.textContent = fr ? 'Saisis les quatre lettres de la partie ou colle ton ancien code.' :
+        'Enter the four-letter game code or paste your previous code.';
+      input.focus();
+      return;
+    }
+    if (!runtime?._vcmiJoinHostedMatch) {
+      status.textContent = fr ? 'Le jeu se charge encore. Réessaie dans un instant.' :
+        'The game is still loading. Try again in a moment.';
+      return;
+    }
     input.blur();
     pending = true;
     // Safari can fail the WebSocket upgrade while another HTTP request to the
