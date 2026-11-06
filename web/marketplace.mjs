@@ -3,8 +3,8 @@ import {compactResource, resourceDescriptors, resourceIconURL} from './resources
 
 const englishNames = {wood:'Wood', mercury:'Mercury', ore:'Ore', sulfur:'Sulfur', crystal:'Crystal', gems:'Gems', gold:'Gold'};
 const words = {
- en:{title:'Marketplace', give:'You give', receive:'You receive', quantity:'Lots', trade:'Exchange', classic:'Classic', close:'Close marketplace', prompt:'Choose two different resources.', shortage:'You cannot afford this exchange.', success:'Exchange completed.', waiting:'Exchanging…', timeout:'Exchange could not be confirmed.', minus:'Fewer lots', plus:'More lots', max:'Max', total:'Trade total'},
- fr:{title:'Marché', give:'Tu donnes', receive:'Tu reçois', quantity:'Lots', trade:'Échanger', classic:'Classique', close:'Fermer le marché', prompt:'Choisis deux ressources différentes.', shortage:'Tu ne peux pas payer cet échange.', success:'Échange effectué.', waiting:'Échange en cours…', timeout:'Impossible de confirmer l’échange.', minus:'Moins de lots', plus:'Plus de lots', max:'Max', total:'Total de l’échange'}
+ en:{title:'Marketplace', give:'You give', receive:'You receive', quantity:'Lots', trade:'Exchange', classic:'Classic', close:'Close marketplace', prompt:'Choose two different resources.', shortage:'You cannot afford this exchange.', success:'Exchange completed.', waiting:'Exchanging…', offTurn:'Available on your turn', timeout:'Exchange could not be confirmed.', minus:'Fewer lots', plus:'More lots', max:'Max', total:'Trade total'},
+ fr:{title:'Marché', give:'Tu donnes', receive:'Tu reçois', quantity:'Lots', trade:'Échanger', classic:'Classique', close:'Fermer le marché', prompt:'Choisis deux ressources différentes.', shortage:'Tu ne peux pas payer cet échange.', success:'Échange effectué.', waiting:'Échange en cours…', offTurn:'Disponible à ton tour', timeout:'Impossible de confirmer l’échange.', minus:'Moins de lots', plus:'Plus de lots', max:'Max', total:'Total de l’échange'}
 };
 
 export function createMarketplace({root, command, refresh}) {
@@ -70,13 +70,13 @@ export function createMarketplace({root, command, refresh}) {
   controls.minus.setAttribute('aria-label',text.minus);
   controls.plus.setAttribute('aria-label',text.plus);
   controls.max.textContent=text.max;
-  controls.trade.textContent=pending?text.waiting:text.trade;
+  controls.trade.textContent=pending?text.waiting:!state.turn?text.offTurn:text.trade;
   controls.trade.setAttribute('aria-busy',String(Boolean(pending)));
   amount.setAttribute('aria-label',text.quantity);
   amount.max=Math.max(1,max);
   if(document.activeElement!==amount)amount.value=max?lots:'';
-  const blocked=!state.turn||!max||Boolean(pending);
-  controls.trade.disabled=blocked;
+  const blocked=!max||Boolean(pending);
+  controls.trade.disabled=!state.turn||blocked;
   amount.disabled=blocked;
   controls.minus.disabled=blocked||lots<=1;
   controls.plus.disabled=blocked||lots>=max;

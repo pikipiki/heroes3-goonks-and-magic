@@ -144,7 +144,7 @@ function mount(){
   else if(m==='town')items=[['Carte','back','town-exit'],['Recruter des héros','recruit-heroes','town-fort'],['Armées','army','town-split'],['Construire','build','town-hall']].map(([label,ui,icon])=>`<button data-ui="${ui}" class="town-action"><img src="./web/h3-theme/${icon}.png" alt=""><span>${label}</span></button>`);
   else if(m==='battle'&&cap.tactics)items=[btn('✓ Placer','target',true,!selectedPoint||!cap.move),btn('⚔ Combattre','end-tactics',false,!cap.endTactics),btn('Troupes','tactic-units',false,!cap.endTactics),btn('Suivante','next-tactics',false,!cap.endTactics)];
   else if(m==='battle')items=[btn(state.spellTargeting?'✓ Confirm spell':target?.enemy?(target.canShootAt?'✓ Confirm shot':'✓ Confirm attack'):'✓ Confirmer','target',true,blocked||!selectedPoint||!cap.move||!!spellRecovery.pending||(battleMove&&state.focus&&Math.hypot(selectedPoint.x-state.focus.x,selectedPoint.y-state.focus.y)<2)),btn('◎ Cibles','targets',false,!cap.move||!!spellRecovery.pending),btn(state.canWait===false?'Déjà attendu':'◷ Attendre','wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),btn('⛨ Défendre','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending)];
-  else if(m==='recruit')items=[btn('Recruter','confirm-recruit',true,recruitLoading||!(state.recruitAmount>0)),btn('Tout','max-recruit',false,!(state.recruitMaximum>0)),btn('Annuler','cancel-recruit')];
+  else if(m==='recruit')items=[btn('Recruter','confirm-recruit',true,!state.turn||recruitLoading||!(state.recruitAmount>0)),btn('Tout','max-recruit',false,!(state.recruitMaximum>0)),btn('Annuler','cancel-recruit')];
   else if(m==='campaign')items=[btn('Back','back')];
   else if(m==='lobby')items=[btn('▶ Commencer','begin'),btn('✓ Valider','accept'),btn('↩ Retour','back')];
   else items=[btn('✓ Valider','accept',true),btn('↩ Retour','back'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
@@ -173,7 +173,7 @@ function mount(){
   }
   if(next.mode==='recruit'&&state.mode==='dialog')pendingRecruit=null;
   if(next.mode==='recruit'&&next.recruitUnit?.id===expectedRecruitId)recruitLoading=false;
-  const changedActor=next.activeStack!==state.activeStack,changedPhase=!!next.tacticsMode!==!!state.tacticsMode;const change=next.mode!==state.mode;const changedSpell=!!next.spellTargeting!==!!state.spellTargeting;state=next;if(changedSpell){selectedPoint=null;battleMove=false;}spellRecovery.update(state);autocombat.update(state);root.dataset.mode=state.mode;window.goonkMobileState=state;if(state.mode==='map'&&!state.heroName&&state.heroes?.length&&state.turn)command(4,0);
+  const changedTurn=next.turn!==state.turn,changedActor=next.activeStack!==state.activeStack,changedPhase=!!next.tacticsMode!==!!state.tacticsMode;const change=next.mode!==state.mode;const changedSpell=!!next.spellTargeting!==!!state.spellTargeting;state=next;if(changedSpell){selectedPoint=null;battleMove=false;}spellRecovery.update(state);autocombat.update(state);root.dataset.mode=state.mode;window.goonkMobileState=state;if(state.mode==='map'&&!state.heroName&&state.heroes?.length&&state.turn)command(4,0);
   root.querySelector('.mobile-title').textContent=(state.mode==='creature'?state.creatureUnit?.name:null)||state.dialogTitle||(state.mode==='battle'&&state.autoCombat?'Autocombat':null)||(state.mode==='recruit'?'Recruter '+(state.recruitUnit?.name||''):null)||state.townName||state.activeUnit?.name||state.heroName||({menu:'Le royaume des Goonks',lobby:'Préparer la partie',dialog:'Votre décision'}[state.mode])||'Heroes Goonk';
   const hasResources=renderResources(root.querySelector('.mobile-resources'),state.resources,state.resourceTypes);root.dataset.hasResources=String(hasResources&&!['battle','hero'].includes(state.mode));const movement=root.querySelector('.mobile-movement');movement.hidden=state.mode!=='map'||!state.heroName;movement.querySelector('.map-movement-points').textContent=movement.hidden?'':`${state.movement??0} ${getLanguage()==='fr'?'PM':'MP'}`;const mana=movement.querySelector('.map-mana-points');mana.textContent=heroManaText(state.heroMana,state.heroManaLimit,getLanguage());mana.hidden=movement.hidden||!mana.textContent;updateCalendar(state);
   menu.hidden=!['menu','lobby','load','campaign','connecting'].includes(state.mode);
@@ -243,7 +243,7 @@ function mount(){
   const seconds=Math.ceil(Math.max(0,state.turnRemainingMs||0)/1000);
   const countdown=state.mode==='map'&&state.turnRemainingMs!==undefined
    ? Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0')+' · ' : '';
-  root.querySelector('.scene-hint').textContent=countdown+hint;controls();if(sheetKind==='army'&&armySignature!==JSON.stringify(state.armies||[]))refreshArmy();
+  root.querySelector('.scene-hint').textContent=countdown+hint;controls();if(sheetKind==='army'&&(changedTurn||armySignature!==JSON.stringify(state.armies||[])))refreshArmy();if(sheetKind==='build'&&changedTurn)showList('build',true);
  }
  const heroTransition=createHeroTransition(update,{ready:next=>portraitTown.prepare(next,townPortraitEnabled)});
  window.addEventListener('goonk-state',event=>heroTransition.receive(event.detail,state.mode));
@@ -274,12 +274,12 @@ function mount(){
   body.replaceChildren();showList('army',true);body.scrollTop=scroll;
   if(army!==undefined&&slot!==undefined)body.querySelector('[data-army="'+army+'"][data-slot="'+slot+'"]')?.focus({preventScroll:true});
  }
- root.addEventListener('goonk-recruit-all',()=>{openSheet('recruit-all','Recruit all creatures');body.innerHTML='<p>Recruit all available creatures you can afford, using the highest available upgrades? They will join the garrison. Army space and resource costs still apply.</p>'+btn('Recruit all','confirm-recruit-all',true)+btn('Cancel','close-sheet');});
+ root.addEventListener('goonk-recruit-all',()=>{if(!state.turn)return;openSheet('recruit-all','Recruit all creatures');body.innerHTML='<p>Recruit all available creatures you can afford, using the highest available upgrades? They will join the garrison. Army space and resource costs still apply.</p>'+btn('Recruit all','confirm-recruit-all',true)+btn('Cancel','close-sheet');});
  function showList(kind,refresh=false){
   if(kind==='towns'&&state.towns?.length===1){command(5,state.towns[0].index);return;}
   if(kind==='heroes'){if(state.mode==='map'&&(state.heroName||state.heroes?.length)){closeSheet();if(!state.heroName)command(4,state.heroes[0].index);command(55);}else notify('Select a hero on the map first.');return;}
   if(kind==='heroes'||kind==='towns'){openSheet(kind,kind==='heroes'?'Tes héros':'Tes villes');for(const item of state[kind]||[]){const el=document.createElement('button');el.className='mobile-card';el.style.width='100%';el.textContent=item.name+(kind==='heroes'?` · ${item.movement} points`:'');el.onclick=()=>{command(kind==='heroes'?4:5,item.index);closeSheet();};body.append(el);}if(!body.children.length)body.textContent='Aucun élément disponible.';}
-  if(kind==='build'){openSheet(kind,'Construire');
+  if(kind==='build'){if(!refresh)openSheet(kind,'Construire');else body.replaceChildren();if(!state.turn)body.insertAdjacentHTML('beforeend','<p>Disponible à ton tour</p>');
    const unbuilt=(state.buildings||[]).filter(b=>!b.built),available=unbuilt.filter(b=>b.allowed);
    if(!available.length){const message=document.createElement('p');message.className='build-empty';message.textContent=unbuilt.length?'Aucun bâtiment ne peut être construit pour le moment.':'Tous les bâtiments sont déjà construits.';body.append(message);if(unbuilt.length){const reasons=document.createElement('p');reasons.textContent=[...new Set(unbuilt.map(b=>buildReason(b.state)))].join(' · ');body.append(reasons);}}
    for(const building of available){const article=document.createElement('article');article.className='mobile-card';article.dataset.buildingId=building.id;article.innerHTML=`${building.key?.startsWith('goonk:')&&asset('goonk/card-'+building.key.split(':').at(-1)+'.png')?`<img class="building-card-image" src="${escape(asset('goonk/card-'+building.key.split(':').at(-1)+'.png'))}" alt="">`:''}<h3>${escape(building.name)}</h3><p>${escape(building.description)}</p><footer><span class="resource-cost">${escape(cost(building.cost))}</span><button class="primary" ${state.turn?'':'disabled'}>Construire</button></footer>`;article.querySelector('button').onclick=()=>{const current=state.buildings?.find(b=>b.id===building.id);if(state.mode!=='town'||!state.turn||!current?.allowed||current.built)return;command(8,building.id);closeSheet();notify('Construction demandée : '+building.name);};body.append(article);}}
@@ -288,7 +288,7 @@ function mount(){
 
   if(kind==='equipment'){if(state.mode==='map'&&state.heroName){closeSheet();command(55);}else notify('Select a hero on the map first.');return;}
   if(kind==='army'){if(!refresh)openSheet(kind,'Organiser les armées');armySelection=null;armySignature=JSON.stringify(state.armies||[]);
-   renderArmyPanel({body,armies:state.armies||[],portrait,showVisitorPlaceholder:state.mode==='town'||Number.isInteger(state.armyTownId),onTransferAll:(from,to)=>{command(58,from,to);armyPending=true;sheet.setAttribute('aria-busy','true');clearTimeout(armyTimer);armyTimer=setTimeout(()=>{if(sheetKind==='army'&&armyPending){refreshArmy();notify('Aucun changement confirmé. Vérifie les emplacements disponibles.');}},8000);},onInfo:(army,slot)=>{detailReturn='army';closeSheet();command(41,army,slot);}, onMessage:notify,onMove:({fromArmy,fromSlot,toArmy,toSlot,amount})=>{
+   renderArmyPanel({body,armies:state.armies||[],portrait,showVisitorPlaceholder:state.mode==='town'||Number.isInteger(state.armyTownId),readOnly:!state.turn,onTransferAll:(from,to)=>{command(58,from,to);armyPending=true;sheet.setAttribute('aria-busy','true');clearTimeout(armyTimer);armyTimer=setTimeout(()=>{if(sheetKind==='army'&&armyPending){refreshArmy();notify('Aucun changement confirmé. Vérifie les emplacements disponibles.');}},8000);},onInfo:(army,slot)=>{detailReturn='army';closeSheet();command(41,army,slot);}, onMessage:notify,onMove:({fromArmy,fromSlot,toArmy,toSlot,amount})=>{
     command(amount?11:10,fromArmy,fromSlot,toArmy,toSlot,amount);armyFocus={army:String(toArmy),slot:String(toSlot)};armyPending=true;sheet.setAttribute('aria-busy','true');clearTimeout(armyTimer);
     armyTimer=setTimeout(()=>{if(sheetKind==='army'&&armyPending){refreshArmy();notify('Aucun changement confirmé. Vérifie la destination et réessaie.');}},8000);
    }});
@@ -325,10 +325,10 @@ function mount(){
    body.append(description);
    return;
   }
-  if(ui==='confirm-recruit-all'){closeSheet();command(53);notify('Recruitment requested.');return;}
+  if(ui==='confirm-recruit-all'){closeSheet();if(!state.turn)return;command(53);notify('Recruitment requested.');return;}
   if(ui==='town-fort'){command(54);return;}
   if(ui==='town-guild'||ui==='town-market'){const matches=ui==='town-guild'?['mageGuild1','mageGuild2','mageGuild3','mageGuild4','mageGuild5']:['marketplace'];const building=(state.buildings||[]).filter(b=>b.built&&matches.includes(String(b.key).split(':').at(-1))).at(-1);if(building)command(39,building.id);else notify('Build this structure first.');return;}
-  if(ui==='recruit-heroes'){const tavern=state.buildings?.find(b=>String(b.key).split(':').at(-1)==='tavern'&&b.built);if(state.mode==='town'&&state.turn&&tavern)command(39,tavern.id);else notify('Construis une taverne pour recruter des héros.');return;}
+  if(ui==='recruit-heroes'){const tavern=state.buildings?.find(b=>String(b.key).split(':').at(-1)==='tavern'&&b.built);if(state.mode==='town'&&tavern)command(39,tavern.id);else notify('Construis une taverne pour recruter des héros.');return;}
   if(ui==='online-mobile'){onlineLobby.show();return;}
   if(ui==='online-create'){command(81);return;}
   if(ui==='online-save'){command(80);return;}
@@ -339,7 +339,7 @@ function mount(){
   if(ui==='hero-mobile'){heroEquipment.showMobile();return;}if(ui==='hero-back'){command(63);return;}
   if(ui==='native-equipment'){closeSheet();command(55);return;}
   if(['equipment','heroes','towns','build','recruit','army'].includes(ui))return showList(ui);
-  if(ui==='confirm-recruit'){if(recruitLoading)return;const u=state.recruitUnit,amount=Number(root.querySelector('#recruit-number').value);if(!u||!Number.isInteger(amount)||amount<1||amount>state.recruitMaximum){notify('Choisis une quantité entre 1 et '+state.recruitMaximum);return;}pendingRecruit={id:u.id,name:u.name,amount,before:townArmy.filter(s=>s?.id===u.id).reduce((n,s)=>n+s.count,0)};command(31,amount);command(32);return;}if(ui==='max-recruit'){command(31,state.recruitMaximum||0);return;}if(ui==='cancel-recruit'){pendingRecruit=null;recruitLoading=false;expectedRecruitId=null;command(33);return;}
+  if(ui==='confirm-recruit'){if(!state.turn||recruitLoading)return;const u=state.recruitUnit,amount=Number(root.querySelector('#recruit-number').value);if(!u||!Number.isInteger(amount)||amount<1||amount>state.recruitMaximum){notify('Choisis une quantité entre 1 et '+state.recruitMaximum);return;}pendingRecruit={id:u.id,name:u.name,amount,before:townArmy.filter(s=>s?.id===u.id).reduce((n,s)=>n+s.count,0)};command(31,amount);command(32);return;}if(ui==='max-recruit'){command(31,state.recruitMaximum||0);return;}if(ui==='cancel-recruit'){pendingRecruit=null;recruitLoading=false;expectedRecruitId=null;command(33);return;}
   if(ui==='presentation-back'){command(43);return;}if(ui==='close-sheet')return closeSheet();if(ui==='zoom-in'){zoom=Math.min(4,zoom*1.25);return;}if(ui==='zoom-out'){zoom=Math.max(.5,zoom/1.25);return;}if(ui==='overview'){zoom=state.mode==='map'?(zoom===.5?1:.5):(zoom===1?2:1);focus=null;return;}
   if(ui==='wait'||ui==='defend'){
    const action=ui==='wait'?12:13;

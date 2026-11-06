@@ -41,7 +41,7 @@ export function createCreaturePresentation({root,command,pointer,openRecruit}){
     bindPress(panel.querySelector('[data-presentation-close]'),()=>command(state.mode==='recruit'?33:43));
     canvases=[...panel.querySelectorAll('[data-preview-creature]')];
    }
-   if(state.mode==='fort'){hall.update(state);canvases=hall.canvases;}
+   if(state.mode==='fort'){panel.querySelector('[data-recruit-all]').disabled=!state.turn;hall.update(state);canvases=hall.canvases;}
    else{const price=panel.querySelector('.featured-price');const html=state.mode==='recruit'?'<span>Cost per creature</span>'+prices(unit||{},1,state.resourceTypes):'<span>Creatures in stack: '+(unit?.count??1)+'</span>';if(price._sourceMarkup!==html){price._sourceMarkup=html;price.innerHTML=html;}}
   },
   paint(source){if(panel.hidden)return false;if(document.hidden)return true;const sx=source.width/800,sy=source.height/600;

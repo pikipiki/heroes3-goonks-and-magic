@@ -58,6 +58,9 @@ void CMarketResources::deselect()
 
 void CMarketResources::makeDeal()
 {
+	if (!GAME->interface()->makingTurn)
+		return;
+
 	if(auto toTrade = offerSlider->getValue(); toTrade != 0)
 	{
 		GAME->interface()->cb->trade(market->getObjInstanceID(), EMarketMode::RESOURCE_RESOURCE, GameResID(bidTradePanel->getHighlightedItemId()),

@@ -168,6 +168,9 @@ void CRecruitmentWindow::close()
 
 void CRecruitmentWindow::buy()
 {
+	if (!GAME->interface()->makingTurn || !selected || slider->getValue() <= 0)
+		return;
+
 	CreatureID crid =  selected->creature->getId();
 	SlotID dstslot = dst->getSlotFor(crid);
 
@@ -577,6 +580,22 @@ CTavernWindow::CTavernWindow(const CGObjectInstance * TavernObj, const std::func
 	recruit = std::make_shared<CButton>(Point(272, 355), AnimationPath::builtin("TPTAV01.DEF"), CButton::tooltip(), std::bind(&CTavernWindow::recruitb, this), EShortcut::GLOBAL_ACCEPT);
 	thiefGuild = std::make_shared<CButton>(Point(22, 428), AnimationPath::builtin("TPTAV02.DEF"), CButton::tooltip(LIBRARY->generaltexth->tavernInfo[5]), std::bind(&CTavernWindow::thievesguildb, this), EShortcut::ADVENTURE_THIEVES_GUILD);
 
+	updateRecruitAvailability();
+
+	if(GAME->interface()->castleInt)
+		videoPlayer = std::make_shared<VideoWidget>(Point(70, 56), GAME->interface()->castleInt->town->getTown()->clientInfo.tavernVideo, false);
+	else if(const auto * townObj = dynamic_cast<const CGTownInstance *>(TavernObj))
+		videoPlayer = std::make_shared<VideoWidget>(Point(70, 56), townObj->getTown()->clientInfo.tavernVideo, false);
+	else
+		videoPlayer = std::make_shared<VideoWidget>(Point(70, 56), VideoPath::builtin("TAVERN.BIK"), false);
+
+	addInvite();
+}
+
+void CTavernWindow::updateRecruitAvailability()
+{
+	recruitTurn = GAME->interface()->makingTurn;
+	recruit->block(false);
 	if(!GAME->interface()->makingTurn)
 	{
 		recruit->block(true);
@@ -605,7 +624,7 @@ CTavernWindow::CTavernWindow(const CGObjectInstance * TavernObj, const std::func
 		recruit->addHoverText(EButtonState::NORMAL, message.toString());
 		recruit->block(true);
 	}
-	else if(dynamic_cast<const CGTownInstance *>(TavernObj) && dynamic_cast<const CGTownInstance *>(TavernObj)->getVisitingHero())
+	else if(dynamic_cast<const CGTownInstance *>(tavernObj) && dynamic_cast<const CGTownInstance *>(tavernObj)->getVisitingHero())
 	{
 		recruit->addHoverText(EButtonState::NORMAL, LIBRARY->generaltexth->tavernInfo[2]); //Cannot recruit. You already have a Hero in this town.
 		recruit->block(true);
@@ -615,14 +634,6 @@ CTavernWindow::CTavernWindow(const CGObjectInstance * TavernObj, const std::func
 		if(selected == -1)
 			recruit->block(true);
 	}
-	if(GAME->interface()->castleInt)
-		videoPlayer = std::make_shared<VideoWidget>(Point(70, 56), GAME->interface()->castleInt->town->getTown()->clientInfo.tavernVideo, false);
-	else if(const auto * townObj = dynamic_cast<const CGTownInstance *>(TavernObj))
-		videoPlayer = std::make_shared<VideoWidget>(Point(70, 56), townObj->getTown()->clientInfo.tavernVideo, false);
-	else
-		videoPlayer = std::make_shared<VideoWidget>(Point(70, 56), VideoPath::builtin("TAVERN.BIK"), false);
-
-	addInvite();
 }
 
 void CTavernWindow::addInvite()
@@ -654,6 +665,9 @@ void CTavernWindow::addInvite()
 
 void CTavernWindow::recruitb()
 {
+	if (!GAME->interface()->makingTurn || recruit->isBlocked() || selected < 0)
+		return;
+
 	const CGHeroInstance *toBuy = (selected ? h2 : h1)->h;
 	const CGObjectInstance *obj = tavernObj;
 
@@ -676,6 +690,12 @@ void CTavernWindow::close()
 
 void CTavernWindow::show(Canvas & to)
 {
+	if (recruitTurn != GAME->interface()->makingTurn)
+	{
+		updateRecruitAvailability();
+		oldSelected = -1;
+	}
+
 	CWindowObject::show(to);
 
 	if(selected >= 0)

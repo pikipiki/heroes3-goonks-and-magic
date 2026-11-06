@@ -926,7 +926,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==23){if(GAME&&!GAME->interface())CMainMenu::openLobby(ESelectionScreen::loadGame,true,{"Goonk"},ELoadMode::SINGLE,false);return;}
  auto p=GAME?GAME->interface():nullptr;if(!p||!p->cb||!p->localState)return;
  const auto hero=p->localState->getCurrentHero();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battle= CPlayerInterface::battleInt;
- if(action==54&&townWindow&&p->makingTurn){ENGINE->windows().createAndPushWindow<CFortScreen>(townWindow->town);lastPublished=0;return;}
+ if(action==54&&townWindow&&(p->makingTurn||townWindow->town->getOwner()==p->playerID)){ENGINE->windows().createAndPushWindow<CFortScreen>(townWindow->town);lastPublished=0;return;}
  // Family gallery actions stay in the fort; the server remains authoritative
  // for ownership, stock, resources and available army slots.
  if((action==60||action==61)&&ENGINE->windows().topWindow<CFortScreen>()){
@@ -988,10 +988,10 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  }
 
  if(action==7&&ENGINE->windows().topWindow<AdventureMapInterface>())p->cb->save("Saves/Goonk-mobile",true);
- if(action==39){if(townWindow&&townWindow->builds&&p->makingTurn&&townWindow->town->getOwner()==p->playerID&&a>=0&&townWindow->town->getTown()->buildings.count(BuildingID(a))&&townWindow->town->hasBuilt(BuildingID(a)))townWindow->builds->buildingClicked(BuildingID(a));lastPublished=0;return;}
- if(action==8&&townWindow&&townWindow->town->getOwner()==p->playerID&&p->cb->canBuildStructure(townWindow->town,BuildingID(a))==EBuildingState::ALLOWED)p->cb->buildBuilding(townWindow->town,BuildingID(a));
- if(action==9&&townWindow&&townWindow->town->getOwner()==p->playerID){const auto t=townWindow->town;if(a>=0&&a<int(t->creatures.size())&&b>=0&&b<int(t->creatures[a].second.size())&&c>0){const auto id=t->creatures[a].second[b];p->cb->recruitCreatures(t,t->getUpperArmy(),id,std::min(c,int(t->creatures[a].first)),a);}}
- if(action==30&&(townWindow||ENGINE->windows().topWindow<CFortScreen>())&&p->makingTurn){
+ if(action==39){if(townWindow&&townWindow->builds&&townWindow->town->getOwner()==p->playerID&&a>=0&&townWindow->town->getTown()->buildings.count(BuildingID(a))&&townWindow->town->hasBuilt(BuildingID(a)))townWindow->builds->buildingClicked(BuildingID(a));lastPublished=0;return;}
+ if(action==8&&p->makingTurn&&townWindow&&townWindow->town->getOwner()==p->playerID&&p->cb->canBuildStructure(townWindow->town,BuildingID(a))==EBuildingState::ALLOWED)p->cb->buildBuilding(townWindow->town,BuildingID(a));
+ if(action==9&&p->makingTurn&&townWindow&&townWindow->town->getOwner()==p->playerID){const auto t=townWindow->town;if(a>=0&&a<int(t->creatures.size())&&b>=0&&b<int(t->creatures[a].second.size())&&c>0){const auto id=t->creatures[a].second[b];p->cb->recruitCreatures(t,t->getUpperArmy(),id,std::min(c,int(t->creatures[a].first)),a);}}
+ if(action==30&&(townWindow||ENGINE->windows().topWindow<CFortScreen>())){
   const auto town=townWindow?townWindow->town:ENGINE->windows().topWindow<CFortScreen>()->getMobileTown();
   if(town->getOwner()!=p->playerID)return;
   if(a>=0&&a<int(town->creatures.size())&&!town->creatures[a].second.empty()){
@@ -1014,7 +1014,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   if(from&&to&&from!=to&&from->id.getNum()==a&&to->id.getNum()==b&&from->getOwner()==p->playerID&&to->getOwner()==p->playerID&&!from->Slots().empty())p->cb->bulkMoveArmy(from->id,to->id,from->Slots().begin()->first);
   lastPublished=0;return;
  }
- if((action==10||action==11)&&a>=0&&c>=0&&b>=0&&b<7&&d>=0&&d<7){const auto from=dynamic_cast<const CArmedInstance*>(p->cb->getObj(ObjectInstanceID(a)));const auto to=dynamic_cast<const CArmedInstance*>(p->cb->getObj(ObjectInstanceID(c)));if(from&&to&&from->getOwner()==p->playerID&&to->getOwner()==p->playerID&&from->hasStackAtSlot(SlotID(b))){if(action==10)p->cb->mergeOrSwapStacks(from,to,SlotID(b),SlotID(d));else if(e>0&&e<from->getStackCount(SlotID(b))&&!to->hasStackAtSlot(SlotID(d)))p->cb->splitStack(from,to,SlotID(b),SlotID(d),e);}}
+ if((action==10||action==11)&&p->makingTurn&&a>=0&&c>=0&&b>=0&&b<7&&d>=0&&d<7){const auto from=dynamic_cast<const CArmedInstance*>(p->cb->getObj(ObjectInstanceID(a)));const auto to=dynamic_cast<const CArmedInstance*>(p->cb->getObj(ObjectInstanceID(c)));if(from&&to&&from->getOwner()==p->playerID&&to->getOwner()==p->playerID&&from->hasStackAtSlot(SlotID(b))){if(action==10)p->cb->mergeOrSwapStacks(from,to,SlotID(b),SlotID(d));else if(e>0&&e<from->getStackCount(SlotID(b))&&!to->hasStackAtSlot(SlotID(d)))p->cb->splitStack(from,to,SlotID(b),SlotID(d),e);}}
  if(ENGINE->windows().topWindow<BattleWindow>()&&battle){
   const bool tactics=battle->tacticsMode||battle->getBattle()->battleTacticDist()!=0;
   const bool manualControl=battle->curInt&&!battle->curInt->isAutoFightOn&&!battle->curInt->autofightingAI;

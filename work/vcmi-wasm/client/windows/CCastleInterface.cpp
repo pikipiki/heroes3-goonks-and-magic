@@ -844,6 +844,55 @@ void CCastleBuildings::buildingClicked(BuildingID building)
 		buildingToEnter = b->upgrade;
 	}
 
+	if (!GAME->interface()->makingTurn)
+	{
+		// Castle visits outside the player's turn only open local views.
+		for (BuildingID candidate : boost::adaptors::reverse(buildingsToTest))
+		{
+			const auto & definition = town->getTown()->buildings.at(candidate);
+			if (!definition->marketModes.empty() && *definition->marketModes.begin() == EMarketMode::RESOURCE_RESOURCE
+				&& town->getOwner() == GAME->interface()->playerID)
+			{
+				ENGINE->windows().createAndPushWindow<CMarketWindow>(town, getHero(), nullptr, EMarketMode::RESOURCE_RESOURCE);
+				return;
+			}
+			if (candidate.isDwelling())
+			{
+				enterDwelling(BuildingID::getLevelIndexFromDwelling(candidate));
+				return;
+			}
+
+			switch (candidate.toEnum())
+			{
+				case BuildingID::MAGES_GUILD_1:
+				case BuildingID::MAGES_GUILD_2:
+				case BuildingID::MAGES_GUILD_3:
+				case BuildingID::MAGES_GUILD_4:
+				case BuildingID::MAGES_GUILD_5:
+					openMagesGuild();
+					return;
+				case BuildingID::TAVERN:
+					GAME->interface()->showTavernWindow(town, nullptr, QueryID::NONE);
+					return;
+				case BuildingID::FORT:
+				case BuildingID::CITADEL:
+				case BuildingID::CASTLE:
+					ENGINE->windows().createAndPushWindow<CFortScreen>(town);
+					return;
+				case BuildingID::VILLAGE_HALL:
+				case BuildingID::CITY_HALL:
+				case BuildingID::TOWN_HALL:
+				case BuildingID::CAPITOL:
+					openTownHall();
+					return;
+				default:
+					break;
+			}
+		}
+		enterBuilding(building);
+		return;
+	}
+
 	for(BuildingID buildingToEnter : boost::adaptors::reverse(buildingsToTest))
 	{
 		if (buildingTryActivateCustomUI(buildingToEnter, building))
@@ -1049,7 +1098,11 @@ void CCastleBuildings::enterBlacksmith(BuildingID building, ArtifactID artifactI
 void CCastleBuildings::enterBuilding(BuildingID building)
 {
 	std::vector<std::shared_ptr<CComponent>> comps(1, std::make_shared<CComponent>(ComponentType::BUILDING, BuildingTypeUniqueID(town->getFactionID(), building)));
-	GAME->interface()->showInfoDialog( town->getTown()->buildings.find(building)->second->getDescriptionTranslated(), comps);
+	const auto description = town->getTown()->buildings.at(building)->getDescriptionTranslated();
+	if (GAME->interface()->makingTurn)
+		GAME->interface()->showInfoDialog(description, comps);
+	else
+		ENGINE->windows().pushWindow(CInfoWindow::create(description, GAME->interface()->playerID, comps));
 }
 
 void CCastleBuildings::enterCastleGate(BuildingID building)
@@ -1342,7 +1395,7 @@ void CCreaInfo::hover(bool on)
 
 void CCreaInfo::clickPressed(const Point & cursorPosition)
 {
-	if(ENGINE->isKeyboardCtrlDown() || ENGINE->isKeyboardAltDown()) // fast buy (HD mod)
+	if(GAME->interface()->makingTurn && (ENGINE->isKeyboardCtrlDown() || ENGINE->isKeyboardAltDown())) // fast buy (HD mod)
 	{
 		for(int i=0; i<town->creatures.size(); i++)
 		{

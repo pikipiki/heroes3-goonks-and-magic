@@ -62,6 +62,9 @@ void CTransferResources::deselect()
 
 void CTransferResources::makeDeal()
 {
+	if (!GAME->interface()->makingTurn)
+		return;
+
 	if(auto toTrade = offerSlider->getValue(); toTrade != 0)
 	{
 		GAME->interface()->cb->trade(market->getObjInstanceID(), EMarketMode::RESOURCE_PLAYER, GameResID(bidTradePanel->getHighlightedItemId()),
