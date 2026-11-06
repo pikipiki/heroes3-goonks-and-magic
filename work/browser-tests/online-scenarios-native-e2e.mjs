@@ -130,7 +130,7 @@ try {
   const poolEndpoint = await page.evaluate(() => window.goonkHostedAlerts?.poolEndpoint);
   if (poolEndpoint) {
     const matchId = '527329c6-19f9-4284-9aa0-dace75c66a32';
-    const codes = [{seat: 0, code: 'HG' + 'R'.repeat(41)}, {seat: 1, code: 'HG' + 'B'.repeat(41)}];
+    const codes = [{seat: 0, code: 'R5K0-7PMQ-69CX'}, {seat: 1, code: 'B401-8NYZ-QW2S'}];
     const scenarios = [
       {id: 'medium', name: 'Medium map', width: 72, castles: [[{id: 0, name: 'Castle'}], [{id: 3, name: 'Inferno'}]]},
       {id: 'small', name: 'Small map', width: 36, castles: [[{id: 0, name: 'Castle'}, {id: 1, name: 'Rampart'}], [{id: 3, name: 'Inferno'}, {id: 4, name: 'Necropolis'}]]},
@@ -145,12 +145,13 @@ try {
       request = route.request().postDataJSON();
       return route.fulfill({status: 201, headers, json: {matchId, codes}});
     });
-    await page.route(url => url.href === poolEndpoint + '?preview=1', route => {
+    await page.route(url => url.href === poolEndpoint || url.href === poolEndpoint + '?preview=1', route => {
       const headers = {'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, OPTIONS',
         'Access-Control-Allow-Headers': 'Authorization'};
       if (route.request().method() === 'OPTIONS') return route.fulfill({status: 204, headers});
-      assert.equal(route.request().headers().authorization, 'Bearer ' + codes[0].code);
-      return route.fulfill({status: 200, headers, json: {matchId, players: 2, connectedPlayers: 1}});
+      const preview = new URL(route.request().url()).searchParams.has('preview');
+      assert.equal(route.request().headers().authorization, 'Bearer ' + codes[preview ? 0 : 1].code.replaceAll('-', ''));
+      return route.fulfill({status: 200, headers, json: {matchId, players: 2, connectedPlayers: 1, poolStatus: 'busy'}});
     });
     await page.locator('[data-open-hosted-match]').tap();
     assert.equal(await page.locator('[data-hosted-seat-code]').inputValue(), '');
@@ -167,11 +168,15 @@ try {
     assert.equal(await page.evaluate(() => window.testCopied), codes[1].code);
     assert.deepEqual(request.factions, [1, null]);
     assert.equal(request.players, 2);
+    assert.equal(request.codeFormat, 'short');
     await joinExisting.tap();
     assert(await seat.isVisible());
     assert(await page.locator('[data-create-codes]').isHidden());
     assert(await page.getByRole('button', {name: 'Resume match', exact: true}).isVisible());
     await page.getByText('1 of 2 players connected', {exact: true}).waitFor();
+    await seat.fill('b4ol 8nyz qw2s');
+    await page.getByRole('button', {name: 'Join match', exact: true}).tap();
+    await page.getByText('Another match is using the server.', {exact: false}).waitFor();
     await createNew.tap();
     assert(await page.locator('[data-create-codes] [data-seat="1"]').isVisible());
     await page.locator('#game-menu [data-menu=close]').tap();

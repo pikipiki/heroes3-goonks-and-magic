@@ -1,6 +1,13 @@
 import {mountHostedMatchCreation} from './hosted-match-create.mjs';
 
-const seatCodePattern = /^[A-Za-z0-9_-]{43}$/;
+const legacySeatCodePattern = /^[A-Za-z0-9_-]{43}$/;
+const shortSeatCodePattern = /^[0-9A-HJKMNP-TV-Z]{12}$/;
+function normalizeSeatCode(value) {
+  const compact = value.replace(/\s/g, '');
+  if (legacySeatCodePattern.test(compact)) return compact;
+  const short = compact.replace(/-/g, '').toUpperCase().replace(/O/g, '0').replace(/[IL]/g, '1');
+  return shortSeatCodePattern.test(short) ? short : '';
+}
 const rememberedSeatKey = 'heroes-goonk.hosted-seat';
 const matchPattern = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 
@@ -81,6 +88,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   field.className = 'hosted-match-settings';
   field.innerHTML = '<label><span></span><input type="password" data-hosted-seat-code autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="hosted-seat-code-help"></label><button type="button" class="hosted-paste"></button><small id="hosted-seat-code-help"></small><div class="hosted-match-actions"><button type="button"></button><button type="button"></button><button type="button"></button></div><p role="status"></p>';
   const input = field.querySelector('input');
+  input.placeholder = 'XXXX-XXXX-XXXX';
   const [paste, enable, disable, join] = field.querySelectorAll('button');
   const help = field.querySelector('small');
   const status = field.querySelector('[role=status]');
@@ -141,7 +149,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       const value = JSON.parse(localStorage.getItem(rememberedSeatKey));
       return (Array.isArray(value) ? value : [value]).filter(saved => saved &&
         (saved.endpoint === endpoint || (poolEndpoint && saved.endpoint === poolEndpoint)) &&
-        matchPattern.test(saved.matchId) && seatCodePattern.test(saved.token));
+        matchPattern.test(saved.matchId) && typeof saved.token === 'string' && normalizeSeatCode(saved.token));
     } catch { return []; }
   }
 
@@ -157,11 +165,11 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   let saved = availableSeats()[0];
   let manager;
   let pending = false;
-  const seatCode = () => input.value.replace(/\s/g, '');
+  const seatCode = () => normalizeSeatCode(input.value);
   function remember(matchId, token, target, name, players) {
     const seats = rememberedSeats();
     const previous = seats.find(item => sameMatch(item, {matchId, endpoint: target}));
-    saved = {endpoint: target, matchId, token, name: name || previous?.name, players: players || previous?.players};
+    saved = {endpoint: target, matchId, token: normalizeSeatCode(token), name: name || previous?.name, players: players || previous?.players};
     try { localStorage.setItem(rememberedSeatKey, JSON.stringify([saved, ...seats.filter(item => !sameMatch(item, saved))].slice(0, 101))); } catch {}
   }
   const creationAction = mountHostedMatchCreation(createPanel, createMode, poolEndpoint, fr,
@@ -172,7 +180,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       credentials: 'omit', redirect: 'error', signal: AbortSignal.timeout(target === poolEndpoint ? 55000 : 10000),
       ...options, headers: {Authorization: 'Bearer ' + token, ...options?.headers},
     });
-    let target = knownEndpoint || (poolEndpoint && token.startsWith('HG') ? poolEndpoint : endpoint);
+    let target = knownEndpoint || (poolEndpoint && (shortSeatCodePattern.test(token) || token.startsWith('HG')) ? poolEndpoint : endpoint);
     let response = await send(target);
     if (!knownEndpoint && poolEndpoint && response.status === 401) {
       target = target === endpoint ? poolEndpoint : endpoint;
@@ -181,9 +189,9 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     return {response, target};
   }
   const render = () => {
-    const valid = seatCodePattern.test(seatCode());
+    const valid = Boolean(seatCode());
     const hint = input.value && !valid
-      ? (fr ? 'Le code doit contenir 43 caractères parmi les lettres, chiffres, tirets et tirets bas.' : 'Use the 43-character code with letters, numbers, hyphens or underscores.')
+      ? (fr ? 'Saisis les 12 caractères de ton code court ou colle ton ancien code.' : 'Enter the 12 characters of your short code or paste your previous code.')
       : '';
     if (help.textContent !== hint) help.textContent = hint;
     const seats = availableSeats();
@@ -258,7 +266,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   async function change(enabled) {
     if (pending) return;
     const token = seatCode();
-    if (!seatCodePattern.test(token)) return;
+    if (!token) return;
     input.blur();
     pending = true;
     render();
@@ -303,9 +311,9 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   }
 
   async function joinMatch({scenario, remembered} = {}) {
-    const token = remembered?.token ?? seatCode();
+    const token = remembered ? normalizeSeatCode(remembered.token) : seatCode();
     const runtime = window.Module;
-    if (pending || !seatCodePattern.test(token) || (scenario && start.disabled) || !runtime?._vcmiJoinHostedMatch) return;
+    if (pending || !token || (scenario && start.disabled) || !runtime?._vcmiJoinHostedMatch) return;
     input.blur();
     pending = true;
     status.textContent = '';

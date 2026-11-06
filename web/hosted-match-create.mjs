@@ -75,7 +75,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated) {
     render();
     try {
       const response = await request('', {method: 'POST', headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({...settings, requestId})});
+        body: JSON.stringify({...settings, requestId, codeFormat: 'short'})});
       const result = await response.json().catch(() => ({}));
       if (!response.ok) {
         status.textContent = result.error === 'full' ? t('All dedicated slots are in use.', 'Toutes les places de sauvegarde dédiées sont occupées.') :
