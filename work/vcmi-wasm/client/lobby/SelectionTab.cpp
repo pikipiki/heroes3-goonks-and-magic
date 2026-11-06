@@ -21,6 +21,7 @@
 #include "../CServerHandler.h"
 #include "../GameEngine.h"
 #include "../GameInstance.h"
+#include "../globalLobby/GlobalLobbyClient.h"
 #include "../gui/Shortcut.h"
 #include "../gui/WindowHandler.h"
 #include "../widgets/CComponent.h"
@@ -44,6 +45,7 @@
 #include "../../lib/campaign/CampaignState.h"
 #include "../../lib/mapping/CMapInfo.h"
 #include "../../lib/mapping/CMapHeader.h"
+#include "../../lib/mapping/GoonkScenario.h"
 #include "../../lib/mapping/MapFormat.h"
 #include "../../lib/networkPacks/PacksForLobby.h"
 #include "../../lib/texts/CGeneralTextHandler.h"
@@ -585,6 +587,8 @@ void SelectionTab::filter(int size, bool selectFirst)
 
 	for(auto elem : allItems)
 	{
+		if(tabType == ESelectionScreen::newGame && isGoonkShowcaseMap(ResourcePath(elem->originalFileURI, EResType::MAP)))
+			continue;
 		if((elem->mapHeader && (!size || elem->mapHeader->width == size)) || tabType == ESelectionScreen::campaignList)
 		{
 			if(showRandom)
@@ -628,6 +632,35 @@ void SelectionTab::filter(int size, bool selectFirst)
 		if(selectFirst)
 		{
 			int firstPos = boost::range::find_if(curItems, [](std::shared_ptr<ElementInfo> e) { return !e->isFolder; }) - curItems.begin();
+			if(tabType == ESelectionScreen::newGame && !size && !showRandom)
+			{
+				const bool online = GAME->server().inLobbyRoom();
+				unsigned int seats = 1;
+				if(online)
+				{
+					seats = 2;
+					auto & lobby = GAME->server().getGlobalLobby();
+					const auto & rooms = lobby.getActiveRooms();
+					const auto room = std::find_if(rooms.begin(), rooms.end(), [&](const auto & entry)
+					{
+						return entry.gameRoomID == lobby.getCurrentGameRoomID();
+					});
+					if(room != rooms.end())
+						seats = room->playerLimit;
+				}
+				const auto preferred = std::find_if(curItems.begin(), curItems.end(), [online, seats](const auto & map)
+				{
+					if(map->isFolder || !map->mapHeader || map->mapHeader->battleOnly || map->mapHeader->width != (online ? 36 : 144))
+						return false;
+					const auto & players = map->mapHeader->players;
+					return online ? map->amountOfHumanControllablePlayers >= seats && std::all_of(players.begin(), players.end(), [](const auto & player)
+					{
+						return !player.canHumanPlay || allowsCastleChoice(player);
+					}) : players.front().canHumanPlay && allowsCastleChoice(players.front());
+				});
+				if(preferred != curItems.end())
+					firstPos = preferred - curItems.begin();
+			}
 			if(firstPos < curItems.size())
 			{
 				slider->scrollTo(firstPos);
@@ -883,7 +916,7 @@ void SelectionTab::restoreLastSelection()
 	switch(tabType)
 	{
 	case ESelectionScreen::newGame:
-		selectFileName(settings["general"]["lastMap"].String());
+		filter(0, true);
 		break;
 	case ESelectionScreen::campaignList:
 		selectFileName(settings["general"]["lastCampaign"].String());

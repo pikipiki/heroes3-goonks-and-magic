@@ -27,6 +27,10 @@ html.goonk-mobile #mobile-app[data-mobile-online] {
 .online-lobby .online-list {display:grid;gap:6px;min-width:0}
 .online-lobby .online-list button {width:100%;text-align:start;overflow-wrap:anywhere}
 .online-lobby label {display:grid;gap:6px}
+.online-lobby select {
+  box-sizing:border-box;width:100%;min-height:48px;padding:8px 12px;
+  color:#ffe9aa;background:#24190e;border:2px ridge #b89c5d;font:16px Georgia,serif;
+}
 .online-lobby input {
   min-height:44px;width:100%;box-sizing:border-box;background:#171109;color:#ffe9aa;
   border:2px ridge #bd9952;font:16px Georgia,serif;padding:6px 10px;

@@ -19,7 +19,13 @@ export function renderPage(root){
   if((url.protocol!=='https:'&&!testURL)||url.username||url.password||url.search||url.hash||
     url.pathname!=='/hosted/turn-notifications'||!/^[A-Za-z0-9_-]{87}$/.test(publicKey??''))
    throw new Error('Configure a trusted hosted notification endpoint and public VAPID key.');
-  html=html.replace('const v8Endpoint =','window.goonkHostedAlerts = '+JSON.stringify({endpoint:url.href,publicKey})+';\n    const v8Endpoint =');
+  const poolEndpoint=process.env.GOONK_HOSTED_POOL_ENDPOINT;
+  const pool=poolEndpoint ? new URL(poolEndpoint) : null;
+  const testPool=pool?.protocol==='http:'&&['localhost','127.0.0.1','[::1]'].includes(pool.hostname)&&process.env.GOONK_TEST_ORIGIN;
+  if(pool&&((pool.protocol!=='https:'&&!testPool)||pool.username||pool.password||pool.search||pool.hash||
+    pool.pathname!=='/hosted/turn-notifications'))
+   throw new Error('Configure a trusted dedicated match creation endpoint.');
+  html=html.replace('const v8Endpoint =','window.goonkHostedAlerts = '+JSON.stringify({endpoint:url.href,poolEndpoint:pool?.href,publicKey})+';\n    const v8Endpoint =');
  }
  html=html.replace(/quitGame: \(\) => \{[\s\S]*?\n      \},/, "quitGame: () => { location.href = new URL('./', location.href).href; },");
  html=html.replace('const module = {',"const module = { mainScriptUrlOrBlob: new URL('./vcmiclient.js', location.href).href,");

@@ -61,6 +61,7 @@ export function createOnlineLobby(root, command) {
     body.querySelector('[data-no-players]').hidden = found;
   }
 
+  let defaultScenario = false;
   function renderScenarios() {
     const query = body.querySelector('[data-online-scenario-search]').value.trim().toLocaleLowerCase();
     const scenarios = (state.onlineScenarios || []).filter(map => map.name.toLocaleLowerCase().includes(query));
@@ -140,9 +141,10 @@ export function createOnlineLobby(root, command) {
         ${count < 2 ? `<p>${t('Waiting for another player to join.', 'En attente d’un autre joueur.')}</p>` : ''}
         ${state.onlineHost ? button(t('Invite players', 'Inviter des joueurs'), 'invite') : ''}</section>
         <section><h3>${t('Scenario', 'Scénario')}</h3><p>${escape(state.selectedMap || t('No scenario selected.', 'Aucun scénario sélectionné.'))}</p>
+        ${state.onlineFactions?.length > 1 ? `<label>${t('Your castle', 'Ton château')}<select data-online-faction>${(state.onlineRandomFaction ? [{id:-1,name:t('Random','Aléatoire')}] : []).concat(state.onlineFactions).map(faction => `<option value="${faction.id}"${faction.id===state.onlineFaction?' selected':''}>${escape(faction.name)}</option>`).join('')}</select></label>` : ''}
         ${state.onlineHost && !state.onlineLoading ? `<div class="online-pair">${button(t('Choose a scenario', 'Choisir un scénario'), 'scenario', {disabled: !state.onlineRoomLimit})}${button(`${t('Turn timer', 'Chrono')} · ${minutes ? minutes + ' min' : t('Off', 'Désactivé')}`, 'timer', {disabled:!state.selectedMap})}</div>` : ''}
         ${state.onlineHost && state.onlineLoading && state.onlineSaveAvailable ? button(t('Last online save', 'Dernière sauvegarde en ligne'), 'save') : ''}</section>`);
-      const canStart = count >= 2 && !!state.selectedMap && (state.onlineLoading ? state.onlineCanResume : state.onlineScenarioFits !== false);
+      const canStart = pendingScenario === undefined && count >= 2 && !!state.selectedMap && (state.onlineLoading ? state.onlineCanResume : state.onlineScenarioFits !== false);
       write(footer, back() + (state.onlineHost ? button(
         sending ? t('Starting…', 'Démarrage…') : state.onlineLoading ? t('Resume game', 'Reprendre') : t('Start game', 'Commencer'),
         'start', {primary:true, disabled:!canStart || !!sending}
@@ -185,6 +187,7 @@ export function createOnlineLobby(root, command) {
       case 'scenario': openScenarios(); break;
       case 'choose-scenario': {
         const index = Number(id);
+        defaultScenario = true;
         if (index === state.onlineScenarioIndex) { roomView = ''; render(); break; }
         pendingScenario = index;
         begin(action, 84, index);
@@ -196,6 +199,9 @@ export function createOnlineLobby(root, command) {
     }
   });
 
+  panel.addEventListener('change', event => {
+    if (event.target.matches('[data-online-faction]')) command(37, Number(event.target.value));
+  });
   return {
     get active() { return !panel.hidden; },
     get classic() { return classicMode && !!page; },
@@ -209,6 +215,7 @@ export function createOnlineLobby(root, command) {
         sending = '';
         roomView = '';
         pendingScenario = undefined;
+        defaultScenario = false;
         requested.clear();
         if (!newPage) classicMode = false;
         if (newPage === 'create') { limit = 2; privateRoom = true; loadGame = false; }
@@ -219,6 +226,17 @@ export function createOnlineLobby(root, command) {
         clearTimeout(pendingTimer);
         sending = roomView = '';
         pendingScenario = undefined;
+      }
+      if (page === 'match' && next.onlineHost && !next.onlineLoading && !defaultScenario && next.onlineRoomLimit) {
+        const preferred = next.onlineScenarios?.find(map => map.width === 36 && map.castleChoice);
+        if (preferred || !next.mapsLoading) {
+          defaultScenario = true;
+          const chosen = preferred || (!next.onlineScenarioFits && next.onlineScenarios?.[0]);
+          if (chosen && chosen.index !== next.onlineScenarioIndex) {
+            pendingScenario = chosen.index;
+            command(84, chosen.index);
+          }
+        }
       }
       render();
     }

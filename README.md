@@ -64,7 +64,7 @@ Active **Turn notifications** dans les réglages du jeu pour recevoir une notifi
 
 ### Moteur dédié en développement
 
-Pour une nouvelle partie dédiée qui attend une carte, l’hôte ouvre **Hosted match** sous **Online** sur mobile, saisit son code de place, puis choisit un scénario compatible avec les places du serveur. Après une première connexion réussie, **Reprendre la partie** dans ce même écran retrouve la dernière partie dédiée sur cet appareil. Les parties déjà sauvegardées reprennent sur leur carte d’origine.
+Pour une nouvelle partie dédiée qui attend une carte, l’hôte ouvre **Hosted match** sous **Online** sur mobile, saisit son code de place, puis choisit un scénario compatible avec les places du serveur. Après une première connexion réussie, **Reprendre la partie** dans ce même écran retrouve la dernière partie dédiée sur cet appareil. Les parties déjà sauvegardées reprennent sur leur carte d’origine. Quand le service de création est configuré, **Créer une partie dédiée** permet à l’hôte de choisir le nombre de joueurs, la carte et les châteaux de départ, puis de copier les codes des places. Le bouton **Reprendre la partie** propose les accès mémorisés sur cet appareil, avec la carte et le nombre de joueurs. Les nouvelles parties dédiées sont supprimées après 21 jours sans progression sauvegardée.
 
 Le Dockerfile natif compile `vcmiserver` et `vcmilobby` sans client graphique. Construire l’image depuis la racine du dépôt.
 

@@ -29,3 +29,4 @@
 #game-menu .hosted-match-settings small:empty,#game-menu .hosted-match-settings p:empty{display:none}
 #game-menu .hosted-match-settings p{margin:0;overflow-wrap:anywhere}
 #game-menu .hosted-match-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10rem),1fr));gap:6px}
+#game-menu .hosted-match-actions > :is(select,p){grid-column:1/-1}

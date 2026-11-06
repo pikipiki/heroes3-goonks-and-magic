@@ -76,6 +76,7 @@
 #include "../lib/entities/building/CBuilding.h"
 #include "../lib/texts/CGeneralTextHandler.h"
 #include "../lib/mapping/CMapInfo.h"
+#include "../lib/mapping/GoonkScenario.h"
 #include "../lib/pathfinder/CGPathNode.h"
 
 namespace {
@@ -86,7 +87,8 @@ struct MobileScenario
 {
  std::string file, name;
  int humanSeats;
- bool battleOnly;
+ bool battleOnly, castleChoice, soloCastleChoice;
+ int width;
 };
 std::vector<MobileScenario> mobileMaps;
 bool mapsListed=false,savesListed=false;std::set<int> portraitIds,artifactIconIds;std::vector<std::pair<std::string,std::string>> mobileCampaigns,mobileSaves;
@@ -226,13 +228,11 @@ static void publishMobileScenarios(JsonNode & state, int roomLimit = 0, const CM
 {
  if(!mapsListed){
   mapsListed=true;
-  const auto files=CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path){return path.getType()==EResType::MAP&&path.getName().find("MAPS/")==0;});
+  const auto files=CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path){
+   return path.getType()==EResType::MAP&&path.getName().starts_with("MAPS/")&&!isGoonkShowcaseMap(path);
+  });
   pendingMobileMaps.assign(files.begin(),files.end());
-  const auto priority=[](const ResourcePath & path){
-   const auto name=path.getName();
-   return name.find("001-GOONKS")!=std::string::npos?0:name.find("000-GOONK")!=std::string::npos?1:name.find("002-GOONKS-ONLINE")!=std::string::npos?2:3;
-  };
-  std::stable_sort(pendingMobileMaps.begin(),pendingMobileMaps.end(),[&](const auto & a,const auto & b){return priority(a)<priority(b);});
+  std::sort(pendingMobileMaps.begin(),pendingMobileMaps.end());
  }
  const auto start=SDL_GetTicks();
  for(int loaded=0;mobileMapCursor<pendingMobileMaps.size()&&loaded<4;++loaded){
@@ -241,7 +241,14 @@ static void publishMobileScenarios(JsonNode & state, int roomLimit = 0, const CM
    CMapInfo info;
    info.mapInit(file.getOriginalName());
    if(info.amountOfHumanControllablePlayers>0)
-    mobileMaps.push_back({file.getOriginalName(),info.getNameForList(),static_cast<int>(info.amountOfHumanControllablePlayers),info.mapHeader->battleOnly});
+   {
+    const auto & players=info.mapHeader->players;
+    const bool castleChoice=std::all_of(players.begin(),players.end(),[](const auto & player){
+     return !player.canHumanPlay||allowsCastleChoice(player);
+    });
+    mobileMaps.push_back({file.getOriginalName(),info.getNameForList(),static_cast<int>(info.amountOfHumanControllablePlayers),
+                          info.mapHeader->battleOnly,castleChoice,players.front().canHumanPlay&&allowsCastleChoice(players.front()),info.mapHeader->width});
+   }
   }catch(const std::exception &){}
   if(SDL_GetTicks()-start>=8)break;
  }
@@ -255,6 +262,8 @@ static void publishMobileScenarios(JsonNode & state, int roomLimit = 0, const CM
   JsonNode entry;
   entry["index"].Integer()=i;
   entry["name"].String()=map.name;
+  entry["width"].Integer()=map.width;
+  entry["castleChoice"].Bool()=roomLimit?map.castleChoice:map.soloCastleChoice;
   if(roomLimit){
    entry["humanSeats"].Integer()=map.humanSeats;
    if(selected&&ResourcePath(map.file,EResType::MAP)==ResourcePath(selected->fileURI,EResType::MAP))
@@ -324,7 +333,7 @@ void publishMobileState(){
  }
  else if(ENGINE->windows().topWindow<CLobbyScreen>())
  {
-  const auto & server=GAME->server();
+  auto & server=GAME->server();
   n["mode"].String()=server.inLobbyRoom()?"online-lobby":server.screenType==ESelectionScreen::loadGame?"load":server.screenType==ESelectionScreen::campaignList?"campaign":"lobby";
   if(server.inLobbyRoom())
   {
@@ -369,6 +378,23 @@ void publishMobileState(){
     if(name.empty()&&server.mi->scenarioOptionsOfSave)
      name=server.mi->fileURI.substr(server.mi->fileURI.find_last_of('/')+1);
     n["selectedMap"].String()=name;
+    if(server.screenType==ESelectionScreen::newGame&&server.mi->mapHeader&&server.si)
+    {
+     const auto color=server.myFirstColor();
+     if(server.si->playerInfos.count(color))
+     {
+      const auto & player=server.getPlayerInfo(color);
+      n["onlineFaction"].Integer()=server.si->playerInfos.at(color).castle.getNum();
+      n["onlineRandomFaction"].Bool()=player.isFactionRandom;
+      for(const auto id:player.allowedFactions)
+      {
+       JsonNode faction;
+       faction["id"].Integer()=id.getNum();
+       faction["name"].String()=id.toFaction()->getNameTranslated();
+       n["onlineFactions"].Vector().push_back(std::move(faction));
+      }
+     }
+    }
     if(server.mi->scenarioOptionsOfSave)
      n["onlineCanResume"].Bool()=server.playerNames.size()>=server.mi->amountOfHumanPlayersInSave;
    }

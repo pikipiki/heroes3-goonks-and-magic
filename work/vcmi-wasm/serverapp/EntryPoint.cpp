@@ -17,6 +17,8 @@
 #include "../lib/GameLibrary.h"
 #include "../lib/CConfigHandler.h"
 #include "../lib/json/JsonNode.h"
+#include "../lib/mapping/GoonkScenario.h"
+#include "../lib/entities/faction/CFaction.h"
 
 #include <boost/program_options.hpp>
 #include <iostream>
@@ -35,6 +37,7 @@ static void handleCommandOptions(int argc, const char * argv[], boost::program_o
 	("hosted-seats", boost::program_options::value<std::string>(), "Map colors authorized by the dedicated gateway")
 	("hosted-map", boost::program_options::value<std::string>(), "Start a new dedicated match on the named map")
 	("hosted-scenarios", boost::program_options::value<std::string>(), "List maps compatible with the given dedicated seat colors")
+	("hosted-factions", boost::program_options::value<std::string>(), "Starting castles in authorized seat order, as a JSON array")
 	("hosted-restore", "Restore a dedicated match and accept authenticated loopback connections")
 	("verify-turn-checkpoint", "Load and validate the hosted save without opening a network listener")
 	("turn-checkpoint", "Save to Hosted-Turn.vsgm1 when a human turn starts (one game per user data directory)")
@@ -102,33 +105,49 @@ int main(int argc, const char * argv[])
 			const auto seats = HostedRestoreServer::parseSeats(opts["hosted-scenarios"].as<std::string>());
 			auto files = CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path)
 			{
-				return path.getType() == EResType::MAP && path.getName().starts_with("MAPS/");
+				return path.getType() == EResType::MAP && path.getName().starts_with("MAPS/") && !isGoonkShowcaseMap(path);
 			});
-			std::vector<std::pair<std::string, std::string>> maps;
+			std::vector<JsonNode> maps;
 			for(const auto & file : files)
 			{
 				try
 				{
 					CMapInfo map;
 					map.mapInit(file.getOriginalName());
-					if(HostedRestoreServer::supportsMap(map, seats))
-						maps.emplace_back(map.getNameForList(), file.getOriginalName());
+					if(!HostedRestoreServer::supportsMap(map, seats))
+						continue;
+					JsonNode row;
+					row["id"].String() = file.getOriginalName();
+					const auto name = map.getNameForList();
+					row["name"].String() = name.empty() ? file.getOriginalName() : name;
+					row["width"].Integer() = map.mapHeader->width;
+					for(const auto color : seats)
+					{
+						JsonNode choices;
+						const auto & player = map.mapHeader->players.at(color.getNum());
+						if(allowsCastleChoice(player))
+							for(const auto id : player.allowedFactions)
+							{
+								JsonNode faction;
+								faction["id"].Integer() = id.getNum();
+								faction["name"].String() = id.toFaction()->getNameTranslated();
+								choices.Vector().push_back(std::move(faction));
+							}
+						row["castles"].Vector().push_back(std::move(choices));
+					}
+					maps.push_back(std::move(row));
 				}
 				catch(const std::exception &)
 				{
 					// A map supplied by an incompatible mod must not hide the catalogue.
 				}
 			}
-			std::sort(maps.begin(), maps.end());
-			JsonNode catalogue;
-			auto & entries = catalogue.Vector();
-			for(const auto & [name, file] : maps)
+			std::sort(maps.begin(), maps.end(), [](const JsonNode & a, const JsonNode & b)
 			{
-				JsonNode row;
-				row["name"].String() = name.empty() ? file : name;
-				row["id"].String() = file;
-				entries.push_back(std::move(row));
-			}
+				return std::tie(a["name"].String(), a["id"].String()) < std::tie(b["name"].String(), b["id"].String());
+			});
+			JsonNode catalogue;
+			catalogue.Vector() = std::move(maps);
 			auto json = catalogue.toCompactString();
 			std::erase(json, '\n');
 			std::cout << "\nGOONK_SCENARIOS " << json << std::endl;
@@ -161,7 +180,13 @@ int main(int argc, const char * argv[])
 			HostedRestoreServer server(port, key ? key : "");
 			if(!opts.count("hosted-seats") || (opts.count("hosted-restore") && opts.count("hosted-map")))
 				throw std::runtime_error("Specify hosted seats and exactly one hosted start mode");
-			server.start(opts.count("hosted-map") ? opts["hosted-map"].as<std::string>() : "", opts["hosted-seats"].as<std::string>());
+			JsonNode factions;
+			if(opts.count("hosted-factions"))
+			{
+				const auto & text = opts["hosted-factions"].as<std::string>();
+				factions = JsonNode(text.data(), text.size(), "hosted factions");
+			}
+			server.start(opts.count("hosted-map") ? opts["hosted-map"].as<std::string>() : "", opts["hosted-seats"].as<std::string>(), factions);
 			server.run();
 		}
 		catch(const std::exception & error)

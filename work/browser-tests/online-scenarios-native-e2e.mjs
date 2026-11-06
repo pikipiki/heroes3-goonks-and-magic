@@ -10,6 +10,7 @@ const panel = page.locator('.online-lobby');
 
 try {
   await page.addInitScript(() => {
+    Object.defineProperty(Clipboard.prototype, 'writeText', {value: async value => { window.testCopied = value; }});
     Object.defineProperty(Clipboard.prototype, 'readText', {value: async () => ' H'.repeat(43)});
     Object.defineProperty(ServiceWorkerRegistration.prototype, 'pushManager', {get() {
       return window.testPushReady ? {subscribe: async () => ({toJSON: () => ({endpoint: 'https://example.invalid/push'})})} : undefined;
@@ -102,6 +103,56 @@ try {
     await page.locator('#game-menu [data-menu=close]').tap();
   }
 
+  const poolEndpoint = await page.evaluate(() => window.goonkHostedAlerts?.poolEndpoint);
+  if (poolEndpoint) {
+    const primaryCode = 'H'.repeat(43);
+    const matchId = '527329c6-19f9-4284-9aa0-dace75c66a32';
+    const codes = [{seat: 0, code: 'HG' + 'R'.repeat(41)}, {seat: 1, code: 'HG' + 'B'.repeat(41)}];
+    const scenarios = [
+      {id: 'medium', name: 'Medium map', width: 72, castles: [[{id: 0, name: 'Castle'}], [{id: 3, name: 'Inferno'}]]},
+      {id: 'small', name: 'Small map', width: 36, castles: [[{id: 0, name: 'Castle'}, {id: 1, name: 'Rampart'}], [{id: 3, name: 'Inferno'}, {id: 4, name: 'Necropolis'}]]},
+    ];
+    let request;
+    await page.route(new RegExp(new URL(poolEndpoint).origin + '/hosted/matches'), route => {
+      const headers = {'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Authorization, Content-Type'};
+      if (route.request().method() === 'OPTIONS') return route.fulfill({status: 204, headers});
+      assert.equal(route.request().headers().authorization, 'Bearer ' + primaryCode);
+      if (route.request().method() === 'GET') return route.fulfill({status: 200, headers, json: {scenarios}});
+      request = route.request().postDataJSON();
+      return route.fulfill({status: 201, headers, json: {matchId, codes}});
+    });
+    await page.route(url => url.href === poolEndpoint + '?preview=1', route => {
+      const headers = {'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Authorization'};
+      if (route.request().method() === 'OPTIONS') return route.fulfill({status: 204, headers});
+      assert.equal(route.request().headers().authorization, 'Bearer ' + codes[0].code);
+      return route.fulfill({status: 200, headers, json: {matchId, players: 2, connectedPlayers: 1}});
+    });
+    await page.locator('[data-open-hosted-match]').tap();
+    await page.locator('[data-hosted-seat-code]').fill(primaryCode);
+    await page.getByRole('button', {name: 'Create a hosted match', exact: true}).tap();
+    await page.locator('[data-create-map] option[value=small]').waitFor({state: 'attached'});
+    assert.equal(await page.locator('[data-create-map]').inputValue(), 'small');
+    await page.locator('[data-create-castles] select').first().selectOption('1');
+    await page.getByRole('button', {name: 'Create match and get codes', exact: true}).tap();
+    await page.locator('[data-create-codes] [data-seat="1"]').tap();
+    assert.equal(await page.evaluate(() => window.testCopied), codes[1].code);
+    assert.deepEqual(request.factions, [1, null]);
+    assert.equal(request.players, 2);
+    assert(await page.getByRole('button', {name: 'Resume match', exact: true}).isVisible());
+    await page.getByText('1 of 2 players connected', {exact: true}).waitFor();
+    await page.locator('#game-menu [data-menu=close]').tap();
+  }
+
+  await page.locator('.mobile-menu [data-action="20"]').tap();
+  await wait(() => {
+    const state = window.goonkMobileState;
+    const map = state?.maps?.find(map => map.name === state.selectedMap);
+    return state?.mode === 'lobby' && map?.width === 144 && map.castleChoice && state.factions?.length > 1;
+  });
+  assert.equal(await page.locator('#mobile-map-select option').filter({hasText: /^Goonks?( Online)?$/}).count(), 0);
+  await page.locator('.lobby-footer [data-ui=back]').tap();
   await page.getByRole('button', {name: 'Online', exact: true}).tap();
   await page.locator('.online-login input').fill('ScenarioHost' + String(Date.now()).slice(-6));
   await page.locator('.online-login [type=submit]').tap();
@@ -109,18 +160,25 @@ try {
   await panel.locator('[data-room-action=limit][data-room-id="4"]').tap();
   await panel.locator('[data-room-action=confirm-room]').tap();
   await wait(() => goonkMobileState.onlineHost && goonkMobileState.onlineRoomLimit === 4 && goonkMobileState.onlineScenarios?.length);
+  await wait(() => {
+    const state = goonkMobileState;
+    const selected = state.onlineScenarios?.find(map => map.index === state.onlineScenarioIndex);
+    return selected?.width === 36 && selected.castleChoice;
+  });
+  assert(await panel.getByLabel('Your castle').isVisible());
   await panel.locator('[data-room-action=scenario]').tap();
   const chosen = await page.evaluate(() => {
     const maps = goonkMobileState.onlineScenarios;
     if (maps.some(map => map.humanSeats < 4)) throw Error('Map has too few human slots');
-    return maps.find(map => map.name !== 'Goonks Online');
+    if (maps.some(map => /^Goonks?( Online)?$/.test(map.name))) throw Error('Goonk map is still selectable');
+    return maps.find(map => map.index !== goonkMobileState.onlineScenarioIndex);
   });
   assert(chosen, 'At least one alternate map fits the room');
   await panel.getByRole('searchbox').fill(chosen.name);
   await panel.locator(`[data-room-action=choose-scenario][data-room-id="${chosen.index}"]`).tap();
   await wait(index => goonkMobileState.onlineScenarioIndex === index, chosen.index);
   await panel.getByText(chosen.name, {exact: true}).waitFor();
-  console.log('PASS hosted entry, code editing, paste, push activation, resume after reload, invalidated access, map submission and four-seat room selection');
+  console.log('PASS hosted entry, code editing, paste, push activation, resume after reload, invalidated access, match creation and copy, occupancy, XL solo and four-seat S multiplayer defaults');
 } finally {
   await browser.close();
 }

@@ -9,6 +9,7 @@
 #include "TurnCheckpointServer.h"
 
 #include "../lib/mapping/CMapHeader.h"
+#include "../lib/mapping/GoonkScenario.h"
 #include "../lib/mapObjects/CGHeroInstance.h"
 #include "../server/queries/QueriesProcessor.h"
 #include "../lib/networkPacks/PacksForLobby.h"
@@ -76,7 +77,7 @@ public:
 		});
 	}
 
-	void start(const std::string & mapName, const std::string & colors)
+	void start(const std::string & mapName, const std::string & colors, const JsonNode & factions)
 	{
 		const auto seats = parseSeats(colors);
 		if(mapName.empty())
@@ -95,6 +96,23 @@ public:
 				playerNames.emplace(id, ClientPlayer{connectionFor(color), color.toString()});
 			}
 			updateStartInfoOnMapChange(map);
+			if(!factions.isNull())
+			{
+				if(factions.Vector().size() != seats.size())
+					throw std::runtime_error("Hosted factions do not match the seat roster");
+				size_t index = 0;
+				for(const auto color : seats)
+				{
+					const auto & chosen = factions.Vector().at(index++);
+					if(chosen.isNull())
+						continue;
+					const FactionID faction(chosen.Integer());
+					const auto & player = getPlayerInfo(color);
+					if(!allowsCastleChoice(player) || !player.allowedFactions.contains(faction))
+						throw std::runtime_error("Hosted faction is unavailable on this map");
+					optionSetCastle(color, faction);
+				}
+			}
 		}
 
 		if(si->playerInfos.size() != seats.size() || si->turnTimerInfo.isEnabled()
