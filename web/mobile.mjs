@@ -256,6 +256,7 @@ function mount(){
   const countdown=state.mode==='map'&&state.turnRemainingMs!==undefined
    ? Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0')+' · ' : '';
   root.querySelector('.scene-hint').textContent=countdown+hint;controls();if(sheetKind==='army'&&(changedTurn||armySignature!==JSON.stringify(state.armies||[])))refreshArmy();if(sheetKind==='build')townBuildings.update(state);
+  if(!refresh&&state.mode==='town'&&state.openTownHall)void townBuildings.open();
  }
  const townBuildings=createTownBuildingMenu({body,getState:()=>state,asset,backButton:sheet.querySelector('[data-ui="sheet-back"]'),canOpen:()=>state.mode==='town'&&!sheetKind,
   openSheet,closeSheet,command,notify});

@@ -83,6 +83,7 @@
 
 namespace {
 bool mobileEnabled=false,stateEnabled=false,audioMuted=false;
+std::optional<int> mobileTownHall;
 ui32 previousSoundVolume=75,previousMusicVolume=75;
 std::vector<ResourcePath> pendingMobileMaps;size_t mobileMapCursor=0;
 struct MobileScenario
@@ -370,6 +371,9 @@ void publishMobileState(){
  if(audioMuted){if(ENGINE->sound().getVolume()!=0)ENGINE->sound().setVolume(0);if(ENGINE->music().getVolume()!=0)ENGINE->music().setVolume(0);}
  portraitIds.clear();artifactIconIds.clear();JsonNode n;n["mapSettings"]["moveTime"].Integer()=settings["adventure"]["heroMoveTime"].Integer();n["mapSettings"]["enemyMoveTime"].Integer()=settings["adventure"]["enemyMoveTime"].Integer();n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top)n["rect"]=rect(top->pos);
  auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();auto recruitWindow=ENGINE->windows().topWindow<CRecruitmentWindow>();auto fortWindow=ENGINE->windows().topWindow<CFortScreen>();auto creatureWindow=ENGINE->windows().topWindow<CStackWindow>();auto spellWindow=ENGINE->windows().topWindow<CSpellWindow>();auto heroWindow=ENGINE->windows().topWindow<CHeroWindow>();
+ const bool openTownHall=mobileEnabled&&townWindow&&mobileTownHall==townWindow->town->id.getNum();
+ if(openTownHall)n["openTownHall"].Bool()=true;
+ else if(townWindow||!p)mobileTownHall.reset();
  // Upgrade the native preview in place after the server changes this stack.
  // No map/town snapshot is published between the old and refreshed windows.
  if(creatureWindow&&!CPlayerInterface::battleInt)if(const auto stack=creatureWindow->getMobileStack())if(stack->getCreature()!=creatureWindow->getMobileCreature()||stack->getCount()!=creatureWindow->getMobileCount()){
@@ -765,9 +769,10 @@ void publishMobileState(){
    const auto hovered=b->fieldController->getHoveredStack();if(hovered)n["targetUnit"]=creature(hovered->unitType(),hovered->getCount());if(active)for(auto & unit:n["battleUnits"].Vector()){const BattleHex position(unit["occupied"].Vector().empty()?0:unit["occupied"].Vector()[0].Integer());unit["canShootAt"].Bool()=b->getBattle()->battleCanShoot(active,position);unit["canMeleeAt"].Bool()=b->getBattle()->battleCanAttackHex(reachable,active,position);}}
  }
  publishPortraits();publishArtifactIcons();const auto text=n.toCompactString();
- if(text==lastSnapshot&&SDL_GetTicks()-lastSent<1000)return;
+ if(!openTownHall&&text==lastSnapshot&&SDL_GetTicks()-lastSent<1000)return;
  auto * snapshot=static_cast<char *>(malloc(text.size()+1));if(!snapshot)return;
  memcpy(snapshot,text.c_str(),text.size()+1);lastSnapshot=text;lastSent=SDL_GetTicks();snapshotPending.store(true);
+ if(openTownHall)mobileTownHall.reset();
  // Never wait for DOM handlers while holding GameEngine::interfaceMutex.
  // Keep at most one notification in flight if the browser is busy.
  MAIN_THREAD_ASYNC_EM_ASM({
@@ -778,6 +783,13 @@ void publishMobileState(){
 }
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileStateAck(){snapshotPending.store(false);}
 bool isMobilePresentationActive(){return mobileEnabled;}
+bool requestMobileTownHall(int townId)
+{
+ if(!mobileEnabled)return false;
+ mobileTownHall=townId;
+ lastPublished=0;
+ return true;
+}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileEnable(int enabled){if(ENGINE)ENGINE->dispatchMainThread([enabled](){mobileEnabled=enabled==1;stateEnabled=enabled!=0;lastPublished=0;});}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePointer(int x,int y,int action)
 {
@@ -1205,4 +1217,5 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
 void publishMobileState(){}
 void publishMobileBattleAtlas(){}
 bool isMobilePresentationActive(){return false;}
+bool requestMobileTownHall(int){return false;}
 #endif

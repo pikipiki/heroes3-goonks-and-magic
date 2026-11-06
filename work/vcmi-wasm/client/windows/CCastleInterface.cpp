@@ -20,6 +20,7 @@
 #include "../CPlayerInterface.h"
 #include "../GameEngine.h"
 #include "../GameInstance.h"
+#include "../MobileBridge.h"
 #include "../PlayerLocalState.h"
 
 #include "../gui/Shortcut.h"
@@ -1270,6 +1271,8 @@ void CCastleBuildings::openMagesGuild()
 
 void CCastleBuildings::openTownHall()
 {
+	if (requestMobileTownHall(town->id.getNum()))
+		return;
 	ENGINE->windows().createAndPushWindow<CHallInterface>(town);
 }
 

@@ -9,3 +9,14 @@ test('A rejected window command releases the previous view and later input still
 test('Book and equipment entry/exit commands protect presentation but normal battle actions do not',()=>{for(const [a,b] of [[14,0],[62,17],[55,0],[63,0],[0,0],[54,0],[30,1],[42,1]])assert(opensMobileWindow(a,b));for(const [a,b] of [[14,1],[62,2],[12,0],[13,0],[44,1],[34,0],[4,0],[2,0]])assert(!opensMobileWindow(a,b));});
 
 test('A town retains the previous view until its artwork is decoded; cancellation stays authoritative',()=>{let loaded=false;const shown=[],t=createHeroTransition(s=>shown.push(s),{ready:s=>s.mode!=='town'||loaded});t.receive({mode:'town',townName:'A'},'map');for(let i=0;i<12;i++)assert(t.frame());assert.equal(shown.length,0);loaded=true;assert(t.frame());assert(!t.frame());assert.equal(shown[0].townName,'A');loaded=false;t.receive({mode:'town',townName:'B'},'town');assert(t.frame());t.receive({mode:'menu'},'town');loaded=true;assert(!t.frame());assert.equal(shown.at(-1).mode,'menu');});
+
+test('A mobile town hall request opens its sheet without waiting for a different native window',()=>{
+ const shown=[],transition=createHeroTransition(state=>shown.push(state),{ready:()=>false});
+ transition.begin('town');
+ transition.receive({mode:'town'},'town');
+ assert(transition.pending);
+ const request={mode:'town',openTownHall:true};
+ transition.receive(request,'town');
+ assert.deepEqual(shown,[request]);
+ assert(!transition.pending);
+});

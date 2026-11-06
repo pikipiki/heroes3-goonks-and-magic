@@ -6,9 +6,9 @@ export function opensMobileWindow(action,value=0){return [0,5,30,33,39,41,42,43,
 export function createHeroTransition(apply,{now=()=>performance.now(),timeout=2000,ready=()=>true}={}){let pending=null,frames=0,waiting=null;return{
  begin(currentMode){if(!waiting)waiting={mode:currentMode,until:now()+timeout};},
  receive(next,currentMode){
-  if(waiting&&next.mode===waiting.mode&&now()<waiting.until)return;
+  if(waiting&&!next.openTownHall&&next.mode===waiting.mode&&now()<waiting.until)return;
   waiting=null;
-  if(adapted.has(next.mode)&&(currentMode!==next.mode||!ready(next))){if(pending?.mode!==next.mode)frames=0;pending=next;return;}
+  if(!next.openTownHall&&adapted.has(next.mode)&&(currentMode!==next.mode||!ready(next))){if(pending?.mode!==next.mode)frames=0;pending=next;return;}
   pending=null;frames=0;apply(next);
  },
  frame(){if(waiting){if(now()<waiting.until)return true;waiting=null;}
