@@ -99,7 +99,12 @@ function mount(){
  const mapPan=createMapPan(d=>window.Module?._vcmiMobilePan?.(d.x,d.y));
  const notify=text=>{const box=root.querySelector('.toast-mobile');box.textContent=text;box.hidden=false;clearTimeout(box.timer);box.timer=setTimeout(()=>box.hidden=true,2800);};
  const director=createBattleDirector(),cameraMotion=matchMedia('(prefers-reduced-motion: reduce)');let battleDetailScale=1,battleSession=false;
- const dualBattle=createBattleDualView({root,scene,getState:effectiveBattle,getView:()=>battleView,onFocus:point=>{if(sheetKind)return;director.explore(point);selectedPoint=null;focus=point;battleCamera={...point};renderBattlePanel();controls();},onUnit:unit=>{if(sheetKind)return;director.follow();focus={x:unit.x,y:unit.y};battleCamera={...focus};if(unit.stackId===state.activeStack&&!state.spellTargeting){selectedPoint=null;renderBattlePanel();controls();}else selectBattlePoint({x:unit.x,y:unit.y});}});
+ const dualBattle=createBattleDualView({root,scene,getState:effectiveBattle,getView:()=>battleView,onFocus:(point,unit)=>{
+  if(sheetKind)return;
+  director.explore(point);selectedPoint=null;focus=point;battleCamera={...point};
+  if(unit&&(unit.stackId!==state.activeStack||state.spellTargeting))selectBattlePoint({x:unit.x,y:unit.y});
+  renderBattlePanel();controls();
+ }});
  const asset=icon=>{if(!icon)return '';const entries=window.goonkAssetURLs||[];const key=icon.toLowerCase(),match=entries.find(e=>e.path.toLowerCase().endsWith('/sprites2x/'+key))||entries.find(e=>e.path.toLowerCase().endsWith('/sprites/'+key));return match?.url||'';};
  const creatureView=createCreaturePresentation({root,command,pointer,openRecruit});
  const spellbook=createMobileSpellbook({root,command});
