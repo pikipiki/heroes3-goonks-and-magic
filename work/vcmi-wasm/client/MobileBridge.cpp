@@ -230,6 +230,11 @@ const CGTownInstance * mobileResidentTown(const CGHeroInstance * hero){
  if(!hero)return nullptr;const auto town=hero->getVisitedTown();
  return town&&(town->getVisitingHero()==hero||town->getGarrisonHero()==hero)?town:nullptr;
 }
+bool visitingHeroHasGrail(const CGTownInstance * town)
+{
+ const auto visitor=town->getVisitingHero();
+ return visitor&&visitor->hasArt(ArtifactID::GRAIL);
+}
 void mobileTownArmies(JsonNode & n,const CGTownInstance * town){
  n["armyTownId"].Integer()=town->id.getNum();n["armies"].Vector().clear();
  const auto upper=town->getUpperArmy();const auto defender=town->getGarrisonHero();
@@ -733,7 +738,26 @@ void publishMobileState(){
   index=0;for(auto t:p->localState->getOwnedTowns()){JsonNode item;item["name"].String()=t->getNameTranslated();item["index"].Integer()=index++;n["towns"].Vector().push_back(item);}
   if(townWindow||fortWindow){const auto town=townWindow?townWindow->town:fortWindow->getMobileTown();n["townName"].String()=town->getNameTranslated();n["townFaction"].String()=town->getFaction()->getJsonKey();mobileTownArmies(n,town);
    for(const auto & level:town->spells){JsonNode row;row.Vector();for(const auto spell:level)row.Vector().push_back(JsonNode(double(spell.getNum())));n["townSpells"].Vector().push_back(row);}
-   for(const auto & entry:town->getTown()->buildings){if(!entry.second||entry.first.getNum()<0)continue;JsonNode b;b["id"].Integer()=entry.first.getNum();b["name"].String()=entry.second->getNameTranslated();b["key"].String()=entry.second->getJsonKey();b["baseId"].Integer()=entry.second->getBase().getNum();b["upgradeId"].Integer()=entry.second->upgrade.getNum();b["description"].String()=entry.second->getDescriptionTranslated();b["built"].Bool()=town->hasBuilt(entry.first);const auto buildState=p->cb->canBuildStructure(town,entry.first);b["allowed"].Bool()=buildState==EBuildingState::ALLOWED;b["state"].Integer()=static_cast<int>(buildState);for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())b["cost"].Vector().push_back(JsonNode(double(town->getBuildingCost(entry.first)[resource])));n["buildings"].Vector().push_back(b);}
+   for(const auto & [id,building]:town->getTown()->buildings)
+   {
+    if(!building||id.getNum()<0)continue;
+    JsonNode b;
+    b["id"].Integer()=id.getNum();
+    b["name"].String()=building->getNameTranslated();
+    b["key"].String()=building->getJsonKey();
+    b["baseId"].Integer()=building->getBase().getNum();
+    b["upgradeId"].Integer()=building->upgrade.getNum();
+    b["description"].String()=building->getDescriptionTranslated();
+    b["built"].Bool()=town->hasBuilt(id);
+    const auto buildState=p->cb->canBuildStructure(town,id);
+    const bool needsGrail=id==BuildingID::GRAIL&&!visitingHeroHasGrail(town);
+    b["allowed"].Bool()=buildState==EBuildingState::ALLOWED&&!needsGrail;
+    b["state"].Integer()=static_cast<int>(buildState);
+    if(id==BuildingID::GRAIL)b["needsGrail"].Bool()=needsGrail;
+    for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())
+     b["cost"].Vector().push_back(JsonNode(double(town->getBuildingCost(id)[resource])));
+    n["buildings"].Vector().push_back(b);
+   }
    if(fortWindow){
     if(const auto selected=fortWindow->getMobilePreviewCreature())n["fortSelectedId"].Integer()=selected->getId().getNum();
     for(size_t level=0;level<town->getTown()->creatures.size();level++){
@@ -1176,7 +1200,17 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
 
  if(action==7&&ENGINE->windows().topWindow<AdventureMapInterface>())p->cb->save("Saves/Goonk-mobile",true);
  if(action==39){if(townWindow&&townWindow->builds&&townWindow->town->getOwner()==p->playerID&&a>=0&&townWindow->town->getTown()->buildings.count(BuildingID(a))&&townWindow->town->hasBuilt(BuildingID(a)))townWindow->builds->buildingClicked(BuildingID(a));lastPublished=0;return;}
- if(action==8&&p->makingTurn&&townWindow&&townWindow->town->getOwner()==p->playerID&&p->cb->canBuildStructure(townWindow->town,BuildingID(a))==EBuildingState::ALLOWED)p->cb->buildBuilding(townWindow->town,BuildingID(a));
+ if(action==8&&p->makingTurn&&townWindow&&townWindow->town->getOwner()==p->playerID)
+ {
+  const BuildingID id(a);
+  const auto town=townWindow->town;
+  if(p->cb->canBuildStructure(town,id)!=EBuildingState::ALLOWED)return;
+  if(id==BuildingID::GRAIL)
+  {
+   if(townWindow->builds&&visitingHeroHasGrail(town))townWindow->builds->enterTownHall();
+  }
+  else p->cb->buildBuilding(town,id);
+ }
  if(action==9&&p->makingTurn&&townWindow&&townWindow->town->getOwner()==p->playerID){const auto t=townWindow->town;if(a>=0&&a<int(t->creatures.size())&&b>=0&&b<int(t->creatures[a].second.size())&&c>0){const auto id=t->creatures[a].second[b];p->cb->recruitCreatures(t,t->getUpperArmy(),id,std::min(c,int(t->creatures[a].first)),a);}}
  if(action==30&&(townWindow||ENGINE->windows().topWindow<CFortScreen>())){
   const auto town=townWindow?townWindow->town:ENGINE->windows().topWindow<CFortScreen>()->getMobileTown();

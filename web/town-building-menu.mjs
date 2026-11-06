@@ -21,6 +21,10 @@ function category({key}) {
 const buildingText = text => plainGameText(text).replaceAll('{}', '').trim();
 const name = building => buildingText(building.name);
 const description = building => buildingText(building.description);
+const isGrail = building => building.key?.split(':').at(-1) === 'grail';
+const constructionReason = building => building.needsGrail && building.state !== 2
+  ? 'Amène un héros qui porte le Graal dans cette ville.'
+  : buildReason(building.state);
 const visibleBuildings = buildings => (buildings || []).filter(building => name(building) || description(building));
 
 function buildingCards(buildings) {
@@ -96,7 +100,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const summary = text.match(/^[\s\S]*?[.!?](?=\s|$)/)?.[0] || text;
     const variants = building.variants?.length ?? 0;
     const caption = building.built ? (variants > 1 ? `<small>${variants} variantes</small>` : '') :
-      building.allowed ? cost(state, building) : `<small>${escape(buildReason(building.state))}</small>`;
+      building.allowed ? cost(state, building) : `<small>${escape(constructionReason(building))}</small>`;
     return `<button type="button" class="building-tile" data-building-id="${building.id}">${picture(state, building)}
       <strong>${escape(displayName(building))}</strong>
       <span class="building-summary">${escape(summary)}</span>
@@ -128,7 +132,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
       ${visible.length ? '' : `<p>${tab === 'built' ? 'Aucun bâtiment construit.' : 'Tous les bâtiments sont déjà construits.'}</p>`}`;
   }
   function detail(state, building) {
-    const reason = building.built ? '' : !building.allowed ? buildReason(building.state) : !state.turn ? 'Disponible à ton tour' : '';
+    const reason = building.built ? '' : !building.allowed ? constructionReason(building) : !state.turn ? 'Disponible à ton tour' : '';
     const descriptions = [...new Set((building.variants || [building]).map(description).filter(Boolean))];
     const effects = descriptions.length > 1 ? `<h4>Effets selon la variante</h4><ul>${descriptions.map(text => `<li>${escape(text)}</li>`).join('')}</ul>` :
       (descriptions.length ? `<p>${escape(descriptions[0])}</p>` : '');
@@ -137,7 +141,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
         ${effects}
         ${building.built ? '' : cost(state, building)}
         ${reason ? `<p class="building-reason">${escape(reason)}</p>` : ''}
-        <button type="button" class="primary" data-building-action ${reason ? 'disabled' : ''}>${building.built ? 'Voir' : 'Construire'}</button>
+        <button type="button" class="primary" data-building-action ${reason ? 'disabled' : ''}>${building.built ? 'Voir' : isGrail(building) ? 'Installer le Graal' : 'Construire'}</button>
         </div></article>`;
   }
   function render(state) {
@@ -174,7 +178,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
         else if (item?.allowed && current.turn) {
           command(8, item.id);
           closeSheet();
-          notify('Construction demandée : ' + plainGameText(item.name));
+          if (!isGrail(item)) notify('Construction demandée : ' + plainGameText(item.name));
         }
       }
     });
