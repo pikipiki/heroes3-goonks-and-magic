@@ -1,4 +1,5 @@
 const updateCheckMs = 3500;
+const installationMs = 30000;
 const activationRequestMs = 1500;
 const activationMs = 8000;
 
@@ -11,16 +12,17 @@ async function withTimeout(promise, ms) {
   }
 }
 
-async function findWaitingRelease(registration) {
-  if (registration.waiting) return registration.waiting;
-  await registration.update().catch(() => {});
-  if (registration.waiting || !registration.installing) return registration.waiting;
-  const worker = registration.installing;
+async function findPendingRelease(registration) {
+  if (!registration.waiting && !registration.installing) await registration.update().catch(() => {});
+  return registration.waiting || registration.installing;
+}
+
+function waitForInstallation(worker) {
   return new Promise(resolve => {
     const check = () => {
       if (worker.state === 'installing') return;
       worker.removeEventListener('statechange', check);
-      resolve(registration.waiting);
+      resolve();
     };
     worker.addEventListener('statechange', check);
     check();
@@ -37,8 +39,14 @@ export async function refreshOfflineRelease(showStatus) {
 
   const changed = () => serviceWorker.controller && serviceWorker.controller !== controller;
   const reload = () => { location.reload(); return true; };
-  const waiting = await withTimeout(registered.then(reg => reg && findWaitingRelease(reg)), updateCheckMs);
+  const pending = await withTimeout(registered.then(reg => reg && findPendingRelease(reg)), updateCheckMs);
   if (changed()) return reload();
+  if (pending?.state === 'installing') {
+    showStatus('Téléchargement de la mise à jour…');
+    await withTimeout(waitForInstallation(pending), installationMs);
+    if (changed()) return reload();
+  }
+  const waiting = pending && (await registered)?.waiting;
   if (!waiting) return false;
 
   const channel = new MessageChannel();

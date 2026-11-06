@@ -24,7 +24,9 @@ const server = createServer((request, response) => {
     'Cross-Origin-Opener-Policy': 'same-origin',
     'Cross-Origin-Embedder-Policy': 'require-corp',
   });
-  response.end(body);
+  if (version === 'slow' && file === 'game.html') {
+    setTimeout(() => response.end(body), 4500);
+  } else response.end(body);
 });
 
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
@@ -61,10 +63,16 @@ try {
       assert.equal(page.url(), url);
       assert.equal(await page.evaluate(() => localStorage.getItem('saved-game-fixture')), 'keep');
 
+      version = 'slow';
+      await page.reload();
+      await ready(page, 'slow');
+      assert.equal(page.url(), url);
+      assert.equal(await page.evaluate(() => localStorage.getItem('saved-game-fixture')), 'keep');
+
       version = 'third';
       networkAvailable = false;
       await page.goto(url.replace('?mobile=1', '?mobile=1&offline=1'));
-      await ready(page, 'second');
+      await ready(page, 'slow');
       console.log('PASS', kind, 'update on launch, other game protected, offline launch');
     } finally {
       await browser.close();
