@@ -6,12 +6,21 @@ export function gameDate(day){
 }
 export function createGameCalendar(root){
  const calendar=document.createElement('div');calendar.className='mobile-calendar';calendar.hidden=true;calendar.setAttribute('role','status');
- const date=document.createElement('span'),next=document.createElement('span');next.className='calendar-next-week';calendar.append(date,next);root.querySelector('.mobile-top').append(calendar);
+ const date=document.createElement('span'),next=document.createElement('span');
+ const compactDate=document.createElement('span'),compactNext=document.createElement('span');
+ next.className='calendar-next-week';compactDate.className='calendar-compact';compactNext.className='calendar-compact calendar-next-week';
+ calendar.append(date,next,compactDate,compactNext);root.querySelector('.mobile-top').append(calendar);
  return state=>{
   const value=gameDate(state.day),visible=!!value&&!['menu','load','lobby','campaign','connecting','hero','battle'].includes(state.mode)&&state.resources?.length>=7;
   calendar.hidden=!visible;root.dataset.hasCalendar=String(visible);if(!visible)return;
-  const english=getLanguage()==='en',label=english?`Day ${value.weekday}/7 · Week ${value.week} · Month ${value.month}`:`Jour ${value.weekday}/7 · Semaine ${value.week} · Mois ${value.month}`,remaining=english?(value.weekday===7?'Last day of the week':`${7-value.weekday} days left this week`):value.weekday===7?'Dernier jour de la semaine':`Encore ${7-value.weekday} j cette semaine`;
+  const english=getLanguage()==='en',daysLeft=7-value.weekday,englishDays=daysLeft===1?'1 day left':`${daysLeft} days left`,label=english?`Day ${value.weekday}/7 · Week ${value.week} · Month ${value.month}`:`Jour ${value.weekday}/7 · Semaine ${value.week} · Mois ${value.month}`,remaining=english?(value.weekday===7?'Last day of the week':`${englishDays} this week`):value.weekday===7?'Dernier jour de la semaine':`Encore ${daysLeft} j cette semaine`;
   if(date.textContent!==label)date.textContent=label;if(next.textContent!==remaining)next.textContent=remaining;
+  if(state.mode==='map'){
+   const shortDate=english?`Day ${value.weekday}/7 · W${value.week} · M${value.month}`:`Jour ${value.weekday}/7 · S${value.week} · M${value.month}`;
+   const shortNext=english?(value.weekday===7?'Last day':englishDays):value.weekday===7?'Dernier jour':`Encore ${daysLeft} j`;
+   if(compactDate.textContent!==shortDate)compactDate.textContent=shortDate;
+   if(compactNext.textContent!==shortNext)compactNext.textContent=shortNext;
+  }
   calendar.title=english?`Game day ${state.day}. ${label}. ${remaining}.`:`Jour ${state.day} de la partie. ${label}. ${remaining}.`;
  };
 }
