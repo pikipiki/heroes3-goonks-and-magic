@@ -27,6 +27,9 @@
 #mobile-app .lobby-player-colour{display:block;width:14px;height:14px;border:1px solid #ead198;flex:0 0 14px;background:#bba574}
 #mobile-app [data-player-colour="0"]{background:#c44132}#mobile-app [data-player-colour="1"]{background:#4d79ce}#mobile-app [data-player-colour="2"]{background:#bba574}#mobile-app [data-player-colour="3"]{background:#57a564}#mobile-app [data-player-colour="4"]{background:#d38933}#mobile-app [data-player-colour="5"]{background:#a067b9}#mobile-app [data-player-colour="6"]{background:#4faaaa}#mobile-app [data-player-colour="7"]{background:#d899b3}
 #mobile-app .lobby-players[hidden]{display:none!important}
+#mobile-app .lobby-players summary{padding:10px 12px;min-height:48px;box-sizing:border-box;cursor:pointer;color:#ffe4a3;line-height:1.4;text-align:left}
+#mobile-app .lobby-players summary strong{float:inline-end;margin-inline-start:8px}
+#mobile-app .lobby-players[open] summary{border-bottom:1px solid #b89a56}
 #mobile-app .lobby-footer{display:flex;flex-direction:column;gap:8px;padding:8px 16px max(8px,env(safe-area-inset-bottom));border-top:3px ridge #c4a460;background:#24180e url('./h3-theme/stone.png');box-shadow:0 -4px 12px #0006;min-width:0;z-index:1}
 #mobile-app .lobby-footer .lobby-status{font-size:12px;line-height:1.3;margin:0;max-width:none;color:#e0ca97}
 #mobile-app .lobby-footer>div{display:grid;grid-template-columns:minmax(72px,.6fr) minmax(0,1.4fr);gap:8px}

@@ -1,3 +1,4 @@
+import {scenarioTitle} from './scenario-title.mjs';
 import {getLanguage} from './i18n.mjs';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => (
@@ -64,9 +65,9 @@ export function createOnlineLobby(root, command) {
   let defaultScenario = false;
   function renderScenarios() {
     const query = body.querySelector('[data-online-scenario-search]').value.trim().toLocaleLowerCase();
-    const scenarios = (state.onlineScenarios || []).filter(map => map.name.toLocaleLowerCase().includes(query));
+    const scenarios = (state.onlineScenarios || []).filter(map => scenarioTitle(map.name).toLocaleLowerCase().includes(query));
     write(body.querySelector('[data-online-scenarios]'), scenarios.map(map =>
-      button(`${map.name} · ${map.humanSeats} ${t('human seats', 'places humaines')}`, 'choose-scenario', {
+      button(`${scenarioTitle(map.name)} · ${map.humanSeats} ${t('human seats', 'places humaines')}`, 'choose-scenario', {
         id: String(map.index), pressed: map.index === state.onlineScenarioIndex, disabled: !!sending,
       })).join('') || `<p>${state.mapsLoading ? t('Loading scenarios…', 'Chargement des scénarios…') :
         t('No matching scenario for this room.', 'Aucun scénario correspondant pour ce salon.')}</p>`);
@@ -140,7 +141,7 @@ export function createOnlineLobby(root, command) {
         ${state.onlinePlayers?.length ? `<ul>${state.onlinePlayers.map(name => `<li>${escape(name)}</li>`).join('')}</ul>` : ''}
         ${count < 2 ? `<p>${t('Waiting for another player to join.', 'En attente d’un autre joueur.')}</p>` : ''}
         ${state.onlineHost ? button(t('Invite players', 'Inviter des joueurs'), 'invite') : ''}</section>
-        <section><h3>${t('Scenario', 'Scénario')}</h3><p>${escape(state.selectedMap || t('No scenario selected.', 'Aucun scénario sélectionné.'))}</p>
+        <section><h3>${t('Scenario', 'Scénario')}</h3><p>${escape(scenarioTitle(state.selectedMap) || t('No scenario selected.', 'Aucun scénario sélectionné.'))}</p>
         ${state.onlineFactions?.length > 1 ? `<label>${t('Your castle', 'Ton château')}<select data-online-faction>${(state.onlineRandomFaction ? [{id:-1,name:t('Random','Aléatoire')}] : []).concat(state.onlineFactions).map(faction => `<option value="${faction.id}"${faction.id===state.onlineFaction?' selected':''}>${escape(faction.name)}</option>`).join('')}</select></label>` : ''}
         ${state.onlineHost && !state.onlineLoading ? `<div class="online-pair">${button(t('Choose a scenario', 'Choisir un scénario'), 'scenario', {disabled: !state.onlineRoomLimit})}${button(`${t('Turn timer', 'Chrono')} · ${minutes ? minutes + ' min' : t('Off', 'Désactivé')}`, 'timer', {disabled:!state.selectedMap})}</div>` : ''}
         ${state.onlineHost && state.onlineLoading && state.onlineSaveAvailable ? button(t('Last online save', 'Dernière sauvegarde en ligne'), 'save') : ''}</section>`);
