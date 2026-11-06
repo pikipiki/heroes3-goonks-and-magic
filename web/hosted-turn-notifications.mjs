@@ -110,6 +110,8 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   const input = field.querySelector('input');
   input.placeholder = 'XXXX';
   const [join, alerts] = field.querySelectorAll('button');
+  // Let the browser deliver the click even if the keyboard changes the viewport.
+  join.dataset.nativeClick = alerts.dataset.nativeClick = '';
   const status = field.querySelector('[role=status]');
   const loader = document.createElement('p');
   loader.className = 'hosted-match-loading';
@@ -344,7 +346,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     : (fr ? 'Saisis les quatre lettres de la partie ou colle ton ancien code.' :
       'Enter the four-letter game code or paste your previous code.');
 
-  async function claimInvitation(invitation, onWait) {
+  async function claimInvitation(invitation, attempt, onWait) {
     const key = 'heroes-goonk.invite.' + invitation;
     let claimId = claims.get(invitation);
     if (!claimId) {
@@ -356,7 +358,9 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       } catch {}
       claims.set(invitation, claimId);
     }
-    const response = await requestHostedMatch(new URL('/hosted/matches/claim', poolEndpoint), {
+    const url = new URL('/hosted/matches/claim', poolEndpoint);
+    url.searchParams.set('attempt', attempt);
+    const response = await requestHostedMatch(url, {
       method: 'POST', credentials: 'omit', redirect: 'error',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({code: invitation, claimId}),
@@ -412,11 +416,13 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       const checking = () => showActionStatus(fr ? 'Vérification du code d’invitation…' : 'Checking the invitation code…');
       checking();
       let claimed;
+      const attempt = crypto.randomUUID();
       try {
-        claimed = await claimInvitation(invitation, checking);
+        claimed = await claimInvitation(invitation, attempt, checking);
       } catch {
         showActionStatus(fr ? 'Impossible de vérifier le code. Réessaie.' : 'Could not verify the code. Try again.');
       } finally {
+        if (!claimed && status.textContent) status.textContent += ' · Ref. ' + attempt.slice(0, 8);
         pending = false;
         render();
       }
@@ -524,7 +530,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
         return;
       }
       if (invitation) {
-        if (!await claimInvitation(invitation, showServerWait)) return;
+        if (!await claimInvitation(invitation, attempt, showServerWait)) return;
         remembered = saved;
         token = saved.token;
       }

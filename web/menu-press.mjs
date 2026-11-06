@@ -7,7 +7,7 @@ export function protectMenuButtons(root,activate,{context=()=>'',clock=()=>perfo
  const cancel=()=>{held=null;shieldUntil=clock()+900;};
  const doc=root.ownerDocument;doc.addEventListener('pointerdown',()=>{shieldUntil=-Infinity;},true);doc.addEventListener('click',e=>{if(clock()<shieldUntil&&!root.contains(e.target)&&(e.detail>0||e.pointerType==='touch'||e.pointerType==='pen'))consume(e);},true);
  root.addEventListener('pointerdown',e=>{
-  shieldUntil=-Infinity;const button=e.target.closest?.('button');if(!button||!root.contains(button)||e.button>0)return;
+  shieldUntil=-Infinity;const button=e.target.closest?.('button');if(!button||!root.contains(button)||e.button>0||button.hasAttribute('data-native-click'))return;
   consume(e);if(e.isPrimary===false){cancel();return;}
   held={button,id:e.pointerId,x:e.clientX,y:e.clientY,disabled:button.disabled,context:context(),geometry:touchGeometry(button),rect:button.getBoundingClientRect()};try{button.setPointerCapture(e.pointerId);}catch{}
  },true);
@@ -19,8 +19,10 @@ export function protectMenuButtons(root,activate,{context=()=>'',clock=()=>perfo
  root.addEventListener('pointercancel',cancel,true);
  root.addEventListener('lostpointercapture',e=>{if(held?.id===e.pointerId)cancel();},true);
  root.addEventListener('click',e=>{
-  if(e.target.closest?.('button')&&isPointerClick(e)){consume(e);return;}
-  const button=e.target.closest?.('button');if(button&&root.contains(button)){consume(e);if(!button.disabled)activate(button);}
+  const button=e.target.closest?.('button');
+  if(!button||!root.contains(button))return;
+  consume(e);
+  if(!button.disabled&&(!isPointerClick(e)||button.hasAttribute('data-native-click')))activate(button);
  },true);
  // Form controls keep their browser defaults; their input must stay in the menu.
  for(const type of ['pointerdown','pointermove','pointerup','mousedown','mousemove','mouseup','touchstart','touchmove','touchend','wheel'])root.addEventListener(type,e=>e.stopPropagation());
