@@ -411,7 +411,12 @@ function mount(){
    return;
   }
   if(ui==='town-guild'||ui==='town-market'){const matches=ui==='town-guild'?['mageGuild1','mageGuild2','mageGuild3','mageGuild4','mageGuild5']:['marketplace'];const building=(state.buildings||[]).filter(b=>b.built&&matches.includes(String(b.key).split(':').at(-1))).at(-1);if(building)command(39,building.id);else notify('Build this structure first.');return;}
-  if(ui==='recruit-heroes'){const tavern=state.buildings?.find(b=>String(b.key).split(':').at(-1)==='tavern'&&b.built);if(state.mode==='town'&&tavern)command(39,tavern.id);else notify('Construis une taverne pour recruter des héros.');return;}
+  if(ui==='recruit-heroes'){
+   const tavern=state.buildings?.find(b=>String(b.key).split(':').at(-1)==='tavern');
+   if(state.mode==='town'&&tavern?.built)command(39,tavern.id);
+   else notify(tavern?.state===2?'La taverne est interdite dans cette ville.':'Construis une taverne pour recruter des héros.');
+   return;
+  }
   if(ui==='online-mobile'){onlineLobby.show();return;}
   if(ui==='online-create'){command(81);return;}
   if(ui==='online-save'){command(80);return;}

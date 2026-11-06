@@ -37,6 +37,7 @@ for(const [kind,launcher] of Object.entries({chromium,webkit})){
     window.buildState={mode:'town',townFaction:faction,townName:'Town',turn:false,armies:[],resources:[30,15,30,15,15,15,20000],buildings:[
      {id:16,key:'core:blacksmith',name:'{Blacksmith}',description:'War machines',built:true,allowed:false,state:4},
      {id:0,key:'core:mageGuild1',name:'Mage guild',description:'Learn spells',built:false,allowed:true,cost:[0,0,0,0,0,0,2000]},
+     {id:5,key:'core:tavern',name:'Tavern',built:false,allowed:false,state:2,cost:[5,0,0,0,0,0,500]},
      {id:31,key:'core:dwellingUpLvl1',name:'{Adv. Goblin Barracks}',description:'Recruit {Hobgoblin Overlords}.',built:false,allowed:false,state:8,cost:[]},
     ]};
     window.sendBuild=()=>dispatchEvent(new CustomEvent('goonk-state',{detail:structuredClone(buildState)}));
@@ -57,6 +58,8 @@ for(const [kind,launcher] of Object.entries({chromium,webkit})){
    assert.equal(await card(31).locator('h3').textContent(),'Adv. Goblin Barracks');
    assert.equal(await card(31).locator('p').textContent(),'Recruit Hobgoblin Overlords.');
    assert(await card(31).locator('button').isDisabled());
+   assert.equal(await card(5).locator('small').textContent(),'Construction forbidden in this town');
+   assert(await card(5).locator('button').isDisabled());
    await tab('built').tap();
    assert.match(await card(16).innerText(),/Blacksmith/);
    const image=card(16).locator('img');
@@ -70,6 +73,9 @@ for(const [kind,launcher] of Object.entries({chromium,webkit})){
    await card(0).locator('button:enabled').tap();
    assert.deepEqual((await commands()).at(-1),[8,0],'Building is allowed once the player’s turn begins');
    assert(await page.locator('.mobile-sheet').isHidden());
+   await button('recruit-heroes').tap();
+   await page.waitForFunction(()=>document.querySelector('.toast-mobile').textContent==='The tavern is forbidden in this town.');
+   assert.deepEqual((await commands()).at(-1),[8,0]);
    console.log('PASS',kind,faction,size.width+'x'+size.height);
   }
   assert.deepEqual(errors,[]);
