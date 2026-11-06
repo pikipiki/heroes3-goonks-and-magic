@@ -34,13 +34,14 @@ import {createCreaturePresentation} from './creature-presentation.mjs';
 import {paintMapOverview,mapOverviewTarget,mapOverviewViewport} from './map-overview.mjs';
 import {anchorMobileViewport,coalesceViewportResize,createMapPan,enableFullscreenOnPlay} from './mobile-viewport.mjs';
 import {canCloseTavern,nativeCloseTarget,nativeDialogTarget} from './native-dialog.mjs';
-import {renderResources,formatResourceCost} from './resources.mjs';
-import {createTownPortrait,isGoonkTown,supportsTownPortrait,townBuildingCardImage} from './town-portrait.mjs';
+import {renderResources} from './resources.mjs';
+import {createTownPortrait,isGoonkTown,supportsTownPortrait} from './town-portrait.mjs';
+import {createTownBuildingMenu} from './town-building-menu.mjs';
 import {battleCapabilities,battleTeamCapabilities} from './battle-phase.mjs';
 import {bindPress,protectTouchClicks} from './mobile-press.mjs';
 import {fitNativeBattle,nativeBattleClose,paintMovementRange,paintBattleGrid,battleFocus,drawUnit,NATIVE_BATTLE_REGION} from './battle-scene.mjs';
 import {installAutosave} from './autosave.mjs';
-import {fitRegion,fitTown,scenePoint,buildReason,mapDrag,battleHex} from './mobile-layout.mjs';
+import {fitRegion,fitTown,scenePoint,mapDrag,battleHex} from './mobile-layout.mjs';
 import {isMobileLayout} from './mobile-render.mjs';
 isMobileLayout();
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -116,7 +117,6 @@ function mount(){
  const portraitTown=createTownPortrait({root,scene,asset,command,getState:()=>state});
  const portrait=unit=>{if(hasHDCreaturePortrait(unit))return creaturePortrait(unit);const url=asset(unit?.icon);return url?`<img data-native-portrait="${Number(unit.id)}" src="${escape(url)}" alt="${escape(unit.name)}">`:creaturePortrait(unit);};
  root.addEventListener('error',event=>{const image=event.target;if(image.matches?.('img[data-native-portrait]')){const holder=document.createElement('span');holder.innerHTML=creaturePortrait({id:Number(image.dataset.nativePortrait),name:image.alt});image.replaceWith(holder.firstElementChild);}},true);
- const cost=c=>formatResourceCost(c,state.resourceTypes);
  const btn=(text,ui,primary=false,disabled=false)=>`<button data-ui="${ui}" ${disabled?'disabled':''} class="${primary?'primary':''}">${text}</button>`;
  const paintHeroMovement=watchHeroMovement(nav);
  const onlineLogin=createOnlineLogin(root,command);
@@ -255,10 +255,16 @@ function mount(){
   const seconds=Math.ceil(Math.max(0,state.turnRemainingMs||0)/1000);
   const countdown=state.mode==='map'&&state.turnRemainingMs!==undefined
    ? Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0')+' · ' : '';
-  root.querySelector('.scene-hint').textContent=countdown+hint;controls();if(sheetKind==='army'&&(changedTurn||armySignature!==JSON.stringify(state.armies||[])))refreshArmy();if(sheetKind==='build'&&changedTurn)renderBuildingCards();
+  root.querySelector('.scene-hint').textContent=countdown+hint;controls();if(sheetKind==='army'&&(changedTurn||armySignature!==JSON.stringify(state.armies||[])))refreshArmy();if(sheetKind==='build')townBuildings.update(state);
  }
+ const townBuildings=createTownBuildingMenu({body,getState:()=>state,asset,backButton:sheet.querySelector('[data-ui="sheet-back"]'),canOpen:()=>state.mode==='town'&&!sheetKind,
+  openSheet,closeSheet,command,notify});
  const heroTransition=createHeroTransition(update,{ready:next=>portraitTown.prepare(next,townPortraitEnabled)});
- window.addEventListener('goonk-state',event=>heroTransition.receive(event.detail,state.mode));
+ window.addEventListener('goonk-state',event=>{
+  const next=event.detail;
+  if(next.mode==='town')townBuildings.warm(next);else townBuildings.cancel();
+  heroTransition.receive(next,state.mode);
+ });
  const enable=()=>{if(window.Module?._vcmiMobileEnable){window.Module._vcmiMobileEnable(1);return true;}return false;};
  const ready=setInterval(()=>{enable();if(window.goonkMobileState)clearInterval(ready);},250);
  function resetGestures(){touches.cancel();battleControls.cancel();mapPan.cancel();for(const id of pointers.keys()){try{if(scene.hasPointerCapture(id))scene.releasePointerCapture(id);}catch{}}pointers.clear();gesture=null;initialDistance=0;selectedPoint=null;layout=null;paintedGeometry=null;}
@@ -276,7 +282,7 @@ function mount(){
  bindPress(root.querySelector('.battle-view'),()=>{if(state.mode!=='battle')return;const chosen=selectedPoint;battleView=nativeBattleClose(scene.clientWidth,scene.clientHeight,battleView)?'whole':'close';resetGestures();selectedPoint=chosen;syncBattleView();renderBattlePanel();controls();});
  function closeSheet(){clearTimeout(armyTimer);armyPending=false;armyFocus=null;sheet.removeAttribute('aria-busy');sheet.hidden=true;sheetKind='';delete root.dataset.sheet;armySelection=null;root.querySelector('.mobile-play').inert=false;nav.inert=false;resetGestures();if(previousFocus?.isConnected)previousFocus.focus({preventScroll:true});}
  bindPress(sheet.querySelector('[data-ui="close-sheet"]'),closeSheet);
- bindPress(sheet.querySelector('[data-ui="sheet-back"]'),closeSheet);
+ bindPress(sheet.querySelector('[data-ui="sheet-back"]'),()=>{if(sheetKind!=='build'||!townBuildings.back())closeSheet();});
  function openRecruit(level){if(!recruitChoices.length){notify('Aucune recrue disponible dans les logements construits.');return;}resetGestures();activeRecruitLevel=level??recruitChoices[0].level;expectedRecruitId=recruitChoices.find(u=>u.level===activeRecruitLevel)?.id;recruitLoading=true;root.querySelector('#recruit-number').blur();controls();if(state.mode==='recruit')command(33);command(30,activeRecruitLevel);}
 
  function openSheet(kind,title){previousFocus=document.activeElement;resetGestures();root.querySelector('.mobile-play').inert=true;nav.inert=true;sheetKind=kind;root.dataset.sheet=kind;sheet.hidden=false;root.querySelector('#sheet-title').textContent=title;body.innerHTML='';root.querySelector('[data-ui="close-sheet"]').focus({preventScroll:true});}
@@ -287,56 +293,11 @@ function mount(){
   if(army!==undefined&&slot!==undefined)body.querySelector('[data-army="'+army+'"][data-slot="'+slot+'"]')?.focus({preventScroll:true});
  }
  root.addEventListener('goonk-recruit-all',()=>{if(!state.turn)return;openSheet('recruit-all','Recruit all creatures');body.innerHTML='<p>Recruit all available creatures you can afford, using the highest available upgrades? They will join the garrison. Army space and resource costs still apply.</p>'+btn('Recruit all','confirm-recruit-all',true)+btn('Cancel','close-sheet');});
- let buildingTab='unbuilt';
- function renderBuildingCards(){
-  body.innerHTML='<div class="building-tabs" role="group" aria-label="Bâtiments">'+
-   ['built','unbuilt'].map(tab=>`<button type="button" data-building-tab="${tab}" aria-pressed="${tab===buildingTab}">${tab==='built'?'Construits':'À construire'}</button>`).join('')+'</div>';
-  const tabs=body.querySelector('.building-tabs');
-  tabs.onclick=event=>{
-   const tab=event.target.closest('[data-building-tab]')?.dataset.buildingTab;
-   if(!tab||tab===buildingTab)return;
-   buildingTab=tab;
-   renderBuildingCards();
-   body.scrollTop=0;
-   body.querySelector('[aria-pressed="true"]').focus({preventScroll:true});
-  };
-  const built=buildingTab==='built';
-  if(!built&&!state.turn)body.insertAdjacentHTML('beforeend','<p>Disponible à ton tour</p>');
-  const buildings=(state.buildings||[]).filter(b=>!!b.built===built).sort((a,b)=>Number(b.allowed)-Number(a.allowed));
-  if(!buildings.length){
-   const message=document.createElement('p');
-   message.textContent=built?'Aucun bâtiment construit.':'Tous les bâtiments sont déjà construits.';
-   body.append(message);
-   return;
-  }
-  const cards=document.createElement('div');
-  cards.className='building-cards';
-  const fallback='./web/h3-theme/town-hall.png';
-  for(const building of buildings){
-   const card=document.createElement('article');
-   card.className='mobile-card';card.dataset.buildingId=building.id;
-   const image=townBuildingCardImage(state,building,asset)||fallback;
-   card.innerHTML=`<img class="building-card-image" src="${escape(image)}" alt="" loading="lazy"><h3>${escape(plainGameText(building.name))}</h3><p>${escape(plainGameText(building.description))}</p>`+
-    (built?'<footer><button type="button">Voir</button></footer>':
-     `<footer><span class="resource-cost">${escape(cost(building.cost))}</span>${building.allowed?'':`<small>${escape(buildReason(building.state))}</small>`}<button type="button" class="primary" ${state.turn&&building.allowed?'':'disabled'}>Construire</button></footer>`);
-   card.querySelector('img').addEventListener('error',event=>{event.currentTarget.src=fallback;},{once:true});
-   card.querySelector('button').onclick=()=>{
-    const current=state.buildings?.find(b=>b.id===building.id);
-    if(state.mode!=='town'||!current)return;
-    if(built&&current.built){closeSheet();command(39,current.id);}
-    else if(!built&&!current.built&&current.allowed&&state.turn){
-     command(8,current.id);closeSheet();notify('Construction demandée : '+plainGameText(current.name));
-    }
-   };
-   cards.append(card);
-  }
-  body.append(cards);
- }
  function showList(kind,refresh=false){
   if(kind==='towns'&&state.towns?.length===1){command(5,state.towns[0].index);return;}
   if(kind==='heroes'){if(state.mode==='map'&&(state.heroName||state.heroes?.length)){closeSheet();if(!state.heroName)command(4,state.heroes[0].index);command(55);}else notify('Select a hero on the map first.');return;}
   if(kind==='heroes'||kind==='towns'){openSheet(kind,kind==='heroes'?'Tes héros':'Tes villes');for(const item of state[kind]||[]){const el=document.createElement('button');el.className='mobile-card';el.style.width='100%';el.textContent=item.name+(kind==='heroes'?` · ${item.movement} points`:'');el.onclick=()=>{command(kind==='heroes'?4:5,item.index);closeSheet();};body.append(el);}if(!body.children.length)body.textContent='Aucun élément disponible.';}
-  if(kind==='build'&&state.mode==='town'){buildingTab='unbuilt';openSheet('build','Bâtiments');renderBuildingCards();return;}
+  if(kind==='build'&&state.mode==='town'){void townBuildings.open();return;}
   if(kind==='recruit'){openRecruit();return;}
 
 
