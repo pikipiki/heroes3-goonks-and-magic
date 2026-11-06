@@ -738,6 +738,18 @@ bool BattleActionProcessor::makeBattleActionImpl(const CBattleInfoCallback & bat
 	logGlobal->trace("Making action: %s", ba.toString());
 	const CStack * stack = battle.battleGetStackByID(ba.stackNumber);
 
+	// StartAction marks the stack as having waited, so check before broadcasting it.
+	if (ba.actionType == EActionType::WAIT)
+	{
+		if (!canStackAct(battle, stack))
+			return false;
+		if (stack->waitedThisTurn)
+		{
+			gameHandler->complain("This stack has already waited this round!");
+			return false;
+		}
+	}
+
 	// for these events client does not expects StartAction/EndAction wrapper
 	if (!ba.isBattleEndAction())
 	{
