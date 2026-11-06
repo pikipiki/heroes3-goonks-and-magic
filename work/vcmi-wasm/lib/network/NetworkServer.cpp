@@ -19,9 +19,9 @@ NetworkServer::NetworkServer(INetworkServerListener & listener, NetworkContext &
 {
 }
 
-uint16_t NetworkServer::start(uint16_t port)
+uint16_t NetworkServer::start(uint16_t port, bool loopback)
 {
-	acceptor = std::make_shared<NetworkAcceptor>(context, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port));
+	acceptor = std::make_shared<NetworkAcceptor>(context, boost::asio::ip::tcp::endpoint(loopback ? boost::asio::ip::address_v4::loopback() : boost::asio::ip::address_v4::any(), port));
 	return startAsyncAccept();
 }
 

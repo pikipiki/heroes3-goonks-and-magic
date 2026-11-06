@@ -63,7 +63,8 @@ enum class EServerMode : uint8_t
 	NONE = 0,
 	LOCAL, // no global lobby
 	LOBBY_HOST, // We are hosting global server available via global lobby
-	LOBBY_GUEST // Connecting to a remote server via proxy provided by global lobby
+	LOBBY_GUEST, // Connecting to a remote server via proxy provided by global lobby
+	HOSTED_GUEST
 };
 
 class IServerAPI

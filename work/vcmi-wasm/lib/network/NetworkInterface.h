@@ -73,7 +73,7 @@ class DLL_LINKAGE INetworkServer : boost::noncopyable
 public:
 	virtual ~INetworkServer() = default;
 
-	virtual uint16_t start(uint16_t port) = 0;
+	virtual uint16_t start(uint16_t port, bool loopback = false) = 0;
 	virtual void receiveInternalConnection(std::shared_ptr<IInternalConnection> remoteConnection) = 0;
 };
 

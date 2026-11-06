@@ -129,6 +129,7 @@ self.addEventListener('fetch', event => {
 });
 
 const turnNotificationTag = 'heroes-goonk-online-turn';
+const hostedMatchPattern = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 
 self.addEventListener('push', event => {
   let message;
@@ -139,20 +140,29 @@ self.addEventListener('push', event => {
   }
   if (message?.type !== 'goonk.turn-started.v1') return;
 
+  const match = hostedMatchPattern.test(message.matchId ?? '') ? message.matchId : null;
   event.waitUntil(self.registration.showNotification('Heroes Goonk', {
     body: message.language === 'fr' ? 'C’est à toi de jouer.' : 'It’s your turn.',
     icon: fileURL('dosvcmi.png').href,
-    tag: turnNotificationTag,
+    tag: match ? turnNotificationTag + ':' + match : turnNotificationTag,
+    ...(match ? {data: {match}} : {}),
   }));
 });
 
 self.addEventListener('notificationclick', event => {
-  if (event.notification.tag !== turnNotificationTag) return;
+  const {tag, data} = event.notification;
+  const match = hostedMatchPattern.test(data?.match ?? '') ? data.match : null;
+  if (tag !== (match ? turnNotificationTag + ':' + match : turnNotificationTag)) return;
   event.notification.close();
   event.waitUntil((async () => {
     const windows = await self.clients.matchAll({type: 'window', includeUncontrolled: true});
-    const game = windows.find(client => new URL(client.url).pathname === fileURL('game.html').pathname);
+    const target = fileURL('game.html');
+    if (match) target.searchParams.set('match', match);
+    const game = windows.find(client => {
+      const url = new URL(client.url);
+      return url.pathname === target.pathname && (!match || url.searchParams.get('match') === match);
+    });
     if (game) await game.focus();
-    else await self.clients.openWindow(fileURL('game.html').href);
+    else await self.clients.openWindow(target.href);
   })());
 });

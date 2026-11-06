@@ -50,4 +50,12 @@ test('A turn push shows a notification without an open game and opens the correc
   });
   assert.equal(closed, true);
   assert.deepEqual(opened, [scope + 'game.html']);
+
+  const matchId = '4b723f1c-987b-4213-b3bb-df22d36f21b1';
+  await dispatch('push', {data: {json: () => ({...payload, matchId})}});
+  assert.equal(notifications[1].data.match, matchId);
+  assert.equal(notifications[1].tag, 'heroes-goonk-online-turn:' + matchId);
+  await dispatch('notificationclick', {notification: {...notifications[1], close() {}}});
+  assert.deepEqual(opened, [scope + 'game.html', scope + 'game.html?match=' + matchId]);
+
 });

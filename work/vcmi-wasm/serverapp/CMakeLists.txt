@@ -6,6 +6,7 @@ set(serverapp_SRCS
 set(serverapp_HEADERS
 		StdInc.h
 		TurnCheckpointServer.h
+		HostedRestoreServer.h
 )
 
 assign_source_group(${serverapp_SRCS} ${serverapp_HEADERS})

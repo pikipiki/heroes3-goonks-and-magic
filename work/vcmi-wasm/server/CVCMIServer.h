@@ -123,7 +123,7 @@ public:
 	void announceMessage(const MetaString & txt);
 	void announceMessage(const std::string & txt);
 
-	void handleReceivedPack(std::shared_ptr<GameConnection> connection, CPackForLobby & pack);
+	virtual void handleReceivedPack(std::shared_ptr<GameConnection> connection, CPackForLobby & pack);
 
 	void updateAndPropagateLobbyState();
 

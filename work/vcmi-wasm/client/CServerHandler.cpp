@@ -1057,7 +1057,7 @@ void CServerHandler::sendLobbyPack(const CPackForLobby & pack) const
 
 bool CServerHandler::inLobbyRoom() const
 {
-	return serverMode == EServerMode::LOBBY_HOST || serverMode == EServerMode::LOBBY_GUEST;
+	return serverMode == EServerMode::LOBBY_HOST || serverMode == EServerMode::LOBBY_GUEST || serverMode == EServerMode::HOSTED_GUEST;
 }
 
 bool CServerHandler::inGame() const

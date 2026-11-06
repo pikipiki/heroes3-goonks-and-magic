@@ -31,7 +31,7 @@ public:
 
 	void receiveInternalConnection(std::shared_ptr<IInternalConnection> remoteConnection) override;
 
-	uint16_t start(uint16_t port) override;
+	uint16_t start(uint16_t port, bool loopback = false) override;
 };
 
 VCMI_LIB_NAMESPACE_END

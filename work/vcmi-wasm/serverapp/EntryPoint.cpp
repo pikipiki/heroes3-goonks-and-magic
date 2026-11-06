@@ -9,7 +9,7 @@
  */
 #include "StdInc.h"
 
-#include "TurnCheckpointServer.h"
+#include "HostedRestoreServer.h"
 
 #include "../lib/CConsoleHandler.h"
 #include "../lib/logging/CBasicLogConfigurator.h"
@@ -30,6 +30,7 @@ static void handleCommandOptions(int argc, const char * argv[], boost::program_o
 	("version,v", "display version information and exit")
 	("run-by-client", "indicate that server launched by client on same machine")
 	("dummy-run", "Shutdown immediately after loading was sucessful")
+	("hosted-restore", "Restore a dedicated match and accept authenticated loopback connections")
 	("verify-turn-checkpoint", "Load and validate the hosted save without opening a network listener")
 	("turn-checkpoint", "Save to Hosted-Turn.vsgm1 when a human turn starts (one game per user data directory)")
 	("port", boost::program_options::value<ui16>(), "port at which server will listen to connections from client")
@@ -99,6 +100,22 @@ int main(int argc, const char * argv[])
 		catch(const std::exception & error)
 		{
 			logGlobal->error("Hosted checkpoint rejected: %s", error.what());
+			exitCode = 1;
+		}
+	}
+	else if(opts.count("hosted-restore"))
+	{
+		try
+		{
+			const auto * key = std::getenv("GOONK_HOSTED_GATEWAY_KEY");
+			const auto port = opts.count("port") ? opts["port"].as<uint16_t>() : settings["server"]["localPort"].Integer();
+			HostedRestoreServer server(port, key ? key : "");
+			server.restore();
+			server.run();
+		}
+		catch(const std::exception & error)
+		{
+			logGlobal->error("Hosted match could not start: %s", error.what());
 			exitCode = 1;
 		}
 	}

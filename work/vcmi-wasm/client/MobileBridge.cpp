@@ -527,6 +527,19 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiOnlineLogin(const char * name, int leng
  });
 }
 
+extern "C" void EMSCRIPTEN_KEEPALIVE vcmiJoinHostedMatch()
+{
+ if(!ENGINE||!GAME)return;
+ ENGINE->dispatchMainThread([](){
+  auto & server=GAME->server();
+  if(server.inGame()||server.getState()!=EClientState::NONE)return;
+  server.resetStateForLobby(EStartMode::LOAD_GAME,ESelectionScreen::loadGame,EServerMode::HOSTED_GUEST,{});
+  // The WebSocket URL and subprotocol are configured by the page. A numeric
+  // address avoids DNS resolution in the browser socket shim.
+  server.connectToServer("127.0.0.1",3030);
+ });
+}
+
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiOnlineRoomAction(int action, const char * id, int length)
 {
  if(!ENGINE||!id||length<1||length>128)return;

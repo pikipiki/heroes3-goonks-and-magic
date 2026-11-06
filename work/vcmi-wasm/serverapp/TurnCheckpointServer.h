@@ -25,7 +25,7 @@
 #include "../server/processors/PlayerMessageProcessor.h"
 #include "../server/processors/TurnOrderProcessor.h"
 
-class TurnCheckpointServer final : public CVCMIServer
+class TurnCheckpointServer : public CVCMIServer
 {
 public:
 	TurnCheckpointServer(uint16_t port, bool runByClient, bool checkpointTurns, bool discover = true)
