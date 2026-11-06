@@ -8,8 +8,12 @@
 .hero-card-head>div{flex:1;min-width:0}.hero-card-head h2{font-size:20px;line-height:1.1;margin:0;color:#ffe5a2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .hero-card-head p,.hero-card-head span{font-size:12px;margin:4px 0 0;line-height:1.25}.hero-card-head button{font-size:14px;flex-shrink:0}
 .hero-primary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0;padding:5px 10px;gap:6px;border-bottom:1px solid #92723f}
-.hero-primary dt{font-size:11px;color:#d9c18b}.hero-primary dd{font-size:18px;margin:1px 0 0}
-.hero-bag-tabs{display:grid;grid-template-columns:1fr 1fr 76px;gap:6px;padding:3px 8px}.hero-bag-tabs button{font-size:14px}
+.hero-primary>div{display:grid;align-content:center;justify-items:center;min-width:0;padding:2px;border:1px solid #aa8748;background:linear-gradient(#3a2a17,#21160e)}
+.hero-primary dt{font-size:11px;line-height:1.1;color:#e5cc91}
+.hero-primary dd{font-size:20px;line-height:1;font-weight:700;color:#fff0bb;font-variant-numeric:tabular-nums;margin:2px 0 0}
+.hero-bag-tabs{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr) minmax(0,1.2fr) minmax(0,.75fr);gap:4px;padding:3px 8px}
+#mobile-app .hero-bag-tabs button{font-size:clamp(11px,3.4vw,14px);line-height:1.1;padding:3px;min-width:0}
+#mobile-app .hero-bag-tabs button[aria-pressed=true]{border-color:#ffe49a;box-shadow:inset 0 0 0 1px #d8ac59;font-weight:700}
 .hero-equipment-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:120px;gap:6px;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;min-height:0;padding:8px;align-content:start}
 #mobile-app .hero-artifact-slot{display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px;min-width:0;overflow:hidden;white-space:normal}
 .hero-artifact-slot small{font-size:11px;line-height:14px}.hero-artifact-slot canvas{width:54px;height:54px;object-fit:contain;flex:0 0 54px}
@@ -63,7 +67,7 @@
  .hero-primary{gap:2px}
  .hero-primary dt{font-size:10px}
  #mobile-app .hero-artifact-actions button{font-size:12px;padding:3px}
- .hero-bag-tabs{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 60px;padding-inline:4px;gap:4px}
+ .hero-bag-tabs{padding-inline:4px;gap:4px}
  #mobile-app .hero-bag-tabs button{min-height:44px;min-width:44px;padding:2px 4px}
  .hero-equipment-page[data-inventory=worn] .hero-equipment-grid{container:hero-inventory / size;padding:4px}
  .hero-body-layout{display:grid;grid-template-columns:minmax(138px,1fr) minmax(138px,.85fr);grid-template-rows:minmax(0,1fr);gap:4px;height:100%;max-height:370px}
@@ -106,4 +110,23 @@
  .hero-body-stage .hero-artifact-slot .hero-empty{line-height:30px}
  #mobile-app .hero-extra-equipment .hero-artifact-slot{min-height:48px}
 }
-.hero-bag-tabs:not(:has([data-hero-classic])){grid-template-columns:repeat(2,minmax(0,1fr))}
+.hero-bag-tabs:not(:has([data-hero-classic])){grid-template-columns:repeat(3,minmax(0,1fr))}
+.hero-equipment-page[data-inventory=backpack] .hero-equipment-grid{grid-auto-rows:auto}
+.hero-equipment-page[data-inventory=backpack] .hero-artifact-slot{min-height:110px}
+.hero-bag-help{grid-column:1/-1;margin:0 0 4px;padding:8px 10px;border:1px solid #a5844a;background:#21170e;color:#e9d4a1;font-size:13px;line-height:1.35}
+.hero-artifact-detail[hidden]{display:none}
+.hero-equipment-page[data-inventory=skills] .hero-equipment-grid{display:block}
+.hero-specialty,.hero-secondary li{padding:8px 10px;border:1px solid #a5844a;background:#24180ed9}
+.hero-specialty{margin-bottom:10px}
+.hero-specialty h3,.hero-secondary h3{margin:0 0 5px;font-size:15px;color:#e7cb8c}
+.hero-specialty strong,.hero-secondary h4{font-size:16px;color:#ffebbb}
+.hero-specialty p,.hero-secondary p{margin:4px 0 0;font-size:13px;line-height:1.4;white-space:pre-line;overflow-wrap:anywhere}
+.hero-secondary ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:6px;list-style:none;margin:0;padding:0}
+.hero-secondary h4{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:0}
+.hero-secondary h4 span{font-size:11px;color:#ffe4a5;background:#5b2819;border:1px solid #a77b49;padding:2px 5px}
+@media(orientation:portrait){
+ .hero-equipment-page[data-inventory=skills]{grid-template-rows:78px 50px 48px minmax(0,1fr)}
+}
+@media(orientation:landscape){
+ .hero-equipment-page[data-inventory=skills] .hero-equipment-grid{grid-column:1/-1;grid-row:3;border-right:0}
+}

@@ -60,6 +60,8 @@
 #include "../lib/CConfigHandler.h"
 #include "../lib/filesystem/Filesystem.h"
 #include "../lib/CCreatureHandler.h"
+#include "../lib/CSkillHandler.h"
+#include "../lib/entities/hero/CHero.h"
 #include "../lib/GameLibrary.h"
 #include "../lib/entities/ResourceTypeHandler.h"
 #include "../lib/CStack.h"
@@ -600,6 +602,23 @@ void publishMobileState(){
   if(n["mode"].String()=="map"&&hero){const auto town=mobileResidentTown(hero);if(town&&town->getOwner()==p->playerID)mobileTownArmies(n,town);}
   if(heroWindow&&hero){auto & h=n["heroWindow"];h["owned"].Bool()=hero->getOwner()==p->playerID;h["name"].String()=hero->getNameTranslated();h["className"].String()=hero->getClassNameTranslated();h["level"].Integer()=hero->level;h["mana"].Integer()=hero->mana;h["manaLimit"].Integer()=hero->manaLimit();h["portrait"]=rect(Rect(heroWindow->pos.x+19,heroWindow->pos.y+19,58,64));
    for(int i=0;i<4;i++)h["primarySkills"].Vector().push_back(JsonNode(double(hero->getPrimSkillLevel(static_cast<PrimarySkill>(i)))));
+   h["experience"].Integer()=hero->exp;
+   h["specialty"]["name"].String()=hero->getHeroType()->getSpecialtyNameTranslated();
+   h["specialty"]["description"].String()=hero->getHeroType()->getSpecialtyDescriptionTranslated();
+   auto & skills=h["skills"].Vector();
+   for(const auto & [id, level]:hero->secSkills)
+   {
+    if(id==SecondarySkill::NONE||level<1||level>3)
+     continue;
+    const auto skill=id.toSkill();
+    if(!skill)
+     continue;
+    JsonNode entry;
+    entry["name"].String()=skill->getNameTranslated();
+    entry["mastery"].String()=LIBRARY->generaltexth->levels[level-1];
+    entry["description"].String()=skill->getDescriptionTranslated(level);
+    skills.push_back(std::move(entry));
+   }
    const auto picked=heroWindow->getPickedArtifact();if(picked){h["picked"]["name"].String()=picked->getType()->getNameTranslated();h["picked"]["icon"].Integer()=picked->getType()->getIconIndex();artifactIconIds.insert(picked->getType()->getIconIndex());}
    auto addSlot=[&](int index,bool backpack){const auto position=ArtifactPosition(index);const auto art=hero->getArt(position,false);JsonNode item;item["slot"].Integer()=index;bool locked=false;for(const auto & set:heroWindow->artSets)if(set)if(auto place=set->getArtPlace(position)){locked=place->isLocked();break;}item["locked"].Bool()=locked;item["movable"].Bool()=art&&!locked&&index!=int(ArtifactPosition::SPELLBOOK)&&index!=int(ArtifactPosition::MACH4);item["allowed"].Bool()=picked&&!locked&&picked->canBePutAt(hero,position,true);if(art){const auto type=art->getType();item["name"].String()=type->getNameTranslated();item["description"].String()=type->getDescriptionTranslated();item["icon"].Integer()=type->getIconIndex();artifactIconIds.insert(type->getIconIndex());}h[backpack?"backpack":"slots"].Vector().push_back(item);};
    for(int i=0;i<19;i++)addSlot(i,false);for(size_t i=0;i<=hero->artifactsInBackpack.size();i++)addSlot(int(ArtifactPosition::BACKPACK_START)+int(i),true);
