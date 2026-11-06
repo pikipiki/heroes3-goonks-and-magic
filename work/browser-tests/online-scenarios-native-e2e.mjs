@@ -20,7 +20,6 @@ async function openMultiplayer() {
 try {
   await page.addInitScript(() => {
     Object.defineProperty(Clipboard.prototype, 'writeText', {value: async value => { window.testCopied = value; }});
-    Object.defineProperty(Clipboard.prototype, 'readText', {value: async () => ' H'.repeat(43)});
     Object.defineProperty(ServiceWorkerRegistration.prototype, 'pushManager', {get() {
       return window.testPushReady ? {subscribe: async () => ({toJSON: () => ({endpoint: 'https://example.invalid/push'})})} : undefined;
     }});
@@ -103,8 +102,8 @@ try {
     assert.equal(await seat.inputValue(), 'bad');
     assert(await page.getByRole('button', {name: 'Turn alerts', exact: true}).isDisabled());
     const alerts = page.getByRole('switch', {name: 'Turn alerts', exact: true});
-    await page.getByRole('button', {name: 'Paste code', exact: true}).tap();
-    await wait(code => document.querySelector('[data-hosted-seat-code]').value === code, hostCode);
+    assert.equal(await page.getByRole('button', {name: 'Paste code', exact: true}).count(), 0);
+    await seat.fill(hostCode);
     await alerts.waitFor();
     assert.equal(await alerts.getAttribute('aria-checked'), 'false');
     await alerts.tap();
@@ -322,7 +321,7 @@ try {
   await panel.locator(`[data-room-action=choose-scenario][data-room-id="${chosen.index}"]`).tap();
   await wait(index => goonkMobileState.onlineScenarioIndex === index, chosen.index);
   await panel.getByText(chosen.name, {exact: true}).waitFor();
-  console.log('PASS hosted entry, code editing, paste, push activation, resume after reload, invalidated access, match creation and copy, occupancy, XL solo and four-seat S multiplayer defaults');
+  console.log('PASS hosted entry, code editing, push activation, resume after reload, invalidated access, match creation and copy, occupancy, XL solo and four-seat S multiplayer defaults');
 } finally {
   await browser.close();
 }
