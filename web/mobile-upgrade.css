@@ -122,6 +122,12 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
 }
 .creature-upgrade:only-child{grid-column:1/-1}
 
+.creature-abilities{margin:12px 0;color:#e8d8b5}
+.creature-abilities h4{margin:0 0 6px;color:#ffe39a;font-size:16px}
+.creature-abilities ul{margin:0;padding-inline-start:20px}
+.creature-abilities li{margin-bottom:6px;line-height:1.4;white-space:pre-line;overflow-wrap:anywhere}
+.creature-abilities strong{color:#ffe39a}
+
 /* Native movement values replace the manual Save shortcut on the map. */
 #mobile-app[data-mode=map] .hero-movement-summary{grid-column:1/-1;min-width:0;border-bottom:1px solid #b59750;padding:0 0 4px;color:#f5df9e}
 #mobile-app .hero-movement-list{display:flex;gap:6px;list-style:none;margin:0;padding:0;overflow-x:auto;overscroll-behavior:contain;touch-action:pan-x;scrollbar-width:thin}

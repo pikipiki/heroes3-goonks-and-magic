@@ -985,6 +985,19 @@ void CStackWindow::initBonusesList()
 	}
 }
 
+std::vector<std::string> CStackWindow::getMobileAbilities() const
+{
+	std::vector<std::string> descriptions;
+	for(const auto & bonus : activeBonuses)
+	{
+		if(bonus.bonusSource != BonusSource::CREATURE_ABILITY && bonus.bonusSource != BonusSource::STACK_EXPERIENCE)
+			continue;
+		if(!vstd::contains(descriptions, bonus.description))
+			descriptions.push_back(bonus.description);
+	}
+	return descriptions;
+}
+
 void CStackWindow::initSections()
 {
 	OBJECT_CONSTRUCTION;
