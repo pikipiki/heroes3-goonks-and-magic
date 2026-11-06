@@ -49,7 +49,22 @@ self.addEventListener('install', event => {
   })());
 });
 
-// Let a waiting release activate only when the existing game tabs close.
+// A launch may opt in before starting the game. Keep the existing release
+// while another window in this scope could be playing or starting a game.
+self.addEventListener('message', event => {
+  if (event.data?.type !== 'goonk.apply-offline-release' || !event.ports[0]) return;
+  event.waitUntil((async () => {
+    const windows = await self.clients.matchAll({type: 'window', includeUncontrolled: true});
+    const source = event.source?.url && new URL(event.source.url);
+    const game = fileURL('game.html');
+    const otherWindow = windows.some(client => client.id !== event.source?.id && client.url.startsWith(scope.href));
+    const ready = source?.origin === game.origin && source.pathname === game.pathname &&
+      !otherWindow && Date.now() < event.data.deadline;
+    event.ports[0].postMessage(ready);
+    if (ready) await self.skipWaiting();
+  })());
+});
+
 self.addEventListener('activate', event => event.waitUntil((async () => {
   for (const name of await caches.keys()) {
     if (name.startsWith(prefix) && name !== cacheName) await caches.delete(name);
