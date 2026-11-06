@@ -28,12 +28,11 @@ export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransfe
   const destination=armies.find(other=>other.id!==army.id);
   if(!readOnly&&onTransferAll&&showVisitorPlaceholder){const transfer=document.createElement('button');transfer.type='button';transfer.className='army-transfer-all';transfer.textContent=destination?'Tout vers '+destination.name:'Transférer vers le héros';transfer.disabled=!destination||bulkTransferSummary(army,destination).count===0;transfer.setAttribute('aria-label',destination?'Tout transférer : '+army.name+' → '+destination.name:'Aucun héros en visite');bindPress(transfer,()=>{if(pending||!destination)return;pending=true;transfer.setAttribute('aria-busy','true');for(const item of panel.querySelectorAll('button,input'))item.disabled=true;status.textContent='Transfert en cours…';onTransferAll(army.id,destination.id);});section.append(transfer);}
   for(let slot=0;slot<7;slot++){
-   const unit=army.slots?.[slot]||null,button=document.createElement('button');button.type='button';button.className='army-troop';button.dataset.army=String(army.id);button.dataset.slot=String(slot);button.setAttribute('aria-pressed','false');button.setAttribute('aria-label',`${army.name}, emplacement ${slot+1} : ${unit?unit.name+', '+unit.count+' créatures':'libre'}`);
+   const unit=army.slots?.[slot]||null,button=document.createElement('button');button.type='button';button.className='army-troop';button.dataset.army=String(army.id);button.dataset.slot=String(slot);button.toggleAttribute('data-empty',!unit);button.setAttribute('aria-pressed','false');button.setAttribute('aria-label',`${army.name}, emplacement ${slot+1} : ${unit?unit.name+', '+unit.count+' créatures':'libre'}`);
    const art=document.createElement('span');art.className='army-slot-art';art.innerHTML=unit?portrait(unit):'<span class="army-empty" aria-hidden="true">＋</span>';
    const name=document.createElement('span');name.className='army-slot-name';name.textContent=unit?unit.name:'Libre';
    const count=document.createElement('strong');count.className='army-slot-count';count.textContent=unit?String(unit.count):'';
-   const number=document.createElement('span');number.className='army-slot-number';number.setAttribute('aria-hidden','true');number.textContent=String(slot+1);
-   button.append(art,name,count,number);grid.append(button);buttons.push({button,army:army.id,slot});
+   art.append(count);button.append(art,name);grid.append(button);buttons.push({button,army:army.id,slot});
    bindPress(button,()=>{
     if(pending)return;
     if(!selection||readOnly){if(unit)select({army:army.id,slot,unit});return;}

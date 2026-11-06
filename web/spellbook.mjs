@@ -1,6 +1,16 @@
 import {spellSchoolIds,spellSchoolIndex} from './spell-schools.mjs';
 import {spellIconURL,warmSpellIcons} from './spell-icons.mjs';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const targets = {
+ ally: ['✧', 'Ally'],
+ enemy: ['✦', 'Enemy'],
+ location: ['▧', 'Battlefield tile'],
+ creature: ['◇', 'Creature'],
+ none: ['◎', 'No target to choose'],
+};
+const schools = [['✦', 'All'], ['≋', 'Air'], ['◆', 'Earth'], ['✹', 'Fire'], ['◈', 'Water']];
+const icon = spell => `<span class="spell-symbol" aria-hidden="true"><img class="spell-icon" decoding="sync" data-icon="${spell.id}" src="${spellIconURL(spell.id)}" alt=""></span>`;
+
 export function createMobileSpellbook({root,command}){
  warmSpellIcons();
  const panel=document.createElement('section');panel.className='mobile-spellbook';panel.hidden=true;panel.setAttribute('aria-label','Spellbook');root.querySelector('.mobile-play').append(panel);
@@ -25,7 +35,40 @@ export function createMobileSpellbook({root,command}){
   const scroll=panel.querySelector('.spell-list')?.scrollTop||0;
   const previous=used.get(hero()),spells=book.spells||[];if(!spells.some(s=>s.id===selected))selected=(spells.find(s=>s.enabled)||spells[0])?.id;const active=spells.find(s=>s.id===selected);
   const reuseDisabled=!previous||book.mana<previous.cost||!!reusing;
-  panel.innerHTML=`<header><h2>Spellbook <small>${book.mana??0} mana</small></h2><button data-close-book aria-label="Close spellbook">✕</button></header><div class="spell-top-actions"><button data-reuse ${reuseDisabled?'disabled':''} ${reusing?'aria-busy="true"':''} title="${esc(previous?previous.name:'No spell used yet')}">${previous?`<img class="last-spell-icon" decoding="sync" src="${spellIconURL(previous.id)}" alt=""><span><small>Reuse last spell</small><strong>${esc(previous.name)}</strong></span><small>${previous.cost} mana</small>`:'Reuse last spell'}</button></div>${book.inCombat===false?`<nav class="spell-contexts" aria-label="Spell types"><button data-spell-context="0" aria-pressed="${!book.combatSpells}">Adventure spells</button><button data-spell-context="1" aria-pressed="${!!book.combatSpells}">Combat spells</button></nav>`:''}<nav class="spell-schools" aria-label="Spell categories">${['All','Air','Earth','Fire','Water'].map((name,i)=>`<button data-school="${i}" aria-pressed="${spellSchoolIds[i]===book.school}">${name}</button>`).join('')}</nav><div class="spell-content"><div class="spell-list" aria-label="Spells">${spells.map(s=>`<button class="spell-row${s.enabled?'':' is-unavailable'}" data-spell="${s.id}" aria-pressed="${s.id===selected}"><span class="spell-symbol" aria-hidden="true"><img class="spell-icon" decoding="sync" data-icon="${s.id}" src="${spellIconURL(s.id)}" alt=""></span><strong>${esc(s.name)}</strong><small>${s.cost} mana</small></button>`).join('')||'<p>No spells in this category.</p>'}</div><article class="spell-selection" aria-live="polite">${active?`<h3>${esc(active.name)}</h3><small>Level ${active.level} · ${active.cost} mana</small><p>${esc(active.description).replace(/[{}]/g,'')}</p>${active.enabled?'':`<p class="spell-warning">${book.mana<active.cost?'Not enough mana':'Spell unavailable now'}</p>`}`:'<p>Select a spell to see its effects.</p>'}</article></div><footer><div class="spell-pagination"><button data-page="-1" ${book.page>0?'':'disabled'}>← Previous page</button><span>Page ${(book.page??0)+1}</span><button data-page="1" ${book.page+1>=book.pages?'disabled':''}>Next page →</button></div><button class="spell-confirm primary" data-cast-spell ${active?.enabled?'':'disabled'}>${book.inCombat===false?(book.combatSpells?'View spell':'Cast spell'):'Choose target'}${active?` · ${active.cost} mana`:''}</button></footer>`;
+  const target=targets[active?.target];
+  const warning=book.mana<active?.cost?'Not enough mana':'Spell unavailable now';
+  const manaLimit=Number.isFinite(book.manaLimit)?` / ${book.manaLimit}`:'';
+  const castLabel=book.inCombat===false?(book.combatSpells?'View spell':'Cast spell'):active?.target==='none'?'Cast spell':'Choose target';
+  panel.innerHTML=`
+   <header>
+    <h2>Spellbook <small>${book.mana??0}${manaLimit} mana</small></h2>
+    <button data-close-book aria-label="Close spellbook">✕</button>
+   </header>
+   <div class="spell-top-actions">
+    <button data-reuse ${reuseDisabled?'disabled':''} ${reusing?'aria-busy="true"':''} title="${esc(previous?previous.name:'No spell used yet')}">
+     ${previous?`<img class="last-spell-icon" decoding="sync" src="${spellIconURL(previous.id)}" alt=""><span><small>Reuse last spell</small><strong>${esc(previous.name)}</strong></span><small>${previous.cost} mana</small>`:'Reuse last spell'}
+    </button>
+   </div>
+   ${book.inCombat===false?`<nav class="spell-contexts" aria-label="Spell types"><button data-spell-context="0" aria-pressed="${!book.combatSpells}">Adventure spells</button><button data-spell-context="1" aria-pressed="${!!book.combatSpells}">Combat spells</button></nav>`:''}
+   <nav class="spell-schools" aria-label="Spell categories">${schools.map(([symbol,name],i)=>`<button data-school="${i}" aria-pressed="${spellSchoolIds[i]===book.school}"><span aria-hidden="true">${symbol}</span> ${name}</button>`).join('')}</nav>
+   <div class="spell-content">
+    <div class="spell-list" aria-label="Spells">
+     ${spells.map(spell=>`<button class="spell-row${spell.enabled?'':' is-unavailable'}" data-spell="${spell.id}" aria-pressed="${spell.id===selected}">
+      ${icon(spell)}<strong>${esc(spell.name)}</strong><small>${spell.cost} mana</small>
+     </button>`).join('')||'<p>No spells in this category.</p>'}
+    </div>
+    <article class="spell-selection" aria-live="polite">
+     ${active?`<div class="spell-illumination">${icon(active)}<div><h3>${esc(active.name)}</h3>
+      <small>Level ${active.level} · ${active.cost} mana</small>
+      ${target?`<p class="spell-target" data-spell-target="${active.target}"><span aria-hidden="true">${target[0]}</span> ${target[1]}</p>`:''}</div></div>
+      <p>${esc(active.description).replace(/[{}]/g,'')}</p>
+      ${active.enabled?'':`<p class="spell-warning">${warning}</p>`}`:'<p>Select a spell to see its effects.</p>'}
+    </article>
+   </div>
+   <footer>
+    <div class="spell-pagination"><button data-page="-1" ${book.page>0?'':'disabled'}>← Previous page</button><span>Page ${(book.page??0)+1}</span><button data-page="1" ${book.page+1>=book.pages?'disabled':''}>Next page →</button></div>
+    <button class="spell-confirm primary" data-cast-spell ${active?.enabled?'':'disabled'}>${castLabel}${active?` · ${active.cost} mana`:''}</button>
+   </footer>`;
   panel.querySelector('.spell-list').scrollTop=scroll;
  }
  return{update(next){state=next;const mana=next.spellbook?.mana??next.heroMana;

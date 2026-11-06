@@ -24,13 +24,6 @@ button[aria-busy=true]::after{content:'';position:absolute;right:10px;top:calc(5
 #mobile-app .town-recruit-strip button{flex:1 0 124px;min-width:124px;max-width:none;display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px}
 #mobile-app .town-recruit-strip img{width:36px;height:32px;object-fit:contain;flex-shrink:0}
 #mobile-app .battle-tools{grid-template-columns:minmax(0,1fr)!important}
-#mobile-app[data-mode=spellbook] .scene-tools,#mobile-app[data-mode=spellbook] #mobile-scene,#mobile-app[data-mode=spellbook] .scene-hint,#mobile-app[data-mode=spellbook] .mobile-nav{display:none!important}
-#mobile-app[data-mode=spellbook]{grid-template-rows:auto minmax(0,1fr)}
-.mobile-spellbook{position:absolute;inset:0;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:10px;padding:10px;box-sizing:border-box;background:#332013 url('./h3-theme/stone.png');color:#ffe8ad;z-index:3;overflow:hidden}
-.mobile-spellbook[hidden]{display:none}.mobile-spellbook header{display:flex;align-items:center;justify-content:space-between;gap:10px}.mobile-spellbook h2{margin:0;font-size:22px}.mobile-spellbook h2 small{font-size:14px;margin-left:12px}
-.spell-schools{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.spell-schools button{padding:6px 2px!important;font-size:14px}.spell-schools [aria-pressed=true]{outline:2px solid #ffe08b;outline-offset:-4px;background-color:#8b3522}
-.spell-list{overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;display:flex;flex-direction:column;gap:8px;min-height:0}
-.spell-row{display:flex;flex:0 0 auto;gap:12px;align-items:center;padding:12px!important;width:100%;text-align:left;font-family:Georgia,serif}.spell-row>span:last-child{display:flex;flex:1;flex-direction:column;gap:5px}.spell-row strong{font-size:18px}.spell-row small{font-size:14px;color:#f6d282}.spell-row span span{font-size:14px;line-height:1.5}.spell-symbol{font-size:38px;color:#ffe08b;flex:0 0 42px;text-align:center}.mobile-spellbook footer{display:flex;align-items:center;justify-content:space-between;gap:6px}.mobile-spellbook footer button{flex:1;padding:7px;font-size:14px}
 .equipment-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.equipment-grid .mobile-card{margin:0;min-width:0}.equipment-grid h3{font-size:17px}.equipment-grid p{font-size:14px;line-height:1.5}.new-game-in-session{width:100%;margin:0}
 @media(orientation:landscape) and (max-height:600px){
  .goonk-mobile #mobile-app[data-mode=town]{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto}
@@ -40,8 +33,6 @@ button[aria-busy=true]::after{content:'';position:absolute;right:10px;top:calc(5
  #mobile-app[data-mode=town] .mobile-nav button{min-height:48px!important;padding:4px;display:flex;align-items:center;justify-content:center;gap:8px}
  #mobile-app[data-mode=town] #town-overview{height:58px}#mobile-app[data-mode=town] .town-recruit-strip button{min-height:44px}
  .equipment-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
- #mobile-app[data-mode=spellbook]{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}#mobile-app[data-mode=spellbook] .mobile-play{grid-column:1;grid-row:2}
- .mobile-spellbook{grid-template-columns:120px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;gap:6px}.mobile-spellbook header{grid-column:1/3}.spell-schools{grid-column:1;grid-row:2;grid-template-columns:1fr;overflow:auto}.spell-list{grid-column:2;grid-row:2}.mobile-spellbook footer{grid-column:1/3}
 }
 #save-toast{pointer-events:none!important;transition:opacity .08s linear!important}
 
@@ -71,12 +62,6 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
 #mobile-app .mobile-nav:empty{display:none!important}
 
 @media(orientation:landscape){
- .mobile-spellbook{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto;gap:5px;padding:6px 10px}
- .mobile-spellbook header{grid-column:1;grid-row:1}
- .mobile-spellbook .spell-schools{grid-column:1;grid-row:2;grid-template-columns:repeat(5,minmax(0,1fr));overflow:visible}
- .mobile-spellbook .spell-list{grid-column:1;grid-row:3}
- .mobile-spellbook footer{grid-column:1;grid-row:4}
- .mobile-spellbook .spell-row{padding:8px 12px!important}
 }
 
 @media(orientation:landscape) and (max-height:600px){
@@ -152,19 +137,6 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
 @media(orientation:landscape) and (max-height:600px){
  #mobile-app .hero-movement-item{flex-basis:100%;box-sizing:border-box;justify-content:space-between;padding:0 4px;gap:4px;min-height:32px}
 }
-/* Spell icons and responsive cards, with pagination always outside the list. */
-.mobile-spellbook .spell-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:7px}
-.mobile-spellbook .spell-row{min-width:0;flex-direction:column;align-items:stretch;gap:5px;padding:8px!important}
-.mobile-spellbook .spell-row>span:last-child{min-width:0}
-.mobile-spellbook .spell-row strong{font-size:16px;overflow-wrap:anywhere}
-.mobile-spellbook .spell-row small,.mobile-spellbook .spell-row span span{font-size:12px;line-height:1.35}
-.mobile-spellbook .spell-symbol{display:flex;justify-content:center;flex:0 0 64px;height:64px}
-.mobile-spellbook .spell-symbol img,.mobile-spellbook .spell-symbol canvas{width:65px;height:64px;object-fit:contain;image-rendering:auto}
-.mobile-spellbook footer{display:flex;flex-direction:column;align-items:stretch;gap:5px}
-.mobile-spellbook .spell-pagination{display:flex;align-items:center;gap:6px;justify-content:space-between}
-.mobile-spellbook footer button{min-height:44px!important;font-size:13px!important}
-.mobile-spellbook [data-reuse]{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-@media(orientation:landscape){.mobile-spellbook .spell-list{grid-template-columns:repeat(3,minmax(0,1fr))}.mobile-spellbook .spell-row{flex-direction:row;align-items:start}.mobile-spellbook .spell-symbol{flex-basis:48px;height:48px}.mobile-spellbook .spell-symbol img,.mobile-spellbook .spell-symbol canvas{width:48px;height:48px}.mobile-spellbook footer{flex-direction:row}.mobile-spellbook .spell-pagination{flex:2;min-width:0}.mobile-spellbook [data-reuse]{flex:1;min-width:0}}
 
 /* Menus open as complete pages rather than a side sheet. */
 #mobile-app .mobile-sheet{inset:var(--mobile-top-height,60px) 0 0;transition:none;animation:none}
@@ -176,15 +148,6 @@ html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=target]{gri
 #mobile-app[data-mode=town] .mobile-nav [data-ui=back],#mobile-app [data-ui=target],#mobile-app [data-ui=confirm-recruit],#mobile-app [data-hall-buy],#mobile-app [data-ui=accept]{border:4px ridge #ffe18a;border-image:none;box-shadow:inset 0 0 0 1px #60491b;box-sizing:border-box}
 @media(orientation:landscape) and (max-height:600px){html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav{grid-template-columns:minmax(0,1fr);grid-template-rows:56px repeat(3,minmax(44px,1fr));align-content:stretch}html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=target]{grid-column:1;grid-row:1}}
 
-/* Repeat is a book-level action, kept at the top in either orientation. */
-.mobile-spellbook{grid-template-rows:auto auto auto minmax(0,1fr) auto}
-.mobile-spellbook>header{grid-column:1/-1;grid-row:1}
-.mobile-spellbook .spell-top-actions{grid-column:1/-1;grid-row:2;display:flex;min-width:0}
-.mobile-spellbook .spell-top-actions [data-reuse]{width:100%;min-height:44px}
-.mobile-spellbook .spell-schools{grid-column:1/-1;grid-row:3}
-.mobile-spellbook .spell-list{grid-column:1/-1;grid-row:4;grid-auto-rows:max-content;align-items:start}
-.mobile-spellbook>footer{grid-column:1/-1;grid-row:5}
-@media(orientation:landscape) and (max-height:600px){.mobile-spellbook{grid-template-columns:minmax(0,1fr) minmax(160px,.6fr);grid-template-rows:48px 44px minmax(0,1fr) 44px;gap:5px}.mobile-spellbook>header{grid-column:1;grid-row:1}.mobile-spellbook .spell-top-actions{grid-column:2;grid-row:1}.mobile-spellbook .spell-schools{grid-row:2}.mobile-spellbook .spell-list{grid-row:3}.mobile-spellbook>footer{grid-row:4}}
 
 /* Select heroes directly; edge arrows indicate the horizontally scrollable roster. */
 #mobile-app[data-mode=map] .hero-movement-summary{display:flex;align-items:center;gap:4px}
