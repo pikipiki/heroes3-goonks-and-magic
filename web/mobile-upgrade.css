@@ -48,11 +48,10 @@ button[aria-busy=true]::after{content:'';position:absolute;right:10px;top:calc(5
 
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-panel{position:relative;z-index:3;min-width:0;min-height:0;overflow:hidden}
 @media(orientation:landscape){
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .mobile-play{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);grid-template-rows:22px minmax(0,1fr) 64px;gap:0 6px}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-strategic-view{grid-column:1;grid-row:1/3;min-height:0;overflow:hidden}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-detail-label{grid-column:2;grid-row:1}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] #mobile-scene{grid-column:2;grid-row:2;width:100%;height:100%;max-height:100%;min-height:0;align-self:stretch;position:relative;z-index:1}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-panel{display:grid;grid-column:1/3;grid-row:3;grid-template-columns:48px minmax(0,1fr) 96px;grid-template-rows:22px minmax(0,1fr);height:64px;max-height:64px;padding:4px 7px;gap:0 7px}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .mobile-play{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);grid-template-rows:minmax(0,1fr) 64px;gap:0 6px}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-strategic-view{grid-column:1;grid-row:1;min-height:0;overflow:hidden}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] #mobile-scene{grid-column:2;grid-row:1;position:relative;z-index:1}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-panel{display:grid;grid-column:1/3;grid-row:2;grid-template-columns:48px minmax(0,1fr) 96px;grid-template-rows:22px minmax(0,1fr);height:64px;max-height:64px;padding:4px 7px;gap:0 7px}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] #battle-creature-detail{grid-column:1;grid-row:1/3;width:46px;height:52px;min-height:0;margin:0;order:0}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-turn{grid-column:2;grid-row:1;font-size:13px;margin:0}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-battle-layout=dual] .battle-selection{grid-column:2;grid-row:2;font-size:11px;margin:0}
@@ -82,9 +81,7 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
 }
 
 @media(orientation:landscape) and (max-height:600px){
- html.goonk-mobile #mobile-app[data-mode=battle][data-has-calendar=true] .mobile-top{flex-wrap:wrap;row-gap:0}
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-view{flex:0 0 auto;min-width:110px;white-space:nowrap}
- html.goonk-mobile #mobile-app[data-mode=battle] .mobile-calendar{flex:0 0 100%;width:100%;box-sizing:border-box}
 }
 
 .menu-launch-status{position:absolute;inset:auto 12px 12px;z-index:8;padding:14px;background:#24180cf5;border:2px ridge #c9a34d;color:#fff0bb;font:16px/1.45 Georgia,serif;max-height:80%;overflow:auto}.menu-launch-status[hidden]{display:none}.menu-launch-status h2{font-size:20px;margin:0 0 8px}.menu-launch-status p{margin:0 0 10px}.menu-launch-status progress{width:100%;accent-color:#ddbd61}.menu-launch-status button{width:100%;min-height:52px}
