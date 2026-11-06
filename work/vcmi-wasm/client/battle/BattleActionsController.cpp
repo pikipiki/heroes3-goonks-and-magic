@@ -1202,12 +1202,53 @@ bool BattleActionsController::heroSpellcastingModeActive() const
 
 bool BattleActionsController::creatureSpellcastingModeActive() const
 {
+	// After submitting a cast, the stack is deactivated before the next action list arrives.
+	if (!monsterCaster && !owner.stacksController->getActiveStack())
+		return false;
+
 	auto spellcastModePredicate = [](const PossiblePlayerBattleAction & action)
 	{
 		return action.spellcast() || action.get() == PossiblePlayerBattleAction::SHOOT; //for hotkey-eligible SPELL_LIKE_ATTACK creature should have only SHOOT action
 	};
 
 	return !possibleActions.empty() && std::all_of(possibleActions.begin(), possibleActions.end(), spellcastModePredicate);
+}
+
+const CSpell * BattleActionsController::targetedSpell() const
+{
+	if (const auto * spell = getHeroSpellToCast())
+		return spell;
+
+	SpellID selected = SpellID::NONE;
+	for (const auto & action : possibleActions)
+	{
+		if (!action.spell().hasValue())
+			continue;
+		if (selected.hasValue() && selected != action.spell())
+			return nullptr;
+		selected = action.spell();
+	}
+	return selected.hasValue() ? selected.toSpell() : nullptr;
+}
+
+bool BattleActionsController::canPreviewSpellTargets() const
+{
+	// Looking up a genie spell draws from the RNG. Leave that check to the actual cast.
+	return std::none_of(possibleActions.begin(), possibleActions.end(), [](const auto & action)
+	{
+		return action.get() == PossiblePlayerBattleAction::RANDOM_GENIE_SPELL;
+	});
+}
+
+bool BattleActionsController::canTargetSpellHex(const BattleHex & hex)
+{
+	if (!getCurrentSpellcaster())
+		return false;
+
+	return std::any_of(possibleActions.begin(), possibleActions.end(), [this, &hex](const auto & action)
+	{
+		return actionIsLegal(action, hex);
+	});
 }
 
 bool BattleActionsController::currentActionSpellcasting(const BattleHex & hoveredHex)

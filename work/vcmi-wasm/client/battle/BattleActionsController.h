@@ -107,6 +107,11 @@ public:
 	/// initialize hero spellcasting mode, e.g. on selecting spell in spellbook
 	void castThisSpell(SpellID spellID);
 
+	/// Spell information for the mobile target picker.
+	const CSpell * targetedSpell() const;
+	bool canPreviewSpellTargets() const;
+	bool canTargetSpellHex(const BattleHex & hex);
+
 	/// ends casting spell (eg. when spell has been cast or canceled)
 	void endCastingSpell();
 

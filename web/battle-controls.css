@@ -17,7 +17,6 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] [data-ui=battle-retreat]{grid-column:2}
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-calendar{grid-row:2}
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-tools button{min-height:52px!important;font-size:14px!important}
-html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-follow-action{min-height:56px!important;font-size:15px}
 @media(orientation:portrait){
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-nav{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px 8px calc(8px + var(--safe-bottom))}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-nav button{min-height:52px!important;font-size:15px!important;padding:6px 3px!important}

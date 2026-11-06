@@ -21,9 +21,6 @@
 #mobile-app[data-mode=battle][data-battle-layout=dual] .mobile-nav button{min-height:44px!important;padding:4px 3px!important}
 @media(orientation:portrait) and (max-height:650px){#mobile-app[data-mode=battle][data-battle-layout=dual] .mobile-play{grid-template-rows:minmax(0,.7fr) 20px minmax(96px,1.3fr) 66px}}
 
-/* Exploration pauses camera following until a native action starts or this button is used. */
-#mobile-app .battle-follow-action{position:absolute;right:8px;bottom:76px;z-index:2;min-height:44px;font-size:13px;background:#332313;border-color:#ffe082}
-
 @media(orientation:landscape){
  #mobile-app[data-mode=battle][data-battle-layout=dual] .mobile-play{grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);grid-template-rows:22px minmax(0,1fr) 62px;gap:0 6px}
  #mobile-app[data-mode=battle][data-battle-layout=dual] .battle-strategic-view{grid-column:1;grid-row:1/3}

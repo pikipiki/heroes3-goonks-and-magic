@@ -3,7 +3,7 @@ import {touchGeometry,sameTouchGeometry,isPointerClick} from './touch-geometry.m
 // A layout change after release must never redirect the delayed click to a neighbor.
 export function protectBattleControls(root){
  let held=null,activating=false;
- const selector='.mobile-top button,.mobile-nav button,.battle-tools button,.battle-follow-action';
+ const selector='.mobile-top button,.mobile-nav button,.battle-tools button';
  const context=()=>root.dataset.mode+':'+(root.dataset.sheet||'');
  const consume=e=>{e.preventDefault();e.stopImmediatePropagation();};
  const cancel=()=>{held=null;};
