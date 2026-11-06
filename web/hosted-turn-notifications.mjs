@@ -1,3 +1,4 @@
+import {requestHostedMatch} from './hosted-match-request.mjs';
 import {mountHostedMatchCreation} from './hosted-match-create.mjs';
 
 const legacySeatCodePattern = /^[A-Za-z0-9_-]{43}$/;
@@ -140,7 +141,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   start.textContent = fr ? 'Lancer avec ce scénario' : 'Start with this scenario';
   chooser.hidden = start.hidden = true;
   status.before(chooser, start);
-  field.querySelector('label span').textContent = fr ? 'Code de ta place' : 'Your seat code';
+  field.querySelector('label span').textContent = fr ? 'Code de la partie' : 'Game code';
   paste.textContent = fr ? 'Coller le code' : 'Paste code';
   paste.hidden = !navigator.clipboard?.readText;
   const alertsLabel = fr ? 'Alertes de tour' : 'Turn alerts';
@@ -200,11 +201,14 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       }
     }, () => joinMatch({remembered: createdSeat}));
 
-  async function hostedRequest(token, options, knownEndpoint, query = '', attempt) {
-    const send = target => fetch(target + (attempt && target === poolEndpoint ? '?attempt=' + attempt : query), {
-      credentials: 'omit', redirect: 'error', signal: AbortSignal.timeout(target === poolEndpoint ? 55000 : 10000),
-      ...options, headers: {Authorization: 'Bearer ' + token, ...options?.headers},
-    });
+  async function hostedRequest(token, options, knownEndpoint, query = '', attempt, onWait) {
+    const send = target => {
+      const url = target + (attempt && target === poolEndpoint ? '?attempt=' + attempt : query);
+      const init = {credentials: 'omit', redirect: 'error',
+        ...options, headers: {Authorization: 'Bearer ' + token, ...options?.headers}};
+      if (attempt && target === poolEndpoint && onWait) return requestHostedMatch(url, init, onWait);
+      return fetch(url, {...init, signal: AbortSignal.timeout(target === poolEndpoint ? 55000 : 10000)});
+    };
     let target = knownEndpoint || (poolEndpoint && (shortSeatCodePattern.test(token) || token.startsWith('HG')) ? poolEndpoint : endpoint);
     let response = await send(target);
     if (!knownEndpoint && poolEndpoint && response.status === 401) {
@@ -216,7 +220,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   const render = () => {
     const valid = Boolean(seatCode() || inviteCode());
     const hint = input.value && !valid
-      ? (fr ? 'Saisis les quatre lettres de ton invitation ou colle ton ancien code.' : 'Enter the four letters of your invitation or paste your previous code.')
+      ? (fr ? 'Saisis les quatre lettres de la partie ou colle ton ancien code.' : 'Enter the four-letter game code or paste your previous code.')
       : '';
     if (help.textContent !== hint) help.textContent = hint;
     const seats = availableSeats();
@@ -396,6 +400,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       if (loader.textContent !== message) loader.textContent = message;
     };
     showLoading('Vérification de l’accès…', 'Checking access…');
+    const showServerWait = () => showLoading('En attente du serveur dédié…', 'Waiting for the dedicated server…');
     render();
     let opening = false;
     const attempt = crypto.randomUUID();
@@ -419,34 +424,36 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
         if (!claimId) {
           claimId = crypto.randomUUID();
           try {
-            claimId = sessionStorage.getItem(key) || claimId;
-            sessionStorage.setItem(key, claimId);
+            claimId = localStorage.getItem(key) || sessionStorage.getItem(key) || claimId;
+            localStorage.setItem(key, claimId);
+            sessionStorage.removeItem(key);
           } catch {}
           claims.set(invitation, claimId);
         }
-        const response = await fetch(new URL('/hosted/matches/claim', poolEndpoint), {
-          method: 'POST', credentials: 'omit', redirect: 'error', signal: AbortSignal.timeout(55000),
+        const response = await requestHostedMatch(new URL('/hosted/matches/claim', poolEndpoint), {
+          method: 'POST', credentials: 'omit', redirect: 'error',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({code: invitation, claimId}),
-        });
+        }, showServerWait);
         const claim = await response.json();
         if (!response.ok) {
           status.textContent = claim.error === 'host-offline'
             ? (fr ? 'Demande à l’hôte de lancer la partie avant de rejoindre.' : 'Ask the host to launch the game before joining.')
-            : response.status === 401
-              ? (fr ? 'Invitation inconnue ou déjà utilisée.' : 'This invitation is invalid or has already been used.')
-              : (fr ? 'Impossible de vérifier l’invitation pour le moment. Réessaie plus tard.' : 'Could not verify the invitation right now. Try again later.');
+            : claim.error === 'no-seats'
+              ? (fr ? 'Toutes les places ont été attribuées. Utilise Reprendre la partie si tu as déjà joué.' :
+                'All seats are taken. Use Resume match if you already joined.')
+              : response.status === 401
+                ? (fr ? 'Code inconnu ou invitation déjà utilisée.' : 'Unknown game code or already used invitation.')
+                : (fr ? 'Impossible de vérifier le code pour le moment. Réessaie plus tard.' : 'Could not verify the code right now. Try again later.');
           return;
         }
         if (!matchPattern.test(claim.matchId) || !normalizeSeatCode(claim.token ?? '')) throw new Error('Invalid invitation response.');
         remember(claim.matchId, claim.token, poolEndpoint, claim.name, claim.players);
         remembered = saved;
         token = saved.token;
-        claims.delete(invitation);
-        try { sessionStorage.removeItem(key); } catch {}
         input.value = '';
       }
-      let result = await hostedRequest(token, {}, remembered?.endpoint, '', attempt);
+      let result = await hostedRequest(token, {}, remembered?.endpoint, '', attempt, showServerWait);
       tracePool = result.target === poolEndpoint;
       let response = result.response.ok ? await result.response.json() : null;
       const startupDeadline = Date.now() + 90000;

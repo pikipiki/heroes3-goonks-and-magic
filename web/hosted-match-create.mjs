@@ -1,3 +1,5 @@
+import {requestHostedMatch} from './hosted-match-request.mjs';
+
 export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, onLaunch) {
   if (!endpoint) return;
   const t = (en, french) => fr ? french : en;
@@ -17,19 +19,21 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   launch.className = 'primary';
   const colors = fr ? ['Rouge', 'Bleu', 'Beige', 'Vert', 'Orange', 'Violet', 'Turquoise', 'Rose'] :
     ['Red', 'Blue', 'Tan', 'Green', 'Orange', 'Purple', 'Teal', 'Pink'];
-  submit.textContent = t('Create match and get codes', 'Créer la partie et obtenir les codes');
+  submit.textContent = t('Create match and get code', 'Créer la partie et obtenir le code');
   players.previousElementSibling.textContent = t('Number of players', 'Nombre de joueurs');
   map.previousElementSibling.textContent = t('Scenario', 'Scénario');
   players.replaceChildren(...Array.from({length: 7}, (_, index) => new Option(index + 2, index + 2)));
   root.prepend(section);
-  let scenarios = [], invited = [], pending = false, requestId, previousRequest;
+  let scenarios = [], pending = false, requestId, previousRequest;
   function render() {
     players.disabled = map.disabled = pending;
     submit.disabled = pending || !map.value;
     for (const input of castles.querySelectorAll('select')) input.disabled = pending;
   }
-  const request = (path, options) => fetch(new URL('/hosted/matches' + path, endpoint), {
-    credentials: 'omit', redirect: 'error', signal: AbortSignal.timeout(55000), ...options,
+  const request = (path, options) => requestHostedMatch(new URL('/hosted/matches' + path, endpoint), {
+    credentials: 'omit', redirect: 'error', ...options,
+  }, () => {
+    status.textContent = t('Waiting for the dedicated server…', 'En attente du serveur dédié…');
   });
   function showCastles() {
     const selected = scenarios.find(scenario => scenario.id === map.value);
@@ -73,10 +77,11 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
     const signature = JSON.stringify(settings);
     if (signature !== previousRequest) { requestId = crypto.randomUUID(); previousRequest = signature; }
     pending = true;
+    status.textContent = t('Creating the match…', 'Création de la partie…');
     render();
     try {
       const response = await request('', {method: 'POST', headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({...settings, requestId, codeFormat: 'invite'})});
+        body: JSON.stringify({...settings, requestId, codeFormat: 'room'})});
       const result = await response.json().catch(() => ({}));
       if (!response.ok) {
         status.textContent = result.error === 'full' ? t('All dedicated slots are in use.', 'Toutes les places de sauvegarde dédiées sont occupées.') :
@@ -84,8 +89,8 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
           t('Could not create the match. Try again.', 'La création a échoué. Réessaie.');
         return;
       }
-      invited = result.codes;
-      const hostToken = result.hostToken ?? invited?.[0]?.code;
+      const hostToken = result.hostToken ?? result.codes?.[0]?.code;
+      const invited = result.roomCode ? [{code: result.roomCode}] : result.codes;
       if (!hostToken || !Array.isArray(invited)) throw Error('Invalid match response.');
       codes.replaceChildren(...invited.map(({seat, code}) => {
         const row = document.createElement('label');
@@ -96,15 +101,17 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
         value.value = code;
         copy.type = 'button';
         copy.dataset.createMatch = 'copy';
-        copy.dataset.seat = seat;
         copy.textContent = t('Copy code', 'Copier le code');
-        row.append(colors[seat], value, copy);
+        row.append(seat === undefined ? t('Game code', 'Code de la partie') : colors[seat], value, copy);
         return row;
       }), launch);
       form.hidden = true;
       codes.hidden = false;
-      status.textContent = t('Share each invitation code with its player, then launch the game.',
-        'Partage son code avec chaque joueur, puis lance la partie.');
+      status.textContent = result.roomCode
+        ? t('Share this code with your guests and launch the game so they can join.',
+          'Partage ce code avec tes invités et lance la partie pour qu’ils puissent rejoindre.')
+        : t('Share each invitation code with its player, then launch the game.',
+          'Partage son code avec chaque joueur, puis lance la partie.');
       onCreated(result.matchId, hostToken, scenarios.find(item => item.id === settings.scenario)?.name, settings.players);
       previousRequest = undefined;
     } catch {
