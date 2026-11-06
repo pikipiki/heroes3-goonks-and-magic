@@ -107,7 +107,7 @@ try {
     await joinButton.tap();
     await page.getByText('Enter the four-letter game code or paste your previous code.', {exact: true}).waitFor();
     await alertsButton.tap();
-    await page.getByText('Join the match first to manage alerts for your seat.', {exact: true}).waitFor();
+    await page.getByText('Enter the four-letter game code or paste your previous code.', {exact: true}).waitFor();
     const alerts = page.getByRole('switch', {name: 'Turn alerts', exact: true});
     assert.equal(await page.getByRole('button', {name: 'Paste code', exact: true}).count(), 0);
     await seat.fill(hostCode);
@@ -261,6 +261,8 @@ try {
     assert(await page.getByRole('button', {name: 'Resume match', exact: true}).isVisible());
     await page.getByText('1 of 2 players connected', {exact: true}).waitFor();
     await seat.fill('kmrt');
+    await page.getByRole('button', {name: 'Turn alerts', exact: true}).tap();
+    await page.locator('#hosted-turn-alerts-status').getByText('Off', {exact: true}).waitFor();
     const guestReport = page.waitForResponse(response => new URL(response.url()).searchParams.get('result') === 'busy');
     await page.getByRole('button', {name: 'Join match', exact: true}).tap();
     await page.waitForFunction(() => window.testAlertLookupCancelled);
