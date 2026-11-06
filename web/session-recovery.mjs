@@ -1,4 +1,6 @@
 import {requestedHostedMatch} from './hosted-turn-notifications.mjs';
+import {scenarioTitle} from './scenario-title.mjs';
+const RECOVERY_CHOICE_MS=1800;
 const SAVE_ROOT='/home/web_user/.local/share/vcmi/Saves';
 const saveName=value=>String(value||'').replace(/\\/g,'/').split('/').at(-1).replace(/\.vsgm1$/i,'').toLowerCase();
 export function listLocalSaves(FS){
@@ -8,8 +10,8 @@ export function listLocalSaves(FS){
 }
 // Boot-only recovery. Foregrounding a live engine never sends a load command.
 export function createSessionRecovery({listSaves,command,onStatus=()=>{},manual=false,newGame=false,campaign=false,hosted=false,custom=null,onChooseAlternative=()=>{},clock=()=>Date.now()}){
- let phase='idle',checked=false,candidates=[],chosen=null,lastProgress=clock();
- const status=(value,error)=>{phase=value;lastProgress=clock();onStatus({phase,error,save:chosen?.name,busy:['opening','selecting','starting','custom-opening','custom-configuring'].includes(phase),canDismiss:true});};
+ let phase='idle',checked=false,candidates=[],chosen=null,lastProgress=clock(),startSent=false;
+ const status=(value,error)=>{phase=value;lastProgress=clock();onStatus({phase,error,save:chosen?.name,scenario:chosen?.scenario,busy:['opening','selecting','ready','starting','custom-opening','custom-configuring'].includes(phase),canDismiss:phase!=='starting',requiresReload:phase==='failed'&&startSent});};
  const fail=error=>status('failed',error);
  const api={
   get phase(){return phase;},
@@ -30,7 +32,7 @@ export function createSessionRecovery({listSaves,command,onStatus=()=>{},manual=
    }
    if(phase==='custom-opening'){if(state.mode==='lobby'&&state.lobbyReady){status('custom-configuring');command(48,...custom);}return;}
    if(phase==='custom-configuring'){if(state.mode==='lobby'&&state.lobbyReady&&state.customMap)status('dismissed');return;}
-   if(!['opening','selecting','starting'].includes(phase))return;
+   if(!['opening','selecting','ready','starting'].includes(phase))return;
    try{
     if(phase==='opening'&&state.mode==='load'&&state.lobbyReady){
      // The native list has already parsed save headers; ignore corrupt/incompatible files.
@@ -38,13 +40,16 @@ export function createSessionRecovery({listSaves,command,onStatus=()=>{},manual=
      if(!chosen){fail('Aucune sauvegarde locale compatible. Choisis une partie manuellement.');return;}
      status('selecting');command(27,chosen.index);return;
     }
-    if(phase==='selecting'&&state.mode==='load'&&state.lobbyReady&&state.selectedIndex===chosen.index){status('starting');command(22);}
+    if(state.mode==='load'&&state.lobbyReady&&state.selectedIndex===chosen?.index){
+     if(phase==='selecting')status('ready');
+     if(phase==='ready'&&clock()-lastProgress>=RECOVERY_CHOICE_MS){startSent=true;status('starting');command(22);}
+    }
    }catch(error){fail(String(error));}
   },
-  tick(){if(['opening','selecting','starting'].includes(phase)&&clock()-lastProgress>60000)fail('La reprise prend trop de temps. Tu peux choisir une sauvegarde manuellement.');},
+  tick(){if(['opening','selecting','ready','starting'].includes(phase)&&clock()-lastProgress>60000)fail('La reprise prend trop de temps. Tu peux choisir une sauvegarde manuellement.');},
   wake(){lastProgress=clock();},
-  dismiss(){const restarting=phase==='starting';checked=true;status('dismissed');onChooseAlternative({restarting});return true;},
-  get intercept(){return ['opening','selecting','starting','custom-opening','custom-configuring'].includes(phase);}
+  dismiss(){if(phase==='starting')return false;checked=true;status('dismissed');onChooseAlternative({restarting:startSent});return true;},
+  get intercept(){return ['opening','selecting','ready','starting','custom-opening','custom-configuring'].includes(phase);}
  };
  return api;
 }
@@ -57,8 +62,9 @@ export function installSessionRecovery({win=window,doc=document}={}){
  let lastState=null;
  const recovery=createSessionRecovery({manual,newGame,campaign,hosted:Boolean(win.goonkHostedAlerts&&requestedHostedMatch(url.search)),custom,onChooseAlternative:({restarting})=>{if(restarting){const next=new URL(win.location.href);next.searchParams.set('choose-save','1');win.location.replace(next.href);}else if(lastState)win.dispatchEvent(new CustomEvent('goonk-state',{detail:lastState}));},listSaves:()=>listLocalSaves(win.Module?.FS),command:(a,b=0,c=0,d=0,e=0,f=0)=>win.Module?._vcmiMobileCommand?.(a,b,c,d,e,f),onStatus:info=>{
   win.goonkSessionRecovery=info;
-  const show=info.busy||info.phase==='failed';dialog.dataset.busy=String(info.busy);button.disabled=!info.canDismiss;
-  message.textContent=info.error||(['custom-opening','custom-configuring'].includes(info.phase)?'Preparing game options…':null)||(info.phase==='starting'?'Chargement de la dernière sauvegarde…':'Recherche de la dernière sauvegarde enregistrée sur cet appareil…');
+  const show=info.busy||info.phase==='failed';dialog.dataset.busy=String(info.busy);button.hidden=!info.canDismiss;
+  button.textContent=info.requiresReload?'Recharger le jeu pour choisir une sauvegarde':'Choisir une autre partie';
+  message.textContent=info.error||(['custom-opening','custom-configuring'].includes(info.phase)?'Preparing game options…':null)||(info.phase==='starting'?'Chargement de la dernière sauvegarde…':info.phase==='ready'?(info.scenario?scenarioTitle(info.scenario):'Reprise de la dernière sauvegarde…'):'Recherche de la dernière sauvegarde enregistrée sur cet appareil…');
   if(show&&!dialog.open)dialog.showModal();else if(!show&&dialog.open)dialog.close();
  }});
  button.onclick=()=>recovery.dismiss();dialog.addEventListener('cancel',event=>{event.preventDefault();recovery.dismiss();});dialog.addEventListener('keydown',event=>event.stopPropagation());

@@ -91,7 +91,12 @@ struct MobileScenario
  int width;
 };
 std::vector<MobileScenario> mobileMaps;
-bool mapsListed=false,savesListed=false;std::set<int> portraitIds,artifactIconIds;std::vector<std::pair<std::string,std::string>> mobileCampaigns,mobileSaves;
+bool mapsListed=false,savesListed=false;std::set<int> portraitIds,artifactIconIds;std::vector<std::pair<std::string,std::string>> mobileCampaigns;
+struct MobileSave
+{
+ std::string file, name, scenario;
+};
+std::vector<MobileSave> mobileSaves;
 uint32_t lastPublished=0,lastSent=0;
 std::string lastSnapshot,pendingDefaultMap;
 std::atomic_bool snapshotPending{false};
@@ -534,8 +539,42 @@ void publishMobileState(){
  }
  if(n["mode"].String()=="load"){
   n["lobbyReady"].Bool()=GAME->server().getState()==EClientState::LOBBY;
-  if(!savesListed){savesListed=true;mobileSaves.clear();const auto files=CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path){return path.getType()==EResType::SAVEGAME;});for(const auto & file:files){try{CMapInfo info;info.saveInit(file);mobileSaves.emplace_back(file.getOriginalName(),info.getNameForList());}catch(const std::exception &){} }std::sort(mobileSaves.begin(),mobileSaves.end());}
-  for(size_t i=0;i<mobileSaves.size();i++){JsonNode entry;entry["index"].Integer()=i;entry["name"].String()=mobileSaves[i].second;entry["file"].String()=mobileSaves[i].first;n["maps"].Vector().push_back(entry);}if(GAME->server().mi){const auto selected=ResourcePath(GAME->server().mi->fileURI,EResType::SAVEGAME).getName();for(size_t i=0;i<mobileSaves.size();i++)if(ResourcePath(mobileSaves[i].first,EResType::SAVEGAME).getName()==selected){n["selectedMap"].String()=mobileSaves[i].second;n["selectedIndex"].Integer()=i;break;}}
+  if(!savesListed)
+  {
+   savesListed=true;
+   mobileSaves.clear();
+   const auto files=CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path){return path.getType()==EResType::SAVEGAME;});
+   for(const auto & file:files)
+   {
+    try
+    {
+     CMapInfo info;
+     info.saveInit(file);
+     const auto name=info.getNameForList();
+     const auto resource=ResourcePath(file.getOriginalName(),EResType::SAVEGAME).getName();
+     const bool automatic=resource=="SAVES/GOONK-AUTO"||resource=="SAVES/GOONK-ONLINE-AUTO";
+     mobileSaves.push_back({file.getOriginalName(),name,automatic?info.getNameTranslated():std::string{}});
+    }
+    catch(const std::exception &){}
+   }
+   std::sort(mobileSaves.begin(),mobileSaves.end(),[](const auto & a,const auto & b){return a.file<b.file;});
+  }
+  const auto selected=GAME->server().mi?ResourcePath(GAME->server().mi->fileURI,EResType::SAVEGAME).getName():std::string{};
+  for(size_t i=0;i<mobileSaves.size();i++)
+  {
+   const auto & save=mobileSaves[i];
+   JsonNode entry;
+   entry["index"].Integer()=i;
+   entry["name"].String()=save.name;
+   entry["file"].String()=save.file;
+   if(!save.scenario.empty())entry["scenario"].String()=save.scenario;
+   n["maps"].Vector().push_back(entry);
+   if(ResourcePath(save.file,EResType::SAVEGAME).getName()==selected)
+   {
+    n["selectedMap"].String()=save.name;
+    n["selectedIndex"].Integer()=i;
+   }
+  }
  }else savesListed=false;
  if(recruitWindow){
   if(const auto c=recruitWindow->getRecruitCreature())n["recruitUnit"]=creature(c,recruitWindow->getRecruitAvailable());
@@ -883,7 +922,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==24){if(GAME&&!GAME->server().inLobbyRoom()&&GAME->server().getState()==EClientState::LOBBY&&a>=0&&a<int(mobileMaps.size())){auto info=std::make_shared<CMapInfo>();info->mapInit(mobileMaps[a].file);pendingDefaultMap=info->getNameForList()=="Goonks"?"Goonks":"";GAME->server().setMapInfo(info);}return;}
  if(action==25){if(GAME&&GAME->server().getState()==EClientState::LOBBY&&a>=0&&a<=4)GAME->server().setDifficulty(a);return;}
  if(action==37){if(GAME&&GAME->server().getState()==EClientState::LOBBY&&GAME->server().mi){auto & server=GAME->server();const auto color=server.myFirstColor();if(server.si->playerInfos.count(color)&&(server.getPlayerInfo(color).allowedFactions.count(FactionID(a))||(a==-1&&server.getPlayerInfo(color).isFactionRandom)))server.setPlayerOption(LobbyChangePlayerOption::TOWN_ID,a,color);}return;}
- if(action==27){if(GAME&&GAME->server().getState()==EClientState::LOBBY&&GAME->server().screenType==ESelectionScreen::loadGame&&a>=0&&a<int(mobileSaves.size())){auto info=std::make_shared<CMapInfo>();info->saveInit(ResourcePath(mobileSaves[a].first,EResType::SAVEGAME));GAME->server().setMapInfo(info);}return;}
+ if(action==27){if(GAME&&GAME->server().getState()==EClientState::LOBBY&&GAME->server().screenType==ESelectionScreen::loadGame&&a>=0&&a<int(mobileSaves.size())){auto info=std::make_shared<CMapInfo>();info->saveInit(ResourcePath(mobileSaves[a].file,EResType::SAVEGAME));GAME->server().setMapInfo(info);}return;}
  if(action==23){if(GAME&&!GAME->interface())CMainMenu::openLobby(ESelectionScreen::loadGame,true,{"Goonk"},ELoadMode::SINGLE,false);return;}
  auto p=GAME?GAME->interface():nullptr;if(!p||!p->cb||!p->localState)return;
  const auto hero=p->localState->getCurrentHero();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battle= CPlayerInterface::battleInt;

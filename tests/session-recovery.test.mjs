@@ -2,13 +2,13 @@ import {test} from 'node:test';import assert from 'node:assert/strict';
 import {createSessionRecovery,listLocalSaves} from '../web/session-recovery.mjs';
 function fixture(candidates=[{name:'goonk-auto'}]){let now=0;const commands=[],statuses=[];const r=createSessionRecovery({listSaves:()=>candidates,command:(...v)=>commands.push(v),onStatus:s=>statuses.push(s),clock:()=>now});return{r,commands,statuses,set now(v){now=v;}};}
 test('Boot resumes the most recent compatible save once, only after selection acknowledgement',()=>{
- const {r,commands}=fixture([{name:'new-corrupt'},{name:'manual-latest'},{name:'goonk-auto'}]);
+ const f=fixture([{name:'new-corrupt'},{name:'manual-latest'},{name:'goonk-auto'}]);const {r,commands}=f;
  r.update({mode:'menu'});r.update({mode:'menu'});assert.deepEqual(commands,[[23]]);
  r.update({mode:'load',lobbyReady:false});assert.equal(commands.length,1);
  const saves={mode:'load',lobbyReady:true,maps:[{index:0,name:'Goonk-auto'},{index:1,name:'Manual-latest'}],selectedIndex:0};
  r.update(saves);assert.deepEqual(commands.at(-1),[27,1]);
  r.update(saves);assert.equal(commands.length,2);
- r.update({...saves,selectedIndex:1});assert.deepEqual(commands.at(-1),[22]);
+ r.update({...saves,selectedIndex:1});assert.equal(r.phase,'ready');assert.equal(commands.length,2);f.now=2000;r.update({...saves,selectedIndex:1});assert.deepEqual(commands.at(-1),[22]);
  r.update({...saves,selectedIndex:1});r.update({mode:'menu'});assert.equal(commands.length,3);
  r.update({mode:'map',day:2,heroId:4});assert.equal(r.phase,'done');
  for(let i=0;i<3;i++){r.wake();r.update({mode:'map',day:2});}r.update({mode:'menu'});assert.equal(commands.length,3);
@@ -26,11 +26,19 @@ test('Local save listing sorts timestamps, filters non-saves and empty files and
  assert.deepEqual(listLocalSaves({readdir:()=>[...Object.keys(stats),'settings.json'],stat:p=>stats[p.split('/').at(-1)]}),[{name:'manual',modified:30},{name:'goonk-auto',modified:10}]);assert.deepEqual(listLocalSaves(),[]);
 });
 
-test('Choosing another save during startup stays enabled and stops further automatic starts',()=>{
- const commands=[],choices=[],statuses=[];const r=createSessionRecovery({listSaves:()=>[{name:'auto'}],command:(...args)=>commands.push(args),onStatus:s=>statuses.push(s),onChooseAlternative:info=>choices.push(info)});
- r.update({mode:'menu'});const load={mode:'load',lobbyReady:true,maps:[{index:0,name:'auto'}],selectedIndex:0};r.update(load);r.update(load);
- assert.equal(r.phase,'starting');assert(statuses.at(-1).canDismiss);assert(r.dismiss());assert.deepEqual(choices,[{restarting:true}]);r.update(load);assert.equal(commands.filter(c=>c[0]===22).length,1);assert(!r.intercept);
+test('Choosing another save during the preview opens the existing save list without reloading',()=>{
+ let now=0;const commands=[],choices=[],statuses=[];const r=createSessionRecovery({listSaves:()=>[{name:'auto'}],command:(...args)=>commands.push(args),onStatus:s=>statuses.push(s),onChooseAlternative:info=>choices.push(info),clock:()=>now});
+ r.update({mode:'menu'});const load={mode:'load',lobbyReady:true,maps:[{index:0,name:'auto',scenario:'Adventuring Gnoll'}],selectedIndex:0};r.update(load);r.update(load);
+ assert.equal(r.phase,'ready');assert.equal(statuses.at(-1).scenario,'Adventuring Gnoll');assert(r.dismiss());assert.deepEqual(choices,[{restarting:false}]);
+ now=5000;r.update(load);assert.deepEqual(commands,[[23],[27,0]]);assert(!r.intercept);
  const manual=[];const next=createSessionRecovery({manual:true,listSaves:()=>{throw Error('Automatic selection must be skipped');},command:(...args)=>manual.push(args)});next.update({mode:'menu'});next.update(load);assert.deepEqual(manual,[[23]]);assert.equal(next.phase,'dismissed');
+});
+
+test('Native loading stops offering cancellation until it completes or times out',()=>{
+ const f=fixture();const load={mode:'load',lobbyReady:true,maps:[{index:0,name:'goonk-auto'}],selectedIndex:0};
+ f.r.update({mode:'menu'});f.r.update(load);f.r.update(load);
+ f.now=2000;f.r.update(load);assert.equal(f.r.phase,'starting');assert.equal(f.r.dismiss(),false);assert(!f.statuses.at(-1).canDismiss);
+ f.now=63000;f.r.tick();assert.equal(f.r.phase,'failed');assert(f.statuses.at(-1).requiresReload);
 });
 
 test('A deliberate new game skips automatic recovery without deleting saved games',()=>{const commands=[];const r=createSessionRecovery({newGame:true,listSaves:()=>{throw Error('Should not select an old save');},command:(...args)=>commands.push(args)});r.update({mode:'menu'});r.update({mode:'menu'});assert.deepEqual(commands,[[20]]);assert(!r.intercept);});

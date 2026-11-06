@@ -7,3 +7,13 @@ export function scenarioTitle(title = '') {
   return title.replace(/[\u00c0-\u00ff]+/g, word =>
     cyrillicDecoder.decode(Uint8Array.from(word, letter => letter.charCodeAt(0))));
 }
+
+const hiddenGoonkScenarios = new Set(['000 - Château Goonk', 'Goonks', 'Goonks Online']);
+
+export function isVisibleScenario(map) {
+  return !hiddenGoonkScenarios.has(map.name);
+}
+
+export function savedGameTitle(save) {
+  return save?.scenario ? `${scenarioTitle(save.scenario)} · ${save.name}` : save?.name || '';
+}

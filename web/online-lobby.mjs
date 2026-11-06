@@ -1,4 +1,4 @@
-import {scenarioTitle} from './scenario-title.mjs';
+import {isVisibleScenario,scenarioTitle} from './scenario-title.mjs';
 import {getLanguage} from './i18n.mjs';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => (
@@ -65,7 +65,7 @@ export function createOnlineLobby(root, command) {
   let defaultScenario = false;
   function renderScenarios() {
     const query = body.querySelector('[data-online-scenario-search]').value.trim().toLocaleLowerCase();
-    const scenarios = (state.onlineScenarios || []).filter(map => scenarioTitle(map.name).toLocaleLowerCase().includes(query));
+    const scenarios = (state.onlineScenarios || []).filter(isVisibleScenario).filter(map => scenarioTitle(map.name).toLocaleLowerCase().includes(query));
     write(body.querySelector('[data-online-scenarios]'), scenarios.map(map =>
       button(`${scenarioTitle(map.name)} · ${map.humanSeats} ${t('human seats', 'places humaines')}`, 'choose-scenario', {
         id: String(map.index), pressed: map.index === state.onlineScenarioIndex, disabled: !!sending,
@@ -229,10 +229,11 @@ export function createOnlineLobby(root, command) {
         pendingScenario = undefined;
       }
       if (page === 'match' && next.onlineHost && !next.onlineLoading && !defaultScenario && next.onlineRoomLimit) {
-        const preferred = next.onlineScenarios?.find(map => map.width === 36 && map.castleChoice);
+        const visible = (next.onlineScenarios || []).filter(isVisibleScenario);
+        const preferred = visible.find(map => map.width === 36 && map.castleChoice);
         if (preferred || !next.mapsLoading) {
           defaultScenario = true;
-          const chosen = preferred || (!next.onlineScenarioFits && next.onlineScenarios?.[0]);
+          const chosen = preferred || ((!next.onlineScenarioFits || !isVisibleScenario({name:next.selectedMap})) && visible[0]);
           if (chosen && chosen.index !== next.onlineScenarioIndex) {
             pendingScenario = chosen.index;
             command(84, chosen.index);

@@ -39,6 +39,19 @@ export async function persistSaveFiles(module,paths){
   await opfsCall(done=>OPFS.callWorker('flush',{root:saveRoot},done));
 }
 
+// The load screen can delete only the solo autosave. Touch its OPFS entry
+// directly so a stale tab cannot replace unrelated saves during a full sync.
+export async function deleteSoloAutosave(module){
+  const {FS,OPFS}=module;
+  const dir=saveRoot+'/Saves';
+  const file=FS.readdir(dir).find(name=>name.toLowerCase()==='goonk-auto.vsgm1');
+  if(!file)return;
+  const mount=FS.lookupPath(saveRoot).node.mount;
+  if(mount?.opts?.root!==saveRoot||mount.opts.folder)throw new Error('Autosave storage is unavailable');
+  await opfsCall(done=>OPFS.removeRemoteEntry(mount,dir+'/'+file,done));
+  await opfsCall(done=>OPFS.callWorker('flush',{root:saveRoot},done));
+}
+
 export function installRuntimeScheduling(module){
   const stats=window.goonkRuntimeStats={saves:[],errors:[]};
   const persist=createSaveScheduler({
