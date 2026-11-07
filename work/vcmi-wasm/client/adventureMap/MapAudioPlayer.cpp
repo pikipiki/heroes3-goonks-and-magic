@@ -268,6 +268,8 @@ void MapAudioPlayer::onAudioResumed()
 
 void MapAudioPlayer::onPlayerTurnStarted()
 {
+	if (playerMakingTurn && !enemyMakingTurn)
+		return;
 	enemyMakingTurn = false;
 	playerMakingTurn = true;
 	update();
@@ -275,6 +277,8 @@ void MapAudioPlayer::onPlayerTurnStarted()
 
 void MapAudioPlayer::onEnemyTurnStarted()
 {
+	if (enemyMakingTurn)
+		return;
 	playerMakingTurn = false;
 	enemyMakingTurn = true;
 	update();

@@ -261,6 +261,9 @@ void CMinimap::onMapViewMoved(const Rect & visibleArea, int mapLevel)
 
 void CMinimap::setAIRadar(bool on)
 {
+	if(on == (minimap == nullptr))
+		return;
+
 	if(on)
 	{
 		aiShield->enable();

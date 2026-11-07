@@ -46,7 +46,7 @@ export function renderPage(root){
           const temporaryAssets=mountTemporaryAssets(module,window.goonkAssetURLs,{onFetch:bytes=>window.goonkTemporaryBoot.progress(bytes)});
           await window.goonkTemporaryBoot.start();
           await temporaryAssets.prefetch(startupReads,{onPlan:bytes=>window.goonkTemporaryBoot.plan(bytes)}).catch(error=>console.warn('Temporary prefetch incomplete',error));
-          void temporaryAssets.prefetch(gameplayReads,{concurrency:4,trackProgress:false,reserveBytes:32*1024*1024}).catch(()=>{});
+          void temporaryAssets.prefetch(gameplayReads,{concurrency:6,trackProgress:false,reserveBytes:32*1024*1024}).catch(()=>{});
           await window.goonkTemporaryBoot.launching();
         }else await new Promise(resolve => {
           OPFS.syncFsOnProgress`);

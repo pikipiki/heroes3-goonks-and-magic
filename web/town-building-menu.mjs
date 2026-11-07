@@ -64,7 +64,7 @@ export function nextBuildingPrerequisite(state, building) {
 export function createTownBuildingMenu({body, getState, asset, backButton, canOpen, openSheet, closeSheet, command, notify}) {
   const images = new Map(), urls = new Map(), townProjects = new Map();
   let tab = 'unbuilt', filter = '', selected = null, lockedOpen = false;
-  let signature, listScroll = 0, pending, preloadedFaction, unlockRoute = null, project = null, construction, constructionTimer;
+  let signature, listScroll = 0, pending, preloadedSignature = '', preloadedEntries = [], unlockRoute = null, project = null, construction, constructionTimer;
   function rememberProject(state, value) {
     project = value;
     if (unlockRoute || !Number.isInteger(state.armyTownId)) return;
@@ -109,13 +109,13 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
   }
   function warm(state) {
     if (state.mode !== 'town' && state.mode !== 'fort') return [];
-    if (preloadedFaction !== state.townFaction) {
-      for (const url of images.keys()) if (url !== fallback) images.delete(url);
-      preloadedFaction = state.townFaction;
-    }
+    const nextSignature = `${state.townFaction || ''}:${state.buildings?.length || 0}:${state.resourceTypes?.length || 0}`;
+    if (nextSignature === preloadedSignature && preloadedEntries.length) return preloadedEntries;
+    preloadedSignature = nextSignature;
     const resourceArt = resourceDescriptors([0,0,0,0,0,0,0], state.resourceTypes).map(iconURL).filter(Boolean);
-    return [preload(fallback), ...resourceArt.map(preload),
+    preloadedEntries = [preload(fallback), ...resourceArt.map(preload),
       ...visibleBuildings(state.buildings).map(building => preload(artURL(state, building)))];
+    return preloadedEntries;
   }
   function picture(state, building) {
     const url = artURL(state, building);

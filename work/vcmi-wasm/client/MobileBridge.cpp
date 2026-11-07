@@ -177,8 +177,11 @@ void mobilePreviews(CIntObject * node,JsonNode & result){
 }
 void publishPortraits()
 {
- static std::set<int> previous; if(portraitIds.empty()||previous==portraitIds)return;previous=portraitIds;
- std::vector<int> ids;for(int id:portraitIds)if(ids.size()<96)ids.push_back(id);
+ static std::set<int> previous;
+ if(portraitIds.empty()||std::includes(previous.begin(),previous.end(),portraitIds.begin(),portraitIds.end()))return;
+ if(previous.size()+portraitIds.size()>96)previous=portraitIds;
+ else{previous.insert(portraitIds.begin(),portraitIds.end());if(previous.size()>96)previous=portraitIds;}
+ std::vector<int> ids;for(int id:previous)if(ids.size()<96)ids.push_back(id);
  const int width=768,height=((ids.size()+7)/8)*96;const size_t prefix=ids.size()*4,bytes=width*height*4;
  auto surface=SDL_CreateRGBSurfaceWithFormat(0,width,height,32,SDL_PIXELFORMAT_ARGB8888);if(!surface)return;SDL_FillRect(surface,nullptr,0);
  {auto canvas=Canvas::createFromSurface(surface,CanvasScalingPolicy::IGNORE);for(size_t i=0;i<ids.size();i++)try{auto c=CreatureID(ids[i]).toCreature();auto image=ENGINE->renderHandler().loadImage(AnimationPath::builtin("TWCRPORT"),c->getIconIndex(),0,EImageBlitMode::SIMPLE);if(image){const auto dims=image->dimensions();auto icon=SDL_CreateRGBSurfaceWithFormat(0,dims.x,dims.y,32,SDL_PIXELFORMAT_ARGB8888);if(icon){SDL_FillRect(icon,nullptr,0);{auto iconCanvas=Canvas::createFromSurface(icon,CanvasScalingPolicy::IGNORE);iconCanvas.draw(image,Point(0,0));}const double scale=std::min(92.0/dims.x,92.0/dims.y);SDL_Rect target{int(i%8)*96+(96-int(dims.x*scale))/2,int(i/8)*96+(96-int(dims.y*scale))/2,int(dims.x*scale),int(dims.y*scale)};SDL_SetSurfaceBlendMode(icon,SDL_BLENDMODE_NONE);SDL_BlitScaled(icon,nullptr,surface,&target);SDL_FreeSurface(icon);}}}catch(const std::exception &){} }
@@ -189,8 +192,11 @@ void publishPortraits()
 }
 void publishArtifactIcons()
 {
- static std::set<int> previous; if(artifactIconIds.empty()||previous==artifactIconIds)return;previous=artifactIconIds;
- std::vector<int> ids;for(int id:artifactIconIds)if(ids.size()<96)ids.push_back(id);
+ static std::set<int> previous;
+ if(artifactIconIds.empty()||std::includes(previous.begin(),previous.end(),artifactIconIds.begin(),artifactIconIds.end()))return;
+ if(previous.size()+artifactIconIds.size()>96)previous=artifactIconIds;
+ else{previous.insert(artifactIconIds.begin(),artifactIconIds.end());if(previous.size()>96)previous=artifactIconIds;}
+ std::vector<int> ids;for(int id:previous)if(ids.size()<96)ids.push_back(id);
  const int width=768,height=((ids.size()+7)/8)*96;const size_t prefix=ids.size()*4,bytes=width*height*4;
  auto surface=SDL_CreateRGBSurfaceWithFormat(0,width,height,32,SDL_PIXELFORMAT_ARGB8888);if(!surface)return;SDL_FillRect(surface,nullptr,0);
  {auto canvas=Canvas::createFromSurface(surface,CanvasScalingPolicy::IGNORE);for(size_t i=0;i<ids.size();i++)try{auto image=ENGINE->renderHandler().loadImage(AnimationPath::builtin("ARTIFACT"),ids[i],0,EImageBlitMode::SIMPLE);if(image){const auto dims=image->dimensions();auto icon=SDL_CreateRGBSurfaceWithFormat(0,dims.x,dims.y,32,SDL_PIXELFORMAT_ARGB8888);if(icon){SDL_FillRect(icon,nullptr,0);{auto iconCanvas=Canvas::createFromSurface(icon,CanvasScalingPolicy::IGNORE);iconCanvas.draw(image,Point(0,0));}const double scale=std::min(92.0/dims.x,92.0/dims.y);SDL_Rect target{int(i%8)*96+(96-int(dims.x*scale))/2,int(i/8)*96+(96-int(dims.y*scale))/2,int(dims.x*scale),int(dims.y*scale)};SDL_SetSurfaceBlendMode(icon,SDL_BLENDMODE_NONE);SDL_BlitScaled(icon,nullptr,surface,&target);SDL_FreeSurface(icon);}}}catch(const std::exception &){} }
@@ -405,15 +411,24 @@ void publishMobileBattleAtlas(){
  std::vector<const CStack *> units;size_t total=0;for(const auto stack:battle->getBattle()->battleGetAllStacks())if(stack->getPosition().isValid()){++total;if(units.size()<64)units.push_back(stack);}std::vector<std::array<int32_t,7>> geometry(units.size());
  if(units.empty())return;
  const int width=1024,height=((units.size()+7)/8)*128;
- auto scratch=SDL_CreateRGBSurfaceWithFormat(0,512,512,32,SDL_PIXELFORMAT_ARGB8888);
+ static SDL_Surface * scratch=nullptr;
+ if(!scratch){scratch=SDL_CreateRGBSurfaceWithFormat(0,512,512,32,SDL_PIXELFORMAT_ARGB8888);if(scratch)SDL_FillRect(scratch,nullptr,0);}
  auto atlas=SDL_CreateRGBSurfaceWithFormat(0,width,height,32,SDL_PIXELFORMAT_ARGB8888);
- if(!scratch||!atlas){if(scratch)SDL_FreeSurface(scratch);if(atlas)SDL_FreeSurface(atlas);return;}
+ if(!scratch||!atlas){if(atlas)SDL_FreeSurface(atlas);return;}
  SDL_FillRect(atlas,nullptr,0);
  {auto canvas=Canvas::createFromSurface(scratch,CanvasScalingPolicy::IGNORE);
+ SDL_Rect dirtyScratch{0,0,0,0};
  for(size_t i=0;i<units.size();i++){
-  geometry[i][0]=units[i]->unitId();SDL_FillRect(scratch,nullptr,0);Point bounds;if(!battle->stacksController->drawIsolatedStack(canvas,units[i],bounds))continue;
+  geometry[i][0]=units[i]->unitId();
+  if(dirtyScratch.w>0&&dirtyScratch.h>0)SDL_FillRect(scratch,&dirtyScratch,0);
+  Point bounds;if(!battle->stacksController->drawIsolatedStack(canvas,units[i],bounds)){dirtyScratch={0,0,0,0};continue;}
+  const int maxX=std::min(512,bounds.x),maxY=std::min(512,bounds.y);
+  dirtyScratch={0,0,maxX,maxY};
   int left=512,top=512,right=-1,bottom=-1;
-  for(int y=0;y<std::min(512,bounds.y);y++)for(int x=0;x<std::min(512,bounds.x);x++){const auto pixel=static_cast<uint8_t*>(scratch->pixels)+y*scratch->pitch+x*4;if(pixel[3]>32){left=std::min(left,x);right=std::max(right,x);top=std::min(top,y);bottom=std::max(bottom,y);}}
+  for(int y=0;y<maxY;y++){
+   const auto * row=reinterpret_cast<const uint32_t*>(static_cast<const uint8_t*>(scratch->pixels)+y*scratch->pitch);
+   for(int x=0;x<maxX;x++){if((row[x]>>24)>32){if(x<left)left=x;if(x>right)right=x;if(y<top)top=y;if(y>bottom)bottom=y;}}
+  }
   if(right<left)continue;
   const auto position=battle->stacksController->getStackPositionAtHex(units[i]->getPosition(),units[i])+battle->stacksController->mobileAnimationOffset(units[i]);
   const auto center=battle->fieldController->hexPositionAbsolute(units[i]->getPosition()).center()+battle->stacksController->mobileAnimationOffset(units[i]);
@@ -421,15 +436,17 @@ void publishMobileBattleAtlas(){
   SDL_Rect src{left,top,right-left+1,bottom-top+1};double scale=std::min(110.0/src.w,110.0/src.h);
   SDL_Rect dst{int(i%8)*128+(128-int(src.w*scale))/2,int(i/8)*128+(128-int(src.h*scale))/2,int(src.w*scale),int(src.h*scale)};
   SDL_SetSurfaceBlendMode(scratch,SDL_BLENDMODE_NONE);SDL_BlitScaled(scratch,&src,atlas,&dst);
- }}
+ }
+ if(dirtyScratch.w>0&&dirtyScratch.h>0)SDL_FillRect(scratch,&dirtyScratch,0);
+ }
  // Paletted DEF blitters use the engine's native ARGB layout. Convert only
  // at the browser boundary; drawing them directly into RGBA swaps red/blue.
  auto rgba=SDL_ConvertSurfaceFormat(atlas,SDL_PIXELFORMAT_RGBA32,0);
- if(!rgba){SDL_FreeSurface(scratch);SDL_FreeSurface(atlas);return;}
+ if(!rgba){SDL_FreeSurface(atlas);return;}
  const size_t prefix=units.size()*7*sizeof(int32_t),bytes=width*height*4;auto packet=static_cast<uint8_t*>(malloc(prefix+bytes));
  if(packet){for(size_t i=0;i<units.size();i++)memcpy(packet+i*7*sizeof(int32_t),geometry[i].data(),7*sizeof(int32_t));memcpy(packet+prefix,rgba->pixels,bytes);atlasPending.store(true);
  MAIN_THREAD_ASYNC_EM_ASM({const ptr=$0;const w=$1;const h=$2;const n=$3;try{const rows=Array.from({length:n},(_,i)=>Array.from(HEAP32.subarray(ptr/4+i*7,ptr/4+i*7+7)));const ids=rows.map(row=>row[0]);window.goonkBattleSpriteBounds=rows.map(row=>({stackId:row[0],x:row[1],y:row[2],w:row[3],h:row[4],renderX:row[5],renderY:row[6]}));window.goonkBattleSpriteBoundsComplete=!!$4;const rgba=new Uint8ClampedArray(HEAPU8.slice(ptr+n*28,ptr+n*28+w*h*4).buffer);const canvas=window.goonkBattleAtlas||(window.goonkBattleAtlas=document.createElement('canvas'));if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}canvas.getContext('2d').putImageData(new ImageData(rgba,w,h),0,0);window.goonkBattleAtlasIds=new Map(ids.map((id,i)=>[id,i]));}finally{_free(ptr);Module._vcmiMobileAtlasAck();}},packet,width,height,units.size(),total<=64);}
- SDL_FreeSurface(rgba);SDL_FreeSurface(scratch);SDL_FreeSurface(atlas);
+ SDL_FreeSurface(rgba);SDL_FreeSurface(atlas);
 }
 // Version of native ERA services actually linked into this engine.
 extern "C" int EMSCRIPTEN_KEEPALIVE vcmiEraBridgeVersion(){return 2;}
@@ -1478,7 +1495,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==42&&(ENGINE->windows().topWindow<CFortScreen>()||ENGINE->windows().topWindow<CRecruitmentWindow>())){if(a>=0&&a<int(LIBRARY->creh->objects.size()))ENGINE->windows().createAndPushWindow<CStackWindow>(CreatureID(a).toCreature(),false);lastPublished=0;return;}
 
  if(action==2&&ENGINE->windows().topWindow<AdventureMapInterface>()&&hero&&p->localState->hasPath(hero)&&p->makingTurn)shortcut(EShortcut::ADVENTURE_MOVE_HERO);
- if(action==3&&ENGINE->windows().topWindow<AdventureMapInterface>()&&p->makingTurn)p->cb->endTurn();
+ if(action==3&&ENGINE->windows().topWindow<AdventureMapInterface>()&&p->makingTurn){p->makingTurn=false;p->cb->endTurn();lastPublished=0;}
  if(action==4&&a>=0&&a<int(p->localState->getWanderingHeroes().size())&&ENGINE->windows().topWindow<AdventureMapInterface>()){const auto h=p->localState->getWanderingHero(a);p->localState->setSelection(h);adventureInt->centerOnObject(h);}
  if(action==5&&a>=0&&a<int(p->localState->getOwnedTowns().size())&&ENGINE->windows().topWindow<AdventureMapInterface>())p->openTownWindow(p->localState->getOwnedTown(a));
  if(action==6&&adventureInt&&hero)adventureInt->centerOnObject(hero);

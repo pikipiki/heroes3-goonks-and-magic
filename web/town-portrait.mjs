@@ -63,7 +63,7 @@ export function createTownPortrait({root,scene,asset,command,getState}){
  backgrounds.set('goonk',image(new URL('./town/portrait-v2.webp',import.meta.url).href));
  const assets=(state,width,height)=>{
   const faction=portraitTownFaction(state);
-  if(activeFaction!==faction){activeFaction=faction;images.clear();buttons.clear();overlay.replaceChildren();hovered=null;signature='';}
+  if(activeFaction!==faction){activeFaction=faction;buttons.clear();overlay.replaceChildren();hovered=null;signature='';}
   if(!backgrounds.has(faction))backgrounds.set(faction,image(new URL(faction==='goonk'?'./town/portrait-v2.webp':'./town/'+faction+'/portrait-v1.webp',import.meta.url).href));
   const buildings=factionPortraitBuildings(width,height,state.buildings||[],faction);
   return {faction,background:backgrounds.get(faction),buildings,artwork:buildings.map(b=>({b,picture:image(faction==='goonk'?asset('goonk/structure-'+b.artKey+'.png'):buildingSprite(faction,b.artKey)),outline:faction==='goonk'?image(asset('goonk/outline-'+b.artKey+'.png')):null}))};

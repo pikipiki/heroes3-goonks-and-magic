@@ -121,11 +121,42 @@ CMusicHandler::~CMusicHandler()
 	}
 }
 
+namespace
+{
+struct CachedMusicBuffer
+{
+	std::shared_ptr<ui8[]> data;
+	si64 size = 0;
+};
+
+std::map<AudioPath, CachedMusicBuffer> musicBufferCache;
+
+CachedMusicBuffer loadCachedMusicBuffer(const AudioPath & resourcePath, const AudioPath & originalURI)
+{
+	auto it = musicBufferCache.find(resourcePath);
+	if(it != musicBufferCache.end() && it->second.data && it->second.size > 0)
+		return it->second;
+
+	auto raw = CResourceHandler::get()->load(resourcePath)->readAll();
+	si64 offset = (originalURI.getName() == "BLADEFWCAMPAIGN" && raw.second > 52) ? 52 : 0;
+	if(offset > 0 && raw.second > offset)
+		std::memmove(raw.first.get(), raw.first.get() + offset, raw.second - offset);
+
+	CachedMusicBuffer entry{std::shared_ptr<ui8[]>(std::move(raw.first)), raw.second - offset};
+	if(musicBufferCache.size() >= 24)
+		musicBufferCache.erase(musicBufferCache.begin());
+	musicBufferCache[resourcePath] = entry;
+	return entry;
+}
+}
+
 void CMusicHandler::playMusic(const AudioPath & musicURI, bool loop, bool fromStart)
 {
 	std::scoped_lock guard(mutex);
 
 	if(current && current->isPlaying() && current->isTrack(musicURI))
+		return;
+	if(next && next->isTrack(musicURI))
 		return;
 
 	queueNext(this, "", musicURI, loop, fromStart);
@@ -148,6 +179,8 @@ void CMusicHandler::playMusicFromSet(const std::string & whichSet, bool loop, bo
 	}
 
 	if(current && current->isPlaying() && current->isSet(whichSet))
+		return;
+	if(next && next->isSet(whichSet))
 		return;
 
 	// in this mode - play random track from set
@@ -311,12 +344,9 @@ void playPendingMusic()
         {
             if(!pending->musicData || pending->musicSize<=0)
             {
-                auto data=CResourceHandler::get()->load(pending->currentName)->readAll();
-                si64 offset=(pending->currentName.getName()=="BLADEFWCAMPAIGN" && data.second>52)?52:0;
-                if(offset>0 && data.second>offset)
-                    std::memmove(data.first.get(),data.first.get()+offset,data.second-offset);
-                pending->musicData=std::move(data.first);
-                pending->musicSize=data.second-offset;
+                auto cached=loadCachedMusicBuffer(pending->currentName,pending->currentName);
+                pending->musicData=std::move(cached.data);
+                pending->musicSize=cached.size;
             }
             auto * file=SDL_RWFromConstMem(pending->musicData.get(),static_cast<int>(pending->musicSize));
             pending->music=web_audio::call([&](){return Mix_LoadMUS_RW(file,SDL_TRUE);});
@@ -357,12 +387,9 @@ void MusicEntry::load(const AudioPath & musicURI)
 
 	try
 	{
-		auto data = CResourceHandler::get()->load(currentName)->readAll();
-		si64 offset = (musicURI.getName() == "BLADEFWCAMPAIGN" && data.second > 52) ? 52 : 0;
-		if(offset > 0 && data.second > offset)
-			std::memmove(data.first.get(), data.first.get() + offset, data.second - offset);
-		musicData = std::move(data.first);
-		musicSize = data.second - offset;
+		auto cached = loadCachedMusicBuffer(currentName, musicURI);
+		musicData = std::move(cached.data);
+		musicSize = cached.size;
 
 		auto * musicFile = SDL_RWFromConstMem(musicData.get(), static_cast<int>(musicSize));
 		music = web_audio::call([&](){ return Mix_LoadMUS_RW(musicFile, SDL_TRUE); });

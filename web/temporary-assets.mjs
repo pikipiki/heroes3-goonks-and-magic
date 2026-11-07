@@ -49,7 +49,7 @@ async function fetchBinary(url, size, start, end) {
 }
 
 export function createTemporaryAssetReader({
- read = readBinary, fetchBlock = fetchBinary, maxBytes = 256 * 1024 * 1024, blockBytes = 512 * 1024, onFetch = () => {},
+ read = readBinary, fetchBlock = fetchBinary, maxBytes = 384 * 1024 * 1024, blockBytes = 512 * 1024, onFetch = () => {},
 } = {}) {
  const cache = new Map();
  let cachedBytes = 0;
@@ -153,10 +153,14 @@ export function createTemporaryAssetReader({
     const key = block.url + '#' + block.blockStart;
     if (cache.has(block.url) || cache.has(key)) continue;
     if (!trackProgress && cachedBytes + (block.blockEnd - block.blockStart) > maxBytes - reserveBytes) break;
-    const bytes = await fetchBlock(block.url, block.size, block.blockStart, block.blockEnd);
-    if (trackProgress) onFetch(bytes.length);
-    if (bytes.length === block.size) remember(block.url, bytes);
-    else if (bytes.length === block.blockEnd - block.blockStart) remember(key, bytes);
+    try {
+     const bytes = await fetchBlock(block.url, block.size, block.blockStart, block.blockEnd);
+     if (trackProgress) onFetch(bytes.length);
+     if (bytes.length === block.size) remember(block.url, bytes);
+     else if (bytes.length === block.blockEnd - block.blockStart) remember(key, bytes);
+    } catch (error) {
+     if (trackProgress) throw error;
+    }
    }
   };
   await Promise.all(Array.from({length: Math.min(concurrency, queue.length)}, worker));
