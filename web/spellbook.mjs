@@ -32,6 +32,7 @@ export function createMobileSpellbook({root,command}){
  }
  function render(){
   panel.dataset.browsing=String(book.inCombat===false);
+  panel.dataset.spellPalette=String(Math.max(0,spellSchoolIndex(book.school)));
   const scroll=panel.querySelector('.spell-list')?.scrollTop||0;
   const previous=used.get(hero()),spells=book.spells||[];if(!spells.some(s=>s.id===selected))selected=(spells.find(s=>s.enabled)||spells[0])?.id;const active=spells.find(s=>s.id===selected);
   const reuseDisabled=!previous||book.mana<previous.cost||!!reusing;
