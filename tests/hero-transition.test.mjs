@@ -20,3 +20,14 @@ test('A mobile town hall request opens its sheet without waiting for a different
  assert.deepEqual(shown,[request]);
  assert(!transition.pending);
 });
+
+test('A slow town decode cannot stall the frame transition indefinitely',()=>{
+ let time=100;
+ const shown=[],t=createHeroTransition(s=>shown.push(s),{now:()=>time,ready:()=>false});
+ t.receive({mode:'town',townName:'Castle'},'map');
+ assert(t.frame());
+ time+=360;
+ assert(!t.frame());
+ assert.equal(shown.length,1);
+ assert.equal(shown[0].townName,'Castle');
+});

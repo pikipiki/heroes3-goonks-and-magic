@@ -61,6 +61,7 @@ export function createTownPortrait({root,scene,asset,command,getState}){
  const settled=img=>!img||ready(img)||failed.has(img);
  const backgrounds=new Map();
  backgrounds.set('goonk',image(new URL('./town/portrait-v2.webp',import.meta.url).href));
+ backgrounds.set('castle',image(new URL('./town/castle/portrait-v1.webp',import.meta.url).href));
  const assets=(state,width,height)=>{
   const faction=portraitTownFaction(state);
   if(activeFaction!==faction){activeFaction=faction;buttons.clear();overlay.replaceChildren();hovered=null;signature='';}
@@ -70,15 +71,15 @@ export function createTownPortrait({root,scene,asset,command,getState}){
  };
  const prepare=(state,enabled=true)=>{
   if(!enabled||state.mode!=='town'||!portraitTownFaction(state)||root.clientWidth>=root.clientHeight)return true;
-  const {background,artwork}=assets(state,scene.clientWidth||root.clientWidth,scene.clientHeight||root.clientHeight);
-  return settled(background)&&artwork.every(item=>settled(item.picture));
+  const {background}=assets(state,scene.clientWidth||root.clientWidth,scene.clientHeight||root.clientHeight);
+  return settled(background);
  };
  return {prepare,
   paint(ctx,width,height,state,enabled){
    const faction=portraitTownFaction(state);
    if(!enabled||state.mode!=='town'||!faction||root.clientWidth>=root.clientHeight){overlay.hidden=true;delete root.dataset.townLayout;return false;}
    const {background,buildings,artwork}=assets(state,width,height);
-   if(!settled(background)||artwork.some(item=>!settled(item.picture))){overlay.hidden=true;return true;}
+   if(!settled(background)){overlay.hidden=true;return true;}
    root.dataset.townLayout='portrait';overlay.dataset.faction=faction;overlay.hidden=false;overlay.style.width=width+'px';overlay.style.height=height+'px';
    const scale=Math.max(width/background.naturalWidth,height/background.naturalHeight),bw=width/scale,bh=height/scale;if(ready(background))ctx.drawImage(background,(background.naturalWidth-bw)/2,(background.naturalHeight-bh)/2,bw,bh,0,0,width,height);
    for(const {b,picture,outline}of artwork){if(!ready(picture))continue;ctx.drawImage(picture,b.x,b.y,b.w,b.h);if(hovered===b.id){if(ready(outline))ctx.drawImage(outline,b.x,b.y,b.w,b.h);else{ctx.save();ctx.shadowColor='#ffe78a';ctx.shadowBlur=8;ctx.drawImage(picture,b.x,b.y,b.w,b.h);ctx.restore();}}}

@@ -91,9 +91,10 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
   function preload(url) {
     if (!images.has(url)) {
       const image = new Image();
-      image.src = url;
       const entry = {image, ready: false};
-      entry.done = image.decode().then(() => { entry.ready = true; }, () => {});
+      image.onload = () => { entry.ready = true; };
+      image.src = url;
+      if (image.complete && image.naturalWidth > 0) entry.ready = true;
       images.set(url, entry);
     }
     return images.get(url);
