@@ -72,7 +72,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   timer.nextElementSibling.textContent = t('Pauses during battles between players.', 'En pause pendant les combats entre joueurs.');
   players.replaceChildren(...Array.from({length: 7}, (_, index) => new Option(index + 2, index + 2)));
   root.prepend(section);
-  let scenarios = [], selected, pending = false, requestId, previousRequest;
+  let scenarios = [], selected, pending = false, previousRequest, requestBody;
   function render() {
     players.disabled = pending;
     timer.disabled = pending;
@@ -116,7 +116,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
       const label = document.createElement('label');
       const select = document.createElement('select');
       label.hidden = !choices?.length;
-      select.append(new Option(t('Map default', 'Par défaut'), ''), ...(choices ?? []).map(choice => new Option(choice.name, choice.id)));
+      select.append(new Option(t('Random castle', 'Château aléatoire'), ''), ...(choices ?? []).map(choice => new Option(choice.name, choice.id)));
       label.append(colors[seat], select);
       return label;
     }));
@@ -166,13 +166,21 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
       ...(timerField.hidden ? {} : {turnMinutes: Number(timer.value)}),
       factions: [...castles.querySelectorAll('select')].map(select => select.value ? Number(select.value) : null)};
     const signature = JSON.stringify(settings);
-    if (signature !== previousRequest) { requestId = crypto.randomUUID(); previousRequest = signature; }
+    if (signature !== previousRequest) {
+      // Keep the same draw and request ID if creating the match needs a retry.
+      const factions = settings.factions.map((id, seat) => {
+        const choices = selected.castles[seat];
+        return id === null && choices?.length ? choices[Math.floor(Math.random() * choices.length)].id : id;
+      });
+      requestBody = JSON.stringify({...settings, factions, requestId: crypto.randomUUID(), codeFormat: 'room'});
+      previousRequest = signature;
+    }
     pending = true;
     status.textContent = t('Creating the match…', 'Création de la partie…');
     render();
     try {
       const response = await request('', {method: 'POST', headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({...settings, requestId, codeFormat: 'room'})});
+        body: requestBody});
       const result = await response.json().catch(() => ({}));
       if (!response.ok) {
         status.textContent = result.error === 'full' ? t('All dedicated slots are in use.', 'Toutes les places de sauvegarde dédiées sont occupées.') :
