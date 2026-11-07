@@ -3,3 +3,15 @@ function setup(){const listeners={},attributes=new Map(),button={isConnected:tru
 test('Centering on an owned castle never waits for a game-state mutation',async()=>{const {button,attributes,feedback}=setup();feedback.begin(56,{mode:'map'});await Promise.resolve();feedback.observe({mode:'map'});feedback.paint();assert.equal(button.disabled,false);assert.equal(attributes.has('aria-busy'),false);feedback.clear();});
 test('Spell page and school changes acknowledge their own loading buttons',async()=>{for(const [action,change]of [[50,{page:1,school:-1}],[51,{page:0,school:2}]]){const {button,attributes,feedback}=setup();const state={mode:'spellbook',spellbook:{page:0,school:-1}};feedback.begin(action,state);await Promise.resolve();assert.equal(button.disabled,true);feedback.observe(state);assert.equal(button.disabled,true);feedback.observe({...state,spellbook:change});assert.equal(button.disabled,false);assert.equal(attributes.has('aria-busy'),false);feedback.clear();}});
 test('A free recruitment is acknowledged by the changed army even if resources stay equal',async()=>{const {button,feedback}=setup(),state={mode:'recruit',resources:[0,0,0,0,0,0,100],armies:[{slots:[{id:1,count:2}]}]};feedback.begin(32,state);await Promise.resolve();assert(button.disabled);feedback.observe({...state,armies:[{slots:[{id:1,count:3}]}]});assert.equal(button.disabled,false);feedback.clear();});
+test('Opening Build from the castle clears the building spinner on the town-hall acknowledgement',async()=>{
+ const {button,attributes,feedback}=setup(),town={mode:'town',resources:[20,0,20],buildings:[{id:10,built:true}]};
+ try{
+  feedback.begin(39,town);
+  await Promise.resolve();
+  assert(button.disabled);
+  feedback.observe({...town,openTownHall:true});
+  feedback.paint();
+  assert.equal(button.disabled,false);
+  assert.equal(attributes.has('aria-busy'),false);
+ }finally{feedback.clear();}
+});

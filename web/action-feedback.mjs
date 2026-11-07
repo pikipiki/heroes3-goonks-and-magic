@@ -3,5 +3,12 @@ const fingerprint=state=>JSON.stringify([state.mode,state.selectedMap,state.sele
 export function createActionFeedback(root){let last=null,waiting=null,timer;
  root.addEventListener('click',e=>{last=e.target.closest?.('button')||null;},true);
  const clear=()=>{clearTimeout(timer);if(waiting?.button?.isConnected){waiting.button.disabled=false;waiting.button.removeAttribute('aria-busy');}waiting=null;};
- return {begin(action,state){if(!slow.has(action)||!last?.isConnected||last.disabled)return;if(waiting?.button===last)return;clear();waiting={button:last,state:fingerprint(state),action};queueMicrotask(()=>{if(waiting){waiting.button.disabled=true;waiting.button.setAttribute('aria-busy','true');}});timer=setTimeout(clear,action===22?90000:15000);},observe(state){if(waiting?.action===22&&!['map','town','battle','dialog'].includes(state.mode))return;if(waiting&&fingerprint(state)!==waiting.state)clear();},paint(){if(waiting?.button?.isConnected){waiting.button.disabled=true;waiting.button.setAttribute('aria-busy','true');}},get starting(){return waiting?.action===22;},clear};
+ return {begin(action,state){if(!slow.has(action)||!last?.isConnected||last.disabled)return;if(waiting?.button===last)return;clear();waiting={button:last,state:fingerprint(state),action};queueMicrotask(()=>{if(waiting){waiting.button.disabled=true;waiting.button.setAttribute('aria-busy','true');}});timer=setTimeout(clear,action===22?90000:15000);},
+ observe(state){
+  if(!waiting)return;
+  if(waiting.action===22&&!['map','town','battle','dialog'].includes(state.mode))return;
+  const openedTownHall=waiting.action===39&&state.openTownHall;
+  if(openedTownHall||fingerprint(state)!==waiting.state)clear();
+ },
+ paint(){if(waiting?.button?.isConnected){waiting.button.disabled=true;waiting.button.setAttribute('aria-busy','true');}},get starting(){return waiting?.action===22;},clear};
 }
