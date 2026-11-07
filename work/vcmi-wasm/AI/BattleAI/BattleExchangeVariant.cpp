@@ -222,7 +222,8 @@ EvaluationResult BattleExchangeEvaluator::findBestTarget(
 {
 	EvaluationResult result(targets.bestAction());
 
-	if(!activeStack->waited() && !activeStack->acquireState()->hadMorale)
+	const auto activeState = activeStack->acquireState();
+	if(!activeState->waitedThisTurn && !activeState->hadMorale)
 	{
 #if BATTLE_TRACE_LEVEL>=1
 		logAi->trace("Evaluating waited attack for %s", activeStack->getDescription());
@@ -262,7 +263,7 @@ EvaluationResult BattleExchangeEvaluator::findBestTarget(
 
 	if(result.bestAttack.attack.shooting
 		&& !result.bestAttack.defenderDead
-		&& !activeStack->waited()
+		&& !activeState->waitedThisTurn
 		&& hb->battleHasShootingPenalty(activeStack, result.bestAttack.dest))
 	{
 		if(!canBeHitThisTurn(result.bestAttack))

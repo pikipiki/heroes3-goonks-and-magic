@@ -109,16 +109,17 @@ bool canToggleMobileAutocombat(BattleInterface & battle, bool tactics, bool canP
  if(!battle.curInt || battle.openingPlaying() || battle.actionsController->heroSpellcastingModeActive())
   return false;
  const bool autoOn = battle.curInt->isAutoFightOn;
+ const bool networked = GAME->server().inLobbyRoom();
  if(!autoOn && battle.curInt->autofightingAI)
   return false;
  if(tactics)
-  return canPlace && !settings["battle"]["endWithAutocombat"].Bool();
+  return canPlace && (networked || !settings["battle"]["endWithAutocombat"].Bool());
  if(battle.round <= 0)
   return false;
 
  // During a network battle, wait for a local stack that can accept the first order.
  const bool ready = battle.makingTurn() && !battle.hasAnimations();
- if(GAME->server().inLobbyRoom())
+ if(networked)
   return autoOn || ready;
  return !settings["battle"]["endWithAutocombat"].Bool() || (!autoOn && ready);
 }

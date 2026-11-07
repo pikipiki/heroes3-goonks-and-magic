@@ -788,8 +788,8 @@ void BattleInterface::requestAutofightingAIToTakeAction()
 	{
 		const CStack* activeStack = stacksController->getActiveStack();
 
-		// If enemy is moving, activeStack can be null
-		if (activeStack)
+		// The first automatic order may only come from this player’s active stack.
+		if (activeStack && getBattle()->battleGetOwner(activeStack) == curInt->playerID)
 		{
 			stacksController->setActiveStack(nullptr);
 
