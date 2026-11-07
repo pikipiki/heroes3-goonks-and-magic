@@ -12,10 +12,10 @@ export function mountScenarioFilters(root) {
     <details>
       <summary data-filter-summary></summary>
       <div class="scenario-filter-fields">
-        <label><span></span><select data-filter="size"></select></label>
-        <label><span></span><select data-filter="players"></select></label>
         <label><span></span><select data-filter="humans"></select></label>
         <label><span></span><select data-filter="computers"></select></label>
+        <label><span></span><select data-filter="size"></select></label>
+        <label><span></span><select data-filter="players"></select></label>
         <label><span></span><select data-filter="faction"></select></label>
       </div>
     </details>
@@ -69,9 +69,13 @@ export function mountScenarioFilters(root) {
   }
 
   function setOptions(select, label, options) {
+    const any = t('Any', 'Indifférent');
+    const key = JSON.stringify([label, any, options]);
+    if (select.dataset.options === key) return;
     const selected = select.value;
+    select.dataset.options = key;
     select.previousElementSibling.textContent = label;
-    select.replaceChildren(new Option(t('Any', 'Indifférent'), ''), ...options.map(([value, text]) => new Option(text, value)));
+    select.replaceChildren(new Option(any, ''), ...options.map(([value, text]) => new Option(text, value)));
     select.value = options.some(([value]) => String(value) === selected) ? selected : '';
   }
 

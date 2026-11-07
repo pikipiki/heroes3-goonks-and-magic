@@ -68,28 +68,37 @@
 :is(#mobile-app,#game-menu) .lobby-picker-search input{touch-action:auto}
 :is(#mobile-app,#game-menu) .scenario-filters{padding:0 12px}
 :is(#mobile-app,#game-menu) .scenario-filters summary{
-  box-sizing:border-box;min-height:44px;padding:10px 8px;cursor:pointer;
-  border:1px solid #a8894e;background:#21160d;color:#ffe6aa;font-size:15px;
+  box-sizing:border-box;min-height:48px;padding:12px;cursor:pointer;
+  border:1px solid #b99a60;background:#21160d;color:#ffe6aa;font-size:1rem;
   -webkit-tap-highlight-color:transparent;
 }
 :is(#mobile-app,#game-menu) .scenario-filters summary:active{background:#392613}
-:is(#mobile-app,#game-menu) .scenario-filters summary:focus-visible{outline:2px solid #fff0ad;outline-offset:2px}
 :is(#mobile-app,#game-menu) .scenario-filter-fields{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,86px),1fr));gap:6px;padding:8px 0 0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:12px 3px 4px;
+}
+@media(min-width:680px){
+  :is(#mobile-app,#game-menu) .scenario-filter-fields{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:330px){
+  :is(#mobile-app,#game-menu) .scenario-filter-fields{grid-template-columns:1fr}
 }
 :is(#mobile-app,#game-menu) .scenario-filter-fields label{
-  display:grid;gap:4px;min-width:0;color:#ddca9a;font-size:12px;
+  display:grid;gap:6px;min-width:0;color:#ffedbe;font-size:1rem;font-weight:600;
 }
 :is(#mobile-app,#game-menu) .scenario-filter-fields select{
-  box-sizing:border-box;width:100%;min-width:0;min-height:44px;padding:4px;
-  background:#140e09;color:#fff0c2;border:1px solid #b99a60;font:16px Georgia,serif;
+  box-sizing:border-box;width:100%;min-width:0;min-height:52px;padding:10px;
+  color-scheme:dark;background:#140e09;color:#fff0c2;border:1px solid #cfad61;
+  border-radius:6px;font:1.0625rem Georgia,serif;
 }
 :is(#mobile-app,#game-menu) .scenario-filter-status{
-  display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:30px;
-  color:#dec997;font-size:13px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:32px;
+  color:#ffedbe;font-size:.9375rem;
 }
 :is(#mobile-app,#game-menu) .scenario-filter-status button{
-  min-height:44px;width:auto;margin:2px 0;padding:4px 9px;font-size:13px;
+  min-height:48px;width:auto;margin:2px 0;padding:6px 12px;font-size:.9375rem;
+}
+:is(#mobile-app,#game-menu) .scenario-filters :is(summary,select,button):focus-visible{
+  outline:3px solid #fff0ad;outline-offset:2px;
 }
 #game-menu .hosted-scenario-choice{
   display:flex;align-items:center;gap:10px;min-height:78px;text-align:left;padding:8px 10px;
