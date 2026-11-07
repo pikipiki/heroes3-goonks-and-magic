@@ -120,6 +120,15 @@ export function mountHostedCastles(root, fr, onRosterChange) {
         if (record.choices.length) record.card.disabled = pending;
       }
     },
+    setHumanCount(count) {
+      if (this.humanSeats.length === count) return;
+      let remaining = count - records.filter(record => record.canBeHuman && !record.role).length;
+      for (const record of records) {
+        if (!record.role) continue;
+        record.role.value = remaining > 0 ? 'human' : 'computer';
+        remaining--;
+      }
+    },
     get humanSeats() {
       return records.filter(record => record.canBeHuman && record.role?.value !== 'computer').map(record => record.color);
     },

@@ -5,6 +5,12 @@ import {mountScenarioFilters} from './scenario-filters.mjs';
 
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const difficulty=['A relaxed adventure','The classic challenge','Plan every move','For experienced heroes','Every resource matters'];
+function soloMapMetadata(map, state) {
+ const humans=Math.min(state.lobbyHumanCount??1,map.humanSeats??1);
+ const castleChoices=humans===1?Number(map.castleChoice):Math.min(humans,map.humanCastleChoices??0);
+ return {...map,humans,humanSeats:humans,castleChoices};
+}
+
 export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
  const controls=new Map(),artwork=new Map();
  let dialog=null,filters=null,source=null,pendingOpen=null;
@@ -87,7 +93,7 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
   dialog.querySelector('.lobby-picker-search').hidden=isFaction;
   const state=getState(),isMap=!isFaction&&state.mode==='lobby';
   dialog.querySelector('.lobby-picker-empty').textContent='No matching choices.';
-  const maps=new Map((!isFaction&&state.mode==='lobby'?state.maps??[]:[]).map(map=>[String(map.index),{...map,humanSeats:1,castleChoices:Number(map.castleChoice)}]));
+  const maps=new Map((!isFaction&&state.mode==='lobby'?state.maps??[]:[]).map(map=>[String(map.index),soloMapMetadata(map,state)]));
   const fr=getLanguage()==='fr';
   dialog.querySelector('.lobby-picker-grid').innerHTML=options(s).map(o=>{
    const map=maps.get(o.value);
@@ -120,7 +126,11 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
      c.querySelector('button').onclick=()=>open(s);
     }
     const load=state.mode==='load',label=state.customMap?state.selectedMap:s.selectedOptions[0]?.textContent;
-    for(const [selector,text] of [['h3',title(s)],['small',load?'Saved adventure':'Selected scenario'],['strong',label||'Choose…'],['em',load?'Choose save ›':'Browse maps ›']]){
+    const map=state.maps?.find(item=>String(item.index)===s.value);
+    const selected=state.customMap?state.customMapOptions:map;
+    const fr=getLanguage()==='fr';
+    const summary=selected?scenarioDetails(state.customMap?{...selected,width:selected.size,height:selected.size}:soloMapMetadata(selected,state),fr):'';
+    for(const [selector,text] of [['h3',title(s)],['small',load?'Saved adventure':summary||'Selected scenario'],['strong',label||'Choose…'],['em',load?'Choose save ›':'Browse maps ›']]){
      const node=c.querySelector(selector);
      if(node._sourceText!==text){node._sourceText=text;node.textContent=text;}
     }

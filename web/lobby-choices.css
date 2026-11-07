@@ -111,3 +111,5 @@
 @media(orientation:landscape) and (min-width:560px){
   #game-menu .hosted-castle-list{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+#mobile-app .lobby-picker-empty[data-catalogue-loading]{display:none}

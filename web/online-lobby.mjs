@@ -1,6 +1,7 @@
 import {isVisibleScenario,scenarioTitle} from './scenario-title.mjs';
 import {getLanguage} from './i18n.mjs';
 import {scenarioDetails} from './scenario-details.mjs';
+import {mountScenarioFilters} from './scenario-filters.mjs';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => (
   {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]
@@ -38,7 +39,7 @@ export function createOnlineLobby(root, command) {
   const requested = new Map();
   const t = (english, french) => getLanguage() === 'fr' ? french : english;
   const button = (label, action, {primary = false, disabled = false, pressed, id, details} = {}) =>
-    `<button type="button" data-room-action="${action}"${id ? ` data-room-id="${escape(id)}"` : ''}${pressed === undefined ? '' : ` aria-pressed="${pressed}"`}${disabled ? ' disabled' : ''}${primary ? ' class="primary"' : ''}>${escape(label)}${details ? `<small class="online-scenario-details">${escape(details)}</small>` : ''}</button>`;
+    `<button type="button" data-room-action="${action}"${id ? ` data-room-id="${escape(id)}"` : ''}${pressed === undefined ? '' : ` aria-pressed="${pressed}"`}${disabled ? ' disabled' : ''}${primary ? ' class="primary"' : ''}>${details ? `<span class="lobby-choice-name">${escape(label)}</span><small class="online-scenario-details">${escape(details)}</small>` : escape(label)}</button>`;
   const write = (element, html) => {
     if (element.dataset.markup !== html) {
       element.dataset.markup = html;
@@ -64,15 +65,24 @@ export function createOnlineLobby(root, command) {
   }
 
   let defaultScenario = false;
+  let scenarioFilters;
   function renderScenarios() {
-    const query = body.querySelector('[data-online-scenario-search]').value.trim().toLocaleLowerCase();
-    const scenarios = (state.onlineScenarios || []).filter(isVisibleScenario).filter(map => scenarioTitle(map.name).toLocaleLowerCase().includes(query));
-    write(body.querySelector('[data-online-scenarios]'), scenarios.map(map =>
-      button(scenarioTitle(map.name), 'choose-scenario', {
-        details: scenarioDetails({...map, castleChoices:map.humanCastleChoices}, getLanguage() === 'fr'),
-        id: String(map.index), pressed: map.index === state.onlineScenarioIndex, disabled: !!sending,
-      })).join('') || `<p>${state.mapsLoading ? t('Loading scenarios…', 'Chargement des scénarios…') :
-        t('No matching scenario for this room.', 'Aucun scénario correspondant pour ce salon.')}</p>`);
+    const humans = state.onlineRoomLimit;
+    const fr = getLanguage() === 'fr';
+    const scenarios = (state.onlineScenarios || []).filter(isVisibleScenario).map(map => ({
+      ...map, humans, castleChoices: map.humanCastleChoices,
+    }));
+    const list = body.querySelector('[data-online-scenarios]');
+    const markup = scenarios.map(map => button(scenarioTitle(map.name), 'choose-scenario', {
+      details: scenarioDetails(map, fr), id: String(map.index),
+      pressed: map.index === state.onlineScenarioIndex, disabled: !!sending,
+    })).join('');
+    if (markup !== list.dataset.markup) {
+      write(list, markup);
+      scenarioFilters.update([...list.children].map((row, index) => ({row, map: scenarios[index]})), {french: fr});
+    }
+    body.querySelector('[data-online-scenario-loading]').hidden = !state.mapsLoading;
+    body.querySelector('.lobby-picker-empty').toggleAttribute('data-catalogue-loading', !!state.mapsLoading && !scenarios.length);
   }
 
   function render() {
@@ -130,8 +140,10 @@ export function createOnlineLobby(root, command) {
       write(footer, button(t('Back to room', 'Retour au salon'), 'room'));
     } else if (view === 'scenario') {
       if (!body.querySelector('[data-online-scenario-search]')) {
-        write(body, `<label>${t('Search maps', 'Chercher une carte')}<input type="search" data-online-scenario-search></label><div class="online-list" data-online-scenarios></div>`);
-        body.querySelector('input').addEventListener('input', renderScenarios);
+        write(body, `<label>${t('Search maps', 'Chercher une carte')}<input type="search" data-online-scenario-search></label>
+          <div class="online-list" data-online-scenarios></div><p class="lobby-picker-empty" hidden></p>
+          <p data-online-scenario-loading role="status" hidden>${t('Loading scenarios…', 'Chargement des scénarios…')}</p>`);
+        scenarioFilters = mountScenarioFilters(body);
       }
       renderScenarios();
       write(footer, button(t('Back to room', 'Retour au salon'), 'room', {disabled: !!sending}));

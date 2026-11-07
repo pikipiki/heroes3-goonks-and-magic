@@ -1,7 +1,7 @@
 import {requestHostedMatch} from './hosted-match-request.mjs';
 import {mountHostedCastles} from './hosted-castles.mjs';
 import {createHostedCodeCopy} from './hosted-code-copy.mjs';
-import {scenarioDetails} from './scenario-details.mjs';
+import {playerBreakdown, scenarioDetails} from './scenario-details.mjs';
 import {mountScenarioFilters} from './scenario-filters.mjs';
 import {scenarioTitle} from './scenario-title.mjs';
 
@@ -29,6 +29,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
       <header><h2 id="hosted-map-title" tabindex="-1" autofocus></h2><button type="button" data-picker-close data-native-click>✕</button></header>
       <div class="lobby-picker-content">
         <label class="lobby-picker-search"><span></span><input type="search"></label>
+        <p data-picker-loading role="status" hidden></p>
         <div class="lobby-picker-grid" role="group" aria-labelledby="hosted-map-title"></div>
         <p class="lobby-picker-empty" hidden></p>
       </div>
@@ -43,7 +44,11 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   const pickerTitle = picker.querySelector('h2');
   const pickerContent = picker.querySelector('.lobby-picker-content');
   const pickerGrid = picker.querySelector('.lobby-picker-grid');
-  const filters = mountScenarioFilters(picker, {playerFilter: false});
+  const pickerLoading = picker.querySelector('[data-picker-loading]');
+  const catalogues = new Map();
+  const loadingCatalogues = new Map();
+  let loadingPicker = false;
+  const filters = mountScenarioFilters(picker);
   picker.querySelector('[data-filter-reset]').dataset.nativeClick = '';
   picker.querySelector('header button').setAttribute('aria-label', t('Close map picker', 'Fermer le choix de carte'));
   picker.querySelector('footer button').textContent = t('← Back', '← Retour');
@@ -83,49 +88,88 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   function render() {
     players.disabled = pending;
     timer.disabled = pending;
-    map.disabled = pending || !scenarios.length;
+    map.disabled = pending;
     submit.disabled = pending || !selected;
     castles.setPending(pending);
     roster.hidden = !selected;
     if (selected) {
       const humans = castles.humanSeats.length;
       const computers = Number(players.value) - humans;
-      rosterCount.textContent = t(`${humans} human · ${computers} computer`,
-        `${humans} humain${humans > 1 ? 's' : ''} · ${computers} ordinateur${computers > 1 ? 's' : ''}`);
+      rosterCount.textContent = playerBreakdown(humans, computers, fr);
+      mapDetails.textContent = scenarioDetails(metadata(selected, humans), fr);
     }
   }
   const showServerWait = () => {
     status.textContent = t('Waiting for the dedicated server…', 'En attente du serveur dédié…');
   };
-  const request = (path, options) => requestHostedMatch(new URL('/hosted/matches' + path, endpoint), {
+  const request = (path, options, onWait = showServerWait) => requestHostedMatch(new URL('/hosted/matches' + path, endpoint), {
     credentials: 'omit', redirect: 'error', ...options,
-  }, showServerWait);
-  const metadata = item => ({...item, height: item.height ?? item.width,
-    players: Number(players.value), humanSeats: item.seats?.filter(slot => slot.human).length ?? Number(players.value),
-    castleChoices: item.castles?.filter((choices, index) => item.seats?.[index]?.human !== false && choices?.length > 1).length});
-  function showPicker() {
-    pickerTitle.textContent = t(`Maps for ${players.value} players`, `Cartes pour ${players.value} joueurs`);
-    const rows = scenarios.map(item => {
+  }, onWait);
+  function metadata(item, humans) {
+    const {players} = item;
+    const humanSeats = item.seats?.filter(slot => slot.human).length ?? players;
+    const minimum = item.seats?.filter(slot => slot.color === 0 || !slot.computer).length ?? players;
+    return {...item, height: item.height ?? item.width, humans: humans ?? humanSeats, humanSeats,
+      humanCounts: Array.from({length: humanSeats - minimum + 1}, (_, offset) => humanSeats - offset),
+      castleChoices: item.castles?.filter((choices, index) => item.seats?.[index]?.human !== false && choices?.length > 1).length};
+  }
+  function renderPicker() {
+    const items = [...catalogues.values()].flatMap(catalogue => catalogue.scenarios);
+    items.sort((left, right) => scenarioTitle(left.name).localeCompare(scenarioTitle(right.name)));
+    const rows = items.map(item => {
       const row = document.createElement('button');
       row.type = 'button';
       row.dataset.choiceValue = item.id;
+      row.dataset.totalPlayers = item.players;
       row.dataset.nativeClick = '';
       row.setAttribute('aria-pressed', String(item === selected));
       row.innerHTML = '<img src="./web/h3-theme/adventure-map.svg" alt=""><span class="lobby-choice-copy"><span class="lobby-choice-name"></span><small class="lobby-map-meta"></small></span><span class="lobby-choice-check" aria-hidden="true"></span>';
       const data = metadata(item);
+      const details = row.querySelector('.lobby-map-meta');
       row.querySelector('.lobby-choice-name').textContent = scenarioTitle(item.name);
-      row.querySelector('.lobby-map-meta').textContent = scenarioDetails(data, fr);
       if (item === selected) row.querySelector('.lobby-choice-check').textContent = '✓';
-      return {row, map: data};
+      return {row, map: data, showComposition(humans) {
+        const count = filters.compositionFiltered ? humans : item === selected ? castles.humanSeats.length : data.humans;
+        details.textContent = scenarioDetails({...data, humans: count}, fr);
+      }};
     });
     pickerGrid.replaceChildren(...rows.map(({row}) => row));
     filters.update(rows, {french: fr});
+  }
+  async function loadCatalogue(total, onWait) {
+    if (catalogues.has(total)) return catalogues.get(total);
+    if (!loadingCatalogues.has(total)) {
+      const loading = request('?players=' + total + '&mixed=1', undefined, onWait).then(async result => {
+        if (!result.ok) throw Error('Catalogue unavailable.');
+        const catalogue = await result.json();
+        if (!Array.isArray(catalogue.scenarios)) throw Error('Invalid catalogue.');
+        catalogue.scenarios = catalogue.scenarios.map(item => ({...item, players: total}));
+        catalogues.set(total, catalogue);
+        return catalogue;
+      }).finally(() => loadingCatalogues.delete(total));
+      loadingCatalogues.set(total, loading);
+    }
+    return loadingCatalogues.get(total);
+  }
+  async function showPicker() {
+    pickerTitle.textContent = t('Adventure maps', 'Cartes d’aventure');
+    renderPicker();
     picker.showModal();
     pickerContent.scrollTop = 0;
+    const missing = [...players.options].map(option => Number(option.value)).filter(total => !catalogues.has(total));
+    if (!missing.length || loadingPicker) return;
+    loadingPicker = true;
+    pickerLoading.hidden = false;
+    pickerLoading.textContent = t('Loading more maps…', 'Chargement des autres cartes…');
+    const results = await Promise.allSettled(missing.map(total => loadCatalogue(total, () => {})));
+    loadingPicker = false;
+    pickerLoading.hidden = results.every(result => result.status === 'fulfilled');
+    pickerLoading.textContent = pickerLoading.hidden ? '' : t('Some maps could not be loaded.', 'Certaines cartes n’ont pas pu être chargées.');
+    if (picker.open) renderPicker();
   }
   function showCastles() {
     mapName.textContent = selected ? scenarioTitle(selected.name) : t('Choose a map', 'Choisir une carte');
-    mapDetails.textContent = selected ? scenarioDetails(metadata(selected), fr) : '';
+    if (!selected) mapDetails.textContent = '';
     castles.update(selected);
     render();
   }
@@ -139,10 +183,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
     render();
     filters.clear();
     try {
-      const result = await request('?players=' + players.value + '&mixed=1');
-      if (!result.ok) throw Error('Catalogue unavailable.');
-      const catalogue = await result.json();
-      if (!Array.isArray(catalogue.scenarios)) throw Error('Invalid catalogue.');
+      const catalogue = await loadCatalogue(Number(players.value));
       scenarios = catalogue.scenarios;
       const durations = catalogue.turnMinutes;
       const previousTimer = timer.value;
@@ -239,11 +280,20 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
     if (button.hasAttribute('data-picker-close')) picker.close();
     if (button.hasAttribute('data-filter-reset')) filters.reset();
     if (button.hasAttribute('data-choice-value') && picker.open) {
-      const choice = scenarios.find(item => item.id === button.dataset.choiceValue);
+      const choices = catalogues.get(Number(button.dataset.totalPlayers))?.scenarios;
+      const choice = choices?.find(item => item.id === button.dataset.choiceValue);
+      const humans = choice && filters.compositionFiltered ? filters.matchingHumans(metadata(choice)) : undefined;
       picker.close();
-      if (choice && choice !== selected) {
-        selected = choice;
-        showCastles();
+      if (choice) {
+        if (choice !== selected) {
+          selected = choice;
+          players.value = String(choice.players);
+          scenarios = catalogues.get(choice.players).scenarios;
+          showCastles();
+        }
+        if (humans !== undefined) castles.setHumanCount(humans);
+        status.textContent = '';
+        render();
       }
     }
     if (button === submit) void create();
