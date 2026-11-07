@@ -21,28 +21,28 @@
 #mobile-app .lobby-counter output strong{font-size:26px;line-height:1.1}
 #mobile-app .lobby-counter output span{font-size:11px;color:#cdbc94}
 #mobile-app [data-custom-generate]{border:3px ridge #ecc87b;background:linear-gradient(#7b2c1c,#40170d);font-weight:bold}
-#mobile-app .lobby-picker{position:fixed;inset:8px;margin:auto;width:min(760px,calc(100% - 16px));max-width:none;height:min(760px,calc(100dvh - 16px));max-height:calc(100dvh - 16px);box-sizing:border-box;padding:0;border:4px ridge #d5b773;background:#25190e url('./h3-theme/stone.png');color:#ffedbe;box-shadow:0 15px 60px #000a;font-family:Georgia,serif}
-#mobile-app .lobby-picker[open]{display:flex;flex-direction:column}
-#mobile-app .lobby-picker::backdrop{background:#080604cc}
-#mobile-app .lobby-picker header{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:2px ridge #bf9c59;background:linear-gradient(#76291d,#41160f)}
-#mobile-app .lobby-picker h2{flex:1;font-size:21px;margin:0;min-width:0}
-#mobile-app .lobby-picker header button{width:48px;flex:0 0 48px;min-height:48px;padding:0;font-size:24px;margin:0}
-#mobile-app .lobby-picker-search{display:flex;flex-direction:column;gap:5px;align-items:stretch;box-sizing:border-box;padding:10px 12px;margin:0;width:100%;max-width:none;color:#ddca9a;font-size:12px}
-#mobile-app .lobby-picker-search input{min-height:48px;box-sizing:border-box;min-width:0;width:100%;border:2px inset #b99a60;background:#140e09;color:#fff0c2;font:16px Georgia,serif;padding:8px 12px}
-#mobile-app .lobby-picker-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:12px;overflow-y:auto;overscroll-behavior:contain;min-height:0;align-content:start;touch-action:pan-y}
-#mobile-app .lobby-picker-grid button{position:relative;display:flex;flex-direction:column;gap:7px;align-items:stretch;min-width:0;width:100%;min-height:70px;margin:0;padding:0 0 10px;font-size:15px;overflow:hidden}
-#mobile-app .lobby-picker-grid button img{width:100%;height:112px;object-fit:cover;object-position:50% 38%}
-#mobile-app .lobby-picker-grid button>span{padding:0 8px;overflow-wrap:anywhere;text-align:center}
-#mobile-app .lobby-choice-check{position:absolute;top:5px;right:5px;color:#fff0b4;font-size:20px;text-shadow:1px 1px 2px #000}
-#mobile-app .lobby-picker[data-kind=map] .lobby-picker-grid{grid-template-columns:1fr}
-#mobile-app .lobby-picker[data-kind=map] .lobby-picker-grid button{flex-direction:row;align-items:center;text-align:left;padding:8px 36px 8px 8px}
-#mobile-app .lobby-picker[data-kind=map] .lobby-picker-grid button img{width:40px;height:40px;object-fit:contain;flex-shrink:0}
-#mobile-app .lobby-picker-grid button>.lobby-choice-copy{display:grid;gap:4px;min-width:0;text-align:left}
-#mobile-app .lobby-map-meta{font-size:12px;color:#dec997}
-#mobile-app .lobby-picker footer{margin-top:auto;border-top:1px solid #b99a60;padding:8px 12px}
-#mobile-app .lobby-picker footer button{min-height:48px;width:100%;margin:0}
+:is(#mobile-app,#game-menu) .lobby-picker{position:fixed;inset:8px;margin:auto;width:min(760px,calc(100% - 16px));max-width:none;height:min(760px,calc(100dvh - 16px));max-height:calc(100dvh - 16px);box-sizing:border-box;padding:0;border:4px ridge #d5b773;background:#25190e url('./h3-theme/stone.png');color:#ffedbe;box-shadow:0 15px 60px #000a;font-family:Georgia,serif}
+:is(#mobile-app,#game-menu) .lobby-picker[open]{display:flex;flex-direction:column}
+:is(#mobile-app,#game-menu) .lobby-picker::backdrop{background:#080604cc}
+:is(#mobile-app,#game-menu) .lobby-picker header{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:2px ridge #bf9c59;background:linear-gradient(#76291d,#41160f)}
+:is(#mobile-app,#game-menu) .lobby-picker h2{flex:1;font-size:21px;margin:0;min-width:0}
+:is(#mobile-app,#game-menu) .lobby-picker header button{width:48px;flex:0 0 48px;min-height:48px;padding:0;font-size:24px;margin:0}
+:is(#mobile-app,#game-menu) .lobby-picker-search{display:flex;flex-direction:column;gap:5px;align-items:stretch;box-sizing:border-box;padding:10px 12px;margin:0;width:100%;max-width:none;color:#ddca9a;font-size:12px}
+:is(#mobile-app,#game-menu) .lobby-picker-search input{min-height:48px;box-sizing:border-box;min-width:0;width:100%;border:2px inset #b99a60;background:#140e09;color:#fff0c2;font:16px Georgia,serif;padding:8px 12px}
+:is(#mobile-app,#game-menu) .lobby-picker-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:8px 12px 12px;align-content:start}
+:is(#mobile-app,#game-menu) .lobby-picker-grid button{position:relative;display:flex;flex-direction:column;gap:7px;align-items:stretch;min-width:0;width:100%;min-height:70px;margin:0;padding:0 0 10px;font-size:15px;overflow:hidden;-webkit-tap-highlight-color:transparent}
+:is(#mobile-app,#game-menu) .lobby-picker-grid button img{width:100%;height:112px;object-fit:cover;object-position:50% 38%}
+:is(#mobile-app,#game-menu) .lobby-picker-grid button>span{padding:0 8px;overflow-wrap:anywhere;text-align:center}
+:is(#mobile-app,#game-menu) .lobby-choice-check{position:absolute;top:5px;right:5px;color:#fff0b4;font-size:20px;text-shadow:1px 1px 2px #000}
+:is(#mobile-app,#game-menu) .lobby-picker[data-kind=map] .lobby-picker-grid{grid-template-columns:1fr}
+:is(#mobile-app,#game-menu) .lobby-picker[data-kind=map] .lobby-picker-grid button{flex-direction:row;align-items:center;text-align:left;padding:8px 36px 8px 8px}
+:is(#mobile-app,#game-menu) .lobby-picker[data-kind=map] .lobby-picker-grid button img{width:40px;height:40px;object-fit:contain;flex-shrink:0}
+:is(#mobile-app,#game-menu) .lobby-picker-grid button>.lobby-choice-copy{display:grid;gap:4px;min-width:0;text-align:left}
+:is(#mobile-app,#game-menu) .lobby-map-meta{font-size:12px;color:#dec997}
+:is(#mobile-app,#game-menu) .lobby-picker footer{margin-top:auto;border-top:1px solid #b99a60;padding:8px 12px}
+:is(#mobile-app,#game-menu) .lobby-picker footer button{min-height:48px;width:100%;margin:0}
 @container(min-width:400px){#mobile-app .lobby-choice-tiles{grid-template-columns:repeat(5,minmax(0,1fr))}}
-@media(orientation:landscape) and (min-width:560px){#mobile-app .lobby-picker-grid{grid-template-columns:repeat(4,minmax(0,1fr))}#mobile-app .lobby-picker-grid button img{height:90px}#mobile-app .lobby-picker[data-kind=map] .lobby-picker-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#mobile-app .lobby-choice-card .lobby-castle-art{width:96px;min-height:96px}}
+@media(orientation:landscape) and (min-width:560px){:is(#mobile-app,#game-menu) .lobby-picker-grid{grid-template-columns:repeat(4,minmax(0,1fr))}:is(#mobile-app,#game-menu) .lobby-picker-grid button img{height:90px}:is(#mobile-app,#game-menu) .lobby-picker[data-kind=map] .lobby-picker-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#mobile-app .lobby-choice-card .lobby-castle-art{width:96px;min-height:96px}}
 
 #mobile-app .lobby-setting[aria-busy=true] h3::after{content:"";width:12px;height:12px;border:2px solid #a38448;border-top-color:#ffe6ab;border-radius:50%;animation:lobby-wait .8s linear infinite}
 @keyframes lobby-wait{to{transform:rotate(360deg)}}
@@ -52,12 +52,50 @@
 #mobile-app .lobby-faction-art>img:first-child{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;opacity:.8}
 #mobile-app .lobby-faction-art>.lobby-castle-symbol{position:absolute;left:10%;bottom:3px;width:80%;height:94%;object-fit:contain;filter:drop-shadow(0 3px 3px #0008)}
 #mobile-app .lobby-choice-card>.lobby-faction-art{width:112px;height:124px;align-self:stretch;border-right:1px solid #ad8b50}
-@media(orientation:landscape) and (min-width:560px){#mobile-app .lobby-picker .lobby-faction-art{height:90px}}
+@media(orientation:landscape) and (min-width:560px){:is(#mobile-app,#game-menu) .lobby-picker .lobby-faction-art{height:90px}}
 
-#mobile-app .lobby-picker-empty{padding:12px;color:#d9c498;font-size:15px;max-width:none}
+:is(#mobile-app,#game-menu) .lobby-picker-empty{padding:12px;color:#d9c498;font-size:15px;max-width:none}
 /* Let the illustration and its name define the row, rather than squeezing all factions into the modal height. */
-#mobile-app .lobby-picker-grid{grid-auto-rows:max-content}
-#mobile-app .lobby-picker[data-kind=castle] .lobby-picker-grid button{min-height:160px!important}
-@media(orientation:landscape) and (min-width:560px){#mobile-app .lobby-picker[data-kind=castle] .lobby-picker-grid button{min-height:140px!important}}
+:is(#mobile-app,#game-menu) .lobby-picker-grid{grid-auto-rows:max-content}
+:is(#mobile-app,#game-menu) .lobby-picker[data-kind=castle] .lobby-picker-grid button{min-height:160px!important}
+@media(orientation:landscape) and (min-width:560px){:is(#mobile-app,#game-menu) .lobby-picker[data-kind=castle] .lobby-picker-grid button{min-height:140px!important}}
 
 #mobile-app .online-scenario-details{display:block;margin-top:4px;font-size:12px;color:#dec997}
+
+:is(#mobile-app,#game-menu) .lobby-picker-content{
+  flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y pinch-zoom;
+}
+:is(#mobile-app,#game-menu) .lobby-picker-search input{touch-action:auto}
+:is(#mobile-app,#game-menu) .scenario-filters{padding:0 12px}
+:is(#mobile-app,#game-menu) .scenario-filters summary{
+  box-sizing:border-box;min-height:44px;padding:10px 8px;cursor:pointer;
+  border:1px solid #a8894e;background:#21160d;color:#ffe6aa;font-size:15px;
+  -webkit-tap-highlight-color:transparent;
+}
+:is(#mobile-app,#game-menu) .scenario-filters summary:active{background:#392613}
+:is(#mobile-app,#game-menu) .scenario-filters summary:focus-visible{outline:2px solid #fff0ad;outline-offset:2px}
+:is(#mobile-app,#game-menu) .scenario-filter-fields{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,86px),1fr));gap:6px;padding:8px 0 0;
+}
+:is(#mobile-app,#game-menu) .scenario-filter-fields label{
+  display:grid;gap:4px;min-width:0;color:#ddca9a;font-size:12px;
+}
+:is(#mobile-app,#game-menu) .scenario-filter-fields select{
+  box-sizing:border-box;width:100%;min-width:0;min-height:44px;padding:4px;
+  background:#140e09;color:#fff0c2;border:1px solid #b99a60;font:16px Georgia,serif;
+}
+:is(#mobile-app,#game-menu) .scenario-filter-status{
+  display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:30px;
+  color:#dec997;font-size:13px;
+}
+:is(#mobile-app,#game-menu) .scenario-filter-status button{
+  min-height:44px;width:auto;margin:2px 0;padding:4px 9px;font-size:13px;
+}
+#game-menu .hosted-scenario-choice{
+  display:flex;align-items:center;gap:10px;min-height:78px;text-align:left;padding:8px 10px;
+}
+#game-menu .hosted-scenario-choice img{width:40px;height:40px;flex-shrink:0}
+#game-menu .hosted-scenario-choice>span{display:grid;gap:4px;min-width:0;overflow-wrap:anywhere}
+#game-menu .hosted-scenario-choice [data-create-map-label]{color:#dec997;font-size:13px}
+#game-menu .lobby-picker-search input{font-size:16px}
+#game-menu .lobby-picker-empty{margin:0}

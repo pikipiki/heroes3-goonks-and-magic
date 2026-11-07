@@ -1,12 +1,13 @@
 import {getLanguage} from './i18n.mjs';
 import {scenarioDetails} from './scenario-details.mjs';
+import {mountScenarioFilters} from './scenario-filters.mjs';
 
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const townKeys=new Set(['castle','rampart','tower','inferno','necropolis','dungeon','stronghold','fortress','conflux']);
 const difficulty=['A relaxed adventure','The classic challenge','Plan every move','For experienced heroes','Every resource matters'];
 export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
  const controls=new Map(),artwork=new Map();
- let dialog=null,source=null,pendingOpen=null;
+ let dialog=null,filters=null,source=null,pendingOpen=null;
  const options=s=>[...s.options].map(o=>({value:o.value,label:o.textContent,disabled:o.disabled}));
  const factionKey=(s,value)=>{
   const state=getState(),player=state.players?.find(p=>String(p.color)===s.dataset.playerCastle);
@@ -87,35 +88,38 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
   const isFaction=faction(s),button=controls.get(s)?.querySelector('button');
   const opening=isFaction?{select:s,button}:null;
   if(opening){pendingOpen=opening;button.setAttribute('aria-busy','true');}
-  if(!dialog?.isConnected){dialog=document.createElement('dialog');dialog.className='lobby-picker';dialog.setAttribute('aria-labelledby','lobby-picker-title');dialog.innerHTML='<header><h2 id="lobby-picker-title"></h2><button type="button" data-picker-close aria-label="Close choices">✕</button></header><label class="lobby-picker-search">Search<input type="search" aria-label="Search choices" placeholder="Search…"></label><div class="lobby-picker-grid" role="group"></div><p class="lobby-picker-empty" hidden>No matching choices.</p><footer><button type="button" data-picker-back>← Back</button></footer>';menu.append(dialog);dialog.querySelector('[data-picker-close]').onclick=close;dialog.querySelector('[data-picker-back]').onclick=close;dialog.addEventListener('cancel',()=>source=null);dialog.querySelector('input').oninput=()=>{const q=dialog.querySelector('input').value.toLocaleLowerCase();for(const b of dialog.querySelectorAll('[data-choice-value]'))b.hidden=!b.querySelector('.lobby-choice-name').textContent.toLocaleLowerCase().includes(q);dialog.querySelector('.lobby-picker-empty').hidden=[...dialog.querySelectorAll('[data-choice-value]')].some(b=>!b.hidden);};dialog.querySelector('.lobby-picker-grid').onclick=e=>{const b=e.target.closest('[data-choice-value]');if(!b||b.disabled||!source)return;const selected=source,value=b.dataset.choiceValue;close();change(selected,value);};}
+  if(!dialog?.isConnected){dialog=document.createElement('dialog');dialog.className='lobby-picker';dialog.setAttribute('aria-labelledby','lobby-picker-title');dialog.innerHTML='<header><h2 id="lobby-picker-title" tabindex="-1"></h2><button type="button" data-picker-close aria-label="Close choices">✕</button></header><div class="lobby-picker-content"><label class="lobby-picker-search">Search<input type="search" aria-label="Search choices" placeholder="Search…"></label><div class="lobby-picker-grid" role="group"></div><p class="lobby-picker-empty" hidden>No matching choices.</p></div><footer><button type="button" data-picker-back>← Back</button></footer>';menu.append(dialog);dialog.querySelector('[data-picker-close]').onclick=close;dialog.querySelector('[data-picker-back]').onclick=close;dialog.addEventListener('cancel',()=>source=null);filters=mountScenarioFilters(dialog);dialog.querySelector('.lobby-picker-grid').onclick=e=>{const b=e.target.closest('[data-choice-value]');if(!b||b.disabled||!source)return;const selected=source,value=b.dataset.choiceValue;close();change(selected,value);};}
   dialog.dataset.kind=isFaction?'castle':'map';
   dialog.querySelector('h2').textContent=title(s);
   dialog.querySelector('.lobby-picker-grid').setAttribute('aria-label',title(s));
   dialog.querySelector('.lobby-picker-search').hidden=isFaction;
-  dialog.querySelector('input').value='';
-  dialog.querySelector('.lobby-picker-empty').hidden=true;
-  const state=getState();
-  const maps=new Map((!isFaction&&state.mode==='lobby'?state.maps??[]:[]).map(map=>[String(map.index),map]));
+  const state=getState(),isMap=!isFaction&&state.mode==='lobby';
+  dialog.querySelector('.lobby-picker-empty').textContent='No matching choices.';
+  const maps=new Map((!isFaction&&state.mode==='lobby'?state.maps??[]:[]).map(map=>[String(map.index),{...map,humanSeats:1,castleChoices:Number(map.castleChoice)}]));
   const fr=getLanguage()==='fr';
   dialog.querySelector('.lobby-picker-grid').innerHTML=options(s).map(o=>{
    const map=maps.get(o.value);
    const name=`<span class="lobby-choice-name">${esc(o.label)}</span>`;
-   const metadata=map?scenarioDetails({...map,humanSeats:1,castleChoices:Number(map.castleChoice)},fr):'';
+   const metadata=map?scenarioDetails(map,fr):'';
    const details=metadata?`<small class="lobby-map-meta">${esc(metadata)}</small>`:'';
    const copy=isFaction?name:`<span class="lobby-choice-copy">${name}${details}</span>`;
    return `<button type="button" data-choice-value="${esc(o.value)}" aria-pressed="${o.value===s.value}" ${o.disabled?'disabled':''}>${isFaction?art(s,o.value):'<img src="./web/h3-theme/adventure-map.svg" alt="">'}${copy}<span class="lobby-choice-check" aria-hidden="true">${o.value===s.value?'✓':''}</span></button>`;
   }).join('');
+  filters.update([...dialog.querySelectorAll('[data-choice-value]')].map(row=>({row,map:maps.get(row.dataset.choiceValue)})),{french:fr,enabled:isMap});
   if(opening){
    await Promise.all([...dialog.querySelectorAll('.lobby-faction-art img')].map(image=>image.decode().catch(()=>{image.hidden=true;})));
    if(pendingOpen!==opening)return;
    cancelOpening();
    if(!s.isConnected||!button.isConnected||s.disabled||getState().mode!=='lobby')return;
   }
-  source=s;dialog.showModal();const active=dialog.querySelector('[data-choice-value][aria-pressed=true]');active?.focus({preventScroll:true});active?.scrollIntoView({block:'nearest'});
+  source=s;dialog.showModal();
+  dialog.querySelector('.lobby-picker-content').scrollTop=0;
+  if(isMap){dialog.querySelector('h2').focus({preventScroll:true});return;}
+  const active=dialog.querySelector('[data-choice-value][aria-pressed=true]');active?.focus({preventScroll:true});active?.scrollIntoView({block:'nearest'});
  }
  function update(state){if(!['lobby','load'].includes(state.mode)){cancelOpening();if(dialog?.open)close();for(const [s,c]of controls)if(!s.isConnected){c.remove();controls.delete(s);}return;}
   for(const [s,c]of controls)if(!s.isConnected){c.remove();controls.delete(s);if(source===s)close();if(pendingOpen?.select===s)cancelOpening();}
-  for(const s of menu.querySelectorAll('select')){let c=controls.get(s);if(!c){c=document.createElement('section');c.className='lobby-setting';c.tabIndex=-1;c.dataset.setting=s.id||(s.dataset.playerCastle!==undefined?'player-'+s.dataset.playerCastle:s.hasAttribute('data-custom-players')?'players':s.hasAttribute('data-custom-humans')?'humans':'size');s.closest('label').classList.add('lobby-native-label');s.closest('label').after(c);controls.set(s,c);}
+  for(const s of menu.querySelectorAll('select:not(.lobby-picker select)')){let c=controls.get(s);if(!c){c=document.createElement('section');c.className='lobby-setting';c.tabIndex=-1;c.dataset.setting=s.id||(s.dataset.playerCastle!==undefined?'player-'+s.dataset.playerCastle:s.hasAttribute('data-custom-players')?'players':s.hasAttribute('data-custom-humans')?'humans':'size');s.closest('label').classList.add('lobby-native-label');s.closest('label').after(c);controls.set(s,c);}
    c.hidden=s.closest('label').hidden;c.setAttribute('aria-busy',String(s.dataset.updating==='true'));
    if(s.id==='mobile-map-select'){
     if(c.dataset.control!=='map'){
