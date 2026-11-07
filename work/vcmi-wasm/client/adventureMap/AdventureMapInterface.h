@@ -114,6 +114,7 @@ public:
 	AdventureMapInterface();
 	std::shared_ptr<CMinimap> getMobileMinimap() const;
 	Rect getMobileMapRect() const;
+	bool isWorldView() const;
 
 	void hotkeyAbortCastingMode();
 	void hotkeyExitWorldView();

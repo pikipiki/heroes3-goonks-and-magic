@@ -2,7 +2,8 @@ import {translate} from './i18n.mjs';
 import {battleCapabilities} from './battle-phase.mjs';
 export function battleGuidance(state){
  const actor=state.activeStack===undefined?null:(state.battleUnits||[]).find(unit=>unit.stackId===state.activeStack);
- const cap=battleCapabilities(state),ready=!!actor&&!actor.enemy&&!state.spellTargeting&&cap.move&&(!cap.tactics||cap.endTactics);
+ const cap=battleCapabilities(state),controlled=state.activeUnit?.controlled??!actor?.enemy;
+ const ready=!!actor&&controlled&&!state.spellTargeting&&cap.move&&(!cap.tactics||cap.endTactics);
  const occupied=new Set((state.battleUnits||[]).flatMap(unit=>unit.occupied||[]));
  // Native reachability includes tactics, speed, obstacles, wide stacks and defended gates.
  const cells=ready?(state.battleCells||[]).filter(cell=>cell.reachable&&!occupied.has(cell.hex)):[];

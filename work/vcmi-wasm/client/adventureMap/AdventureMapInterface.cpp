@@ -904,6 +904,11 @@ Rect AdventureMapInterface::terrainAreaPixels() const
 	return widget->getMapView()->pos;
 }
 
+bool AdventureMapInterface::isWorldView() const
+{
+	return shortcuts->optionInWorldView();
+}
+
 void AdventureMapInterface::hotkeyExitWorldView()
 {
 	setState(EAdventureState::MAKING_TURN);

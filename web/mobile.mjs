@@ -57,10 +57,11 @@ function mount(){
  const viewButton=root.querySelector('[data-ui="overview"]');
  let viewLabel='Vue';
  function syncViewButton(){
-  const label=state.mode==='map'?(zoom===1?'Vue large':'Vue normale'):'Vue';
+  const label=state.mode==='map'?(state.worldView?'Quitter la vue':zoom===1?'Vue large':'Vue normale'):'Vue';
   if(viewLabel===label)return;
   viewLabel=label;
   viewButton.textContent=label;
+  viewButton.setAttribute('aria-label',state.mode==='map'?label:'Vue d’ensemble');
  }
  const original=document.querySelector('#canvas'),scene=root.querySelector('#mobile-scene'),ctx=scene.getContext('2d'),overview=root.querySelector('#mobile-overview'),overviewCtx=overview.getContext('2d');
  const sceneSize=createCanvasSizer();
@@ -377,7 +378,10 @@ function mount(){
   if(ui==='native-equipment'){closeSheet();command(55);return;}
   if(['equipment','heroes','towns','build','recruit','army'].includes(ui))return showList(ui);
   if(ui==='confirm-recruit'){if(!state.turn||recruitLoading)return;const u=state.recruitUnit,amount=Number(root.querySelector('#recruit-number').value);if(!u||!Number.isInteger(amount)||amount<1||amount>state.recruitMaximum){notify('Choisis une quantité entre 1 et '+state.recruitMaximum);return;}pendingRecruit={id:u.id,name:u.name,amount,before:townArmy.filter(s=>s?.id===u.id).reduce((n,s)=>n+s.count,0)};command(31,amount);command(32);return;}if(ui==='max-recruit'){command(31,state.recruitMaximum||0);return;}if(ui==='cancel-recruit'){pendingRecruit=null;recruitLoading=false;expectedRecruitId=null;command(33);return;}
-  if(ui==='presentation-back'){command(43);return;}if(ui==='close-sheet')return closeSheet();if(ui==='zoom-in'){zoom=Math.min(4,zoom*1.25);return;}if(ui==='zoom-out'){zoom=Math.max(.5,zoom/1.25);return;}if(ui==='overview'){zoom=state.mode==='map'?(zoom===1?.5:1):(zoom===1?2:1);focus=null;return;}
+  if(ui==='presentation-back'){command(43);return;}if(ui==='close-sheet')return closeSheet();if(ui==='zoom-in'){zoom=Math.min(4,zoom*1.25);return;}if(ui==='zoom-out'){zoom=Math.max(.5,zoom/1.25);return;}if(ui==='overview'){
+   if(state.mode==='map'&&state.worldView){zoom=1;focus=null;resetGestures();command(87);return;}
+   zoom=state.mode==='map'?(zoom===1?.5:1):(zoom===1?2:1);focus=null;return;
+  }
   if(ui==='wait'||ui==='defend'){
    const action=ui==='wait'?12:13;
    if(canCancelSpell(state))cancelSpell(action);else battleStance(action);
