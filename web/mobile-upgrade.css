@@ -3,6 +3,7 @@
 @import url('./spellbook.css');
 @import url('./mage-guild.css');
 @import url('./hero-equipment.css');
+@import url('./hero-exchange.css');
 @import url('./recruitment-families.css');
 /* Tactile controls keep Heroes III materials, with consistent accessible targets. */
 #mobile-app button,#game-menu button{min-height:48px;min-width:48px;touch-action:manipulation;line-height:1.2}
@@ -133,7 +134,6 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
 #mobile-app .hero-movement-item strong{font-size:13px;font-weight:600}
 #mobile-app .hero-movement-item span{font-variant-numeric:tabular-nums}
 #mobile-app .hero-movement-item.is-exhausted{color:#c8c0ac}
-#mobile-app[data-mode=map] .mobile-nav>[data-ui=endturn]{grid-column:span 2}
 @media(orientation:landscape) and (max-height:600px){
  #mobile-app .hero-movement-item{flex-basis:100%;box-sizing:border-box;justify-content:space-between;padding:0 4px;gap:4px;min-height:32px}
 }
@@ -227,7 +227,6 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
   text-align:center;
   overflow-wrap:anywhere;
  }
- #mobile-app[data-mode=map] .mobile-nav>[data-ui=endturn]{grid-column:1/-1}
  #mobile-app[data-mode=map] .hero-movement-item:first-child{margin-inline-start:auto}
  #mobile-app[data-mode=map] .hero-movement-item:last-child{margin-inline-end:auto}
  #mobile-app[data-mode=map] .hero-movement-item:only-child{max-width:100%}
@@ -254,7 +253,6 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
   --map-action-rows:repeat(2,minmax(44px,1fr));
   grid-template-columns:repeat(3,minmax(0,1fr));
  }
- #mobile-app[data-mode=map] .mobile-nav>[data-ui=endturn]{grid-column:span 2}
 }
 
 /* Dwelling recruitment gives the live creature the main stage in both orientations. */

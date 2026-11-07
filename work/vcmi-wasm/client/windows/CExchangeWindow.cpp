@@ -45,7 +45,8 @@ static bool isQuickExchangeLayoutAvailable()
 
 CExchangeWindow::CExchangeWindow(ObjectInstanceID hero1, ObjectInstanceID hero2, QueryID queryID)
 	: CWindowObject(PLAYER_COLORED | BORDERED, ImagePath::builtin(isQuickExchangeLayoutAvailable() ? QUICK_EXCHANGE_BG : "TRADE2")),
-	controller(hero1, hero2)
+	controller(hero1, hero2),
+	exchangeQuery(queryID)
 {
 	const bool qeLayout = isQuickExchangeLayoutAvailable();
 
@@ -159,9 +160,7 @@ CExchangeWindow::CExchangeWindow(ObjectInstanceID hero1, ObjectInstanceID hero2,
 		luck[b] = std::make_shared<MoraleLuckBox>(false,  Rect(Point(212 + 490 * b, 39), Point(32, 32)), true);
 	}
 
-	quit = std::make_shared<CButton>(Point(732, 567), AnimationPath::builtin("IOKAY.DEF"), LIBRARY->generaltexth->zelp[600], std::bind(&CExchangeWindow::close, this), EShortcut::GLOBAL_ACCEPT);
-	if(queryID.getNum() > 0)
-		quit->addCallback([=](){ GAME->interface()->cb->selectionMade(0, queryID); });
+	quit = std::make_shared<CButton>(Point(732, 567), AnimationPath::builtin("IOKAY.DEF"), LIBRARY->generaltexth->zelp[600], std::bind(&CExchangeWindow::finishExchange, this), EShortcut::GLOBAL_ACCEPT);
 
 	questlogButton[0] = std::make_shared<CButton>(Point( qeLayout ? 8 : 10, qeLayout ? 39 : 44), AnimationPath::builtin("hsbtns4.def"), CButton::tooltip(LIBRARY->generaltexth->heroscrn[0]), std::bind(&CExchangeWindow::questLogShortcut, this));
 	questlogButton[1] = std::make_shared<CButton>(Point(740, qeLayout ? 39 : 44), AnimationPath::builtin("hsbtns4.def"), CButton::tooltip(LIBRARY->generaltexth->heroscrn[0]), std::bind(&CExchangeWindow::questLogShortcut, this));
@@ -262,6 +261,24 @@ CExchangeWindow::CExchangeWindow(ObjectInstanceID hero1, ObjectInstanceID hero2,
 	}
 
 	CExchangeWindow::updateArtifacts();
+}
+
+const CGHeroInstance * CExchangeWindow::getExchangeHero(size_t index) const
+{
+	return heroInst.at(index);
+}
+
+Rect CExchangeWindow::getExchangePortrait(size_t index) const
+{
+	return heroAreas.at(index)->pos;
+}
+
+void CExchangeWindow::finishExchange()
+{
+	const auto query = exchangeQuery;
+	close();
+	if(query.getNum() > 0)
+		GAME->interface()->cb->selectionMade(0, query);
 }
 
 void CExchangeWindow::creatureArrowButtonCallback(bool leftToRight, SlotID slotId)

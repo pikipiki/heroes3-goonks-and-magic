@@ -51,6 +51,9 @@
 #include "windows/InfoWindows.h"
 #include "widgets/Buttons.h"
 #include "windows/CHeroWindow.h"
+#include "windows/CExchangeWindow.h"
+#include "../lib/entities/artifact/ArtifactUtils.h"
+#include "../lib/networkPacks/ArtifactLocation.h"
 #include "battle/BattleInterface.h"
 #include "battle/BattleActionsController.h"
 #include "battle/BattleWindow.h"
@@ -272,6 +275,112 @@ const CGTownInstance * mobileResidentTown(const CGHeroInstance * hero){
  if(!hero)return nullptr;const auto town=hero->getVisitedTown();
  return town&&(town->getVisitingHero()==hero||town->getGarrisonHero()==hero)?town:nullptr;
 }
+// A map shortcut either opens the existing town exchange or orders a real
+// hero visit. On the map only the server's visit query authorizes transfers.
+std::vector<const CGHeroInstance *> mobileExchangePartners(CPlayerInterface & player, const CGHeroInstance * hero)
+{
+ std::vector<const CGHeroInstance *> partners;
+ if(!hero || hero->getOwner()!=player.playerID || !player.makingTurn || player.mobileHeroMoving())
+  return partners;
+ if(const auto town=mobileResidentTown(hero))
+ {
+  const auto other=town->getVisitingHero()==hero ? town->getGarrisonHero() : town->getVisitingHero();
+  if(other && other->getOwner()==player.playerID)
+   partners.push_back(other);
+ }
+ const auto origin=hero->visitablePos();
+ for(const auto other:player.localState->getWanderingHeroes())
+ {
+  if(other==hero || other->getOwner()!=player.playerID ||
+     std::find(partners.begin(),partners.end(),other)!=partners.end())
+   continue;
+  const auto destination=other->visitablePos();
+  const bool planned=player.localState->hasPath(hero) && player.localState->getPath(hero).endPos()==destination;
+  if(!planned && !origin.areNeighbours(destination))
+   continue;
+  const auto paths=player.getPathsInfo(hero);
+  const auto node=paths->getPathInfo(destination);
+  if(node && node->turns==0 && (node->action==EPathNodeAction::BLOCKING_VISIT || node->action==EPathNodeAction::VISIT ||
+     node->action==EPathNodeAction::TELEPORT_BLOCKING_VISIT))
+   partners.push_back(other);
+ }
+ return partners;
+}
+
+bool mobileExchangeSlot(const CGHeroInstance & hero, ArtifactPosition slot)
+{
+ return slot.getNum()>=0 && slot!=ArtifactPosition::MACH4 && slot!=ArtifactPosition::SPELLBOOK &&
+  (slot.getNum()<19 || (ArtifactUtils::isSlotBackpack(slot) &&
+   slot.getNum()<=int(ArtifactPosition::BACKPACK_START)+int(hero.artifactsInBackpack.size())));
+}
+
+bool canMobileTransfer(PlayerColor player, const CGHeroInstance & from, ArtifactPosition source,
+                       const CGHeroInstance & to, ArtifactPosition destination)
+{
+ if(from.getOwner()!=player || !mobileExchangeSlot(from,source) || !mobileExchangeSlot(to,destination))
+  return false;
+ const auto art=from.getArt(source);
+ const auto targetSlot=to.getSlot(destination);
+ if(!art || (targetSlot && targetSlot->locked))
+  return false;
+ if(ArtifactUtils::isSlotBackpack(destination))
+  return destination.getNum()==int(ArtifactPosition::BACKPACK_START)+int(to.artifactsInBackpack.size()) &&
+   !art->getType()->isBig() && ArtifactUtils::isBackpackFreeSlots(&to);
+ const auto target=to.getArt(destination);
+ return art->canBePutAt(&to,destination,true) &&
+  (!target || (to.getOwner()==player && target->canBePutAt(&from,source,true)));
+}
+
+JsonNode mobileExchange(const CExchangeWindow & window, const CPlayerInterface & player)
+{
+ JsonNode result;
+ result["classicOnly"].Bool()=window.getPickedArtifact()!=nullptr;
+ for(size_t i=0;i<2;i++)
+ {
+  const auto & hero=*window.getExchangeHero(i);
+  const auto & other=*window.getExchangeHero(1-i);
+  JsonNode entry;
+  entry["id"].Integer()=hero.id.getNum();
+  entry["name"].String()=hero.getNameTranslated();
+  entry["portrait"]=rect(window.getExchangePortrait(i));
+  entry["owned"].Bool()=hero.getOwner()==player.playerID;
+  entry["army"]=army(&hero,hero.getNameTranslated());
+  const auto appendSlot=[&](ArtifactPosition slot)
+  {
+   JsonNode item;
+   item["slot"].Integer()=slot.getNum();
+   item["backpack"].Bool()=ArtifactUtils::isSlotBackpack(slot);
+   if(const auto art=hero.getArt(slot,false))
+   {
+    const auto type=art->getType();
+    item["id"].Integer()=art->getId().getNum();
+    item["name"].String()=type->getNameTranslated();
+    item["description"].String()=type->getDescriptionTranslated();
+    item["icon"].Integer()=type->getIconIndex();
+    artifactIconIds.insert(type->getIconIndex());
+    if(player.makingTurn && !result["classicOnly"].Bool())
+    {
+     const auto addDestination=[&](ArtifactPosition target)
+     {
+      if(canMobileTransfer(player.playerID,hero,slot,other,target))
+       item["destinations"].Vector().emplace_back(double(target.getNum()));
+     };
+     for(int index=0;index<19;index++)
+      addDestination(ArtifactPosition(index));
+     addDestination(ArtifactPosition(int(ArtifactPosition::BACKPACK_START)+int(other.artifactsInBackpack.size())));
+    }
+   }
+   entry["slots"].Vector().push_back(std::move(item));
+  };
+  for(int index=0;index<19;index++)
+   appendSlot(ArtifactPosition(index));
+  for(size_t index=0;index<=hero.artifactsInBackpack.size();index++)
+   appendSlot(ArtifactPosition(int(ArtifactPosition::BACKPACK_START)+int(index)));
+  result["heroes"].Vector().push_back(std::move(entry));
+ }
+ return result;
+}
+
 bool visitingHeroHasGrail(const CGTownInstance * town)
 {
  const auto visitor=town->getVisitingHero();
@@ -421,6 +530,7 @@ void publishMobileState(){
  if(audioMuted){if(ENGINE->sound().getVolume()!=0)ENGINE->sound().setVolume(0);if(ENGINE->music().getVolume()!=0)ENGINE->music().setVolume(0);}
  portraitIds.clear();artifactIconIds.clear();JsonNode n;n["mapSettings"]["moveTime"].Integer()=settings["adventure"]["heroMoveTime"].Integer();n["mapSettings"]["enemyMoveTime"].Integer()=settings["adventure"]["enemyMoveTime"].Integer();n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top)n["rect"]=rect(top->pos);
  auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();auto recruitWindow=ENGINE->windows().topWindow<CRecruitmentWindow>();auto fortWindow=ENGINE->windows().topWindow<CFortScreen>();auto creatureWindow=ENGINE->windows().topWindow<CStackWindow>();auto spellWindow=ENGINE->windows().topWindow<CSpellWindow>();auto heroWindow=ENGINE->windows().topWindow<CHeroWindow>();
+ const auto exchangeWindow=mobileEnabled?ENGINE->windows().topWindow<CExchangeWindow>():nullptr;
  const bool openTownHall=mobileEnabled&&townWindow&&mobileTownHall==townWindow->town->id.getNum();
  if(openTownHall)n["openTownHall"].Bool()=true;
  else if(townWindow||!p)mobileTownHall.reset();
@@ -587,6 +697,7 @@ void publishMobileState(){
  else if(creatureWindow)n["mode"].String()="creature";
  else if(townWindow)n["mode"].String()="town";
  else if(heroWindow)n["mode"].String()="hero";
+ else if(exchangeWindow)n["mode"].String()="hero-exchange";
  else if(battleWindow)n["mode"].String()="battle";
  else if(const auto map=ENGINE->windows().topWindow<AdventureMapInterface>())
  {
@@ -738,6 +849,16 @@ void publishMobileState(){
   const auto hero=heroWindow?heroWindow->curHero:p->localState->getCurrentHero();
   if(hero){n["heroName"].String()=hero->getNameTranslated();n["heroMana"].Integer()=hero->mana;n["heroManaLimit"].Integer()=hero->manaLimit();n["heroHasSpellbook"].Bool()=hero->hasSpellbook();n["movement"].Integer()=hero->movementPointsRemaining();n["heroId"].Integer()=hero->id.getNum();n["armies"].Vector().push_back(army(hero,hero->getNameTranslated()));if(p->localState->hasPath(hero)){n["hasPath"].Bool()=true;n["pathTurns"].Integer()=p->localState->getPath(hero).lastNode().turns;}}
   if(n["mode"].String()=="map"&&hero){const auto town=mobileResidentTown(hero);if(town&&town->getOwner()==p->playerID)mobileTownArmies(n,town);}
+  if(exchangeWindow)
+   n["heroExchange"]=mobileExchange(*exchangeWindow,*p);
+  if(n["mode"].String()=="map" && !n["worldView"].Bool())
+   for(const auto partner:mobileExchangePartners(*p,hero))
+   {
+    JsonNode item;
+    item["id"].Integer()=partner->id.getNum();
+    item["name"].String()=partner->getNameTranslated();
+    n["exchangePartners"].Vector().push_back(std::move(item));
+   }
   if(heroWindow&&hero){auto & h=n["heroWindow"];h["owned"].Bool()=hero->getOwner()==p->playerID;h["name"].String()=hero->getNameTranslated();h["className"].String()=hero->getClassNameTranslated();h["level"].Integer()=hero->level;h["mana"].Integer()=hero->mana;h["manaLimit"].Integer()=hero->manaLimit();h["portrait"]=rect(Rect(heroWindow->pos.x+19,heroWindow->pos.y+19,58,64));
    HeroIconFrames icons;
    for(int i = 0; i < 4; ++i)
@@ -1252,6 +1373,64 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
    p->cb->recruitCreatures(town,destination,id,std::min(c,int(row.first)),a);
   }
   lastPublished=0;return;
+ }
+ if(action==91)
+ {
+  const auto map=ENGINE->windows().topWindow<AdventureMapInterface>();
+  if(!map || map->isWorldView())return;
+  for(const auto partner:mobileExchangePartners(*p,hero))
+  {
+   if(partner->id.getNum()!=a)continue;
+   if(const auto town=mobileResidentTown(hero);town && town==mobileResidentTown(partner))
+    p->showHeroExchange(hero->id,partner->id);
+   else if(p->localState->setPath(hero,partner->visitablePos()))
+    p->moveHero(hero,p->localState->getPath(hero));
+   lastPublished=0;
+   break;
+  }
+  return;
+ }
+ if(action==92 || action==93 || action==94)
+ {
+  if(const auto window=ENGINE->windows().topWindow<CExchangeWindow>())
+  {
+   if(action==93)
+    window->finishExchange();
+   else if(p->makingTurn && !window->getPickedArtifact() && (a==0 || a==1))
+   {
+    const auto & from=*window->getExchangeHero(a);
+    const auto & to=*window->getExchangeHero(1-a);
+    if(action==94)
+    {
+     if(b<0 || b>=7 || c<0 || c>=7 || from.getOwner()!=p->playerID || to.getOwner()!=p->playerID)
+      return;
+     const SlotID source(b),destination(c);
+     const auto creature=from.getCreature(source);
+     if(!creature || creature->getId().getNum()!=e)return;
+     const auto target=to.getCreature(destination);
+     const auto count=from.getStackCount(source);
+     const bool swap=target && target!=creature;
+     const auto maximum=count-(from.needsLastStack() && from.stacksCount()==1 && !swap ? 1 : 0);
+     if(d<1 || d>maximum || (swap && d!=count))return;
+     if(d==count)
+      p->cb->mergeOrSwapStacks(&from,&to,source,destination);
+     else
+      p->cb->splitStack(&from,&to,source,destination,d+(target?to.getStackCount(destination):0));
+     lastPublished=0;
+     return;
+    }
+    const ArtifactPosition source(b), destination(c);
+    if(canMobileTransfer(p->playerID,from,source,to,destination))
+    {
+     const auto art=from.getArt(source);
+     const auto target=to.getArt(destination);
+     if(art->getId().getNum()==d && (target?target->getId().getNum():-1)==e)
+      p->cb->swapArtifacts(ArtifactLocation(from.id,source),ArtifactLocation(to.id,destination));
+    }
+   }
+   lastPublished=0;
+  }
+  return;
  }
  if(action==55&&hero&&ENGINE->windows().topWindow<AdventureMapInterface>()){p->openHeroWindow(hero);return;}
  if(action==56&&ENGINE->windows().topWindow<AdventureMapInterface>()&&a>=0&&a<int(p->localState->getOwnedTowns().size())){adventureInt->centerOnObject(p->localState->getOwnedTown(a));return;}

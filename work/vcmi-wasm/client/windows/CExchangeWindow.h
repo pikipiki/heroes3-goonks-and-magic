@@ -57,6 +57,7 @@ class CExchangeWindow : public CStatusbarWindow, public IGarrisonHolder, public 
 	std::shared_ptr<CButton> backpackButtonLeft;
 	std::shared_ptr<CButton> backpackButtonRight;
 	CExchangeController controller;
+	QueryID exchangeQuery;
 
 	void creatureArrowButtonCallback(bool leftToRight, SlotID slotID);
 	void moveArtifactsCallback(bool leftToRight);
@@ -73,6 +74,9 @@ class CExchangeWindow : public CStatusbarWindow, public IGarrisonHolder, public 
 public:
 	CExchangeWindow(ObjectInstanceID hero1, ObjectInstanceID hero2, QueryID queryID);
 
+	const CGHeroInstance * getExchangeHero(size_t index) const;
+	Rect getExchangePortrait(size_t index) const;
+	void finishExchange();
 	void keyPressed(EShortcut key) override;
 
 	void updateArtifacts() override;

@@ -2,13 +2,26 @@
 if(typeof Image!=='undefined'){const silhouette=new Image();silhouette.src=new URL('./h3-theme/hero-silhouette.svg',import.meta.url).href;silhouette.decode?.().catch(()=>{});}
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const heroIcon=index=>Number.isInteger(index)?`<canvas class="hero-icon" width="48" height="48" data-hero-icon="${index}" aria-hidden="true"></canvas>`:'';
-const names=['Head','Shoulders','Neck','Right hand','Left hand','Torso','Right ring','Left ring','Feet','Accessory 1','Accessory 2','Accessory 3','Accessory 4','Ballista','Ammo cart','First aid tent','Catapult','Spellbook','Accessory 5'];
+export const equipmentSlotNames=['Head','Shoulders','Neck','Right hand','Left hand','Torso','Right ring','Left ring','Feet','Accessory 1','Accessory 2','Accessory 3','Accessory 4','Ballista','Ammo cart','First aid tent','Catapult','Spellbook','Accessory 5'];
+let artifactVersion=0;
+if(typeof window!=='undefined')window.addEventListener('goonk-artifacts',()=>artifactVersion++);
+export function paintArtifactIcons(panel){
+ const atlas=window.goonkArtifactAtlas,ids=window.goonkArtifactIds;
+ if(!atlas||!ids)return;
+ for(const canvas of panel.querySelectorAll('[data-artifact-icon]')){
+  const id=Number(canvas.dataset.artifactIcon),index=ids.get(id),key=id+':'+artifactVersion;
+  if(index===undefined||canvas._artifactKey===key)continue;
+  const ctx=canvas.getContext('2d');
+  ctx.clearRect(0,0,64,64);
+  ctx.drawImage(atlas,index%8*96,Math.floor(index/8)*96,96,96,0,0,64,64);
+  canvas._artifactKey=key;
+ }
+}
 export function createHeroEquipment({root,command,onViewChange=()=>{}}){
- const panel=document.createElement('section');panel.className='hero-equipment-page';panel.hidden=true;panel.setAttribute('aria-label','Hero equipment');root.querySelector('.mobile-play').append(panel);let state={},tab='worn',selected=null,signature='',version=0,classic=false;const scrollPositions={worn:0,backpack:0,skills:0};
- window.addEventListener('goonk-artifacts',()=>version++);
+ const panel=document.createElement('section');panel.className='hero-equipment-page';panel.hidden=true;panel.setAttribute('aria-label','Hero equipment');root.querySelector('.mobile-play').append(panel);let state={},tab='worn',selected=null,signature='',classic=false;const scrollPositions={worn:0,backpack:0,skills:0};
  const switchView=value=>{classic=value;root.dataset.heroView=value?'classic':'mobile';panel.hidden=classic||state.mode!=='hero';onViewChange();};
  const slots=()=>tab==='worn'?state.heroWindow?.slots||[]:tab==='backpack'?state.heroWindow?.backpack||[]:[];
- function slotMarkup(a){const picked=state.heroWindow?.picked;const label=tab==='worn'?names[a.slot]||'Equipment':'Backpack '+(a.slot-18);return `<button class="hero-artifact-slot${picked&&a.allowed?' can-receive':''}" data-hero-slot="${a.slot}" aria-pressed="${a.slot===selected}" ${picked&&!a.allowed?'disabled':''} aria-label="${esc(label+': '+(a.name||'Empty'))}" title="${esc(label+': '+(a.name||'Empty'))}"><small>${label}${a.locked?' · Locked':''}</small>${a.name?`<canvas width="64" height="64" data-artifact-icon="${a.icon}" aria-hidden="true"></canvas><strong>${esc(a.name)}</strong>`:'<span class="hero-empty" aria-hidden="true">＋</span><strong>Empty</strong>'}</button>`;}
+ function slotMarkup(a){const picked=state.heroWindow?.picked;const label=tab==='worn'?equipmentSlotNames[a.slot]||'Equipment':'Backpack '+(a.slot-18);return `<button class="hero-artifact-slot${picked&&a.allowed?' can-receive':''}" data-hero-slot="${a.slot}" aria-pressed="${a.slot===selected}" ${picked&&!a.allowed?'disabled':''} aria-label="${esc(label+': '+(a.name||'Empty'))}" title="${esc(label+': '+(a.name||'Empty'))}"><small>${label}${a.locked?' · Locked':''}</small>${a.name?`<canvas width="64" height="64" data-artifact-icon="${a.icon}" aria-hidden="true"></canvas><strong>${esc(a.name)}</strong>`:'<span class="hero-empty" aria-hidden="true">＋</span><strong>Empty</strong>'}</button>`;}
  function renderSkills(hero){
   const description=text=>esc(text?.replace(/[{}]/g,''));
   const specialty=hero.specialty?.name?`<section class="hero-specialty">
@@ -62,7 +75,7 @@ export function createHeroEquipment({root,command,onViewChange=()=>{}}){
    <h3>${esc(picked?'Moving: '+picked.name:item?.name||'Choose an artefact')}</h3>
    <p class="hero-artifact-description">${picked?'Choose a highlighted destination. Switch between Equipment and Backpack to move the item.':esc(item?.description?.replace(/[{}]/g,'')||hint)}</p>
    ${hero.owned===false?'':`<div class="hero-artifact-actions">
-    <button data-hero-move ${!item?.name||item.locked||item.movable===false||picked||!state.turn?'disabled':''}>Move item</button>
+    <button class="primary" data-hero-move ${!item?.name||item.locked||item.movable===false||picked||!state.turn?'disabled':''}>Move item</button>
     <button data-hero-cancel ${!picked?'disabled':''}>Cancel move</button>
    </div>`}
   </section>`;
@@ -79,5 +92,7 @@ export function createHeroEquipment({root,command,onViewChange=()=>{}}){
     canvas._heroIconAtlas=heroAtlas;
    }
   }
-  const atlas=window.goonkArtifactAtlas,ids=window.goonkArtifactIds;if(!atlas||!ids)return true;for(const canvas of panel.querySelectorAll('[data-artifact-icon]')){const id=Number(canvas.dataset.artifactIcon),index=ids.get(id),key=id+':'+version;if(index===undefined||canvas._artifactKey===key)continue;const ctx=canvas.getContext('2d');ctx.clearRect(0,0,64,64);ctx.drawImage(atlas,index%8*96,Math.floor(index/8)*96,96,96,0,0,64,64);canvas._artifactKey=key;}return true;}};
+  paintArtifactIcons(panel);
+  return true;
+ }};
 }

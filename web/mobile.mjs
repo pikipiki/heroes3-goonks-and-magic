@@ -10,6 +10,7 @@ import{hasHDCreaturePortrait}from'./goonk-hd-portraits.mjs';
 import {createBattleAutocombat} from './battle-autocombat.mjs';
 import {createCampaignSetup} from './campaign-setup.mjs';
 import {createHeroEquipment} from './hero-equipment.mjs';
+import {createHeroExchange} from './hero-exchange.mjs';
 import {canCancelSpell,createSpellTargetingRecovery,spellTargetCell} from './spell-targeting.mjs';
 import {heroMovementSummary,watchHeroMovement} from './hero-movement.mjs';
 import {createMenuLaunch,restartLaunchURL} from './menu-launch.mjs';
@@ -129,6 +130,7 @@ function mount(){
  const nativeFort=createNativeFort({root,getState:()=>state,pointer});
  const portraitTown=createTownPortrait({root,scene,asset,command,getState:()=>state});
  const portrait=unit=>{if(hasHDCreaturePortrait(unit))return creaturePortrait(unit);const url=asset(unit?.icon);return url?`<img data-native-portrait="${Number(unit.id)}" src="${escape(url)}" alt="${escape(unit.name)}">`:creaturePortrait(unit);};
+ const heroExchange=createHeroExchange({root,command,refresh:controls,portrait});
  root.addEventListener('error',event=>{const image=event.target;if(image.matches?.('img[data-native-portrait]')){const holder=document.createElement('span');holder.innerHTML=creaturePortrait({id:Number(image.dataset.nativePortrait),name:image.alt});image.replaceWith(holder.firstElementChild);}},true);
  const btn=(text,ui,primary=false,disabled=false)=>`<button data-ui="${ui}" ${disabled?'disabled':''} class="${primary?'primary':''}">${text}</button>`;
  const paintHeroMovement=watchHeroMovement(nav);
@@ -137,7 +139,7 @@ function mount(){
  const turnLimits=[0,1,2,3,5,10];
  function controls(){
   const m=state.mode,cap=battleCapabilities(effectiveBattle()),target=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),blocked=!state.spellTargeting&&target?.enemy&&target.canShootAt===false&&target.canMeleeAt===false;let items;
-  if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn('➤ Marcher','move',true,!state.hasPath||!state.turn),btn('Équipement','heroes'),btn('♜ Villes','towns'),btn('♟ Armée','army',false,!state.turn||!state.armies?.length),btn('☀ Terminer le tour','endturn',false,!state.turn)];
+  if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn('➤ Marcher','move',true,!state.hasPath||!state.turn),btn('<span aria-hidden="true">⛨ </span>Équipement','heroes',false,!state.heroName&&!state.heroes?.length),btn('♜ Villes','towns'),btn('♟ Armée','army',false,!state.turn||!state.armies?.length),btn('<span aria-hidden="true">⇄ </span>Échanger','hero-exchange',!!state.exchangePartners?.length,!state.turn||!state.exchangePartners?.length),btn('☀ Terminer le tour','endturn',false,!state.turn)];
   else if(m==='online-lobby'&&(state.onlineCanCreate||state.onlineInvitation)){
    const fr=getLanguage()==='fr';
    items=[...(state.onlineCanCreate?[btn(fr?'Créer une partie':'Create game','online-create',!state.onlineInvitation)]:[]),
@@ -153,6 +155,7 @@ function mount(){
     btn('↩ Back','back')];
   }
   else if(m==='market')items=[btn('Mobile view','market-mobile'),btn('↩ Back','market-back')];
+  else if(m==='hero-exchange')items=heroExchange.classic?[btn('Vue mobile','exchange-mobile'),btn('Fermer l’échange','exchange-close'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')]:[];
   else if(m==='hero')items=[btn('↩ Back','hero-back'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
   else if(m==='fort'||m==='creature')items=[btn('↩ Back','presentation-back')];
   else if(canCloseTavern(state))items=[];
@@ -195,8 +198,8 @@ function mount(){
   if(next.mode==='recruit'&&state.mode==='dialog')pendingRecruit=null;
   if(next.mode==='recruit'&&next.recruitUnit?.id===expectedRecruitId)recruitLoading=false;
   const changedTurn=next.turn!==state.turn,changedActor=next.activeStack!==state.activeStack,changedPhase=!!next.tacticsMode!==!!state.tacticsMode;const change=next.mode!==state.mode;const changedSpell=!!next.spellTargeting!==!!state.spellTargeting;state=next;if(changedSpell){selectedPoint=null;battleMove=false;}spellRecovery.update(state);autocombat.update(state);root.dataset.mode=state.mode;window.goonkMobileState=state;if(state.mode==='map'&&!state.heroName&&state.heroes?.length&&state.turn)command(4,0);
-  root.querySelector('.mobile-title').textContent=(state.mode==='creature'?state.creatureUnit?.name:null)||state.dialogTitle||(state.mode==='battle'&&state.autoCombat?'Autocombat':null)||(state.mode==='recruit'?'Recruter '+(state.recruitUnit?.name||''):null)||state.townName||state.activeUnit?.name||state.heroName||({menu:'Le royaume des Goonks',lobby:'Préparer la partie',dialog:'Votre décision'}[state.mode])||'Heroes Goonk';
-  const hasResources=renderResources(root.querySelector('.mobile-resources'),state.resources,state.resourceTypes);root.dataset.hasResources=String(hasResources&&!['battle','hero'].includes(state.mode));updateCalendar(state,sheetKind==='weekly-recruits');
+  root.querySelector('.mobile-title').textContent=(state.mode==='creature'?state.creatureUnit?.name:null)||state.dialogTitle||(state.mode==='battle'&&state.autoCombat?'Autocombat':null)||(state.mode==='recruit'?'Recruter '+(state.recruitUnit?.name||''):null)||state.townName||state.activeUnit?.name||state.heroName||({menu:'Le royaume des Goonks',lobby:'Préparer la partie',dialog:'Votre décision','hero-exchange':'Échange entre héros'}[state.mode])||'Heroes Goonk';
+  const hasResources=renderResources(root.querySelector('.mobile-resources'),state.resources,state.resourceTypes);root.dataset.hasResources=String(hasResources&&!['battle','hero','hero-exchange'].includes(state.mode));updateCalendar(state,sheetKind==='weekly-recruits');
   menu.hidden=!['menu','lobby','load','campaign','connecting'].includes(state.mode);
   if(state.mode==='connecting'&&menu.dataset.kind!=='connecting'){menu.dataset.kind='connecting';menu.innerHTML='<h1>Opening game options</h1><p>Preparing your game…</p>';}
   if(['lobby','load'].includes(state.mode)&&menu.dataset.kind!==state.mode){menu.dataset.kind=state.mode;menu.innerHTML='<div class="lobby-scroll"><header class="lobby-intro"><img src="./web/h3-theme/town-fort.png" alt=""><div><p class="lobby-eyebrow">Heroes Goonk</p><h1>Ton aventure</h1><p id="lobby-choice" aria-live="polite">Choisis la carte et la difficulté.</p></div></header><section class="lobby-panel lobby-adventure"><h2>Adventure settings</h2><div class="lobby-panel-body"><label>Carte<select id="mobile-map-select" aria-label="Carte"></select></label><label class="faction-choice">Château<select id="mobile-faction-select" aria-label="Château"></select></label><label>Difficulté<select id="mobile-difficulty" aria-label="Difficulté"><option value="0">Facile</option><option value="1" selected>Normale</option><option value="2">Difficile</option><option value="3">Expert</option><option value="4">Impossible</option></select></label></div></section><div class="lobby-extra-options"></div></div><footer class="lobby-footer"><button type="button" data-delete-solo-autosave hidden>Supprimer la sauvegarde automatique</button><p class="lobby-status" aria-live="polite"></p><div><button data-ui="back">← Back</button><button class="primary" data-ui="begin">Commencer</button></div></footer>';menu.querySelector('#mobile-map-select').onchange=e=>{lobbyDefaultRequested=true;requestedMapName=(state.maps||[]).find(m=>m.index===Number(e.target.value))?.name;e.target.disabled=true;e.target.dataset.updating='true';menu.querySelector('[data-ui=begin]').disabled=true;command(state.mode==='load'?27:24,Number(e.target.value));update(state,true);};menu.querySelector('#mobile-difficulty').onchange=e=>{pendingDifficulty=Number(e.target.value);e.target.disabled=true;e.target.dataset.updating='true';menu.querySelector('[data-ui=begin]').disabled=true;command(25,pendingDifficulty);};menu.querySelector('#mobile-faction-select').onchange=e=>{pendingFaction=Number(e.target.value);e.target.disabled=true;e.target.dataset.updating='true';menu.querySelector('[data-ui=begin]').disabled=true;command(37,pendingFaction);update(state,true);};}
@@ -243,7 +246,7 @@ function mount(){
   if(state.mode==='battle'&&(change||changedActor||changedPhase)){selectedPoint=null;battleMove=false;const actor=battleGuidance(state).actor;if(actor){focus=state.focus||actor;battleCamera={...focus};}}
   tavern.update(state);
   root.querySelector('.recruit-close').hidden=state.mode!=='recruit';
-  creatureView.update(state);spellbook.update(state);mageGuild.update(state);heroEquipment.update(state);campaignSetup.update(state);marketplace.update(state);onlineLogin.update(state);onlineLobby.update(state);
+  creatureView.update(state);spellbook.update(state);mageGuild.update(state);heroEquipment.update(state);heroExchange.update(state);campaignSetup.update(state);marketplace.update(state);onlineLogin.update(state);onlineLobby.update(state);
   if(detailReturn==='army'&&['map','town'].includes(state.mode)){detailReturn='';showList('army');}
   const choices=root.querySelector('.recruit-choices');choices.hidden=true;
 
@@ -256,7 +259,7 @@ function mount(){
 
 
   
-  const hint=state.mode==='recruit'?'Choisis la quantité, puis confirme. Les recrues rejoignent la garnison.':state.mode==='map'?(!state.turn?'Tour adverse en cours…':state.hasPath?`Trajet choisi${state.pathTurns?' · '+state.pathTurns+' jour(s)':''}. Confirme avec Marcher.`:'Touche une case ou un château pour préparer un trajet. Ouvre tes châteaux avec Villes.'):state.mode==='battle'?(state.targetUnit?`${state.targetUnit.name} × ${state.targetUnit.count} — Confirme ton action.`:'Glisse pour voir le champ de bataille. Touche une case, puis confirme.'):state.mode==='town'?'Construis et recrute avec les commandes ci-dessous.':'Pince pour zoomer. Glisse pour atteindre les commandes.';
+  const hint=state.mode==='recruit'?'Choisis la quantité, puis confirme. Les recrues rejoignent la garnison.':state.mode==='map'?(!state.turn?'Tour adverse en cours…':state.hasPath?`Trajet choisi${state.pathTurns?' · '+state.pathTurns+' jour(s)':''}. Confirme avec Marcher.`:state.exchangePartners?.length?'Utilise Échanger pour transférer des objets ou des troupes.':state.heroes?.length>1?'Rapproche tes héros pour échanger des objets ou des troupes.':'Touche une case ou un château pour préparer un trajet. Ouvre tes châteaux avec Villes.'):state.mode==='battle'?(state.targetUnit?`${state.targetUnit.name} × ${state.targetUnit.count} — Confirme ton action.`:'Glisse pour voir le champ de bataille. Touche une case, puis confirme.'):state.mode==='town'?'Construis et recrute avec les commandes ci-dessous.':'Pince pour zoomer. Glisse pour atteindre les commandes.';
   const seconds=Math.ceil(Math.max(0,state.turnRemainingMs||0)/1000);
   const countdown=state.mode==='map'&&state.turnRemainingMs!==undefined
    ? Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0')+' · ' : '';
@@ -399,6 +402,24 @@ function mount(){
   if(ui==='online-invitation'){command(78);return;}
   if(ui==='online-scenario'){onlineLobby.openScenarios();return;}
   if(ui==='market-mobile'){marketplace.showMobile();return;}if(ui==='market-back'){command(74);return;}
+  if(ui==='hero-exchange'){
+   if(state.mode!=='map'||!state.turn||!state.exchangePartners?.length)return;
+   const partners=state.exchangePartners;
+   if(partners.length===1){command(91,partners[0].id);return;}
+   openSheet('exchange-partner','Choisis un héros pour l’échange');
+   for(const partner of partners){
+    const choice=document.createElement('button');
+    choice.type='button';choice.className='mobile-card';choice.textContent=partner.name;
+    choice.addEventListener('click',()=>{
+     closeSheet();
+     if(state.turn&&state.exchangePartners?.some(candidate=>candidate.id===partner.id))command(91,partner.id);
+    });
+    body.append(choice);
+   }
+   return;
+  }
+  if(ui==='exchange-mobile'){heroExchange.showMobile();return;}
+  if(ui==='exchange-close'){command(93);return;}
   if(ui==='hero-mobile'){heroEquipment.showMobile();return;}if(ui==='hero-back'){command(63);return;}
   if(ui==='native-equipment'){closeSheet();command(55);return;}
   if(['equipment','heroes','towns','build','recruit','army'].includes(ui))return showList(ui);
@@ -448,7 +469,7 @@ function mount(){
  }
  overview.addEventListener('pointerdown',event=>{const r=overview.getBoundingClientRect();if(state.mode==='map'){event.preventDefault();event.stopPropagation();const point=mapOverviewTarget(state.mapOverview,event.clientX-r.left-overview.clientLeft,event.clientY-r.top-overview.clientTop,overview.clientWidth,overview.clientHeight);centerMapOverview(point);return;}if(state.mode==='town'){townWhole=false;focus={x:(event.clientX-r.left)/r.width*800,y:187};return;}focus={x:(event.clientX-r.left)/r.width*800,y:45+(event.clientY-r.top)/r.height*510};if(zoom===1)zoom=2;});
  overview.addEventListener('keydown',event=>{if(state.mode!=='map')return;const steps={ArrowLeft:[-24,0],ArrowRight:[24,0],ArrowUp:[0,-24],ArrowDown:[0,24]},step=steps[event.key];if(!step)return;event.preventDefault();event.stopPropagation();const area=mapOverviewViewport(state.mapOverview,layout,240,240);if(!area)return;const point=mapOverviewTarget(state.mapOverview,Math.max(0,Math.min(239,area.x+area.w/2+step[0])),Math.max(0,Math.min(239,area.y+area.h/2+step[1])),240,240);centerMapOverview(point);});
- function frame(time){requestAnimationFrame(frame);if(document.hidden||!original.width)return;if(heroTransition.frame())return;paintCreaturePortraits(root);if(spellbook.active||mageGuild.active||marketplace.active||onlineLogin.active||onlineLobby.active)return;if(campaignSetup.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}if(heroEquipment.paint(original)||creatureView.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}lastFrame=time;const tracking=director.frame(state,selectedPoint);dualBattle.sync();if(tavern.paint(original)||nativeFort.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}const w=scene.clientWidth,h=scene.clientHeight;if(!w||!h||!portraitTown.prepare(state,townPortraitEnabled))return;const pixels=sceneSize.fit(scene,w,h,Math.min(devicePixelRatio||1,2));
+ function frame(time){requestAnimationFrame(frame);if(document.hidden||!original.width)return;if(heroTransition.frame())return;paintCreaturePortraits(root);if(spellbook.active||mageGuild.active||marketplace.active||onlineLogin.active||onlineLobby.active)return;if(campaignSetup.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}if(heroEquipment.paint(original)||heroExchange.paint(original)||creatureView.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}lastFrame=time;const tracking=director.frame(state,selectedPoint);dualBattle.sync();if(tavern.paint(original)||nativeFort.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}const w=scene.clientWidth,h=scene.clientHeight;if(!w||!h||!portraitTown.prepare(state,townPortraitEnabled))return;const pixels=sceneSize.fit(scene,w,h,Math.min(devicePixelRatio||1,2));
 
   ctx.setTransform(pixels.x,0,0,pixels.y,0,0);if(portraitTown.paint(ctx,w,h,state,townPortraitEnabled)){layout=null;overview.hidden=true;const view=root.querySelector('.town-view');view.textContent='Vue classique';view.setAttribute('aria-pressed','true');return;}
   syncViewButton();
