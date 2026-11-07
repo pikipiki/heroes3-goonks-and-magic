@@ -1,4 +1,5 @@
 import {requestHostedMatch} from './hosted-match-request.mjs';
+import {createHostedCodeCopy} from './hosted-code-copy.mjs';
 import {scenarioDetails} from './scenario-details.mjs';
 import {mountScenarioFilters} from './scenario-filters.mjs';
 import {scenarioTitle} from './scenario-title.mjs';
@@ -49,6 +50,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   const mapDetails = section.querySelector('[data-create-map-details]');
   const castles = section.querySelector('[data-create-castles]');
   const codes = section.querySelector('[data-create-codes]');
+  const personalCode = createHostedCodeCopy(fr);
   const status = section.querySelector('[data-create-status]');
   const retry = document.createElement('button');
   retry.type = 'button';
@@ -181,7 +183,8 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
       const hostToken = result.hostToken ?? result.codes?.[0]?.code;
       const invited = result.roomCode ? [{code: result.roomCode}] : result.codes;
       if (!hostToken || !Array.isArray(invited)) throw Error('Invalid match response.');
-      codes.replaceChildren(...invited.map(({seat, code}) => {
+      personalCode.setCode(hostToken);
+      codes.replaceChildren(...invited.filter(({code}) => code !== hostToken).map(({seat, code}) => {
         const row = document.createElement('label');
         const value = document.createElement('input');
         const copy = document.createElement('button');
@@ -191,9 +194,9 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
         copy.type = 'button';
         copy.dataset.createMatch = 'copy';
         copy.textContent = t('Copy code', 'Copier le code');
-        row.append(seat === undefined ? t('Game code', 'Code de la partie') : colors[seat], value, copy);
+        row.append(seat === undefined ? t('Invitation code', 'Code d’invitation') : colors[seat], value, copy);
         return row;
-      }), launch);
+      }), launch, personalCode.element);
       form.hidden = true;
       codes.hidden = false;
       status.textContent = result.roomCode
@@ -231,6 +234,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
       launch.disabled = true;
       void onLaunch().finally(() => { launch.disabled = false; });
     }
+    if (button === personalCode.button) void personalCode.copy();
     if (button.dataset.createMatch === 'copy') {
       const input = button.previousElementSibling;
       if (navigator.clipboard?.writeText) navigator.clipboard.writeText(input.value).then(() => {

@@ -30,6 +30,12 @@
 #game-menu .hosted-match-settings p{margin:0;overflow-wrap:anywhere}
 #game-menu .hosted-match-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10rem),1fr));gap:6px}
 #game-menu .hosted-match-actions > :is(select,p){grid-column:1/-1}
+#game-menu .hosted-saved-actions > :is(button,.hosted-personal-code){grid-column:1/-1}
+#game-menu .hosted-personal-code{
+  display:grid;gap:5px;padding:8px 0;border-block:1px solid #957644;min-width:0;
+}
+#game-menu .hosted-personal-code small{color:#e2cb98}
+#game-menu .hosted-personal-code [role=status]{color:#ffe7a6}
 
 #game-menu .hosted-alert-indicator:not([hidden]){
   display:inline-block;padding:1px 6px;border:1px solid currentColor;border-radius:3px;

@@ -1,5 +1,6 @@
 import {requestHostedMatch} from './hosted-match-request.mjs';
 import {mountHostedMatchCreation} from './hosted-match-create.mjs';
+import {createHostedCodeCopy} from './hosted-code-copy.mjs';
 
 const legacySeatCodePattern = /^[A-Za-z0-9_-]{43}$/;
 const shortSeatCodePattern = /^[0-9A-HJKMNP-TV-Z]{12}$/;
@@ -108,7 +109,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   field.className = 'hosted-match-settings';
   field.innerHTML = '<label><span></span><input type="password" data-hosted-seat-code autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></label><div class="hosted-match-actions"><button type="button"></button><button type="button"></button></div><p role="status"></p>';
   const input = field.querySelector('input');
-  input.placeholder = 'XXXX';
+  input.placeholder = fr ? 'Colle ou saisis ton code' : 'Paste or enter your code';
   const [join, alerts] = field.querySelectorAll('button');
   // Let the browser deliver the click even if the keyboard changes the viewport.
   join.dataset.nativeClick = alerts.dataset.nativeClick = '';
@@ -123,12 +124,13 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   const start = document.createElement('button');
   const savedActions = document.createElement('div');
   const resume = document.createElement('button');
+  const personalCode = createHostedCodeCopy(fr);
   const forget = document.createElement('button');
   const savedMatch = document.createElement('select');
   const occupancy = document.createElement('p');
   const savedCodeHelp = document.createElement('p');
   savedMatch.setAttribute('aria-label', fr ? 'Partie à reprendre' : 'Match to resume');
-  savedActions.className = 'hosted-match-actions';
+  savedActions.className = 'hosted-match-actions hosted-saved-actions';
   resume.type = forget.type = 'button';
   resume.className = 'primary';
   resume.textContent = fr ? 'Reprendre la partie' : 'Resume match';
@@ -138,7 +140,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     ? 'Après avoir effacé le code, tu devras le ressaisir pour reprendre cette partie sur cet appareil.'
     : 'If you remove the code, you’ll need to enter it again to resume this match on this device.';
   forget.setAttribute('aria-describedby', savedCodeHelp.id);
-  savedActions.append(savedMatch, occupancy, resume, forget, savedCodeHelp);
+  savedActions.append(savedMatch, occupancy, resume, personalCode.element, forget, savedCodeHelp);
   const intro = document.createElement('p');
   intro.textContent = 'Le serveur garde la partie disponible quand l’hôte ferme le jeu.';
   showMode(requested ? 'join' : null);
@@ -148,7 +150,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   start.textContent = fr ? 'Lancer avec ce scénario' : 'Start with this scenario';
   chooser.hidden = start.hidden = true;
   status.before(chooser, start);
-  field.querySelector('label span').textContent = fr ? 'Code de la partie' : 'Game code';
+  field.querySelector('label span').textContent = fr ? 'Code d’invitation ou code personnel' : 'Invitation or personal code';
   const alertsLabel = fr ? 'Alertes de tour' : 'Turn alerts';
   alerts.textContent = alertsLabel;
   const alertsStatus = document.createElement('p');
@@ -247,6 +249,8 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     if (saved) savedMatch.value = saved.matchId;
     savedMatch.disabled = pending;
     savedActions.hidden = !saved;
+    personalCode.setCode(saved?.token);
+    personalCode.button.disabled = pending;
     resume.disabled = pending || !window.Module?._vcmiJoinHostedMatch;
     forget.disabled = pending;
     const {token, endpoint} = alertSeat();
@@ -359,8 +363,8 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   const codeHint = () => /^#?[a-f0-9]{6}$/i.test(input.value.trim())
     ? (fr ? 'Ceci est le numéro de la partie. Demande à l’hôte son code d’invitation.' :
       'This is the match number. Ask the host for the invitation code.')
-    : (fr ? 'Saisis les quatre lettres de la partie ou colle ton ancien code.' :
-      'Enter the four-letter game code or paste your previous code.');
+    : (fr ? 'Saisis le code d’invitation à quatre lettres ou colle ton code personnel pour retrouver ta place.' :
+      'Enter the four-letter invitation code or paste your personal code to resume your seat.');
 
   async function claimInvitation(invitation, attempt, onWait) {
     const key = 'heroes-goonk.invite.' + invitation;
@@ -672,6 +676,10 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     }
     if (button === resume) {
       if (saved) void joinMatch({remembered: saved});
+      return true;
+    }
+    if (button === personalCode.button) {
+      void personalCode.copy();
       return true;
     }
     if (button === forget) {
