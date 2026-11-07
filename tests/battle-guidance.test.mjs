@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {battleGuidance,paintActiveCreature} from '../web/battle-guidance.mjs';
+import {battleGuidance,paintActiveCreature,paintMeleeTargets} from '../web/battle-guidance.mjs';
 import {paintMovementRange} from '../web/battle-scene.mjs';
 const actor={stackId:0,id:1,name:'Picpique',count:10,x:102,y:196,occupied:[35,36],enemy:false};
 const state={mode:'battle',activeStack:0,canAct:true,round:0,tacticsMode:true,canEndTactics:true,battleUnits:[actor,{stackId:2,id:1,occupied:[40],enemy:false},{stackId:3,occupied:[44],enemy:true}],battleCells:[{hex:35,kind:1,reachable:true},{hex:36,kind:1,reachable:true},{hex:37,kind:0,reachable:true},{hex:38,kind:0,reachable:false},{hex:39,kind:2,reachable:false},{hex:40,kind:1,reachable:true},{hex:41,kind:4,reachable:true},{hex:44,kind:1,reachable:false}]};
@@ -43,4 +43,41 @@ test('Spell markers classify native legal targets separately from ranged attacks
  }
  assert.deepEqual(battleGuidance(battle).shotTargets,[enemy]);
  assert.deepEqual(battleGuidance(battle).spellTargets,[]);
+});
+
+test('Melee targets identify reachable enemies for monsters that can travel across the battlefield',()=>{
+ const reachableMelee={stackId:3,enemy:true,canMeleeAt:true,canShootAt:false};
+ const blockedMelee={stackId:4,enemy:true,canMeleeAt:false,canShootAt:false};
+ const shooter={stackId:5,enemy:true,canMeleeAt:true,canShootAt:true};
+ const ally={stackId:6,enemy:false,canMeleeAt:true};
+ const combat={...state,tacticsMode:false,round:1,battleUnits:[actor,reachableMelee,blockedMelee,shooter,ally]};
+ const guidance=battleGuidance(combat);
+ assert.deepEqual(guidance.meleeTargets,[reachableMelee]);
+ assert.deepEqual(guidance.shotTargets,[shooter]);
+ for(const next of [{spellTargeting:true},{autoCombat:true},{manualControl:false},{canAct:false},{tacticsMode:true},{activeStack:3}]){
+  assert.deepEqual(battleGuidance({...combat,...next}).meleeTargets,[]);
+ }
+});
+
+test('Beneficial targets highlight allied troops when active unit can heal or cast beneficial magic',()=>{
+ const woundedAlly={stackId:2,enemy:false,x:200,y:200};
+ const enemy={stackId:3,enemy:true,x:600,y:200};
+ const normalCombat={...state,tacticsMode:false,round:1,battleUnits:[actor,woundedAlly,enemy]};
+ assert.deepEqual(battleGuidance(normalCombat).beneficialTargets,[]);
+ const archangelCombat={...normalCombat,activeUnit:{key:'core:archangel',controlled:true},creatureCanCast:true};
+ assert.deepEqual(battleGuidance(archangelCombat).beneficialTargets,[woundedAlly]);
+ const genieCombat={...normalCombat,activeUnit:{key:'core:masterGenie',controlled:true}};
+ assert.deepEqual(battleGuidance(genieCombat).beneficialTargets,[woundedAlly]);
+ const healerCombat={...normalCombat,activeUnit:{abilities:['Peut soigner une troupe alliée'],controlled:true}};
+ assert.deepEqual(battleGuidance(healerCombat).beneficialTargets,[woundedAlly]);
+});
+
+test('paintMeleeTargets renders crossed sword icons on reachable enemy positions without errors',()=>{
+ let arcs=0,rects=0;
+ const ctx={save(){},restore(){},beginPath(){},closePath(){},moveTo(){},lineTo(){},fill(){},stroke(){},rect(){rects++;},arc(){arcs++;},translate(){},rotate(){},fillRect(){},clip(){}};
+ const layout={x:0,y:0,w:800,h:555,dx:0,dy:0,scale:1};
+ const enemyTarget={stackId:3,enemy:true,x:400,y:200};
+ paintMeleeTargets(ctx,[enemyTarget],layout);
+ assert(arcs>0,'Must draw circular badge and pommels');
+ assert(rects>0,'Must clip to battlefield and draw crossguards');
 });

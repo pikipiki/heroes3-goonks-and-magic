@@ -9,12 +9,27 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
  const unlockBuilding=unit=>(state.buildings||[]).find(building=>building.id===unit.requiredBuildingId);
  const resizeRows=()=>{const list=panel.querySelector('.hall-families');if(!list)return;const style=getComputedStyle(list),rows=matchMedia('(orientation:landscape)').matches?1:2,space=list.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);list.style.setProperty('--hall-row-height',Math.max(rows===2?132:148,Math.floor((space-(rows-1)*8)/rows))+'px');};
  const rowObserver=new ResizeObserver(resizeRows);
- let state={},families=[],selectedId=null,amount=1,signature='',pending=null,savedScroll=null;
+ let state={},families=[],selectedId=null,amount=1,signature='',pending=null,savedScroll=null,previewTimer=null;
  // Remember the same point in the roster if rotation changes the row height.
  const rowStep=list=>(list.firstElementChild?.getBoundingClientRect().height||0)+(parseFloat(getComputedStyle(list).rowGap)||0);
  const readScroll=list=>list?{top:list.scrollTop,step:rowStep(list)}:null;
  const unit=()=>families.flatMap(f=>f.variants).find(u=>u.id===selectedId);
- const select=(id,preview=true)=>{if(selectedId===id)return;selectedId=id;amount=1;if(preview){const u=unit();if(u)command(60,u.level,u.id);}renderSelection();};
+ const schedulePreview=u=>{
+  clearTimeout(previewTimer);
+  previewTimer=setTimeout(()=>{
+   if(u&&selectedId===u.id)command(60,u.level,u.id);
+  },80);
+ };
+ const select=(id,preview=true)=>{
+  if(selectedId===id)return;
+  selectedId=id;
+  amount=1;
+  if(preview){
+   const u=unit();
+   if(u)schedulePreview(u);
+  }
+  renderSelection();
+ };
  const renderSelection=()=>{
   const u=unit();if(!u)return;
   for(const b of panel.querySelectorAll('[data-family-select]')){const active=Number(b.dataset.familySelect)===selectedId;b.setAttribute('aria-pressed',String(active));b.querySelector('canvas').dataset.hallActive=String(active);}
@@ -26,7 +41,7 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
    press('[data-hall-less]',()=>{amount=Math.max(0,amount-1);renderSelection();});press('[data-hall-more]',()=>{amount=Math.min(recruitMaximum(unit(),state.resources),amount+1);renderSelection();});press('[data-hall-max]',()=>{amount=recruitMaximum(unit(),state.resources);renderSelection();});
    detail.querySelector('input').addEventListener('input',event=>{amount=Math.max(0,Math.min(recruitMaximum(unit(),state.resources),Math.floor(Number(event.target.value)||0)));renderSelection();});
    press('[data-hall-build]',()=>{const latest=unit(),building=unlockBuilding(latest);if(building&&!latest.built)openBuildings?.(building.id,latest.name,latest.id);});
-   press('[data-hall-buy]',()=>{const latest=unit();if(pending||!latest||!state.turn||amount<1)return;pending={id:latest.id,count:latest.count,armies:JSON.stringify(state.armies),started:Date.now()};renderSelection();command(61,latest.level,latest.id,amount);});
+   press('[data-hall-buy]',()=>{const latest=unit();if(pending||!latest||!state.turn||amount<1)return;clearTimeout(previewTimer);command(60,latest.level,latest.id);pending={id:latest.id,count:latest.count,armies:JSON.stringify(state.armies),started:Date.now()};renderSelection();command(61,latest.level,latest.id,amount);});
   }
   const building=unlockBuilding(u),canViewBuildings=!u.built&&building&&openBuildings;
   const price=detail.querySelector('.hall-unit-price'),priceMarkup=u.built?'':prices(u,1,state.resourceTypes);
@@ -70,5 +85,5 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
  },focusUnit(id){
   const button=panel.querySelector(`[data-family-select="${id}"]`);
   if(button){select(id);button.focus({preventScroll:true});}
- },rememberScroll(){savedScroll=readScroll(panel.querySelector('.hall-families'));},reset(){rowObserver.disconnect();signature='';pending=null;selectedId=null;savedScroll=null;},get canvases(){return[...panel.querySelectorAll('[data-hall-preview],[data-hall-icon]')];}};
+ },rememberScroll(){savedScroll=readScroll(panel.querySelector('.hall-families'));},reset(){clearTimeout(previewTimer);rowObserver.disconnect();signature='';pending=null;selectedId=null;savedScroll=null;},get canvases(){return[...panel.querySelectorAll('[data-hall-preview],[data-hall-icon]')];}};
 }

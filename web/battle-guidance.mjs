@@ -8,10 +8,18 @@ export function battleGuidance(state){
  // Native reachability includes tactics, speed, obstacles, wide stacks and defended gates.
  const cells=ready?(state.battleCells||[]).filter(cell=>cell.reachable&&!occupied.has(cell.hex)):[];
  const shotTargets=ready&&cap.combatReady?(state.battleUnits||[]).filter(unit=>unit.enemy&&unit.canShootAt===true):[];
+ const meleeTargets=ready&&cap.combatReady?(state.battleUnits||[]).filter(unit=>unit.enemy&&unit.canMeleeAt===true&&!unit.canShootAt):[];
  const spellCells=cap.targeting?(state.battleCells||[]).filter(cell=>cell.spellTarget===true):[];
  const spellPositions=new Set(spellCells.map(cell=>cell.x+','+cell.y));
  const spellTargets=spellCells.length?(state.battleUnits||[]).filter(unit=>spellPositions.has(unit.x+','+unit.y)):[];
- return {actor,ready,cells,shotTargets,spellTargets,label:cap.tactics?'À placer':'À jouer'};
+ const canHealOrBuff=ready&&cap.combatReady&&(
+  state.creatureCanCast===true||
+  state.activeUnit?.canHealOrBuff===true||
+  ['archangel','mastergenie','firstaidtent','ogremage'].some(k=>(state.activeUnit?.key||'').toLowerCase().includes(k))||
+  (state.activeUnit?.abilities||[]).some(a=>/soin|soign|guér|heal|resurrect|résurrect|bénéfique|beneficial/i.test(a))
+ );
+ const beneficialTargets=canHealOrBuff?(state.battleUnits||[]).filter(unit=>!unit.enemy&&unit.stackId!==actor.stackId):[];
+ return {actor,ready,cells,shotTargets,meleeTargets,spellTargets,beneficialTargets,label:cap.tactics?'À placer':'À jouer'};
 }
 export function paintActiveCreature(ctx,guidance,layout){
  const {actor,ready}=guidance,label=translate(guidance.label);if(!ready||!actor)return;
@@ -55,6 +63,60 @@ export function paintShotTargets(ctx,targets,layout){
  ctx.strokeStyle='#b2f5ff';
  ctx.lineWidth=2;
  ctx.stroke();
+ ctx.restore();
+}
+
+export function paintMeleeTargets(ctx,targets,layout){
+ if(!targets.length)return;
+ const {dx,dy,w,h,scale}=layout,s=Math.max(7,Math.min(12,10*scale));
+ ctx.save();
+ ctx.beginPath();
+ ctx.rect(dx,dy,w*scale,h*scale);
+ ctx.clip();
+ for(const target of targets){
+  const x=dx+(target.x-layout.x)*scale,y=dy+(target.y+14-layout.y)*scale;
+  if(x<dx||x>dx+w*scale||y<dy||y>dy+h*scale)continue;
+  ctx.save();
+  ctx.translate(x,y);
+  ctx.beginPath();
+  ctx.arc(0,0,s+3,0,Math.PI*2);
+  ctx.fillStyle='rgba(25,17,10,0.85)';
+  ctx.fill();
+  ctx.strokeStyle='#d4af37';
+  ctx.lineWidth=1.5;
+  ctx.stroke();
+  for(const angle of [-Math.PI/4,Math.PI/4]){
+   ctx.save();
+   ctx.rotate(angle);
+   ctx.beginPath();
+   ctx.moveTo(0,s);
+   ctx.lineTo(-s*0.22,0);
+   ctx.lineTo(-s*0.18,-s*0.35);
+   ctx.lineTo(s*0.18,-s*0.35);
+   ctx.lineTo(s*0.22,0);
+   ctx.closePath();
+   ctx.fillStyle='#f5f8fa';
+   ctx.strokeStyle='#1a140e';
+   ctx.lineWidth=0.8;
+   ctx.fill();
+   ctx.stroke();
+   ctx.fillStyle='#d4af37';
+   ctx.strokeStyle='#1a140e';
+   ctx.beginPath();
+   ctx.rect(-s*0.45,-s*0.45,s*0.9,s*0.16);
+   ctx.fill();
+   ctx.stroke();
+   ctx.fillStyle='#6d1a10';
+   ctx.fillRect(-s*0.1,-s*0.75,s*0.2,s*0.3);
+   ctx.beginPath();
+   ctx.arc(0,-s*0.85,s*0.14,0,Math.PI*2);
+   ctx.fillStyle='#d4af37';
+   ctx.fill();
+   ctx.stroke();
+   ctx.restore();
+  }
+  ctx.restore();
+ }
  ctx.restore();
 }
 

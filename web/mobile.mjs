@@ -30,7 +30,7 @@ import {createNativeFort} from './town-recruitment.mjs';
 import {protectBattleControls} from './battle-controls.mjs';
 import {paintBattleFloor} from './battle-floor.mjs';
 import {createBattleDirector,paintBattleAction} from './battle-director.mjs';
-import {battleGuidance,paintActiveCreature,paintShotTargets,paintSpellTargets} from './battle-guidance.mjs';
+import {battleGuidance,paintActiveCreature,paintShotTargets,paintMeleeTargets,paintSpellTargets} from './battle-guidance.mjs';
 import {createBattleDualView,fitBattleDetail} from './battle-dual-view.mjs';
 import {createCreaturePresentation} from './creature-presentation.mjs';
 import {paintMapOverview,mapOverviewTarget,mapOverviewViewport} from './map-overview.mjs';
@@ -332,14 +332,16 @@ function mount(){
   const cap=battleCapabilities(effectiveBattle()),guidance=battleGuidance(effectiveBattle()),range=guidance.ready?guidance.cells.length+' case'+(guidance.cells.length===1?'':'s')+' accessible'+(guidance.cells.length===1?'':'s')+'. ':'',target=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),shown=target||state.activeUnit;
   panel.querySelector('.battle-turn').textContent=state.autoCombat?'Autocombat':cap.tactics?(shown?'À placer · '+shown.name+' × '+shown.count:'Placement des troupes'):shown?shown.name+' × '+shown.count+(state.spellTargeting?'':shown.shooter?' · Ranged':' · Melee'):'Préparation du combat';
   const shotHint=guidance.shotTargets.length?'Viseur bleu : tir sans déplacement. ':'';
+  const meleeHint=guidance.meleeTargets?.length?'Épées dorées : ennemis à portée de frappe. ':'';
+  const healHint=guidance.beneficialTargets?.length?'Croix verte : alliés pouvant recevoir un soin ou sort bénéfique. ':'';
   const spellSides=[];
-  if(guidance.spellTargets.some(u=>!u.enemy))spellSides.push('+ Alliés');
+  if(guidance.spellTargets.some(u=>!u.enemy)||guidance.beneficialTargets?.length)spellSides.push('+ Alliés');
   if(guidance.spellTargets.some(u=>u.enemy))spellSides.push('◇ Ennemis');
   const spellHint=(state.selectedSpell||'Spell')+' · '+(spellSides.length?spellSides.join(' · '):
    (state.battleCells||[]).every(c=>c.spellTarget===false)?'No valid target.':'Choose a valid target, then confirm.');
-  panel.querySelector('.battle-selection').textContent=pendingAuto===true&&!state.autoCombat?'Autocombat dès que ta troupe peut jouer.':spellRecovery.pending?'Cancelling spell…':state.spellTargeting?spellHint :state.autoCombat?'L’ordinateur joue pour ton équipe. Arrête l’auto en haut pour reprendre la main.':state.manualControl===false?'Returning to manual control…':cap.tactics?(cap.endTactics?range+'Touche une case dorée, puis « Placer ». La troupe reste sélectionnée.':'Placement en cours de validation ou de préparation…'):!cap.combatReady?'Tour '+(state.round??1)+' · Animation ou tour adverse…':target?.enemy?(guidance.shotTargets.includes(target)?'Tir sans déplacement. Confirme pour tirer.':state.activeUnit?.shooter?'Melee attack · Target cannot be shot from here.':'Melee attack · Confirm to strike.'):selectedPoint&&battleMove?'Déplacement préparé · Confirme pour marcher.':shotHint+'Tour '+(state.round??1)+' · '+range+'Choisis une case dorée ou une cible.'+(state.heroSpellCastLimitReached?' Hero magic returns next round.':'');
+  panel.querySelector('.battle-selection').textContent=pendingAuto===true&&!state.autoCombat?'Autocombat dès que ta troupe peut jouer.':spellRecovery.pending?'Cancelling spell…':state.spellTargeting?spellHint :state.autoCombat?'L’ordinateur joue pour ton équipe. Arrête l’auto en haut pour reprendre la main.':state.manualControl===false?'Returning to manual control…':cap.tactics?(cap.endTactics?range+'Touche une case dorée, puis « Placer ». La troupe reste sélectionnée.':'Placement en cours de validation ou de préparation…'):!cap.combatReady?'Tour '+(state.round??1)+' · Animation ou tour adverse…':target?.enemy?(guidance.shotTargets.includes(target)?'Tir sans déplacement. Confirme pour tirer.':state.activeUnit?.shooter?'Melee attack · Target cannot be shot from here.':'Melee attack · Confirm to strike.'):selectedPoint&&battleMove?'Déplacement préparé · Confirme pour marcher.':shotHint+meleeHint+healHint+'Tour '+(state.round??1)+' · '+range+'Choisis une case dorée ou une cible.'+(state.heroSpellCastLimitReached?' Hero magic returns next round.':'');
   const magicButton=panel.querySelector('[data-ui=battle-magic]');magicButton.textContent=spellRecovery.pending?'Cancelling…':canCancelSpell(state)?'✕ Cancel spell':'Magie';magicButton.setAttribute('aria-label',canCancelSpell(state)?'Cancel selected spell':'Magie');
-  const description=guidance.ready?`Créature active : ${guidance.actor.name} × ${guidance.actor.count}. ${guidance.cells.length} cases accessibles. ${shotHint}`.trim():state.spellTargeting?spellHint:'Champ de bataille';if(scene.getAttribute('aria-label')!==description)scene.setAttribute('aria-label',description);
+  const description=guidance.ready?`Créature active : ${guidance.actor.name} × ${guidance.actor.count}. ${guidance.cells.length} cases accessibles. ${shotHint}${meleeHint}${healHint}`.trim():state.spellTargeting?spellHint:'Champ de bataille';if(scene.getAttribute('aria-label')!==description)scene.setAttribute('aria-label',description);
   const creatureSpell=panel.querySelector('[data-ui=creature-spell]');
   creatureSpell.hidden=!state.creatureCanCast||!cap.combatReady||state.spellTargeting;
   creatureSpell.textContent=state.activeUnit?.commander?(getLanguage()==='fr'?'Sort du commandant':'Commander spell'):(getLanguage()==='fr'?'Sort de la créature':'Creature spell');
@@ -352,7 +354,10 @@ function mount(){
   if(guidance.spellTargets.includes(unit))return unit.enemy
    ?'<small class="spell-enemy-indicator">◇ Sort · Ennemi</small>'
    :'<small class="spell-ally-indicator">+ Sort · Allié</small>';
-  return guidance.shotTargets.includes(unit)?'<small class="ranged-indicator">◎ Tir sans déplacement</small>':'';
+  if(guidance.beneficialTargets?.includes(unit))return '<small class="spell-ally-indicator">+ Soin / Bénéfique</small>';
+  if(guidance.shotTargets.includes(unit))return '<small class="ranged-indicator">◎ Tir sans déplacement</small>';
+  if(guidance.meleeTargets?.includes(unit))return '<small class="melee-indicator">⚔ À portée d’épée</small>';
+  return '';
  }
  function showBattleTargets(){
   const guidance=battleGuidance(effectiveBattle());
@@ -481,7 +486,7 @@ function mount(){
   if(state.mode==='town'){overview.hidden=false;if(overview.width!==240||overview.height!==112){overview.width=240;overview.height=112;}overviewCtx.drawImage(original,0,0,800*sx,374*sy,0,0,240,112);overviewCtx.strokeStyle='#ffec9e';overviewCtx.lineWidth=3;overviewCtx.strokeRect(layout.x/800*240,layout.y/374*112,layout.w/800*240,layout.h/374*112);const view=root.querySelector('.town-view');view.textContent=supportsTownPortrait(state)&&root.clientWidth<root.clientHeight?'Vue portrait':townWhole?'Vue rapprochée':'Vue entière';view.setAttribute('aria-pressed',String(townWhole));}
   paintedGeometry=touchGeometry(scene);
   if(selectedPoint&&state.mode==='battle'){ctx.strokeStyle='#ffe5a0';ctx.lineWidth=3;ctx.beginPath();ctx.arc(layout.dx+(selectedPoint.x-layout.x)*layout.scale,layout.dy+(selectedPoint.y-layout.y)*layout.scale,19,0,Math.PI*2);ctx.stroke();}
-  if(state.mode==='battle'){paintBattleFloor(ctx,state,layout);const guidance=battleGuidance(effectiveBattle());paintShotTargets(ctx,guidance.shotTargets,layout);paintActiveCreature(ctx,guidance,layout);paintBattleAction(ctx,tracking,layout);paintSpellTargets(ctx,guidance.spellTargets,layout);syncBattleView();dualBattle.paint(original,layout,selectedPoint,tracking);paintBattlePreviews();}
+  if(state.mode==='battle'){paintBattleFloor(ctx,state,layout);const guidance=battleGuidance(effectiveBattle());paintShotTargets(ctx,guidance.shotTargets,layout);paintMeleeTargets(ctx,guidance.meleeTargets,layout);paintActiveCreature(ctx,guidance,layout);paintBattleAction(ctx,tracking,layout);const activeSpellOrBuffTargets=[...new Set([...guidance.spellTargets,...(guidance.beneficialTargets||[])])];paintSpellTargets(ctx,activeSpellOrBuffTargets,layout);syncBattleView();dualBattle.paint(original,layout,selectedPoint,tracking);paintBattlePreviews();}
  }
  requestAnimationFrame(frame);
  const resize=coalesceViewportResize(()=>({width:root.clientWidth,height:root.clientHeight,sceneWidth:scene.clientWidth,sceneHeight:scene.clientHeight,top:state.mode==='map'&&landscapeMap.matches?0:Math.round((root.querySelector('.mobile-top').getBoundingClientRect().bottom-root.getBoundingClientRect().top)*4)/4}),size=>{const selected=state.mode==='battle'?selectedPoint:null;resetGestures();selectedPoint=selected;focus=state.mode==='battle'?(selected||battleCamera):null;root.style.setProperty('--mobile-top-height',size.top+'px');});
