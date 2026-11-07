@@ -1,5 +1,9 @@
 export function createTemporaryBoot(status){
  status.setAttribute('data-temporary-boot','');
+ const readyStatus=document.createElement('div');
+ readyStatus.className='temporary-boot-ready';
+ readyStatus.setAttribute('role','status');
+ document.body.append(readyStatus);
  let failed=false;
  const loading=label=>{
   if(failed)return;
@@ -16,6 +20,10 @@ export function createTemporaryBoot(status){
   start(){
    loading('Chargement des données du jeu en mode temporaire…');
    return new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  },
+  ready(){
+   readyStatus.textContent='Prêt à jouer';
+   setTimeout(()=>readyStatus.remove(),4000);
   },
   fail(error){
    if(failed||!document.body.hasAttribute('data-goonk-boot'))return;
@@ -39,6 +47,12 @@ export function createBootHandoff({finish,schedule=callback=>requestAnimationFra
  get done(){return done;}
 };}
 if(typeof window!=='undefined'&&document.body?.hasAttribute('data-goonk-boot')){
- const handoff=createBootHandoff({finish:()=>{document.body.removeAttribute('data-goonk-boot');const spinner=document.querySelector('#spinner');if(spinner)spinner.style.display='none';window.removeEventListener('goonk-state',receive);}});
+ const handoff=createBootHandoff({finish:()=>{
+  document.body.removeAttribute('data-goonk-boot');
+  const spinner=document.querySelector('#spinner');
+  if(spinner)spinner.style.display='none';
+  window.removeEventListener('goonk-state',receive);
+  window.goonkTemporaryBoot?.ready();
+ }});
  const receive=event=>handoff.receive(event.detail);window.addEventListener('goonk-state',receive);
 }

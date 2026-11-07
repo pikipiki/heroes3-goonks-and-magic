@@ -11,3 +11,5 @@ body[data-goonk-boot] #canvas,body[data-goonk-boot] #mobile-app,body[data-goonk-
 
 #spinner #status[data-temporary-boot] progress{display:block;width:min(220px,80%);margin:0 auto 10px;accent-color:#d3ad66}
 #spinner #status[data-temporary-boot] button{padding:8px 20px;border:1px solid #d3ad66;background:#2f2119;color:inherit;border-radius:4px;font:inherit}
+.temporary-boot-ready{position:fixed;z-index:2147483646;bottom:calc(env(safe-area-inset-bottom) + 12px);left:50%;transform:translateX(-50%);pointer-events:none}
+.temporary-boot-ready:not(:empty){padding:8px 18px;border:1px solid #d3ad66;background:#2f2119;color:#f9d897;box-shadow:0 2px 12px #0009;font:600 15px/1.5 Georgia,serif;text-align:center}
