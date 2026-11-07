@@ -483,7 +483,9 @@ function callWorker(
             if (ok) {
                 callback(null, result);
             } else {
-                callback(new Error(error.message));
+                const err = new Error(error.message);
+                if (error && error.name) err.name = error.name;
+                callback(err);
             }
         }
     };

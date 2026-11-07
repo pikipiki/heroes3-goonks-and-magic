@@ -1,6 +1,6 @@
 import {assertRuntimeManifest} from './runtime-manifest.mjs';
 import {opfsList,opfsWrite,opfsFlush,opfsUnlink} from '../opfs-worker.js';
-import {holdGameStorage} from './game-storage.mjs';
+import {holdGameStorage,isStorageUnavailable,missingManifestBytes,hasStorageQuota,removeGameData} from './game-storage.mjs';
 import {syncAssets} from './asset-cache.mjs';
 import {downloadFetch} from './download-fetch.mjs';
 import {createLoadingView} from './loading.mjs';
@@ -12,7 +12,7 @@ class GameStorageUnavailable extends Error {}
 const useGameStorage=operation=>async(...args)=>{
  try{return await operation(...args);}
  catch(error){
-  if(/unknown transient reason/i.test(error.message)){
+  if(isStorageUnavailable(error)){
    throw new GameStorageUnavailable(error.message,{cause:error});
   }
   throw error;
@@ -25,14 +25,23 @@ const prepare=async()=>{
   return {temporary:true};
  };
  if(!navigator.storage?.getDirectory)return temporary();
+ await navigator.storage?.persist?.().catch(()=>{});
+ const neededBytes=missingManifestBytes(manifest,localStorage);
+ if(neededBytes>0){
+  const estimate=await navigator.storage?.estimate?.().catch(()=>null);
+  if(!hasStorageQuota(estimate,neededBytes)){
+   await removeGameData({opfs:{list:opfsList,unlink:opfsUnlink,flush:opfsFlush},storage:localStorage}).catch(()=>{});
+   return temporary();
+  }
+ }
  const progress=createLoadingView(document.querySelector('#status'));
  let result;
  try{result=await syncAssets({manifest,opfs:{list:useGameStorage(opfsList),write:useGameStorage(opfsWrite),flush:useGameStorage(opfsFlush),unlink:useGameStorage(opfsUnlink)},storage:localStorage,fetcher:downloadFetch,onProgress:progress});}
  catch(error){
-  if(!(error instanceof GameStorageUnavailable))throw error;
+  if(!(error instanceof GameStorageUnavailable)&&!isStorageUnavailable(error))throw error;
+  await removeGameData({opfs:{list:opfsList,unlink:opfsUnlink,flush:opfsFlush},storage:localStorage}).catch(()=>{});
   return temporary();
  }
- navigator.storage?.persist?.().catch(()=>{});
  window.goonkCacheStats=result;return result;
 };
 window.goonkAssetsReady=(async()=>{

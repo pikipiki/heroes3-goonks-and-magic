@@ -49,7 +49,7 @@ async function fetchBinary(url, size, start, end) {
 }
 
 export function createTemporaryAssetReader({
- read = readBinary, fetchBlock = fetchBinary, maxBytes = 64 * 1024 * 1024, blockBytes = 512 * 1024, onFetch = () => {},
+ read = readBinary, fetchBlock = fetchBinary, maxBytes = 256 * 1024 * 1024, blockBytes = 512 * 1024, onFetch = () => {},
 } = {}) {
  const cache = new Map();
  let cachedBytes = 0;
@@ -128,11 +128,13 @@ export function createTemporaryAssetReader({
 
  // Downloads known startup blocks asynchronously, so the page can repaint and
  // several requests overlap, instead of one synchronous request per block.
- reader.prefetch = async (entries, files, {concurrency = 6, onPlan = () => {}} = {}) => {
+ reader.prefetch = async (entries, files, {
+  concurrency = 6, reserveBytes = 8 * 1024 * 1024, trackProgress = true, onPlan = () => {},
+ } = {}) => {
   const byPath = new Map(files.map(file => [file.path, file]));
   const plan = new Map();
   let planned = 0;
-  const budget = maxBytes - 8 * 1024 * 1024;
+  const budget = Math.max(0, maxBytes - cachedBytes - reserveBytes);
   for (const [path, position] of entries) {
    const file = byPath.get(path);
    if (!file || position >= file.size) continue;
@@ -148,10 +150,13 @@ export function createTemporaryAssetReader({
   const queue = [...plan.values()];
   const worker = async () => {
    for (let block; (block = queue.shift());) {
+    const key = block.url + '#' + block.blockStart;
+    if (cache.has(block.url) || cache.has(key)) continue;
+    if (!trackProgress && cachedBytes + (block.blockEnd - block.blockStart) > maxBytes - reserveBytes) break;
     const bytes = await fetchBlock(block.url, block.size, block.blockStart, block.blockEnd);
-    onFetch(bytes.length);
+    if (trackProgress) onFetch(bytes.length);
     if (bytes.length === block.size) remember(block.url, bytes);
-    else if (bytes.length === block.blockEnd - block.blockStart) remember(block.url + '#' + block.blockStart, bytes);
+    else if (bytes.length === block.blockEnd - block.blockStart) remember(key, bytes);
    }
   };
   await Promise.all(Array.from({length: Math.min(concurrency, queue.length)}, worker));

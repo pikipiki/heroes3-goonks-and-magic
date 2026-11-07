@@ -1,4 +1,4 @@
-import{test}from'node:test';import assert from'node:assert/strict';import{ROOT}from'../web/asset-cache.mjs';import{storageSummary,isGameData,removeGameData,removeOfflineShell,withStorageMaintenance,holdGameStorage,formatStorage,ASSET_INDEX}from'../web/game-storage.mjs';
+import{test}from'node:test';import assert from'node:assert/strict';import{ROOT}from'../web/asset-cache.mjs';import{storageSummary,isGameData,removeGameData,removeOfflineShell,withStorageMaintenance,holdGameStorage,formatStorage,ASSET_INDEX,isStorageUnavailable,missingManifestBytes,hasStorageQuota}from'../web/game-storage.mjs';
 const file=(name,length=30)=>[ROOT+'/'+name,{isDir:false,length}];
 test('Storage accounts separately for game files, saves and settings',()=>{const value=storageSummary(Object.fromEntries([file('Data/a',100),file('Mods/m/a',50),file('Saves/manual.vsgm1',20),file('saves/auto.vcgm1',10),file('config/settings.json',5),[ROOT+'/Data',{isDir:true,length:0}]]));assert.deepEqual(value,{gameBytes:150,saveBytes:30,otherBytes:5,gameFiles:2,saveFiles:2});assert.equal(formatStorage(1.5*1048576),'1.5 MB');assert.equal(formatStorage(1.5*1048576,'fr'),'1,5 Mo');});
 test('Cleanup removes only game data and preserves saves, preferences and unrelated data byte-for-byte',async()=>{const entries=Object.fromEntries([file('Data/a',100),file('Maps/x',20),file('Mods/m/a',30),file('Mp3/song',40),file('Saves/manual.vsgm1'),file('config/settings.json'),file('Mods/../Saves/victim'),file('../other'),['Data/relative',{length:50}]]),removed=[],events=[],settings=new Map([[ASSET_INDEX,'index'],['heroes-goonk.audio-muted','true'],['unrelated','keep']]);const result=await removeGameData({opfs:{list:async()=>entries,unlink:async(root,path)=>{assert.equal(root,ROOT);removed.push(path);},flush:async()=>events.push('flush')},storage:{removeItem:key=>settings.delete(key)}});assert.deepEqual(removed,['Data/a','Maps/x','Mods/m/a','Mp3/song']);assert.equal(result.removedBytes,190);assert.deepEqual(events,['flush']);assert(!settings.has(ASSET_INDEX));assert.equal(settings.get('heroes-goonk.audio-muted'),'true');assert.equal(settings.get('unrelated'),'keep');for(const path of ['Saves/a','Config/x','Mods/../../Saves/a','Data//x','/another/Data/a'])assert(!isGameData(path));});
@@ -31,4 +31,24 @@ test('Offline cleanup removes only this app’s registration and release caches'
  assert.equal(count,1);
  assert(unregistered);
  assert.deepEqual(deleted,[ours]);
+});
+
+test('Low browser quota and Android/Safari storage errors switch cleanly to temporary mode without rejecting warm installs',()=>{
+ const manifest={files:[{path:'Data/a',size:400*1048576,hash:'h1'},{path:'Mods/b',size:250*1048576,hash:'h2'}]};
+ const cold={getItem:()=>null};
+ const warm={getItem:()=>JSON.stringify({'Data/a':{hash:'h1',size:400*1048576},'Mods/b':{hash:'h2',size:250*1048576}})};
+ assert.equal(missingManifestBytes(manifest,cold),650*1048576);
+ assert.equal(missingManifestBytes(manifest,warm),0);
+ // Chrome Android at >90% disk usage caps origin quota below 650 MB even with ~7 GB free on disk.
+ assert.equal(hasStorageQuota({quota:200*1048576,usage:0},missingManifestBytes(manifest,cold)),false);
+ // A warm install needs 0 new bytes and must still launch even if quota later shrank.
+ assert.equal(hasStorageQuota({quota:200*1048576,usage:650*1048576},missingManifestBytes(manifest,warm)),true);
+ assert.equal(hasStorageQuota({quota:900*1048576,usage:100*1048576},missingManifestBytes(manifest,cold)),true);
+ for(const err of [
+  Object.assign(new Error('Failed to execute write'),{name:'QuotaExceededError'}),
+  new Error('The quota has been exceeded.'),
+  new Error('Unknown transient reason'),
+  new Error('FILE_ERROR_NO_SPACE'),
+ ])assert.equal(isStorageUnavailable(err),true);
+ assert.equal(isStorageUnavailable(new Error('Données incomplètes ou altérées')),false);
 });

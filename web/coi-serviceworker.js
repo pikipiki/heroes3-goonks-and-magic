@@ -44,7 +44,7 @@ self.addEventListener('install', event => {
       }
     } catch (error) {
       await caches.delete(cacheName);
-      throw error;
+      if (!/quota|space|storage|disk|full/i.test(String(error?.name || '') + ' ' + String(error?.message || ''))) throw error;
     }
   })());
 });

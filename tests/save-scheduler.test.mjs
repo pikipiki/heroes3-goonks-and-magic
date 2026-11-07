@@ -41,3 +41,11 @@ test('Manual saves keep the full-sync compatibility path',async()=>{
  await persistSaveFiles(module,['/home/web_user/.local/share/vcmi/Saves/Manual.vsgm1']);
  assert.equal(syncs,1);
 });
+
+test('Temporary storage keeps saves in memory without scanning or syncing OPFS',async()=>{
+ const module={
+  goonkTemporaryStorage:true,
+  FS:{lookupPath(){assert.fail('Do not touch OPFS in temporary mode');},syncfs(){assert.fail('Do not syncfs in temporary mode');}},
+ };
+ await persistSaveFiles(module,['/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1']);
+});

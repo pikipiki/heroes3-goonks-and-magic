@@ -3,6 +3,21 @@ import {getLanguage} from './i18n.mjs';
 export const GAME_NAME='HEROES GOONK';
 export const STORAGE_LOCK='heroes-goonk-running';
 export const ASSET_INDEX='heroes-goonk.asset-index.v1';
+export function isStorageUnavailable(error){
+ const text=String(error?.name||'')+' '+String(error?.message||'');
+ return /unknown transient reason|quota|space|storage|disk|full|notreadable|nomodification|no modification|file_error_no_space/i.test(text);
+}
+export function missingManifestBytes(manifest,storage){
+ let previous={};try{previous=JSON.parse(storage?.getItem?.(ASSET_INDEX)||'{}');}catch{}
+ let missing=0;
+ for(const file of manifest?.files||[])if(previous[file.path]?.hash!==file.hash||previous[file.path]?.size!==file.size)missing+=file.size||0;
+ return missing;
+}
+export function hasStorageQuota(estimate,neededBytes,reserveBytes=16*1024*1024){
+ if(!(neededBytes>0)||!Number.isFinite(estimate?.quota))return true;
+ const usage=Math.max(0,Number(estimate.usage)||0);
+ return estimate.quota-usage>=neededBytes+reserveBytes;
+}
 export function formatStorage(bytes,language=getLanguage()){
  const french=language==='fr';
  if(!Number.isFinite(bytes))return french?'Indisponible':'Unavailable';

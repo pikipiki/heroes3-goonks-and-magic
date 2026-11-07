@@ -23,6 +23,7 @@ const saveRoot='/home/web_user/.local/share/vcmi';
 const opfsCall=run=>new Promise((resolve,reject)=>run((error,value)=>error?reject(error):resolve(value)));
 
 export async function persistSaveFiles(module,paths){
+  if(module.goonkTemporaryStorage)return;
   const {FS,OPFS}=module;
   const canWriteDirectly=OPFS?.loadLocalEntry&&OPFS.storeRemoteEntry&&OPFS.callWorker
     && paths.every(path=>['goonk-auto','goonk-online-auto'].some(name=>path.toLowerCase()===saveRoot+'/saves/'+name+'.vsgm1'));
