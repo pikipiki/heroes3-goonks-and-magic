@@ -95,6 +95,7 @@ struct MobileScenario
  int width, height, players, humanCastleChoices;
 };
 std::vector<MobileScenario> mobileMaps;
+bool mobileWeeklyRecruits = false;
 bool mapsListed=false,savesListed=false;std::set<int> portraitIds,artifactIconIds;std::vector<std::pair<std::string,std::string>> mobileCampaigns;
 struct MobileSave
 {
@@ -126,6 +127,46 @@ bool canToggleMobileAutocombat(BattleInterface & battle, bool tactics, bool canP
 
 JsonNode rect(const Rect & r){JsonNode n;n["x"].Integer()=r.x;n["y"].Integer()=r.y;n["w"].Integer()=r.w;n["h"].Integer()=r.h;return n;}
 JsonNode creature(const CCreature * c,int count){portraitIds.insert(c->getId().getNum());JsonNode n;n["shooter"].Bool()=c->hasBonusOfType(BonusType::SHOOTER);n["name"].String()=c->getNameSingularTranslated();n["id"].Integer()=c->getId().getNum();n["icon"].String()=c->largeIconName;n["key"].String()=c->getJsonKey();n["description"].String()=c->getDescriptionTranslated();n["count"].Integer()=count;n["attack"].Integer()=c->getAttack(false);n["defense"].Integer()=c->getDefense(false);n["health"].Integer()=c->getMaxHealth();n["speed"].Integer()=c->getMovementRange();n["damageMin"].Integer()=c->getMinDamage(false);n["damageMax"].Integer()=c->getMaxDamage(false);n["growth"].Integer()=c->getGrowth();n["aiValue"].Integer()=c->getAIValue();n["fightValue"].Integer()=c->getFightValue();n["shots"].Integer()=c->getBaseShots();n["nativeFlags"]["living"].Bool()=c->hasBonusOfType(BonusType::LIVING);n["nativeFlags"]["undead"].Bool()=c->hasBonusOfType(BonusType::UNDEAD);n["nativeFlags"]["nonLiving"].Bool()=c->hasBonusOfType(BonusType::NON_LIVING);n["nativeFlags"]["mindImmune"].Bool()=c->hasBonusOfType(BonusType::MIND_IMMUNITY);n["nativeFlags"]["noMorale"].Bool()=c->hasBonusOfType(BonusType::NO_MORALE);n["nativeFlags"]["flying"].Bool()=c->hasBonusOfType(BonusType::FLYING);n["nativeFlags"]["blocksRetaliation"].Bool()=c->hasBonusOfType(BonusType::BLOCKS_RETALIATION);n["nativeFlags"]["attacksAllAdjacent"].Bool()=c->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT);n["nativeFlags"]["chargeImmune"].Bool()=c->hasBonusOfType(BonusType::CHARGE_IMMUNITY);for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())n["cost"].Vector().push_back(JsonNode(double(c->getRecruitCost(resource))));return n;}
+JsonNode recruitmentIdentity(CreatureID id)
+{
+ const auto creature = id.toCreature();
+ JsonNode item;
+ item["id"].Integer() = id.getNum();
+ item["key"].String() = creature->getJsonKey();
+ item["name"].String() = creature->getNameSingularTranslated();
+ return item;
+}
+
+JsonNode weeklyRecruits(const CGTownInstance & town)
+{
+ JsonNode result;
+ auto & rows = result.Vector();
+ const auto & roster = town.getTown()->creatures;
+ for(size_t level = 0; level < town.creatures.size(); ++level)
+ {
+  const auto & [stock, available] = town.creatures[level];
+  const bool dwelling = level < roster.size();
+  if(!dwelling && available.empty())
+   continue;
+  JsonNode row;
+  row["count"].Integer() = available.empty() ? 0 : stock;
+  if(dwelling && !available.empty())
+   row["growth"].Integer() = town.creatureGrowth(level);
+  if(!dwelling)
+   row["summoned"].Bool() = true;
+  const auto & forms = dwelling ? roster[level] : available;
+  if(!forms.empty())
+   portraitIds.insert(forms.front().getNum());
+  for(const auto id : forms)
+  {
+   auto item = recruitmentIdentity(id);
+   item["built"].Bool() = std::find(available.begin(), available.end(), id) != available.end();
+   row["forms"].Vector().push_back(std::move(item));
+  }
+  rows.push_back(std::move(row));
+ }
+ return result;
+}
 void mobilePreviews(CIntObject * node,JsonNode & result){
  if(auto picture=dynamic_cast<CCreaturePic*>(node)){if(auto c=picture->getMobileCreature()){auto item=creature(c,1);item["preview"]=rect(picture->pos);result.Vector().push_back(item);}return;}
  for(auto child:node->children)mobilePreviews(child,result);
@@ -742,9 +783,28 @@ void publishMobileState(){
   }
   if(hero){for(const auto & slot:hero->artifactsWorn){auto artifact=slot.second.getArt();if(!artifact)continue;auto type=artifact->getType();JsonNode item;item["slot"].Integer()=slot.first.getNum();item["name"].String()=type->getNameTranslated();item["description"].String()=type->getDescriptionTranslated();item["icon"].Integer()=type->getIconIndex();n["equipment"].Vector().push_back(item);}n["backpackCount"].Integer()=hero->artifactsInBackpack.size();}
   int index=0;for(auto h:p->localState->getWanderingHeroes()){JsonNode item;item["name"].String()=h->getNameTranslated();item["index"].Integer()=index++;item["id"].Integer()=h->id.getNum();item["movement"].Integer()=h->movementPointsRemaining();item["movementLimit"].Integer()=h->movementPointsLimit();item["mana"].Integer()=h->mana;item["manaLimit"].Integer()=h->manaLimit();item["hasSpellbook"].Bool()=h->hasSpellbook();if(h->movementPointsRemaining()>0)n["anyHeroCanMove"].Bool()=true;n["heroes"].Vector().push_back(item);}
-  index=0;for(auto t:p->localState->getOwnedTowns()){JsonNode item;item["name"].String()=t->getNameTranslated();item["index"].Integer()=index++;n["towns"].Vector().push_back(item);}
+  index = 0;
+  const bool showWeekly = mobileWeeklyRecruits && mobileEnabled &&
+   (n["mode"].String() == "map" || townWindow || fortWindow);
+  if(showWeekly)
+   n["weeklyRecruitsReady"].Bool() = true;
+  for(const auto town : p->localState->getOwnedTowns())
+  {
+   JsonNode item;
+   item["name"].String() = town->getNameTranslated();
+   item["id"].Integer() = town->id.getNum();
+   item["index"].Integer() = index++;
+   if(showWeekly)
+    item["weeklyRecruits"] = weeklyRecruits(*town);
+   n["towns"].Vector().push_back(std::move(item));
+  }
   if(townWindow||fortWindow){const auto town=townWindow?townWindow->town:fortWindow->getMobileTown();n["townName"].String()=town->getNameTranslated();n["townFaction"].String()=town->getFaction()->getJsonKey();mobileTownArmies(n,town);
    for(const auto & level:town->spells){JsonNode row;row.Vector();for(const auto spell:level)row.Vector().push_back(JsonNode(double(spell.getNum())));n["townSpells"].Vector().push_back(row);}
+   std::map<BuildingID, CreatureID> dwellingCreatures;
+   const auto & roster = town->getTown()->creatures;
+   for(size_t level = 0; level < roster.size(); ++level)
+    for(size_t rank = 0; rank < roster[level].size(); ++rank)
+     dwellingCreatures.emplace(BuildingID::getDwellingFromLevel(level, rank), roster[level][rank]);
    for(const auto & [id,building]:town->getTown()->buildings)
    {
     if(!building||id.getNum()<0)continue;
@@ -756,6 +816,12 @@ void publishMobileState(){
     b["upgradeId"].Integer()=building->upgrade.getNum();
     b["description"].String()=building->getDescriptionTranslated();
     b["built"].Bool()=town->hasBuilt(id);
+    if(!town->hasBuilt(id))
+     if(const auto creature = dwellingCreatures.find(id); creature != dwellingCreatures.end())
+     {
+      b["unlocksCreature"] = recruitmentIdentity(creature->second);
+      portraitIds.insert(creature->second.getNum());
+     }
     const auto buildState=p->cb->canBuildStructure(town,id);
     const bool needsGrail=id==BuildingID::GRAIL&&!visitingHeroHasGrail(town);
     b["allowed"].Bool()=buildState==EBuildingState::ALLOWED&&!needsGrail;
@@ -925,6 +991,12 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  // A dedicated cancel operation cannot also accept a dialog or close the town
  // below it. Ignore delayed taps once the taverne is no longer on top.
  if(action==62||action==63||action==64){if(auto window=ENGINE->windows().topWindow<CHeroWindow>()){if(action==63)window->close();else if(action==64){for(const auto & set:window->artSets)if(set)set->putBackPickedArtifact();}else if(window->curHero&&GAME->interface()&&window->curHero->getOwner()==GAME->interface()->playerID&&a>=0&&a<=int(ArtifactPosition::BACKPACK_START)+int(window->curHero->artifactsInBackpack.size()))window->clickPressedOnArtPlace(window->curHero,ArtifactPosition(a),true,false,false,window->pos.center());lastPublished=0;}return;}
+ if(action==88)
+ {
+  mobileWeeklyRecruits = mobileEnabled && a != 0;
+  lastPublished = 0;
+  return;
+ }
  if(action==87)
  {
   if(const auto map=ENGINE->windows().topWindow<AdventureMapInterface>();map&&map->isWorldView())

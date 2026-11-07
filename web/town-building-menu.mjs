@@ -1,4 +1,5 @@
 import {plainGameText} from './game-text.mjs';
+import {creaturePortrait} from './creature-portraits.mjs';
 import {buildReason} from './mobile-layout.mjs';
 import {resourceDescriptors, resourceIconURL} from './resources.mjs';
 import {townBuildingCardImage} from './town-portrait.mjs';
@@ -150,9 +151,17 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const descriptions = [...new Set((building.variants || [building]).map(description).filter(Boolean))];
     const effects = descriptions.length > 1 ? `<h4>Effets selon la variante</h4><ul>${descriptions.map(text => `<li>${escape(text)}</li>`).join('')}</ul>` :
       (descriptions.length ? `<p>${escape(descriptions[0])}</p>` : '');
+    const unit = building.unlocksCreature;
+    const key = building.key?.split(':').at(-1);
+    const growth = key === 'citadel' ? 50 : key === 'castle' ? 100 : 0;
+    const benefit = unit ? `<div class="building-benefit-creature">${creaturePortrait(unit)}<div>
+          <strong>${escape(unit.name)}</strong><p>🔒 Actuellement verrouillée</p></div></div>` :
+      (growth ? `<strong><span>Croissance de base des créatures</span> +${growth} %</strong>` : '');
     return `<article class="building-detail">${picture(state, building)}
         <div><h3>${escape(displayName(building))}</h3>
-        ${effects}
+        ${!building.built && (benefit || effects) ? `<section class="building-benefit">
+          <h4>${unit ? 'Se débloque après construction' : 'Après construction'}</h4>
+          ${benefit}${effects}</section>` : effects}
         ${building.built ? '' : cost(state, building)}
         ${reason ? `<p class="building-reason">${escape(reason)}</p>` : ''}
         ${unlockRoute && building.built ? '' : `<button type="button" class="primary" data-building-action ${reason || construction !== undefined ? 'disabled' : ''}>${construction === building.id ? 'Construction en cours…' : building.built ? 'Voir' : isGrail(building) ? 'Installer le Graal' : 'Construire'}</button>`}

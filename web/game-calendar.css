@@ -8,3 +8,24 @@
  #mobile-app[data-mode=map] .mobile-calendar .calendar-compact{display:block}
 }
 #mobile-app .mobile-calendar .calendar-compact{display:none}
+
+#mobile-app button.mobile-calendar{min-height:26px;border:0;border-top:1px solid #b5975060;background:none;box-shadow:none}
+#mobile-app button.mobile-calendar:disabled{opacity:1}
+#mobile-app button.mobile-calendar:not(:disabled) .calendar-next-week{color:#ffe29c;font-weight:bold}
+#mobile-app .weekly-roster{display:grid;gap:8px}
+#mobile-app .weekly-roster h3,#mobile-app .weekly-roster p{margin:0}
+#mobile-app .weekly-town{display:flex;align-items:center;gap:8px}
+#mobile-app .weekly-town select{flex:1;min-width:0;min-height:44px}
+#mobile-app .weekly-roster table{width:100%;table-layout:fixed;border-collapse:collapse;color:var(--ink);background:#21170de6}
+#mobile-app .weekly-roster th,#mobile-app .weekly-roster td{padding:5px 6px;border-bottom:1px solid #ad8a4c60}
+#mobile-app .weekly-roster thead{background:#47301c}
+#mobile-app .weekly-roster thead th{font-size:12px;line-height:1.2}
+#mobile-app .weekly-roster th:first-child{text-align:left}
+#mobile-app .weekly-roster thead th:nth-child(2),#mobile-app .weekly-roster thead th:nth-child(3){width:65px}
+#mobile-app .weekly-roster td{text-align:center;font-size:20px;font-weight:bold;font-variant-numeric:tabular-nums}
+#mobile-app .weekly-roster .weekly-incoming{color:#d4e4a9}
+#mobile-app .weekly-creatures{display:grid;grid-template-columns:33px minmax(0,1fr);align-items:center;gap:6px}
+#mobile-app .weekly-creatures .unit-portrait{width:33px;height:33px}
+#mobile-app .weekly-creatures ul{list-style:none;padding:0;margin:0;font-size:13px;overflow-wrap:anywhere}
+#mobile-app .weekly-locked,#mobile-app .weekly-note,#mobile-app .weekly-date{font-size:13px;color:var(--muted);font-weight:normal}
+#mobile-app .weekly-town select{padding:4px 8px;font:inherit;color:var(--ink);background:#1c150c;border:2px inset var(--line);color-scheme:dark}

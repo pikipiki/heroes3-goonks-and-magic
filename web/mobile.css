@@ -67,3 +67,9 @@
 
 #mobile-app .building-unlock-route{display:grid;gap:6px;padding:8px;border:1px solid var(--line);background:#21170dd9}
 #mobile-app .building-unlock-route>button{justify-self:start;min-height:44px}
+
+#mobile-app .building-benefit{display:grid;gap:6px;padding:8px;border-left:2px solid var(--gold);background:#21170dd9}
+#mobile-app .building-benefit h4{color:var(--gold)}
+#mobile-app .building-benefit-creature{display:flex;align-items:center;gap:8px}
+#mobile-app .building-benefit-creature .unit-portrait{width:52px;height:52px;flex:none;border:1px solid var(--line)}
+#mobile-app .building-benefit-creature p{font-size:13px}

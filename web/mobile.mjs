@@ -21,7 +21,8 @@ import {createMobileSpellbook} from './spellbook.mjs';
 import {createMageGuild} from './mage-guild.mjs';
 import {createActionFeedback} from './action-feedback.mjs';
 import {renderArmyPanel} from './army-panel.mjs';
-import {createGameCalendar} from './game-calendar.mjs';
+import {canViewWeeklyRecruits,createGameCalendar} from './game-calendar.mjs';
+import {createWeeklyRecruits} from './weekly-recruits.mjs';
 import {recruitmentSummary} from './recruitment-summary.mjs';
 import {createCanvasSizer} from './mobile-render.mjs';
 import {createNativeFort} from './town-recruitment.mjs';
@@ -67,6 +68,7 @@ function mount(){
  const sceneSize=createCanvasSizer();
  const landscapeMap=matchMedia('(orientation:landscape) and (max-height:600px)');
  const nav=root.querySelector('.mobile-nav'),sheet=root.querySelector('.mobile-sheet'),body=root.querySelector('.sheet-body'),menu=root.querySelector('.mobile-menu');
+ const weeklyRecruits=createWeeklyRecruits(body);
  function showHomeMenu(){
   menu.dataset.kind='menu';
   menu.innerHTML=homeMenu+'<button type="button" data-open-multiplayer>Multijoueur</button>';
@@ -194,7 +196,7 @@ function mount(){
   if(next.mode==='recruit'&&next.recruitUnit?.id===expectedRecruitId)recruitLoading=false;
   const changedTurn=next.turn!==state.turn,changedActor=next.activeStack!==state.activeStack,changedPhase=!!next.tacticsMode!==!!state.tacticsMode;const change=next.mode!==state.mode;const changedSpell=!!next.spellTargeting!==!!state.spellTargeting;state=next;if(changedSpell){selectedPoint=null;battleMove=false;}spellRecovery.update(state);autocombat.update(state);root.dataset.mode=state.mode;window.goonkMobileState=state;if(state.mode==='map'&&!state.heroName&&state.heroes?.length&&state.turn)command(4,0);
   root.querySelector('.mobile-title').textContent=(state.mode==='creature'?state.creatureUnit?.name:null)||state.dialogTitle||(state.mode==='battle'&&state.autoCombat?'Autocombat':null)||(state.mode==='recruit'?'Recruter '+(state.recruitUnit?.name||''):null)||state.townName||state.activeUnit?.name||state.heroName||({menu:'Le royaume des Goonks',lobby:'Préparer la partie',dialog:'Votre décision'}[state.mode])||'Heroes Goonk';
-  const hasResources=renderResources(root.querySelector('.mobile-resources'),state.resources,state.resourceTypes);root.dataset.hasResources=String(hasResources&&!['battle','hero'].includes(state.mode));updateCalendar(state);
+  const hasResources=renderResources(root.querySelector('.mobile-resources'),state.resources,state.resourceTypes);root.dataset.hasResources=String(hasResources&&!['battle','hero'].includes(state.mode));updateCalendar(state,sheetKind==='weekly-recruits');
   menu.hidden=!['menu','lobby','load','campaign','connecting'].includes(state.mode);
   if(state.mode==='connecting'&&menu.dataset.kind!=='connecting'){menu.dataset.kind='connecting';menu.innerHTML='<h1>Opening game options</h1><p>Preparing your game…</p>';}
   if(['lobby','load'].includes(state.mode)&&menu.dataset.kind!==state.mode){menu.dataset.kind=state.mode;menu.innerHTML='<div class="lobby-scroll"><header class="lobby-intro"><img src="./web/h3-theme/town-fort.png" alt=""><div><p class="lobby-eyebrow">Heroes Goonk</p><h1>Ton aventure</h1><p id="lobby-choice" aria-live="polite">Choisis la carte et la difficulté.</p></div></header><section class="lobby-panel lobby-adventure"><h2>Adventure settings</h2><div class="lobby-panel-body"><label>Carte<select id="mobile-map-select" aria-label="Carte"></select></label><label class="faction-choice">Château<select id="mobile-faction-select" aria-label="Château"></select></label><label>Difficulté<select id="mobile-difficulty" aria-label="Difficulté"><option value="0">Facile</option><option value="1" selected>Normale</option><option value="2">Difficile</option><option value="3">Expert</option><option value="4">Impossible</option></select></label></div></section><div class="lobby-extra-options"></div></div><footer class="lobby-footer"><button type="button" data-delete-solo-autosave hidden>Supprimer la sauvegarde automatique</button><p class="lobby-status" aria-live="polite"></p><div><button data-ui="back">← Back</button><button class="primary" data-ui="begin">Commencer</button></div></footer>';menu.querySelector('#mobile-map-select').onchange=e=>{lobbyDefaultRequested=true;requestedMapName=(state.maps||[]).find(m=>m.index===Number(e.target.value))?.name;e.target.disabled=true;e.target.dataset.updating='true';menu.querySelector('[data-ui=begin]').disabled=true;command(state.mode==='load'?27:24,Number(e.target.value));update(state,true);};menu.querySelector('#mobile-difficulty').onchange=e=>{pendingDifficulty=Number(e.target.value);e.target.disabled=true;e.target.dataset.updating='true';menu.querySelector('[data-ui=begin]').disabled=true;command(25,pendingDifficulty);};menu.querySelector('#mobile-faction-select').onchange=e=>{pendingFaction=Number(e.target.value);e.target.disabled=true;e.target.dataset.updating='true';menu.querySelector('[data-ui=begin]').disabled=true;command(37,pendingFaction);update(state,true);};}
@@ -258,7 +260,7 @@ function mount(){
   const seconds=Math.ceil(Math.max(0,state.turnRemainingMs||0)/1000);
   const countdown=state.mode==='map'&&state.turnRemainingMs!==undefined
    ? Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0')+' · ' : '';
-  root.querySelector('.scene-hint').textContent=countdown+hint;controls();if(sheetKind==='army'&&(changedTurn||armySignature!==JSON.stringify(state.armies||[])))refreshArmy();if(sheetKind==='build')townBuildings.update(state);
+  root.querySelector('.scene-hint').textContent=countdown+hint;controls();if(sheetKind==='army'&&(changedTurn||armySignature!==JSON.stringify(state.armies||[])))refreshArmy();if(sheetKind==='build')townBuildings.update(state);if(sheetKind==='weekly-recruits')weeklyRecruits.update(state);
   if(!refresh&&state.mode==='town'&&state.openTownHall)void townBuildings.open();
  }
  const townBuildings=createTownBuildingMenu({body,getState:()=>state,asset,backButton:sheet.querySelector('[data-ui="sheet-back"]'),canOpen:route=>state.mode===(route?'fort':'town')&&!sheetKind,
@@ -275,9 +277,11 @@ function mount(){
  function syncBattleView(){dualBattle.sync();const button=root.querySelector('.battle-view'),text=nativeBattleClose(scene.clientWidth,scene.clientHeight,battleView)?'Vue entière':'Rapprocher';if(button.textContent!==text)button.textContent=text;const pressed=String(battleView==='whole');if(button.getAttribute('aria-pressed')!==pressed)button.setAttribute('aria-pressed',pressed);if(root.dataset.battleCamera!==battleView)root.dataset.battleCamera=battleView;}
  bindPress(root.querySelector('.battle-view'),()=>{if(state.mode!=='battle')return;const chosen=selectedPoint;battleView=nativeBattleClose(scene.clientWidth,scene.clientHeight,battleView)?'whole':'close';resetGestures();selectedPoint=chosen;syncBattleView();renderBattlePanel();controls();});
  function closeSheet(){
+  const weekly=sheetKind==='weekly-recruits';
   const route=sheetKind==='build'?townBuildings.cancel():null;
   clearTimeout(armyTimer);armyPending=false;armyFocus=null;sheet.removeAttribute('aria-busy');sheet.hidden=true;sheetKind='';delete root.dataset.sheet;armySelection=null;
   resetGestures();
+  if(weekly){command(88,0);updateCalendar(state);}
   const restore=()=>{
    if(sheetKind)return;
    root.querySelector('.mobile-play').inert=false;nav.inert=false;
@@ -285,7 +289,7 @@ function mount(){
    else if(previousFocus?.isConnected)previousFocus.focus({preventScroll:true});
   };
   // Let the touch release finish before the revealed creature cards accept focus.
-  if(route&&state.mode==='fort')requestAnimationFrame(restore);else restore();
+  if(weekly||route&&state.mode==='fort')requestAnimationFrame(restore);else restore();
  }
  bindPress(sheet.querySelector('[data-ui="close-sheet"]'),closeSheet);
  bindPress(sheet.querySelector('[data-ui="sheet-back"]'),()=>{if(sheetKind!=='build'||!townBuildings.back())closeSheet();});
@@ -371,6 +375,15 @@ function mount(){
    return;
   }
   if(ui==='confirm-recruit-all'){closeSheet();if(!state.turn)return;command(53);notify('Recruitment requested.');return;}
+  if(ui==='weekly-recruits'){
+   if(!sheetKind&&canViewWeeklyRecruits(state)){
+    openSheet('weekly-recruits','Recrues de la semaine');
+    weeklyRecruits.open(state);
+    updateCalendar(state,true);
+    command(88,1);
+   }
+   return;
+  }
   if(ui==='town-fort'){command(54);return;}
   if(ui==='town-guild'||ui==='town-market'){const matches=ui==='town-guild'?['mageGuild1','mageGuild2','mageGuild3','mageGuild4','mageGuild5']:['marketplace'];const building=(state.buildings||[]).filter(b=>b.built&&matches.includes(String(b.key).split(':').at(-1))).at(-1);if(building)command(39,building.id);else notify('Build this structure first.');return;}
   if(ui==='recruit-heroes'){
