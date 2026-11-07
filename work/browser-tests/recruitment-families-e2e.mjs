@@ -19,6 +19,27 @@ for(const kind of ['chromium','webkit']){const b=await(kind==='webkit'?webkit.la
  await p.locator('.hall-families').evaluate(e=>e.scrollTop=e.scrollHeight);await p.waitForTimeout(60);await p.evaluate(()=>{const ctx=document.querySelector('#canvas').getContext('2d');ctx.fillStyle='rgb(200,0,0)';ctx.fillRect(0,0,800,600);});await p.waitForTimeout(80);assert.deepEqual(await pixel('[data-hall-active=true]'),[0,0,200],'Clipped selected tile pauses painting');await p.locator('.hall-families').evaluate(e=>e.scrollTop=0);
  await p.emulateMedia({reducedMotion:'reduce'});await p.waitForTimeout(100);assert.deepEqual(await pixel('[data-hall-active=true]'),[0,200,0],'Reduced motion keeps a static portrait');await p.emulateMedia({reducedMotion:'no-preference'});
  for(const size of[{width:430,height:873},{width:932,height:430},{width:568,height:320},{width:320,height:740},{width:360,height:640},{width:430,height:873}]){await p.setViewportSize(size);await p.waitForTimeout(160);assert.equal(await p.locator('.hall-family').count(),7);const listBox=await p.locator('.hall-families').boundingBox(),rowBox=await p.locator('.hall-family').first().boundingBox();if(size.width<size.height)assert(Math.abs(Math.max(132,Math.floor((listBox.height-24)/2))-rowBox.height)<3,'Portrait rows fit two families where height permits and preserve a usable portrait on short screens');await p.screenshot({path:'/private/tmp/goonk-large-hall-'+kind+'-'+size.width+'.png'});assert.equal(await p.locator('.hall-form').count(),formCount);for(const delta of await p.locator('.hall-form').evaluateAll(es=>es.map(e=>e.clientWidth-e.querySelector('.hall-art').clientWidth)))assert(delta<=10,'Creature illustration uses the full card width');const rects=await p.locator('.hall-family').first().locator('.hall-form').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().toJSON()));assert(rects.every(r=>Math.abs(r.y-rects[0].y)<1),'All three forms on a row');assert(rects.every(r=>r.width>=44&&r.x>=0&&r.right<=size.width+.5),'Accessible, unclipped form targets');const feature=await p.locator('.hall-feature').boundingBox(),stock=await p.locator('.hall-stock').boundingBox();assert(stock.y>=feature.y+feature.height-1,'Preview and stock must not overlap');const buy=await p.locator('[data-hall-buy]').boundingBox();if(!(buy.y>=0&&buy.y+buy.height<=size.height)){console.log('OVERFLOW',size,await p.locator('.hall-detail').evaluate(e=>({rect:e.getBoundingClientRect().toJSON(),rows:getComputedStyle(e).gridTemplateRows,children:[...e.children].map(n=>({cls:n.className,rect:n.getBoundingClientRect().toJSON()}))})));await p.screenshot({path:'/private/tmp/goonk-hall-overflow.png'});}assert(buy.y>=0&&buy.y+buy.height<=size.height,'Recruit action visible');const hall=await p.locator('.hall-layout').boundingBox(),detail=await p.locator('.hall-detail').boundingBox();if(size.width>size.height){console.log('LANDSCAPE',kind,size,JSON.stringify({hall,detail}));assert(rowBox.height>listBox.height*.85,'Landscape uses a large full-height family row');await p.screenshot({path:'/private/tmp/goonk-family-'+kind+'-'+size.width+'.png'});assert(detail.x>hall.x+hall.width*.35,'Landscape detail to the right');const action=await p.locator('[data-type-info]').boundingBox();assert(detail.x+detail.width-action.x-action.width>=10,'Landscape details button has a right margin');}await p.locator('[data-family-select="2"]').tap();assert(await p.locator('[data-hall-buy]').isDisabled());assert.equal(await p.locator('.hall-stock').textContent(),'Requires: Final sanctuary');await p.locator('[data-family-select="1"]').tap();assert(await p.locator('[data-hall-buy]').isEnabled());}
+ for (const size of [{width:390,height:844},{width:568,height:320}]) {
+  await p.setViewportSize(size);
+  const geometry = () => p.locator('.hall-layout').evaluate(hall => {
+   const selectors = ['.hall-families','.hall-family','.hall-art','.hall-detail','.hall-actions'];
+   return [...selectors.map(selector => {
+    const {y,height} = hall.querySelector(selector).getBoundingClientRect();
+    return [y,height];
+   }), hall.querySelector('.hall-families').scrollTop];
+  });
+  await p.locator('[data-family-select="13"]').tap();
+  await p.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  const before = await geometry();
+  await p.locator('[data-family-select="14"]').tap();
+  await p.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  assert.equal(await p.locator('.hall-detail').getAttribute('data-locked'),'true');
+  assert.equal(await p.locator('.hall-quantity').isVisible(),false);
+  assert.deepEqual(await geometry(),before,'Selecting a locked form keeps the gallery, portraits, scroll and actions in place');
+  await p.locator('[data-family-select="13"]').tap();
+  assert.deepEqual(await geometry(),before,'Returning to a recruitable form preserves the same geometry');
+ }
+ await p.locator('[data-family-select="1"]').tap();
  for(const size of [{width:390,height:844},{width:320,height:650},{width:932,height:430}]){
   await p.setViewportSize(size);
   await p.locator('.mobile-calendar').waitFor({state:'visible'});

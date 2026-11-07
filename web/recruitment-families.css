@@ -62,7 +62,7 @@
  #mobile-app .hall-actions button{font-size:15px;min-height:44px}
 }
 
-#mobile-app .hall-detail[data-locked=true] .hall-quantity,#mobile-app .hall-detail[data-locked=true] .hall-total{display:none}
+#mobile-app .hall-detail[data-locked=true] :is(.hall-quantity,.hall-total){visibility:hidden}
 @media(orientation:landscape) and (max-height:380px){#mobile-app .hall-feature{min-height:70px}#mobile-app .hall-feature>canvas{height:68px}#mobile-app .hall-feature h3{line-height:1.2}#mobile-app .hall-feature .creature-stats dt{font-size:11px}}
 
 /* The selected tile is the only animated creature; no duplicate preview. */
@@ -116,4 +116,24 @@
  #mobile-app .hall-families{grid-auto-rows:max(var(--hall-row-height,220px),148px)}
  #mobile-app .hall-detail{padding-inline:10px max(12px,env(safe-area-inset-right));padding-bottom:max(10px,env(safe-area-inset-bottom));row-gap:6px}
  #mobile-app .hall-actions{height:auto;gap:8px}
+}
+
+/* Keep the roster viewport and action row stable across creature selections. */
+#mobile-app .hall-detail{
+ grid-template-rows:3.5rem 1.125rem 44px 1.375rem 48px;
+ align-content:start;
+}
+#mobile-app .hall-detail :is(.hall-feature,.hall-stock,.hall-total){
+ min-width:0;min-height:0;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;
+}
+#mobile-app .hall-actions{align-self:stretch;min-height:0;height:100%}
+#mobile-app .hall-actions button{box-sizing:border-box;min-height:0;height:100%;line-height:1.1;padding-block:2px}
+#mobile-app .hall-stock{line-height:1.125rem}
+#mobile-app .hall-total{justify-content:safe flex-end}
+#mobile-app .hall-feature h3{overflow-wrap:anywhere}
+@media(orientation:landscape) and (max-height:360px){
+ #mobile-app .hall-detail{
+  grid-template-rows:3.25rem 1.125rem 44px 48px;
+  row-gap:3px;padding-block:4px max(4px,env(safe-area-inset-bottom));
+ }
 }
