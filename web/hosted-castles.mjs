@@ -29,6 +29,13 @@ export function mountHostedCastles(root, fr, onRosterChange) {
     }
   }
 
+  function setRole(group, value) {
+    group.dataset.role = value;
+    for (const button of group.children) {
+      button.setAttribute('aria-pressed', String(button.dataset.castleRole === value));
+    }
+  }
+
   function renderCard(record) {
     const selected = record.choices.length ? record.choices.find(item => item.id === record.value) ?? random :
       record.fixed ?? {name: t('Map faction', 'Faction de la carte')};
@@ -86,10 +93,22 @@ export function mountHostedCastles(root, fr, onRosterChange) {
         header.append(heading);
         let role;
         if (slot?.human && slot.computer && colorId !== 0) {
-          role = document.createElement('select');
+          role = document.createElement('div');
+          role.className = 'hosted-role-toggle';
+          role.setAttribute('role', 'group');
           role.setAttribute('aria-label', t('Player type', 'Type de joueur') + ' · ' + colors[colorId]);
-          role.replaceChildren(new Option(t('Human', 'Humain'), 'human'), new Option(t('Computer', 'Ordinateur'), 'computer'));
-          role.addEventListener('change', onRosterChange);
+          for (const [value, label] of [['human', t('Human', 'Humain')], ['computer', t('Computer', 'Ordinateur')]]) {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.dataset.castleRole = value;
+            button.dataset.nativeClick = '';
+            const check = document.createElement('span');
+            check.setAttribute('aria-hidden', 'true');
+            check.textContent = '✓';
+            button.append(check, label);
+            role.append(button);
+          }
+          setRole(role, 'human');
           header.append(role);
         } else {
           const label = document.createElement('small');
@@ -116,7 +135,7 @@ export function mountHostedCastles(root, fr, onRosterChange) {
     },
     setPending(pending) {
       for (const record of records) {
-        if (record.role) record.role.disabled = pending;
+        if (record.role) for (const button of record.role.children) button.disabled = pending;
         if (record.choices.length) record.card.disabled = pending;
       }
     },
@@ -125,15 +144,23 @@ export function mountHostedCastles(root, fr, onRosterChange) {
       let remaining = count - records.filter(record => record.canBeHuman && !record.role).length;
       for (const record of records) {
         if (!record.role) continue;
-        record.role.value = remaining > 0 ? 'human' : 'computer';
+        setRole(record.role, remaining > 0 ? 'human' : 'computer');
         remaining--;
       }
     },
     get humanSeats() {
-      return records.filter(record => record.canBeHuman && record.role?.value !== 'computer').map(record => record.color);
+      return records.filter(record => record.canBeHuman && record.role?.dataset.role !== 'computer').map(record => record.color);
     },
     get factions() { return records.map(record => record.value); },
     activate(button) {
+      if (button.hasAttribute('data-castle-role')) {
+        const group = button.parentElement;
+        if (!button.disabled && group.dataset.role !== button.dataset.castleRole) {
+          setRole(group, button.dataset.castleRole);
+          onRosterChange();
+        }
+        return true;
+      }
       if (button.hasAttribute('data-castle-seat')) { open(Number(button.dataset.castleSeat)); return true; }
       if (button.hasAttribute('data-castle-close')) { picker.close(); return true; }
       if (!button.hasAttribute('data-castle-choice') || !picker.open) return false;

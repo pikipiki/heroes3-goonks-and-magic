@@ -112,9 +112,25 @@
 
 #game-menu .hosted-castle-list{display:grid;gap:12px;min-width:0}
 #game-menu .hosted-castle-list section{min-width:0}
-#game-menu .hosted-castle-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+#game-menu .hosted-castle-heading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:6px}
 #game-menu .hosted-castle-heading h3{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:normal;margin:0}
-#game-menu .hosted-castle-heading select{width:auto;max-width:65%;min-width:0}
+#game-menu .hosted-role-toggle{
+  display:inline-grid;grid-template-columns:auto auto;gap:3px;max-width:100%;margin-inline-start:auto;
+  padding:3px;border:2px ridge #b99551;background:#1b110a;
+}
+#game-menu .hosted-role-toggle button{
+  display:flex;align-items:center;justify-content:center;gap:5px;min-width:0;min-height:52px;
+  margin:0;padding:6px 9px;border:1px solid transparent;border-image:none;border-radius:0;
+  background:#2d1d12;color:#f4dfad;font-size:1rem;font-weight:700;line-height:1.2;
+  -webkit-tap-highlight-color:transparent;
+}
+#game-menu .hosted-role-toggle button[aria-pressed=true]{
+  border-color:#f2d38e;background:linear-gradient(#f4d995,#cba45b);color:#241509;
+  box-shadow:inset 0 1px #fff0bc;
+}
+#game-menu .hosted-role-toggle button span{visibility:hidden}
+#game-menu .hosted-role-toggle button[aria-pressed=true] span{visibility:visible}
+#game-menu .hosted-role-toggle button:focus-visible{position:relative;z-index:1;outline:3px solid #fff0ad;outline-offset:2px}
 #game-menu .hosted-castle-list .lobby-choice-card{box-sizing:border-box;width:100%;min-width:0;margin:0}
 #game-menu .hosted-castle-list div.lobby-choice-card{border:2px ridge #ad8b50}
 @media(orientation:landscape) and (min-width:560px){
