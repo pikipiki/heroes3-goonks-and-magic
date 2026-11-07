@@ -99,6 +99,57 @@ for(const [kind,launcher] of Object.entries({chromium,webkit})){
    assert.deepEqual((await commands()).at(-1),[8,0]);
    console.log('PASS',kind,faction,size.width+'x'+size.height);
   }
+  await page.setViewportSize({width:390,height:844});
+  await page.evaluate(()=>{
+   const creature={id:25,name:'Test creature',rank:0,level:0,count:0,built:false,requiredBuildingId:31,requiredBuilding:'Test dwelling',cost:[]};
+   window.calls=[];
+   Object.assign(buildState,{mode:'fort',turn:true,fortFamilies:[{level:0,count:0,variants:[creature]}],buildings:[
+    {id:0,key:'core:mageGuild1',name:'Mage Guild Level 1',built:false,allowed:true,state:7,cost:[]},
+    {id:31,key:'core:dwellingLvl1',name:'Test dwelling',built:false,allowed:false,state:8,missingPrerequisites:[0],unlocksCreature:creature,cost:[]},
+   ]});
+   sendBuild();
+  });
+  await page.locator('[data-hall-build]').tap();
+  const buildingTitle=page.locator('.building-detail h3');
+  const goal=page.locator('.building-project strong');
+  assert.equal(await buildingTitle.textContent(),'Test dwelling');
+  assert.equal(await goal.textContent(),'Test dwelling');
+  assert.match(await page.locator('[data-building-prerequisite]').innerText(),/Mage Guild Level 1/);
+  assert.equal(await page.locator('.building-cards').count(),0);
+  await page.locator('[data-building-prerequisite]').tap();
+  assert.equal(await buildingTitle.textContent(),'Mage Guild Level 1');
+  assert.equal(await goal.textContent(),'Test dwelling');
+  await button('sheet-back').tap();
+  assert.equal(await buildingTitle.textContent(),'Test dwelling');
+  await page.locator('[data-building-prerequisite]').tap();
+  await page.locator('[data-building-action]').tap();
+  assert.deepEqual((await commands()).at(-1),[8,0]);
+  await page.evaluate(()=>{
+   Object.assign(buildState.buildings[0],{built:true,allowed:false,state:4});
+   Object.assign(buildState.buildings[1],{state:5,missingPrerequisites:[]});
+   sendBuild();
+  });
+  await page.getByRole('heading',{name:'Test dwelling',exact:true}).waitFor();
+  assert(await page.locator('.building-project [data-built]').isVisible());
+  assert(await page.locator('[data-building-action]').isDisabled());
+  await button('sheet-back').tap();
+  await page.locator('.mobile-sheet').waitFor({state:'hidden'});
+  assert.equal(await page.locator('[data-family-select="25"]').getAttribute('aria-pressed'),'true');
+  await page.evaluate(()=>{
+   Object.assign(buildState.buildings[1],{allowed:true,state:7});
+   sendBuild();
+  });
+  await page.locator('[data-hall-build]').tap();
+  await page.locator('[data-building-action]').tap();
+  assert.deepEqual((await commands()).at(-1),[8,31]);
+  await page.evaluate(()=>{
+   Object.assign(buildState.buildings[1],{built:true,allowed:false,state:4,unlocksCreature:undefined});
+   buildState.fortFamilies[0].variants[0].built=true;
+   sendBuild();
+  });
+  await page.locator('[data-building-return]').tap();
+  await page.locator('.mobile-sheet').waitFor({state:'hidden'});
+  assert.equal(await page.locator('[data-family-select="25"]').getAttribute('data-locked'),null);
   assert.deepEqual(errors,[]);
  }finally{await browser.close();}
 }

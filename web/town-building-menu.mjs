@@ -59,7 +59,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
   }
   function rememberProject(state, value) {
     project = value;
-    if (!Number.isInteger(state.armyTownId)) return;
+    if (unlockRoute || !Number.isInteger(state.armyTownId)) return;
     if (value) townProjects.set(state.armyTownId, value);
     else townProjects.delete(state.armyTownId);
   }
@@ -174,7 +174,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const descriptions = [...new Set((building.variants || [building]).map(description).filter(Boolean))];
     const effects = descriptions.length > 1 ? `<h4>Effets selon la variante</h4><ul>${descriptions.map(text => `<li>${escape(text)}</li>`).join('')}</ul>` :
       (descriptions.length ? `<p>${escape(descriptions[0])}</p>` : '');
-    const prerequisite = !unlockRoute && prerequisites(state, building)[0];
+    const prerequisite = prerequisites(state, building)[0];
     const blocker = prerequisite ? `<div class="building-prerequisite"><strong>Construis d’abord</strong>
       <span>${escape(displayName(prerequisite))}</span></div>
       <button type="button" class="primary" data-building-prerequisite="${prerequisite.id}">
@@ -204,17 +204,12 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const building = (unlockRoute ? state.buildings : buildings)?.find(item => item.id === selected);
     const panel = document.createElement('div');
     panel.className = 'building-menu';
-    if (unlockRoute) {
-      const target = state.buildings?.find(item => item.id === unlockRoute.id);
-      const steps = routeBuildings(state, target);
-      panel.innerHTML = `<section class="building-unlock-route">
-        <h3><span>${target?.built ? 'Créature débloquée' : 'Débloquer la créature'}</span> · ${escape(unlockRoute.name)}</h3>
-        <button type="button" data-building-return>← Retour au recrutement</button>
-        ${building ? detail(state, building) : ''}
-        ${steps.length ? group(state, 'Bâtiments restants', steps) : ''}
-      </section>`;
-      panel.querySelector(`[data-building-id="${selected}"]`)?.setAttribute('aria-pressed', 'true');
-    } else panel.innerHTML = building ? projectHeader(state, building) + detail(state, building) : list(state, buildings);
+    const completedUnlock = unlockRoute && building?.id === unlockRoute.id && building.built
+      ? `<p role="status"><span>Créature débloquée</span> · ${escape(unlockRoute.name)}</p>
+        <button type="button" data-building-return>← Retour au recrutement</button>` : '';
+    panel.innerHTML = building
+      ? projectHeader(state, building) + detail(state, building) + completedUnlock
+      : list(state, buildings);
     body.replaceChildren(panel);
     const locked = panel.querySelector('.building-locked');
     locked?.addEventListener('toggle', () => { if (locked.isConnected) lockedOpen = locked.open; });
@@ -252,7 +247,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
         const item = current.buildings?.find(record => record.id === selected);
         if (item?.built) { closeSheet(); command(39, item.id); }
         else if (item?.allowed && current.turn && construction === undefined) {
-          if (unlockRoute || project && !isGrail(item)) {
+          if (project && !isGrail(item)) {
             construction = item.id;
             constructionTimer = setTimeout(() => {
               clearConstruction();
@@ -280,12 +275,9 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const completed = construction === undefined ? null : state.buildings?.find(item => item.id === construction && item.built);
     if (completed) {
       clearConstruction();
-      if (unlockRoute) {
-        const target = state.buildings.find(item => item.id === unlockRoute.id);
-        selected = routeBuildings(state, target)[0]?.id ?? target?.id;
-      } else if (project) {
+      if (project) {
         selected = project.id;
-        if (completed.id === project.id) rememberProject(state, null);
+        if (!unlockRoute && completed.id === project.id) rememberProject(state, null);
         body.scrollTop = 0;
       }
       notify('Bâtiment construit · ' + plainGameText(completed.name));
@@ -320,22 +312,27 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     pending = null;
     const current = getState();
     if (!canOpen(route) || current.townName !== state.townName) return;
-    unlockRoute = route;
     const target = route && current.buildings?.find(item => item.id === route.id);
-    project = route ? null : townProjects.get(current.armyTownId) ?? null;
-    if (project && !current.buildings?.some(item => item.id === project.id && !item.built)) rememberProject(current, null);
-    tab = 'unbuilt'; filter = ''; selected = project?.id ?? routeBuildings(current, target)[0]?.id ?? null; lockedOpen = false; signature = undefined;
+    if (route && !target) return;
+    unlockRoute = route;
+    if (target) project = {id: target.id, steps: routeBuildings(current, target).map(item => item.id)};
+    else {
+      project = townProjects.get(current.armyTownId) ?? null;
+      if (project && !current.buildings?.some(item => item.id === project.id && !item.built)) rememberProject(current, null);
+    }
+    tab = 'unbuilt'; filter = ''; selected = project?.id ?? null; lockedOpen = false; signature = undefined;
     openSheet('build', 'Bâtiments');
     update(getState());
     body.scrollTop = 0;
   }
   function back() {
-    if (unlockRoute || selected === null) return false;
+    if (selected === null) return false;
     const state = getState();
     if (project && selected !== project.id) {
       selectProjectBuilding(state, project.id);
       return true;
     }
+    if (unlockRoute) return false;
     if (project) rememberProject(state, null);
     const id = selected;
     selected = null;
