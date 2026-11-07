@@ -62,7 +62,7 @@ private:
 
 	int maxPerformanceOverlayTextWidth = 0;
 
-	void updateFrame();
+	bool updateFrame();
 	void handleEvents(); //takes events from queue and calls interested objects
 	void drawPerformanceOverlay(); // draws box with additional infos (e.g. fps)
 

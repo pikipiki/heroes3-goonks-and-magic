@@ -26,7 +26,7 @@ public:
 class CBufferedStream : public CInputStream
 {
 public:
-	CBufferedStream();
+	explicit CBufferedStream(si64 sizeHint = 0);
 
 	/**
 	 * Reads n bytes from the stream into the data buffer.
@@ -89,6 +89,9 @@ private:
 
 	/** Current read position */
 	si64 position;
+
+	/** Optional expected size of decompressed stream */
+	si64 sizeHint;
 
 	bool endOfFileReached;
 };

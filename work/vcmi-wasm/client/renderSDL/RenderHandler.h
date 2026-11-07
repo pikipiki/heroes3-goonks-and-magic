@@ -28,8 +28,10 @@ class RenderHandler final : public IRenderHandler
 
 	std::map<AnimationPath, std::map<int, std::map<int, std::pair<std::string, CDefFile::SSpriteDef>>>> animationSpriteDefs;
 	std::map<AnimationPath, std::weak_ptr<CDefFile>> animationFiles;
+	std::deque<std::shared_ptr<CDefFile>> recentAnimationFiles;
 	std::map<AnimationPath, AnimationLayoutMap> animationLayouts;
 	std::map<SharedImageLocator, std::weak_ptr<ScalableImageShared>> imageFiles;
+	std::deque<std::shared_ptr<ScalableImageShared>> recentImages;
 	std::map<EFonts, std::shared_ptr<const IFont>> fonts;
 	std::shared_ptr<AssetGenerator> assetGenerator;
 	std::shared_ptr<HdImageLoader> hdImageLoader;

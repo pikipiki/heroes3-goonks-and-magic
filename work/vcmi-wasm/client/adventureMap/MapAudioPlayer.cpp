@@ -119,10 +119,40 @@ void MapAudioPlayer::addObject(const CGObjectInstance * obj)
 
 void MapAudioPlayer::removeObject(const CGObjectInstance * obj)
 {
-	for(int z = 0; z < GAME->interface()->cb->getMapSize().z; z++)
-		for(int x = 0; x < GAME->interface()->cb->getMapSize().x; x++)
-			for(int y = 0; y < GAME->interface()->cb->getMapSize().y; y++)
-				vstd::erase(objects[z][x][y], obj->id);
+	if(!obj)
+		return;
+
+	if(obj->ID == Obj::MONSTER)
+		return;
+
+	if(obj->isVisitable() && obj->ID == Obj::BLACK_MARKET)
+	{
+		for(int fx = 0; fx < obj->getWidth(); ++fx)
+		{
+			for(int fy = 0; fy < obj->getHeight(); ++fy)
+			{
+				int3 currTile(obj->anchorPos().x - fx, obj->anchorPos().y - fy, obj->anchorPos().z);
+				if(GAME->interface()->cb->isInTheMap(currTile))
+					vstd::erase(objects[currTile.z][currTile.x][currTile.y], obj->id);
+			}
+		}
+		return;
+	}
+
+	if(obj->isVisitable())
+	{
+		int3 currTile = obj->visitablePos();
+		if(GAME->interface()->cb->isInTheMap(currTile))
+			vstd::erase(objects[currTile.z][currTile.x][currTile.y], obj->id);
+		return;
+	}
+
+	for(const auto & tile : obj->getBlockedOffsets())
+	{
+		int3 currTile = obj->anchorPos() + tile;
+		if(GAME->interface()->cb->isInTheMap(currTile))
+			vstd::erase(objects[currTile.z][currTile.x][currTile.y], obj->id);
+	}
 }
 
 std::vector<AudioPath> MapAudioPlayer::getAmbientSounds(const int3 & tile)

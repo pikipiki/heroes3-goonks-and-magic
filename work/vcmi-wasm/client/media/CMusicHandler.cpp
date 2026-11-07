@@ -287,6 +287,8 @@ MusicEntry::~MusicEntry()
 	logGlobal->trace("Del-ing music file %s", currentName.getOriginalName());
 	if(music)
 		web_audio::call([&](){ return Mix_FreeMusic(music); });
+	musicData.reset();
+	musicSize = 0;
 }
 
 #ifdef VCMI_EMSCRIPTEN
@@ -307,7 +309,16 @@ void playPendingMusic()
         if(!pending || pending->owner!=handler)return;
         try
         {
-            auto * file=MakeSDLRWops(CResourceHandler::get()->load(pending->currentName));
+            if(!pending->musicData || pending->musicSize<=0)
+            {
+                auto data=CResourceHandler::get()->load(pending->currentName)->readAll();
+                si64 offset=(pending->currentName.getName()=="BLADEFWCAMPAIGN" && data.second>52)?52:0;
+                if(offset>0 && data.second>offset)
+                    std::memmove(data.first.get(),data.first.get()+offset,data.second-offset);
+                pending->musicData=std::move(data.first);
+                pending->musicSize=data.second-offset;
+            }
+            auto * file=SDL_RWFromConstMem(pending->musicData.get(),static_cast<int>(pending->musicSize));
             pending->music=web_audio::call([&](){return Mix_LoadMUS_RW(file,SDL_TRUE);});
             if(pending->music)MusicEntry::pendingMusic=nullptr;
             pending->play();
@@ -332,6 +343,8 @@ void MusicEntry::load(const AudioPath & musicURI)
 		web_audio::call([&](){ return Mix_FreeMusic(music); });
 		music = nullptr;
 	}
+	musicData.reset();
+	musicSize = 0;
 
 	if(CResourceHandler::get()->existsResource(musicURI))
 		currentName = musicURI;
@@ -344,12 +357,14 @@ void MusicEntry::load(const AudioPath & musicURI)
 
 	try
 	{
-		std::unique_ptr<CInputStream> stream = CResourceHandler::get()->load(currentName);
+		auto data = CResourceHandler::get()->load(currentName)->readAll();
+		si64 offset = (musicURI.getName() == "BLADEFWCAMPAIGN" && data.second > 52) ? 52 : 0;
+		if(offset > 0 && data.second > offset)
+			std::memmove(data.first.get(), data.first.get() + offset, data.second - offset);
+		musicData = std::move(data.first);
+		musicSize = data.second - offset;
 
-		if(musicURI.getName() == "BLADEFWCAMPAIGN") // handle defect MP3 file - ffprobe says: Skipping 52 bytes of junk at 0.
-			stream->seek(52);
-
-		auto * musicFile = MakeSDLRWops(std::move(stream));
+		auto * musicFile = SDL_RWFromConstMem(musicData.get(), static_cast<int>(musicSize));
 		music = web_audio::call([&](){ return Mix_LoadMUS_RW(musicFile, SDL_TRUE); });
 	}
 	catch(const std::exception & e)

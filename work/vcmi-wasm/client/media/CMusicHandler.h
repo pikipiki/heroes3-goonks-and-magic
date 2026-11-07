@@ -29,6 +29,8 @@ class MusicEntry : boost::noncopyable
 #endif
 	CMusicHandler * owner;
 	Mix_Music * music;
+	std::unique_ptr<ui8[]> musicData;
+	si64 musicSize = 0;
 
 	//if not null - set from which music will be randomly selected
 	std::string setName;

@@ -120,7 +120,8 @@ function mount(){
   if(unit&&(unit.stackId!==state.activeStack||state.spellTargeting))selectBattlePoint({x:unit.x,y:unit.y});
   renderBattlePanel();controls();
  }});
- const asset=icon=>{if(!icon)return '';const entries=window.goonkAssetURLs||[];const key=icon.toLowerCase(),match=entries.find(e=>e.path.toLowerCase().endsWith('/sprites2x/'+key))||entries.find(e=>e.path.toLowerCase().endsWith('/sprites/'+key));return match?.url||'';};
+ let assetEntries=null;const assetLookup=new Map();
+ const asset=icon=>{if(!icon)return '';const entries=window.goonkAssetURLs||[];if(entries!==assetEntries){assetEntries=entries;assetLookup.clear();}const key=icon.toLowerCase();if(assetLookup.has(key))return assetLookup.get(key);const match=entries.find(e=>e.path.toLowerCase().endsWith('/sprites2x/'+key))||entries.find(e=>e.path.toLowerCase().endsWith('/sprites/'+key));const url=match?.url||'';assetLookup.set(key,url);return url;};
  const creatureView=createCreaturePresentation({root,command,pointer,openRecruit,buildingArt:(state,building)=>townBuildings.artURL(state,building),openBuildings:(id,name,unitId)=>townBuildings.open({id,name,unitId})});
  const spellbook=createMobileSpellbook({root,command});
  const mageGuild=createMageGuild({root,command,pointer,asset,resetView:()=>{zoom=1;focus=null;resetGestures();}});

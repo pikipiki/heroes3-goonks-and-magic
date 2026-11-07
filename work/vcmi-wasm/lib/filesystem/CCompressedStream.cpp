@@ -16,8 +16,9 @@ VCMI_LIB_NAMESPACE_BEGIN
 
 static const int inflateBlockSize = 10000;
 
-CBufferedStream::CBufferedStream():
+CBufferedStream::CBufferedStream(si64 sizeHint):
     position(0),
+    sizeHint(sizeHint),
     endOfFileReached(false)
 {
 }
@@ -68,7 +69,8 @@ void CBufferedStream::ensureSize(si64 size)
 		si64 need = size - buffer.size();
 		// to avoid large number of calls at start
 		// this is often used to load h3m map headers, most of which are ~300 bytes in size
-		si64 currentStep = std::min<si64>(need, std::max<si64>(initialSize, si64{512}));
+		si64 minStep = sizeHint > initialSize ? (sizeHint - initialSize + 1) : si64{512};
+		si64 currentStep = std::min<si64>(need, std::max<si64>(initialSize, minStep));
 
 		buffer.resize(initialSize + currentStep);
 
@@ -77,7 +79,6 @@ void CBufferedStream::ensureSize(si64 size)
 		{
 			endOfFileReached = true;
 			buffer.resize(initialSize + readSize);
-			buffer.shrink_to_fit();
 			return;
 		}
 	}
@@ -91,8 +92,9 @@ void CBufferedStream::reset()
 }
 
 CCompressedStream::CCompressedStream(std::unique_ptr<CInputStream> stream, bool gzip, size_t decompressedSize):
+	CBufferedStream(static_cast<si64>(decompressedSize)),
 	gzipStream(std::move(stream)),
-	compressedBuffer(inflateBlockSize)
+	compressedBuffer(gzipStream ? std::clamp<si64>(gzipStream->getSize(), inflateBlockSize, 65536) : inflateBlockSize)
 {
 	assert(gzipStream);
 

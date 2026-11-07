@@ -128,23 +128,28 @@ void GameEngine::mainLoop()
 	{
 #endif
 		input().fetchEvents();
-		updateFrame();
+		if (!updateFrame())
+			return;
 		screenHandlerInstance->presentScreenTexture();
-		framerate().framerateDelay(); // holds a constant FPS
 #ifndef VCMI_HTML5_BUILD
+		framerate().framerateDelay(); // holds a constant FPS
 	}
 #endif
 }
 
-void GameEngine::updateFrame()
+bool GameEngine::updateFrame()
 {
 #ifdef VCMI_EMSCRIPTEN
 	// The entry point's earlier probe is not ownership: a worker can take
 	// the mutex after it. Never block the browser thread on that race.
 	std::unique_lock interfaceLock(ENGINE->interfaceMutex, std::try_to_lock);
-	if (!interfaceLock.owns_lock()) return;
+	if (!interfaceLock.owns_lock()) return false;
 #else
 	std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+#endif
+
+#ifdef VCMI_HTML5_BUILD
+	framerate().framerateDelay();
 #endif
 
 	engineUser->onUpdate();
@@ -161,6 +166,7 @@ void GameEngine::updateFrame()
 	ENGINE->cursor().update();
 	publishMobileBattleAtlas();
 	publishMobileState();
+	return true;
 }
 
 GameEngine::~GameEngine()

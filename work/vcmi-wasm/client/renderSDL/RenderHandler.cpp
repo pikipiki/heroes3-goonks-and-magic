@@ -80,7 +80,13 @@ std::shared_ptr<CDefFile> RenderHandler::getAnimationFile(const AnimationPath & 
 		{
 			auto locked = it->second.lock();
 			if (locked)
+			{
+				auto recentIt = std::find(recentAnimationFiles.begin(), recentAnimationFiles.end(), locked);
+				if (recentIt != recentAnimationFiles.end())
+					recentAnimationFiles.erase(recentIt);
+				recentAnimationFiles.push_back(locked);
 				return locked;
+			}
 		}
 	}
 
@@ -89,15 +95,24 @@ std::shared_ptr<CDefFile> RenderHandler::getAnimationFile(const AnimationPath & 
 
 	auto result = std::make_shared<CDefFile>(actualPath);
 
-	auto entries = result->getEntries();
-	
 	{
 		std::lock_guard<std::mutex> lock(animationCacheMutex);
-		for(const auto& entry : entries)
-			for(size_t i = 0; i < entry.second; ++i)
-				animationSpriteDefs[actualPath][entry.first][i] = {result->getName(i, entry.first), result->getFrameInfo(i, entry.first)};
+		if (animationSpriteDefs.find(actualPath) == animationSpriteDefs.end())
+		{
+			auto entries = result->getEntries();
+			auto & pathDefs = animationSpriteDefs[actualPath];
+			for(const auto& entry : entries)
+			{
+				auto & groupDefs = pathDefs[entry.first];
+				for(size_t i = 0; i < entry.second; ++i)
+					groupDefs[i] = {result->getName(i, entry.first), result->getFrameInfo(i, entry.first)};
+			}
+		}
 
 		animationFiles[actualPath] = result;
+		recentAnimationFiles.push_back(result);
+		while (recentAnimationFiles.size() > 48)
+			recentAnimationFiles.pop_front();
 	}
 	
 	return result;
@@ -316,6 +331,9 @@ std::shared_ptr<ISharedImage> RenderHandler::loadImageFromFileUncached(const Ima
 void RenderHandler::storeCachedImage(const ImageLocator & locator, std::shared_ptr<ScalableImageShared> image)
 {
 	imageFiles[locator] = image;
+	recentImages.push_back(std::move(image));
+	while (recentImages.size() > 128)
+		recentImages.pop_front();
 }
 
 std::shared_ptr<SDLImageShared> RenderHandler::loadScaledImage(const ImageLocator & locator)

@@ -160,11 +160,9 @@ uint32_t CSoundHandler::getSoundDurationMilliseconds(const AudioPath & sound)
 	if(!CResourceHandler::get()->existsResource(resourcePath))
 		return 0;
 
-	auto data = CResourceHandler::get()->load(resourcePath)->readAll();
-
 	uint32_t milliseconds = 0;
 
-	Mix_Chunk * chunk = web_audio::call([&](){ return Mix_LoadWAV_RW(SDL_RWFromMem(data.first.get(), data.second), 1); });
+	Mix_Chunk * chunk = getSoundChunkCached(sound);
 
 	int freq = 0;
 	Uint16 fmt = 0;
@@ -178,8 +176,6 @@ uint32_t CSoundHandler::getSoundDurationMilliseconds(const AudioPath & sound)
 		Uint32 samples = (chunk->alen / sampleSizeBytes);
 		Uint32 frames = (samples / channels);
 		milliseconds = ((frames * 1000) / freq);
-
-		web_audio::call([&](){ return Mix_FreeChunk(chunk); });
 	}
 
 	return milliseconds;
@@ -202,7 +198,7 @@ int CSoundHandler::playSoundLooped(const AudioPath & sound)
 
 int CSoundHandler::playSound(const AudioPath & sound)
 {
-	return playSoundImpl(sound, 0, false);
+	return playSoundImpl(sound, 0, true);
 }
 
 int CSoundHandler::playSoundImpl(const AudioPath & sound, int repeats, bool useCache)
@@ -211,7 +207,7 @@ int CSoundHandler::playSoundImpl(const AudioPath & sound, int repeats, bool useC
 		return -1;
 
 	int channel;
-	MixChunkPtr chunkPtr = getSoundChunk(sound);
+	MixChunkPtr chunkPtr;
 	Mix_Chunk * chunk = nullptr;
 	if (!useCache)
 	{
@@ -446,8 +442,12 @@ void CSoundHandler::ambientUpdateChannels(std::map<AudioPath, int> soundsArg)
 		else
 		{
 			int channelVolume = ambientDistToVolume(soundsArg[soundId]);
-			channelVolumes[channel] = channelVolume;
-			updateChannelVolume(channel);
+			auto volumeIt = channelVolumes.find(channel);
+			if(volumeIt == channelVolumes.end() || volumeIt->second != channelVolume)
+			{
+				channelVolumes[channel] = channelVolume;
+				updateChannelVolume(channel);
+			}
 		}
 	}
 	for(const auto & soundId : stoppedSounds)
@@ -464,11 +464,14 @@ void CSoundHandler::ambientUpdateChannels(std::map<AudioPath, int> soundsArg)
 		if(!vstd::contains(ambientChannels, soundId))
 		{
 			int channel = playSoundLooped(soundId);
-			int channelVolume = ambientDistToVolume(distance);
-			channelVolumes[channel] = channelVolume;
+			if(channel != -1)
+			{
+				int channelVolume = ambientDistToVolume(distance);
+				channelVolumes[channel] = channelVolume;
 
-			updateChannelVolume(channel);
-			ambientChannels[soundId] = channel;
+				updateChannelVolume(channel);
+				ambientChannels[soundId] = channel;
+			}
 		}
 	}
 }
