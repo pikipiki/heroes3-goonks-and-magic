@@ -13,10 +13,10 @@ function abilitySection(abilities, language){
 }
 const stats=u=>`<dl class="creature-stats"><div><dt>Attack</dt><dd>${u.attack??0}</dd></div><div><dt>Defense</dt><dd>${u.defense??0}</dd></div><div><dt>Damage</dt><dd>${u.damageMin??0}–${u.damageMax??0}</dd></div><div><dt>Health</dt><dd>${u.health??0}</dd></div><div><dt>Speed</dt><dd>${u.speed??0}</dd></div>${Number.isInteger(u.experienceRank)?'<div><dt>Rank</dt><dd>'+u.experienceRank+'</dd></div>':''}</dl>`;
 const prices=(u,amount=1,metadata=[])=>resourceDescriptors(u.cost||[],metadata).filter(r=>r.value>0).map(r=>{const url=resourceIconURL(r,window.goonkAssetURLs||[]);return `<span class="creature-price">${url?`<img src="${esc(url)}" alt="${esc(r.name)}">`:`<span>${esc(r.name)}</span>`}<span>${compactResource(r.value*amount)}</span></span>`;}).join('');
-export function createCreaturePresentation({root,command,pointer,openRecruit,openBuildings}){
+export function createCreaturePresentation({root,command,pointer,openRecruit,buildingArt,openBuildings}){
  const panel=document.createElement('section');panel.className='creature-presentation';panel.hidden=true;panel.setAttribute('aria-label','Creature overview');root.querySelector('.mobile-play').append(panel);
  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
- const hall=createRecruitmentHall({panel,command,prices,stats,openBuildings});
+ const hall=createRecruitmentHall({panel,command,prices,stats,buildingArt,openBuildings});
  const choices=root.querySelector('.recruit-choices'),amount=root.querySelector('.mobile-recruit-amount');let signature='',state={},canvases=[];
  panel.addEventListener('click',event=>{const b=event.target.closest('button');if(!b||b.disabled)return;
   if(b.hasAttribute('data-recruit-all'))root.dispatchEvent(new CustomEvent('goonk-recruit-all'));

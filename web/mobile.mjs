@@ -120,7 +120,7 @@ function mount(){
   renderBattlePanel();controls();
  }});
  const asset=icon=>{if(!icon)return '';const entries=window.goonkAssetURLs||[];const key=icon.toLowerCase(),match=entries.find(e=>e.path.toLowerCase().endsWith('/sprites2x/'+key))||entries.find(e=>e.path.toLowerCase().endsWith('/sprites/'+key));return match?.url||'';};
- const creatureView=createCreaturePresentation({root,command,pointer,openRecruit,openBuildings:(id,name,unitId)=>townBuildings.open({id,name,unitId})});
+ const creatureView=createCreaturePresentation({root,command,pointer,openRecruit,buildingArt:(state,building)=>townBuildings.artURL(state,building),openBuildings:(id,name,unitId)=>townBuildings.open({id,name,unitId})});
  const spellbook=createMobileSpellbook({root,command});
  const mageGuild=createMageGuild({root,command,pointer,asset,resetView:()=>{zoom=1;focus=null;resetGestures();}});
  const campaignSetup=createCampaignSetup({root,command});

@@ -45,27 +45,31 @@ function buildingCards(buildings) {
   });
 }
 
+const routePriority = building => building.allowed ? 0 : building.state === 6 || building.state === 5 ? 1 : 2;
+function routeBuildings(state, target) {
+  if (!target || target.built) return [];
+  const missing = new Set(target.missingPrerequisites || []);
+  return (state.buildings || []).filter(building => missing.has(building.id) && !building.built && !isGrail(building))
+    .sort((a, b) => routePriority(a) - routePriority(b) ||
+      (a.missingPrerequisites?.length || 0) - (b.missingPrerequisites?.length || 0)).concat(target);
+}
+function prerequisites(state, building) {
+  if (!building || ![8, 9].includes(building.state)) return [];
+  return routeBuildings(state, building).filter(item => item.id !== building.id);
+}
+export function nextBuildingPrerequisite(state, building) {
+  return prerequisites(state, building)[0];
+}
+
 export function createTownBuildingMenu({body, getState, asset, backButton, canOpen, openSheet, closeSheet, command, notify}) {
   const images = new Map(), urls = new Map(), townProjects = new Map();
   let tab = 'unbuilt', filter = '', selected = null, lockedOpen = false;
   let signature, listScroll = 0, pending, preloadedFaction, unlockRoute = null, project = null, construction, constructionTimer;
-  const routePriority = building => building.allowed ? 0 : building.state === 6 || building.state === 5 ? 1 : 2;
-  function routeBuildings(state, target) {
-    if (!target || target.built) return [];
-    const missing = new Set(target.missingPrerequisites || []);
-    return (state.buildings || []).filter(building => missing.has(building.id) && !building.built && !isGrail(building))
-      .sort((a, b) => routePriority(a) - routePriority(b) ||
-        (a.missingPrerequisites?.length || 0) - (b.missingPrerequisites?.length || 0)).concat(target);
-  }
   function rememberProject(state, value) {
     project = value;
     if (unlockRoute || !Number.isInteger(state.armyTownId)) return;
     if (value) townProjects.set(state.armyTownId, value);
     else townProjects.delete(state.armyTownId);
-  }
-  function prerequisites(state, building) {
-    if (!building || ![8, 9].includes(building.state)) return [];
-    return routeBuildings(state, building).filter(item => item.id !== building.id);
   }
   function projectHeader(state, building) {
     const current = project || (prerequisites(state, building).length ?
@@ -174,7 +178,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const descriptions = [...new Set((building.variants || [building]).map(description).filter(Boolean))];
     const effects = descriptions.length > 1 ? `<h4>Effets selon la variante</h4><ul>${descriptions.map(text => `<li>${escape(text)}</li>`).join('')}</ul>` :
       (descriptions.length ? `<p>${escape(descriptions[0])}</p>` : '');
-    const prerequisite = prerequisites(state, building)[0];
+    const prerequisite = nextBuildingPrerequisite(state, building);
     const blocker = prerequisite ? `<div class="building-prerequisite"><strong>Construis d’abord</strong>
       <span>${escape(displayName(prerequisite))}</span></div>
       <button type="button" class="primary" data-building-prerequisite="${prerequisite.id}">
@@ -343,7 +347,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     target?.focus({preventScroll:true});
     return true;
   }
-  return {warm, open, update, back, cancel(resetProjects = false) {
+  return {warm, open, update, back, artURL, cancel(resetProjects = false) {
     pending = null;
     clearConstruction();
     const route = unlockRoute;
