@@ -106,6 +106,9 @@ void TurnTimerHandler::update(int waitTimeMs)
 
 	for(PlayerColor player(0); player < PlayerColor::PLAYER_LIMIT; ++player)
 	{
+		if(!gameHandler.gameState().players.contains(player))
+			continue;
+
 		if(gameHandler.gameState().isPlayerMakingTurn(player))
 			onPlayerMakingTurn(player, waitTimeMs);
 		
