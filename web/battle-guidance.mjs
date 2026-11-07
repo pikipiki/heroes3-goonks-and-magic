@@ -80,10 +80,10 @@ export function paintMeleeTargets(ctx,targets,layout){
   ctx.translate(x,y);
   ctx.beginPath();
   ctx.arc(0,0,s+3,0,Math.PI*2);
-  ctx.fillStyle='rgba(25,17,10,0.85)';
+  ctx.fillStyle='rgba(35,10,10,0.88)';
   ctx.fill();
-  ctx.strokeStyle='#d4af37';
-  ctx.lineWidth=1.5;
+  ctx.strokeStyle='#e53935';
+  ctx.lineWidth=2;
   ctx.stroke();
   for(const angle of [-Math.PI/4,Math.PI/4]){
    ctx.save();

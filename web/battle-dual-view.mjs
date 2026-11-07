@@ -63,7 +63,7 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
  let lastDetail=null;
  function paint(original,detail,selected,view){if(!sync())return;const text=view?.label||'Vue rapprochée · Choisissez une case ou une cible';if(detailDescription.textContent!==text)detailDescription.textContent=text;const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;const pixels=surfaceSize.fit(canvas,w,h,Math.min(devicePixelRatio||1,2));ctx.setTransform(pixels.x,0,0,pixels.y,0,0);ctx.clearRect(0,0,w,h);currentLayout=fitNativeBattle(w,h,null,'whole');const l=currentLayout;ctx.drawImage(original,0,0,original.width,original.height*555/600,l.dx,l.dy,l.w*l.scale,l.h*l.scale);
   const state=getState(),guidance=battleGuidance(state);paintBattleFloor(ctx,state,l);paintShotTargets(ctx,guidance.shotTargets,l);paintMeleeTargets(ctx,guidance.meleeTargets,l);paintActiveCreature(ctx,guidance,l);paintBattleAction(ctx,view,l);paintSpellTargets(ctx,[...new Set([...guidance.spellTargets,...(guidance.beneficialTargets||[])])],l);
-  if(selected){ctx.strokeStyle='#fff0ae';ctx.lineWidth=2;ctx.beginPath();ctx.arc(l.dx+selected.x*l.scale,l.dy+selected.y*l.scale,10,0,Math.PI*2);ctx.stroke();}
+  if(selected){const isMeleeTarget=(guidance.meleeTargets||[]).some(u=>Math.hypot(u.x-selected.x,u.y-selected.y)<16);ctx.strokeStyle=isMeleeTarget?'#e53935':'#fff0ae';ctx.lineWidth=2;ctx.beginPath();ctx.arc(l.dx+selected.x*l.scale,l.dy+selected.y*l.scale,10,0,Math.PI*2);ctx.stroke();}
   if(detail){lastDetail=detail;ctx.save();ctx.strokeStyle='#fff0ae';ctx.lineWidth=1.5;ctx.setLineDash([4,3]);ctx.strokeRect(l.dx+detail.x*l.scale,l.dy+detail.y*l.scale,detail.w*l.scale,detail.h*l.scale);ctx.restore();}
  }
  return {sync,paint,get active(){return active;}};

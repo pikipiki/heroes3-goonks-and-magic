@@ -3,3 +3,12 @@ test('Native combat preserves the framebuffer aspect, enlarges portrait sprites 
 test('Mobile battle defaults preserve audio and unrelated settings and keep desktop settings intact',()=>{let file=JSON.stringify({general:{music:33,sound:71},video:{fullscreen:true},battle:{speedFactor:2.5,stackRange:true}}),writes=0;const FS={readFile:()=>file,writeFile:(_,data)=>{file=data;writes++;},analyzePath:()=>({exists:true})};configureMobileBattle(FS,false);assert.equal(writes,0);configureMobileBattle(FS,true);const v=JSON.parse(file);assert.deepEqual(v.general,{music:33,sound:71});assert.equal(v.video.fullscreen,true);assert.equal(v.video.upscalingFilter,'none');assert.equal(v.video.useHdTextures,false);assert.equal(v.video.resolution.scaling,100);assert.equal(v.battle.speedFactor,2.5);assert.equal(v.battle.cellBorders,false);assert.equal(v.battle.stickyHeroInfoWindows,false);assert.equal(v.battle.queueSmallSlots,8);assert.equal(v.battle.showQueue,false);});
 test('Opening without an active stack centers a friendly creature, not the empty field',async()=>{const {battleFocus}=await import('../web/battle-scene.mjs'),unit={id:4,stackId:7,x:102,y:364,enemy:false},state={battleUnits:[{x:718,y:112,enemy:true},unit],activeUnit:{id:4}};assert.equal(battleFocus(state,null,{x:400,y:277}),unit);assert.deepEqual(battleFocus(state,{x:700,y:300}),{x:700,y:300});});
 test('The transparent grid follows native hex centers and never paints opaque tiles',async()=>{const {paintBattleGrid,BATTLE_HEX_VERTICES}=await import('../web/battle-scene.mjs'),paths=[];let strokes=0;const ctx={save(){},restore(){},beginPath(){},closePath(){},moveTo(x,y){paths.push([x,y]);},lineTo(x,y){paths.push([x,y]);},stroke(){strokes++;}};paintBattleGrid(ctx,[{x:102,y:112}],{x:0,y:0,dx:0,dy:0,scale:1});assert.deepEqual(paths,BATTLE_HEX_VERTICES.map(([x,y])=>[x+102,y+112]));assert.equal(strokes,2);});
+test('Mobile landscape battle controls move menu and actions to the right and hide the inner panel',async()=>{
+ const fs=await import('node:fs');
+ const css=fs.readFileSync('web/battle-controls.css','utf8');
+ assert.match(css,/html\.goonk-mobile #mobile-app\[data-mode=battle\]/);
+ assert.match(css,/grid-column:\s*1\s*!important;\s*grid-row:\s*1\s*\/\s*-1\s*!important/);
+ assert.match(css,/\.battle-panel\{\s*display:\s*none\s*!important/);
+ assert.match(css,/data-ui=battle-confirm-move/);
+ assert.match(css,/data-ui=battle-confirm-spell/);
+});

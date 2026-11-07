@@ -72,12 +72,13 @@ test('Beneficial targets highlight allied troops when active unit can heal or ca
  assert.deepEqual(battleGuidance(healerCombat).beneficialTargets,[woundedAlly]);
 });
 
-test('paintMeleeTargets renders crossed sword icons on reachable enemy positions without errors',()=>{
- let arcs=0,rects=0;
- const ctx={save(){},restore(){},beginPath(){},closePath(){},moveTo(){},lineTo(){},fill(){},stroke(){},rect(){rects++;},arc(){arcs++;},translate(){},rotate(){},fillRect(){},clip(){}};
+test('paintMeleeTargets renders crossed sword icons on reachable enemy positions with a red circle',()=>{
+ let arcs=0,rects=0,strokeStyles=[];
+ const ctx={save(){},restore(){},beginPath(){},closePath(){},moveTo(){},lineTo(){},fill(){},stroke(){strokeStyles.push(ctx.strokeStyle);},rect(){rects++;},arc(){arcs++;},translate(){},rotate(){},fillRect(){},clip(){}};
  const layout={x:0,y:0,w:800,h:555,dx:0,dy:0,scale:1};
  const enemyTarget={stackId:3,enemy:true,x:400,y:200};
  paintMeleeTargets(ctx,[enemyTarget],layout);
  assert(arcs>0,'Must draw circular badge and pommels');
  assert(rects>0,'Must clip to battlefield and draw crossguards');
+ assert(strokeStyles.includes('#e53935'),'Badge circle must be red (#e53935)');
 });
