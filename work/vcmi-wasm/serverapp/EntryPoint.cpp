@@ -188,6 +188,9 @@ int main(int argc, const char * argv[])
 			}
 			server.start(opts.count("hosted-map") ? opts["hosted-map"].as<std::string>() : "", opts["hosted-seats"].as<std::string>(), factions);
 			server.run();
+			// The supervisor retires a match only after a confirmed game outcome.
+			if(server.matchFinished())
+				exitCode = 42;
 		}
 		catch(const std::exception & error)
 		{

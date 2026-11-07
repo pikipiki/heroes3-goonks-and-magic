@@ -54,6 +54,14 @@ public:
 			throw std::runtime_error("Invalid hosted gateway key");
 	}
 
+	bool matchFinished() const
+	{
+		const auto & players = gh->gameState().players;
+		return !players.empty() && std::none_of(players.begin(), players.end(), [](const auto & entry) {
+			return entry.second.status == EPlayerStatus::INGAME;
+		});
+	}
+
 	static std::set<PlayerColor> parseSeats(const std::string & colors)
 	{
 		std::set<PlayerColor> seats;
@@ -225,6 +233,9 @@ public:
 		if(completedEncounter && gh->gameState().currentBattles.empty() && gh->queries->allQueries().empty()
 			&& gh->turnOrder->isPlayerMakingTurn(*completedEncounter) && writeCheckpoint(*completedEncounter))
 			completedEncounter.reset();
+
+		if(matchFinished() && getState() == EServerState::GAMEPLAY)
+			setState(EServerState::SHUTDOWN);
 
 		CVCMIServer::onTimer();
 	}

@@ -303,15 +303,30 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     if (pending) return;
     const selected = saved;
     occupancy.textContent = selected?.players ? selected.players + (fr ? ' places' : ' seats') : '';
-    if (!selected || selected.endpoint !== poolEndpoint) return;
-    try {
-      const {response} = await hostedRequest(selected.token, {signal: backgroundRequests.signal}, selected.endpoint, '?preview=1');
-      if (!response.ok) return;
-      const {matchId, players, connectedPlayers} = await response.json();
-      if (saved === selected && matchId === selected.matchId && Number.isInteger(players) && Number.isInteger(connectedPlayers)) {
-        occupancy.textContent = fr ? `${connectedPlayers} joueurs connectés sur ${players}` : `${connectedPlayers} of ${players} players connected`;
-      }
-    } catch {}
+    const signal = backgroundRequests.signal;
+    const seats = [selected, ...availableSeats().filter(item => !sameMatch(item, selected))]
+      .filter(item => item && item.endpoint === poolEndpoint);
+    for (const item of seats) {
+      if (signal.aborted || !input.isConnected || field.hidden) return;
+      try {
+        const {response} = await hostedRequest(item.token, {signal}, item.endpoint, '?preview=1');
+        if (signal.aborted || !input.isConnected) return;
+        if (response.status === 401) {
+          forgetSeat(item);
+          if (sameMatch(saved, item) && saved.token === item.token) {
+            saved = availableSeats()[0];
+            occupancy.textContent = saved?.players ? saved.players + (fr ? ' places' : ' seats') : '';
+          }
+          render();
+          continue;
+        }
+        if (!response.ok) continue;
+        const {matchId, players, connectedPlayers} = await response.json();
+        if (sameMatch(saved, item) && matchId === item.matchId && Number.isInteger(players) && Number.isInteger(connectedPlayers)) {
+          occupancy.textContent = fr ? `${connectedPlayers} joueurs connectés sur ${players}` : `${connectedPlayers} of ${players} players connected`;
+        }
+      } catch {}
+    }
   }
   const codeChanged = () => {
     chooser.hidden = start.hidden = true;
