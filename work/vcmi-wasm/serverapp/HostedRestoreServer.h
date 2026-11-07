@@ -22,6 +22,8 @@ class HostedRestoreServer final : public TurnCheckpointServer
 	std::map<NetworkConnectionPtr, Clock::time_point> pending;
 	std::map<NetworkConnectionPtr, PlayerColor> authorized;
 	bool ready = false;
+	std::set<PlayerColor> humanSeats;
+	static constexpr auto aiConnection = static_cast<GameConnectionID>(9);
 
 	struct Encounter
 	{
@@ -58,7 +60,7 @@ public:
 	{
 		const auto & players = gh->gameState().players;
 		return !players.empty() && std::none_of(players.begin(), players.end(), [](const auto & entry) {
-			return entry.second.status == EPlayerStatus::INGAME;
+			return entry.second.isHuman() && entry.second.status == EPlayerStatus::INGAME;
 		});
 	}
 
@@ -70,8 +72,8 @@ public:
 			if(color < '0' || color > '7' || !seats.emplace(color - '0').second)
 				throw std::runtime_error("Invalid hosted seat roster");
 		}
-		if(seats.size() < 2)
-			throw std::runtime_error("Hosted matches require at least two seats");
+		if(!seats.contains(PlayerColor(0)))
+			throw std::runtime_error("Hosted matches require a red host seat");
 		return seats;
 	}
 
@@ -85,35 +87,56 @@ public:
 		});
 	}
 
+	static std::set<PlayerColor> mapSeats(const CMapInfo & map)
+	{
+		std::set<PlayerColor> result;
+		if(map.mapHeader && !map.mapHeader->battleOnly)
+			for(size_t index = 0; index < map.mapHeader->players.size(); ++index)
+			{
+				const auto & player = map.mapHeader->players[index];
+				if(player.canHumanPlay || player.canComputerPlay)
+					result.emplace(index);
+			}
+		return result;
+	}
+
 	void start(const std::string & mapName, const std::string & colors, const JsonNode & factions, double turnMinutes)
 	{
 		if(!(turnMinutes >= 0 && turnMinutes <= 10) || (mapName.empty() && turnMinutes != 0))
 			throw std::runtime_error("Invalid hosted turn timer");
-		const auto seats = parseSeats(colors);
+		humanSeats = parseSeats(colors);
 		if(mapName.empty())
 			loadTurnCheckpoint();
 		else
 		{
 			auto map = std::make_shared<CMapInfo>();
 			map->mapInit(mapName);
-			if(!supportsMap(*map, seats))
-				throw std::runtime_error("The hosted map must have exactly the configured human seats");
+			const auto slots = mapSeats(*map);
+			if(slots.size() < 2 || !std::includes(slots.begin(), slots.end(), humanSeats.begin(), humanSeats.end()))
+				throw std::runtime_error("Invalid hosted map roster");
+			for(const auto color : slots)
+			{
+				const auto & slot = map->mapHeader->players.at(color.getNum());
+				if(humanSeats.contains(color) ? !slot.canHumanPlay : !slot.canComputerPlay)
+					throw std::runtime_error("Player type is unavailable for this color");
+			}
 			si->mode = EStartMode::NEW_GAME;
 			si->difficulty = 1;
-			for(const auto color : seats)
+			updateStartInfoOnMapChange(map);
+			for(const auto color : humanSeats)
 			{
 				const auto id = vstd::next(PlayerConnectionID::FIRST_HUMAN, color.getNum());
 				playerNames.emplace(id, ClientPlayer{connectionFor(color), color.toString()});
+				setPlayerConnectedId(si->playerInfos.at(color), id);
 			}
-			updateStartInfoOnMapChange(map);
 			si->turnTimerInfo = TurnTimerInfo{};
 			si->turnTimerInfo.turnTimer = static_cast<int>(turnMinutes * 60000);
 			if(!factions.isNull())
 			{
-				if(factions.Vector().size() != seats.size())
+				if(factions.Vector().size() != slots.size())
 					throw std::runtime_error("Hosted factions do not match the seat roster");
 				size_t index = 0;
-				for(const auto color : seats)
+				for(const auto color : slots)
 				{
 					const auto & chosen = factions.Vector().at(index++);
 					if(chosen.isNull())
@@ -132,19 +155,29 @@ public:
 		if(gh)
 			gh->gs->getStartInfo()->extraOptionsInfo.cheatsAllowed = false;
 
-		if(si->playerInfos.size() != seats.size()
-			|| si->simturnsInfo.requiredTurns || si->simturnsInfo.optionalTurns
+		if(si->simturnsInfo.requiredTurns || si->simturnsInfo.optionalTurns
 			|| mi->mapHeader->battleOnly || (gh && !gh->gameState().currentBattles.empty()))
 			throw std::runtime_error("Hosted matches require a sequential multiplayer adventure");
 
 		playerNames.clear();
+		hostClientId = GameConnectionID::INVALID;
 		for(const auto & [color, player] : si->playerInfos)
 		{
-			if(!seats.contains(color) || player.connectedPlayerIDs.size() != 1 || !player.isControlledByHuman())
+			if(player.isControlledByHuman() != humanSeats.contains(color))
 				throw std::runtime_error("Hosted roster and human map slots do not match");
+			if(player.isControlledByAI())
+			{
+				hostClientId = aiConnection;
+				continue;
+			}
+			if(player.connectedPlayerIDs.size() != 1)
+				throw std::runtime_error("Hosted match found a shared player assignment");
 			if(!playerNames.emplace(*player.connectedPlayerIDs.begin(), ClientPlayer{connectionFor(color), player.name}).second)
 				throw std::runtime_error("Hosted match found a shared player assignment");
 		}
+
+		if(playerNames.size() != humanSeats.size())
+			throw std::runtime_error("Hosted roster contains an unknown color");
 
 		if(!mapName.empty())
 		{
@@ -154,7 +187,7 @@ public:
 			ready = true;
 		}
 		if(mapName.empty())
-			restoreEncounter(seats);
+			restoreEncounter(humanSeats);
 		startGameImmediately();
 		ready = true;
 		prepare(false, false);
@@ -193,8 +226,12 @@ public:
 	bool deferAttackWhenAbsent(const PlayerColor & attacker, const PlayerColor & defender,
 		const ObjectInstanceID & hero, const int3 & destination) override
 	{
-		if(connected(defender))
+		if(!humanSeats.contains(defender) || connected(defender))
 			return false;
+
+		// An AI can continue its turn without starting a battle an absent human cannot join.
+		if(!humanSeats.contains(attacker))
+			return true;
 
 		InfoWindow message;
 		message.player = attacker;
@@ -258,7 +295,7 @@ public:
 		const bool wasPending = pending.erase(connection) != 0;
 		if(const auto seat = authorized.find(connection); seat != authorized.end())
 		{
-			if(!wasPending)
+			if(!wasPending && seat->second != PlayerColor::NEUTRAL)
 				gh->uiReadyForDialogs.erase(seat->second);
 			authorized.erase(seat);
 		}
@@ -288,8 +325,9 @@ public:
 			for(size_t i = 0; i < gatewayKey.size(); ++i)
 				difference |= std::to_integer<unsigned>(message[i + 1]) ^ static_cast<unsigned char>(gatewayKey[i]);
 
-			const PlayerColor color(std::to_integer<int>(message.front()) - '0');
-			if(difference || !color.isValidPlayer() || !si->playerInfos.contains(color))
+			const bool worker = message.front() == std::byte{'A'};
+			const PlayerColor color = worker ? PlayerColor::NEUTRAL : PlayerColor(std::to_integer<int>(message.front()) - '0');
+			if(difference || (worker ? hostClientId != aiConnection : !humanSeats.contains(color)))
 			{
 				connection->close();
 				return;
@@ -374,10 +412,10 @@ private:
 			logNetwork->info("Replaced previous hosted connection for seat %d", color.getNum());
 		}
 
-		client->connectionID = connectionFor(color);
+		client->connectionID = color == PlayerColor::NEUTRAL ? aiConnection : connectionFor(color);
 		client->setCallback(gh->gameInfo());
 		hello->clientId = client->connectionID;
-		hello->hostClientId = GameConnectionID::INVALID;
+		hello->hostClientId = hostClientId;
 		hello->mode = EStartMode::LOAD_GAME;
 		client->sendPack(*hello);
 

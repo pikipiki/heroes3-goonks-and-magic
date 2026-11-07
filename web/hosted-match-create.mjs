@@ -18,7 +18,10 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
         <span><strong data-create-map-name></strong><small data-create-map-details></small><span data-create-map-label></span></span>
       </button>
       <label data-create-timer-field hidden><span></span><select data-create-timer aria-describedby="hosted-timer-help"></select><small id="hosted-timer-help"></small></label>
-      <div class="hosted-match-settings" data-create-castles></div>
+      <div class="hosted-match-settings" data-create-roster hidden>
+        <strong></strong><small data-create-roster-count aria-live="polite"></small>
+        <div data-create-castles></div>
+      </div>
       <button type="button" class="primary" data-create-match="submit"></button>
     </div>
     <div class="hosted-match-settings" data-create-codes hidden></div><p data-create-status role="status"></p>
@@ -49,7 +52,10 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   const timerField = timer.closest('label');
   const mapName = section.querySelector('[data-create-map-name]');
   const mapDetails = section.querySelector('[data-create-map-details]');
-  const castles = mountHostedCastles(section.querySelector('[data-create-castles]'), fr);
+  const roster = section.querySelector('[data-create-roster]');
+  roster.querySelector('strong').textContent = t('Players and starting factions', 'Joueurs et factions de départ');
+  const rosterCount = roster.querySelector('[data-create-roster-count]');
+  const castles = mountHostedCastles(roster.querySelector('[data-create-castles]'), fr, render);
   const codes = section.querySelector('[data-create-codes]');
   const personalCode = createHostedCodeCopy(fr);
   const status = section.querySelector('[data-create-status]');
@@ -65,8 +71,8 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   const colors = fr ? ['Rouge', 'Bleu', 'Beige', 'Vert', 'Orange', 'Violet', 'Turquoise', 'Rose'] :
     ['Red', 'Blue', 'Tan', 'Green', 'Orange', 'Purple', 'Teal', 'Pink'];
   submit.textContent = t('Create match and get code', 'Créer la partie et obtenir le code');
-  players.previousElementSibling.textContent = t('Number of players', 'Nombre de joueurs');
-  section.querySelector('[data-player-help]').textContent = t('Only maps with this many human seats are shown.', 'La liste affiche les cartes prévues pour ce nombre de joueurs.');
+  players.previousElementSibling.textContent = t('Total players', 'Nombre total de joueurs');
+  section.querySelector('[data-player-help]').textContent = t('Includes humans and computers.', 'Humains et ordinateurs compris.');
   mapName.textContent = t('Choose a map', 'Choisir une carte');
   section.querySelector('[data-create-map-label]').textContent = t('Browse maps ›', 'Parcourir les cartes ›');
   timer.previousElementSibling.textContent = t('Adventure turn timer', 'Chrono du tour sur la carte');
@@ -80,6 +86,13 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
     map.disabled = pending || !scenarios.length;
     submit.disabled = pending || !selected;
     castles.setPending(pending);
+    roster.hidden = !selected;
+    if (selected) {
+      const humans = castles.humanSeats.length;
+      const computers = Number(players.value) - humans;
+      rosterCount.textContent = t(`${humans} human · ${computers} computer`,
+        `${humans} humain${humans > 1 ? 's' : ''} · ${computers} ordinateur${computers > 1 ? 's' : ''}`);
+    }
   }
   const showServerWait = () => {
     status.textContent = t('Waiting for the dedicated server…', 'En attente du serveur dédié…');
@@ -88,8 +101,8 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
     credentials: 'omit', redirect: 'error', ...options,
   }, showServerWait);
   const metadata = item => ({...item, height: item.height ?? item.width,
-    players: Number(players.value), humanSeats: Number(players.value),
-    castleChoices: item.castles?.filter(choices => choices?.length > 1).length});
+    players: Number(players.value), humanSeats: item.seats?.filter(slot => slot.human).length ?? Number(players.value),
+    castleChoices: item.castles?.filter((choices, index) => item.seats?.[index]?.human !== false && choices?.length > 1).length});
   function showPicker() {
     pickerTitle.textContent = t(`Maps for ${players.value} players`, `Cartes pour ${players.value} joueurs`);
     const rows = scenarios.map(item => {
@@ -126,7 +139,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
     render();
     filters.clear();
     try {
-      const result = await request('?players=' + players.value);
+      const result = await request('?players=' + players.value + '&mixed=1');
       if (!result.ok) throw Error('Catalogue unavailable.');
       const catalogue = await result.json();
       if (!Array.isArray(catalogue.scenarios)) throw Error('Invalid catalogue.');
@@ -157,6 +170,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   async function create() {
     if (pending || !selected) return;
     const settings = {players: Number(players.value), scenario: selected.id,
+      ...(selected.seats ? {humanSeats: castles.humanSeats} : {}),
       ...(timerField.hidden ? {} : {turnMinutes: Number(timer.value)}),
       factions: castles.factions};
     const signature = JSON.stringify(settings);
@@ -201,12 +215,13 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
       }), launch, personalCode.element);
       form.hidden = true;
       codes.hidden = false;
-      status.textContent = result.roomCode
+      const humans = settings.humanSeats?.length ?? settings.players;
+      status.textContent = humans === 1 ? t('Your game is ready to launch.', 'Ta partie est prête à être lancée.') : result.roomCode
         ? t('Share this code with your guests and launch the game so they can join.',
           'Partage ce code avec tes invités et lance la partie pour qu’ils puissent rejoindre.')
         : t('Share each invitation code with its player, then launch the game.',
           'Partage son code avec chaque joueur, puis lance la partie.');
-      onCreated(result.matchId, hostToken, scenarioTitle(selected.name), settings.players);
+      onCreated(result.matchId, hostToken, scenarioTitle(selected.name), humans);
       previousRequest = undefined;
     } catch {
       status.textContent = t('Could not create the match. Try again.', 'La création a échoué. Réessaie.');

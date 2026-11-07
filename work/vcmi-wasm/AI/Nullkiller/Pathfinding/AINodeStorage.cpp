@@ -592,14 +592,20 @@ bool AINodeStorage::calculateHeroChain()
 
 	logAi->trace("Caculating hero chain for %d items", data.size());
 
-	vcmi::parallel_for(vcmi::blocked_range<size_t>(0, data.size()), [&](const vcmi::blocked_range<size_t>& r)
+	const auto process = [&](const vcmi::blocked_range<size_t>& r)
 	{
 		HeroChainCalculationTask task(*this, data, chainMask, heroChainTurn);
 
 		int ourThread = tbb::this_task_arena::current_thread_index();
 		task.execute(r);
 		task.flushResult(results.at(ourThread));
-	}, true);
+	};
+	const vcmi::blocked_range<size_t> range(0, data.size());
+#ifdef VCMI_HTML5_BUILD
+	vcmi::parallel_for(range, process, true);
+#else
+	vcmi::parallel_for(range, process);
+#endif
 
 	// FIXME: potentially non-deterministic behavior due to parallel_for
 	for (const auto & result : results)

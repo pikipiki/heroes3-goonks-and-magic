@@ -154,7 +154,8 @@ void CClient::loadGame(std::shared_ptr<CGameState> initializedGameState)
 
 void CClient::endNetwork()
 {
-	GAME->map().endNetwork();
+	if(ENGINE)
+		GAME->map().endNetwork();
 
 	if (CPlayerInterface::battleInt)
 		CPlayerInterface::battleInt->endNetwork();
@@ -286,7 +287,7 @@ void CClient::initPlayerInterfaces()
 		installNewPlayerInterface(std::make_shared<CPlayerInterface>(PlayerColor::SPECTATOR), PlayerColor::SPECTATOR, true);
 	}
 
-	if(GAME->server().getAllClientPlayers(GAME->server().logicConnection->connectionID).count(PlayerColor::NEUTRAL))
+	if(!GAME->server().isHostedAI() && GAME->server().getAllClientPlayers(GAME->server().logicConnection->connectionID).count(PlayerColor::NEUTRAL))
 		installNewBattleInterface(CDynLibHandler::getNewBattleAI(settings["ai"]["combatNeutralAI"].String()), PlayerColor::NEUTRAL);
 
 	logNetwork->trace("Initialized player interfaces %d ms", GAME->server().th->getDiff());
@@ -306,6 +307,9 @@ std::string CClient::aiNameForPlayer(const PlayerSettings & ps, bool battleAI, b
 
 std::string CClient::aiNameForPlayer(bool battleAI, bool alliedToHuman) const
 {
+	if(!battleAI && GAME->server().isHostedAI())
+		return "Nullkiller";
+
 	const int sensibleAILimit = settings["session"]["oneGoodAI"].Bool() ? 1 : PlayerColor::PLAYER_LIMIT_I;
 	std::string goodAdventureAI = alliedToHuman ? settings["ai"]["adventureAlliedAI"].String() : settings["ai"]["adventureEnemyAI"].String();
 	std::string goodBattleAI = settings["ai"]["combatNeutralAI"].String();
@@ -490,7 +494,7 @@ void CClient::startPlayerBattleAction(const BattleID & battleID, PlayerColor col
 
 	auto battleint = battleints.at(color);
 
-	if (!battleint->human)
+	if (!battleint->human && ENGINE)
 	{
 		// we want to avoid locking gamestate and causing UI to freeze while AI is making turn
 		auto unlockInterface = vstd::makeUnlockGuard(ENGINE->interfaceMutex);
@@ -513,7 +517,8 @@ void CClient::reinitScripting()
 void CClient::removeGUI() const
 {
 	// CClient::endGame
-	ENGINE->windows().clear();
+	if(ENGINE)
+		ENGINE->windows().clear();
 	adventureInt.reset();
 	logGlobal->info("Removed GUI.");
 

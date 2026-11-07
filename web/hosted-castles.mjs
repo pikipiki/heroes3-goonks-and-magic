@@ -1,6 +1,6 @@
 import {factionArt, factionArtPaths} from './faction-art.mjs';
 
-export function mountHostedCastles(root, fr) {
+export function mountHostedCastles(root, fr, onRosterChange) {
   const t = (en, french) => fr ? french : en;
   const colors = fr ? ['Rouge', 'Bleu', 'Beige', 'Vert', 'Orange', 'Violet', 'Turquoise', 'Rose'] :
     ['Red', 'Blue', 'Tan', 'Green', 'Orange', 'Purple', 'Teal', 'Pink'];
@@ -45,7 +45,7 @@ export function mountHostedCastles(root, fr) {
     const record = records[seat];
     if (!record?.choices.length || record.card.disabled) return;
     activeSeat = seat;
-    picker.querySelector('h2').textContent = t('Choose castle', 'Choisir le château') + ' · ' + colors[seat];
+    picker.querySelector('h2').textContent = t('Choose castle', 'Choisir le château') + ' · ' + colors[record.color];
     const buttons = [random, ...record.choices].map(faction => {
       const button = document.createElement('button');
       button.type = 'button';
@@ -72,13 +72,30 @@ export function mountHostedCastles(root, fr) {
       if (picker.open) picker.close();
       activeSeat = undefined;
       records = (scenario?.castles ?? []).map((choices, seat) => {
+        const slot = scenario.seats?.[seat];
+        const colorId = slot?.color ?? seat;
         const container = document.createElement('section');
+        const header = document.createElement('div');
+        header.className = 'hosted-castle-heading';
         const heading = document.createElement('h3');
         const color = document.createElement('i');
         color.className = 'lobby-player-colour';
-        color.dataset.playerColour = seat;
+        color.dataset.playerColour = colorId;
         color.setAttribute('aria-hidden', 'true');
-        heading.append(color, colors[seat]);
+        heading.append(color, colors[colorId]);
+        header.append(heading);
+        let role;
+        if (slot?.human && slot.computer && colorId !== 0) {
+          role = document.createElement('select');
+          role.setAttribute('aria-label', t('Player type', 'Type de joueur') + ' · ' + colors[colorId]);
+          role.replaceChildren(new Option(t('Human', 'Humain'), 'human'), new Option(t('Computer', 'Ordinateur'), 'computer'));
+          role.addEventListener('change', onRosterChange);
+          header.append(role);
+        } else {
+          const label = document.createElement('small');
+          label.textContent = colorId === 0 ? t('Host', 'Hôte') : slot?.human === false ? t('Computer', 'Ordinateur') : t('Human', 'Humain');
+          header.append(label);
+        }
         const card = document.createElement(choices?.length ? 'button' : 'div');
         card.className = 'lobby-choice-card';
         if (choices?.length) {
@@ -88,8 +105,9 @@ export function mountHostedCastles(root, fr) {
           card.setAttribute('aria-haspopup', 'dialog');
           card.setAttribute('aria-controls', picker.id);
         }
-        container.append(heading, card);
-        const record = {container, card, choices: choices ?? [], fixed: scenario.fixedCastles?.[seat], value: null};
+        container.append(header, card);
+        const record = {container, card, color: colorId, role, canBeHuman: slot?.human !== false,
+          choices: choices ?? [], fixed: scenario.fixedCastles?.[seat], value: null};
         for (const faction of record.choices) warm(faction);
         renderCard(record);
         return record;
@@ -97,7 +115,13 @@ export function mountHostedCastles(root, fr) {
       list.replaceChildren(...records.map(record => record.container));
     },
     setPending(pending) {
-      for (const record of records) if (record.choices.length) record.card.disabled = pending;
+      for (const record of records) {
+        if (record.role) record.role.disabled = pending;
+        if (record.choices.length) record.card.disabled = pending;
+      }
+    },
+    get humanSeats() {
+      return records.filter(record => record.canBeHuman && record.role?.value !== 'computer').map(record => record.color);
     },
     get factions() { return records.map(record => record.value); },
     activate(button) {

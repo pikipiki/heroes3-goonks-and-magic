@@ -186,6 +186,8 @@ void ApplyClientNetPackVisitor::visitSetMovePoints(SetMovePoints & pack)
 
 void ApplyClientNetPackVisitor::visitSetResearchedSpells(SetResearchedSpells & pack)
 {
+	if(!ENGINE)
+		return;
 	for(const auto & win : ENGINE->windows().findWindows<CMageGuildScreen>())
 		win->updateSpells(pack.tid);
 }
@@ -382,21 +384,27 @@ void ApplyClientNetPackVisitor::visitGiveBonus(GiveBonus & pack)
 void ApplyFirstClientNetPackVisitor::visitChangeObjPos(ChangeObjPos & pack)
 {
 	const CGObjectInstance *obj = gs.getObjInstance(pack.objid);
-	GAME->map().onObjectFadeOut(obj, pack.initiator);
-	GAME->map().waitForOngoingAnimations();
+	if(ENGINE)
+		GAME->map().onObjectFadeOut(obj, pack.initiator);
+	if(ENGINE)
+		GAME->map().waitForOngoingAnimations();
 }
 
 void ApplyClientNetPackVisitor::visitChangeObjPos(ChangeObjPos & pack)
 {
 	const CGObjectInstance *obj = gs.getObjInstance(pack.objid);
-	GAME->map().onObjectFadeIn(obj, pack.initiator);
-	GAME->map().waitForOngoingAnimations();
+	if(ENGINE)
+		GAME->map().onObjectFadeIn(obj, pack.initiator);
+	if(ENGINE)
+		GAME->map().waitForOngoingAnimations();
 	callAllInterfaces(cl, &CGameInterface::invalidatePaths);
 }
 
 void ApplyClientNetPackVisitor::visitPlayerEndsGame(PlayerEndsGame & pack)
 {
 	callAllInterfaces(cl, &IGameEventsReceiver::gameOver, pack.player, pack.victoryLossCheckResult);
+	if(GAME->server().isHostedAI())
+		return;
 
 	bool localHumanWinsGame = vstd::contains(cl.playerint, pack.player) && cl.gameInfo().getPlayerState(pack.player)->human && pack.victoryLossCheckResult.victory();
 	bool lastHumanEndsGame = GAME->server().howManyPlayerInterfaces() == 1 && vstd::contains(cl.playerint, pack.player) && cl.gameInfo().getPlayerState(pack.player)->human && !settings["session"]["spectate"].Bool();
@@ -453,11 +461,14 @@ void ApplyFirstClientNetPackVisitor::visitRemoveObject(RemoveObject & pack)
 	const CGObjectInstance *o = cl.gameInfo().getObj(pack.objectID);
 	const auto * h = dynamic_cast<const CGHeroInstance*>(o);
 
-	GAME->map().onObjectFadeOut(o, pack.initiator);
+	if(ENGINE)
+		GAME->map().onObjectFadeOut(o, pack.initiator);
 	if (h && h->inBoat())
 	{
-		GAME->map().waitForOngoingAnimations();
-		GAME->map().onObjectFadeOut(h->getBoat(), pack.initiator);
+		if(ENGINE)
+			GAME->map().waitForOngoingAnimations();
+		if(ENGINE)
+			GAME->map().onObjectFadeOut(h->getBoat(), pack.initiator);
 	}
 
 	//notify interfaces about removal
@@ -473,7 +484,8 @@ void ApplyFirstClientNetPackVisitor::visitRemoveObject(RemoveObject & pack)
 		}
 	}
 
-	GAME->map().waitForOngoingAnimations();
+	if(ENGINE)
+		GAME->map().waitForOngoingAnimations();
 }
 
 void ApplyClientNetPackVisitor::visitRemoveObject(RemoveObject & pack)
@@ -491,14 +503,17 @@ void ApplyFirstClientNetPackVisitor::visitTryMoveHero(TryMoveHero & pack)
 	switch (pack.result)
 	{
 		case TryMoveHero::EMBARK:
-			GAME->map().onBeforeHeroEmbark(h, pack.start, pack.end);
+			if(ENGINE)
+				GAME->map().onBeforeHeroEmbark(h, pack.start, pack.end);
 			GAME->map().waitForOngoingAnimations(); // required - hero must play fade-out animation on his pre-embark position
 			break;
 		case TryMoveHero::TELEPORTATION:
-			GAME->map().onBeforeHeroTeleported(h, pack.start, pack.end);
+			if(ENGINE)
+				GAME->map().onBeforeHeroTeleported(h, pack.start, pack.end);
 			break;
 		case TryMoveHero::DISEMBARK:
-			GAME->map().onBeforeHeroDisembark(h, pack.start, pack.end);
+			if(ENGINE)
+				GAME->map().onBeforeHeroDisembark(h, pack.start, pack.end);
 			break;
 	}
 }
@@ -511,16 +526,20 @@ void ApplyClientNetPackVisitor::visitTryMoveHero(TryMoveHero & pack)
 	switch(pack.result)
 	{
 		case TryMoveHero::SUCCESS:
-			GAME->map().onHeroMoved(h, pack.start, pack.end);
+			if(ENGINE)
+				GAME->map().onHeroMoved(h, pack.start, pack.end);
 			break;
 		case TryMoveHero::EMBARK:
-			GAME->map().onAfterHeroEmbark(h, pack.start, pack.end);
+			if(ENGINE)
+				GAME->map().onAfterHeroEmbark(h, pack.start, pack.end);
 			break;
 		case TryMoveHero::TELEPORTATION:
-			GAME->map().onAfterHeroTeleported(h, pack.start, pack.end);
+			if(ENGINE)
+				GAME->map().onAfterHeroTeleported(h, pack.start, pack.end);
 			break;
 		case TryMoveHero::DISEMBARK:
-			GAME->map().onAfterHeroDisembark(h, pack.start, pack.end);
+			if(ENGINE)
+				GAME->map().onAfterHeroDisembark(h, pack.start, pack.end);
 			break;
 	}
 
@@ -544,7 +563,8 @@ void ApplyClientNetPackVisitor::visitTryMoveHero(TryMoveHero & pack)
 		}
 	}
 
-	GAME->map().waitForOngoingAnimations();
+	if(ENGINE)
+		GAME->map().waitForOngoingAnimations();
 }
 
 void ApplyClientNetPackVisitor::visitNewStructures(NewStructures & pack)
@@ -556,8 +576,10 @@ void ApplyClientNetPackVisitor::visitNewStructures(NewStructures & pack)
 	}
 
 	// invalidate section of map view with our object and force an update
-	GAME->map().onObjectInstantRemove(town, town->getOwner());
-	GAME->map().onObjectInstantAdd(town, town->getOwner());
+	if(ENGINE)
+		GAME->map().onObjectInstantRemove(town, town->getOwner());
+	if(ENGINE)
+		GAME->map().onObjectInstantAdd(town, town->getOwner());
 }
 
 void ApplyClientNetPackVisitor::visitRazeStructures(RazeStructures & pack)
@@ -569,8 +591,10 @@ void ApplyClientNetPackVisitor::visitRazeStructures(RazeStructures & pack)
 	}
 
 	// invalidate section of map view with our object and force an update
-	GAME->map().onObjectInstantRemove(town, town->getOwner());
-	GAME->map().onObjectInstantAdd(town, town->getOwner());
+	if(ENGINE)
+		GAME->map().onObjectInstantRemove(town, town->getOwner());
+	if(ENGINE)
+		GAME->map().onObjectInstantAdd(town, town->getOwner());
 }
 
 void ApplyClientNetPackVisitor::visitSetAvailableCreatures(SetAvailableCreatures & pack)
@@ -620,13 +644,15 @@ void ApplyClientNetPackVisitor::visitHeroRecruited(HeroRecruited & pack)
 		if(const CGTownInstance *t = gs.getTown(pack.tid))
 			callInterfaceIfPresent(cl, h->getOwner(), &IGameEventsReceiver::heroInGarrisonChange, t);
 	}
-	GAME->map().onObjectInstantAdd(h, h->getOwner());
+	if(ENGINE)
+		GAME->map().onObjectInstantAdd(h, h->getOwner());
 }
 
 void ApplyClientNetPackVisitor::visitGiveHero(GiveHero & pack)
 {
 	const CGHeroInstance *h = gs.getHero(pack.id);
-	GAME->map().onObjectInstantAdd(h, h->getOwner());
+	if(ENGINE)
+		GAME->map().onObjectInstantAdd(h, h->getOwner());
 	callInterfaceIfPresent(cl, h->tempOwner, &IGameEventsReceiver::heroCreated, h);
 }
 
@@ -655,7 +681,8 @@ void ApplyFirstClientNetPackVisitor::visitSetObjectProperty(SetObjectProperty & 
 	if(pack.what == ObjProperty::OWNER)
 	{
 		auto object = gs.getObjInstance(pack.id);
-		GAME->map().onObjectInstantRemove(object, object->getOwner());
+		if(ENGINE)
+			GAME->map().onObjectInstantRemove(object, object->getOwner());
 	}
 }
 
@@ -672,7 +699,8 @@ void ApplyClientNetPackVisitor::visitSetObjectProperty(SetObjectProperty & pack)
 	if(pack.what == ObjProperty::OWNER)
 	{
 		auto object = gs.getObjInstance(pack.id);
-		GAME->map().onObjectInstantAdd(object, object->getOwner());
+		if(ENGINE)
+			GAME->map().onObjectInstantAdd(object, object->getOwner());
 	}
 }
 
@@ -945,7 +973,8 @@ void ApplyClientNetPackVisitor::visitPlayerMessageClient(PlayerMessageClient & p
 {
 	logNetwork->debug("pack.player %s sends a message: %s", pack.player.toString(), pack.text);
 
-	GAME->server().getGameChat().onNewGameMessageReceived(pack.player, pack.text);
+	if(ENGINE)
+		GAME->server().getGameChat().onNewGameMessageReceived(pack.player, pack.text);
 }
 
 void ApplyClientNetPackVisitor::visitAdvmapSpellCast(AdvmapSpellCast & pack)
@@ -1050,7 +1079,8 @@ void ApplyClientNetPackVisitor::visitNewObject(NewObject & pack)
 	callAllInterfaces(cl, &CGameInterface::invalidatePaths);
 
 	const CGObjectInstance * obj = pack.newObject.get();
-	GAME->map().onObjectFadeIn(obj, pack.initiator);
+	if(ENGINE)
+		GAME->map().onObjectFadeIn(obj, pack.initiator);
 
 	for(auto i=cl.playerint.begin(); i!=cl.playerint.end(); i++)
 	{
@@ -1058,7 +1088,8 @@ void ApplyClientNetPackVisitor::visitNewObject(NewObject & pack)
 			i->second->newObject(obj);
 	}
 
-	GAME->map().waitForOngoingAnimations();
+	if(ENGINE)
+		GAME->map().waitForOngoingAnimations();
 }
 
 void ApplyClientNetPackVisitor::visitSetAvailableArtifacts(SetAvailableArtifacts & pack)

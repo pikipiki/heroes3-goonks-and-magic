@@ -37,7 +37,8 @@ static void handleCommandOptions(int argc, const char * argv[], boost::program_o
 	("hosted-seats", boost::program_options::value<std::string>(), "Map colors authorized by the dedicated gateway")
 	("hosted-map", boost::program_options::value<std::string>(), "Start a new dedicated match on the named map")
 	("hosted-scenarios", boost::program_options::value<std::string>(), "List maps compatible with the given dedicated seat colors")
-	("hosted-factions", boost::program_options::value<std::string>(), "Starting castles in authorized seat order, as a JSON array")
+	("hosted-scenarios-size", boost::program_options::value<unsigned>(), "List maps by total human and computer slots")
+	("hosted-factions", boost::program_options::value<std::string>(), "Starting castles in map color order, as a JSON array")
 	("hosted-turn-minutes", boost::program_options::value<double>()->default_value(0), "Minutes per dedicated adventure turn")
 	("hosted-restore", "Restore a dedicated match and accept authenticated loopback connections")
 	("verify-turn-checkpoint", "Load and validate the hosted save without opening a network listener")
@@ -99,11 +100,12 @@ int main(int argc, const char * argv[])
 	LIBRARY->initializeLibrary();
 
 	int exitCode = 0;
-	if(opts.count("hosted-scenarios"))
+	if(opts.count("hosted-scenarios") || opts.count("hosted-scenarios-size"))
 	{
 		try
 		{
-			const auto seats = HostedRestoreServer::parseSeats(opts["hosted-scenarios"].as<std::string>());
+			const auto size = opts.count("hosted-scenarios-size") ? opts["hosted-scenarios-size"].as<unsigned>() : 0;
+			const auto seats = size ? std::set<PlayerColor>{} : HostedRestoreServer::parseSeats(opts["hosted-scenarios"].as<std::string>());
 			auto files = CResourceHandler::get()->getFilteredFiles([](const ResourcePath & path)
 			{
 				return path.getType() == EResType::MAP && path.getName().starts_with("MAPS/") && !isGoonkShowcaseMap(path);
@@ -115,7 +117,9 @@ int main(int argc, const char * argv[])
 				{
 					CMapInfo map;
 					map.mapInit(file.getOriginalName());
-					if(!HostedRestoreServer::supportsMap(map, seats))
+					const auto slots = HostedRestoreServer::mapSeats(map);
+					if(size ? (slots.size() != size || !map.mapHeader->players.at(0).canHumanPlay)
+						: !HostedRestoreServer::supportsMap(map, seats))
 						continue;
 					JsonNode row;
 					row["id"].String() = file.getOriginalName();
@@ -123,10 +127,18 @@ int main(int argc, const char * argv[])
 					row["name"].String() = name.empty() ? file.getOriginalName() : name;
 					row["width"].Integer() = map.mapHeader->width;
 					row["height"].Integer() = map.mapHeader->height;
-					for(const auto color : seats)
+					for(const auto color : slots)
 					{
 						JsonNode choices;
 						const auto & player = map.mapHeader->players.at(color.getNum());
+						if(size)
+						{
+							JsonNode slot;
+							slot["color"].Integer() = color.getNum();
+							slot["human"].Bool() = player.canHumanPlay;
+							slot["computer"].Bool() = player.canComputerPlay;
+							row["seats"].Vector().push_back(std::move(slot));
+						}
 						if(allowsCastleChoice(player))
 							for(const auto id : player.allowedFactions)
 							{

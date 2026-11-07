@@ -181,6 +181,7 @@ int main(int argc, char * argv[])
 		("spectate-skip-battle-result", "skip battle result window")
 		("onlyAI", "allow one to run without human player, all players will be default AI")
 		("headless", "runs without GUI, implies --onlyAI")
+		("hosted-ai-port", po::value<uint16_t>(), "Run the dedicated computer players over loopback")
 		("ai", po::value<std::vector<std::string>>(), "AI to be used for the player, can be specified several times for the consecutive players")
 		("oneGoodAI", "puts one default AI and the rest will be EmptyAI")
 		("autoSkip", "automatically skip turns in GUI")
@@ -282,7 +283,7 @@ int main(int argc, char * argv[])
 
 	setSettingBool("session/onlyai", "onlyAI");
 	setSettingBool("session/disableVideo", "disable-video");
-	if(vm.count("headless"))
+	if(vm.count("headless") || vm.count("hosted-ai-port"))
 	{
 		session["headless"].Bool() = true;
 		session["onlyai"].Bool() = true;
@@ -379,7 +380,12 @@ int main(int argc, char * argv[])
 	session["oneGoodAI"].Bool() = vm.count("oneGoodAI");
 	session["aiSolo"].Bool() = false;
 	
-	if(vm.count("testmap"))
+	if(vm.count("hosted-ai-port"))
+	{
+		const auto * key = std::getenv("GOONK_HOSTED_GATEWAY_KEY");
+		GAME->server().connectHostedAI(vm["hosted-ai-port"].as<uint16_t>(), key ? key : "");
+	}
+	else if(vm.count("testmap"))
 	{
 		session["testmap"].String() = vm["testmap"].as<std::string>();
 		session["onlyai"].Bool() = true;

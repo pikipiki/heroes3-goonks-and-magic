@@ -398,7 +398,10 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       const capacity = Number.isInteger(total) ? `${total} ${fr ? 'places' : 'seats'} · ` : '';
       return capacity + (fr ? 'Présence non vérifiée' : 'Presence unverified');
     }
-    return fr ? `${count}/${total} joueurs connectés` : `${count}/${total} players connected`;
+    const computer = summary.computerPlayers;
+    const connected = fr ? `${count}/${total} joueurs connectés` : `${count}/${total} players connected`;
+    if (!computer) return connected;
+    return connected + (fr ? ` · ${computer} ordinateur${computer > 1 ? 's' : ''}` : ` · ${computer} AI`);
   }
   function schedulePresence() {
     clearTimeout(presenceTimer);

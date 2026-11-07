@@ -71,6 +71,8 @@
 #include <SDL_thread.h>
 
 #include <boost/lexical_cast.hpp>
+#include <cstdlib>
+#include <iostream>
 
 CServerHandler::~CServerHandler()
 {
@@ -83,8 +85,13 @@ CServerHandler::~CServerHandler()
 	serverRunner.reset();
 	if (threadNetwork.joinable())
 	{
-		auto unlockInterface = vstd::makeUnlockGuard(ENGINE->interfaceMutex);
-		threadNetwork.join();
+		if(ENGINE)
+		{
+			auto unlockInterface = vstd::makeUnlockGuard(ENGINE->interfaceMutex);
+			threadNetwork.join();
+		}
+		else
+			threadNetwork.join();
 	}
 }
 
@@ -96,8 +103,13 @@ void CServerHandler::endNetwork()
 
 	if (threadNetwork.joinable())
 	{
-		auto unlockInterface = vstd::makeUnlockGuard(ENGINE->interfaceMutex);
-		threadNetwork.join();
+		if(ENGINE)
+		{
+			auto unlockInterface = vstd::makeUnlockGuard(ENGINE->interfaceMutex);
+			threadNetwork.join();
+		}
+		else
+			threadNetwork.join();
 	}
 }
 
@@ -214,6 +226,15 @@ bool CServerHandler::canJoinHostedMatch() const
 		&& !client && !networkConnection && !logicConnection && !serverRunner;
 }
 
+void CServerHandler::connectHostedAI(ui16 port, const std::string & key)
+{
+	if(key.size() != 43)
+		throw std::runtime_error("Invalid dedicated AI gateway key");
+	hostedAIKey = key;
+	resetStateForLobby(EStartMode::LOAD_GAME, ESelectionScreen::unknown, EServerMode::HOSTED_GUEST, {"Computer"});
+	connectToServer("127.0.0.1", port);
+}
+
 void CServerHandler::connectToServer(const std::string & addr, const ui16 port)
 {
 	setState(EClientState::CONNECTING);
@@ -222,11 +243,14 @@ void CServerHandler::connectToServer(const std::string & addr, const ui16 port)
 
 	if (!isServerLocal())
 	{
-		Settings remoteAddress = settings.write["server"]["remoteHostname"];
-		remoteAddress->String() = addr;
+		if(!isHostedAI())
+		{
+			Settings remoteAddress = settings.write["server"]["remoteHostname"];
+			remoteAddress->String() = addr;
 
-		Settings remotePort = settings.write["server"]["remotePort"];
-		remotePort->Integer() = port;
+			Settings remotePort = settings.write["server"]["remotePort"];
+			remotePort->Integer() = port;
+		}
 
 		const auto timeout = serverMode == EServerMode::HOSTED_GUEST ? std::chrono::seconds(20) : std::chrono::seconds(0);
 		networkHandler->connectToRemote(*this, addr, port, timeout);
@@ -248,7 +272,13 @@ void CServerHandler::connectToServer(const std::string & addr, const ui16 port)
 void CServerHandler::onConnectionFailed(const std::string & errorMessage)
 {
 	assert(getState() == EClientState::CONNECTING);
-	std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+	std::scoped_lock interfaceLock(ENGINE ? ENGINE->interfaceMutex : headlessNetworkMutex);
+
+	if(isHostedAI())
+	{
+		logNetwork->error("Dedicated AI could not connect: %s", errorMessage);
+		std::_Exit(EXIT_FAILURE);
+	}
 
 	if (isServerLocal())
 	{
@@ -268,7 +298,7 @@ void CServerHandler::onConnectionFailed(const std::string & errorMessage)
 
 void CServerHandler::onTimer()
 {
-	std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+	std::scoped_lock interfaceLock(ENGINE ? ENGINE->interfaceMutex : headlessNetworkMutex);
 
 	if(getState() == EClientState::CONNECTION_CANCELLED)
 	{
@@ -306,7 +336,7 @@ void CServerHandler::onConnectionEstablished(const NetworkConnectionPtr & netCon
 {
 	assert(getState() == EClientState::CONNECTING);
 
-	std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+	std::scoped_lock interfaceLock(ENGINE ? ENGINE->interfaceMutex : headlessNetworkMutex);
 
 	networkConnection = netConnection;
 
@@ -316,6 +346,14 @@ void CServerHandler::onConnectionEstablished(const NetworkConnectionPtr & netCon
 	{
 		// say hello to lobby to switch connection to proxy mode
 		getGlobalLobby().sendProxyConnectionLogin(netConnection);
+	}
+
+	if(isHostedAI())
+	{
+		std::vector<std::byte> ticket{std::byte{'A'}};
+		for(const unsigned char byte : hostedAIKey)
+			ticket.push_back(static_cast<std::byte>(byte));
+		netConnection->sendPacket(ticket);
 	}
 
 	logicConnection = std::make_shared<GameConnection>(netConnection);
@@ -692,10 +730,13 @@ void CServerHandler::startGameplay(std::shared_ptr<CGameState> gameState)
 		throw std::runtime_error("Invalid mode");
 	}
 
-	ENGINE->discord().setPlayingStatus(si, &gameState->getMap(), howManyPlayerInterfaces());
+	if(ENGINE)
+		ENGINE->discord().setPlayingStatus(si, &gameState->getMap(), howManyPlayerInterfaces());
 
 	// After everything initialized we can accept CPackToClient netpacks
 	setState(EClientState::GAMEPLAY);
+	if(isHostedAI())
+		std::cout << "GOONK_AI_READY" << std::endl;
 }
 
 void CServerHandler::showHighScoresAndEndGameplay(PlayerColor player, bool victory, const StatisticDataSet & statistic)
@@ -967,7 +1008,7 @@ public:
 
 void CServerHandler::onPacketReceived(const std::shared_ptr<INetworkConnection> & connection, const std::vector<std::byte> & message)
 {
-	std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+	std::scoped_lock interfaceLock(ENGINE ? ENGINE->interfaceMutex : headlessNetworkMutex);
 
 	if(connection != networkConnection || getState() == EClientState::DISCONNECTING)
 		return;
@@ -979,7 +1020,7 @@ void CServerHandler::onPacketReceived(const std::shared_ptr<INetworkConnection> 
 
 void CServerHandler::onDisconnected(const std::shared_ptr<INetworkConnection> & connection, const std::string & errorMessage)
 {
-	std::scoped_lock interfaceLock(ENGINE->interfaceMutex);
+	std::scoped_lock interfaceLock(ENGINE ? ENGINE->interfaceMutex : headlessNetworkMutex);
 
 	if (connection != networkConnection)
 	{
@@ -997,6 +1038,9 @@ void CServerHandler::onDisconnected(const std::shared_ptr<INetworkConnection> & 
 		logNetwork->info("Successfully closed connection to server!");
 		return;
 	}
+
+	if(isHostedAI())
+		std::_Exit(EXIT_FAILURE);
 
 	logNetwork->error("Lost connection to server! Connection has been closed");
 

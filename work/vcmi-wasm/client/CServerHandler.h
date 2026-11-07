@@ -9,6 +9,8 @@
  */
 #pragma once
 
+#include <mutex>
+
 #include "../lib/CStopWatch.h"
 
 #include "../lib/network/NetworkInterface.h"
@@ -110,6 +112,8 @@ class CServerHandler final : public IServerAPI, public LobbyInfo, public INetwor
 	std::shared_ptr<CMapInfo> mapToStart;
 	std::vector<std::string> localPlayerNames;
 
+	std::string hostedAIKey;
+	std::mutex headlessNetworkMutex;
 	std::thread threadNetwork;
 
 	std::atomic<EClientState> state;
@@ -158,6 +162,8 @@ public:
 	void resetStateForLobby(EStartMode mode, ESelectionScreen screen, EServerMode serverMode, const std::vector<std::string> & playerNames);
 	void startLocalServerAndConnect(bool connectToLobby);
 	void connectToServer(const std::string & addr, const ui16 port);
+	void connectHostedAI(ui16 port, const std::string & key);
+	bool isHostedAI() const { return !hostedAIKey.empty(); }
 	bool canJoinHostedMatch() const;
 	void enableLagCompensation(bool on);
 

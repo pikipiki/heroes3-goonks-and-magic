@@ -103,7 +103,9 @@
 
 #game-menu .hosted-castle-list{display:grid;gap:12px;min-width:0}
 #game-menu .hosted-castle-list section{min-width:0}
-#game-menu .hosted-castle-list h3{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:normal}
+#game-menu .hosted-castle-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+#game-menu .hosted-castle-heading h3{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:normal;margin:0}
+#game-menu .hosted-castle-heading select{width:auto;max-width:65%;min-width:0}
 #game-menu .hosted-castle-list .lobby-choice-card{box-sizing:border-box;width:100%;min-width:0;margin:0}
 #game-menu .hosted-castle-list div.lobby-choice-card{border:2px ridge #ad8b50}
 @media(orientation:landscape) and (min-width:560px){
