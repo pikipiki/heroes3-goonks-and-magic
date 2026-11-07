@@ -46,6 +46,7 @@ export async function deleteSoloAutosave(module){
   const dir=saveRoot+'/Saves';
   const file=FS.readdir(dir).find(name=>name.toLowerCase()==='goonk-auto.vsgm1');
   if(!file)return;
+  if(module.goonkTemporaryStorage){FS.unlink(dir+'/'+file);return;}
   const mount=FS.lookupPath(saveRoot).node.mount;
   if(mount?.opts?.root!==saveRoot||mount.opts.folder)throw new Error('Autosave storage is unavailable');
   await opfsCall(done=>OPFS.removeRemoteEntry(mount,dir+'/'+file,done));
@@ -68,10 +69,11 @@ export function installRuntimeScheduling(module){
   });
   module.persistLocalSave=path=>{
     const toast=document.querySelector('#save-toast');let failed=false;clearTimeout(module._goonkToastTimer);module._goonkToastTimer=setTimeout(()=>toast?.classList.add('hidden','opacity-0'),250);toast?.classList.remove('hidden','opacity-0');toast?.querySelector('.save-toast__subtitle')?.replaceChildren('Enregistrement sur cet appareil…');
+    if(module.goonkTemporaryStorage)toast?.querySelector('.save-toast__subtitle')?.replaceChildren('Sauvegarde temporaire dans cet onglet…');
     return persist(path).then(async()=>{
       window.dispatchEvent(new CustomEvent('goonk-save-persisted',{detail:{path,ok:true}}));
       let key;try{key=localStorage.getItem('mp.v8key');}catch{}
-      if(typeof key!=='string'||key.length!==5||!module.fsUpdate)return;
+      if(module.goonkTemporaryStorage||typeof key!=='string'||key.length!==5||!module.fsUpdate)return;
       // Preserve optional upstream cloud sync. Ordinary local saves allocate
       // neither of these copies, and never wait on a network request.
       const bytes=module.FS.readFile(path),encoded=new TextEncoder().encode(path+'\0');

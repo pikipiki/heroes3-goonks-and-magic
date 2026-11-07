@@ -63,6 +63,10 @@ function mountGameMenu(){
       return;
     }
     if(tab==='storage'){content.dataset.view='storage';
+      if(window.Module?.goonkTemporaryStorage){
+        content.textContent='Mode temporaire. Connexion requise et sauvegardes disponibles dans cet onglet uniquement.';
+        return;
+      }
       if(content.dataset.storage!=='ready'){content.dataset.storage='ready';content.innerHTML=storageGuide(location.hostname)+'<dl class="storage-sizes"><div><dt>Fichiers du jeu</dt><dd data-storage-game>Calcul en cours…</dd></div><div><dt>Sauvegardes</dt><dd data-storage-saves>Calcul en cours…</dd></div></dl><p>Pour libérer cet espace en gardant tes sauvegardes, ouvre la gestion du stockage. Elle ferme le jeu. Enregistre ta partie avant de continuer.</p><button class="storage-manage primary" data-menu="manage-storage">Quitter le jeu et gérer le stockage</button><p class="storage-combat" hidden>Termine le combat avant de libérer l’espace du jeu.</p>';opfsList(ROOT).then(entries=>{if(tab!=='storage')return;const value=storageSummary(entries);content.querySelector('[data-storage-game]').textContent=formatStorage(value.gameBytes);content.querySelector('[data-storage-saves]').textContent=formatStorage(value.saveBytes)+' · '+formatStorageFiles(value.saveFiles);}).catch(()=>{if(tab==='storage')for(const e of content.querySelectorAll('[data-storage-game],[data-storage-saves]'))e.textContent='Mesure indisponible';});}
       content.querySelector('[data-menu=manage-storage]').disabled=state.mode==='battle'||state.mode==='dialog';content.querySelector('.storage-combat').hidden=!['battle','dialog'].includes(state.mode);return;
     }

@@ -13,6 +13,13 @@ const worker=html.match(/mainScriptUrlOrBlob: new URL\('\.\/([^']+)'/);assert(wo
 assert(!/(?:src|href)="\/(?!\/)|(?:WASM|DATA)_URL = '\//.test(html),'Les liens du jeu doivent être relatifs pour GitHub Pages.');
 assert(manifest.files.every(f=>f.url?.startsWith('./assets/')||f.chunks.every(c=>c.url?.startsWith('./assets/'))));
 for(const file of manifest.files)for(const chunk of file.chunks||[])if(chunk.url)assert(fs.existsSync('dist/'+chunk.url));
+// Synchronous HTTP reads use x-user-defined. A leading BOM can override the decoder.
+const sources=new Set(manifest.files.flatMap(file=>file.chunks.map(chunk=>chunk.url||file.url)));
+for(const url of sources){
+ const fd=fs.openSync('dist/'+decodeURIComponent(url),'r'),prefix=Buffer.alloc(3);
+ try{fs.readSync(fd,prefix,0,prefix.length,0);}finally{fs.closeSync(fd);}
+ assert(!/^(efbbbf|fffe|feff)/.test(prefix.toString('hex')),'Source binaire avec BOM incompatible avec le mode temporaire : '+url);
+}
 for(const match of html.matchAll(/\bimport\(['"](\.\/[^'"]+)['"]\)/g))assert(fs.existsSync('dist/'+match[1].split('?')[0]),'Module dynamique absent : '+match[1]);
 
 for(const name of ['index.html','game.html','storage.html']){const doc=fs.readFileSync('dist/'+name,'utf8'),policy=doc.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/i)?.[1];assert(policy,'Politique de scripts manquante');assert(!policy.includes("'unsafe-inline'"));for(const hash of inlineScriptHashes(doc))assert(policy.includes(hash),'Script de démarrage non autorisé');}

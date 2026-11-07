@@ -37,20 +37,22 @@ export function installLazyAssets(module,files){
  const FS=module.FS,cache=createAssetBlockCache();
  module.goonkAssetCache=cache.stats;
  module.isLazyAsset=path=>files.has(path);
- module.installLazyAsset=(path,entry)=>{
-  FS.writeFile(path,new Uint8Array(0));const node=FS.lookupPath(path).node,originalStream=node.stream_ops,originalNode=node.node_ops;
-  const file=entry.blob;node.usedBytes=file.size;
-  const materialize=(copy=true)=>{
-   if(!node.goonkMaterialize)return;
-   const contents=new Uint8Array(copy?file.size:0);if(copy)cache.read(file,contents,0,contents.length,0);
-   node.contents=contents;node.usedBytes=contents.length;node.stream_ops=originalStream;node.node_ops=originalNode;delete node.goonkMaterialize;
-  };
-  node.goonkMaterialize=materialize;
-  node.node_ops={...originalNode,setattr:(n,attr)=>{if(attr.size!==undefined)materialize(attr.size!==0);return originalNode.setattr(n,attr);}};
-  node.stream_ops={...originalStream,
-   read:(stream,buffer,offset,length,position)=>node.goonkMaterialize?cache.read(file,buffer,offset,length,position):originalStream.read(stream,buffer,offset,length,position),
-   write:(...args)=>{materialize();return originalStream.write(...args);},
-   mmap:(...args)=>{materialize();return originalStream.mmap(...args);}
-  };
+ module.installLazyAsset=(path,{blob})=>installAssetFile(FS,path,blob.size,(...args)=>cache.read(blob,...args));
+}
+
+export function installAssetFile(FS,path,size,read){
+ FS.writeFile(path,new Uint8Array(0));const node=FS.lookupPath(path).node,originalStream=node.stream_ops,originalNode=node.node_ops;
+ node.usedBytes=size;
+ const materialize=(copy=true)=>{
+  if(!node.goonkMaterialize)return;
+  const contents=new Uint8Array(copy?size:0);if(copy)read(contents,0,contents.length,0);
+  node.contents=contents;node.usedBytes=contents.length;node.stream_ops=originalStream;node.node_ops=originalNode;delete node.goonkMaterialize;
+ };
+ node.goonkMaterialize=materialize;
+ node.node_ops={...originalNode,setattr:(n,attr)=>{if(attr.size!==undefined)materialize(attr.size!==0);return originalNode.setattr(n,attr);}};
+ node.stream_ops={...originalStream,
+  read:(stream,buffer,offset,length,position)=>node.goonkMaterialize?read(buffer,offset,length,position):originalStream.read(stream,buffer,offset,length,position),
+  write:(...args)=>{materialize();return originalStream.write(...args);},
+  mmap:(...args)=>{materialize();return originalStream.mmap(...args);}
  };
 }
