@@ -47,7 +47,19 @@ function buildingCards(buildings) {
 export function createTownBuildingMenu({body, getState, asset, backButton, canOpen, openSheet, closeSheet, command, notify}) {
   const images = new Map(), urls = new Map();
   let tab = 'unbuilt', filter = '', selected = null, lockedOpen = false;
-  let signature, listScroll = 0, pending, preloadedFaction;
+  let signature, listScroll = 0, pending, preloadedFaction, unlockRoute = null, construction, constructionTimer;
+  const routePriority = building => building.allowed ? 0 : building.state === 6 || building.state === 5 ? 1 : 2;
+  function routeBuildings(state, target) {
+    if (!target || target.built) return [];
+    const missing = new Set(target.missingPrerequisites || []);
+    return (state.buildings || []).filter(building => missing.has(building.id) && !building.built && !isGrail(building))
+      .sort((a, b) => routePriority(a) - routePriority(b) ||
+        (a.missingPrerequisites?.length || 0) - (b.missingPrerequisites?.length || 0)).concat(target);
+  }
+  function clearConstruction() {
+    clearTimeout(constructionTimer);
+    construction = undefined;
+  }
   function preload(url) {
     if (!images.has(url)) {
       const image = new Image();
@@ -68,7 +80,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     return urls.get(key);
   }
   function warm(state) {
-    if (state.mode !== 'town') return [];
+    if (state.mode !== 'town' && state.mode !== 'fort') return [];
     if (preloadedFaction !== state.townFaction) {
       for (const url of images.keys()) if (url !== fallback) images.delete(url);
       preloadedFaction = state.townFaction;
@@ -143,15 +155,25 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
         ${effects}
         ${building.built ? '' : cost(state, building)}
         ${reason ? `<p class="building-reason">${escape(reason)}</p>` : ''}
-        <button type="button" class="primary" data-building-action ${reason ? 'disabled' : ''}>${building.built ? 'Voir' : isGrail(building) ? 'Installer le Graal' : 'Construire'}</button>
+        ${unlockRoute && building.built ? '' : `<button type="button" class="primary" data-building-action ${reason || construction !== undefined ? 'disabled' : ''}>${construction === building.id ? 'Construction en cours…' : building.built ? 'Voir' : isGrail(building) ? 'Installer le Graal' : 'Construire'}</button>`}
         </div></article>`;
   }
   function render(state) {
     const buildings = buildingCards(visibleBuildings(state.buildings));
-    const building = buildings.find(item => item.id === selected);
+    const building = (unlockRoute ? state.buildings : buildings)?.find(item => item.id === selected);
     const panel = document.createElement('div');
     panel.className = 'building-menu';
-    panel.innerHTML = building ? detail(state, building) : list(state, buildings);
+    if (unlockRoute) {
+      const target = state.buildings?.find(item => item.id === unlockRoute.id);
+      const steps = routeBuildings(state, target);
+      panel.innerHTML = `<section class="building-unlock-route">
+        <h3><span>${target?.built ? 'Créature débloquée' : 'Débloquer la créature'}</span> · ${escape(unlockRoute.name)}</h3>
+        <button type="button" data-building-return>← Retour au recrutement</button>
+        ${building ? detail(state, building) : ''}
+        ${steps.length ? group(state, 'Bâtiments restants', steps) : ''}
+      </section>`;
+      panel.querySelector(`[data-building-id="${selected}"]`)?.setAttribute('aria-pressed', 'true');
+    } else panel.innerHTML = building ? detail(state, building) : list(state, buildings);
     body.replaceChildren(panel);
     const locked = panel.querySelector('.building-locked');
     locked?.addEventListener('toggle', () => { if (locked.isConnected) lockedOpen = locked.open; });
@@ -159,7 +181,8 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
       const button = event.target.closest('button');
       if (!button || button.disabled) return;
       const current = getState();
-      if (current.mode !== 'town') return;
+      if (current.mode !== (unlockRoute ? 'fort' : 'town')) return;
+      if (button.hasAttribute('data-building-return')) { closeSheet(); return; }
       const {buildingTab, buildingFilter, buildingId} = button.dataset;
       if (buildingTab !== undefined || buildingFilter !== undefined) {
         if (buildingTab !== undefined) { tab = buildingTab; filter = ''; }
@@ -178,16 +201,34 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
       } else if (button.hasAttribute('data-building-action')) {
         const item = current.buildings?.find(record => record.id === selected);
         if (item?.built) { closeSheet(); command(39, item.id); }
-        else if (item?.allowed && current.turn) {
-          command(8, item.id);
-          closeSheet();
-          if (!isGrail(item)) notify('Construction demandée : ' + plainGameText(item.name));
+        else if (item?.allowed && current.turn && construction === undefined) {
+          if (unlockRoute) {
+            construction = item.id;
+            constructionTimer = setTimeout(() => {
+              clearConstruction();
+              update(getState());
+              notify('Construction non confirmée.');
+            }, 8000);
+            update(current);
+            command(8, item.id);
+          } else {
+            command(8, item.id);
+            closeSheet();
+            if (!isGrail(item)) notify('Construction demandée : ' + plainGameText(item.name));
+          }
         }
       }
     });
   }
   function update(state) {
-    const next = JSON.stringify([state.turn, state.buildings]);
+    if (unlockRoute && construction !== undefined && state.buildings?.some(item => item.id === construction && item.built)) {
+      const completed = state.buildings.find(item => item.id === construction);
+      clearConstruction();
+      const target = state.buildings.find(item => item.id === unlockRoute.id);
+      selected = routeBuildings(state, target)[0]?.id ?? target?.id;
+      notify('Bâtiment construit · ' + plainGameText(completed.name));
+    }
+    const next = JSON.stringify([state.turn, state.buildings, construction]);
     if (next === signature) return;
     signature = next;
     const scroll = body.scrollTop;
@@ -199,9 +240,9 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     body.scrollTop = scroll;
     if (selector) [...body.querySelectorAll(`[${selector}]`)].find(button => button.getAttribute(selector) === value)?.focus({preventScroll:true});
   }
-  async function open() {
+  async function open(route = null) {
     const state = getState();
-    if (!canOpen() || pending) return;
+    if (!canOpen(route) || pending) return;
     const request = {};
     pending = request;
     const entries = warm(state);
@@ -215,14 +256,17 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     }
     if (pending !== request) return;
     pending = null;
-    if (!canOpen() || getState().townName !== state.townName) return;
-    tab = 'unbuilt'; filter = ''; selected = null; lockedOpen = false; signature = undefined;
+    const current = getState();
+    if (!canOpen(route) || current.townName !== state.townName) return;
+    unlockRoute = route;
+    const target = route && current.buildings?.find(item => item.id === route.id);
+    tab = 'unbuilt'; filter = ''; selected = routeBuildings(current, target)[0]?.id ?? null; lockedOpen = false; signature = undefined;
     openSheet('build', 'Bâtiments');
     update(getState());
     body.scrollTop = 0;
   }
   function back() {
-    if (selected === null) return false;
+    if (unlockRoute || selected === null) return false;
     const id = selected;
     selected = null;
     render(getState());
@@ -232,5 +276,5 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     target?.focus({preventScroll:true});
     return true;
   }
-  return {warm, open, update, back, cancel() { pending = null; }};
+  return {warm, open, update, back, cancel() { pending = null; clearConstruction(); const route = unlockRoute; unlockRoute = null; return route; }};
 }

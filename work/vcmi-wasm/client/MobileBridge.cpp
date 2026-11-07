@@ -760,6 +760,13 @@ void publishMobileState(){
     const bool needsGrail=id==BuildingID::GRAIL&&!visitingHeroHasGrail(town);
     b["allowed"].Bool()=buildState==EBuildingState::ALLOWED&&!needsGrail;
     b["state"].Integer()=static_cast<int>(buildState);
+    if(fortWindow && !town->hasBuilt(id))
+    {
+     auto & missing = b["missingPrerequisites"].Vector();
+     const auto requirements = town->genBuildingRequirements(id, true);
+     for(const auto prerequisite : requirements.getFulfillmentCandidates([town](BuildingID candidate){return town->hasBuilt(candidate);}))
+      missing.emplace_back(double(prerequisite.getNum()));
+    }
     if(id==BuildingID::GRAIL)b["needsGrail"].Bool()=needsGrail;
     for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())
      b["cost"].Vector().push_back(JsonNode(double(town->getBuildingCost(id)[resource])));
@@ -773,7 +780,12 @@ void publishMobileState(){
      const auto & roster=town->getTown()->creatures[level];
      for(size_t rank=0;rank<roster.size();rank++){
       const auto id=roster[rank];auto variant=creature(id.toCreature(),town->creatures[level].first);variant["rank"].Integer()=rank;variant["level"].Integer()=level;variant["built"].Bool()=std::find(available.begin(),available.end(),id)!=available.end();
-      const auto bid=BuildingID(BuildingID::getDwellingFromLevel(level,rank));if(town->getTown()->buildings.count(bid))variant["requiredBuilding"].String()=town->getTown()->buildings.at(bid)->getNameTranslated();
+      const auto bid = BuildingID(BuildingID::getDwellingFromLevel(level, rank));
+      if(town->getTown()->buildings.count(bid))
+      {
+       variant["requiredBuilding"].String() = town->getTown()->buildings.at(bid)->getNameTranslated();
+       variant["requiredBuildingId"].Integer() = bid.getNum();
+      }
       family["variants"].Vector().push_back(variant);
      }
      n["fortFamilies"].Vector().push_back(family);
@@ -1216,14 +1228,15 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
 
  if(action==7&&ENGINE->windows().topWindow<AdventureMapInterface>())p->cb->save("Saves/Goonk-mobile",true);
  if(action==39){if(townWindow&&townWindow->builds&&townWindow->town->getOwner()==p->playerID&&a>=0&&townWindow->town->getTown()->buildings.count(BuildingID(a))&&townWindow->town->hasBuilt(BuildingID(a)))townWindow->builds->buildingClicked(BuildingID(a));lastPublished=0;return;}
- if(action==8&&p->makingTurn&&townWindow&&townWindow->town->getOwner()==p->playerID)
+ if(action==8&&p->makingTurn)
  {
   const BuildingID id(a);
-  const auto town=townWindow->town;
-  if(p->cb->canBuildStructure(town,id)!=EBuildingState::ALLOWED)return;
+  const auto fort = mobileEnabled ? ENGINE->windows().topWindow<CFortScreen>() : nullptr;
+  const auto town = townWindow ? townWindow->town : fort ? fort->getMobileTown() : nullptr;
+  if(!town || town->getOwner()!=p->playerID || !town->getTown()->buildings.count(id) || p->cb->canBuildStructure(town,id)!=EBuildingState::ALLOWED)return;
   if(id==BuildingID::GRAIL)
   {
-   if(townWindow->builds&&visitingHeroHasGrail(town))townWindow->builds->enterTownHall();
+   if(townWindow&&townWindow->builds&&visitingHeroHasGrail(town))townWindow->builds->enterTownHall();
   }
   else p->cb->buildBuilding(town,id);
  }

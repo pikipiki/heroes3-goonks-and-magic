@@ -118,7 +118,7 @@ function mount(){
   renderBattlePanel();controls();
  }});
  const asset=icon=>{if(!icon)return '';const entries=window.goonkAssetURLs||[];const key=icon.toLowerCase(),match=entries.find(e=>e.path.toLowerCase().endsWith('/sprites2x/'+key))||entries.find(e=>e.path.toLowerCase().endsWith('/sprites/'+key));return match?.url||'';};
- const creatureView=createCreaturePresentation({root,command,pointer,openRecruit});
+ const creatureView=createCreaturePresentation({root,command,pointer,openRecruit,openBuildings:(id,name,unitId)=>townBuildings.open({id,name,unitId})});
  const spellbook=createMobileSpellbook({root,command});
  const mageGuild=createMageGuild({root,command,pointer,asset,resetView:()=>{zoom=1;focus=null;resetGestures();}});
  const campaignSetup=createCampaignSetup({root,command});
@@ -261,12 +261,12 @@ function mount(){
   root.querySelector('.scene-hint').textContent=countdown+hint;controls();if(sheetKind==='army'&&(changedTurn||armySignature!==JSON.stringify(state.armies||[])))refreshArmy();if(sheetKind==='build')townBuildings.update(state);
   if(!refresh&&state.mode==='town'&&state.openTownHall)void townBuildings.open();
  }
- const townBuildings=createTownBuildingMenu({body,getState:()=>state,asset,backButton:sheet.querySelector('[data-ui="sheet-back"]'),canOpen:()=>state.mode==='town'&&!sheetKind,
+ const townBuildings=createTownBuildingMenu({body,getState:()=>state,asset,backButton:sheet.querySelector('[data-ui="sheet-back"]'),canOpen:route=>state.mode===(route?'fort':'town')&&!sheetKind,
   openSheet,closeSheet,command,notify});
  const heroTransition=createHeroTransition(update,{ready:next=>portraitTown.prepare(next,townPortraitEnabled)});
  window.addEventListener('goonk-state',event=>{
   const next=event.detail;
-  if(next.mode==='town')townBuildings.warm(next);else townBuildings.cancel();
+  if(next.mode==='town')townBuildings.warm(next);else if(next.mode!=='fort')townBuildings.cancel();
   heroTransition.receive(next,state.mode);
  });
  const enable=()=>{if(window.Module?._vcmiMobileEnable){window.Module._vcmiMobileEnable(1);return true;}return false;};
@@ -274,7 +274,19 @@ function mount(){
  function resetGestures(){touches.cancel();battleControls.cancel();mapPan.cancel();for(const id of pointers.keys()){try{if(scene.hasPointerCapture(id))scene.releasePointerCapture(id);}catch{}}pointers.clear();gesture=null;initialDistance=0;selectedPoint=null;layout=null;paintedGeometry=null;}
  function syncBattleView(){dualBattle.sync();const button=root.querySelector('.battle-view'),text=nativeBattleClose(scene.clientWidth,scene.clientHeight,battleView)?'Vue entière':'Rapprocher';if(button.textContent!==text)button.textContent=text;const pressed=String(battleView==='whole');if(button.getAttribute('aria-pressed')!==pressed)button.setAttribute('aria-pressed',pressed);if(root.dataset.battleCamera!==battleView)root.dataset.battleCamera=battleView;}
  bindPress(root.querySelector('.battle-view'),()=>{if(state.mode!=='battle')return;const chosen=selectedPoint;battleView=nativeBattleClose(scene.clientWidth,scene.clientHeight,battleView)?'whole':'close';resetGestures();selectedPoint=chosen;syncBattleView();renderBattlePanel();controls();});
- function closeSheet(){clearTimeout(armyTimer);armyPending=false;armyFocus=null;sheet.removeAttribute('aria-busy');sheet.hidden=true;sheetKind='';delete root.dataset.sheet;armySelection=null;root.querySelector('.mobile-play').inert=false;nav.inert=false;resetGestures();if(previousFocus?.isConnected)previousFocus.focus({preventScroll:true});}
+ function closeSheet(){
+  const route=sheetKind==='build'?townBuildings.cancel():null;
+  clearTimeout(armyTimer);armyPending=false;armyFocus=null;sheet.removeAttribute('aria-busy');sheet.hidden=true;sheetKind='';delete root.dataset.sheet;armySelection=null;
+  resetGestures();
+  const restore=()=>{
+   if(sheetKind)return;
+   root.querySelector('.mobile-play').inert=false;nav.inert=false;
+   if(route&&state.mode==='fort')creatureView.focusHallUnit(route.unitId);
+   else if(previousFocus?.isConnected)previousFocus.focus({preventScroll:true});
+  };
+  // Let the touch release finish before the revealed creature cards accept focus.
+  if(route&&state.mode==='fort')requestAnimationFrame(restore);else restore();
+ }
  bindPress(sheet.querySelector('[data-ui="close-sheet"]'),closeSheet);
  bindPress(sheet.querySelector('[data-ui="sheet-back"]'),()=>{if(sheetKind!=='build'||!townBuildings.back())closeSheet();});
  function openRecruit(level){if(!recruitChoices.length){notify('Aucune recrue disponible dans les logements construits.');return;}resetGestures();activeRecruitLevel=level??recruitChoices[0].level;expectedRecruitId=recruitChoices.find(u=>u.level===activeRecruitLevel)?.id;recruitLoading=true;root.querySelector('#recruit-number').blur();controls();if(state.mode==='recruit')command(33);command(30,activeRecruitLevel);}

@@ -4,8 +4,9 @@ export function recruitmentFamilies(state){return state.fortFamilies?.length?sta
 export function recruitMaximum(unit,resources=[]){if(!unit?.built)return 0;let count=Math.max(0,Math.floor(unit.count||0));for(const[i,cost]of(unit.cost||[]).entries())if(cost>0)count=Math.min(count,Math.floor((resources[i]||0)/cost));return count;}
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const rankName=n=>['I','II','III','IV','V','VI'][n]||String(n+1);
-export function createRecruitmentHall({panel,command,prices,stats}){
- const resizeRows=()=>{const list=panel.querySelector('.hall-families');if(!list)return;const style=getComputedStyle(list),rows=matchMedia('(orientation:landscape)').matches?1:2,space=list.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);list.style.setProperty('--hall-row-height',Math.max(130,Math.floor((space-(rows-1)*8)/rows))+'px');};
+export function createRecruitmentHall({panel,command,prices,stats,openBuildings}){
+ const unlockBuilding=unit=>(state.buildings||[]).find(building=>building.id===unit.requiredBuildingId);
+ const resizeRows=()=>{const list=panel.querySelector('.hall-families');if(!list)return;const style=getComputedStyle(list),rows=matchMedia('(orientation:landscape)').matches?1:2,space=list.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);list.style.setProperty('--hall-row-height',Math.max(rows===2?132:148,Math.floor((space-(rows-1)*8)/rows))+'px');};
  const rowObserver=new ResizeObserver(resizeRows);
  let state={},families=[],selectedId=null,amount=1,signature='',pending=null,savedScroll=null;
  // Remember the same point in the roster if rotation changes the row height.
@@ -19,12 +20,18 @@ export function createRecruitmentHall({panel,command,prices,stats}){
   const slots=state.armies?.[0]?.slots,hasRoom=!slots?.length||slots.some(slot=>!slot||slot.id===u.id);
   const detail=panel.querySelector('.hall-detail'),maximum=recruitMaximum(u,state.resources);amount=Math.min(maximum,Math.max(1,amount));
   if(detail.dataset.unit!==String(u.id)){
-   detail.dataset.unit=u.id;detail.innerHTML=`<div class="hall-feature"><div><h3>${esc(u.name)}</h3>${stats(u).replace(/<dt>(Attack|Defense|Damage|Health|Speed)<\/dt>/g,(_,name)=>'<dt aria-label="'+name+'">'+({Attack:'ATK',Defense:'DEF',Damage:'DMG',Health:'HP',Speed:'SPD'}[name])+'</dt>')}</div></div><p class="hall-stock" aria-live="polite"></p><div class="hall-quantity"><button data-hall-less aria-label="Decrease quantity">−</button><label class="hall-number"><input type="number" min="0" inputmode="numeric" aria-label="Recruit quantity"></label><button data-hall-more aria-label="Increase quantity">+</button><button data-hall-max>Max</button></div><div class="hall-total"></div><div class="hall-actions"><button class="primary" data-hall-buy>Recruit</button><button data-type-info="${u.id}">Details</button></div>`;
+   detail.dataset.unit=u.id;detail.innerHTML=`<div class="hall-feature"><div><div class="hall-feature-title"><h3>${esc(u.name)}</h3><span class="hall-unit-price"></span></div>${stats(u).replace(/<dt>(Attack|Defense|Damage|Health|Speed)<\/dt>/g,(_,name)=>'<dt aria-label="'+name+'">'+({Attack:'ATK',Defense:'DEF',Damage:'DMG',Health:'HP',Speed:'SPD'}[name])+'</dt>')}</div></div><p class="hall-stock" aria-live="polite"></p><div class="hall-quantity"><button data-hall-less aria-label="Decrease quantity">−</button><label class="hall-number"><input type="number" min="0" inputmode="numeric" aria-label="Recruit quantity"></label><button data-hall-more aria-label="Increase quantity">+</button><button data-hall-max>Max</button></div><div class="hall-total"></div><div class="hall-actions"><button class="primary" data-hall-buy>Recruit</button><button class="primary" data-hall-build hidden>View buildings</button><button data-type-info="${u.id}">Details</button></div>`;
    const press=(sel,fn)=>bindPress(detail.querySelector(sel),fn);
    press('[data-hall-less]',()=>{amount=Math.max(0,amount-1);renderSelection();});press('[data-hall-more]',()=>{amount=Math.min(recruitMaximum(unit(),state.resources),amount+1);renderSelection();});press('[data-hall-max]',()=>{amount=recruitMaximum(unit(),state.resources);renderSelection();});
    detail.querySelector('input').addEventListener('input',event=>{amount=Math.max(0,Math.min(recruitMaximum(unit(),state.resources),Math.floor(Number(event.target.value)||0)));renderSelection();});
+   press('[data-hall-build]',()=>{const latest=unit(),building=unlockBuilding(latest);if(building&&!latest.built)openBuildings?.(building.id,latest.name,latest.id);});
    press('[data-hall-buy]',()=>{const latest=unit();if(pending||!latest||!state.turn||amount<1)return;pending={id:latest.id,count:latest.count,armies:JSON.stringify(state.armies),started:Date.now()};renderSelection();command(61,latest.level,latest.id,amount);});
   }
+  const building=unlockBuilding(u),canViewBuildings=!u.built&&building&&openBuildings;
+  const price=detail.querySelector('.hall-unit-price'),priceMarkup=u.built?'':prices(u,1,state.resourceTypes);
+  if(price._sourceMarkup!==priceMarkup){price._sourceMarkup=priceMarkup;price.innerHTML=priceMarkup;}
+  detail.querySelector('[data-hall-build]').hidden=!canViewBuildings;
+  detail.querySelector('[data-hall-buy]').hidden=!!canViewBuildings;
   detail.querySelector('.hall-stock').textContent=u.built?(hasRoom?`${u.count} available · Shared stock`:'Garrison full · Move troops to your hero'):`Requires: ${plainGameText(u.requiredBuilding)||'Dwelling for this form'}`;
   detail.dataset.locked=String(!u.built);const input=detail.querySelector('input');input.max=maximum;if(document.activeElement!==input)input.value=amount;
   detail.querySelector('.hall-total').innerHTML='<span>'+(amount?'Total':'Cost per creature')+'</span>'+(prices(u,amount||1,state.resourceTypes)||'<span>Free</span>');
@@ -36,7 +43,7 @@ export function createRecruitmentHall({panel,command,prices,stats}){
   let scroll;
   if(key!==signature||!panel.querySelector('.hall-layout')){signature=key;const old=panel.querySelector('.hall-layout');
    scroll=old?readScroll(old.querySelector('.hall-families')):savedScroll;
-   if(!old)savedScroll=null;if(old){for(const canvas of old.querySelectorAll('canvas')){canvas.width=0;canvas.height=0;}old.remove();}panel.insertAdjacentHTML('beforeend','<div class="hall-layout"><div class="hall-families" aria-label="Creature evolution families">'+families.map(f=>`<section class="hall-family"><div class="hall-family-label"><h3>Tier ${f.level+1}</h3><span data-family-stock="${f.level}"></span></div><div class="hall-forms" style="--forms:${f.variants.length}">`+f.variants.map(u=>`<button class="hall-form" data-family-select="${u.id}" aria-pressed="false" aria-label="${esc(u.name)}, form ${rankName(u.rank)}${u.built?'':', dwelling required'}"><span class="hall-rank">${rankName(u.rank)}${u.built?'':' · 🔒'}</span><span class="hall-art"><canvas data-hall-icon="${u.id}" aria-hidden="true"></canvas></span><span class="hall-form-name">${esc(u.name)}</span><span class="hall-form-price">${prices(u,1,state.resourceTypes)}</span></button>`).join('')+'</div></section>').join('')+'</div><section class="hall-detail" aria-label="Selected creature recruitment"></section></div>');
+   if(!old)savedScroll=null;if(old){for(const canvas of old.querySelectorAll('canvas')){canvas.width=0;canvas.height=0;}old.remove();}panel.insertAdjacentHTML('beforeend','<div class="hall-layout"><div class="hall-families" aria-label="Creature evolution families">'+families.map(f=>`<section class="hall-family"><div class="hall-family-label"><h3>Tier ${f.level+1}</h3><span data-family-stock="${f.level}"></span></div><div class="hall-forms" style="--forms:${f.variants.length}">`+f.variants.map(u=>`<button class="hall-form" data-family-select="${u.id}" ${u.built?'':'data-locked'} aria-pressed="false" aria-label="${esc(u.name)}, form ${rankName(u.rank)}${u.built?', unlocked':', locked'}"><span class="hall-rank" aria-hidden="true">${rankName(u.rank)}</span><span class="hall-art"><canvas data-hall-icon="${u.id}" aria-hidden="true"></canvas></span><span class="hall-form-name">${esc(u.name)}</span><span class="hall-quick-info">${u.built?'<span class="hall-open-mark" aria-hidden="true">✓</span><span class="hall-form-price">'+prices(u,1,state.resourceTypes)+'</span>':'<span class="hall-lock-mark"><span aria-hidden="true">🔒</span> Locked</span>'}</span></button>`).join('')+'</div></section>').join('')+'</div><section class="hall-detail" aria-label="Selected creature recruitment"></section></div>');
    for(const b of panel.querySelectorAll('[data-family-select]')){bindPress(b,()=>select(Number(b.dataset.familySelect)));b.addEventListener('focus',()=>select(Number(b.dataset.familySelect)));}rowObserver.disconnect();rowObserver.observe(panel.querySelector('.hall-families'));
   }
   for(const f of families){const line=panel.querySelector(`[data-family-stock="${f.level}"]`);if(line)line.textContent=f.count+' available';}
@@ -46,5 +53,8 @@ export function createRecruitmentHall({panel,command,prices,stats}){
    const list=panel.querySelector('.hall-families'),step=rowStep(list);
    list.scrollTop=scroll.step&&step?scroll.top*step/scroll.step:scroll.top;
   }
+ },focusUnit(id){
+  const button=panel.querySelector(`[data-family-select="${id}"]`);
+  if(button){select(id);button.focus({preventScroll:true});}
  },rememberScroll(){savedScroll=readScroll(panel.querySelector('.hall-families'));},reset(){rowObserver.disconnect();signature='';pending=null;selectedId=null;savedScroll=null;},get canvases(){return[...panel.querySelectorAll('[data-hall-preview],[data-hall-icon]')];}};
 }
