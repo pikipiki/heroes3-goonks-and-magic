@@ -1,7 +1,25 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
-import {reference,motionProfile,applyMotionProfile,actionTimeline} from '../work/browser-tests/goonk-animation-profiles.mjs';
+import {reference,motionProfile,applyMotionProfile,actionTimeline,applyCreatureTiming} from '../work/browser-tests/goonk-animation-profiles.mjs';
 const creatures=JSON.parse(fs.readFileSync(new URL('../mod/goonk/Content/config/creatures.json',import.meta.url),'utf8'));
 test('Twenty-one Goonks keep walk, rest, fidget, turn and attack states separate like native creatures',()=>{const classic=Object.values(creatures).filter(c=>c.graphics.animation!=='goonk/fire-solar');assert.equal(classic.length,21);for(const creature of classic){const stem=creature.graphics.animation.split('/').at(-1),royal=/-evo$|-exalted$/.test(stem),key=stem.replace(/-(evo|exalted)$/,''),{movement:m,shot}=motionProfile(key,royal),config=JSON.parse(fs.readFileSync(new URL('../mod/goonk/Content/Sprites/'+creature.graphics.animation+'.json',import.meta.url),'utf8')),groups=new Map(config.sequences.map(s=>[s.group,s.frames]));assert.equal(groups.get(0).length,m.groups[0]);for(const g of[1,2,7,8]){assert.equal(groups.get(g).length,m.groups[g]);assert(groups.get(g).every(f=>f.includes('-v3-idle-')),'Standing reactions must never play the walking poses');}assert.equal(creature.graphics.timeBetweenFidgets,1);assert.deepEqual(creature.graphics.animationTime,{walk:m.walk,attack:shot.attack,idle:10});assert.deepEqual(applyMotionProfile(structuredClone(config),stem,key,royal),config);}});
 test('Rock throwing follows the actual 17-frame Cyclops windup and release, not its melee cycle',()=>{for(const stem of['blue','blue-evo']){const c=JSON.parse(fs.readFileSync(new URL('../mod/goonk/Content/Sprites/goonk/'+stem+'.json',import.meta.url))),groups=new Map(c.sequences.map(s=>[s.group,s.frames]));assert.equal(groups.get(12).length,7);assert.equal(groups.get(15).length,17);assert.equal(groups.get(15)[6],`goonk/${stem}-v3-attack-6.png`);}assert.equal(creatures.bobope.graphics.missile.attackClimaxFrame,7);assert.equal(reference.creatures.cyclops.groups[15],17);});
 test('Projectile emission stays on the release pose in every shooter family',()=>{for(const creature of Object.values(creatures)){if(!creature.graphics.missile)continue;const frames=JSON.parse(fs.readFileSync(new URL('../mod/goonk/Content/Sprites/'+creature.graphics.animation+'.json',import.meta.url))).sequences.find(s=>s.group===15).frames,climax=creature.graphics.missile.attackClimaxFrame;assert(climax>0&&climax<=frames.length);assert(frames[climax-1].endsWith(creature.graphics.animation==='goonk/fire-solar'?'-solar-release.png':'-v3-attack-6.png'));}});
 test('Native-style animation timing changes no tactical movement stat',()=>{const speeds={paingpaing:5,picpique:6,zinzeclair:6,bubu:5,glouglou:6,bobope:6,maillemaille:8};for(const [id,c]of Object.entries(creatures)){const bonus=id.endsWith('Solar')?3:id.endsWith('Exalted')?2:id.endsWith('Royal')?1:0;assert.equal(c.speed,speeds[id.replace(/(Royal|Exalted|Solar)$/,'')]+bonus);}const frames=Array.from({length:12},(_,i)=>i),timeline=actionTimeline(frames,17,6);assert.equal(timeline.length,17);assert.equal(timeline[6],6);assert.equal(timeline.at(-1),11);assert.equal(reference.previewFrameMs,100);});
+
+test('Each Bobope form retains its mouth offset and visible ray when motion is rebuilt',()=>{
+ const ids=['glouglou','glouglouRoyal','glouglouExalted'];
+ const mouths=[];
+ for(const [rank,id] of ids.entries()){
+  const {graphics}=creatures[id], {offset,ray,minimumRayFlightTime}=graphics.missile;
+  const regenerated={graphics:{...graphics,missile:{attackClimaxFrame:0}}};
+  applyCreatureTiming(regenerated,'vomit',rank>0);
+  assert.deepEqual(regenerated.graphics.missile.offset,offset);
+  assert.deepEqual(regenerated.graphics.missile.ray,ray);
+  assert.equal(regenerated.graphics.missile.minimumRayFlightTime,minimumRayFlightTime);
+  assert(minimumRayFlightTime>=.6);
+  assert(ray.length>1);
+  mouths.push(offset.middleX);
+ }
+ assert.equal(new Set(mouths).size,ids.length);
+ assert.equal(creatures.bubu.graphics.missile.minimumRayFlightTime,undefined);
+});

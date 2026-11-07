@@ -105,6 +105,7 @@ public:
 
 		AnimationPath projectileImageName;
 		std::vector<RayColor> projectileRay;
+		float minimumRayFlightTime = 0;
 
 	} animation;
 

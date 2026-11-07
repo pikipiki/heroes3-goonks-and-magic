@@ -237,6 +237,11 @@
 							"description" : "Path to projectile animation",
 							"format" : "animationFile"
 						},
+						"minimumRayFlightTime" : {
+							"type" : "number",
+							"minimum" : 0,
+							"description" : "Minimum ray travel time in seconds at base animation speed"
+						},
 						"ray" : {
 							"type" : "array",
 							"description" : "Colors of ray projectile animation",

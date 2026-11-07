@@ -26,7 +26,18 @@ export function applyMotionProfile(config,stem,key,royal=false){
  if(end)set(21,[walk.at(-1),...sample(idle,Math.max(0,end-2)),idle[0]].slice(-end));else groups.delete(21);
  config.sequences=[...groups.values()].sort((a,b)=>a.group-b.group);return config;
 }
-export function applyCreatureTiming(creature,key,royal=false){const {movement,shot}=motionProfile(key,royal);creature.graphics.timeBetweenFidgets=movement.fidget;creature.graphics.animationTime={walk:movement.walk,attack:shot.attack,idle:reference.idleFramesPerSecond};if(creature.graphics.missile)creature.graphics.missile.attackClimaxFrame=shot.climax;}
+function applyVomitRay(graphics){
+ const {missile,animation}=graphics;
+ // Mouth position on each form's release pose, relative to the engine's shot origin.
+ const [x,y]=animation.endsWith('-exalted')?[40,-54]:animation.endsWith('-evo')?[37,-62]:[5,-55];
+ missile.offset={upperX:x,upperY:y,middleX:x,middleY:y,lowerX:x,lowerY:y};
+ missile.minimumRayFlightTime=.75;
+ const edge={start:[69,153,14,220],end:[43,103,14,190]};
+ const body={start:[144,231,31,255],end:[83,173,22,250]};
+ const core={start:[214,255,85,255],end:[143,225,41,255]};
+ missile.ray=[edge,edge,body,body,core,core,core,body,body,edge,edge];
+}
+export function applyCreatureTiming(creature,key,royal=false){const {movement,shot}=motionProfile(key,royal);creature.graphics.timeBetweenFidgets=movement.fidget;creature.graphics.animationTime={walk:movement.walk,attack:shot.attack,idle:reference.idleFramesPerSecond};if(creature.graphics.missile)creature.graphics.missile.attackClimaxFrame=shot.climax;if(key==='vomit')applyVomitRay(creature.graphics);}
 export function rebuildMotionProfiles(imageDir){
  const file=path.resolve(imageDir,'../../config/creatures.json'),creatures=JSON.parse(fs.readFileSync(file));
  for(const creature of Object.values(creatures)){

@@ -902,6 +902,7 @@ void CCreatureHandler::loadJsonAnimation(CCreature * cre, const JsonNode & graph
 	cre->animation.lowerRightMissileOffsetX = static_cast<int>(offsets["lowerX"].Float());
 	cre->animation.lowerRightMissileOffsetY = static_cast<int>(offsets["lowerY"].Float());
 
+	cre->animation.minimumRayFlightTime = static_cast<float>(missile["minimumRayFlightTime"].Float());
 	cre->animation.attackClimaxFrame = static_cast<int>(missile["attackClimaxFrame"].Float());
 	cre->animation.missileFrameAngles = missile["frameAngles"].convertTo<std::vector<double> >();
 

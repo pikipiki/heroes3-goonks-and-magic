@@ -15,6 +15,7 @@
 #include "Client.h"
 #include "CServerHandler.h"
 #include "HeroMovementController.h"
+#include "MobileBridge.h"
 #include "PlayerLocalState.h"
 
 #include "adventureMap/AdventureMapInterface.h"
@@ -1898,7 +1899,12 @@ void CPlayerInterface::prepareAutoFightingAI(const BattleID &bid, const CCreatur
 void CPlayerInterface::showWorldViewEx(const std::vector<ObjectPosInfo>& objectPositions, bool showTerrain)
 {
 	EVENT_HANDLER_CALLED_BY_CLIENT;
-	adventureInt->openWorldView(objectPositions, showTerrain );
+	if(isMobilePresentationActive())
+	{
+		if(const auto equipment = ENGINE->windows().topWindow<CHeroWindow>())
+			equipment->close();
+	}
+	adventureInt->openWorldView(objectPositions, showTerrain);
 }
 
 void CPlayerInterface::setColorScheme(ColorScheme scheme)

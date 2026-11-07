@@ -45,6 +45,7 @@ function mountGameMenu(){
     const hostedEntry=dialog.querySelector('nav [data-menu=hosted-match]');
     hostedEntry.hidden=Boolean(window.goonkMobileActive)||!window.goonkHostedAlerts||state.mode!=='menu';
     hostedEntry.textContent=hostedTitle;
+    dialog.querySelector('nav [data-menu=cheats]').hidden=state.cheatsAllowed===false;
     dialog.dataset.page=tab;dialog.querySelector('nav').hidden=tab!=='home';dialog.querySelector('[data-menu=back]').hidden=tab==='home';dialog.querySelector('#game-menu-title').textContent=({home:'Heroes Goonk','hosted-match':hostedTitle,settings:'Settings',cheats:'Cheat codes',storage:'Game storage','storage-help':'Storage help','new-game':'New game'})[tab]||'Heroes Goonk';dialog.querySelector('[data-menu=new-game]').hidden=tab!=='home'||!state.day;
     if(tab==='home'){content.innerHTML='';delete content.dataset.view;delete content.dataset.storage;return;}
     if(tab==='storage-help'){delete content.dataset.storage;if(content.dataset.view!=='storage-help'){content.dataset.view='storage-help';content.innerHTML=storageHelp();}return;}

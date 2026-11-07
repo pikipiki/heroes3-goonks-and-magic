@@ -336,6 +336,9 @@ void BattleProjectileController::createProjectile(const CStack * shooter, Point 
 
 		rayProjectile->rayConfig = shooterInfo.animation.projectileRay;
 		rayProjectile->speed     = computeProjectileFlightTime(from, dest, AnimationControls::getRayProjectileSpeed());
+		const float minimumFlightTime = shooterInfo.animation.minimumRayFlightTime;
+		if(minimumFlightTime > 0)
+			rayProjectile->speed = std::min(rayProjectile->speed, AnimationControls::getAnimationSpeedFactor() / minimumFlightTime);
 	}
 	else if (stackUsesMissileProjectile(shooter))
 	{

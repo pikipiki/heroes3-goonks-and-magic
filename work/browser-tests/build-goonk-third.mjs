@@ -1,4 +1,4 @@
-import fs from'node:fs';import path from'node:path';import{fileURLToPath}from'node:url';import{buildGoonkPoses}from'./build-goonk-poses.mjs';
+import fs from'node:fs';import path from'node:path';import{fileURLToPath}from'node:url';import{buildGoonkPoses}from'./build-goonk-poses.mjs';import{applyCreatureTiming}from'./goonk-animation-profiles.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..'),dir=path.join(root,'mod/goonk'),read=p=>JSON.parse(fs.readFileSync(path.join(dir,p),'utf8')),write=(p,v)=>fs.writeFileSync(path.join(dir,p),JSON.stringify(v,null,2)+'\n');
 const families=[['paingpaing','pink','Paingpaing, Nose Emperor','Paingpaing, Empereur des nez'],['picpique','lancer','Picpique, Crystal Lancer','Picpique, Lancier de cristal'],['zinzeclair','archer','Sonic, Storm Sovereign','Sonic, Souverain des orages'],['bubu','fart','Bubu, Supreme Fartomancer','Bubu, Pétomancien suprême'],['glouglou','vomit','Bobope, Grand Alchemist','Bobope, Grand alchimiste'],['bobope','blue','DioupDioup, Crystal Rock Emperor','DioupDioup, Empereur des rochers de cristal'],['maillemaille','fire','Big Maille Maille, Phoenix Archmage','La grosse maille maille, Archimage du phénix']];
 const descriptions=[
@@ -17,7 +17,7 @@ for(const[row,[base,key,name,french]]of families.entries()){
  unit.attack+=3;unit.defense+=3;unit.hitPoints=Math.round(unit.hitPoints*1.35);unit.speed+=1;unit.damage={min:Math.round(unit.damage.min*1.3),max:Math.round(unit.damage.max*1.3)};unit.cost={gold:Math.round(royal.cost.gold*1.55)};if(row>=5)unit.cost.crystal=1;unit.aiValue=Math.round(royal.aiValue*1.6);unit.fightValue=Math.round(royal.fightValue*1.6);
  if(base==='paingpaing')unit.abilities.doubleNose.val=2;
  if(base==='maillemaille'){unit.abilities.casts.val=6;unit.abilities.fireMagic.val=3;}
- const stem=key+'-exalted';unit.graphics.animation='goonk/'+stem;unit.graphics.map='goonk/'+stem+'-map';unit.graphics.iconSmall='goonk/'+stem+'-small.png';unit.graphics.iconLarge='goonk/'+stem+'-large.png';creatures[id]=unit;
+ const stem=key+'-exalted';unit.graphics.animation='goonk/'+stem;unit.graphics.map='goonk/'+stem+'-map';unit.graphics.iconSmall='goonk/'+stem+'-small.png';unit.graphics.iconLarge='goonk/'+stem+'-large.png';if(key==='vomit')applyCreatureTiming(unit,key,true);creatures[id]=unit;
  fr['creatures.goonk.'+id+'.name.singular']=french;fr['creatures.goonk.'+id+'.name.plural']=french;fr['creatures.goonk.'+id+'.description']=descriptions[row][1];
  town.creatures[row]=[base,base+'Royal',id,...town.creatures[row].slice(3)];
  if(town.creatures[row][3])unit.upgrades=[town.creatures[row][3]];const bkey='dwellingUp2Lvl'+(row+1),prior='dwellingUpLvl'+(row+1),b=structuredClone(town.buildings[prior]);
