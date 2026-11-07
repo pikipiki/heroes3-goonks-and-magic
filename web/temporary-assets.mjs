@@ -38,8 +38,18 @@ function readBinary(url, size, start, end) {
  return bytes;
 }
 
+async function fetchBinary(url, size, start, end) {
+ const ranged = start !== 0 || end !== size;
+ const response = await fetch(url, ranged ? {headers: {Range: `bytes=${start}-${end - 1}`}} : {});
+ const bytes = new Uint8Array(await response.arrayBuffer());
+ if (response.status === 200 && bytes.length === size) return bytes;
+ if (response.status === 206 && bytes.length === end - start &&
+  response.headers.get('Content-Range') === `bytes ${start}-${end - 1}/${size}`) return bytes;
+ throw Error('Fichier du jeu indisponible ou incomplet : ' + new URL(url, location.href).pathname);
+}
+
 export function createTemporaryAssetReader({
- read = readBinary, maxBytes = 32 * 1024 * 1024, blockBytes = 512 * 1024,
+ read = readBinary, fetchBlock = fetchBinary, maxBytes = 64 * 1024 * 1024, blockBytes = 512 * 1024, onFetch = () => {},
 } = {}) {
  const cache = new Map();
  let cachedBytes = 0;
@@ -68,6 +78,7 @@ export function createTemporaryAssetReader({
   const block = cached(key);
   if (block) return block;
   const bytes = read(url, size, start, end);
+  onFetch(bytes.length);
   if (bytes.length === size) {
    remember(url, bytes);
    return bytes.subarray(start, end);
@@ -77,23 +88,29 @@ export function createTemporaryAssetReader({
   return bytes;
  }
 
- return (file, target, offset, length, position) => {
-  let remaining = Math.max(0, Math.min(length, file.size - position));
-  const total = remaining;
+ function locate(file, position) {
+  const chunk = file.chunks.find(chunk => chunk.offset <= position && position < chunk.offset + chunk.size);
+  if (!chunk) throw Error('Archive du jeu incomplète.');
   // Archive indexes and entries are sparse. Other sources are read whole so
   // that nearby small files in the same pack continue to share one request.
   const archive = /^Data\/[^/]+\.(lod|snd)$/i.test(file.path ?? '');
-  for (const chunk of file.chunks) {
-   if (!remaining) break;
-   if (chunk.offset + chunk.size <= position) continue;
-   if (chunk.offset > position) throw Error('Archive du jeu incomplète.');
-   const url = chunk.url || file.url;
-   const size = chunk.packSize || (chunk.url ? chunk.size : file.size);
-   const step = archive && size >= 2 * blockBytes ? blockBytes : size;
-   let start = (chunk.packOffset ?? (chunk.url ? 0 : chunk.offset)) + position - chunk.offset;
-   const count = Math.min(remaining, chunk.offset + chunk.size - position);
+  const url = chunk.url || file.url;
+  const size = chunk.packSize || (chunk.url ? chunk.size : file.size);
+  const step = archive && size >= 2 * blockBytes ? blockBytes : size;
+  const start = (chunk.packOffset ?? (chunk.url ? 0 : chunk.offset)) + position - chunk.offset;
+  const count = chunk.offset + chunk.size - position;
+  if (start < 0 || start + count > size) throw Error('Archive du jeu incomplète.');
+  const blockStart = Math.floor(start / step) * step;
+  return {url, size, start, count, blockStart, blockEnd: Math.min(blockStart + step, size), step};
+ }
+
+ const reader = (file, target, offset, length, position) => {
+  let remaining = Math.max(0, Math.min(length, file.size - position));
+  const total = remaining;
+  while (remaining) {
+   let {url, size, start, count, step} = locate(file, position);
+   count = Math.min(remaining, count);
    const end = start + count;
-   if (start < 0 || end > size) throw Error('Archive du jeu incomplète.');
    while (start < end) {
     const blockStart = Math.floor(start / step) * step;
     const blockEnd = Math.min(blockStart + step, size);
@@ -106,13 +123,44 @@ export function createTemporaryAssetReader({
    position += count;
    remaining -= count;
   }
-  if (remaining) throw Error('Archive du jeu incomplète.');
   return total;
  };
+
+ // Downloads known startup blocks asynchronously, so the page can repaint and
+ // several requests overlap, instead of one synchronous request per block.
+ reader.prefetch = async (entries, files, {concurrency = 6, onPlan = () => {}} = {}) => {
+  const byPath = new Map(files.map(file => [file.path, file]));
+  const plan = new Map();
+  let planned = 0;
+  const budget = maxBytes - 8 * 1024 * 1024;
+  for (const [path, position] of entries) {
+   const file = byPath.get(path);
+   if (!file || position >= file.size) continue;
+   const block = locate(file, position);
+   const length = block.blockEnd - block.blockStart;
+   const key = block.url + '#' + block.blockStart;
+   if (plan.has(key) || plan.has(block.url) || cache.has(block.url) || cache.has(key)) continue;
+   if (planned + length > budget) continue;
+   plan.set(length === block.size ? block.url : key, block);
+   planned += length;
+  }
+  onPlan(planned);
+  const queue = [...plan.values()];
+  const worker = async () => {
+   for (let block; (block = queue.shift());) {
+    const bytes = await fetchBlock(block.url, block.size, block.blockStart, block.blockEnd);
+    onFetch(bytes.length);
+    if (bytes.length === block.size) remember(block.url, bytes);
+    else if (bytes.length === block.blockEnd - block.blockStart) remember(block.url + '#' + block.blockStart, bytes);
+   }
+  };
+  await Promise.all(Array.from({length: Math.min(concurrency, queue.length)}, worker));
+ };
+ return reader;
 }
 
-export function mountTemporaryAssets(module, files) {
- const read = createTemporaryAssetReader();
+export function mountTemporaryAssets(module, files, {onFetch} = {}) {
+ const read = createTemporaryAssetReader({onFetch});
  const {FS} = module;
  for (const file of files) {
   const path = ROOT + '/' + file.path;
@@ -120,4 +168,5 @@ export function mountTemporaryAssets(module, files) {
   installAssetFile(FS, path, file.size, (buffer, offset, length, position) => read(file, buffer, offset, length, position));
  }
  FS.mkdirTree(ROOT + '/Saves');
+ return {prefetch: (entries, options) => read.prefetch(entries, files, options)};
 }

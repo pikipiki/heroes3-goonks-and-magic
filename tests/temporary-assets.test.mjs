@@ -74,3 +74,36 @@ test('An archive host that ignores Range only transfers the full source once',()
  assert.deepEqual([...output],[13,14,15,16,17]);
  assert.equal(calls,1);
 });
+
+test('Temporary loading progress counts transferred bytes once and never reports completion early',async()=>{
+ const {temporaryProgress,TEMPORARY_STARTUP_BYTES}=await import('../web/boot-screen.mjs');
+ const fetched=[];
+ const read=createTemporaryAssetReader({read:()=>Uint8Array.of(1,2,3,4),onFetch:bytes=>fetched.push(bytes)});
+ const file={size:4,chunks:[{offset:0,size:4,url:'pack'}]};
+ const out=new Uint8Array(4);
+ read(file,out,0,4,0);read(file,out,0,2,1);
+ assert.deepEqual(fetched,[4]);
+ assert.equal(temporaryProgress(0),0);
+ assert.equal(temporaryProgress(TEMPORARY_STARTUP_BYTES/2),50);
+ assert.equal(temporaryProgress(TEMPORARY_STARTUP_BYTES*3),99);
+});
+
+test('Startup prefetch downloads each planned block once, concurrently, and later reads stay local',async()=>{
+ const sync=[],async=[],fetched=[];let planned=0,active=0,peak=0;
+ const archive=new Uint8Array(4096).map((_,i)=>i&255),pack=Uint8Array.of(5,6,7,8);
+ const sources={archive,pack};
+ const read=createTemporaryAssetReader({blockBytes:1024,read:(url)=>{sync.push(url);return sources[url];},onFetch:bytes=>fetched.push(bytes),
+  fetchBlock:async(url,size,start,end)=>{async.push(url+'#'+start);active++;peak=Math.max(peak,active);await new Promise(r=>setTimeout(r,5));active--;return sources[url].slice(start,end);}});
+ const files=[{path:'Data/H3sprite.lod',size:4096,chunks:[{offset:0,size:4096,url:'archive'}]},
+  {path:'Mods/a.json',size:2,chunks:[{offset:0,size:2,url:'pack',packOffset:0,packSize:4}]},
+  {path:'Mods/b.json',size:2,chunks:[{offset:0,size:2,url:'pack',packOffset:2,packSize:4}]}];
+ await read.prefetch([['Data/H3sprite.lod',0],['Data/H3sprite.lod',100],['Data/H3sprite.lod',3000],['Mods/a.json',0],['Mods/b.json',1],['Missing',0]],files,{concurrency:2,onPlan:bytes=>planned=bytes});
+ assert.deepEqual(async.sort(),['archive#0','archive#2048','pack#0']);
+ assert.equal(planned,1024+1024+4);
+ assert.deepEqual(fetched.sort((a,b)=>a-b),[4,1024,1024]);
+ assert.equal(peak,2);
+ const out=new Uint8Array(2);
+ read(files[2],out,0,2,0);assert.deepEqual([...out],[7,8]);
+ read(files[0],out,0,2,3000);assert.deepEqual([...out],[3000&255,3001&255]);
+ assert.deepEqual(sync,[]);
+});

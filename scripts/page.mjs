@@ -42,8 +42,11 @@ export function renderPage(root){
  html=html.replaceAll('FS.mount(OPFS, {','if(!temporary)FS.mount(OPFS, {');
  html=html.replace('        await new Promise(resolve => {\n          OPFS.syncFsOnProgress', `        if(temporary){
           const {mountTemporaryAssets}=await import('./web/temporary-assets.mjs');
+          const {default:startupReads}=await import('./web/temporary-startup.mjs');
+          const temporaryAssets=mountTemporaryAssets(module,window.goonkAssetURLs,{onFetch:bytes=>window.goonkTemporaryBoot.progress(bytes)});
           await window.goonkTemporaryBoot.start();
-          mountTemporaryAssets(module,window.goonkAssetURLs);
+          await temporaryAssets.prefetch(startupReads,{onPlan:bytes=>window.goonkTemporaryBoot.plan(bytes)}).catch(error=>console.warn('Temporary prefetch incomplete',error));
+          await window.goonkTemporaryBoot.launching();
         }else await new Promise(resolve => {
           OPFS.syncFsOnProgress`);
  html=html.replace('module.canvas = document.getElementById("canvas");',`
