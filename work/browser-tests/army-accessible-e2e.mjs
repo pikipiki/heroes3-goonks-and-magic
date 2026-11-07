@@ -18,6 +18,31 @@ for(const kind of ['chromium','webkit']){
  }
  await p.locator('[data-army="1"][data-slot="0"]').tap();await p.locator('.army-split-toggle').tap();assert(await p.locator('#army-split').isChecked(),'Selection preserves split mode');assert(!await p.locator('.army-transfer-tools input[type=number]').isDisabled());
  await p.locator('[data-ui=close-sheet]').tap();await p.locator('[data-ui=army]').tap();await p.locator('.army-transfer-all').first().tap();assert.equal((await p.evaluate(()=>calls.at(-1)))[0],58);assert.equal(await p.locator('.mobile-sheet:not([hidden])').count(),1);
- assert.deepEqual(errors,[]);console.log('PASS',kind,'14 slots, no scroll, Split disabled before selection and for one creature, resets on deselection, bulk command');
+ await p.locator('[data-ui=close-sheet]').tap();
+ const townState=await p.evaluate(()=>goonkMobileState);
+ const publish=state=>p.evaluate(detail=>dispatchEvent(new CustomEvent('goonk-state',{detail})),state);
+ const sheet=p.locator('.mobile-sheet');
+ for(const {mode,size} of [{mode:'map',size:{width:390,height:844}},{mode:'town',size:{width:844,height:390}}]){
+  const armyState={...townState,mode,heroName:'Hero'};
+  await p.setViewportSize(size);
+  await publish(armyState);
+  await p.waitForFunction(mode=>document.querySelector('#mobile-app').dataset.mode===mode,mode);
+  await p.locator('[data-ui=army]').tap();
+  await p.locator('[data-army="1"][data-slot="0"]').tap();
+  await p.locator('.army-transfer-tools button').tap();
+  assert.deepEqual((await p.evaluate(()=>calls.at(-1))).slice(0,3),[41,1,0]);
+  assert(await sheet.isVisible(),'The army sheet stays visible immediately after tapping Details');
+  await publish(armyState);
+  await p.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+  assert(await sheet.isVisible(),'A stale map or town frame cannot replace the army sheet');
+  await publish({...armyState,mode:'creature',creatureUnit:armyState.armies[0].slots[0]});
+  await p.locator('.creature-presentation:not([hidden])').waitFor();
+  assert(await sheet.isHidden(),'The army sheet closes when Details are presented');
+  await p.locator('[data-presentation-close]').tap();
+  await publish(armyState);
+  await sheet.waitFor();
+  await p.locator('[data-ui=close-sheet]').tap();
+ }
+ assert.deepEqual(errors,[]);console.log('PASS',kind,'14 slots, no scroll, Split disabled before selection and for one creature, resets on deselection, bulk command, no Details flicker');
  }finally{await browser.close();}
 }
