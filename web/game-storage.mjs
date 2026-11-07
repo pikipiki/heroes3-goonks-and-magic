@@ -3,6 +3,34 @@ import {getLanguage} from './i18n.mjs';
 export const GAME_NAME='HEROES GOONK';
 export const STORAGE_LOCK='heroes-goonk-running';
 export const ASSET_INDEX='heroes-goonk.asset-index.v1';
+export const STORAGE_FAILED_KEY='heroes-goonk.storage-failed';
+
+export function isMobileDevice(nav=globalThis.navigator){
+ return typeof nav!=='undefined'&&(
+  /Android|iPhone|iPad|iPod/i.test(nav?.userAgent||'')||
+  nav?.userAgentData?.mobile===true
+ );
+}
+
+export function defaultReserveBytes(nav=globalThis.navigator){
+ return isMobileDevice(nav)?256*1024*1024:128*1024*1024;
+}
+
+export function isStorageFailed(storage=globalThis.localStorage,session=globalThis.sessionStorage){
+ try{if(storage?.getItem?.(STORAGE_FAILED_KEY)==='true'||session?.getItem?.(STORAGE_FAILED_KEY)==='true')return true;}catch{}
+ return false;
+}
+
+export function markStorageFailed(storage=globalThis.localStorage,session=globalThis.sessionStorage){
+ try{storage?.setItem?.(STORAGE_FAILED_KEY,'true');}catch{}
+ try{session?.setItem?.(STORAGE_FAILED_KEY,'true');}catch{}
+}
+
+export function clearStorageFailed(storage=globalThis.localStorage,session=globalThis.sessionStorage){
+ try{storage?.removeItem?.(STORAGE_FAILED_KEY);}catch{}
+ try{session?.removeItem?.(STORAGE_FAILED_KEY);}catch{}
+}
+
 export function isStorageUnavailable(error){
  const text=String(error?.name||'')+' '+String(error?.message||'');
  return /unknown transient reason|quota|space|storage|disk|full|notreadable|nomodification|no modification|file_error_no_space/i.test(text);
@@ -13,8 +41,9 @@ export function missingManifestBytes(manifest,storage){
  for(const file of manifest?.files||[])if(previous[file.path]?.hash!==file.hash||previous[file.path]?.size!==file.size)missing+=file.size||0;
  return missing;
 }
-export function hasStorageQuota(estimate,neededBytes,reserveBytes=16*1024*1024){
- if(!(neededBytes>0)||!Number.isFinite(estimate?.quota))return true;
+export function hasStorageQuota(estimate,neededBytes,reserveBytes=defaultReserveBytes()){
+ if(!(neededBytes>0))return true;
+ if(!Number.isFinite(estimate?.quota))return false;
  const usage=Math.max(0,Number(estimate.usage)||0);
  return estimate.quota-usage>=neededBytes+reserveBytes;
 }

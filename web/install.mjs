@@ -1,6 +1,6 @@
 import {assertRuntimeManifest} from './runtime-manifest.mjs';
 import {opfsList,opfsWrite,opfsFlush,opfsUnlink} from '../opfs-worker.js';
-import {holdGameStorage,isStorageUnavailable,missingManifestBytes,hasStorageQuota,removeGameData} from './game-storage.mjs';
+import {holdGameStorage,isStorageUnavailable,missingManifestBytes,hasStorageQuota,removeGameData,isStorageFailed,markStorageFailed} from './game-storage.mjs';
 import {syncAssets} from './asset-cache.mjs';
 import {downloadFetch} from './download-fetch.mjs';
 import {createLoadingView} from './loading.mjs';
@@ -24,12 +24,13 @@ const prepare=async()=>{
   window.goonkTemporaryBoot=createTemporaryBoot(document.querySelector('#status'));
   return {temporary:true};
  };
- if(!navigator.storage?.getDirectory)return temporary();
+ if(isStorageFailed(localStorage,sessionStorage)||!navigator.storage?.getDirectory)return temporary();
  await navigator.storage?.persist?.().catch(()=>{});
  const neededBytes=missingManifestBytes(manifest,localStorage);
  if(neededBytes>0){
   const estimate=await navigator.storage?.estimate?.().catch(()=>null);
   if(!hasStorageQuota(estimate,neededBytes)){
+   markStorageFailed(localStorage,sessionStorage);
    await removeGameData({opfs:{list:opfsList,unlink:opfsUnlink,flush:opfsFlush},storage:localStorage}).catch(()=>{});
    return temporary();
   }
@@ -39,6 +40,7 @@ const prepare=async()=>{
  try{result=await syncAssets({manifest,opfs:{list:useGameStorage(opfsList),write:useGameStorage(opfsWrite),flush:useGameStorage(opfsFlush),unlink:useGameStorage(opfsUnlink)},storage:localStorage,fetcher:downloadFetch,onProgress:progress});}
  catch(error){
   if(!(error instanceof GameStorageUnavailable)&&!isStorageUnavailable(error))throw error;
+  markStorageFailed(localStorage,sessionStorage);
   await removeGameData({opfs:{list:opfsList,unlink:opfsUnlink,flush:opfsFlush},storage:localStorage}).catch(()=>{});
   return temporary();
  }
