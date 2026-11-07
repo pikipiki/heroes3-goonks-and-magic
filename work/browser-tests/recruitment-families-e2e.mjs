@@ -51,7 +51,10 @@ for(const kind of ['chromium','webkit']){const b=await(kind==='webkit'?webkit.la
   assert(await preview.isVisible());
   assert.equal(await preview.locator('strong').textContent(),'Mage Guild Level 1');
   assert.match(await preview.locator('img').getAttribute('src'),/mageGuild1\.webp$/);
-  assert.match(await p.locator('.hall-stock').textContent(),/Final sanctuary/);
+  assert.equal(await preview.locator('span').textContent(),'First building needed');
+  assert.equal(await preview.locator('button, a').count(),0);
+  assert.match(await p.locator('.hall-stock').textContent(),/Recruitment locked/);
+  assert(await p.getByRole('button',{name:'How to unlock',exact:true}).isVisible());
   assert.deepEqual(await p.locator('[data-hall-build]').boundingBox(),buy);
   assert.deepEqual(await p.locator('.hall-actions [data-type-info]').boundingBox(),details);
   assert.deepEqual(await geometry(),before,'Selecting a locked form keeps the gallery, portraits, scroll and actions in place');

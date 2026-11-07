@@ -148,11 +148,11 @@
 #mobile-app .hall-unlock-preview{
  grid-column:1/-1;grid-row:3/5;min-width:0;min-height:0;overflow:auto;
  display:flex;align-items:center;gap:8px;padding:4px 8px;
- border:1px solid #aa8c47;border-left:2px solid #e0b970;background:#352412;
+ border-inline-start:2px solid #aa8c47;background:rgba(224,185,112,.06);
 }
 #mobile-app .hall-unlock-preview img{width:48px;height:48px;max-height:100%;object-fit:contain;flex:none}
 #mobile-app .hall-unlock-preview div{display:grid;min-width:0;gap:2px;overflow-wrap:anywhere}
-#mobile-app .hall-unlock-preview span,#mobile-app .hall-unlock-preview small{font-size:11px;color:#e3ca96}
+#mobile-app .hall-unlock-preview span{font-size:11px;color:#e3ca96}
 #mobile-app .hall-unlock-preview strong{font-size:14px;color:#ffe49a;line-height:1.15}
 @media(orientation:landscape) and (max-height:360px){
  #mobile-app .hall-detail .hall-stock{grid-column:1}
@@ -160,5 +160,4 @@
  #mobile-app .hall-actions{grid-row:4}
  #mobile-app .hall-unlock-preview{grid-row:3;padding-block:2px}
  #mobile-app .hall-unlock-preview img{width:35px;height:35px}
- #mobile-app .hall-unlock-preview small{display:none}
 }
