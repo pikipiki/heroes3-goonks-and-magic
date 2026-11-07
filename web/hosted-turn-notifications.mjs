@@ -85,26 +85,50 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   modes.className = 'hosted-match-actions';
   const createMode = document.createElement('button');
   const joinMode = document.createElement('button');
-  createMode.type = joinMode.type = 'button';
+  const libraryMode = document.createElement('button');
+  createMode.type = joinMode.type = libraryMode.type = 'button';
+  createMode.dataset.nativeClick = joinMode.dataset.nativeClick = libraryMode.dataset.nativeClick = '';
   createMode.textContent = fr ? 'Créer une partie' : 'Create new game';
-  joinMode.textContent = fr ? 'Rejoindre une partie existante' : 'Join existing game';
+  joinMode.textContent = fr ? 'Rejoindre avec un code' : 'Join with a code';
+  libraryMode.textContent = fr ? 'Mes parties' : 'My games';
+  libraryMode.className = 'primary';
   createMode.hidden = !poolEndpoint;
-  modes.append(createMode, joinMode);
+  modes.append(libraryMode, joinMode, createMode);
 
   const createPanel = document.createElement('div');
   createPanel.id = 'hosted-create-panel';
+  const library = document.createElement('section');
+  library.className = 'hosted-game-library';
+  library.innerHTML = '<h3></h3><div class="hosted-game-list"></div><p data-library-empty hidden></p>';
+  library.querySelector('h3').tabIndex = -1;
+  library.querySelector('h3').textContent = fr ? 'Mes parties' : 'My games';
+  library.querySelector('[data-library-empty]').textContent = fr ? 'Aucune partie mémorisée sur cet appareil.' : 'No games saved on this device.';
+  const gameList = library.querySelector('.hosted-game-list');
+  const savedPanel = document.createElement('section');
+  savedPanel.id = 'hosted-saved-panel';
+  savedPanel.className = 'hosted-match-settings';
   const field = document.createElement('section');
   field.id = 'hosted-join-panel';
   createMode.setAttribute('aria-controls', createPanel.id);
   joinMode.setAttribute('aria-controls', field.id);
+  let view = null, disposed = false, presenceTimer, polling = false;
+  const summaries = new Map();
   function showMode(mode) {
+    view = mode;
     modes.hidden = intro.hidden = Boolean(mode);
     status.textContent = '';
     container.scrollTop = 0;
     createPanel.hidden = mode !== 'create';
     field.hidden = mode !== 'join';
+    library.hidden = mode !== 'saved-list';
+    savedPanel.hidden = mode !== 'saved';
     createMode.setAttribute('aria-expanded', String(!createPanel.hidden));
     joinMode.setAttribute('aria-expanded', String(!field.hidden));
+    libraryMode.setAttribute('aria-expanded', String(!library.hidden));
+    render();
+    if (mode === 'saved-list') library.querySelector('h3').focus({preventScroll: true});
+    if (mode === 'saved') void refreshAlerts(true);
+    void updateOccupancy();
   }
   field.className = 'hosted-match-settings';
   field.innerHTML = '<label><span></span><input type="password" data-hosted-seat-code autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></label><div class="hosted-match-actions"><button type="button"></button><button type="button"></button></div><p role="status"></p>';
@@ -126,25 +150,53 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   const resume = document.createElement('button');
   const personalCode = createHostedCodeCopy(fr);
   const forget = document.createElement('button');
-  const savedMatch = document.createElement('select');
+  const savedTitle = document.createElement('h3');
   const occupancy = document.createElement('p');
   const savedCodeHelp = document.createElement('p');
-  savedMatch.setAttribute('aria-label', fr ? 'Partie à reprendre' : 'Match to resume');
+
   savedActions.className = 'hosted-match-actions hosted-saved-actions';
   resume.type = forget.type = 'button';
   resume.className = 'primary';
   resume.textContent = fr ? 'Reprendre la partie' : 'Resume match';
-  forget.textContent = fr ? 'Effacer le code mémorisé' : 'Remove saved code';
+  forget.textContent = fr ? 'Retirer de cet appareil' : 'Remove from this device';
   savedCodeHelp.id = 'hosted-saved-code-help';
   savedCodeHelp.textContent = fr
-    ? 'Après avoir effacé le code, tu devras le ressaisir pour reprendre cette partie sur cet appareil.'
-    : 'If you remove the code, you’ll need to enter it again to resume this match on this device.';
+    ? 'Ton code personnel permet de retrouver la partie après avoir retiré ce raccourci.'
+    : 'Your personal code lets you recover this game after removing this shortcut.';
   forget.setAttribute('aria-describedby', savedCodeHelp.id);
-  savedActions.append(savedMatch, occupancy, resume, personalCode.element, forget, savedCodeHelp);
+  const extras = document.createElement('details');
+  extras.className = 'hosted-game-options';
+  const extraSummary = document.createElement('summary');
+  extraSummary.textContent = fr ? 'Code personnel et alertes' : 'Personal code and alerts';
+  extras.append(extraSummary, personalCode.element);
+  const management = document.createElement('details');
+  management.className = 'hosted-game-options';
+  const manageSummary = document.createElement('summary');
+  manageSummary.textContent = fr ? 'Gérer cette partie' : 'Manage this game';
+  const remove = document.createElement('button');
+  remove.type = 'button';
+  remove.dataset.nativeClick = '';
+  remove.className = 'hosted-delete';
+  remove.textContent = fr ? 'Supprimer la partie du serveur' : 'Delete game from server';
+  const removeHelp = document.createElement('p');
+  management.append(manageSummary, remove, removeHelp, forget, savedCodeHelp);
+  savedActions.append(savedTitle, occupancy, resume, extras, management);
+  const deleteDialog = document.createElement('dialog');
+  deleteDialog.className = 'hosted-delete-dialog';
+  deleteDialog.setAttribute('aria-labelledby', 'hosted-delete-title');
+  deleteDialog.innerHTML = '<header><h2 id="hosted-delete-title"></h2></header><div class="hosted-delete-body"><p data-delete-name></p><p data-delete-help></p><div class="hosted-match-actions"><button type="button" data-delete-cancel data-native-click autofocus></button><button type="button" data-delete-confirm data-native-click class="hosted-delete"></button></div></div>';
+  deleteDialog.querySelector('h2').textContent = fr ? 'Supprimer cette partie ?' : 'Delete this game?';
+  deleteDialog.querySelector('[data-delete-help]').textContent = fr ? 'La sauvegarde et les accès de tous les joueurs seront supprimés du serveur.' : 'The save and access for every player will be removed from the server.';
+  const cancelDelete = deleteDialog.querySelector('[data-delete-cancel]');
+  const confirmDelete = deleteDialog.querySelector('[data-delete-confirm]');
+  cancelDelete.textContent = fr ? 'Annuler' : 'Cancel';
+  confirmDelete.textContent = fr ? 'Supprimer' : 'Delete';
+  let deleteTarget;
+  deleteDialog.addEventListener('cancel', event => { if (pending) event.preventDefault(); });
+  deleteDialog.addEventListener('close', () => { if (remove.isConnected && !savedPanel.hidden) remove.focus({preventScroll: true}); });
   const intro = document.createElement('p');
   intro.textContent = 'Le serveur garde la partie disponible quand l’hôte ferme le jeu.';
-  showMode(requested ? 'join' : null);
-  field.prepend(savedActions);
+  savedPanel.append(savedActions);
   chooser.append(fr ? 'Scénario de la partie dédiée' : 'Hosted match scenario', select);
   start.type = 'button';
   start.textContent = fr ? 'Lancer avec ce scénario' : 'Start with this scenario';
@@ -162,10 +214,22 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   const alertsHelp = document.createElement('p');
   alertsHelp.id = 'hosted-turn-alerts-help';
   alerts.setAttribute('aria-describedby', alertsStatus.id + ' ' + alertsHelp.id);
-  alerts.parentElement.after(status, alertsStatus, alertsHelp);
+  extras.append(alerts, alertsStatus, alertsHelp);
+  const codeKinds = document.createElement('div');
+  codeKinds.className = 'hosted-match-actions hosted-code-kinds';
+  codeKinds.setAttribute('role', 'group');
+  codeKinds.setAttribute('aria-label', fr ? 'Type de code' : 'Code type');
+  codeKinds.innerHTML = '<button type="button" data-code-kind="invite"></button><button type="button" data-code-kind="personal"></button>';
+  for (const button of codeKinds.children) button.dataset.nativeClick = '';
+  codeKinds.children[0].textContent = fr ? 'Invitation' : 'Invitation';
+  codeKinds.children[1].textContent = fr ? 'Mon code personnel' : 'My personal code';
+  const codeHelp = document.createElement('p');
+  field.prepend(codeKinds);
+  field.querySelector('label').after(codeHelp);
+  let codeKind = 'invite';
   join.textContent = fr ? 'Rejoindre la partie' : 'Join match';
   const {serviceWorker} = navigator;
-  layout.append(modes, intro, loader, createPanel, field, status);
+  layout.append(modes, intro, loader, createPanel, library, savedPanel, field, status, deleteDialog);
   container.append(layout);
 
   function rememberedSeats() {
@@ -177,7 +241,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     } catch { return []; }
   }
 
-  const availableSeats = () => rememberedSeats().filter(saved => !requested || saved.matchId === requested);
+  const availableSeats = () => rememberedSeats();
   const sameMatch = (left, right) => left?.matchId === right?.matchId && left?.endpoint === right?.endpoint;
   function forgetSeat(saved) {
     try {
@@ -186,14 +250,14 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     } catch {}
   }
 
-  let saved = availableSeats()[0], createdSeat;
+  let saved = availableSeats().find(item => item.matchId === requested) ?? availableSeats()[0], createdSeat;
   const claims = new Map();
   let manager;
   let pending = false;
   const seatCode = () => normalizeSeatCode(input.value);
   const inviteCode = () => {
     const code = input.value.replace(/\s/g, '').toUpperCase();
-    return poolEndpoint && /^[A-Z]{4}$/.test(code) && new Set(code).size === 4 ? code : '';
+    return codeKind === 'invite' && poolEndpoint && /^[A-Z]{4}$/.test(code) && new Set(code).size === 4 ? code : '';
   };
   const alertSeat = () => input.value.trim() ? {token: seatCode()} : {
     token: normalizeSeatCode(saved?.token ?? ''), endpoint: saved?.endpoint,
@@ -211,7 +275,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     (matchId, token, name, players) => {
       remember(matchId, token, poolEndpoint, name, players);
       createdSeat = saved;
-      if (!field.hidden) {
+      if (view === 'saved') {
         void refreshAlerts();
         void updateOccupancy();
       }
@@ -238,17 +302,33 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   const render = () => {
     const valid = Boolean(seatCode() || inviteCode());
     const seats = availableSeats();
-    savedMatch.hidden = !seats.length;
-    const key = JSON.stringify(seats.map(item => [item.matchId, item.name, item.players]));
-    if (savedMatch.dataset.key !== key) {
-      savedMatch.dataset.key = key;
-      savedMatch.replaceChildren(...seats.map(item => new Option(
-        [item.name || (fr ? 'Partie dédiée' : 'Hosted match'), '#' + item.matchId.slice(0, 6),
-          item.players && item.players + (fr ? ' places' : ' seats')].filter(Boolean).join(' · '), item.matchId)));
+    libraryMode.textContent = (fr ? 'Mes parties' : 'My games') + (seats.length ? ` (${seats.length})` : '');
+    library.querySelector('[data-library-empty]').hidden = seats.length > 0;
+    const key = JSON.stringify(seats.map(item => [item.matchId, item.name, item.players, summaries.get(item.matchId)]));
+    if (gameList.dataset.key !== key) {
+      gameList.dataset.key = key;
+      gameList.replaceChildren(...seats.map(item => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.dataset.savedId = item.matchId;
+        button.dataset.nativeClick = '';
+        button.innerHTML = '<strong></strong><small></small><span></span>';
+        button.querySelector('strong').textContent = item.name || (fr ? 'Partie dédiée' : 'Hosted game');
+        button.querySelector('small').textContent = '#' + item.matchId.slice(0, 6);
+        button.querySelector('span').textContent = presenceText(item);
+        return button;
+      }));
     }
-    if (saved) savedMatch.value = saved.matchId;
-    savedMatch.disabled = pending;
+    for (const button of gameList.querySelectorAll('button')) button.disabled = pending;
     savedActions.hidden = !saved;
+    savedTitle.textContent = saved ? (saved.name || (fr ? 'Partie dédiée' : 'Hosted game')) + ' · #' + saved.matchId.slice(0, 6) : '';
+    occupancy.textContent = saved ? presenceText(saved) : '';
+    const summary = summaries.get(saved?.matchId);
+    remove.disabled = pending || summary?.canDelete !== true;
+    removeHelp.textContent = summary?.isHost === false ?
+      (fr ? 'Seul le créateur peut supprimer la partie du serveur.' : 'Only the creator can delete this game from the server.') :
+      summary?.connectedPlayers > 0 ? (fr ? 'Suppression disponible quand tous les joueurs sont déconnectés.' : 'Available when all players are disconnected.') :
+        (fr ? 'Le serveur vérifie qu’aucun joueur n’est connecté avant la suppression.' : 'The server checks that no players are connected before deleting.');
     personalCode.setCode(saved?.token);
     personalCode.button.disabled = pending;
     resume.disabled = pending || !window.Module?._vcmiJoinHostedMatch;
@@ -275,7 +355,14 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
         : 'Join a game or select a saved game to manage turn alerts.');
     start.disabled = !valid || !select.value || pending;
     select.disabled = pending;
-    input.disabled = createMode.disabled = joinMode.disabled = pending;
+    join.disabled = input.disabled = createMode.disabled = joinMode.disabled = libraryMode.disabled = pending;
+    for (const button of codeKinds.children) {button.disabled = pending;button.setAttribute('aria-pressed', String(button.dataset.codeKind === codeKind));}
+    field.querySelector('label span').textContent = codeKind === 'invite' ? (fr ? 'Code d’invitation' : 'Invitation code') : (fr ? 'Code personnel de reprise' : 'Personal resume code');
+    const inputType = codeKind === 'invite' ? 'text' : 'password';
+    if (input.type !== inputType) input.type = inputType;
+    input.placeholder = codeKind === 'invite' ? 'XXXX' : (fr ? 'Colle ton code personnel' : 'Paste your personal code');
+    codeHelp.textContent = codeKind === 'invite' ? (fr ? 'Les quatre lettres fournies par l’hôte te donnent une place libre.' : 'The four letters from the host give you a free seat.') : (fr ? 'Retrouve ta place depuis un autre appareil avec le code que tu as copié.' : 'Resume your seat on another device using the code you copied.');
+    join.textContent = codeKind === 'invite' ? (fr ? 'Rejoindre la partie' : 'Join game') : (fr ? 'Reprendre ma place' : 'Resume my seat');
   };
   async function refreshAlerts(force = false) {
     if (pending) return;
@@ -292,7 +379,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       const {response, target} = await hostedRequest(token, {signal: backgroundRequests.signal}, endpoint, '?alerts=1');
       if (!response.ok) return;
       const {matchId, alertsEnabled} = await response.json();
-      if (matchPattern.test(matchId) && (!requested || requested === matchId) && typeof alertsEnabled === 'boolean') {
+      if (matchPattern.test(matchId) && typeof alertsEnabled === 'boolean') {
         request.enabled = alertsEnabled;
         request.target = target;
       }
@@ -303,68 +390,120 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       if (alertsState === request && input.isConnected) render();
     }
   }
+  function presenceText(item) {
+    const summary = summaries.get(item.matchId);
+    const total = summary?.players ?? item.players;
+    const count = summary?.connectedPlayers;
+    if (!Number.isInteger(count)) {
+      const capacity = Number.isInteger(total) ? `${total} ${fr ? 'places' : 'seats'} · ` : '';
+      return capacity + (fr ? 'Présence non vérifiée' : 'Presence unverified');
+    }
+    return fr ? `${count}/${total} joueurs connectés` : `${count}/${total} players connected`;
+  }
+  function schedulePresence() {
+    clearTimeout(presenceTimer);
+    if (!disposed && ['saved', 'saved-list'].includes(view))
+      presenceTimer = setTimeout(() => void updateOccupancy(), 15000);
+  }
   async function updateOccupancy() {
-    if (pending) return;
-    const selected = saved;
-    occupancy.textContent = selected?.players ? selected.players + (fr ? ' places' : ' seats') : '';
+    if (disposed || polling || !['saved', 'saved-list'].includes(view)) return;
+    if (pending) {schedulePresence();return;}
+    polling = true;
     const signal = backgroundRequests.signal;
-    const seats = [selected, ...availableSeats().filter(item => !sameMatch(item, selected))]
-      .filter(item => item && item.endpoint === poolEndpoint);
-    for (const item of seats) {
-      if (signal.aborted || !input.isConnected || field.hidden) return;
-      try {
-        const {response} = await hostedRequest(item.token, {signal}, item.endpoint, '?preview=1');
-        if (signal.aborted || !input.isConnected) return;
-        if (response.status === 401) {
-          forgetSeat(item);
-          if (sameMatch(saved, item) && saved.token === item.token) {
-            saved = availableSeats()[0];
-            occupancy.textContent = saved?.players ? saved.players + (fr ? ' places' : ' seats') : '';
-          }
-          render();
-          continue;
-        }
-        if (!response.ok) continue;
-        const {matchId, players, connectedPlayers} = await response.json();
-        if (sameMatch(saved, item) && matchId === item.matchId && Number.isInteger(players) && Number.isInteger(connectedPlayers)) {
-          occupancy.textContent = fr ? `${connectedPlayers} joueurs connectés sur ${players}` : `${connectedPlayers} of ${players} players connected`;
-        }
-      } catch {}
+    try {
+      const seats = view === 'saved' ? [saved].filter(Boolean) : availableSeats();
+      for (const item of seats) {
+        if (signal.aborted || disposed || !['saved', 'saved-list'].includes(view)) return;
+        if (item.endpoint !== poolEndpoint) continue;
+        try {
+          const {response} = await hostedRequest(item.token, {signal}, item.endpoint, '?preview=1');
+          if (signal.aborted || disposed) return;
+          if (response.status === 401) {
+            forgetSeat(item);
+            summaries.delete(item.matchId);
+            if (sameMatch(saved, item)) {
+              saved = availableSeats()[0];
+              if (view === 'saved') showMode('saved-list');
+            }
+          } else if (response.ok) {
+            const summary = await response.json();
+            if (summary.matchId === item.matchId && Number.isInteger(summary.players) && Number.isInteger(summary.connectedPlayers))
+              summaries.set(item.matchId, summary);
+          } else summaries.delete(item.matchId);
+        } catch { if (!signal.aborted) summaries.delete(item.matchId); }
+        if (!disposed) render();
+      }
+    } finally {polling = false;schedulePresence();}
+  }
+
+  async function deleteSelected() {
+    if (pending || !deleteTarget) return;
+    const target = deleteTarget;
+    pending = true;
+    confirmDelete.disabled = cancelDelete.disabled = true;
+    confirmDelete.textContent = fr ? 'Suppression…' : 'Deleting…';
+    deleteDialog.setAttribute('aria-busy', 'true');
+    backgroundRequests.abort();
+    clearTimeout(presenceTimer);
+    backgroundRequests = new AbortController();
+    render();
+    try {
+      const url = new URL('/hosted/matches/' + target.matchId, target.endpoint);
+      const response = await requestHostedMatch(url, {method: 'DELETE', credentials: 'omit', redirect: 'error',
+        headers: {Authorization: 'Bearer ' + target.token}}, () => {});
+      const result = response.ok ? {} : await response.json().catch(() => ({}));
+      if (response.ok || (response.status === 404 && result.error === 'match-not-found')) {
+        forgetSeat(target);
+        summaries.delete(target.matchId);
+        saved = availableSeats()[0];
+        deleteDialog.close();
+        showMode('saved-list');
+        status.textContent = fr ? 'Partie supprimée du serveur.' : 'Game deleted from server.';
+      } else {
+        deleteDialog.close();
+        status.textContent = result.error === 'players-connected' ?
+          (fr ? 'Un joueur est connecté. La partie a été conservée.' : 'A player is connected. The game has been kept.') :
+          response.status === 403 ? (fr ? 'Seul le créateur peut supprimer cette partie.' : 'Only the creator can delete this game.') :
+            (fr ? 'La suppression n’a pas abouti. Réessaie.' : 'The game could not be deleted. Try again.');
+      }
+    } catch {
+      deleteDialog.close();
+      status.textContent = fr ? 'Impossible de confirmer la suppression. Réessaie.' : 'Could not confirm deletion. Try again.';
+    } finally {
+      pending = false;
+      confirmDelete.disabled = cancelDelete.disabled = false;
+      confirmDelete.textContent = fr ? 'Supprimer' : 'Delete';
+      deleteDialog.removeAttribute('aria-busy');
+      render();
+      if (status.textContent && status.isConnected) status.scrollIntoView({block: 'nearest'});
+      void updateOccupancy();
     }
   }
   const codeChanged = () => {
     chooser.hidden = start.hidden = true;
     status.textContent = '';
-    void refreshAlerts();
+    if (seatCode()) codeKind = 'personal';
+    if (view === 'saved') void refreshAlerts();
+    else render();
   };
   for (const type of ['input', 'change']) input.addEventListener(type, codeChanged);
   select.addEventListener('change', render);
-  savedMatch.addEventListener('change', () => {
-    saved = availableSeats().find(item => item.matchId === savedMatch.value);
-    input.value = '';
-    codeChanged();
-    void updateOccupancy();
-  });
   serviceWorker?.getRegistration().then(registration => {
     if (registration?.active) manager = registration.pushManager;
   }).catch(() => {});
   serviceWorker?.ready.then(registration => { manager = registration.pushManager; });
-  render();
-  if (requested) {
-    void refreshAlerts();
-    void updateOccupancy();
-  }
+  showMode(requested ? (saved ? 'saved' : 'join') : null);
 
   function showActionStatus(message) {
     status.textContent = message;
-    if (status.isConnected && !field.hidden) status.scrollIntoView({block: 'nearest'});
+    if (status.isConnected && ['saved', 'join', 'saved-list'].includes(view)) status.scrollIntoView({block: 'nearest'});
   }
 
   const codeHint = () => /^#?[a-f0-9]{6}$/i.test(input.value.trim())
     ? (fr ? 'Ceci est le numéro de la partie. Demande à l’hôte son code d’invitation.' :
       'This is the match number. Ask the host for the invitation code.')
-    : (fr ? 'Saisis le code d’invitation à quatre lettres ou colle ton code personnel pour retrouver ta place.' :
-      'Enter the four-letter invitation code or paste your personal code to resume your seat.');
+    : codeKind === 'personal' ? (fr ? 'Colle ton code personnel pour retrouver ta place.' : 'Paste your personal code to resume your seat.') :
+      (fr ? 'Saisis les quatre lettres du code d’invitation.' : 'Enter the four-letter invitation code.');
 
   async function claimInvitation(invitation, attempt, onWait) {
     const key = 'heroes-goonk.invite.' + invitation;
@@ -499,7 +638,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   }
 
   async function joinMatch({scenario, remembered} = {}) {
-    if (!remembered && !input.value.trim()) remembered = saved;
+    if (!remembered && view === 'saved' && !input.value.trim()) remembered = saved;
     let token = remembered ? normalizeSeatCode(remembered.token) : seatCode();
     const invitation = !remembered && inviteCode();
     const runtime = window.Module;
@@ -525,7 +664,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       loader.hidden = false;
       const message = fr ? french : english;
       if (loader.textContent !== message) loader.textContent = message;
-      if (loader.isConnected && !field.hidden) loader.scrollIntoView({block: 'nearest'});
+      if (loader.isConnected && ['saved', 'join'].includes(view)) loader.scrollIntoView({block: 'nearest'});
     };
     showLoading('Vérification de l’accès…', 'Checking access…');
     const showServerWait = () => showLoading('En attente du serveur dédié…', 'Waiting for the dedicated server…');
@@ -576,13 +715,13 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
       if (remembered && (result.response.status === 401 || (response && response.matchId !== remembered.matchId))) {
         forgetSeat(remembered);
         saved = availableSeats()[0];
-        void updateOccupancy();
+        showMode('saved-list');
         status.textContent = fr ? 'Cet accès a expiré. Saisis le code de ta place.' :
           'This access has expired. Enter your seat code.';
         return;
       }
       const {matchId, name, players, playable, scenarioStatus, scenarios} = response ?? {};
-      if (!matchPattern.test(matchId) || (requested && requested !== matchId))
+      if (!matchPattern.test(matchId))
         throw new Error('Wrong or unavailable match.');
       if (playable !== true && scenarioStatus) {
         if (Array.isArray(scenarios) && scenarios.length) {
@@ -662,12 +801,29 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   }
 
   function activate(button) {
-    if (button === joinMode) {
-      showMode('join');
-      void refreshAlerts(true);
-      void updateOccupancy();
+    if (button === libraryMode) {showMode('saved-list');return true;}
+    if (button === joinMode) {input.value = '';showMode('join');return true;}
+    if (button.dataset.savedId !== undefined) {
+      saved = availableSeats().find(item => item.matchId === button.dataset.savedId);
+      input.value = '';
+      if (saved) showMode('saved');
       return true;
     }
+    if (button.dataset.codeKind) {
+      codeKind = button.dataset.codeKind;
+      input.value = '';
+      codeChanged();
+      return true;
+    }
+    if (button === remove) {
+      if (remove.disabled || !saved) return true;
+      deleteTarget = {...saved};
+      deleteDialog.querySelector('[data-delete-name]').textContent = saved.name || '#' + saved.matchId.slice(0, 6);
+      deleteDialog.showModal();
+      return true;
+    }
+    if (button === cancelDelete) {if (!pending) deleteDialog.close();return true;}
+    if (button === confirmDelete) {void deleteSelected();return true;}
     if (button === createMode) showMode('create');
     if (creationAction?.(button)) return true;
     if (button === start) {
@@ -685,7 +841,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     if (button === forget) {
       forgetSeat(saved);
       saved = availableSeats()[0];
-      void updateOccupancy();
+      showMode('saved-list');
       status.textContent = fr ? 'Code effacé sur cet appareil.' : 'Saved code removed from this device.';
       void refreshAlerts();
       return true;
@@ -701,7 +857,9 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
 
   return {
     activate,
+    dispose() {disposed = true;clearTimeout(presenceTimer);backgroundRequests.abort();},
     back() {
+      if (view === 'saved' && !pending) {showMode('saved-list');return true;}
       if (modes.hidden) {
         if (!pending) showMode(null);
         return true;

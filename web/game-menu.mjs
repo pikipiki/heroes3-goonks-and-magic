@@ -41,6 +41,7 @@ function mountGameMenu(){
   }
   window.addEventListener('goonk-open-hosted-match',()=>openHostedMatch());
   function render(){
+    if(tab!=='hosted-match'&&hostedAlerts){hostedAlerts.dispose?.();hostedAlerts=undefined;}
     const hostedTitle='Multijoueur sur serveur dédié';
     const hostedEntry=dialog.querySelector('nav [data-menu=hosted-match]');
     hostedEntry.hidden=Boolean(window.goonkMobileActive)||!window.goonkHostedAlerts||state.mode!=='menu';
@@ -160,6 +161,7 @@ function mountGameMenu(){
   dialog.addEventListener('close',()=>{
     if(tab!=='hosted-match'||dialog.open)return;
     tab='home';
+    hostedAlerts?.dispose?.();
     hostedAlerts=undefined;
     content.replaceChildren();
     delete content.dataset.view;
