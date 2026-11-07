@@ -268,7 +268,7 @@ function mount(){
  const heroTransition=createHeroTransition(update,{ready:next=>portraitTown.prepare(next,townPortraitEnabled)});
  window.addEventListener('goonk-state',event=>{
   const next=event.detail;
-  if(next.mode==='town')townBuildings.warm(next);else if(next.mode!=='fort')townBuildings.cancel();
+  if(next.mode==='town')townBuildings.warm(next);else if(next.mode!=='fort')townBuildings.cancel(['menu','lobby','load'].includes(next.mode));
   heroTransition.receive(next,state.mode);
  });
  const enable=()=>{if(window.Module?._vcmiMobileEnable){window.Module._vcmiMobileEnable(1);return true;}return false;};

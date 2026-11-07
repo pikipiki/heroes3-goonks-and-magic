@@ -4,14 +4,24 @@
 @media(orientation:landscape) and (max-height:600px){
  .goonk-mobile #mobile-app[data-has-calendar=true]{grid-template-rows:auto minmax(0,1fr)}
  #mobile-app .mobile-calendar{font-size:11px;line-height:14px}
- #mobile-app[data-mode=map] .mobile-calendar span:not(.calendar-compact){display:none}
- #mobile-app[data-mode=map] .mobile-calendar .calendar-compact{display:block}
+ #mobile-app[data-mode=map] .mobile-calendar>span:first-child{display:none}
+ #mobile-app[data-mode=map] .mobile-calendar>.calendar-compact{display:block}
 }
 #mobile-app .mobile-calendar .calendar-compact{display:none}
 
 #mobile-app button.mobile-calendar{min-height:26px;border:0;border-top:1px solid #b5975060;background:none;box-shadow:none}
 #mobile-app button.mobile-calendar:disabled{opacity:1}
-#mobile-app button.mobile-calendar:not(:disabled) .calendar-next-week{color:#ffe29c;font-weight:bold}
+#mobile-app button.mobile-calendar:not(:disabled){min-height:40px;flex-wrap:nowrap;text-align:left}
+#mobile-app button.mobile-calendar:not(:disabled)>span:first-child{white-space:normal}
+#mobile-app .calendar-recruit-cue{display:inline-flex;align-items:center;flex:none;gap:4px;padding:2px 5px;border:1px solid #b89458;border-radius:2px;background:#2d1e13;color:#fce5a9;font-size:12px;line-height:16px}
+#mobile-app .calendar-recruit-cue strong{color:#ffe19d}
+#mobile-app .calendar-chevron{font-size:17px;line-height:14px}
+#mobile-app button.mobile-calendar:is(:active,[aria-expanded=true]) .calendar-recruit-cue{background:#5a391d;border-color:#e2b86b}
+#mobile-app button.mobile-calendar[data-recruits-soon] .calendar-recruit-cue{border-color:#f4cf7d}
+#mobile-app[data-mode=fort] button.mobile-calendar{min-height:26px}
+@media(orientation:landscape) and (max-height:600px){
+ #mobile-app button.mobile-calendar:not(:disabled){min-height:28px}
+}
 #mobile-app .weekly-roster{display:grid;gap:8px}
 #mobile-app .weekly-roster h3,#mobile-app .weekly-roster p{margin:0}
 #mobile-app .weekly-town{display:flex;align-items:center;gap:8px}

@@ -73,3 +73,12 @@
 #mobile-app .building-benefit-creature{display:flex;align-items:center;gap:8px}
 #mobile-app .building-benefit-creature .unit-portrait{width:52px;height:52px;flex:none;border:1px solid var(--line)}
 #mobile-app .building-benefit-creature p{font-size:13px}
+
+#mobile-app .building-project,#mobile-app .building-prerequisite{display:grid;gap:4px;padding:7px 8px;background:#21170dd9;border:1px solid var(--line)}
+#mobile-app .building-project{border-left:3px solid var(--gold)}
+#mobile-app .building-project strong,#mobile-app .building-prerequisite strong{color:var(--gold)}
+#mobile-app .building-project ol{display:flex;flex-wrap:wrap;gap:4px;margin:0;padding:0;list-style:none}
+#mobile-app .building-project li{flex:1 1 130px;padding:3px 5px;border:1px solid var(--line);font-size:12px}
+#mobile-app .building-project [aria-current=step]{border-color:var(--gold);background:#59381c}
+#mobile-app .building-project [data-built]{color:#d7e4ad}
+#mobile-app .building-detail [data-building-prerequisite],#mobile-app .building-detail [data-building-goal]{min-height:44px}

@@ -826,7 +826,7 @@ void publishMobileState(){
     const bool needsGrail=id==BuildingID::GRAIL&&!visitingHeroHasGrail(town);
     b["allowed"].Bool()=buildState==EBuildingState::ALLOWED&&!needsGrail;
     b["state"].Integer()=static_cast<int>(buildState);
-    if(fortWindow && !town->hasBuilt(id))
+    if(!town->hasBuilt(id) && (fortWindow || buildState == EBuildingState::PREREQUIRES || buildState == EBuildingState::MISSING_BASE))
     {
      auto & missing = b["missingPrerequisites"].Vector();
      const auto requirements = town->genBuildingRequirements(id, true);
