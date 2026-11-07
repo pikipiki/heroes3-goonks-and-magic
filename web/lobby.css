@@ -24,8 +24,8 @@
 #mobile-app .lobby-panel button{width:100%;min-height:52px!important;margin:0;font-size:15px;padding:10px 12px}
 #mobile-app .custom-player-towns{display:flex;flex-direction:column;gap:16px;min-width:0}
 #mobile-app .lobby-player-label{display:flex;align-items:center;gap:8px}
-#mobile-app .lobby-player-colour{display:block;width:14px;height:14px;border:1px solid #ead198;flex:0 0 14px;background:#bba574}
-#mobile-app [data-player-colour="0"]{background:#c44132}#mobile-app [data-player-colour="1"]{background:#4d79ce}#mobile-app [data-player-colour="2"]{background:#bba574}#mobile-app [data-player-colour="3"]{background:#57a564}#mobile-app [data-player-colour="4"]{background:#d38933}#mobile-app [data-player-colour="5"]{background:#a067b9}#mobile-app [data-player-colour="6"]{background:#4faaaa}#mobile-app [data-player-colour="7"]{background:#d899b3}
+:is(#mobile-app,#game-menu) .lobby-player-colour{display:block;width:14px;height:14px;border:1px solid #ead198;flex:0 0 14px;background:#bba574}
+:is(#mobile-app,#game-menu) [data-player-colour="0"]{background:#c44132}:is(#mobile-app,#game-menu) [data-player-colour="1"]{background:#4d79ce}:is(#mobile-app,#game-menu) [data-player-colour="2"]{background:#bba574}:is(#mobile-app,#game-menu) [data-player-colour="3"]{background:#57a564}:is(#mobile-app,#game-menu) [data-player-colour="4"]{background:#d38933}:is(#mobile-app,#game-menu) [data-player-colour="5"]{background:#a067b9}:is(#mobile-app,#game-menu) [data-player-colour="6"]{background:#4faaaa}:is(#mobile-app,#game-menu) [data-player-colour="7"]{background:#d899b3}
 #mobile-app .lobby-players[hidden]{display:none!important}
 #mobile-app .lobby-players>h2{display:flex;justify-content:space-between;align-items:center;gap:8px}
 #mobile-app .custom-game-options>summary{box-sizing:border-box;min-height:48px;padding-block:12px;cursor:pointer;font-weight:700}

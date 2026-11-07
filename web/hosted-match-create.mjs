@@ -1,4 +1,5 @@
 import {requestHostedMatch} from './hosted-match-request.mjs';
+import {mountHostedCastles} from './hosted-castles.mjs';
 import {createHostedCodeCopy} from './hosted-code-copy.mjs';
 import {scenarioDetails} from './scenario-details.mjs';
 import {mountScenarioFilters} from './scenario-filters.mjs';
@@ -48,7 +49,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   const timerField = timer.closest('label');
   const mapName = section.querySelector('[data-create-map-name]');
   const mapDetails = section.querySelector('[data-create-map-details]');
-  const castles = section.querySelector('[data-create-castles]');
+  const castles = mountHostedCastles(section.querySelector('[data-create-castles]'), fr);
   const codes = section.querySelector('[data-create-codes]');
   const personalCode = createHostedCodeCopy(fr);
   const status = section.querySelector('[data-create-status]');
@@ -78,7 +79,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
     timer.disabled = pending;
     map.disabled = pending || !scenarios.length;
     submit.disabled = pending || !selected;
-    for (const input of castles.querySelectorAll('select')) input.disabled = pending;
+    castles.setPending(pending);
   }
   const showServerWait = () => {
     status.textContent = t('Waiting for the dedicated server…', 'En attente du serveur dédié…');
@@ -112,14 +113,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   function showCastles() {
     mapName.textContent = selected ? scenarioTitle(selected.name) : t('Choose a map', 'Choisir une carte');
     mapDetails.textContent = selected ? scenarioDetails(metadata(selected), fr) : '';
-    castles.replaceChildren(...(selected?.castles ?? []).map((choices, seat) => {
-      const label = document.createElement('label');
-      const select = document.createElement('select');
-      label.hidden = !choices?.length;
-      select.append(new Option(t('Random castle', 'Château aléatoire'), ''), ...(choices ?? []).map(choice => new Option(choice.name, choice.id)));
-      label.append(colors[seat], select);
-      return label;
-    }));
+    castles.update(selected);
     render();
   }
   async function listMaps() {
@@ -164,7 +158,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
     if (pending || !selected) return;
     const settings = {players: Number(players.value), scenario: selected.id,
       ...(timerField.hidden ? {} : {turnMinutes: Number(timer.value)}),
-      factions: [...castles.querySelectorAll('select')].map(select => select.value ? Number(select.value) : null)};
+      factions: castles.factions};
     const signature = JSON.stringify(settings);
     if (signature !== previousRequest) {
       // Keep the same draw and request ID if creating the match needs a retry.
@@ -225,6 +219,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
       return true;
     }
     if (!section.contains(button)) return false;
+    if (castles.activate(button)) return true;
     if (button === map && !map.disabled) showPicker();
     if (button.hasAttribute('data-picker-close')) picker.close();
     if (button.hasAttribute('data-filter-reset')) filters.reset();

@@ -133,9 +133,22 @@ int main(int argc, const char * argv[])
 								JsonNode faction;
 								faction["id"].Integer() = id.getNum();
 								faction["name"].String() = id.toFaction()->getNameTranslated();
+								faction["key"].String() = id.toFaction()->getJsonKey();
 								choices.Vector().push_back(std::move(faction));
 							}
 						row["castles"].Vector().push_back(std::move(choices));
+						JsonNode fixed;
+						if(!allowsCastleChoice(player))
+						{
+							const auto id = player.defaultCastle();
+							fixed["id"].Integer() = id.getNum();
+							if(id.isValid())
+							{
+								fixed["name"].String() = id.toFaction()->getNameTranslated();
+								fixed["key"].String() = id.toFaction()->getJsonKey();
+							}
+						}
+						row["fixedCastles"].Vector().push_back(std::move(fixed));
 					}
 					maps.push_back(std::move(row));
 				}

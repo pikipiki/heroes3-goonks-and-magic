@@ -1,9 +1,9 @@
 import {getLanguage} from './i18n.mjs';
+import {factionArt, factionArtPaths} from './faction-art.mjs';
 import {scenarioDetails} from './scenario-details.mjs';
 import {mountScenarioFilters} from './scenario-filters.mjs';
 
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const townKeys=new Set(['castle','rampart','tower','inferno','necropolis','dungeon','stronghold','fortress','conflux']);
 const difficulty=['A relaxed adventure','The classic challenge','Plan every move','For experienced heroes','Every resource matters'];
 export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
  const controls=new Map(),artwork=new Map();
@@ -15,16 +15,8 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
   const key=option?.key??state.factions?.find(f=>String(f.id)===value)?.key;
   return key?.split(':').at(-1);
  };
- const artPaths=(s,value)=>{
-  const key=factionKey(s,value);
-  const backdrop=key==='goonk'||townKeys.has(key)?'./web/h3-theme/lobby/'+key+'.webp':'./web/h3-theme/stone.png';
-  const crest=key==='goonk'?'./web/h3-theme/lobby/goonk-castle.webp':townKeys.has(key)?'./web/town/'+key+'/structures/castle.webp':String(value)==='-1'?'./web/h3-theme/random-castle.svg':'./web/h3-theme/town-fort.png';
-  return [backdrop,crest];
- };
- const art=(s,value)=>{
-  const [backdrop,crest]=artPaths(s,value);
-  return `<figure class="lobby-faction-art"><img src="${backdrop}" alt=""><img class="lobby-castle-symbol" src="${crest}" alt=""></figure>`;
- };
+ const artPaths=(s,value)=>factionArtPaths({id:value,key:factionKey(s,value)});
+ const art=(s,value)=>factionArt({id:value,key:factionKey(s,value)});
  function preloadFactionArt(s,list){
   for(const option of list)for(const url of artPaths(s,option.value)){
    if(artwork.has(url))continue;
