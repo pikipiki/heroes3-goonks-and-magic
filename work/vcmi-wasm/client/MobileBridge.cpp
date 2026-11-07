@@ -87,6 +87,7 @@
 
 namespace {
 bool mobileEnabled=false,stateEnabled=false,audioMuted=false;
+std::vector<int3> exchangeMarkerTiles;
 std::optional<int> mobileTownHall;
 ui32 previousSoundVolume=75,previousMusicVolume=75;
 std::vector<ResourcePath> pendingMobileMaps;size_t mobileMapCursor=0;
@@ -289,19 +290,19 @@ std::vector<const CGHeroInstance *> mobileExchangePartners(CPlayerInterface & pl
    partners.push_back(other);
  }
  const auto origin=hero->visitablePos();
- for(const auto other:player.localState->getWanderingHeroes())
+ std::shared_ptr<const CPathsInfo> paths;
+ for(const auto & offset:int3::getDirs())
  {
-  if(other==hero || other->getOwner()!=player.playerID ||
-     std::find(partners.begin(),partners.end(),other)!=partners.end())
+  const auto destination=origin+offset;
+  const auto objects=player.cb->getVisitableObjs(destination,false);
+  const auto other=objects.empty()?nullptr:dynamic_cast<const CGHeroInstance *>(objects.back());
+  if(!other || other==hero || other->isGarrisoned() ||
+     player.cb->getPlayerRelations(hero->getOwner(),other->getOwner())==PlayerRelations::ENEMIES)
    continue;
-  const auto destination=other->visitablePos();
-  const bool planned=player.localState->hasPath(hero) && player.localState->getPath(hero).endPos()==destination;
-  if(!planned && !origin.areNeighbours(destination))
-   continue;
-  const auto paths=player.getPathsInfo(hero);
+  if(!paths)
+   paths=player.getPathsInfo(hero);
   const auto node=paths->getPathInfo(destination);
-  if(node && node->turns==0 && (node->action==EPathNodeAction::BLOCKING_VISIT || node->action==EPathNodeAction::VISIT ||
-     node->action==EPathNodeAction::TELEPORT_BLOCKING_VISIT))
+  if(node && node->turns==0 && (node->action==EPathNodeAction::BLOCKING_VISIT || node->action==EPathNodeAction::VISIT))
    partners.push_back(other);
  }
  return partners;
@@ -527,6 +528,7 @@ static void publishMobileScenarios(JsonNode & state, int roomLimit = 0, const CM
 
 void publishMobileState(){
  if(!stateEnabled||!ENGINE||!GAME||snapshotPending.load()||SDL_GetTicks()-lastPublished<180)return;lastPublished=SDL_GetTicks();
+ exchangeMarkerTiles.clear();
  if(audioMuted){if(ENGINE->sound().getVolume()!=0)ENGINE->sound().setVolume(0);if(ENGINE->music().getVolume()!=0)ENGINE->music().setVolume(0);}
  portraitIds.clear();artifactIconIds.clear();JsonNode n;n["mapSettings"]["moveTime"].Integer()=settings["adventure"]["heroMoveTime"].Integer();n["mapSettings"]["enemyMoveTime"].Integer()=settings["adventure"]["enemyMoveTime"].Integer();n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top)n["rect"]=rect(top->pos);
  auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();auto recruitWindow=ENGINE->windows().topWindow<CRecruitmentWindow>();auto fortWindow=ENGINE->windows().topWindow<CFortScreen>();auto creatureWindow=ENGINE->windows().topWindow<CStackWindow>();auto spellWindow=ENGINE->windows().topWindow<CSpellWindow>();auto heroWindow=ENGINE->windows().topWindow<CHeroWindow>();
@@ -851,14 +853,20 @@ void publishMobileState(){
   if(n["mode"].String()=="map"&&hero){const auto town=mobileResidentTown(hero);if(town&&town->getOwner()==p->playerID)mobileTownArmies(n,town);}
   if(exchangeWindow)
    n["heroExchange"]=mobileExchange(*exchangeWindow,*p);
-  if(n["mode"].String()=="map" && !n["worldView"].Bool())
+  if(mobileEnabled && n["mode"].String()=="map" && !n["worldView"].Bool())
+  {
    for(const auto partner:mobileExchangePartners(*p,hero))
    {
     JsonNode item;
     item["id"].Integer()=partner->id.getNum();
     item["name"].String()=partner->getNameTranslated();
     n["exchangePartners"].Vector().push_back(std::move(item));
+    if(!partner->isGarrisoned() && partner->visitablePos()!=hero->visitablePos())
+     exchangeMarkerTiles.push_back(partner->visitablePos());
    }
+   if(!exchangeMarkerTiles.empty() && !hero->isGarrisoned())
+    exchangeMarkerTiles.push_back(hero->visitablePos());
+  }
   if(heroWindow&&hero){auto & h=n["heroWindow"];h["owned"].Bool()=hero->getOwner()==p->playerID;h["name"].String()=hero->getNameTranslated();h["className"].String()=hero->getClassNameTranslated();h["level"].Integer()=hero->level;h["mana"].Integer()=hero->mana;h["manaLimit"].Integer()=hero->manaLimit();h["portrait"]=rect(Rect(heroWindow->pos.x+19,heroWindow->pos.y+19,58,64));
    HeroIconFrames icons;
    for(int i = 0; i < 4; ++i)
@@ -1022,6 +1030,7 @@ void publishMobileState(){
  },snapshot);
 }
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileStateAck(){snapshotPending.store(false);}
+const std::vector<int3> & mobileExchangeMarkers(){return exchangeMarkerTiles;}
 bool isMobilePresentationActive(){return mobileEnabled;}
 bool requestMobileTownHall(int townId)
 {
@@ -1402,7 +1411,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
     const auto & to=*window->getExchangeHero(1-a);
     if(action==94)
     {
-     if(b<0 || b>=7 || c<0 || c>=7 || from.getOwner()!=p->playerID || to.getOwner()!=p->playerID)
+     if(b<0 || b>=7 || c<0 || c>=7 || from.getOwner()!=p->playerID)
       return;
      const SlotID source(b),destination(c);
      const auto creature=from.getCreature(source);
@@ -1410,6 +1419,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
      const auto target=to.getCreature(destination);
      const auto count=from.getStackCount(source);
      const bool swap=target && target!=creature;
+     if(swap && to.getOwner()!=p->playerID)return;
      const auto maximum=count-(from.needsLastStack() && from.stacksCount()==1 && !swap ? 1 : 0);
      if(d<1 || d>maximum || (swap && d!=count))return;
      if(d==count)
@@ -1555,6 +1565,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
 #else
 void publishMobileState(){}
 void publishMobileBattleAtlas(){}
+const std::vector<int3> & mobileExchangeMarkers(){static const std::vector<int3> none;return none;}
 bool isMobilePresentationActive(){return false;}
 bool requestMobileTownHall(int){return false;}
 #endif

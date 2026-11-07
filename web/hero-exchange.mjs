@@ -19,9 +19,9 @@ export function createHeroExchange({root,command,refresh,portrait}){
  function maximum(item,side,target){
   if(!turn||!item||source.side===side)return 0;
   if(tab==='equipment')return item.destinations?.includes(target.slot)?1:0;
-  if(!heroes.every(hero=>hero.owned))return 0;
-  const hero=heroes[source.side];
-  const keepOne=mustKeepOne(hero)&&!troopSwap(item,target);
+  const hero=heroes[source.side],swap=troopSwap(item,target);
+  if(!hero.owned||swap&&!heroes[side].owned)return 0;
+  const keepOne=mustKeepOne(hero)&&!swap;
   return item.count-(keepOne?1:0);
  }
  function clearSelection(){
@@ -48,7 +48,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
   const itemMarkup=(slot,side)=>{
    const compatible=maximum(item,side,slot)>0;
    const current=item===slot||target===slot;
-   const disabled=!!pending||(item&&source.side!==side&&!compatible)||(!slot.name&&!compatible);
+   const disabled=!!pending||(item&&source.side!==side&&!compatible)||(!slot.name&&!compatible)||(troops&&!item&&!heroes[side].owned);
    const label=slot.name||(troops?'Emplacement vide':slot.backpack?'Déposer dans le sac':slotName(slot));
    return `<button type="button" class="exchange-slot${compatible?' can-receive':''}" data-exchange-slot="${side}:${slot.slot}"
     aria-pressed="${current}" ${disabled?'disabled':''}>
@@ -68,11 +68,11 @@ export function createHeroExchange({root,command,refresh,portrait}){
     ${troops?hero.roster.map(slot=>itemMarkup(slot,side)).join(''):group(false,'Objets équipés')+group(true,'Sac à dos')}
    </section>`;
   };
-  const available=turn&&(!troops||heroes.every(hero=>hero.owned));
+  const available=turn&&heroes.some(hero=>hero.owned);
   const hasDestination=item&&slots(1-source.side).some(slot=>maximum(item,1-source.side,slot)>0);
   const keepsOne=troops&&item&&mustKeepOne(heroes[source.side]);
-  const instruction=!turn?'Disponible à ton tour':!available?'Les deux héros doivent t’appartenir pour transférer des troupes.':
-   !item?(troops?'Choisis une troupe à transférer.':'Choisis un objet à transférer.'):
+  const instruction=!turn?'Disponible à ton tour':
+   !item?(troops?(heroes.every(hero=>hero.owned)?'Choisis une troupe à transférer.':'Choisis une de tes troupes à donner à ton allié.'):'Choisis un objet à transférer.'):
    !hasDestination?(keepsOne?'Chaque héros doit garder au moins une créature.':'Aucun emplacement compatible chez l’autre héros.'):
    target&&keepsOne&&!swap?'Chaque héros doit garder au moins une créature.':
    !target?'Choisis un emplacement en surbrillance chez l’autre héros.':

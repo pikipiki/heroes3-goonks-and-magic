@@ -21,6 +21,7 @@
 #include "../adventureMap/AdventureMapInterface.h"
 #include "../GameEngine.h"
 #include "../GameInstance.h"
+#include "../MobileBridge.h"
 #include "../render/CAnimation.h"
 #include "../render/Canvas.h"
 #include "../render/IImage.h"
@@ -98,7 +99,46 @@ void MapView::tick(uint32_t msPassed)
 void MapView::show(Canvas & to)
 {
 	actions->setContext(controller->getContext());
-	BasicMapView::show(to);
+	const auto & markers = mobileExchangeMarkers();
+	CanvasClipRectGuard guard(to, pos);
+	render(to, needFullUpdate || markers != paintedExchangeTiles);
+	paintExchangeMarkers(to, markers);
+	controller->afterRender();
+}
+
+void MapView::showAll(Canvas & to)
+{
+	BasicMapView::showAll(to);
+	paintExchangeMarkers(to, mobileExchangeMarkers());
+}
+
+void MapView::paintExchangeMarkers(Canvas & to, const std::vector<int3> & tiles)
+{
+	paintedExchangeTiles = tiles;
+	if(tiles.empty())
+		return;
+
+	Canvas clipped(to, pos);
+	const ColorRGBA gold(255, 221, 133);
+	for(const auto & tile : tiles)
+	{
+		if(tile.z != model->getLevel())
+			continue;
+		const auto area = model->getTargetTileArea(tile);
+		const auto center = area.center() - Point(0, area.h * 3 / 4);
+		const Rect plaque(center - Point(11, 7), Point(23, 15));
+		clipped.drawColor(plaque, ColorRGBA(119, 29, 27));
+		clipped.drawBorder(plaque, gold);
+		const auto arrow = [&](int y, int direction)
+		{
+			const auto tip = center + Point(direction * 6, y);
+			clipped.drawLine(center + Point(-direction * 6, y), tip, gold, gold);
+			clipped.drawLine(tip - Point(direction * 3, 2), tip, gold, gold);
+			clipped.drawLine(tip - Point(direction * 3, -2), tip, gold, gold);
+		};
+		arrow(-2, 1);
+		arrow(2, -1);
+	}
 }
 
 MapView::MapView(const Point & offset, const Point & dimensions)

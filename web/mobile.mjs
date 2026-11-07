@@ -139,7 +139,7 @@ function mount(){
  const turnLimits=[0,1,2,3,5,10];
  function controls(){
   const m=state.mode,cap=battleCapabilities(effectiveBattle()),target=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),blocked=!state.spellTargeting&&target?.enemy&&target.canShootAt===false&&target.canMeleeAt===false;let items;
-  if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn('➤ Marcher','move',true,!state.hasPath||!state.turn),btn('<span aria-hidden="true">⛨ </span>Équipement','heroes',false,!state.heroName&&!state.heroes?.length),btn('♜ Villes','towns'),btn('♟ Armée','army',false,!state.turn||!state.armies?.length),btn('<span aria-hidden="true">⇄ </span>Échanger','hero-exchange',!!state.exchangePartners?.length,!state.turn||!state.exchangePartners?.length),btn('☀ Terminer le tour','endturn',false,!state.turn)];
+  if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn('➤ Marcher','move',true,!state.hasPath||!state.turn),btn('<span aria-hidden="true">⛨ </span>Équipement','heroes',false,!state.heroName&&!state.heroes?.length),btn('♜ Villes','towns'),btn('♟ Armée','army',false,!state.turn||!state.armies?.length),...(state.turn&&state.exchangePartners?.length?[btn('<span aria-hidden="true">⇄ </span>Échanger','hero-exchange',true)]:[]),btn('☀ Terminer le tour','endturn',false,!state.turn)];
   else if(m==='online-lobby'&&(state.onlineCanCreate||state.onlineInvitation)){
    const fr=getLanguage()==='fr';
    items=[...(state.onlineCanCreate?[btn(fr?'Créer une partie':'Create game','online-create',!state.onlineInvitation)]:[]),
@@ -259,7 +259,7 @@ function mount(){
 
 
   
-  const hint=state.mode==='recruit'?'Choisis la quantité, puis confirme. Les recrues rejoignent la garnison.':state.mode==='map'?(!state.turn?'Tour adverse en cours…':state.hasPath?`Trajet choisi${state.pathTurns?' · '+state.pathTurns+' jour(s)':''}. Confirme avec Marcher.`:state.exchangePartners?.length?'Utilise Échanger pour transférer des objets ou des troupes.':state.heroes?.length>1?'Rapproche tes héros pour échanger des objets ou des troupes.':'Touche une case ou un château pour préparer un trajet. Ouvre tes châteaux avec Villes.'):state.mode==='battle'?(state.targetUnit?`${state.targetUnit.name} × ${state.targetUnit.count} — Confirme ton action.`:'Glisse pour voir le champ de bataille. Touche une case, puis confirme.'):state.mode==='town'?'Construis et recrute avec les commandes ci-dessous.':'Pince pour zoomer. Glisse pour atteindre les commandes.';
+  const hint=state.mode==='recruit'?'Choisis la quantité, puis confirme. Les recrues rejoignent la garnison.':state.mode==='map'?(!state.turn?'Tour adverse en cours…':state.hasPath?`Trajet choisi${state.pathTurns?' · '+state.pathTurns+' jour(s)':''}. Confirme avec Marcher.`:state.exchangePartners?.length?'Utilise Échanger pour transférer des objets ou des troupes.':'Touche une case ou un château pour préparer un trajet. Ouvre tes châteaux avec Villes.'):state.mode==='battle'?(state.targetUnit?`${state.targetUnit.name} × ${state.targetUnit.count} — Confirme ton action.`:'Glisse pour voir le champ de bataille. Touche une case, puis confirme.'):state.mode==='town'?'Construis et recrute avec les commandes ci-dessous.':'Pince pour zoomer. Glisse pour atteindre les commandes.';
   const seconds=Math.ceil(Math.max(0,state.turnRemainingMs||0)/1000);
   const countdown=state.mode==='map'&&state.turnRemainingMs!==undefined
    ? Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0')+' · ' : '';

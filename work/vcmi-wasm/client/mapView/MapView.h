@@ -49,6 +49,8 @@ public:
 /// Contains all public interface of view and translates calls to internal model
 class MapView : public BasicMapView
 {
+	std::vector<int3> paintedExchangeTiles;
+	void paintExchangeMarkers(Canvas & to, const std::vector<int3> & tiles);
 	std::shared_ptr<MapViewActions> actions;
 
 	std::vector<std::pair<uint32_t, Point>> swipeHistory;
@@ -64,6 +66,7 @@ class MapView : public BasicMapView
 public:
 	void tick(uint32_t msPassed) override;
 	void show(Canvas & to) override;
+	void showAll(Canvas & to) override;
 
 	MapView(const Point & offset, const Point & dimensions);
 
