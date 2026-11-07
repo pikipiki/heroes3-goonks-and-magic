@@ -52,6 +52,15 @@
   content:'';flex:0 0 18px;height:18px;box-sizing:border-box;border:2px solid #8c784b;
   border-top-color:#ffe8a2;border-radius:50%;animation:goonk-busy .7s linear infinite;
 }
+#game-menu .hosted-create-loading{
+  gap:14px;min-height:68px;margin:0;padding:12px 14px;
+  color:#fff0c2;background:#21160d;border:2px solid #d7b664;
+  font-size:1.125rem;font-weight:700;line-height:1.35;
+}
+#game-menu .hosted-create-loading::before{
+  flex-basis:28px;height:28px;border-width:3px;
+}
+#game-menu [data-picker-loading]{margin:0 12px 8px}
 @media(prefers-reduced-motion:reduce){#game-menu .hosted-match-loading::before{animation:none}}
 
 #game-menu .hosted-game-library{display:grid;gap:10px;min-width:0}

@@ -11,6 +11,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   const section = document.createElement('section');
   section.className = 'hosted-match-settings';
   section.innerHTML = `
+    <p class="hosted-match-loading hosted-create-loading" data-create-loading role="status" hidden></p>
     <div class="hosted-match-settings" data-create-form hidden>
       <label><span></span><select data-create-players></select><small data-player-help></small></label>
       <button type="button" class="hosted-scenario-choice" data-create-map data-native-click aria-haspopup="dialog" aria-controls="hosted-map-picker">
@@ -37,6 +38,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
     </dialog>`;
   const submit = section.querySelector('[data-create-match=submit]');
   const form = section.querySelector('[data-create-form]');
+  const loader = section.querySelector('[data-create-loading]');
   const players = section.querySelector('[data-create-players]');
   const map = section.querySelector('[data-create-map]');
   const picker = section.querySelector('#hosted-map-picker');
@@ -99,9 +101,11 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
       mapDetails.textContent = scenarioDetails(metadata(selected, humans), fr);
     }
   }
-  const showServerWait = () => {
-    status.textContent = t('Waiting for the dedicated server…', 'En attente du serveur dédié…');
-  };
+  function showLoading(message) {
+    loader.hidden = false;
+    if (loader.textContent !== message) loader.textContent = message;
+  }
+  const showServerWait = () => showLoading(t('Waiting for the dedicated server…', 'En attente du serveur dédié…'));
   const request = (path, options, onWait = showServerWait) => requestHostedMatch(new URL('/hosted/matches' + path, endpoint), {
     credentials: 'omit', redirect: 'error', ...options,
   }, onWait);
@@ -160,9 +164,11 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
     if (!missing.length || loadingPicker) return;
     loadingPicker = true;
     pickerLoading.hidden = false;
+    pickerLoading.classList.add('hosted-match-loading');
     pickerLoading.textContent = t('Loading more maps…', 'Chargement des autres cartes…');
     const results = await Promise.allSettled(missing.map(total => loadCatalogue(total, () => {})));
     loadingPicker = false;
+    pickerLoading.classList.remove('hosted-match-loading');
     pickerLoading.hidden = results.every(result => result.status === 'fulfilled');
     pickerLoading.textContent = pickerLoading.hidden ? '' : t('Some maps could not be loaded.', 'Certaines cartes n’ont pas pu être chargées.');
     if (picker.open) renderPicker();
@@ -178,7 +184,8 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
     pending = true;
     form.hidden = false;
     codes.hidden = retry.hidden = true;
-    status.textContent = t('Loading scenarios…', 'Chargement des scénarios…');
+    status.textContent = '';
+    showLoading(t('Loading scenarios…', 'Chargement des scénarios…'));
     const waiting = setTimeout(showServerWait, 5000);
     render();
     filters.clear();
@@ -204,6 +211,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
       retry.hidden = false;
     } finally {
       clearTimeout(waiting);
+      loader.hidden = true;
       pending = false;
       showCastles();
     }
@@ -225,7 +233,8 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
       previousRequest = signature;
     }
     pending = true;
-    status.textContent = t('Creating the match…', 'Création de la partie…');
+    status.textContent = '';
+    showLoading(t('Creating the match…', 'Création de la partie…'));
     render();
     try {
       const response = await request('', {method: 'POST', headers: {'Content-Type': 'application/json'},
@@ -266,7 +275,11 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
       previousRequest = undefined;
     } catch {
       status.textContent = t('Could not create the match. Try again.', 'La création a échoué. Réessaie.');
-    } finally { pending = false; render(); }
+    } finally {
+      loader.hidden = true;
+      pending = false;
+      render();
+    }
   }
   players.addEventListener('change', () => void listMaps());
   return button => {
