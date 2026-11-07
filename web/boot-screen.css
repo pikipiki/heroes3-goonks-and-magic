@@ -8,3 +8,6 @@ html,body{margin:0;background:#120e1c;color:#f8efff;color-scheme:dark}
 body[data-goonk-boot] #canvas,body[data-goonk-boot] #mobile-app,body[data-goonk-boot] #game-menu-toggle,body[data-goonk-boot] #game-menu{visibility:hidden!important}
 #hosting-retry[hidden]{display:none}
 @media(max-height:500px){#spinner .spinner-logo{height:14svh!important}#spinner #status{width:min(90vw,620px)}}
+
+#spinner #status[data-temporary-boot] progress{display:block;width:min(220px,80%);margin:0 auto 10px;accent-color:#d3ad66}
+#spinner #status[data-temporary-boot] button{padding:8px 20px;border:1px solid #d3ad66;background:#2f2119;color:inherit;border-radius:4px;font:inherit}

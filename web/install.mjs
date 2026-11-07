@@ -4,6 +4,7 @@ import {holdGameStorage} from './game-storage.mjs';
 import {syncAssets} from './asset-cache.mjs';
 import {downloadFetch} from './download-fetch.mjs';
 import {createLoadingView} from './loading.mjs';
+import {createTemporaryBoot} from './boot-screen.mjs';
 import {refreshOfflineRelease} from './offline-release.mjs';
 const status=text=>{const el=document.querySelector('#status');if(el)el.textContent=text;};
 // The OPFS worker forwards the browser's message without its DOMException name.
@@ -20,7 +21,7 @@ const useGameStorage=operation=>async(...args)=>{
 const prepare=async()=>{
  const manifestURL=new URL('../asset-manifest.json',import.meta.url);const response=await fetch(manifestURL,{cache:'no-store'});if(!response.ok)throw Error('Le catalogue des données est indisponible');const manifest=await response.json();assertRuntimeManifest(manifest,window.VCMI_WASM_URL,location.href);for(const file of manifest.files){if(file.url)file.url=new URL(file.url,manifestURL).href;for(const chunk of file.chunks||[])if(chunk.url)chunk.url=new URL(chunk.url,manifestURL).href;}window.goonkAssetURLs=manifest.files;
  const temporary=()=>{
-  status('Mode temporaire. Connexion requise et sauvegardes disponibles dans cet onglet uniquement.');
+  window.goonkTemporaryBoot=createTemporaryBoot(document.querySelector('#status'));
   return {temporary:true};
  };
  if(!navigator.storage?.getDirectory)return temporary();

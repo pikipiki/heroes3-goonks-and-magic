@@ -18,12 +18,19 @@ execFileSync('python3',['scripts/normalize-map-instances.py',publicData+'/Maps']
 const manifest=makeManifest(publicData,{includeBase:false});
 for(const file of manifest.files)file.url='.'+file.url;
 for(const file of manifest.files){const target=path.join(dist,decodeURIComponent(file.url));fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(path.join(publicData,file.path),target);}
+const writePack=(url,bytes)=>{const target=path.join(dist,url);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,bytes);};
 if(fs.existsSync('game-data/manifest.json')){
- const base=visitBaseGame('game-data',(_file,chunk,bytes)=>{const target=path.join(dist,'assets/base',chunk.hash+'.bin');if(!fs.existsSync(target)){fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,bytes);}});
- manifest.files.unshift(...base.files.map(file=>({...file,chunks:file.chunks.map(chunk=>({...chunk,url:'./assets/base/'+chunk.hash+'.bin'}))})));
+ // The scenario picker scans the bundled map catalogue. Ship small maps
+ // together so private sessions can scan them without hundreds of GETs.
+ const mapLimit=512*1024;
+ const isPackedMap=file=>file.path.startsWith('Maps/')&&file.size>0&&file.size<=mapLimit&&file.chunks.length===1;
+ const base=visitBaseGame('game-data',(file,chunk,bytes)=>{if(isPackedMap(file))return;const target=path.join(dist,'assets/base',chunk.hash+'.bin');if(!fs.existsSync(target)){fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,bytes);}});
+ for(const file of base.files)for(const chunk of file.chunks)chunk.url='./assets/base/'+chunk.hash+'.bin';
+ packSmallAssets(base.files,file=>fs.readFileSync('game-data/chunks/'+file.chunks[0].hash+'.bin'),writePack,{limit:mapLimit,include:isPackedMap});
+ manifest.files.unshift(...base.files);
  manifest.requiresImport=false;manifest.bundledBase=true;
 }
-packSmallAssets(manifest.files,file=>fs.readFileSync(path.join(publicData,file.path)),(url,bytes)=>{const target=path.join(dist,url);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,bytes);});
+packSmallAssets(manifest.files,file=>fs.readFileSync(path.join(publicData,file.path)),writePack);
 let html=renderPage(root);const runtimeNames={};
 for(const name of ['vcmiclient.data.js','vcmiclient.wasm','vcmiclient.data','vcmiclient.js']){const bytes=fs.readFileSync(path.join(dist,name)),hash=crypto.createHash('sha256').update(bytes).digest('hex').slice(0,16),hashed=name.replace(/(\.[^.]+)$/,'.'+hash+'$1');fs.renameSync(path.join(dist,name),path.join(dist,hashed));runtimeNames[name]=hashed;}
 html=html.replace(/vcmiclient\.(?:data\.js|wasm|data|js)/g,name=>runtimeNames[name]);

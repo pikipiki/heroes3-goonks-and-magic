@@ -45,3 +45,32 @@ test('Temporary reads reject truncated transports and gaps',()=>{
  assert.throws(()=>read({url:'file',size:2,chunks:[{offset:0,size:2}]},out,0,2,0),/incomplet/);
  assert.throws(()=>read({size:2,chunks:[{offset:1,size:1,url:'part'}]},out,0,2,0),/incomplète/);
 });
+
+test('Sparse archive reads request aligned blocks and reuse overlapping reads',()=>{
+ const payload=Uint8Array.of(10,11,12,13,14,15,16,17,18);
+ const calls=[];
+ const read=createTemporaryAssetReader({blockBytes:4,read:(url,size,start,end)=>{
+  calls.push([url,size,start,end]);
+  return payload.subarray(start,end);
+ }});
+ const file={path:'Data/H3bitmap.lod',size:9,chunks:[{offset:0,size:9,url:'archive'}]};
+ const output=new Uint8Array(5);
+ assert.equal(read(file,output,0,5,3),5);
+ assert.deepEqual([...output],[13,14,15,16,17]);
+ assert.equal(read(file,output,1,2,7),2);
+ assert.deepEqual([...output],[13,17,18,16,17]);
+ assert.deepEqual(calls,[['archive',9,0,4],['archive',9,4,8],['archive',9,8,9]]);
+});
+
+test('An archive host that ignores Range only transfers the full source once',()=>{
+ let calls=0;
+ const read=createTemporaryAssetReader({blockBytes:4,read:()=>{
+  calls++;
+  return Uint8Array.of(10,11,12,13,14,15,16,17);
+ }});
+ const file={path:'Data/Heroes3.snd',size:8,chunks:[{offset:0,size:8,url:'archive'}]};
+ const output=new Uint8Array(5);
+ assert.equal(read(file,output,0,5,3),5);
+ assert.deepEqual([...output],[13,14,15,16,17]);
+ assert.equal(calls,1);
+});

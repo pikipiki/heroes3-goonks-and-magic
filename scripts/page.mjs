@@ -33,6 +33,8 @@ export function renderPage(root){
  html=html.replace('<meta name="viewport" content="width=device-width, height=device-height, user-scalable=0" />','<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />');
  html=html.replace('document.addEventListener("contextmenu", (event) => {\n      event.preventDefault();', 'document.addEventListener("contextmenu", (event) => {\n      if (!event.target.closest?.("[data-hosted-seat-code]")) event.preventDefault();');
  html=html.replace('</head>','<link rel="manifest" href="./web/game.webmanifest"><link rel="apple-touch-icon" href="./dosvcmi.png"><meta name="application-name" content="Heroes Goonk"><meta name="apple-mobile-web-app-title" content="Heroes Goonk"><link rel="stylesheet" href="./web/mobile.css"><link rel="stylesheet" href="./web/loading.css"><link rel="stylesheet" href="./web/game-menu.css"><link rel="stylesheet" href="./web/h3-theme.css"><link rel="stylesheet" href="./web/session-recovery.css"><link rel="stylesheet" href="./web/mobile-upgrade.css"><link rel="stylesheet" href="./web/marketplace.css"><link rel="stylesheet" href="./web/online-login.css"><link rel="stylesheet" href="./web/online-lobby.css"><script type="module" src="./web/boot-screen.mjs"></script><script type="module" src="./web/i18n.mjs"></script><script type="module" src="./web/install.mjs"></script><script type="module" src="./web/mobile.mjs"></script><script type="module" src="./web/game-menu.mjs"></script><script type="module" src="./web/session-recovery.mjs"></script></head>');
+ html=html.replace('const module = {', `const module = {
+      onAbort: error => { if(window.goonkTemporaryBoot)window.goonkTemporaryBoot.fail(error); },`);
  html=html.replace('const FS = module.FS;','const {temporary=false}=await window.goonkAssetsReady;\n        const FS = module.FS;\n        if(module._vcmiWebMemoryVersion?.()!==1)throw Error(\'Recharge la page pour mettre à jour le moteur.\');\n        if(!temporary){const {installLazyAssets}=await import(\'./web/lazy-assets.mjs\');installLazyAssets(module,new Set(window.goonkAssetURLs.filter(file=>file.size>4096).map(file=>\'/home/web_user/.local/share/vcmi/\'+file.path)));}');
  html=html.replace('const OPFS = module.OPFS;', `const OPFS = module.OPFS;
         const {batchGameMount}=await import('./web/game-mount.mjs');
@@ -40,6 +42,7 @@ export function renderPage(root){
  html=html.replaceAll('FS.mount(OPFS, {','if(!temporary)FS.mount(OPFS, {');
  html=html.replace('        await new Promise(resolve => {\n          OPFS.syncFsOnProgress', `        if(temporary){
           const {mountTemporaryAssets}=await import('./web/temporary-assets.mjs');
+          await window.goonkTemporaryBoot.start();
           mountTemporaryAssets(module,window.goonkAssetURLs);
         }else await new Promise(resolve => {
           OPFS.syncFsOnProgress`);
@@ -82,7 +85,14 @@ export function renderPage(root){
         });`);
  html=html.replace('module._vcmiOnCanvasResize();','if(!window.goonkMobileActive)module._vcmiOnCanvasResize();');
  html=html.replace('module.getWidth = () => currentCanvasSize.width;', 'module.getWidth = () => window.goonkMobileActive ? 800 : currentCanvasSize.width;').replace('module.getHeight = () => currentCanvasSize.height;', 'module.getHeight = () => window.goonkMobileActive ? 600 : currentCanvasSize.height;');
+ html=html.replace('onRuntimeInitialized: async () => {', 'onRuntimeInitialized: async () => { try {');
+ html=html.replace('module.callMain(["--disable-video"]);\n      },', `module.callMain(["--disable-video"]);
+        } catch(error) {
+          if(!window.goonkTemporaryBoot)throw error;
+          window.goonkTemporaryBoot.fail(error);
+        }
+      },`);
  html=html.replace('module.callMain(["--disable-video"]);', 'module.getGoonkRenderScale = () => window.goonkMobileActive ? 1 : 0;module.callMain(["--disable-video"]);');
- html=html.replace('DOSVCMI(window.Module);', `import {configureMobileSource} from './web/mobile-render.mjs';import {guardOnlineNameKeyboard} from './web/online-login.mjs';guardOnlineNameKeyboard(window);configureMobileSource(document.querySelector('#canvas'),window.goonkMobileActive);if(!window.crossOriginIsolated){const entry=new URL('./',location.href);entry.search=location.search;entry.hash=location.hash;location.replace(entry);}else{DOSVCMI(window.Module);}`);
+ html=html.replace('DOSVCMI(window.Module);', `import {configureMobileSource} from './web/mobile-render.mjs';import {guardOnlineNameKeyboard} from './web/online-login.mjs';guardOnlineNameKeyboard(window);configureMobileSource(document.querySelector('#canvas'),window.goonkMobileActive);if(!window.crossOriginIsolated){const entry=new URL('./',location.href);entry.search=location.search;entry.hash=location.hash;location.replace(entry);}else{DOSVCMI(window.Module).catch(error=>{if(!window.goonkTemporaryBoot)throw error;window.goonkTemporaryBoot.fail(error);});}`);
  return html;
 }
