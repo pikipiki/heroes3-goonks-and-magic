@@ -1,7 +1,7 @@
 import {formatBytes} from './loading.mjs';
 // Fallback scale when no startup download plan is known. The bar never
 // reports 100 % before the native menu is actually shown.
-export const TEMPORARY_STARTUP_BYTES=80*1024*1024;
+export const TEMPORARY_STARTUP_BYTES=405*1024*1024;
 export const temporaryProgress=(bytes,expected=TEMPORARY_STARTUP_BYTES)=>Math.min(99,Math.floor(bytes/expected*100));
 export function createTemporaryBoot(status){
  status.setAttribute('data-temporary-boot','');

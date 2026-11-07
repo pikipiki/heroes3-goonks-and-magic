@@ -49,7 +49,7 @@ async function fetchBinary(url, size, start, end) {
 }
 
 export function createTemporaryAssetReader({
- read = readBinary, fetchBlock = fetchBinary, maxBytes = 384 * 1024 * 1024, blockBytes = 512 * 1024, onFetch = () => {},
+ read = readBinary, fetchBlock = fetchBinary, maxBytes = 448 * 1024 * 1024, blockBytes = 512 * 1024, onFetch = () => {},
 } = {}) {
  const cache = new Map();
  let cachedBytes = 0;
