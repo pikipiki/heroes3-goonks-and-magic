@@ -92,7 +92,7 @@ struct MobileScenario
  std::string file, name;
  int humanSeats;
  bool battleOnly, castleChoice, soloCastleChoice;
- int width, height, players;
+ int width, height, players, humanCastleChoices;
 };
 std::vector<MobileScenario> mobileMaps;
 bool mapsListed=false,savesListed=false;std::set<int> portraitIds,artifactIconIds;std::vector<std::pair<std::string,std::string>> mobileCampaigns;
@@ -340,12 +340,13 @@ static void publishMobileScenarios(JsonNode & state, int roomLimit = 0, const CM
    if(info.amountOfHumanControllablePlayers>0)
    {
     const auto & players=info.mapHeader->players;
-    const bool castleChoice=std::all_of(players.begin(),players.end(),[](const auto & player){
-     return !player.canHumanPlay||allowsCastleChoice(player);
+    const int humanCastleChoices=std::count_if(players.begin(),players.end(),[](const auto & player){
+     return player.canHumanPlay&&allowsCastleChoice(player);
     });
+    const bool castleChoice=humanCastleChoices==info.amountOfHumanControllablePlayers;
     mobileMaps.push_back({file.getOriginalName(),info.getNameForList(),static_cast<int>(info.amountOfHumanControllablePlayers),
                           info.mapHeader->battleOnly,castleChoice,players.front().canHumanPlay&&allowsCastleChoice(players.front()),
-                          info.mapHeader->width,info.mapHeader->height,static_cast<int>(info.amountOfPlayersOnMap)});
+                          info.mapHeader->width,info.mapHeader->height,static_cast<int>(info.amountOfPlayersOnMap),humanCastleChoices});
    }
   }catch(const std::exception &){}
   if(SDL_GetTicks()-start>=8)break;
@@ -364,8 +365,9 @@ static void publishMobileScenarios(JsonNode & state, int roomLimit = 0, const CM
   entry["height"].Integer()=map.height;
   entry["players"].Integer()=map.players;
   entry["castleChoice"].Bool()=roomLimit?map.castleChoice:map.soloCastleChoice;
+  entry["humanSeats"].Integer()=map.humanSeats;
+  entry["humanCastleChoices"].Integer()=map.humanCastleChoices;
   if(roomLimit){
-   entry["humanSeats"].Integer()=map.humanSeats;
    if(selected&&ResourcePath(map.file,EResType::MAP)==ResourcePath(selected->fileURI,EResType::MAP))
     state["onlineScenarioIndex"].Integer()=i;
   }

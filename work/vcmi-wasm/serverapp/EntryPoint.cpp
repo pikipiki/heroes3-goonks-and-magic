@@ -38,6 +38,7 @@ static void handleCommandOptions(int argc, const char * argv[], boost::program_o
 	("hosted-map", boost::program_options::value<std::string>(), "Start a new dedicated match on the named map")
 	("hosted-scenarios", boost::program_options::value<std::string>(), "List maps compatible with the given dedicated seat colors")
 	("hosted-factions", boost::program_options::value<std::string>(), "Starting castles in authorized seat order, as a JSON array")
+	("hosted-turn-minutes", boost::program_options::value<int>()->default_value(0), "Minutes per dedicated adventure turn")
 	("hosted-restore", "Restore a dedicated match and accept authenticated loopback connections")
 	("verify-turn-checkpoint", "Load and validate the hosted save without opening a network listener")
 	("turn-checkpoint", "Save to Hosted-Turn.vsgm1 when a human turn starts (one game per user data directory)")
@@ -121,6 +122,7 @@ int main(int argc, const char * argv[])
 					const auto name = map.getNameForList();
 					row["name"].String() = name.empty() ? file.getOriginalName() : name;
 					row["width"].Integer() = map.mapHeader->width;
+					row["height"].Integer() = map.mapHeader->height;
 					for(const auto color : seats)
 					{
 						JsonNode choices;
@@ -186,7 +188,8 @@ int main(int argc, const char * argv[])
 				const auto & text = opts["hosted-factions"].as<std::string>();
 				factions = JsonNode(text.data(), text.size(), "hosted factions");
 			}
-			server.start(opts.count("hosted-map") ? opts["hosted-map"].as<std::string>() : "", opts["hosted-seats"].as<std::string>(), factions);
+			server.start(opts.count("hosted-map") ? opts["hosted-map"].as<std::string>() : "", opts["hosted-seats"].as<std::string>(),
+				factions, opts["hosted-turn-minutes"].as<int>());
 			server.run();
 			// The supervisor retires a match only after a confirmed game outcome.
 			if(server.matchFinished())

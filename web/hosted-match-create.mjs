@@ -1,15 +1,19 @@
 import {requestHostedMatch} from './hosted-match-request.mjs';
+import {scenarioDetails} from './scenario-details.mjs';
 
 export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, onLaunch) {
   if (!endpoint) return;
   const t = (en, french) => fr ? french : en;
   const section = document.createElement('section');
   section.className = 'hosted-match-settings';
-  section.innerHTML = '<div class="hosted-match-settings" data-create-form hidden><label><span></span><select data-create-players></select></label><label><span></span><select data-create-map></select></label><div class="hosted-match-settings" data-create-castles></div><button type="button" class="primary" data-create-match="submit"></button></div><div class="hosted-match-settings" data-create-codes hidden></div><p role="status"></p>';
+  section.innerHTML = '<div class="hosted-match-settings" data-create-form hidden><label><span></span><select data-create-players></select></label><label><span></span><select data-create-map></select><small data-create-map-details></small></label><label data-create-timer-field hidden><span></span><select data-create-timer aria-describedby="hosted-timer-help"></select><small id="hosted-timer-help"></small></label><div class="hosted-match-settings" data-create-castles></div><button type="button" class="primary" data-create-match="submit"></button></div><div class="hosted-match-settings" data-create-codes hidden></div><p role="status"></p>';
   const submit = section.querySelector('[data-create-match=submit]');
   const form = section.querySelector('[data-create-form]');
   const players = section.querySelector('[data-create-players]');
   const map = section.querySelector('[data-create-map]');
+  const timer = section.querySelector('[data-create-timer]');
+  const timerField = timer.closest('label');
+  const mapDetails = section.querySelector('[data-create-map-details]');
   const castles = section.querySelector('[data-create-castles]');
   const codes = section.querySelector('[data-create-codes]');
   const status = section.querySelector('[role=status]');
@@ -27,11 +31,14 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   submit.textContent = t('Create match and get code', 'Créer la partie et obtenir le code');
   players.previousElementSibling.textContent = t('Number of players', 'Nombre de joueurs');
   map.previousElementSibling.textContent = t('Scenario', 'Scénario');
+  timer.previousElementSibling.textContent = t('Adventure turn timer', 'Chrono du tour sur la carte');
+  timer.nextElementSibling.textContent = t('Pauses during battles between players.', 'En pause pendant les combats entre joueurs.');
   players.replaceChildren(...Array.from({length: 7}, (_, index) => new Option(index + 2, index + 2)));
   root.prepend(section);
   let scenarios = [], pending = false, requestId, previousRequest;
   function render() {
     players.disabled = pending;
+    timer.disabled = pending;
     map.disabled = pending || !map.options.length;
     submit.disabled = pending || !map.value;
     for (const input of castles.querySelectorAll('select')) input.disabled = pending;
@@ -42,8 +49,12 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   const request = (path, options) => requestHostedMatch(new URL('/hosted/matches' + path, endpoint), {
     credentials: 'omit', redirect: 'error', ...options,
   }, showServerWait);
+  const details = item => scenarioDetails({...item, height: item.height ?? item.width,
+    players: Number(players.value), humanSeats: Number(players.value),
+    castleChoices: item.castles?.filter(choices => choices?.length > 1).length}, fr);
   function showCastles() {
     const selected = scenarios.find(scenario => scenario.id === map.value);
+    mapDetails.textContent = selected ? details(selected) : '';
     castles.replaceChildren(...(selected?.castles ?? []).map((choices, seat) => {
       const label = document.createElement('label');
       const select = document.createElement('select');
@@ -68,7 +79,13 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
       const catalogue = await result.json();
       if (!Array.isArray(catalogue.scenarios)) throw Error('Invalid catalogue.');
       scenarios = catalogue.scenarios;
-      map.replaceChildren(...scenarios.map(item => new Option(item.name, item.id)));
+      map.replaceChildren(...scenarios.map(item => new Option(`${details(item)} — ${item.name}`, item.id)));
+      const durations = catalogue.turnMinutes;
+      const previousTimer = timer.value;
+      timerField.hidden = !Array.isArray(durations);
+      timer.replaceChildren(...(timerField.hidden ? [] : durations.map(minutes =>
+        new Option(minutes ? `${minutes} min` : t('No timer', 'Sans chrono'), minutes))));
+      if ([...timer.options].some(option => option.value === previousTimer)) timer.value = previousTimer;
       const preferred = scenarios.find(item => item.width === 36 && item.castles?.every(choices => choices?.length > 1));
       if (preferred) map.value = preferred.id;
       status.textContent = scenarios.length ? '' : t('No compatible scenario for this player count.', 'Aucune carte compatible avec ce nombre de joueurs.');
@@ -86,6 +103,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   async function create() {
     if (pending || !map.value) return;
     const settings = {players: Number(players.value), scenario: map.value,
+      ...(timerField.hidden ? {} : {turnMinutes: Number(timer.value)}),
       factions: [...castles.querySelectorAll('select')].map(select => select.value ? Number(select.value) : null)};
     const signature = JSON.stringify(settings);
     if (signature !== previousRequest) { requestId = crypto.randomUUID(); previousRequest = signature; }

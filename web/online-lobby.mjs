@@ -1,5 +1,6 @@
 import {isVisibleScenario,scenarioTitle} from './scenario-title.mjs';
 import {getLanguage} from './i18n.mjs';
+import {scenarioDetails} from './scenario-details.mjs';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => (
   {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]
@@ -36,8 +37,8 @@ export function createOnlineLobby(root, command) {
   let limit = 2, privateRoom = true, loadGame = false, roomView = '', pendingScenario;
   const requested = new Map();
   const t = (english, french) => getLanguage() === 'fr' ? french : english;
-  const button = (label, action, {primary = false, disabled = false, pressed, id} = {}) =>
-    `<button type="button" data-room-action="${action}"${id ? ` data-room-id="${escape(id)}"` : ''}${pressed === undefined ? '' : ` aria-pressed="${pressed}"`}${disabled ? ' disabled' : ''}${primary ? ' class="primary"' : ''}>${escape(label)}</button>`;
+  const button = (label, action, {primary = false, disabled = false, pressed, id, details} = {}) =>
+    `<button type="button" data-room-action="${action}"${id ? ` data-room-id="${escape(id)}"` : ''}${pressed === undefined ? '' : ` aria-pressed="${pressed}"`}${disabled ? ' disabled' : ''}${primary ? ' class="primary"' : ''}>${escape(label)}${details ? `<small class="online-scenario-details">${escape(details)}</small>` : ''}</button>`;
   const write = (element, html) => {
     if (element.dataset.markup !== html) {
       element.dataset.markup = html;
@@ -67,7 +68,8 @@ export function createOnlineLobby(root, command) {
     const query = body.querySelector('[data-online-scenario-search]').value.trim().toLocaleLowerCase();
     const scenarios = (state.onlineScenarios || []).filter(isVisibleScenario).filter(map => scenarioTitle(map.name).toLocaleLowerCase().includes(query));
     write(body.querySelector('[data-online-scenarios]'), scenarios.map(map =>
-      button(`${scenarioTitle(map.name)} · ${map.humanSeats} ${t('human seats', 'places humaines')}`, 'choose-scenario', {
+      button(scenarioTitle(map.name), 'choose-scenario', {
+        details: scenarioDetails({...map, castleChoices:map.humanCastleChoices}, getLanguage() === 'fr'),
         id: String(map.index), pressed: map.index === state.onlineScenarioIndex, disabled: !!sending,
       })).join('') || `<p>${state.mapsLoading ? t('Loading scenarios…', 'Chargement des scénarios…') :
         t('No matching scenario for this room.', 'Aucun scénario correspondant pour ce salon.')}</p>`);

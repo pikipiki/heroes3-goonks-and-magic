@@ -85,8 +85,10 @@ public:
 		});
 	}
 
-	void start(const std::string & mapName, const std::string & colors, const JsonNode & factions)
+	void start(const std::string & mapName, const std::string & colors, const JsonNode & factions, int turnMinutes)
 	{
+		if(turnMinutes < 0 || turnMinutes > 10 || (mapName.empty() && turnMinutes != 0))
+			throw std::runtime_error("Invalid hosted turn timer");
 		const auto seats = parseSeats(colors);
 		if(mapName.empty())
 			loadTurnCheckpoint();
@@ -104,6 +106,8 @@ public:
 				playerNames.emplace(id, ClientPlayer{connectionFor(color), color.toString()});
 			}
 			updateStartInfoOnMapChange(map);
+			si->turnTimerInfo = TurnTimerInfo{};
+			si->turnTimerInfo.turnTimer = turnMinutes * 60000;
 			if(!factions.isNull())
 			{
 				if(factions.Vector().size() != seats.size())
@@ -128,10 +132,10 @@ public:
 		if(gh)
 			gh->gs->getStartInfo()->extraOptionsInfo.cheatsAllowed = false;
 
-		if(si->playerInfos.size() != seats.size() || si->turnTimerInfo.isEnabled()
+		if(si->playerInfos.size() != seats.size()
 			|| si->simturnsInfo.requiredTurns || si->simturnsInfo.optionalTurns
 			|| mi->mapHeader->battleOnly || (gh && !gh->gameState().currentBattles.empty()))
-			throw std::runtime_error("Hosted matches require a sequential multiplayer adventure without timers");
+			throw std::runtime_error("Hosted matches require a sequential multiplayer adventure");
 
 		playerNames.clear();
 		for(const auto & [color, player] : si->playerInfos)
@@ -168,6 +172,15 @@ public:
 		}
 		else
 			CVCMIServer::applyPack(pack);
+	}
+
+	// Dedicated clients join after the initial PlayerStartsTurn packet. The
+	// adventure-ready handshake also covers reconnects and checkpoint restores.
+	bool usesTurnStartTimerQuery() const override { return false; }
+
+	bool isTurnTimerPaused(const PlayerColor & color) const override
+	{
+		return !connected(color) || !gh->uiReadyForDialogs.contains(color) || isEncounterPendingFor(color);
 	}
 
 	bool controlsNeutralBattles() const override { return true; }

@@ -290,7 +290,7 @@ void TurnOrderProcessor::doStartPlayerTurn(PlayerColor which)
 	bool timersActive = gameHandler->gameInfo().getStartInfo()->turnTimerInfo.isEnabled();
 	bool isHuman = gameHandler->gameInfo().getPlayerState(which)->isHuman();
 
-	if(timersActive && isHuman)
+	if(timersActive && isHuman && gameHandler->gameServer().usesTurnStartTimerQuery())
 	{
 		auto turnQuery = std::make_shared<TimerPauseQuery>(gameHandler, which);
 		gameHandler->queries->addQuery(turnQuery);

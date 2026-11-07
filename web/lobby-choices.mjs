@@ -1,4 +1,5 @@
 import {getLanguage} from './i18n.mjs';
+import {scenarioDetails} from './scenario-details.mjs';
 
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const townKeys=new Set(['castle','rampart','tower','inferno','necropolis','dungeon','stronghold','fortress','conflux']);
@@ -95,12 +96,12 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
   dialog.querySelector('.lobby-picker-empty').hidden=true;
   const state=getState();
   const maps=new Map((!isFaction&&state.mode==='lobby'?state.maps??[]:[]).map(map=>[String(map.index),map]));
-  const playerLabel=getLanguage()==='fr'?['joueur','joueurs']:['player','players'];
+  const fr=getLanguage()==='fr';
   dialog.querySelector('.lobby-picker-grid').innerHTML=options(s).map(o=>{
    const map=maps.get(o.value);
    const name=`<span class="lobby-choice-name">${esc(o.label)}</span>`;
-   const details=map?.players>0&&map.width>0&&map.height>0
-    ?`<small class="lobby-map-meta">${esc(map.players)} ${playerLabel[Number(map.players!==1)]} · ${esc(map.width)} × ${esc(map.height)}</small>`:'';
+   const metadata=map?scenarioDetails({...map,humanSeats:1,castleChoices:Number(map.castleChoice)},fr):'';
+   const details=metadata?`<small class="lobby-map-meta">${esc(metadata)}</small>`:'';
    const copy=isFaction?name:`<span class="lobby-choice-copy">${name}${details}</span>`;
    return `<button type="button" data-choice-value="${esc(o.value)}" aria-pressed="${o.value===s.value}" ${o.disabled?'disabled':''}>${isFaction?art(s,o.value):'<img src="./web/h3-theme/adventure-map.svg" alt="">'}${copy}<span class="lobby-choice-check" aria-hidden="true">${o.value===s.value?'✓':''}</span></button>`;
   }).join('');

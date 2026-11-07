@@ -10,6 +10,7 @@
 #include "StdInc.h"
 #include "TurnTimerHandler.h"
 #include "CGameHandler.h"
+#include "IGameServer.h"
 #include "battles/BattleProcessor.h"
 #include "queries/QueriesProcessor.h"
 #include "processors/TurnOrderProcessor.h"
@@ -156,7 +157,8 @@ void TurnTimerHandler::onPlayerMakingTurn(PlayerColor player, int waitTime)
 	auto & timer = timers[player];
 	timer.isTurnStart = false;
 	const auto * state = gameHandler.gameInfo().getPlayerState(player);
-	if(state && state->human && timer.isActive && !timer.isBattle && state->status == EPlayerStatus::INGAME)
+	if(state && state->human && timer.isActive && !timer.isBattle && state->status == EPlayerStatus::INGAME
+		&& !gameHandler.gameServer().isTurnTimerPaused(player))
 	{
 		// turn timers are only used if turn timer is non-zero
 		if (si->turnTimerInfo.turnTimer == 0)
@@ -306,7 +308,7 @@ void TurnTimerHandler::onBattleLoop(const BattleID & battleID, int waitTime)
 		return;
 	
 	auto & timer = timers[player];
-	if(timer.isActive && timer.isBattle)
+	if(timer.isActive && timer.isBattle && !gameHandler.gameServer().isTurnTimerPaused(player))
 	{
 		// in pvp battles, timers are only used if unit timer is non-zero
 		if(isPvpBattle(battleID) && si->turnTimerInfo.unitTimer == 0)
