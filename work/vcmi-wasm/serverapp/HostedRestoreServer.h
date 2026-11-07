@@ -115,6 +115,11 @@ public:
 			}
 		}
 
+		// A restored checkpoint may carry its original lobby's cheat setting.
+		si->extraOptionsInfo.cheatsAllowed = false;
+		if(gh)
+			gh->gs->getStartInfo()->extraOptionsInfo.cheatsAllowed = false;
+
 		if(si->playerInfos.size() != seats.size() || si->turnTimerInfo.isEnabled()
 			|| si->simturnsInfo.requiredTurns || si->simturnsInfo.optionalTurns
 			|| mi->mapHeader->battleOnly || (gh && !gh->gameState().currentBattles.empty()))
