@@ -85,9 +85,9 @@ public:
 		});
 	}
 
-	void start(const std::string & mapName, const std::string & colors, const JsonNode & factions, int turnMinutes)
+	void start(const std::string & mapName, const std::string & colors, const JsonNode & factions, double turnMinutes)
 	{
-		if(turnMinutes < 0 || turnMinutes > 10 || (mapName.empty() && turnMinutes != 0))
+		if(!(turnMinutes >= 0 && turnMinutes <= 10) || (mapName.empty() && turnMinutes != 0))
 			throw std::runtime_error("Invalid hosted turn timer");
 		const auto seats = parseSeats(colors);
 		if(mapName.empty())
@@ -107,7 +107,7 @@ public:
 			}
 			updateStartInfoOnMapChange(map);
 			si->turnTimerInfo = TurnTimerInfo{};
-			si->turnTimerInfo.turnTimer = turnMinutes * 60000;
+			si->turnTimerInfo.turnTimer = static_cast<int>(turnMinutes * 60000);
 			if(!factions.isNull())
 			{
 				if(factions.Vector().size() != seats.size())

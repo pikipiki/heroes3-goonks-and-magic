@@ -83,8 +83,11 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
       const durations = catalogue.turnMinutes;
       const previousTimer = timer.value;
       timerField.hidden = !Array.isArray(durations);
-      timer.replaceChildren(...(timerField.hidden ? [] : durations.map(minutes =>
-        new Option(minutes ? `${minutes} min` : t('No timer', 'Sans chrono'), minutes))));
+      timer.replaceChildren(...(timerField.hidden ? [] : durations.map(minutes => {
+        const label = minutes === 0 ? t('No timer', 'Sans chrono') :
+          minutes < 1 ? `${minutes * 60} s` : `${minutes} min`;
+        return new Option(label, minutes);
+      })));
       if ([...timer.options].some(option => option.value === previousTimer)) timer.value = previousTimer;
       const preferred = scenarios.find(item => item.width === 36 && item.castles?.every(choices => choices?.length > 1));
       if (preferred) map.value = preferred.id;
