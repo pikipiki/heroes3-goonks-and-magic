@@ -1,25 +1,52 @@
-#mobile-app[data-mode=mage-guild]{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
+html.goonk-mobile #mobile-app[data-mode=mage-guild]{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
 #mobile-app[data-mode=mage-guild] .mobile-top{grid-column:1}
 #mobile-app[data-mode=mage-guild] .mobile-play{grid-column:1;grid-row:2}
-#mobile-app[data-mode=mage-guild] .mobile-nav,#mobile-app[data-mode=mage-guild] .scene-tools,#mobile-app[data-mode=mage-guild] .scene-hint{display:none}
-.mobile-mage-guild{position:absolute;inset:0;z-index:3;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:4px;padding:4px 8px calc(4px + var(--safe-bottom));overflow:hidden;background:#291d13 url('./h3-theme/stone.png');color:#ffebbb}
+#mobile-app[data-mode=mage-guild] :is(.mobile-nav,.scene-tools,.scene-hint){display:none}
+.mobile-mage-guild{position:absolute;inset:0;z-index:3;display:grid;grid-template-rows:auto minmax(0,1fr);gap:5px;padding:4px 8px max(4px,var(--safe-bottom));overflow:hidden;background:#291d13 url('./h3-theme/stone.png');color:#ffebbb}
 .mobile-mage-guild[hidden]{display:none}
-.mobile-mage-guild header,.mobile-mage-guild footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.mobile-mage-guild h2{flex:1;min-width:0;margin:0;font-size:clamp(15px,4.5vw,19px);line-height:1.1}
+.mobile-mage-guild :is(header,footer){display:flex;align-items:center;justify-content:space-between;gap:6px}
+.mobile-mage-guild h2{flex:1;min-width:0;margin:0;font-size:clamp(16px,4.5vw,21px);line-height:1.1}
 .mobile-mage-guild header button{flex:none}
 #mobile-app[data-mage-guild-view=mobile] #mobile-scene{visibility:hidden}
 #mobile-app[data-mage-guild-view=classic] .mobile-mage-guild{inset:0 0 auto;padding-bottom:4px}
 #mobile-app[data-mage-guild-view=classic] #mobile-scene{position:absolute;top:52px;height:calc(100% - 52px - var(--safe-bottom))}
-.mobile-mage-guild nav{display:flex;gap:4px}
 #mobile-app .mobile-mage-guild button{min-width:44px;min-height:44px;padding:3px 6px}
-.mobile-mage-guild nav button{flex:1}
-.mage-guild-spells{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(44px,1fr);gap:4px;min-height:0;max-height:420px}
-.mage-guild-spells p{grid-column:1/-1;margin:12px 4px}
-.mage-guild-spells button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;overflow:hidden}
-.mage-guild-spells button span{overflow-wrap:anywhere;font-size:14px}
-.mage-guild-spells img{width:clamp(32px,8vh,66px);height:auto;object-fit:contain}
+.mage-guild-library{display:grid;grid-template-columns:clamp(72px,22vw,104px) minmax(0,1fr);gap:6px;min-height:0}
+.mage-guild-library nav{display:grid;grid-auto-rows:44px;align-content:start;gap:3px;padding:4px;border:1px solid #967749;background:#2a1a12b5}
+#mobile-app .mobile-mage-guild [data-guild-level]{display:flex;justify-content:center;align-items:center;gap:4px;padding:2px 3px;font-size:13px;white-space:nowrap}
+.mage-guild-seal{font-size:12px;color:#f5d88f}
+[data-floor-status=sealed] .mage-guild-seal{color:#e5a69a}
+[data-floor-status=unavailable] .mage-guild-seal{color:#c3ad98}
+#mobile-app .mobile-mage-guild [data-guild-level][aria-pressed=true]{outline:2px solid #f3d28e;outline-offset:-4px}
+.mage-guild-shelf{min-height:0;min-width:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:5px;padding:6px;border:1px solid #ad8e57;background:radial-gradient(ellipse at 80% 0,#61442e,#2b1e15 68%)}
+.mage-guild-shelf-head{min-width:0;display:flex;justify-content:space-between;align-items:center;gap:5px;border-bottom:1px solid #aa88577d}
+.mage-guild-shelf-head h3{margin:0;font-size:17px}
+.mage-guild-shelf-head small{display:block;color:#d5ba91;font-size:12px;font-weight:normal}
+.mage-guild-shelf-head img{width:43px;height:37px;object-fit:contain}
+.mage-guild-archive{display:grid;grid-template-rows:auto minmax(0,1fr);min-height:0;gap:6px}
+.mage-guild-spells{display:grid;grid-auto-rows:minmax(44px,auto);align-content:start;gap:4px;overflow:auto;min-height:0;max-height:58dvh;overscroll-behavior:contain;touch-action:pan-y}
+#mobile-app .mobile-mage-guild [data-guild-spell]{display:grid;grid-template-columns:34px minmax(0,1fr);align-items:center;gap:4px;min-width:0;text-align:left;border:1px solid #9c754f;border-image:none;border-radius:4px;background:linear-gradient(90deg,#b0997c,#e4d4bc 13%,#e4d4bc 86%,#b9a082);color:#3a271b;text-shadow:none;font-size:14px;line-height:1.15}
+#mobile-app .mobile-mage-guild [data-guild-spell][aria-pressed=true]{outline:2px solid #805031;outline-offset:-3px}
+.mage-guild-spells img{width:34px;height:32px;object-fit:contain}
+.mage-guild-spells span{overflow-wrap:anywhere}
+.mage-guild-detail{min-height:0;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;padding:6px;border-top:1px solid #a28454;background:#25191066}
+.mage-guild-detail h4{margin:0;color:#ffe1a5;font-size:15px}
+.mage-guild-detail p,.mage-guild-empty{margin:4px 0 0;color:#f1ddbd;font-size:14px;line-height:1.25;overflow-wrap:anywhere}
+.mage-guild-detail button{margin-top:5px}
+.mobile-mage-guild footer{font-size:13px}
 @media(orientation:landscape){
- .mage-guild-spells{grid-template-columns:repeat(3,minmax(0,1fr))}
- .mage-guild-spells button{flex-direction:row;text-align:left}
- .mage-guild-spells img{width:clamp(24px,8vh,54px)}
+ .mage-guild-library{grid-template-columns:minmax(0,1fr);grid-template-rows:44px minmax(0,1fr)}
+ .mage-guild-library nav{grid-template-columns:repeat(5,minmax(44px,1fr));grid-auto-flow:column;grid-auto-columns:minmax(44px,1fr);padding:0;border:0;overflow-x:auto}
+ .mage-guild-shelf{padding:4px 6px}
+ .mage-guild-shelf-head small{display:inline;margin-inline-start:4px}
+ .mage-guild-shelf-head img{width:36px;height:24px}
+ .mage-guild-archive{grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+ .mage-guild-spells{grid-template-columns:repeat(3,minmax(0,1fr));max-height:none}
+ .mage-guild-detail{border-top:0;border-left:1px solid #a28454}
+ #mobile-app .mobile-mage-guild [data-guild-spell]{grid-template-columns:24px minmax(0,1fr);padding:2px;font-size:13px}
+ .mage-guild-spells img{width:24px;height:26px}
+}
+@media(orientation:portrait) and (max-height:620px){
+ .mage-guild-spells{max-height:49dvh}
+ #mobile-app .mobile-mage-guild [data-guild-spell]{font-size:13px}
 }

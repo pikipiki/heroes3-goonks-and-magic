@@ -15,7 +15,7 @@ try {
   await page.goto(origin + '/game.html?mobile=1');
   await wait(() => window.goonkMobileState?.mode === 'menu' && window.goonkSessionRecovery?.phase === 'done');
   await page.locator('[data-action="20"]').tap();
-  await wait(() => goonkMobileState.mode === 'lobby' && goonkMobileState.lobbyReady && goonkMobileState.selectedMap === 'Goonks');
+  await wait(() => goonkMobileState.mode === 'lobby' && goonkMobileState.lobbyReady && !!document.querySelector('[data-ui=begin]:enabled'));
   const tower = await page.evaluate(() => goonkMobileState.factions.find(faction => faction.key === 'core:tower'));
   assert(tower);
   await page.locator('[data-setting=mobile-faction-select] .lobby-choice-card').tap();
@@ -24,6 +24,18 @@ try {
   await page.locator('.lobby-footer [data-ui=begin]').tap();
   await wait(() => goonkMobileState.mode === 'map' && goonkMobileState.turn && goonkMobileState.towns?.length);
   await command(5, 0);
+  await wait(() => goonkMobileState.mode === 'town');
+  if (!await page.evaluate(() => goonkMobileState.buildings.some(building => building.built && building.key.endsWith(':mageGuild1')))) {
+    await command(8, 0);
+    await wait(() => goonkMobileState.buildings.some(building => building.built && building.key.endsWith(':mageGuild1')));
+  }
+  await page.locator('[data-ui=town-guild]').tap();
+  await wait(() => goonkMobileState.mode === 'mage-guild');
+  const guild = page.locator('.mobile-mage-guild');
+  const sealed = guild.locator('[data-guild-level="5"][data-floor-status=sealed]');
+  await sealed.tap();
+  assert.match(await guild.locator('.mage-guild-empty').textContent(), /discover its spells/);
+  await guild.locator('[data-guild-close]').tap();
   await wait(() => goonkMobileState.mode === 'town');
   await command(29, 4);
   await wait(() => goonkMobileState.buildings?.some(building => building.built && building.key.endsWith(':mageGuild5')));
@@ -57,7 +69,6 @@ try {
 
   await page.locator('[data-ui=town-guild]').tap();
   await wait(() => goonkMobileState.mode === 'mage-guild' && goonkMobileState.mageGuild.spells?.length);
-  const guild = page.locator('.mobile-mage-guild');
   await page.locator('#mobile-app').evaluate(root => root.style.setProperty('--safe-bottom', '22px'));
   for (const viewport of [{width: 320, height: 568}, {width: 568, height: 320}, {width: 844, height: 390}]) {
     await page.setViewportSize(viewport);
@@ -92,10 +103,12 @@ try {
     await toggle.tap();
     assert.equal(await guild.locator('[data-guild-level="5"]').getAttribute('aria-pressed'), 'true');
   }
-  await guild.locator('[data-guild-spell]').first().tap();
-  await wait(() => goonkMobileState.mode === 'dialog');
-  await accept.tap();
-  await wait(() => goonkMobileState.mode === 'mage-guild');
+  const firstScroll = guild.locator('[data-guild-spell]').first();
+  const spellName = await firstScroll.locator('span').textContent();
+  await firstScroll.tap();
+  assert.equal(await guild.locator('.mage-guild-detail h4').textContent(), spellName);
+  assert(await guild.locator('.mage-guild-detail p').textContent());
+  assert.equal(await page.evaluate(() => goonkMobileState.mode), 'mage-guild');
   assert.equal(await guild.locator('[data-guild-level="5"]').getAttribute('aria-pressed'), 'true');
   await guild.locator('[data-guild-close]').tap();
   await wait(() => goonkMobileState.mode === 'town');

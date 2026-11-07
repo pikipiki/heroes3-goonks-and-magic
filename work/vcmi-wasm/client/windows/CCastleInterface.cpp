@@ -2310,6 +2310,9 @@ JsonNode CMageGuildScreen::mobileSnapshot() const
 	const auto * town = GAME->interface()->cb->getTown(townId);
 	JsonNode result;
 	result["town"].Integer() = townId.getNum();
+	result["faction"].String() = town->getFaction()->getJsonKey();
+	result["canResearch"].Bool() = GAME->interface()->makingTurn && town->spellResearchAllowed
+		&& GAME->interface()->cb->getSettings().getBoolean(EGameSettings::TOWNS_SPELL_RESEARCH);
 	result["levels"].Integer() = town->getTown()->mageLevel;
 	result["built"].Integer() = town->mageGuildLevel();
 	for(const auto & scroll : spells)
@@ -2319,6 +2322,7 @@ JsonNode CMageGuildScreen::mobileSnapshot() const
 		JsonNode row;
 		row["id"].Integer() = spell->id.getNum();
 		row["name"].String() = spell->getNameTranslated();
+		row["description"].String() = spell->getDescriptionTranslated(0);
 		row["level"].Integer() = spell->getLevel();
 		row["x"].Integer() = center.x;
 		row["y"].Integer() = center.y;
