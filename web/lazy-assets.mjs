@@ -26,6 +26,11 @@ export function createAssetBlockCache({maxBytes=16*1024*1024,blockBytes=64*1024,
  }
  return {stats,read(file,target,offset,length,position){
   const count=Math.max(0,Math.min(length,file.size-position));let copied=0;
+  if(count>blockBytes*2){
+   const part=read(file.slice(position,position+count));
+   target.set(part,offset);
+   return count;
+  }
   while(copied<count){const at=position+copied,index=Math.floor(at/blockBytes),part=block(file,index),start=at%blockBytes,n=Math.min(count-copied,part.length-start);if(n<=0)throw Error('Invalid asset block');target.set(part.subarray(start,start+n),offset+copied);copied+=n;}
   return copied;
  }};

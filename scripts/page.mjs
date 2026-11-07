@@ -56,7 +56,7 @@ export function renderPage(root){
  module.goonkTemporaryStorage=temporary;
  const {installRuntimeScheduling}=await import('./web/runtime-scheduling.mjs');installRuntimeScheduling(module);
  const {configureMobileBattle}=await import('./web/battle-scene.mjs');configureMobileBattle(FS,window.goonkMobileActive);
- const {getLanguage}=await import('./web/i18n.mjs');const settingsPath='/home/web_user/.config/vcmi/settings.json';let settings={};try{settings=JSON.parse(FS.readFile(settingsPath,{encoding:'utf8'}));}catch{}settings.general={...settings.general,language:getLanguage()==='fr'?'french':'english'};FS.writeFile(settingsPath,JSON.stringify(settings));
+ const {getLanguage}=await import('./web/i18n.mjs');const settingsPath='/home/web_user/.config/vcmi/settings.json';let settings={};try{settings=JSON.parse(FS.readFile(settingsPath,{encoding:'utf8'}));}catch{}settings.general={...settings.general,language:getLanguage()==='fr'?'french':'english'};settings.gameTweaks={...settings.gameTweaks,skipBattleIntroMusic:true};FS.writeFile(settingsPath,JSON.stringify(settings));
  const modSettingsPath='/home/web_user/.config/vcmi/modSettings.json';let modSettings;
  try{modSettings=JSON.parse(FS.readFile(modSettingsPath,{encoding:'utf8'}));}catch{modSettings={activePreset:'default',presets:{default:{mods:['core','vcmi'],settings:{}}}};}
  const preset=modSettings.activePreset||'default';modSettings.presets ||= {};modSettings.presets[preset] ||= {mods:['core','vcmi'],settings:{}};

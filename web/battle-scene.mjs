@@ -26,7 +26,8 @@ export function paintBattleGrid(ctx,cells,layout,units=[],occlusion=[]){
 }
 export function configureMobileBattle(FS,enabled){if(!enabled)return;const path='/home/web_user/.config/vcmi/settings.json';let value={};try{const existing=FS.readFile(path,{encoding:'utf8'});if(existing.trim())value=JSON.parse(existing);}catch(error){if(FS.analyzePath(path).exists)throw error;}
  value.video={...value.video,useHdTextures:false,upscalingFilter:'none',resolution:{...value.video?.resolution,scaling:100}};
- value.battle={...value.battle,cellBorders:false,stackRange:false,movementHighlightOnHover:false,rangeLimitHighlightOnHover:false,stickyHeroInfoWindows:false,showQueue:false,queueSize:'small',queueSmallSlots:8};FS.writeFile(path,JSON.stringify(value));}
+ value.battle={...value.battle,cellBorders:false,stackRange:false,movementHighlightOnHover:false,rangeLimitHighlightOnHover:false,stickyHeroInfoWindows:false,showQueue:false,queueSize:'small',queueSmallSlots:8};
+ value.gameTweaks={...value.gameTweaks,skipBattleIntroMusic:true};FS.writeFile(path,JSON.stringify(value));}
 
 export function drawUnit(ctx,unit,atlas,ids,x,y,size){
  const index=ids?.get(unit.stackId);if(atlas&&index!==undefined){ctx.drawImage(atlas,index%8*128+8,Math.floor(index/8)*128+8,112,112,x-size/2,y-size/2,size,size);return true;}return false;
