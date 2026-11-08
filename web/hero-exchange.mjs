@@ -1,13 +1,15 @@
 import {equipmentSlotNames, paintArtifactIcons} from './hero-equipment.mjs';
 import {plainGameText} from './game-text.mjs';
+import {getLanguage} from './i18n.mjs';
 
 const escape=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-const slotName=slot=>slot.backpack?'Sac à dos':equipmentSlotNames[slot.slot]||'Équipement';
+const slotName=(slot,fr=true)=>slot.backpack?(fr?'Sac à dos':'Backpack'):equipmentSlotNames[slot.slot]||(fr?'Équipement':'Equipment');
 
 export function createHeroExchange({root,command,refresh,portrait}){
+ const fr=getLanguage()==='fr';
  const panel=document.createElement('section');
  panel.className='hero-exchange-page';
- panel.setAttribute('aria-label','Échange entre héros');
+ panel.setAttribute('aria-label',fr?'Échange entre héros':'Hero exchange');
  panel.hidden=true;
  root.querySelector('.mobile-play').append(panel);
  let heroes=[],classic=false,turn=false,classicOnly=false,signature='',tab='equipment';
@@ -49,59 +51,59 @@ export function createHeroExchange({root,command,refresh,portrait}){
    const compatible=maximum(item,side,slot)>0;
    const current=item===slot||target===slot;
    const disabled=!!pending||(item&&source.side!==side&&!compatible)||(!slot.name&&!compatible)||(troops&&!item&&!heroes[side].owned);
-   const label=slot.name||(troops?'Emplacement vide':slot.backpack?'Déposer dans le sac':slotName(slot));
+   const label=slot.name||(troops?(fr?'Emplacement vide':'Empty slot'):slot.backpack?(fr?'Déposer dans le sac':'Place in backpack'):slotName(slot,fr));
    return `<button type="button" class="exchange-slot${compatible?' can-receive':''}" data-exchange-slot="${side}:${slot.slot}"
     aria-pressed="${current}" ${disabled?'disabled':''}>
     ${slot.name?(troops?portrait(slot):`<canvas width="64" height="64" data-artifact-icon="${slot.icon}" aria-hidden="true"></canvas>`):'<span aria-hidden="true">＋</span>'}
     <span><strong>${escape(label)}${troops&&slot.name?` × ${slot.count}`:''}</strong>
-    ${!troops&&!slot.backpack&&slot.name?`<small>${escape(slotName(slot))}</small>`:''}</span>
+    ${!troops&&!slot.backpack&&slot.name?`<small>${escape(slotName(slot,fr))}</small>`:''}</span>
    </button>`;
   };
   const sideMarkup=(hero,side)=>{
    const group=(backpack,label)=>{
     const visible=hero.slots.filter(slot=>slot.backpack===backpack&&(slot.name||maximum(item,side,slot)>0));
-    return `<h4>${label}</h4>${visible.length?visible.map(slot=>itemMarkup(slot,side)).join(''):'<p class="exchange-empty">Aucun objet</p>'}`;
+    return `<h4>${label}</h4>${visible.length?visible.map(slot=>itemMarkup(slot,side)).join(''):`<p class="exchange-empty">${fr?'Aucun objet':'No items'}</p>`}`;
    };
    return `<section class="exchange-inventory">
     <header><canvas class="exchange-face" width="48" height="56" data-exchange-face="${side}" aria-hidden="true"></canvas>
     <h3>${escape(hero.name)}</h3></header>
-    ${troops?hero.roster.map(slot=>itemMarkup(slot,side)).join(''):group(false,'Objets équipés')+group(true,'Sac à dos')}
+    ${troops?hero.roster.map(slot=>itemMarkup(slot,side)).join(''):group(false,fr?'Objets équipés':'Equipped items')+group(true,fr?'Sac à dos':'Backpack')}
    </section>`;
   };
   const available=turn&&heroes.some(hero=>hero.owned);
   const hasDestination=item&&slots(1-source.side).some(slot=>maximum(item,1-source.side,slot)>0);
   const keepsOne=troops&&item&&mustKeepOne(heroes[source.side]);
-  const instruction=!turn?'Disponible à ton tour':
-   !item?(troops?(heroes.every(hero=>hero.owned)?'Choisis une troupe à transférer.':'Choisis une de tes troupes à donner à ton allié.'):'Choisis un objet à transférer.'):
-   !hasDestination?(keepsOne?'Chaque héros doit garder au moins une créature.':'Aucun emplacement compatible chez l’autre héros.'):
-   target&&keepsOne&&!swap?'Chaque héros doit garder au moins une créature.':
-   !target?'Choisis un emplacement en surbrillance chez l’autre héros.':
-   swap?(troops?'Les deux troupes vont changer de héros.':'Les deux objets vont changer de héros.'):
-   (troops?'Les créatures vont rejoindre l’autre héros.':'L’objet va rejoindre l’autre héros.');
+  const instruction=!turn?(fr?'Disponible à ton tour':'Available on your turn'):
+   !item?(troops?(heroes.every(hero=>hero.owned)?(fr?'Choisis une troupe à transférer.':'Choose a unit to transfer.'):(fr?'Choisis une de tes troupes à donner à ton allié.':'Choose one of your units to give to your ally.')):(fr?'Choisis un objet à transférer.':'Choose an item to transfer.')):
+   !hasDestination?(keepsOne?(fr?'Chaque héros doit garder au moins une créature.':'Each hero must keep at least one creature.'):(fr?'Aucun emplacement compatible chez l’autre héros.':'No compatible slot on the other hero.')):
+   target&&keepsOne&&!swap?(fr?'Chaque héros doit garder au moins une créature.':'Each hero must keep at least one creature.'):
+   !target?(fr?'Choisis un emplacement en surbrillance chez l’autre héros.':'Choose a highlighted slot on the other hero.'):
+   swap?(troops?(fr?'Les deux troupes vont changer de héros.':'Both units will swap heroes.'):(fr?'Les deux objets vont changer de héros.':'Both items will swap heroes.')):
+   (troops?(fr?'Les créatures vont rejoindre l’autre héros.':'The creatures will join the other hero.'):(fr?'L’objet va rejoindre l’autre héros.':'The item will join the other hero.'));
   const disabled=!target||!available||!!pending||quantity<1||quantity>countLimit;
   panel.innerHTML=`<header class="exchange-toolbar">
-   <h2>Échange entre héros</h2>
-   <button type="button" data-exchange-classic data-exchange-focus="classic" ${pending?'disabled':''}>Classique</button>
-   <button type="button" data-exchange-close data-exchange-focus="close" aria-label="Fermer l’échange" ${pending?'disabled':''}>×</button>
+   <h2>${fr?'Échange entre héros':'Hero exchange'}</h2>
+   <button type="button" data-exchange-classic data-exchange-focus="classic" ${pending?'disabled':''}>${fr?'Classique':'Classic'}</button>
+   <button type="button" data-exchange-close data-exchange-focus="close" aria-label="${fr?'Fermer l’échange':'Close exchange'}" ${pending?'disabled':''}>×</button>
   </header>
-  <nav class="exchange-tabs" aria-label="Type d’échange">
-   <button type="button" data-exchange-tab="equipment" data-exchange-focus="equipment" aria-pressed="${!troops}" ${pending?'disabled':''}>Équipement</button>
-   <button type="button" data-exchange-tab="troops" data-exchange-focus="troops" aria-pressed="${troops}" ${pending?'disabled':''}>Troupes</button>
+  <nav class="exchange-tabs" aria-label="${fr?'Type d’échange':'Exchange type'}">
+   <button type="button" data-exchange-tab="equipment" data-exchange-focus="equipment" aria-pressed="${!troops}" ${pending?'disabled':''}>${fr?'Équipement':'Equipment'}</button>
+   <button type="button" data-exchange-tab="troops" data-exchange-focus="troops" aria-pressed="${troops}" ${pending?'disabled':''}>${fr?'Troupes':'Troops'}</button>
   </nav>
   <div class="exchange-inventories">${heroes.map(sideMarkup).join('')}</div>
   <footer class="exchange-detail">
    <div class="exchange-summary" aria-live="polite" aria-atomic="true">
     ${item?`<h3>${escape(item.name)}${troops?` × ${item.count}`:''}</h3>`:''}
     ${target?`<p class="exchange-route"><span>${escape(heroes[source.side].name)}</span> <span aria-hidden="true">${swap?'⇄':'→'}</span>
-      <span>${escape(targetHero.name)}</span>${target.name||!troops?' · '+escape(target.name||slotName(target)):''}</p>`:''}
+      <span>${escape(targetHero.name)}</span>${target.name||!troops?' · '+escape(target.name||slotName(target,fr)):''}</p>`:''}
     <p>${message||instruction}</p>
     ${!target&&item?.description?`<p class="exchange-description">${escape(plainGameText(item.description))}</p>`:''}
    </div>
    ${item?`<div class="exchange-actions">
-    ${troops&&target&&!swap?`<label class="exchange-quantity"><span>Quantité</span><input type="number" inputmode="numeric" min="1" max="${countLimit}"
-     value="${quantity||''}" aria-label="Quantité" data-exchange-quantity ${pending?'disabled':''}></label>`:''}
-    <button type="button" data-exchange-reset data-exchange-focus="reset" ${pending?'disabled':''}>Annuler</button>
-    <button type="button" class="primary" data-exchange-confirm data-exchange-focus="confirm" ${disabled?'disabled':''}>${pending?'Transfert en cours…':swap?'Confirmer l’échange':'Confirmer le transfert'}</button>
+    ${troops&&target&&!swap?`<label class="exchange-quantity"><span>${fr?'Quantité':'Quantity'}</span><input type="number" inputmode="numeric" min="1" max="${countLimit}"
+     value="${quantity||''}" aria-label="${fr?'Quantité':'Quantity'}" data-exchange-quantity ${pending?'disabled':''}></label>`:''}
+    <button type="button" data-exchange-reset data-exchange-focus="reset" ${pending?'disabled':''}>${fr?'Annuler':'Cancel'}</button>
+    <button type="button" class="primary" data-exchange-confirm data-exchange-focus="confirm" ${disabled?'disabled':''}>${pending?(fr?'Transfert en cours…':'Transferring…'):swap?(fr?'Confirmer l’échange':'Confirm exchange'):(fr?'Confirmer le transfert':'Confirm transfer')}</button>
    </div>`:''}
   </footer>`;
   panel.querySelector('.exchange-inventories').scrollTop=scroll;
@@ -126,7 +128,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
    if(!item||!target||quantity<1||quantity>maximum(item,destination.side,target))return;
    const troops=tab==='troops';
    const expectedCount=troops?(troopSwap(item,target)?quantity:(target.count||0)+quantity):undefined;
-   const timer=setTimeout(()=>{pending=null;message='Transfert non confirmé. Réessaie.';render();},8000);
+   const timer=setTimeout(()=>{pending=null;message=fr?'Transfert non confirmé. Réessaie.':'Transfer not confirmed. Retry.';render();},8000);
    pending={timer,side:destination.side,slot:target.slot,id:item.id,count:expectedCount};
    if(troops)command(94,source.side,item.slot,target.slot,quantity,item.id);
    else command(92,source.side,item.slot,target.slot,item.id,target.id??-1);
@@ -168,7 +170,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
    if(pending){
     const receipt=itemAt(pending);
     if(receipt&&(pending.count===undefined||receipt.count===pending.count)){
-     clearTimeout(pending.timer);pending=null;clearSelection();message='Transfert terminé.';
+     clearTimeout(pending.timer);pending=null;clearSelection();message=fr?'Transfert terminé.':'Transfer complete.';
     }
    }
    if(classicOnly){clearSelection();setView(true);return;}

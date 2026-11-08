@@ -1,6 +1,7 @@
 import{plainGameText}from'./game-text.mjs';
 import{bindPress}from'./mobile-press.mjs';
 import{nextBuildingPrerequisite}from'./town-building-menu.mjs';
+import{getLanguage}from'./i18n.mjs';
 export function recruitmentFamilies(state){return state.fortFamilies?.length?state.fortFamilies:(state.fortRows||[]).map(row=>({level:row.level,count:row.count,variants:(state.recruits||[]).filter(u=>u.level===row.level).map((u,rank)=>({...u,rank,built:true})).concat([])})).map(f=>({...f,variants:f.variants.length?f.variants:[state.fortRows.find(u=>u.level===f.level)]}));}
 export function recruitMaximum(unit,resources=[]){if(!unit?.built)return 0;let count=Math.max(0,Math.floor(unit.count||0));for(const[i,cost]of(unit.cost||[]).entries())if(cost>0)count=Math.min(count,Math.floor((resources[i]||0)/cost));return count;}
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -32,11 +33,12 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
  };
  const renderSelection=()=>{
   const u=unit();if(!u)return;
+  const fr=getLanguage()==='fr';
   for(const b of panel.querySelectorAll('[data-family-select]')){const active=Number(b.dataset.familySelect)===selectedId;b.setAttribute('aria-pressed',String(active));b.querySelector('canvas').dataset.hallActive=String(active);}
   const slots=state.armies?.[0]?.slots,hasRoom=!slots?.length||slots.some(slot=>!slot||slot.id===u.id);
   const detail=panel.querySelector('.hall-detail'),maximum=recruitMaximum(u,state.resources);amount=Math.min(maximum,Math.max(1,amount));
   if(detail.dataset.unit!==String(u.id)){
-   detail.dataset.unit=u.id;detail.innerHTML=`<div class="hall-feature"><div><div class="hall-feature-title"><h3>${esc(u.name)}</h3><span class="hall-unit-price"></span></div>${stats(u).replace(/<dt>(Attack|Defense|Damage|Health|Speed)<\/dt>/g,(_,name)=>'<dt aria-label="'+name+'">'+({Attack:'ATK',Defense:'DEF',Damage:'DMG',Health:'HP',Speed:'SPD'}[name])+'</dt>')}</div></div><p class="hall-stock" aria-live="polite"></p><div class="hall-quantity"><button data-hall-less aria-label="Decrease quantity">−</button><label class="hall-number"><input type="number" min="0" inputmode="numeric" aria-label="Recruit quantity"></label><button data-hall-more aria-label="Increase quantity">+</button><button data-hall-max>Max</button></div><div class="hall-total"></div><section class="hall-unlock-preview" hidden></section><div class="hall-actions"><button class="primary" data-hall-buy>Recruit</button><button class="primary" data-hall-build hidden>Comment débloquer<span aria-hidden="true"> ›</span></button><button data-type-info="${u.id}">Details</button></div>`;
+   detail.dataset.unit=u.id;detail.innerHTML=`<div class="hall-feature"><div><div class="hall-feature-title"><h3>${esc(u.name)}</h3><span class="hall-unit-price"></span></div>${stats(u).replace(/<dt>(Attack|Defense|Damage|Health|Speed)<\/dt>/g,(_,name)=>'<dt aria-label="'+name+'">'+({Attack:'ATK',Defense:'DEF',Damage:'DMG',Health:'HP',Speed:'SPD'}[name])+'</dt>')}</div></div><p class="hall-stock" aria-live="polite"></p><div class="hall-quantity"><button data-hall-less aria-label="Decrease quantity">−</button><label class="hall-number"><input type="number" min="0" inputmode="numeric" aria-label="Recruit quantity"></label><button data-hall-more aria-label="Increase quantity">+</button><button data-hall-max>Max</button></div><div class="hall-total"></div><section class="hall-unlock-preview" hidden></section><div class="hall-actions"><button class="primary" data-hall-buy>Recruit</button><button class="primary" data-hall-build hidden>${fr?'Comment débloquer':'How to unlock'}<span aria-hidden="true"> ›</span></button><button data-type-info="${u.id}">Details</button></div>`;
    const press=(sel,fn)=>bindPress(detail.querySelector(sel),fn);
    press('[data-hall-less]',()=>{amount=Math.max(0,amount-1);renderSelection();});press('[data-hall-more]',()=>{amount=Math.min(recruitMaximum(unit(),state.resources),amount+1);renderSelection();});press('[data-hall-max]',()=>{amount=recruitMaximum(unit(),state.resources);renderSelection();});
    detail.querySelector('input').addEventListener('input',event=>{amount=Math.max(0,Math.min(recruitMaximum(unit(),state.resources),Math.floor(Number(event.target.value)||0)));renderSelection();});
@@ -55,16 +57,16 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
   if(next){
    const artwork=buildingArt?.(state,next);
    const previewMarkup=`${artwork?`<img src="${esc(artwork)}" alt="">`:''}
-    <div><span>${prerequisite?'Premier bâtiment nécessaire':'Bâtiment nécessaire'}</span>
+    <div><span>${fr?(prerequisite?'Premier bâtiment nécessaire':'Bâtiment nécessaire'):(prerequisite?'First required building':'Required building')}</span>
     <strong>${esc(plainGameText(next.name))}</strong></div>`;
    if(preview._sourceMarkup!==previewMarkup){preview._sourceMarkup=previewMarkup;preview.innerHTML=previewMarkup;}
   }
   detail.querySelector('.hall-stock').textContent=u.built
    ? (hasRoom?`${u.count} available · Shared stock`:'Garrison full · Move troops to your hero')
-   : next?'🔒 Recrutement verrouillé':`Requires: ${plainGameText(u.requiredBuilding)||'Dwelling for this form'}`;
+   : next?(fr?'🔒 Recrutement verrouillé':'🔒 Recruitment locked'):`Requires: ${plainGameText(u.requiredBuilding)||'Dwelling for this form'}`;
   detail.dataset.locked=String(!u.built);const input=detail.querySelector('input');input.max=maximum;if(document.activeElement!==input)input.value=amount;
   detail.querySelector('.hall-total').innerHTML='<span>'+(amount?'Total':'Cost per creature')+'</span>'+(prices(u,amount||1,state.resourceTypes)||'<span>Free</span>');
-  const buy=detail.querySelector('[data-hall-buy]');buy.textContent=pending?'Recruiting…':!state.turn?'Disponible à ton tour':!u.built?'Dwelling required':!u.count?'Sold out':!maximum?'Not enough resources':`Recruit ${amount}`;buy.disabled=!!pending||!state.turn||!maximum||!amount||!hasRoom;buy.toggleAttribute('aria-busy',!!pending);
+  const buy=detail.querySelector('[data-hall-buy]');buy.textContent=pending?'Recruiting…':!state.turn?(fr?'Disponible à ton tour':'Available on your turn'):!u.built?'Dwelling required':!u.count?'Sold out':!maximum?'Not enough resources':`Recruit ${amount}`;buy.disabled=!!pending||!state.turn||!maximum||!amount||!hasRoom;buy.toggleAttribute('aria-busy',!!pending);
   for(const sel of ['[data-hall-less]','[data-hall-more]','[data-hall-max]','input'])detail.querySelector(sel).disabled=!!pending||!maximum;
  };
  return{update(next){state=next;families=recruitmentFamilies(state);if(pending){const u=families.flatMap(f=>f.variants).find(u=>u.id===pending.id);if(u?.count!==pending.count||JSON.stringify(state.armies)!==pending.armies||Date.now()-pending.started>5000)pending=null;}

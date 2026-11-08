@@ -140,54 +140,53 @@ function mount(){
  const turnLimits=[0,1,2,3,5,10];
  function controls(){
   const m=state.mode,cap=battleCapabilities(effectiveBattle()),target=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),blocked=!state.spellTargeting&&target?.enemy&&target.canShootAt===false&&target.canMeleeAt===false;let items;
-  if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn('➤ Marcher','move',true,!state.hasPath||!state.turn),btn('<span aria-hidden="true">⛨ </span>Équipement','heroes',false,!state.heroName&&!state.heroes?.length),btn('♜ Villes','towns'),btn('♟ Armée','army',false,!state.turn||!state.armies?.length),...(state.turn&&state.exchangePartners?.length?[btn('<span aria-hidden="true">⇄ </span>Échanger','hero-exchange',true)]:[]),btn('☀ Terminer le tour','endturn',false,!state.turn)];
+  const fr=getLanguage()==='fr';
+  if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn(fr?'➤ Marcher':'➤ Move','move',true,!state.hasPath||!state.turn),btn(fr?'<span aria-hidden="true">⛨ </span>Équipement':'<span aria-hidden="true">⛨ </span>Equipment','heroes',false,!state.heroName&&!state.heroes?.length),btn(fr?'♜ Villes':'♜ Towns','towns'),btn(fr?'♟ Armée':'♟ Army','army',false,!state.turn||!state.armies?.length),...(state.turn&&state.exchangePartners?.length?[btn(fr?'<span aria-hidden="true">⇄ </span>Échanger':'<span aria-hidden="true">⇄ </span>Exchange','hero-exchange',true)]:[]),btn(fr?'☀ Terminer le tour':'☀ End turn','endturn',false,!state.turn)];
   else if(m==='online-lobby'&&(state.onlineCanCreate||state.onlineInvitation)){
-   const fr=getLanguage()==='fr';
    items=[...(state.onlineCanCreate?[btn(fr?'Créer une partie':'Create game','online-create',!state.onlineInvitation)]:[]),
     ...(state.onlineInvitation?[btn((fr?'Invitation de ':'Invitation from ')+escape(state.onlineInvitation),'online-invitation',true)]:[]),
     btn('↩ Back','back')];
   }
   else if(m==='online-lobby'&&state.onlineMatch){
-   const fr=getLanguage()==='fr', minutes=state.onlineTurnMinutes||0;
+   const minutes=state.onlineTurnMinutes||0;
    const timerLabel=(fr?'Chrono':'Turn timer')+' · '+(minutes?minutes+' min':fr?'désactivé':'off');
    items=[...(state.onlineHost&&!state.onlineLoading?[btn(fr?'Choisir un scénario':'Choose a scenario','online-scenario',false,!state.onlineRoomLimit),btn(timerLabel,'online-timer',false,!state.selectedMap)]:[]),
     ...(state.onlineHost&&state.onlineLoading&&state.onlineSaveAvailable?[btn(fr?'Dernière partie en ligne':'Last online save','online-save')]:[]),
     ...(state.onlineHost?[btn(state.onlineLoading?(fr?'Reprendre':'Resume game'):(fr?'Commencer':'Start game'),'begin',true,!state.selectedMap||(state.onlineLoading&&!state.onlineCanResume))]:[]),
     btn('↩ Back','back')];
   }
-  else if(m==='market')items=[btn('Mobile view','market-mobile'),btn('↩ Back','market-back')];
-  else if(m==='hero-exchange')items=heroExchange.classic?[btn('Vue mobile','exchange-mobile'),btn('Fermer l’échange','exchange-close'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')]:[];
+  else if(m==='market')items=[btn(fr?'Vue mobile':'Mobile view','market-mobile'),btn('↩ Back','market-back')];
+  else if(m==='hero-exchange')items=heroExchange.classic?[btn(fr?'Vue mobile':'Mobile view','exchange-mobile'),btn(fr?'Fermer l’échange':'Close exchange','exchange-close'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')]:[];
   else if(m==='hero')items=[btn('↩ Back','hero-back'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
   else if(m==='fort'||m==='creature')items=[btn('↩ Back','presentation-back')];
   else if(canCloseTavern(state))items=[];
-  else if(m==='dialog'&&state.dialogKind==='fort')items=[btn('Retour au château','back')];
+  else if(m==='dialog'&&state.dialogKind==='fort')items=[btn(fr?'Retour au château':'Back to castle','back')];
   else if(m==='dialog'&&state.dialogKind==='commander')items=[btn('↩ Back','presentation-back'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
   else if(m==='dialog'&&state.dialogKind==='commander-level-up'){
-   const fr=getLanguage()==='fr';
    items=[btn(fr?'✓ Valider la compétence':'✓ Confirm skill','accept',true),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
   }
-  else if(m==='town')items=[['Carte','back','town-exit'],['Recruter des héros','recruit-heroes','town-fort'],['Armées','army','town-split'],['Construire','build','town-hall']].map(([label,ui,icon])=>`<button data-ui="${ui}" class="town-action"><img src="./web/h3-theme/${icon}.png" alt=""><span>${label}</span></button>`);
-  else if(m==='battle'&&cap.tactics)items=[btn('✓ Placer','target',true,!selectedPoint||!cap.move),btn('⚔ Combattre','end-tactics',false,!cap.endTactics),btn('Troupes','tactic-units',false,!cap.endTactics),btn('Suivante','next-tactics',false,!cap.endTactics)];
+  else if(m==='town')items=[[fr?'Carte':'Map','back','town-exit'],[fr?'Recruter des héros':'Recruit heroes','recruit-heroes','town-fort'],[fr?'Armées':'Armies','army','town-split'],[fr?'Construire':'Build','town-hall']].map(([label,ui,icon])=>`<button data-ui="${ui}" class="town-action"><img src="./web/h3-theme/${icon}.png" alt=""><span>${label}</span></button>`);
+  else if(m==='battle'&&cap.tactics)items=[btn(fr?'✓ Placer':'✓ Place','target',true,!selectedPoint||!cap.move),btn(fr?'⚔ Combattre':'⚔ Fight','end-tactics',false,!cap.endTactics),btn(fr?'Troupes':'Troops','tactic-units',false,!cap.endTactics),btn(fr?'Suivante':'Next','next-tactics',false,!cap.endTactics)];
   else if(m==='battle'){
    const guidance=battleGuidance(effectiveBattle());
    const hasCreatureSpell=!state.tacticsMode&&cap.combatReady&&(state.creatureCanCast===true||state.creatureSpellTargeting===true||(guidance.beneficialTargets&&guidance.beneficialTargets.length>0)||state.activeUnit?.canHealOrBuff===true);
-   const magicBtn=btn(spellRecovery.pending?'Cancelling…':canCancelSpell(state)?'✕ Cancel spell':'Magie','battle-magic',false,!!spellRecovery.pending||(!canCancelSpell(state)&&(!cap.magic||!state.heroHasSpellbook||state.heroCanCast===false)));
+   const magicBtn=btn(spellRecovery.pending?(fr?'Annulation…':'Cancelling…'):canCancelSpell(state)?(fr?'✕ Annuler le sort':'✕ Cancel spell'):(fr?'Magie':'Magic'),'battle-magic',false,!!spellRecovery.pending||(!canCancelSpell(state)&&(!cap.magic||!state.heroHasSpellbook||state.heroCanCast===false)));
    if(hasCreatureSpell){
-    const moveLabel=target?.enemy?(target.canShootAt?'✓ Tirer':'✓ Attaquer'):'✓ Déplacer';
+    const moveLabel=target?.enemy?(target.canShootAt?(fr?'✓ Tirer':'✓ Shoot'):(fr?'✓ Attaquer':'✓ Attack')):(fr?'✓ Déplacer':'✓ Move');
     const moveDisabled=blocked||!selectedPoint||!cap.move||!!spellRecovery.pending||(target&&!target.enemy)||(battleMove&&state.focus&&Math.hypot(selectedPoint.x-state.focus.x,selectedPoint.y-state.focus.y)<2);
-    const spellLabel=state.spellTargeting?'✓ Confirmer le sort':'✨ Lancer le sort';
+    const spellLabel=state.spellTargeting?(fr?'✓ Confirmer le sort':'✓ Confirm spell'):(fr?'✨ Lancer le sort':'✨ Cast spell');
     const spellDisabled=!!spellRecovery.pending||!cap.combatReady||(state.spellTargeting?!selectedPoint||!spellTargetCell(state,selectedPoint):state.creatureCanCast===false);
-    items=[btn(moveLabel,'battle-confirm-move',true,moveDisabled),btn(spellLabel,'battle-confirm-spell',true,spellDisabled),magicBtn,btn('◎ Cibles','targets',false,!cap.move||!!spellRecovery.pending),btn(state.canWait===false?'Déjà attendu':'◷ Attendre','wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),btn('⛨ Défendre','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending)];
+    items=[btn(moveLabel,'battle-confirm-move',true,moveDisabled),btn(spellLabel,'battle-confirm-spell',true,spellDisabled),magicBtn,btn(fr?'◎ Cibles':'◎ Targets','targets',false,!cap.move||!!spellRecovery.pending),btn(state.canWait===false?(fr?'Déjà attendu':'Already waited'):(fr?'◷ Attendre':'◷ Wait'),'wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),btn(fr?'⛨ Défendre':'⛨ Defend','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending)];
    }else{
     const confirmDisabled=blocked||!selectedPoint||!cap.move||!!spellRecovery.pending||(target&&!target.enemy&&!state.spellTargeting)||(state.spellTargeting&&!spellTargetCell(state,selectedPoint))||(battleMove&&state.focus&&Math.hypot(selectedPoint.x-state.focus.x,selectedPoint.y-state.focus.y)<2);
-    items=[btn(state.spellTargeting?'✓ Confirmer le sort':target?.enemy?(target.canShootAt?'✓ Confirm shot':'✓ Confirm attack'):'✓ Confirmer','target',true,confirmDisabled),magicBtn,btn('◎ Cibles','targets',false,!cap.move||!!spellRecovery.pending),btn(state.canWait===false?'Déjà attendu':'◷ Attendre','wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),btn('⛨ Défendre','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending)];
+    items=[btn(state.spellTargeting?(fr?'✓ Confirmer le sort':'✓ Confirm spell'):target?.enemy?(target.canShootAt?(fr?'✓ Confirmer le tir':'✓ Confirm shot'):(fr?'✓ Confirmer l’attaque':'✓ Confirm attack')):(fr?'✓ Confirmer':'✓ Confirm'),'target',true,confirmDisabled),magicBtn,btn(fr?'◎ Cibles':'◎ Targets','targets',false,!cap.move||!!spellRecovery.pending),btn(state.canWait===false?(fr?'Déjà attendu':'Already waited'):(fr?'◷ Attendre':'◷ Wait'),'wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),btn(fr?'⛨ Défendre':'⛨ Defend','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending)];
    }
   }
-  else if(m==='recruit')items=[btn('Recruter','confirm-recruit',true,!state.turn||recruitLoading||!(state.recruitAmount>0)),btn('Tout','max-recruit',false,!(state.recruitMaximum>0)),btn('Annuler','cancel-recruit')];
+  else if(m==='recruit')items=[btn(fr?'Recruter':'Recruit','confirm-recruit',true,!state.turn||recruitLoading||!(state.recruitAmount>0)),btn(fr?'Tout':'All','max-recruit',false,!(state.recruitMaximum>0)),btn(fr?'Annuler':'Cancel','cancel-recruit')];
   else if(m==='campaign')items=[btn('Back','back')];
-  else if(m==='lobby')items=[btn('▶ Commencer','begin'),btn('✓ Valider','accept'),btn('↩ Retour','back')];
-  else items=[btn('✓ Valider','accept',true),btn('↩ Retour','back'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
-  if(m==='online-lobby'&&onlineLobby.classic)(items ||= []).push(btn(getLanguage()==='fr'?'Vue mobile':'Mobile view','online-mobile'));
+  else if(m==='lobby')items=[btn(fr?'▶ Commencer':'▶ Start game','begin'),btn(fr?'✓ Valider':'✓ Confirm','accept'),btn(fr?'↩ Retour':'↩ Back','back')];
+  else items=[btn(fr?'✓ Valider':'✓ Confirm','accept',true),btn(fr?'↩ Retour':'↩ Back','back'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
+  if(m==='online-lobby'&&onlineLobby.classic)(items ||= []).push(btn(fr?'Vue mobile':'Mobile view','online-mobile'));
   if(['menu','lobby','load','campaign','spellbook','mage-guild','connecting','online-login'].includes(m))items=[];
   const heroScroll=nav.querySelector('.hero-movement-list')?.scrollLeft||0;
   const html=items.join('');if(navHTML!==html){
@@ -276,7 +275,8 @@ function mount(){
 
 
   
-  const hint=state.mode==='recruit'?'Choisis la quantité, puis confirme. Les recrues rejoignent la garnison.':state.mode==='map'?(!state.turn?'Tour adverse en cours…':state.hasPath?`Trajet choisi${state.pathTurns?' · '+state.pathTurns+' jour(s)':''}. Confirme avec Marcher.`:state.exchangePartners?.length?'Utilise Échanger pour transférer des objets ou des troupes.':'Touche une case ou un château pour préparer un trajet. Ouvre tes châteaux avec Villes.'):state.mode==='battle'?(state.targetUnit?`${state.targetUnit.name} × ${state.targetUnit.count} — Confirme ton action.`:'Glisse pour voir le champ de bataille. Touche une case, puis confirme.'):state.mode==='town'?'Construis et recrute avec les commandes ci-dessous.':'Pince pour zoomer. Glisse pour atteindre les commandes.';
+  const fr=getLanguage()==='fr';
+  const hint=state.mode==='recruit'?(fr?'Choisis la quantité, puis confirme. Les recrues rejoignent la garnison.':'Choose quantity, then confirm. Recruits join the garrison.'):state.mode==='map'?(!state.turn?(fr?'Tour adverse en cours…':'Enemy turn in progress…'):state.hasPath?(fr?`Trajet choisi${state.pathTurns?' · '+state.pathTurns+' jour(s)':''}. Confirme avec Marcher.`:`Path selected${state.pathTurns?' · '+state.pathTurns+' day(s)':''}. Confirm with Move.`):state.exchangePartners?.length?(fr?'Utilise Échanger pour transférer des objets ou des troupes.':'Use Exchange to transfer items or troops.'):(fr?'Touche une case ou un château pour préparer un trajet. Ouvre tes châteaux avec Villes.':'Tap a hex or castle to plot a path. Open your castles with Towns.')):state.mode==='battle'?(state.targetUnit?`${state.targetUnit.name} × ${state.targetUnit.count} — `+(fr?'Confirme ton action.':'Confirm your action.'):(fr?'Glisse pour voir le champ de bataille. Touche une case, puis confirme.':'Drag to view the battlefield. Tap a hex, then confirm.')):state.mode==='town'?(fr?'Construis et recrute avec les commandes ci-dessous.':'Build and recruit with the controls below.'):(fr?'Pince pour zoomer. Glisse pour atteindre les commandes.':'Pinch to zoom. Drag to reach controls.');
   const seconds=Math.ceil(Math.max(0,state.turnRemainingMs||0)/1000);
   const countdown=state.mode==='map'&&state.turnRemainingMs!==undefined
    ? Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0')+' · ' : '';
@@ -294,7 +294,7 @@ function mount(){
  const enable=()=>{if(window.Module?._vcmiMobileEnable){window.Module._vcmiMobileEnable(1);return true;}return false;};
  const ready=setInterval(()=>{enable();if(window.goonkMobileState)clearInterval(ready);},250);
  function resetGestures(){touches.cancel();battleControls.cancel();mapPan.cancel();for(const id of pointers.keys()){try{if(scene.hasPointerCapture(id))scene.releasePointerCapture(id);}catch{}}pointers.clear();gesture=null;initialDistance=0;selectedPoint=null;layout=null;paintedGeometry=null;}
- function syncBattleView(){dualBattle.sync();const button=root.querySelector('.battle-view'),text=nativeBattleClose(scene.clientWidth,scene.clientHeight,battleView)?'Vue entière':'Rapprocher';if(button.textContent!==text)button.textContent=text;const pressed=String(battleView==='whole');if(button.getAttribute('aria-pressed')!==pressed)button.setAttribute('aria-pressed',pressed);if(root.dataset.battleCamera!==battleView)root.dataset.battleCamera=battleView;}
+ function syncBattleView(){dualBattle.sync();const fr=getLanguage()==='fr',button=root.querySelector('.battle-view'),text=nativeBattleClose(scene.clientWidth,scene.clientHeight,battleView)?(fr?'Vue entière':'Full view'):(fr?'Rapprocher':'Zoom in');if(button.textContent!==text)button.textContent=text;const pressed=String(battleView==='whole');if(button.getAttribute('aria-pressed')!==pressed)button.setAttribute('aria-pressed',pressed);if(root.dataset.battleCamera!==battleView)root.dataset.battleCamera=battleView;}
  bindPress(root.querySelector('.battle-view'),()=>{if(state.mode!=='battle')return;const chosen=selectedPoint;battleView=nativeBattleClose(scene.clientWidth,scene.clientHeight,battleView)?'whole':'close';resetGestures();selectedPoint=chosen;syncBattleView();renderBattlePanel();controls();});
  function closeSheet(){
   const weekly=sheetKind==='weekly-recruits';
@@ -365,12 +365,13 @@ function mount(){
   const html=(state.battleUnits||[]).filter(u=>(battleTab==='allies'?!u.enemy:u.enemy)&&(!state.spellTargeting||spellTargetCell(state,u))).map(u=>`<button class="battle-unit" data-battle-target="${u.x},${u.y}" ${!battleCapabilities(effectiveBattle()).move?'disabled':''} aria-pressed="${!!selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16}"><canvas width="90" height="90" data-unit-preview="${u.x},${u.y}" aria-hidden="true"></canvas><span>${escape(u.name)}<small>× ${u.count}</small>${battleTargetBadge(u,guidance)}</span></button>`).join('');if(list._sourceMarkup!==html){list._sourceMarkup=html;list.innerHTML=html;}
  }
  function battleTargetBadge(unit,guidance){
+  const fr=getLanguage()==='fr';
   if(guidance.spellTargets.includes(unit))return unit.enemy
-   ?'<small class="spell-enemy-indicator">◇ Sort · Ennemi</small>'
-   :'<small class="spell-ally-indicator">+ Sort · Allié</small>';
-  if(guidance.beneficialTargets?.includes(unit))return '<small class="spell-ally-indicator">+ Soin / Bénéfique</small>';
-  if(guidance.shotTargets.includes(unit))return '<small class="ranged-indicator">◎ Tir sans déplacement</small>';
-  if(guidance.meleeTargets?.includes(unit))return '<small class="melee-indicator">⚔ À portée d’épée</small>';
+   ?(fr?'<small class="spell-enemy-indicator">◇ Sort · Ennemi</small>':'<small class="spell-enemy-indicator">◇ Spell · Enemy</small>')
+   :(fr?'<small class="spell-ally-indicator">+ Sort · Allié</small>':'<small class="spell-ally-indicator">+ Spell · Ally</small>');
+  if(guidance.beneficialTargets?.includes(unit))return fr?'<small class="spell-ally-indicator">+ Soin / Bénéfique</small>':'<small class="spell-ally-indicator">+ Heal / Buff</small>';
+  if(guidance.shotTargets.includes(unit))return fr?'<small class="ranged-indicator">◎ Tir sans déplacement</small>':'<small class="ranged-indicator">◎ Shoot without moving</small>';
+  if(guidance.meleeTargets?.includes(unit))return fr?'<small class="melee-indicator">⚔ À portée d’épée</small>':'<small class="melee-indicator">⚔ Within sword range</small>';
   return '';
  }
  function showBattleTargets(){
