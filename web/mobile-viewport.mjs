@@ -16,12 +16,15 @@ export function createMapPan(send,{schedule=fn=>requestAnimationFrame(fn)}={}){
 }
 
 export function isLandscapeOrientation(win=typeof window!=='undefined'?window:null,lw=0,lh=0){
- if(!win)return lw>lh;
- if(win.screen?.orientation?.type)return win.screen.orientation.type.startsWith('landscape');
- if(typeof win.orientation==='number'&&win.orientation!==0)return Math.abs(win.orientation)===90;
- if(win.matchMedia?.('(orientation: landscape)')?.matches)return true;
- if(win.matchMedia?.('(orientation: portrait)')?.matches)return false;
- return lw>lh;
+ if(win?.matchMedia?.('(orientation: landscape)')?.matches)return true;
+ if(win?.matchMedia?.('(orientation: portrait)')?.matches)return false;
+ if(lw>0&&lh>0)return lw>lh;
+ const winW=win?.innerWidth||0;
+ const winH=win?.innerHeight||0;
+ if(winW>0&&winH>0)return winW>winH;
+ if(win?.screen?.orientation?.type)return win.screen.orientation.type.startsWith('landscape');
+ if(typeof win?.orientation==='number'&&win.orientation!==0)return Math.abs(win.orientation)===90;
+ return false;
 }
 
 // iOS Home Screen rotation can leave a scrolled layout viewport while painting
@@ -83,10 +86,19 @@ export function anchorMobileViewport(root,win=window){
   lastLayoutWidth=undefined;
   if(typeof win.scrollTo==='function')try{win.scrollTo(0,0);}catch(_){}
   schedule();
+  for(const delay of [50,120,250,450,750]){
+   const timer=setTimeout(()=>{
+    wakeTimers.delete(timer);
+    if(disposed||win.document?.hidden===true)return;
+    schedule();
+   },delay);
+   wakeTimers.add(timer);
+  }
  }
  const bindings=[
   [win,'resize',schedule],
   [win,'orientationchange',onOrientationChange],
+  [win.screen?.orientation,'change',onOrientationChange],
   [win,'scroll',schedule],
   [win,'pageshow',onWake],
   [win,'focus',onWake],

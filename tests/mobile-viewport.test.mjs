@@ -123,3 +123,29 @@ test('Wake with stale inverted viewport dimensions is corrected by active orient
  assert.equal(root.style.height,'430px');
  anchor.dispose();
 });
+
+test('Delayed viewport resize after orientationchange settles to new landscape size',async()=>{
+ const {anchorMobileViewport}=await import('../web/mobile-viewport.mjs');
+ class Target extends EventTarget{}
+ const queue=[],win=new Target(),doc=new Target(),viewport=new Target();
+ doc.hidden=false;
+ win.scrollTo=()=>{};
+ Object.assign(viewport,{width:390,height:844,scale:1});
+ Object.assign(win,{document:doc,innerWidth:390,innerHeight:844,visualViewport:viewport,scrollX:0,scrollY:0,requestAnimationFrame:f=>queue.push(f)});
+ const root={style:{}};
+ const anchor=anchorMobileViewport(root,win);
+ assert.equal(root.style.width,'390px');
+ // Fire orientationchange while dimensions are still old portrait
+ win.dispatchEvent(new Event('orientationchange'));
+ if(queue.length)queue.shift()();
+ // Dimensions update 100ms later in Safari
+ Object.assign(viewport,{width:844,height:390});
+ win.innerWidth=844;win.innerHeight=390;
+ win.matchMedia=q=>({matches:q.includes('landscape')});
+ // Wait for timer
+ await new Promise(resolve=>setTimeout(resolve,150));
+ if(queue.length)queue.shift()();
+ assert.equal(root.style.width,'844px');
+ assert.equal(root.style.height,'390px');
+ anchor.dispose();
+});
