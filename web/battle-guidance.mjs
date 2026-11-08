@@ -27,9 +27,17 @@ export function paintActiveCreature(ctx,guidance,layout){
  // Do not pin an offscreen actor label to the edge of a target's close-up.
  if(x+44*layout.scale<layout.dx||x-44*layout.scale>layout.dx+layout.w*layout.scale||y+16*layout.scale<layout.dy||y-88*layout.scale>layout.dy+layout.h*layout.scale)return;
  const radius=24*layout.scale,foot=y+14*layout.scale;
- ctx.save();ctx.beginPath();ctx.ellipse(x,foot,radius,7*layout.scale,0,0,Math.PI*2);ctx.strokeStyle='#231606';ctx.lineWidth=5;ctx.stroke();ctx.strokeStyle='#ffe082';ctx.lineWidth=3;ctx.stroke();
+ ctx.save();
+ ctx.beginPath();
+ ctx.ellipse(x,foot,radius,7.5*layout.scale,0,0,Math.PI*2);
+ // Luminous electric cyan fill to contrast intensely against the yellow hex grid
+ ctx.fillStyle='rgba(0,240,255,0.32)';
+ ctx.fill();
+ ctx.strokeStyle='#000000';ctx.lineWidth=6;ctx.stroke();
+ ctx.strokeStyle='#00f0ff';ctx.lineWidth=3.5;ctx.stroke();
+ ctx.strokeStyle='#ffffff';ctx.lineWidth=1.5;ctx.stroke();
 
- // Floating downward-pointing golden arrowhead/chevron directly above the active creature
+ // Floating downward-pointing electric cyan arrowhead directly above the active creature
  const arrowTipY=y-34*layout.scale;
  const arrowW=8*layout.scale;
  const arrowH=10*layout.scale;
@@ -42,23 +50,27 @@ export function paintActiveCreature(ctx,guidance,layout){
  ctx.lineTo(x+arrowW*0.45,arrowTipY-arrowH);
  ctx.lineTo(x+arrowW,arrowTipY-arrowH);
  ctx.closePath();
- ctx.fillStyle='#ffd54f';ctx.fill();
- ctx.strokeStyle='#231606';ctx.lineWidth=2.5;ctx.stroke();
+ ctx.fillStyle='#00f0ff';ctx.fill();
+ ctx.strokeStyle='#000000';ctx.lineWidth=2.5;ctx.stroke();
 
  const size=Math.max(12,Math.min(16,14*layout.scale));ctx.font=`bold ${size}px Georgia, serif`;const width=ctx.measureText(label).width+16,height=size+10;
  const bodyRadius=(actor.occupied?.length>1?66:44)*layout.scale,right=x+bodyRadius+8;
  const left=Math.max(layout.dx+3,Math.min(layout.dx+layout.w*layout.scale-width-3,right+width<=layout.dx+layout.w*layout.scale-3?right:x-bodyRadius-width-8));
  const top=Math.max(layout.dy+3,Math.min(layout.dy+layout.h*layout.scale-height-3,y-56*layout.scale));
 
- // Connecting leader line from the badge to the overhead pointer
+ // Connecting leader line from the badge to the overhead pointer with dark border for high contrast
  const anchorX=left<x?left+width:left;
  const anchorY=top+height/2;
  ctx.beginPath();
  ctx.moveTo(anchorX,anchorY);
  ctx.lineTo(x,arrowTipY-arrowH);
- ctx.strokeStyle='#ffd54f';ctx.lineWidth=2;ctx.stroke();
+ ctx.strokeStyle='#000000';ctx.lineWidth=4;ctx.stroke();
+ ctx.strokeStyle='#00f0ff';ctx.lineWidth=2;ctx.stroke();
 
- ctx.fillStyle='#2d1b09';ctx.fillRect(left,top,width,height);ctx.strokeStyle='#ffe082';ctx.lineWidth=2;ctx.strokeRect(left,top,width,height);ctx.fillStyle='#fff0c2';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(label,left+width/2,top+height/2);ctx.restore();
+ // Dark sapphire pill with electric cyan border
+ ctx.fillStyle='#0a1c29';ctx.fillRect(left,top,width,height);
+ ctx.strokeStyle='#00f0ff';ctx.lineWidth=2;ctx.strokeRect(left,top,width,height);
+ ctx.fillStyle='#e0f7ff';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(label,left+width/2,top+height/2);ctx.restore();
 }
 
 export function paintShotTargets(ctx,targets,layout){
