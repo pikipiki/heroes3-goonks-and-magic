@@ -69,3 +69,41 @@ test('Android rotation shrinks the app even while overflow keeps innerWidth at t
  assert.equal(root.style.width,'360px');
  assert.equal(root.style.height,'650px');
 });
+
+test('Screen lock while hidden preserves active geometry and wake restores viewport',async()=>{
+ const {anchorMobileViewport}=await import('../web/mobile-viewport.mjs');
+ class Target extends EventTarget{}
+ const queue=[],win=new Target(),doc=new Target(),viewport=new Target();
+ doc.hidden=false;
+ let scrolledTo=null;
+ win.scrollTo=(x,y)=>{scrolledTo={x,y};win.scrollX=x;win.scrollY=y;};
+ Object.assign(viewport,{width:932,height:430,scale:1});
+ Object.assign(win,{document:doc,innerWidth:932,innerHeight:430,visualViewport:viewport,scrollX:0,scrollY:0,requestAnimationFrame:f=>queue.push(f)});
+ const root={style:{}};
+ const anchor=anchorMobileViewport(root,win);
+ assert.equal(root.style.width,'932px');
+ assert.equal(root.style.height,'430px');
+
+ // Screen locks: document is hidden. OS sends portrait resize (e.g. lock screen)
+ doc.hidden=true;
+ Object.assign(viewport,{width:430,height:873});
+ win.innerWidth=430;win.innerHeight=873;
+ viewport.dispatchEvent(new Event('resize'));
+ win.dispatchEvent(new Event('resize'));
+ if(queue.length)queue.shift()();
+ // Should NOT overwrite with lock screen dimensions
+ assert.equal(root.style.width,'932px');
+ assert.equal(root.style.height,'430px');
+
+ // Screen wakes up in landscape
+ doc.hidden=false;
+ Object.assign(viewport,{width:932,height:430});
+ win.innerWidth=932;win.innerHeight=430;
+ doc.dispatchEvent(new Event('visibilitychange'));
+ assert.equal(queue.length,1);
+ queue.shift()();
+ assert.equal(root.style.width,'932px');
+ assert.equal(root.style.height,'430px');
+ assert.deepEqual(scrolledTo,{x:0,y:0});
+ anchor.dispose();
+});

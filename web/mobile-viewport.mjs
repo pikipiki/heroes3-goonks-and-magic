@@ -21,8 +21,10 @@ export function createMapPan(send,{schedule=fn=>requestAnimationFrame(fn)}={}){
 // share the same origin. This also follows browser toolbar/keyboard resizing.
 export function anchorMobileViewport(root,win=window){
  const viewport=win.visualViewport;let pending=false,disposed=false,lastLayoutWidth;
+ const wakeTimers=new Set();
+ function clearWakeTimers(){for(const t of wakeTimers)clearTimeout(t);wakeTimers.clear();}
  function update(){
-  if(disposed)return;
+  if(disposed||(win.document?.hidden===true))return;
   const layout=win.document?.documentElement;
   const layoutWidth=layout?.clientWidth||win.innerWidth;
   const layoutHeight=layout?.clientHeight||win.innerHeight;
@@ -39,10 +41,35 @@ export function anchorMobileViewport(root,win=window){
   for(const [name,value] of Object.entries(next))if(root.style[name]!==value)root.style[name]=value;
  }
  function schedule(){if(disposed||pending)return;pending=true;win.requestAnimationFrame(()=>{pending=false;update();});}
- const bindings=[[win,'resize'],[win,'orientationchange'],[win,'scroll'],[win,'pageshow'],[win,'fullscreenchange'],[viewport,'resize'],[viewport,'scroll']].filter(([target])=>target);
- for(const [target,event] of bindings)target.addEventListener(event,schedule,{passive:true});
+ function onWake(){
+  if(win.document?.hidden===true)return;
+  lastLayoutWidth=undefined;
+  if(typeof win.scrollTo==='function')try{win.scrollTo(0,0);}catch(_){}
+  schedule();
+  for(const delay of [60,150,300,500]){
+   const timer=setTimeout(()=>{
+    wakeTimers.delete(timer);
+    if(disposed||win.document?.hidden===true)return;
+    if(typeof win.scrollTo==='function')try{win.scrollTo(0,0);}catch(_){}
+    schedule();
+   },delay);
+   wakeTimers.add(timer);
+  }
+ }
+ const bindings=[
+  [win,'resize',schedule],
+  [win,'orientationchange',schedule],
+  [win,'scroll',schedule],
+  [win,'pageshow',onWake],
+  [win,'focus',onWake],
+  [win,'fullscreenchange',schedule],
+  [win.document,'visibilitychange',onWake],
+  [viewport,'resize',schedule],
+  [viewport,'scroll',schedule]
+ ].filter(([target])=>typeof target?.addEventListener==='function');
+ for(const [target,event,listener] of bindings)target.addEventListener(event,listener,{passive:true});
  update();
- return{update:schedule,dispose(){disposed=true;for(const [target,event] of bindings)target.removeEventListener(event,schedule);}};
+ return{update:schedule,dispose(){disposed=true;clearWakeTimers();for(const [target,event,listener] of bindings)target.removeEventListener(event,listener);}};
 }
 
 export function enableFullscreenOnPlay(win=window){
