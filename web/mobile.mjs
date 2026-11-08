@@ -56,14 +56,22 @@ function mount(){
  const viewportAnchor=anchorMobileViewport(root);
  enableFullscreenOnPlay();
  const updateCalendar=createGameCalendar(root);
- const viewButton=root.querySelector('[data-ui="overview"]');
+ const viewButton=root.querySelector('[data-ui="overview"]'),centerButton=root.querySelector('.map-center');
  let viewLabel='Vue';
  function syncViewButton(){
   const label=state.mode==='map'?(state.worldView?'Quitter la vue':zoom===1?'Vue large':'Vue normale'):'Vue';
-  if(viewLabel===label)return;
-  viewLabel=label;
-  viewButton.textContent=label;
-  viewButton.setAttribute('aria-label',state.mode==='map'?label:'Vue d’ensemble');
+  if(viewLabel!==label){
+   viewLabel=label;
+   viewButton.textContent=label;
+   viewButton.setAttribute('aria-label',state.mode==='map'?label:'Vue d’ensemble');
+  }
+  if(centerButton){
+   const fr=getLanguage()==='fr';
+   const isWorldView=state.mode==='map'&&state.worldView;
+   centerButton.textContent=isWorldView?(fr?'🗺️ Vue normale':'🗺️ Normal view'):(fr?'◎ Héros':'◎ Hero');
+   centerButton.setAttribute('aria-label',isWorldView?(fr?'Quitter la vue aérienne et revenir au héros':'Exit aerial view and return to hero'):(fr?'Recentrer sur le héros':'Center on hero'));
+   centerButton.classList.toggle('map-view-air-active',Boolean(isWorldView));
+  }
  }
  const original=document.querySelector('#canvas'),scene=root.querySelector('#mobile-scene'),ctx=scene.getContext('2d'),overview=root.querySelector('#mobile-overview'),overviewCtx=overview.getContext('2d');
  const sceneSize=createCanvasSizer();
@@ -126,7 +134,7 @@ function mount(){
  const spellbook=createMobileSpellbook({root,command});
  const mageGuild=createMageGuild({root,command,pointer,asset,resetView:()=>{zoom=1;focus=null;resetGestures();}});
  const campaignSetup=createCampaignSetup({root,command});
- const heroEquipment=createHeroEquipment({root,command,onViewChange:()=>controls()});
+ const heroEquipment=createHeroEquipment({root,command,onViewChange:()=>controls(),portrait:u=>portrait(u)});
  const tavern=createMobileTavern({root,command,pointer});
  const nativeFort=createNativeFort({root,getState:()=>state,pointer});
  const portraitTown=createTownPortrait({root,scene,asset,command,getState:()=>state});
@@ -141,7 +149,7 @@ function mount(){
  function controls(){
   const m=state.mode,cap=battleCapabilities(effectiveBattle()),target=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),blocked=!state.spellTargeting&&target?.enemy&&target.canShootAt===false&&target.canMeleeAt===false;let items;
   const fr=getLanguage()==='fr';
-  if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn(fr?'➤ Marcher':'➤ Move','move',true,!state.hasPath||!state.turn),btn(fr?'<span aria-hidden="true">⛨ </span>Équipement':'<span aria-hidden="true">⛨ </span>Equipment','heroes',false,!state.heroName&&!state.heroes?.length),btn(fr?'♜ Villes':'♜ Towns','towns'),btn(fr?'♟ Armée':'♟ Army','army',false,!state.turn||!state.armies?.length),...(state.turn&&state.exchangePartners?.length?[btn(fr?'<span aria-hidden="true">⇄ </span>Échanger':'<span aria-hidden="true">⇄ </span>Exchange','hero-exchange',true)]:[]),btn(fr?'☀ Terminer le tour':'☀ End turn','endturn',false,!state.turn)];
+  if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn(fr?'➤ Marcher':'➤ Move','move',true,!state.hasPath||!state.turn),btn(fr?'<span aria-hidden="true">🛡️ </span>Héros & Armée':'<span aria-hidden="true">🛡️ </span>Hero & Army','heroes',false,!state.heroName&&!state.heroes?.length),btn(fr?'♜ Villes':'♜ Towns','towns'),...(state.turn&&state.exchangePartners?.length?[btn(fr?'<span aria-hidden="true">⇄ </span>Échanger':'<span aria-hidden="true">⇄ </span>Exchange','hero-exchange',true)]:[]),btn(fr?'☀ Fin tour':'☀ End turn','endturn',false,!state.turn)];
   else if(m==='online-lobby'&&(state.onlineCanCreate||state.onlineInvitation)){
    items=[...(state.onlineCanCreate?[btn(fr?'Créer une partie':'Create game','online-create',!state.onlineInvitation)]:[]),
     ...(state.onlineInvitation?[btn((fr?'Invitation de ':'Invitation from ')+escape(state.onlineInvitation),'online-invitation',true)]:[]),
@@ -273,7 +281,7 @@ function mount(){
 
   const amountBox=root.querySelector('.mobile-recruit-amount');amountBox.hidden=state.mode!=='recruit';
   if(state.mode==='recruit'){for(const input of amountBox.querySelectorAll('input')){input.max=state.recruitMaximum||0;input.disabled=recruitLoading||!(state.recruitMaximum>0);if(document.activeElement!==input)input.value=state.recruitAmount||0;}const summary=amountBox.querySelector('.recruit-summary'),text=recruitmentSummary(state);summary.setAttribute('aria-live','polite');if(summary.textContent!==text)summary.textContent=text;}
-  root.dataset.battleView='native';root.querySelector('.battle-view').hidden=state.mode!=='battle';syncBattleView();overview.hidden=!['map','town'].includes(state.mode)||(state.mode==='town'&&root.dataset.townLayout==='portrait');if(state.mode==='map'){overview.setAttribute('aria-label','Vue d’ensemble de la carte. Flèches pour déplacer la vue.');overview.setAttribute('role','group');overview.tabIndex=0;}else{overview.removeAttribute('role');overview.removeAttribute('tabindex');}root.querySelector('.map-center').disabled=!state.heroName;root.querySelector('.map-castle').disabled=!state.towns?.length;renderBattlePanel();
+  root.dataset.battleView='native';root.querySelector('.battle-view').hidden=state.mode!=='battle';syncBattleView();overview.hidden=!['map','town'].includes(state.mode)||(state.mode==='town'&&root.dataset.townLayout==='portrait');if(state.mode==='map'){overview.setAttribute('aria-label','Vue d’ensemble de la carte. Flèches pour déplacer la vue.');overview.setAttribute('role','group');overview.tabIndex=0;}else{overview.removeAttribute('role');overview.removeAttribute('tabindex');}root.querySelector('.map-center').disabled=!state.heroName&&!state.worldView;root.querySelector('.map-castle').disabled=!state.towns?.length;syncViewButton();renderBattlePanel();
   const townOverview=root.querySelector('#town-overview');townOverview.hidden=state.mode!=='town';
   root.querySelector('.town-view').hidden=state.mode!=='town';
   if(state.mode==='town'){overview.hidden=false;overview.setAttribute('aria-label','Town overview');const shortcuts=[['town-fort','Recruitment hall','town-fort'],['town-guild','Mage guild','town-fort'],['town-market','Marketplace','resource-gold']];const html=`<div class="town-recruit-strip" aria-label="Town buildings">${shortcuts.map(([ui,name,icon])=>`<button data-ui="${ui}"><img src="${ui==='town-guild'?(asset('goonk/structure-mageGuild1.png')||'./web/h3-theme/'+icon+'.png'):'./web/h3-theme/'+icon+'.png'}" alt=""><span>${name}</span></button>`).join('')}</div>`;if(townOverview._sourceMarkup!==html){townOverview._sourceMarkup=html;townOverview.innerHTML=html;}}
@@ -541,8 +549,9 @@ function mount(){
    battleTab='enemies';
    showBattleTargets();return;
   }if(ui==='cast-from-sheet'||ui==='creature-spell'){if(!battleCapabilities(effectiveBattle()).magic){closeSheet();notify('La magie est disponible après le placement, pendant ton tour.');return;}const creatureCast=ui==='creature-spell';closeSheet();command(14,creatureCast?1:0);return;}
-  if(ui==='town-view'){if(supportsTownPortrait(state)&&root.clientWidth<root.clientHeight){townPortraitEnabled=!townPortraitEnabled;townWhole=!townPortraitEnabled;}else townWhole=!townWhole;focus=null;resetGestures();return;}if(ui==='center'){zoom=1;focus=null;resetGestures();command(6);if(sheetKind)closeSheet();}if(ui==='center-town'){if(state.mode==='map'&&state.towns?.length){zoom=1;focus=null;resetGestures();if(state.towns.length===1)command(56,state.towns[0].index);else{openSheet('town-focus','Choose a castle');for(const town of state.towns){const b=document.createElement('button');b.className='mobile-card';b.textContent=town.name;b.onclick=()=>{command(56,town.index);closeSheet();};body.append(b);}}}return;}if(ui==='save'&&state.mode==='map'&&state.turn){command(7);closeSheet();notify('Sauvegarde demandée : Goonk-mobile');}if(ui==='endturn'&&state.mode==='map'&&state.turn){command(3);return;}
+  if(ui==='town-view'){if(supportsTownPortrait(state)&&root.clientWidth<root.clientHeight){townPortraitEnabled=!townPortraitEnabled;townWhole=!townPortraitEnabled;}else townWhole=!townWhole;focus=null;resetGestures();return;}if(ui==='center'){if(state.mode==='map'&&state.worldView){zoom=1;focus=null;resetGestures();command(87);return;}zoom=1;focus=null;resetGestures();command(6);if(sheetKind)closeSheet();}if(ui==='center-town'){if(state.mode==='map'&&state.towns?.length){zoom=1;focus=null;resetGestures();if(state.towns.length===1)command(56,state.towns[0].index);else{openSheet('town-focus','Choose a castle');for(const town of state.towns){const b=document.createElement('button');b.className='mobile-card';b.textContent=town.name;b.onclick=()=>{command(56,town.index);closeSheet();};body.append(b);}}}return;}if(ui==='save'&&state.mode==='map'&&state.turn){command(7);closeSheet();notify('Sauvegarde demandée : Goonk-mobile');}if(ui==='endturn'&&state.mode==='map'&&state.turn){command(3);return;}
  });
+ root.addEventListener('goonk-open-army',()=>{command(63);showList('army');});
  sheet.addEventListener('keydown',event=>{if(event.key==='Escape'){closeSheet();event.stopPropagation();}if(event.key==='Tab'){const buttons=[...sheet.querySelectorAll('button:not(:disabled),input:not(:disabled)')];if(event.shiftKey&&document.activeElement===buttons[0]){buttons.at(-1)?.focus();event.preventDefault();}else if(!event.shiftKey&&document.activeElement===buttons.at(-1)){buttons[0]?.focus();event.preventDefault();}}});
  function getRegion(){if(state.mode==='map')return {x:6,y:6,w:598,h:550};if(state.mode==='town')return {x:0,y:0,w:800,h:374};if(state.mode==='battle')return NATIVE_BATTLE_REGION;return state.rect&&state.rect.w>0?state.rect:{x:0,y:0,w:800,h:600};}
  function selectBattlePoint(point){if(spellRecovery.pending)return;if(point.y<86||point.y>558||point.x<58||point.x>742){if(!state.spellTargeting)pointer(point,1);return;}if(!battleCapabilities(effectiveBattle()).move)return;const unit=(state.battleUnits||[]).find(u=>Math.abs(u.x-point.x)<25&&point.y>=u.y-58&&point.y<=u.y+16);if(state.spellTargeting){
