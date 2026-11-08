@@ -12,6 +12,12 @@ export function configureMobileSource(canvas,mobile){
  if(!mobile||!canvas||configured.has(canvas))return;
  const getContext=canvas.getContext.bind(canvas);
  canvas.getContext=(type,options)=>getContext(type,/^(webgl2?|experimental-webgl)$/.test(type)?{...options,preserveDrawingBuffer:true}:options);
+ if(typeof canvas.addEventListener==='function'){
+  canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();},false);
+  canvas.addEventListener('webglcontextrestored',()=>{
+   if(window.Module?._vcmiOnCanvasResize)try{window.Module._vcmiOnCanvasResize();}catch(_){}
+  },false);
+ }
  configured.add(canvas);
 }
 

@@ -1,4 +1,5 @@
 import {createCanvasSizer} from './mobile-render.mjs';
+import {isLandscapeOrientation} from './mobile-viewport.mjs';
 import {paintBattleFloor} from './battle-floor.mjs';
 import {paintBattleAction} from './battle-director.mjs';
 import {fitRegion,scenePoint} from './mobile-layout.mjs';
@@ -45,7 +46,8 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
  const detailDescription=document.createElement('div');detailDescription.id='battle-detail-description';detailDescription.hidden=true;scene.before(detailDescription);
  const ctx=canvas.getContext('2d'),surfaceSize=createCanvasSizer();let active=false,press=null,currentLayout=null;
  function sync(){
-  const isPortrait=(root.clientWidth>0&&root.clientHeight>0)?(root.clientWidth<=root.clientHeight):(typeof window!=='undefined'&&(window.matchMedia?.('(orientation: portrait)')?.matches??true));
+  const isLandscape=isLandscapeOrientation(typeof window!=='undefined'?window:null,root.clientWidth,root.clientHeight);
+  const isPortrait=!isLandscape;
   const playEl=root.querySelector('.mobile-play');
   const playHeight=playEl?.clientHeight||Math.max(0,(root.clientHeight||(typeof window!=='undefined'?window.innerHeight:0)||700)-240);
   const overviewHeight=Math.round((root.clientWidth||390)*555/800);

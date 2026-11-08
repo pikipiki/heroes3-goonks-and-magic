@@ -15,6 +15,15 @@ export function createMapPan(send,{schedule=fn=>requestAnimationFrame(fn)}={}){
  };
 }
 
+export function isLandscapeOrientation(win=typeof window!=='undefined'?window:null,lw=0,lh=0){
+ if(!win)return lw>lh;
+ if(win.screen?.orientation?.type)return win.screen.orientation.type.startsWith('landscape');
+ if(typeof win.orientation==='number'&&win.orientation!==0)return Math.abs(win.orientation)===90;
+ if(win.matchMedia?.('(orientation: landscape)')?.matches)return true;
+ if(win.matchMedia?.('(orientation: portrait)')?.matches)return false;
+ return lw>lh;
+}
+
 // iOS Home Screen rotation can leave a scrolled layout viewport while painting
 // fixed controls at their old visual position. Anchor the app in document space
 // at the current scroll origin instead: client rects and finger coordinates then
@@ -38,7 +47,7 @@ export function anchorMobileViewport(root,win=window){
   if(!(width>0&&height>0))return;
   const lw=layoutWidth||width||0;
   const lh=layoutHeight||height||0;
-  const isLandscape=(lw>lh)||(lw===lh&&(win.matchMedia?.('(orientation: landscape)')?.matches??false));
+  const isLandscape=isLandscapeOrientation(win,lw,lh);
   const isPortrait=!isLandscape;
   let finalWidth=width,finalHeight=height;
   if(isLandscape){
@@ -60,7 +69,7 @@ export function anchorMobileViewport(root,win=window){
   lastLayoutWidth=undefined;
   if(typeof win.scrollTo==='function')try{win.scrollTo(0,0);}catch(_){}
   schedule();
-  for(const delay of [60,150,300,500]){
+  for(const delay of [60,150,300,500,800]){
    const timer=setTimeout(()=>{
     wakeTimers.delete(timer);
     if(disposed||win.document?.hidden===true)return;
