@@ -39,8 +39,15 @@ export function anchorMobileViewport(root,win=window){
   const isLandscape=win.matchMedia?.('(orientation: landscape)')?.matches??(layoutWidth>layoutHeight);
   const isPortrait=win.matchMedia?.('(orientation: portrait)')?.matches??(layoutHeight>layoutWidth);
   let finalWidth=width,finalHeight=height;
-  if(isLandscape&&finalWidth<finalHeight)[finalWidth,finalHeight]=[finalHeight,finalWidth];
-  else if(isPortrait&&finalHeight<finalWidth)[finalWidth,finalHeight]=[finalHeight,finalWidth];
+  if(isLandscape){
+   finalWidth=Math.max(finalWidth,finalHeight,layoutWidth,win.innerWidth||0);
+   finalHeight=Math.min(finalHeight,layoutHeight,win.innerHeight||layoutHeight);
+   if(finalWidth<finalHeight)[finalWidth,finalHeight]=[finalHeight,finalWidth];
+  }else if(isPortrait){
+   finalHeight=Math.max(finalWidth,finalHeight,layoutHeight,win.innerHeight||0);
+   finalWidth=Math.min(finalWidth,layoutWidth,win.innerWidth||layoutWidth);
+   if(finalHeight<finalWidth)[finalWidth,finalHeight]=[finalHeight,finalWidth];
+  }
   lastLayoutWidth=layoutWidth;
   const next={position:'absolute',inset:'auto',left:(win.scrollX||0)+'px',top:(win.scrollY||0)+'px',width:finalWidth+'px',height:finalHeight+'px'};
   for(const [name,value] of Object.entries(next))if(root.style[name]!==value)root.style[name]=value;
