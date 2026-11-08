@@ -172,8 +172,8 @@ function mount(){
    const hasCreatureSpell=!state.tacticsMode&&cap.combatReady&&(state.creatureCanCast===true||state.creatureSpellTargeting===true||(guidance.beneficialTargets&&guidance.beneficialTargets.length>0)||state.activeUnit?.canHealOrBuff===true);
    const magicBtn=btn(spellRecovery.pending?(fr?'Annulation…':'Cancelling…'):canCancelSpell(state)?(fr?'✕ Annuler le sort':'✕ Cancel spell'):(fr?'Magie':'Magic'),'battle-magic',false,!!spellRecovery.pending||(!canCancelSpell(state)&&(!cap.magic||!state.heroHasSpellbook||state.heroCanCast===false)));
    if(hasCreatureSpell){
-    const moveLabel=target?.enemy?(target.canShootAt?(fr?'✓ Tirer':'✓ Shoot'):(fr?'✓ Attaquer':'✓ Attack')):(fr?'✓ Déplacer':'✓ Move');
-    const moveDisabled=blocked||!selectedPoint||!cap.move||!!spellRecovery.pending||(target&&!target.enemy)||(battleMove&&state.focus&&Math.hypot(selectedPoint.x-state.focus.x,selectedPoint.y-state.focus.y)<2);
+    const moveLabel=state.spellTargeting?(fr?'✕ Annuler le sort':'✕ Cancel spell'):target?.enemy?(target.canShootAt?(fr?'✓ Tirer':'✓ Shoot'):(fr?'✓ Attaquer':'✓ Attack')):(fr?'✓ Déplacer':'✓ Move');
+    const moveDisabled=state.spellTargeting?!!spellRecovery.pending:(blocked||!selectedPoint||!cap.move||!!spellRecovery.pending||(target&&!target.enemy)||(battleMove&&state.focus&&Math.hypot(selectedPoint.x-state.focus.x,selectedPoint.y-state.focus.y)<2));
     const spellLabel=state.spellTargeting?(fr?'✓ Confirmer le sort':'✓ Confirm spell'):(fr?'✨ Lancer le sort':'✨ Cast spell');
     const spellDisabled=!!spellRecovery.pending||!cap.combatReady||(state.spellTargeting?!selectedPoint||!spellTargetCell(state,selectedPoint):state.creatureCanCast===false);
     items=[btn(moveLabel,'battle-confirm-move',true,moveDisabled),btn(spellLabel,'battle-confirm-spell',true,spellDisabled),magicBtn,btn(fr?'◎ Cibles':'◎ Targets','targets',false,!cap.move||!!spellRecovery.pending),btn(state.canWait===false?(fr?'Déjà attendu':'Already waited'):(fr?'◷ Attendre':'◷ Wait'),'wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),btn(fr?'⛨ Défendre':'⛨ Defend','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending)];
@@ -457,12 +457,14 @@ function mount(){
    return;
   }
   if(ui==='move'){command(2);selectedPoint=null;}
-  if(ui==='battle-confirm-move'&&selectedPoint&&!spellRecovery.pending&&battleCapabilities(effectiveBattle()).move){
-   const targetUnit=(state.battleUnits||[]).find(u=>Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16);
-   if(targetUnit&&!targetUnit.enemy)return;
-   if(state.spellTargeting)command(14,2);
-   director.confirm(state,selectedPoint);pointer(selectedPoint,1);selectedPoint=null;
-   return;
+  if(ui==='battle-confirm-move'){
+   if(state.spellTargeting){cancelSpell();return;}
+   if(selectedPoint&&!spellRecovery.pending&&battleCapabilities(effectiveBattle()).move){
+    const targetUnit=(state.battleUnits||[]).find(u=>Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16);
+    if(targetUnit&&!targetUnit.enemy)return;
+    director.confirm(state,selectedPoint);pointer(selectedPoint,1);selectedPoint=null;
+    return;
+   }
   }
   if(ui==='battle-confirm-spell'&&!spellRecovery.pending){
    if(state.spellTargeting){

@@ -44,7 +44,17 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
  strategic.append(canvas);scene.before(strategic);
  const detailDescription=document.createElement('div');detailDescription.id='battle-detail-description';detailDescription.hidden=true;scene.before(detailDescription);
  const ctx=canvas.getContext('2d'),surfaceSize=createCanvasSizer();let active=false,press=null,currentLayout=null;
- function sync(){const next=getState().mode==='battle'&&getView()==='close';if(next!==active||root.dataset.battleLayout!==(next?'dual':'native')){active=next;press=null;root.dataset.battleLayout=active?'dual':'native';strategic.hidden=!active;if(active)scene.setAttribute('aria-describedby',detailDescription.id);else{scene.removeAttribute('aria-describedby');surfaceSize.release(canvas);}}return active;}
+ function sync(){
+  const isPortrait=(root.clientWidth>0&&root.clientHeight>0)?(root.clientWidth<=root.clientHeight):(typeof window!=='undefined'&&(window.matchMedia?.('(orientation: portrait)')?.matches??true));
+  const next=getState().mode==='battle'&&isPortrait&&getView()==='whole';
+  if(next!==active||root.dataset.battleLayout!==(next?'dual':'native')){
+   active=next;press=null;root.dataset.battleLayout=active?'dual':'native';
+   strategic.hidden=!active;
+   if(active)scene.setAttribute('aria-describedby',detailDescription.id);
+   else{scene.removeAttribute('aria-describedby');surfaceSize.release(canvas);}
+  }
+  return active;
+ }
  canvas.addEventListener('pointerdown',event=>{if(!active||event.isPrimary===false||event.button!==0)return;event.preventDefault();canvas.setPointerCapture(event.pointerId);press={id:event.pointerId,x:event.clientX,y:event.clientY,moved:false,geometry:touchGeometry(canvas)};});
  canvas.addEventListener('pointermove',event=>{if(press?.id!==event.pointerId)return;if(Math.hypot(event.clientX-press.x,event.clientY-press.y)>9)press.moved=true;});
  canvas.addEventListener('pointerup',event=>{
