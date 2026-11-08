@@ -472,7 +472,7 @@ function mount(){
     command(14,3,cell.hex);
    }else{
     if(selectedPoint){
-     const cell=(state.battleCells||[]).find(c=>c.x===selectedPoint.x&&c.y===selectedPoint.y);
+     const cell=(state.battleCells||[]).find(c=>Math.hypot(c.x-selectedPoint.x,c.y-selectedPoint.y)<16);
      if(cell)pendingCreatureSpellHex=cell.hex;
     }
     command(14,1);
