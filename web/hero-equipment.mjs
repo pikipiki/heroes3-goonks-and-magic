@@ -135,16 +135,3 @@ export function createHeroEquipment({root,command,onViewChange=()=>{},portrait=(
   return true;
  }};
 }
-  if(heroAtlas){
-   for(const canvas of panel.querySelectorAll('[data-hero-icon]')){
-    if(canvas._heroIconAtlas===heroAtlas)continue;
-    const index=Number(canvas.dataset.heroIcon),size=canvas.width,columns=heroAtlas.width/size,ctx=canvas.getContext('2d');
-    ctx.clearRect(0,0,size,size);
-    ctx.drawImage(heroAtlas,index%columns*size,Math.floor(index/columns)*size,size,size,0,0,size,size);
-    canvas._heroIconAtlas=heroAtlas;
-   }
-  }
-  paintArtifactIcons(panel);
-  return true;
- }};
-}
