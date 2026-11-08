@@ -112,6 +112,12 @@ BattleInterface::BattleInterface(const BattleID & battleID, const CCreatureSet *
 
 void BattleInterface::playIntroSoundAndUnlockInterface()
 {
+	if (settings["gameTweaks"]["skipBattleIntroMusic"].Bool())
+	{
+		onIntroSoundPlayed();
+		return;
+	}
+
 	auto onIntroPlayed = [this]()
 	{
 		// Make sure that battle have not ended while intro was playing AND that a different one has not started
@@ -139,9 +145,6 @@ void BattleInterface::playIntroSoundAndUnlockInterface()
 	if (battleIntroSoundChannel != -1)
 	{
 		ENGINE->sound().setCallback(battleIntroSoundChannel, onIntroPlayed);
-
-		if (settings["gameTweaks"]["skipBattleIntroMusic"].Bool())
-			openingEnd();
 	}
 	else // failed to play sound
 	{

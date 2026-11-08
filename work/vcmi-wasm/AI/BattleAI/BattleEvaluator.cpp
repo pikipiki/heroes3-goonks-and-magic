@@ -341,6 +341,25 @@ BattleAction BattleEvaluator::selectStackAction(const CStack * stack)
 		}
 	}
 
+	if(stack->waitedThisTurn && !cb->getBattle(battleID)->battleCanShoot(stack) && stack->getMovementRange() > 0)
+	{
+		BattleHexArray enemyHexes;
+		for(const auto * enemy : targets->unreachableEnemies)
+		{
+			for(const auto & h : enemy->getAttackableHexes(stack))
+				enemyHexes.insert(h);
+		}
+		if(!enemyHexes.empty())
+		{
+			auto action = goTowardsNearest(stack, enemyHexes, *targets);
+			if(action.actionType != EActionType::DEFEND)
+			{
+				activeActionMade = true;
+				return action;
+			}
+		}
+	}
+
 	return stack->waitedThisTurn ?  BattleAction::makeDefend(stack) : BattleAction::makeWait(stack);
 }
 
@@ -524,9 +543,26 @@ bool BattleEvaluator::attemptCastingSpell(const CStack * activeStack)
 
 	LOGFL("I can cast %d spells.", possibleSpells.size());
 
-	vstd::erase_if(possibleSpells, [](const CSpell *s)
+	vstd::erase_if(possibleSpells, [&](const CSpell * s)
 	{
-		return spellType(s) != SpellTypes::BATTLE;
+		if(spellType(s) != SpellTypes::BATTLE)
+			return true;
+
+		if(s->id == SpellID::QUICKSAND)
+		{
+			for(const auto & obst : cb->getBattle(battleID)->battleGetAllObstacles())
+			{
+				if(obst->triggersEffects() && obst->getTrigger() == SpellID::QUICKSAND)
+					return true;
+			}
+			for(const auto * u : cb->getBattle(battleID)->battleGetStacks(CBattleInfoEssentials::ONLY_MINE))
+			{
+				if(u->alive() && !cb->getBattle(battleID)->battleCanShoot(u) && !u->hasBonusOfType(BonusType::FLYING))
+					return true;
+			}
+		}
+
+		return false;
 	});
 
 	LOGFL("I know how %d of them works.", possibleSpells.size());
@@ -541,6 +577,15 @@ bool BattleEvaluator::attemptCastingSpell(const CStack * activeStack)
 
 		for(auto & target : temp.findPotentialTargets(FAST))
 		{
+			if(spell->isPositive() && !target.empty() && target.front().unitValue)
+			{
+				auto targetUnit = target.front().unitValue;
+				if(auto stack = dynamic_cast<const CStack*>(targetUnit))
+				{
+					if(vstd::contains(stack->activeSpells(), spell->id))
+						continue; // target already has this buff active
+				}
+			}
 			PossibleSpellcast ps;
 			ps.dest = target;
 			ps.spell = spell;
@@ -875,7 +920,8 @@ bool BattleEvaluator::attemptCastingSpell(const CStack * activeStack)
 			return ps.value;
 		});
 
-	if(castToPerform.value > cachedAttack.score && !vstd::isAlmostEqual(castToPerform.value, cachedAttack.score))
+	const float requiredScore = std::max(0.0f, cachedAttack.score);
+	if(castToPerform.value > requiredScore && !vstd::isAlmostEqual(castToPerform.value, requiredScore))
 	{
 		LOGFL("Best spell is %s (value %d). Will cast.", castToPerform.spell->getNameTranslated() % castToPerform.value);
 		BattleAction spellcast;

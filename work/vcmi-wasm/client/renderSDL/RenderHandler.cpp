@@ -111,7 +111,7 @@ std::shared_ptr<CDefFile> RenderHandler::getAnimationFile(const AnimationPath & 
 
 		animationFiles[actualPath] = result;
 		recentAnimationFiles.push_back(result);
-		while (recentAnimationFiles.size() > 48)
+		while (recentAnimationFiles.size() > 96)
 			recentAnimationFiles.pop_front();
 	}
 	

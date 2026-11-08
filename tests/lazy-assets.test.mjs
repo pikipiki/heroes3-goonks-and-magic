@@ -15,3 +15,15 @@ test('Two files never share cached blocks and each final partial block has its r
  const{file,cache}=fixture(65),second={size:65,slice:(a,b)=>new Uint8Array(b-a).fill(99)},out=new Uint8Array(4);
  assert.equal(cache.read(file,out,0,4,64),1);assert.equal(out[0],64);assert.equal(cache.read(second,out,0,4,64),1);assert.equal(out[0],99);
 });
+test('Prefetched file arrayBuffer satisfies reads with zero synchronous block reads',async()=>{
+ const data=new Uint8Array([10,20,30,40,50]);
+ let reads=0;
+ const file={size:5,arrayBuffer:async()=>data.buffer,slice:(a,b)=>{reads++;return data.slice(a,b);}};
+ const cache=createAssetBlockCache({maxBytes:128,blockBytes:64,read:p=>{reads++;return p;}});
+ await cache.prefetch(file);
+ const out=new Uint8Array(5);
+ const n=cache.read(file,out,0,5,0);
+ assert.equal(n,5);
+ assert.deepEqual(out,data);
+ assert.equal(reads,0);
+});

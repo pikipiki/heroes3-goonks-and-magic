@@ -13,9 +13,9 @@ export function readBlobBlock(blob){
   return bytes;
  }finally{URL.revokeObjectURL(url);}
 }
-export function createAssetBlockCache({maxBytes=16*1024*1024,blockBytes=64*1024,read=readBlobBlock}={}){
+export function createAssetBlockCache({maxBytes=64*1024*1024,blockBytes=64*1024,read=readBlobBlock}={}){
  if(blockBytes<1||maxBytes<blockBytes)throw Error('Invalid asset cache budget');
- const blocks=new Map(),ids=new WeakMap();let nextId=0,bytes=0;
+ const blocks=new Map(),ids=new WeakMap(),wholeFiles=new WeakMap();let nextId=0,bytes=0;
  const stats={maxBytes,blockBytes,residentBytes:0,peakBytes:0,hits:0,misses:0};
  function block(file,index){
   if(!ids.has(file))ids.set(file,++nextId);const key=ids.get(file)+':'+index;
@@ -24,11 +24,30 @@ export function createAssetBlockCache({maxBytes=16*1024*1024,blockBytes=64*1024,
   while(bytes+value.length>maxBytes&&blocks.size){const oldest=blocks.keys().next().value;bytes-=blocks.get(oldest).length;blocks.delete(oldest);}
   blocks.set(key,value);bytes+=value.length;stats.residentBytes=bytes;stats.peakBytes=Math.max(stats.peakBytes,bytes);return value;
  }
- return {stats,read(file,target,offset,length,position){
+ async function prefetch(file){
+  if(!file||wholeFiles.has(file))return;
+  try{
+   const buffer=await file.arrayBuffer?.();
+   if(buffer){
+    const part=new Uint8Array(buffer);
+    wholeFiles.set(file,part);
+   }
+  }catch{}
+ }
+ return {stats,prefetch,read(file,target,offset,length,position){
   const count=Math.max(0,Math.min(length,file.size-position));let copied=0;
+  if(wholeFiles.has(file)){
+   const whole=wholeFiles.get(file);
+   target.set(whole.subarray(position,position+count),offset);
+   stats.hits++;
+   return count;
+  }
   if(count>blockBytes*2){
    const part=read(file.slice(position,position+count));
    target.set(part,offset);
+   if(position===0&&count===file.size&&count<=8*1024*1024){
+    wholeFiles.set(file,part);
+   }
    return count;
   }
   while(copied<count){const at=position+copied,index=Math.floor(at/blockBytes),part=block(file,index),start=at%blockBytes,n=Math.min(count-copied,part.length-start);if(n<=0)throw Error('Invalid asset block');target.set(part.subarray(start,start+n),offset+copied);copied+=n;}
@@ -40,9 +59,28 @@ export function installLazyAssets(module,files){
  const probe=Uint8Array.from({length:256},(_,i)=>i),actual=readBlobBlock(new Blob([probe]));
  if(!probe.every((value,i)=>actual[i]===value))throw Error('Local asset reads are not byte-exact');
  const FS=module.FS,cache=createAssetBlockCache();
+ const pathToBlob=new Map();
  module.goonkAssetCache=cache.stats;
  module.isLazyAsset=path=>files.has(path);
- module.installLazyAsset=(path,{blob})=>installAssetFile(FS,path,blob.size,(...args)=>cache.read(blob,...args));
+ module.installLazyAsset=(path,{blob})=>{
+  pathToBlob.set(path,blob);
+  installAssetFile(FS,path,blob.size,(...args)=>cache.read(blob,...args));
+ };
+ module.prefetchLazyAsset=async path=>{
+  const blob=pathToBlob.get(path);
+  if(blob)await cache.prefetch(blob);
+ };
+ if(typeof window!=='undefined'){
+  window.goonkPrefetchLazyAsset=module.prefetchLazyAsset;
+ }
+}
+
+export async function prefetchGameAssets(module,paths=[]){
+ const prefix='/home/web_user/.local/share/vcmi/';
+ for(const p of paths){
+  const full=p.startsWith('/')?p:prefix+p;
+  await module.prefetchLazyAsset?.(full).catch(()=>{});
+ }
 }
 
 export function installAssetFile(FS,path,size,read){

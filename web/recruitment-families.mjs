@@ -19,7 +19,7 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
   clearTimeout(previewTimer);
   previewTimer=setTimeout(()=>{
    if(u&&selectedId===u.id)command(60,u.level,u.id);
-  },200);
+  },320);
  };
  const select=(id,preview=true)=>{
   if(selectedId===id)return;
