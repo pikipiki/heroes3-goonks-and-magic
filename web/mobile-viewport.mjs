@@ -70,9 +70,14 @@ export function anchorMobileViewport(root,win=window){
    wakeTimers.add(timer);
   }
  }
+ function onOrientationChange(){
+  lastLayoutWidth=undefined;
+  if(typeof win.scrollTo==='function')try{win.scrollTo(0,0);}catch(_){}
+  schedule();
+ }
  const bindings=[
   [win,'resize',schedule],
-  [win,'orientationchange',schedule],
+  [win,'orientationchange',onOrientationChange],
   [win,'scroll',schedule],
   [win,'pageshow',onWake],
   [win,'focus',onWake],

@@ -3,7 +3,7 @@ import {paintBattleFloor} from './battle-floor.mjs';
 import {paintBattleAction} from './battle-director.mjs';
 import {fitRegion,scenePoint} from './mobile-layout.mjs';
 import {localPointer,sameTouchGeometry,touchGeometry} from './touch-geometry.mjs';
-import {NATIVE_BATTLE_REGION,fitNativeBattle,paintBattleGrid,paintMovementRange} from './battle-scene.mjs';
+import {NATIVE_BATTLE_REGION,fitNativeBattle,paintBattleGrid,paintMovementRange,BATTLE_HEX_VERTICES} from './battle-scene.mjs';
 import {battleGuidance,paintActiveCreature,paintShotTargets,paintMeleeTargets,paintSpellTargets} from './battle-guidance.mjs';
 
 // Keep native pixel geometry: one CSS pixel per engine coordinate makes a hex
@@ -79,7 +79,20 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
  let lastDetail=null;
  function paint(original,detail,selected,view){if(!sync())return;const text=view?.label||'Vue rapprochée · Choisissez une case ou une cible';if(detailDescription.textContent!==text)detailDescription.textContent=text;const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;const pixels=surfaceSize.fit(canvas,w,h,Math.min(devicePixelRatio||1,2));ctx.setTransform(pixels.x,0,0,pixels.y,0,0);ctx.clearRect(0,0,w,h);const scale=w/800;const dy=Math.max(0,(h-555*scale)/2);currentLayout={x:0,y:0,w:800,h:555,scale,dx:0,dy};const l=currentLayout;ctx.drawImage(original,0,0,original.width,original.height*555/600,0,l.dy,w,555*scale);
   const state=getState(),guidance=battleGuidance(state);paintBattleFloor(ctx,state,l);paintShotTargets(ctx,guidance.shotTargets,l);paintMeleeTargets(ctx,guidance.meleeTargets,l);paintActiveCreature(ctx,guidance,l);paintBattleAction(ctx,view,l);paintSpellTargets(ctx,[...new Set([...guidance.spellTargets,...(guidance.beneficialTargets||[])])],l);
-  if(selected){const isMeleeTarget=(guidance.meleeTargets||[]).some(u=>Math.hypot(u.x-selected.x,u.y-selected.y)<16);ctx.strokeStyle=isMeleeTarget?'#e53935':'#fff0ae';ctx.lineWidth=2;ctx.beginPath();ctx.arc(selected.x*scale,l.dy+selected.y*scale,10,0,Math.PI*2);ctx.stroke();}
+  if(selected){
+   const isMeleeTarget=(guidance.meleeTargets||[]).some(u=>Math.hypot(u.x-selected.x,u.y-selected.y)<16);
+   const sx=selected.x*scale,sy=l.dy+selected.y*scale;
+   ctx.save();
+   ctx.beginPath();
+   BATTLE_HEX_VERTICES.forEach(([vx,vy],i)=>{const hx=sx+vx*scale,hy=sy+vy*scale;i?ctx.lineTo(hx,hy):ctx.moveTo(hx,hy);});
+   ctx.closePath();
+   ctx.fillStyle=isMeleeTarget?'rgba(235,40,40,0.55)':'rgba(255,230,0,0.6)';
+   ctx.fill();
+   ctx.strokeStyle='#000';ctx.lineWidth=Math.max(3,4*scale);ctx.lineJoin='round';ctx.stroke();
+   ctx.strokeStyle=isMeleeTarget?'#ff4d4d':'#ffffff';ctx.lineWidth=Math.max(1.5,2*scale);ctx.stroke();
+   ctx.beginPath();ctx.arc(sx,sy,Math.max(3,6*scale),0,Math.PI*2);ctx.strokeStyle='#ffffff';ctx.lineWidth=1.5;ctx.stroke();
+   ctx.restore();
+  }
   if(detail){lastDetail=detail;}
  }
  return {sync,paint,get active(){return active;}};
