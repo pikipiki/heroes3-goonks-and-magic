@@ -23,7 +23,10 @@
 #mobile-app[data-mode=battle][data-battle-layout=dual] .mobile-nav>[data-ui=targets]{grid-column:2!important}
 #mobile-app[data-mode=battle][data-battle-layout=dual] .mobile-nav>[data-ui=wait]{grid-column:3!important}
 #mobile-app[data-mode=battle][data-battle-layout=dual] .mobile-nav>[data-ui=defend]{grid-column:4!important}
-@media(orientation:portrait) and (max-height:680px){
+#mobile-app[data-mode=battle][data-battle-dual-mode=single] .mobile-play{grid-template-rows:minmax(0,1fr) 0!important}
+#mobile-app[data-mode=battle][data-battle-dual-mode=single] #mobile-scene{display:none!important}
+#mobile-app[data-mode=battle][data-battle-dual-mode=single] .battle-strategic-view{border-bottom:0!important;height:100%!important;aspect-ratio:auto!important}
+@media(orientation:portrait) and (max-height:720px){
  #mobile-app[data-mode=battle][data-battle-layout=dual] .mobile-play{grid-template-rows:minmax(0,1fr) 0!important}
  #mobile-app[data-mode=battle][data-battle-layout=dual] #mobile-scene{display:none!important}
  #mobile-app[data-mode=battle][data-battle-layout=dual] .battle-strategic-view{border-bottom:0!important;height:100%!important;aspect-ratio:auto!important}

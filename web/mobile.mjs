@@ -349,12 +349,14 @@ function mount(){
   const panel=root.querySelector('.battle-panel');root.querySelector('#battle-creature-detail').hidden=false;panel.hidden=state.mode!=='battle';const team=root.querySelector('.battle-team-actions');team.hidden=panel.hidden;if(panel.hidden)return;
   const teamCap=battleTeamCapabilities(state),auto=team.querySelector('[data-ui=battle-auto]');team.querySelector('[data-ui=battle-retreat]').disabled=!teamCap.retreat||pendingAuto!==null||!!spellRecovery.pending;auto.disabled=!teamCap.auto||pendingAuto!==null||!!spellRecovery.pending;auto.setAttribute('aria-pressed',String(!!state.autoCombat));auto.setAttribute('aria-busy',String(pendingAuto!==null||spellRecovery.pending?.action===44));auto.setAttribute('aria-label',state.autoCombat?'Arrêter l’autocombat':'Activer l’autocombat');auto.textContent=spellRecovery.pending?.action===44?'Activation…':pendingAuto!==null?(pendingAuto?(state.canQueueAutoCombat?'Autocombat en attente…':'Activation…'):'Arrêt…'):state.autoCombat?'■ Arrêter l’auto':'▶ Autocombat';
   const cap=battleCapabilities(effectiveBattle()),guidance=battleGuidance(effectiveBattle()),range=guidance.ready?guidance.cells.length+' case'+(guidance.cells.length===1?'':'s')+' accessible'+(guidance.cells.length===1?'':'s')+'. ':'',target=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),shown=target||state.activeUnit;
-  const unitData=(state.battleUnits||[]).find(u=>(shown?.stackId!==undefined&&u.stackId===shown.stackId)||(shown?.id!==undefined&&u.id===shown.id&&!u.enemy))||shown;
+  const unitData=(state.battleUnits||[]).find(u=>(shown?.stackId!==undefined&&u.stackId===shown.stackId)||(shown?.id!==undefined&&u.id===shown.id&&!u.enemy))||shown?.creature||shown;
   const atk=unitData?.attack??shown?.attack;
   const def=unitData?.defense??shown?.defense;
-  const dmg=unitData?.damageMin!==undefined?(unitData.damageMin===unitData.damageMax?String(unitData.damageMin):`${unitData.damageMin}-${unitData.damageMax}`):(unitData?.damage!==undefined?String(unitData.damage):null);
+  const minDmg=unitData?.damageMin??unitData?.minDamage;
+  const maxDmg=unitData?.damageMax??unitData?.maxDamage;
+  const dmg=(minDmg!==undefined&&maxDmg!==undefined)?(minDmg===maxDmg?String(minDmg):`${minDmg}-${maxDmg}`):(unitData?.damage!==undefined?String(unitData.damage):null);
   const spd=unitData?.speed??shown?.speed;
-  const curHp=unitData?.currentHealth;
+  const curHp=unitData?.currentHealth??unitData?.health;
   const maxHp=unitData?.maximumHealth??unitData?.health??curHp;
   const hpStr=curHp?`${curHp}/${maxHp} PV`:(unitData?.health?`${unitData.health} PV`:'');
   const countStr=shown?.count?`× ${shown.count}`:'';
@@ -364,7 +366,9 @@ function mount(){
    subEl.textContent=subText;
    subEl.hidden=!subText;
   }
-  panel.querySelector('.battle-turn').textContent=state.autoCombat?'Autocombat':cap.tactics?(shown?'À placer · '+shown.name:'Placement des troupes'):shown?shown.name:'Préparation du combat';
+  const isCommander=shown?.commander===true;
+  const displayName=shown?(isCommander?`👑 ${shown.name||(fr?'Commandant':'Commander')}`:shown.name):'';
+  panel.querySelector('.battle-turn').textContent=state.autoCombat?(fr?'Autocombat':'Auto combat'):cap.tactics?(shown?(fr?'À placer · ':'To place · ')+displayName:(fr?'Placement des troupes':'Placing troops')):displayName||(fr?'Préparation du combat':'Combat preparation');
   const statsContainer=panel.querySelector('.battle-unit-stats');
   if(statsContainer){
    if(shown&&atk!==undefined&&def!==undefined&&!state.autoCombat){

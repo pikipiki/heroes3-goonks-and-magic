@@ -170,7 +170,7 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=battle-confirm-move],
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=battle-confirm-spell]{min-height:46px!important}
 }
-@media(orientation:landscape) and (max-height:600px){
+@media(orientation:landscape){
  html.goonk-mobile #mobile-app[data-mode=battle]{
   --battle-safe-top:env(safe-area-inset-top,0px);
   --battle-safe-right:env(safe-area-inset-right,0px);

@@ -19,4 +19,8 @@ test('Mobile landscape battle controls move menu, stats and actions to the right
  assert.match(js,/<\/main><section class="battle-panel"/);
  assert.match(js,/const isCreatureTargeting=state\.creatureSpellTargeting===true;/);
  assert.match(js,/const magicDisabled=!!spellRecovery\.pending\|\|isCreatureTargeting/);
+ assert.match(js,/shown\?\.commander===true/);
+ const {battleOverviewPoint}=await import('../web/battle-dual-view.mjs');
+ const pt=battleOverviewPoint(200,100,400,300);
+ assert(pt&&pt.x>=0&&pt.y>=0);
 });

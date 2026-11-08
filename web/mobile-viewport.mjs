@@ -36,16 +36,18 @@ export function anchorMobileViewport(root,win=window){
   const width=zoomed?layoutWidth:(viewport?.width??layoutWidth);
   const height=scale<.99?Math.min(layoutHeight,viewport.height*scale):zoomed?layoutHeight:(viewport?.height??layoutHeight);
   if(!(width>0&&height>0))return;
-  const isLandscape=win.matchMedia?.('(orientation: landscape)')?.matches??(layoutWidth>layoutHeight);
-  const isPortrait=win.matchMedia?.('(orientation: portrait)')?.matches??(layoutHeight>layoutWidth);
+  const lw=layoutWidth||width||0;
+  const lh=layoutHeight||height||0;
+  const isLandscape=(lw>lh)||(lw===lh&&(win.matchMedia?.('(orientation: landscape)')?.matches??false));
+  const isPortrait=!isLandscape;
   let finalWidth=width,finalHeight=height;
   if(isLandscape){
-   finalWidth=Math.max(finalWidth,finalHeight,layoutWidth,win.innerWidth||0);
-   finalHeight=Math.min(finalHeight,layoutHeight,win.innerHeight||layoutHeight);
+   finalWidth=Math.max(finalWidth,finalHeight,lw,win.innerWidth||0);
+   finalHeight=Math.min(Math.min(finalHeight,finalWidth),lh,win.innerHeight||lh);
    if(finalWidth<finalHeight)[finalWidth,finalHeight]=[finalHeight,finalWidth];
   }else if(isPortrait){
-   finalHeight=Math.max(finalWidth,finalHeight,layoutHeight,win.innerHeight||0);
-   finalWidth=Math.min(finalWidth,layoutWidth,win.innerWidth||layoutWidth);
+   finalHeight=Math.max(finalWidth,finalHeight,lh,win.innerHeight||0);
+   finalWidth=Math.min(finalWidth,lw,win.innerWidth||lw);
    if(finalHeight<finalWidth)[finalWidth,finalHeight]=[finalHeight,finalWidth];
   }
   lastLayoutWidth=layoutWidth;

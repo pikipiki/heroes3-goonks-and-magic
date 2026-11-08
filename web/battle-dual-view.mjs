@@ -47,6 +47,12 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
  function sync(){
   const isPortrait=(root.clientWidth>0&&root.clientHeight>0)?(root.clientWidth<=root.clientHeight):(typeof window!=='undefined'&&(window.matchMedia?.('(orientation: portrait)')?.matches??true));
   const next=getState().mode==='battle'&&isPortrait&&getView()==='whole';
+  const playEl=root.querySelector('.mobile-play');
+  const playHeight=playEl?.clientHeight||0;
+  const overviewHeight=Math.round((root.clientWidth||390)*555/800);
+  const hasZoomRoom=(playHeight-overviewHeight)>=140;
+  const dualMode=hasZoomRoom?'dual':'single';
+  if(root.dataset.battleDualMode!==dualMode)root.dataset.battleDualMode=dualMode;
   if(next!==active||root.dataset.battleLayout!==(next?'dual':'native')){
    active=next;press=null;root.dataset.battleLayout=active?'dual':'native';
    strategic.hidden=!active;
@@ -71,9 +77,9 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
  const cancel=()=>{press=null;};canvas.addEventListener('pointercancel',cancel);canvas.addEventListener('lostpointercapture',cancel);window.addEventListener('blur',cancel);document.addEventListener('visibilitychange',cancel);
  canvas.addEventListener('keydown',event=>{const delta={ArrowLeft:[-88,0],ArrowRight:[88,0],ArrowUp:[0,-84],ArrowDown:[0,84]}[event.key];if(!active||!delta||!currentLayout)return;event.preventDefault();const view=lastDetail||{x:0,y:0,w:800,h:555};onFocus({x:Math.max(0,Math.min(800,view.x+view.w/2+delta[0])),y:Math.max(0,Math.min(555,view.y+view.h/2+delta[1]))});});
  let lastDetail=null;
- function paint(original,detail,selected,view){if(!sync())return;const text=view?.label||'Vue rapprochée · Choisissez une case ou une cible';if(detailDescription.textContent!==text)detailDescription.textContent=text;const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;const pixels=surfaceSize.fit(canvas,w,h,Math.min(devicePixelRatio||1,2));ctx.setTransform(pixels.x,0,0,pixels.y,0,0);ctx.clearRect(0,0,w,h);currentLayout=fitNativeBattle(w,h,null,'whole');const l=currentLayout;ctx.drawImage(original,0,0,original.width,original.height*555/600,l.dx,l.dy,l.w*l.scale,l.h*l.scale);
+ function paint(original,detail,selected,view){if(!sync())return;const text=view?.label||'Vue rapprochée · Choisissez une case ou une cible';if(detailDescription.textContent!==text)detailDescription.textContent=text;const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;const pixels=surfaceSize.fit(canvas,w,h,Math.min(devicePixelRatio||1,2));ctx.setTransform(pixels.x,0,0,pixels.y,0,0);ctx.clearRect(0,0,w,h);const scale=w/800;const dy=Math.max(0,(h-555*scale)/2);currentLayout={x:0,y:0,w:800,h:555,scale,dx:0,dy};const l=currentLayout;ctx.drawImage(original,0,0,original.width,original.height*555/600,0,l.dy,w,555*scale);
   const state=getState(),guidance=battleGuidance(state);paintBattleFloor(ctx,state,l);paintShotTargets(ctx,guidance.shotTargets,l);paintMeleeTargets(ctx,guidance.meleeTargets,l);paintActiveCreature(ctx,guidance,l);paintBattleAction(ctx,view,l);paintSpellTargets(ctx,[...new Set([...guidance.spellTargets,...(guidance.beneficialTargets||[])])],l);
-  if(selected){const isMeleeTarget=(guidance.meleeTargets||[]).some(u=>Math.hypot(u.x-selected.x,u.y-selected.y)<16);ctx.strokeStyle=isMeleeTarget?'#e53935':'#fff0ae';ctx.lineWidth=2;ctx.beginPath();ctx.arc(l.dx+selected.x*l.scale,l.dy+selected.y*l.scale,10,0,Math.PI*2);ctx.stroke();}
+  if(selected){const isMeleeTarget=(guidance.meleeTargets||[]).some(u=>Math.hypot(u.x-selected.x,u.y-selected.y)<16);ctx.strokeStyle=isMeleeTarget?'#e53935':'#fff0ae';ctx.lineWidth=2;ctx.beginPath();ctx.arc(selected.x*scale,l.dy+selected.y*scale,10,0,Math.PI*2);ctx.stroke();}
   if(detail){lastDetail=detail;}
  }
  return {sync,paint,get active(){return active;}};
