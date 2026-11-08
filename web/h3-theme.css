@@ -58,7 +58,7 @@
 #mobile-app[data-mode=battle][data-battle-view=native] .battle-panel .battle-unit-list,#mobile-app[data-mode=battle][data-battle-view=native] .battle-precision{display:none!important}
 @media(orientation:landscape) and (max-height:600px){#mobile-app[data-mode=battle][data-battle-view=native] .mobile-play{display:block}#mobile-app[data-mode=battle][data-battle-view=native] #mobile-scene{height:100%;width:100%}}
 
-@media(orientation:landscape) and (max-height:360px){#battle-creature-detail{height:92px;min-height:80px}#mobile-app[data-mode=battle][data-battle-view=native] .battle-selection{font-size:11px}}
+@media(orientation:landscape) and (max-height:360px){#mobile-app[data-mode=battle][data-battle-view=native] .battle-selection{font-size:11px}}
 
 .mobile-top{position:relative;z-index:4}.battle-view{position:relative;z-index:5;pointer-events:auto;touch-action:manipulation;user-select:none;-webkit-user-select:none}
 
