@@ -46,13 +46,12 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
  const ctx=canvas.getContext('2d'),surfaceSize=createCanvasSizer();let active=false,press=null,currentLayout=null;
  function sync(){
   const isPortrait=(root.clientWidth>0&&root.clientHeight>0)?(root.clientWidth<=root.clientHeight):(typeof window!=='undefined'&&(window.matchMedia?.('(orientation: portrait)')?.matches??true));
-  const next=getState().mode==='battle'&&isPortrait&&getView()==='whole';
   const playEl=root.querySelector('.mobile-play');
-  const playHeight=playEl?.clientHeight||0;
+  const playHeight=playEl?.clientHeight||Math.max(0,(root.clientHeight||(typeof window!=='undefined'?window.innerHeight:0)||700)-240);
   const overviewHeight=Math.round((root.clientWidth||390)*555/800);
   const hasZoomRoom=(playHeight-overviewHeight)>=140;
-  const dualMode=hasZoomRoom?'dual':'single';
-  if(root.dataset.battleDualMode!==dualMode)root.dataset.battleDualMode=dualMode;
+  const next=getState().mode==='battle'&&isPortrait&&getView()==='whole'&&hasZoomRoom;
+  if(root.dataset.battleDualMode)delete root.dataset.battleDualMode;
   if(next!==active||root.dataset.battleLayout!==(next?'dual':'native')){
    active=next;press=null;root.dataset.battleLayout=active?'dual':'native';
    strategic.hidden=!active;

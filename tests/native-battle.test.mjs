@@ -27,4 +27,7 @@ test('Mobile landscape battle controls move menu, stats and actions to the right
  const {battleOverviewPoint}=await import('../web/battle-dual-view.mjs');
  const pt=battleOverviewPoint(200,100,400,300);
  assert(pt&&pt.x>=0&&pt.y>=0);
+ const dualCss=fs.readFileSync('web/battle-dual-view.css','utf8');
+ assert.doesNotMatch(dualCss,/#mobile-scene\{display:none/);
+ assert.match(css,/html\.goonk-mobile #mobile-app\[data-mode=battle\] #mobile-scene\{\s*display:block!important/);
 });

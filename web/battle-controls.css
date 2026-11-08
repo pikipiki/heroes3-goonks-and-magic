@@ -25,21 +25,56 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle
   grid-column:1!important;
   grid-row:1!important;
  }
- html.goonk-mobile #mobile-app[data-mode=battle] .mobile-play{
+ html.goonk-mobile #mobile-app[data-mode=battle]:not([data-battle-layout=dual]) .mobile-play{
   grid-column:1!important;
   grid-row:2!important;
   height:100%!important;
   min-height:0!important;
   display:flex!important;
   flex-direction:column!important;
+  justify-content:center!important;
+  align-items:center!important;
+  background:#181b12!important;
+ }
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-layout=dual] .mobile-play{
+  grid-column:1!important;
+  grid-row:2!important;
+  height:100%!important;
+  min-height:0!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:auto minmax(0,1fr)!important;
+  gap:0!important;
+  background:#181b12!important;
+  overflow:hidden!important;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] #mobile-scene{
+  display:block!important;
+ }
+ html.goonk-mobile #mobile-app[data-mode=battle]:not([data-battle-layout=dual])[data-battle-camera=whole] #mobile-scene{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:800/555!important;
+  max-height:100%!important;
+  margin:auto!important;
+ }
+ html.goonk-mobile #mobile-app[data-mode=battle]:not([data-battle-layout=dual])[data-battle-camera=close] #mobile-scene{
   width:100%!important;
   height:100%!important;
   max-height:none!important;
   aspect-ratio:auto!important;
   flex:1 1 auto!important;
   min-height:0!important;
+ }
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-layout=dual] #mobile-scene{
+  grid-column:1!important;
+  grid-row:2!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:none!important;
+  aspect-ratio:auto!important;
+  align-self:stretch!important;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel{
   grid-column:1!important;
