@@ -42,7 +42,10 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
  const stylesheet=document.createElement('link');stylesheet.rel='stylesheet';stylesheet.href=new URL('./battle-dual-view.css',import.meta.url).href;document.head.append(stylesheet);
  const strategic=document.createElement('section');strategic.className='battle-strategic-view';strategic.setAttribute('aria-label','Vue stratégique du combat');strategic.hidden=true;
  const canvas=document.createElement('canvas');canvas.id='battle-strategic-scene';canvas.setAttribute('aria-label','Terrain entier. Touchez une troupe ou une zone pour la voir en grand.');canvas.tabIndex=0;canvas.setAttribute('role','group');
- strategic.append(canvas);scene.before(strategic);
+ const actionTag=document.createElement('div');actionTag.className='battle-view-tag action-tag';actionTag.setAttribute('aria-hidden','true');actionTag.textContent='⚔️ Écran d’action';
+ strategic.append(canvas,actionTag);scene.before(strategic);
+ const closeTag=document.createElement('div');closeTag.className='battle-view-tag close-tag';closeTag.setAttribute('aria-hidden','true');closeTag.textContent='🎥 Caméra de suivi';
+ scene.before(closeTag);
  const detailDescription=document.createElement('div');detailDescription.id='battle-detail-description';detailDescription.hidden=true;scene.before(detailDescription);
  const ctx=canvas.getContext('2d'),surfaceSize=createCanvasSizer();let active=false,press=null,currentLayout=null;
  function sync(){
@@ -57,6 +60,8 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
   if(next!==active||root.dataset.battleLayout!==(next?'dual':'native')){
    active=next;press=null;root.dataset.battleLayout=active?'dual':'native';
    strategic.hidden=!active;
+   actionTag.hidden=!active;
+   closeTag.hidden=!active;
    if(active)scene.setAttribute('aria-describedby',detailDescription.id);
    else{scene.removeAttribute('aria-describedby');surfaceSize.release(canvas);}
   }
