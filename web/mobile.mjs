@@ -170,17 +170,21 @@ function mount(){
   else if(m==='battle'){
    const guidance=battleGuidance(effectiveBattle());
    const hasCreatureSpell=!state.tacticsMode&&cap.combatReady&&(state.creatureCanCast===true||state.creatureSpellTargeting===true||(guidance.beneficialTargets&&guidance.beneficialTargets.length>0)||state.activeUnit?.canHealOrBuff===true);
-   const magicCancel=canCancelSpell(state)&&!hasCreatureSpell;
-   const magicBtn=btn(spellRecovery.pending?(fr?'Annulation…':'Cancelling…'):magicCancel?(fr?'✕ Annuler le sort':'✕ Cancel spell'):(fr?'Magie':'Magic'),'battle-magic',false,!!spellRecovery.pending||(!magicCancel&&(!cap.magic||!state.heroHasSpellbook||state.heroCanCast===false)));
+   const isCreatureTargeting=state.creatureSpellTargeting===true;
+   const isHeroTargeting=state.spellTargeting===true&&!isCreatureTargeting;
+   const magicCancel=isHeroTargeting;
+   const magicDisabled=!!spellRecovery.pending||isCreatureTargeting||(!magicCancel&&(!cap.magic||!state.heroHasSpellbook||state.heroCanCast===false));
+   const magicBtn=btn(spellRecovery.pending?(fr?'Annulation…':'Cancelling…'):magicCancel?(fr?'✕ Annuler le sort':'✕ Cancel spell'):(fr?'Magie':'Magic'),'battle-magic',false,magicDisabled);
    if(hasCreatureSpell){
-    const moveLabel=state.spellTargeting?(fr?'✕ Annuler le sort':'✕ Cancel spell'):target?.enemy?(target.canShootAt?(fr?'✓ Tirer':'✓ Shoot'):(fr?'✓ Attaquer':'✓ Attack')):(fr?'✓ Déplacer':'✓ Move');
+    const moveLabel=state.spellTargeting?(fr?'✕ Annuler':'✕ Cancel'):target?.enemy?(target.canShootAt?(fr?'✓ Tirer':'✓ Shoot'):(fr?'✓ Attaquer':'✓ Attack')):(fr?'✓ Déplacer':'✓ Move');
     const moveDisabled=state.spellTargeting?!!spellRecovery.pending:(blocked||!selectedPoint||!cap.move||!!spellRecovery.pending||(target&&!target.enemy)||(battleMove&&state.focus&&Math.hypot(selectedPoint.x-state.focus.x,selectedPoint.y-state.focus.y)<2));
-    const spellLabel=state.spellTargeting?(fr?'✓ Confirmer le sort':'✓ Confirm spell'):(fr?'✨ Lancer le sort':'✨ Cast spell');
+    const creatureSpellTitle=state.activeUnit?.commander?(fr?'✨ Sort commandant':'✨ Commander spell'):(fr?'✨ Sort créature':'✨ Creature spell');
+    const spellLabel=state.spellTargeting?(fr?'✓ Confirmer':'✓ Confirm'):creatureSpellTitle;
     const spellDisabled=!!spellRecovery.pending||!cap.combatReady||(state.spellTargeting?!selectedPoint||!spellTargetCell(state,selectedPoint):state.creatureCanCast===false);
     items=[btn(moveLabel,'battle-confirm-move',true,moveDisabled),btn(spellLabel,'battle-confirm-spell',true,spellDisabled),magicBtn,btn(fr?'◎ Cibles':'◎ Targets','targets',false,!cap.move||!!spellRecovery.pending),btn(state.canWait===false?(fr?'Déjà attendu':'Already waited'):(fr?'◷ Attendre':'◷ Wait'),'wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),btn(fr?'⛨ Défendre':'⛨ Defend','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending)];
    }else{
     const confirmDisabled=blocked||!selectedPoint||!cap.move||!!spellRecovery.pending||(target&&!target.enemy&&!state.spellTargeting)||(state.spellTargeting&&!spellTargetCell(state,selectedPoint))||(battleMove&&state.focus&&Math.hypot(selectedPoint.x-state.focus.x,selectedPoint.y-state.focus.y)<2);
-    items=[btn(state.spellTargeting?(fr?'✓ Confirmer le sort':'✓ Confirm spell'):target?.enemy?(target.canShootAt?(fr?'✓ Confirmer le tir':'✓ Confirm shot'):(fr?'✓ Confirmer l’attaque':'✓ Confirm attack')):(fr?'✓ Confirmer':'✓ Confirm'),'target',true,confirmDisabled),magicBtn,btn(fr?'◎ Cibles':'◎ Targets','targets',false,!cap.move||!!spellRecovery.pending),btn(state.canWait===false?(fr?'Déjà attendu':'Already waited'):(fr?'◷ Attendre':'◷ Wait'),'wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),btn(fr?'⛨ Défendre':'⛨ Defend','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending)];
+    items=[btn(state.spellTargeting?(fr?'✓ Confirmer':'✓ Confirm'):target?.enemy?(target.canShootAt?(fr?'✓ Confirmer le tir':'✓ Confirm shot'):(fr?'✓ Confirmer l’attaque':'✓ Confirm attack')):(fr?'✓ Confirmer':'✓ Confirm'),'target',true,confirmDisabled),magicBtn,btn(fr?'◎ Cibles':'◎ Targets','targets',false,!cap.move||!!spellRecovery.pending),btn(state.canWait===false?(fr?'Déjà attendu':'Already waited'):(fr?'◷ Attendre':'◷ Wait'),'wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),btn(fr?'⛨ Défendre':'⛨ Defend','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending)];
    }
   }
   else if(m==='recruit')items=[btn(fr?'Recruter':'Recruit','confirm-recruit',true,!state.turn||recruitLoading||!(state.recruitAmount>0)),btn(fr?'Tout':'All','max-recruit',false,!(state.recruitMaximum>0)),btn(fr?'Annuler':'Cancel','cancel-recruit')];
@@ -379,14 +383,16 @@ function mount(){
    (state.battleCells||[]).every(c=>c.spellTarget===false)?'No valid target.':'Choose a valid target, then confirm.');
   panel.querySelector('.battle-selection').textContent=pendingAuto===true&&!state.autoCombat?'Autocombat dès que ta troupe peut jouer.':spellRecovery.pending?'Cancelling spell…':state.spellTargeting?spellHint :state.autoCombat?'L’ordinateur joue pour ton équipe. Arrête l’auto en haut pour reprendre la main.':state.manualControl===false?'Returning to manual control…':cap.tactics?(cap.endTactics?range+'Touche une case dorée, puis « Placer ». La troupe reste sélectionnée.':'Placement en cours de validation ou de préparation…'):!cap.combatReady?'Tour '+(state.round??1)+' · Animation ou tour adverse…':target?.enemy?(guidance.shotTargets.includes(target)?'Tir sans déplacement. Confirme pour tirer.':state.activeUnit?.shooter?'Melee attack · Target cannot be shot from here.':'Melee attack · Confirm to strike.'):selectedPoint&&battleMove?'Déplacement préparé · Confirme pour marcher.':shotHint+meleeHint+healHint+'Tour '+(state.round??1)+' · '+range+'Choisis une case dorée ou une cible.'+(state.heroSpellCastLimitReached?' Hero magic returns next round.':'');
   const hasCreatureSpell=!state.tacticsMode&&cap.combatReady&&(state.creatureCanCast===true||state.creatureSpellTargeting===true||(guidance.beneficialTargets&&guidance.beneficialTargets.length>0)||state.activeUnit?.canHealOrBuff===true);
-  const magicButton=panel.querySelector('[data-ui=battle-magic]');const magicCancel=canCancelSpell(state)&&!hasCreatureSpell;magicButton.textContent=spellRecovery.pending?'Cancelling…':magicCancel?'✕ Cancel spell':'Magie';magicButton.setAttribute('aria-label',magicCancel?'Cancel selected spell':'Magie');
+  const isCreatureTargeting=state.creatureSpellTargeting===true;
+  const isHeroTargeting=state.spellTargeting===true&&!isCreatureTargeting;
+  const magicButton=panel.querySelector('[data-ui=battle-magic]');const magicCancel=isHeroTargeting;magicButton.textContent=spellRecovery.pending?'Cancelling…':magicCancel?'✕ Cancel spell':'Magie';magicButton.setAttribute('aria-label',magicCancel?'Cancel selected spell':'Magie');
   const description=guidance.ready?`Créature active : ${guidance.actor.name} × ${guidance.actor.count}. ${guidance.cells.length} cases accessibles. ${shotHint}${meleeHint}${healHint}`.trim():state.spellTargeting?spellHint:'Champ de bataille';if(scene.getAttribute('aria-label')!==description)scene.setAttribute('aria-label',description);
   const creatureSpell=panel.querySelector('[data-ui=creature-spell]');
   creatureSpell.hidden=!state.creatureCanCast||!cap.combatReady||state.spellTargeting;
   creatureSpell.textContent=state.activeUnit?.commander?(getLanguage()==='fr'?'Sort du commandant':'Commander spell'):(getLanguage()==='fr'?'Sort de la créature':'Creature spell');
   const precision=panel.querySelector('.battle-precision');precision.hidden=!selectedPoint;precision.classList.toggle('battle-preview-only',!battleMove);precision.querySelector('.battle-arrows').hidden=!battleMove;
   const list=panel.querySelector('.battle-unit-list');list.hidden=battleMove;
-  for(const button of panel.querySelectorAll('.battle-tools button')){button.setAttribute('aria-pressed',String(button.dataset.ui==='battle-'+(battleMove?'move':battleTab)));button.disabled=button.dataset.ui==='battle-magic'?!!spellRecovery.pending||(!canCancelSpell(state)&&(!cap.magic||!state.heroHasSpellbook||state.heroCanCast===false)):button.dataset.ui==='battle-move'?!cap.move:button.dataset.ui==='battle-retreat'?!cap.combatReady||state.canRetreat===false:false;}for(const button of panel.querySelectorAll('[data-battle-step]')){const [dx,dy]=button.dataset.battleStep.split(',').map(Number),base=selectedPoint||state.focus||{x:300,y:300},candidate={x:base.x+dx,y:base.y+dy},snapped=battleHex(candidate);button.disabled=!state.canAct||Math.hypot(candidate.x-snapped.x,candidate.y-snapped.y)>1;}
+  for(const button of panel.querySelectorAll('.battle-tools button')){button.setAttribute('aria-pressed',String(button.dataset.ui==='battle-'+(battleMove?'move':battleTab)));button.disabled=button.dataset.ui==='battle-magic'?!!spellRecovery.pending||isCreatureTargeting||(!magicCancel&&(!cap.magic||!state.heroHasSpellbook||state.heroCanCast===false)):button.dataset.ui==='battle-move'?!cap.move:button.dataset.ui==='battle-retreat'?!cap.combatReady||state.canRetreat===false:false;}for(const button of panel.querySelectorAll('[data-battle-step]')){const [dx,dy]=button.dataset.battleStep.split(',').map(Number),base=selectedPoint||state.focus||{x:300,y:300},candidate={x:base.x+dx,y:base.y+dy},snapped=battleHex(candidate);button.disabled=!state.canAct||Math.hypot(candidate.x-snapped.x,candidate.y-snapped.y)>1;}
   const html=(state.battleUnits||[]).filter(u=>(battleTab==='allies'?!u.enemy:u.enemy)&&(!state.spellTargeting||spellTargetCell(state,u))).map(u=>`<button class="battle-unit" data-battle-target="${u.x},${u.y}" ${!battleCapabilities(effectiveBattle()).move?'disabled':''} aria-pressed="${!!selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16}"><canvas width="90" height="90" data-unit-preview="${u.x},${u.y}" aria-hidden="true"></canvas><span>${escape(u.name)}<small>× ${u.count}</small>${battleTargetBadge(u,guidance)}</span></button>`).join('');if(list._sourceMarkup!==html){list._sourceMarkup=html;list.innerHTML=html;}
  }
  function battleTargetBadge(unit,guidance){
@@ -416,12 +422,7 @@ function mount(){
 
   if(ui==='battle-enemies'||ui==='battle-allies'){battleMove=false;battleTab=ui.split('-')[1];showBattleTargets();return;}if(ui==='battle-move'){battleMove=true;selectedPoint=battleHex(state.focus||selectedPoint||{x:300,y:300});focus=selectedPoint;pointer(selectedPoint,0);renderBattlePanel();controls();return;}
   if(ui==='battle-magic'){
-   if(state.creatureSpellTargeting){
-    cancelSpell();
-    if(!battleCapabilities(effectiveBattle()).magic||!state.heroHasSpellbook||state.heroCanCast===false)return;
-    command(14);
-    return;
-   }
+   if(state.creatureSpellTargeting)return;
    if(canCancelSpell(state)){cancelSpell();return;}
    if(!battleCapabilities(effectiveBattle()).magic)return;
    if(!state.heroHasSpellbook||state.heroCanCast===false){notify(getLanguage()==='fr'?'Ton héros ne peut pas lancer de sort maintenant.':'Your hero cannot cast a spell right now.');return;}

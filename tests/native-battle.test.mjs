@@ -17,4 +17,6 @@ test('Mobile landscape battle controls move menu, stats and actions to the right
  assert.match(css,/data-ui=battle-confirm-spell/);
  assert.doesNotMatch(h3css,/#mobile-app\[data-mode=battle\]\[data-battle-view=native\]\s*\.battle-panel\{\s*display:\s*none\s*!important\s*\}/);
  assert.match(js,/<\/main><section class="battle-panel"/);
+ assert.match(js,/const isCreatureTargeting=state\.creatureSpellTargeting===true;/);
+ assert.match(js,/const magicDisabled=!!spellRecovery\.pending\|\|isCreatureTargeting/);
 });
