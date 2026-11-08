@@ -107,3 +107,19 @@ test('Screen lock while hidden preserves active geometry and wake restores viewp
  assert.deepEqual(scrolledTo,{x:0,y:0});
  anchor.dispose();
 });
+
+test('Wake with stale inverted viewport dimensions is corrected by active orientation media query',async()=>{
+ const {anchorMobileViewport}=await import('../web/mobile-viewport.mjs');
+ class Target extends EventTarget{}
+ const queue=[],win=new Target(),doc=new Target(),viewport=new Target();
+ doc.hidden=false;
+ win.scrollTo=()=>{};
+ win.matchMedia=q=>({matches:q.includes('landscape')});
+ Object.assign(viewport,{width:430,height:932,scale:1});
+ Object.assign(win,{document:doc,innerWidth:932,innerHeight:430,visualViewport:viewport,scrollX:0,scrollY:0,requestAnimationFrame:f=>queue.push(f)});
+ const root={style:{}};
+ const anchor=anchorMobileViewport(root,win);
+ assert.equal(root.style.width,'932px');
+ assert.equal(root.style.height,'430px');
+ anchor.dispose();
+});

@@ -36,8 +36,13 @@ export function anchorMobileViewport(root,win=window){
   const width=zoomed?layoutWidth:(viewport?.width??layoutWidth);
   const height=scale<.99?Math.min(layoutHeight,viewport.height*scale):zoomed?layoutHeight:(viewport?.height??layoutHeight);
   if(!(width>0&&height>0))return;
+  const isLandscape=win.matchMedia?.('(orientation: landscape)')?.matches??(layoutWidth>layoutHeight);
+  const isPortrait=win.matchMedia?.('(orientation: portrait)')?.matches??(layoutHeight>layoutWidth);
+  let finalWidth=width,finalHeight=height;
+  if(isLandscape&&finalWidth<finalHeight)[finalWidth,finalHeight]=[finalHeight,finalWidth];
+  else if(isPortrait&&finalHeight<finalWidth)[finalWidth,finalHeight]=[finalHeight,finalWidth];
   lastLayoutWidth=layoutWidth;
-  const next={position:'absolute',inset:'auto',left:(win.scrollX||0)+'px',top:(win.scrollY||0)+'px',width:width+'px',height:height+'px'};
+  const next={position:'absolute',inset:'auto',left:(win.scrollX||0)+'px',top:(win.scrollY||0)+'px',width:finalWidth+'px',height:finalHeight+'px'};
   for(const [name,value] of Object.entries(next))if(root.style[name]!==value)root.style[name]=value;
  }
  function schedule(){if(disposed||pending)return;pending=true;win.requestAnimationFrame(()=>{pending=false;update();});}
