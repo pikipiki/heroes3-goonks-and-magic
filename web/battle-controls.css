@@ -17,7 +17,89 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] [data-ui=battle-retreat]{grid-column:2}
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-tools button{min-height:52px!important;font-size:14px!important}
 @media(orientation:portrait){
+ html.goonk-mobile #mobile-app[data-mode=battle]{
+  grid-template-rows:auto minmax(0,1fr) auto auto!important;
+ }
+ html.goonk-mobile #mobile-app[data-mode=battle] .mobile-top{
+  grid-column:1!important;
+  grid-row:1!important;
+ }
+ html.goonk-mobile #mobile-app[data-mode=battle] .mobile-play{
+  grid-column:1!important;
+  grid-row:2!important;
+ }
+ html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel{
+  grid-column:1!important;
+  grid-row:3!important;
+  display:block!important;
+  padding:3px 8px!important;
+  border-top:2px ridge #ba974b!important;
+  background:rgba(20,14,8,0.92)!important;
+  box-sizing:border-box!important;
+ }
+ html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel-card{
+  display:grid!important;
+  grid-template-columns:36px minmax(0,1fr)!important;
+  grid-template-rows:auto auto!important;
+  gap:2px 8px!important;
+  align-items:center!important;
+ }
+ html.goonk-mobile #mobile-app[data-mode=battle] #battle-creature-detail{
+  grid-column:1!important;
+  grid-row:1/3!important;
+  width:36px!important;
+  height:42px!important;
+  border-radius:4px!important;
+  border:1px solid #7a5f32!important;
+  background:#000!important;
+  align-self:center!important;
+  object-fit:contain!important;
+ }
+ html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-info{
+  grid-column:2!important;
+  grid-row:1!important;
+  display:flex!important;
+  gap:6px!important;
+  align-items:baseline!important;
+  min-width:0!important;
+ }
+ html.goonk-mobile #mobile-app[data-mode=battle] .battle-turn{
+  font-size:12px!important;
+  font-weight:bold!important;
+  line-height:1.2!important;
+  color:#ffea9f!important;
+  margin:0!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+ }
+ html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-sub{
+  font-size:11px!important;
+  line-height:1.2!important;
+  color:#d5c29b!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+ }
+ html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-stats{
+  grid-column:2!important;
+  grid-row:2!important;
+  display:flex!important;
+  gap:4px!important;
+  align-items:center!important;
+  margin:0!important;
+ }
+ html.goonk-mobile #mobile-app[data-mode=battle] .battle-selection{
+  font-size:11px!important;
+  line-height:1.2!important;
+  color:#ccc!important;
+  margin:2px 0 0!important;
+  max-height:26px!important;
+  overflow:hidden!important;
+ }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav{
+  grid-column:1!important;
+  grid-row:4!important;
   display:grid!important;
   grid-template-columns:repeat(4,minmax(0,1fr))!important;
   gap:6px!important;
@@ -114,10 +196,7 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel{
   grid-column:2!important;
   grid-row:2!important;
-  display:grid!important;
-  grid-template-columns:36px minmax(0,1fr)!important;
-  grid-template-rows:auto auto!important;
-  gap:2px 6px!important;
+  display:block!important;
   padding:3px calc(6px + var(--battle-safe-right)) 3px 6px!important;
   border-left:1px solid #b59750!important;
   border-bottom:1px solid #b59750!important;
@@ -127,19 +206,33 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle
   max-height:none!important;
   overflow:hidden!important;
  }
+ html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel-card{
+  display:grid!important;
+  grid-template-columns:36px minmax(0,1fr)!important;
+  grid-template-rows:auto auto!important;
+  gap:2px 6px!important;
+  align-items:center!important;
+  width:100%!important;
+ }
  html.goonk-mobile #mobile-app[data-mode=battle] #battle-creature-detail{
   grid-column:1!important;
   grid-row:1/3!important;
   width:36px!important;
-  height:42px!important;
+  height:38px!important;
   border-radius:4px!important;
   border:1px solid #7a5f32!important;
   background:#000!important;
   align-self:center!important;
+  object-fit:contain!important;
  }
- html.goonk-mobile #mobile-app[data-mode=battle] .battle-turn{
+ html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-info{
   grid-column:2!important;
   grid-row:1!important;
+  display:flex!important;
+  flex-direction:column!important;
+  min-width:0!important;
+ }
+ html.goonk-mobile #mobile-app[data-mode=battle] .battle-turn{
   font-size:11px!important;
   font-weight:bold!important;
   line-height:1.2!important;
@@ -149,19 +242,28 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle
   overflow:hidden!important;
   text-overflow:ellipsis!important;
  }
+ html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-sub{
+  font-size:10px!important;
+  line-height:1.2!important;
+  color:#d5c29b!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+ }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-stats{
-  grid-column:2!important;
+  grid-column:1/3!important;
   grid-row:2!important;
-  display:grid!important;
-  grid-template-columns:repeat(4,minmax(0,1fr))!important;
-  gap:2px!important;
-  margin:1px 0 0!important;
+  display:flex!important;
+  gap:3px!important;
+  justify-content:space-between!important;
+  margin-top:2px!important;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-stat-pill{
+  flex:1 1 auto!important;
   background:rgba(14,9,5,0.85)!important;
   border:1px solid #7a5f32!important;
   border-radius:3px!important;
-  padding:1px 2px!important;
+  padding:1px 3px!important;
   font-size:9px!important;
   font-weight:bold!important;
   color:#f7dfa3!important;

@@ -6,9 +6,15 @@ test('The transparent grid follows native hex centers and never paints opaque ti
 test('Mobile landscape battle controls move menu, stats and actions to the right sidebar',async()=>{
  const fs=await import('node:fs');
  const css=fs.readFileSync('web/battle-controls.css','utf8');
+ const h3css=fs.readFileSync('web/h3-theme.css','utf8');
+ const js=fs.readFileSync('web/mobile.mjs','utf8');
  assert.match(css,/html\.goonk-mobile #mobile-app\[data-mode=battle\]/);
  assert.match(css,/grid-column:\s*1\s*!important;\s*grid-row:\s*1\s*\/\s*-1\s*!important/);
  assert.match(css,/\.battle-panel\{\s*grid-column:\s*2\s*!important;\s*grid-row:\s*2\s*!important/);
+ assert.match(css,/\.battle-panel-card/);
+ assert.match(css,/\.battle-stat-pill/);
  assert.match(css,/data-ui=battle-confirm-move/);
  assert.match(css,/data-ui=battle-confirm-spell/);
+ assert.doesNotMatch(h3css,/#mobile-app\[data-mode=battle\]\[data-battle-view=native\]\s*\.battle-panel\{\s*display:\s*none\s*!important\s*\}/);
+ assert.match(js,/<\/main><section class="battle-panel"/);
 });
