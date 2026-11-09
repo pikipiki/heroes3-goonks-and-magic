@@ -66,10 +66,11 @@
 #mobile-app[data-mode=battle][data-battle-view=native] .battle-tools{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media(orientation:landscape) and (max-height:600px){#mobile-app[data-mode=battle][data-battle-view=native] .battle-tools{grid-template-columns:repeat(2,minmax(0,1fr))}#mobile-app[data-mode=battle] [data-ui=battle-retreat]{grid-column:1/-1}}
 
-/* Map commands stay directly reachable, with no overflow menu. */
-#mobile-app[data-mode=map] .mobile-nav{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding:6px 6px calc(6px + var(--safe-bottom))}
-#mobile-app[data-mode=map] .mobile-nav button{min-height:48px!important;font-size:13px!important}
-#mobile-app[data-mode=map] .toast-mobile{bottom:calc(126px + var(--safe-bottom))}
+/* Map commands stay directly reachable on a single line, with no overflow menu. */
+#mobile-app[data-mode=map] .mobile-nav{grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:5px 6px calc(5px + var(--safe-bottom))}
+#mobile-app[data-mode=map] .mobile-nav:has(>[data-ui=hero-exchange]){grid-template-columns:repeat(5,minmax(0,1fr))}
+#mobile-app[data-mode=map] .mobile-nav button{min-height:44px!important;font-size:12px!important;padding:4px 2px!important}
+#mobile-app[data-mode=map] .toast-mobile{bottom:calc(76px + var(--safe-bottom))}
 @media(orientation:landscape) and (max-height:600px){.goonk-mobile #mobile-app[data-mode=map]{grid-template-columns:minmax(0,1fr) 176px}#mobile-app[data-mode=map] .mobile-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(44px,1fr));gap:5px;overflow:visible;padding:6px 6px calc(6px + var(--safe-bottom))}#mobile-app[data-mode=map] .mobile-nav button{min-height:44px!important;min-width:0;overflow-wrap:normal}#mobile-app[data-mode=map] .toast-mobile{bottom:12px;right:188px}}
 
 /* Portrait town art is a real layered scene: native buildings remain independent. */

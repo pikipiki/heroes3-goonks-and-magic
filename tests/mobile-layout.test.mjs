@@ -10,3 +10,16 @@ test('Battle framing includes the top queue and bottom edge without cropping in 
  for(let row=0;row<11;row++){const p={x:36+(row%2===0?22:0)+44*8,y:112+42*row};assert.deepEqual(battleHex(p),p);assert.deepEqual(battleHex({x:p.x+3,y:p.y-2}),p);}
 });
 test('Town panorama fills the scene, keeps taps invertible and reaches both ends without stretching',async()=>{const {fitTown}=await import('../web/mobile-layout.mjs');for(const [w,h]of [[390,610],[750,275],[474,205]]){const l=fitTown(w,h);assert(Math.abs(l.w*l.scale-w)<.001);assert(Math.abs(l.h*l.scale-h)<.001);assert(l.x>=0&&l.y>=0&&l.x+l.w<=800.001&&l.y+l.h<=374.001);const left=fitTown(w,h,{x:0,y:0}),right=fitTown(w,h,{x:800,y:374});assert.equal(left.x,0);assert(Math.abs(right.x+right.w-800)<.001);const p=scenePoint(w/2,h/2,l);assert(Math.abs(p.x-(l.x+l.w/2))<=1);const whole=fitTown(w,h,null,true);assert.equal(whole.w,800);assert.equal(whole.h,374);}});
+
+test('Mobile map nav buttons sit on a single line and town actions have valid icons', async () => {
+ const fs = await import('node:fs/promises');
+ const mobileMjs = await fs.readFile(new URL('../web/mobile.mjs', import.meta.url), 'utf8');
+ const h3css = await fs.readFile(new URL('../web/h3-theme.css', import.meta.url), 'utf8');
+ const eqcss = await fs.readFile(new URL('../web/hero-equipment.css', import.meta.url), 'utf8');
+ const upcss = await fs.readFile(new URL('../web/mobile-upgrade.css', import.meta.url), 'utf8');
+ assert.match(h3css, /#mobile-app\[data-mode=map\]\s*\.mobile-nav\{\s*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/);
+ assert.match(upcss, /#mobile-app\[data-mode=map\]\s*\.mobile-nav:not\(:has\(>\[data-ui=hero-exchange\]\)\)>\[data-ui=endturn\]\{\s*grid-column:\s*auto\s*\}/);
+ assert.match(mobileMjs, /'build',\s*'town-hall'/);
+ assert.match(eqcss, /touch-action:\s*pan-x\s*!important/);
+ assert.match(eqcss, /border-image:\s*none\s*!important/);
+});

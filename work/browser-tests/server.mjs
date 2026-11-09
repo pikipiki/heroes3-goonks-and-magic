@@ -1,6 +1,7 @@
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {makeManifest,describeFile} from '../../scripts/assets.mjs';
 import {renderPage} from '../../scripts/page.mjs';
@@ -12,15 +13,54 @@ for (const name of fs.readdirSync(path.join(project,'mod')).filter(name=>fs.stat
  const source=path.join(project,'mod',name);
  if(fs.existsSync(source))fs.cpSync(source,path.join(data,'Mods',name),{recursive:true});
 }
+
+function getEngineBuild(){
+ const runtimeNames={};
+ for(const name of ['vcmiclient.data.js','vcmiclient.wasm','vcmiclient.data','vcmiclient.js']){
+  const filePath=path.join(root,name);
+  if(fs.existsSync(filePath)){
+   const bytes=fs.readFileSync(filePath);
+   const hash=crypto.createHash('sha256').update(bytes).digest('hex').slice(0,16);
+   runtimeNames[name]=name.replace(/(\.[^.]+)$/,'.'+hash+'$1');
+  }
+ }
+ const wasmPath=path.join(root,'vcmiclient.wasm');
+ const wasmBytes=fs.readFileSync(wasmPath);
+ const wasmSha256=crypto.createHash('sha256').update(wasmBytes).digest('hex');
+ const wasmHashed=runtimeNames['vcmiclient.wasm']||`vcmiclient.${wasmSha256.slice(0,16)}.wasm`;
+ const engine={
+  memoryVersion:1,
+  runtimeVersion:wasmSha256.slice(0,16),
+  wasm:wasmHashed,
+  sha256:wasmSha256,
+  mobile:{width:800,height:600},
+  assetCacheBytes:16*1024*1024
+ };
+ return {runtimeNames,engine};
+}
+
 const mime={'.js':'text/javascript','.mjs':'text/javascript','.html':'text/html','.wasm':'application/wasm','.png':'image/png','.json':'application/json','.css':'text/css','.svg':'image/svg+xml'};
 http.createServer((req,res)=>{
  res.setHeader('Cross-Origin-Opener-Policy','same-origin');res.setHeader('Cross-Origin-Embedder-Policy','require-corp');
  res.setHeader('Cache-Control','no-cache');const url=new URL(req.url,'http://localhost');
- if(url.pathname==='/'){res.setHeader('Content-Type','text/html; charset=utf-8');return res.end(renderPage(root));}
- if(url.pathname==='/asset-manifest.json'||url.pathname==='/test-manifest'){const manifest=makeManifest(data);res.setHeader('Content-Type','application/json');return res.end(JSON.stringify(url.pathname==='/test-manifest'?manifest.files.map(f=>f.path):manifest));}
- const isData=url.pathname.startsWith('/assets/data/'),isLegacy=url.pathname.startsWith('/test-data/'),isWeb=url.pathname.startsWith('/web/');
- let relative;try{relative=decodeURIComponent(isData?url.pathname.split('/').slice(4).join('/'):isLegacy?url.pathname.slice(11):url.pathname.slice(1));}catch{res.statusCode=400;return res.end();}
- const base=isData||isLegacy?data:isWeb?project:root,file=path.resolve(base,relative);
+ const {runtimeNames,engine}=getEngineBuild();
+ if(url.pathname==='/'){
+  let html=renderPage(root);
+  html=html.replace(/vcmiclient\.(?:data\.js|wasm|data|js)/g,name=>runtimeNames[name]||name);
+  res.setHeader('Content-Type','text/html; charset=utf-8');
+  return res.end(html);
+ }
+ if(url.pathname==='/asset-manifest.json'||url.pathname==='/test-manifest'){
+  const manifest=makeManifest(data);
+  manifest.engine=engine;
+  res.setHeader('Content-Type','application/json');
+  return res.end(JSON.stringify(url.pathname==='/test-manifest'?manifest.files.map(f=>f.path):manifest));
+ }
+ const isData=url.pathname.startsWith('/assets/data/'),isLegacy=url.pathname.startsWith('/test-data/'),isWeb=url.pathname.startsWith('/web/'),isSW=url.pathname==='/coi-serviceworker.js';
+ let relative;try{relative=decodeURIComponent(isData?url.pathname.split('/').slice(4).join('/'):isLegacy?url.pathname.slice(11):isSW?'web/coi-serviceworker.js':url.pathname.slice(1));}catch{res.statusCode=400;return res.end();}
+ const runtimeMatch=relative.match(/^vcmiclient\.[a-f0-9]{16}\.(data\.js|wasm|data|js)$/);
+ if(runtimeMatch)relative='vcmiclient.'+runtimeMatch[1];
+ const base=isData||isLegacy?data:isWeb||isSW?project:root,file=path.resolve(base,relative);
  if(!file.startsWith(base+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){res.statusCode=404;return res.end('Not found');}
  const size=fs.statSync(file).size;if(isData){const meta=describeFile(file);if(url.pathname.split('/')[3]!==meta.hash){res.statusCode=409;return res.end('Asset changed');}res.setHeader('Cache-Control','public, max-age=31536000, immutable');}
  res.setHeader('Content-Type',mime[path.extname(file)]||'application/octet-stream');res.setHeader('Accept-Ranges','bytes');

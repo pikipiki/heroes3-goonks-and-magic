@@ -19,10 +19,17 @@ export function paintArtifactIcons(panel){
   canvas._artifactKey=key;
  }
 }
-export function createHeroEquipment({root,command,onViewChange=()=>{},portrait=()=>''}){
- const panel=document.createElement('section');panel.className='hero-equipment-page';panel.hidden=true;panel.setAttribute('aria-label','Hero equipment');root.querySelector('.mobile-play').append(panel);let state={},tab='worn',selected=null,signature='',classic=false,selectedArmySlot=null,splitActive=false,splitAmount=1;const scrollPositions={worn:0,backpack:0,skills:0,army:0};
+export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()=>{},portrait=()=>'',notify=()=>{}}){
+ const panel=document.createElement('section');panel.className='hero-equipment-page';panel.hidden=true;panel.setAttribute('aria-label','Hero equipment');root.querySelector('.mobile-play').append(panel);panel.addEventListener('dragstart',e=>e.preventDefault());let state={},tab='worn',selected=null,signature='',classic=false,selectedArmySlot=null,splitActive=false,splitAmount=1;const scrollPositions={worn:0,backpack:0,skills:0,army:0};
  const switchView=value=>{classic=value;root.dataset.heroView=value?'classic':'mobile';panel.hidden=classic||state.mode!=='hero';onViewChange();};
  const slots=()=>tab==='worn'?state.heroWindow?.slots||[]:tab==='backpack'?state.heroWindow?.backpack||[]:[];
+ function openCreatureDetails(slot){
+  if(slot===null||slot===undefined)return;
+  const hero=state.heroWindow||{};
+  const heroArmy=(state.armies||[]).find(a=>(Number.isInteger(hero.id)&&a.id===hero.id)||a.name===hero.name)||(state.armies||[])[0];
+  pointer?.({x: 44 + slot * 66, y: 517}, 2);
+  if(heroArmy)command?.(41, heroArmy.id, slot);
+ }
  function slotMarkup(a){const picked=state.heroWindow?.picked;const label=tab==='worn'?equipmentSlotNames[a.slot]||'Equipment':'Backpack '+(a.slot-18);return `<button class="hero-artifact-slot${picked&&a.allowed?' can-receive':''}" data-hero-slot="${a.slot}" aria-pressed="${a.slot===selected}" ${picked&&!a.allowed?'disabled':''} aria-label="${esc(label+': '+(a.name||'Empty'))}" title="${esc(label+': '+(a.name||'Empty'))}"><small>${label}${a.locked?' · Locked':''}</small>${a.name?`<canvas width="64" height="64" data-artifact-icon="${a.icon}" aria-hidden="true"></canvas><strong>${esc(a.name)}</strong>`:'<span class="hero-empty" aria-hidden="true">＋</span><strong>Empty</strong>'}</button>`;}
  function renderSkills(hero){
   const description=text=>esc(text?.replace(/[{}]/g,''));
@@ -45,32 +52,46 @@ export function createHeroEquipment({root,command,onViewChange=()=>{},portrait=(
   const items=Array.from({length:7},(_,i)=>slots[i]||null);
   return `<div class="hero-army-panel">
    <div class="hero-army-head">
-    <p class="hero-army-help">${fr?'Armée du héros (7 emplacements) : touche une troupe pour la scinder ou voir sa fiche.':'Hero army (7 slots): tap a unit to split or view details.'}</p>
+    <p class="hero-army-help">${fr?'Armée du héros (7 emplacements) : touche une troupe pour la scinder ou voir sa fiche animée.':'Hero army (7 slots): tap a unit to split or view animated details.'}</p>
    </div>
    <div class="hero-army-slots">
     ${items.map((unit,slot)=>{
      const isSelected=selectedArmySlot===slot;
      const isTarget=selectedArmySlot!==null&&selectedArmySlot!==slot;
-     return `
-     <button type="button" class="hero-army-slot${isSelected?' selected':''}${isTarget?' can-target':''}" data-army-slot="${slot}" aria-pressed="${isSelected}" aria-label="${esc(unit?`${unit.name} × ${unit.count}`:(fr?'Emplacement libre':'Empty slot'))}">
-      <span class="hero-army-slot-num">#${slot+1}</span>
-      <div class="hero-army-slot-content">
-       ${unit?`
-        <div class="hero-army-slot-art">
-         ${portrait(unit)}
-         <strong class="hero-army-slot-count">× ${unit.count}</strong>
-        </div>
-        <div class="hero-army-slot-info">
-         <span class="hero-army-slot-name">${esc(unit.name)}</span>
-         ${unit.attack!==undefined?`<small class="hero-army-slot-stats">⚔️ ${unit.attack} 🛡️ ${unit.defense}</small>`:''}
-        </div>
-       `:`
+     if(!unit){
+      return `
+      <button type="button" class="hero-army-slot hero-army-empty${isTarget?' can-target':''}" data-army-slot="${slot}" aria-pressed="false" aria-label="${fr?`Emplacement libre #${slot+1}`:`Empty slot #${slot+1}`}">
+       <span class="hero-army-slot-num">#${slot+1}</span>
+       <div class="hero-army-empty-content">
         <span class="hero-empty" aria-hidden="true">＋</span>
         <span class="hero-army-empty-label">${fr?'Libre':'Empty'}</span>
-       `}
+       </div>
+      </button>`;
+     }
+     return `
+     <button type="button" class="hero-army-slot${isSelected?' selected':''}${isTarget?' can-target':''}" data-army-slot="${slot}" aria-pressed="${isSelected}" aria-label="${esc(`${unit.name} × ${unit.count}`)}">
+      <span class="hero-army-slot-num">#${slot+1}</span>
+      <div class="hero-army-slot-content">
+       <div class="hero-army-slot-art">
+        ${portrait(unit)}
+        <strong class="hero-army-slot-count">× ${unit.count}</strong>
+       </div>
+       <div class="hero-army-slot-info">
+        <div class="hero-army-slot-title">
+         <span class="hero-army-slot-name">${esc(unit.name)}</span>
+         ${unit.shooter?'<span class="hero-army-shooter-badge" title="Ranged">🏹</span>':''}
+        </div>
+        <dl class="creature-stats">
+         <div><dt aria-label="Attack">ATK</dt><dd>${unit.attack??0}</dd></div>
+         <div><dt aria-label="Defense">DEF</dt><dd>${unit.defense??0}</dd></div>
+         <div><dt aria-label="Damage">DMG</dt><dd>${unit.damageMin??0}–${unit.damageMax??0}</dd></div>
+         <div><dt aria-label="Health">HP</dt><dd>${unit.health??0}</dd></div>
+         <div><dt aria-label="Speed">SPD</dt><dd>${unit.speed??0}</dd></div>
+        </dl>
+       </div>
       </div>
-     </button>
-    `;}).join('')}
+     </button>`;
+    }).join('')}
    </div>
   </div>`;
  }
@@ -120,7 +141,7 @@ export function createHeroEquipment({root,command,onViewChange=()=>{},portrait=(
   <section class="hero-artifact-detail" aria-live="polite" ${skills?'hidden':''}>
    ${isArmy?`
     <h3>${selectedUnit?esc(selectedUnit.name+' × '+selectedUnit.count):(fr?'Gestion des troupes':'Manage troops')}</h3>
-    <p class="hero-artifact-description">${selectedUnit?(selectedUnit.count>1?(fr?'Touche un emplacement libre pour déplacer, ou coche « Scinder » pour séparer les troupes.':'Tap another slot to move, or check « Split » to separate troops.'):(fr?'Touche un autre emplacement pour déplacer ou fusionner.':'Tap another slot to move or merge.')):(fr?'Touche une troupe ci-contre pour la réorganiser ou la scinder.':'Tap a unit stack to manage or split.')}</p>
+    <p class="hero-artifact-description">${selectedUnit?(selectedUnit.count>1?(fr?'Touche un emplacement libre pour déplacer, ou coche « Scinder » pour séparer les troupes.':'Tap another slot to move, or check « Split » to separate troops.'):(fr?'Touche un autre emplacement pour déplacer ou fusionner.':'Tap another slot to move or merge.')):(fr?'Touche une troupe pour la réorganiser, la scinder ou voir sa fiche.':'Tap a unit stack to manage, split or view details.')}</p>
     <div class="hero-army-dock-tools">
      <label class="hero-army-split-toggle">
       <input type="checkbox" id="hero-army-split" ${splitActive?'checked':''} ${!selectedUnit||selectedUnit.count<2||!state.turn?'disabled':''}>
@@ -128,10 +149,10 @@ export function createHeroEquipment({root,command,onViewChange=()=>{},portrait=(
      </label>
      <div class="hero-army-split-amount" ${!splitActive?'hidden':''}>
       <button type="button" data-hero-split-delta="-1">−</button>
-      <input type="number" min="1" max="${selectedUnit?selectedUnit.count-1:1}" value="${splitAmount}" readonly>
+      <input type="number" id="hero-army-split-num" min="1" max="${selectedUnit?selectedUnit.count-1:1}" value="${splitAmount}">
       <button type="button" data-hero-split-delta="1">+</button>
      </div>
-     <button type="button" class="hero-army-details-btn" data-hero-army-details ${!selectedUnit?'disabled':''}>${fr?'🔍 Fiche / Détails':'🔍 Details'}</button>
+     <button type="button" class="hero-army-details-btn" data-hero-army-details ${!selectedUnit?'disabled':''} title="${fr?'Voir la fiche détaillée de la créature':'View creature details'}">${fr?'🔍 Fiche / Détails':'🔍 Details'}</button>
     </div>
    `:`
     <h3>${esc(picked?'Moving: '+picked.name:item?.name||'Choose an artefact')}</h3>
@@ -163,9 +184,7 @@ export function createHeroEquipment({root,command,onViewChange=()=>{},portrait=(
   }
   if(button.hasAttribute('data-hero-army-details')){
    if(selectedArmySlot!==null){
-    const hero=state.heroWindow||{};
-    const heroArmy=(state.armies||[]).find(a=>(Number.isInteger(hero.id)&&a.id===hero.id)||a.name===hero.name)||(state.armies||[])[0];
-    if(heroArmy&&!heroTransition?.pending)command(41,heroArmy.id,selectedArmySlot);
+    openCreatureDetails(selectedArmySlot);
    }
    return;
   }
@@ -185,13 +204,16 @@ export function createHeroEquipment({root,command,onViewChange=()=>{},portrait=(
     return;
    }
    if(selectedArmySlot===slot){
-    selectedArmySlot=null;
-    splitActive=false;
-    render();
+    openCreatureDetails(slot);
     return;
    }
    if(hero.owned!==false&&state.turn){
     if(splitActive&&splitAmount>0){
+     const selUnit=Number.isInteger(selectedArmySlot)?heroArmy?.slots?.[selectedArmySlot]:null;
+     if(unit&&selUnit&&unit.id!==selUnit.id){
+      notify(getLanguage()==='fr'?'Choisis un emplacement libre pour scinder.':'Choose an empty slot to split.');
+      return;
+     }
      command(11,heroArmy.id,selectedArmySlot,heroArmy.id,slot,splitAmount);
      selectedArmySlot=null;splitActive=false;render();
     }else{
@@ -212,6 +234,17 @@ export function createHeroEquipment({root,command,onViewChange=()=>{},portrait=(
   }
   if(button.hasAttribute('data-hero-move')&&selected!==null)command(62,selected);
   if(button.hasAttribute('data-hero-cancel'))command(64);
+ });
+ panel.addEventListener('input',event=>{
+  if(event.target.id==='hero-army-split-num'){
+   const val=Number(event.target.value);
+   const hero=state.heroWindow||{};
+   const heroArmy=(state.armies||[]).find(a=>(Number.isInteger(hero.id)&&a.id===hero.id)||a.name===hero.name)||(state.armies||[])[0];
+   const selUnit=Number.isInteger(selectedArmySlot)?heroArmy?.slots?.[selectedArmySlot]:null;
+   if(selUnit&&Number.isInteger(val)&&val>=1&&val<selUnit.count){
+    splitAmount=val;
+   }
+  }
  });
  panel.addEventListener('change',event=>{
   if(event.target.id==='hero-army-split'){

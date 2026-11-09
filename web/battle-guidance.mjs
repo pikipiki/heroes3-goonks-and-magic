@@ -1,5 +1,6 @@
-import {translate} from './i18n.mjs';
+import {translate, getLanguage} from './i18n.mjs';
 import {battleCapabilities} from './battle-phase.mjs';
+import {BATTLE_HEX_VERTICES} from './battle-scene.mjs';
 export function battleGuidance(state){
  const actor=state.activeStack===undefined?null:(state.battleUnits||[]).find(unit=>unit.stackId===state.activeStack);
  const cap=battleCapabilities(state),controlled=state.activeUnit?.controlled??!actor?.enemy;
@@ -189,5 +190,122 @@ export function paintSpellTargets(ctx,targets,layout){
   ctx.lineWidth=2.5;
   ctx.stroke();
  }
+ ctx.restore();
+}
+
+export function paintSelectedTile(ctx,selected,layout,state,isMove=true){
+ if(!selected||state.mode!=='battle')return;
+ const guidance=battleGuidance(state);
+ const units=state.battleUnits||[];
+ const targetUnit=units.find(u=>Math.hypot(u.x-selected.x,u.y-selected.y)<16);
+ const isEnemy=targetUnit?.enemy===true;
+ const isAlly=targetUnit&&!targetUnit.enemy;
+ const isShot=(guidance.shotTargets||[]).some(u=>Math.hypot(u.x-selected.x,u.y-selected.y)<16);
+ const isMelee=(guidance.meleeTargets||[]).some(u=>Math.hypot(u.x-selected.x,u.y-selected.y)<16);
+ const isSpell=(guidance.spellTargets||[]).some(u=>Math.hypot(u.x-selected.x,u.y-selected.y)<16);
+ const isBeneficial=(guidance.beneficialTargets||[]).some(u=>Math.hypot(u.x-selected.x,u.y-selected.y)<16);
+ const px=layout.dx+(selected.x-layout.x)*layout.scale;
+ const py=layout.dy+(selected.y-layout.y)*layout.scale;
+ const fr=getLanguage()==='fr';
+
+ const fillColor=isEnemy?'rgba(235,40,40,0.55)':(isAlly||isBeneficial)?'rgba(30,195,200,0.5)':'rgba(255,230,0,0.6)';
+ const strokeColor=isEnemy?'#ff4d4d':(isAlly||isBeneficial)?'#50e6ff':'#ffffff';
+ const shadowColor='#000000';
+
+ ctx.save();
+
+ if(guidance.actor&&((isMove&&!targetUnit)||(isMelee&&targetUnit))){
+  const ax=layout.dx+(guidance.actor.x-layout.x)*layout.scale;
+  const ay=layout.dy+(guidance.actor.y-layout.y)*layout.scale;
+  const lineColor=isMelee?'#ff4d4d':'#ffe640';
+  ctx.beginPath();
+  ctx.moveTo(ax,ay);
+  ctx.lineTo(px,py);
+  ctx.strokeStyle='#000000';
+  ctx.lineWidth=Math.max(3,5*layout.scale);
+  ctx.stroke();
+  ctx.strokeStyle=lineColor;
+  ctx.lineWidth=Math.max(1.5,2.5*layout.scale);
+  ctx.setLineDash([Math.max(4,6*layout.scale),Math.max(3,4*layout.scale)]);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  const angle=Math.atan2(py-ay,px-ax);
+  const arrowLen=Math.max(8,12*layout.scale);
+  ctx.beginPath();
+  ctx.moveTo(px,py);
+  ctx.lineTo(px-arrowLen*Math.cos(angle-0.45),py-arrowLen*Math.sin(angle-0.45));
+  ctx.lineTo(px-arrowLen*Math.cos(angle+0.45),py-arrowLen*Math.sin(angle+0.45));
+  ctx.closePath();
+  ctx.fillStyle=lineColor;
+  ctx.fill();
+  ctx.strokeStyle='#000000';
+  ctx.lineWidth=1;
+  ctx.stroke();
+ }
+
+ ctx.beginPath();
+ BATTLE_HEX_VERTICES.forEach(([vx,vy],i)=>{
+  const hx=px+vx*layout.scale;
+  const hy=py+vy*layout.scale;
+  i?ctx.lineTo(hx,hy):ctx.moveTo(hx,hy);
+ });
+ ctx.closePath();
+ ctx.fillStyle=fillColor;
+ ctx.fill();
+ ctx.strokeStyle=shadowColor;
+ ctx.lineWidth=Math.max(4,5*layout.scale);
+ ctx.lineJoin='round';
+ ctx.stroke();
+ ctx.strokeStyle=strokeColor;
+ ctx.lineWidth=Math.max(2,2.5*layout.scale);
+ ctx.stroke();
+
+ const reticleR=Math.max(10,16*layout.scale);
+ ctx.beginPath();
+ ctx.arc(px,py,reticleR,0,Math.PI*2);
+ ctx.strokeStyle=shadowColor;
+ ctx.lineWidth=Math.max(2.5,4*layout.scale);
+ ctx.stroke();
+ ctx.strokeStyle=strokeColor;
+ ctx.lineWidth=Math.max(1.5,2*layout.scale);
+ ctx.stroke();
+
+ ctx.beginPath();
+ ctx.arc(px,py,Math.max(2.5,4*layout.scale),0,Math.PI*2);
+ ctx.fillStyle=strokeColor;
+ ctx.fill();
+
+ const tickDist=reticleR+1;
+ const tickLen=Math.max(4,7*layout.scale);
+ ctx.strokeStyle=strokeColor;
+ ctx.lineWidth=Math.max(1.5,2*layout.scale);
+ ctx.beginPath();
+ ctx.moveTo(px-tickDist-tickLen,py);ctx.lineTo(px-tickDist,py);
+ ctx.moveTo(px+tickDist,py);ctx.lineTo(px+tickDist+tickLen,py);
+ ctx.moveTo(px,py-tickDist-tickLen);ctx.lineTo(px,py-tickDist);
+ ctx.moveTo(px,py+tickDist);ctx.lineTo(px,py+tickDist+tickLen);
+ ctx.stroke();
+
+ const badgeText=isEnemy?(isShot?(fr?'🎯 Tir':'🎯 Shoot'):(fr?'⚔️ Cible':'⚔️ Target')):(isAlly||isBeneficial)?(fr?'+ Bénéfique':'+ Buff'):state.spellTargeting?(fr?'✨ Zone sort':'✨ Spell'):(fr?'📍 Destination':'📍 Destination');
+ const fontSize=Math.max(9,Math.round(11*Math.min(1.2,Math.max(0.75,layout.scale))));
+ ctx.font=`bold ${fontSize}px system-ui,sans-serif`;
+ const textWidth=ctx.measureText(badgeText).width;
+ const badgeW=textWidth+12;
+ const badgeH=fontSize+8;
+ const badgeX=Math.max(layout.dx+4,Math.min(layout.dx+layout.w*layout.scale-badgeW-4,px-badgeW/2));
+ const badgeY=Math.max(layout.dy+4,py-26*layout.scale-badgeH);
+ ctx.fillStyle='rgba(15,10,5,0.92)';
+ ctx.beginPath();
+ if(typeof ctx.roundRect==='function')ctx.roundRect(badgeX,badgeY,badgeW,badgeH,4);
+ else ctx.rect(badgeX,badgeY,badgeW,badgeH);
+ ctx.fill();
+ ctx.strokeStyle=strokeColor;
+ ctx.lineWidth=1.5;
+ ctx.stroke();
+ ctx.fillStyle=strokeColor;
+ ctx.textAlign='center';
+ ctx.textBaseline='middle';
+ ctx.fillText(badgeText,badgeX+badgeW/2,badgeY+badgeH/2);
+
  ctx.restore();
 }

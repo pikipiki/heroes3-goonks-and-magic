@@ -134,7 +134,7 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
 #mobile-app .hero-movement-item strong{font-size:13px;font-weight:600}
 #mobile-app .hero-movement-item span{font-variant-numeric:tabular-nums}
 #mobile-app .hero-movement-item.is-exhausted{color:#c8c0ac}
-#mobile-app[data-mode=map] .mobile-nav:not(:has(>[data-ui=hero-exchange]))>[data-ui=endturn]{grid-column:span 2}
+#mobile-app[data-mode=map] .mobile-nav:not(:has(>[data-ui=hero-exchange]))>[data-ui=endturn]{grid-column:auto}
 @media(orientation:landscape) and (max-height:600px){
  #mobile-app .hero-movement-item{flex-basis:100%;box-sizing:border-box;justify-content:space-between;padding:0 4px;gap:4px;min-height:32px}
 }
@@ -256,7 +256,7 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
   --map-action-rows:repeat(2,minmax(44px,1fr));
   grid-template-columns:repeat(3,minmax(0,1fr));
  }
- #mobile-app[data-mode=map] .mobile-nav:not(:has(>[data-ui=hero-exchange]))>[data-ui=endturn]{grid-column:span 2}
+ #mobile-app[data-mode=map] .mobile-nav:not(:has(>[data-ui=hero-exchange]))>[data-ui=endturn]{grid-column:auto}
 }
 
 /* Dwelling recruitment gives the live creature the main stage in both orientations. */
