@@ -252,26 +252,6 @@ export function paintSelectedTile(ctx,selected,layout,state,isMove=true){
  ctx.moveTo(px,py+tickDist);ctx.lineTo(px,py+tickDist+tickLen);
  ctx.stroke();
 
- const badgeText=isEnemy?(isShot?(fr?'🎯 Tir':'🎯 Shoot'):(fr?'⚔️ Cible':'⚔️ Target')):(isAlly||isBeneficial)?(fr?'+ Bénéfique':'+ Buff'):state.spellTargeting?(fr?'✨ Zone sort':'✨ Spell'):(fr?'📍 Destination':'📍 Destination');
- const fontSize=Math.max(9,Math.round(11*Math.min(1.2,Math.max(0.75,layout.scale))));
- ctx.font=`bold ${fontSize}px system-ui,sans-serif`;
- const textWidth=ctx.measureText(badgeText).width;
- const badgeW=textWidth+12;
- const badgeH=fontSize+8;
- const badgeX=Math.max(layout.dx+4,Math.min(layout.dx+layout.w*layout.scale-badgeW-4,px-badgeW/2));
- const badgeY=Math.max(layout.dy+4,py-26*layout.scale-badgeH);
- ctx.fillStyle='rgba(15,10,5,0.92)';
- ctx.beginPath();
- if(typeof ctx.roundRect==='function')ctx.roundRect(badgeX,badgeY,badgeW,badgeH,4);
- else ctx.rect(badgeX,badgeY,badgeW,badgeH);
- ctx.fill();
- ctx.strokeStyle=strokeColor;
- ctx.lineWidth=1.5;
- ctx.stroke();
- ctx.fillStyle=strokeColor;
- ctx.textAlign='center';
- ctx.textBaseline='middle';
- ctx.fillText(badgeText,badgeX+badgeW/2,badgeY+badgeH/2);
 
  ctx.restore();
 }

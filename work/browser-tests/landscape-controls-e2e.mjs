@@ -35,7 +35,7 @@ for(const kind of ['chromium','webkit']){
     const left=await page.locator('#mobile-app').evaluate(e=>e.clientWidth-parseFloat(getComputedStyle(e).gridTemplateColumns.split(' ').at(-1)));
     let count=0;
     for(const b of await page.locator(selector).all())if(await b.isVisible()){
-     count++;const r=await b.boundingBox();assert(r.x>=left-1&&r.y>=-1&&r.x+r.width<=width+1&&r.y+r.height<=height+1,name+' right controls '+JSON.stringify({width,height,left,r}));assert(r.width>=43&&r.height>=43,name+' touch target '+JSON.stringify(r));
+     count++;const r=await b.boundingBox();const onRight=!(name==='map'&&await b.evaluate(e=>!!e.closest('.scene-tools')))&&name!=='creature';assert((!onRight||r.x>=left-1)&&r.y>=-1&&r.x+r.width<=width+1&&r.y+r.height<=height+1,name+' right controls '+JSON.stringify({width,height,left,r}));assert(r.width>=43&&r.height>=43,name+' touch target '+JSON.stringify(r));
     }
     assert(count>0,name+' exercised visible controls');
     if(['map','town','battle'].includes(name)){

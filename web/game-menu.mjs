@@ -124,7 +124,7 @@ function mountGameMenu(){
     if(dialog.open)render();
     window.goonkGameMenuState={muted,ready:initialAudioApplied,native:state};
   });
-  window.addEventListener('goonk-autosave-status',e=>{const s=e.detail;dialog.querySelector('.autosave-status').textContent=s.phase==='error'?'Sauvegarde automatique : '+s.error:s.phase==='saving'?'Sauvegarde automatique en cours…':s.deferred?'Combat en cours : sauvegarde différée'+(s.lastSaved?' · dernière à '+new Date(s.lastSaved).toLocaleTimeString('fr-FR'):''):s.lastSaved?'Sauvegarde automatique : '+new Date(s.lastSaved).toLocaleTimeString('fr-FR')+' · cycle 10 s':'Sauvegarde automatique : cycle 10 s · en attente d’un état enregistrable';});
+  window.addEventListener('goonk-autosave-status',e=>{const s=e.detail;dialog.querySelector('.autosave-status').textContent=s.phase==='error'?'Sauvegarde automatique : '+s.error:s.phase==='saving'?'Sauvegarde automatique en cours…':s.deferred?'Combat en cours : sauvegarde différée'+(s.lastSaved?' · dernière à '+new Date(s.lastSaved).toLocaleTimeString(getLanguage()==='fr'?'fr-FR':'en-GB'):''):s.lastSaved?'Sauvegarde automatique : '+new Date(s.lastSaved).toLocaleTimeString(getLanguage()==='fr'?'fr-FR':'en-GB')+' · cycle 10 s':'Sauvegarde automatique : cycle 10 s · en attente d’un état enregistrable';});
   const menuPresses=protectMenuButtons(dialog,activateMenuButton,{context:()=>tab});
   bindPress(toggle,()=>{menuPresses.cancel();tab='home';render();status.textContent='';if(!dialog.open)dialog.showModal();});
   function activateMenuButton(button){

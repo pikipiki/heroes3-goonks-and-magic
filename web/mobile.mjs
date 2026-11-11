@@ -148,6 +148,7 @@ function mount(){
  const paintHeroMovement=watchHeroMovement(nav);
  const onlineLogin=createOnlineLogin(root,command);
  const onlineLobby=createOnlineLobby(root,command);
+ const reviewStyle=document.createElement('link');reviewStyle.rel='stylesheet';reviewStyle.href=new URL('./mobile-review.css',import.meta.url).href;document.head.append(reviewStyle);
  const turnLimits=[0,1,2,3,5,10];
  function controls(){
   const m=state.mode,cap=battleCapabilities(effectiveBattle()),target=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),blocked=!state.spellTargeting&&target?.enemy&&target.canShootAt===false&&target.canMeleeAt===false;let items;
@@ -176,7 +177,7 @@ function mount(){
   else if(m==='dialog'&&state.dialogKind==='commander-level-up'){
    items=[btn(fr?'✓ Valider la compétence':'✓ Confirm skill','accept',true),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
   }
-  else if(m==='town')items=[[fr?'Carte':'Map','back','town-exit'],[fr?'Recruter des héros':'Recruit heroes','recruit-heroes','town-fort'],[fr?'Armées':'Armies','army','town-split'],[fr?'Construire':'Build','build','town-hall']].map(([label,ui,icon])=>`<button data-ui="${ui}" class="town-action"><img src="./web/h3-theme/${icon}.png" alt=""><span>${label}</span></button>`);
+  else if(m==='town')items=[[fr?'Carte':'Map','back','town-exit'],[fr?'Recruter des héros':'Recruit heroes','recruit-heroes','town-tavern'],[fr?'Armées':'Armies','army','town-split'],[fr?'Construire':'Build','build','town-hall'],['Recruitment hall','town-fort','town-fort'],['Mage guild','town-guild','town-hall'],['Marketplace','town-market','resource-gold']].map(([label,ui,icon])=>`<button data-ui="${ui}" class="town-action"><img src="./web/h3-theme/${icon}.${icon==='town-tavern'?'svg':'png'}" alt=""><span>${label}</span></button>`);
   else if(m==='battle'&&cap.tactics)items=[btn(fr?'✓ Placer':'✓ Place','target',true,!selectedPoint||!cap.move),btn(fr?'⚔ Combattre':'⚔ Fight','end-tactics',false,!cap.endTactics),btn(fr?'Troupes':'Troops','tactic-units',false,!cap.endTactics),btn(fr?'Suivante':'Next','next-tactics',false,!cap.endTactics)];
   else if(m==='battle'){
    const guidance=battleGuidance(effectiveBattle());
@@ -287,7 +288,7 @@ function mount(){
   root.dataset.battleView='native';root.querySelector('.battle-view').hidden=state.mode!=='battle';syncBattleView();overview.hidden=!['map','town'].includes(state.mode)||(state.mode==='town'&&root.dataset.townLayout==='portrait');if(state.mode==='map'){overview.setAttribute('aria-label','Vue d’ensemble de la carte. Flèches pour déplacer la vue.');overview.setAttribute('role','group');overview.tabIndex=0;}else{overview.removeAttribute('role');overview.removeAttribute('tabindex');}root.querySelector('.map-center').disabled=!state.heroName&&!state.worldView;root.querySelector('.map-castle').disabled=!state.towns?.length;syncViewButton();renderBattlePanel();
   const townOverview=root.querySelector('#town-overview');townOverview.hidden=state.mode!=='town';
   root.querySelector('.town-view').hidden=state.mode!=='town';
-  if(state.mode==='town'){overview.hidden=false;overview.setAttribute('aria-label','Town overview');const shortcuts=[['town-fort','Recruitment hall','town-fort'],['town-guild','Mage guild','town-fort'],['town-market','Marketplace','resource-gold']];const html=`<div class="town-recruit-strip" aria-label="Town buildings">${shortcuts.map(([ui,name,icon])=>`<button data-ui="${ui}"><img src="${ui==='town-guild'?(asset('goonk/structure-mageGuild1.png')||'./web/h3-theme/'+icon+'.png'):'./web/h3-theme/'+icon+'.png'}" alt=""><span>${name}</span></button>`).join('')}</div>`;if(townOverview._sourceMarkup!==html){townOverview._sourceMarkup=html;townOverview.innerHTML=html;}}
+  if(state.mode==='town'){overview.hidden=false;overview.setAttribute('aria-label','Town overview');townOverview.replaceChildren();townOverview.hidden=true;}
 
 
   
@@ -498,7 +499,7 @@ function mount(){
   }
   if(ui==='exchange-mobile'){heroExchange.showMobile();return;}
   if(ui==='exchange-close'){command(93);return;}
-  if(ui==='hero-mobile'){heroEquipment.showMobile();return;}if(ui==='hero-back'){command(63);return;}
+  if(ui==='hero-mobile'){heroEquipment.showMobile();return;}if(ui==='hero-back'){heroEquipment.showMobile();return;}
   if(ui==='native-equipment'){closeSheet();command(55);return;}
   if(['equipment','heroes','towns','build','recruit','army'].includes(ui))return showList(ui);
   if(ui==='confirm-recruit'){if(!state.turn||recruitLoading)return;const u=state.recruitUnit,amount=Number(root.querySelector('#recruit-number').value);if(!u||!Number.isInteger(amount)||amount<1||amount>state.recruitMaximum){notify('Choisis une quantité entre 1 et '+state.recruitMaximum);return;}pendingRecruit={id:u.id,name:u.name,amount,before:townArmy.filter(s=>s?.id===u.id).reduce((n,s)=>n+s.count,0)};command(31,amount);command(32);return;}if(ui==='max-recruit'){command(31,state.recruitMaximum||0);return;}if(ui==='cancel-recruit'){pendingRecruit=null;recruitLoading=false;expectedRecruitId=null;command(33);return;}

@@ -1,0 +1,70 @@
+{
+  "scope": "Real WASM, isolated temporary storage, memory-only fixtures; cases executed separately.",
+  "cases": [
+    {
+      "name": "no-boat",
+      "errors": [],
+      "before": {
+        "mana": 500,
+        "cost": 6
+      },
+      "unavailableMessage": true,
+      "passed": true
+    },
+    {
+      "name": "visible-boat",
+      "errors": [],
+      "before": {
+        "mana": 500,
+        "cost": 6
+      },
+      "mapGeometry": {
+        "scene": {
+          "x": 0,
+          "y": 0,
+          "width": 661.734375,
+          "height": 430
+        },
+        "mini": {
+          "x": 661.734375,
+          "y": 82,
+          "width": 270.265625,
+          "height": 196
+        },
+        "viewport": {
+          "width": 932,
+          "height": 430
+        }
+      },
+      "target": {
+        "x": 368,
+        "y": 312,
+        "overview": {
+          "height": 36,
+          "level": 0,
+          "rect": {
+            "h": 144,
+            "w": 144,
+            "x": 630,
+            "y": 26
+          },
+          "view": {
+            "h": 546,
+            "w": 594,
+            "x": 7,
+            "y": 7
+          },
+          "viewport": {
+            "h": 19,
+            "w": 20,
+            "x": -1,
+            "y": 2
+          },
+          "width": 36
+        }
+      },
+      "afterMana": 494,
+      "passed": true
+    }
+  ]
+}

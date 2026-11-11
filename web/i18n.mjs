@@ -1,9 +1,26 @@
 let language='en';try{language=localStorage.getItem('heroes-goonk.language')==='fr'?'fr':'en';}catch{}
 export const getLanguage=()=>language;
 let dictionary={};if(typeof window!=='undefined')try{const response=await fetch(new URL('./i18n-dictionary.json',import.meta.url));dictionary=await response.json();}catch(error){console.error('Translation catalogue unavailable',error);}
-const reverse=Object.fromEntries(Object.entries(dictionary).map(([fr,en])=>[en,fr]));
-const tokens=Object.entries(dictionary).sort((a,b)=>b[0].length-a[0].length),back=Object.entries(reverse).sort((a,b)=>b[0].length-a[0].length);
-export function translate(value,lang=language){const text=String(value??''),table=lang==='fr'?reverse:dictionary,entries=lang==='fr'?back:tokens;if(table[text])return table[text];let result=text;for(const [a,b]of entries){if(a.length<3||!result.includes(a))continue;result=result.replaceAll(a,(match,offset,whole)=>{const before=whole[offset-1],after=whole[offset+match.length];return before&&/\p{L}/u.test(before)||after&&/\p{L}/u.test(after)?match:b;});}return result;}
+// Keep the same translation rules available to DOM text and canvas renderers.
+export function createTranslator(catalogue){
+ const reverse=Object.fromEntries(Object.entries(catalogue).map(([fr,en])=>[en,fr]));
+ const tokens=Object.entries(catalogue).sort((a,b)=>b[0].length-a[0].length),back=Object.entries(reverse).sort((a,b)=>b[0].length-a[0].length);
+ return(value,lang='en')=>{
+  const text=String(value??''),table=lang==='fr'?reverse:catalogue,entries=lang==='fr'?back:tokens;
+  if(table[text])return table[text];
+  let result=text;
+  for(const [a,b]of entries){
+   // Short resource names such as French “or” must not rewrite English prose.
+   if(a.length<3||!result.includes(a))continue;
+   result=result.replaceAll(a,(match,offset,whole)=>{const before=whole[offset-1],after=whole[offset+match.length];return before&&/\p{L}/u.test(before)||after&&/\p{L}/u.test(after)?match:b;});
+  }
+  // HP labels are often embedded in a live stat line rather than separate nodes.
+  const from=lang==='fr'?'HP':'PV',to=lang==='fr'?'PV':'HP';
+  return result.replace(new RegExp('(^|[^\\p{L}\\p{N}_])'+from+'(?=$|[^\\p{L}\\p{N}_])','gu'),(_,prefix)=>prefix+to);
+ };
+}
+const translateText=createTranslator(dictionary);
+export function translate(value,lang=language){return translateText(value,lang);}
 let redraw=()=>{};
 export function setLanguage(value){language=value==='fr'?'fr':'en';try{localStorage.setItem('heroes-goonk.language',language);}catch{}if(typeof document!=='undefined'){document.documentElement.lang=language;redraw();window.dispatchEvent(new CustomEvent('goonk-language',{detail:{language}}));}return language;}
 if(typeof document!=='undefined'){

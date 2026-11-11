@@ -15,6 +15,7 @@
 #include "GUIClasses.h"
 #include "InfoWindows.h"
 #include "CCastleInterface.h"
+#include "CHeroWindow.h"
 
 #include "../CPlayerInterface.h"
 #include "../PlayerLocalState.h"
@@ -745,6 +746,10 @@ void CSpellWindow::SpellArea::clickPressed(const Point & cursorPosition)
 		{
 			const CGHeroInstance * h = owner->myHero;
 			ENGINE->windows().popWindows(1);
+			// Casting an adventure spell needs the map to receive its target.
+			// Merely closing the book must still return to this hero sheet.
+			if(auto sheet = ENGINE->windows().topWindow<CHeroWindow>(); sheet && sheet->curHero == h)
+				sheet->close();
 
 			auto guard = vstd::makeScopeGuard([this]()
 			{
@@ -906,5 +911,39 @@ JsonNode CSpellWindow::mobileSnapshot()
 }
 void CSpellWindow::mobileSelectSpell(int id)
 {
- for(const auto & area:spellAreas)if(area&&area->mySpell&&area->mySpell->id.getNum()==id){area->clickPressed(area->pos.center());return;}
+ for(const auto & area:spellAreas)if(area&&area->mySpell&&area->mySpell->id.getNum()==id)
+ {
+  const auto spell = area->mySpell;
+  // Do this once on a mobile cast request, not in the frequently published
+  // spell snapshot. A missing visible target must not leave an invisible
+  // targeting mode behind the hero sheet, or reveal unexplored boats.
+  if(!myInt->battleInt && !myInt->castleInt && myInt->makingTurn
+     && spell->getJsonKey() == "core:scuttleBoat"
+     && myInt->cb->getSpellCost(spell, myHero) <= myHero->mana)
+  {
+   spells::detail::ProblemImpl problem;
+   const auto & mechanics = spell->getAdventureMechanics();
+   if(mechanics.canBeCast(problem, myInt->cb.get(), myHero))
+   {
+    const auto effect = mechanics.getEffectAs<AdventureSpellRangedEffect>(myHero);
+    const auto size = myInt->cb->getMapSize();
+    bool available = false;
+    const int z = myHero->getSightCenter().z;
+    for(int y = 0; effect && y < size.y && !available; ++y)
+     for(int x = 0; x < size.x && !available; ++x)
+     {
+      const int3 pos(x, y, z);
+      if(effect->isTargetInRange(myInt->cb.get(), myHero, pos)
+         && myInt->cb->isVisibleFor(pos, myHero->getOwner()))
+       available = effect->canBeCastAtImpl(problem, myInt->cb.get(), myHero, pos);
+     }
+    if(effect && !available)
+    {
+     myInt->showInfoDialog("Scuttle Boat is unavailable: no visible boat is in range of this hero.");
+     return;
+    }
+   }
+  }
+  area->clickPressed(area->pos.center());return;
+ }
 }

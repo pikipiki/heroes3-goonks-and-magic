@@ -96,7 +96,7 @@ for(const kind of ['chromium','webkit']){const b=await(kind==='webkit'?webkit.la
  }));
  for(const {width,height,close,rotate} of [
   {width:430,height:873,close:'[data-presentation-close]'},
-  {width:932,height:430,close:'[data-ui=presentation-back]'},
+  {width:932,height:430,close:'[data-presentation-close]'},
   {width:430,height:873,close:'[data-presentation-close]',rotate:{width:932,height:430}}
  ]){
   await p.setViewportSize({width,height});

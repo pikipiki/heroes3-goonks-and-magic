@@ -85,10 +85,11 @@ test('paintMeleeTargets renders crossed sword icons on reachable enemy positions
 
 
 test('Battle destination feedback connects the endpoints without intermediate steps',()=>{
- const lines=[];
- const ctx=new Proxy({measureText:()=>({width:80})},{get:(target,key)=>key in target?target[key]:(...args)=>{if(key==='lineTo')lines.push(args);}});
+ const lines=[],labels=[];
+ const ctx=new Proxy({measureText:()=>({width:80})},{get:(target,key)=>key in target?target[key]:(...args)=>{if(key==='lineTo')lines.push(args);if(key==='fillText')labels.push(args[0]);}});
  const selected={x:300,y:196};
  paintSelectedTile(ctx,selected,{x:0,y:0,dx:0,dy:0,scale:1},{...state,tacticsMode:false,round:1,battleCamera:{previewPath:[actor,{x:190,y:280},selected]}});
  assert(lines.some(([x,y])=>x===selected.x&&y===selected.y));
  assert(!lines.some(([x,y])=>x===190&&y===280),'The detailed path is not drawn');
+ assert(!labels.some(label=>/Destination/.test(label)),'No destination badge obscures the battlefield');
 });

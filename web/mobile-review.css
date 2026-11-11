@@ -1,0 +1,110 @@
+/* Content-led Heroes III layouts. Buttons keep their native frames and 44px targets. */
+#mobile-app .town-action img{object-fit:contain}
+#mobile-app .scene-hint:empty{display:none}
+@media(orientation:landscape){
+ /* Construction, rosters and other information pages need the complete surface. */
+ html.goonk-mobile #mobile-app[data-sheet] .mobile-sheet{inset:0!important;width:100%!important;max-width:none;max-height:100%;border-radius:0;z-index:30;display:grid;grid-template-rows:52px minmax(0,1fr);box-sizing:border-box;padding:0}
+ #mobile-app[data-sheet] .sheet-head{padding:3px 8px;min-width:0;gap:8px}
+ #mobile-app[data-sheet] .sheet-head h2{font-size:20px;line-height:1.1;min-width:0}
+ #mobile-app[data-sheet] .sheet-head button{min-width:44px;min-height:44px;padding:3px 9px}
+ #mobile-app[data-sheet] .sheet-body{padding:8px;min-height:0;overflow:auto;box-sizing:border-box}
+ #mobile-app[data-sheet=build] .building-menu:has(.building-detail){display:grid;grid-template-columns:minmax(180px,.6fr) minmax(0,1.4fr);gap:10px;align-content:start}
+ #mobile-app[data-sheet=build] .building-project{grid-column:1;grid-row:1;min-width:0}
+ #mobile-app[data-sheet=build] .building-project ol{display:grid;grid-template-columns:1fr;gap:4px}
+ #mobile-app[data-sheet=build] .building-project li{flex:auto}
+ #mobile-app[data-sheet=build] .building-detail{grid-column:2;grid-row:1/4;grid-template-columns:minmax(100px,.5fr) minmax(0,1fr);padding:0;min-width:0}
+ #mobile-app[data-sheet=build] .building-menu:has(.building-detail):not(:has(.building-project)){grid-template-columns:1fr}
+ #mobile-app[data-sheet=build] .building-menu:not(:has(.building-project)) .building-detail{grid-column:1;grid-template-columns:minmax(150px,.6fr) minmax(0,1.4fr)}
+ #mobile-app[data-sheet=build] .building-detail .building-card-image{height:clamp(100px,42dvh,260px)}
+ #mobile-app[data-sheet=build] .building-detail h3{font-size:22px;overflow-wrap:anywhere}
+ #mobile-app[data-sheet=build] .building-cards{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+ #mobile-app[data-sheet=weekly-recruits] .weekly-roster{max-width:1100px;margin:0 auto;width:100%;box-sizing:border-box}
+ #mobile-app[data-sheet=weekly-recruits] .weekly-roster table{table-layout:auto}
+ #mobile-app[data-sheet=weekly-recruits] .weekly-creatures{grid-template-columns:44px minmax(120px,1fr)}
+ #mobile-app[data-sheet=weekly-recruits] .weekly-creatures ul{overflow-wrap:normal;word-break:normal}
+ /* A creature sheet is a balanced page, rather than a miniature side panel. */
+ html.goonk-mobile #mobile-app[data-mode=creature]>.mobile-top{position:absolute!important;top:4px;left:4px;right:auto;z-index:12;width:44px!important}
+ html.goonk-mobile #mobile-app[data-mode=creature] .creature-presentation:not([hidden]){inset:0;display:grid;grid-template-columns:minmax(180px,.7fr) minmax(0,1.3fr);grid-template-rows:52px minmax(0,1fr) auto;padding:0;box-sizing:border-box}
+ html.goonk-mobile #mobile-app[data-mode=creature] .creature-view-head{grid-column:1/-1;grid-row:1;padding:3px 8px 3px 56px;min-height:0;gap:8px;border-bottom:2px ridge #b99b57}
+ #mobile-app[data-mode=creature] .creature-view-head h2{flex:1;font-size:22px;min-width:0;overflow-wrap:anywhere}
+ #mobile-app[data-mode=creature] .creature-view-head button{min-width:44px;min-height:44px}
+ #mobile-app[data-mode=creature] .creature-stage{grid-column:1;grid-row:2/-1;padding:8px;min-height:0;display:grid;place-items:center}
+ #mobile-app[data-mode=creature] .creature-stage canvas{width:min(100%,320px);height:100%;max-height:100%;aspect-ratio:auto;object-fit:contain}
+ #mobile-app[data-mode=creature] .creature-details{grid-column:2;grid-row:2;padding:10px;min-width:0;min-height:0;overflow:auto;box-sizing:border-box}
+ #mobile-app[data-mode=creature] .creature-stats{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+ #mobile-app[data-mode=creature] .creature-stats dt{font-size:12px}
+ #mobile-app[data-mode=creature] .creature-stats dd{font-size:20px}
+ #mobile-app[data-mode=creature] .creature-abilities{font-size:14px;line-height:1.35}
+ #mobile-app[data-mode=creature] .creature-upgrades{grid-column:2;grid-row:3;max-height:40dvh;padding:6px 10px;overflow:auto}
+ html.goonk-mobile #mobile-app[data-mode=creature]>.mobile-nav{display:none!important}
+ /* Native hero controls are a compact toolbar; Back changes the presentation. */
+ html.goonk-mobile #mobile-app[data-mode=hero][data-hero-view=classic] .scene-tools{display:none!important}
+ html.goonk-mobile #mobile-app[data-mode=hero][data-hero-view=classic]>.mobile-nav{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ #mobile-app[data-mode=hero][data-hero-view=classic]>.mobile-nav>button{white-space:normal}
+ /* City actions are all explicit and distinct, including the tavern. */
+ html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav{grid-row:2/-1!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-rows:minmax(44px,1fr);gap:5px!important;align-content:stretch}
+ #mobile-app[data-mode=town] .town-action{flex-direction:column;justify-content:center;white-space:normal}
+ #mobile-app[data-mode=town] .town-action img{width:34px;height:30px}
+ #mobile-app[data-mode=town] .town-view{position:absolute;top:auto;bottom:8px;left:8px;right:auto;width:auto;min-height:44px;z-index:3}
+ #mobile-app[data-mode=town] .scene-tools{display:none!important}
+ /* Put centering shortcuts over the map's top edge and reserve a real minimap. */
+ html.goonk-mobile #mobile-app[data-mode=map],html.goonk-mobile #mobile-app[data-mode=map]:has(#mobile-overview:not([hidden])){grid-template-rows:auto minmax(64px,1fr) auto!important}
+ html.goonk-mobile #mobile-app[data-mode=map]>.mobile-nav{grid-row:3!important;grid-auto-rows:auto!important}
+ html.goonk-mobile #mobile-app[data-mode=map] .mobile-play .scene-tools{position:absolute!important;top:6px!important;left:6px!important;right:auto;bottom:auto;grid-column:auto;grid-row:auto;width:auto!important;display:flex!important;max-width:calc(100% - var(--control-rail) - 12px)!important;padding:0;gap:4px!important;height:44px}
+ #mobile-app[data-mode=map] .scene-tools .map-center,#mobile-app[data-mode=map] .scene-tools .map-castle{height:44px;min-height:44px!important;padding:3px 8px!important}
+ html.goonk-mobile #mobile-app[data-mode=map] #mobile-overview:not([hidden]){position:static;grid-column:2;grid-row:2;width:100%;height:100%;min-height:64px;max-height:none;border:1px ridge #9e824a;object-fit:contain;box-sizing:border-box}
+ #mobile-app[data-mode=map] .scene-hint{display:none}
+ #mobile-app[data-mode=map] .hero-movement-summary{border:0!important;padding:0!important;margin:0!important}
+ #mobile-app[data-mode=map] .hero-movement-list{margin:0;padding:0}
+ #mobile-app[data-mode=map] .hero-movement-item>button{min-height:44px;height:auto;font-size:12px;padding:3px 5px}
+ #mobile-app[data-mode=map] .hero-movement-item.is-active{box-shadow:none;border:1px solid #d7b363!important}
+ /* Guild floors are tabs, never full-height pillars. */
+ #mobile-app .mage-guild-library>nav{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:44px 44px!important;grid-auto-rows:44px!important;grid-auto-flow:row!important;align-content:start!important;padding:6px;gap:4px}
+ #mobile-app .mobile-mage-guild [data-guild-level]{min-height:44px!important;height:44px!important;min-width:0;font-size:12px}
+ #mobile-app .mobile-mage-guild>header{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;gap:4px;padding:4px 6px 4px 48px}
+ #mobile-app .mobile-mage-guild>header h2{grid-column:1/-1;font-size:20px;line-height:1.1}
+ #mobile-app .mage-guild-library>nav button:nth-child(4){grid-column:1}
+ #mobile-app .mage-guild-library>nav button:nth-child(5){grid-column:2}
+ #mobile-app .mobile-mage-guild .mage-guild-detail p{font-size:14px;line-height:1.4}
+ /* Combat: regular command rows, with a single clear primary action. */
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]>.mobile-nav{grid-template-columns:repeat(6,minmax(0,1fr))!important;grid-template-rows:none!important;grid-auto-rows:minmax(44px,auto)!important}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]>.mobile-nav>[data-ui]{grid-column:span 3!important;min-height:44px!important;height:auto!important;grid-row:auto!important}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]>.mobile-nav>[data-ui=target]{grid-column:1/-1!important}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]>.mobile-nav>:is([data-ui=end-tactics],[data-ui=tactic-units],[data-ui=next-tactics]){grid-column:span 2!important}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-panel-card{display:grid!important;grid-template-columns:clamp(64px,10vw,120px) minmax(0,1fr)!important;grid-template-rows:auto auto auto!important;gap:6px!important;align-items:center;align-content:center;flex:0 1 auto;min-width:0;padding:6px!important}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] #battle-creature-detail{grid-column:1;grid-row:1/3;width:100%!important;height:auto!important;aspect-ratio:1;max-height:120px!important;border:1px solid #b99b57}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-unit-info{grid-column:2;grid-row:1/3;min-width:0}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-turn{white-space:normal!important;max-height:none!important;line-height:1.2!important;font-size:clamp(12px,1.6vw,18px)!important}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-unit-stats{grid-column:1/-1!important;grid-row:3!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;margin:0!important;gap:3px!important}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-stat-pill{padding:3px!important;font-size:11px!important;min-width:0}
+}
+@media(orientation:landscape){
+ html.goonk-mobile #mobile-app[data-mode=creature]>.mobile-top{grid-column:1/-1!important;grid-row:1/-1!important}
+ html.goonk-mobile #mobile-app[data-mode=creature] .creature-view-head{position:static;inset:auto}
+ html.goonk-mobile #mobile-app[data-mode=creature] .creature-view-head h2{display:block}
+ #mobile-app[data-mode=creature] .creature-facts h3{display:none}
+ #mobile-app[data-mode=creature] .creature-facts .creature-stats{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
+}
+@media(orientation:portrait){
+ html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav{grid-template-columns:repeat(12,minmax(0,1fr))!important}
+ html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav>.town-action{grid-column:span 3!important}
+ html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav>:is([data-ui=town-fort],[data-ui=town-guild],[data-ui=town-market]){grid-column:span 4!important}
+}
+@media(orientation:landscape){
+ html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav{grid-template-columns:repeat(6,minmax(0,1fr))!important}
+ html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav>.town-action{grid-column:span 3!important}
+ html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav>:is([data-ui=town-fort],[data-ui=town-guild],[data-ui=town-market]){grid-column:span 2!important}
+ #mobile-app[data-mode=town]>.mobile-nav>:is([data-ui=town-fort],[data-ui=town-guild],[data-ui=town-market]) span{font-size:11px;overflow-wrap:anywhere}
+}
+@media(orientation:landscape){
+ #mobile-app[data-mode=town] #mobile-overview{display:none!important}
+}
+@media(orientation:portrait){
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]>.mobile-nav:has(>[data-ui=end-tactics]){grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:auto auto!important}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]>.mobile-nav>[data-ui=end-tactics]{grid-column:1!important;grid-row:2!important}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]>.mobile-nav>[data-ui=tactic-units]{grid-column:2!important;grid-row:2!important}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]>.mobile-nav>[data-ui=next-tactics]{grid-column:3!important;grid-row:2!important}
+}
+@media(orientation:landscape){
+ #mobile-app[data-sheet] .sheet-head{min-height:0;height:52px;box-sizing:border-box}
+}

@@ -53,8 +53,8 @@ export function paintBattleAction(ctx,view,layout){
   ctx.beginPath();path.forEach((p,i)=>{const q=pos(p);i?ctx.lineTo(q.x,q.y):ctx.moveTo(q.x,q.y);});ctx.strokeStyle=view.kind==='move'?'#ffe19a':'#ffad91';ctx.lineWidth=2;ctx.setLineDash(view.preview?[4,4]:[]);ctx.stroke();ctx.setLineDash([]);
   const from=pos(actor),to=pos(destination),angle=Math.atan2(to.y-from.y,to.x-from.x);ctx.beginPath();ctx.moveTo(to.x,to.y);ctx.lineTo(to.x-9*Math.cos(angle-.5),to.y-9*Math.sin(angle-.5));ctx.lineTo(to.x-9*Math.cos(angle+.5),to.y-9*Math.sin(angle+.5));ctx.closePath();ctx.fillStyle=view.kind==='move'?'#ffe19a':'#ffad91';ctx.fill();
  }
- if(actor)mark(actor,'#ffe19a',view.kind==='move'?'Déplacement':'Attaquant');
+ if(actor)mark(actor,'#ffe19a',view.kind==='move'?null:'Attaquant');
  targets.forEach((target,index)=>mark(target,target.enemy===false?'#91e4e5':'#ffad91',index===0?(target.enemy===false?'Cible alliée':'Cible'):null));
- if(!targets.length&&valid(view.destination))mark(view.destination,'#ffe19a',view.kind==='spell'?'Zone du sort':'Destination');
+ if(!targets.length&&valid(view.destination))mark(view.destination,'#ffe19a',view.kind==='spell'?'Zone du sort':null);
  ctx.restore();
 }
