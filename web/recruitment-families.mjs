@@ -8,7 +8,7 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const rankName=n=>['I','II','III','IV','V','VI'][n]||String(n+1);
 export function createRecruitmentHall({panel,command,prices,stats,buildingArt,openBuildings}){
  const unlockBuilding=unit=>(state.buildings||[]).find(building=>building.id===unit.requiredBuildingId);
- const resizeRows=()=>{const list=panel.querySelector('.hall-families');if(!list)return;const style=getComputedStyle(list),rows=matchMedia('(orientation:landscape)').matches?1:2,space=list.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);list.style.setProperty('--hall-row-height',Math.max(rows===2?132:148,Math.floor((space-(rows-1)*8)/rows))+'px');};
+ const resizeRows=()=>{const list=panel.querySelector('.hall-families');if(!list)return;const style=getComputedStyle(list),rows=matchMedia('(orientation:landscape)').matches?1:2,space=list.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);const height=Math.max(rows===2?132:148,Math.floor((space-(rows-1)*8)/rows))+'px';if(list.style.getPropertyValue('--hall-row-height')!==height)list.style.setProperty('--hall-row-height',height);};
  const rowObserver=new ResizeObserver(resizeRows);
  let state={},families=[],selectedId=null,amount=1,signature='',pending=null,savedScroll=null,previewTimer=null;
  // Remember the same point in the roster if rotation changes the row height.
@@ -34,7 +34,7 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
  const renderSelection=()=>{
   const u=unit();if(!u)return;
   const fr=getLanguage()==='fr';
-  for(const b of panel.querySelectorAll('[data-family-select]')){const active=Number(b.dataset.familySelect)===selectedId;b.setAttribute('aria-pressed',String(active));b.querySelector('canvas').dataset.hallActive=String(active);}
+  for(const b of panel.querySelectorAll('[data-family-select]')){const active=Number(b.dataset.familySelect)===selectedId;if(b.getAttribute('aria-pressed')!==String(active))b.setAttribute('aria-pressed',String(active));const canvas=b.querySelector('canvas');if(canvas.dataset.hallActive!==String(active))canvas.dataset.hallActive=String(active);}
   const slots=state.armies?.[0]?.slots,hasRoom=!slots?.length||slots.some(slot=>!slot||slot.id===u.id);
   const detail=panel.querySelector('.hall-detail'),maximum=recruitMaximum(u,state.resources);amount=Math.min(maximum,Math.max(1,amount));
   if(detail.dataset.unit!==String(u.id)){
@@ -65,7 +65,7 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
    ? (hasRoom?`${u.count} available · Shared stock`:'Garrison full · Move troops to your hero')
    : next?(fr?'🔒 Recrutement verrouillé':'🔒 Recruitment locked'):`Requires: ${plainGameText(u.requiredBuilding)||'Dwelling for this form'}`;
   detail.dataset.locked=String(!u.built);const input=detail.querySelector('input');input.max=maximum;if(document.activeElement!==input)input.value=amount;
-  detail.querySelector('.hall-total').innerHTML='<span>'+(amount?'Total':'Cost per creature')+'</span>'+(prices(u,amount||1,state.resourceTypes)||'<span>Free</span>');
+  const total=detail.querySelector('.hall-total'),totalMarkup='<span>'+(amount?'Total':'Cost per creature')+'</span>'+(prices(u,amount||1,state.resourceTypes)||'<span>Free</span>');if(total._sourceMarkup!==totalMarkup){total._sourceMarkup=totalMarkup;total.innerHTML=totalMarkup;}
   const buy=detail.querySelector('[data-hall-buy]');buy.textContent=pending?'Recruiting…':!state.turn?(fr?'Disponible à ton tour':'Available on your turn'):!u.built?'Dwelling required':!u.count?'Sold out':!maximum?'Not enough resources':`Recruit ${amount}`;buy.disabled=!!pending||!state.turn||!maximum||!amount||!hasRoom;buy.toggleAttribute('aria-busy',!!pending);
   for(const sel of ['[data-hall-less]','[data-hall-more]','[data-hall-max]','input'])detail.querySelector(sel).disabled=!!pending||!maximum;
  };
@@ -77,7 +77,7 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
    if(!old)savedScroll=null;if(old){for(const canvas of old.querySelectorAll('canvas')){canvas.width=0;canvas.height=0;}old.remove();}panel.insertAdjacentHTML('beforeend','<div class="hall-layout"><div class="hall-families" aria-label="Creature evolution families">'+families.map(f=>`<section class="hall-family"><div class="hall-family-label"><h3>Tier ${f.level+1}</h3><span data-family-stock="${f.level}"></span></div><div class="hall-forms" style="--forms:${f.variants.length}">`+f.variants.map(u=>`<button class="hall-form" data-family-select="${u.id}" ${u.built?'':'data-locked'} aria-pressed="false" aria-label="${esc(u.name)}, form ${rankName(u.rank)}${u.built?', unlocked':', locked'}"><span class="hall-rank" aria-hidden="true">${rankName(u.rank)}</span><span class="hall-art"><canvas data-hall-icon="${u.id}" aria-hidden="true"></canvas></span><span class="hall-form-name">${esc(u.name)}</span><span class="hall-quick-info">${u.built?'<span class="hall-open-mark" aria-hidden="true">✓</span><span class="hall-form-price">'+prices(u,1,state.resourceTypes)+'</span>':'<span class="hall-lock-mark"><span aria-hidden="true">🔒</span> Locked</span>'}</span></button>`).join('')+'</div></section>').join('')+'</div><section class="hall-detail" aria-label="Selected creature recruitment"></section></div>');
    for(const b of panel.querySelectorAll('[data-family-select]')){bindPress(b,()=>select(Number(b.dataset.familySelect)));b.addEventListener('focus',()=>select(Number(b.dataset.familySelect)));}rowObserver.disconnect();rowObserver.observe(panel.querySelector('.hall-families'));
   }
-  for(const f of families){const line=panel.querySelector(`[data-family-stock="${f.level}"]`);if(line)line.textContent=f.count+' available';}
+  for(const f of families){const line=panel.querySelector(`[data-family-stock="${f.level}"]`);if(line&&line.textContent!==f.count+' available')line.textContent=f.count+' available';}
   if(!unit()){const first=families.find(f=>f.variants.some(u=>u.built))||families[0];const u=first?.variants.filter(u=>u.built).at(-1)||first?.variants[0];if(u)select(u.id);}
   else renderSelection();resizeRows();
   if(scroll){

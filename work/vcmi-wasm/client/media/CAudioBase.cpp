@@ -20,7 +20,14 @@ CAudioBase::CAudioBase()
 {
 	if(initializationCounter == 0)
 	{
-		if(web_audio::call([&](){ return Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024); }) == -1)
+#ifdef VCMI_EMSCRIPTEN
+		// BrowserMain also handles input and texture uploads. A 93 ms buffer
+		// tolerates short UI tasks without starving SDL's audio callback.
+		constexpr int audioSamples = 4096;
+#else
+		constexpr int audioSamples = 1024;
+#endif
+		if(web_audio::call([&](){ return Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, audioSamples); }) == -1)
 			logGlobal->error("Mix_OpenAudio error: %s", Mix_GetError());
 		else
 			initializeSuccess = true;

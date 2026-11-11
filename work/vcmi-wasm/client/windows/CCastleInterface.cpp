@@ -2093,9 +2093,28 @@ CFortScreen::CFortScreen(const CGTownInstance * town):
 void CFortScreen::mobileSelectCreature(const CCreature * creature)
 {
 	if (!creature || mobilePreviewCreature == creature) return;
-	mobilePreview.reset();
-	OBJECT_CONSTRUCTION;
-	mobilePreview = std::make_shared<CCreaturePic>(330, 220, creature, true, true);
+	// Retain a small set of decoded previews while browsing this hall. Detached
+	// previews must not animate, draw, or receive events in the background.
+	if(mobilePreview)
+	{
+		if(mobilePreview->isActive())mobilePreview->deactivate();
+		removeChild(mobilePreview.get());
+		mobilePreviewCache.emplace_back(mobilePreviewCreature, std::move(mobilePreview));
+	}
+	auto cached = std::find_if(mobilePreviewCache.begin(), mobilePreviewCache.end(),
+		[creature](const auto & entry){ return entry.first == creature; });
+	if(cached != mobilePreviewCache.end())
+	{
+		mobilePreview = cached->second;
+		mobilePreviewCache.erase(cached);
+		addChild(mobilePreview.get());
+	}
+	else
+	{
+		OBJECT_CONSTRUCTION;
+		mobilePreview = std::make_shared<CCreaturePic>(330, 220, creature, true, true);
+	}
+	while(mobilePreviewCache.size() > 8)mobilePreviewCache.erase(mobilePreviewCache.begin());
 	mobilePreviewCreature = creature;
 	redraw();
 }

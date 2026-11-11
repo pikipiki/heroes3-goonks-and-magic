@@ -9,7 +9,7 @@ export function createTemporaryBoot(status){
  readyStatus.className='temporary-boot-ready';
  readyStatus.setAttribute('role','status');
  document.body.append(readyStatus);
- let failed=false,bar=null,detail=null,loaded=0,expected=TEMPORARY_STARTUP_BYTES;
+ let failed=false,finished=false,bar=null,detail=null,loaded=0,expected=TEMPORARY_STARTUP_BYTES;
  const loading=(step,label,determinate=false)=>{
   if(failed)return;
   const progress=document.createElement('progress');
@@ -52,10 +52,12 @@ export function createTemporaryBoot(status){
    return new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
   },
   progress(bytes){
+   if(finished)return;
    loaded+=bytes;
    render();
   },
   ready(){
+   finished=true;
    if(bar){bar.value=100;detail.textContent='100 % · '+formatBytes(loaded)+' téléchargés';}
    readyStatus.textContent='✓ Jeu chargé — prêt à jouer';
    setTimeout(()=>readyStatus.remove(),6000);

@@ -171,6 +171,7 @@ private:
 public:
 	CCreaturePic(int x, int y, const CCreature * cre, bool Big=true, bool Animated=true);
 	void setAmount(int newAmount);
+	void drawMobilePreview(Canvas & to);
 	const CCreature * getMobileCreature() const { return mobileCreature; }
 };
 

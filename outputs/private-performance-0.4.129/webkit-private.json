@@ -1,0 +1,369 @@
+{
+  "label": "release-webkit",
+  "browser": "webkit",
+  "cpuRate": 1,
+  "storage": "isolated private context with OPFS unavailable",
+  "phases": [
+    {
+      "name": "new-game",
+      "longTasksSupported": false,
+      "audioPeak": 0.0036773681640625,
+      "webglReadbacks": 206,
+      "previewAtlasVersion": 0,
+      "audioBufferMs": 85.33333333333333,
+      "frames": {
+        "n": 134,
+        "max": 35,
+        "p95": 19,
+        "over50": 0,
+        "over100": 0
+      },
+      "audio": {
+        "n": 26,
+        "max": 106.73999999999978,
+        "p95": 104.62000000000035,
+        "over50": 26,
+        "over100": 2
+      },
+      "tasks": {
+        "n": 0,
+        "max": 0,
+        "p95": 0,
+        "over50": 0,
+        "over100": 0
+      },
+      "handlers": {
+        "n": 5,
+        "max": 12.340000000000146,
+        "p95": 12.340000000000146,
+        "over50": 0,
+        "over100": 0
+      },
+      "xhr": [
+        {
+          "at": 3132.6,
+          "ms": 6.5600000000004,
+          "url": "http://127.0.0.1:8777/assets/packs/58f5895f802d87369b21944fd22f94173a2a564442f4a924fb4fd72cea51c884.bin",
+          "bytes": 2087494
+        },
+        {
+          "at": 3593.6800000000003,
+          "ms": 6.420000000000073,
+          "url": "http://127.0.0.1:8777/assets/packs/3ea75191cb6eb8bce2331a413b316166857ca59d74c597d929e1b0f8de1c1732.bin",
+          "bytes": 2093461
+        },
+        {
+          "at": 3606.52,
+          "ms": 5.220000000000255,
+          "url": "http://127.0.0.1:8777/assets/packs/5f1ddcc4aec9a835b80002afc48cb0b1ea6539eb2810c6c6e4c1ae34921e7dac.bin",
+          "bytes": 2080395
+        },
+        {
+          "at": 3614.1,
+          "ms": 5.4200000000005275,
+          "url": "http://127.0.0.1:8777/assets/packs/31f56ab0a854fd391b41ffef22bdc1f63e1d3f9562c7de98cc09870931153387.bin",
+          "bytes": 2089654
+        },
+        {
+          "at": 3622.34,
+          "ms": 5.100000000000364,
+          "url": "http://127.0.0.1:8777/assets/packs/6ed64a31dc82dea1ecab6ca51aacf91d18b37d5e59d7e584ea57f2249d115bec.bin",
+          "bytes": 2092616
+        },
+        {
+          "at": 3629.7000000000003,
+          "ms": 6,
+          "url": "http://127.0.0.1:8777/assets/packs/4f17d436ef353304a808fe74cea63105e1428621862e73580db58e2333944781.bin",
+          "bytes": 2058177
+        },
+        {
+          "at": 3639.5600000000004,
+          "ms": 5,
+          "url": "http://127.0.0.1:8777/assets/packs/fc5f5867a315e34d54decf24dafb740ed4555a04fe92df5fa0ec7c13ca802085.bin",
+          "bytes": 2088561
+        },
+        {
+          "at": 3689.0000000000005,
+          "ms": 5.679999999999836,
+          "url": "http://127.0.0.1:8777/assets/packs/614ec58833f468c44afbe1595dee923f63e266931a3274654ab2b649ecfc7ee5.bin",
+          "bytes": 2087563
+        },
+        {
+          "at": 3696.2400000000002,
+          "ms": 5.599999999999909,
+          "url": "http://127.0.0.1:8777/assets/packs/e66b36d1abfada030b646c5a100e3721810cd8f15e0f88b2032693ef3989514c.bin",
+          "bytes": 2094214
+        },
+        {
+          "at": 3703.34,
+          "ms": 4.960000000000036,
+          "url": "http://127.0.0.1:8777/assets/packs/785e2ba26a608db0a3550d50cd27a6a52c3833057f546692ad5fdb11d1c807c6.bin",
+          "bytes": 2081060
+        }
+      ],
+      "wasmMB": 256,
+      "audioState": "running"
+    },
+    {
+      "name": "map-idle",
+      "longTasksSupported": false,
+      "audioPeak": 0.039154052734375,
+      "webglReadbacks": 360,
+      "previewAtlasVersion": 0,
+      "audioBufferMs": 85.33333333333333,
+      "frames": {
+        "n": 180,
+        "max": 20,
+        "p95": 18,
+        "over50": 0,
+        "over100": 0
+      },
+      "audio": {
+        "n": 35,
+        "max": 87.14000000000033,
+        "p95": 86.59999999999945,
+        "over50": 35,
+        "over100": 0
+      },
+      "tasks": {
+        "n": 0,
+        "max": 0,
+        "p95": 0,
+        "over50": 0,
+        "over100": 0
+      },
+      "handlers": {
+        "n": 2,
+        "max": 2.780000000000655,
+        "p95": 2.780000000000655,
+        "over50": 0,
+        "over100": 0
+      },
+      "xhr": [],
+      "wasmMB": 256,
+      "audioState": "running"
+    },
+    {
+      "name": "town-open",
+      "longTasksSupported": false,
+      "audioPeak": 0.0726318359375,
+      "webglReadbacks": 2,
+      "previewAtlasVersion": 0,
+      "audioBufferMs": 85.33333333333333,
+      "frames": {
+        "n": 76,
+        "max": 146,
+        "p95": 24,
+        "over50": 3,
+        "over100": 2
+      },
+      "audio": {
+        "n": 17,
+        "max": 172.07999999999902,
+        "p95": 172.07999999999902,
+        "over50": 16,
+        "over100": 2
+      },
+      "tasks": {
+        "n": 0,
+        "max": 0,
+        "p95": 0,
+        "over50": 0,
+        "over100": 0
+      },
+      "handlers": {
+        "n": 2,
+        "max": 33.92000000000098,
+        "p95": 33.92000000000098,
+        "over50": 0,
+        "over100": 0
+      },
+      "xhr": [
+        {
+          "at": 7954.540000000001,
+          "ms": 3.4799999999995634,
+          "url": "http://127.0.0.1:8777/assets/data/0ddcde7f1cd210858e962fcc13e631575d7abfff3177e97891a6857b1e507a00/Mods/goonk/Content/Sprites/goonk/town-v2.png",
+          "bytes": 864698
+        },
+        {
+          "at": 7984.18,
+          "ms": 8.380000000001019,
+          "url": "http://127.0.0.1:8777/assets/packs/627bc02e3006113ae387851dca72a9f0055cb0e4de50ba45598357b52b142f1b.bin",
+          "bytes": 2087369
+        },
+        {
+          "at": 7994.4400000000005,
+          "ms": 5.239999999999782,
+          "url": "http://127.0.0.1:8777/assets/packs/1214fc100202e32b83f1e62915079a576050e72810493bf78a129854df84aa3e.bin",
+          "bytes": 2089391
+        },
+        {
+          "at": 8000.88,
+          "ms": 4.6800000000012005,
+          "url": "http://127.0.0.1:8777/assets/packs/3a989f676c2143db76e27c08f67ea5aec7464ef2723dbafdb17035d94b69cfbe.bin",
+          "bytes": 2076753
+        }
+      ],
+      "wasmMB": 256,
+      "audioState": "running"
+    },
+    {
+      "name": "recruitment-open",
+      "longTasksSupported": false,
+      "audioPeak": 0.1086273193359375,
+      "webglReadbacks": 0,
+      "previewAtlasVersion": 10,
+      "audioBufferMs": 85.33333333333333,
+      "frames": {
+        "n": 73,
+        "max": 140,
+        "p95": 43,
+        "over50": 2,
+        "over100": 1
+      },
+      "audio": {
+        "n": 17,
+        "max": 124.93999999999869,
+        "p95": 124.93999999999869,
+        "over50": 17,
+        "over100": 1
+      },
+      "tasks": {
+        "n": 0,
+        "max": 0,
+        "p95": 0,
+        "over50": 0,
+        "over100": 0
+      },
+      "handlers": {
+        "n": 2,
+        "max": 2.9200000000000728,
+        "p95": 2.9200000000000728,
+        "over50": 0,
+        "over100": 0
+      },
+      "xhr": [],
+      "wasmMB": 256,
+      "audioState": "running"
+    },
+    {
+      "name": "recruitment-fast",
+      "longTasksSupported": false,
+      "audioPeak": 0.1452484130859375,
+      "webglReadbacks": 0,
+      "previewAtlasVersion": 43,
+      "audioBufferMs": 85.33333333333333,
+      "frames": {
+        "n": 185,
+        "max": 24,
+        "p95": 18,
+        "over50": 0,
+        "over100": 0
+      },
+      "audio": {
+        "n": 36,
+        "max": 89.55999999999949,
+        "p95": 86.81999999999971,
+        "over50": 36,
+        "over100": 0
+      },
+      "tasks": {
+        "n": 0,
+        "max": 0,
+        "p95": 0,
+        "over50": 0,
+        "over100": 0
+      },
+      "handlers": {
+        "n": 3,
+        "max": 2.9199999999982538,
+        "p95": 2.9199999999982538,
+        "over50": 0,
+        "over100": 0
+      },
+      "xhr": [],
+      "wasmMB": 256,
+      "audioState": "running"
+    },
+    {
+      "name": "recruitment-settled",
+      "longTasksSupported": false,
+      "audioPeak": 0.1773223876953125,
+      "webglReadbacks": 0,
+      "previewAtlasVersion": 164,
+      "audioBufferMs": 85.33333333333333,
+      "frames": {
+        "n": 658,
+        "max": 21,
+        "p95": 18,
+        "over50": 0,
+        "over100": 0
+      },
+      "audio": {
+        "n": 129,
+        "max": 96.02000000000044,
+        "p95": 87.5199999999968,
+        "over50": 129,
+        "over100": 0
+      },
+      "tasks": {
+        "n": 0,
+        "max": 0,
+        "p95": 0,
+        "over50": 0,
+        "over100": 0
+      },
+      "handlers": {
+        "n": 26,
+        "max": 3.8000000000010914,
+        "p95": 3.1599999999962165,
+        "over50": 0,
+        "over100": 0
+      },
+      "xhr": [],
+      "wasmMB": 256,
+      "audioState": "running"
+    },
+    {
+      "name": "recruitment-repeat",
+      "longTasksSupported": false,
+      "audioPeak": 0.37567138671875,
+      "webglReadbacks": 0,
+      "previewAtlasVersion": 288,
+      "audioBufferMs": 85.33333333333333,
+      "frames": {
+        "n": 658,
+        "max": 61,
+        "p95": 18,
+        "over50": 1,
+        "over100": 0
+      },
+      "audio": {
+        "n": 129,
+        "max": 107.5999999999949,
+        "p95": 86.83999999999651,
+        "over50": 129,
+        "over100": 1
+      },
+      "tasks": {
+        "n": 0,
+        "max": 0,
+        "p95": 0,
+        "over50": 0,
+        "over100": 0
+      },
+      "handlers": {
+        "n": 25,
+        "max": 6.960000000002765,
+        "p95": 3.319999999999709,
+        "over50": 0,
+        "over100": 0
+      },
+      "xhr": [],
+      "wasmMB": 256,
+      "audioState": "running"
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

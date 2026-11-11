@@ -107,3 +107,13 @@ test('Startup prefetch downloads each planned block once, concurrently, and late
  read(files[0],out,0,2,3000);assert.deepEqual([...out],[3000&255,3001&255]);
  assert.deepEqual(sync,[]);
 });
+
+test('Overlapping prefetches share whole-pack Range fallbacks and keep an exact cache budget',async()=>{
+ let requests=0,hotReads=0;const bytes=Uint8Array.from({length:16},(_,i)=>i);
+ const reader=createTemporaryAssetReader({maxBytes:24,blockBytes:4,read:url=>{assert.equal(url,'hot');hotReads++;return new Uint8Array(8);},fetchBlock:async()=>{requests++;await new Promise(r=>setTimeout(r,5));return bytes;}});
+ const hot={url:'hot',size:8,chunks:[{offset:0,size:8}]};reader(hot,new Uint8Array(8),0,8,0);
+ const file={path:'Data/test.lod',url:'pack',size:16,chunks:[{offset:0,size:16}]};
+ await Promise.all([reader.prefetch([['Data/test.lod',0],['Data/test.lod',4]],[file],{reserveBytes:0}),reader.prefetch([['Data/test.lod',8]],[file],{reserveBytes:0})]);
+ assert.equal(requests,1);reader(hot,new Uint8Array(8),0,8,0);assert.equal(hotReads,1,'The 16-byte pack must leave room for the existing 8-byte file');
+ const out=new Uint8Array(16);reader(file,out,0,16,0);assert.deepEqual(out,bytes);
+});

@@ -51,7 +51,7 @@ async function fetchBinary(url, size, start, end) {
 export function createTemporaryAssetReader({
  read = readBinary, fetchBlock = fetchBinary, maxBytes = 448 * 1024 * 1024, blockBytes = 512 * 1024, onFetch = () => {},
 } = {}) {
- const cache = new Map();
+ const cache = new Map(), downloads = new Map();
  let cachedBytes = 0;
  function cached(key) {
   const bytes = cache.get(key);
@@ -63,6 +63,11 @@ export function createTemporaryAssetReader({
  }
  function remember(key, bytes) {
   if (bytes.length > maxBytes) return;
+  // Concurrent prefetches and Range fallbacks can return the same whole pack.
+  // Replacing it must not charge its bytes twice or evict unrelated hot data.
+  const previous=cache.get(key);
+  if(previous){cachedBytes-=previous.length;cache.delete(key);}
+  if(!key.includes('#'))for(const [part,value] of cache)if(part.startsWith(key+'#')){cachedBytes-=value.length;cache.delete(part);}
   while (cachedBytes + bytes.length > maxBytes) {
    const [oldKey, oldBytes] = cache.entries().next().value;
    cache.delete(oldKey);
@@ -154,10 +159,18 @@ export function createTemporaryAssetReader({
     if (cache.has(block.url) || cache.has(key)) continue;
     if (!trackProgress && cachedBytes + (block.blockEnd - block.blockStart) > maxBytes - reserveBytes) break;
     try {
-     const bytes = await fetchBlock(block.url, block.size, block.blockStart, block.blockEnd);
-     if (trackProgress) onFetch(bytes.length);
-     if (bytes.length === block.size) remember(block.url, bytes);
-     else if (bytes.length === block.blockEnd - block.blockStart) remember(key, bytes);
+     // Serialize reads from one archive. Hosts that ignore Range return the
+     // whole pack, satisfying every queued block without duplicate downloads.
+     const previous=downloads.get(block.url)||Promise.resolve();
+     const task=previous.catch(()=>{}).then(async()=>{
+      if(cache.has(block.url)||cache.has(key))return;
+      const bytes = await fetchBlock(block.url, block.size, block.blockStart, block.blockEnd);
+      if (trackProgress) onFetch(bytes.length);
+      if (bytes.length === block.size) remember(block.url, bytes);
+      else if (bytes.length === block.blockEnd - block.blockStart) remember(key, bytes);
+     });
+     downloads.set(block.url,task);
+     try{await task;}finally{if(downloads.get(block.url)===task)downloads.delete(block.url);}
     } catch (error) {
      if (trackProgress) throw error;
     }

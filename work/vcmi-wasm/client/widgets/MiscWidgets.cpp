@@ -712,6 +712,15 @@ void CCreaturePic::show(Canvas & to)
 	amount->showAll(to);
 }
 
+void CCreaturePic::drawMobilePreview(Canvas & to)
+{
+	const Point origin = pos.topLeft();
+	moveBy(-origin);
+	try { show(to); }
+	catch(...) { moveBy(origin); throw; }
+	moveBy(origin);
+}
+
 void CCreaturePic::setAmount(int newAmount)
 {
 	if(newAmount != 0)

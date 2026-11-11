@@ -37,6 +37,7 @@
 #include "CServerHandler.h"
 #include "PlayerLocalState.h"
 #include "HeroMovementController.h"
+#include "mapView/mapHandler.h"
 #include "gui/WindowHandler.h"
 #include "gui/EventDispatcher.h"
 #include "gui/Shortcut.h"
@@ -85,7 +86,10 @@
 #include "../lib/mapping/GoonkScenario.h"
 #include "../lib/pathfinder/CGPathNode.h"
 
+extern "C" void vcmiMobileCommand(int,int,int,int,int,int);
 namespace {
+std::optional<std::array<int,6>> deferredMapAction;
+uint32_t mapReadySince=0;
 bool mobileEnabled=false,stateEnabled=false,audioMuted=false;
 std::vector<int3> exchangeMarkerTiles;
 std::optional<int> mobileTownHall;
@@ -172,7 +176,7 @@ JsonNode weeklyRecruits(const CGTownInstance & town)
  return result;
 }
 void mobilePreviews(CIntObject * node,JsonNode & result){
- if(auto picture=dynamic_cast<CCreaturePic*>(node)){if(auto c=picture->getMobileCreature()){auto item=creature(c,1);item["preview"]=rect(picture->pos);result.Vector().push_back(item);}return;}
+ if(auto picture=dynamic_cast<CCreaturePic*>(node)){if(auto c=picture->getMobileCreature()){auto item=creature(c,1);item["preview"]=rect(picture->pos);item["previewAtlas"].Bool()=true;result.Vector().push_back(item);}return;}
  for(auto child:node->children)mobilePreviews(child,result);
 }
 void publishPortraits()
@@ -543,7 +547,73 @@ static void publishMobileScenarios(JsonNode & state, int roomLimit = 0, const CM
  }
 }
 
+namespace {
+std::atomic_bool previewAtlasPending{false};
+void collectPreviewPictures(CIntObject * node, std::vector<CCreaturePic *> & pictures)
+{
+ if(auto picture=dynamic_cast<CCreaturePic *>(node)){if(pictures.size()<8)pictures.push_back(picture);return;}
+ for(auto child:node->children)collectPreviewPictures(child,pictures);
+}
+void publishMobilePreviewAtlas()
+{
+ static uint32_t last=0;
+ if(!mobileEnabled||!ENGINE||!GAME||previewAtlasPending.load()||SDL_GetTicks()-last<83)return;
+ std::vector<CCreaturePic *> pictures;
+ if(const auto fort=ENGINE->windows().topWindow<CFortScreen>()){
+  if(const auto picture=fort->getMobilePreviewPicture())pictures.push_back(picture);
+ }else if(ENGINE->windows().topWindow<CRecruitmentWindow>()||ENGINE->windows().topWindow<CStackWindow>()){
+  if(const auto top=ENGINE->windows().topWindow<CIntObject>())collectPreviewPictures(top.get(),pictures);
+ }
+ if(pictures.empty())return;
+ last=SDL_GetTicks();
+ const int width=256,height=256*pictures.size();
+ auto surface=SDL_CreateRGBSurfaceWithFormat(0,width,height,32,SDL_PIXELFORMAT_ARGB8888);
+ if(!surface)return;
+ SDL_FillRect(surface,nullptr,0);
+ std::vector<int32_t> geometry;
+ for(size_t i=0;i<pictures.size();++i){
+  auto scratch=SDL_CreateRGBSurfaceWithFormat(0,256,256,32,SDL_PIXELFORMAT_ARGB8888);
+  if(!scratch){SDL_FreeSurface(surface);return;}
+  SDL_FillRect(scratch,nullptr,0);
+  {auto canvas=Canvas::createFromSurface(scratch,CanvasScalingPolicy::IGNORE);pictures[i]->drawMobilePreview(canvas);}
+  SDL_Rect destination{0,int(i)*256,256,256};SDL_SetSurfaceBlendMode(scratch,SDL_BLENDMODE_NONE);SDL_BlitSurface(scratch,nullptr,surface,&destination);SDL_FreeSurface(scratch);
+  geometry.insert(geometry.end(),{pictures[i]->getMobileCreature()->getId().getNum(),std::min(256,pictures[i]->pos.w),std::min(256,pictures[i]->pos.h)});
+ }
+ auto rgba=SDL_ConvertSurfaceFormat(surface,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(surface);
+ if(!rgba)return;
+ const size_t prefix=geometry.size()*sizeof(int32_t),bytes=width*height*4;
+ auto packet=static_cast<uint8_t *>(malloc(prefix+bytes));
+ if(packet){
+  memcpy(packet,geometry.data(),prefix);memcpy(packet+prefix,rgba->pixels,bytes);previewAtlasPending.store(true);
+  MAIN_THREAD_ASYNC_EM_ASM({const ptr=$0;const w=$1;const h=$2;const n=$3;try{
+   const entries=Array.from({length:n},(_,i)=>{const at=ptr/4+i*3;return [HEAP32[at],{x:0,y:i*256,w:HEAP32[at+1],h:HEAP32[at+2]}];});
+   const canvas=window.goonkCreaturePreviewAtlas||(window.goonkCreaturePreviewAtlas=document.createElement('canvas'));
+   if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}
+   canvas.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+n*12,ptr+n*12+w*h*4)),w,h),0,0);
+   window.goonkCreaturePreviewRects=new Map(entries);window.goonkCreaturePreviewVersion=(window.goonkCreaturePreviewVersion||0)+1;
+  }finally{_free(ptr);Module._vcmiMobilePreviewAtlasAck();}},packet,width,height,pictures.size());
+ }
+ SDL_FreeSurface(rgba);
+}
+}
+extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePreviewAtlasAck(){previewAtlasPending.store(false);}
+
 void publishMobileState(){
+ if(ENGINE&&GAME){
+  const auto player=GAME->interface();
+  const bool ready=player&&ENGINE->windows().topWindow<AdventureMapInterface>()&&!player->mobileHeroMoving()&&!GAME->map().hasOngoingAnimations();
+  if(!ready)mapReadySince=0;
+  else if(!mapReadySince)mapReadySince=SDL_GetTicks();
+ }
+ if(deferredMapAction&&ENGINE&&GAME){
+  const auto player=GAME->interface();
+  if(!player||!ENGINE->windows().topWindow<AdventureMapInterface>())deferredMapAction.reset();
+  else if(mapReadySince&&SDL_GetTicks()-mapReadySince>=100){
+   const auto command=*deferredMapAction;deferredMapAction.reset();
+   vcmiMobileCommand(command[0],command[1],command[2],command[3],command[4],command[5]);
+  }
+ }
+ publishMobilePreviewAtlas();
  if(!stateEnabled||!ENGINE||!GAME||snapshotPending.load()||SDL_GetTicks()-lastPublished<180)return;lastPublished=SDL_GetTicks();
  exchangeMarkerTiles.clear();
  if(audioMuted){if(ENGINE->sound().getVolume()!=0)ENGINE->sound().setVolume(0);if(ENGINE->music().getVolume()!=0)ENGINE->music().setVolume(0);}
@@ -851,7 +921,7 @@ void publishMobileState(){
   n["recruitAmount"].Integer()=recruitWindow->getRecruitAmount();n["recruitMaximum"].Integer()=recruitWindow->getRecruitMaximum();
  }
  if(p&&p->cb&&p->localState){n["day"].Integer()=p->cb->getDate(Date::DAY);
-  n["heroMoving"].Bool()=p->mobileHeroMoving();n["turn"].Bool()=p->makingTurn; const auto & server=GAME->server();n["onlineGame"].Bool()=server.inLobbyRoom();
+  n["heroMoving"].Bool()=p->mobileHeroMoving()||(adventureInt&&GAME->map().hasOngoingAnimations());n["turn"].Bool()=p->makingTurn; const auto & server=GAME->server();n["onlineGame"].Bool()=server.inLobbyRoom();
   if(p->makingTurn&&p->cb->getStartInfo()->turnTimerInfo.turnTimer>0)
    n["turnRemainingMs"].Integer()=p->cb->getPlayerTurnTime(p->playerID).valueMs();
   n["autosaveAllowed"].Bool()=(!server.inLobbyRoom()||server.isHost())&&p->makingTurn&&!n["heroMoving"].Bool()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>());
@@ -1134,7 +1204,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiOnlineRoomAction(int action, const char
 }
 
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,int c,int d,int e){if(!ENGINE)return;ENGINE->dispatchMainThread([action,a,b,c,d,e](){
- if(action==0){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});return;}if(action==1){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});return;}
+ if(action==0){deferredMapAction.reset();ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});return;}if(action==1){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});return;}
  // A dedicated cancel operation cannot also accept a dialog or close the town
  // below it. Ignore delayed taps once the taverne is no longer on top.
  if(action==62||action==63||action==64){if(auto window=ENGINE->windows().topWindow<CHeroWindow>()){if(action==63)window->close();else if(action==64){for(const auto & set:window->artSets)if(set)set->putBackPickedArtifact();}else if(window->curHero&&GAME->interface()&&window->curHero->getOwner()==GAME->interface()->playerID&&a>=0&&a<=int(ArtifactPosition::BACKPACK_START)+int(window->curHero->artifactsInBackpack.size()))window->clickPressedOnArtPlace(window->curHero,ArtifactPosition(a),true,false,false,window->pos.center());lastPublished=0;}return;}
@@ -1384,6 +1454,13 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==23){if(GAME&&!GAME->interface())CMainMenu::openLobby(ESelectionScreen::loadGame,true,{"Goonk"},ELoadMode::SINGLE,false);return;}
  auto p=GAME?GAME->interface():nullptr;if(!p||!p->cb||!p->localState)return;
  const auto hero=p->localState->getCurrentHero();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battle= CPlayerInterface::battleInt;
+ // Match the adventure UI's animation lock. Hiding the map during a fade or
+ // movement can strand the client thread waiting for that animation to finish.
+ if((action==5||action==55||action==3||action==7)&&ENGINE->windows().topWindow<AdventureMapInterface>()&&
+    (!mapReadySince||SDL_GetTicks()-mapReadySince<100||p->mobileHeroMoving()||GAME->map().hasOngoingAnimations())){
+  deferredMapAction=std::array<int,6>{action,a,b,c,d,e};return;
+ }
+
  if(action==54&&townWindow&&(p->makingTurn||townWindow->town->getOwner()==p->playerID)){ENGINE->windows().createAndPushWindow<CFortScreen>(townWindow->town);lastPublished=0;return;}
  // Family gallery actions stay in the fort; the server remains authoritative
  // for ownership, stock, resources and available army slots.
