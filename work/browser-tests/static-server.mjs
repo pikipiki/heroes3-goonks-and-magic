@@ -8,7 +8,7 @@ const root=fileURLToPath(new URL('../../dist/',import.meta.url));
 const base='/' + (process.env.BASE_PATH||'').split('/').filter(Boolean).join('/') + '/';
 const prefix=base==='//'?'/':base;
 const port=Number(process.env.PORT||8767);
-const types={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.json':'application/json','.wasm':'application/wasm','.png':'image/png'};
+const types={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.json':'application/json','.wasm':'application/wasm','.png':'image/png','.svg':'image/svg+xml'};
 http.createServer((req,res)=>{
   const pathname=new URL(req.url,'http://localhost').pathname;
   if(prefix!=='/'&&pathname===prefix.slice(0,-1)){res.writeHead(302,{Location:prefix}).end();return;}

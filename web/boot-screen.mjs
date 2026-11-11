@@ -10,6 +10,9 @@ export function createTemporaryBoot(status){
  readyStatus.setAttribute('role','status');
  document.body.append(readyStatus);
  let failed=false,finished=false,bar=null,detail=null,loaded=0,expected=TEMPORARY_STARTUP_BYTES;
+ let stageOne=true;
+ const monitor=setInterval(()=>{if(finished||failed){clearInterval(monitor);return;}if(stageOne&&detail){const download=globalThis.goonkEngineProgress;detail.textContent=download?formatBytes(download.loaded)+' / '+formatBytes(download.total)+' · Engine data':'Downloading and compiling the engine…';}},500);
+ const watchdog=setTimeout(()=>{if(stageOne&&!finished&&!failed)api.fail(Error('Engine initialization timed out.'));},180000);
  const loading=(step,label,determinate=false)=>{
   if(failed)return;
   const progress=document.createElement('progress');
@@ -26,7 +29,7 @@ export function createTemporaryBoot(status){
   const note=document.createElement('small');
   note.textContent='Ce premier chargement peut prendre un moment.';
   status.replaceChildren(stage,title,progress,info,note);
-  bar=determinate?progress:null;detail=determinate?info:null;
+  bar=determinate?progress:null;detail=info;
  };
  const render=()=>{
   if(!bar)return;
@@ -35,8 +38,9 @@ export function createTemporaryBoot(status){
   detail.textContent=percent+' % · '+formatBytes(loaded)+' téléchargés';
  };
  loading(1,'Chargement du moteur en mode temporaire…');
- return {
+ const api={
   start(){
+   stageOne=false;clearTimeout(watchdog);
    loading(2,'Chargement des données du jeu en mode temporaire…',true);
    render();
    return new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
@@ -57,17 +61,17 @@ export function createTemporaryBoot(status){
    render();
   },
   ready(){
-   finished=true;
+   finished=true;clearInterval(monitor);clearTimeout(watchdog);
    if(bar){bar.value=100;detail.textContent='100 % · '+formatBytes(loaded)+' téléchargés';}
    readyStatus.textContent='✓ Jeu chargé — prêt à jouer';
    setTimeout(()=>readyStatus.remove(),6000);
   },
   fail(error){
    if(failed||!document.body.hasAttribute('data-goonk-boot'))return;
-   failed=true;
+   failed=true;clearInterval(monitor);clearTimeout(watchdog);
    console.error('Temporary game startup failed',error);
    const message=document.createElement('p');
-   message.textContent='Le chargement du jeu a échoué.';
+   message.textContent='The engine could not finish loading. Check your connection, then retry.';
    const retry=document.createElement('button');
    retry.type='button';
    retry.textContent='Réessayer';
@@ -75,6 +79,8 @@ export function createTemporaryBoot(status){
    status.replaceChildren(message,retry);
   },
  };
+ if(globalThis.goonkEngineStartupError)queueMicrotask(()=>api.fail(globalThis.goonkEngineStartupError));
+ return api;
 }
 
 // Native initialization is not presentation: reveal only after a valid native

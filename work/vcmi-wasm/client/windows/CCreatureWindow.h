@@ -201,6 +201,8 @@ class CStackWindow : public CWindowObject
 public:
 	bool isCommanderLevelUp() const;
 	bool isCommander() const;
+	std::vector<ui32> getMobileSkillChoices() const;
+	bool isMobileSelectedSkill(const CCommanderSkillIcon * icon) const;
 	const CCreature * getMobileCreature() const;
 	const CStackInstance * getMobileStack() const;
 	unsigned getMobileCount() const;

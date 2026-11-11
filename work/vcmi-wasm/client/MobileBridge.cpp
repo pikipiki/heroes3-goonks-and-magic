@@ -15,6 +15,7 @@
 #include "mainmenu/CPrologEpilogVideo.h"
 #include "../lib/campaign/CampaignState.h"
 #include "widgets/TextControls.h"
+#include "widgets/CComponent.h"
 #include "../lib/rmg/CMapGenOptions.h"
 #include "../lib/campaign/CampaignHandler.h"
 #include "../lib/entities/artifact/CArtifact.h"
@@ -178,6 +179,53 @@ JsonNode weeklyRecruits(const CGTownInstance & town)
 void mobilePreviews(CIntObject * node,JsonNode & result){
  if(auto picture=dynamic_cast<CCreaturePic*>(node)){if(auto c=picture->getMobileCreature()){auto item=creature(c,1);item["preview"]=rect(picture->pos);item["previewAtlas"].Bool()=true;result.Vector().push_back(item);}return;}
  for(auto child:node->children)mobilePreviews(child,result);
+}
+// Presentation data only: selection and confirmation still use native callbacks.
+void mobileDialogContent(CIntObject * node, JsonNode & result, CStackWindow * commander, unsigned & skillIndex)
+{
+ if(auto component=dynamic_cast<CComponent *>(node))
+ {
+  JsonNode item;
+  item["label"].String()=component->getSubtitle();
+  item["description"].String()=component->getDescription();
+  if(component->data.type==ComponentType::RESOURCE)
+  {
+   const auto name=LIBRARY->resourceTypeHandler->getById(component->data.subType.as<GameResID>())->getNameTranslated();
+   item["label"].String()+=" "+name;
+   item["description"].String().clear();
+  }
+  if(component->data.type==ComponentType::EXPERIENCE)item["label"].String()+=" experience";
+  item["rect"]=rect(component->image ? component->image->pos : component->pos);
+  if(auto choice=dynamic_cast<CSelectableComponent *>(component))
+  {
+   item["selectable"].Bool()=true;
+   item["selected"].Bool()=choice->selected;
+  }
+  result["choices"].Vector().push_back(std::move(item));
+  return;
+ }
+ if(auto icon=dynamic_cast<CCommanderSkillIcon *>(node);icon && commander)
+ {
+  const auto available=commander->getMobileSkillChoices();
+  const unsigned index=skillIndex++;
+  const bool allowed=index<6 ? std::find(available.begin(),available.end(),index)!=available.end() : icon->getIsMasterAbility();
+  if(!allowed)return;
+  static const std::array names={"Attack","Defense","Health","Damage","Speed","Magic"};
+  JsonNode item;
+  item["label"].String()=index<6?names[index]:"Special ability";
+  item["description"].String()=icon->text;
+  item["rect"]=rect(icon->pos);
+  item["selectable"].Bool()=true;
+  item["selected"].Bool()=commander->isMobileSelectedSkill(icon);
+  result["choices"].Vector().push_back(std::move(item));
+  return;
+ }
+ if(auto label=dynamic_cast<CLabel *>(node))
+ {
+  if(!label->getText().empty())result["lines"].Vector().emplace_back(label->getText());
+  return;
+ }
+ for(auto child:node->children)mobileDialogContent(child,result,commander,skillIndex);
 }
 void publishPortraits()
 {
@@ -809,6 +857,16 @@ void publishMobileState(){
    }
   }
   n["creatureUnit"]=item;
+ }
+ if(top && n["mode"].String()=="dialog" && (ENGINE->windows().topWindow<CInfoWindow>() || ENGINE->windows().topWindow<CLevelWindow>() || n["dialogKind"].String()=="commander-level-up"))
+ {
+  auto & presentation=n["dialogPresentation"];
+  unsigned skillIndex=0;
+  mobileDialogContent(top.get(),presentation,creatureWindow.get(),skillIndex);
+  const bool level=bool(ENGINE->windows().topWindow<CLevelWindow>());
+  presentation["title"].String()=level?"Level up":n["dialogKind"].String()=="commander-level-up"?"Commander level up":"Game message";
+  if(auto info=ENGINE->windows().topWindow<CInfoWindow>())
+   presentation["cancel"].Bool()=info->buttons.size()>1;
  }
  n["sessionState"].Integer()=static_cast<int>(GAME->server().getState());if(n["mode"].String()=="connecting")n["launchAction"].Integer()=GAME->server().screenType==ESelectionScreen::loadGame?23:GAME->server().screenType==ESelectionScreen::campaignList?47:20;
  if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>()){

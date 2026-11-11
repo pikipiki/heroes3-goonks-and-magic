@@ -98,6 +98,7 @@ export function renderPage(root){
         }
       },`);
  html=html.replace('module.callMain(["--disable-video"]);', 'module.getGoonkRenderScale = () => window.goonkMobileActive ? 1 : 0;module.callMain(["--disable-video"]);');
- html=html.replace('DOSVCMI(window.Module);', `import {configureMobileSource} from './web/mobile-render.mjs';import {guardOnlineNameKeyboard} from './web/online-login.mjs';guardOnlineNameKeyboard(window);configureMobileSource(document.querySelector('#canvas'),window.goonkMobileActive);if(!window.crossOriginIsolated){const entry=new URL('./',location.href);entry.search=location.search;entry.hash=location.hash;location.replace(entry);}else{DOSVCMI(window.Module).catch(error=>{if(!window.goonkTemporaryBoot)throw error;window.goonkTemporaryBoot.fail(error);});}`);
+ html=html.replace("import DOSVCMI from './vcmiclient.js';",'');
+ html=html.replace('DOSVCMI(window.Module);', `import {configureMobileSource} from './web/mobile-render.mjs';import {guardOnlineNameKeyboard} from './web/online-login.mjs';guardOnlineNameKeyboard(window);configureMobileSource(document.querySelector('#canvas'),window.goonkMobileActive);if(!window.crossOriginIsolated){const entry=new URL('./',location.href);entry.search=location.search;entry.hash=location.hash;location.replace(entry);}else{import('./vcmiclient.js').then(({default:DOSVCMI})=>DOSVCMI(window.Module)).catch(error=>{window.goonkEngineStartupError=error;window.goonkTemporaryBoot?.fail(error);});}`);
  return html;
 }

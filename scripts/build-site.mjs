@@ -1,3 +1,4 @@
+import {fetchEnginePackage} from '../web/engine-startup.mjs';
 import {inlineBootScreen} from './boot-screen.mjs';
 import {versionModuleImports,versionScriptTags,createRuntimeVersion} from './version-runtime.mjs';
 import {execFileSync} from 'node:child_process';
@@ -31,6 +32,11 @@ if(fs.existsSync('game-data/manifest.json')){
  manifest.requiresImport=false;manifest.bundledBase=true;
 }
 packSmallAssets(manifest.files,file=>fs.readFileSync(path.join(publicData,file.path)),writePack);
+// Bound and report package failures before Emscripten can leave a run dependency hanging.
+const loaderPath=path.join(dist,'vcmiclient.data.js');let loader=fs.readFileSync(loaderPath,'utf8');
+const loaderStart=loader.indexOf('async function fetchRemotePackage('),loaderEnd=loader.indexOf('      var fetchPromise;',loaderStart);
+if(loaderStart<0||loaderEnd<0)throw Error('Unsupported Emscripten data loader');
+loader=loader.slice(0,loaderStart)+fetchEnginePackage.toString().replace('fetchEnginePackage','fetchRemotePackage')+'\n'+loader.slice(loaderEnd);fs.writeFileSync(loaderPath,loader);
 let html=renderPage(root);const runtimeNames={};
 for(const name of ['vcmiclient.data.js','vcmiclient.wasm','vcmiclient.data','vcmiclient.js']){const bytes=fs.readFileSync(path.join(dist,name)),hash=crypto.createHash('sha256').update(bytes).digest('hex').slice(0,16),hashed=name.replace(/(\.[^.]+)$/,'.'+hash+'$1');fs.renameSync(path.join(dist,name),path.join(dist,hashed));runtimeNames[name]=hashed;}
 html=html.replace(/vcmiclient\.(?:data\.js|wasm|data|js)/g,name=>runtimeNames[name]);

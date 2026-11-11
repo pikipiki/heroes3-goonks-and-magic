@@ -1202,3 +1202,12 @@ void CStackWindow::removeStackArtifact(ArtifactPosition pos)
 		redraw();
 	}
 }
+
+std::vector<ui32> CStackWindow::getMobileSkillChoices() const
+{
+ return info->levelupInfo ? info->levelupInfo->skills : std::vector<ui32>{};
+}
+bool CStackWindow::isMobileSelectedSkill(const CCommanderSkillIcon * icon) const
+{
+ return selectedIcon.get() == icon;
+}

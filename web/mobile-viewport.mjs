@@ -16,6 +16,10 @@ export function createMapPan(send,{schedule=fn=>requestAnimationFrame(fn)}={}){
 }
 
 export function isLandscapeOrientation(win=typeof window!=='undefined'?window:null,lw=0,lh=0){
+ // Physical orientation settles before Safari's layout/media queries after wake.
+ if(typeof win?.orientation==='number')return Math.abs(win.orientation)===90;
+ const physicalScreen=!win?.navigator||win.navigator.userAgentData?.mobile||/Android|iPhone|iPad|iPod/.test(win.navigator.userAgent||'');
+ if(physicalScreen&&win?.screen?.orientation?.type)return win.screen.orientation.type.startsWith('landscape');
  if(win?.matchMedia?.('(orientation: landscape)')?.matches)return true;
  if(win?.matchMedia?.('(orientation: portrait)')?.matches)return false;
  if(lw>0&&lh>0)return lw>lh;
@@ -61,7 +65,7 @@ export function anchorMobileViewport(root,win=window){
    if(aligned)[finalWidth,finalHeight]=aligned;
   }
   lastLayoutWidth=layoutWidth;
-  const next={position:'absolute',inset:'auto',left:(win.scrollX||0)+'px',top:(win.scrollY||0)+'px',width:finalWidth+'px',height:finalHeight+'px'};
+  const next={position:'absolute',inset:'auto',left:(Number.isFinite(viewport?.pageLeft)?viewport.pageLeft:win.scrollX||0)+'px',top:(Number.isFinite(viewport?.pageTop)?viewport.pageTop:win.scrollY||0)+'px',width:finalWidth+'px',height:finalHeight+'px'};
   for(const [name,value] of Object.entries(next))if(root.style[name]!==value)root.style[name]=value;
  }
  function schedule(){if(disposed||pending)return;pending=true;win.requestAnimationFrame(()=>{pending=false;update();});}
@@ -71,7 +75,7 @@ export function anchorMobileViewport(root,win=window){
   lastLayoutWidth=undefined;
   if(typeof win.scrollTo==='function')try{win.scrollTo(0,0);}catch(_){}
   schedule();
-  for(const delay of [60,150,300,500,800]){
+  for(const delay of [60,150,300,500,800,1500,2500]){
    const timer=setTimeout(()=>{
     wakeTimers.delete(timer);
     if(disposed||win.document?.hidden===true)return;
@@ -86,7 +90,7 @@ export function anchorMobileViewport(root,win=window){
   lastLayoutWidth=undefined;
   if(typeof win.scrollTo==='function')try{win.scrollTo(0,0);}catch(_){}
   schedule();
-  for(const delay of [50,120,250,450,750]){
+  for(const delay of [50,120,250,450,750,1500,2500]){
    const timer=setTimeout(()=>{
     wakeTimers.delete(timer);
     if(disposed||win.document?.hidden===true)return;

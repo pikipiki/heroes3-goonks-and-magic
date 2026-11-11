@@ -125,12 +125,12 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
      c.innerHTML='<h3></h3><button type="button" class="lobby-choice-card" aria-haspopup="dialog"><img class="lobby-map-emblem" src="./web/h3-theme/adventure-map.svg" alt=""><span><small></small><strong></strong><em></em></span></button>';
      c.querySelector('button').onclick=()=>open(s);
     }
-    const load=state.mode==='load',label=state.customMap?state.selectedMap:s.selectedOptions[0]?.textContent;
+    const busy=s.dataset.updating==='true',load=state.mode==='load',label=state.customMap?state.selectedMap:s.selectedOptions[0]?.textContent;
     const map=state.maps?.find(item=>String(item.index)===s.value);
     const selected=state.customMap?state.customMapOptions:map;
     const fr=getLanguage()==='fr';
     const summary=selected?scenarioDetails(state.customMap?{...selected,width:selected.size,height:selected.size}:soloMapMetadata(selected,state),fr):'';
-    for(const [selector,text] of [['h3',title(s)],['small',load?'Saved adventure':summary||'Selected scenario'],['strong',label||'Choose…'],['em',load?'Choose save ›':'Browse maps ›']]){
+    for(const [selector,text] of [['h3',title(s)],['small',load?'Saved adventure':summary||'Selected scenario'],['strong',busy?(label?'Selecting scenario…':'Loading scenarios…'):label||'Choose a scenario'],['em',busy?'Please wait…':load?'Choose save ›':'Browse maps ›']]){
      const node=c.querySelector(selector);
      if(node._sourceText!==text){node._sourceText=text;node.textContent=text;}
     }
