@@ -450,3 +450,33 @@
 #mobile-app .hero-army-slot .creature-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px 2px}
 #mobile-app .hero-army-slot .creature-stats dt{font-size:9px}
 #mobile-app .hero-army-slot .creature-stats dd{font-size:10.5px}
+
+/* Fit the worn inventory to its actual remaining height in every orientation. */
+.hero-equipment-page[data-inventory=worn] .hero-equipment-grid{container:hero-inventory / size;overflow:hidden;box-sizing:border-box}
+@media(orientation:portrait){
+ .hero-equipment-page[data-inventory=worn] .hero-body-layout{display:grid;height:100%;min-height:0;grid-template-rows:minmax(220px,1fr) auto;gap:4px}
+ .hero-equipment-page[data-inventory=worn] .hero-body-stage{height:100%;box-sizing:border-box;grid-template-rows:repeat(5,minmax(44px,1fr));min-height:0;padding:0;gap:3px}
+ #mobile-app .hero-equipment-page[data-inventory=worn] .hero-body-stage .hero-artifact-slot{height:100%;max-height:76px;width:min(76px,100%);box-sizing:border-box}
+ .hero-equipment-page[data-inventory=worn] .hero-extra-equipment h3{font-size:11px;line-height:13px;margin:0 0 2px}
+ #mobile-app .hero-equipment-page[data-inventory=worn] .hero-extra-equipment .hero-artifact-slot{min-height:44px;height:clamp(44px,6dvh,60px);box-sizing:border-box}
+ .hero-equipment-page[data-inventory=worn] .hero-extra-equipment .hero-artifact-slot small{font-size:10px;line-height:11px}
+ .hero-equipment-page[data-inventory=worn] .hero-extra-equipment .hero-artifact-slot :is(canvas,.hero-empty){height:24px;flex-basis:24px;line-height:24px}
+}
+@container hero-inventory (max-height:330px){
+ .hero-equipment-page[data-inventory=worn] .hero-body-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr);height:100%;gap:4px}
+ .hero-equipment-page[data-inventory=worn] .hero-body-stage{grid-template-columns:repeat(3,minmax(44px,1fr));grid-template-rows:repeat(3,minmax(44px,1fr));border:0;gap:2px}
+ .hero-equipment-page[data-inventory=worn] .hero-body-stage [data-hero-slot="0"]{grid-area:1/2}
+ .hero-equipment-page[data-inventory=worn] .hero-body-stage [data-hero-slot="1"]{grid-area:1/1}
+ .hero-equipment-page[data-inventory=worn] .hero-body-stage [data-hero-slot="2"]{grid-area:1/3}
+ .hero-equipment-page[data-inventory=worn] .hero-body-stage [data-hero-slot="3"]{grid-area:2/1}
+ .hero-equipment-page[data-inventory=worn] .hero-body-stage [data-hero-slot="4"]{grid-area:2/3}
+ .hero-equipment-page[data-inventory=worn] .hero-body-stage [data-hero-slot="5"]{grid-area:2/2}
+ .hero-equipment-page[data-inventory=worn] .hero-body-stage [data-hero-slot="6"]{grid-area:3/1}
+ .hero-equipment-page[data-inventory=worn] .hero-body-stage [data-hero-slot="7"]{grid-area:3/3}
+ .hero-equipment-page[data-inventory=worn] .hero-body-stage [data-hero-slot="8"]{grid-area:3/2}
+ .hero-equipment-page[data-inventory=worn] .hero-extra-equipment{display:grid;grid-template-rows:auto minmax(0,1fr);min-height:0}
+ .hero-equipment-page[data-inventory=worn] .hero-extra-equipment>div{display:grid;grid-template-columns:repeat(3,minmax(44px,1fr));grid-template-rows:repeat(4,minmax(44px,1fr));gap:2px}
+ #mobile-app .hero-equipment-page[data-inventory=worn] .hero-body-layout .hero-artifact-slot{height:100%;max-height:none;min-height:44px;min-width:44px;padding:1px;gap:0;justify-content:center}
+ .hero-equipment-page[data-inventory=worn] .hero-body-layout .hero-artifact-slot small{font-size:10px;line-height:11px;white-space:normal}
+ .hero-equipment-page[data-inventory=worn] .hero-body-layout .hero-artifact-slot :is(canvas,.hero-empty){height:20px;width:24px;flex-basis:20px;line-height:20px}
+}

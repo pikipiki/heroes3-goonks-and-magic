@@ -185,12 +185,7 @@ export function paintSelectedTile(ctx,selected,layout,state,isMove=true){
   const ax=layout.dx+(guidance.actor.x-layout.x)*layout.scale;
   const ay=layout.dy+(guidance.actor.y-layout.y)*layout.scale;
   const lineColor=isMelee?'#ff4d4d':'#ffe640';
-  const path=isMove&&state.battleCamera?.previewPath?.length?state.battleCamera.previewPath:[guidance.actor,selected];
-  if(isMove)for(const cell of path){
-   ctx.beginPath();BATTLE_HEX_VERTICES.forEach(([vx,vy],i)=>{const x=layout.dx+(cell.x+vx-layout.x)*layout.scale,y=layout.dy+(cell.y+vy-layout.y)*layout.scale;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.closePath();ctx.fillStyle='rgba(255,230,64,.25)';ctx.fill();
-  }
   ctx.beginPath();ctx.moveTo(ax,ay);
-  for(const cell of path)ctx.lineTo(layout.dx+(cell.x-layout.x)*layout.scale,layout.dy+(cell.y-layout.y)*layout.scale);
   ctx.lineTo(px,py);
   ctx.strokeStyle='#000000';
   ctx.lineWidth=Math.max(3,5*layout.scale);

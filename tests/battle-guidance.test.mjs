@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {battleGuidance,paintActiveCreature,paintMeleeTargets} from '../web/battle-guidance.mjs';
+import {battleGuidance,paintActiveCreature,paintMeleeTargets,paintSelectedTile} from '../web/battle-guidance.mjs';
 import {paintMovementRange} from '../web/battle-scene.mjs';
 const actor={stackId:0,id:1,name:'Picpique',count:10,x:102,y:196,occupied:[35,36],enemy:false};
 const state={mode:'battle',activeStack:0,canAct:true,round:0,tacticsMode:true,canEndTactics:true,battleUnits:[actor,{stackId:2,id:1,occupied:[40],enemy:false},{stackId:3,occupied:[44],enemy:true}],battleCells:[{hex:35,kind:1,reachable:true},{hex:36,kind:1,reachable:true},{hex:37,kind:0,reachable:true},{hex:38,kind:0,reachable:false},{hex:39,kind:2,reachable:false},{hex:40,kind:1,reachable:true},{hex:41,kind:4,reachable:true},{hex:44,kind:1,reachable:false}]};
@@ -81,4 +81,14 @@ test('paintMeleeTargets renders crossed sword icons on reachable enemy positions
  assert(arcs>0,'Must draw circular badge and pommels');
  assert(rects>0,'Must clip to battlefield and draw crossguards');
  assert(strokeStyles.includes('#e53935'),'Badge circle must be red (#e53935)');
+});
+
+
+test('Battle destination feedback connects the endpoints without intermediate steps',()=>{
+ const lines=[];
+ const ctx=new Proxy({measureText:()=>({width:80})},{get:(target,key)=>key in target?target[key]:(...args)=>{if(key==='lineTo')lines.push(args);}});
+ const selected={x:300,y:196};
+ paintSelectedTile(ctx,selected,{x:0,y:0,dx:0,dy:0,scale:1},{...state,tacticsMode:false,round:1,battleCamera:{previewPath:[actor,{x:190,y:280},selected]}});
+ assert(lines.some(([x,y])=>x===selected.x&&y===selected.y));
+ assert(!lines.some(([x,y])=>x===190&&y===280),'The detailed path is not drawn');
 });

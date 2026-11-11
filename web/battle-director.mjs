@@ -49,7 +49,7 @@ export function paintBattleAction(ctx,view,layout){
  function mark(point,color,label){if(label)label=translate(label);const p=pos(point),r=Math.max(8,22*layout.scale);if(p.x+r<layout.dx||p.x-r>layout.dx+layout.w*layout.scale||p.y+r<layout.dy||p.y-r>layout.dy+layout.h*layout.scale)return;ctx.beginPath();ctx.ellipse(p.x,p.y+8*layout.scale,r,r*.45,0,0,Math.PI*2);ctx.strokeStyle='#21170d';ctx.lineWidth=5;ctx.stroke();ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.stroke();if(!label)return;ctx.font='12px Georgia';const width=ctx.measureText(label).width+10,left=Math.max(layout.dx+2,Math.min(layout.dx+layout.w*layout.scale-width-2,p.x+12)),top=Math.max(layout.dy+2,Math.min(layout.dy+layout.h*layout.scale-20,p.y-30*layout.scale));ctx.fillStyle='#231b12';ctx.fillRect(left,top,width,18);ctx.fillStyle=color;ctx.textAlign='left';ctx.textBaseline='middle';ctx.fillText(label,left+5,top+9);}
  const destination=targets[0]||view.destination;
  if(actor&&valid(destination)){
-  const path=view.kind==='move'&&view.path?.length?view.path:[actor,destination];
+  const path=[actor,destination];
   ctx.beginPath();path.forEach((p,i)=>{const q=pos(p);i?ctx.lineTo(q.x,q.y):ctx.moveTo(q.x,q.y);});ctx.strokeStyle=view.kind==='move'?'#ffe19a':'#ffad91';ctx.lineWidth=2;ctx.setLineDash(view.preview?[4,4]:[]);ctx.stroke();ctx.setLineDash([]);
   const from=pos(actor),to=pos(destination),angle=Math.atan2(to.y-from.y,to.x-from.x);ctx.beginPath();ctx.moveTo(to.x,to.y);ctx.lineTo(to.x-9*Math.cos(angle-.5),to.y-9*Math.sin(angle-.5));ctx.lineTo(to.x-9*Math.cos(angle+.5),to.y-9*Math.sin(angle+.5));ctx.closePath();ctx.fillStyle=view.kind==='move'?'#ffe19a':'#ffad91';ctx.fill();
  }

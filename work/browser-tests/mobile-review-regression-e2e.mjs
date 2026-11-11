@@ -15,7 +15,7 @@ for(const kind of ['chromium','webkit']){
  for(const [width,height] of [[390,844],[844,390],[320,568],[568,320],[1024,768],[768,1024],[390,844]]){
   await page.setViewportSize({width,height});await page.evaluate(()=>{dispatchEvent(new Event('orientationchange'));dispatchEvent(new Event('focus'));dispatchEvent(new Event('pageshow'));});
   await send({mode:'map',turn:true,heroId:1,heroName:'Hero',heroes:[{id:1,name:'Hero'}],hasPath:true});await page.waitForTimeout(180);
-  const buttons=await page.locator('.mobile-nav>button').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().toJSON()));assert(buttons.every(b=>Math.abs(b.y-buttons[0].y)<1),'one adventure action row');await visible('.mobile-nav>button');
+  const buttons=await page.locator('.mobile-nav>button').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().toJSON()));if(width<=height)assert(buttons.every(b=>Math.abs(b.y-buttons[0].y)<1),'one portrait adventure action row');else assert(buttons.every(b=>b.x>=width-340-1),'landscape adventure actions on the right');await visible('.mobile-nav>button');
   const root=await page.locator('#mobile-app').boundingBox();assert(Math.abs(root.y)<1&&Math.abs(root.height-height)<1,'app fills viewport after rotation');
   await send({mode:'hero',turn:true,heroWindow:{id:1,name:'Hero',level:1,primarySkills:[1,2,3,4]},armies:[{id:1,name:'Hero',slots:[{id:1,name:'Pixie',count:10,attack:2,defense:2}]}]});await page.locator('[data-hero-tab=army]').tap();await page.waitForTimeout(80);
   await visible('.hero-bag-tabs button');

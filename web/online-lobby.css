@@ -58,3 +58,6 @@ html.goonk-mobile #mobile-app[data-mobile-online] {
 #mobile-app .online-lobby button.primary {
   outline:2px solid #e3bf71;outline-offset:-3px;
 }
+@media(orientation:landscape){
+ #mobile-app .online-lobby-body{grid-column:1;grid-row:1/-1}
+}

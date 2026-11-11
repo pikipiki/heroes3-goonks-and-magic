@@ -618,3 +618,9 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-top .battle-team-actions button,
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui]{min-height:44px!important}
 }
+@media(orientation:landscape){
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]{--battle-sidebar:var(--control-rail,clamp(220px,29vw,340px));grid-template-columns:minmax(0,1fr) var(--battle-sidebar)!important}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top{grid-column:2!important;grid-row:1!important;grid-template-columns:44px minmax(0,1fr)!important;padding:3px!important;gap:3px!important}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top .battle-team-actions{grid-column:1/-1!important;grid-row:2!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top .battle-view{grid-column:2!important;grid-row:1!important;min-width:0!important}
+}
