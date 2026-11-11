@@ -162,11 +162,11 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const other = visible.filter(building => !available.includes(building));
     const grouped = categories.map(name => group(state, name, other.filter(building => category(building) === name))).join('');
     const collapse = available.length && other.length && !filter;
-    return `<div class="building-controls"><div class="building-tabs" role="group" aria-label="Bâtiments">
+    return `<div class="building-controls"><div class="building-tabs" role="group" aria-label="Building status"><span class="building-control-label">Building status</span>
       <button type="button" data-building-tab="built" aria-pressed="${tab === 'built'}">${count('Construits', builtCount)}</button>
       <button type="button" data-building-tab="unbuilt" aria-pressed="${tab === 'unbuilt'}">${count('À construire', buildings.length - builtCount)}</button>
       ${grail ? '<button type="button" data-building-grail>Graal</button>' : ''}
-      </div><div class="building-filters" role="group" aria-label="Familles de bâtiments">
+      </div><div class="building-filters" role="group" aria-label="Building categories"><span class="building-control-label">Categories</span>
       ${filters.map(name => `<button type="button" data-building-filter="${name}" aria-pressed="${name === filter}">${name || 'Tous'}</button>`).join('')}
       </div></div>
       ${tab === 'unbuilt' && !state.turn ? '<p>Disponible à ton tour</p>' : ''}

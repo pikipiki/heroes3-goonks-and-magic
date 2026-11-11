@@ -16,6 +16,8 @@ export function mapOverviewViewport(map,layout,width,height){
 export function paintMapOverview(ctx,source,map,layout){
  const w=ctx.canvas.width,h=ctx.canvas.height,g=mapOverviewGeometry(map,w,h);if(!g)return;
  const r=map.rect,sx=source.width/800,sy=source.height/600;ctx.save();ctx.fillStyle='#080906';ctx.fillRect(0,0,w,h);ctx.imageSmoothingEnabled=false;
- ctx.drawImage(source,r.x*sx,r.y*sy,r.w*sx,r.h*sy,g.x,g.y,g.w,g.h);
+ const atlas=typeof window!=='undefined'&&window.goonkMinimapLevel===map.level?window.goonkMinimapAtlas:null;
+ if(atlas)ctx.drawImage(atlas,0,0,atlas.width,atlas.height,g.x,g.y,g.w,g.h);
+ else ctx.drawImage(source,r.x*sx,r.y*sy,r.w*sx,r.h*sy,g.x,g.y,g.w,g.h);
  const area=mapOverviewViewport(map,layout,w,h);if(area){ctx.strokeStyle='#000';ctx.lineWidth=5;ctx.strokeRect(area.x,area.y,area.w,area.h);ctx.strokeStyle='#ffe894';ctx.lineWidth=2;ctx.strokeRect(area.x,area.y,area.w,area.h);}ctx.restore();
 }

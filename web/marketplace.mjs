@@ -12,12 +12,12 @@ export function createMarketplace({root, command, refresh}) {
  panel.className = 'market-page';
  panel.hidden = true;
  panel.setAttribute('aria-labelledby','market-title');
- panel.innerHTML = `<header class="market-header"><img src="./web/h3-theme/resource-gold.png" alt=""><h2 id="market-title"></h2><button type="button" data-market="classic"></button><button type="button" data-market="close">✕</button></header>
+ panel.innerHTML = `<header class="market-header"><img src="./web/h3-theme/resource-gold.png" alt=""><h2 id="market-title"></h2></header>
  <div class="market-sides"><section aria-labelledby="market-give"><h3 id="market-give"></h3><div class="market-grid" data-side="give"></div></section>
  <section aria-labelledby="market-receive"><h3 id="market-receive"></h3><div class="market-grid" data-side="receive"></div></section></div>
  <section class="market-deal"><div class="market-total" role="status" aria-live="polite"></div><div class="market-order"><div class="market-stepper">
  <button type="button" data-market="minus">−</button><input type="number" inputmode="numeric" min="1" step="1"><button type="button" data-market="plus">+</button><button type="button" data-market="max"></button>
- </div><button class="primary" type="button" data-market="trade"></button></div></section>`;
+ </div><button class="primary" type="button" data-market="trade"></button></div><footer class="market-view-actions"><button type="button" data-market="classic"></button><button class="primary" type="button" data-market="close">← Back</button></footer></section>`;
  root.querySelector('.mobile-play').append(panel);
  const find = s => panel.querySelector(s);
  const amount = find('input'), total = find('.market-total');

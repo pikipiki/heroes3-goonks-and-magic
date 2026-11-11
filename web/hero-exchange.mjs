@@ -88,7 +88,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
   </header>
   <nav class="exchange-tabs" aria-label="${fr?'Type d’échange':'Exchange type'}">
    <button type="button" data-exchange-tab="equipment" data-exchange-focus="equipment" aria-pressed="${!troops}" ${pending?'disabled':''}>${fr?'Équipement':'Equipment'}</button>
-   <button type="button" data-exchange-tab="troops" data-exchange-focus="troops" aria-pressed="${troops}" ${pending?'disabled':''}>${fr?'Troupes':'Troops'}</button>
+   <button type="button" data-exchange-tab="troops" data-exchange-focus="troops" aria-pressed="${troops}" ${pending?'disabled':''}>${fr?'Troupes':'Army'}</button>
   </nav>
   <div class="exchange-inventories">${heroes.map(sideMarkup).join('')}</div>
   <footer class="exchange-detail">

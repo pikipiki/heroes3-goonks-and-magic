@@ -34,6 +34,7 @@ public:
 	~CMinimapInstance();
 
 	void showAll(Canvas & to) override;
+	void drawMobile(Canvas & to);
 	void refreshTile(const int3 & pos);
 };
 
@@ -68,12 +69,14 @@ public:
 	void moveAdvMapSelection(const Point & positionGlobal);
 	const Rect & mobileVisibleArea() const { return screenArea; }
 	int mobileLevel() const { return level; }
+	bool hasMobileTerrain() const { return bool(minimap); }
 
 	void onMapViewMoved(const Rect & visibleArea, int mapLevel);
 	void update();
 	void setAIRadar(bool on);
 
 	void showAll(Canvas & to) override;
+	void drawMobile(Canvas & to);
 
 	void updateTiles(const FowTilesType & positions);
 };

@@ -208,14 +208,16 @@ void mobileDialogContent(CIntObject * node, JsonNode & result, CStackWindow * co
  {
   const auto available=commander->getMobileSkillChoices();
   const unsigned index=skillIndex++;
-  const bool allowed=index<6 ? std::find(available.begin(),available.end(),index)!=available.end() : icon->getIsMasterAbility();
+  const bool levelUp=commander->isCommanderLevelUp();
+  const bool allowed=index<6 ? !levelUp || std::find(available.begin(),available.end(),index)!=available.end() : icon->getIsMasterAbility();
   if(!allowed)return;
   static const std::array names={"Attack","Defense","Health","Damage","Speed","Magic"};
   JsonNode item;
   item["label"].String()=index<6?names[index]:"Special ability";
   item["description"].String()=icon->text;
   item["rect"]=rect(icon->pos);
-  item["selectable"].Bool()=true;
+  item["selectable"].Bool()=levelUp;
+  item["inspectable"].Bool()=!levelUp;
   item["selected"].Bool()=commander->isMobileSelectedSkill(icon);
   result["choices"].Vector().push_back(std::move(item));
   return;
@@ -602,6 +604,30 @@ void collectPreviewPictures(CIntObject * node, std::vector<CCreaturePic *> & pic
  if(auto picture=dynamic_cast<CCreaturePic *>(node)){if(pictures.size()<8)pictures.push_back(picture);return;}
  for(auto child:node->children)collectPreviewPictures(child,pictures);
 }
+void publishMobileMinimap(CMinimap & mini)
+{
+ static uint32_t last=0;static std::vector<uint8_t> previous;static int previousLevel=-1;
+ if(!mobileEnabled || !mini.hasMobileTerrain() || SDL_GetTicks()-last<400)return;
+ last=SDL_GetTicks();
+ auto surface=SDL_CreateRGBSurfaceWithFormat(0,240,240,32,SDL_PIXELFORMAT_RGBA32);
+ if(!surface)return;
+ SDL_FillRect(surface,nullptr,0);
+ {auto target=Canvas::createFromSurface(surface,CanvasScalingPolicy::IGNORE);mini.drawMobile(target);}
+ const size_t bytes=240*240*4;
+ const auto pixels=static_cast<uint8_t *>(surface->pixels);
+ if(previousLevel!=mini.mobileLevel() || previous.size()!=bytes || memcmp(previous.data(),pixels,bytes)!=0)
+ {
+  previous.assign(pixels,pixels+bytes);previousLevel=mini.mobileLevel();
+  auto packet=static_cast<uint8_t *>(malloc(bytes));
+  if(packet){memcpy(packet,pixels,bytes);MAIN_THREAD_ASYNC_EM_ASM({const ptr=$0;try{
+   const canvas=window.goonkMinimapAtlas||(window.goonkMinimapAtlas=document.createElement('canvas'));
+   if(canvas.width!==240||canvas.height!==240){canvas.width=240;canvas.height=240;}
+   canvas.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr,ptr+240*240*4)),240,240),0,0);
+   window.goonkMinimapLevel=$1;window.goonkMinimapVersion=(window.goonkMinimapVersion||0)+1;
+  }finally{_free(ptr);}},packet,previousLevel);}
+ }
+ SDL_FreeSurface(surface);
+}
 void publishMobilePreviewAtlas()
 {
  static uint32_t last=0;
@@ -843,12 +869,12 @@ void publishMobileState(){
  }
  else if(p||ENGINE->windows().topWindow<CBonusSelection>())n["mode"].String()="dialog";
  if(top&&(fortWindow||recruitWindow||n["mode"].String()=="creature"))mobilePreviews(top.get(),n["previewUnits"]);
- if(n["mode"].String()=="creature"&&creatureWindow->getMobileCreature()){
+ if(creatureWindow && (n["mode"].String()=="creature" || n["dialogKind"].String()=="commander") && creatureWindow->getMobileCreature()){
   auto item=creature(creatureWindow->getMobileCreature(),creatureWindow->getMobileCount());
   for(const auto & description : creatureWindow->getMobileAbilities())
    item["abilities"].Vector().emplace_back(description);
   if(auto stack=creatureWindow->getMobileStack()){mobileStackExperience(item,stack);const bool shooter=stack->hasBonusOfType(BonusType::SHOOTER);item["attack"].Integer()=stack->getAttack(shooter);item["defense"].Integer()=stack->getDefense(shooter);item["health"].Integer()=stack->getMaxHealth();item["speed"].Integer()=stack->getMovementRange();item["damageMin"].Integer()=stack->getMinDamage(shooter);item["damageMax"].Integer()=stack->getMaxDamage(shooter);}
-  if(p&&p->cb&&!CPlayerInterface::battleInt)if(const auto stack=creatureWindow->getMobileStack())if(const auto armyObject=stack->getArmy())if(armyObject->getOwner()==p->playerID){
+  if(n["mode"].String()=="creature"&&p&&p->cb&&!CPlayerInterface::battleInt)if(const auto stack=creatureWindow->getMobileStack())if(const auto armyObject=stack->getArmy())if(armyObject->getOwner()==p->playerID){
    const auto slot=armyObject->findStack(stack);UpgradeInfo upgrades(stack->getCreature()->getId());p->cb->fillUpgradeInfo(armyObject,slot,upgrades);
    for(const auto id:upgrades.getAvailableUpgrades()){
     auto upgrade=creature(id.toCreature(),stack->getCount());const auto total=upgrades.getUpgradeCostsFor(id)*stack->getCount();upgrade["cost"].Vector().clear();
@@ -858,13 +884,14 @@ void publishMobileState(){
   }
   n["creatureUnit"]=item;
  }
- if(top && n["mode"].String()=="dialog" && (ENGINE->windows().topWindow<CInfoWindow>() || ENGINE->windows().topWindow<CLevelWindow>() || n["dialogKind"].String()=="commander-level-up"))
+ if(top && n["mode"].String()=="dialog" && (ENGINE->windows().topWindow<CInfoWindow>() || ENGINE->windows().topWindow<CLevelWindow>() || n["dialogKind"].String()=="commander-level-up" || n["dialogKind"].String()=="commander"))
  {
   auto & presentation=n["dialogPresentation"];
   unsigned skillIndex=0;
   mobileDialogContent(top.get(),presentation,creatureWindow.get(),skillIndex);
   const bool level=bool(ENGINE->windows().topWindow<CLevelWindow>());
-  presentation["title"].String()=level?"Level up":n["dialogKind"].String()=="commander-level-up"?"Commander level up":"Game message";
+  if(n["dialogKind"].String()=="commander")presentation["unit"]=n["creatureUnit"];
+  presentation["title"].String()=n["dialogKind"].String()=="commander"?"Commander":level?"Level up":n["dialogKind"].String()=="commander-level-up"?"Commander level up":"Game message";
   if(auto info=ENGINE->windows().topWindow<CInfoWindow>())
    presentation["cancel"].Bool()=info->buttons.size()>1;
  }
@@ -992,7 +1019,7 @@ void publishMobileState(){
    resource->registerIcons([&type](int32_t,int32_t,const std::string & list,const std::string & image){if(list=="SMALRES")type["icon"].String()=image;});
    n["resourceTypes"].Vector().push_back(type);n["resources"].Vector().push_back(JsonNode(double(p->cb->getResourceAmount(resourceId))));
   }
-  if(n["mode"].String()=="map"&&adventureInt){auto mini=adventureInt->getMobileMinimap();if(mini){auto size=p->cb->getMapSize();auto & m=n["mapOverview"];m["rect"]=rect(mini->pos);m["view"]=rect(adventureInt->getMobileMapRect());m["viewport"]=rect(mini->mobileVisibleArea());m["width"].Integer()=size.x;m["height"].Integer()=size.y;m["level"].Integer()=mini->mobileLevel();}}
+  if(n["mode"].String()=="map"&&adventureInt){auto mini=adventureInt->getMobileMinimap();if(mini){auto size=p->cb->getMapSize();auto & m=n["mapOverview"];m["rect"]=rect(mini->pos);m["view"]=rect(adventureInt->getMobileMapRect());m["viewport"]=rect(mini->mobileVisibleArea());m["width"].Integer()=size.x;m["height"].Integer()=size.y;m["level"].Integer()=mini->mobileLevel();publishMobileMinimap(*mini);}}
   const auto hero=heroWindow?heroWindow->curHero:p->localState->getCurrentHero();
   if(hero){n["heroName"].String()=hero->getNameTranslated();n["heroMana"].Integer()=hero->mana;n["heroManaLimit"].Integer()=hero->manaLimit();n["heroHasSpellbook"].Bool()=hero->hasSpellbook();n["movement"].Integer()=hero->movementPointsRemaining();n["heroId"].Integer()=hero->id.getNum();n["armies"].Vector().push_back(army(hero,hero->getNameTranslated()));if(p->localState->hasPath(hero)){n["hasPath"].Bool()=true;n["pathTurns"].Integer()=p->localState->getPath(hero).lastNode().turns;}}
   if(n["mode"].String()=="map"&&hero){const auto town=mobileResidentTown(hero);if(town&&town->getOwner()==p->playerID)mobileTownArmies(n,town);}

@@ -16,3 +16,8 @@ test('The gold frame tracks the cropped mobile camera and is clipped at world bo
 test('Retina rendering copies the native fogged map using logical engine coordinates',()=>{
  const calls=[],ctx={canvas:{width:240,height:240},save(){},restore(){},fillRect(){},drawImage(...args){calls.push(args);},strokeRect(){}};const source={width:1600,height:1200};paintMapOverview(ctx,source,map,{x:6,y:6,w:600,h:540});assert.deepEqual(calls[0],[source,1260,52,288,288,0,0,240,240]);
 });
+test('Independent minimap pixels survive an unrelated native framebuffer and do not cross map levels',()=>{
+ const calls=[],ctx={canvas:{width:240,height:240},save(){},restore(){},fillRect(){},drawImage(...args){calls.push(args);},strokeRect(){}};
+ const source={width:800,height:600},atlas={width:240,height:240};globalThis.window={goonkMinimapAtlas:atlas,goonkMinimapLevel:0};
+ try{paintMapOverview(ctx,source,{...map,level:0},null);assert.equal(calls[0][0],atlas);paintMapOverview(ctx,source,{...map,level:1},null);assert.equal(calls[1][0],source);}finally{delete globalThis.window;}
+});

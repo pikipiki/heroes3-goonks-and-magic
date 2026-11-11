@@ -303,3 +303,23 @@ void CMinimap::updateTiles(const FowTilesType & positions)
 
 	redraw();
 }
+
+void CMinimapInstance::drawMobile(Canvas & to)
+{
+ to.drawScaled(*minimap, Point(0,0), Point(240,240));
+}
+void CMinimap::drawMobile(Canvas & to)
+{
+ if(!minimap)return;
+ minimap->drawMobile(to);
+ if(!settings["adventure"]["minimapShowHeroes"].Bool())return;
+ const auto size=GAME->interface()->cb->getMapSize();
+ for(const auto id:getVisibleHeroes())
+ {
+  const auto object=GAME->interface()->cb->getObj(id);
+  if(!object || object->anchorPos().z!=level)continue;
+  heroIcon->setOverlayColor(graphics->playerColors[object->getOwner().getNum()]);
+  const auto point=object->visitablePos();
+  to.draw(heroIcon,Point(point.x*240/size.x,point.y*240/size.y)-heroIcon->dimensions()/2);
+ }
+}
