@@ -27,7 +27,6 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   if(slot===null||slot===undefined)return;
   const hero=state.heroWindow||{};
   const heroArmy=(state.armies||[]).find(a=>(Number.isInteger(hero.id)&&a.id===hero.id)||a.name===hero.name)||(state.armies||[])[0];
-  pointer?.({x: 44 + slot * 66, y: 517}, 2);
   if(heroArmy)command?.(41, heroArmy.id, slot);
  }
  function slotMarkup(a){const picked=state.heroWindow?.picked;const label=tab==='worn'?equipmentSlotNames[a.slot]||'Equipment':'Backpack '+(a.slot-18);return `<button class="hero-artifact-slot${picked&&a.allowed?' can-receive':''}" data-hero-slot="${a.slot}" aria-pressed="${a.slot===selected}" ${picked&&!a.allowed?'disabled':''} aria-label="${esc(label+': '+(a.name||'Empty'))}" title="${esc(label+': '+(a.name||'Empty'))}"><small>${label}${a.locked?' · Locked':''}</small>${a.name?`<canvas width="64" height="64" data-artifact-icon="${a.icon}" aria-hidden="true"></canvas><strong>${esc(a.name)}</strong>`:'<span class="hero-empty" aria-hidden="true">＋</span><strong>Empty</strong>'}</button>`;}
@@ -194,6 +193,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
    const heroArmy=(state.armies||[]).find(a=>(Number.isInteger(hero.id)&&a.id===hero.id)||a.name===hero.name)||(state.armies||[])[0];
    if(!heroArmy)return;
    const unit=heroArmy.slots?.[slot]||null;
+   if(unit&&event.target.closest('.hero-army-slot-art')){selectedArmySlot=slot;openCreatureDetails(slot);return;}
    if(selectedArmySlot===null){
     if(unit){
      selectedArmySlot=slot;

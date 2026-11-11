@@ -41,7 +41,7 @@ export function overviewCreature(point,units,scale){
 export function createBattleDualView({root,scene,getState,getView=()=>'whole',onFocus}){
  const stylesheet=document.createElement('link');stylesheet.rel='stylesheet';stylesheet.href=new URL('./battle-dual-view.css',import.meta.url).href;document.head.append(stylesheet);
  const strategic=document.createElement('section');strategic.className='battle-strategic-view';strategic.setAttribute('aria-label','Vue stratégique du combat');strategic.hidden=true;
- const canvas=document.createElement('canvas');canvas.id='battle-strategic-scene';canvas.setAttribute('aria-label','Terrain entier. Touchez une troupe ou une zone pour la voir en grand.');canvas.tabIndex=0;canvas.setAttribute('role','group');
+ const canvas=document.createElement('canvas');canvas.id='battle-strategic-scene';canvas.setAttribute('aria-label','Écran d’action. Touchez une case ou une cible pour préparer une action.');canvas.tabIndex=0;canvas.setAttribute('role','group');
  const actionTag=document.createElement('div');actionTag.className='battle-view-tag action-tag';actionTag.setAttribute('aria-hidden','true');actionTag.textContent='⚔️ Écran d’action';
  strategic.append(canvas,actionTag);scene.before(strategic);
  const closeTag=document.createElement('div');closeTag.className='battle-view-tag close-tag';closeTag.setAttribute('aria-hidden','true');closeTag.textContent='🎥 Caméra de suivi';
@@ -85,7 +85,7 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
  let lastDetail=null;
  function paint(original,detail,selected,view,isMove=true){if(!sync())return;const text=view?.label||'Vue rapprochée · Choisissez une case ou une cible';if(detailDescription.textContent!==text)detailDescription.textContent=text;const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;const pixels=surfaceSize.fit(canvas,w,h,Math.min(devicePixelRatio||1,2));ctx.setTransform(pixels.x,0,0,pixels.y,0,0);ctx.clearRect(0,0,w,h);const scale=w/800;const dy=Math.max(0,(h-555*scale)/2);currentLayout={x:0,y:0,w:800,h:555,scale,dx:0,dy};const l=currentLayout;ctx.drawImage(original,0,0,original.width,original.height*555/600,0,l.dy,w,555*scale);
   const state=getState(),guidance=battleGuidance(state);paintBattleFloor(ctx,state,l);paintShotTargets(ctx,guidance.shotTargets,l);paintMeleeTargets(ctx,guidance.meleeTargets,l);paintActiveCreature(ctx,guidance,l);
-  if(state.battleCamera?.active)paintBattleAction(ctx,view,l);
+  if(!view?.preview)paintBattleAction(ctx,view,l);
   paintSpellTargets(ctx,[...new Set([...guidance.spellTargets,...(guidance.beneficialTargets||[])])],l);
   if(selected){
    paintSelectedTile(ctx,selected,l,state,isMove);

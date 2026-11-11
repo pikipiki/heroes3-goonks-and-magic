@@ -53,14 +53,12 @@ export function anchorMobileViewport(root,win=window){
   const isLandscape=isLandscapeOrientation(win,lw,lh);
   const isPortrait=!isLandscape;
   let finalWidth=width,finalHeight=height;
-  if(isLandscape){
-   finalWidth=Math.max(finalWidth,finalHeight,lw,win.innerWidth||0);
-   finalHeight=Math.min(Math.min(finalHeight,finalWidth),lh,win.innerHeight||lh);
-   if(finalWidth<finalHeight)[finalWidth,finalHeight]=[finalHeight,finalWidth];
-  }else if(isPortrait){
-   finalHeight=Math.max(finalWidth,finalHeight,lh,win.innerHeight||0);
-   finalWidth=Math.min(finalWidth,lw,win.innerWidth||lw);
-   if(finalHeight<finalWidth)[finalWidth,finalHeight]=[finalHeight,finalWidth];
+  // A correctly oriented visual viewport is the visible area (Safari toolbars
+  // can make it shorter than innerHeight). Only repair inverted stale sizes.
+  if((isLandscape&&width<height)||(isPortrait&&width>height)){
+   const candidates=[[lw,lh],[win.innerWidth,win.innerHeight],[height,width]];
+   const aligned=candidates.find(([w,h])=>w>0&&h>0&&(isLandscape?w>=h:h>=w));
+   if(aligned)[finalWidth,finalHeight]=aligned;
   }
   lastLayoutWidth=layoutWidth;
   const next={position:'absolute',inset:'auto',left:(win.scrollX||0)+'px',top:(win.scrollY||0)+'px',width:finalWidth+'px',height:finalHeight+'px'};
@@ -69,6 +67,7 @@ export function anchorMobileViewport(root,win=window){
  function schedule(){if(disposed||pending)return;pending=true;win.requestAnimationFrame(()=>{pending=false;update();});}
  function onWake(){
   if(win.document?.hidden===true)return;
+  clearWakeTimers();
   lastLayoutWidth=undefined;
   if(typeof win.scrollTo==='function')try{win.scrollTo(0,0);}catch(_){}
   schedule();
@@ -83,6 +82,7 @@ export function anchorMobileViewport(root,win=window){
   }
  }
  function onOrientationChange(){
+  clearWakeTimers();
   lastLayoutWidth=undefined;
   if(typeof win.scrollTo==='function')try{win.scrollTo(0,0);}catch(_){}
   schedule();

@@ -1482,7 +1482,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
    if(old->isCommanderLevelUp())return;
    std::static_pointer_cast<CWindowObject>(old)->close();
   }
-  if(!ENGINE->windows().topWindow<AdventureMapInterface>()&&!townWindow)return;
+  if(!ENGINE->windows().topWindow<AdventureMapInterface>()&&!townWindow&&!ENGINE->windows().topWindow<CHeroWindow>())return;
   ENGINE->windows().createAndPushWindow<CStackWindow>(&army->getStack(SlotID(b)),false);lastPublished=0;return;
  }
  if(action==59&&p->makingTurn&&!CPlayerInterface::battleInt){

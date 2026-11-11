@@ -51,8 +51,8 @@ test('A distant shot focuses on the hit target in close-up',()=>{
   assert(x>=0&&x<=w&&y>=0&&y<=h);
  }
 });
-test('Creature spells frame the caster with the victim without duplicating a self target',()=>{
+test('Creature spells focus on the hit target, including self casts',()=>{
  const d=createBattleDirector(),spell={sequence:30,active:true,kind:'spell',actor:ally,targets:[enemy]};
- assert.equal(d.frame({...idle,battleCamera:spell}).points.length,2);
+ assert.deepEqual(d.frame({...idle,battleCamera:spell}).points,[enemy]);
  const self=d.frame({...idle,battleCamera:{...spell,sequence:31,targets:[ally]}});assert.equal(self.points.length,1);
 });

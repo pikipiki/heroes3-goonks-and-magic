@@ -290,3 +290,13 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native][data-ba
  #mobile-app[data-mode=recruit] .recruit-variants{grid-column:1;grid-row:3;align-self:end;min-width:0}
  #mobile-app[data-mode=recruit] .mobile-recruit-amount{grid-column:2;grid-row:3;align-self:end}
 }
+
+/* Adventure actions stay on one bottom row in both orientations. */
+html.goonk-mobile #mobile-app[data-mode=map]{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto minmax(0,1fr) auto!important}
+#mobile-app[data-mode=map] .mobile-top{grid-column:1!important;grid-row:1!important;display:flex!important;border-left:0!important}
+#mobile-app[data-mode=map] .mobile-play{grid-column:1!important;grid-row:2!important}
+#mobile-app[data-mode=map] .mobile-nav{grid-column:1!important;grid-row:3!important;grid-template-rows:auto auto!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;overflow:visible!important;border-left:0!important}
+#mobile-app[data-mode=map] .mobile-nav:has(>[data-ui=hero-exchange]){grid-template-columns:repeat(5,minmax(0,1fr))!important}
+#mobile-app[data-mode=map] .mobile-nav>button{display:flex!important;align-items:center;justify-content:center;gap:2px}
+#mobile-app[data-mode=map] .hero-movement-item{flex-basis:auto!important}
+#mobile-app[data-mode=map] .hero-movement-item:only-child>button{flex-wrap:nowrap!important}

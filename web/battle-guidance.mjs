@@ -1,4 +1,4 @@
-import {translate, getLanguage} from './i18n.mjs';
+import {getLanguage} from './i18n.mjs';
 import {battleCapabilities} from './battle-phase.mjs';
 import {BATTLE_HEX_VERTICES} from './battle-scene.mjs';
 export function battleGuidance(state){
@@ -23,9 +23,9 @@ export function battleGuidance(state){
  return {actor,ready,cells,shotTargets,meleeTargets,spellTargets,beneficialTargets,label:cap.tactics?'À placer':'À jouer'};
 }
 export function paintActiveCreature(ctx,guidance,layout){
- const {actor,ready}=guidance,label=translate(guidance.label);if(!ready||!actor)return;
+ const {actor,ready}=guidance;if(!ready||!actor)return;
  const x=layout.dx+(actor.x-layout.x)*layout.scale,y=layout.dy+(actor.y-layout.y)*layout.scale;
- // Do not pin an offscreen actor label to the edge of a target's close-up.
+ // Keep the marker at the actor's feet when the camera frames another target.
  if(x+44*layout.scale<layout.dx||x-44*layout.scale>layout.dx+layout.w*layout.scale||y+16*layout.scale<layout.dy||y-88*layout.scale>layout.dy+layout.h*layout.scale)return;
  const radius=24*layout.scale,foot=y+14*layout.scale;
  ctx.save();
@@ -38,40 +38,7 @@ export function paintActiveCreature(ctx,guidance,layout){
  ctx.strokeStyle='#00f0ff';ctx.lineWidth=3.5;ctx.stroke();
  ctx.strokeStyle='#ffffff';ctx.lineWidth=1.5;ctx.stroke();
 
- // Floating downward-pointing electric cyan arrowhead directly above the active creature
- const arrowTipY=y-34*layout.scale;
- const arrowW=8*layout.scale;
- const arrowH=10*layout.scale;
- ctx.beginPath();
- ctx.moveTo(x,arrowTipY);
- ctx.lineTo(x-arrowW,arrowTipY-arrowH);
- ctx.lineTo(x-arrowW*0.45,arrowTipY-arrowH);
- ctx.lineTo(x-arrowW*0.45,arrowTipY-arrowH-6*layout.scale);
- ctx.lineTo(x+arrowW*0.45,arrowTipY-arrowH-6*layout.scale);
- ctx.lineTo(x+arrowW*0.45,arrowTipY-arrowH);
- ctx.lineTo(x+arrowW,arrowTipY-arrowH);
- ctx.closePath();
- ctx.fillStyle='#00f0ff';ctx.fill();
- ctx.strokeStyle='#000000';ctx.lineWidth=2.5;ctx.stroke();
-
- const size=Math.max(12,Math.min(16,14*layout.scale));ctx.font=`bold ${size}px Georgia, serif`;const width=ctx.measureText(label).width+16,height=size+10;
- const bodyRadius=(actor.occupied?.length>1?66:44)*layout.scale,right=x+bodyRadius+8;
- const left=Math.max(layout.dx+3,Math.min(layout.dx+layout.w*layout.scale-width-3,right+width<=layout.dx+layout.w*layout.scale-3?right:x-bodyRadius-width-8));
- const top=Math.max(layout.dy+3,Math.min(layout.dy+layout.h*layout.scale-height-3,y-56*layout.scale));
-
- // Connecting leader line from the badge to the overhead pointer with dark border for high contrast
- const anchorX=left<x?left+width:left;
- const anchorY=top+height/2;
- ctx.beginPath();
- ctx.moveTo(anchorX,anchorY);
- ctx.lineTo(x,arrowTipY-arrowH);
- ctx.strokeStyle='#000000';ctx.lineWidth=4;ctx.stroke();
- ctx.strokeStyle='#00f0ff';ctx.lineWidth=2;ctx.stroke();
-
- // Dark sapphire pill with electric cyan border
- ctx.fillStyle='#0a1c29';ctx.fillRect(left,top,width,height);
- ctx.strokeStyle='#00f0ff';ctx.lineWidth=2;ctx.strokeRect(left,top,width,height);
- ctx.fillStyle='#e0f7ff';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(label,left+width/2,top+height/2);ctx.restore();
+ ctx.restore();
 }
 
 export function paintShotTargets(ctx,targets,layout){
@@ -218,8 +185,12 @@ export function paintSelectedTile(ctx,selected,layout,state,isMove=true){
   const ax=layout.dx+(guidance.actor.x-layout.x)*layout.scale;
   const ay=layout.dy+(guidance.actor.y-layout.y)*layout.scale;
   const lineColor=isMelee?'#ff4d4d':'#ffe640';
-  ctx.beginPath();
-  ctx.moveTo(ax,ay);
+  const path=isMove&&state.battleCamera?.previewPath?.length?state.battleCamera.previewPath:[guidance.actor,selected];
+  if(isMove)for(const cell of path){
+   ctx.beginPath();BATTLE_HEX_VERTICES.forEach(([vx,vy],i)=>{const x=layout.dx+(cell.x+vx-layout.x)*layout.scale,y=layout.dy+(cell.y+vy-layout.y)*layout.scale;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.closePath();ctx.fillStyle='rgba(255,230,64,.25)';ctx.fill();
+  }
+  ctx.beginPath();ctx.moveTo(ax,ay);
+  for(const cell of path)ctx.lineTo(layout.dx+(cell.x-layout.x)*layout.scale,layout.dy+(cell.y-layout.y)*layout.scale);
   ctx.lineTo(px,py);
   ctx.strokeStyle='#000000';
   ctx.lineWidth=Math.max(3,5*layout.scale);

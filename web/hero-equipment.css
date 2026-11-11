@@ -425,3 +425,28 @@
  .hero-body-stage .hero-artifact-slot .hero-empty{line-height:30px}
  #mobile-app .hero-extra-equipment .hero-artifact-slot{min-height:48px}
 }
+
+/* Tabs include their complete touch targets and both borders. */
+@media(orientation:portrait){
+ .hero-equipment-page{grid-template-rows:78px 50px auto minmax(0,1fr) minmax(78px,auto)}
+ .hero-equipment-page[data-inventory=skills]{grid-template-rows:78px 50px auto minmax(0,1fr)}
+}
+#mobile-app .hero-bag-tabs button{box-sizing:border-box;min-height:44px}
+/* Match the upright creature portraits in the recruitment gallery. */
+.hero-army-slots{grid-template-columns:repeat(auto-fill,minmax(104px,1fr));align-items:stretch}
+#mobile-app .hero-army-slot{flex-direction:column;justify-content:flex-start;min-height:156px;border-image:none;padding:14px 3px 5px;gap:3px;border-radius:0}
+.hero-army-slot-content{flex-direction:column;gap:4px}
+.hero-army-slot-art{width:64px;height:56px;flex-basis:56px;border-radius:0}
+.hero-army-slot-info{width:100%;align-items:center;flex:0}
+.hero-army-slot-title{justify-content:center;width:100%}
+.hero-army-slot-name{font-size:12px;line-height:1.15;text-align:center;white-space:normal;overflow-wrap:anywhere}
+#mobile-app .hero-army-slot .creature-stats{width:100%;box-sizing:border-box}
+@media(prefers-reduced-motion:reduce){#mobile-app .hero-army-slot.selected{animation:none}}
+@media(orientation:portrait){
+ .hero-bag-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible;gap:4px}
+ #mobile-app .hero-bag-tabs button{white-space:normal;font-size:12px;margin:0}
+ #mobile-app .hero-bag-tabs [data-hero-commander]{min-width:44px}
+}
+#mobile-app .hero-army-slot .creature-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px 2px}
+#mobile-app .hero-army-slot .creature-stats dt{font-size:9px}
+#mobile-app .hero-army-slot .creature-stats dd{font-size:10.5px}

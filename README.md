@@ -502,3 +502,11 @@ Both cases have zero detected JS/native errors. `ninja -j32 html5` passed and th
 
 
 Les trois voies expérimentales ont été retirées des nouvelles parties. Leur prototype reste archivé ; seules les définitions nécessaires aux sauvegardes de la version 0.4.46 sont conservées. Voir [la note de retrait](HERO-PATHS.md).
+
+### Mobile review — 0.4.128
+
+Adventure commands now share one bottom row in portrait and landscape. The hero army uses upright recruitment-style cards, complete wrapping tabs, and opens the animated creature sheet from Details or a portrait tap, returning to the hero afterward. The native bridge now accepts this opening while the hero window is active.
+
+The battle action screen owns the highlighted route and destination. The following camera has no tactical overlays or touch orders; it follows movement and frames the hit targets for shots and spells. The floating active-creature label is removed while the cyan ring remains on the action screen. Landscape combat retains 44px touch targets and gives the active creature more of the available panel height.
+
+The document no longer uses a fixed body around the independently anchored app, avoiding an extra fixed compositor layer during iOS wake/rotation. Correctly oriented visual viewport dimensions are used directly, including Safari toolbar changes. Recovery timers from an earlier wake or orientation are cancelled when a new recovery starts. Browser checks cover phone/iPad rotations in Chromium and WebKit; a physical iPhone lock/wake remains to be confirmed. Verification: `npm test`, `ninja -j32 html5`, `build:web`, `verify:web`, and `work/browser-tests/mobile-review-regression-e2e.mjs`. `hero-army-details-native-e2e.mjs` verifies native Details, changing animation frames, return to the hero, and portrait taps using an in-memory fixture; the public bundle was served locally with its deployment-domain CSP bypassed for this native check.

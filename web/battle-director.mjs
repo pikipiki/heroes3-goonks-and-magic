@@ -29,7 +29,7 @@ export function createBattleDirector({clock=()=>performance.now()}={}){
    const isRanged=event?.kind==='attack'&&Boolean(event.shot||event.isRanged||(targets[0]&&(targets[0].canShootAt||(valid(a)&&Math.hypot(targets[0].x-a.x,targets[0].y-a.y)>65))));
    let points=targets.length?targets:valid(event?.destination)&&event.kind!=='move'?[event.destination]:[a];
    if(!points.length)points=[a];
-   if(!isRanged&&(event?.kind==='attack'||(event?.kind==='spell'&&valid(event.actor)))&&valid(a)&&!points.some(p=>(a.stackId!=null&&p.stackId===a.stackId)||Math.hypot(p.x-a.x,p.y-a.y)<1))points=[a,...points];
+   if(!isRanged&&event?.kind==='attack'&&valid(a)&&!points.some(p=>(a.stackId!=null&&p.stackId===a.stackId)||Math.hypot(p.x-a.x,p.y-a.y)<1))points=[a,...points];
    const actionPoints=isRanged?(targets.length?targets:[a]):(event?.kind==='move'?[a]:points);
    const focus=manual||center(actionPoints);
    const label=manual?'Exploration manuelle':event?.kind==='spell'?(event.label||'Sort')+' · '+(targets.length>1?targets.length+' cibles':'Cible du sort'):event?.kind==='attack'?(isRanged?'Tir · ':'Attaque · ')+(targets[0]?.name||'Cible'):event?.kind==='move'?(event.preview?'Destination préparée':'Déplacement en cours'):'À jouer · '+(a.name||state.activeUnit?.name||'Créature active');
