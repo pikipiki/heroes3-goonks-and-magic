@@ -23,7 +23,7 @@ html.goonk-mobile #mobile-app[data-mobile-tavern]{grid-template-columns:minmax(0
 .tavern-extras summary{box-sizing:border-box;align-content:center;border:1px solid var(--line);cursor:pointer}
 .tavern-extras details[open]{flex-basis:100%}
 .tavern-extras p{padding:7px 0}
-@media(orientation:landscape){
+@container goonk-viewport (orientation:landscape){
  .mobile-tavern{gap:6px;padding-top:4px}
  .tavern-header{padding-bottom:3px}
  .tavern-hero{padding:6px;gap:5px}
@@ -31,7 +31,7 @@ html.goonk-mobile #mobile-app[data-mobile-tavern]{grid-template-columns:minmax(0
  .tavern-identity canvas{height:clamp(60px,21dvh,110px)}
  .tavern-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-@media(orientation:landscape) and (max-height:360px){
+@container goonk-viewport (orientation:landscape) and (max-height:360px){
  .mobile-tavern{gap:4px;padding-top:2px}
  .tavern-identity canvas{height:60px}
 }

@@ -1,0 +1,93 @@
+/* Responsive rules follow the measured game surface, not Safari's stale layout viewport. */
+#mobile-viewport{container:goonk-viewport / size}
+#mobile-viewport[data-orientation=landscape]{padding-top:0}
+#mobile-viewport[data-orientation=portrait]{padding-left:0;padding-right:0}
+#mobile-app .mobile-play{min-width:0;min-height:0}
+#mobile-app[data-mode=town] #mobile-scene{height:100%!important;width:100%!important;max-height:none!important}
+#mobile-app .town-zoom-control{position:absolute;z-index:3;left:8px;top:8px;min-height:44px!important;padding:4px 8px!important;font-size:13px}
+#mobile-app .town-zoom-control[hidden]{display:none}
+#mobile-app .recruitment-town{display:block;width:100%;text-align:left}
+#mobile-app .recruit-variants button small{display:block;color:#e6cb8c;font-size:11px}
+#mobile-app[data-mode=recruit] .creature-view-head [data-presentation-close]{min-width:44px}
+#mobile-app .town-service{position:absolute;inset:0;z-index:5;background:#302016 url('./h3-theme/stone.png');color:#ffedbc;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:8px;padding:8px;border:8px solid transparent;border-image:url('./h3-theme/recruit-frame.png') 12 stretch;overflow:hidden;box-sizing:border-box}
+#mobile-app .town-service[hidden]{display:none}
+#mobile-app .town-service header{display:flex;align-items:center;gap:8px;border-bottom:2px ridge #bda05b;padding-bottom:6px;min-width:0}
+#mobile-app .town-service h2{flex:1;font-size:22px;margin:0;color:#ffe2a0}
+#mobile-app .town-service h3{font-size:20px;margin:0 0 10px}
+#mobile-app .town-service header button{min-width:44px;min-height:44px!important}
+#mobile-app .town-service footer{display:grid;gap:6px}
+#mobile-app .town-service footer button{min-height:44px!important}
+#mobile-app .service-art{min-width:0;min-height:0;background:#17150e;border:3px ridge #b79b59}
+#mobile-app .service-art canvas{width:100%;height:100%;object-fit:contain;display:block}
+#mobile-app .service-description{min-height:0;overflow:auto;padding:10px;background:#271a10e8;border:1px solid #a5864d}
+#mobile-app .service-description p{font-size:14px;color:#e3cda3;margin:8px 0}
+#mobile-app .service-cost{display:flex;gap:10px;align-items:center;border-top:1px solid #a5864d;padding-top:10px}
+#mobile-app .service-cost img{width:32px;height:32px;object-fit:contain}
+#mobile-app .service-cost strong{font-size:24px}
+#mobile-app .guild-rankings{min-width:0;min-height:0;overflow:auto;overscroll-behavior:contain;background:#21160edb;border:2px ridge #ac8e4d}
+#mobile-app .guild-rankings table{border-collapse:collapse;width:100%;font-size:13px}
+#mobile-app .guild-rankings caption{text-align:left;color:#ffe2a0;font-size:18px;padding:10px;background:#6c2619}
+#mobile-app .guild-rankings th,#mobile-app .guild-rankings td{border-bottom:1px solid #705733;padding:8px;text-align:center;min-width:64px}
+#mobile-app .guild-rankings th:first-child{text-align:left;min-width:100px;position:sticky;left:0;background:#362316;z-index:1}
+#mobile-app .guild-rankings thead th{background:#4c2c17;color:#f7d688;position:sticky;top:0;z-index:2}
+#mobile-app .guild-rankings thead th:first-child{z-index:3}
+#mobile-app .guild-rank{display:inline-grid;place-items:center;width:26px;height:26px;border:2px ridge #c2a056;color:#ffdda2;background:#4b2915}
+#mobile-app .kingdom-flag{display:inline-block;width:13px;height:17px;background:var(--kingdom-color);border:1px solid #d6ba76;margin-right:5px;vertical-align:middle}
+#mobile-app [data-color="0"]{--kingdom-color:#b72b24}#mobile-app [data-color="1"]{--kingdom-color:#315dbc}#mobile-app [data-color="2"]{--kingdom-color:#b7985b}#mobile-app [data-color="3"]{--kingdom-color:#2c8d46}#mobile-app [data-color="4"]{--kingdom-color:#da7c2b}#mobile-app [data-color="5"]{--kingdom-color:#944baa}#mobile-app [data-color="6"]{--kingdom-color:#2e8f98}#mobile-app [data-color="7"]{--kingdom-color:#d976a0}
+#mobile-app .guild-intelligence{min-width:0;min-height:0;overflow:auto;background:#21160edb;border:2px ridge #ac8e4d;padding:10px;overscroll-behavior:contain}
+#mobile-app .guild-intelligence article{padding:8px 0;border-top:1px solid #705733}
+#mobile-app .guild-intelligence h4{margin:0 0 6px;color:#f7d688}
+#mobile-app .guild-intelligence dl{display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:12px;margin:0}
+#mobile-app .guild-intelligence dt{color:#cdb68b}#mobile-app .guild-intelligence dd{margin:0}
+#mobile-app[data-town-service]>.mobile-nav,#mobile-app[data-town-service]>.mobile-top{display:none!important}
+#mobile-app .battle-target-map{display:block;min-width:0;width:100%;height:100%;object-fit:contain;background:#192013;border:3px ridge #b59850;box-sizing:border-box;touch-action:manipulation}
+#mobile-app .battle-target-layout{display:grid;grid-template-rows:minmax(140px,1fr) auto minmax(90px,.8fr);gap:8px;height:100%;min-height:0;min-width:0}
+#mobile-app .battle-target-tabs{display:flex;gap:6px}
+#mobile-app .battle-target-layout .battle-unit-list{overflow:auto;min-height:0;align-content:start}
+#mobile-app[data-sheet=battle-targets] .sheet-body{padding:8px;overflow:hidden;min-height:0}
+#mobile-app .battle-target-layout .battle-unit{font-size:12px;min-height:66px!important}
+#mobile-app .battle-target-layout .battle-unit canvas{width:44px;height:50px}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-rows:minmax(44px,1fr);gap:5px!important;padding:5px!important}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav>[data-ui]{grid-column:span 1!important;min-height:44px!important}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav>[data-ui=back]{grid-column:1/-1!important}
+ html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav>.town-action{grid-column:auto!important;min-height:44px!important}
+ html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav>[data-ui=back]{grid-column:1/-1!important;grid-row:auto;min-height:44px!important}
+ html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav>[data-ui=town-blacksmith]{grid-column:auto!important}
+ #mobile-app .town-service{grid-template-columns:minmax(0,1fr) var(--control-rail);grid-template-rows:auto minmax(0,1fr) auto;gap:8px}
+ #mobile-app .town-service header{grid-column:2;grid-row:1}
+ #mobile-app .town-service footer{grid-column:2;grid-row:3}
+ #mobile-app .service-art{grid-column:1;grid-row:1/-1}
+ #mobile-app .service-description{grid-column:2;grid-row:2}
+ #mobile-app .town-service[data-kind=thieves-guild]{grid-template-rows:auto minmax(0,1fr) auto}
+ #mobile-app .guild-rankings{grid-column:1;grid-row:1/-1}
+ #mobile-app .guild-intelligence{grid-column:2;grid-row:2}
+ #mobile-app[data-town-service]>.mobile-play{grid-column:1/-1!important;grid-row:1/-1!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .creature-presentation{grid-template-rows:auto minmax(0,1fr) auto auto!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .featured-creature{height:100%!important;inset:0!important;grid-template-columns:minmax(0,1fr) var(--control-rail)!important;grid-template-rows:1fr!important;align-items:stretch!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .creature-stage{height:100%!important;grid-row:1/-1!important;grid-column:1!important;max-height:none!important;padding:0!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .creature-stage canvas{width:100%!important;height:100%!important;max-height:none!important}
+ #mobile-app .battle-target-layout{grid-template-columns:minmax(0,1fr) var(--control-rail);grid-template-rows:auto minmax(0,1fr)}
+ #mobile-app .battle-target-map{grid-column:1;grid-row:1/-1}
+ #mobile-app .battle-target-tabs{grid-column:2;grid-row:1}
+ #mobile-app .battle-target-layout .battle-unit-list{grid-column:2;grid-row:2;grid-template-columns:1fr}
+}
+@container goonk-viewport (orientation:portrait){
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav{grid-template-columns:repeat(6,minmax(0,1fr))!important;grid-auto-rows:minmax(44px,auto);gap:4px!important;padding:4px!important}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav>[data-ui]{grid-column:span 2!important;min-height:44px!important}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav>:is([data-ui=town-blacksmith],[data-ui=back]){grid-column:span 3!important}
+ html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav>.town-action{grid-column:span 2!important;min-height:56px!important;font-size:12px!important}
+ html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav>[data-ui=town-blacksmith]{grid-column:span 3!important}
+ html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav>[data-ui=back]{grid-column:span 3!important;min-height:44px!important}
+ #mobile-app .town-service[data-kind=blacksmith]{grid-template-rows:auto minmax(120px,1fr) auto auto}
+ #mobile-app .town-service[data-kind=thieves-guild]{grid-template-rows:auto minmax(120px,1fr) minmax(70px,.55fr) auto}
+ #mobile-app .guild-intelligence{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+ #mobile-app .guild-intelligence>h3{grid-column:1/-1}
+}
+@container goonk-viewport (orientation:landscape) and (max-height:360px){
+ #mobile-app .town-service{gap:4px;padding:4px;border-width:6px}
+ #mobile-app .town-service h2{font-size:18px}
+ #mobile-app .town-service h3{font-size:17px}
+ #mobile-app .service-description{padding:6px}
+ #mobile-app .guild-rankings th,#mobile-app .guild-rankings td{padding:5px}
+}

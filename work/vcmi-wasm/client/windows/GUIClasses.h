@@ -531,6 +531,7 @@ class CThievesGuildWindow : public CStatusbarWindow
 	std::vector<std::shared_ptr<CLabel>> personalities;
 public:
 	CThievesGuildWindow(const CGObjectInstance * _owner);
+	const CGObjectInstance * getMobileOwner() const { return owner; }
 };
 
 class VideoWindow : public CWindowObject, public IVideoHolder

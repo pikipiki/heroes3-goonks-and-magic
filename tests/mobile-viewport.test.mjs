@@ -162,7 +162,7 @@ test('Safari toolbar height uses the visible viewport rather than the taller lay
 test('Physical orientation wins over stale Safari media and layout sizes after wake',()=>{
  const win=new EventTarget(),viewport=new EventTarget();Object.assign(viewport,{width:932,height:430,scale:1,pageLeft:12,pageTop:24});
  Object.assign(win,{screen:{orientation:{type:'landscape-primary'}},matchMedia:q=>({matches:q.includes('portrait')}),document:{documentElement:{clientWidth:430,clientHeight:932}},innerWidth:430,innerHeight:932,visualViewport:viewport,requestAnimationFrame:f=>f()});
- const root={style:{}},anchor=anchorMobileViewport(root,win);assert.equal(root.style.width,'932px');assert.equal(root.style.height,'430px');assert.equal(root.style.left,'12px');assert.equal(root.style.top,'24px');anchor.dispose();
+ const root={style:{}},anchor=anchorMobileViewport(root,win);assert.equal(root.style.width,'932px');assert.equal(root.style.height,'430px');assert.equal(root.style.left,'0px');assert.equal(root.style.top,'0px');anchor.dispose();
 });
 
 test('Wake repairs a viewport that settles after the first 800ms without a resize event',async()=>{
@@ -171,4 +171,13 @@ test('Wake repairs a viewport that settles after the first 800ms without a resiz
  const root={style:{}},anchor=anchorMobileViewport(root,win);win.dispatchEvent(new Event('pageshow'));
  await new Promise(resolve=>setTimeout(resolve,950));viewport.height=360;win.innerHeight=360;
  await new Promise(resolve=>setTimeout(resolve,650));assert.equal(root.style.height,'360px');anchor.dispose();
+});
+
+// iOS can keep visualViewport.pageTop and height from the previous orientation.
+test('Aligned current viewport bounds reject stale post-rotation height and scroll offsets',()=>{
+ const win=new EventTarget(),viewport=new EventTarget();Object.assign(viewport,{width:390,height:844,scale:1,pageTop:59,pageLeft:44});
+ Object.assign(win,{orientation:0,innerWidth:390,innerHeight:740,scrollX:0,scrollY:0,document:{documentElement:{clientWidth:390,clientHeight:740}},visualViewport:viewport,requestAnimationFrame:f=>f()});
+ const root={style:{},dataset:{}},anchor=anchorMobileViewport(root,win);assert.equal(root.style.height,'740px');assert.equal(root.style.top,'0px');assert.equal(root.style.left,'0px');assert.equal(root.dataset.orientation,'portrait');
+ win.orientation=90;win.innerWidth=844;win.innerHeight=340;Object.assign(win.document.documentElement,{clientWidth:844,clientHeight:340});Object.assign(viewport,{width:844,height:390,pageTop:59});win.dispatchEvent(new Event('resize'));
+ assert.equal(root.style.height,'340px');assert.equal(root.dataset.orientation,'landscape');assert.equal(root.style.top,'0px');anchor.dispose();
 });

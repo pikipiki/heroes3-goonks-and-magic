@@ -169,6 +169,7 @@ class CCastleBuildings : public CIntObject
 	void show(Canvas & to) override;
 public:
 	CBuildingRect * selectedBuilding;
+	const std::vector<std::shared_ptr<CBuildingRect>> & getMobileBuildings() const { return buildings; }
 
 	CCastleBuildings(const CGTownInstance * town);
 	~CCastleBuildings();
@@ -451,4 +452,8 @@ class CBlacksmithDialog : public CStatusbarWindow
 
 public:
 	CBlacksmithDialog(bool possible, CreatureID creMachineID, ArtifactID aid, ObjectInstanceID hid);
+	CreatureID mobileCreature;
+	ArtifactID mobileArtifact;
+	bool mobileCanBuy;
+	Rect mobilePreview() const;
 };

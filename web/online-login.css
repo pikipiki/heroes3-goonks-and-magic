@@ -25,7 +25,7 @@ html.goonk-mobile #mobile-app[data-mode=online-login] {
 #mobile-app[data-mode=online-lobby] .mobile-nav button {
   flex:0 1 9rem;max-width:100%;min-width:0;text-align:center;
 }
-@media (orientation:landscape) and (max-height:600px) {
+@container goonk-viewport (orientation:landscape) and (max-height:600px) {
   html.goonk-mobile #mobile-app[data-mode=online-lobby] {
     grid-template-columns:minmax(0,1fr) clamp(8rem, 20vw, 11rem);
   }

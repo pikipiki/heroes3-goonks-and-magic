@@ -49,7 +49,7 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
  const detailDescription=document.createElement('div');detailDescription.id='battle-detail-description';detailDescription.hidden=true;scene.before(detailDescription);
  const ctx=canvas.getContext('2d'),surfaceSize=createCanvasSizer();let active=false,press=null,currentLayout=null;
  function sync(){
-  const isLandscape=isLandscapeOrientation(typeof window!=='undefined'?window:null,root.clientWidth,root.clientHeight);
+  const isLandscape=root.clientWidth>root.clientHeight;
   const isPortrait=!isLandscape;
   const playEl=root.querySelector('.mobile-play');
   const playHeight=playEl?.clientHeight||Math.max(0,(root.clientHeight||(typeof window!=='undefined'?window.innerHeight:0)||700)-240);

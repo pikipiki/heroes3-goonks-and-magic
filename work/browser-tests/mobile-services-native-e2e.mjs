@@ -1,0 +1,47 @@
+import {chromium,webkit} from 'playwright-core';
+import {execFileSync} from 'node:child_process';
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const kind=process.env.BROWSER||'chromium',out=process.env.REVIEW_OUTPUT||'/tmp/review134-native';fs.mkdirSync(out,{recursive:true});
+const browser=await(kind==='webkit'?webkit:chromium).launch({headless:true,...(kind==='chromium'?{args:['--no-sandbox']}: {})});
+const p=await browser.newPage({viewport:{width:844,height:390},hasTouch:true,bypassCSP:true}),errors=[];p.on('pageerror',e=>errors.push(e.message));
+let phase='boot';p.on('console',m=>{if(m.type()==='error'||/Map.+error|Error loading/i.test(m.text()))console.log('ENGINE',m.text().slice(0,300));});
+const wait=f=>p.waitForFunction(f,null,{timeout:90000}),cmd=(...a)=>p.evaluate(a=>Module._vcmiMobileCommand(...a),[...a,...Array(6-a.length).fill(0)]);
+try{
+ await p.addInitScript(()=>sessionStorage.setItem('heroes-goonk.storage-failed','true'));
+ await p.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8777')+'/game.html?mobile=1');
+ await wait(()=>window.goonkMobileState?.mode==='menu'&&window.goonkSessionRecovery?.phase==='done');
+ const fixture=execFileSync('python3',['-c',`import zipfile,json,io,sys
+out=io.BytesIO()
+with zipfile.ZipFile('maps/000-Goonk.vmap') as src,zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as dst:
+ for name in src.namelist():
+  data=src.read(name)
+  if name=='objects.json':
+   objects=[o for o in json.loads(data) if o.get('instanceName')!='trainingOgre']
+   for o in objects:
+    if o.get('instanceName')=='goonkTown':
+     o['subtype']='core:castle';o['template']['animation']='AVCCAST0.DEF';o['options']['name']='Castellatus';o['options']['buildings']={'allOf':['core:villageHall','core:tavern','core:fort','core:dwellingLvl1','core:blacksmith']}
+    if o.get('instanceName')=='goonkHero':o['x']=8;o['y']=9;o['options'].update({'type':'core:christian','army':[{'type':'core:pikeman','amount':20},{'type':'core:archer','amount':10}]})
+    if o.get('instanceName')=='trainingGuard':o['x']=12;o['y']=9;o['options']['amount']=1
+   data=json.dumps(objects).encode()
+  dst.writestr(name,data)
+sys.stdout.buffer.write(out.getvalue())`]);
+ await p.evaluate(bytes=>Module.FS.writeFile('/home/web_user/.local/share/vcmi/Maps/001-Goonks.vmap',new Uint8Array(bytes)),[...fixture]);
+ phase='lobby';await cmd(20,1);await wait(()=>goonkMobileState.mode==='lobby'&&goonkMobileState.lobbyReady);console.log('PASS lobby ready');phase='select';await cmd(21);await wait(()=>goonkMobileState.selectedMap?.startsWith('000'));console.log('PASS map selected');phase='begin';await cmd(22);await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);console.log('PASS native fixture starts');
+ await p.locator('[data-ui=weekly-recruits]').tap();await wait(()=>goonkMobileState.mode==='fort');assert.match(await p.locator('.creature-view-head h2').innerText(),/Recruitment hall/);console.log('PASS native recruitment cue opens the owned castle hall');
+ await p.locator('[data-presentation-close]').tap();await wait(()=>goonkMobileState.mode==='town');
+ await p.locator('[data-ui=town-blacksmith]').tap();await wait(()=>goonkMobileState.dialogKind==='blacksmith');assert.equal(await p.evaluate(()=>goonkMobileState.blacksmith.cost),2500);assert.match(await p.locator('[data-service-buy]').innerText(),/Ballista/i);await p.waitForTimeout(200);await p.screenshot({path:out+'/'+kind+'-blacksmith.png'});await p.locator('.town-service footer [data-service-back]').tap();await wait(()=>goonkMobileState.mode==='town');console.log('PASS native blacksmith price and return');await p.locator('[data-ui=town-blacksmith]').tap();await wait(()=>goonkMobileState.dialogKind==='blacksmith');assert(await p.evaluate(()=>goonkMobileState.blacksmith.canBuy));const treasury=await p.evaluate(()=>goonkMobileState.resources[6]);await p.locator('[data-service-buy]').tap();await p.waitForFunction(g=>goonkMobileState.mode==='town'&&goonkMobileState.resources[6]===g-2500,treasury);console.log('PASS native Ballista purchase charges exactly 2500 gold');
+ await p.locator('[data-ui=recruit-heroes]').tap();await wait(()=>goonkMobileState.dialogKind==='tavern');await p.locator('[data-tavern-extra=thievesGuild]').tap();await wait(()=>goonkMobileState.dialogKind==='thieves-guild');assert.equal(await p.evaluate(()=>goonkMobileState.thievesGuild.rows.length),9);assert(await p.locator('.guild-rankings tbody tr').count()===9);await p.screenshot({path:out+'/'+kind+'-thieves.png'});await p.locator('.town-service footer [data-service-back]').tap();await wait(()=>goonkMobileState.dialogKind==='tavern');await p.locator('[data-tavern-close]').tap();await wait(()=>goonkMobileState.mode==='town');console.log('PASS native thieves guild discloses engine rankings only');
+ const building=await p.evaluate(()=>goonkMobileState.buildings.find(b=>b.allowed&&!b.built&&b.rect===undefined&&b.key.endsWith('townHall'))||goonkMobileState.buildings.find(b=>b.allowed&&!b.built));assert(building);
+ await p.locator('[data-ui=build]').tap();await p.locator('[data-building-id="'+building.id+'"]').tap();await p.locator('[data-building-action]').tap();await p.waitForFunction(id=>goonkMobileState.mode==='town'&&goonkMobileState.buildings.some(b=>b.id===id&&b.built),building.id);await p.locator('.mobile-sheet').waitFor({state:'hidden'});await p.waitForTimeout(250);assert(await p.locator('#mobile-scene').evaluate(c=>{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;for(let i=0;i<d.length;i+=4)if(d[i]===255&&d[i+1]===69&&d[i+2]===61)return true;return false;}),'New building has a persistent red frame');await p.screenshot({path:out+'/'+kind+'-new-building.png'});await p.locator('.mobile-nav [data-ui=back]').tap();await wait(()=>goonkMobileState.mode==='map');console.log('PASS native construction returns to highlighted city');
+ phase='battle';await cmd(6);await p.waitForTimeout(250);await p.evaluate(()=>Module._vcmiMobilePointer(433,281,4));await wait(()=>goonkMobileState.hasPath);await cmd(2);await wait(()=>goonkMobileState.mode==='battle');await cmd(15);await p.waitForTimeout(200);if(await p.evaluate(()=>goonkMobileState.canEndTactics))await cmd(35);
+ for(let i=0;i<15;i++){
+  await wait(()=>goonkMobileState.mode==='battle'&&goonkMobileState.canAct&&goonkMobileState.round>0&&!goonkMobileState.animating);
+  if(await p.evaluate(()=>goonkMobileState.activeUnit?.commander))break;
+  const previous=await p.evaluate(()=>goonkMobileState.activeStack);await cmd(13);await p.waitForFunction(id=>goonkMobileState.activeStack!==id||!goonkMobileState.canAct,previous);await p.waitForTimeout(100);
+ }
+ assert(await p.evaluate(()=>goonkMobileState.activeUnit?.commander));assert(await p.evaluate(()=>goonkMobileState.battleUnits.filter(u=>!u.enemy).every(u=>u.currentHealth===u.maximumHealth)));
+ const before=await p.evaluate(()=>({round:goonkMobileState.round,stack:goonkMobileState.activeStack,casts:goonkMobileState.battleUnits.find(u=>u.stackId===goonkMobileState.activeStack).remainingCasts}));
+ await p.locator('[data-ui=battle-confirm-spell]').tap();await wait(()=>goonkMobileState.mode==='dialog'&&goonkMobileState.dialogPresentation?.lines.some(t=>t.includes('full health')));assert.match(await p.locator('.dialog-copy').innerText(),/All allied units are at full health/);await p.locator('[data-dialog-confirm]').tap();await wait(()=>goonkMobileState.mode==='battle');assert.deepEqual(await p.evaluate(()=>({round:goonkMobileState.round,stack:goonkMobileState.activeStack,casts:goonkMobileState.battleUnits.find(u=>u.stackId===goonkMobileState.activeStack).remainingCasts})),before);console.log('PASS native Cure with no eligible ally shows a message without consuming the turn or casts');
+ await p.setViewportSize({width:390,height:740});await p.locator('[data-ui=targets]').tap();await p.locator('.battle-target-map').waitFor();assert(await p.locator('.battle-target-layout [data-battle-target]').count()>0);await p.waitForTimeout(200);await p.screenshot({path:out+'/'+kind+'-targets.png'});await p.locator('.battle-target-layout [data-battle-target]').first().tap();await p.locator('.mobile-sheet').waitFor({state:'hidden'});assert.equal(await p.evaluate(()=>goonkMobileState.activeStack),before.stack);assert.deepEqual(errors,[]);console.log('PASS',kind,'native service, construction, cure and target-map integration');
+}catch(e){console.error('FAILED PHASE',phase);console.error('FAILED STATE',await p.evaluate(()=>({mode:window.goonkMobileState?.mode,kind:window.goonkMobileState?.dialogKind,active:window.goonkMobileState?.activeUnit,turn:window.goonkMobileState?.turn,selected:window.goonkMobileState?.selectedMap,maps:window.goonkMobileState?.maps?.slice(0,2)})));throw e;}finally{await browser.close();}

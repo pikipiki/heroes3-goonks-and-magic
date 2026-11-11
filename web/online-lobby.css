@@ -42,7 +42,7 @@ html.goonk-mobile #mobile-app[data-mobile-online] {
   padding-bottom:calc(8px + var(--safe-bottom, 0px));
 }
 .online-lobby-actions .primary {flex:1;max-width:20rem;margin-inline-start:auto}
-@media (orientation:landscape) and (max-height:600px) {
+@container goonk-viewport (orientation:landscape) and (max-height:600px) {
   .online-lobby-body {
     display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-content:start;
   }
@@ -58,6 +58,6 @@ html.goonk-mobile #mobile-app[data-mobile-online] {
 #mobile-app .online-lobby button.primary {
   outline:2px solid #e3bf71;outline-offset:-3px;
 }
-@media(orientation:landscape){
+@container goonk-viewport (orientation:landscape){
  #mobile-app .online-lobby-body{grid-column:1;grid-row:1/-1}
 }

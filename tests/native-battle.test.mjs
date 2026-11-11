@@ -15,8 +15,8 @@ test('Mobile landscape battle controls move menu, stats and actions to the right
  assert.match(css,/\.battle-stat-pill/);
  assert.match(css,/data-ui=battle-confirm-move/);
  assert.match(css,/data-ui=battle-confirm-spell/);
- assert.match(css,/@media\(orientation:landscape\)\s+and\s+\(min-width:768px\)/);
- assert.match(css,/@media\(orientation:portrait\)\s+and\s+\(min-width:768px\)/);
+ assert.match(css,/@container goonk-viewport \(orientation:landscape\)\s+and\s+\(min-width:768px\)/);
+ assert.match(css,/@container goonk-viewport \(orientation:portrait\)\s+and\s+\(min-width:768px\)/);
  assert.doesNotMatch(h3css,/#mobile-app\[data-mode=battle\]\[data-battle-view=native\]\s*\.battle-panel\{\s*display:\s*none\s*!important\s*\}/);
  assert.match(js,/<\/main><section class="battle-panel"/);
  assert.match(js,/const isCreatureTargeting=state\.creatureSpellTargeting===true;/);

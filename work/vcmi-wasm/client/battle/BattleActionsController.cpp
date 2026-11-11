@@ -250,6 +250,29 @@ void BattleActionsController::enterCreatureCastingMode()
 	if (!isActiveStackSpellcaster())
 		return;
 
+	// A cure-only commander must not enter an empty targeting mode. Use the
+	// native legality check so Cure can still dispel harmful effects at full HP.
+	const auto active = owner.stacksController->getActiveStack();
+	const auto spellBonuses = active->getBonusesOfType(BonusType::SPELLCASTER);
+	const bool cureOnly = active->unitSlot() == SlotID::COMMANDER_SLOT_PLACEHOLDER && !spellBonuses->empty() &&
+		std::all_of(spellBonuses->begin(), spellBonuses->end(), [](const auto & bonus){ return bonus->subtype.template as<SpellID>() == SpellID::CURE; });
+	if(cureOnly)
+	{
+		bool valid = false, wounded = false;
+		for(const auto stack : owner.getBattle()->battleGetAllStacks())
+		{
+			if(!stack->alive() || stack->getOwner() != active->getOwner()) continue;
+			wounded |= stack->getFirstHPleft() < stack->getMaxHealth();
+			for(const auto & action : possibleActions)
+				if(action.spellcast() && action.spell() == SpellID::CURE && actionIsLegal(action, stack->getPosition())) valid = true;
+		}
+		if(!valid)
+		{
+			GAME->interface()->showInfoDialog(wounded ? "No allied unit can be cured right now." : "All allied units are at full health. There is no one to cure.");
+			return;
+		}
+	}
+
 	for(const auto & action : possibleActions)
 	{
 		if (action.get() != PossiblePlayerBattleAction::NO_LOCATION)

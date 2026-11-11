@@ -71,6 +71,7 @@
 #include "../lib/entities/ResourceTypeHandler.h"
 #include "../lib/CStack.h"
 #include "../lib/gameState/UpgradeInfo.h"
+#include "../lib/gameState/SThievesGuildInfo.h"
 #include "../lib/spells/CSpellHandler.h"
 #include "../lib/battle/CPlayerBattleCallback.h"
 #include "../lib/callback/CCallback.h"
@@ -846,6 +847,30 @@ void publishMobileState(){
   n["mode"].String()="mage-guild";
   n["mageGuild"]=guild->mobileSnapshot();
  }
+ else if(const auto smith=ENGINE->windows().topWindow<CBlacksmithDialog>()){
+  n["mode"].String()="dialog";n["dialogKind"].String()="blacksmith";
+  auto & data=n["blacksmith"];
+  data["unit"]=creature(smith->mobileCreature.toCreature(),1);
+  data["cost"].Integer()=smith->mobileArtifact.toArtifact()->getPrice();
+  data["canBuy"].Bool()=p&&p->makingTurn&&smith->mobileCanBuy;
+  data["preview"]=rect(smith->mobilePreview());
+ }
+ else if(const auto guild=ENGINE->windows().topWindow<CThievesGuildWindow>();guild&&p){
+  n["mode"].String()="dialog";n["dialogKind"].String()="thieves-guild";
+  SThievesGuildInfo info;p->cb->getThievesGuildInfo(info,guild->getMobileOwner());
+  auto & data=n["thievesGuild"];
+  for(const auto color:info.playerColors){JsonNode player;player["color"].Integer()=color.getNum();
+   static const std::array names={"Red","Blue","Tan","Green","Orange","Purple","Teal","Pink"};
+   player["name"].String()=names.at(color.getNum());
+   if(const auto it=info.colorToBestHero.find(color);it!=info.colorToBestHero.end())player["hero"].String()=it->second.name;
+   if(const auto it=info.bestCreature.find(color);it!=info.bestCreature.end()&&it->second!=CreatureID::NONE)player["creature"].String()=it->second.toCreature()->getNameSingularTranslated();
+   if(const auto it=info.personality.find(color);it!=info.personality.end()&&it->second!=EAiTactic::RANDOM)player["personality"].String()=LIBRARY->generaltexth->arraytxt[it->second==EAiTactic::NONE?172:168+int(it->second)];
+   data["players"].Vector().push_back(player);
+  }
+  const std::array rankings={&info.numOfTowns,&info.numOfHeroes,&info.gold,&info.woodOre,&info.mercSulfCrystGems,&info.obelisks,&info.artifacts,&info.army,&info.income};
+  static const std::array labels={"Towns","Heroes","Gold","Wood and ore","Rare resources","Obelisks","Artifacts","Army strength","Daily income"};
+  for(size_t i=0;i<rankings.size();++i){JsonNode row;row["label"].String()=labels[i];int rank=0;for(const auto & place:*rankings[i]){++rank;for(const auto color:place)row["ranks"][std::to_string(color.getNum())].Integer()=rank;}data["rows"].Vector().push_back(row);}
+ }
  else if(recruitWindow)n["mode"].String()="recruit";
  else if(fortWindow)n["mode"].String()="fort";
  else if(creatureWindow&&creatureWindow->isCommanderLevelUp()){
@@ -869,6 +894,9 @@ void publishMobileState(){
  }
  else if(p||ENGINE->windows().topWindow<CBonusSelection>())n["mode"].String()="dialog";
  if(top&&(fortWindow||recruitWindow||n["mode"].String()=="creature"))mobilePreviews(top.get(),n["previewUnits"]);
+ if(recruitWindow&&recruitWindow->dwelling)for(auto & unit:n["previewUnits"].Vector())
+  for(const auto & family:recruitWindow->dwelling->creatures)for(size_t rank=0;rank<family.second.size();++rank)
+   if(family.second[rank].getNum()==unit["id"].Integer())unit["upgradeRank"].Integer()=rank+1;
  if(creatureWindow && (n["mode"].String()=="creature" || n["dialogKind"].String()=="commander") && creatureWindow->getMobileCreature()){
   auto item=creature(creatureWindow->getMobileCreature(),creatureWindow->getMobileCount());
   for(const auto & description : creatureWindow->getMobileAbilities())
@@ -1117,6 +1145,8 @@ void publishMobileState(){
     b["upgradeId"].Integer()=building->upgrade.getNum();
     b["description"].String()=building->getDescriptionTranslated();
     b["built"].Bool()=town->hasBuilt(id);
+    if(townWindow&&townWindow->builds)for(const auto & area:townWindow->builds->getMobileBuildings())
+     if(area->getBuilding()&&area->getBuilding()->bid==id){b["rect"]=rect(area->pos);break;}
     if(!town->hasBuilt(id))
      if(const auto creature = dwellingCreatures.find(id); creature != dwellingCreatures.end())
      {

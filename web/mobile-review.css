@@ -1,7 +1,7 @@
 /* Content-led Heroes III layouts. Buttons keep their native frames and 44px targets. */
 #mobile-app .town-action img{object-fit:contain}
 #mobile-app .scene-hint:empty{display:none}
-@media(orientation:landscape){
+@container goonk-viewport (orientation:landscape){
  /* Construction, rosters and other information pages need the complete surface. */
  html.goonk-mobile #mobile-app[data-sheet] .mobile-sheet{inset:0!important;width:100%!important;max-width:none;max-height:100%;border-radius:0;z-index:30;display:grid;grid-template-rows:52px minmax(0,1fr);box-sizing:border-box;padding:0}
  #mobile-app[data-sheet] .sheet-head{padding:3px 8px;min-width:0;gap:8px}
@@ -78,34 +78,34 @@
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-unit-stats{grid-column:1/-1!important;grid-row:3!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;margin:0!important;gap:3px!important}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-stat-pill{padding:3px!important;font-size:11px!important;min-width:0}
 }
-@media(orientation:landscape){
+@container goonk-viewport (orientation:landscape){
  html.goonk-mobile #mobile-app[data-mode=creature]>.mobile-top{grid-column:1/-1!important;grid-row:1/-1!important}
  html.goonk-mobile #mobile-app[data-mode=creature] .creature-view-head{position:static;inset:auto}
  html.goonk-mobile #mobile-app[data-mode=creature] .creature-view-head h2{display:block}
  #mobile-app[data-mode=creature] .creature-facts h3{display:none}
  #mobile-app[data-mode=creature] .creature-facts .creature-stats{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
 }
-@media(orientation:portrait){
+@container goonk-viewport (orientation:portrait){
  html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav{grid-template-columns:repeat(12,minmax(0,1fr))!important}
  html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav>.town-action{grid-column:span 3!important}
  html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav>:is([data-ui=town-fort],[data-ui=town-guild],[data-ui=town-market]){grid-column:span 4!important}
 }
-@media(orientation:landscape){
+@container goonk-viewport (orientation:landscape){
  html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav{grid-template-columns:repeat(6,minmax(0,1fr))!important}
  html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav>.town-action{grid-column:span 3!important}
  html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav>:is([data-ui=town-fort],[data-ui=town-guild],[data-ui=town-market]){grid-column:span 2!important}
  #mobile-app[data-mode=town]>.mobile-nav>:is([data-ui=town-fort],[data-ui=town-guild],[data-ui=town-market]) span{font-size:11px;overflow-wrap:anywhere}
 }
-@media(orientation:landscape){
+@container goonk-viewport (orientation:landscape){
  #mobile-app[data-mode=town] #mobile-overview{display:none!important}
 }
-@media(orientation:portrait){
+@container goonk-viewport (orientation:portrait){
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]>.mobile-nav:has(>[data-ui=end-tactics]){grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:auto auto!important}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]>.mobile-nav>[data-ui=end-tactics]{grid-column:1!important;grid-row:2!important}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]>.mobile-nav>[data-ui=tactic-units]{grid-column:2!important;grid-row:2!important}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]>.mobile-nav>[data-ui=next-tactics]{grid-column:3!important;grid-row:2!important}
 }
-@media(orientation:landscape){
+@container goonk-viewport (orientation:landscape){
  #mobile-app[data-sheet] .sheet-head{min-height:0;height:52px;box-sizing:border-box}
 }
 /* All pages share this frame, including pages positioned absolutely. Safe-area
@@ -128,7 +128,7 @@ html.goonk-mobile #mobile-viewport #mobile-app:is([data-mode]){position:relative
 #mobile-app .dialog-presentation footer{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
 #mobile-app .dialog-presentation footer button{min-height:48px}
 html.goonk-mobile #mobile-app[data-dialog-presentation]>:is(.mobile-nav,.mobile-top),#mobile-app[data-dialog-presentation] :is(.scene-tools,.scene-hint){display:none!important}
-@media(orientation:landscape){
+@container goonk-viewport (orientation:landscape){
  html.goonk-mobile #mobile-app[data-mode=map] #mobile-scene,html.goonk-mobile #mobile-app[data-mode=town] #mobile-scene{width:100%!important;height:100%!important;max-width:none!important;margin:0!important}
  html.goonk-mobile #mobile-app:is([data-mode=map],[data-mode=town])>.mobile-play{margin:0!important;padding:0!important;max-width:none!important;width:100%!important}
  html.goonk-mobile #mobile-app:is([data-mode=hero],[data-mode=mage-guild],[data-mode=spellbook],[data-mobile-tavern])>.mobile-top{position:absolute!important;grid-column:1/-1!important;grid-row:1/-1!important;top:4px!important;left:auto!important;right:calc(var(--control-rail) - 48px)!important;width:44px!important;z-index:12;overflow:visible}
@@ -172,17 +172,17 @@ html.goonk-mobile #mobile-app[data-dialog-presentation]>:is(.mobile-nav,.mobile-
 #mobile-app .dialog-presentation[data-choices="1"] .dialog-choices{grid-template-columns:minmax(0,1fr)}
 #mobile-app .dialog-choice canvas{min-height:0;flex:0 1 96px;max-height:50%}
 #mobile-app .mobile-top #game-menu-toggle{min-width:44px!important;min-height:44px!important;width:44px;height:44px;box-sizing:border-box}
-@media(orientation:landscape){
+@container goonk-viewport (orientation:landscape){
  #game-menu .game-menu-body[data-view=cheats]{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;align-content:start}
  #game-menu .game-menu-body[data-view=cheats]>p{grid-column:1/-1;margin:0}
  #game-menu .game-menu-body[data-view=cheats] .game-cheat{margin:0;padding:10px;display:flex;flex-direction:column;gap:5px}
  #game-menu .game-menu-body[data-view=cheats] .game-cheat :is(h3,p,code){margin:0}
  #game-menu .game-menu-body[data-view=cheats] .game-cheat button{margin-top:auto;min-height:44px}
 }
-@media(orientation:landscape){
+@container goonk-viewport (orientation:landscape){
  #mobile-app .dialog-presentation[data-choices="0"] .dialog-choices{display:none}
  #mobile-app .dialog-presentation[data-choices="0"] .dialog-copy{grid-column:1;grid-row:1/-1;align-self:center;padding:clamp(20px,5vw,60px);font-size:clamp(16px,2vw,23px)}
 }
-@media(orientation:landscape){
+@container goonk-viewport (orientation:landscape){
  #mobile-app[data-mode=town]>.mobile-nav>:is([data-ui=town-fort],[data-ui=town-guild],[data-ui=town-market]) span{font-size:clamp(9px,1.2vw,12px);overflow-wrap:normal;word-break:normal;line-height:1.2}
 }

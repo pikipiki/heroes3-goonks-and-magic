@@ -15,13 +15,13 @@
 #game-menu p,#game-menu code,.sheet-body p{color:var(--muted)}#game-menu::backdrop{background:#100b06d9}.goonk-mobile #spinner{background:#1c150c url('./h3-theme/stone.png')}
 .recruit-choices{position:absolute;top:8px;left:8px;right:8px;display:flex;gap:6px;overflow-x:auto;touch-action:pan-x;z-index:3;padding:2px 2px 6px}.recruit-choices button{white-space:nowrap;flex:0 0 auto;min-height:44px!important;padding:6px 13px!important}.recruit-close{flex:0 0 44px;min-width:44px;min-height:44px!important;padding:4px!important}.mobile-top:has(.recruit-close:not([hidden])) .mobile-resources{font-size:11px}
 #mobile-app[data-mode=recruit] .scene-tools{display:none}
-@media(orientation:landscape) and (max-height:600px){.mobile-sheet{inset:var(--mobile-top-height,45px) 0 0 25%}#mobile-app[data-mode=recruit] #mobile-scene{height:calc(100% - 56px);margin-top:56px}.mobile-recruit-amount{top:66px}.recruit-choices{right:238px}}
+@container goonk-viewport (orientation:landscape) and (max-height:600px){.mobile-sheet{inset:var(--mobile-top-height,45px) 0 0 25%}#mobile-app[data-mode=recruit] #mobile-scene{height:calc(100% - 56px);margin-top:56px}.mobile-recruit-amount{top:66px}.recruit-choices{right:238px}}
 .map-center{display:none}#mobile-app[data-mode=map] .map-center{display:block}
 .battle-panel[hidden]{display:none!important}#mobile-app[data-mode=battle] .mobile-play{display:flex;flex-direction:column}#mobile-app[data-mode=battle] #mobile-scene{width:100%;height:auto;aspect-ratio:800/600;max-height:46dvh;flex:0 0 auto}#mobile-app[data-mode=battle] .scene-tools,#mobile-app[data-mode=battle] .scene-hint,#mobile-app[data-mode=battle] #mobile-overview{display:none}
 .battle-panel{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;padding:8px 10px 12px;border-top:2px solid var(--line);background:url('./h3-theme/stone.png')}.battle-turn{font-size:17px;color:var(--gold);margin:0 0 5px}.battle-selection{font-size:13px;margin:5px 0 8px;min-height:1.4em}.battle-tools{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin-bottom:8px}.battle-tools button{font-size:12px!important;min-height:44px!important;padding:5px 2px!important}.battle-unit-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.battle-unit{display:flex;align-items:center;gap:7px;text-align:left;padding:4px!important;min-width:0}.battle-unit canvas{width:64px;height:64px;object-fit:contain;flex-shrink:0;border:1px solid var(--line)}.battle-unit span{min-width:0;overflow-wrap:anywhere;font-size:14px}.battle-unit small{display:block;font-size:16px;color:var(--gold)}.battle-precision{display:flex;align-items:center;gap:8px}.battle-precision>canvas{width:48%;height:auto;border:1px solid var(--line)}.battle-arrows{display:grid;grid-template-columns:repeat(2,minmax(44px,1fr));gap:5px;flex:1}.battle-arrows button{min-height:44px!important;padding:4px!important;font-size:20px!important}
-@media(orientation:landscape) and (max-height:600px){#mobile-app[data-mode=battle] .mobile-play{display:block}#mobile-app[data-mode=battle] #mobile-scene{height:100%;max-height:none;aspect-ratio:auto;min-width:0}.battle-panel{border-top:0;border-left:2px solid var(--line);padding:6px;overflow-y:auto}.battle-unit-list{grid-template-columns:1fr}.battle-tools{grid-template-columns:repeat(2,minmax(0,1fr))}.battle-precision{flex-wrap:wrap}.battle-precision>canvas{width:100%}.battle-arrows{grid-template-columns:repeat(3,minmax(44px,1fr))}.battle-turn{font-size:15px}}
+@container goonk-viewport (orientation:landscape) and (max-height:600px){#mobile-app[data-mode=battle] .mobile-play{display:block}#mobile-app[data-mode=battle] #mobile-scene{height:100%;max-height:none;aspect-ratio:auto;min-width:0}.battle-panel{border-top:0;border-left:2px solid var(--line);padding:6px;overflow-y:auto}.battle-unit-list{grid-template-columns:1fr}.battle-tools{grid-template-columns:repeat(2,minmax(0,1fr))}.battle-precision{flex-wrap:wrap}.battle-precision>canvas{width:100%}.battle-arrows{grid-template-columns:repeat(3,minmax(44px,1fr))}.battle-turn{font-size:15px}}
 
-.battle-preview-only{justify-content:center;margin-top:8px}.battle-preview-only>canvas{width:176px;max-width:65%}.battle-arrows[hidden]{display:none!important}@media(orientation:landscape) and (max-height:600px){.battle-precision{flex-wrap:nowrap}.battle-precision>canvas{width:84px;flex:0 0 84px}.battle-arrows{grid-template-columns:repeat(2,minmax(44px,1fr));gap:3px}.battle-preview-only{display:none}}
+.battle-preview-only{justify-content:center;margin-top:8px}.battle-preview-only>canvas{width:176px;max-width:65%}.battle-arrows[hidden]{display:none!important}@container goonk-viewport (orientation:landscape) and (max-height:600px){.battle-precision{flex-wrap:nowrap}.battle-precision>canvas{width:84px;flex:0 0 84px}.battle-arrows{grid-template-columns:repeat(2,minmax(44px,1fr));gap:3px}.battle-preview-only{display:none}}
 #mobile-app[data-mode=battle] .mobile-resources{display:none}.battle-view{min-width:76px;min-height:44px!important;padding:4px 8px!important}
 #save-toast{background:#302418 url('./h3-theme/stone.png');color:#fff0c2;border:1px solid #c7a85c;border-radius:0;font-family:Georgia,"Times New Roman",serif;pointer-events:none}
 
@@ -45,7 +45,7 @@
 #mobile-app[data-mode=town] .mobile-nav{gap:4px;padding:5px 5px calc(5px + var(--safe-bottom));border-top:3px ridge #bf9d4a;background:#4b160d url('./h3-theme/stone.png')}
 #mobile-app .town-action{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:66px;padding:3px 2px;font-size:13px!important;color:#ffe5a0}
 #mobile-app .town-action img{width:34px;height:30px;object-fit:contain;image-rendering:pixelated}#mobile-app .town-action span{display:block;font-size:13px;margin:0}
-@media(orientation:landscape) and (max-height:600px){#mobile-app[data-mode=town] #mobile-scene{height:calc(100% - 70px)}#mobile-app[data-mode=town] #town-overview{height:70px}#mobile-app .town-recruit-strip button{min-height:52px;min-width:132px}#mobile-app[data-mode=town] .town-view{top:6px;left:6px}#mobile-app[data-mode=town] #mobile-overview{width:104px;height:49px;top:6px;right:6px}#mobile-app .town-action{min-height:52px!important}#mobile-app .town-action img{height:24px;width:30px}}
+@container goonk-viewport (orientation:landscape) and (max-height:600px){#mobile-app[data-mode=town] #mobile-scene{height:calc(100% - 70px)}#mobile-app[data-mode=town] #town-overview{height:70px}#mobile-app .town-recruit-strip button{min-height:52px;min-width:132px}#mobile-app[data-mode=town] .town-view{top:6px;left:6px}#mobile-app[data-mode=town] #mobile-overview{width:104px;height:49px;top:6px;right:6px}#mobile-app .town-action{min-height:52px!important}#mobile-app .town-action img{height:24px;width:30px}}
 
 /* Native battlefield: original terrain, sprites, spells and projectiles. */
 #mobile-app[data-mode=battle][data-battle-view=native] .mobile-play{display:flex;flex-direction:column}
@@ -56,22 +56,22 @@
 #mobile-app[data-mode=battle][data-battle-view=native] .battle-selection{grid-column:2;grid-row:1;align-self:end;margin:0 0 5px;font-size:13px;line-height:1.2}
 #mobile-app[data-mode=battle][data-battle-view=native] .battle-tools{grid-column:1/3;grid-row:2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:0;gap:8px}
 #mobile-app[data-mode=battle][data-battle-view=native] .battle-panel .battle-unit-list,#mobile-app[data-mode=battle][data-battle-view=native] .battle-precision{display:none!important}
-@media(orientation:landscape) and (max-height:600px){#mobile-app[data-mode=battle][data-battle-view=native] .mobile-play{display:block}#mobile-app[data-mode=battle][data-battle-view=native] #mobile-scene{height:100%;width:100%}}
+@container goonk-viewport (orientation:landscape) and (max-height:600px){#mobile-app[data-mode=battle][data-battle-view=native] .mobile-play{display:block}#mobile-app[data-mode=battle][data-battle-view=native] #mobile-scene{height:100%;width:100%}}
 
-@media(orientation:landscape) and (max-height:360px){#mobile-app[data-mode=battle][data-battle-view=native] .battle-selection{font-size:11px}}
+@container goonk-viewport (orientation:landscape) and (max-height:360px){#mobile-app[data-mode=battle][data-battle-view=native] .battle-selection{font-size:11px}}
 
 .mobile-top{position:relative;z-index:4}.battle-view{position:relative;z-index:5;pointer-events:auto;touch-action:manipulation;user-select:none;-webkit-user-select:none}
 
 /* Three direct battle tools remain visible without opening the spell menu. */
 #mobile-app[data-mode=battle][data-battle-view=native] .battle-tools{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media(orientation:landscape) and (max-height:600px){#mobile-app[data-mode=battle][data-battle-view=native] .battle-tools{grid-template-columns:repeat(2,minmax(0,1fr))}#mobile-app[data-mode=battle] [data-ui=battle-retreat]{grid-column:1/-1}}
+@container goonk-viewport (orientation:landscape) and (max-height:600px){#mobile-app[data-mode=battle][data-battle-view=native] .battle-tools{grid-template-columns:repeat(2,minmax(0,1fr))}#mobile-app[data-mode=battle] [data-ui=battle-retreat]{grid-column:1/-1}}
 
 /* Map commands stay directly reachable on a single line, with no overflow menu. */
 #mobile-app[data-mode=map] .mobile-nav{grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:5px 6px calc(5px + var(--safe-bottom))}
 #mobile-app[data-mode=map] .mobile-nav:has(>[data-ui=hero-exchange]){grid-template-columns:repeat(5,minmax(0,1fr))}
 #mobile-app[data-mode=map] .mobile-nav button{min-height:44px!important;font-size:12px!important;padding:4px 2px!important}
 #mobile-app[data-mode=map] .toast-mobile{bottom:calc(76px + var(--safe-bottom))}
-@media(orientation:landscape) and (max-height:600px){.goonk-mobile #mobile-app[data-mode=map]{grid-template-columns:minmax(0,1fr) 176px}#mobile-app[data-mode=map] .mobile-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(44px,1fr));gap:5px;overflow:visible;padding:6px 6px calc(6px + var(--safe-bottom))}#mobile-app[data-mode=map] .mobile-nav button{min-height:44px!important;min-width:0;overflow-wrap:normal}#mobile-app[data-mode=map] .toast-mobile{bottom:12px;right:188px}}
+@container goonk-viewport (orientation:landscape) and (max-height:600px){.goonk-mobile #mobile-app[data-mode=map]{grid-template-columns:minmax(0,1fr) 176px}#mobile-app[data-mode=map] .mobile-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(44px,1fr));gap:5px;overflow:visible;padding:6px 6px calc(6px + var(--safe-bottom))}#mobile-app[data-mode=map] .mobile-nav button{min-height:44px!important;min-width:0;overflow-wrap:normal}#mobile-app[data-mode=map] .toast-mobile{bottom:12px;right:188px}}
 
 /* Portrait town art is a real layered scene: native buildings remain independent. */
 #mobile-app[data-town-layout=portrait] #mobile-overview{display:none!important}
@@ -97,7 +97,7 @@
 #mobile-app[data-has-resources=true] .mobile-resources{grid-column:2;grid-row:1;width:100%;max-width:calc(50px * var(--resource-count,7));grid-template-columns:repeat(var(--resource-count,7),minmax(20px,1fr));overflow-x:auto;scrollbar-width:none;touch-action:pan-x}
 #mobile-app[data-has-resources=true] :is(.dialog-close,.recruit-close){grid-column:3;grid-row:1;width:44px;min-width:44px;min-height:44px;font-size:22px}
 .mobile-resources .resource-quantity{max-width:100%;overflow:hidden;text-overflow:ellipsis}
-@media(max-width:360px) and (orientation:portrait),(orientation:landscape) and (max-height:600px){
+@container goonk-viewport (max-width:360px) and (orientation:portrait),(orientation:landscape) and (max-height:600px){
  .mobile-resource img{height:16px;width:20px}
  .resource-quantity{font-size:11px;line-height:12px}
 }
@@ -117,7 +117,7 @@
 #mobile-app[data-mode=map] .scene-tools{display:grid;grid-template-columns:repeat(2,minmax(52px,1fr));width:158px;gap:6px;top:8px;left:8px}
 #mobile-app[data-mode=map] .scene-tools button{min-height:48px;min-width:0;padding:6px;font-size:14px}
 #mobile-app[data-mode=map] #mobile-overview{display:block;width:116px;height:116px;top:8px;right:8px;border:3px ridge #c5a558;border-radius:0;background:#080906;touch-action:none;box-shadow:0 2px 8px #000a}
-@media(orientation:landscape) and (max-height:600px){#mobile-app[data-mode=map] #mobile-overview{width:100px;height:100px}#mobile-app .mobile-nav button{min-height:50px!important}}
+@container goonk-viewport (orientation:landscape) and (max-height:600px){#mobile-app[data-mode=map] #mobile-overview{width:100px;height:100px}#mobile-app .mobile-nav button{min-height:50px!important}}
 /* Dedicated full-screen creature screens, with real native animated portraits. */
 .creature-presentation{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;min-height:0;background:linear-gradient(#381d12b0,#1c150ed9),url('./h3-theme/stone.png');overflow:hidden}
 .creature-view-head{display:flex;align-items:center;gap:12px;padding:8px 12px;border-bottom:2px ridge #c8a860;flex:0 0 auto}.creature-view-head h2{margin:0;flex:1;color:#ffe6a0;font-size:20px}.creature-view-head button{width:56px;padding:0;font-size:26px}
@@ -127,8 +127,8 @@
 .featured-creature{display:grid;grid-template-rows:minmax(140px,1fr) auto;min-height:0;flex:1;overflow:auto;touch-action:pan-y;padding:10px 14px;gap:12px}.creature-stage{min-height:0;display:flex;justify-content:center;align-items:center}.creature-stage canvas{height:100%;max-height:100%;max-width:100%;aspect-ratio:1/1;border:3px ridge #c9a751}.creature-details h3{font-size:22px;color:#ffe39a;margin:0 0 6px}.creature-details .creature-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.creature-details .creature-stats>div{display:block}.creature-description{font-size:14px;line-height:1.4;color:#e8d8b5;margin:8px 0}.creature-details .featured-price{font-size:15px}
 .recruit-controls{flex:0 0 auto;padding:8px 12px 12px;border-top:1px solid #b39350}.creature-presentation .recruit-choices{position:static;display:flex;overflow-x:auto;gap:8px;padding:0 0 6px}.creature-presentation .recruit-choices button{flex:0 0 auto;min-height:48px;font-size:15px}.creature-presentation .mobile-recruit-amount{position:static;width:auto;margin:0;padding:10px;border-radius:0;background:#20170fbf}.creature-presentation .mobile-recruit-amount input[type=number]{min-height:52px;width:100px;font-size:20px}.creature-presentation .recruit-summary{font-size:14px}.recruit-variants,.creature-roster{display:flex;gap:8px;overflow-x:auto;flex:0 0 auto;padding:8px}.creature-roster button{flex:0 0 auto;font-size:14px}
 .army-slot{display:grid;gap:5px;min-width:0}.army-unit-info{font-size:14px!important;min-height:48px!important}
-@media(orientation:landscape){.fort-roster{grid-template-columns:repeat(2,minmax(0,1fr))}.featured-creature{grid-template-columns:minmax(160px,1fr) minmax(190px,1fr);grid-template-rows:minmax(0,1fr)}.creature-details{overflow:auto}.creature-stage canvas{width:auto;height:100%}.creature-presentation .recruit-controls{padding:6px 10px}.creature-presentation .mobile-recruit-amount{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:6px}.creature-presentation .mobile-recruit-amount input[type=range]{width:100%}.creature-presentation .recruit-summary{grid-column:1/-1;margin:0}.creature-view-head{padding:4px 8px}.creature-view-head button{min-height:48px}.creature-details .creature-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-height:650px) and (orientation:portrait){.creature-description{display:none}.creature-view-head{padding:4px 8px}.creature-details h3{display:none}.featured-creature{padding:6px 10px;gap:5px}.recruit-controls{padding:5px 8px}.creature-presentation .mobile-recruit-amount{padding:6px}.creature-presentation .recruit-summary{margin:3px 0 0}}
+@container goonk-viewport (orientation:landscape){.fort-roster{grid-template-columns:repeat(2,minmax(0,1fr))}.featured-creature{grid-template-columns:minmax(160px,1fr) minmax(190px,1fr);grid-template-rows:minmax(0,1fr)}.creature-details{overflow:auto}.creature-stage canvas{width:auto;height:100%}.creature-presentation .recruit-controls{padding:6px 10px}.creature-presentation .mobile-recruit-amount{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:6px}.creature-presentation .mobile-recruit-amount input[type=range]{width:100%}.creature-presentation .recruit-summary{grid-column:1/-1;margin:0}.creature-view-head{padding:4px 8px}.creature-view-head button{min-height:48px}.creature-details .creature-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container goonk-viewport (max-height:650px) and (orientation:portrait){.creature-description{display:none}.creature-view-head{padding:4px 8px}.creature-details h3{display:none}.featured-creature{padding:6px 10px;gap:5px}.recruit-controls{padding:5px 8px}.creature-presentation .mobile-recruit-amount{padding:6px}.creature-presentation .recruit-summary{margin:3px 0 0}}
 
 #mobile-app[data-mode=map] #mobile-overview:focus-visible{outline:3px solid #ffe894;outline-offset:3px}
 
@@ -144,7 +144,7 @@
 #mobile-app[data-mode=battle] .battle-team-actions{grid-column:1/-1;grid-row:2}
 #mobile-app[data-mode=battle] .battle-team-actions button{min-height:44px;padding:6px 10px;white-space:nowrap;font-size:14px}
 #mobile-app[data-mode=battle][data-battle-view=native] .battle-tools{grid-template-columns:repeat(2,minmax(0,1fr))}
-@media(orientation:landscape) and (max-height:600px){
+@container goonk-viewport (orientation:landscape) and (max-height:600px){
  .goonk-mobile #mobile-app[data-mode=battle]{grid-template-rows:56px minmax(0,1fr)}
  #mobile-app[data-mode=battle] .mobile-top{display:flex;flex-wrap:nowrap;gap:6px;padding:4px max(8px,env(safe-area-inset-right)) 4px max(8px,env(safe-area-inset-left))}
  #mobile-app[data-mode=battle] .mobile-title{flex:1;min-width:0}

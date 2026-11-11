@@ -64,8 +64,18 @@ export function anchorMobileViewport(root,win=window){
    const aligned=candidates.find(([w,h])=>w>0&&h>0&&(isLandscape?w>=h:h>=w));
    if(aligned)[finalWidth,finalHeight]=aligned;
   }
+  // Safari can retain a height from before rotation even when both sizes have
+  // the same orientation. Bound it by an independently aligned layout size.
+  if(!zoomed)for(const [w,h] of [[layoutWidth,layoutHeight],[win.innerWidth,win.innerHeight]])
+   if(w>0&&h>0&&Math.abs(w-finalWidth)<2&&(isLandscape?w>=h:h>=w))finalHeight=Math.min(finalHeight,h);
   lastLayoutWidth=layoutWidth;
-  const next={position:'absolute',inset:'auto',left:(Number.isFinite(viewport?.pageLeft)?viewport.pageLeft:win.scrollX||0)+'px',top:(Number.isFinite(viewport?.pageTop)?viewport.pageTop:win.scrollY||0)+'px',width:finalWidth+'px',height:finalHeight+'px'};
+  if(root.dataset)root.dataset.orientation=isLandscape?'landscape':'portrait';
+  // pageTop/pageLeft may lag scrollTo(0,0) after an iOS wake. Gameplay has no
+  // keyboard panning; anchor its document-space box to the actual scroll origin.
+  const editing=/^(INPUT|TEXTAREA)$/.test(win.document?.activeElement?.tagName||'');
+  const left=editing&&Number.isFinite(viewport?.pageLeft)?viewport.pageLeft:win.scrollX||0;
+  const top=editing&&Number.isFinite(viewport?.pageTop)?viewport.pageTop:win.scrollY||0;
+  const next={position:'absolute',inset:'auto',left:left+'px',top:top+'px',width:finalWidth+'px',height:finalHeight+'px'};
   for(const [name,value] of Object.entries(next))if(root.style[name]!==value)root.style[name]=value;
  }
  function schedule(){if(disposed||pending)return;pending=true;win.requestAnimationFrame(()=>{pending=false;update();});}

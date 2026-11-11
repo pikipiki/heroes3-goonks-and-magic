@@ -2470,6 +2470,9 @@ CBlacksmithDialog::CBlacksmithDialog(bool possible, CreatureID creMachineID, Art
 	OBJECT_CONSTRUCTION;
 
 	Rect barRect(8, pos.h - 26, pos.w - 16, 19);
+	mobileCreature = creMachineID;
+	mobileArtifact = aid;
+	mobileCanBuy = possible;
 
 	auto statusbarBackground = std::make_shared<CPicture>(background->getSurface(), barRect, 8, pos.h - 26);
 	statusbar = CGStatusBar::create(statusbarBackground);
@@ -2507,4 +2510,9 @@ CBlacksmithDialog::CBlacksmithDialog(bool possible, CreatureID creMachineID, Art
 		buy->block(true);
 
 	costIcon = std::make_shared<CAnimImage>(AnimationPath::builtin("RESOURCE"), GameResID(EGameResID::GOLD).getNum(), 0, 148, 244);
+}
+
+Rect CBlacksmithDialog::mobilePreview() const
+{
+	return animBG->pos;
 }

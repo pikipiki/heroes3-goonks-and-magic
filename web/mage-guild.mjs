@@ -24,7 +24,7 @@ export function createMageGuild({root, command, pointer, resetView, asset}) {
     page = Math.min(page, pages - 1);
     const visible = spells.slice(page * pageSize, (page + 1) * pageSize);
     const selected = visible.find(spell => spell.id === selectedId) || visible[0];
-    const floorCount = Math.max(5, guild.levels);
+    const floorCount = Math.max(1, Number(guild.levels)||1);
     const built = Number(guild.built) || 0;
     const status = number => guild.allSpells || number <= built ? 'open' :
       number <= guild.levels ? 'sealed' : 'unavailable';
@@ -122,7 +122,7 @@ export function createMageGuild({root, command, pointer, resetView, asset}) {
       }
       root.dataset.mageGuildView = classic ? 'classic' : 'mobile';
       const next = state.mageGuild;
-      if (next.town !== guild?.town || level > Math.max(5, next.levels)) { level = 1; page = 0; selectedId = undefined; }
+      if (next.town !== guild?.town || level > Math.max(1, next.levels)) { level = 1; page = 0; selectedId = undefined; }
       guild = next;
       const key = JSON.stringify(guild);
       if (key === signature) return;

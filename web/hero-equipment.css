@@ -304,7 +304,7 @@
 /* ========================================================
    LANDSCAPE LAYOUT (RIGHT CONTROLS FOR MAXIMUM 100% HEIGHT)
    ======================================================== */
-@media(orientation:landscape){
+@container goonk-viewport (orientation:landscape){
  .hero-equipment-page{
   display:grid;
   grid-template-columns:minmax(0,1fr) clamp(220px,28vw,270px);
@@ -416,7 +416,7 @@
  .hero-extra-equipment>div{grid-template-columns:repeat(4,minmax(44px,1fr))}
 }
 
-@media(orientation:portrait){
+@container goonk-viewport (orientation:portrait){
  .hero-equipment-page{grid-template-rows:78px 50px 48px minmax(0,1fr) minmax(78px,auto)}
  .hero-equipment-page[data-inventory=skills]{grid-template-rows:78px 50px 48px minmax(0,1fr)}
  .hero-body-stage{grid-template-rows:repeat(5,54px)}
@@ -427,7 +427,7 @@
 }
 
 /* Tabs include their complete touch targets and both borders. */
-@media(orientation:portrait){
+@container goonk-viewport (orientation:portrait){
  .hero-equipment-page{grid-template-rows:78px 50px auto minmax(0,1fr) minmax(78px,auto)}
  .hero-equipment-page[data-inventory=skills]{grid-template-rows:78px 50px auto minmax(0,1fr)}
 }
@@ -442,7 +442,7 @@
 .hero-army-slot-name{font-size:12px;line-height:1.15;text-align:center;white-space:normal;overflow-wrap:anywhere}
 #mobile-app .hero-army-slot .creature-stats{width:100%;box-sizing:border-box}
 @media(prefers-reduced-motion:reduce){#mobile-app .hero-army-slot.selected{animation:none}}
-@media(orientation:portrait){
+@container goonk-viewport (orientation:portrait){
  .hero-bag-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible;gap:4px}
  #mobile-app .hero-bag-tabs button{white-space:normal;font-size:12px;margin:0}
  #mobile-app .hero-bag-tabs [data-hero-commander]{min-width:44px}
@@ -453,7 +453,7 @@
 
 /* Fit the worn inventory to its actual remaining height in every orientation. */
 .hero-equipment-page[data-inventory=worn] .hero-equipment-grid{container:hero-inventory / size;overflow:hidden;box-sizing:border-box}
-@media(orientation:portrait){
+@container goonk-viewport (orientation:portrait){
  .hero-equipment-page[data-inventory=worn] .hero-body-layout{display:grid;height:100%;min-height:0;grid-template-rows:minmax(220px,1fr) auto;gap:4px}
  .hero-equipment-page[data-inventory=worn] .hero-body-stage{height:100%;box-sizing:border-box;grid-template-rows:repeat(5,minmax(44px,1fr));min-height:0;padding:0;gap:3px}
  #mobile-app .hero-equipment-page[data-inventory=worn] .hero-body-stage .hero-artifact-slot{height:100%;max-height:76px;width:min(76px,100%);box-sizing:border-box}

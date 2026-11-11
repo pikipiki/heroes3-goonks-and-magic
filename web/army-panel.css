@@ -30,17 +30,17 @@
 .army-transfer-tools input[type=number]{box-sizing:border-box;width:90px;min-height:44px;font:18px Georgia,serif;background:#1c150c;color:#ffedba;border:2px inset #a38a55;padding:4px 8px}
 #mobile-app[data-sheet=army] .army-transfer-tools button{min-height:44px;min-width:56px;padding:4px 8px;margin-left:auto;font-size:15px}
 .army-transfer-tools button[hidden]{display:none}
-@media(orientation:portrait){
+@container goonk-viewport (orientation:portrait){
  #mobile-app[data-sheet=army] .army-grid{max-height:310px}
 }
-@media(orientation:landscape){
+@container goonk-viewport (orientation:landscape){
  .army-rosters{grid-auto-rows:auto;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
  .army-panel[data-army-count="1"] .army-rosters{grid-template-columns:minmax(0,1fr)}
  #mobile-app[data-sheet=army] .army-panel[data-army-count="1"] .army-grid{grid-template-columns:repeat(7,minmax(0,1fr));grid-template-rows:minmax(44px,1fr)}
  .army-dock{grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px}
  #mobile-app[data-sheet=army] .army-selection{min-height:0}
 }
-@media(orientation:landscape) and (max-height:360px){
+@container goonk-viewport (orientation:landscape) and (max-height:360px){
  #mobile-app[data-sheet=army] .sheet-body{padding:4px 6px}
  .army-panel{gap:4px}.army-dock{padding-top:3px}.army-roster{gap:2px}
  #mobile-app[data-sheet=army] .army-grid{gap:4px}
@@ -54,7 +54,7 @@
 #mobile-app[data-sheet=army] .army-transfer-all{flex:0 0 auto;width:100%;min-height:44px;padding:4px 8px;font-size:14px;line-height:18px}
 .army-absent{justify-content:center;border:1px solid var(--line);padding:10px;box-sizing:border-box;text-align:center}
 .army-absent p{margin:4px 0;font-size:14px;line-height:20px}
-@media(orientation:landscape) and (max-height:430px){
+@container goonk-viewport (orientation:landscape) and (max-height:430px){
  #mobile-app[data-sheet=army] .sheet-head{padding:2px 8px}
  #mobile-app[data-sheet=army] .sheet-head button{min-height:44px;width:44px;height:44px}
  #mobile-app[data-sheet=army] .army-selection{font-size:12px;line-height:15px}

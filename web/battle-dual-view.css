@@ -29,6 +29,6 @@
 #mobile-app[data-mode=battle][data-battle-layout=dual] .mobile-nav>[data-ui=wait]{grid-column:3!important}
 #mobile-app[data-mode=battle][data-battle-layout=dual] .mobile-nav>[data-ui=defend]{grid-column:4!important}
 
-@media(orientation:landscape){
+@container goonk-viewport (orientation:landscape){
  .battle-strategic-view{display:none!important}
 }

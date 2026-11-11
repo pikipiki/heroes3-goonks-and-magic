@@ -122,7 +122,7 @@
  font:16px Georgia,serif;
  padding:2px 3px;
 }
-@media(orientation:landscape) {
+@container goonk-viewport (orientation:landscape) {
  .hero-exchange-page {grid-template-columns:minmax(0,1fr) minmax(190px,30%);grid-template-rows:auto auto minmax(0,1fr)}
  .exchange-toolbar {grid-column:1/-1}
  .exchange-tabs {grid-area:2/1}

@@ -68,7 +68,7 @@
  line-height:1!important;
 }
 
-@media (orientation: landscape) and (max-height: 600px) {
+@container goonk-viewport (orientation: landscape) and (max-height: 600px) {
  #mobile-app[data-mode=map] .mobile-nav {
   --map-action-rows:repeat(2,minmax(40px,1fr))!important;
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
