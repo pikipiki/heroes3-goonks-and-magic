@@ -38,6 +38,7 @@ export function isLandscapeOrientation(win=typeof window!=='undefined'?window:nu
 export function anchorMobileViewport(root,win=window){
  const viewport=win.visualViewport;let pending=false,disposed=false,lastLayoutWidth;
  const wakeTimers=new Set();
+ const probe=win.document?.createElement?.('div');if(probe){probe.setAttribute('aria-hidden','true');Object.assign(probe.style,{position:'fixed',width:'100dvw',height:'100dvh',visibility:'hidden',pointerEvents:'none',inset:'0'});win.document.body.append(probe);}
  function clearWakeTimers(){for(const t of wakeTimers)clearTimeout(t);wakeTimers.clear();}
  function update(){
   if(disposed||(win.document?.hidden===true))return;
@@ -68,6 +69,9 @@ export function anchorMobileViewport(root,win=window){
   // the same orientation. Bound it by an independently aligned layout size.
   if(!zoomed)for(const [w,h] of [[layoutWidth,layoutHeight],[win.innerWidth,win.innerHeight]])
    if(w>0&&h>0&&Math.abs(w-finalWidth)<2&&(isLandscape?w>=h:h>=w))finalHeight=Math.min(finalHeight,h);
+  const dynamic=probe?.getBoundingClientRect();
+  if(dynamic?.width>0&&dynamic.height>0&&Math.abs(dynamic.width-finalWidth)<2&&(isLandscape?dynamic.width>=dynamic.height:dynamic.height>=dynamic.width))finalHeight=Math.min(finalHeight,dynamic.height);
+  if(viewport?.height>0&&Math.abs(viewport.width-finalWidth)<2)finalHeight=Math.min(finalHeight,viewport.height);
   lastLayoutWidth=layoutWidth;
   if(root.dataset)root.dataset.orientation=isLandscape?'landscape':'portrait';
   // pageTop/pageLeft may lag scrollTo(0,0) after an iOS wake. Gameplay has no
@@ -123,7 +127,7 @@ export function anchorMobileViewport(root,win=window){
  ].filter(([target])=>typeof target?.addEventListener==='function');
  for(const [target,event,listener] of bindings)target.addEventListener(event,listener,{passive:true});
  update();
- return{update:schedule,dispose(){disposed=true;clearWakeTimers();for(const [target,event,listener] of bindings)target.removeEventListener(event,listener);}};
+ return{update:schedule,dispose(){disposed=true;probe?.remove();clearWakeTimers();for(const [target,event,listener] of bindings)target.removeEventListener(event,listener);}};
 }
 
 export function enableFullscreenOnPlay(win=window){

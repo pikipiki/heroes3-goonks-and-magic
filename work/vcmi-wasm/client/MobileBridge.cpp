@@ -7,6 +7,8 @@
 #include <SDL_surface.h>
 #include "render/Canvas.h"
 #include "render/IImage.h"
+#include "render/CAnimation.h"
+#include "../lib/mapObjects/ObjectTemplate.h"
 #include "render/IRenderHandler.h"
 #include "windows/CSpellWindow.h"
 #include "windows/CMarketWindow.h"
@@ -92,6 +94,7 @@ extern "C" void vcmiMobileCommand(int,int,int,int,int,int);
 namespace {
 std::optional<std::array<int,6>> deferredMapAction;
 uint32_t mapReadySince=0;
+std::string mobileVisitedName;bool mobileVisitShown=false;
 bool mobileEnabled=false,stateEnabled=false,audioMuted=false;
 std::vector<int3> exchangeMarkerTiles;
 std::optional<int> mobileTownHall;
@@ -178,7 +181,7 @@ JsonNode weeklyRecruits(const CGTownInstance & town)
  return result;
 }
 void mobilePreviews(CIntObject * node,JsonNode & result){
- if(auto picture=dynamic_cast<CCreaturePic*>(node)){if(auto c=picture->getMobileCreature()){auto item=creature(c,1);item["preview"]=rect(picture->pos);item["previewAtlas"].Bool()=true;result.Vector().push_back(item);}return;}
+ if(auto picture=dynamic_cast<CCreaturePic*>(node)){if(auto c=picture->getMobileCreature()){auto item=creature(c,1);item["preview"]=rect(picture->pos);item["previewAtlas"].Bool()=true;item["previewKey"].Integer()=reinterpret_cast<uintptr_t>(picture);result.Vector().push_back(item);}return;}
  for(auto child:node->children)mobilePreviews(child,result);
 }
 // Presentation data only: selection and confirmation still use native callbacks.
@@ -456,6 +459,16 @@ void mobileTownArmies(JsonNode & n,const CGTownInstance * town){
 }
 void shortcut(EShortcut key){ENGINE->events().dispatchShortcutPressed({key});ENGINE->events().dispatchShortcutReleased({key});}
 }
+void publishMobileVisitedObject(const CGObjectInstance * object){
+ mobileVisitedName.clear();mobileVisitShown=false;
+ if(!mobileEnabled||!object||!object->appearance||object->appearance->animationFile.empty())return;
+ const auto animation=ENGINE->renderHandler().loadAnimation(object->appearance->animationFile,EImageBlitMode::SIMPLE);
+ const auto image=animation?animation->getImage(0):nullptr;if(!image)return;
+ auto surface=SDL_CreateRGBSurfaceWithFormat(0,image->width(),image->height(),32,SDL_PIXELFORMAT_ARGB8888);if(!surface)return;SDL_FillRect(surface,nullptr,0);
+ {auto canvas=Canvas::createFromSurface(surface,CanvasScalingPolicy::IGNORE);canvas.draw(image,Point(0,0));}
+ auto rgba=SDL_ConvertSurfaceFormat(surface,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(surface);if(!rgba)return;
+ const int w=rgba->w,h=rgba->h;auto bytes=malloc(w*h*4);if(bytes){memcpy(bytes,rgba->pixels,w*h*4);MAIN_THREAD_ASYNC_EM_ASM({const c=document.createElement('canvas');c.width=$1;c.height=$2;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice($0,$0+$1*$2*4)),$1,$2),0,0);window.goonkVisitedObjectAtlas=c;_free($0);},bytes,w,h);mobileVisitedName=object->getObjectName();}SDL_FreeSurface(rgba);
+}
 std::atomic_bool atlasPending{false};
 void publishMobileBattleAtlas(){
  static uint32_t last=0;
@@ -652,7 +665,7 @@ void publishMobilePreviewAtlas()
   SDL_FillRect(scratch,nullptr,0);
   {auto canvas=Canvas::createFromSurface(scratch,CanvasScalingPolicy::IGNORE);pictures[i]->drawMobilePreview(canvas);}
   SDL_Rect destination{0,int(i)*256,256,256};SDL_SetSurfaceBlendMode(scratch,SDL_BLENDMODE_NONE);SDL_BlitSurface(scratch,nullptr,surface,&destination);SDL_FreeSurface(scratch);
-  geometry.insert(geometry.end(),{pictures[i]->getMobileCreature()->getId().getNum(),std::min(256,pictures[i]->pos.w),std::min(256,pictures[i]->pos.h)});
+  geometry.insert(geometry.end(),{int32_t(reinterpret_cast<uintptr_t>(pictures[i])),std::min(256,pictures[i]->pos.w),std::min(256,pictures[i]->pos.h)});
  }
  auto rgba=SDL_ConvertSurfaceFormat(surface,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(surface);
  if(!rgba)return;
@@ -661,7 +674,7 @@ void publishMobilePreviewAtlas()
  if(packet){
   memcpy(packet,geometry.data(),prefix);memcpy(packet+prefix,rgba->pixels,bytes);previewAtlasPending.store(true);
   MAIN_THREAD_ASYNC_EM_ASM({const ptr=$0;const w=$1;const h=$2;const n=$3;try{
-   const entries=Array.from({length:n},(_,i)=>{const at=ptr/4+i*3;return [HEAP32[at],{x:0,y:i*256,w:HEAP32[at+1],h:HEAP32[at+2]}];});
+   const entries=Array.from({length:n},(_,i)=>{const at=ptr/4+i*3;return [HEAPU32[at],{x:0,y:i*256,w:HEAP32[at+1],h:HEAP32[at+2]}];});
    const canvas=window.goonkCreaturePreviewAtlas||(window.goonkCreaturePreviewAtlas=document.createElement('canvas'));
    if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}
    canvas.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+n*12,ptr+n*12+w*h*4)),w,h),0,0);
@@ -688,11 +701,14 @@ void publishMobileState(){
    vcmiMobileCommand(command[0],command[1],command[2],command[3],command[4],command[5]);
   }
  }
+ // Publish the window identity before throttled snapshots. The browser keeps
+ // its last complete presentation until the matching window data arrives.
+ if(mobileEnabled&&ENGINE){static uintptr_t previous=0;const auto top=ENGINE->windows().topWindow<CIntObject>();const auto token=reinterpret_cast<uintptr_t>(top.get());if(token!=previous){previous=token;MAIN_THREAD_ASYNC_EM_ASM({window.goonkNativeWindowToken=$0>>>0;},token);}}
  publishMobilePreviewAtlas();
  if(!stateEnabled||!ENGINE||!GAME||snapshotPending.load()||SDL_GetTicks()-lastPublished<180)return;lastPublished=SDL_GetTicks();
  exchangeMarkerTiles.clear();
  if(audioMuted){if(ENGINE->sound().getVolume()!=0)ENGINE->sound().setVolume(0);if(ENGINE->music().getVolume()!=0)ENGINE->music().setVolume(0);}
- portraitIds.clear();artifactIconIds.clear();JsonNode n;n["mapSettings"]["moveTime"].Integer()=settings["adventure"]["heroMoveTime"].Integer();n["mapSettings"]["enemyMoveTime"].Integer()=settings["adventure"]["enemyMoveTime"].Integer();n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top)n["rect"]=rect(top->pos);
+ portraitIds.clear();artifactIconIds.clear();JsonNode n;n["mapSettings"]["moveTime"].Integer()=settings["adventure"]["heroMoveTime"].Integer();n["mapSettings"]["enemyMoveTime"].Integer()=settings["adventure"]["enemyMoveTime"].Integer();n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top){n["rect"]=rect(top->pos);n["windowToken"].Integer()=reinterpret_cast<uintptr_t>(top.get());}
  auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();auto recruitWindow=ENGINE->windows().topWindow<CRecruitmentWindow>();auto fortWindow=ENGINE->windows().topWindow<CFortScreen>();auto creatureWindow=ENGINE->windows().topWindow<CStackWindow>();auto spellWindow=ENGINE->windows().topWindow<CSpellWindow>();auto heroWindow=ENGINE->windows().topWindow<CHeroWindow>();
  const auto exchangeWindow=mobileEnabled?ENGINE->windows().topWindow<CExchangeWindow>():nullptr;
  const bool openTownHall=mobileEnabled&&townWindow&&mobileTownHall==townWindow->town->id.getNum();
@@ -920,9 +936,11 @@ void publishMobileState(){
   const bool level=bool(ENGINE->windows().topWindow<CLevelWindow>());
   if(n["dialogKind"].String()=="commander")presentation["unit"]=n["creatureUnit"];
   presentation["title"].String()=n["dialogKind"].String()=="commander"?"Commander":level?"Level up":n["dialogKind"].String()=="commander-level-up"?"Commander level up":"Game message";
-  if(auto info=ENGINE->windows().topWindow<CInfoWindow>())
-   presentation["cancel"].Bool()=info->buttons.size()>1;
+  if(auto info=ENGINE->windows().topWindow<CInfoWindow>()){
+   presentation["cancel"].Bool()=info->buttons.size()>1;if(!mobileVisitedName.empty()){presentation["visitedObject"].String()=mobileVisitedName;mobileVisitShown=true;}
+  }
  }
+ if(n["mode"].String()=="map"&&mobileVisitShown){mobileVisitedName.clear();mobileVisitShown=false;}
  n["sessionState"].Integer()=static_cast<int>(GAME->server().getState());if(n["mode"].String()=="connecting")n["launchAction"].Integer()=GAME->server().screenType==ESelectionScreen::loadGame?23:GAME->server().screenType==ESelectionScreen::campaignList?47:20;
  if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>()){
   n["dialogKind"].String()="tavern";n["dialogTitle"].String()="Taverne";
@@ -1772,6 +1790,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  lastPublished=0;
  });}
 #else
+void publishMobileVisitedObject(const CGObjectInstance *){}
 void publishMobileState(){}
 void publishMobileBattleAtlas(){}
 const std::vector<int3> & mobileExchangeMarkers(){static const std::vector<int3> none;return none;}

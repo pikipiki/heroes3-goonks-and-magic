@@ -19,7 +19,7 @@ with zipfile.ZipFile('maps/000-Goonk.vmap') as src,zipfile.ZipFile(out,'w',zipfi
    objects=[o for o in objects if o.get('instanceName') not in ['trainingGuard','trainingOgre']]
    for o in objects:
     if o.get('instanceName')=='goonkHero':o['options'].update({'type':'core:christian','secondarySkills':{'core:wisdom':'basic'}})
-   objects.append({'type':'core:treasureChest','subtype':'core:treasureChest','instanceName':'reviewChest','x':10,'y':11,'l':0,'template':{'animation':'AVTchest.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{}})
+   objects.append({'type':'core:treasureChest','subtype':'core:treasureChest','instanceName':'reviewChest','x':10,'y':11,'l':0,'template':{'animation':'AVTchst0.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{}})
    data=json.dumps(objects).encode()
   dst.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())`]);
@@ -40,7 +40,7 @@ sys.stdout.buffer.write(out.getvalue())`]);
  await cmd(6);await p.waitForTimeout(250);
  const target=await p.evaluate(()=>{const v=goonkMobileState.mapOverview.view;return{x:Math.round(v.x+v.w/2+64),y:Math.round(v.y+v.h/2)}});
  await p.evaluate(({x,y})=>Module._vcmiMobilePointer(x,y,1),target);await wait(()=>goonkMobileState.hasPath);await p.locator('[data-ui=move]').tap();await wait(()=>goonkMobileState.mode==='dialog'&&goonkMobileState.dialogPresentation?.choices?.length===2);
- const reward=await p.evaluate(()=>goonkMobileState.dialogPresentation);fs.writeFileSync(path.join(out,kind+'-reward.json'),JSON.stringify(reward,null,2));assert(reward.choices.every(c=>c.selectable));
+ const reward=await p.evaluate(()=>goonkMobileState.dialogPresentation);assert(reward.visitedObject,'Visited object identity is provided by the engine');assert(await p.locator('.visited-object-art').isVisible());fs.writeFileSync(path.join(out,kind+'-reward.json'),JSON.stringify(reward,null,2));assert(reward.choices.every(c=>c.selectable));
  const gold=await p.evaluate(()=>goonkMobileState.resources[6]);await p.locator('[data-dialog-choice="0"]').tap();await wait(()=>goonkMobileState.dialogPresentation.choices[0].selected);await p.screenshot({path:path.join(out,kind+'-reward.png')});await p.locator('[data-dialog-confirm]').tap();await wait(gold=>goonkMobileState.mode==='map'&&goonkMobileState.resources[6]>gold,gold);console.log('PASS native reward updates treasury once');
  assert.deepEqual(errors,[]);console.log('PASS',kind,'real engine dialog integration');
  const failed=await browser.newPage({viewport:{width:390,height:740},hasTouch:true,bypassCSP:true});let failures=0;

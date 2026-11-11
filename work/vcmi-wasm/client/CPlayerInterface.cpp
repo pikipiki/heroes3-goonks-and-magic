@@ -451,6 +451,7 @@ void CPlayerInterface::heroVisit(const CGHeroInstance * visitor, const CGObjectI
 	EVENT_HANDLER_CALLED_BY_CLIENT;
 	if(start && visitedObj)
 	{
+		publishMobileVisitedObject(visitedObj);
 		auto visitSound = visitedObj->getVisitSound(CRandomGenerator::getDefault());
 		if (visitSound)
 			ENGINE->sound().playSound(visitSound.value());

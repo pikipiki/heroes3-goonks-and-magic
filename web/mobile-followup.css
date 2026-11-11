@@ -91,3 +91,56 @@
  #mobile-app .service-description{padding:6px}
  #mobile-app .guild-rankings th,#mobile-app .guild-rankings td{padding:5px}
 }
+/* Return actions use a consistent, tactile dark-blue frame. */
+html.goonk-mobile :is(#mobile-app,#game-menu-dialog,#mobile-viewport) button.back-button{border:5px ridge #385675!important;border-image:none!important;box-shadow:inset 0 0 0 1px #7592aa!important;background-color:#192d40!important;color:#ffedbd!important;font-weight:bold}
+html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav>[data-ui=back]{grid-column:auto!important}
+#mobile-app .building-tabs button{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:3px 6px;min-width:0;white-space:normal;overflow-wrap:anywhere;box-sizing:border-box}
+#mobile-app .building-tabs button small{flex:none}
+#mobile-app .hall-total{grid-column:1/-1!important;grid-row:auto!important;flex-wrap:wrap;min-height:24px;overflow:visible!important;align-self:center!important;line-height:1.25}
+#mobile-app .hall-stock{grid-column:1/-1!important;grid-row:auto!important}
+#mobile-app .hall-detail{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:minmax(52px,auto) auto 44px auto 44px!important;overflow:auto!important;align-content:start;gap:5px!important}
+#mobile-app .hall-detail>*{min-width:0;max-width:100%;box-sizing:border-box}
+#mobile-app .hall-feature .creature-stats dd{overflow-wrap:anywhere}
+html.goonk-mobile #mobile-app[data-mode=battle] .battle-tools{display:none!important}
+html.goonk-mobile #mobile-app[data-mode=battle] .battle-selection{display:block!important;min-height:0!important;max-height:4.2em;overflow:auto!important;touch-action:pan-y;overscroll-behavior:contain;margin:3px 0;white-space:normal!important}
+html.goonk-mobile #mobile-app[data-target-picker]>.mobile-nav{display:flex!important;flex-direction:column!important;min-height:0;overflow:hidden;gap:5px!important}
+#mobile-app .target-picker-head{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;flex:none}
+#mobile-app .target-picker-head button{min-height:44px!important;min-width:0;white-space:normal!important;font-size:12px!important}
+#mobile-app .target-picker-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;min-height:0;overflow:auto;touch-action:pan-y;gap:5px}
+#mobile-app .target-picker-list .battle-unit{min-width:0;min-height:72px!important;height:auto!important;overflow:hidden;box-sizing:border-box;white-space:normal!important;flex:none}
+#mobile-app .target-picker-list .battle-unit span{font-size:12px!important;line-height:1.2!important;overflow-wrap:anywhere;white-space:normal!important;margin:0}
+#mobile-app .target-picker-list .battle-unit small{font-size:11px!important;line-height:1.2;white-space:normal!important}
+#mobile-app .target-picker-list canvas{width:38px;height:44px;flex:none}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-app[data-mode=battle]>.mobile-top{padding-left:3px!important;justify-items:stretch!important}
+ html.goonk-mobile #mobile-app[data-mode=battle]>.mobile-top #game-menu-toggle{justify-self:start!important;margin:0!important}
+ #mobile-app .target-picker-list{grid-template-columns:1fr}
+ html.goonk-mobile #mobile-app[data-target-picker]>.mobile-nav{grid-row:2/-1!important}
+ html.goonk-mobile #mobile-app[data-target-picker]>.battle-panel{display:none!important}
+}
+@container goonk-viewport (orientation:portrait){
+ html.goonk-mobile #mobile-app[data-target-picker]>.mobile-nav{height:clamp(150px,30cqh,250px)!important;max-height:40cqh!important}
+}
+@container goonk-viewport (orientation:landscape) and (max-height:360px){
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav{grid-auto-rows:minmax(44px,1fr)!important;gap:3px!important;padding:3px!important;overflow:auto}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav>[data-ui]{padding:2px!important;min-height:44px!important;font-size:12px!important}
+ html.goonk-mobile #mobile-app[data-mode=town] .town-action img{width:20px!important;height:20px!important}
+}
+#mobile-app .visited-object-art{display:block;flex:none;align-self:center;width:160px;height:140px;max-width:65%;object-fit:contain;margin:0 auto 14px;image-rendering:pixelated}
+/* Scroll the entire right-hand column as a fallback on very short URL-bar views. */
+@container goonk-viewport (orientation:landscape) and (max-height:300px){
+ html.goonk-mobile #mobile-app[data-mode=town]>.mobile-top{max-height:88px;overflow:auto;padding:2px!important}
+ html.goonk-mobile #mobile-app[data-mode=town] .mobile-resources{padding:2px!important}
+ html.goonk-mobile #mobile-app[data-mode=town] .resource-icon{width:16px!important;height:16px!important}
+}
+@container goonk-viewport (orientation:landscape) and (max-height:360px){
+ html.goonk-mobile #mobile-app[data-mode=map]{grid-template-rows:auto minmax(0,1fr) auto!important}
+ html.goonk-mobile #mobile-app[data-mode=map]>.mobile-nav{gap:3px!important;padding:3px!important}
+ html.goonk-mobile #mobile-app[data-mode=map]>.mobile-nav button{min-height:44px!important;padding:2px!important}
+}
+html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle][data-battle-view] .battle-tools{display:none!important}
+html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle][data-battle-view] .battle-selection{overflow:auto!important;touch-action:pan-y;max-height:4.2em!important;min-height:0!important;white-space:normal!important}
+@container goonk-viewport (orientation:landscape) and (max-height:300px){
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav{grid-template-rows:48px 44px 44px!important;min-height:150px!important;height:150px!important;max-height:none!important;box-sizing:border-box}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=map] #mobile-overview{min-height:0!important;max-height:100%!important}
+}
