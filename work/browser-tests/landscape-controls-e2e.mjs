@@ -5,7 +5,7 @@ import path from 'node:path';
 const unit={id:1,name:'Pixie',count:12,attack:2,defense:2,health:4,speed:8,damageMin:1,damageMax:2,cost:[0,0,0,0,0,0,40]};
 const base={turn:true,day:1,resources:[10,10,10,10,10,10,10000],heroId:1,heroName:'Hero',heroes:[{id:1,name:'Hero'}],towns:[{index:0,name:'Castle'}]};
 const cases=[
- ['map',{mode:'map'},'.scene-tools button,.mobile-nav>button'],
+ ['map',{mode:'map',mapOverview:{rect:{x:635,y:27,w:144,h:144}}},'.scene-tools button,.mobile-nav>button'],
  ['town',{mode:'town',townName:'Castle',buildings:[]},'.mobile-nav>button'],
  ['battle',{mode:'battle',round:1,canAct:true,canAutoCombat:true,canRetreat:true,activeStack:1,activeUnit:unit,battleUnits:[{...unit,stackId:1,x:102,y:196,enemy:false}],battleCells:[]},'.mobile-top button,.mobile-nav>button'],
  ['hero',{mode:'hero',heroWindow:{id:1,name:'Hero',owned:true,primarySkills:[1,2,3,4],commanderIcon:0,slots:Array.from({length:19},(_,slot)=>({slot}))}},'[data-hero-close],.hero-bag-tabs button,.hero-artifact-actions button'],
