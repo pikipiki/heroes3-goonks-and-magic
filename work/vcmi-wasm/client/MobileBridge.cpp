@@ -95,7 +95,7 @@ namespace {
 std::optional<std::array<int,6>> deferredMapAction;
 uint32_t mapReadySince=0;
 std::string mobileVisitedName;bool mobileVisitShown=false;
-bool mobileEnabled=false,stateEnabled=false,audioMuted=false;
+bool mobileEnabled=false,stateEnabled=false,audioMuted=false,mobileVerticalBattle=false;
 std::vector<int3> exchangeMarkerTiles;
 std::optional<int> mobileTownHall;
 ui32 previousSoundVolume=75,previousMusicVolume=75;
@@ -469,6 +469,18 @@ void publishMobileVisitedObject(const CGObjectInstance * object){
  auto rgba=SDL_ConvertSurfaceFormat(surface,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(surface);if(!rgba)return;
  const int w=rgba->w,h=rgba->h;auto bytes=malloc(w*h*4);if(bytes){memcpy(bytes,rgba->pixels,w*h*4);MAIN_THREAD_ASYNC_EM_ASM({const c=document.createElement('canvas');c.width=$1;c.height=$2;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice($0,$0+$1*$2*4)),$1,$2),0,0);window.goonkVisitedObjectAtlas=c;_free($0);},bytes,w,h);mobileVisitedName=object->getObjectName();}SDL_FreeSurface(rgba);
 }
+// Export CPU ground/effect layers only for the portrait trial. No framebuffer
+// reads or preselected creature catalogue are needed.
+void publishMobileVerticalPlanes(BattleInterface & battle){
+ if(!mobileVerticalBattle)return;
+ constexpr int width=400,height=300;
+ static SDL_Surface * scratch=SDL_CreateRGBSurfaceWithFormat(0,800,600,32,SDL_PIXELFORMAT_ARGB8888);
+ static SDL_Surface * plane=SDL_CreateRGBSurfaceWithFormat(0,width,height,32,SDL_PIXELFORMAT_RGBA32);
+ if(!scratch||!plane)return;
+ const size_t bytes=width*height*4;auto packet=static_cast<uint8_t*>(malloc(bytes*2));if(!packet)return;
+ for(int layer=0;layer<2;++layer){SDL_FillRect(scratch,nullptr,0);{auto canvas=Canvas::createFromSurface(scratch,CanvasScalingPolicy::IGNORE);battle.fieldController->renderMobilePlane(canvas,layer==1);}SDL_SetSurfaceBlendMode(scratch,SDL_BLENDMODE_NONE);SDL_BlitScaled(scratch,nullptr,plane,nullptr);memcpy(packet+layer*bytes,plane->pixels,bytes);}
+ MAIN_THREAD_ASYNC_EM_ASM({const ptr=$0;const w=$1;const h=$2;const n=w*h*4;try{const planes=window.goonkBattlePlanes||(window.goonkBattlePlanes={});for(let i=0;i<2;i++){const key=i===0?'ground':'effects';const c=planes[key]||(planes[key]=document.createElement('canvas'));if(c.width!==w||c.height!==h){c.width=w;c.height=h;}c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+i*n,ptr+(i+1)*n)),w,h),0,0);}planes.version=(planes.version||0)+1;}finally{_free(ptr);}},packet,width,height);
+}
 std::atomic_bool atlasPending{false};
 void publishMobileBattleAtlas(){
  static uint32_t last=0;
@@ -476,6 +488,7 @@ void publishMobileBattleAtlas(){
  const auto battle=CPlayerInterface::battleInt;
  if(!battle||!ENGINE->windows().topWindow<BattleWindow>())return;
  last=SDL_GetTicks();
+ publishMobileVerticalPlanes(*battle);
  std::vector<const CStack *> units;size_t total=0;for(const auto stack:battle->getBattle()->battleGetAllStacks())if(stack->getPosition().isValid()){++total;if(units.size()<64)units.push_back(stack);}std::vector<std::array<int32_t,7>> geometry(units.size());
  if(units.empty())return;
  const int width=1024,height=((units.size()+7)/8)*128;
@@ -1337,6 +1350,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiOnlineRoomAction(int action, const char
 }
 
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,int c,int d,int e){if(!ENGINE)return;ENGINE->dispatchMainThread([action,a,b,c,d,e](){
+ if(action==95){mobileVerticalBattle=a!=0;lastPublished=0;return;}
  if(action==0){deferredMapAction.reset();ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});return;}if(action==1){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});return;}
  // A dedicated cancel operation cannot also accept a dialog or close the town
  // below it. Ignore delayed taps once the taverne is no longer on top.

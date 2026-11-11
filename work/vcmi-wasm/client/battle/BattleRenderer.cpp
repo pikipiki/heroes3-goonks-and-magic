@@ -78,3 +78,12 @@ void BattleRenderer::execute(BattleRenderer::RendererRef targetCanvas)
 	BattleOverlayLogVisualizer r(targetCanvas, owner);
 	logVisual->visualize(r);
 }
+
+// Projectable presentation layers: live stacks are supplied separately by the
+// mobile atlas, so their animated sprites can stay upright on a vertical field.
+void BattleRenderer::executeMobilePlane(RendererRef canvas, bool effects)
+{
+ if(effects) owner.effectsController->collectRenderableObjects(*this);
+ else {owner.obstacleController->collectRenderableObjects(*this);if(owner.siegeController)owner.siegeController->collectRenderableObjects(*this);}
+ sortObjects();renderObjects(canvas);
+}

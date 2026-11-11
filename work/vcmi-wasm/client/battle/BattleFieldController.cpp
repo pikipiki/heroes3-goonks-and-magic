@@ -770,3 +770,11 @@ bool BattleFieldController::receiveEvent(const Point & position, int eventType) 
 		return true;
 	return CIntObject::receiveEvent(position, eventType);
 }
+
+void BattleFieldController::renderMobilePlane(Canvas & canvas, bool effects)
+{
+ Canvas clipped(canvas,pos);
+ if(!effects)showBackgroundImage(clipped);
+ BattleRenderer renderer(owner);renderer.executeMobilePlane(clipped,effects);
+ if(effects)owner.projectilesController->render(clipped);
+}

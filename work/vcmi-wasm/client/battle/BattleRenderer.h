@@ -50,4 +50,5 @@ public:
 
 	void insert(EBattleFieldLayer layer, const BattleHex & tile, RenderFunctor functor);
 	void execute(RendererRef targetCanvas);
+	void executeMobilePlane(RendererRef targetCanvas, bool effects);
 };
