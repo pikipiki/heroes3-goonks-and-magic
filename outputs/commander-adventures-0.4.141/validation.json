@@ -1,0 +1,154 @@
+{
+  "version": "0.4.141",
+  "wasmSHA256": "a72aae86d35c7971135d7f61155203267c9eded38605763cb5feff70d08dd179",
+  "scope": "Responsive presentation of native commander skills and new additive Goonk rewardable objects using existing VCMI services. No ERA/ERM parity claim.",
+  "build": [
+    "ninja -j32 html5",
+    "npm run prepare:web",
+    "npm run build:web",
+    "npm run verify:web"
+  ],
+  "nodeTests": {
+    "passed": 493,
+    "failed": 0,
+    "optionalSkipped": 22
+  },
+  "responsive": {
+    "browsers": [
+      "Chromium",
+      "WebKit"
+    ],
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        568,
+        320
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1024,
+        768
+      ],
+      [
+        1180,
+        820
+      ]
+    ],
+    "connections": 15,
+    "filterAndTouchControlsVerified": true
+  },
+  "nativeCommander": {
+    "skills": 6,
+    "connections": 15,
+    "currentRanksAndRequirementsFromEngine": true,
+    "masterCombinationLearned": 103,
+    "invalidAndLockedChoicesRejected": true,
+    "selectionRequiresConfirmation": true
+  },
+  "cases": [
+    {
+      "project": "ballista",
+      "passed": true,
+      "javascriptErrors": [],
+      "machineHealth": [
+        {
+          "id": 146,
+          "name": "Ballista",
+          "health": 375
+        },
+        {
+          "id": 148,
+          "name": "Ammo Cart",
+          "health": 100
+        },
+        {
+          "id": 147,
+          "name": "First Aid Tent",
+          "health": 75
+        }
+      ],
+      "saveLoadVerified": true,
+      "crossWorkshopLimitVerified": true,
+      "exclusiveRewardsAndExactCostsVerified": true
+    },
+    {
+      "project": "medic",
+      "passed": true,
+      "javascriptErrors": [],
+      "machineHealth": [
+        {
+          "id": 146,
+          "name": "Ballista",
+          "health": 250
+        },
+        {
+          "id": 148,
+          "name": "Ammo Cart",
+          "health": 100
+        },
+        {
+          "id": 147,
+          "name": "First Aid Tent",
+          "health": 75
+        }
+      ],
+      "saveLoadVerified": true,
+      "crossWorkshopLimitVerified": true,
+      "exclusiveRewardsAndExactCostsVerified": true,
+      "healedHP": 44
+    },
+    {
+      "project": "armor",
+      "passed": true,
+      "javascriptErrors": [],
+      "machineHealth": [
+        {
+          "id": 146,
+          "name": "Ballista",
+          "health": 375
+        },
+        {
+          "id": 148,
+          "name": "Ammo Cart",
+          "health": 150
+        },
+        {
+          "id": 147,
+          "name": "First Aid Tent",
+          "health": 112
+        }
+      ],
+      "saveLoadVerified": true,
+      "crossWorkshopLimitVerified": true,
+      "exclusiveRewardsAndExactCostsVerified": true
+    }
+  ],
+  "existingNativeRegression": "mobile-refinement-native-e2e.mjs passed: minimap, commander classic/mobile switch and skills, tavern, ordinary treasure chest, startup retry and permanent failure recovery. Its fixture now normalizes IDs and uses a unique translated name.",
+  "protectedSourcePathsUnchanged": [
+    "work/vcmi-wasm/lib",
+    "scripts/era-bridge",
+    "mod/tum-era",
+    "mod/third-upgrades",
+    "mod/wake-of-gods"
+  ],
+  "limits": [
+    "Installed upstream schema, video and other data warnings remain.",
+    "One empty-image warning was observed while inspecting a commander after learning the ranged ability; the ability, selection, and persistence checks passed.",
+    "Phone/tablet viewports are simulated; no physical iOS device was tested.",
+    "The ballista project uses the native ranged-damage percentage bonus; these bounded scenarios verify project purchase, scope, persistence and effective machine health, not an exhaustive damage-distribution comparison."
+  ]
+}

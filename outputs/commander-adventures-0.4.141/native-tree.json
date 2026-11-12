@@ -1,0 +1,202 @@
+{
+  "abilities": [
+    {
+      "description": "{Ignore Defense}\nWhen attacking, ignores 50% of the defender's Defense skill",
+      "id": 100,
+      "learned": false,
+      "requires": [
+        0,
+        1
+      ],
+      "selectable": false
+    },
+    {
+      "description": "{Fear}\nAffected unit has a 10% chance to freeze in fear and skip its turn",
+      "id": 101,
+      "learned": false,
+      "requires": [
+        0,
+        2
+      ],
+      "selectable": false
+    },
+    {
+      "description": "{Maximum Damage}\nThis unit always deals the maximum possible damage",
+      "id": 102,
+      "learned": false,
+      "requires": [
+        0,
+        3
+      ],
+      "selectable": false
+    },
+    {
+      "description": "{Shooter}\nThis unit can use ammunition to perform ranged attacks\n{No Melee Penalty}\nThis ranged unit deals full damage in melee",
+      "id": 103,
+      "learned": false,
+      "requires": [
+        0,
+        4
+      ],
+      "selectable": false
+    },
+    {
+      "description": "{No Retaliation}\nEnemies cannot retaliate against this unit's melee attacks",
+      "id": 104,
+      "learned": false,
+      "requires": [
+        0,
+        5
+      ],
+      "selectable": false
+    },
+    {
+      "description": "{Unlimited retaliations}\nThis unit can retaliate against an unlimited number of attacks",
+      "id": 105,
+      "learned": false,
+      "requires": [
+        1,
+        2
+      ],
+      "selectable": false
+    },
+    {
+      "description": "{Attack All Around}\nThis unit attacks all enemies adjacent to the primary target",
+      "id": 106,
+      "learned": false,
+      "requires": [
+        1,
+        3
+      ],
+      "selectable": false
+    },
+    {
+      "description": "{Damage Reduction}\nReduces physical damage from both melee and ranged attacks by 30%",
+      "id": 107,
+      "learned": false,
+      "requires": [
+        1,
+        4
+      ],
+      "selectable": false
+    },
+    {
+      "description": "{Fire Shield}\nReflects 1% of melee damage back to the attacker",
+      "id": 108,
+      "learned": false,
+      "requires": [
+        1,
+        5
+      ],
+      "selectable": false
+    },
+    {
+      "description": "{Additional Attacks}\nThis unit can attack 1 additional time(s)",
+      "id": 109,
+      "learned": false,
+      "requires": [
+        2,
+        3
+      ],
+      "selectable": false
+    },
+    {
+      "description": "{Regeneration}\nHeals 50 hit points every round",
+      "id": 110,
+      "learned": false,
+      "requires": [
+        2,
+        4
+      ],
+      "selectable": false
+    },
+    {
+      "description": "{Cast After Attack}\nHas a 30% chance to cast Paralyze after it attacks",
+      "id": 111,
+      "learned": false,
+      "requires": [
+        2,
+        5
+      ],
+      "selectable": false
+    },
+    {
+      "description": "{Jousting Bonus}\nEach hex moved before attacking grants +5% damage",
+      "id": 112,
+      "learned": false,
+      "requires": [
+        3,
+        4
+      ],
+      "selectable": false
+    },
+    {
+      "description": "{Death Stare}\nHas a 1% chance to instantly kill one living creature",
+      "id": 113,
+      "learned": false,
+      "requires": [
+        3,
+        5
+      ],
+      "selectable": false
+    },
+    {
+      "description": "{Flying}\nThis unit flies and ignores battlefield obstacles while moving",
+      "id": 114,
+      "learned": false,
+      "requires": [
+        4,
+        5
+      ],
+      "selectable": false
+    }
+  ],
+  "level": 1,
+  "masterRank": 4,
+  "maxRank": 5,
+  "selectedSkill": -1,
+  "skills": [
+    {
+      "description": "No Attack Skill\n\nThis skill gives only Basic 5 Attack\n\nThe next levels of Attack Skill can give\nBasic: 7 Attack\nAdvanced: 10 Attack\nExpert: 14 Attack\nMaster: 20 Attack\nGrandmaster: 30 Attack\n\nWith Master Attack, your Commander can get Extra skills\nwith Master Defense skill: Reduce Enemy Defense by 50%\nwith Master Hit Points skill: Fearsome\nwith Master Damage skill: Maximum damage always\nwith Master Magic Power skill: No Enemy Retaliation\nwith Master Speed skill: Can Shoot",
+      "id": 0,
+      "name": "Attack",
+      "rank": 0,
+      "selectable": false
+    },
+    {
+      "description": "No Defense Skill\n\nThis skill gives only Basic 5 Defense\n\nThe next levels of Defense Skill can give\nBasic: 9 Defense\nAdvanced: 15 Defense\nExpert: 23 Defense\nMaster: 35 Defense\nGrandmaster: 55 Defense\n\nWith Master Defense, your Commander can get Extra skills\nwith Master Attack skill: Reduce Enemy Defense by 50%\nwith Master Hit Points skill: Endless Retaliation\nwith Master Damage skill: Strike all Enemies around\nwith Master Magic Power skill: Permanent Fire Shield\nwith Master Speed skill: Block Physical Damage",
+      "id": 1,
+      "name": "Defense",
+      "rank": 0,
+      "selectable": false
+    },
+    {
+      "description": "No Hit Points Skill\n\nThis skill gives only\nBasic 20HP+Level*20\n\nThe next levels of Hit Points Skill can give\nBasic: plus 10% to HP\nAdvanced: plus 25% to HP\nExpert: plus 45% to HP\nMaster: plus 70% to HP\nGrandmaster: plus 100% to HP\n\nWith Master Hit Points, your Commander can get Extra skills\nwith Master Attack skill: Fearsome\nwith Master Defense skill: Endless Retaliation\nwith Master Damage skill: Attack Twice\nwith Master Magic Power skill: Melee Attack may Paralyze\nwith Master Speed skill: Regeneration 50 HP every turn",
+      "id": 2,
+      "name": "Health",
+      "rank": 0,
+      "selectable": false
+    },
+    {
+      "description": "No Damage Skill\n\nThis skill gives\nBasic 8+Level*4 Damage\n\nThe next levels of Damage Skill can give\nBasic: plus 10% to Damage\nAdvanced: plus 25% to Damage\nExpert: plus 45% to Damage\nMaster: plus 70% to Damage\nGrandmaster: plus 100% to Damage\n\nWith Master Damage, your Commander can get Extra skills\nwith Master Attack skill: Maximum damage always\nwith Master Defense skill: Strike all Enemies around\nwith Master Hit Points skill: Attack Twice\nwith Master Magic Power skill: DeathStare\nwith Master Speed skill: Champion Distance Bonus",
+      "id": 3,
+      "name": "Damage",
+      "rank": 0,
+      "selectable": false
+    },
+    {
+      "description": "No Speed Skill\n\nThis skill gives only Basic 4 Speed\n\nThe next levels of Speed Skill can give\nBasic: 5 Speed\nAdvanced: 6 Speed\nExpert: 7 Speed\nMaster: 8 Speed\nGrandmaster: 10 Speed\n\nWith Master Speed, your Commander can get Extra skills\nwith Master Attack skill: Can Shoot\nwith Master Defense skill:Block Physical Damage\nwith Master Hit Points skill: Regeneration 50 HP every turn\nwith Master Damage skill: Champion Distance Bonus\nwith Master Magic Power skill:  Ignore Obstacles [fly]",
+      "id": 4,
+      "name": "Speed",
+      "rank": 0,
+      "selectable": false
+    },
+    {
+      "description": "No Magic Power Skill\n\nThis skill gives only\nBasic 1 Magic Power\nMay cast 1 time\nBasic 5% Magic Resistance\n\nThe next levels of Magic Power Skill can give\nBasic: 2 Power, casts 2 times, 10% Magic Resistance\nAdvanced: 4 Power, casts 3 times, 20% Magic Resistance\nExpert: 7 Power, casts 4 times, 40% Magic Resistance\nMaster: 15 Power, casts 5 times, 65% Magic Resistance\nGrandmaster: 30 Power, casts 6 times, 95% Magic Resistance\n\nWith Master Magic Power, your Commander can get Extra skills\nwith Master Attack skill: No Enemy Retaliation\nwith Master Defense skill: Permanent Fire Shield\nwith Master Hit Points skill: Melee Attack may Paralyze\nwith Master Damage skill: DeathStare\nwith Master Speed skill:  Ignore Obstacles [fly]",
+      "id": 5,
+      "name": "Magic",
+      "rank": 0,
+      "selectable": false
+    }
+  ]
+}

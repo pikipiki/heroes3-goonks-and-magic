@@ -43,6 +43,7 @@ public:
 	CCommanderSkillIcon(std::shared_ptr<CIntObject> object_, bool isMasterAbility_, std::function<void()> callback);
 
 	std::function<void()> callback;
+	int mobileSkillID = -1;
 
 	void clickPressed(const Point & cursorPosition) override;
 
@@ -109,6 +110,7 @@ class CStackWindow : public CWindowObject
 
 	class CommanderMainSection : public CWindowSection
 	{
+		friend class CStackWindow;
 		std::vector<std::shared_ptr<CCommanderSkillIcon>> skillIcons;
 		std::vector<std::shared_ptr<CCommanderArtPlace>> artifacts;
 
@@ -196,12 +198,15 @@ class CStackWindow : public CWindowObject
 	void close() override;
 
 	std::string generateStackExpDescription();
-	std::string getCommanderSkillDescription(int skillIndex, int skillLevel);
 
 public:
+	std::string getCommanderSkillDescription(int skillIndex, int skillLevel);
 	bool isCommanderLevelUp() const;
 	bool isCommander() const;
+	const CCommanderInstance * getMobileCommander() const;
 	std::vector<ui32> getMobileSkillChoices() const;
+	bool selectMobileCommanderSkill(int skill);
+	int getMobileSelectedSkill() const;
 	bool isMobileSelectedSkill(const CCommanderSkillIcon * icon) const;
 	const CCreature * getMobileCreature() const;
 	const CStackInstance * getMobileStack() const;

@@ -1,27 +1,34 @@
 import {plainGameText} from './game-text.mjs';
+import {renderCommanderTree} from './commander-tree.mjs';
+import {getLanguage} from './i18n.mjs';
 const text=value=>plainGameText(value||'');
 // Keep all decisions native. The DOM is a responsive presentation of the live
 // components and sends clicks to their current logical coordinates.
 export function createDialogPresentation({root,command,pointer,refresh=()=>{}}){
  const panel=document.createElement('section');panel.className='dialog-presentation';panel.hidden=true;panel.setAttribute('aria-labelledby','dialog-presentation-title');root.append(panel);
- let state,key,dirty=false,icons=[],classic=false,inspect=0,lastMode='',captureAfter=0,hasSnapshot=false,snapshotGeometry='';
+ let state,key,dirty=false,icons=[],classic=false,inspect=0,lastMode='',captureAfter=0,hasSnapshot=false,snapshotGeometry='',treeOpen=false,treeFilter=null;
+ window.addEventListener('goonk-language',()=>{key=undefined;if(state)update(state);});
  panel.addEventListener('click',event=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
-  if(button.hasAttribute('data-dialog-classic')){classic=true;update(state);refresh();}
+  if(button.hasAttribute('data-commander-tree')){treeOpen=!treeOpen;key=undefined;update(state);}
+  else if(button.hasAttribute('data-dialog-classic')){classic=true;update(state);refresh();}
   else if(button.dataset.dialogInfo!==undefined){inspect=Number(button.dataset.dialogInfo);key=undefined;update(state);}
   else if(button.hasAttribute('data-dialog-confirm'))command(state.dialogKind==='commander'?43:1);
   else if(button.hasAttribute('data-dialog-cancel'))command(0);
   else if(button.dataset.dialogChoice!==undefined){const choice=state.dialogPresentation.choices[Number(button.dataset.dialogChoice)];const r=choice.rect;pointer({x:Math.round(r.x+r.w/2),y:Math.round(r.y+r.h/2)},1);}
  });
  function update(next){
+  if(!['commander','commander-level-up'].includes(next.dialogKind)){treeOpen=false;treeFilter=null;}
   state=next;if(next.mode!==lastMode||next.dialogKind!=='commander'){classic=false;inspect=0;}lastMode=next.mode;const data=next.mode==='dialog'&&!classic&&next.dialogPresentation;
   panel.hidden=!data;root.toggleAttribute('data-dialog-presentation',!!data);
   if(!data){key=undefined;icons=[];hasSnapshot=false;return;}
   const nextKey=JSON.stringify(data);if(nextKey===key)return;key=nextKey;
+  const scroll=panel.querySelector('.commander-tree')?.scrollTop||0;
   const previous=panel.querySelector('[data-dialog-choice]:focus')?.dataset.dialogChoice;
-  panel.replaceChildren();panel.dataset.kind=next.dialogKind||'message';panel.dataset.selectable=String((data.choices||[]).some(c=>c.selectable||c.inspectable));panel.dataset.choices=String((data.choices||[]).length);
+  panel.replaceChildren();panel.dataset.kind=next.dialogKind||'message';panel.dataset.tree=String(treeOpen&&!!data.commanderTree);panel.dataset.selectable=String((data.choices||[]).some(c=>c.selectable||c.inspectable));panel.dataset.choices=String((data.choices||[]).length);panel.dataset.detailed=String((data.choices||[]).some(c=>c.selectable&&c.label?.length>35));
   const header=document.createElement('header'),title=document.createElement('h2');title.id='dialog-presentation-title';const heading=data.title==='Game message'?(data.lines||[]).map(line=>String(line).match(/^\{([^{}]+)\}\s*\n/)).find(Boolean)?.[1]:null;
   title.textContent=heading||data.title;header.append(title);
+  if(data.commanderTree){const toggle=document.createElement('button');toggle.type='button';toggle.dataset.commanderTree='';toggle.textContent=getLanguage()==='fr'?(treeOpen?'Compétences et équipement':'Arbre de spécialisation'):(treeOpen?'Skills and equipment':'Specialization tree');toggle.setAttribute('aria-pressed',String(treeOpen));header.append(toggle);}
   const content=document.createElement('div');content.className='dialog-copy';
   if(data.visitedObject){const image=document.createElement('canvas');image.className='visited-object-art';image.width=192;image.height=160;image.setAttribute('aria-label',data.visitedObject);content.append(image);}
   const lines=next.dialogKind==='commander'?[]:next.dialogKind==='commander-level-up'?['Choose a skill to upgrade.']:[...new Set((data.lines||[]).map(line=>text(heading?String(line).replace(/^\{[^{}]+\}\s*\n/, ''):line)).filter(line=>line&&line!=='or'))];
@@ -41,7 +48,9 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{}}){
   const actions=document.createElement('footer'),confirm=document.createElement('button');confirm.type='button';confirm.className='primary';confirm.dataset.dialogConfirm='';confirm.textContent=next.dialogKind==='commander'?'← Back':next.dialogKind==='commander-level-up'?'✓ Confirm skill':'✓ Confirm';actions.append(confirm);
   if(next.dialogKind==='commander'){const classicButton=document.createElement('button');classicButton.type='button';classicButton.dataset.dialogClassic='';classicButton.textContent='Classic view';actions.append(classicButton);}
   if(data.cancel){const cancel=document.createElement('button');cancel.type='button';cancel.dataset.dialogCancel='';cancel.textContent='← Back';actions.append(cancel);}
-  panel.append(header,content,choices,actions);dirty=true;captureAfter=performance.now()+80;panel.setAttribute('aria-busy','true');
+  panel.append(header,content,choices,actions);
+  if(treeOpen&&data.commanderTree){const pending=(data.choices||[]).find(c=>c.selected);if(next.dialogKind==='commander-level-up'&&pending){confirm.textContent='✓ '+text(pending.label);}const tree=renderCommanderTree(data.commanderTree,data.choices||[],{filter:treeFilter,onFilter:id=>{treeFilter=id;key=undefined;update(state);},onSelect:id=>command(96,id)});content.hidden=true;choices.hidden=true;panel.insertBefore(tree,actions);tree.scrollTop=scroll;}
+  dirty=true;captureAfter=performance.now()+80;panel.setAttribute('aria-busy','true');
   const geometry=JSON.stringify([data.title,next.dialogKind,state.rect,(data.choices||[]).map(c=>c.rect)]);
   if(hasSnapshot&&geometry===snapshotGeometry)drawIcons();else hasSnapshot=false;snapshotGeometry=geometry;
   if(previous!==undefined)panel.querySelector(`[data-dialog-choice="${previous}"]`)?.focus({preventScroll:true});

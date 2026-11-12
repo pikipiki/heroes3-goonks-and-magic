@@ -9,22 +9,31 @@ try{
  await (await import('./silent-audio.mjs')).silenceTestAudio(p);await p.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8777')+'/game.html?mobile=1');
  await p.waitForFunction(()=>window.goonkMobileState?.mode==='menu'&&window.goonkSessionRecovery?.phase==='done',null,{timeout:180000});assert(dataRequests>=2,'Retry the failed engine package');console.log('PASS engine package retry in temporary mode');
  const cmd=(...a)=>p.evaluate(a=>Module._vcmiMobileCommand(...a),[...a,...Array(6-a.length).fill(0)]),wait=(f,a)=>p.waitForFunction(f,a,{timeout:45000});
- const fixture=execFileSync('python3',['-c',`import zipfile,json,io,sys
+ const fixture=execFileSync('python3',['-c',`import zipfile,json,io,sys,importlib.util
 out=io.BytesIO()
 with zipfile.ZipFile('maps/000-Goonk.vmap') as src,zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as dst:
  for name in src.namelist():
   data=src.read(name)
+  if name in ['english.json','french.json']:
+   t=json.loads(data);t['mapName']='000 - Dialog regression test';data=json.dumps(t).encode()
+  if name=='header.json':
+   h=json.loads(data);h['name']='000 - Dialog regression test';data=json.dumps(h).encode()
   if name=='objects.json':
    objects=json.loads(data)
-   objects=[o for o in objects if o.get('instanceName') not in ['trainingGuard','trainingOgre']]
+   objects=[o for o in objects if o.get('instanceName') not in ['trainingGuard','trainingOgre'] and not o.get('instanceName','').startswith('goonkAdventure')]
    for o in objects:
     if o.get('instanceName')=='goonkHero':o['options'].update({'type':'core:christian','secondarySkills':{'core:wisdom':'basic'}})
    objects.append({'type':'core:treasureChest','subtype':'core:treasureChest','instanceName':'reviewChest','x':10,'y':11,'l':0,'template':{'animation':'AVTchst0.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{}})
    data=json.dumps(objects).encode()
   dst.writestr(name,data)
-sys.stdout.buffer.write(out.getvalue())`]);
+spec=importlib.util.spec_from_file_location('norm','scripts/normalize-map-instances.py');n=importlib.util.module_from_spec(spec);spec.loader.exec_module(n)
+with zipfile.ZipFile(io.BytesIO(out.getvalue())) as z:entries=n.normalize({name:z.read(name) for name in z.namelist()})
+normalized=io.BytesIO()
+with zipfile.ZipFile(normalized,'w',zipfile.ZIP_DEFLATED) as dst:
+ for name,data in entries.items():dst.writestr(name,data)
+sys.stdout.buffer.write(normalized.getvalue())`]);
  await p.evaluate(bytes=>Module.FS.writeFile('/home/web_user/.local/share/vcmi/Maps/001-Goonks.vmap',new Uint8Array(bytes)),[...fixture]);
- await cmd(20,1);await wait(()=>goonkMobileState.mode==='lobby'&&goonkMobileState.lobbyReady);await cmd(21);await wait(()=>goonkMobileState.selectedMap?.startsWith('000'));await cmd(22);await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);console.log('PASS new game');
+ await cmd(20,1);await wait(()=>goonkMobileState.mode==='lobby'&&goonkMobileState.lobbyReady);await cmd(21);await wait(()=>goonkMobileState.selectedMap==='000 - Dialog regression test');await cmd(22);await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);console.log('PASS new game');
  await wait(()=>window.goonkMinimapAtlas&&window.goonkMinimapVersion>0);await p.waitForTimeout(400);assert(await p.evaluate(()=>{const a=goonkMinimapAtlas.getContext('2d').getImageData(0,0,240,240).data,s=new Set();for(let i=0;i<a.length;i+=4)s.add(a[i]+','+a[i+1]+','+a[i+2]);return s.size>=3}),'Native minimap has terrain independent of the main framebuffer');
  await p.locator('[data-ui=heroes]').tap();await wait(()=>goonkMobileState.mode==='hero');await cmd(85);await wait(()=>goonkMobileState.dialogKind==='commander'&&goonkMobileState.dialogPresentation?.unit);
  assert.equal(await p.locator('[data-dialog-info]').count(),6);await p.locator('[data-dialog-info="5"]').tap();await p.locator('.dialog-presentation[aria-busy=false]').waitFor();assert(await p.locator('.dialog-choice canvas').first().evaluate(c=>{const data=c.getContext('2d').getImageData(0,0,96,96).data;return new Set(data).size>6}),'Commander skill artwork is present');await p.screenshot({path:path.join(out,kind+'-commander-details.png')});await p.locator('[data-dialog-classic]').tap();await wait(()=>document.querySelector('.dialog-presentation').hidden);await p.locator('[data-ui=commander-mobile]').tap();await wait(()=>!document.querySelector('.dialog-presentation').hidden);await p.locator('[data-dialog-confirm]').tap();await wait(()=>goonkMobileState.mode==='hero');await p.locator('[data-hero-close]').tap();await wait(()=>goonkMobileState.mode==='map');console.log('PASS native commander details, classic and mobile return');

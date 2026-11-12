@@ -20,11 +20,18 @@
   "french": {
     "translations": [
       "translation/french.json",
-      "translation/h3-french.json"
+      "translation/h3-french.json",
+      "translation/adventures-french.json"
     ],
     "name": "Goonk Castle — traduction française"
   },
   "spells": [
     "config/spell-chances.json"
+  ],
+  "objects": [
+    "config/adventure-objects.json"
+  ],
+  "translations": [
+    "translation/adventures-english.json"
   ]
 }

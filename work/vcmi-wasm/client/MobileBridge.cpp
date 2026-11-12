@@ -69,6 +69,9 @@
 #include "../lib/CConfigHandler.h"
 #include "../lib/filesystem/Filesystem.h"
 #include "../lib/CCreatureHandler.h"
+#include "../lib/CBonusTypeHandler.h"
+#include "../lib/mapObjects/army/CCommanderInstance.h"
+#include "../lib/mapObjects/CRewardableObject.h"
 #include "../lib/CSkillHandler.h"
 #include "../lib/entities/hero/CHero.h"
 #include "../lib/GameLibrary.h"
@@ -97,6 +100,7 @@ namespace {
 std::optional<std::array<int,6>> deferredMapAction;
 uint32_t mapReadySince=0;
 std::string mobileVisitedName;bool mobileVisitShown=false;
+ObjectInstanceID mobileVisitedID = ObjectInstanceID::NONE;
 bool mobileEnabled=false,stateEnabled=false,audioMuted=false,mobileVerticalBattle=false;
 std::vector<int3> exchangeMarkerTiles;
 std::optional<int> mobileTownHall;
@@ -213,12 +217,15 @@ void mobileDialogContent(CIntObject * node, JsonNode & result, CStackWindow * co
  if(auto icon=dynamic_cast<CCommanderSkillIcon *>(node);icon && commander)
  {
   const auto available=commander->getMobileSkillChoices();
-  const unsigned index=skillIndex++;
+  ++skillIndex;
+  const int index=icon->mobileSkillID;
+  if(index<0)return;
   const bool levelUp=commander->isCommanderLevelUp();
   const bool allowed=index<6 ? !levelUp || std::find(available.begin(),available.end(),index)!=available.end() : icon->getIsMasterAbility();
   if(!allowed)return;
   static const std::array names={"Attack","Defense","Health","Damage","Speed","Magic"};
   JsonNode item;
+  item["skillId"].Integer()=index;
   item["label"].String()=index<6?names[index]:"Special ability";
   item["description"].String()=icon->text;
   item["rect"]=rect(icon->pos);
@@ -463,6 +470,7 @@ void shortcut(EShortcut key){ENGINE->events().dispatchShortcutPressed({key});ENG
 }
 void publishMobileVisitedObject(const CGObjectInstance * object){
  mobileVisitedName.clear();mobileVisitShown=false;
+ mobileVisitedID=object?object->id:ObjectInstanceID::NONE;
  if(!mobileEnabled||!object||!object->appearance||object->appearance->animationFile.empty())return;
  const auto animation=ENGINE->renderHandler().loadAnimation(object->appearance->animationFile,EImageBlitMode::SIMPLE);
  const auto image=animation?animation->getImage(0):nullptr;if(!image)return;
@@ -975,12 +983,52 @@ void publishMobileState(){
   mobileDialogContent(top.get(),presentation,creatureWindow.get(),skillIndex);
   const bool level=bool(ENGINE->windows().topWindow<CLevelWindow>());
   if(creatureWindow)presentation["unit"]=n["creatureUnit"];
+  if(creatureWindow)if(const auto commander=creatureWindow->getMobileCommander())
+  {
+   auto & tree=presentation["commanderTree"];
+   tree["level"].Integer()=commander->getLevel();
+   tree["selectedSkill"].Integer()=creatureWindow->getMobileSelectedSkill();
+   tree["masterRank"].Integer()=ECommander::MAX_SKILL_LEVEL-1;
+   tree["maxRank"].Integer()=ECommander::MAX_SKILL_LEVEL;
+   const auto available=creatureWindow->getMobileSkillChoices();
+   static const std::array names={"Attack","Defense","Health","Damage","Speed","Magic"};
+   for(int id=0;id<=ECommander::SPELL_POWER;++id)
+   {
+    JsonNode skill;skill["id"].Integer()=id;skill["name"].String()=names[id];
+    skill["rank"].Integer()=commander->secondarySkills.at(id);
+    skill["selectable"].Bool()=creatureWindow->isCommanderLevelUp()&&vstd::contains(available,ui32(id));
+    skill["description"].String()=creatureWindow->getCommanderSkillDescription(id,commander->secondarySkills.at(id));
+    tree["skills"].Vector().push_back(std::move(skill));
+   }
+   int id=100;
+   for(const auto & requirement:LIBRARY->creh->skillRequirements)
+   {
+    JsonNode ability;ability["id"].Integer()=id;
+    ability["requires"].Vector()={JsonNode(double(requirement.second.first)),JsonNode(double(requirement.second.second))};
+    ability["learned"].Bool()=commander->specialSkills.count(id)>0;
+    ability["selectable"].Bool()=creatureWindow->isCommanderLevelUp()&&vstd::contains(available,ui32(id));
+    std::string description;
+    for(const auto & bonus:requirement.first){if(!description.empty())description+="\n";description+=LIBRARY->bth->bonusToString(bonus);}
+    ability["description"].String()=description;
+    tree["abilities"].Vector().push_back(std::move(ability));++id;
+   }
+  }
   presentation["title"].String()=n["dialogKind"].String()=="commander"?"Commander":level?"Level up":n["dialogKind"].String()=="commander-level-up"?"Commander level up":"Game message";
   if(auto info=ENGINE->windows().topWindow<CInfoWindow>()){
+   if(p&&p->cb&&mobileVisitedID!=ObjectInstanceID::NONE)
+    if(const auto object=dynamic_cast<const CRewardableObject*>(p->cb->getObj(mobileVisitedID)))
+     if(info->text&&info->text->label&&info->text->label->getText()==object->configuration.onSelect.toString())
+      if(const auto hero=p->localState->getCurrentHero())
+      {
+       const auto rewards=object->getAvailableRewards(hero,Rewardable::EEventType::EVENT_FIRST_VISIT);
+       auto & choices=presentation["choices"].Vector();
+       if(rewards.size()==choices.size()&&std::all_of(choices.begin(),choices.end(),[](const JsonNode & choice){return choice["selectable"].Bool();}))
+        for(size_t i=0;i<rewards.size();++i){const auto description=object->configuration.info.at(rewards[i]).description.toString();if(!description.empty()){choices[i]["label"].String()=description;choices[i]["description"].String()=description;}}
+      }
    presentation["cancel"].Bool()=info->buttons.size()>1;if(!mobileVisitedName.empty()){presentation["visitedObject"].String()=mobileVisitedName;mobileVisitShown=true;}
   }
  }
- if(n["mode"].String()=="map"&&mobileVisitShown){mobileVisitedName.clear();mobileVisitShown=false;}
+ if(n["mode"].String()=="map"&&mobileVisitShown){mobileVisitedName.clear();mobileVisitShown=false;mobileVisitedID=ObjectInstanceID::NONE;}
  n["sessionState"].Integer()=static_cast<int>(GAME->server().getState());if(n["mode"].String()=="connecting")n["launchAction"].Integer()=GAME->server().screenType==ESelectionScreen::loadGame?23:GAME->server().screenType==ESelectionScreen::campaignList?47:20;
  if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>()){
   n["dialogKind"].String()="tavern";n["dialogTitle"].String()="Taverne";
@@ -1378,6 +1426,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiOnlineRoomAction(int action, const char
 }
 
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,int c,int d,int e){if(!ENGINE)return;ENGINE->dispatchMainThread([action,a,b,c,d,e](){
+ if(action==96){const auto player=GAME?GAME->interface():nullptr;if(player&&player->makingTurn)if(const auto window=ENGINE->windows().topWindow<CStackWindow>())window->selectMobileCommanderSkill(a);lastPublished=0;return;}
  if(action==95){mobileVerticalBattle=a!=0;lastPublished=0;return;}
  if(action==0){deferredMapAction.reset();ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});return;}if(action==1){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});return;}
  // A dedicated cancel operation cannot also accept a dialog or close the town

@@ -1,0 +1,23 @@
+{
+  "goonk.adventure.cache.gold": "1500 gold",
+  "goonk.adventure.cache.xp": "1000 experience",
+  "goonk.adventure.cache.mana": "15 mana, up to your maximum",
+  "goonk.adventure.adventureCache.description": "Choose one: 1500 gold, 1000 experience, or 15 mana (up to your maximum). The cache is then removed.",
+  "goonk.adventure.adventureCache.select": "{Travellers’ cache}\n\nChoose one: 1500 gold, 1000 experience, or 15 mana (up to your maximum). The cache is then removed.",
+  "goonk.adventure.adventureCache.visited": "You have already made your choice here.",
+  "goonk.adventure.adventureCache.empty": "No offer is available. Check the required gold and war machine.",
+  "goonk.adventure.academy.attack": "+1 Attack — 1000 gold",
+  "goonk.adventure.academy.defence": "+1 Defense — 1000 gold",
+  "goonk.adventure.academy.spellpower": "+1 Spell Power — 1000 gold",
+  "goonk.adventure.adventureAcademy.description": "For 1000 gold, choose +1 Attack, +1 Defense or +1 Spell Power. One permanent training per hero at each academy. You may leave without paying.",
+  "goonk.adventure.adventureAcademy.select": "{Goonk academy}\n\nFor 1000 gold, choose +1 Attack, +1 Defense or +1 Spell Power. One permanent training per hero at each academy. You may leave without paying.",
+  "goonk.adventure.adventureAcademy.visited": "You have already made your choice here.",
+  "goonk.adventure.adventureAcademy.empty": "No offer is available. Check the required gold and war machine.",
+  "goonk.adventure.workshop.artillery": "Ballista: ranged damage bonus +25%, health +50% — 1500 gold",
+  "goonk.adventure.workshop.medic": "Tent: healing power +50, manual control — 1500 gold",
+  "goonk.adventure.workshop.armor": "All war machines: health +50% — 1000 gold",
+  "goonk.adventure.adventureWorkshop.description": "Choose one permanent project per hero across ALL workshops. Ballista: +25% ranged damage bonus and +50% base health (1500 gold, requires a ballista). Medic: +50 healing power and manual tent control (1500 gold, requires a tent). Armor: +50% base health for your four war machines (1000 gold). Machines are purchased separately. You may leave without paying.",
+  "goonk.adventure.adventureWorkshop.select": "{War machine workshop}\n\nChoose one permanent project per hero across ALL workshops. Ballista: +25% ranged damage bonus and +50% base health (1500 gold, requires a ballista). Medic: +50 healing power and manual tent control (1500 gold, requires a tent). Armor: +50% base health for your four war machines (1000 gold). Machines are purchased separately. You may leave without paying.",
+  "goonk.adventure.adventureWorkshop.visited": "You have already made your choice here.",
+  "goonk.adventure.adventureWorkshop.empty": "No offer is available. Check the required gold and war machine."
+}

@@ -1,0 +1,339 @@
+{
+  "adventureCache": {
+    "name": "Travellers’ cache",
+    "handler": "configurable",
+    "types": {
+      "adventureCache": {
+        "name": "Travellers’ cache",
+        "description": "@goonk.adventure.adventureCache.description",
+        "selectMode": "selectPlayer",
+        "visitMode": "once",
+        "canRefuse": true,
+        "showScoutedPreview": true,
+        "onSelectMessage": "@goonk.adventure.adventureCache.select",
+        "onVisitedMessage": "@goonk.adventure.adventureCache.visited",
+        "onEmptyMessage": "@goonk.adventure.adventureCache.empty",
+        "rewards": [
+          {
+            "description": "@goonk.adventure.cache.gold",
+            "resources": {
+              "gold": 1500
+            },
+            "removeObject": true
+          },
+          {
+            "description": "@goonk.adventure.cache.xp",
+            "heroExperience": 1000,
+            "removeObject": true
+          },
+          {
+            "description": "@goonk.adventure.cache.mana",
+            "manaPoints": 15,
+            "manaOverflowFactor": 0,
+            "removeObject": true,
+            "limiter": {
+              "noneOf": [
+                {
+                  "manaPercentage": 100
+                }
+              ]
+            }
+          }
+        ],
+        "rmg": {
+          "value": 3000,
+          "rarity": 40,
+          "zoneLimit": 1
+        },
+        "templates": {
+          "normal": {
+            "animation": "AVTchst0.def",
+            "mask": [
+              "A"
+            ],
+            "visitableFrom": [
+              "+++",
+              "+-+",
+              "+++"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "adventureAcademy": {
+    "name": "Goonk academy",
+    "handler": "configurable",
+    "types": {
+      "adventureAcademy": {
+        "name": "Goonk academy",
+        "description": "@goonk.adventure.adventureAcademy.description",
+        "selectMode": "selectPlayer",
+        "visitMode": "hero",
+        "canRefuse": true,
+        "showScoutedPreview": true,
+        "onSelectMessage": "@goonk.adventure.adventureAcademy.select",
+        "onVisitedMessage": "@goonk.adventure.adventureAcademy.visited",
+        "onEmptyMessage": "@goonk.adventure.adventureAcademy.empty",
+        "rewards": [
+          {
+            "description": "@goonk.adventure.academy.attack",
+            "resources": {
+              "gold": -1000
+            },
+            "primary": {
+              "attack": 1
+            },
+            "limiter": {
+              "resources": {
+                "gold": 1000
+              }
+            }
+          },
+          {
+            "description": "@goonk.adventure.academy.defence",
+            "resources": {
+              "gold": -1000
+            },
+            "primary": {
+              "defence": 1
+            },
+            "limiter": {
+              "resources": {
+                "gold": 1000
+              }
+            }
+          },
+          {
+            "description": "@goonk.adventure.academy.spellpower",
+            "resources": {
+              "gold": -1000
+            },
+            "primary": {
+              "spellpower": 1
+            },
+            "limiter": {
+              "resources": {
+                "gold": 1000
+              }
+            }
+          }
+        ],
+        "rmg": {
+          "value": 3000,
+          "rarity": 40,
+          "zoneLimit": 1
+        },
+        "templates": {
+          "normal": {
+            "animation": "AVSuniv0.def",
+            "mask": [
+              "VVVVVVVV",
+              "VVVVVVVV",
+              "VVVVVVVV",
+              "VVVVBBBV",
+              "VVVVBBBB",
+              "VVVVBBAB"
+            ],
+            "visitableFrom": [
+              "+++",
+              "+-+",
+              "+++"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "adventureWorkshop": {
+    "name": "War machine workshop",
+    "handler": "configurable",
+    "types": {
+      "adventureWorkshop": {
+        "name": "War machine workshop",
+        "description": "@goonk.adventure.adventureWorkshop.description",
+        "selectMode": "selectPlayer",
+        "visitMode": "bonus",
+        "canRefuse": true,
+        "showScoutedPreview": true,
+        "onSelectMessage": "@goonk.adventure.adventureWorkshop.select",
+        "onVisitedMessage": "@goonk.adventure.adventureWorkshop.visited",
+        "onEmptyMessage": "@goonk.adventure.adventureWorkshop.empty",
+        "rewards": [
+          {
+            "description": "@goonk.adventure.workshop.artillery",
+            "resources": {
+              "gold": -1500
+            },
+            "bonuses": [
+              {
+                "type": "PERCENTAGE_DAMAGE_BOOST",
+                "val": 25,
+                "duration": "PERMANENT",
+                "valueType": "BASE_NUMBER",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "core:ballista",
+                  "includeUpgrades": false
+                },
+                "subtype": "damageTypeRanged"
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 50,
+                "duration": "PERMANENT",
+                "valueType": "PERCENT_TO_BASE",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "core:ballista",
+                  "includeUpgrades": false
+                }
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "description": "War machine workshop project"
+              }
+            ],
+            "limiter": {
+              "resources": {
+                "gold": 1500
+              },
+              "artifacts": [
+                "core:ballista"
+              ]
+            }
+          },
+          {
+            "description": "@goonk.adventure.workshop.medic",
+            "resources": {
+              "gold": -1500
+            },
+            "bonuses": [
+              {
+                "type": "SPECIFIC_SPELL_POWER",
+                "val": 50,
+                "duration": "PERMANENT",
+                "valueType": "BASE_NUMBER",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "core:firstAidTent",
+                  "includeUpgrades": false
+                },
+                "subtype": "spell.firstAid"
+              },
+              {
+                "type": "MANUAL_CONTROL",
+                "val": 100,
+                "duration": "PERMANENT",
+                "valueType": "BASE_NUMBER",
+                "subtype": "creature.firstAidTent"
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "description": "War machine workshop project"
+              }
+            ],
+            "limiter": {
+              "resources": {
+                "gold": 1500
+              },
+              "artifacts": [
+                "core:firstAidTent"
+              ]
+            }
+          },
+          {
+            "description": "@goonk.adventure.workshop.armor",
+            "resources": {
+              "gold": -1000
+            },
+            "bonuses": [
+              {
+                "type": "STACK_HEALTH",
+                "val": 50,
+                "duration": "PERMANENT",
+                "valueType": "PERCENT_TO_BASE",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "core:ballista",
+                  "includeUpgrades": false
+                }
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 50,
+                "duration": "PERMANENT",
+                "valueType": "PERCENT_TO_BASE",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "core:firstAidTent",
+                  "includeUpgrades": false
+                }
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 50,
+                "duration": "PERMANENT",
+                "valueType": "PERCENT_TO_BASE",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "core:ammoCart",
+                  "includeUpgrades": false
+                }
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 50,
+                "duration": "PERMANENT",
+                "valueType": "PERCENT_TO_BASE",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "core:catapult",
+                  "includeUpgrades": false
+                }
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "description": "War machine workshop project"
+              }
+            ],
+            "limiter": {
+              "resources": {
+                "gold": 1000
+              }
+            }
+          }
+        ],
+        "rmg": {
+          "value": 3000,
+          "rarity": 40,
+          "zoneLimit": 1
+        },
+        "templates": {
+          "normal": {
+            "animation": "AVGsieg0.def",
+            "mask": [
+              "VVVVVVVV",
+              "VVVVVVVV",
+              "VVVVVVVV",
+              "VVVVVVVV",
+              "VVVVVVVV",
+              "VVVVVVAB"
+            ],
+            "visitableFrom": [
+              "+++",
+              "+-+",
+              "+++"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

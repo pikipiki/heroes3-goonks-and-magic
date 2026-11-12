@@ -110,6 +110,7 @@ private:
 
 bool CStackWindow::isCommanderLevelUp() const { return info->levelupInfo.has_value(); }
 bool CStackWindow::isCommander() const { return info->commander != nullptr; }
+const CCommanderInstance * CStackWindow::getMobileCommander() const { return info->commander; }
 const CCreature * CStackWindow::getMobileCreature() const { return info->creature; }
 const CStackInstance * CStackWindow::getMobileStack() const
 {
@@ -480,6 +481,7 @@ CStackWindow::CommanderMainSection::CommanderMainSection(CStackWindow * owner, i
 			GAME->interface()->showInfoDialog(getSkillDescription(index));
 		});
 
+		icon->mobileSkillID = index;
 		icon->text = getSkillDescription(index); //used to handle right click description via LRClickableAreaWText::ClickRight()
 
 		if(parent->selectedSkill == index)
@@ -531,7 +533,10 @@ CStackWindow::CommanderMainSection::CommanderMainSection(CStackWindow * owner, i
 				{
 					const auto bonuses = LIBRARY->creh->skillRequirements[skillID-100].first;
 					const CStackInstance * stack = parent->info->commander;
-					auto icon = std::make_shared<CCommanderSkillIcon>(std::make_shared<CPicture>(stack->bonusToGraphics(bonuses[0])), true, [](){});
+					auto image = stack->bonusToGraphics(bonuses[0]);
+					if(image.empty())image = skillToFile(LIBRARY->creh->skillRequirements[skillID-100].second.first, ECommander::MAX_SKILL_LEVEL-1, false);
+					auto icon = std::make_shared<CCommanderSkillIcon>(std::make_shared<CPicture>(image), true, [](){});
+					icon->mobileSkillID = skillID;
 					icon->callback = [this, skillID, icon]()
 					{
 						parent->setSelection(skillID, icon);
@@ -1210,4 +1215,24 @@ std::vector<ui32> CStackWindow::getMobileSkillChoices() const
 bool CStackWindow::isMobileSelectedSkill(const CCommanderSkillIcon * icon) const
 {
  return selectedIcon.get() == icon;
+}
+
+int CStackWindow::getMobileSelectedSkill() const { return isCommanderLevelUp() ? selectedSkill : -1; }
+bool CStackWindow::selectMobileCommanderSkill(int skill)
+{
+ if(!info->commander || !info->levelupInfo || !vstd::contains(info->levelupInfo->skills, ui32(skill)))return false;
+ // Keep the original selection, artwork and confirmation callback. The tree can
+ // also select an ability outside the native list box's currently visible page.
+ std::shared_ptr<CCommanderSkillIcon> icon;
+ const auto section=std::static_pointer_cast<CommanderMainSection>(commanderMainSection);
+ for(const auto & candidate:section->skillIcons)if(candidate->mobileSkillID==skill)icon=candidate;
+ if(!icon && skill>=100 && section->abilities)
+ {
+  size_t index=0;
+  for(const auto available:info->levelupInfo->skills){if(available==ui32(skill))break;if(available>=100)++index;}
+  section->abilities->scrollTo(index);
+  icon=std::dynamic_pointer_cast<CCommanderSkillIcon>(section->abilities->getItem(index));
+ }
+ if(!icon)return false;
+ setSelection(skill,icon);redraw();return true;
 }
