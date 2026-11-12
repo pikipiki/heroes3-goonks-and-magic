@@ -37,7 +37,7 @@ export function isLandscapeOrientation(win=typeof window!=='undefined'?window:nu
 // share the same origin. This also follows browser toolbar/keyboard resizing.
 export function anchorMobileViewport(root,win=window){
  const editingViewport=w=>/^(INPUT|TEXTAREA)$/.test(w.document?.activeElement?.tagName||'');
- const viewport=win.visualViewport;let pending=false,disposed=false,lastLayoutWidth;
+ const viewport=win.visualViewport;let pending=false,disposed=false,lastLayoutWidth,lastDynamicWidth,rotationPending=true;
  const wakeTimers=new Set();
  const probe=win.document?.createElement?.('div');if(probe){probe.setAttribute('aria-hidden','true');Object.assign(probe.style,{position:'fixed',width:'100dvw',height:'100dvh',visibility:'hidden',pointerEvents:'none',inset:'0'});win.document.body.append(probe);}
  function clearWakeTimers(){for(const t of wakeTimers)clearTimeout(t);wakeTimers.clear();}
@@ -47,16 +47,18 @@ export function anchorMobileViewport(root,win=window){
   const layoutWidth=layout?.clientWidth||win.innerWidth;
   const layoutHeight=layout?.clientHeight||win.innerHeight;
   const scale=viewport?.scale??1;
-  const zoomed=Math.abs(scale-1)>.01;
+  const dynamic=probe?.getBoundingClientRect();
+  const dynamicChanged=dynamic?.width>0&&lastDynamicWidth!==undefined&&Math.abs(dynamic.width-lastDynamicWidth)>2;
+  const zoomed=scale>1.01&&!dynamicChanged&&!rotationPending;
   // A rotation can change the layout before Chromium reports the new
   // visual viewport. Use the new layout instead of retaining the old size.
-  if(scale>1.01&&layoutWidth===lastLayoutWidth)return;
+  if(zoomed&&layoutWidth===lastLayoutWidth)return;
   const width=zoomed?layoutWidth:(viewport?.width??layoutWidth);
-  const height=scale<.99?Math.min(layoutHeight,viewport.height*scale):zoomed?layoutHeight:(viewport?.height??layoutHeight);
+  const height=zoomed?layoutHeight:(viewport?.height??layoutHeight);
   if(!(width>0&&height>0))return;
   const lw=layoutWidth||width||0;
   const lh=layoutHeight||height||0;
-  const isLandscape=isLandscapeOrientation(win,lw,lh);
+  let isLandscape=isLandscapeOrientation(win,lw,lh);
   const isPortrait=!isLandscape;
   let finalWidth=width,finalHeight=height;
   // A correctly oriented visual viewport is the visible area (Safari toolbars
@@ -70,11 +72,23 @@ export function anchorMobileViewport(root,win=window){
   // the same orientation. Bound it by an independently aligned layout size.
   if(!zoomed)for(const [w,h] of [[win.innerWidth,win.innerHeight]])
    if(w>0&&h>0&&Math.abs(w-finalWidth)<2&&(isLandscape?w>=h:h>=w))finalHeight=Math.min(finalHeight,h);
-  const dynamic=probe?.getBoundingClientRect();
-  const confirmedDynamic=dynamic?.width>0&&dynamic.height>0&&Math.abs(dynamic.width-finalWidth)<2&&Math.abs(dynamic.height-win.innerHeight)<2&&!editingViewport(win);
-  if(confirmedDynamic)finalHeight=dynamic.height;
-  else if(viewport?.height>0&&Math.abs(viewport.width-finalWidth)<2)finalHeight=Math.min(finalHeight,viewport.height);
-  lastLayoutWidth=layoutWidth;
+  // Chrome iOS may keep orientation, clientWidth and even innerWidth from
+  // portrait while CSS viewport units already describe the painted landscape.
+  // Also treat its post-rotation scale below 1 as browser auto-scaling, not pinch.
+  const cssViewport=dynamic?.width>0&&dynamic.height>0&&!zoomed&&!editingViewport(win);
+  const autoScaled=scale<.99&&viewport?.width>0&&viewport.height>0;
+  if(cssViewport){
+   finalWidth=dynamic.width;finalHeight=dynamic.height;
+   if(viewport?.width>0&&Math.abs(viewport.width-finalWidth)<2&&Math.abs(win.innerHeight-finalHeight)>=2)finalHeight=Math.min(finalHeight,viewport.height);
+   isLandscape=finalWidth>finalHeight;
+  }
+  if(autoScaled){
+   if((viewport.width>viewport.height)!==(layoutWidth>layoutHeight)){finalWidth=viewport.width;finalHeight=viewport.height;}
+   else if(!cssViewport){finalWidth=layoutWidth;finalHeight=Math.min(layoutHeight,viewport.height*scale);}
+   isLandscape=finalWidth>finalHeight;
+  }
+  if(dynamic?.width>0)lastDynamicWidth=dynamic.width;
+  lastLayoutWidth=layoutWidth;rotationPending=false;
   if(root.dataset)root.dataset.orientation=isLandscape?'landscape':'portrait';
   // pageTop/pageLeft may lag scrollTo(0,0) after an iOS wake. Gameplay has no
   // keyboard panning; anchor its document-space box to the actual scroll origin.
@@ -89,7 +103,7 @@ export function anchorMobileViewport(root,win=window){
  function onWake(){
   if(win.document?.hidden===true)return;
   clearWakeTimers();
-  lastLayoutWidth=undefined;
+  lastLayoutWidth=undefined;rotationPending=true;
   if(typeof win.scrollTo==='function')try{win.scrollTo(0,0);}catch(_){}
   schedule();
   for(const delay of [60,150,300,500,800,1500,2500]){
@@ -104,7 +118,7 @@ export function anchorMobileViewport(root,win=window){
  }
  function onOrientationChange(){
   clearWakeTimers();
-  lastLayoutWidth=undefined;
+  lastLayoutWidth=undefined;rotationPending=true;
   if(typeof win.scrollTo==='function')try{win.scrollTo(0,0);}catch(_){}
   schedule();
   for(const delay of [50,120,250,450,750,1500,2500]){

@@ -285,3 +285,15 @@ html.goonk-mobile #mobile-app [data-hero-close]{width:44px!important;min-width:4
  html.goonk-mobile #mobile-app[data-mode=battle]>.mobile-top>#game-menu-toggle{grid-column:1!important;grid-row:1!important}
  html.goonk-mobile #mobile-app[data-mode=battle]>.mobile-top>.battle-view{grid-column:2!important;grid-row:1!important}
 }
+
+/* One visible exit for an action, shared by every dynamically mounted screen. */
+:is(#mobile-app,#game-menu) .redundant-return{display:none!important}
+:is(#mobile-app,#game-menu) footer:has(>.redundant-return):not(:has(>button:not(.redundant-return))){display:none!important}
+html.goonk-mobile #mobile-app .sheet-head{grid-template-columns:minmax(0,1fr) 44px!important}
+html.goonk-mobile #mobile-app .sheet-head :is([data-ui=sheet-back],[data-ui=close-sheet]){grid-column:2!important;grid-row:1!important}
+html.goonk-mobile #mobile-app[data-sheet=build] .sheet-head{grid-template-columns:minmax(0,1fr) minmax(80px,110px)!important}
+html.goonk-mobile #mobile-app:is([data-mode=creature],[data-mode=fort])>.mobile-nav:empty{display:none!important}
+html.goonk-mobile #mobile-app[data-mode=creature]{grid-template-rows:auto minmax(0,1fr) auto!important}
+#game-menu>header{display:grid;grid-template-columns:minmax(0,1fr) 44px;align-items:center;gap:12px}
+#game-menu>header h2{min-width:0;overflow-wrap:anywhere;font-size:clamp(20px,3vw,32px)}
+#game-menu>header [data-menu=close]{width:44px;min-width:44px;justify-self:end;padding:0}

@@ -1,0 +1,25 @@
+{
+  "version": "0.4.149",
+  "scope": [
+    "unique return controls",
+    "multiplayer alignment",
+    "commander progression interface",
+    "stale iPhone rotation geometry"
+  ],
+  "verification": {
+    "unit_tests": "540 passed, 28 skipped, 0 failed",
+    "browser_engines": [
+      "Chromium",
+      "WebKit"
+    ],
+    "commander_layout_sizes": 7,
+    "native_engine": [
+      "commander graph and confirmed level-up",
+      "recruitment and repeated menu close",
+      "portrait and landscape navigation"
+    ],
+    "web_build": "passed",
+    "audio": "muted before navigation",
+    "physical_iphone_chrome": "not performed"
+  }
+}

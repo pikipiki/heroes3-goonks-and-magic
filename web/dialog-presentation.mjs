@@ -50,7 +50,7 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{}}){
   }
   const actions=document.createElement('footer'),confirm=document.createElement('button');confirm.type='button';confirm.className='primary';confirm.dataset.dialogConfirm='';confirm.textContent=next.dialogKind==='commander'?'← Back':next.dialogKind==='commander-level-up'?'✓ Confirm skill':'✓ Confirm';actions.append(confirm);
   if(next.dialogKind==='commander'){const classicButton=document.createElement('button');classicButton.type='button';classicButton.dataset.dialogClassic='';classicButton.textContent='Classic view';actions.append(classicButton);}
-  if(data.cancel){const cancel=document.createElement('button');cancel.type='button';cancel.dataset.dialogCancel='';cancel.textContent='← Back';actions.append(cancel);}
+  if(data.cancel&&next.dialogKind!=='commander'){const cancel=document.createElement('button');cancel.type='button';cancel.dataset.dialogCancel='';cancel.textContent='← Back';actions.append(cancel);}
   panel.append(header,content,choices,actions);
   if(treeOpen&&data.commanderTree){const pending=(data.choices||[]).find(c=>c.selected);if(next.dialogKind==='commander-level-up'&&pending){confirm.textContent='✓ '+text(pending.label);}const tree=renderCommanderTree(data.commanderTree,data.choices||[],{filter:treeFilter,onFilter:id=>{treeFilter=id;key=undefined;update(state);},onSelect:id=>command(96,id)});content.hidden=true;choices.hidden=true;panel.insertBefore(tree,actions);tree.scrollTop=scroll;}
   dirty=true;captureAfter=performance.now()+80;panel.setAttribute('aria-busy','true');

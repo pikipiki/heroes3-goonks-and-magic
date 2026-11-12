@@ -39,3 +39,36 @@
 #mobile-app .dialog-presentation[data-detailed=true] .dialog-choice{display:flex;flex-direction:row;min-height:72px!important;align-items:center;text-align:left;overflow-wrap:anywhere}
 #mobile-app .dialog-presentation[data-detailed=true] .dialog-choice canvas{width:44px!important;height:44px!important}
 #mobile-app .dialog-presentation[data-detailed=true] .dialog-choice strong{font-size:13px;line-height:1.35;min-width:0}
+#mobile-app .tree-overview{padding:10px 12px;margin:0 0 10px;border:1px solid #ae8d4e;background:#25190dde}
+#mobile-app .tree-overview>strong{display:block;color:#ffe4a0;font-size:16px}
+#mobile-app .tree-overview .tree-intro{margin:5px 0;line-height:1.45}
+#mobile-app .tree-summary{color:#d8c38e;font-size:12px}
+#mobile-app .tree-skill>[data-tree-skill]{display:grid;grid-template-columns:32px minmax(0,1fr);gap:4px 7px;text-align:left;padding:8px;min-height:86px}
+#mobile-app .tree-skill-icon{display:block;width:32px;height:32px;object-fit:contain;flex:none}
+#mobile-app .tree-skill-copy{display:grid;gap:3px;min-width:0}
+#mobile-app .tree-skill-copy strong{font-size:14px;color:#ffe8b0}
+#mobile-app .tree-skill-copy small{font-size:11px;color:#d0bd96;line-height:1.3}
+#mobile-app .tree-ranks{display:flex;gap:3px;grid-column:1/-1}
+#mobile-app .tree-ranks i{flex:1;height:5px;background:#19120b;border:1px solid #715a33}
+#mobile-app .tree-ranks [data-master=true]{border-color:#ffe097}
+#mobile-app .tree-ranks [data-filled=true]{background:#c6a255}
+#mobile-app .tree-parents>span{display:grid;grid-template-columns:24px minmax(0,1fr);align-items:center;text-align:left;gap:4px;padding:7px}
+#mobile-app .tree-parents .tree-skill-icon{width:24px;height:24px;grid-row:1/3}
+#mobile-app .tree-parents strong{font-size:12px;min-width:0;overflow-wrap:anywhere}
+#mobile-app .tree-parents small{font-size:10px;line-height:1.3}
+#mobile-app .tree-parents progress{grid-column:1/-1;width:100%;height:6px;accent-color:#dfbd68}
+#mobile-app .tree-ability-heading{display:flex;align-items:center;gap:8px;min-height:44px}
+#mobile-app .tree-ability-heading h3{margin:0;font-size:17px;color:#ffe5a4;overflow-wrap:anywhere}
+#mobile-app .tree-combination{display:flex;align-items:center;gap:1px;flex:none;padding:5px;border:1px solid #ac8b48;background:#48331c}
+#mobile-app .tree-combination .tree-skill-icon{width:24px;height:24px}
+#mobile-app .tree-ability[data-status=ready]{background:linear-gradient(#493719,#1a130b)}
+#mobile-app .tree-effect{font-size:13px;line-height:1.45}
+@media(max-width:350px){#mobile-app .tree-skills{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+#mobile-app .tree-filter-description{display:grid;grid-template-columns:32px minmax(0,1fr);gap:5px 8px;padding:10px;margin:0 0 10px;border:1px solid #b09150;background:#302212}
+#mobile-app .tree-filter-description p{grid-column:1/-1;margin:0;font-size:13px;line-height:1.4;white-space:pre-line}
+#mobile-app .tree-skill>[data-tree-skill]{grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center;gap:5px;min-height:100px}
+#mobile-app .tree-skill>[data-tree-skill]>.tree-skill-icon{width:26px;height:26px}
+#mobile-app .tree-skill-copy{width:100%;text-align:center}
+#mobile-app .tree-skill-copy strong{white-space:nowrap;word-break:normal;overflow-wrap:normal}
+#mobile-app .tree-ranks{width:100%}

@@ -191,3 +191,17 @@ test('Chrome rotation recovers a stale smaller visual height and document height
  // iOS may settle its toolbar without a resize event. The watchdog still updates.
  probe.getBoundingClientRect=()=>({width:390,height:800});win.innerHeight=800;viewport.height=800;tick();queue.shift()();assert.equal(root.style.height,'800px');anchor.dispose();
 });
+
+test('iPhone Chrome auto-scale after rotation cannot retain the portrait half-width',()=>{
+ const win=new EventTarget(),viewport=new EventTarget();Object.assign(viewport,{width:844,height:390,scale:390/844});
+ const probe={style:{},setAttribute(){},remove(){},getBoundingClientRect:()=>({width:390,height:844})};
+ Object.assign(win,{orientation:0,innerWidth:390,innerHeight:844,document:{documentElement:{clientWidth:390,clientHeight:844},createElement:()=>probe,body:{append(){}}},visualViewport:viewport,requestAnimationFrame:f=>f()});
+ const root={style:{},dataset:{}},anchor=anchorMobileViewport(root,win);assert.equal(root.style.width,'844px');assert.equal(root.style.height,'390px');assert.equal(root.dataset.orientation,'landscape');anchor.dispose();
+});
+test('CSS viewport follows both rotations even when physical orientation and pinch scale lag',()=>{
+ const win=new EventTarget(),viewport=new EventTarget();let size={width:844,height:390};
+ const probe={style:{},setAttribute(){},remove(){},getBoundingClientRect:()=>size};
+ Object.assign(viewport,{width:844,height:390,scale:1});Object.assign(win,{orientation:0,innerWidth:390,innerHeight:844,document:{documentElement:{clientWidth:390,clientHeight:844},createElement:()=>probe,body:{append(){}}},visualViewport:viewport,requestAnimationFrame:f=>f()});
+ const root={style:{},dataset:{}},anchor=anchorMobileViewport(root,win);assert.equal(root.style.width,'844px');assert.equal(root.dataset.orientation,'landscape');
+ size={width:390,height:844};win.orientation=90;viewport.scale=2;win.dispatchEvent(new Event('resize'));assert.equal(root.style.width,'390px');assert.equal(root.style.height,'844px');assert.equal(root.dataset.orientation,'portrait');anchor.dispose();
+});

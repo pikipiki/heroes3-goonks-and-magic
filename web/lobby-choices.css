@@ -138,3 +138,10 @@
 }
 
 #mobile-app .lobby-picker-empty[data-catalogue-loading]{display:none}
+
+/* Seat headings reserve the same row whether a seat has a role switch or a host label. */
+#game-menu .hosted-castle-list>section{display:grid;grid-template-rows:64px minmax(0,1fr);gap:6px;align-content:start}
+#game-menu .hosted-castle-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px;margin:0;min-width:0}
+#game-menu .hosted-castle-heading>small{justify-self:end;font-size:14px}
+#game-menu .hosted-role-toggle button{min-height:44px;font-size:14px;padding:5px 7px}
+#game-menu .hosted-castle-list .lobby-choice-card{align-self:stretch;height:100%;box-sizing:border-box}
