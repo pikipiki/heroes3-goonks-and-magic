@@ -88,5 +88,5 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
  },focusUnit(id){
   const button=panel.querySelector(`[data-family-select="${id}"]`);
   if(button){select(id);button.focus({preventScroll:true});}
- },rememberScroll(){const list=panel.querySelector('.hall-families');if(list)savedScroll=readScroll(list);clearTimeout(previewTimer);},reset(){lastTap=null;clearTimeout(previewTimer);previewTimer=null;rowObserver.disconnect();signature='';pending=null;selectedId=null;savedScroll=null;},get canvases(){return[...panel.querySelectorAll('[data-hall-preview],[data-hall-icon]')];}};
+ },rememberScroll(){const list=panel.querySelector('.hall-families');if(list)savedScroll=readScroll(list);},reset(){lastTap=null;clearTimeout(previewTimer);previewTimer=null;rowObserver.disconnect();signature='';pending=null;selectedId=null;savedScroll=null;},get canvases(){return[...panel.querySelectorAll('[data-hall-preview],[data-hall-icon]')];}};
 }

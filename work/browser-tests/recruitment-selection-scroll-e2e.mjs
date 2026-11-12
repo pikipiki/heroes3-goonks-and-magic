@@ -14,6 +14,7 @@ for(const kind of ['chromium','webkit']){const b=await(kind==='webkit'?webkit.la
  const position=()=>list.evaluate(e=>({top:e.scrollTop,step:e.firstElementChild.getBoundingClientRect().height+parseFloat(getComputedStyle(e).rowGap)}));
  for(const [size,doubleTap,rotate] of [[{width:430,height:873},false,false],[{width:932,height:430},true,false],[{width:768,height:1024},false,true]]){
   await p.setViewportSize(size);await p.waitForTimeout(100);await p.locator('[data-family-select="12"]').scrollIntoViewIfNeeded();await p.locator('[data-family-select="12"]').tap();await p.waitForTimeout(500);
+  await p.evaluate(()=>calls=[]);await p.locator('[data-family-select="13"]').tap();await p.evaluate(()=>{familyState.recruitUnit={id:899,name:'Earlier native preview',count:7};send();});await p.waitForTimeout(450);assert((await p.evaluate(()=>calls)).some(c=>c[0]===60&&c[2]===13),'Saving scroll does not cancel the newly selected creature animation');await p.locator('[data-family-select="12"]').tap();await p.waitForTimeout(500);
   const before=await position();assert(before.top>0);
   for(let id=900;id<902;id++){await p.evaluate(id=>{familyState.recruitUnit={id,name:'Native preview',count:id};send();},id);await p.waitForTimeout(80);const rebuilt=await position();assert(Math.abs(rebuilt.top-before.top*rebuilt.step/before.step)<2,'Native preview snapshots preserve deep roster scroll');}
   await p.evaluate(()=>calls=[]);
