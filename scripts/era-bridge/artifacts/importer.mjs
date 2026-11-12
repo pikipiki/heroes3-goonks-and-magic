@@ -92,14 +92,16 @@ export function scenarioIcon(icon){const width=58,height=64,rgba=Buffer.alloc(wi
  * Asset loader is caller supplied; files Map holds exact source DEF/MSK and generated PNG.
  * Caller chooses deployment destination and supplies the real native entity resolvers.
  */
-export function importNativeArtifacts({traits,language,cfgs,archive,resolveSpell,resolveCoreArtifact,dailyConversions,spellCatalogue,fixedPowerOpeningSpellContract,aiPolicy='require-era-equivalence',namespace='tum-era',prefix='tum-era/artifacts'}={}) {
+export function importNativeArtifacts({traits,language,cfgs,archive,resolveSpell,resolveCoreArtifact,dailyConversions,openingSummons,spellCatalogue,fixedPowerOpeningSpellContract,aiPolicy='require-era-equivalence',namespace='tum-era',prefix='tum-era/artifacts'}={}) {
  if(!Array.isArray(traits)||!language||typeof language!=='object'||!cfgs||typeof cfgs!=='object'||typeof archive?.extract!=='function')throw new TypeError('Complete source traits, language, cfgs and archive are required');
  const runtimePolicy={schemaVersion:1,creatures:{},artifacts:{}};
  if(dailyConversions&&(dailyConversions.bridgeVersion!==2||typeof dailyConversions.resolveCreature!=='function'))throw new TypeError('Daily conversion binding requires native bridge v2 and an explicit creature resolver');
- const runtimeOptions=dailyConversions?{resolveCreature:dailyConversions.resolveCreature,authorizeAdapters:['artifactDailyConversions']}:{};
+ if(openingSummons&&(openingSummons.bridgeVersion!==1||typeof openingSummons.resolveCreature!=='function'))throw new TypeError('Opening summons require native bridge v1 and an explicit creature resolver');
+ const resolveCreature=(openingSummons??dailyConversions)?.resolveCreature;
+ const runtimeOptions={resolveCreature,authorizeAdapters:[...(dailyConversions?['artifactDailyConversions']:[]),...(openingSummons?['artifactOpeningSummons']:[])]};
  const definitions={},files=new Map(),report=[];const icons=archive.extract('artifact.def');
  if(!Buffer.isBuffer(icons))throw new TypeError('Source artifact.def is unavailable');
- const manualExclusions={157:'Native WoG retaliate-against-no-retaliation behavior not in cfg',267:'Language promises both-side level 1-2 cast block; cfg only grants owner spell immunities, cannot claim complete parity'};
+ const manualExclusions={157:'Native WoG retaliate-against-no-retaliation behavior not in cfg',267:'Use separately reviewed exact22-spell immunity list and corrected description: the provided source implements wearer-army reception only, not the prose bilateral level cap'};
  const eligible=new Set();
  const proposedArtifact=n=>n<171?resolveCoreArtifact?.(n):Object.hasOwn(cfgs,n)?`${namespace}:artifact${n}`:null;
  for(const [idString,text] of Object.entries(cfgs)) {
@@ -122,6 +124,8 @@ export function importNativeArtifacts({traits,language,cfgs,archive,resolveSpell
    definitions[key]=c.definition;
    const conversion=c.adapters.find(a=>a.kind==='artifactDailyConversions');
    if(conversion)runtimePolicy.artifacts[`${namespace}:${key}`]={dailyConversions:conversion.upgrades.map(({from,to})=>({from,to}))};
+   const opening=c.adapters.find(a=>a.kind==='artifactOpeningSummons');
+   if(opening)runtimePolicy.artifacts[`${namespace}:${key}`]={...(runtimePolicy.artifacts[`${namespace}:${key}`]??{}),openingSummons:opening.summons.map(({creature,sourcePower})=>({creature,encodedPower:sourcePower}))};
    files.set(`Content/Sprites/${asset}/map.def`,map);files.set(`Content/Sprites/${asset}/map.msk`,mask);
    files.set(`Content/Data/${asset}/icon.png`,encodePng(icon));files.set(`Content/Data/${asset}/scenario.png`,encodePng(scenarioIcon(icon)));
    report.push({id,included:true,key:`${namespace}:${key}`,sourceTraits:traits[id].source,aiDecisions:c.aiDecisions,warnings:c.diagnostics,textRepairs:normalizeArtifactLanguage(traits[id],language[id]).repairs,eventTextAvailable:typeof language[id]?.event==='string'});

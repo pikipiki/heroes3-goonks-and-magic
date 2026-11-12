@@ -1,0 +1,1253 @@
+{
+  "complete": false,
+  "activation": false,
+  "sourceArchiveSha256": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+  "sourceExecutableSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "obligations": [
+    {
+      "id": "source-xp-after-before-fire-shield",
+      "status": "open",
+      "sourceEvidence": "756DBB wrapper calls original4408E0 then71DBD8 at756E65; original caller441991 invokes4408E0 before4419A0 FireShield4406E0",
+      "nativeDifference": "Generic handleAfterAttackCasting executes after FireShield; shield-killed attacker or proc-killed defender changes source outcome.",
+      "actors": [
+        {
+          "sourceId": 25,
+          "nativeId": "core:warUnicorn",
+          "code": "a",
+          "modifier": "#62",
+          "values": [
+            0,
+            0,
+            5,
+            5,
+            10,
+            10,
+            15,
+            15,
+            20,
+            25,
+            30
+          ]
+        },
+        {
+          "sourceId": 28,
+          "nativeId": "core:gremlin",
+          "code": "J",
+          "modifier": "#11",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 29,
+          "nativeId": "core:masterGremlin",
+          "code": "J",
+          "modifier": "#11",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 47,
+          "nativeId": "core:cerberus",
+          "code": "a",
+          "modifier": "#73",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 58,
+          "nativeId": "core:walkingDead",
+          "code": "K",
+          "modifier": "#54",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 60,
+          "nativeId": "core:wight",
+          "code": "J",
+          "modifier": "#45",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 63,
+          "nativeId": "core:vampireLord",
+          "code": "a",
+          "modifier": "#60",
+          "values": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ]
+        },
+        {
+          "sourceId": 66,
+          "nativeId": "core:blackKnight",
+          "code": "a",
+          "modifier": "#78",
+          "values": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            100
+          ]
+        },
+        {
+          "sourceId": 76,
+          "nativeId": "core:medusa",
+          "code": "a",
+          "modifier": "#70",
+          "values": [
+            0,
+            0,
+            0,
+            5,
+            5,
+            10,
+            10,
+            15,
+            20,
+            25,
+            30
+          ]
+        },
+        {
+          "sourceId": 81,
+          "nativeId": "core:scorpicore",
+          "code": "a",
+          "modifier": "#74",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            5,
+            5,
+            10,
+            10,
+            15,
+            20
+          ]
+        },
+        {
+          "sourceId": 92,
+          "nativeId": "core:roc",
+          "code": "a",
+          "modifier": "#17",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 93,
+          "nativeId": "core:thunderbird",
+          "code": "a",
+          "modifier": "#17",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 106,
+          "nativeId": "core:basilisk",
+          "code": "a",
+          "modifier": "#70",
+          "values": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ]
+        },
+        {
+          "sourceId": 107,
+          "nativeId": "core:greaterBasilisk",
+          "code": "a",
+          "modifier": "#70",
+          "values": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ]
+        },
+        {
+          "sourceId": 141,
+          "nativeId": "core:mummy",
+          "code": "a",
+          "modifier": "#42",
+          "values": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ]
+        },
+        {
+          "sourceId": 164,
+          "nativeId": "wake-of-gods.messengersandemissaries:fireMessenger",
+          "code": "k",
+          "modifier": "#13",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 165,
+          "nativeId": "wake-of-gods.messengersandemissaries:earthMessenger",
+          "code": "a",
+          "modifier": "#10",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 167,
+          "nativeId": "wake-of-gods.messengersandemissaries:waterMessenger",
+          "code": "a",
+          "modifier": "#16",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 195,
+          "nativeId": "wake-of-gods.creatures:hellSteed",
+          "code": "a",
+          "modifier": "#21",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 196,
+          "nativeId": "wake-of-gods.creatures:dracolich",
+          "code": "k",
+          "modifier": "#71",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 206,
+          "nativeId": "third-upgrades:tumLegendaryUnicorn",
+          "code": "a",
+          "modifier": "#62",
+          "values": [
+            0,
+            0,
+            5,
+            5,
+            10,
+            10,
+            15,
+            15,
+            20,
+            25,
+            30
+          ]
+        },
+        {
+          "sourceId": 214,
+          "nativeId": "third-upgrades:tumWingedMagog",
+          "code": "a",
+          "modifier": "#22",
+          "values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "sourceId": 215,
+          "nativeId": "third-upgrades:tumAstralCerberus",
+          "code": "a",
+          "modifier": "#73",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 221,
+          "nativeId": "third-upgrades:tumNosferatu",
+          "code": "a",
+          "modifier": "#60",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 223,
+          "nativeId": "third-upgrades:tumDeathKnight",
+          "code": "a",
+          "modifier": "#78",
+          "values": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            100
+          ]
+        },
+        {
+          "sourceId": 228,
+          "nativeId": "third-upgrades:tumMedusaEmpress",
+          "code": "a",
+          "modifier": "#70",
+          "values": [
+            0,
+            0,
+            0,
+            5,
+            5,
+            10,
+            10,
+            15,
+            20,
+            25,
+            30
+          ]
+        },
+        {
+          "sourceId": 230,
+          "nativeId": "third-upgrades:tumChimera",
+          "code": "a",
+          "modifier": "#74",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            5,
+            5,
+            10,
+            10,
+            15,
+            20
+          ]
+        },
+        {
+          "sourceId": 231,
+          "nativeId": "tum-era:chasmDragon",
+          "code": "K",
+          "modifier": "#59",
+          "values": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ]
+        },
+        {
+          "sourceId": 231,
+          "nativeId": "tum-era:chasmDragon",
+          "code": "a",
+          "modifier": "#62",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "sourceId": 236,
+          "nativeId": "third-upgrades:tumLightningbird",
+          "code": "a",
+          "modifier": "#19",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 241,
+          "nativeId": "third-upgrades:tumChaoticDragonFly",
+          "code": "k",
+          "modifier": "#45",
+          "values": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "sourceId": 242,
+          "nativeId": "third-upgrades:tumLavaBasilisk",
+          "code": "a",
+          "modifier": "#70",
+          "values": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ]
+        },
+        {
+          "sourceId": 251,
+          "nativeId": "third-upgrades:tumVoidElemental",
+          "code": "a",
+          "modifier": "#60",
+          "values": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ]
+        },
+        {
+          "sourceId": 254,
+          "nativeId": "tum-era:necrossDragon",
+          "code": "k",
+          "modifier": "#71",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 255,
+          "nativeId": "third-upgrades:tumGrandmasterGremlin",
+          "code": "J",
+          "modifier": "#11",
+          "values": [
+            0,
+            5,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90
+          ]
+        },
+        {
+          "sourceId": 261,
+          "nativeId": "third-upgrades:tumSpecter",
+          "code": "J",
+          "modifier": "#45",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "sourceId": 321,
+          "nativeId": "third-upgrades:tumGnollShaman",
+          "code": "a",
+          "modifier": "#42",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        }
+      ],
+      "requiredFix": "Separate source-listed casts before FireShield; retain ordinary VCMI after-attack order and all unrelated Goonk/banner effects.",
+      "requiredNativeControls": [
+        "source231 a62/K59 with attacker killed by FireShield",
+        "source proc kills defender before reflection",
+        "ordinary native unregistered after-attack remains after FireShield"
+      ]
+    },
+    {
+      "id": "source-g-percent-fire-shield-direct",
+      "status": "open",
+      "sourceEvidence": "440858 sends cached FireShield raw amount straight to443DB0/ApplyPhysicalDamage, not normal magical damage adjustment.",
+      "nativeDifference": "Uncovered source g% recipients can incorrectly reduce FireShield with native adjustRawDamage.",
+      "registeredGPercentActors": [
+        {
+          "sourceId": 8,
+          "nativeId": "core:monk",
+          "rankValues": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            21,
+            24,
+            27,
+            30,
+            33
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 9,
+          "nativeId": "core:zealot",
+          "rankValues": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            21,
+            24,
+            27,
+            30,
+            33
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 32,
+          "nativeId": "core:ironGolem",
+          "rankValues": [
+            50,
+            54,
+            58,
+            62,
+            66,
+            70,
+            74,
+            78,
+            82,
+            86,
+            90
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 33,
+          "nativeId": "core:stoneGolem",
+          "rankValues": [
+            75,
+            77,
+            79,
+            81,
+            83,
+            85,
+            87,
+            89,
+            91,
+            93,
+            95
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 125,
+          "nativeId": "core:magmaElemental",
+          "rankValues": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 131,
+          "nativeId": "core:phoenix",
+          "rankValues": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 116,
+          "nativeId": "core:goldGolem",
+          "rankValues": [
+            85,
+            87,
+            89,
+            91,
+            93,
+            95,
+            97,
+            99,
+            100,
+            100,
+            100
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 117,
+          "nativeId": "core:diamondGolem",
+          "rankValues": [
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 141,
+          "nativeId": "core:mummy",
+          "rankValues": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 209,
+          "nativeId": "third-upgrades:tumSteelGolem",
+          "rankValues": [
+            80,
+            80,
+            82,
+            84,
+            86,
+            88,
+            90,
+            92,
+            93,
+            94,
+            95
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 247,
+          "nativeId": "third-upgrades:tumHurricaneElemental",
+          "rankValues": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 250,
+          "nativeId": "third-upgrades:tumMineralElemental",
+          "rankValues": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 252,
+          "nativeId": "tum-era:divinePhoenix",
+          "rankValues": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 271,
+          "nativeId": "tum-era:eraCreature271",
+          "rankValues": [
+            40,
+            45,
+            50,
+            55,
+            60,
+            65,
+            70,
+            75,
+            80,
+            85,
+            95
+          ],
+          "coveredByExistingDirectWrapper": true
+        },
+        {
+          "sourceId": 280,
+          "nativeId": "tum-era:eraCreature280",
+          "rankValues": [
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            90,
+            92,
+            94,
+            95,
+            99
+          ],
+          "coveredByExistingDirectWrapper": true
+        }
+      ],
+      "remainingWithoutWrapper": [
+        {
+          "sourceId": 8,
+          "nativeId": "core:monk",
+          "rankValues": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            21,
+            24,
+            27,
+            30,
+            33
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 9,
+          "nativeId": "core:zealot",
+          "rankValues": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            21,
+            24,
+            27,
+            30,
+            33
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 32,
+          "nativeId": "core:ironGolem",
+          "rankValues": [
+            50,
+            54,
+            58,
+            62,
+            66,
+            70,
+            74,
+            78,
+            82,
+            86,
+            90
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 33,
+          "nativeId": "core:stoneGolem",
+          "rankValues": [
+            75,
+            77,
+            79,
+            81,
+            83,
+            85,
+            87,
+            89,
+            91,
+            93,
+            95
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 125,
+          "nativeId": "core:magmaElemental",
+          "rankValues": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 131,
+          "nativeId": "core:phoenix",
+          "rankValues": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 116,
+          "nativeId": "core:goldGolem",
+          "rankValues": [
+            85,
+            87,
+            89,
+            91,
+            93,
+            95,
+            97,
+            99,
+            100,
+            100,
+            100
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 117,
+          "nativeId": "core:diamondGolem",
+          "rankValues": [
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 141,
+          "nativeId": "core:mummy",
+          "rankValues": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 209,
+          "nativeId": "third-upgrades:tumSteelGolem",
+          "rankValues": [
+            80,
+            80,
+            82,
+            84,
+            86,
+            88,
+            90,
+            92,
+            93,
+            94,
+            95
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 247,
+          "nativeId": "third-upgrades:tumHurricaneElemental",
+          "rankValues": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 250,
+          "nativeId": "third-upgrades:tumMineralElemental",
+          "rankValues": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ],
+          "coveredByExistingDirectWrapper": false
+        },
+        {
+          "sourceId": 252,
+          "nativeId": "tum-era:divinePhoenix",
+          "rankValues": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "coveredByExistingDirectWrapper": false
+        }
+      ],
+      "requiredFix": "Source identity opt-in only, exact source raw path; preserve unregistered Goonks/native bonuses and banners.",
+      "requiredNativeControls": [
+        "same incoming physical damage, with and without source g% at nonzero rank",
+        "exact raw FireShield numerical reflection",
+        "ordinary unregistered magical damage reduction still applies to native FireShield"
+      ]
+    }
+  ],
+  "futureConflux": {
+    "sourceIds": [
+      355,
+      356
+    ],
+    "nativeStatus": "inactive; own scoped direct FireShield path required as part of whole Conflux contract"
+  },
+  "scope": "Inventory is registered source identity list, not assertion that every old third-upgrade profile has itself been fully ported."
+}

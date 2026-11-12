@@ -1,0 +1,6573 @@
+{
+  "passed": true,
+  "engineSha256": "1b518e40dbd50599d0595963fd07867769ebd12d50e0e646fc82981d6a3e420c",
+  "actors": {
+    "353": {
+      "stats": {
+        "aiValue": 3953,
+        "attack": 22,
+        "cost": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          2200,
+          0
+        ],
+        "count": 2,
+        "damageMax": 55,
+        "damageMin": 30,
+        "defense": 16,
+        "description": "Souffle sur deux cases. Riposte m\u00eame contre les attaques qui bloquent normalement les ripostes.",
+        "fightValue": 3727,
+        "growth": 1,
+        "health": 180,
+        "icon": "tum-era/creatures/353/large",
+        "id": 300,
+        "key": "tum-era:eraCreature353",
+        "magicDamageReduction": 0,
+        "name": "Sea Serpent",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": false,
+          "living": false,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "physicalDamageBonus": 0,
+        "rangedDamageBonus": 0,
+        "shooter": false,
+        "shots": 0,
+        "slot": 0,
+        "speed": 9
+      },
+      "counter": {
+        "observations": [
+          {
+            "round": 1,
+            "actor": {
+              "aiValue": 3953,
+              "armySlot": 0,
+              "attack": 22,
+              "canMeleeAt": false,
+              "canShootAt": false,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                2200,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 177,
+              "damageMax": 55,
+              "damageMin": 30,
+              "defense": 16,
+              "description": "Souffle sur deux cases. Riposte m\u00eame contre les attaques qui bloquent normalement les ripostes.",
+              "enemy": false,
+              "eraSlot": 0,
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 3727,
+              "growth": 1,
+              "health": 180,
+              "icon": "tum-era/creatures/353/large",
+              "id": 300,
+              "key": "tum-era:eraCreature353",
+              "luck": 0,
+              "magicResistance": 0,
+              "maximumHealth": 180,
+              "morale": 1,
+              "name": "Sea Serpent",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": false,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 0,
+              "remainingShots": 0,
+              "shooter": false,
+              "shots": 0,
+              "speed": 9,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            },
+            "enemy": [
+              {
+                "aiValue": 56,
+                "armySlot": 0,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 999898,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 0,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 70,
+                "growth": 12,
+                "health": 1000000,
+                "icon": "",
+                "id": 98,
+                "key": "core:gnoll",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Gnoll",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  69
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 1,
+                "x": 102,
+                "y": 280,
+                "totalHealth": 999898
+              },
+              {
+                "aiValue": 60,
+                "armySlot": 1,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  40,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 1000000,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 1,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 60,
+                "growth": 15,
+                "health": 1000000,
+                "icon": "",
+                "id": 84,
+                "key": "core:goblin",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Goblin",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  70
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 2,
+                "x": 146,
+                "y": 280,
+                "totalHealth": 1000000
+              },
+              {
+                "aiValue": 50,
+                "armySlot": 2,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 1000000,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 2,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 50,
+                "growth": 15,
+                "health": 1000000,
+                "icon": "",
+                "id": 42,
+                "key": "core:imp",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Imp",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  103
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 3,
+                "x": 102,
+                "y": 364,
+                "totalHealth": 1000000
+              }
+            ],
+            "deltas": [
+              {
+                "key": "core:gnoll",
+                "damage": 102,
+                "occupied": [
+                  69
+                ]
+              },
+              {
+                "key": "core:goblin",
+                "damage": 0,
+                "occupied": [
+                  70
+                ]
+              },
+              {
+                "key": "core:imp",
+                "damage": 0,
+                "occupied": [
+                  103
+                ]
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "actor": {
+              "aiValue": 3953,
+              "armySlot": 0,
+              "attack": 22,
+              "canMeleeAt": false,
+              "canShootAt": false,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                2200,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 174,
+              "damageMax": 55,
+              "damageMin": 30,
+              "defense": 16,
+              "description": "Souffle sur deux cases. Riposte m\u00eame contre les attaques qui bloquent normalement les ripostes.",
+              "enemy": false,
+              "eraSlot": 0,
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 3727,
+              "growth": 1,
+              "health": 180,
+              "icon": "tum-era/creatures/353/large",
+              "id": 300,
+              "key": "tum-era:eraCreature353",
+              "luck": 0,
+              "magicResistance": 0,
+              "maximumHealth": 180,
+              "morale": 1,
+              "name": "Sea Serpent",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": false,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 0,
+              "remainingShots": 0,
+              "shooter": false,
+              "shots": 0,
+              "speed": 9,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            },
+            "enemy": [
+              {
+                "aiValue": 56,
+                "armySlot": 0,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 999800,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 0,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 70,
+                "growth": 12,
+                "health": 1000000,
+                "icon": "",
+                "id": 98,
+                "key": "core:gnoll",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Gnoll",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  69
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 1,
+                "x": 102,
+                "y": 280,
+                "totalHealth": 999800
+              },
+              {
+                "aiValue": 60,
+                "armySlot": 1,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  40,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 1000000,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 1,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 60,
+                "growth": 15,
+                "health": 1000000,
+                "icon": "",
+                "id": 84,
+                "key": "core:goblin",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Goblin",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  70
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 2,
+                "x": 146,
+                "y": 280,
+                "totalHealth": 1000000
+              },
+              {
+                "aiValue": 50,
+                "armySlot": 2,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 1000000,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 2,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 50,
+                "growth": 15,
+                "health": 1000000,
+                "icon": "",
+                "id": 42,
+                "key": "core:imp",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Imp",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  103
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 3,
+                "x": 102,
+                "y": 364,
+                "totalHealth": 1000000
+              }
+            ],
+            "deltas": [
+              {
+                "key": "core:gnoll",
+                "damage": 98,
+                "occupied": [
+                  69
+                ]
+              },
+              {
+                "key": "core:goblin",
+                "damage": 0,
+                "occupied": [
+                  70
+                ]
+              },
+              {
+                "key": "core:imp",
+                "damage": 0,
+                "occupied": [
+                  103
+                ]
+              }
+            ]
+          }
+        ],
+        "frames": [
+          {
+            "round": 1,
+            "hp": 180,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 180,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 180,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 180,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 180,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 180,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 180,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 180,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 180,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 180,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 180,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 179,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 179,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 179,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 179,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 179,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 179,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 179,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 179,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 179,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 179,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 178,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 178,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 178,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 178,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 178,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 178,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 178,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 178,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 178,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 178,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 178,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 177,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 177,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 177,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 177,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 177,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 176,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999898
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 176,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999800
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 175,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999800
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 174,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999800
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 174,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999800
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 174,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999800
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          }
+        ],
+        "packetTiming": "The public bridge coalesces animation/injury snapshots; exact decrement-after-both order is established by source ASM and native packet sequence, while two two-hit pairs with only two counters are asserted here.",
+        "source": "441AFF bypasses only blocker;441B62 second hit;441B7E consumes one counter",
+        "noCounterControl": false,
+        "consumedPerRound": 1
+      },
+      "poison": {
+        "trained": {
+          "aiValue": 3953,
+          "attack": 22,
+          "cost": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            2200,
+            0
+          ],
+          "count": 1,
+          "damageMax": 55,
+          "damageMin": 30,
+          "defense": 16,
+          "description": "Souffle sur deux cases. Riposte m\u00eame contre les attaques qui bloquent normalement les ripostes.",
+          "experience": 10,
+          "experiencePerUnit": 10,
+          "experienceRank": 10,
+          "fightValue": 3727,
+          "growth": 1,
+          "health": 180,
+          "icon": "tum-era/creatures/353/large",
+          "id": 300,
+          "key": "tum-era:eraCreature353",
+          "name": "Sea Serpent",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "shooter": false,
+          "shots": 0,
+          "speed": 9
+        },
+        "rank10Chance": 50,
+        "observed": [
+          {
+            "round": 1,
+            "actorMaximum": 270,
+            "enemyMaximum": 1000000
+          },
+          {
+            "round": 2,
+            "actorMaximum": 270,
+            "enemyMaximum": 1000000
+          },
+          {
+            "round": 3,
+            "actorMaximum": 270,
+            "enemyMaximum": 800000
+          }
+        ]
+      },
+      "hypnotize": {
+        "eligible": true,
+        "target": {
+          "aiValue": 3953,
+          "armySlot": 0,
+          "attack": 22,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            2200,
+            0
+          ],
+          "count": 3,
+          "currentHealth": 180,
+          "damageMax": 55,
+          "damageMin": 30,
+          "defense": 16,
+          "description": "Souffle sur deux cases. Riposte m\u00eame contre les attaques qui bloquent normalement les ripostes.",
+          "enemy": true,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 3727,
+          "growth": 1,
+          "health": 180,
+          "icon": "tum-era/creatures/353/large",
+          "id": 300,
+          "key": "tum-era:eraCreature353",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 180,
+          "morale": 0,
+          "name": "Sea Serpent",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            48,
+            49
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 0,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 9,
+          "stackId": 1,
+          "x": 674,
+          "y": 196
+        }
+      },
+      "primaryPoison": {
+        "eligible": false,
+        "target": {
+          "aiValue": 3953,
+          "armySlot": 0,
+          "attack": 22,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            2200,
+            0
+          ],
+          "count": 3,
+          "currentHealth": 180,
+          "damageMax": 55,
+          "damageMin": 30,
+          "defense": 16,
+          "description": "Souffle sur deux cases. Riposte m\u00eame contre les attaques qui bloquent normalement les ripostes.",
+          "enemy": true,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 3727,
+          "growth": 1,
+          "health": 180,
+          "icon": "tum-era/creatures/353/large",
+          "id": 300,
+          "key": "tum-era:eraCreature353",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 180,
+          "morale": 0,
+          "name": "Sea Serpent",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            48,
+            49
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 0,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 9,
+          "stackId": 1,
+          "x": 674,
+          "y": 196
+        },
+        "control": {
+          "aiValue": 416,
+          "armySlot": 1,
+          "attack": 13,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            300,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 40,
+          "damageMax": 12,
+          "damageMin": 6,
+          "defense": 7,
+          "description": "",
+          "enemy": true,
+          "eraSlot": 1,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 520,
+          "growth": 4,
+          "health": 40,
+          "icon": "",
+          "id": 90,
+          "key": "core:ogre",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 40,
+          "morale": 0,
+          "name": "Ogre",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            151
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 0,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 4,
+          "stackId": 2,
+          "x": 718,
+          "y": 448
+        }
+      },
+      "age": {
+        "eligible": true,
+        "target": {
+          "aiValue": 3953,
+          "armySlot": 0,
+          "attack": 22,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            2200,
+            0
+          ],
+          "count": 3,
+          "currentHealth": 180,
+          "damageMax": 55,
+          "damageMin": 30,
+          "defense": 16,
+          "description": "Souffle sur deux cases. Riposte m\u00eame contre les attaques qui bloquent normalement les ripostes.",
+          "enemy": true,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 3727,
+          "growth": 1,
+          "health": 180,
+          "icon": "tum-era/creatures/353/large",
+          "id": 300,
+          "key": "tum-era:eraCreature353",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 180,
+          "morale": 0,
+          "name": "Sea Serpent",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            48,
+            49
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 0,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 9,
+          "stackId": 1,
+          "x": 674,
+          "y": 196
+        },
+        "control": {
+          "aiValue": 416,
+          "armySlot": 1,
+          "attack": 13,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            300,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 40,
+          "damageMax": 12,
+          "damageMin": 6,
+          "defense": 7,
+          "description": "",
+          "enemy": true,
+          "eraSlot": 1,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 520,
+          "growth": 4,
+          "health": 40,
+          "icon": "",
+          "id": 90,
+          "key": "core:ogre",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 40,
+          "morale": 0,
+          "name": "Ogre",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            151
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 0,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 4,
+          "stackId": 2,
+          "x": 718,
+          "y": 448
+        }
+      },
+      "healing": {
+        "injured": {
+          "aiValue": 3953,
+          "armySlot": 0,
+          "attack": 22,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            2200,
+            0
+          ],
+          "count": 2,
+          "currentHealth": 110,
+          "damageMax": 55,
+          "damageMin": 30,
+          "defense": 16,
+          "description": "Souffle sur deux cases. Riposte m\u00eame contre les attaques qui bloquent normalement les ripostes.",
+          "enemy": false,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 3727,
+          "growth": 1,
+          "health": 180,
+          "icon": "tum-era/creatures/353/large",
+          "id": 300,
+          "key": "tum-era:eraCreature353",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 180,
+          "morale": 1,
+          "name": "Sea Serpent",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            87,
+            86
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 9,
+          "stackId": 0,
+          "x": 124,
+          "y": 322
+        },
+        "healed": {
+          "aiValue": 3953,
+          "armySlot": 0,
+          "attack": 22,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            2200,
+            0
+          ],
+          "count": 2,
+          "currentHealth": 160,
+          "damageMax": 55,
+          "damageMin": 30,
+          "defense": 16,
+          "description": "Souffle sur deux cases. Riposte m\u00eame contre les attaques qui bloquent normalement les ripostes.",
+          "enemy": false,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 3727,
+          "growth": 1,
+          "health": 180,
+          "icon": "tum-era/creatures/353/large",
+          "id": 300,
+          "key": "tum-era:eraCreature353",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 180,
+          "morale": 1,
+          "name": "Sea Serpent",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            87,
+            86
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 9,
+          "stackId": 0,
+          "x": 124,
+          "y": 322
+        },
+        "resurrectionExcluded": true
+      }
+    },
+    "354": {
+      "stats": {
+        "aiValue": 7220,
+        "attack": 29,
+        "cost": [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          4000,
+          0
+        ],
+        "count": 2,
+        "damageMax": 55,
+        "damageMin": 30,
+        "defense": 20,
+        "description": "Souffle sur deux cases. Provoque la peur et y r\u00e9siste. Deux coups par riposte, deux ripostes de base par tour, m\u00eame contre les troupes qui bloquent les ripostes.",
+        "fightValue": 6985,
+        "growth": 1,
+        "health": 300,
+        "icon": "tum-era/creatures/354/large",
+        "id": 301,
+        "key": "tum-era:eraCreature354",
+        "magicDamageReduction": 0,
+        "name": "Leviathan",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": false,
+          "living": false,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "physicalDamageBonus": 0,
+        "rangedDamageBonus": 0,
+        "shooter": false,
+        "shots": 0,
+        "slot": 0,
+        "speed": 12
+      },
+      "counter": {
+        "observations": [
+          {
+            "round": 1,
+            "actor": {
+              "aiValue": 7220,
+              "armySlot": 0,
+              "attack": 29,
+              "canMeleeAt": false,
+              "canShootAt": false,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                4000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 297,
+              "damageMax": 55,
+              "damageMin": 30,
+              "defense": 20,
+              "description": "Souffle sur deux cases. Provoque la peur et y r\u00e9siste. Deux coups par riposte, deux ripostes de base par tour, m\u00eame contre les troupes qui bloquent les ripostes.",
+              "enemy": false,
+              "eraSlot": 0,
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 6985,
+              "growth": 1,
+              "health": 300,
+              "icon": "tum-era/creatures/354/large",
+              "id": 301,
+              "key": "tum-era:eraCreature354",
+              "luck": 0,
+              "magicResistance": 0,
+              "maximumHealth": 300,
+              "morale": 1,
+              "name": "Leviathan",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": false,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 0,
+              "remainingShots": 0,
+              "shooter": false,
+              "shots": 0,
+              "speed": 12,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            },
+            "enemy": [
+              {
+                "aiValue": 56,
+                "armySlot": 0,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 999757,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 0,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 70,
+                "growth": 12,
+                "health": 1000000,
+                "icon": "",
+                "id": 98,
+                "key": "core:gnoll",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Gnoll",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  69
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 1,
+                "x": 102,
+                "y": 280,
+                "totalHealth": 999757
+              },
+              {
+                "aiValue": 60,
+                "armySlot": 1,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  40,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 999786,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 1,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 60,
+                "growth": 15,
+                "health": 1000000,
+                "icon": "",
+                "id": 84,
+                "key": "core:goblin",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Goblin",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  70
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 2,
+                "x": 146,
+                "y": 280,
+                "totalHealth": 999786
+              },
+              {
+                "aiValue": 50,
+                "armySlot": 2,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 1000000,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 2,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 50,
+                "growth": 15,
+                "health": 1000000,
+                "icon": "",
+                "id": 42,
+                "key": "core:imp",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Imp",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  103
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 3,
+                "x": 102,
+                "y": 364,
+                "totalHealth": 1000000
+              }
+            ],
+            "deltas": [
+              {
+                "key": "core:gnoll",
+                "damage": 243,
+                "occupied": [
+                  69
+                ]
+              },
+              {
+                "key": "core:goblin",
+                "damage": 214,
+                "occupied": [
+                  70
+                ]
+              },
+              {
+                "key": "core:imp",
+                "damage": 0,
+                "occupied": [
+                  103
+                ]
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "actor": {
+              "aiValue": 7220,
+              "armySlot": 0,
+              "attack": 29,
+              "canMeleeAt": false,
+              "canShootAt": false,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                4000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 294,
+              "damageMax": 55,
+              "damageMin": 30,
+              "defense": 20,
+              "description": "Souffle sur deux cases. Provoque la peur et y r\u00e9siste. Deux coups par riposte, deux ripostes de base par tour, m\u00eame contre les troupes qui bloquent les ripostes.",
+              "enemy": false,
+              "eraSlot": 0,
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 6985,
+              "growth": 1,
+              "health": 300,
+              "icon": "tum-era/creatures/354/large",
+              "id": 301,
+              "key": "tum-era:eraCreature354",
+              "luck": 0,
+              "magicResistance": 0,
+              "maximumHealth": 300,
+              "morale": 1,
+              "name": "Leviathan",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": false,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 0,
+              "remainingShots": 0,
+              "shooter": false,
+              "shots": 0,
+              "speed": 12,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            },
+            "enemy": [
+              {
+                "aiValue": 56,
+                "armySlot": 0,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 999578,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 0,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 70,
+                "growth": 12,
+                "health": 1000000,
+                "icon": "",
+                "id": 98,
+                "key": "core:gnoll",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Gnoll",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  69
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 1,
+                "x": 102,
+                "y": 280,
+                "totalHealth": 999578
+              },
+              {
+                "aiValue": 60,
+                "armySlot": 1,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  40,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 999552,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 1,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 60,
+                "growth": 15,
+                "health": 1000000,
+                "icon": "",
+                "id": 84,
+                "key": "core:goblin",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Goblin",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  70
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 2,
+                "x": 146,
+                "y": 280,
+                "totalHealth": 999552
+              },
+              {
+                "aiValue": 50,
+                "armySlot": 2,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 1000000,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 2,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 50,
+                "growth": 15,
+                "health": 1000000,
+                "icon": "",
+                "id": 42,
+                "key": "core:imp",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Imp",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  103
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 3,
+                "x": 102,
+                "y": 364,
+                "totalHealth": 1000000
+              }
+            ],
+            "deltas": [
+              {
+                "key": "core:gnoll",
+                "damage": 179,
+                "occupied": [
+                  69
+                ]
+              },
+              {
+                "key": "core:goblin",
+                "damage": 234,
+                "occupied": [
+                  70
+                ]
+              },
+              {
+                "key": "core:imp",
+                "damage": 0,
+                "occupied": [
+                  103
+                ]
+              }
+            ]
+          }
+        ],
+        "frames": [
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 2,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 2,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 2,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 2,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 2,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 2,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 2,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 2,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 2,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 2,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 2,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 2,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 2,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999882
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999905
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 297,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 297,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 297,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 297,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 297,
+            "counters": 2,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 296,
+            "counters": 2,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999757
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 296,
+            "counters": 2,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999674
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 296,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999578
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 295,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999578
+              },
+              {
+                "id": 2,
+                "hp": 999786
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 295,
+            "counters": 1,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999578
+              },
+              {
+                "id": 2,
+                "hp": 999685
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 295,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999578
+              },
+              {
+                "id": 2,
+                "hp": 999552
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 294,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999578
+              },
+              {
+                "id": 2,
+                "hp": 999552
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 294,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999578
+              },
+              {
+                "id": 2,
+                "hp": 999552
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 294,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 999578
+              },
+              {
+                "id": 2,
+                "hp": 999552
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          }
+        ],
+        "packetTiming": "The public bridge coalesces animation/injury snapshots; exact decrement-after-both order is established by source ASM and native packet sequence, while two two-hit pairs with only two counters are asserted here.",
+        "source": "441AFF bypasses only blocker;441B62 second hit;441B7E consumes one counter",
+        "noCounterControl": false,
+        "consumedPerRound": 2
+      },
+      "hypnotize": {
+        "eligible": true,
+        "target": {
+          "aiValue": 7220,
+          "armySlot": 0,
+          "attack": 29,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            4000,
+            0
+          ],
+          "count": 3,
+          "currentHealth": 300,
+          "damageMax": 55,
+          "damageMin": 30,
+          "defense": 20,
+          "description": "Souffle sur deux cases. Provoque la peur et y r\u00e9siste. Deux coups par riposte, deux ripostes de base par tour, m\u00eame contre les troupes qui bloquent les ripostes.",
+          "enemy": true,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 6985,
+          "growth": 1,
+          "health": 300,
+          "icon": "tum-era/creatures/354/large",
+          "id": 301,
+          "key": "tum-era:eraCreature354",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 300,
+          "morale": 0,
+          "name": "Leviathan",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            48,
+            49
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 0,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 12,
+          "stackId": 1,
+          "x": 674,
+          "y": 196
+        }
+      },
+      "primaryPoison": {
+        "eligible": false,
+        "target": {
+          "aiValue": 7220,
+          "armySlot": 0,
+          "attack": 29,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            4000,
+            0
+          ],
+          "count": 3,
+          "currentHealth": 300,
+          "damageMax": 55,
+          "damageMin": 30,
+          "defense": 20,
+          "description": "Souffle sur deux cases. Provoque la peur et y r\u00e9siste. Deux coups par riposte, deux ripostes de base par tour, m\u00eame contre les troupes qui bloquent les ripostes.",
+          "enemy": true,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 6985,
+          "growth": 1,
+          "health": 300,
+          "icon": "tum-era/creatures/354/large",
+          "id": 301,
+          "key": "tum-era:eraCreature354",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 300,
+          "morale": 0,
+          "name": "Leviathan",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            48,
+            49
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 0,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 12,
+          "stackId": 1,
+          "x": 674,
+          "y": 196
+        },
+        "control": {
+          "aiValue": 416,
+          "armySlot": 1,
+          "attack": 13,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            300,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 40,
+          "damageMax": 12,
+          "damageMin": 6,
+          "defense": 7,
+          "description": "",
+          "enemy": true,
+          "eraSlot": 1,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 520,
+          "growth": 4,
+          "health": 40,
+          "icon": "",
+          "id": 90,
+          "key": "core:ogre",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 40,
+          "morale": 0,
+          "name": "Ogre",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            151
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 0,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 4,
+          "stackId": 2,
+          "x": 718,
+          "y": 448
+        }
+      },
+      "age": {
+        "eligible": true,
+        "target": {
+          "aiValue": 7220,
+          "armySlot": 0,
+          "attack": 29,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            4000,
+            0
+          ],
+          "count": 3,
+          "currentHealth": 300,
+          "damageMax": 55,
+          "damageMin": 30,
+          "defense": 20,
+          "description": "Souffle sur deux cases. Provoque la peur et y r\u00e9siste. Deux coups par riposte, deux ripostes de base par tour, m\u00eame contre les troupes qui bloquent les ripostes.",
+          "enemy": true,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 6985,
+          "growth": 1,
+          "health": 300,
+          "icon": "tum-era/creatures/354/large",
+          "id": 301,
+          "key": "tum-era:eraCreature354",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 300,
+          "morale": 0,
+          "name": "Leviathan",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            48,
+            49
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 0,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 12,
+          "stackId": 1,
+          "x": 674,
+          "y": 196
+        },
+        "control": {
+          "aiValue": 416,
+          "armySlot": 1,
+          "attack": 13,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            300,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 40,
+          "damageMax": 12,
+          "damageMin": 6,
+          "defense": 7,
+          "description": "",
+          "enemy": true,
+          "eraSlot": 1,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 520,
+          "growth": 4,
+          "health": 40,
+          "icon": "",
+          "id": 90,
+          "key": "core:ogre",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 40,
+          "morale": 0,
+          "name": "Ogre",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            151
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 0,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 4,
+          "stackId": 2,
+          "x": 718,
+          "y": 448
+        }
+      },
+      "healing": {
+        "injured": {
+          "aiValue": 7220,
+          "armySlot": 0,
+          "attack": 29,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            4000,
+            0
+          ],
+          "count": 3,
+          "currentHealth": 170,
+          "damageMax": 55,
+          "damageMin": 30,
+          "defense": 20,
+          "description": "Souffle sur deux cases. Provoque la peur et y r\u00e9siste. Deux coups par riposte, deux ripostes de base par tour, m\u00eame contre les troupes qui bloquent les ripostes.",
+          "enemy": false,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 6985,
+          "growth": 1,
+          "health": 300,
+          "icon": "tum-era/creatures/354/large",
+          "id": 301,
+          "key": "tum-era:eraCreature354",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 300,
+          "morale": 1,
+          "name": "Leviathan",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            87,
+            86
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 2,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 12,
+          "stackId": 0,
+          "x": 124,
+          "y": 322
+        },
+        "healed": {
+          "aiValue": 7220,
+          "armySlot": 0,
+          "attack": 29,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            4000,
+            0
+          ],
+          "count": 3,
+          "currentHealth": 220,
+          "damageMax": 55,
+          "damageMin": 30,
+          "defense": 20,
+          "description": "Souffle sur deux cases. Provoque la peur et y r\u00e9siste. Deux coups par riposte, deux ripostes de base par tour, m\u00eame contre les troupes qui bloquent les ripostes.",
+          "enemy": false,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 6985,
+          "growth": 1,
+          "health": 300,
+          "icon": "tum-era/creatures/354/large",
+          "id": 301,
+          "key": "tum-era:eraCreature354",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 300,
+          "morale": 1,
+          "name": "Leviathan",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            87,
+            86
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 2,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 12,
+          "stackId": 0,
+          "x": 124,
+          "y": 322
+        },
+        "resurrectionExcluded": true
+      },
+      "poison": {
+        "trained": {
+          "aiValue": 7220,
+          "attack": 29,
+          "cost": [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            4000,
+            0
+          ],
+          "count": 1,
+          "damageMax": 55,
+          "damageMin": 30,
+          "defense": 20,
+          "description": "Souffle sur deux cases. Provoque la peur et y r\u00e9siste. Deux coups par riposte, deux ripostes de base par tour, m\u00eame contre les troupes qui bloquent les ripostes.",
+          "experience": 10,
+          "experiencePerUnit": 10,
+          "experienceRank": 10,
+          "fightValue": 6985,
+          "growth": 1,
+          "health": 300,
+          "icon": "tum-era/creatures/354/large",
+          "id": 301,
+          "key": "tum-era:eraCreature354",
+          "name": "Leviathan",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "shooter": false,
+          "shots": 0,
+          "speed": 12
+        },
+        "rank10Chance": 95,
+        "observed": [
+          {
+            "round": 1,
+            "actorMaximum": 450,
+            "enemyMaximum": 1000000
+          },
+          {
+            "round": 2,
+            "actorMaximum": 450,
+            "enemyMaximum": 800000
+          }
+        ]
+      },
+      "naval": [
+        {
+          "name": "ordinary",
+          "limit": 1500,
+          "movement": 0
+        },
+        {
+          "name": "source354",
+          "limit": 1500,
+          "movement": 0
+        },
+        {
+          "name": "real71",
+          "limit": 2500,
+          "movement": 0
+        }
+      ],
+      "upgrade": {
+        "before": [
+          120,
+          110,
+          120,
+          110,
+          110,
+          110,
+          120000,
+          100
+        ],
+        "steps": [
+          {
+            "target": "tum-era:eraCreature354",
+            "resources": [
+              120,
+              110,
+              120,
+              108,
+              110,
+              110,
+              116400,
+              100
+            ]
+          },
+          {
+            "target": "tum-era:eraCreature353",
+            "resources": [
+              120,
+              110,
+              120,
+              108,
+              110,
+              110,
+              116400,
+              100
+            ]
+          },
+          {
+            "target": "tum-era:eraCreature354",
+            "resources": [
+              120,
+              110,
+              120,
+              106,
+              110,
+              110,
+              112800,
+              100
+            ]
+          }
+        ],
+        "source": "Explicit final353\u2192354 ERM link and354\u2192353 CFG link; original54EB50 clamps negative resource differences tozero, noresourcegain"
+      },
+      "noCounterControl": {
+        "observations": [
+          {
+            "round": 1,
+            "actor": {
+              "aiValue": 7220,
+              "armySlot": 0,
+              "attack": 29,
+              "canMeleeAt": false,
+              "canShootAt": false,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                4000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 297,
+              "damageMax": 55,
+              "damageMin": 30,
+              "defense": 20,
+              "description": "Souffle sur deux cases. Provoque la peur et y r\u00e9siste. Deux coups par riposte, deux ripostes de base par tour, m\u00eame contre les troupes qui bloquent les ripostes.",
+              "enemy": false,
+              "eraSlot": 0,
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 6985,
+              "growth": 1,
+              "health": 300,
+              "icon": "tum-era/creatures/354/large",
+              "id": 301,
+              "key": "tum-era:eraCreature354",
+              "luck": 0,
+              "magicResistance": 0,
+              "maximumHealth": 300,
+              "morale": 1,
+              "name": "Leviathan",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": false,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 0,
+              "remainingShots": 0,
+              "shooter": false,
+              "shots": 0,
+              "speed": 12,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            },
+            "enemy": [
+              {
+                "aiValue": 56,
+                "armySlot": 0,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 1000000,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 0,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 70,
+                "growth": 12,
+                "health": 1000000,
+                "icon": "",
+                "id": 98,
+                "key": "core:gnoll",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Gnoll",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  69
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 1,
+                "x": 102,
+                "y": 280,
+                "totalHealth": 1000000
+              },
+              {
+                "aiValue": 60,
+                "armySlot": 1,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  40,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 1000000,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 1,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 60,
+                "growth": 15,
+                "health": 1000000,
+                "icon": "",
+                "id": 84,
+                "key": "core:goblin",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Goblin",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  70
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 2,
+                "x": 146,
+                "y": 280,
+                "totalHealth": 1000000
+              },
+              {
+                "aiValue": 50,
+                "armySlot": 2,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 1000000,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 2,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 50,
+                "growth": 15,
+                "health": 1000000,
+                "icon": "",
+                "id": 42,
+                "key": "core:imp",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Imp",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  103
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 3,
+                "x": 102,
+                "y": 364,
+                "totalHealth": 1000000
+              }
+            ],
+            "deltas": [
+              {
+                "key": "core:gnoll",
+                "damage": 0,
+                "occupied": [
+                  69
+                ]
+              },
+              {
+                "key": "core:goblin",
+                "damage": 0,
+                "occupied": [
+                  70
+                ]
+              },
+              {
+                "key": "core:imp",
+                "damage": 0,
+                "occupied": [
+                  103
+                ]
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "actor": {
+              "aiValue": 7220,
+              "armySlot": 0,
+              "attack": 29,
+              "canMeleeAt": false,
+              "canShootAt": false,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                4000,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 294,
+              "damageMax": 55,
+              "damageMin": 30,
+              "defense": 20,
+              "description": "Souffle sur deux cases. Provoque la peur et y r\u00e9siste. Deux coups par riposte, deux ripostes de base par tour, m\u00eame contre les troupes qui bloquent les ripostes.",
+              "enemy": false,
+              "eraSlot": 0,
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 6985,
+              "growth": 1,
+              "health": 300,
+              "icon": "tum-era/creatures/354/large",
+              "id": 301,
+              "key": "tum-era:eraCreature354",
+              "luck": 0,
+              "magicResistance": 0,
+              "maximumHealth": 300,
+              "morale": 1,
+              "name": "Leviathan",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": false,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "occupied": [
+                87,
+                86
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 0,
+              "remainingShots": 0,
+              "shooter": false,
+              "shots": 0,
+              "speed": 12,
+              "stackId": 0,
+              "x": 124,
+              "y": 322
+            },
+            "enemy": [
+              {
+                "aiValue": 56,
+                "armySlot": 0,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 1000000,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 0,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 70,
+                "growth": 12,
+                "health": 1000000,
+                "icon": "",
+                "id": 98,
+                "key": "core:gnoll",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Gnoll",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  69
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 1,
+                "x": 102,
+                "y": 280,
+                "totalHealth": 1000000
+              },
+              {
+                "aiValue": 60,
+                "armySlot": 1,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  40,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 1000000,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 1,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 60,
+                "growth": 15,
+                "health": 1000000,
+                "icon": "",
+                "id": 84,
+                "key": "core:goblin",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Goblin",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  70
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 2,
+                "x": 146,
+                "y": 280,
+                "totalHealth": 1000000
+              },
+              {
+                "aiValue": 50,
+                "armySlot": 2,
+                "attack": 0,
+                "canMeleeAt": true,
+                "canShootAt": false,
+                "cloned": false,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50,
+                  0
+                ],
+                "count": 1,
+                "currentHealth": 1000000,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 0,
+                "description": "",
+                "enemy": true,
+                "eraSlot": 2,
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 50,
+                "growth": 15,
+                "health": 1000000,
+                "icon": "",
+                "id": 42,
+                "key": "core:imp",
+                "luck": 0,
+                "magicResistance": 0,
+                "maximumHealth": 1000000,
+                "morale": 0,
+                "name": "Imp",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": true,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "occupied": [
+                  103
+                ],
+                "remainingCasts": 0,
+                "remainingRetaliations": 1,
+                "remainingShots": 0,
+                "shooter": false,
+                "shots": 0,
+                "speed": 25,
+                "stackId": 3,
+                "x": 102,
+                "y": 364,
+                "totalHealth": 1000000
+              }
+            ],
+            "deltas": [
+              {
+                "key": "core:gnoll",
+                "damage": 0,
+                "occupied": [
+                  69
+                ]
+              },
+              {
+                "key": "core:goblin",
+                "damage": 0,
+                "occupied": [
+                  70
+                ]
+              },
+              {
+                "key": "core:imp",
+                "damage": 0,
+                "occupied": [
+                  103
+                ]
+              }
+            ]
+          }
+        ],
+        "frames": [
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 300,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 299,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 298,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 297,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 297,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 297,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 1,
+            "hp": 297,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 297,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 296,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 295,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 294,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 294,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          },
+          {
+            "round": 2,
+            "hp": 294,
+            "counters": 0,
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 1000000
+              },
+              {
+                "id": 2,
+                "hp": 1000000
+              },
+              {
+                "id": 3,
+                "hp": 1000000
+              }
+            ]
+          }
+        ],
+        "packetTiming": "The public bridge coalesces animation/injury snapshots; exact decrement-after-both order is established by source ASM and native packet sequence, while two two-hit pairs with only two counters are asserted here.",
+        "source": "441AFF bypasses only blocker;441B62 second hit;441B7E consumes one counter",
+        "noCounterControl": true,
+        "consumedPerRound": 0
+      }
+    }
+  },
+  "shared": {
+    "fear": [
+      {
+        "id": 354,
+        "enemy": "core:archer",
+        "expect": "enemySkipped",
+        "observed": [
+          {
+            "round": 1,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 299
+          },
+          {
+            "round": 2,
+            "primaryActed": true,
+            "damage": 0,
+            "actorHealth": 299
+          },
+          {
+            "round": 3,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 298
+          },
+          {
+            "round": 4,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 297
+          },
+          {
+            "round": 5,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 296
+          },
+          {
+            "round": 6,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 295
+          },
+          {
+            "round": 7,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 294
+          },
+          {
+            "round": 8,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 293
+          },
+          {
+            "round": 9,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 292
+          },
+          {
+            "round": 10,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 291
+          },
+          {
+            "round": 11,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 290
+          },
+          {
+            "round": 12,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 289
+          },
+          {
+            "round": 13,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 288
+          },
+          {
+            "round": 14,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 287
+          },
+          {
+            "round": 15,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 286
+          },
+          {
+            "round": 16,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 285
+          },
+          {
+            "round": 17,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 284
+          },
+          {
+            "round": 18,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 283
+          },
+          {
+            "round": 19,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 282
+          },
+          {
+            "round": 20,
+            "primaryActed": true,
+            "damage": 0,
+            "actorHealth": 282
+          },
+          {
+            "round": 21,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 281
+          },
+          {
+            "round": 22,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 280
+          },
+          {
+            "round": 23,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 279
+          },
+          {
+            "round": 24,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 278
+          },
+          {
+            "round": 25,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 277
+          },
+          {
+            "round": 26,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 276
+          },
+          {
+            "round": 27,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 275
+          },
+          {
+            "round": 28,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 274
+          },
+          {
+            "round": 29,
+            "primaryActed": true,
+            "damage": 0,
+            "actorHealth": 274
+          },
+          {
+            "round": 30,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 273
+          },
+          {
+            "round": 31,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 272
+          },
+          {
+            "round": 32,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 271
+          },
+          {
+            "round": 33,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 270
+          },
+          {
+            "round": 34,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 269
+          },
+          {
+            "round": 35,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 268
+          },
+          {
+            "round": 36,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 267
+          },
+          {
+            "round": 37,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 266
+          },
+          {
+            "round": 38,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 265
+          },
+          {
+            "round": 39,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 264
+          },
+          {
+            "round": 40,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 263
+          }
+        ]
+      },
+      {
+        "id": 353,
+        "enemy": "core:archer",
+        "expect": "none",
+        "observed": [
+          {
+            "round": 1,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 179
+          },
+          {
+            "round": 2,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 178
+          },
+          {
+            "round": 3,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 177
+          },
+          {
+            "round": 4,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 176
+          },
+          {
+            "round": 5,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 175
+          },
+          {
+            "round": 6,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 174
+          },
+          {
+            "round": 7,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 173
+          },
+          {
+            "round": 8,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 172
+          },
+          {
+            "round": 9,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 171
+          },
+          {
+            "round": 10,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 170
+          },
+          {
+            "round": 11,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 169
+          },
+          {
+            "round": 12,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 168
+          },
+          {
+            "round": 13,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 167
+          },
+          {
+            "round": 14,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 166
+          },
+          {
+            "round": 15,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 165
+          },
+          {
+            "round": 16,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 164
+          },
+          {
+            "round": 17,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 163
+          },
+          {
+            "round": 18,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 162
+          },
+          {
+            "round": 19,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 161
+          },
+          {
+            "round": 20,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 160
+          },
+          {
+            "round": 21,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 159
+          },
+          {
+            "round": 22,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 158
+          },
+          {
+            "round": 23,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 157
+          },
+          {
+            "round": 24,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 156
+          },
+          {
+            "round": 25,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 155
+          },
+          {
+            "round": 26,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 154
+          },
+          {
+            "round": 27,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 153
+          },
+          {
+            "round": 28,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 152
+          },
+          {
+            "round": 29,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 151
+          },
+          {
+            "round": 30,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 150
+          },
+          {
+            "round": 31,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 149
+          },
+          {
+            "round": 32,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 148
+          },
+          {
+            "round": 33,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 147
+          },
+          {
+            "round": 34,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 146
+          },
+          {
+            "round": 35,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 145
+          },
+          {
+            "round": 36,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 144
+          },
+          {
+            "round": 37,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 143
+          },
+          {
+            "round": 38,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 142
+          },
+          {
+            "round": 39,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 141
+          },
+          {
+            "round": 40,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 140
+          }
+        ]
+      },
+      {
+        "id": 353,
+        "enemy": "core:azureDragon",
+        "expect": "ownSkipped",
+        "observed": [
+          {
+            "round": 1,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 179
+          },
+          {
+            "round": 2,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 178
+          },
+          {
+            "round": 3,
+            "primaryActed": false,
+            "damage": 1,
+            "actorHealth": 177
+          },
+          {
+            "round": 4,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 176
+          },
+          {
+            "round": 5,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 175
+          },
+          {
+            "round": 6,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 174
+          },
+          {
+            "round": 7,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 173
+          },
+          {
+            "round": 8,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 172
+          },
+          {
+            "round": 9,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 171
+          },
+          {
+            "round": 10,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 170
+          },
+          {
+            "round": 11,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 169
+          },
+          {
+            "round": 12,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 168
+          },
+          {
+            "round": 13,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 167
+          },
+          {
+            "round": 14,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 166
+          },
+          {
+            "round": 15,
+            "primaryActed": false,
+            "damage": 1,
+            "actorHealth": 165
+          },
+          {
+            "round": 16,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 164
+          },
+          {
+            "round": 17,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 163
+          },
+          {
+            "round": 18,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 162
+          },
+          {
+            "round": 19,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 161
+          },
+          {
+            "round": 20,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 160
+          },
+          {
+            "round": 21,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 159
+          },
+          {
+            "round": 22,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 158
+          },
+          {
+            "round": 23,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 157
+          },
+          {
+            "round": 24,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 156
+          },
+          {
+            "round": 25,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 155
+          },
+          {
+            "round": 26,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 154
+          },
+          {
+            "round": 27,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 153
+          },
+          {
+            "round": 28,
+            "primaryActed": false,
+            "damage": 1,
+            "actorHealth": 152
+          },
+          {
+            "round": 29,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 151
+          },
+          {
+            "round": 30,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 150
+          },
+          {
+            "round": 31,
+            "primaryActed": false,
+            "damage": 1,
+            "actorHealth": 149
+          },
+          {
+            "round": 32,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 148
+          },
+          {
+            "round": 33,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 147
+          },
+          {
+            "round": 34,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 146
+          },
+          {
+            "round": 35,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 145
+          },
+          {
+            "round": 36,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 144
+          },
+          {
+            "round": 37,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 143
+          },
+          {
+            "round": 38,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 142
+          },
+          {
+            "round": 39,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 141
+          },
+          {
+            "round": 40,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 140
+          }
+        ]
+      },
+      {
+        "id": 354,
+        "enemy": "core:azureDragon",
+        "expect": "none",
+        "observed": [
+          {
+            "round": 1,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 299
+          },
+          {
+            "round": 2,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 298
+          },
+          {
+            "round": 3,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 297
+          },
+          {
+            "round": 4,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 296
+          },
+          {
+            "round": 5,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 295
+          },
+          {
+            "round": 6,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 294
+          },
+          {
+            "round": 7,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 293
+          },
+          {
+            "round": 8,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 292
+          },
+          {
+            "round": 9,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 291
+          },
+          {
+            "round": 10,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 290
+          },
+          {
+            "round": 11,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 289
+          },
+          {
+            "round": 12,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 288
+          },
+          {
+            "round": 13,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 287
+          },
+          {
+            "round": 14,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 286
+          },
+          {
+            "round": 15,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 285
+          },
+          {
+            "round": 16,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 284
+          },
+          {
+            "round": 17,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 283
+          },
+          {
+            "round": 18,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 282
+          },
+          {
+            "round": 19,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 281
+          },
+          {
+            "round": 20,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 280
+          },
+          {
+            "round": 21,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 279
+          },
+          {
+            "round": 22,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 278
+          },
+          {
+            "round": 23,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 277
+          },
+          {
+            "round": 24,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 276
+          },
+          {
+            "round": 25,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 275
+          },
+          {
+            "round": 26,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 274
+          },
+          {
+            "round": 27,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 273
+          },
+          {
+            "round": 28,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 272
+          },
+          {
+            "round": 29,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 271
+          },
+          {
+            "round": 30,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 270
+          },
+          {
+            "round": 31,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 269
+          },
+          {
+            "round": 32,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 268
+          },
+          {
+            "round": 33,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 267
+          },
+          {
+            "round": 34,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 266
+          },
+          {
+            "round": 35,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 265
+          },
+          {
+            "round": 36,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 264
+          },
+          {
+            "round": 37,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 263
+          },
+          {
+            "round": 38,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 262
+          },
+          {
+            "round": 39,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 261
+          },
+          {
+            "round": 40,
+            "primaryActed": true,
+            "damage": 1,
+            "actorHealth": 260
+          }
+        ]
+      }
+    ],
+    "naval": [
+      {
+        "name": "ordinary",
+        "limit": 1500,
+        "movement": 0
+      },
+      {
+        "name": "source354",
+        "limit": 1500,
+        "movement": 0
+      },
+      {
+        "name": "real71",
+        "limit": 2500,
+        "movement": 0
+      }
+    ],
+    "upgrade": {
+      "before": [
+        120,
+        110,
+        120,
+        110,
+        110,
+        110,
+        120000,
+        100
+      ],
+      "steps": [
+        {
+          "target": "tum-era:eraCreature354",
+          "resources": [
+            120,
+            110,
+            120,
+            108,
+            110,
+            110,
+            116400,
+            100
+          ]
+        },
+        {
+          "target": "tum-era:eraCreature353",
+          "resources": [
+            120,
+            110,
+            120,
+            108,
+            110,
+            110,
+            116400,
+            100
+          ]
+        },
+        {
+          "target": "tum-era:eraCreature354",
+          "resources": [
+            120,
+            110,
+            120,
+            106,
+            110,
+            110,
+            112800,
+            100
+          ]
+        }
+      ],
+      "source": "Explicit final353\u2192354 ERM link and354\u2192353 CFG link; original54EB50 clamps negative resource differences tozero, noresourcegain"
+    }
+  },
+  "validationRuns": [
+    {
+      "path": "/tmp/goonk151-fortress353-a/partial.json",
+      "passedScopes": [
+        "stats",
+        "counter"
+      ],
+      "laterFixtureIssue": "The shorter walking range required normal movement before the poison attack; fixed and independently retested."
+    },
+    {
+      "path": "/tmp/goonk151-fortress353-b/result.json",
+      "passedScopes": [
+        "poison",
+        "hypnotize",
+        "primaryPoison",
+        "age",
+        "healing"
+      ]
+    },
+    {
+      "path": "/tmp/goonk151-fortress354-b/result.json",
+      "passedScopes": [
+        "counter"
+      ]
+    },
+    {
+      "path": "/tmp/goonk151-fortress354-c/partial.json",
+      "passedScopes": [
+        "poison",
+        "naval",
+        "upgrade"
+      ],
+      "laterFixtureIssue": "Missing biology test helper fixed and independently retested."
+    },
+    {
+      "path": "/tmp/goonk151-fortress354-d/result.json",
+      "passedScopes": [
+        "stats",
+        "counter",
+        "hypnotize",
+        "primaryPoison",
+        "age",
+        "healing"
+      ]
+    },
+    {
+      "path": "/tmp/goonk151-fortress-fear-a/result.json",
+      "passedScopes": [
+        "fear"
+      ]
+    }
+  ],
+  "activationScope": "Whole original353/354 creatures and source services; all18-actor eighth-town recruitment remains separately gated.",
+  "portrait": {
+    "viewport": [
+      390,
+      844
+    ],
+    "passed": true,
+    "scopes": [
+      "stats",
+      "paid-free-paid upgrade with Goonk control"
+    ],
+    "screenshot": "native-fortress-portrait.png",
+    "uiScope": "Existing native Hill Fort window is fully visible; initial small native troop buttons may need supplied pinch/zoom fallback. No new UI layout was introduced. Ready toast on early capture is temporary and pointer-events:none."
+  }
+}

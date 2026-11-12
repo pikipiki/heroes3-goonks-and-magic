@@ -1,0 +1,149 @@
+{
+  "passed": true,
+  "report": {
+    "fixture": {
+      "experienceProfile": "Owned test overlay fullRank10=100, battlePercent=100; source rank effects and production data unmodified",
+      "enduranceEnemy": "Owned test gnoll high HP, fixed50 damage; source dragon combat rules unchanged"
+    },
+    "core:crystalDragon": {
+      "trained": {
+        "aiValue": 39338,
+        "attack": 50,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          10,
+          0,
+          20000,
+          0
+        ],
+        "count": 1,
+        "damageMax": 85,
+        "damageMin": 70,
+        "defense": 50,
+        "description": "",
+        "fightValue": 30260,
+        "growth": 1,
+        "health": 1125,
+        "icon": "tum-era/creatures/133/large.png",
+        "id": 133,
+        "key": "core:crystalDragon",
+        "magicDamageReduction": 0,
+        "name": "Ruby Crystal Dragon",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": false,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "physicalDamageBonus": 0,
+        "rangedDamageBonus": 0,
+        "shooter": false,
+        "shots": 0,
+        "slot": 0,
+        "speed": 19
+      },
+      "observed": [
+        {
+          "round": 1,
+          "hp": 1075,
+          "max": 1125,
+          "count": 1
+        },
+        {
+          "round": 2,
+          "hp": 1038,
+          "max": 1125,
+          "count": 1
+        },
+        {
+          "round": 3,
+          "hp": 1001,
+          "max": 1125,
+          "count": 1
+        },
+        {
+          "round": 4,
+          "hp": 964,
+          "max": 1125,
+          "count": 1
+        },
+        {
+          "round": 5,
+          "hp": 927,
+          "max": 1125,
+          "count": 1
+        },
+        {
+          "round": 6,
+          "hp": 890,
+          "max": 1125,
+          "count": 1
+        },
+        {
+          "round": 7,
+          "hp": 853,
+          "max": 1125,
+          "count": 1
+        },
+        {
+          "round": 8,
+          "hp": 816,
+          "max": 1125,
+          "count": 1
+        },
+        {
+          "round": 9,
+          "hp": 779,
+          "max": 1125,
+          "count": 1
+        },
+        {
+          "round": 10,
+          "hp": 742,
+          "max": 1125,
+          "count": 1
+        },
+        {
+          "round": 11,
+          "hp": 705,
+          "max": 1125,
+          "count": 1
+        },
+        {
+          "round": 12,
+          "hp": 668,
+          "max": 1125,
+          "count": 1
+        },
+        {
+          "round": 13,
+          "hp": 631,
+          "max": 1125,
+          "count": 1
+        },
+        {
+          "round": 14,
+          "hp": 594,
+          "max": 1125,
+          "count": 1
+        },
+        {
+          "round": 15,
+          "hp": 557,
+          "max": 1125,
+          "count": 1
+        }
+      ],
+      "blocks": 0
+    }
+  },
+  "validatedEngineSHA256": "103c072c49b24c36ea41284775c495c3307d40fb522f5eaf18d1f15b206cedd6"
+}

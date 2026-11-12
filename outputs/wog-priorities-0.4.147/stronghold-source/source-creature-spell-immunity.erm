@@ -1,0 +1,61 @@
+Creature ID 283/346/347 is Immune to all the creature spells
+script by Perry R
+!?FU(OnMonsterPhysicalDamage);          [*Physical Combat *]
+!!MF:N?y1;                              [damage receiving stack]
+!!BMy1:T?y2;
+
+!!FU(tum_CheckIfMonIsImmuneToMonSpells):Py2/?y31;
+
+!!if&y31;                               [Only Run Script when got damaged]
+  !!UN:C42149568/4/?y10;                [Get Physical Damage type]
+
+  ; Skip if directly hit by Death Clood and Fireball attack
+  !!if|y10=4455746/y10=4460621;
+    !!BG:E?y30;
+
+    !!FU&y1=y30:E;;
+  !!en;
+
+  !!if|y10=4460149/y10=4455746/y10=4458589/y10=4460621/y10=4461137/y10=4462479/y10=5902442; [Death Gaze, Death Cloud damage, Ring Damage, Fireball damage, Lightning strike, Acid attack damage, Dragon damage, Death ripple]
+    !!MF:E(FALSE);                      [Cancel Damage Animation]
+    !!MF:F0;                            [Apply Zero Damage]
+  !!en;
+!!en;
+
+!?FU(OnBattleActionEnd);
+!!rei/0/41;
+  !!BMi:T?y3 N?y30;                           [Get Creature Type]
+  !!co&y30<=0;
+
+  !!FU(tum_CheckIfMonIsImmuneToMonSpells):Py3/?y31;
+
+  !!if&y31;                             [If found]
+    *!IF:M^Now^;
+    !!FU(tum_RemoveSpellFromStack):Pi/42;    [42 Curse]
+    !!FU(tum_RemoveSpellFromStack):Pi/52;    [52 Misfortune]
+    !!FU(tum_RemoveSpellFromStack):Pi/45;    [45 Weakness]
+    !!FU(tum_RemoveSpellFromStack):Pi/54;    [54 Slow]
+    !!FU(tum_RemoveSpellFromStack):Pi/50;    [50 Sorrow]
+    !!FU(tum_RemoveSpellFromStack):Pi/52;    [52 Misfortune]
+    !!FU(tum_RemoveSpellFromStack):Pi/62;    [62 Blind]
+    !!FU(tum_RemoveSpellFromStack):Pi/59;    [59 Berserk]
+    !!FU(tum_RemoveSpellFromStack):Pi/60;    [60 Hypnotize]
+    !!FU(tum_RemoveSpellFromStack):Pi/61;    [61 Forgetfulness]
+    !!FU(tum_RemoveSpellFromStack):Pi/70;    [Stone]
+    !!FU(tum_RemoveSpellFromStack):Pi/71;    [Poison]
+    !!FU(tum_RemoveSpellFromStack):Pi/72;    [Bind]
+    !!FU(tum_RemoveSpellFromStack):Pi/73;    [Disease]
+    !!FU(tum_RemoveSpellFromStack):Pi/74;    [Paralyze]
+    !!FU(tum_RemoveSpellFromStack):Pi/75;    [Age]
+  !!en;
+!!en;
+
+// Function for setting up creature IDs with creature spell immunity
+!?FU(tum_CheckIfMonIsImmuneToMonSpells);
+!#VA(mon:x) (result:x);
+
+!!VR(result):S(FALSE);
+!!VR(result)&(mon)=(MON_QUETZALCOUATL):S(TRUE);
+!!VR(result)|(mon)=(MON_FIRE_DRAGON)/(mon)=(MON_ICE_DRAGON):S(TRUE);
+
+**************************************************************************

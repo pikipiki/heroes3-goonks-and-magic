@@ -133,7 +133,8 @@ html.goonk-mobile #mobile-app[data-dialog-presentation]>:is(.mobile-nav,.mobile-
  html.goonk-mobile #mobile-app:is([data-mode=map],[data-mode=town])>.mobile-play{margin:0!important;padding:0!important;max-width:none!important;width:100%!important}
  html.goonk-mobile #mobile-app:is([data-mode=hero],[data-mode=mage-guild],[data-mode=spellbook],[data-mobile-tavern])>.mobile-top{position:absolute!important;grid-column:1/-1!important;grid-row:1/-1!important;top:4px!important;left:auto!important;right:calc(var(--control-rail) - 48px)!important;width:44px!important;z-index:12;overflow:visible}
  #mobile-app .hero-card-head{padding-left:52px!important}
- #mobile-app .mobile-mage-guild>header,#mobile-app .tavern-header,#mobile-app .mobile-spellbook>header{min-height:96px;padding:4px 6px 6px 52px!important;border-bottom:2px ridge #b99b57;align-content:start}
+ #mobile-app .mobile-mage-guild>header,#mobile-app .tavern-header{min-height:96px;padding:4px 6px 6px 52px!important;border-bottom:2px ridge #b99b57;align-content:start}
+ #mobile-app .mobile-spellbook>header{min-height:44px;padding:4px 6px 6px 52px!important;border-bottom:2px ridge #b99b57}
  #mobile-app .mobile-mage-guild>header h2,#mobile-app .tavern-header h2{font-size:20px;line-height:1.2;margin:0;min-height:40px;display:flex;align-items:center}
  #mobile-app .mobile-mage-guild>header{grid-template-columns:minmax(0,1fr) 44px}
  #mobile-app .mobile-mage-guild>header h2{grid-column:1/-1}

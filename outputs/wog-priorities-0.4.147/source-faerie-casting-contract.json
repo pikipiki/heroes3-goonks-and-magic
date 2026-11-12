@@ -1,0 +1,43 @@
+{
+  "sourceId": 258,
+  "scope": "Does not activate or extend original134 or future356.",
+  "pins": {
+    "exe": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+    "amethyst": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+    "cfg258": "ef95bbd9f84e9ac3a113546371475fc2248ece77fec3e581494ae6dc20e6a92b"
+  },
+  "boundedCodeHex": {
+    "0x447576": "8b868802000085c0741f8b8ef4000000b8010000006a012bc18b8ee00400006a01575051e92f0100008b86f40000008b8ee00400006a016a01575051e9170100",
+    "0x5a3f90": "558bec8b45188b5514508b4510528b550c6a00508b45085250e8f2430000dc1d38ac6300dfe0f6c4417509b8010000005dc2140033c05dc21400909090909090558bec518b450c538bd95685c057895dfc0f8c530100003dbb0000000f8d4801",
+    "0x5a05df": "744a85ff74468b55108b83c0320100528b55e86a01525750518bcbe8a17d0000d80d68ac6300e88a790700ba64000000b9010000008bf0e8a5c1f6ff3bc60f9ec084c00f84711c00008b75bc8bcbe84e9aecff84",
+    "0x5a0c9a": "8bcbe8df93ecff84c0752b68fc21640068102264006a058bcfe89856eaff508bcfe8c056eaff8b5518508b45d052508bcbe8c06cecffa1a87f68008b55c46a01578b88280800008bb4b02c0800000faf4d1c8b45ec5203f1506a0f568bcbe8f36e00008bf08bcf56e8a930eaff8b4df0c64720016a018945148b51088bcb52e85278ecff8b45148b4df050578b5110566a01528bcbe83c89ecff8bcbe8e582ec",
+    "0x5a4c80": "558bec6aff682843630064a100000000506489250000000083ec2853568b750c8bd98b0da87f68008bc6c1e00403c6578b7d086a00c1e0036a64578b5408088b",
+    "0x5a4d60": "50568bcbe837360000d80d68ac6300e820320700ba64000000b9010000008bd8e83b7af6ff3bc37e1f8b87f40000008b8ff80000008b5de88d04808d1481c6841a7c54000000eb628bcfe801d6e9ff8b",
+    "0x5a6500": "558bec83ec285356578b7d088bf1c745fc3f420f008bcf8975f8c745e8ffffffffe85afee9ff8bcf8945e4e820fee9ff8945e08d867c5400008dbecc5400008d",
+    "0x5a6580": "7427e8191e0000d80d68ac6300e8021a0700ba64000000b9010000008bf0e81d62f6ff3bc67f6eeb12e8f21d0000d81d64ac6300dfe0f6c441755d8bcfe8befde9ff8b55e48bcf2bc2998bf033f22bf2e87bfde9ff2b45e09933c22bc28bd00f",
+    "0x5a6670": "558bec83ec2453568bf157b90a00000033c08dbe7c540000f3ab8b0db0926900e8ab70f6ffa1a87f68008b7d0c33db8b88480a00008b84b84c0a00000faf4d1053535303c1536a13508bcee8301500008945dc8945f08b04bd84226400895df8",
+    "0x5a6870": "508bce8b8496cc530000506a1353e86d130000508bcfe825d5e9ff8b4df88b97f800000003c88b87f4000000894df86a018d0c80578d048a8bcec684307c54000001e849fcffff8bc883f9ff74238bc38b7d0c8b5dfc992bc2d1f88945f08b04bd84226400433bd8895dfc0f8cfdfdff",
+    "0x5a83b1": "8b8c86cc530000894dfc8bcfe8ee9fe9ff8b57348b5d088955f48b5508c1e30403da894510a1a87f6800c1e3038d0c03",
+    "0x5a88c0": "8b45108b4dfc8b55f450518b4d08e8cd18eaffd80dacb863005f5e5b8be55dc218008b55108b45fc8b4d08528b55f450e8ab18eaff5f5e5b8be55dc218008bff"
+  },
+  "ownershipTypes": {
+    "15": -1,
+    "16": -1,
+    "17": -1,
+    "19": 0,
+    "20": 0,
+    "21": 0,
+    "22": 0,
+    "23": 0
+  },
+  "contract": {
+    "primary": "Original44756E reads actual selected actor+4E0, calls5A3F90→5A83A0 and tests probability>0 without RNG. Hypnotize flips caster side; spell type compares physical target side. Living primary is mandatory.",
+    "single": "Kind1 at5A05DF bypasses primary resistance lottery.15/16/17 dispatch no secondary lottery. Positive partial chance therefore guarantees hit.",
+    "area": "5A4C80 performs mandatory1..100 per living affected unit, including chance0/100, in double-reversed unique hex collection order.20 excludes center;22radius2;othersradius1.",
+    "chain": "Normal19 uses642284 mastery2 five hops, current132C0 hero correction, truncation toward zero halves, scans physical side0 then1 slots, mandatory1..100 per unvisited candidate even0/100; selects after every hit including final. Friendly hops do not terminate normal19. Custom352Shot4 is separate.",
+    "hero": "5A83B1 always loads querySide hero even when argument6=1. Argument6 controls healing power selection only;5A017B NULL kind1 hero affects direct single damage correction, not resistance queries.",
+    "removedFlag": "CANNOT_MOVE bit21 marks removed/dead combat records; not paralysis/SIEGE. No bit21 in original150records or supplied TUM Flags. Native alive position lookup drops removed/offmap ghosts.",
+    "rngEvidence": "Native eight-spell controls compare real serialized global minstd state against independent libc++ uniform1..100 prediction, including rejection sampling."
+  },
+  "nativeEvidence": "outputs/wog-priorities-0.4.147/native-primal-faerie-casting.json"
+}

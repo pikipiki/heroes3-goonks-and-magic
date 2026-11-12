@@ -1,0 +1,451 @@
+{
+  "activation": false,
+  "nativeValidationRequired": true,
+  "sourcePins": {
+    "archive": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+    "exe": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+    "amethyst": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+    "emerald": "3102fc09554a07619a19462f420c821cdf20b32d846ec8b4802c0f4415b60911",
+    "tables": "10047a24ff1736db951f163c34bcfb58ebe5c0fab972308ca98edf715f61d0cf",
+    "misc": "55e9b9a9c8b015f50248f00dc6eff5cbdc211f487adc32a07c02e9247ffee0e1",
+    "duplicate": "1549618290d5f1923eda07119fbd931d2ba2e3f6c907315bf1a2c3c140194391"
+  },
+  "records": [
+    {
+      "sourceId": 355,
+      "cfg": [
+        "isTeleporter=1",
+        "AfterMeleeSpell=15",
+        "AfterDefendSpell=13",
+        "AfterWoundSpell=29",
+        "AfterActionSpellMastery=0",
+        "Flags=17",
+        "Level=6",
+        "Town=8",
+        "UpgradesTo=356",
+        "isSorceress=1"
+      ],
+      "cfgSha256": "968fab902ab5637c8de5405b305a096ec6327cd46086e10f844248e71b1ae992",
+      "traits": {
+        "name": {
+          "singular": "Planeswalker",
+          "plural": "Planeswalkers"
+        },
+        "cost": {
+          "wood": 0,
+          "mercury": 0,
+          "ore": 0,
+          "sulfur": 0,
+          "crystal": 0,
+          "gems": 1,
+          "gold": 3500
+        },
+        "fightValue": 5793,
+        "aiValue": 6193,
+        "growth": 1,
+        "hitPoints": 200,
+        "speed": 12,
+        "attack": 20,
+        "defense": 18,
+        "damage": {
+          "min": 20,
+          "max": 30
+        },
+        "advMapAmount": {
+          "min": 4,
+          "max": 10
+        },
+        "shots": 0,
+        "spells": 0
+      },
+      "experience": [
+        {
+          "creature": 355,
+          "code": "g",
+          "modifier": "%",
+          "values": [
+            5,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            95
+          ],
+          "comment": "Planeswalker: Reduced Spell Damage +5%/Rank",
+          "source": "crexpbon.txt",
+          "line": 1847
+        },
+        {
+          "creature": 355,
+          "code": "p",
+          "modifier": "#21",
+          "values": [
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50,
+            55
+          ],
+          "comment": "Planeswalker: Fireball pre-attack 5%/Rank",
+          "source": "crexpbon.txt",
+          "line": 1848
+        },
+        {
+          "creature": 355,
+          "code": "a",
+          "modifier": "#17",
+          "values": [
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50,
+            55
+          ],
+          "comment": "Planeswalker: Lightning Bolt 5%/Rank",
+          "source": "crexpbon.txt",
+          "line": 1849
+        },
+        {
+          "creature": 355,
+          "code": "p",
+          "modifier": "#23",
+          "values": [
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50,
+            55
+          ],
+          "comment": "Planeswalker: Fireball pre-attack 5%/Rank",
+          "source": "crexpbon.txt",
+          "line": 1850
+        },
+        {
+          "creature": 355,
+          "code": "a",
+          "modifier": "#16",
+          "values": [
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50,
+            55
+          ],
+          "comment": "Planeswalker: Lightning Bolt 5%/Rank",
+          "source": "crexpbon.txt",
+          "line": 1851
+        },
+        {
+          "creature": 355,
+          "code": "S",
+          "modifier": "+",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "comment": "Planeswalker: Speed R4/R10",
+          "source": "crexpbon.txt",
+          "line": 1852
+        }
+      ]
+    },
+    {
+      "sourceId": 356,
+      "cfg": [
+        "isTeleporter=1",
+        "ACAST_CUSTOM_Chance=100",
+        "ACAST_CUSTOM_Spell=60",
+        "Flags=17",
+        "Level=6",
+        "Town=8",
+        "Spell 1=8",
+        "Spell 2=7",
+        "Spell 3=2",
+        "MagicChannel=1",
+        "isAimedCaster=1",
+        "isFaerie=1",
+        "CreatureMimicArtifact2=88",
+        "isVulnerabilityCatalyst=1"
+      ],
+      "cfgSha256": "572ea219a2218f2d6b9f892b9a8e8d8b7a2d197af8bfd4a888a0492cc56f6714",
+      "traits": {
+        "name": {
+          "singular": "Elementalist",
+          "plural": "Elementalists"
+        },
+        "cost": {
+          "wood": 0,
+          "mercury": 0,
+          "ore": 0,
+          "sulfur": 0,
+          "crystal": 0,
+          "gems": 2,
+          "gold": 4200
+        },
+        "fightValue": 7392,
+        "aiValue": 7812,
+        "growth": 1,
+        "hitPoints": 250,
+        "speed": 15,
+        "attack": 20,
+        "defense": 20,
+        "damage": {
+          "min": 20,
+          "max": 30
+        },
+        "advMapAmount": {
+          "min": 4,
+          "max": 10
+        },
+        "shots": 0,
+        "spells": 5
+      },
+      "experience": [
+        {
+          "creature": 356,
+          "code": "g",
+          "modifier": "%",
+          "values": [
+            5,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            95
+          ],
+          "comment": "Elementalist: Reduced Spell Damage +5%/Rank",
+          "source": "crexpbon.txt",
+          "line": 1853
+        },
+        {
+          "creature": 356,
+          "code": "u",
+          "modifier": "#112",
+          "values": [
+            0,
+            2,
+            5,
+            5,
+            10,
+            10,
+            15,
+            15,
+            20,
+            20,
+            25
+          ],
+          "comment": "Elementalist: Summon Air Elementals 10%/Rank",
+          "source": "crexpbon.txt",
+          "line": 1854
+        },
+        {
+          "creature": 356,
+          "code": "u",
+          "modifier": "#113",
+          "values": [
+            0,
+            2,
+            5,
+            5,
+            10,
+            10,
+            15,
+            15,
+            20,
+            20,
+            25
+          ],
+          "comment": "Elementalist: Summon Earth Elementals 10%/Rank",
+          "source": "crexpbon.txt",
+          "line": 1855
+        },
+        {
+          "creature": 356,
+          "code": "u",
+          "modifier": "#114",
+          "values": [
+            0,
+            2,
+            5,
+            5,
+            10,
+            10,
+            15,
+            15,
+            20,
+            20,
+            25
+          ],
+          "comment": "Elementalist: Summon Fire Elementals 10%/Rank",
+          "source": "crexpbon.txt",
+          "line": 1856
+        },
+        {
+          "creature": 356,
+          "code": "u",
+          "modifier": "#115",
+          "values": [
+            0,
+            2,
+            5,
+            5,
+            10,
+            10,
+            15,
+            15,
+            20,
+            20,
+            25
+          ],
+          "comment": "Elementalist: Summon Water Elementals 10%/Rank",
+          "source": "crexpbon.txt",
+          "line": 1857
+        },
+        {
+          "creature": 356,
+          "code": "S",
+          "modifier": "+",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "comment": "Elementalist: Speed R4/R10",
+          "source": "crexpbon.txt",
+          "line": 1858
+        }
+      ]
+    }
+  ],
+  "contracts": {
+    "biology": "Flags17: double-wide and ALIVE; no shooter flag. Teleporter grants movement teleport separately.",
+    "dormant355": "isSorceress75C979 requires action7; source355 cannot shoot.",
+    "dormant356": "ACAST_CUSTOM Chance100/Spell60 is not selected: default AfterCast selector9, custom selector10 required.",
+    "automatic355": {
+      "afterMelee": {
+        "spell": 15,
+        "mastery": 0,
+        "kind": 1,
+        "order": "441C01 after full primary melee sequence",
+        "power": "current manager creature count; caster need not explicitly survive, target must survive"
+      },
+      "afterDefend": {
+        "spell": 13,
+        "mastery": 0,
+        "kind": 1,
+        "power": "current creature count",
+        "tactics": false
+      },
+      "afterWound": {
+        "spell": 29,
+        "mastery": 0,
+        "kind": 1,
+        "entry": "443E36, target survives443DB0 including zero-damage calls",
+        "power": "remaining injured355 count via temporary WoG_CastSpell_Monster manager fields",
+        "firstHitReflection": false
+      }
+    },
+    "catalyst356": {
+      "hook": "44A426 only, casterHero HasArtifact93 query inside44A1A0",
+      "slots": 21,
+      "side": "CURRENT currentActiveSide132C0; alive physical slots, not a bilateral aura",
+      "casterHeroGuard": "44A420 checks nonnull.5A83B1 always loads hero(querySide), including argument6=1;5A8777 uses argument6 only for healing.5A017B NULL is direct damage correction, not natural accuracy.",
+      "boundedKind1Bytes": "83f901897d9c7509c745ec00000000"
+    },
+    "channel356": {
+      "percent": 20,
+      "combines": "maximum one effect; no per-stack sum",
+      "side": "Hypnotize60 duration flips effective side",
+      "scope": "hero mana expenditure only"
+    },
+    "tome88": {
+      "artifact": 88,
+      "availableField": "hero+0x430",
+      "learnedField": "hero+0x3EA unchanged without optional Grandmaster_Magic",
+      "cacheAdds": "MonGiveSpell on before/after battle and supported hero/adventure/town/exchange clicks",
+      "cacheResets": "original4D9840 physical inventory rebuild; army removal alone does not clear cached availability",
+      "spellFlag": "emerald.cpp722..731 initializes88=true",
+      "nativeStatus": "serialized cache and explicit UI refresh notification required; no dynamic aura or permanent learning approximation"
+    },
+    "xp355": {
+      "independentRolls": true,
+      "beforeRows": [
+        21,
+        23
+      ],
+      "afterRows": [
+        17,
+        16
+      ],
+      "afterTiming": "before FireShield; source756DBB calls original4408E0 then71DBD8, caller441991 then4419A0",
+      "power": "kind1 intermediate3 overridden by active manager count"
+    },
+    "xp356": {
+      "summons": [
+        112,
+        113,
+        114,
+        115
+      ],
+      "timing": "round2 reset",
+      "placement": "71E3F5 returns to14-record loop71DC79. Every row probes the same3positions with fresh occupancy; if clear112/113/114 fill them and115fails. Double-wide width adds2doubled-coordinates before forward offsets,71E062..072/71E247."
+    }
+  },
+  "openObligations": [
+    "Tome88 cache event mapping and native save/load controls",
+    "355 ordered independent XP spell pipeline including survival edge cases",
+    "Catalyst actual query-side hero and temporary CURRENT-side controls",
+    "whole355/356 native validation"
+  ]
+}

@@ -1,0 +1,29 @@
+
+../era-project-eng/h3era.exe:	file format coff-i386
+
+Disassembly of section .text:
+
+00701000 <.text>:
+  75deca: 8b 15 c8 26 83 02            	movl	0x28326c8, %edx
+  75ded0: 8b 42 58                     	movl	0x58(%edx), %eax
+  75ded3: 50                           	pushl	%eax
+  75ded4: 8b 0d c8 26 83 02            	movl	0x28326c8, %ecx
+  75deda: 51                           	pushl	%ecx
+  75dedb: e8 c6 0b fc ff               	calll	0x71eaa6 <.text+0x1daa6>
+  75dee0: 83 c4 08                     	addl	$0x8, %esp
+  75dee3: a3 bc 26 83 02               	movl	%eax, 0x28326bc
+  75dee8: 83 3d bc 26 83 02 00         	cmpl	$0x0, 0x28326bc
+  75deef: 75 0c                        	jne	0x75defd <.text+0x5cefd>
+  75def1: c7 05 bc 26 83 02 00 00 00 00	movl	$0x0, 0x28326bc
+  75defb: eb 16                        	jmp	0x75df13 <.text+0x5cf13>
+  75defd: 8b 15 bc 26 83 02            	movl	0x28326bc, %edx
+  75df03: 89 15 c8 6b 84 02            	movl	%edx, 0x2846bc8
+  75df09: c7 05 bc 26 83 02 ff ff ff ff	movl	$0xffffffff, 0x28326bc  # imm = 0xFFFFFFFF
+  75df13: 90                           	nop
+  75df14: 90                           	nop
+  75df15: 90                           	nop
+  75df16: 90                           	nop
+  75df17: 90                           	nop
+  75df18: 61                           	popal
+  75df19: a1 bc 26 83 02               	movl	0x28326bc, %eax
+  75df1e: eb 0f                        	jmp	0x75df2f <.text+0x5cf2f>

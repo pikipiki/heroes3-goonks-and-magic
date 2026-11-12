@@ -296,6 +296,17 @@
 	{
 		"creatureNature" : true
 	},
+	"ERA_SOURCE_UNOWNED_STACK": { "hidden": true },
+	"ERA_SOURCE_NON_ELEMENTAL_SUMMON": { "hidden": true },
+	"ERA_SOURCE_CONSTRUCT":
+	{
+		"hidden" : true
+	},
+	"ERA_SOURCE_INANIMATE":
+	{
+		"creatureNature" : true,
+		"hidden" : true
+	},
 	
 	"LUCK":
 	{

@@ -1,0 +1,601 @@
+{
+  "eraCreature275": {
+    "name": {
+      "singular": "Coatl",
+      "plural": "Coatls"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 2000
+    },
+    "fightValue": 3432,
+    "aiValue": 3574,
+    "growth": 1,
+    "hitPoints": 160,
+    "speed": 11,
+    "attack": 18,
+    "defense": 17,
+    "damage": {
+      "min": 25,
+      "max": 45
+    },
+    "advMapAmount": {
+      "min": 3,
+      "max": 8
+    },
+    "abilities": {
+      "amethyst_flag_1": {
+        "type": "FLYING",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "doubleWide": true,
+    "level": 6,
+    "faction": "core:stronghold",
+    "upgrades": [
+      "tum-era:eraCreature283"
+    ],
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          8,
+          9
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY",
+          "val": 1,
+          "valueType": "INDEPENDENT_MAX"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY",
+          "val": 2,
+          "valueType": "INDEPENDENT_MAX"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY",
+          "val": 3,
+          "valueType": "INDEPENDENT_MAX"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY",
+          "val": 4,
+          "valueType": "INDEPENDENT_MAX"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "addInfo": {
+            "contract": "source-stronghold-creature-spell-immunity-v1",
+            "sourceCreatureId": 274
+          },
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          20,
+          40,
+          60,
+          80,
+          100,
+          120,
+          140,
+          160,
+          180,
+          200
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "addInfo": {
+            "contract": "source-stronghold-creature-spell-immunity-v1",
+            "sourceCreatureId": 282
+          },
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          20,
+          40,
+          60,
+          80,
+          100,
+          120,
+          140,
+          160,
+          180,
+          200
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "Flies. Experience improves damage against Illithids and Alhoons.",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/275/CR275",
+      "map": "tum-era/creatures/275/AVWCR275.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/275/small",
+      "iconLarge": "tum-era/creatures/275/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/275/S275ATTK.wav",
+      "defend": "tum-era/creatures/275/S275DFND.wav",
+      "killed": "tum-era/creatures/275/S275KILL.wav",
+      "move": "tum-era/creatures/275/S275MOVE.wav",
+      "wince": "tum-era/creatures/275/S275WNCE.wav"
+    }
+  },
+  "eraCreature283": {
+    "name": {
+      "singular": "Quetzalcoatl",
+      "plural": "Quetzalcoatls"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 1,
+      "gems": 0,
+      "gold": 3500
+    },
+    "fightValue": 5172,
+    "aiValue": 5341,
+    "growth": 1,
+    "hitPoints": 200,
+    "speed": 15,
+    "attack": 21,
+    "defense": 19,
+    "damage": {
+      "min": 25,
+      "max": 45
+    },
+    "advMapAmount": {
+      "min": 3,
+      "max": 8
+    },
+    "abilities": {
+      "amethyst_flag_1": {
+        "type": "FLYING",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "doubleWide": true,
+    "level": 6,
+    "faction": "core:stronghold",
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          8,
+          9
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY",
+          "val": 1,
+          "valueType": "INDEPENDENT_MAX"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY",
+          "val": 2,
+          "valueType": "INDEPENDENT_MAX"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY",
+          "val": 3,
+          "valueType": "INDEPENDENT_MAX"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY",
+          "val": 4,
+          "valueType": "INDEPENDENT_MAX"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "addInfo": {
+            "contract": "source-stronghold-creature-spell-immunity-v1",
+            "sourceCreatureId": 274
+          },
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          20,
+          40,
+          60,
+          80,
+          100,
+          120,
+          140,
+          160,
+          180,
+          200
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "addInfo": {
+            "contract": "source-stronghold-creature-spell-immunity-v1",
+            "sourceCreatureId": 282
+          },
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          20,
+          40,
+          60,
+          80,
+          100,
+          120,
+          140,
+          160,
+          180,
+          200
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ADDITIONAL_RETALIATION",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          4
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "Flies. Clears harmful statuses after each action. Blocks death stare, acid, thunder, death ripple, reflected fire shield and secondary Lich/Magog damage. Experience improves retaliations and damage against Illithids and Alhoons.",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/283/CR283",
+      "map": "tum-era/creatures/283/AVWCR283.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/283/small",
+      "iconLarge": "tum-era/creatures/283/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/283/S283ATTK.wav",
+      "defend": "tum-era/creatures/283/S283DFND.wav",
+      "killed": "tum-era/creatures/283/S283KILL.wav",
+      "move": "tum-era/creatures/283/S283MOVE.wav",
+      "wince": "tum-era/creatures/283/S283WNCE.wav"
+    }
+  }
+}

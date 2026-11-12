@@ -1,0 +1,30 @@
+{
+  "ids": [
+    262,
+    263
+  ],
+  "archiveSHA256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "scriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "sourceFunction": "tum_CastMassiveSpell",
+  "sourceEligibilityFunction": "tum_Battle_CanStackReceiveSpell wraps original5A3F90 with castingSide and eligibility flags1/1",
+  "semantics": {
+    "powerPercent": 30,
+    "powerRounding": "truncate then clamp1..255",
+    "mastery": "actual hero spell mastery",
+    "originalSlotsPerSide": 21,
+    "skipPrimaryTarget": true,
+    "skipFullyDeadStacks": true,
+    "skipArrowTowers": true,
+    "noAdditionalMana": true,
+    "noAdditionalHeroCast": true
+  },
+  "sourceActionMapping": "Native HERO_SPELL event. Source CANCEL branch is a workaround for H3 occasionally misclassifying completed hero casts; native actions identify them explicitly.",
+  "pending": [
+    "Native Resurrection/AnimateDead on living partial armies",
+    "Implosion secondary30percent power and primary skip",
+    "Backpack, mana and once-per-round controls",
+    "All four source262 daily conversions",
+    "Save/load controls"
+  ],
+  "activationReady": false
+}

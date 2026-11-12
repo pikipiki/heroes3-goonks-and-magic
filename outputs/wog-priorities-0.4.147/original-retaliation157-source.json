@@ -1,0 +1,49 @@
+{
+  "sourceArtifact": 157,
+  "binarySHA256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "identity": "wake-of-gods.artifacts:crimsonShieldOfRetribution",
+  "nativeIdPreserved": true,
+  "sourceCfg": "Defence=2",
+  "hook": {
+    "entry": "0070A007..0070A070",
+    "patchTable": "00789E30=[00441AFF,0,0070A007]",
+    "consumer": "00441AFF reads attacker flags; bit16 test00441B05..0B gates ordinary retaliation after the physical hit.",
+    "equipment": "HasArtifact157(004D9460) on defender effective-side hero, original body slots only.",
+    "hypnotize": "Defender duration+288 is spell60 from activeSpellsDuration+198; nonzero flips side before hero lookup.",
+    "mutation": "Copies [attacker+84] to scratch835AC8, masks0x10000 only in the scratch/EDX return value. Never writes back to the attacker. No permanent NoRetaliation removal and no preemptive retaliation override.",
+    "unchangedGates": [
+      "defender alive",
+      "paralysis/status gates",
+      "remaining retaliation counter",
+      "first-hit/ordinary retaliation control"
+    ]
+  },
+  "replacement": {
+    "existingAdaptation": "Native WoG JSON reduces BLOCKS_RETALIATION attacker damage by50%; remove only this bonus when exact157 service becomes active.",
+    "newNativeBehavior": "Only OR the ordinary counterattack blocker gate. Keep +2Defense, same entity/assets/index and all other retaliation eligibility checks."
+  },
+  "boundedCode": [
+    {
+      "address": "0070A007",
+      "length": 106,
+      "sha256": "12751d6c0891f235200680b09fcf1beb202ed132983e293c9e7315a56eb47465"
+    },
+    {
+      "address": "00441AFF",
+      "length": 38,
+      "sha256": "779c704777a934721b58388029d485be2c976d8e3d7d98d2704ee0579caabd05"
+    },
+    {
+      "address": "00789E30",
+      "length": 12,
+      "sha256": "f491dec3bd116759275ce4894475aba29939b06585412d3d75c76c6391c06ad2"
+    }
+  ],
+  "activationReady": false,
+  "pending": [
+    "Matching native engine build",
+    "Native no-retaliation/normal attacker/equipped/backpack/side controls",
+    "Counter depletion and status gates",
+    "Remove50percent damage adaptation only after those controls pass"
+  ]
+}

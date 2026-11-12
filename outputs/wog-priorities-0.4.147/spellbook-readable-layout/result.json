@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "browsers": [
+    "chromium",
+    "webkit"
+  ],
+  "viewports": [
+    [
+      320,
+      568
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      568,
+      320
+    ],
+    [
+      844,
+      390
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      1024,
+      768
+    ],
+    [
+      1180,
+      820
+    ]
+  ],
+  "readability": "Every full word in spell names and selected spell heading fits one line; narrow portraits use two cards and narrow landscape stacks list above details.",
+  "stability": "Thirty identical snapshots retain the same power node and remove zero DOM nodes.",
+  "nativeMechanics": false
+}

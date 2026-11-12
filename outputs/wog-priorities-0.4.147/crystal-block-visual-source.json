@@ -1,0 +1,54 @@
+{
+  "sourceBinarySHA256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "sourceTrigger": "h3era.exe71C6A7..71C6B7 passes animation85 to4963C0 on successfulB",
+  "sourceRecords": {
+    "83": {
+      "address": "0x788bc4",
+      "def": "ZMagic1.def",
+      "forceFeedbackEffect": "MGhost"
+    },
+    "84": {
+      "address": "0x788bd0",
+      "def": "ZMGC02.def",
+      "forceFeedbackEffect": "MGblock"
+    },
+    "85": {
+      "address": "0x788bdc",
+      "def": "ZMGC01.def",
+      "forceFeedbackEffect": "MGblock2"
+    },
+    "86": {
+      "address": "0x788be8",
+      "def": "ZMGC03.def",
+      "forceFeedbackEffect": "MGblock3"
+    }
+  },
+  "corroboration": "VCMI battles_graphics.json existingmapping84=ZMGC02; source fourconsecutive12byterecords use same ordinal",
+  "spriteSource": "mod/wake-of-gods/Mods/heroes3DataPatch/content/sprites/zmgc01.def",
+  "spriteSHA256": "d41a2a98e7b8db9b8dcfff7adb8118130c620f91303c330651992dd95b41395a",
+  "limits": [
+    "Static binary and original-sprite evidence; native announcement compilation and render controls required."
+  ],
+  "audio": "Source4963C0 path has no audio trigger; MGblock2 is a haptic effect, not a WAV filename.",
+  "forceFeedback": {
+    "sourceRoutine": "4B6750..4B67AA",
+    "IAT": {
+      "0x63a074": "IFC20.dll ?Start@CImmCompoundEffect@@QAEHKK@Z",
+      "0x63a078": "IFC20.dll ?CreateEffect@CImmProject@@QAEPAVCImmCompoundEffect@@PBDPAVCImmDevice@@K@Z",
+      "0x63a07c": "IFC20.dll ?DestroyEffect@CImmProject@@QAEXPAVCImmCompoundEffect@@@Z"
+    },
+    "sourceAbsentDevice": "4B675A..4B6764 returns0 when globalImmersionproject696DD4 isnull; 496523 ignoresreturnandcontinuesDEF",
+    "nativeWebBehavior": "No compatible Immersiondevice/project; preserve original no-device no-op."
+  },
+  "nativeContract": {
+    "scope": "Source actor268 successful full physical block only",
+    "timing": "BattleTriggerEffect announcement consumed once by next zero-damage attack at EAnimationEvents::HIT",
+    "guards": [
+      "stack alive",
+      "same valid position",
+      "clear pending announcements at next action",
+      "controller lifetime confines records to current battle"
+    ],
+    "authority": "Only BattleStackAttacked changes damage/HP; cosmetic pack does not heal or mutate armor"
+  }
+}

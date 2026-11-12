@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "report": {
+    "initial-refresh-264": {
+      "initial": [
+        4,
+        7,
+        10,
+        20
+      ],
+      "adjusted": [
+        7,
+        7,
+        10,
+        20
+      ]
+    },
+    "gain-save-unequip-264": {
+      "changed": [
+        7,
+        8,
+        10,
+        20
+      ],
+      "refreshed": [
+        8,
+        8,
+        10,
+        20
+      ],
+      "restored": [
+        4,
+        8,
+        10,
+        20
+      ],
+      "savedBytes": 118674
+    },
+    "initial-refresh-265": {
+      "initial": [
+        4,
+        7,
+        10,
+        20
+      ],
+      "adjusted": [
+        4,
+        7,
+        20,
+        20
+      ]
+    },
+    "gain-save-unequip-265": {
+      "changed": [
+        4,
+        7,
+        21,
+        20
+      ],
+      "refreshed": [
+        4,
+        7,
+        20,
+        20
+      ],
+      "restored": [
+        4,
+        7,
+        11,
+        20
+      ],
+      "savedBytes": 118399
+    }
+  },
+  "engineWasmSHA256": "1b518e40dbd50599d0595963fd07867769ebd12d50e0e646fc82981d6a3e420c",
+  "scope": "Native state/packet controls passed; explicit API carried hero ID. A subsequent real-button integration control identified missing hero ID in UI callback; activation waits for corrected UI validation."
+}

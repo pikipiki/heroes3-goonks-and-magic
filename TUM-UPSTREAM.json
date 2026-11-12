@@ -27,7 +27,7 @@
     "buildings": "Five fourth-upgrade town chains with ERA building77 costs; advanced building artwork reused",
     "abilities": "Source-scoped native policies; inherited WoG behavior is distinguished from proven ERA behavior"
   },
-  "remaining": "Complete ERA 3.5 compatibility remains false. Original generic creature-specialist battle progression and the six-entry necromancy table are adapted; machine specialist extras, unclosed neutral stages, eighth faction rosters and arbitrary conditional ERM remain disabled.",
+  "remaining": "The complete crystal chain, machine specialists, additional source banks,96 source artifacts and16 of18 eighth-faction actors are active. Conflux355/356,14 remaining artifact contracts, related dependencies and documented combat-order gaps remain under validation; complete ERA compatibility is false.",
   "vcmiCompatibilityFixes": [
     "badLuckDice denominators converted to badLuckChance weights [2,4,6] for the native 24-sided luck roll",
     "Artifact bonuses converted to named objects; scenarioBonus graphics renamed",
@@ -38,10 +38,10 @@
     "Mobile construction panel opens the native hall for all advanced upgrade tiers"
   ],
   "activeContent": {
-    "tumCreatures": 19,
-    "artifacts": 63,
-    "mapObjects": 37,
-    "experienceProfiles": 242,
+    "tumCreatures": 44,
+    "artifacts": 96,
+    "mapObjects": 42,
+    "experienceProfiles": 267,
     "fourthUpgradeTowns": [
       "castle",
       "rampart",
@@ -56,12 +56,15 @@
     "baseThirdUpgradeTowns": 9,
     "source35PrimitiveStatCorrections": 66,
     "source35ThirdDwellingCosts": 63,
-    "intrinsicFearlessCorrections": 6
+    "intrinsicFearlessCorrections": 6,
+    "eighthFactionActors": 16,
+    "eighthFactionActorsRequired": 18,
+    "eighthFactionRecruitmentEnabled": false
   },
-  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.38-engine.tar.gz",
-  "engineArchiveSHA256": "d5a0f9c8b937670f1b58581d6c40a8bff39b00647a2a060525a1064a8b7125a2",
-  "wasmSHA256": "9b35c0b49206b3c38f10e45cf470d823e5407e839736aae5656215363512acc5",
-  "engineAttribution": "Native nine-town stabilization candidate with reviewed bridge C9 source plus merged Goonk0.4.36 MobileBridge/CCastleInterface changes from a3ebaca. ninja -j32 html5 PASS14targets. Earlier proofs keep original hashes and do not all validate this final binary.",
+  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.155-engine.tar.gz",
+  "engineArchiveSHA256": "4ff8ad3e84f834cefc8c167524e88ce16095ce76f49e5b4dd95a07d47b40c67f",
+  "wasmSHA256": "efdde3e2d7301dd2bc36bcc293f02809f973afbe01066a231dd74a928c646dc8",
+  "engineAttribution": "Release0.4.155: clean504-target rebuild and recorded incremental ninja -j32 html5 builds; exact112 modified native source hashes in outputs/wog-priorities-0.4.147/phase7-native-source-sha256.json. Individual reports retain the binary SHA actually tested.",
   "priorDataOnlyReview": {
     "release": "0.4.34",
     "baseCommit": "6bfa181327f9e7e97dcc8e993c55ec28c8ab6491",
@@ -70,31 +73,20 @@
     "attribution": "Historical prior review only. Native startup is rerun on this release engine; source numerical/cost/fear evidence keeps original hashes."
   },
   "knownCheckpointLimitations": [
-    "Full TUM ERA3.5 compatibility remains false. This release is limited to the original nine town evolutions and reviewed corrections.",
-    "Native cfg personal HATE uses flat damage; XP h remains percentage. Earlier18-case C9 proof is separately attributed, not a claim of every global fractional rounding boundary.",
-    "Source fear applies only to registered and marked source producers; it does not emulate the process-wide Windows CRT stream.",
-    "Optional DeathBlowCRT policy has no active enrollment. Seven additional generic neutral creatures and additional artifacts/banks/options remain held.",
-    "Current campaign, physical-iPhone and broad save-version compatibility are not established by bounded town regressions."
+    "Full TUM/ERA compatibility and an arbitrary ERM interpreter are not established.",
+    "Conflux355/356 and dependent eighth-town recruitment remain disabled. Fifteen source artifact contracts remain inactive.",
+    "Source combat-order and FireShield/g% gaps are tracked explicitly in source-combat-gap-backlog.json; no global parity claim is made.",
+    "Atma initial-map equipment uses documented deterministic initialization; source352 undefined second injury uses stablezero, as requested.",
+    "Each native report retains its own build attribution. Physical devices, all campaigns and broad cross-version save compatibility are not covered by these bounded checks."
   ],
   "fullTum35Compatibility": false,
   "stabilizationRelease": {
-    "appVersion": "0.4.38",
-    "baseCommit": "53218aeca32d0d1755cad381de4178fe8ef905ec",
-    "status": "validated candidate; awaiting publication",
-    "noNewArtifacts": true,
-    "noNewBanks": true,
-    "unactivated": [
-      "seven generic neutrals",
-      "DeathBlowCRT enrollments",
-      "remaining ERA scripts/options"
-    ],
-    "nativeChanges": true,
-    "nativeTownCases": 9,
-    "evidence": "outputs/native-evidence/towns038/report.json",
+    "appVersion": "0.4.155",
+    "baseCommit": "4a0bf7d505f20b36cd25b0c304dc489d600b64d1",
+    "status": "verified checkpoint",
+    "evidence": "outputs/wog-priorities-0.4.147/validation.json",
     "node": {
-      "passed": 377,
-      "skipped": 22,
-      "failed": 0
+      "status": "pending isolated review-tree run"
     }
   },
   "historicalDataOnlyRelease035": {
@@ -165,5 +157,38 @@
     "saveReloadEffectiveBonusesPreserved": true,
     "nativeCodeChanged": false,
     "scope": "One Castle chain with real earned XP;rank-threshold control is fixture-only,not a balance change or full ERA guarantee."
+  },
+  "historicalCheckpoint038": {
+    "engineArchive": "outputs/vcmi-wasm-goonk-0.4.38-engine.tar.gz",
+    "engineArchiveSHA256": "d5a0f9c8b937670f1b58581d6c40a8bff39b00647a2a060525a1064a8b7125a2",
+    "wasmSHA256": "9b35c0b49206b3c38f10e45cf470d823e5407e839736aae5656215363512acc5",
+    "engineAttribution": "Native nine-town stabilization candidate with reviewed bridge C9 source plus merged Goonk0.4.36 MobileBridge/CCastleInterface changes from a3ebaca. ninja -j32 html5 PASS14targets. Earlier proofs keep original hashes and do not all validate this final binary.",
+    "stabilizationRelease": {
+      "appVersion": "0.4.38",
+      "baseCommit": "53218aeca32d0d1755cad381de4178fe8ef905ec",
+      "status": "validated candidate; awaiting publication",
+      "noNewArtifacts": true,
+      "noNewBanks": true,
+      "unactivated": [
+        "seven generic neutrals",
+        "DeathBlowCRT enrollments",
+        "remaining ERA scripts/options"
+      ],
+      "nativeChanges": true,
+      "nativeTownCases": 9,
+      "evidence": "outputs/native-evidence/towns038/report.json",
+      "node": {
+        "passed": 377,
+        "skipped": 22,
+        "failed": 0
+      }
+    },
+    "knownCheckpointLimitations": [
+      "Full TUM ERA3.5 compatibility remains false. This release is limited to the original nine town evolutions and reviewed corrections.",
+      "Native cfg personal HATE uses flat damage; XP h remains percentage. Earlier18-case C9 proof is separately attributed, not a claim of every global fractional rounding boundary.",
+      "Source fear applies only to registered and marked source producers; it does not emulate the process-wide Windows CRT stream.",
+      "Optional DeathBlowCRT policy has no active enrollment. Seven additional generic neutral creatures and additional artifacts/banks/options remain held.",
+      "Current campaign, physical-iPhone and broad save-version compatibility are not established by bounded town regressions."
+    ]
   }
 }

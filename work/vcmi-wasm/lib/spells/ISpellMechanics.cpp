@@ -19,6 +19,7 @@
 #include "../battle/Unit.h"
 
 #include "../mapObjects/CGHeroInstance.h"
+#include "../era/EraInterferenceState.h"
 
 #include "../serializer/JsonDeserializer.h"
 #include "../serializer/JsonSerializer.h"
@@ -250,6 +251,16 @@ void BattleCast::castEval(ServerCallback * server, Target target)
 
 bool BattleCast::castIfPossible(ServerCallback * server, Target target)
 {
+    if(eraArtifactMassHypnotize)
+    {
+        // CSpell::canBeCast creates a fresh, unmarked event and loses the
+        // source253 HP32/actual-threshold contract. Preflight this exact event.
+        detail::ProblemImpl ignored;
+        auto mechanics=spell->battleMechanics(this);
+        if(!mechanics->canBeCast(ignored))return false;
+        cast(server,std::move(target));
+        return true;
+    }
 	if(spell->canBeCast(cb, mode, caster))
 	{
 		cast(server, std::move(target));
@@ -354,8 +365,11 @@ BaseMechanics::BaseMechanics(const IBattleCast * event):
 {
 	caster = event->getCaster();
 	eraExperiencePreAttack = event->isEraExperiencePreAttack();
+	eraArtifactMassHypnotize = event->isEraArtifactMassHypnotize();
 
 	casterSide = cb->playerToSide(caster->getCasterOwner());
+    const auto * interferenceHero=dynamic_cast<const CGHeroInstance *>(caster);
+    const auto interference=era_compat::sourceInterferencePower(*cb,interferenceHero);
 
 	{
 		auto value = event->getSpellLevel();
@@ -369,12 +383,13 @@ BaseMechanics::BaseMechanics(const IBattleCast * event):
 	}
 	{
 		auto value = event->getEffectPower();
-		effectPower = value.value_or(caster->getEffectPower(owner));
+		effectPower = value.value_or(interference?interference->effective:caster->getEffectPower(owner));
 		vstd::amax(effectPower, 0);
 	}
 	{
 		auto value = event->getEffectDuration();
-		effectDuration = value.value_or(caster->getEnchantPower(owner));
+		const int durationDelta=interference?interference->effective-interferenceHero->getPrimSkillLevel(PrimarySkill::SPELL_POWER):0;
+        effectDuration = value.value_or(caster->getEnchantPower(owner)+durationDelta);
 		vstd::amax(effectDuration, 0); //???
 	}
 	{

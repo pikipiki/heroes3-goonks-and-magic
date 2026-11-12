@@ -34,6 +34,7 @@ struct CasualtiesAfterBattle
 	std::vector<TStackAndItsNewCount> newStackCounts;
 	std::vector<ArtifactLocation> removedWarMachines;
 	TSummoned summoned;
+    std::map<int,std::pair<CreatureID,TQuantity>> sourceConvertedSlots;
 	ObjectInstanceID heroWithDeadCommander; //TODO: unify stack locations
 
 	CasualtiesAfterBattle(const CBattleInfoCallback & battle, BattleSide sideInBattle);

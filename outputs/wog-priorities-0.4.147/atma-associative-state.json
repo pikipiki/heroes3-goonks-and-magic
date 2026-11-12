@@ -1,0 +1,46 @@
+{
+  "binarySHA256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+  "conclusion": "The supplied ERA associative variable dictionary lowercases keys before hashing/lookup. Source k_AXE_Hero and k_axe_Hero identify the same persisted integer; a typed264 artifact marker preserves this identity.",
+  "initialMissingInteger": 0,
+  "addresses": {
+    "getInteger": "004A6534..004A658D: lookup, defaultEBX=0 when absent",
+    "setInteger": "004A65FC..004A6649: shared find-or-create480754",
+    "exportDictionaryPointer": "004B07C8 contains00758A60",
+    "dictionaryConstruction": "004A9321..004A9332 ->004248F0",
+    "normalizerInstallation": "004248FC passes0040B7A0; constructor422D7F stores it in+24",
+    "lookupNormalizer": "004233CB..004233D0 calls dictionary+24 before hash",
+    "normalizer": "0040B7A0..0040B7D6 copies key then calls thunk407AE8",
+    "lowercaseImport": {
+      "dll": "user32.dll",
+      "name": "CharLowerBuffA",
+      "iat": "00EBE7EC"
+    }
+  },
+  "boundedCode": [
+    {
+      "address": "4a6534",
+      "length": 64,
+      "sha256": "2b8cf584ef80b7e8bb46f8f300bc4465c1ee6f9ce107f6034854c955d91538a4"
+    },
+    {
+      "address": "4a65fc",
+      "length": 64,
+      "sha256": "22c7528ae8945367de66aa11551e5ee780898be7ffb69410972fa0ec1ab77964"
+    },
+    {
+      "address": "4248f0",
+      "length": 64,
+      "sha256": "29c7c732f4495d987d28af77660febb97511ea08e6be7f2983379306dfb81167"
+    },
+    {
+      "address": "42339c",
+      "length": 64,
+      "sha256": "5aa0853ecc26a3c73fd198a3326a5656aedf854e40b35ba79e9d2fdc4f2c79d4"
+    },
+    {
+      "address": "40b7a0",
+      "length": 64,
+      "sha256": "a3253a7655d0a8a31e0515c7d0aeba120d290a9aa6c6cfd5ec83b284327516c1"
+    }
+  ]
+}

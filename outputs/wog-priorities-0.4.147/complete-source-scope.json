@@ -1,0 +1,4091 @@
+{
+  "source": "Supplied Third Upgrade Mod3.5 source tree, not all unrelated ERA/WoG add-ons",
+  "fullEraCompatibility": false,
+  "summary": {
+    "sourceArtifacts": 110,
+    "activeArtifacts": 96,
+    "inactiveArtifacts": 14,
+    "sourceScripts": 109,
+    "sourceTriggerDeclarations": 484
+  },
+  "interpretation": "Entity activation records native content availability. It does not establish global ERM parity. Inactive artifacts list source obligations; scripts require native event equivalents rather than Windows pointer execution.",
+  "sourceArtifacts": [
+    {
+      "sourceId": 157,
+      "hasCfg": true,
+      "cfgSHA256": "9d326864ca89ce3e2772cebd3fbc64875f1050369256564cced32729d34cf801",
+      "nativeActive": true,
+      "active": {
+        "config": "mod/wake-of-gods/Mods/artifacts/content/config/artifacts/crimsonShieldOfRetribution.json",
+        "name": "Crimson Shield of Retribution",
+        "identity": "wake-of-gods.artifacts:crimsonShieldOfRetribution",
+        "existingIdentity": true
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 171,
+      "name": "Hammer of Doom",
+      "hasCfg": true,
+      "cfgSHA256": "f46d09ece0a61e15d784d9552a2d92cc24742952976247bfdecab18083f00ba5",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Hammer of Doom"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 172,
+      "name": "Eclipse Shield",
+      "hasCfg": true,
+      "cfgSHA256": "1fb1220f61e718d5fa255146703483c53463913f5e57c0449daa3d359856d7e5",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Eclipse Shield"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 173,
+      "name": "Helmet of Fallen Paladin",
+      "hasCfg": true,
+      "cfgSHA256": "f20d63311a4c69bbbc630e6e546addb831ef5343de00d37683b3392441e05714",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Helmet of Fallen Paladin"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 174,
+      "name": "Dragonrider's Armor",
+      "hasCfg": true,
+      "cfgSHA256": "5fc6c8adcb57223e6b8abf4b1e9dfdd0373ca10a7147e6f4e661aeda3c7a775b",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Dragonrider's Armor"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 175,
+      "name": "Trident of Dominion",
+      "hasCfg": true,
+      "cfgSHA256": "e4e2a2c09b0797c1d601fd4de968a109aa0f92007e01ad45f7dbb6171b6da5b1",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Trident of Dominion"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 176,
+      "name": "Shield of Naval Glory",
+      "hasCfg": true,
+      "cfgSHA256": "1e7ba14c946af628057f17eca0d0c7e2c2eca404992101ca8816d537c5d6e9a1",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Shield of Naval Glory"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 177,
+      "name": "Crown of the Five Seas",
+      "hasCfg": true,
+      "cfgSHA256": "bb577d2f3a11cc90cef730cf636f26396f6481bb94eb7ca8717480c881b6f75e",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Crown of the Five Seas"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 178,
+      "name": "Royal Armor of Nix",
+      "hasCfg": true,
+      "cfgSHA256": "d133fbeed87b2e932b178481cadbf097dac8c42fe834cf2fcdd6ce7b2bf88b1e",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Royal Armor of Nix"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 179,
+      "name": "Golden Goose",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-utility-artifacts.json",
+        "name": "Golden Goose"
+      },
+      "scriptedPolicies": [
+        "goldenGoose"
+      ]
+    },
+    {
+      "sourceId": 180,
+      "name": "Diplomat's Cloak",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-advanced-artifacts.json",
+        "name": "Diplomat's Cloak"
+      },
+      "scriptedPolicies": [
+        "diplomatCloakLegacy"
+      ]
+    },
+    {
+      "sourceId": 181,
+      "name": "Pendant of Reflection",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-utility-artifacts.json",
+        "name": "Pendant of Reflection"
+      },
+      "scriptedPolicies": [
+        "reflection"
+      ]
+    },
+    {
+      "sourceId": 182,
+      "name": "Ironfist of the Dark Paladin",
+      "hasCfg": true,
+      "cfgSHA256": "b81241f4d2339c5ed4b21d0c9aba64caf16093aadc2898ac4d464172da2aa600",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Ironfist of the Dark Paladin"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 183,
+      "name": "Pendant of Downfall",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-opponent-artifacts.json",
+        "name": "Pendant of Downfall"
+      },
+      "scriptedPolicies": [
+        "enemyMorale2"
+      ]
+    },
+    {
+      "sourceId": 184,
+      "name": "Shaman's Puppet",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-opponent-artifacts.json",
+        "name": "Shaman's Puppet"
+      },
+      "scriptedPolicies": [
+        "enemyLuck2"
+      ]
+    },
+    {
+      "sourceId": 185,
+      "name": "Demon's Horseshoe",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-opponent-artifacts.json",
+        "name": "Demon's Horseshoe"
+      },
+      "scriptedPolicies": [
+        "enemyLuck1"
+      ]
+    },
+    {
+      "sourceId": 186,
+      "name": "Hideous Mask",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-opponent-artifacts.json",
+        "name": "Hideous Mask"
+      },
+      "scriptedPolicies": [
+        "enemyMorale1"
+      ]
+    },
+    {
+      "sourceId": 187,
+      "name": "Runes of Imminency",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-opponent-artifacts.json",
+        "name": "Runes of Imminency"
+      },
+      "scriptedPolicies": [
+        "enemyLuck1"
+      ]
+    },
+    {
+      "sourceId": 188,
+      "name": "Ring of Suppression",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-opponent-artifacts.json",
+        "name": "Ring of Suppression"
+      },
+      "scriptedPolicies": [
+        "enemyMorale1"
+      ]
+    },
+    {
+      "sourceId": 189,
+      "name": "Mana Crystal",
+      "hasCfg": true,
+      "cfgSHA256": "69ccb17d14a1ba1cacd3af5c2371ef731354299ca11cd26ccd9c9075224ff508",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Mana Crystal"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 190,
+      "name": "Flask of Mana",
+      "hasCfg": true,
+      "cfgSHA256": "11342951cff3609ee696e7fd8115f2cba37ef9b91babb5c169a5b40212777769",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Flask of Mana"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 191,
+      "name": "Vial of Mana",
+      "hasCfg": true,
+      "cfgSHA256": "1d6bba0d8f1baf883b8c306471233c48b40e8d331f6ffb818aa8efe927caf6b5",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Vial of Mana"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 192,
+      "name": "Soothsayer's Boots",
+      "hasCfg": true,
+      "cfgSHA256": "0f2880fd1a64d400377d241a9c10b54437ca107763fda708ebb9480c636a3f57",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-artifacts.json",
+        "name": "Soothsayer's Boots"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 193,
+      "name": "Wizard's Ring",
+      "hasCfg": true,
+      "cfgSHA256": "da8b085ae8d2a644dd3cf3998fcbef93d2e0845833d8fbb221a0298114076359",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-artifacts.json",
+        "name": "Wizard's Ring"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 194,
+      "name": "Robe of the Magi",
+      "hasCfg": true,
+      "cfgSHA256": "81472bd5e88ce4a46205e5cf875cae6c8a802407a307b5fc89f524c6bb2e4502",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-artifacts.json",
+        "name": "Robe of the Magi"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 195,
+      "name": "Magus Staff",
+      "hasCfg": true,
+      "cfgSHA256": "ad59980c3634939668524780e0471e2dbb2ce23d89064db31a7c0de47c1b694b",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-artifacts.json",
+        "name": "Magus Staff"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 196,
+      "name": "Fencer's Fist Shield",
+      "hasCfg": true,
+      "cfgSHA256": "3058025132382031fc4802b69aa26a149c0a878f780cb21f3ea98b085b763ef5",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Fencer's Fist Shield"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 197,
+      "name": "Ring of Elements",
+      "hasCfg": true,
+      "cfgSHA256": "2703966559a06d167c8a90906cd0bd476f919fbf3b41d6086b0fb250b07c1156",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-utility-artifacts.json",
+        "name": "Ring of Elements"
+      },
+      "scriptedPolicies": [
+        "elementalExclusivity"
+      ]
+    },
+    {
+      "sourceId": 198,
+      "name": "Observer's Eye",
+      "hasCfg": true,
+      "cfgSHA256": "301bdb761b499c264e200d8da9ae6acd4d05f97aa6aa4c29dc6302af2335f321",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Observer's Eye"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 199,
+      "name": "Astral Shield",
+      "hasCfg": true,
+      "cfgSHA256": "10640059cb52a3f1b1e61fcccd29c73e70613449054a01c808c8cd537d1b9f9d",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Astral Shield"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 200,
+      "name": "Ice Shield",
+      "hasCfg": true,
+      "cfgSHA256": "850a70b554a8df182447ab8a12a9130406e43472d04134af2e60d1e3f97fda93",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Ice Shield"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 201,
+      "name": "Ring of Negativity",
+      "hasCfg": true,
+      "cfgSHA256": "09a18f38e268b82cd1200852c90248c912fec2491ef63dc9d8e1fa87d6ea36f1",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Ring of Negativity"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 202,
+      "name": "Crossbow",
+      "hasCfg": true,
+      "cfgSHA256": "7836e96d0da7ddc1b587a7044fac84b9b1e5fe4c45853296ca0ede335536facb",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-conversion-artifacts.json",
+        "name": "Crossbow"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 203,
+      "name": "Strong Armor",
+      "hasCfg": true,
+      "cfgSHA256": "b867f85006b32ce17e319dc8c65fb68b35ee1526ef29440f396ac2d110d003a3",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Strong Armor"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 204,
+      "name": "Ionized Armor",
+      "hasCfg": true,
+      "cfgSHA256": "7699561f6872fe722d9faac4c8132f5e9e8174c9a4d073a36892aaf1885e624f",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Ionized Armor"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 205,
+      "name": "Green Armor",
+      "hasCfg": true,
+      "cfgSHA256": "d8c87a9585d0d17507fa08a779d93190a7dd5336bbfe88b0bc2c48a083de38fc",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Green Armor"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 206,
+      "name": "Chilled Armor",
+      "hasCfg": true,
+      "cfgSHA256": "4ba5a3866f867c674bb808c0fb1c0359b34e815f052c29658814e882315e26c2",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Chilled Armor"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 207,
+      "name": "Streamline Armor",
+      "hasCfg": true,
+      "cfgSHA256": "f6fb1797179b6e3a4942e79b1adf9dbfc519bd392dc9592b5a5c0131683802dd",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Streamline Armor"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 208,
+      "name": "Ring of Precision",
+      "hasCfg": true,
+      "cfgSHA256": "27f6659467d980c26cc1c0587c7c470ab64e6aed00e30dc279cd62972b3ea6e6",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Ring of Precision"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 209,
+      "name": "Ring of the Thousand Storms",
+      "hasCfg": true,
+      "cfgSHA256": "0b8cb278564c51730e696e68c617bb4277a4467a367d6ff7ddd74a340aa4238b",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Ring of the Thousand Storms"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 210,
+      "name": "Shield of the Dark Paladin",
+      "hasCfg": true,
+      "cfgSHA256": "5d3848cba2bb2e7937f0ceff2608b459b2ad4c25425f20df4a95d6e79da2eae2",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-artifacts.json",
+        "name": "Shield of the Dark Paladin"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 211,
+      "name": "Arrow Quiver",
+      "hasCfg": true,
+      "cfgSHA256": "876719455a5f12b92869155c3c3325793380650ad976372612cb4022cdd4c14b",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Arrow Quiver"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 212,
+      "name": "Pendant of Hastiness",
+      "hasCfg": true,
+      "cfgSHA256": "be0cc879cd8487c59491c0279ce920e4135b8acabb9af0c3b018df19132c72d3",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Pendant of Hastiness"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 213,
+      "name": "Foggy Shield",
+      "hasCfg": true,
+      "cfgSHA256": "13497ea7fd74748a67f9467c15cbb4963afa9d4ca5141166d198dfe9eeba6bb7",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Foggy Shield"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 214,
+      "name": "Enchanted Gloves",
+      "hasCfg": true,
+      "cfgSHA256": "2094106f7efff196db84309f11d198de1236b85af0529387b54db0ea3d660c32",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Enchanted Gloves"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 215,
+      "name": "Gloves of Arcane Fire",
+      "hasCfg": true,
+      "cfgSHA256": "dca2d5a85c6c3d9b99585be650c8162dff7536336e0e36875f5c0f6155976a43",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Gloves of Arcane Fire"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 216,
+      "name": "Stone Shield",
+      "hasCfg": true,
+      "cfgSHA256": "0fa306711ec1d48133518cd09319b4562693c087e5dd34bcd8b0be06e4b0bf82",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Stone Shield"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 217,
+      "name": "Sacrificial Dagger",
+      "hasCfg": true,
+      "cfgSHA256": "9171addfe6a1223814417ed6abef3407a6058996a9a3a43515ca93a7aa456dd2",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Sacrificial Dagger"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 218,
+      "name": "Gelu's Bow",
+      "hasCfg": true,
+      "cfgSHA256": "d30a88c821265333081d2bfbdb28ec125df77ef56d982c89d443f3e3dec5d9aa",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Gelu's Bow"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 219,
+      "name": "Compendium of Magic",
+      "hasCfg": true,
+      "cfgSHA256": "69de00f9b975c258332668da0558f5193be068e0d6f6d76212aaf2b47cb4354b",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-opening-summons.json",
+        "name": "Compendium of Magic"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 220,
+      "name": "Lightning Rod",
+      "hasCfg": true,
+      "cfgSHA256": "6d290b48866e7e6b892f588b3931874bd6790abe180cacb81c3ddd1fde143f5e",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-advanced-artifacts.json",
+        "name": "Lightning Rod"
+      },
+      "scriptedPolicies": [
+        "lightningRod"
+      ]
+    },
+    {
+      "sourceId": 221,
+      "name": "Dwarven Helmet",
+      "hasCfg": true,
+      "cfgSHA256": "ab1f2ce65887fea0b751e067b7500188653c43f82b5dc859c458cb40dbe18c16",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Dwarven Helmet"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 222,
+      "name": "Dwarven Mine",
+      "hasCfg": true,
+      "cfgSHA256": "9a80607a49fd1a25cec223a1c568a8d0c7df512fd8f7aea7ecbc87348ad21e22",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-advanced-artifacts.json",
+        "name": "Dwarven Mine"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 223,
+      "name": "Ritual dagger",
+      "hasCfg": true,
+      "cfgSHA256": "32c48427d0f69f6a0cabe51f07e65ee48e13c7ac20dae7da29e591dc182172b0",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-artifacts.json",
+        "name": "Ritual dagger"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 224,
+      "name": "Sacred War Hammer",
+      "hasCfg": true,
+      "cfgSHA256": "dac565f93888530cae5a19f5f8a4f91deb747281d817e80731d618360aeaf597",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Sacred War Hammer"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 225,
+      "name": "Tiara of Knowledge",
+      "hasCfg": true,
+      "cfgSHA256": "905c228d595911389635e9cfa8bb6aa0baeb6adeee928be6f0e29fc0139664c7",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Tiara of Knowledge"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 226,
+      "name": "Shield of the Ancients",
+      "hasCfg": true,
+      "cfgSHA256": "03c5c01f0214f7868cae2605a9bb867c37a11eef17026e2f0a7bc3ad317863d9",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Shield of the Ancients"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 227,
+      "name": "Minor Phylactery",
+      "hasCfg": true,
+      "cfgSHA256": "fe5c3e30857ff4633ef6a2075d703c2ab6b1d283b67cdaa7cce73db621a7f9eb",
+      "nativeActive": false,
+      "requiredPolicies": [],
+      "diagnostics": [
+        {
+          "source": "227.cfg",
+          "line": 2,
+          "key": "Autosummon",
+          "value": 286,
+          "kind": "creature",
+          "code": "unresolved-id",
+          "id": 286
+        }
+      ],
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 228,
+      "name": "Major Phylactery",
+      "hasCfg": true,
+      "cfgSHA256": "2c163c83d611dbcebe97e2efe26855f3914f412fb590c4b5fc6f73185f64e630",
+      "nativeActive": false,
+      "requiredPolicies": [],
+      "diagnostics": [
+        {
+          "source": "228.cfg",
+          "line": 2,
+          "key": "Autosummon",
+          "value": 286,
+          "kind": "creature",
+          "code": "unresolved-id",
+          "id": 286
+        }
+      ],
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 229,
+      "name": "Supreme Phylactery",
+      "hasCfg": true,
+      "cfgSHA256": "8b5ee8be336adbcae131798076b2dbc5d27291c787e38bf7e235bf2ddce346a8",
+      "nativeActive": false,
+      "requiredPolicies": [],
+      "diagnostics": [
+        {
+          "source": "229.cfg",
+          "line": 2,
+          "key": "Autosummon",
+          "value": 286,
+          "kind": "creature",
+          "code": "unresolved-id",
+          "id": 286
+        }
+      ],
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 230,
+      "name": "Relic Phylactery",
+      "hasCfg": true,
+      "cfgSHA256": "1c29affaa2251466b44fa3c9032cf748c1e4ac67e6fb48fdf0d177da3deab9cf",
+      "nativeActive": false,
+      "requiredPolicies": [],
+      "diagnostics": [
+        {
+          "source": "230.cfg",
+          "line": 2,
+          "key": "Autosummon",
+          "value": 286,
+          "kind": "creature",
+          "code": "unresolved-id",
+          "id": 286
+        }
+      ],
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 231,
+      "name": "Black Luster Sword",
+      "hasCfg": true,
+      "cfgSHA256": "531c59606d4fad2e6bc026d81ce58e117d4f988997339514b2040bc4ed97ca98",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-opening-summons.json",
+        "name": "Black Luster Sword"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 232,
+      "name": "Apocalypse's Blade",
+      "hasCfg": true,
+      "cfgSHA256": "8c5d6191742f4e55ae6db86268382b54828c1b842fdd917cfa985130b539be3b",
+      "nativeActive": false,
+      "requiredPolicies": [],
+      "diagnostics": [
+        {
+          "source": "232.cfg",
+          "line": 8,
+          "key": "Autosummon",
+          "value": 294,
+          "kind": "creature",
+          "code": "unresolved-id",
+          "id": 294
+        },
+        {
+          "source": "232.cfg",
+          "line": 0,
+          "code": "unresolved-id",
+          "kind": "artifact",
+          "id": 236
+        }
+      ],
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 233,
+      "name": "Scepter of Magic",
+      "hasCfg": true,
+      "cfgSHA256": "dca2aeaf2f98a5eb3e6ae97d490b8d6e51afbca1f3ab46bdbf593273efd653e4",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Scepter of Magic"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 234,
+      "name": "Axe of Might",
+      "hasCfg": true,
+      "cfgSHA256": "9c3ffd653a07e0a9fdfcea4d71bcc7132731581281b0e776c58b4134692b5bbe",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Axe of Might"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 235,
+      "name": "Sun Emperor Chainmail",
+      "hasCfg": true,
+      "cfgSHA256": "108d5a87698c25baa58675cc68b71fc289ade5abbe119c91b5d3b84f6cc98f7b",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Sun Emperor Chainmail"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 236,
+      "name": "Shield of the Vermillion Bird",
+      "hasCfg": true,
+      "cfgSHA256": "63111c910b899b340517007d948f87bd2ad40851d9a37ad3eac1514b1718b93a",
+      "nativeActive": false,
+      "requiredPolicies": [],
+      "diagnostics": [
+        {
+          "source": "236.cfg",
+          "line": 5,
+          "key": "Autosummon",
+          "value": 294,
+          "kind": "creature",
+          "code": "unresolved-id",
+          "id": 294
+        }
+      ],
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 237,
+      "name": "Crown of the Fire King",
+      "hasCfg": true,
+      "cfgSHA256": "b0880025186b88e6189ece828bdd866cb93eadcfc6b4bb77a06f0cf1aaed829d",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Crown of the Fire King"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 238,
+      "name": "Orb of Chaos",
+      "hasCfg": true,
+      "cfgSHA256": "a9a27247f773e5d17afd0ee3430752e42d40759b6e0febd953ac30219fd0d2d5",
+      "nativeActive": false,
+      "requiredPolicies": [
+        {
+          "kind": "orbChaos",
+          "artifactId": 238,
+          "source": "TUM Data/s/Third Upgrade Mod.erm:1113-2040; see special-policies.json"
+        }
+      ],
+      "diagnostics": [
+        {
+          "source": "238.cfg",
+          "code": "unbound-runtime-adapter",
+          "kind": "orbChaos"
+        }
+      ],
+      "scriptedPolicies": [
+        "orbChaos"
+      ]
+    },
+    {
+      "sourceId": 239,
+      "name": "Pendant of Magic",
+      "hasCfg": true,
+      "cfgSHA256": "2b23761ff43da632f6b099777ce32d5f1b0557d61711bc19a4ff0a3cb2730197",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Pendant of Magic"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 240,
+      "name": "Regenerative Necklace of Mana",
+      "hasCfg": true,
+      "cfgSHA256": "a932e1c85ee7209dd245127fbbdb292723c51ab1d7bb6126499ddeb4deed5542",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Regenerative Necklace of Mana"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 241,
+      "name": "Bucket Helmet",
+      "hasCfg": true,
+      "cfgSHA256": "e54db5d1b34113f2858ec3fe8103a1bc50bad0c58b486749bd20f8bd5699851c",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Bucket Helmet"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 242,
+      "name": "Field Martial's Ring",
+      "hasCfg": true,
+      "cfgSHA256": "0fd4a7eaa4f8bd6b3e36ff6c6d63602794d97061a9e2c3afde06c80c5d113e32",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Field Martial's Ring"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 243,
+      "name": "Horseshoe",
+      "hasCfg": true,
+      "cfgSHA256": "9ad1816bbcc706a0f43859393b0f234a7d7a6092c62c688982531a3da6d07858",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Horseshoe"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 244,
+      "name": "Crystal Glyph",
+      "hasCfg": true,
+      "cfgSHA256": "78df245f0df6e985078856898de060d28f065278415f19a87d651003fec153ab",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Crystal Glyph"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 245,
+      "name": "General's Order",
+      "hasCfg": true,
+      "cfgSHA256": "c93a4cc04a5840059034fd3b4d3a12344ce0ad619053f0ee88bca0f9894d50da",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "General's Order"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 246,
+      "name": "Ring of Fortune",
+      "hasCfg": true,
+      "cfgSHA256": "ba53ab315c93bc06df69249c13e8db1e34096cecdca6fcb274ebb2b6788a38c8",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Ring of Fortune"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 247,
+      "name": "Mithril Cuirass",
+      "hasCfg": true,
+      "cfgSHA256": "3bdb46e04c6dc1d98c86956d7fec08958698a7ff17f4067914c560c0e421a923",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Mithril Cuirass"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 248,
+      "name": "Mithril Helmet",
+      "hasCfg": true,
+      "cfgSHA256": "074b2edb7f72307a2074a4f5e5240f68540e59044c0158af1e325b45e907ed6d",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Mithril Helmet"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 249,
+      "name": "Misfortune Ring",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-opponent-artifacts.json",
+        "name": "Misfortune Ring"
+      },
+      "scriptedPolicies": [
+        "enemyLuck3"
+      ]
+    },
+    {
+      "sourceId": 250,
+      "name": "Dragon's Head",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-opponent-artifacts.json",
+        "name": "Dragon's Head"
+      },
+      "scriptedPolicies": [
+        "enemyMorale2"
+      ]
+    },
+    {
+      "sourceId": 251,
+      "name": "Panic Ring",
+      "hasCfg": true,
+      "cfgSHA256": "f0a72741187ecdbd455b344b816c73bc0a90f52d0ed670eb7485cb3bb3a4a836",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Panic Ring"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 252,
+      "name": "Pendant of Despair",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-opponent-artifacts.json",
+        "name": "Pendant of Despair"
+      },
+      "scriptedPolicies": [
+        "enemyMorale3",
+        "enemyLuck3"
+      ]
+    },
+    {
+      "sourceId": 253,
+      "name": "Ring of the Snake Eyesight",
+      "hasCfg": true,
+      "cfgSHA256": "e221acf979a46cebcd6b1dc0255ea9a5f5ae8e085ee1363feb0ca555c1109462",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-mass-hypnotize253-artifact.json",
+        "name": "Ring of the Snake Eyesight"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 254,
+      "name": "Shield of the Light Paladin",
+      "hasCfg": true,
+      "cfgSHA256": "06b324de3cec567658589cd96bf5c0c532d38a1e06ecdbefca9357aee26b2db0",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-artifacts.json",
+        "name": "Shield of the Light Paladin"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 255,
+      "name": "Axe of the Piedmont King",
+      "hasCfg": true,
+      "cfgSHA256": "346a0c7c53f4e4192306218873995874ea0354eb50a959beedb6d24dfc87cd4d",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Axe of the Piedmont King"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 256,
+      "name": "Ring of Anti-magic",
+      "hasCfg": true,
+      "cfgSHA256": "fba962478981444ba6a51d29d434e73b167d3aa9a0a8038d3fa7865de80a1125",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Ring of Anti-magic"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 257,
+      "name": "Earrings of Just Man",
+      "hasCfg": true,
+      "cfgSHA256": "dac565f93888530cae5a19f5f8a4f91deb747281d817e80731d618360aeaf597",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Earrings of Just Man"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 258,
+      "name": "Hell Baron's Gloves",
+      "hasCfg": true,
+      "cfgSHA256": "fef523b4f6a9d6d77f14bc37f548d52748c0a91b9de6bd2a4a2a2ccf5197d9b2",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Hell Baron's Gloves"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 259,
+      "name": "Helm of the Hydra Queen",
+      "hasCfg": false,
+      "nativeActive": false,
+      "requiredPolicies": [
+        {
+          "kind": "hydraQueen",
+          "artifactId": 259,
+          "source": "TUM Data/s/Third Upgrade Mod.erm:1113-2040; see special-policies.json"
+        }
+      ],
+      "diagnostics": [
+        {
+          "source": "259.cfg",
+          "code": "unbound-runtime-adapter",
+          "kind": "hydraQueen"
+        }
+      ],
+      "scriptedPolicies": [
+        "hydraQueen"
+      ]
+    },
+    {
+      "sourceId": 260,
+      "name": "Wayfarer's Boots",
+      "hasCfg": false,
+      "nativeActive": false,
+      "requiredPolicies": [
+        {
+          "kind": "wayfarer",
+          "artifactId": 260,
+          "source": "TUM Data/s/Third Upgrade Mod.erm:1113-2040; see special-policies.json"
+        }
+      ],
+      "diagnostics": [
+        {
+          "source": "260.cfg",
+          "code": "unbound-runtime-adapter",
+          "kind": "wayfarer"
+        }
+      ],
+      "scriptedPolicies": [
+        "wayfarer"
+      ]
+    },
+    {
+      "sourceId": 261,
+      "name": "Exchange Cloak",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-battle-artifacts.json",
+        "name": "Exchange Cloak"
+      },
+      "scriptedPolicies": [
+        "exchangeCloak"
+      ]
+    },
+    {
+      "sourceId": 262,
+      "name": "Amulet of the return of Samsara",
+      "hasCfg": true,
+      "cfgSHA256": "86110d62f747d5310b32514286a94aab23c747f39d057c888e0bae88b40acffd",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-battle-artifacts.json",
+        "name": "Amulet of the return of Samsara"
+      },
+      "scriptedPolicies": [
+        "massResurrection"
+      ]
+    },
+    {
+      "sourceId": 263,
+      "name": "Implosion Amplifying Bracelet",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-battle-artifacts.json",
+        "name": "Implosion Amplifying Bracelet"
+      },
+      "scriptedPolicies": [
+        "massImplosion"
+      ]
+    },
+    {
+      "sourceId": 264,
+      "name": "Atma Sword",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-atma-artifacts.json",
+        "name": "Atma Sword"
+      },
+      "scriptedPolicies": [
+        "equalAttackDefense"
+      ]
+    },
+    {
+      "sourceId": 265,
+      "name": "Atma Robe",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-atma-artifacts.json",
+        "name": "Atma Robe"
+      },
+      "scriptedPolicies": [
+        "equalPowerKnowledge"
+      ]
+    },
+    {
+      "sourceId": 266,
+      "name": "Horn of the Abyss",
+      "hasCfg": false,
+      "nativeActive": false,
+      "requiredPolicies": [
+        {
+          "kind": "hornAbyss",
+          "artifactId": 266,
+          "source": "TUM Data/s/Third Upgrade Mod.erm:1113-2040; see special-policies.json"
+        }
+      ],
+      "diagnostics": [
+        {
+          "source": "266.cfg",
+          "code": "unbound-runtime-adapter",
+          "kind": "hornAbyss"
+        }
+      ],
+      "scriptedPolicies": [
+        "hornAbyss"
+      ]
+    },
+    {
+      "sourceId": 267,
+      "name": "Cape of Silence",
+      "hasCfg": true,
+      "cfgSHA256": "a851f4c936d40338a25fb940dc3bd6afb490c994f39f8662ad21efd59cb2362d",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-silence-cape.json",
+        "name": "Cape of Silence"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 268,
+      "name": "Ring of Oblivion",
+      "hasCfg": false,
+      "nativeActive": false,
+      "requiredPolicies": [
+        {
+          "kind": "oblivion",
+          "artifactId": 268,
+          "source": "TUM Data/s/Third Upgrade Mod.erm:1113-2040; see special-policies.json"
+        }
+      ],
+      "diagnostics": [
+        {
+          "source": "268.cfg",
+          "code": "unbound-runtime-adapter",
+          "kind": "oblivion"
+        }
+      ],
+      "scriptedPolicies": [
+        "oblivion"
+      ]
+    },
+    {
+      "sourceId": 269,
+      "name": "Charm of Eclipse",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-interference-artifacts.json",
+        "name": "Charm of Eclipse"
+      },
+      "scriptedPolicies": [
+        "interference10"
+      ]
+    },
+    {
+      "sourceId": 270,
+      "name": "Seal of Sunset",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-interference-artifacts.json",
+        "name": "Seal of Sunset"
+      },
+      "scriptedPolicies": [
+        "interference10"
+      ]
+    },
+    {
+      "sourceId": 271,
+      "name": "Plate of Dying Light",
+      "hasCfg": false,
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-interference-artifacts.json",
+        "name": "Plate of Dying Light"
+      },
+      "scriptedPolicies": [
+        "interference25"
+      ]
+    },
+    {
+      "sourceId": 272,
+      "name": "Endless mug of happiness beer",
+      "hasCfg": true,
+      "cfgSHA256": "0b3b4ddc9f72df77d6712ca32930ae5cfc4b8653045804745118aeea3ac2ca7d",
+      "nativeActive": true,
+      "active": {
+        "config": "config/native-artifacts.json",
+        "name": "Endless mug of happiness beer"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 273,
+      "name": "Eye of the Green Dragon",
+      "hasCfg": true,
+      "cfgSHA256": "96fc4d138b31a3dd7047f4b4f435c52de7e11cb3a8e45848b617e92d1392f4c5",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-conversion-artifacts.json",
+        "name": "Eye of the Green Dragon"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 274,
+      "name": "Eye of the Red Dragon",
+      "hasCfg": true,
+      "cfgSHA256": "d8f010beca62134487050decf0586fec9596e3256f92bba0827238cf4a7e7216",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-conversion-artifacts.json",
+        "name": "Eye of the Red Dragon"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 275,
+      "name": "Eye of the Faerie Dragon",
+      "hasCfg": true,
+      "cfgSHA256": "09fbbc9a45e5b7e35ef1d039f05c83f3330eee0da42c29dd0f4a9578344fe087",
+      "nativeActive": false,
+      "requiredPolicies": [
+        {
+          "kind": "artifactDailyConversions",
+          "upgrades": [
+            {
+              "from": "wake-of-gods.creatures:dracolich",
+              "to": "core:fairieDragon",
+              "index": 2
+            }
+          ],
+          "cost": 0,
+          "order": "equipment slot 0..18 then pair 1..9 then army slot 0..6; immediate in-place, therefore chains can occur",
+          "source": "Emerald events.cpp:303-308"
+        }
+      ],
+      "diagnostics": [
+        {
+          "source": "275.cfg",
+          "line": 2,
+          "key": "UpgradeFrom",
+          "value": 343,
+          "kind": "creature",
+          "code": "unresolved-id",
+          "id": 343
+        }
+      ],
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 276,
+      "name": "Eye of the Rust Dragon",
+      "hasCfg": true,
+      "cfgSHA256": "dc04f0b7edd92c84c3b209914d91f7ca2132dee3591ad454d395add15e461aa2",
+      "nativeActive": false,
+      "requiredPolicies": [
+        {
+          "kind": "artifactDailyConversions",
+          "upgrades": [
+            {
+              "from": "wake-of-gods.creatures:dracolich",
+              "to": "core:rustDragon",
+              "index": 2
+            }
+          ],
+          "cost": 0,
+          "order": "equipment slot 0..18 then pair 1..9 then army slot 0..6; immediate in-place, therefore chains can occur",
+          "source": "Emerald events.cpp:303-308"
+        }
+      ],
+      "diagnostics": [
+        {
+          "source": "276.cfg",
+          "line": 2,
+          "key": "UpgradeFrom",
+          "value": 344,
+          "kind": "creature",
+          "code": "unresolved-id",
+          "id": 344
+        }
+      ],
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 277,
+      "name": "Eye of the Azure Dragon",
+      "hasCfg": true,
+      "cfgSHA256": "83ef75673d87662a9ffaeb6d1f1023f4d61007f4bff7264619971702d8e19dbd",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-conversion-artifacts.json",
+        "name": "Eye of the Azure Dragon"
+      },
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 278,
+      "name": "Prismatic Eye of the God Dragon",
+      "hasCfg": true,
+      "cfgSHA256": "581c59600b01b41b6e672364f2fb2df2dee8f4e53c287e9c0c505c0b712287d1",
+      "nativeActive": false,
+      "requiredPolicies": [],
+      "diagnostics": [
+        {
+          "source": "278.cfg",
+          "line": 4,
+          "key": "UpgradeTo",
+          "value": 346,
+          "kind": "creature",
+          "code": "unresolved-id",
+          "id": 346
+        },
+        {
+          "source": "278.cfg",
+          "line": 6,
+          "key": "UpgradeTo2",
+          "value": 346,
+          "kind": "creature",
+          "code": "unresolved-id",
+          "id": 346
+        },
+        {
+          "source": "278.cfg",
+          "line": 7,
+          "key": "UpgradeFrom3",
+          "value": 343,
+          "kind": "creature",
+          "code": "unresolved-id",
+          "id": 343
+        },
+        {
+          "source": "278.cfg",
+          "line": 9,
+          "key": "UpgradeFrom4",
+          "value": 344,
+          "kind": "creature",
+          "code": "unresolved-id",
+          "id": 344
+        },
+        {
+          "source": "278.cfg",
+          "line": 10,
+          "key": "UpgradeTo4",
+          "value": 339,
+          "kind": "creature",
+          "code": "unresolved-id",
+          "id": 339
+        },
+        {
+          "source": "278.cfg",
+          "line": 12,
+          "key": "UpgradeTo5",
+          "value": 347,
+          "kind": "creature",
+          "code": "unresolved-id",
+          "id": 347
+        },
+        {
+          "source": "278.cfg",
+          "line": 0,
+          "code": "unresolved-id",
+          "kind": "artifact",
+          "id": 276
+        }
+      ],
+      "scriptedPolicies": []
+    },
+    {
+      "sourceId": 279,
+      "name": "Necronomicon",
+      "hasCfg": true,
+      "cfgSHA256": "9ce1c33f704a448baf2d6263b85279197a1afe6ccf7f062cdd0ab148b98b65f8",
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-opening-summons.json",
+        "name": "Necronomicon"
+      },
+      "scriptedPolicies": []
+    }
+  ],
+  "sourceScripts": [
+    {
+      "file": "-1000 tum - Archer.erm",
+      "sha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "lines": 1861,
+      "triggers": [
+        "FU(OnGameEnter)",
+        "FU(OnBattleStackObtainsTurn)",
+        "FU(OnBattleStackObtainsTurn)&i^battle_round^>0",
+        "FU(tum_CreateERMHook)",
+        "FU(arch_OnBeforeTakeArtsFromKilledHero)&i^battle_hero_0^>(NO_HERO)/i^battle_hero_1^>(NO_HERO)",
+        "FU(OnAfterErmInstructions)",
+        "FU(WOG_44_CheckIfMonDrainsLife)",
+        "FU(WOG_44_CheckIfMonCanTeleport)",
+        "FU(OnAfterErmInstructions)",
+        "FU(tum_OnAfterMelee)",
+        "FU(WOG_70_GetUndeadKingMonType)",
+        "FU(WOG_71_GetDiploBonus)",
+        "FU(WOG_102_GetSurcoatBonus)",
+        "FU(OnDetermineMonInfoDlgUpgrade_Quit)&i^tum_newTowns_on^",
+        "FU(OnDetermineMonInfoDlgUpgrade_Quit)&i^tum_newTowns_on^=(FALSE)",
+        "FU(tum_SetUniversalUpgrade)",
+        "FU(OnAfterErmInstructions)",
+        "FU(ES_350_CheckIfMonIsEligible)",
+        "FU(ES_351_CheckIfMonIsEligible)",
+        "FU(ES_750_CheckIfMonIsEligible)",
+        "FU(ES_758_CheckIfMonIsEligible)&i^tum_reborn_on^",
+        "FU(ES_759_CheckIfMonIsEligible)",
+        "FU(ES_761_CheckIfMonIsEligible)",
+        "FU(ES_762_CheckIfMonIsEligible)&i^tum_reborn_on^",
+        "FU(ES_777_GetArtifactBonus)",
+        "FU(ES_786_GetDiscountLevel)",
+        "FU(ES_795_GetAssassinMonType)&i^tum_lite_on^<>(TRUE)",
+        "FU(ES_822_CheckIfMonHasBlock)",
+        "FU(ES_882_GetSkeletonMonType)&i^tum_lite_on^<>(TRUE)",
+        "FU(ES_995_CheckIfMonIsEligible)",
+        "FU(ES_996_CheckIfMonIsEligible)",
+        "FU(ES_997_CheckIfMonIsEligible)",
+        "FU(OnEveryDay)&i^timerWeekday^=7",
+        "FU(tum_ES_994_CheckForAllDwellings)",
+        "FU(AC_Function_8)&x3=1/x4=1",
+        "FU(ACM_GetCustomFireShieldMultiplier)",
+        "FU(OnAfterErmInited)",
+        "FU(OnAfterErmInstructions)",
+        "FU(OnAfterErmInited)&i^tum_reborn_on^<>(TRUE)",
+        "FU(OnAfterErmInited)",
+        "FU(tum_OnWoGAttackAbilityProc)",
+        "FU(tum_OnDiamondDragonBlindProc)",
+        "FU(tum_OnHellBaronStoneGazeProc)",
+        "FU(tum_OnBloodDragonAgeProc)",
+        "FU(OnStartOrLoad)",
+        "FU(OnStartOrLoad)",
+        "FU(tum_OnCreatureArchAngelDescriptionCreate)",
+        "FU(tum_OnCreatureArchiDevilDescriptionCreate)",
+        "FU(tum_BufferEndingEditor)",
+        "FU(tum_OnCreatureLuckDescriptionHalfingPart)&i^tum_MonPlusLuckChanger^",
+        "FU(tum_OnCreatureLuckDescriptionSpellPartStart)&i^tum_MonPlusLuckChanger^",
+        "FU(tum_OnCreatureLuckDescriptionSpellPartEnd)&i^tum_MonPlusLuckChanger^",
+        "FU(OnGameEnter)",
+        "FU(tum_OnAfterArmySetNegativeMorale)",
+        "FU(tum_OnCreatureGhostDragonDescriptionCreate)&i^tum_MonMinusMoralePower^",
+        "FU(tum_OnAfterArmySetNegativeLuck)",
+        "FU(tum_OnAfterArmySetPositiveLuck)",
+        "FU(tum_OnCreatureGetLuckLvl)",
+        "FU(tum_ArmyCompareTypeIteraror)",
+        "FU(OnAfterErmInited)",
+        "FU(tum_DisableDragonEyesAndDragonlings)",
+        "FU(OnWinGame)",
+        "FU(tum_GetDegradedMonsterBeforeTroll)",
+        "FU(OnGameEnter)",
+        "FU(tum_OnAttackWalls)",
+        "FU(OnAfterErmInited)",
+        "FU(OnBattleStackObtainsTurn)&i^tum_strikeAndReturnPatch^",
+        "FU(OnAfterBattleUniversal)&i^tum_strikeAndReturnPatch^",
+        "FU(OnGameLeave)&i^tum_strikeAndReturnPatch^",
+        "FU(OnAfterLoadGame)&i^tum_strikeAndReturnPatch^",
+        "FU(tum_CheckIfMonCanStrikeAndReturn)",
+        "FU(OnGameEnter)",
+        "FU(tum_FixArtifactBanning)",
+        "FU(OnEveryDay)&i^timerDay^=1/i^timerOnce^",
+        "FU(tum_FixWoGArtifactLevels)",
+        "FU(OnSetupBattlefield_Quit)",
+        "FU(OnAfterErmInited)",
+        "FU(OnEveryDay)&i^timerOnce^/i^timerDay^>1",
+        "FU(OnAfterErmInstructions)",
+        "FU(OnGameEnter)",
+        "FU(OnEveryDay)&i^timerDay^=1/i^timerOnce^",
+        "FU(OnSetupBattlefield)",
+        "FU(tum_OnFindNextStackTurn)&i^tum_firstStackFixed^<>(TRUE)",
+        "FU(tum_GetCorrectFirstStack)",
+        "FU(tum_GetMaxSpeedStack)",
+        "FU(tum_BattleStack_InitParams)&i^tum_reborn_on^",
+        "FU(OnBattleStackObtainsTurn)&i^tum_tacticsIsEnded^/i^tum_reborn_on^",
+        "FU(OnBeforeBattleAction)&i^tum_tacticsIsEnded^/i^tum_reborn_on^",
+        "FU(tum_GetMonLessUsefulSpell)",
+        "FU(tum_CreateERMHook)",
+        "FU(tum_OnGetRandomArtifact)"
+      ],
+      "receivers": {
+        "BA": 1,
+        "BG": 6,
+        "BM": 34,
+        "CA": 7,
+        "DW": 3,
+        "EA": 15,
+        "FU": 75,
+        "HE": 13,
+        "IF": 1,
+        "MA": 73,
+        "OW": 3,
+        "SN": 81,
+        "SS": 1,
+        "UN": 125,
+        "VR": 178
+      },
+      "containsWindowsMemoryAccess": true
+    },
+    {
+      "file": "000_Beholders's Sanctuary (replacer).erm",
+      "sha256": "7a1f4a0ef222dbee03830d3a0419b5389549df0913c4453a91280519cd7fff21",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_000_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "001_Mansion (replacer).erm",
+      "sha256": "07446c9812bc481f244b33f3ae754f8877af64189024b97fe9e37aca0c9d4078",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_001_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "002_Spit (replacer).erm",
+      "sha256": "9b7627989713b561545a8baa907907551d6d4df7a1aa4d8c7c6b911e6d97339e",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_002_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "003_Red Tower (replacer).erm",
+      "sha256": "7a1bfc9b74673e0ab9f0f910e536469482973603b01b1bd5b30e7c6bbffbccb9",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_003_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "004_Black Tower (replacer).erm",
+      "sha256": "e4b63e4a5802c95e19adc4d99309be3717da59a85267a84b4a2017d5359676ec",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_004_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "005_Ivory Tower (replacer).erm",
+      "sha256": "c6cde589d35c381e3c3807a539cb0cbb2a348195ae777e11648cba77c549ef43",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_005_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "006_Churchyard (replacer).erm",
+      "sha256": "601c15387b96447e6c09a3b12671213dfdc525c6a3705ca9fd81c3eaaacd6bf9",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_006_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "007_Experimental Shop (replacer).erm",
+      "sha256": "000c3065c088a252aabe758ca70cf588a773d7d2c72fbf213ea4e49346a107cb",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_007_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "008_Wolf Raider Picket (replacer).erm",
+      "sha256": "c09c30824aa9f566396aa4e46523e6853c059cb675215012829bb3d3c9bd1d19",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_008_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "009_Pantheon (replacer).erm",
+      "sha256": "5e90c0b400ec58b92da4c3a699d10ddb2d05758b1da066b153836908295176a1",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_009_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "010_Mithril Tower (replacer).erm",
+      "sha256": "4f146aa7e5147565bb3d2bc4975b08eb8552bf73863dd06e808fe8c4b444ca61",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_010_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "011_Experimental Factory (replacer).erm",
+      "sha256": "5339c08021768748e359288c428349b0bdcf133eaf017363379143fd388ab704",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_011_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "012_Wolf Raider Gaol (replacer).erm",
+      "sha256": "98d4d829f5c7c59f5ae2bf6441e3eb51aea84ee05645dd195d4ed5b4f2158ddd",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_012_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "013_Blue Tower (replacer).erm",
+      "sha256": "25a001e7bb54b3f4f51b84611c22530186ad3285850365a34ed992f19d404c11",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_013_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "014_Lava Spit (replacer).erm",
+      "sha256": "c1c0044b9c6aac0fd546b63c95d6f7c16855a1bbd960658cdb192c4185e0c317",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_014_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "015_Monstrous Eyes' Sanctuary (replacer).erm",
+      "sha256": "d8598cfe1aeb94c8b451483547ff6e95bcfa8785e88819f14f0e5a100d737ef7",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_015_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "016_Haunted Mansion (replacer).erm",
+      "sha256": "6db4f00b6599687fd5561d979eb12246a84861087b60310f9df62f163771d3a2",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_016_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "017_Bone Pillar (replacer).erm",
+      "sha256": "d97e9e1b6469837fd9370c4b4b8665c506ea15b6aadff7a1dcee80b0132001fe",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_017_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "018_City of the Dead (replacer).erm",
+      "sha256": "a5243358813364388a868a95c22c71ebe14338ca54678344e5650f316cfea0c7",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_018_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "019_Sacred Temple (replacer).erm",
+      "sha256": "da6dac9babbbc4ab9c8a9efb7af25eb504274b472bcc38dcdd3303015cbb0ce0",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_019_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "020_Seminarium (replacer).erm",
+      "sha256": "ccc27b5aa5139417467fd3ec1d2ef7197df1602d8c73cb359817dc46164e5900",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_020_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "021_Phantom Ship (replacer).erm",
+      "sha256": "e0214b5a2de73959070cdbc465e5816dafe0fc72f290ad6e6358d0377266f6bb",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_021_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "022_Sorceress Castle (replacer).erm",
+      "sha256": "005977c980324c07dac3807bec645451a491255cb1dcfa6007f19b9392c85986",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_022_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "023_Outpost of Souls (replacer).erm",
+      "sha256": "2b50a70c28753b49d0bf72428e5241fdc769960de8fe17cd3a767f8bb84ed1e8",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_023_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "024_Rotten Dragons Valley (replacer).erm",
+      "sha256": "fd59b8f5de5be91bced2ec7421314351bb5e385ea4e07601a96a1ecf801fb2a8",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_024_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "025_Magical Utopia (replacer).erm",
+      "sha256": "dc1b37e26a8a763d440b14750c7dc6bd2fa94c3213578ff448d1194dbc5d7de1",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_025_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "026_Legendary Dragon Utopia (replacer).erm",
+      "sha256": "5c6a2c7c7d7356ce9a39198fa9b1b27e35d265e7a86671b1f4a37d08a9864340",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_026_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "027_Dreadnought Tower (replacer).erm",
+      "sha256": "876d6e740c65ee5b71541ee093bb4f4a2b9713ddac9660bc5ab1dfbf180b57d3",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_027_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "028_Heaven's Door (replacer).erm",
+      "sha256": "bb87487f9ca018bb526bd2590f725f3797ae2ca53a809e03482b498bf973bebd",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_028_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "029_Forbidden Cliffs (replacer).erm",
+      "sha256": "97596b16396d24d74ac8ea80173db3d5f669d047ae099dfec50180c546d69587",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_029_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "030_Olympus Forbidden (replacer).erm",
+      "sha256": "62daa4858ed79d34258f9e46a53670d44c802a163869e5807f8e4a183d8818f6",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_030_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "031_Sins Generator (replacer).erm",
+      "sha256": "a8101be69ce77784ab99f9350a51904f9469b7c5c7462550e0328e67f802f52d",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_031_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "032_Dragon Mausoleum (replacer).erm",
+      "sha256": "be1e16a9d08cc30bf53b16befb3909418876ebfe4dc1cda7639a4206fa73f753",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_032_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "033_Dragon City (replacer).erm",
+      "sha256": "3eb64eeb9c531af4f5b2925566b008fcf5b66ba348c0e9844d688469d0f39673",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_033_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "034_Behemoth Ancient Crag (replacer).erm",
+      "sha256": "802ca52c07bd36f71293b44dd575346b2b7ce35f8758c0ec469aaea00acafa57",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_034_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "035_Volcanic Well (replacer).erm",
+      "sha256": "cee9fffbd3121c57c7a52c28ee0d29973f745e09bc8271e67d6e8adef5b77394",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_035_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "036_Supreme Pyre( replacer).erm",
+      "sha256": "504fe4c5e9a1fb18ca8dd144cecaa8e7481915c5029f2374467bf5606867cd72",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_036_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "037_Elemental Stockpile (replacer).erm",
+      "sha256": "e2fed6c71784e28e4b3b2c27db37d9ea073b7b356fd826a64e6aac0344fd6446",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_037_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "038_Gargoyle Stonevault (replacer).erm",
+      "sha256": "5017c48a376c2d11bb4ca3fe3b76d9d0196d175d063d2d638411d93f61330dfd",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_038_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "039_Halls of Temptation (replacer).erm",
+      "sha256": "5f86415299c4af78688fc6d82f468c3631f53a6f3ee92dfcca8e4d1ae4a4d0bb",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_039_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "040_Royal Treasury (replacer).erm",
+      "sha256": "f5912eab03491760742a4d70519f76874ca151f35d5244eb95695639d1fd2453",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_040_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "041_Fire Dragon Castle (replacer).erm",
+      "sha256": "46797e6460d88c3c81b4f57202ed74fde59d183ac0e2cbec6df5c09c0a0fd6af",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_replaceObj_on^",
+        "FU(CB_041_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "042_Ice Dragon Castle (replacer).erm",
+      "sha256": "e10a76263da192d40cb330e418272112076c9f4fdf58a062f965eef474b8f958",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_replaceObj_on^",
+        "FU(CB_042_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "1000 tum - consts.erm",
+      "sha256": "cf39435c763439482ce6a96fc7d589abd27c96779de04e719678c2ec0db82d76",
+      "lines": 329,
+      "triggers": [],
+      "receivers": {},
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "1000 tum - stdlib.erm",
+      "sha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "lines": 772,
+      "triggers": [
+        "FU(tum_CheckEnvironment)",
+        "FU(tum_CheckRandMap)",
+        "FU(tum_SetUpGlobalVars)",
+        "FU(OnAfterLoadGame)",
+        "FU(tum_CheckPlugins)",
+        "FU(OnAfterErmInstructions)",
+        "FU(OnStartOrLoad)",
+        "FU(tum_CreateERMHook)",
+        "FU(tum_HOOK_AfterAttackMainFunc)",
+        "FU(tum_HOOK_AfterStackInitParams)",
+        "FU(tum_HOOK_PrepareTownScreen)",
+        "FU(OnOpenTownScreen)",
+        "FU(OnCloseTownScreen)",
+        "FU(OnKeyPressed)&i^key^=(KEY_A)",
+        "FU(OnKeyReleased)&i^key^=(KEY_A)",
+        "FU(OnAfterErmInstructions)",
+        "FU(OnBattleRound)",
+        "FU(OnBeforeBattleAction)",
+        "FU(OnAfterErmInstructions)",
+        "FU(tum_CreateArtArray)",
+        "FU(OnAfterErmInstructions)&i^tum_replaceObj_on^",
+        "FU(OnSetupBattlefield)",
+        "FU(OnAfterBattleUniversal)",
+        "FU(GetMaxMonsterId)",
+        "FU(GetMaxArtifactId)",
+        "FU(tum_CheckWoGScripts)",
+        "FU(tum_GetRandH3WoGArt)",
+        "FU(tum_PlayCustomAnimation)",
+        "FU(tum_RemoveDeadBody)",
+        "FU(tum_CheckIfHeroEquipArtifactCombo)",
+        "FU(tum_CheckIfMonsterIsValid)",
+        "FU(tum_ConvertStrToInts)",
+        "FU(tum_Battle_CanStackReceiveSpell)",
+        "FU(tum_GenerateValidStackList)",
+        "FU(tum_GetAdjacentHex)",
+        "FU(tum_CastMonsterDamagingSpell)",
+        "FU(tum_RemoveSpellFromStack)",
+        "FU(tum_Town_GetStruct)",
+        "FU(OnEveryDay)&i^timerDay^=1/i^timerOnce^=1",
+        "FU(BuildPerTurnSetup)"
+      ],
+      "receivers": {
+        "BG": 2,
+        "BM": 9,
+        "BU": 3,
+        "FU": 42,
+        "HE": 4,
+        "IF": 6,
+        "OB": 1,
+        "OW": 2,
+        "SN": 57,
+        "SS": 3,
+        "TR": 1,
+        "UN": 47,
+        "VR": 94
+      },
+      "containsWindowsMemoryAccess": true
+    },
+    {
+      "file": "100_Training Grounds with Archery (replacer).erm",
+      "sha256": "a852872b52bf000748e5c08bf7e284346ce9399aa42f09b29d1dd560e7eab4d3",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_100_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "101_Giant Golden Pavilion (replacer).erm",
+      "sha256": "0ca8f30555a7b286617bf16a307f00511abfb8e593c7339bdaf3311356732456",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_101_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "102_Wineyard (replacer).erm",
+      "sha256": "3df978d44f775f05780cf66c128725e902377da6d509485332c01d85f99e1d8b",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_102_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "103_Alehouse (replacer).erm",
+      "sha256": "bc86e3200f136ff0467af255e1966ca066c63b4a7fefde51be1f17a768cee734",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_103_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "104_Ziggurat [Fangarm] (replacer).erm",
+      "sha256": "7d47441ea519c7dbc91d8fccd6d115e387ae09a464a100109d385ad8a014c922",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_104_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "109_Order of Fire (replacer).erm",
+      "sha256": "f3116e928752292ccc5067e815c62395a957df9af02d600022bfbb4471c67773",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_109_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "110_Order of Ice (replacer).erm",
+      "sha256": "22aea316098f86d00f684ae9e903fdd82288e87c5da2e54032ca7625d00bfbc0",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_110_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "111_Dragon Slayer Tower (replacer).erm",
+      "sha256": "6acf3ba8935d0c8b5485a86f484aee1f5a2298ae4f073f1cce84ef63c70d0fc5",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_111_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "112_Cursed Temple of Archers (replacer).erm",
+      "sha256": "87ec2995160baf49db6b0f70247f64c55119a0539bd22d3465b534674f8bdeec",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_112_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "113_Bloody Temple (replacer).erm",
+      "sha256": "136d2b13415559d45313ddc9e975d97375c9fd4e79cf820c0f565afbe1193b18",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_113_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "114_Temple of Souls (replacer).erm",
+      "sha256": "e1af8fa247e24bf0bfa7f8e979d45a1f27b321a50f1fcca08b259c768d967b2f",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_114_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "115_Legendary Cursed Temple (replacer).erm",
+      "sha256": "ad50cda0d5c85f3ea76d07aac019aa1a419863ecaef3223f6a0282c6323bcc2f",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_115_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "116_Order of Thunder (replacer).erm",
+      "sha256": "b0ef68b8f3683bee1c8dfe7b491302982c25d2ff1b4d2ed03cbd4de8d8447104",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_116_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "117_Dragon Sanctuary (replacer).erm",
+      "sha256": "8b323cd1a935361cea4a1ad8e9c7d066b74d3123c98f522197d2f72da029b035",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_117_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "118_Laboratory (replacer).erm",
+      "sha256": "f70d861559459f1c02209d3b21e928bd2d84f2feacae9ed0ae49dad5e7634468",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_118_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "130_Black Tower (replacer).erm",
+      "sha256": "99b9f1d03e3c8eeba25be346cd632454295411709ba627c9f3e96d9137f422b9",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_70_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "131_Mysterious Cave (replacer).erm",
+      "sha256": "dfe35bd6075ad925a5bfbb6ecd2e1987794db72d3f635177366d4fb0af104673",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_replaceObj_on^",
+        "FU(CB_71_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "132_Cathedral (replacer).erm",
+      "sha256": "78071128f319565763bc3858bf08caeb400a90af948aad06bd6b4b0c99b4b565",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_132_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "133_Treehouse (replacer).erm",
+      "sha256": "328145379eac8f15e54528ac14281d653c4891e54f0f74b7d1aa43fbe4ad4cc4",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_133_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "134_Dragon Factory (replacer).erm",
+      "sha256": "06d190c027f16a75870f79e1bc01ec6a51e123d8bd5912ad33b09532137898f8",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_134_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "135_Lust Chambers (replacer).erm",
+      "sha256": "4047a7ecd576983f6c664134037c8724da375a3e877589120bd76ce599a9bfd5",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_135_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "136_Wolf Cave (replacer).erm",
+      "sha256": "51d7ea4ebf60b6e11d820a6890ebed206d613dd3b36a407951c4ea1ef10cae38",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_136_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "137_Primeval Maw (replacer).erm",
+      "sha256": "7a6f3dcea34894c5451469746b2d53ed997483b86170caea287c90b19fcdf9ec",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_137_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "138_Ziggurat (replacer).erm",
+      "sha256": "f54ab887675d38a39003ac46db618157a00f7a7d642d42c84bc6582ce32ba513",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_138_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "139_Coral Reef (replacer).erm",
+      "sha256": "583c89e150090db7e4457aec6caa44f2f13701281a17a7851cd0a1a638a3d9fe",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_replaceObj_on^",
+        "FU(CB_139_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "140_Swamp Hut (replacer).erm",
+      "sha256": "33a6598ea62df6f6e3a360c532bf5f734f0e252c05aaf94765e8027fd331182c",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_140_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "141_Drowned Hall (replacer).erm",
+      "sha256": "421766a31b2480de8b6dea9cd2a5cbebd8500bbc110730ebff83916656387f54",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_141_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "142_Ancient Crypt (replacer).erm",
+      "sha256": "f956a9aaa38e29f451ce11eb6fb98bec567af515f080947a1fb00fbb95c26728",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_142_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "143_Frigate of the fallen (replacer).erm",
+      "sha256": "9fe2b945eedd343a231283ea6e6aca38847f06f948ff4e6a8a50780cd6cbbd18",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_143_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "144_Defunct Treetop Tower (replacer).erm",
+      "sha256": "98861ae24376ca10e7c9df19c52d5e940daa47775a15c3f78f96434b9de6d32b",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_143_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "145_Training Tower (replacer).erm",
+      "sha256": "03916b0548bfa59d3bac8a236baeacb22d8b02191043c16384c7133459d8e462",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_145_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "146_Peon Hut (replacer).erm",
+      "sha256": "298135eb4a53f30ec012f2b13d3b4bc29690c2b96a7f64249d7676a899223c61",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_146_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "147_Mire (replacer).erm",
+      "sha256": "ea8f6e21548b10200cf4aee1995d3d840e8fc7ca53401317070aa7d670d4d065",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_147_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "148_Altar of Darkness (replacer).erm",
+      "sha256": "b9f79338c3a17dcc050d141e72cdc43264d8bd9993e748313314360741035e61",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_148_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "149_Butt Excavation (replacer).erm",
+      "sha256": "029d50abc6b15e786b5b47b6befdddf39fe55aba058f796940384c67eca6facd",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_149_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "150_ Black Alder (replacer).erm",
+      "sha256": "c111c4e0ee9636ff3abf56651aeae15652047006c0da98a57d645f31d909db35",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_150_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "151_Quaggy Relic (replacer).erm",
+      "sha256": "2c1b8ac72e90e8ade427792e91e828f91415efe93a6121d53cce0d6990ffa971",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_151_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "152_Squalid Nide (replacer).erm",
+      "sha256": "650105dae2df4b7eae0d8b94cc2bf1fc29760724b79f2aa1d4509ef1b71a8f19",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_152_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "153_Rusty Habitation (replacer).erm",
+      "sha256": "76421010b6bc512e2f011c635a736a40b127f3f16df85db8e537a411f9a1cad1",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_153_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "154_Turquoise Passage (replacer).erm",
+      "sha256": "5691611825f0659f4fbd4eff26417483f2cb41973e4ff85ee306b732e11296bd",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_154_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "155_Baba Yaga's Hut (replacer).erm",
+      "sha256": "9f8f5ee6204cc1a66cf396e003158f05fb010ec6581f591505ea37829a7b3073",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_155_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "156_Sparky Meadow (replacer).erm",
+      "sha256": "f993386951596dd5f85bc166d49b4efa68b05accab2d4b84fbb6b2f30e0c945b",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_156_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "157_Mysterious portal (replacer).erm",
+      "sha256": "760f86779a5a934e80ed77df72d39ed580044ab4596ec973394a7668e3833264",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_157_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "158_Lizard Soldier Den (replacer).erm",
+      "sha256": "09249ed756623ebd2d2a828fb8b77b9e56155ca74158b93767c68a954548cc21",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_158_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "159_Slith Pool (replacer).erm",
+      "sha256": "6e8359320ef36059ff14a2159871ea41ddbac74b55ced8d79573ec482c4d145d",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_159_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "160_Illusory Dragon Shrine (replacer).erm",
+      "sha256": "4b7576f0b26cee0fd35313549a9f43b9f4ae2f918b9f8a19ccb5bcc187373bc6",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_160_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "161_Primitive stable (replacer).erm",
+      "sha256": "853158cadcbe3ba4058624c1c4249e42b01ffd20780fdffdd09e41f63dccbc21",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_161_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "162_Ruins in Lava (replacer).erm",
+      "sha256": "6e5988695ce38b63cb854c6af69684e20d41c143ec2e97d6662f87cda3b1d629",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_162_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "163_Evil Cathedral (replacer).erm",
+      "sha256": "ef491c0f32532e6e332fa9dfe026015501788283f08941d9a5bdfc2ec1a532a0",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_163_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "164_Dark Shrine(replacer).erm",
+      "sha256": "0ed76fb0f836f25660b20f954d0e0e446d96ef076371a779de03b730f57ad02c",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_164_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "165_Black Pond(replacer).erm",
+      "sha256": "3c80c1685437ea364437f6df016ceb2cc411040c2885d7d604b98720f445fb25",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_165_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "166_Gates of Tartarus(replacer).erm",
+      "sha256": "269e781eb4e482a2a91df0d0e7e9585283ea792849c62621bace89fbb0c4c041",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_166_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "167_Shadow Vault(replacer).erm",
+      "sha256": "bcfbf510dd8de5aee1dfa9f5dcac60b8e3d952ce31eeab7e6fda0fb2524640b4",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_167_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "168_Imperial Barracks(replacer).erm",
+      "sha256": "51b563ee327cabdd8d728422ffd47e646a884e081c613bdde5c2e2cfb47d2f6b",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_168_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "169_Green Dragon Nest(replacer).erm",
+      "sha256": "527169ef18277d68074bf166735641cd7e2537d93cef9b81b807a077775ce9bd",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_169_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "170_Red Dragon Nest(replacer).erm",
+      "sha256": "6602bb4e8b7e6d04a46240fc261c4f0dd5dea8648c5832a988ec1418b05c7b54",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_170_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "171_Faerie Dragon Nest(replacer).erm",
+      "sha256": "b69918ce88d37aedf7c647a57ea63c61cf8019b59c38f835c75bc6b0d90e506c",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_171_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "172_Rust Dragon Nest(replacer).erm",
+      "sha256": "6be7833b5af0e30030465d2f094d231d37f4b03017d2fdb60ac2dabe80c674c0",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_172_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "173_Azure Dragon Nest(replacer).erm",
+      "sha256": "0fbc3137b115b1669307ab9d940905229dafcf19fdc99d8ce5dda4d59bc49a1c",
+      "lines": 115,
+      "triggers": [
+        "FU(OnEveryDay)&i^tum_isRandMap^<>(TRUE)/i^tum_replaceObj_on^",
+        "FU(CB_173_Replace)"
+      ],
+      "receivers": {
+        "DO": 1,
+        "FU": 1,
+        "OB": 1,
+        "PO": 1,
+        "UN": 5,
+        "VR": 15
+      },
+      "containsWindowsMemoryAccess": false
+    },
+    {
+      "file": "Mysterious Cave.erm",
+      "sha256": "d4b9286b930cfc32a742571f21513170fdd243f3bccf08d9a84b14dd53c13c97",
+      "lines": 1221,
+      "triggers": [
+        "FU9643278",
+        "FU33465124",
+        "FU324569214",
+        "FU(OnEveryDay)",
+        "FU32456132",
+        "FU32466132",
+        "FU32466133",
+        "FU32456140",
+        "FU(OnEveryDay)&i^timerWeekday^=1",
+        "OB63/56",
+        "FU45696539",
+        "FU45696529",
+        "FU45696524",
+        "FU45696523",
+        "FU15157575",
+        "BF&1000",
+        "BA0&1000",
+        "FU45696538",
+        "BA1&1000",
+        "FU45696525",
+        "FU45696527",
+        "FU45696528",
+        "FU45696526",
+        "FU654789321",
+        "FU56789012",
+        "CM0",
+        "HM-1",
+        "FU32456139",
+        "CM2",
+        "CM1",
+        "CM2",
+        "CM1",
+        "OB63/55&1000"
+      ],
+      "receivers": {
+        "BA": 5,
+        "BM": 5,
+        "CA": 9,
+        "CD": 2,
+        "CM": 8,
+        "CO": 3,
+        "DO": 28,
+        "FU": 42,
+        "HE": 96,
+        "HO": 2,
+        "HT": 2,
+        "IF": 129,
+        "MA": 1,
+        "MT": 2,
+        "OB": 5,
+        "OW": 14,
+        "PO": 11,
+        "SN": 163,
+        "SS": 1,
+        "UN": 93,
+        "VR": 210
+      },
+      "containsWindowsMemoryAccess": true
+    },
+    {
+      "file": "Third Upgrade Mod.erm",
+      "sha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "lines": 2300,
+      "triggers": [
+        "FU(OnAfterErmInited)",
+        "FU(OnDetermineMonInfoDlgUpgrade)",
+        "FU(tum_GetUpgMonInTown)",
+        "FU(tum_GetMonstersInTown)",
+        "FU(OnTownMouseClick)&i^mouse_action^=(MOUSE_LMB_PRESSED)/i^key_a^/999",
+        "FU(tum_UpgradeWithAClicking)",
+        "FU(tum_SetUpNewUpgrades)",
+        "FU(tum_OnNecromancyAddCreatures)",
+        "FU(tum_SetTownBuildingStatus)",
+        "FU(OnDwarfMagicResistance)&i^tum_reborn_on^<>(TRUE)",
+        "FU(OnAfterErmInstructions)",
+        "CM2&1000",
+        "FU(tum_GetNativeMonSpecBonus)",
+        "FU(Set_Creature_Upgrades_1)",
+        "FU(tum_Hero_GetSpecMonster_BeforeMonIdCheck)",
+        "FU(tum_GetSpecMonsterStats)",
+        "FU(tum_Hero_GetSpecMonster)",
+        "FU(OnSetupBattlefield)&i^Advanced_Classes_Mod_Active^<>(TRUE)",
+        "FU(Third_Upgrade_1)",
+        "FU(Third_Upgrade_0)",
+        "FU(Third_Upgrade_2)",
+        "FU(Third_Upgrade_3)",
+        "FU(OnStackToStackDamage)&i^battle_isVisible^",
+        "FU(OnMonsterPhysicalDamage)",
+        "FU(OnBattleActionEnd)",
+        "FU(tum_CheckIfMonIsImmuneToMonSpells)",
+        "FU(OnBeforeBattleAction)",
+        "FU(OnBeforeBattleUniversal)&i^tum_reborn_on^<>(TRUE)",
+        "FU(OnBeforeBattleAction)&i^tum_reborn_on^<>(TRUE)",
+        "FU(OnBattleActionEnd)&i^tum_assas_defStack^>(NO_STACK)/i^tum_reborn_on^<>(TRUE)",
+        "FU(OnBeforeBattleStackTurn)&i^tum_assas_defStack^>(NO_STACK)/i^tum_reborn_on^<>(TRUE)",
+        "FU(OnMonsterPhysicalDamage)&i^tum_reborn_on^<>(TRUE)",
+        "FU(ES_OnAfterMelee)&i^tum_ghoul_regenHp^/i^tum_reborn_on^<>(TRUE)",
+        "FU(OnEveryDay)&i^tum_reborn_on^<>(TRUE)",
+        "FU(OnCombatRound)&v997=0",
+        "FU(OnBeforeBattleAction)",
+        "FU(OnAfterBattleAction)",
+        "FU(Check_Aura_Bravery)",
+        "FU(Calc_neighbouring_hex_2)",
+        "FU(OnBeforeBattleUniversal)",
+        "FU(OnBattleRound)",
+        "FU(OnBeforeBattleAction)&i^battle_round^>=0",
+        "FU(OnBattleActionEnd)&i^battle_round^>=0/i^tum_twice_actingStack^<>(NO_STACK)/i^tum_abilityCounter_%i(tum_twice_actingStack)^=0",
+        "FU(OnBeforeBattleStackTurn)&i^battle_round^>=0/i^tum_twice_actingStack^<>(NO_STACK)",
+        "FU(OnSetupBattlefield_Quit)",
+        "FU(OnGameEnter)",
+        "FU(OnBeforeBattleUniversal)&i^tum_DragonsID_ArrayID^",
+        "FU(OnMagicBasicResistance)&i^tum_emerald_on^",
+        "FU(OnAfterLoadGame)",
+        "FU(tum_SetUpNewComnbiArts)&i^tum_emerald_on^",
+        "FU(OnHeroScreenMouseClick)&i^Typhon_Third_Upgrade_Mod_Active^",
+        "DL&v998=571/v1000=(MOUSE_RMB_PRESSED)",
+        "DL&v998=571/v999=30722/v1000=13",
+        "FU(tum_CreateERMHook)",
+        "FU(tum_MinusMorale)",
+        "FU(tum_MinusLuck)",
+        "FU(OnEveryDay)&i^tum_emerald_on^/i^timerOnce^",
+        "FU(OnDwarfMagicResistance)&i^tum_emerald_on^",
+        "FU(tum_BattleStack_InitParams)&i^tum_emerald_on^",
+        "FU(tum_OnCalcMovementPointsCost)&i^timerIsHuman^/i^tum_emerald_on^",
+        "FU(OnEveryDay)&i^timerIsAi^/i^tum_emerald_on^",
+        "FU(OnSetupBattlefield)&i^tum_emerald_on^",
+        "FU(OnAfterBattleUniversal)&i^tum_elemRingStateSaved^",
+        "FU(OnBattleRound)&i^battle_round^=0/i^tum_emerald_on^",
+        "FU(OnBattleStackObtainsTurn)&i^tum_elemRingDiff^",
+        "FU(tum_ActivateElemRing)",
+        "FU(tum_OnAfterAttack)&i^tum_emerald_on^",
+        "FU(OnBattleActionEnd)&i^tum_targetStack^>(NO_STACK)/i^tum_emerald_on^",
+        "FU(tum_hota_SummonFangarmsOnTheBattlefield)",
+        "FU(tum_hota_CheckIfPossibleToSummon)",
+        "FU(OnAfterBattleAction)&i^tum_emerald_on^",
+        "FU(tum_hota_GetFangarmsIncreasedAfterBattle)",
+        "FU(OnAfterBattleUniversal)&i^tum_emerald_on^",
+        "FU(tum_hota_GiveFangarmAfterBattle)",
+        "FU(tum_hota_GetHeroAvailSlot)",
+        "BF&1000/i^tum_emerald_on^",
+        "FU(KO_cape)",
+        "FU(KO_cape2)",
+        "AE1&v998=264/i^tum_emerald_on^",
+        "AE0&v998=264/i^tum_emerald_on^",
+        "FU(KO_AXE_equip)",
+        "FU(KO_AXE_unequip)",
+        "AE1&v998=265/i^tum_emerald_on^",
+        "AE0&v998=265/i^tum_emerald_on^",
+        "FU(KO_Armor_equip)",
+        "FU(KO_Armor_unequip)",
+        "CM2&i^tum_emerald_on^",
+        "FU(OnSetupBattlefield)&i^tum_emerald_on^",
+        "FU(OnDwarfMagicResistance_Quit)&i^tum_emerald_on^",
+        "FU(OnBeforeBattleAction)&i^tum_emerald_on^/i^tum_lr_equipped_%i(battle_acting_side)^",
+        "FU(OnMagicCorrectedResistance)&i^tum_lr_damage^>0",
+        "FU(OnBattleActionEnd)&i^tum_lr_damage^>0",
+        "FU(OnBattleActionEnd)&i^tum_emerald_on^",
+        "FU(tum_CastMassiveSpell)",
+        "FU(OnSetupBattlefield)&i^tum_emerald_on^",
+        "FU(OnDwarfMagicResistance)&i^tum_roo_equipped^/i^tum_emerald_on^",
+        "FU(tum_OnAfterAttack)&i^tum_roo_equipped^/i^tum_emerald_on^",
+        "FU(OnBattleActionEnd)&i^tum_roo_equipped^/i^tum_emerald_on^",
+        "FU(tum_roo_RemoveDeadBodiesOnTheBattlefield)",
+        "FU(tum_OnCalcNecromancyPower)&i^tum_roo_equipped^/i^tum_emerald_on^",
+        "FU(OnSetupBattlefield)&i^battle_hero_0^>(NO_HERO)/i^battle_hero_1^>(NO_HERO)/i^tum_emerald_on^",
+        "FU(tum_OnDlg_HeroPreview_SpellPowerWrite)|i^tum_trueHeroPower_0^>0/i^tum_trueHeroPower_1^>0",
+        "MF1",
+        "FU(TUM_PlayCustomAnimation)",
+        "FU(TUM_GetStackHeadPosition)",
+        "FU(OnGameEnter)",
+        "FU(OnGameEnter)",
+        "FU(OnGameEnter)",
+        "FU(OnGameEnter)",
+        "FU(OnGameEnter)"
+      ],
+      "receivers": {
+        "BA": 2,
+        "BG": 20,
+        "BH": 3,
+        "BM": 66,
+        "BU": 4,
+        "CA": 10,
+        "CM": 5,
+        "DL": 13,
+        "DO": 6,
+        "EA": 2,
+        "EX": 2,
+        "FU": 121,
+        "HE": 87,
+        "IF": 4,
+        "MA": 126,
+        "MF": 5,
+        "MM": 3,
+        "MR": 16,
+        "OW": 5,
+        "SN": 74,
+        "SS": 3,
+        "UN": 190,
+        "VR": 207
+      },
+      "containsWindowsMemoryAccess": true
+    },
+    {
+      "file": "Unit_and_Artifact_Description_on_CtrlClick.erm",
+      "sha256": "a704046eeccca6d4460cf552f79a7da04189891a77b8cc0f00b5476228815cb4",
+      "lines": 53,
+      "triggers": [
+        "FU(OnAdvMapTileHint)",
+        "FU(ShowTileInfo_new)",
+        "FU(OnAdventureMapRightMouseClick)&i^key_ctrl^=(TRUE)",
+        "FU(OnAdventureMapLeftMouseClick)&i^key_ctrl^=(TRUE)"
+      ],
+      "receivers": {
+        "CM": 3,
+        "FU": 3,
+        "IF": 1,
+        "MM": 1,
+        "OB": 3,
+        "SN": 3,
+        "UN": 5,
+        "VR": 5
+      },
+      "containsWindowsMemoryAccess": true
+    },
+    {
+      "file": "options_library.erm",
+      "sha256": "b112a12dee2777d2bb8d2fa25ef3e31a7b4a36f892336ac3327fc6f9cf4a5915",
+      "lines": 38,
+      "triggers": [
+        "FU(PackedCoords)",
+        "FU(UnPackedCoords)"
+      ],
+      "receivers": {
+        "SN": 2,
+        "VR": 2
+      },
+      "containsWindowsMemoryAccess": true
+    }
+  ],
+  "namedNativeMechanisms": [
+    {
+      "name": "Ring of the Snake Eyesight mass Hypnotize",
+      "source": "Emerald Autospell60;5A13BB→5A69E0;5A8673 actual mastery/cached power and count×HPmax threshold",
+      "native": "Strict optional lib/era/EraMassHypnotizeArtifact.h; original-side mass reception/RNG and explicit50-turn effect",
+      "ids": [
+        253
+      ],
+      "evidence": [
+        {
+          "file": "native-mass-hypnotize253.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
+    {
+      "name": "Interference cached battle power",
+      "source": "Third Upgrade Mod.erm1992..2040, original hero map stats retained",
+      "native": "server/era/EraInterferenceRuntime.h + BaseMechanics; named battle marker and hero-only power/duration, explicit fixed powers preserved",
+      "ids": [
+        269,
+        270,
+        271
+      ],
+      "evidence": [
+        {
+          "file": "native-interference.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
+    {
+      "name": "Original WoG157 ordinary retaliation gate",
+      "source": "Original WoG70A007 scratch flag override at441AFF; identity157 preserved",
+      "native": "lib/era/EraOriginalRetaliationShield.h + ordinary BAP counter gate, original existing artifact without50percent adaptation",
+      "ids": [
+        157
+      ],
+      "evidence": [
+        {
+          "file": "native-original-retaliation157.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
+    {
+      "name": "Cape of Silence actual wearer-army immunities",
+      "source": "Emerald config.cpp323 and ResistanceHook44A1A0;22 unique exact spell IDs, original prose corrected",
+      "native": "Native inherited SPELL_IMMUNITY bonuses, without a global spell-level prohibition",
+      "ids": [
+        267
+      ],
+      "evidence": [
+        {
+          "file": "native-silence-cape.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
+    {
+      "name": "Atma persisted equalization events",
+      "source": "Third Upgrade Mod.erm1692..1759 AE/CM2 and case-normalized ERA associative state",
+      "native": "server/era/EraAtmaRuntime.h; versioned permanent artifact state, explicit mobile refresh",
+      "ids": [
+        264,
+        265
+      ],
+      "evidence": [
+        {
+          "file": "native-atma.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
+    {
+      "name": "Diplomat perceived army strength",
+      "source": "TUM180 original description, components66/67/68 and Archer interoperability hooks",
+      "native": "lib/era/EraAdvancedArtifactRuntimeNative.h; neutral and ThievesGuild-only hooks",
+      "ids": [
+        180
+      ],
+      "evidence": [
+        {
+          "file": "native-diplomat-cloak.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
+    {
+      "name": "Lightning Rod bilateral immunity and supplementary raw bolt",
+      "source": "Third Upgrade Mod.erm1760..1843; BM:K direct injury after correction, before ordinary chain damage",
+      "native": "lib/era/EraAdvancedArtifactRuntimeNative.h and spell Damage/Mechanics hooks",
+      "ids": [
+        220
+      ],
+      "evidence": [
+        {
+          "file": "native-lightning-rod.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
+    {
+      "name": "Dwarven Mine expert fixed50 opening",
+      "source": "Emerald CastArtifactSpell; original mode2 caller power; native original SPTRAITS effect",
+      "native": "server/battles/BattleFlowProcessor.cpp ERA_FIXED_POWER_OPENING_SPELL",
+      "ids": [
+        222
+      ],
+      "evidence": [
+        {
+          "file": "native-opening-mine.json",
+          "available": true
+        },
+        {
+          "file": "native-opening-mine-mobile-portrait.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
+    {
+      "name": "Artifact opening summons",
+      "source": "Emerald3/emerald/events.cpp OnBattleStackObtainsTurn opening service and artifact CFGs",
+      "native": "server/era/EraArtifactOpeningSummons.h",
+      "ids": [
+        219,
+        231,
+        279
+      ],
+      "evidence": [
+        {
+          "file": "native-opening-backpack-shield.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
+    {
+      "name": "Equipped enemy morale/luck artifacts",
+      "source": "Third Upgrade Mod.erm equipped artifact combat bonuses",
+      "native": "Native BATTLE_WIDE OPPOSITE_SIDE bonuses with BONUS_OWNER_UPDATER",
+      "ids": [
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        249,
+        250,
+        252
+      ],
+      "evidence": [
+        {
+          "file": "native-opponent-artifacts.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
+    {
+      "name": "Equipped daily army conversion",
+      "source": "Emerald3 daily creature upgrades and artifact CFGs",
+      "native": "server/processors/NewTurnProcessor.cpp reviewed daily conversion dispatch",
+      "ids": [
+        202,
+        273,
+        274,
+        277,
+        262
+      ],
+      "evidence": [
+        {
+          "file": "native-conversion-artifacts.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
+    {
+      "name": "Exchange Cloak",
+      "source": "Third Upgrade Mod.erm KO_cape / KO_cape2",
+      "native": "server/era/EraExchangeCloakRuntime.h",
+      "ids": [
+        261
+      ],
+      "evidence": [
+        {
+          "file": "native-battle-artifacts.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
+    {
+      "name": "Resurrection / Animate Dead / Implosion amplification",
+      "source": "Third Upgrade Mod.erm tum_CastMassiveSpell and tum_Battle_CanStackReceiveSpell",
+      "native": "server/era/EraArtifactMassSpellsRuntime.h",
+      "ids": [
+        262,
+        263
+      ],
+      "evidence": [
+        {
+          "file": "native-battle-artifacts.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
+    {
+      "name": "Golden Goose income, Reflection post-aura resistance and Ring elemental freedom",
+      "source": "Third Upgrade Mod.erm daily income / OnDwarfMagicResistance / tum_ActivateElemRing",
+      "native": "lib/era/EraGooseReflectionRuntime.h and EraElementalRing.h",
+      "ids": [
+        179,
+        181,
+        197
+      ],
+      "evidence": [
+        {
+          "file": "native-utility-artifacts.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    }
+  ],
+  "scopeBoundary": {
+    "requestedPriorityWork": "Creature roster/evolutions, artifacts/equipment, map choices/banks, machines, specializations and their source event contracts",
+    "inventoryMeaning": "The 109 ERM files are the supplied mod inventory, not 109 required generic interpreter implementations. Named mechanisms above identify the native contracts actually ported; evidence availability and activation are separate facts."
+  },
+  "engineBoundary": {
+    "arbitraryWindowsMemoryWrites": false,
+    "windowsDllCallbacks": false,
+    "fullErmInterpreter": false,
+    "currentlySupportedInitialization": "Strict reviewed roster option declarations only; see erm-options.mjs",
+    "sourceScriptPorts": "Named native adapters cover individual proven source mechanisms. Compare per-feature native evidence before enabling additional actors."
+  }
+}

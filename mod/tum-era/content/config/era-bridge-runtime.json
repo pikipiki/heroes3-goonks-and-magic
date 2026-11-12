@@ -136,6 +136,217 @@
     "tum-era:chasmDragon": {
       "allSpellImmunity": {},
       "blindness": {}
+    },
+    "tum-era:eraCreature267": {
+      "dailyResources": {
+        "resource": "core:crystal",
+        "amount": 2,
+        "goldPerCreature": 0
+      },
+      "experienceRegeneration": {
+        "chancePercent": 100,
+        "values": [
+          0,
+          9,
+          18,
+          27,
+          36,
+          45,
+          54,
+          63,
+          72,
+          81,
+          90
+        ]
+      }
+    },
+    "tum-era:eraCreature268": {
+      "dailyResources": {
+        "resource": "core:crystal",
+        "amount": 3,
+        "goldPerCreature": 0
+      },
+      "experienceRegeneration": {
+        "chancePercent": 100,
+        "values": [
+          0,
+          9,
+          18,
+          27,
+          36,
+          45,
+          54,
+          63,
+          72,
+          81,
+          90
+        ]
+      },
+      "physicalBlock": {
+        "values": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25
+        ]
+      }
+    },
+    "tum-era:eraCreature318": {
+      "deathBlowCRT": {}
+    },
+    "tum-era:eraCreature273": {
+      "experienceRegeneration": {
+        "chancePercent": 50,
+        "values": [
+          0,
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          32,
+          36,
+          40
+        ]
+      },
+      "physicalDeflection": {
+        "modifier": 125,
+        "values": [
+          0,
+          6,
+          12,
+          18,
+          24,
+          30,
+          36,
+          42,
+          48,
+          54,
+          60
+        ]
+      }
+    },
+    "tum-era:eraCreature271": {
+      "physicalDeflection": {
+        "modifier": 49,
+        "values": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      }
+    },
+    "tum-era:eraCreature280": {
+      "preemptiveRetaliation": {},
+      "physicalDeflection": {
+        "modifier": 49,
+        "values": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      }
+    },
+    "tum-era:eraCreature350": {
+      "sourceRegeneration": {
+        "hitPoints": 100,
+        "chancePercent": 100
+      },
+      "sourceSplashRangeOne": {},
+      "physicalDeflection": {
+        "modifier": 125,
+        "values": [
+          0,
+          6,
+          12,
+          18,
+          24,
+          30,
+          36,
+          42,
+          48,
+          54,
+          60
+        ]
+      }
+    },
+    "tum-era:eraCreature324": {
+      "dailyResources": {
+        "resource": "wake-of-gods.mithril:mithril",
+        "amount": 1,
+        "goldPerCreature": 0
+      }
+    },
+    "tum-era:eraCreature258": {
+      "spellDamageInversion": {},
+      "physicalBlock": {
+        "values": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25
+        ]
+      }
+    },
+    "third-upgrades:tumPitMaster": {
+      "sourceRoundTwoDemons": {
+        "values": [
+          0,
+          0,
+          0,
+          10,
+          10,
+          15,
+          15,
+          20,
+          20,
+          25,
+          25
+        ]
+      }
+    },
+    "tum-era:eraCreature337": {
+      "sourceRangedResistance30": {}
+    },
+    "tum-era:eraCreature338": {
+      "sourceRangedResistance30": {}
+    },
+    "tum-era:eraCreature354": {
+      "artifactMimic": {
+        "artifact": 71
+      }
     }
   },
   "artifacts": {
@@ -174,6 +385,153 @@
           "to": "third-upgrades:tumLichKing"
         }
       ]
+    },
+    "tum-era:artifact219": {
+      "openingSummons": [
+        {
+          "creature": "third-upgrades:tumHurricaneElemental",
+          "encodedPower": 0
+        },
+        {
+          "creature": "third-upgrades:tumLifeElemental",
+          "encodedPower": 0
+        },
+        {
+          "creature": "third-upgrades:tumPlasmaElemental",
+          "encodedPower": 0
+        },
+        {
+          "creature": "third-upgrades:tumMineralElemental",
+          "encodedPower": 0
+        }
+      ]
+    },
+    "tum-era:artifact231": {
+      "openingSummons": [
+        {
+          "creature": "core:archangel",
+          "encodedPower": -500
+        }
+      ]
+    },
+    "tum-era:artifact279": {
+      "openingSummons": [
+        {
+          "creature": "tum-era:eraCreature357",
+          "encodedPower": -2300
+        }
+      ]
+    },
+    "tum-era:artifact202": {
+      "dailyConversions": [
+        {
+          "from": "core:archer",
+          "to": "third-upgrades:tumCrossbowman"
+        },
+        {
+          "from": "core:marksman",
+          "to": "third-upgrades:tumCrossbowman"
+        },
+        {
+          "from": "core:cavalier",
+          "to": "tum-era:eraCreature318"
+        }
+      ]
+    },
+    "tum-era:artifact273": {
+      "dailyConversions": [
+        {
+          "from": "tum-era:eraCreature341",
+          "to": "core:greenDragon"
+        },
+        {
+          "from": "core:boneDragon",
+          "to": "core:greenDragon"
+        },
+        {
+          "from": "core:ghostDragon",
+          "to": "core:greenDragon"
+        }
+      ]
+    },
+    "tum-era:artifact274": {
+      "dailyConversions": [
+        {
+          "from": "tum-era:eraCreature342",
+          "to": "core:redDragon"
+        },
+        {
+          "from": "core:boneDragon",
+          "to": "core:redDragon"
+        },
+        {
+          "from": "core:ghostDragon",
+          "to": "core:redDragon"
+        }
+      ]
+    },
+    "tum-era:artifact277": {
+      "dailyConversions": [
+        {
+          "from": "tum-era:eraCreature345",
+          "to": "core:azureDragon"
+        },
+        {
+          "from": "wake-of-gods.creatures:dracolich",
+          "to": "core:azureDragon"
+        }
+      ]
+    },
+    "tum-era:artifact261": {
+      "exchangeCloak": {}
+    },
+    "tum-era:artifact262": {
+      "massSpells": {
+        "spells": [
+          "core:resurrection",
+          "core:animateDead"
+        ],
+        "powerPercent": 30
+      },
+      "dailyConversions": [
+        {
+          "from": "core:skeleton",
+          "to": "core:peasant"
+        },
+        {
+          "from": "tum-era:eraCreature295",
+          "to": "core:archer"
+        },
+        {
+          "from": "tum-era:eraCreature297",
+          "to": "core:mage"
+        },
+        {
+          "from": "tum-era:eraCreature299",
+          "to": "core:sharpshooter"
+        }
+      ]
+    },
+    "tum-era:artifact263": {
+      "massSpells": {
+        "spells": [
+          "core:implosion"
+        ],
+        "powerPercent": 30
+      }
+    },
+    "tum-era:artifact179": {
+      "goldenGoose": {
+        "countBackpack": false
+      }
+    },
+    "tum-era:artifact181": {
+      "reflection": {
+        "resistanceBonus": 20
+      }
+    },
+    "tum-era:artifact197": {
+      "elementalFreedom": {}
     }
   }
 }

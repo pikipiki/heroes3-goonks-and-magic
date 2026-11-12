@@ -1,9 +1,16 @@
+import {reviewedDungeon,SOURCE_DUNGEON_CONTRACT} from '../roster8/dungeon-source.mjs';
+import {reviewedFortress,SOURCE_FORTRESS_CONTRACT} from '../roster8/fortress-counterstrikes.mjs';
+import {reviewedPrimalFaerie,SOURCE_PRIMAL_FAERIE_CONTRACT} from '../roster8/primal-faerie.mjs';
+import {reviewedMithrilGolem,SOURCE_MITHRIL_GOLEM_CONTRACT} from '../roster8/mithril-golem.mjs';
 import{requireSourceDeathBlowBinding}from'./death-blow-contract.mjs';
 /** Amethyst source-aware compiler. Policies are obligations, never working features.
  * Fresh definitions only: merging an arbitrary base silently retains disabled flags.
  */
 import { readFileSync } from 'node:fs';
 import { classifySourceBiology, nativeBiologyContract } from './biology.mjs';
+import { classifySourceInanimateBiology, SOURCE_INANIMATE_BIOLOGY_CONTRACT } from '../roster8/source-biology.mjs';
+import {sourceDemonologyCaster,SOURCE_DEMONOLOGY_CONTRACT} from '../roster8/demonology-source.mjs';
+import { compileSourceTemplarCaster, compileSourceTemplarMorale, SOURCE_TEMPLAR_CASTER_CONTRACT, SOURCE_TEMPLAR_MORALE_CONTRACT } from '../roster8/templar-caster.mjs';
 export const inventory = JSON.parse(readFileSync(new URL('./property-inventory.json', import.meta.url)));
 export const provenance = Object.freeze({tumRevision:inventory.tumRevision, sourceRevision:inventory.sourceRevision, sourceBinaryParity:'unverified'});
 const known = new Map(inventory.properties.map(p => [p.key,p]));
@@ -22,7 +29,7 @@ const enumNames = {
 // Bit positions come from H3CombatMonster.hpp:47-86, not creature-name guesses.
 const flagBonus = {
   1:['FLYING'], 2:['SHOOTER'], 3:['TWO_HEX_ATTACK_BREATH'],
-  10:['MIND_IMMUNITY'], 12:['NO_MELEE_PENALTY'],
+  10:['MIND_IMMUNITY'], 11:['NO_WALL_PENALTY'], 12:['NO_MELEE_PENALTY'],
   14:['SPELL_SCHOOL_IMMUNITY',0,1], 15:['ADDITIONAL_ATTACK',1],
   16:['BLOCKS_RETALIATION'],17:['NO_MORALE'],18:['UNDEAD'],
   19:['ATTACKS_ALL_ADJACENT'],31:['DRAGON_NATURE'],
@@ -49,8 +56,22 @@ export function parseCreatureProperties(text,{source='<cfg>'}={}) {
  * resolveCreature/Spell/Town/Artifact return fully qualified VCMI identifiers.
  */
 export function compileCreatureProperties(text,options={}) {
-  if(options.nativeBiologyContract!==undefined&&options.nativeBiologyContract!==nativeBiologyContract)throw new TypeError('Unknown native biology contract');
+  if(options.nativeDungeonContract!==undefined&&options.nativeDungeonContract!==SOURCE_DUNGEON_CONTRACT)throw new TypeError('Unknown native Dungeon contract');
+  if(options.nativeFortressContract!==undefined&&options.nativeFortressContract!==SOURCE_FORTRESS_CONTRACT)throw new TypeError("Unknown native Fortress contract");
+  if(options.nativePrimalFaerieContract!==undefined&&options.nativePrimalFaerieContract!==SOURCE_PRIMAL_FAERIE_CONTRACT)throw new TypeError('Unknown native Primal Faerie contract');
+  if(options.nativeConstructContract!==undefined&&options.nativeConstructContract!==SOURCE_MITHRIL_GOLEM_CONTRACT)throw new TypeError('Unknown native construct contract');
+  if(options.nativeBiologyContract!==undefined&&![nativeBiologyContract,SOURCE_INANIMATE_BIOLOGY_CONTRACT].includes(options.nativeBiologyContract))throw new TypeError('Unknown native biology contract');
   const entries=parseCreatureProperties(text,options),definition={abilities:{}},policies=[],mappings=[],diagnostics=[];
+  const dungeon=options.nativeDungeonContract===SOURCE_DUNGEON_CONTRACT&&[351,352].includes(options.sourceCreatureId)?reviewedDungeon(text,{sourceId:options.sourceCreatureId,contract:options.nativeDungeonContract}):undefined;
+  if(dungeon){Object.assign(definition.abilities,dungeon.abilities);if(dungeon.graphics)definition.graphics=dungeon.graphics;}
+  const fortress=options.nativeFortressContract===SOURCE_FORTRESS_CONTRACT&&[353,354].includes(options.sourceCreatureId)?reviewedFortress(text,{sourceId:options.sourceCreatureId,contract:options.nativeFortressContract}):undefined;
+  if(fortress)Object.assign(definition.abilities,fortress.abilities);
+  const primalFaerie=options.nativePrimalFaerieContract===SOURCE_PRIMAL_FAERIE_CONTRACT&&options.sourceCreatureId===258?reviewedPrimalFaerie(text,{sourceId:258,contract:options.nativePrimalFaerieContract,resolveSpell:options.resolveSpell}):undefined;
+  if(primalFaerie)Object.assign(definition.abilities,primalFaerie.abilities);
+  const mithrilGolem=options.nativeConstructContract===SOURCE_MITHRIL_GOLEM_CONTRACT&&options.sourceCreatureId===324?reviewedMithrilGolem(text,{sourceId:324,contract:options.nativeConstructContract}):undefined;
+  const activeCaster=options.nativeActiveCasterContract===SOURCE_TEMPLAR_CASTER_CONTRACT&&[269,278,331,332].includes(options.sourceCreatureId)
+    ?compileSourceTemplarCaster(text,{sourceId:options.sourceCreatureId,contract:options.nativeActiveCasterContract}):undefined;
+  const demonology=options.nativeDemonologyContract===SOURCE_DEMONOLOGY_CONTRACT&&[217,338].includes(options.sourceCreatureId)?sourceDemonologyCaster(text,{sourceId:options.sourceCreatureId,contract:options.nativeDemonologyContract}):undefined;
   const values=new Map(entries.map(e=>[e.key,e]));
   if(options.freshDefinition!==true)throw new TypeError('freshDefinition:true is required; inherited abilities cannot be overwritten safely');
   const issue=(e,code,message)=>diagnostics.push({...e,code,message});
@@ -84,7 +105,19 @@ export function compileCreatureProperties(text,options={}) {
     const {key}=e;
     if(!known.has(key)&&!/^Hate\d{4}$/.test(key)){issue(e,'UNKNOWN_PROPERTY',key);continue;}
     const n=numeric(e);if(!Number.isFinite(n))continue;
-    if(key==='Level'){definition.level=integer(e,0,7)+1;mapped(e,'level + 1');}
+    if(key==='DoNotGenerate'&&options.nativeRandomExclusionContract==='source-random-exclusion-v1'){
+      const value=integer(e,0,1);if(value===1)definition.special=true;mapped(e,'creature.special excludes native random selection');
+    }
+    else if(dungeon?.consumedKeys.includes(key)){mapped(e,'source-dungeon-eighth-v1 reviewed source service');}
+    else if(fortress?.consumedKeys.includes(key)){mapped(e,'source-fortress-counterstrikes-v1 whole reviewed service');}
+    else if(primalFaerie?.consumedKeys.includes(key)){mapped(e,'source-primal-faerie-v1 whole reviewed casting/defend/absorption service');}
+    else if(demonology&&['Spell 1','Spell 2','Spell 3','Demonology'].includes(key)){
+      Object.assign(definition.abilities,demonology.abilities);mapped(e,'source-mode2-demonology-caster');
+    }
+    else if(activeCaster&&['Spell 1','Spell 2','Spell 3','CastsSpell'].includes(key)){
+      Object.assign(definition.abilities,activeCaster.abilities);mapped(e,'source-templar-active-caster');
+    }
+    else if(key==='Level'){definition.level=integer(e,0,7)+1;mapped(e,'level + 1');}
     else if(key==='Town'){definition.faction=resolve(e,'Town',integer(e,-1,8));mapped(e,'faction');}
     else if(/^Hate\d{4}$/.test(key))ability(e,'ERA_PERSONAL_HATE_DAMAGE',integer(e,0),resolve(e,'Creature',Number(key.slice(4))));
     else if(key==='Flags'){
@@ -98,16 +131,16 @@ export function compileCreatureProperties(text,options={}) {
       // KING1 dragons are affected even by mastery0 Slayer. KING2 and KING3
       // require advanced/expert mastery respectively (native core definitions).
       if(kings.length===1)definition.abilities.amethystKing={type:'KING',val:kings[0]===7?0:kings[0]-6};
-      const handled=[0,1,2,3,7,8,9,10,12,14,15,16,17,18,19,31];
+      const handled=[0,1,2,3,7,8,9,10,11,12,14,15,16,17,18,19,31];
       const residual=Array.from({length:32},(_,i)=>i).filter(i=>!handled.includes(i)&&(bits&(2**i)));
       // ALIVE=0 also matters: a fresh native creature becomes LIVING unless
       // explicitly UNDEAD/NON_LIVING. Never silently accept that opposite case.
       const biology={sourceAlive:!!(bits&16),sourceUndead:!!(bits&0x40000),nativeAutomaticLivingRequiresExplicitEquivalence:true};
       // ALIVE controls eligibility in original executable; VCMI auto-adds LIVING
       // when loading non-UNDEAD/non-NON_LIVING definitions. Preserve difference.
-      const category=classifySourceBiology(n);
+      const category=options.nativeBiologyContract===SOURCE_INANIMATE_BIOLOGY_CONTRACT?classifySourceInanimateBiology(n):classifySourceBiology(n);
       if(category.error)issue(e,category.error,category.reason);
-      const opted=options.nativeBiologyContract===nativeBiologyContract;
+      const opted=[nativeBiologyContract,SOURCE_INANIMATE_BIOLOGY_CONTRACT].includes(options.nativeBiologyContract);
       const semanticResidual=opted&&category.closed?residual.filter(bit=>bit!==4):residual;
       if(opted&&category.closed){
         if(category.nature!=='UNDEAD')definition.abilities.amethystBiology={type:category.nature};
@@ -134,7 +167,9 @@ export function compileCreatureProperties(text,options={}) {
       ability(e,'FIRE_SHIELD',n*100);
     }
     else if(key==='AlwaysPositiveMorale'||key==='AlwaysPositiveLuck'){
-      integer(e,0,1);if(n)policy(e,'era-positive-'+(key.endsWith('Morale')?'morale':'luck'),{enabled:true},'Hooks select original executable branches; source does not establish numerical floor or reduction ordering',{lines:[4949,5043]});else mapped(e,'disabled in fresh definition');
+      integer(e,0,1);if(n&&key==='AlwaysPositiveMorale'&&options.nativePositiveMoraleContract===SOURCE_TEMPLAR_MORALE_CONTRACT){
+        definition.abilities.sourcePositiveMorale=compileSourceTemplarMorale(text,{sourceId:options.sourceCreatureId,contract:options.nativePositiveMoraleContract});mapped(e,'source positive morale floor1 before suppression');
+      }else if(n)policy(e,'era-positive-'+(key.endsWith('Morale')?'morale':'luck'),{enabled:true},'Hooks select original executable branches; source does not establish numerical floor or reduction ordering',{lines:[4949,5043]});else mapped(e,'disabled in fresh definition');
     }
     else if(key==='SpellsCostLess'||key==='SpellsCostDump')policy(e,'era-spell-cost',{property:key,value:integer(e,0,255)},'SpellsCostDump takes army maximum outside native battle scope; SpellsCostLess overwrites ERA routine locals, native battle max aggregation needs executable proof',{lines:[5173,5231]});
     else if(key==='Sktransformer')ability(e,'SKELETON_TRANSFORMER_TARGET',0,resolve(e,'Creature',integer(e,0)));
@@ -173,6 +208,7 @@ export function compileCreatureProperties(text,options={}) {
       }else if(!values.has('RegenerationHitPoints'))issue(e,'INCOMPLETE_GROUP','Missing RegenerationHitPoints');
       else mapped(e,'included in regeneration policy');
     }
+    else if(key==='isConstruct'&&mithrilGolem){ability(e,'ERA_SOURCE_CONSTRUCT');}
     else if(key==='ResGen_Type'||key==='ResGen_Amount'||key==='ResGen_Tax'){
       integer(e,0,key==='ResGen_Type'?7:2147483647);
       policy(e,'era-daily-resource-generation',{property:key,value:n},'Each own-player OnEveryDay: max amount per resource over owned hero armies and eligible town armies; additive Tax*count gold; no stack count multiplier on amount',{file:'Amethyst2/amethyst/dllmain.cpp',lines:[410,480,1314]});

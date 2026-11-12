@@ -12,6 +12,9 @@
 #include "../era/EraBridgePolicies.h"
 #include "../era/EraDefenseReduction.h"
 #include "../era/EraPersonalHate.h"
+#include "../era/EraSourceHate.h"
+#include "../era/EraSourceSpellAccuracy.h"
+#include "../bonuses/BonusParameters.h"
 #include "../CCreatureHandler.h"
 
 #include "DamageCalculator.h"
@@ -303,7 +306,18 @@ double DamageCalculator::getAttackHateCreatureFactor() const
 {
 	//assume that unit have only few HATE features and cache them all
 	auto allHateEffects = info.attacker->getBonusesOfType(BonusType::HATE);
-	return allHateEffects->valOfBonuses(Selector::subtype()(BonusSubtypeID(info.defender->creatureId()))) / 100.0;
+    const auto nativeSubtype=BonusSubtypeID(info.defender->creatureId());
+    const int sourceAttacker=era_compat::StatusAttacks::get().id(info.attacker->creatureId().toCreature()->getJsonKey());
+    const int sourceTarget=era_compat::StatusAttacks::get().id(info.defender->creatureId().toCreature()->getJsonKey());
+    const auto selector=[&](const Bonus * bonus)
+    {
+        if(bonus->subtype==nativeSubtype)return true;
+        if(!::era_bridge::sourceStrongholdHatePair(sourceAttacker,sourceTarget)
+            || bonus->subtype!=BonusSubtypeID() || !bonus->parameters)return false;
+        const auto & sourceIds=bonus->parameters->toVector();
+        return sourceIds.size()==1 && sourceIds[0]==sourceTarget;
+    };
+    return allHateEffects->valOfBonuses(selector)/100.0;
 }
 
 double DamageCalculator::getAttackHateTraitFactor() const

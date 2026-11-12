@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "bonuses/BonusParameters.h"
 
 #define INSTANTIATE_CBonusTypeHandler_HERE
 
@@ -63,6 +64,10 @@ std::string CBonusTypeHandler::bonusToString(const std::shared_ptr<Bonus> & bonu
 	if(!bearer)
 		throw std::runtime_error("CBonusTypeHandler::bonusToString: invalid bonus system node!"); 
 
+    // Deferred source HATE rows have distinct source targets although neither
+    // target needs a registered native entity yet. Never display their sum.
+    if(bonus->type==BonusType::HATE && !bonus->subtype.hasValue() && bonus->parameters)
+        return bonusToString(bonus,bonus->val);
 	return bonusToString(bonus, bearer->valOfBonuses(bonus->type, bonus->subtype));
 }
 
@@ -95,6 +100,13 @@ std::string CBonusTypeHandler::bonusToString(const std::shared_ptr<Bonus> & bonu
 	if (text.find("${val}") != std::string::npos)
 		boost::algorithm::replace_all(text, "${val}", std::to_string(bonusValue));
 
+    if(bonus->type==BonusType::HATE && !bonus->subtype.hasValue() && bonus->parameters)
+    {
+        const auto & sourceIds=bonus->parameters->toVector();
+        if(sourceIds.size()==1 && (sourceIds[0]==274 || sourceIds[0]==282))
+            boost::algorithm::replace_all(text,"${subtype.creature}",
+                LIBRARY->generaltexth->translate("tum-era.sourceHate."+std::to_string(sourceIds[0])));
+    }
 	if (text.find("${subtype.creature}") != std::string::npos && bonus->subtype.as<CreatureID>().hasValue())
 		boost::algorithm::replace_all(text, "${subtype.creature}", bonus->subtype.as<CreatureID>().toCreature()->getNamePluralTranslated());
 

@@ -1,0 +1,57 @@
+{
+  "ids": [
+    264,
+    265
+  ],
+  "scriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "archiveSHA256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "sourceLines": [
+    1692,
+    1759
+  ],
+  "mechanism": "On equipped source item event, read total primary skills and increase the lower member by their difference. Store that exact adjustment per hero. On unequip remove only the stored adjustment, preserving later changes. CM2 refreshes265 then264.",
+  "documentation": [
+    {
+      "url": "https://www.h3wog.com/erm_help/receivers/receiver_he_right.htm",
+      "contract": "HE:F reads primary skills including artifact bonuses; HE:F/.../1 would read base skills and is not used."
+    },
+    {
+      "url": "https://www.h3wog.com/erm_help/other/trigger_right.htm",
+      "contract": "AE does not fire for backpack. Legacy occupied-slot attempts can trigger temporary unequip/re-equip; CM2 is right mouse in hero information."
+    }
+  ],
+  "state": {
+    "bonus": "ERA_SOURCE_ARTIFACT_STATE",
+    "parameters": [
+      "version=1",
+      "sourceArtifactId",
+      "deltaAttack",
+      "deltaDefense",
+      "deltaPower",
+      "deltaKnowledge"
+    ],
+    "duration": "PERMANENT",
+    "initialMissingState": "Zero source SN:W value; initially worn map inventory is not retroactively changed by UI reads."
+  },
+  "documentedAdaptations": [
+    {
+      "source": "The supplied script has no explicit initial-map264/265 trigger. ERA missing associative integers are zero; whether initial Win32 inventory assembly fires AE1 has not been established.",
+      "native": "Initially worn map items remain unchanged until a real equipment event or explicit Rebalance. This deterministic initialization behavior is an explicit adaptation, not a claim of a proven original startup cycle."
+    },
+    {
+      "source": "Legacy Win32 transient AE0/AE1 calls while trying occupied equipment slots.",
+      "native": "Atomic inventory transitions use final equipment identities. Re-equilibration is an explicit tactile action equivalent to CM2; no implicit refresh at window opening."
+    },
+    {
+      "source": "Right mouse anywhere in hero screen refreshes equipped265 then264.",
+      "native": "Explicit Rééquilibrer action, server-owned current-turn hero, no combat or held artifact, same265 then264 order."
+    }
+  ],
+  "pending": [
+    "Matching native WebAssembly compilation",
+    "Native equip/backpack/removal/transfer controls",
+    "Native persistent save/reload and later primary-skill gains",
+    "Mobile/iPad action layout and DOM stability"
+  ],
+  "activationReady": false
+}

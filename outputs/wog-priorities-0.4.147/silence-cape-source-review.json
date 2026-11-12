@@ -1,0 +1,182 @@
+{
+  "ids": [
+    267
+  ],
+  "scriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "archiveSHA256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "spellTableSHA256": "0809ed7b2d7fc1357d96e4cd87bb5f9db6ad813b42d69dab29ab35fa3e1c11b9",
+  "emeraldSourcePins": {
+    "config.cpp": "5e35ad4b1a217b9844ad2f3e5571225007e5a6b8ec777efbe1f3c5768a9c58af",
+    "resistance.cpp": "ebd211d0f405fcbc4284be379af31f8847ed13ffa82a0d75b8e4a69ca9bd104d",
+    "emerald.cpp": "5e7a9eeb0b09ba3ed619d24752b399ad1893bbb0db39e0919e8c318e96c11a37"
+  },
+  "sourceEntries": [
+    43,
+    37,
+    42,
+    37,
+    41,
+    53,
+    36,
+    31,
+    32,
+    27,
+    54,
+    46,
+    62,
+    24,
+    47,
+    13,
+    51,
+    16,
+    17,
+    18,
+    31,
+    10,
+    64,
+    45
+  ],
+  "uniqueSpells": [
+    {
+      "id": 10,
+      "name": "Quicksand",
+      "level": 2
+    },
+    {
+      "id": 13,
+      "name": "Fire Wall",
+      "level": 2
+    },
+    {
+      "id": 16,
+      "name": "Ice Bolt",
+      "level": 2
+    },
+    {
+      "id": 17,
+      "name": "Lightning Bolt",
+      "level": 2
+    },
+    {
+      "id": 18,
+      "name": "Implosion",
+      "level": 5
+    },
+    {
+      "id": 24,
+      "name": "Death Ripple",
+      "level": 2
+    },
+    {
+      "id": 27,
+      "name": "Shield",
+      "level": 1
+    },
+    {
+      "id": 31,
+      "name": "Protection from Fire",
+      "level": 1
+    },
+    {
+      "id": 32,
+      "name": "Prot. from Water",
+      "level": 1
+    },
+    {
+      "id": 36,
+      "name": "Magic Mirror",
+      "level": 5
+    },
+    {
+      "id": 37,
+      "name": "Cure",
+      "level": 1
+    },
+    {
+      "id": 41,
+      "name": "Bless",
+      "level": 1
+    },
+    {
+      "id": 42,
+      "name": "Curse",
+      "level": 1
+    },
+    {
+      "id": 43,
+      "name": "Bloodlust",
+      "level": 1
+    },
+    {
+      "id": 45,
+      "name": "Weakness",
+      "level": 2
+    },
+    {
+      "id": 46,
+      "name": "Stone Skin",
+      "level": 1
+    },
+    {
+      "id": 47,
+      "name": "Disrupting Ray",
+      "level": 2
+    },
+    {
+      "id": 51,
+      "name": "Fortune",
+      "level": 2
+    },
+    {
+      "id": 53,
+      "name": "Haste",
+      "level": 1
+    },
+    {
+      "id": 54,
+      "name": "Slow",
+      "level": 1
+    },
+    {
+      "id": 62,
+      "name": "Blind",
+      "level": 2
+    },
+    {
+      "id": 64,
+      "name": "Remove Obstacle",
+      "level": 2
+    }
+  ],
+  "unprotectedLowLevelCombatSpells": [
+    {
+      "id": 15,
+      "name": "Magic Arrow",
+      "level": 1
+    },
+    {
+      "id": 30,
+      "name": "Protection from Air",
+      "level": 2
+    },
+    {
+      "id": 35,
+      "name": "Dispel",
+      "level": 1
+    },
+    {
+      "id": 44,
+      "name": "Precision",
+      "level": 2
+    }
+  ],
+  "mechanism": "Emerald config.cpp323..325 populates a per-artifact spell table. resistance.cpp127..141 subtracts one from final reception probability for each equipped body slot of the victim hero. No bilateral spell-level cap exists in the provided source.",
+  "scope": "Native source creature/artifact reception exceptions remain separate. Terrain-only spells in the list do not invent a global casting prohibition.",
+  "descriptionCorrection": "Original prose promises neither side can cast levels1/2. Actual CFG protects only the wearer army against22 unique spells, including levels5 Implosion and MagicMirror, and omits four low-level combat spells. UI describes actual verified behavior.",
+  "pending": [
+    "Native wearer/adversary controls",
+    "Native beneficial/harmful/level5/omitted low-level spell controls",
+    "Backpack controls"
+  ],
+  "activationReady": false
+}

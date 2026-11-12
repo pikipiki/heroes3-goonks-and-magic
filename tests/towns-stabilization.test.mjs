@@ -33,5 +33,7 @@ test('Every fresh town dependency has exactly one final health experience row',(
   const name=key.split(':')[1],creature=merged[name];assert(creature,key+' must be registered');
   assert.equal(creature.stackExperience.filter(r=>r.bonus.type==='ERA_EXPERIENCE_HEALTH_PERCENT').length,1,key);
  }
- assert.equal(Object.keys(read(root+'content/config/era-bridge-experience.json').creatures).length,240+2);
+ const profiles=read(root+'content/config/era-bridge-experience.json').creatures;
+ for(const key of baseline.experienceProfileKeys)assert(Object.hasOwn(profiles,key),'Preserved published experience profile: '+key);
+ for(const key of Object.values(read(root+'era-identities.json').creatures))assert(Object.hasOwn(profiles,key),'Reviewed actor has an experience profile: '+key);
 });

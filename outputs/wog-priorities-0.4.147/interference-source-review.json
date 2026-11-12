@@ -1,0 +1,28 @@
+{
+  "ids": [
+    269,
+    270,
+    271
+  ],
+  "scriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "archiveSHA256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "sourceLines": [
+    1992,
+    2040
+  ],
+  "mechanism": "Only with two original heroes, inspect each of19 equipped body slots. Unique269/270 reduce opposing cached battle spell power by10% each,271 by25%. Add percentages, truncate integer product/100, clamp minimum1. Hero map primaries do not change. Both directions are independent.",
+  "cache": {
+    "source": "CombatManager21460+4*side",
+    "native": "ONE_BATTLE ERA_SOURCE_ARTIFACT_STATE on battle node, [1,carrierSourceId,affectedSide,effectivePower,originalPower]",
+    "fixedExplicitCasts": "Explicit fixed50 powers/durations remain50; artifact opening summon counts still read original map hero power.",
+    "secondaryMassEffects": "262/263 derive their30% power from this effective cached battle power.",
+    "lightningRod": "220 raw extra bolt uses Mechanics effective power; no extra modifier of its own."
+  },
+  "pending": [
+    "Native single/combined/bilateral/duplicate/backpack/two-hero gates",
+    "Ordinary numeric damage and durations, preserved map stats and save/load",
+    "Fixed50 opening and source262/263/220 integration controls",
+    "Battle hero power display matching original(originalEffective) UX"
+  ],
+  "activationReady": false
+}

@@ -8,17 +8,25 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraInterferenceRuntime.h"
+#include "../era/EraOblivionRuntime.h"
+#include "../../lib/era/EraCrystalExperience.h"
 #include "../../lib/era/EraStatusHealthBonuses.h"
 #include "BattleFlowProcessor.h"
 #include "../era/EraImposedSpells.h"
+#include "../era/EraRoundTwoDemons.h"
 #include "../era/EraRebirth.h"
 #include "../era/EraSourceFear.h"
+#include "../era/EraArtifactOpeningSummons.h"
+#include "../era/EraExchangeCloakRuntime.h"
 #include "../../lib/CCreatureHandler.h"
 #include "../../lib/era/EraBridgePolicies.h"
 #include "../../lib/era/EraCreatureArtifactMimic.h"
 #include "../../lib/entities/artifact/CArtifact.h"
 #include "../../lib/entities/artifact/CArtifactInstance.h"
 #include "../../lib/era/EraOpeningSpellOrder.h"
+#include "../../lib/era/EraMassHypnotizeArtifact.h"
+#include "../../lib/era/EraInterferenceState.h"
 #include "../../lib/bonuses/BonusList.h"
 
 #include "BattleProcessor.h"
@@ -28,6 +36,7 @@
 #include "../TurnTimerHandler.h"
 
 #include "../../lib/CStack.h"
+#include "../../lib/mapObjects/army/CStackInstance.h"
 #include "../../lib/battle/CBattleInfoCallback.h"
 #include "../../lib/battle/IBattleState.h"
 #include "../../lib/bonuses/BonusParameters.h"
@@ -146,6 +155,9 @@ void BattleFlowProcessor::tryPlaceMoats(const CBattleInfoCallback & battle)
 
 void BattleFlowProcessor::onBattleStarted(const CBattleInfoCallback & battle)
 {
+    setupEraOblivion(*gameHandler,battle);
+    applyEraInterference(*gameHandler,battle);
+    applyEraExchangeCloak(*gameHandler,battle);
     // Initial enchantments precede tactics and opening spells. ERA refreshes
     // them after each later round reset; dispelling lasts until that refresh.
     for(const auto * stack : battle.battleGetAllStacks(true))
@@ -260,6 +272,8 @@ void BattleFlowProcessor::castOpeningSpells(const CBattleInfoCallback & battle)
 		if (!h)
 			continue;
 
+        applyEraArtifactOpeningSummons(*gameHandler,battle,*h,i);
+
 		auto openingSpells = *h->getBonuses([](const Bonus * bonus) {
             return isOpening(bonus) && !isEmeraldOpening(bonus);
         });
@@ -314,12 +328,22 @@ void BattleFlowProcessor::castOpeningSpells(const CBattleInfoCallback & battle)
 			spells::BattleCast parameters(&battle, &caster, spells::Mode::PASSIVE, spell);
 			int32_t spellLevel = isEmeraldOpening(b.get()) ? 3 : (b->parameters ? b->parameters->toNumber() : 3);
 			parameters.setSpellLevel(spellLevel);
-			parameters.setEffectDuration(b->val);
+			parameters.setEffectDuration(b->val + (isEmeraldOpening(b.get()) && b->val==50 ? 1 : 0));
             // Emerald CastArtifactSpell passes50 as the final CastBattleSpell
             // argument in mode2. Original5A041B preserves this caller power;
             // it is not the hero's power or merely an enchantment duration.
             if(b->type == BonusType::ERA_FIXED_POWER_OPENING_SPELL)
                 parameters.setEffectPower(b->val);
+            if(era_compat::MassHypnotizeArtifact::get().matches(*b))
+            {
+                // Original5A8673 uses actual hero mastery and cached21460 power
+                // for reception. Explicit mode2 duration50 controls status only.
+                const auto cached=era_compat::sourceInterferencePower(battle,h);
+                const int power=cached?cached->effective:h->getEffectPower(spell);
+                parameters.eraArtifactMassHypnotize=true;
+                parameters.setEffectValue(spell->calculateRawEffectValue(h->getSpellSchoolLevel(spell),power,1));
+                parameters.smart=true;
+            }
 			parameters.massive = true;
             if(parameters.castIfPossible(gameHandler->spellcastEnvironment(), spells::Target()))
                 applyEraRebirth(*gameHandler, battle);
@@ -371,6 +395,7 @@ void BattleFlowProcessor::startNextRound(const CBattleInfoCallback & battle, boo
             // ERA wrapper760627 calls round reset446e40 then imposed effects760652.
             applyEraImposedSpells(*gameHandler, battle, stack);
 			stackEnchantedTrigger(battle, stack);
+            applyEraRoundTwoDemons(*gameHandler,battle,stack);
         }
 	}
 }
@@ -400,7 +425,23 @@ const CStack * BattleFlowProcessor::getNextStack(const CBattleInfoCallback & bat
 
 		const int32_t lostHealth = stack->getMaxHealth() - stack->getFirstHPleft();
 		const auto eraRegeneration = era_compat::Policies::get().regeneration(stack->creatureId().toCreature()->getJsonKey());
-		if(eraRegeneration && lostHealth > 0)
+		const auto experienceRegeneration = era_compat::Policies::get().experienceRegeneration(stack->creatureId().toCreature()->getJsonKey());
+        const auto sourceRegeneration = era_compat::Policies::get().sourceRegeneration(stack->creatureId().toCreature()->getJsonKey());
+        if(sourceRegeneration)
+        {
+            // The shipped source hook draws even for100% and uninjured stacks.
+            const int roll=gameHandler->getRandomGenerator().nextInt(0,99);
+            bte.val=static_cast<int32_t>(::era_bridge::regeneration(stack->getFirstHPleft(),stack->getMaxHealth(),
+                std::max(sourceRegeneration->hitPoints,stack->valOfBonuses(BonusType::HP_REGENERATION)),sourceRegeneration->chancePercent,roll));
+        }
+        else if(experienceRegeneration)
+        {
+            const int rank=stack->base?std::min<int>(10,stack->base->getExpRank()):0;
+            const int roll=gameHandler->getRandomGenerator().nextInt(1,100);
+            bte.val=::era_bridge::sourceExperienceRegeneration(experienceRegeneration->values.at(rank),lostHealth,
+                experienceRegeneration->chancePercent,roll);
+        }
+        else if(eraRegeneration && lostHealth > 0)
 		{
 			// Draw from the authoritative seeded game RNG, never browser state.
 			// Certain/disabled policies do not consume a useless random draw.

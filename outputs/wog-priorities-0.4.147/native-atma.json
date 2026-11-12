@@ -1,0 +1,96 @@
+{
+  "passed": true,
+  "engineWasmSHA256": "1b518e40dbd50599d0595963fd07867769ebd12d50e0e646fc82981d6a3e420c",
+  "origin": "http://127.0.0.1:8796",
+  "interface": "Actual touchscreen Rebalance button with explicit hero ID, not an API-only success.",
+  "report": {
+    "initial-refresh-264": {
+      "initial": [
+        4,
+        7,
+        10,
+        20
+      ],
+      "adjusted": [
+        7,
+        7,
+        10,
+        20
+      ]
+    },
+    "gain-save-unequip-264": {
+      "changed": [
+        7,
+        8,
+        10,
+        20
+      ],
+      "refreshed": [
+        8,
+        8,
+        10,
+        20
+      ],
+      "restored": [
+        4,
+        8,
+        10,
+        20
+      ],
+      "savedBytes": 118772
+    },
+    "initial-refresh-265": {
+      "initial": [
+        4,
+        7,
+        10,
+        20
+      ],
+      "adjusted": [
+        4,
+        7,
+        20,
+        20
+      ]
+    },
+    "gain-save-unequip-265": {
+      "changed": [
+        4,
+        7,
+        21,
+        20
+      ],
+      "refreshed": [
+        4,
+        7,
+        20,
+        20
+      ],
+      "restored": [
+        4,
+        7,
+        11,
+        20
+      ],
+      "savedBytes": 118683
+    },
+    "transfer": {
+      "originId": 1,
+      "targetId": 3,
+      "originRestored": [
+        4,
+        7,
+        10,
+        20
+      ],
+      "recipientEquipped": [
+        12,
+        12,
+        8,
+        8
+      ]
+    }
+  },
+  "documentedInitializationAdaptation": "Initially worn map items have no retroactive adjustment until actual equip or explicit Rebalance. Script has no init handler; original initial AE1 cycle is not established. Missing persisted source integer is independently proven zero.",
+  "stateProof": "atma-associative-state.json"
+}

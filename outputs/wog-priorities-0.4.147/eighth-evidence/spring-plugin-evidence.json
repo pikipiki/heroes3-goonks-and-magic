@@ -1,0 +1,33 @@
+{
+  "pluginSHA256": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+  "sourceCfgSHA256": "cf70a7bb72e715c1956638506bf48d0e5269db0cd2c443bb161453dd86553b89",
+  "localStaticAnalysisOnly": true,
+  "ranges": {
+    "plugin-default-aftercast.asm": [
+      "0x100132cb",
+      "0x100132f4"
+    ],
+    "plugin-after-defend-second-slot.asm": [
+      "0x1001bcdc",
+      "0x1001bd67"
+    ],
+    "plugin-pixel-distance.asm": [
+      "0x10015bf0",
+      "0x10015ca6"
+    ],
+    "plugin-pixel-radius.asm": [
+      "0x10016e00",
+      "0x10016e64"
+    ]
+  },
+  "facts": [
+    "Aftercastselectors initialize9DEFAULTfor1024entries; source350 hasno selectoroverride.",
+    "AfterDefendSpell2 is insidefirst-slotnonzero branch; source350firstslotzero.",
+    "Splashrange uses signedshortpixelx/y,squaredsumrightshift12,comparison<=radiusSquared,thenrepeatfortail."
+  ],
+  "nativeValidationRequired": [
+    "Regeneration100perround",
+    "Full350splashgeometryandtargetscope",
+    "XPexpertmassCure37andrankdeflection"
+  ]
+}

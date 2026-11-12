@@ -1,0 +1,2646 @@
+{
+  "passed": true,
+  "errors": [],
+  "report": {
+    "fixture": {
+      "experienceProfile": "Owned test overlay fullRank10=100, battlePercent=100; source rank effects and production data unmodified",
+      "enduranceEnemy": "Owned test gnoll high HP, fixed50 damage; source dragon combat rules unchanged"
+    },
+    "fireShield": {
+      "fixture": "Owned gnoll highHP+NOT_ACTIVE+FIRE_SHIELD20; source SapphireXP/deflection unchanged; no primary enemy attacks, no retaliation",
+      "blocks": 11,
+      "observations": [
+        {
+          "round": 1,
+          "hp": 1500
+        },
+        {
+          "round": 2,
+          "hp": 1500
+        },
+        {
+          "round": 3,
+          "hp": 1500
+        },
+        {
+          "round": 4,
+          "hp": 1500
+        },
+        {
+          "round": 5,
+          "hp": 1500
+        },
+        {
+          "round": 6,
+          "hp": 1500
+        },
+        {
+          "round": 7,
+          "hp": 1500
+        },
+        {
+          "round": 8,
+          "hp": 1500
+        },
+        {
+          "round": 9,
+          "hp": 1500
+        },
+        {
+          "round": 10,
+          "hp": 1500
+        },
+        {
+          "round": 11,
+          "hp": 1500
+        },
+        {
+          "round": 12,
+          "hp": 1500
+        },
+        {
+          "round": 13,
+          "hp": 1500
+        },
+        {
+          "round": 14,
+          "hp": 1500
+        },
+        {
+          "round": 15,
+          "hp": 1500
+        },
+        {
+          "round": 16,
+          "hp": 1500
+        },
+        {
+          "round": 17,
+          "hp": 1500
+        },
+        {
+          "round": 18,
+          "hp": 1500
+        },
+        {
+          "round": 19,
+          "hp": 1500
+        },
+        {
+          "round": 20,
+          "hp": 1500
+        },
+        {
+          "round": 21,
+          "hp": 1500
+        },
+        {
+          "round": 22,
+          "hp": 1500
+        },
+        {
+          "round": 23,
+          "hp": 1500
+        },
+        {
+          "round": 24,
+          "hp": 1500
+        },
+        {
+          "round": 25,
+          "hp": 1500
+        },
+        {
+          "round": 26,
+          "hp": 1500
+        },
+        {
+          "round": 27,
+          "hp": 1500
+        },
+        {
+          "round": 28,
+          "hp": 1500
+        },
+        {
+          "round": 29,
+          "hp": 1500
+        },
+        {
+          "round": 30,
+          "hp": 1500
+        },
+        {
+          "round": 31,
+          "hp": 1500
+        },
+        {
+          "round": 32,
+          "hp": 1500
+        },
+        {
+          "round": 33,
+          "hp": 1500
+        },
+        {
+          "round": 34,
+          "hp": 1500
+        },
+        {
+          "round": 35,
+          "hp": 1500
+        },
+        {
+          "round": 36,
+          "hp": 1500
+        },
+        {
+          "round": 37,
+          "hp": 1500
+        },
+        {
+          "round": 38,
+          "hp": 1500
+        },
+        {
+          "round": 39,
+          "hp": 1500
+        },
+        {
+          "round": 40,
+          "hp": 1500
+        },
+        {
+          "round": 41,
+          "hp": 1500
+        },
+        {
+          "round": 42,
+          "hp": 1500
+        },
+        {
+          "round": 43,
+          "hp": 1500
+        },
+        {
+          "round": 44,
+          "hp": 1500
+        },
+        {
+          "round": 45,
+          "hp": 1500
+        },
+        {
+          "round": 46,
+          "hp": 1500
+        },
+        {
+          "round": 47,
+          "hp": 1500
+        },
+        {
+          "round": 48,
+          "hp": 1500
+        }
+      ],
+      "losses": [
+        {
+          "dealt": 210,
+          "reflected": 42,
+          "round": 1
+        },
+        {
+          "dealt": 224,
+          "reflected": 44,
+          "round": 2
+        },
+        {
+          "dealt": 211,
+          "reflected": 42,
+          "round": 3
+        },
+        {
+          "dealt": 209,
+          "reflected": 41,
+          "round": 4
+        },
+        {
+          "dealt": 216,
+          "reflected": 43,
+          "round": 5
+        },
+        {
+          "dealt": 209,
+          "reflected": 41,
+          "round": 6
+        },
+        {
+          "dealt": 229,
+          "reflected": 45,
+          "round": 7
+        },
+        {
+          "dealt": 213,
+          "reflected": 42,
+          "round": 8
+        },
+        {
+          "dealt": 231,
+          "reflected": 46,
+          "round": 9
+        },
+        {
+          "dealt": 210,
+          "reflected": 42,
+          "round": 10
+        },
+        {
+          "dealt": 222,
+          "reflected": 44,
+          "round": 11
+        },
+        {
+          "dealt": 216,
+          "reflected": 43,
+          "round": 12
+        },
+        {
+          "dealt": 221,
+          "reflected": 44,
+          "round": 13
+        },
+        {
+          "dealt": 211,
+          "reflected": 42,
+          "round": 14
+        },
+        {
+          "dealt": 217,
+          "reflected": 43,
+          "round": 15
+        },
+        {
+          "dealt": 221,
+          "reflected": 44,
+          "round": 16
+        },
+        {
+          "dealt": 227,
+          "reflected": 0,
+          "round": 17
+        },
+        {
+          "dealt": 228,
+          "reflected": 45,
+          "round": 18
+        },
+        {
+          "dealt": 222,
+          "reflected": 0,
+          "round": 19
+        },
+        {
+          "dealt": 224,
+          "reflected": 44,
+          "round": 20
+        },
+        {
+          "dealt": 209,
+          "reflected": 41,
+          "round": 21
+        },
+        {
+          "dealt": 222,
+          "reflected": 0,
+          "round": 22
+        },
+        {
+          "dealt": 231,
+          "reflected": 46,
+          "round": 23
+        },
+        {
+          "dealt": 221,
+          "reflected": 44,
+          "round": 24
+        },
+        {
+          "dealt": 226,
+          "reflected": 0,
+          "round": 25
+        },
+        {
+          "dealt": 214,
+          "reflected": 42,
+          "round": 26
+        },
+        {
+          "dealt": 230,
+          "reflected": 0,
+          "round": 27
+        },
+        {
+          "dealt": 211,
+          "reflected": 0,
+          "round": 28
+        },
+        {
+          "dealt": 214,
+          "reflected": 42,
+          "round": 29
+        },
+        {
+          "dealt": 225,
+          "reflected": 45,
+          "round": 30
+        },
+        {
+          "dealt": 227,
+          "reflected": 45,
+          "round": 31
+        },
+        {
+          "dealt": 220,
+          "reflected": 0,
+          "round": 32
+        },
+        {
+          "dealt": 213,
+          "reflected": 42,
+          "round": 33
+        },
+        {
+          "dealt": 230,
+          "reflected": 46,
+          "round": 34
+        },
+        {
+          "dealt": 220,
+          "reflected": 44,
+          "round": 35
+        },
+        {
+          "dealt": 220,
+          "reflected": 0,
+          "round": 36
+        },
+        {
+          "dealt": 211,
+          "reflected": 42,
+          "round": 37
+        },
+        {
+          "dealt": 227,
+          "reflected": 45,
+          "round": 38
+        },
+        {
+          "dealt": 212,
+          "reflected": 42,
+          "round": 39
+        },
+        {
+          "dealt": 214,
+          "reflected": 42,
+          "round": 40
+        },
+        {
+          "dealt": 209,
+          "reflected": 0,
+          "round": 41
+        },
+        {
+          "dealt": 227,
+          "reflected": 45,
+          "round": 42
+        },
+        {
+          "dealt": 215,
+          "reflected": 0,
+          "round": 43
+        },
+        {
+          "dealt": 215,
+          "reflected": 43,
+          "round": 44
+        },
+        {
+          "dealt": 217,
+          "reflected": 43,
+          "round": 45
+        },
+        {
+          "dealt": 227,
+          "reflected": 0,
+          "round": 46
+        },
+        {
+          "dealt": 223,
+          "reflected": 44,
+          "round": 47
+        }
+      ],
+      "trace": [
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 1000000
+        },
+        {
+          "round": 1,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 999790
+        },
+        {
+          "round": 1,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 999790
+        },
+        {
+          "round": 1,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 999790
+        },
+        {
+          "round": 2,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 999790
+        },
+        {
+          "round": 2,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 999790
+        },
+        {
+          "round": 2,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 999790
+        },
+        {
+          "round": 2,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 999790
+        },
+        {
+          "round": 2,
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 999566
+        },
+        {
+          "round": 2,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 999566
+        },
+        {
+          "round": 2,
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 999566
+        },
+        {
+          "round": 3,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 999566
+        },
+        {
+          "round": 3,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 999566
+        },
+        {
+          "round": 3,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 999566
+        },
+        {
+          "round": 3,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 999566
+        },
+        {
+          "round": 3,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 999355
+        },
+        {
+          "round": 3,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 999355
+        },
+        {
+          "round": 3,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 999355
+        },
+        {
+          "round": 4,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 999355
+        },
+        {
+          "round": 4,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 999355
+        },
+        {
+          "round": 4,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 999355
+        },
+        {
+          "round": 4,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 999355
+        },
+        {
+          "round": 4,
+          "hp": 1459,
+          "max": 1500,
+          "enemyHP": 999146
+        },
+        {
+          "round": 4,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1459,
+          "max": 1500,
+          "enemyHP": 999146
+        },
+        {
+          "round": 4,
+          "hp": 1459,
+          "max": 1500,
+          "enemyHP": 999146
+        },
+        {
+          "round": 5,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 999146
+        },
+        {
+          "round": 5,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 999146
+        },
+        {
+          "round": 5,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 999146
+        },
+        {
+          "round": 5,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 999146
+        },
+        {
+          "round": 5,
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 998930
+        },
+        {
+          "round": 5,
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 998930
+        },
+        {
+          "round": 5,
+          "active": "tum-era:eraCreature268",
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 998930
+        },
+        {
+          "round": 5,
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 998930
+        },
+        {
+          "round": 5,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 998930
+        },
+        {
+          "round": 5,
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 998930
+        },
+        {
+          "round": 6,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998930
+        },
+        {
+          "round": 6,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998930
+        },
+        {
+          "round": 6,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998930
+        },
+        {
+          "round": 6,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998930
+        },
+        {
+          "round": 6,
+          "hp": 1459,
+          "max": 1500,
+          "enemyHP": 998721
+        },
+        {
+          "round": 6,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1459,
+          "max": 1500,
+          "enemyHP": 998721
+        },
+        {
+          "round": 6,
+          "hp": 1459,
+          "max": 1500,
+          "enemyHP": 998721
+        },
+        {
+          "round": 7,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998721
+        },
+        {
+          "round": 7,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998721
+        },
+        {
+          "round": 7,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998721
+        },
+        {
+          "round": 7,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998721
+        },
+        {
+          "round": 7,
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 998492
+        },
+        {
+          "round": 7,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 998492
+        },
+        {
+          "round": 7,
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 998492
+        },
+        {
+          "round": 8,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998492
+        },
+        {
+          "round": 8,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998492
+        },
+        {
+          "round": 8,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998492
+        },
+        {
+          "round": 8,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998492
+        },
+        {
+          "round": 8,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 998279
+        },
+        {
+          "round": 8,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 998279
+        },
+        {
+          "round": 8,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 998279
+        },
+        {
+          "round": 9,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998279
+        },
+        {
+          "round": 9,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998279
+        },
+        {
+          "round": 9,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998279
+        },
+        {
+          "round": 9,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998279
+        },
+        {
+          "round": 9,
+          "hp": 1454,
+          "max": 1500,
+          "enemyHP": 998048
+        },
+        {
+          "round": 9,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1454,
+          "max": 1500,
+          "enemyHP": 998048
+        },
+        {
+          "round": 9,
+          "hp": 1454,
+          "max": 1500,
+          "enemyHP": 998048
+        },
+        {
+          "round": 10,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998048
+        },
+        {
+          "round": 10,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998048
+        },
+        {
+          "round": 10,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998048
+        },
+        {
+          "round": 10,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 998048
+        },
+        {
+          "round": 10,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 997838
+        },
+        {
+          "round": 10,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 997838
+        },
+        {
+          "round": 10,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 997838
+        },
+        {
+          "round": 11,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 997838
+        },
+        {
+          "round": 11,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 997838
+        },
+        {
+          "round": 11,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 997838
+        },
+        {
+          "round": 11,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 997838
+        },
+        {
+          "round": 11,
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 997616
+        },
+        {
+          "round": 11,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 997616
+        },
+        {
+          "round": 11,
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 997616
+        },
+        {
+          "round": 12,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 997616
+        },
+        {
+          "round": 12,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 997616
+        },
+        {
+          "round": 12,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 997616
+        },
+        {
+          "round": 12,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 997616
+        },
+        {
+          "round": 12,
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 997400
+        },
+        {
+          "round": 12,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 997400
+        },
+        {
+          "round": 12,
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 997400
+        },
+        {
+          "round": 13,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 997400
+        },
+        {
+          "round": 13,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 997400
+        },
+        {
+          "round": 13,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 997400
+        },
+        {
+          "round": 13,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 997400
+        },
+        {
+          "round": 13,
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 997179
+        },
+        {
+          "round": 13,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 997179
+        },
+        {
+          "round": 13,
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 997179
+        },
+        {
+          "round": 14,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 997179
+        },
+        {
+          "round": 14,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 997179
+        },
+        {
+          "round": 14,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 997179
+        },
+        {
+          "round": 14,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 997179
+        },
+        {
+          "round": 14,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 996968
+        },
+        {
+          "round": 14,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 996968
+        },
+        {
+          "round": 14,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 996968
+        },
+        {
+          "round": 15,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996968
+        },
+        {
+          "round": 15,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996968
+        },
+        {
+          "round": 15,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996968
+        },
+        {
+          "round": 15,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996968
+        },
+        {
+          "round": 15,
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 996751
+        },
+        {
+          "round": 15,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 996751
+        },
+        {
+          "round": 15,
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 996751
+        },
+        {
+          "round": 16,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996751
+        },
+        {
+          "round": 16,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996751
+        },
+        {
+          "round": 16,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996751
+        },
+        {
+          "round": 16,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996751
+        },
+        {
+          "round": 16,
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 996530
+        },
+        {
+          "round": 16,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 996530
+        },
+        {
+          "round": 16,
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 996530
+        },
+        {
+          "round": 17,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996530
+        },
+        {
+          "round": 17,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996530
+        },
+        {
+          "round": 17,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996530
+        },
+        {
+          "round": 17,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996530
+        },
+        {
+          "round": 17,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996303
+        },
+        {
+          "round": 17,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996303
+        },
+        {
+          "round": 17,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996303
+        },
+        {
+          "round": 18,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996303
+        },
+        {
+          "round": 18,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996303
+        },
+        {
+          "round": 18,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996303
+        },
+        {
+          "round": 18,
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 996075
+        },
+        {
+          "round": 18,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 996075
+        },
+        {
+          "round": 18,
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 996075
+        },
+        {
+          "round": 19,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996075
+        },
+        {
+          "round": 19,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996075
+        },
+        {
+          "round": 19,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996075
+        },
+        {
+          "round": 19,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 996075
+        },
+        {
+          "round": 19,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995853
+        },
+        {
+          "round": 19,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995853
+        },
+        {
+          "round": 19,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995853
+        },
+        {
+          "round": 20,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995853
+        },
+        {
+          "round": 20,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995853
+        },
+        {
+          "round": 20,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995853
+        },
+        {
+          "round": 20,
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 995629
+        },
+        {
+          "round": 20,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 995629
+        },
+        {
+          "round": 20,
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 995629
+        },
+        {
+          "round": 21,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995629
+        },
+        {
+          "round": 21,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995629
+        },
+        {
+          "round": 21,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995629
+        },
+        {
+          "round": 21,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995629
+        },
+        {
+          "round": 21,
+          "hp": 1459,
+          "max": 1500,
+          "enemyHP": 995420
+        },
+        {
+          "round": 21,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1459,
+          "max": 1500,
+          "enemyHP": 995420
+        },
+        {
+          "round": 21,
+          "hp": 1459,
+          "max": 1500,
+          "enemyHP": 995420
+        },
+        {
+          "round": 22,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995420
+        },
+        {
+          "round": 22,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995420
+        },
+        {
+          "round": 22,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995420
+        },
+        {
+          "round": 22,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995420
+        },
+        {
+          "round": 22,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995198
+        },
+        {
+          "round": 22,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995198
+        },
+        {
+          "round": 22,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995198
+        },
+        {
+          "round": 23,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995198
+        },
+        {
+          "round": 23,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995198
+        },
+        {
+          "round": 23,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 995198
+        },
+        {
+          "round": 23,
+          "hp": 1454,
+          "max": 1500,
+          "enemyHP": 994967
+        },
+        {
+          "round": 23,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1454,
+          "max": 1500,
+          "enemyHP": 994967
+        },
+        {
+          "round": 23,
+          "hp": 1454,
+          "max": 1500,
+          "enemyHP": 994967
+        },
+        {
+          "round": 24,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994967
+        },
+        {
+          "round": 24,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994967
+        },
+        {
+          "round": 24,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994967
+        },
+        {
+          "round": 24,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994967
+        },
+        {
+          "round": 24,
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 994746
+        },
+        {
+          "round": 24,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 994746
+        },
+        {
+          "round": 24,
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 994746
+        },
+        {
+          "round": 25,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994746
+        },
+        {
+          "round": 25,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994746
+        },
+        {
+          "round": 25,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994746
+        },
+        {
+          "round": 25,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994746
+        },
+        {
+          "round": 25,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994520
+        },
+        {
+          "round": 25,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994520
+        },
+        {
+          "round": 25,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994520
+        },
+        {
+          "round": 26,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994520
+        },
+        {
+          "round": 26,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994520
+        },
+        {
+          "round": 26,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994520
+        },
+        {
+          "round": 26,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 994306
+        },
+        {
+          "round": 26,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 994306
+        },
+        {
+          "round": 26,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 994306
+        },
+        {
+          "round": 27,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994306
+        },
+        {
+          "round": 27,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994306
+        },
+        {
+          "round": 27,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994306
+        },
+        {
+          "round": 27,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994306
+        },
+        {
+          "round": 27,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994076
+        },
+        {
+          "round": 27,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994076
+        },
+        {
+          "round": 27,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994076
+        },
+        {
+          "round": 28,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994076
+        },
+        {
+          "round": 28,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994076
+        },
+        {
+          "round": 28,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 994076
+        },
+        {
+          "round": 28,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993865
+        },
+        {
+          "round": 28,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993865
+        },
+        {
+          "round": 28,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993865
+        },
+        {
+          "round": 28,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993865
+        },
+        {
+          "round": 29,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993865
+        },
+        {
+          "round": 29,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993865
+        },
+        {
+          "round": 29,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993865
+        },
+        {
+          "round": 29,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993865
+        },
+        {
+          "round": 29,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993865
+        },
+        {
+          "round": 29,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 993651
+        },
+        {
+          "round": 29,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 993651
+        },
+        {
+          "round": 29,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 993651
+        },
+        {
+          "round": 30,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993651
+        },
+        {
+          "round": 30,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993651
+        },
+        {
+          "round": 30,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993651
+        },
+        {
+          "round": 30,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993651
+        },
+        {
+          "round": 30,
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 993426
+        },
+        {
+          "round": 30,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 993426
+        },
+        {
+          "round": 30,
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 993426
+        },
+        {
+          "round": 31,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993426
+        },
+        {
+          "round": 31,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993426
+        },
+        {
+          "round": 31,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993426
+        },
+        {
+          "round": 31,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993426
+        },
+        {
+          "round": 31,
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 993199
+        },
+        {
+          "round": 31,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 993199
+        },
+        {
+          "round": 31,
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 993199
+        },
+        {
+          "round": 32,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993199
+        },
+        {
+          "round": 32,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993199
+        },
+        {
+          "round": 32,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993199
+        },
+        {
+          "round": 32,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993199
+        },
+        {
+          "round": 32,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 993199
+        },
+        {
+          "round": 32,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992979
+        },
+        {
+          "round": 32,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992979
+        },
+        {
+          "round": 32,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992979
+        },
+        {
+          "round": 32,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992979
+        },
+        {
+          "round": 32,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992979
+        },
+        {
+          "round": 32,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992979
+        },
+        {
+          "round": 33,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992979
+        },
+        {
+          "round": 33,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992979
+        },
+        {
+          "round": 33,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992979
+        },
+        {
+          "round": 33,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 992766
+        },
+        {
+          "round": 33,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 992766
+        },
+        {
+          "round": 33,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 992766
+        },
+        {
+          "round": 34,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992766
+        },
+        {
+          "round": 34,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992766
+        },
+        {
+          "round": 34,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992766
+        },
+        {
+          "round": 34,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992766
+        },
+        {
+          "round": 34,
+          "hp": 1454,
+          "max": 1500,
+          "enemyHP": 992536
+        },
+        {
+          "round": 34,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1454,
+          "max": 1500,
+          "enemyHP": 992536
+        },
+        {
+          "round": 34,
+          "hp": 1454,
+          "max": 1500,
+          "enemyHP": 992536
+        },
+        {
+          "round": 35,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992536
+        },
+        {
+          "round": 35,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992536
+        },
+        {
+          "round": 35,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992536
+        },
+        {
+          "round": 35,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992536
+        },
+        {
+          "round": 35,
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 992316
+        },
+        {
+          "round": 35,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 992316
+        },
+        {
+          "round": 35,
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 992316
+        },
+        {
+          "round": 36,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992316
+        },
+        {
+          "round": 36,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992316
+        },
+        {
+          "round": 36,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992316
+        },
+        {
+          "round": 36,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992316
+        },
+        {
+          "round": 36,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992096
+        },
+        {
+          "round": 36,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992096
+        },
+        {
+          "round": 36,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992096
+        },
+        {
+          "round": 37,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992096
+        },
+        {
+          "round": 37,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992096
+        },
+        {
+          "round": 37,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 992096
+        },
+        {
+          "round": 37,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 991885
+        },
+        {
+          "round": 37,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 991885
+        },
+        {
+          "round": 37,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 991885
+        },
+        {
+          "round": 38,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991885
+        },
+        {
+          "round": 38,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991885
+        },
+        {
+          "round": 38,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991885
+        },
+        {
+          "round": 38,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991885
+        },
+        {
+          "round": 38,
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 991658
+        },
+        {
+          "round": 38,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 991658
+        },
+        {
+          "round": 38,
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 991658
+        },
+        {
+          "round": 39,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991658
+        },
+        {
+          "round": 39,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991658
+        },
+        {
+          "round": 39,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991658
+        },
+        {
+          "round": 39,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991658
+        },
+        {
+          "round": 39,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 991446
+        },
+        {
+          "round": 39,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 991446
+        },
+        {
+          "round": 39,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 991446
+        },
+        {
+          "round": 40,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991446
+        },
+        {
+          "round": 40,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991446
+        },
+        {
+          "round": 40,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991446
+        },
+        {
+          "round": 40,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991446
+        },
+        {
+          "round": 40,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 991232
+        },
+        {
+          "round": 40,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 991232
+        },
+        {
+          "round": 40,
+          "hp": 1458,
+          "max": 1500,
+          "enemyHP": 991232
+        },
+        {
+          "round": 41,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991232
+        },
+        {
+          "round": 41,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991232
+        },
+        {
+          "round": 41,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991232
+        },
+        {
+          "round": 41,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991232
+        },
+        {
+          "round": 41,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991023
+        },
+        {
+          "round": 41,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991023
+        },
+        {
+          "round": 41,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991023
+        },
+        {
+          "round": 42,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991023
+        },
+        {
+          "round": 42,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991023
+        },
+        {
+          "round": 42,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 991023
+        },
+        {
+          "round": 42,
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 990796
+        },
+        {
+          "round": 42,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 990796
+        },
+        {
+          "round": 42,
+          "hp": 1455,
+          "max": 1500,
+          "enemyHP": 990796
+        },
+        {
+          "round": 43,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990796
+        },
+        {
+          "round": 43,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990796
+        },
+        {
+          "round": 43,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990796
+        },
+        {
+          "round": 43,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990796
+        },
+        {
+          "round": 43,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990581
+        },
+        {
+          "round": 43,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990581
+        },
+        {
+          "round": 43,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990581
+        },
+        {
+          "round": 44,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990581
+        },
+        {
+          "round": 44,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990581
+        },
+        {
+          "round": 44,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990581
+        },
+        {
+          "round": 44,
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 990366
+        },
+        {
+          "round": 44,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 990366
+        },
+        {
+          "round": 44,
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 990366
+        },
+        {
+          "round": 45,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990366
+        },
+        {
+          "round": 45,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990366
+        },
+        {
+          "round": 45,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990366
+        },
+        {
+          "round": 45,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990366
+        },
+        {
+          "round": 45,
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 990149
+        },
+        {
+          "round": 45,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 990149
+        },
+        {
+          "round": 45,
+          "hp": 1457,
+          "max": 1500,
+          "enemyHP": 990149
+        },
+        {
+          "round": 46,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990149
+        },
+        {
+          "round": 46,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990149
+        },
+        {
+          "round": 46,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990149
+        },
+        {
+          "round": 46,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 990149
+        },
+        {
+          "round": 46,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 989922
+        },
+        {
+          "round": 46,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 989922
+        },
+        {
+          "round": 46,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 989922
+        },
+        {
+          "round": 47,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 989922
+        },
+        {
+          "round": 47,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 989922
+        },
+        {
+          "round": 47,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 989922
+        },
+        {
+          "round": 47,
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 989699
+        },
+        {
+          "round": 47,
+          "active": "wake-of-gods.commanders:paladin1",
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 989699
+        },
+        {
+          "round": 47,
+          "hp": 1456,
+          "max": 1500,
+          "enemyHP": 989699
+        },
+        {
+          "round": 48,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 989699
+        },
+        {
+          "round": 48,
+          "active": "tum-era:eraCreature268",
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 989699
+        },
+        {
+          "round": 48,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 989699
+        },
+        {
+          "round": 48,
+          "hp": 1500,
+          "max": 1500,
+          "enemyHP": 989699
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "passed": true,
+  "errors": [],
+  "report": {
+    "stats": {
+      "aiValue": 7220,
+      "attack": 29,
+      "cost": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        4000,
+        0
+      ],
+      "count": 2,
+      "damageMax": 55,
+      "damageMin": 30,
+      "defense": 20,
+      "description": "Souffle sur deux cases. Provoque la peur et y résiste. Deux coups par riposte, deux ripostes de base par tour, même contre les troupes qui bloquent les ripostes.",
+      "fightValue": 6985,
+      "growth": 1,
+      "health": 300,
+      "icon": "tum-era/creatures/354/large",
+      "id": 301,
+      "key": "tum-era:eraCreature354",
+      "magicDamageReduction": 0,
+      "name": "Leviathan",
+      "nativeFlags": {
+        "attacksAllAdjacent": false,
+        "blocksRetaliation": false,
+        "chargeImmune": false,
+        "flying": false,
+        "living": false,
+        "mindImmune": false,
+        "noMorale": false,
+        "nonLiving": false,
+        "undead": false
+      },
+      "physicalDamageBonus": 0,
+      "rangedDamageBonus": 0,
+      "shooter": false,
+      "shots": 0,
+      "slot": 0,
+      "speed": 12
+    },
+    "upgrade": {
+      "before": [
+        128,
+        110,
+        128,
+        110,
+        110,
+        110,
+        120000,
+        100
+      ],
+      "steps": [
+        {
+          "target": "tum-era:eraCreature354",
+          "resources": [
+            128,
+            110,
+            128,
+            108,
+            110,
+            110,
+            116400,
+            100
+          ]
+        },
+        {
+          "target": "tum-era:eraCreature353",
+          "resources": [
+            128,
+            110,
+            128,
+            108,
+            110,
+            110,
+            116400,
+            100
+          ]
+        },
+        {
+          "target": "tum-era:eraCreature354",
+          "resources": [
+            128,
+            110,
+            128,
+            106,
+            110,
+            110,
+            112800,
+            100
+          ]
+        }
+      ],
+      "source": "Explicit final353→354 ERM link and354→353 CFG link; original54EB50 clamps negative resource differences tozero, noresourcegain"
+    }
+  }
+}

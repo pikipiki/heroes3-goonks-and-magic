@@ -1,0 +1,766 @@
+{
+  "passed": true,
+  "report": {
+    "stats": {
+      "aiValue": 28277,
+      "attack": 35,
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        12,
+        17000,
+        0
+      ],
+      "count": 2,
+      "damageMax": 40,
+      "damageMin": 35,
+      "defense": 35,
+      "description": "",
+      "fightValue": 26470,
+      "growth": 1,
+      "health": 700,
+      "icon": "tum-era/creatures/258/large",
+      "id": 273,
+      "key": "tum-era:eraCreature258",
+      "magicDamageReduction": 0,
+      "name": "Primal Faerie Dragon",
+      "nativeFlags": {
+        "attacksAllAdjacent": false,
+        "blocksRetaliation": false,
+        "chargeImmune": false,
+        "flying": true,
+        "living": true,
+        "mindImmune": false,
+        "noMorale": false,
+        "nonLiving": false,
+        "undead": false
+      },
+      "physicalDamageBonus": 0,
+      "rangedDamageBonus": 0,
+      "shooter": false,
+      "shots": 0,
+      "slot": 0,
+      "speed": 17
+    },
+    "upgrade": {
+      "before": [
+        120,
+        110,
+        120,
+        110,
+        110,
+        110,
+        120800,
+        100
+      ],
+      "after": [
+        120,
+        110,
+        120,
+        110,
+        110,
+        102,
+        106800,
+        100
+      ],
+      "army": [
+        {
+          "id": 1,
+          "name": "Christian",
+          "needsLastStack": true,
+          "slots": [
+            {
+              "aiValue": 28277,
+              "attack": 35,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                12,
+                17000,
+                0
+              ],
+              "count": 2,
+              "damageMax": 40,
+              "damageMin": 35,
+              "defense": 35,
+              "description": "",
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 26470,
+              "growth": 1,
+              "health": 700,
+              "icon": "tum-era/creatures/258/large",
+              "id": 273,
+              "key": "tum-era:eraCreature258",
+              "name": "Primal Faerie Dragon",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "speed": 17
+            },
+            {
+              "aiValue": 700,
+              "attack": 10,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                330,
+                0
+              ],
+              "count": 3,
+              "damageMax": 12,
+              "damageMin": 8,
+              "defense": 12,
+              "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 700,
+              "growth": 6,
+              "health": 50,
+              "icon": "goonk/fart-large.png",
+              "id": 248,
+              "key": "goonk:bubu",
+              "name": "Bubu",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": true,
+              "shots": 12,
+              "speed": 5
+            },
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    "cast1": {
+      "spellId": 17,
+      "name": "Lightning Bolt",
+      "power": 11,
+      "damage": 295,
+      "charges": 9
+    },
+    "cast4": {
+      "spellId": 16,
+      "name": "Ice Bolt",
+      "power": 41,
+      "damage": 840,
+      "charges": 9
+    },
+    "cast7": {
+      "spellId": 21,
+      "name": "Fireball",
+      "power": 71,
+      "damage": 740,
+      "charges": 9
+    },
+    "absorption": {
+      "before": {
+        "aiValue": 28277,
+        "armySlot": 0,
+        "attack": 35,
+        "canMeleeAt": true,
+        "canShootAt": false,
+        "cloned": false,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          12,
+          17000,
+          0
+        ],
+        "count": 1,
+        "currentHealth": 700,
+        "damageMax": 40,
+        "damageMin": 35,
+        "defense": 35,
+        "description": "",
+        "enemy": true,
+        "eraSlot": 0,
+        "experience": 0,
+        "experiencePerUnit": 0,
+        "experienceRank": 0,
+        "fightValue": 26470,
+        "growth": 1,
+        "health": 700,
+        "icon": "tum-era/creatures/258/large",
+        "id": 273,
+        "key": "tum-era:eraCreature258",
+        "luck": 0,
+        "magicResistance": 0,
+        "maximumHealth": 700,
+        "morale": 0,
+        "name": "Primal Faerie Dragon",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": true,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "occupied": [
+          99,
+          100
+        ],
+        "remainingCasts": 10,
+        "remainingRetaliations": 0,
+        "remainingShots": 0,
+        "shooter": false,
+        "shots": 0,
+        "speed": 17,
+        "stackId": 1,
+        "x": 652,
+        "y": 322
+      },
+      "after": {
+        "aiValue": 28277,
+        "armySlot": 0,
+        "attack": 35,
+        "canMeleeAt": true,
+        "canShootAt": false,
+        "cloned": false,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          12,
+          17000,
+          0
+        ],
+        "count": 1,
+        "currentHealth": 727,
+        "damageMax": 40,
+        "damageMin": 35,
+        "defense": 35,
+        "description": "",
+        "enemy": true,
+        "eraSlot": 0,
+        "experience": 0,
+        "experiencePerUnit": 0,
+        "experienceRank": 0,
+        "fightValue": 26470,
+        "growth": 1,
+        "health": 700,
+        "icon": "tum-era/creatures/258/large",
+        "id": 273,
+        "key": "tum-era:eraCreature258",
+        "luck": 0,
+        "magicResistance": 0,
+        "maximumHealth": 700,
+        "morale": 0,
+        "name": "Primal Faerie Dragon",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": true,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "occupied": [
+          99,
+          100
+        ],
+        "remainingCasts": 10,
+        "remainingRetaliations": 0,
+        "remainingShots": 0,
+        "shooter": false,
+        "shots": 0,
+        "speed": 17,
+        "stackId": 1,
+        "x": 652,
+        "y": 322
+      },
+      "absorbed": 27
+    },
+    "defend": {
+      "observed": [
+        {
+          "round": 1,
+          "hp": 700,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            87,
+            86
+          ]
+        },
+        {
+          "round": 2,
+          "hp": 700,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            87,
+            86
+          ]
+        },
+        {
+          "round": 3,
+          "hp": 697,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            140,
+            139
+          ]
+        },
+        {
+          "round": 4,
+          "hp": 694,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            37,
+            36
+          ]
+        },
+        {
+          "round": 5,
+          "hp": 691,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            140,
+            139
+          ]
+        },
+        {
+          "round": 6,
+          "hp": 688,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            37,
+            36
+          ]
+        },
+        {
+          "round": 7,
+          "hp": 685,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            140,
+            139
+          ]
+        },
+        {
+          "round": 8,
+          "hp": 682,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            37,
+            36
+          ]
+        },
+        {
+          "round": 9,
+          "hp": 679,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            124,
+            123
+          ]
+        },
+        {
+          "round": 10,
+          "hp": 676,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            37,
+            36
+          ]
+        },
+        {
+          "round": 11,
+          "hp": 673,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            140,
+            139
+          ]
+        },
+        {
+          "round": 12,
+          "hp": 659,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            37,
+            36
+          ]
+        },
+        {
+          "round": 13,
+          "hp": 645,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            140,
+            139
+          ]
+        },
+        {
+          "round": 14,
+          "hp": 631,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            37,
+            36
+          ]
+        },
+        {
+          "round": 15,
+          "hp": 617,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            140,
+            139
+          ]
+        }
+      ],
+      "deltas": [
+        {
+          "round": 2,
+          "lost": 0
+        },
+        {
+          "round": 3,
+          "lost": 3
+        },
+        {
+          "round": 4,
+          "lost": 3
+        },
+        {
+          "round": 5,
+          "lost": 3
+        },
+        {
+          "round": 6,
+          "lost": 3
+        },
+        {
+          "round": 7,
+          "lost": 3
+        },
+        {
+          "round": 8,
+          "lost": 3
+        },
+        {
+          "round": 9,
+          "lost": 3
+        },
+        {
+          "round": 10,
+          "lost": 3
+        },
+        {
+          "round": 11,
+          "lost": 3
+        },
+        {
+          "round": 12,
+          "lost": 14
+        },
+        {
+          "round": 13,
+          "lost": 14
+        },
+        {
+          "round": 14,
+          "lost": 14
+        },
+        {
+          "round": 15,
+          "lost": 14
+        }
+      ],
+      "charges": 10,
+      "sourceDuration": 11
+    },
+    "block": {
+      "trained": {
+        "aiValue": 28277,
+        "attack": 35,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          12,
+          17000,
+          0
+        ],
+        "count": 1,
+        "damageMax": 40,
+        "damageMin": 35,
+        "defense": 35,
+        "description": "",
+        "experience": 10,
+        "experiencePerUnit": 10,
+        "experienceRank": 10,
+        "fightValue": 26470,
+        "growth": 1,
+        "health": 700,
+        "icon": "tum-era/creatures/258/large",
+        "id": 273,
+        "key": "tum-era:eraCreature258",
+        "name": "Primal Faerie Dragon",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": true,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "shooter": false,
+        "shots": 0,
+        "speed": 17
+      },
+      "observed": [
+        {
+          "round": 1,
+          "hp": 1050,
+          "maximum": 1050
+        },
+        {
+          "round": 2,
+          "hp": 1025,
+          "maximum": 1050
+        },
+        {
+          "round": 3,
+          "hp": 1025,
+          "maximum": 1050
+        },
+        {
+          "round": 4,
+          "hp": 1025,
+          "maximum": 1050
+        },
+        {
+          "round": 5,
+          "hp": 1000,
+          "maximum": 1050
+        },
+        {
+          "round": 6,
+          "hp": 975,
+          "maximum": 1050
+        },
+        {
+          "round": 7,
+          "hp": 950,
+          "maximum": 1050
+        },
+        {
+          "round": 8,
+          "hp": 950,
+          "maximum": 1050
+        },
+        {
+          "round": 9,
+          "hp": 950,
+          "maximum": 1050
+        },
+        {
+          "round": 10,
+          "hp": 950,
+          "maximum": 1050
+        },
+        {
+          "round": 11,
+          "hp": 925,
+          "maximum": 1050
+        },
+        {
+          "round": 12,
+          "hp": 900,
+          "maximum": 1050
+        },
+        {
+          "round": 13,
+          "hp": 875,
+          "maximum": 1050
+        },
+        {
+          "round": 14,
+          "hp": 850,
+          "maximum": 1050
+        },
+        {
+          "round": 15,
+          "hp": 825,
+          "maximum": 1050
+        },
+        {
+          "round": 16,
+          "hp": 800,
+          "maximum": 1050
+        },
+        {
+          "round": 17,
+          "hp": 800,
+          "maximum": 1050
+        },
+        {
+          "round": 18,
+          "hp": 775,
+          "maximum": 1050
+        },
+        {
+          "round": 19,
+          "hp": 750,
+          "maximum": 1050
+        },
+        {
+          "round": 20,
+          "hp": 725,
+          "maximum": 1050
+        },
+        {
+          "round": 21,
+          "hp": 725,
+          "maximum": 1050
+        },
+        {
+          "round": 22,
+          "hp": 700,
+          "maximum": 1050
+        },
+        {
+          "round": 23,
+          "hp": 675,
+          "maximum": 1050
+        },
+        {
+          "round": 24,
+          "hp": 650,
+          "maximum": 1050
+        },
+        {
+          "round": 25,
+          "hp": 625,
+          "maximum": 1050
+        },
+        {
+          "round": 26,
+          "hp": 600,
+          "maximum": 1050
+        },
+        {
+          "round": 27,
+          "hp": 575,
+          "maximum": 1050
+        },
+        {
+          "round": 28,
+          "hp": 575,
+          "maximum": 1050
+        },
+        {
+          "round": 29,
+          "hp": 550,
+          "maximum": 1050
+        },
+        {
+          "round": 30,
+          "hp": 525,
+          "maximum": 1050
+        },
+        {
+          "round": 31,
+          "hp": 500,
+          "maximum": 1050
+        },
+        {
+          "round": 32,
+          "hp": 475,
+          "maximum": 1050
+        }
+      ],
+      "blocks": 8,
+      "visualReads": [
+        "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/crystal-block/block.def"
+      ]
+    }
+  },
+  "validationRuns": [
+    {
+      "scope": "basic",
+      "evidence": "/tmp/goonk147-phase4-primal-d/partial.json",
+      "engineSha256": "337987e312594d265379e2a3f214cbf0a93a0fd7077733159d5d2b5d715c977f"
+    },
+    {
+      "scope": "defend",
+      "evidence": "/tmp/goonk151-primal-defend/result.json",
+      "engineSha256": "3c998ed9f6d862ca53c5675f948b1ab1c1435d8b7b2db3928382192fbf3c09e0"
+    },
+    {
+      "scope": "block",
+      "evidence": "/tmp/goonk151-primal-block/result.json",
+      "engineSha256": "3c998ed9f6d862ca53c5675f948b1ab1c1435d8b7b2db3928382192fbf3c09e0"
+    }
+  ],
+  "note": "Basic spell and upgrade paths verified on phase4 engine; subsequent mobile MOVE correction validated separately with full protection-duration and block controls."
+}

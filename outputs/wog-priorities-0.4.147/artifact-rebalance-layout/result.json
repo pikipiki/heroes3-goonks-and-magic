@@ -1,0 +1,215 @@
+{
+  "passed": true,
+  "reports": [
+    {
+      "kind": "chromium",
+      "width": 320,
+      "height": 568,
+      "rect": {
+        "x": 213.328125,
+        "y": 191,
+        "width": 98.65625,
+        "height": 44
+      },
+      "identicalUpdates": 30,
+      "removedNodes": 0,
+      "explicitCommand102": true,
+      "scrollPreserved": true
+    },
+    {
+      "kind": "chromium",
+      "width": 390,
+      "height": 844,
+      "rect": {
+        "x": 260,
+        "y": 191,
+        "width": 122,
+        "height": 44
+      },
+      "identicalUpdates": 30,
+      "removedNodes": 0,
+      "explicitCommand102": true,
+      "scrollPreserved": true
+    },
+    {
+      "kind": "chromium",
+      "width": 568,
+      "height": 320,
+      "rect": {
+        "x": 487.328125,
+        "y": 85.890625,
+        "width": 78.65625,
+        "height": 44
+      },
+      "identicalUpdates": 30,
+      "removedNodes": 0,
+      "explicitCommand102": true,
+      "scrollPreserved": true
+    },
+    {
+      "kind": "chromium",
+      "width": 844,
+      "height": 390,
+      "rect": {
+        "x": 763.078125,
+        "y": 85.890625,
+        "width": 78.90625,
+        "height": 44
+      },
+      "identicalUpdates": 30,
+      "removedNodes": 0,
+      "explicitCommand102": true,
+      "scrollPreserved": true
+    },
+    {
+      "kind": "chromium",
+      "width": 768,
+      "height": 1024,
+      "rect": {
+        "x": 512,
+        "y": 191,
+        "width": 248,
+        "height": 44
+      },
+      "identicalUpdates": 30,
+      "removedNodes": 0,
+      "explicitCommand102": true,
+      "scrollPreserved": true
+    },
+    {
+      "kind": "chromium",
+      "width": 1024,
+      "height": 768,
+      "rect": {
+        "x": 925.671875,
+        "y": 95.890625,
+        "width": 94.328125,
+        "height": 44
+      },
+      "identicalUpdates": 30,
+      "removedNodes": 0,
+      "explicitCommand102": true,
+      "scrollPreserved": true
+    },
+    {
+      "kind": "chromium",
+      "width": 1180,
+      "height": 820,
+      "rect": {
+        "x": 1067.328125,
+        "y": 95.890625,
+        "width": 108.65625,
+        "height": 44
+      },
+      "identicalUpdates": 30,
+      "removedNodes": 0,
+      "explicitCommand102": true,
+      "scrollPreserved": true
+    },
+    {
+      "kind": "webkit",
+      "width": 320,
+      "height": 568,
+      "rect": {
+        "x": 213.328125,
+        "y": 191,
+        "width": 98.671875,
+        "height": 44
+      },
+      "identicalUpdates": 30,
+      "removedNodes": 0,
+      "explicitCommand102": true,
+      "scrollPreserved": true
+    },
+    {
+      "kind": "webkit",
+      "width": 390,
+      "height": 844,
+      "rect": {
+        "x": 260,
+        "y": 191,
+        "width": 122,
+        "height": 44
+      },
+      "identicalUpdates": 30,
+      "removedNodes": 0,
+      "explicitCommand102": true,
+      "scrollPreserved": true
+    },
+    {
+      "kind": "webkit",
+      "width": 568,
+      "height": 320,
+      "rect": {
+        "x": 487.328125,
+        "y": 85,
+        "width": 78.671875,
+        "height": 44
+      },
+      "identicalUpdates": 30,
+      "removedNodes": 0,
+      "explicitCommand102": true,
+      "scrollPreserved": true
+    },
+    {
+      "kind": "webkit",
+      "width": 844,
+      "height": 390,
+      "rect": {
+        "x": 763.0625,
+        "y": 85,
+        "width": 78.921875,
+        "height": 44
+      },
+      "identicalUpdates": 30,
+      "removedNodes": 0,
+      "explicitCommand102": true,
+      "scrollPreserved": true
+    },
+    {
+      "kind": "webkit",
+      "width": 768,
+      "height": 1024,
+      "rect": {
+        "x": 512,
+        "y": 191,
+        "width": 248,
+        "height": 44
+      },
+      "identicalUpdates": 30,
+      "removedNodes": 0,
+      "explicitCommand102": true,
+      "scrollPreserved": true
+    },
+    {
+      "kind": "webkit",
+      "width": 1024,
+      "height": 768,
+      "rect": {
+        "x": 925.671875,
+        "y": 95,
+        "width": 94.3125,
+        "height": 44
+      },
+      "identicalUpdates": 30,
+      "removedNodes": 0,
+      "explicitCommand102": true,
+      "scrollPreserved": true
+    },
+    {
+      "kind": "webkit",
+      "width": 1180,
+      "height": 820,
+      "rect": {
+        "x": 1067.328125,
+        "y": 95,
+        "width": 108.671875,
+        "height": 44
+      },
+      "identicalUpdates": 30,
+      "removedNodes": 0,
+      "explicitCommand102": true,
+      "scrollPreserved": true
+    }
+  ]
+}

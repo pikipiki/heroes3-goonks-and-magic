@@ -1,0 +1,510 @@
+{
+  "sourcePins": {
+    "archive": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+    "sound": "1da1264707a6dd7da79490bed64798a7bd6cf7cba12581e5b93549f0c29bbc32",
+    "templates": "87c32a48ad6855fa5d14d4a32b7e2522c499844dd2bac7f21cccdb5f0383cd93",
+    "cfgSet": "00a4d31d2418fd5fb9426b0c31f7d564085760b22452dbb32e92b5a1a963c6ac",
+    "plugin": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+    "upgradeProgram": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+    "constants": "cf39435c763439482ce6a96fc7d589abd27c96779de04e719678c2ec0db82d76",
+    "archer": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+    "names": "0e392924b9fea7ec05657634668f37d828657b066ce90a78c2a1547dc0974ba0"
+  },
+  "record": {
+    "eraId": 324,
+    "nativeId": "tum-era:eraCreature324",
+    "obligations": [],
+    "dependencies": [],
+    "sourceCfg": "Data/Creatures/324.cfg",
+    "sourceCfgSha256": "8e08876336e2e634b35943c0d708ac9cde454475399d868bd70fdba6f5739158",
+    "assets": [
+      {
+        "path": "content/Sprites/tum-era/creatures/324/CR324.def",
+        "sourceEntry": "CR324.def",
+        "sha256": "247d7d9368e7e6985beb41c6a229a2857ae1f956f78e109671bafe769b9b9505",
+        "bytes": 168720
+      },
+      {
+        "path": "content/Sprites/tum-era/creatures/324/AVWCR324.def",
+        "sourceEntry": "AVWCR324.def",
+        "sha256": "2df08dd9d6719a19cdc34b4d6e7fbd6293d21bc734f3571efd36de561ce7fc94",
+        "bytes": 6928
+      },
+      {
+        "path": "content/Sprites/tum-era/creatures/324/AVWCR324.msk",
+        "sourceEntry": "AVWCR324.msk",
+        "sha256": "d6e0004c2c8f25245ec98c9dd2dde7758acd4e262cefa1eee4e5a963da162523",
+        "bytes": 14
+      },
+      {
+        "path": "content/Sprites/tum-era/creatures/324/small.png",
+        "sourceEntry": "CPRSMALL.def frame326",
+        "sha256": "e54aa9602a9546534d09e60ee8862ba0ff9631cdb717fd5539bd5bc5be53c8e7",
+        "bytes": 663
+      },
+      {
+        "path": "content/Sprites/tum-era/creatures/324/large.png",
+        "sourceEntry": "TWCRPORT.def frame326",
+        "sha256": "c072cccc0729c80f192b5205cbd9a5ad0fae59777927c3ce84b448c277a6f996",
+        "bytes": 2798
+      },
+      {
+        "path": "content/Sounds/tum-era/creatures/324/S324ATTK.wav",
+        "sourceEntry": "S324ATTK",
+        "sha256": "97079ccc5e938f7398a21912fd80455828afd68c3789748dea3858010f0dea10",
+        "bytes": 9978
+      },
+      {
+        "path": "content/Sounds/tum-era/creatures/324/S324DFND.wav",
+        "sourceEntry": "S324DFND",
+        "sha256": "7f66970403f36e8253a4b90e4966406b48a40d2c8b42cb80333df66232037049",
+        "bytes": 11514
+      },
+      {
+        "path": "content/Sounds/tum-era/creatures/324/S324KILL.wav",
+        "sourceEntry": "S324KILL",
+        "sha256": "800cfa79f99c0be0b8c5129b3852566ac910554147aa9f14ab3f174f3c90c634",
+        "bytes": 16634
+      },
+      {
+        "path": "content/Sounds/tum-era/creatures/324/S324MOVE.wav",
+        "sourceEntry": "S324MOVE",
+        "sha256": "94519e7e8dd609e15cbf9f1114d0c0463bf01a1655abd92dd1f43f3abcf004b3",
+        "bytes": 13560
+      },
+      {
+        "path": "content/Sounds/tum-era/creatures/324/S324WNCE.wav",
+        "sourceEntry": "S324WNCE",
+        "sha256": "338c8d0089f19d6fd55d895a1a4a540b1320e0823c78e87ccef256507a7e8cb7",
+        "bytes": 12026
+      }
+    ],
+    "cfgMappings": [
+      {
+        "source": "Data/Creatures/324.cfg",
+        "line": 1,
+        "key": "ResGen_Type",
+        "rawValue": "7",
+        "operation": "runtime:era-daily-resource-generation",
+        "evidence": {
+          "file": "Amethyst2/amethyst/tables.cpp",
+          "lines": [
+            1450,
+            1451
+          ],
+          "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+          "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+          "sourceBinaryParity": "unverified"
+        }
+      },
+      {
+        "source": "Data/Creatures/324.cfg",
+        "line": 2,
+        "key": "ResGen_Amount",
+        "rawValue": "1",
+        "operation": "runtime:era-daily-resource-generation",
+        "evidence": {
+          "file": "Amethyst2/amethyst/tables.cpp",
+          "lines": [
+            1447,
+            1448
+          ],
+          "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+          "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+          "sourceBinaryParity": "unverified"
+        }
+      },
+      {
+        "source": "Data/Creatures/324.cfg",
+        "line": 3,
+        "key": "Flags",
+        "rawValue": "131072",
+        "operation": "source-native-biology:ERA_SOURCE_INANIMATE",
+        "evidence": {
+          "file": "Amethyst2/amethyst/tables.cpp",
+          "lines": [
+            1624,
+            1626
+          ],
+          "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+          "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+          "sourceBinaryParity": "unverified"
+        }
+      },
+      {
+        "source": "Data/Creatures/324.cfg",
+        "line": 3,
+        "key": "Flags",
+        "rawValue": "131072",
+        "operation": "native flags with scoped biological correspondence",
+        "evidence": {
+          "file": "Amethyst2/amethyst/tables.cpp",
+          "lines": [
+            1624,
+            1626
+          ],
+          "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+          "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+          "sourceBinaryParity": "unverified"
+        }
+      },
+      {
+        "source": "Data/Creatures/324.cfg",
+        "line": 4,
+        "key": "Level",
+        "rawValue": "5",
+        "operation": "level + 1",
+        "evidence": {
+          "file": "Amethyst2/amethyst/tables.cpp",
+          "lines": [
+            1618,
+            1620,
+            1622
+          ],
+          "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+          "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+          "sourceBinaryParity": "unverified"
+        }
+      },
+      {
+        "source": "Data/Creatures/324.cfg",
+        "line": 5,
+        "key": "Fearless",
+        "rawValue": "1",
+        "operation": "FEARFUL",
+        "evidence": {
+          "file": "Amethyst2/amethyst/tables.cpp",
+          "lines": [
+            1516,
+            1517
+          ],
+          "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+          "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+          "sourceBinaryParity": "unverified",
+          "binarySha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+          "evidenceId": "ev_90e2a20c7f7565be7ffcfbedd51e54efc1c36909c4cee090f40b5270d6bb127d",
+          "binaryAddress": "0x7604d0",
+          "observation": "xor eax,eax; return zero fear probability"
+        }
+      },
+      {
+        "source": "Data/Creatures/324.cfg",
+        "line": 6,
+        "key": "isConstruct",
+        "rawValue": "1",
+        "operation": "ERA_SOURCE_CONSTRUCT",
+        "evidence": {
+          "file": "Amethyst2/amethyst/tables.cpp",
+          "lines": [
+            1730,
+            1732
+          ],
+          "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+          "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+          "sourceBinaryParity": "unverified"
+        }
+      }
+    ],
+    "requiredRuntimeBindings": [
+      {
+        "contract": "source-mithril-golem-v1",
+        "operation": "dailyResources",
+        "sourceId": 324,
+        "service": {
+          "resource": "wake-of-gods.mithril:mithril",
+          "amount": 1,
+          "goldPerCreature": 0
+        }
+      },
+      {
+        "contract": "source-mithril-golem-v1",
+        "operation": "dailyResources",
+        "sourceId": 324,
+        "service": {
+          "resource": "wake-of-gods.mithril:mithril",
+          "amount": 1,
+          "goldPerCreature": 0
+        }
+      }
+    ],
+    "xpMapped": [
+      {
+        "source": "crexpbon.txt",
+        "line": 1678,
+        "code": "w",
+        "modifier": "D",
+        "rankZero": true,
+        "mode": "toggle",
+        "values": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "core:magicArrow"
+        },
+        "additionalBonuses": [
+          {
+            "type": "SPELL_IMMUNITY",
+            "subtype": "core:lightningBolt"
+          },
+          {
+            "type": "SPELL_IMMUNITY",
+            "subtype": "core:chainLightning"
+          },
+          {
+            "type": "SPELL_IMMUNITY",
+            "subtype": "core:meteorShower"
+          },
+          {
+            "type": "SPELL_IMMUNITY",
+            "subtype": "core:implosion"
+          },
+          {
+            "type": "SPELL_IMMUNITY",
+            "subtype": "core:fireball"
+          },
+          {
+            "type": "SPELL_IMMUNITY",
+            "subtype": "core:armageddon"
+          },
+          {
+            "type": "SPELL_IMMUNITY",
+            "subtype": "core:inferno"
+          },
+          {
+            "type": "SPELL_IMMUNITY",
+            "subtype": "core:iceBolt"
+          },
+          {
+            "type": "SPELL_IMMUNITY",
+            "subtype": "core:frostRing"
+          }
+        ],
+        "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+      },
+      {
+        "source": "crexpbon.txt",
+        "line": 1679,
+        "code": "f",
+        "modifier": "R",
+        "rankZero": false,
+        "mode": "toggle",
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "bonus": {
+          "type": "BLOCKS_RETALIATION"
+        },
+        "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+      },
+      {
+        "source": "crexpbon.txt",
+        "line": 1680,
+        "code": "f",
+        "modifier": "D",
+        "rankZero": false,
+        "mode": "toggle",
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ],
+        "bonus": {
+          "type": "ADDITIONAL_ATTACK",
+          "val": 1
+        },
+        "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+      }
+    ],
+    "experienceProfile": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 105000,
+      "battlePercent": 25,
+      "rank11Extra": 21000
+    },
+    "experienceFinalization": {
+      "contract": "tum35-archer-final-experience-v1",
+      "sourceFightValue": 975,
+      "bloodFightValue": 4987,
+      "usesNativeLevel": false
+    },
+    "sourceDefaults": {
+      "levelZeroBased": 5,
+      "town": -1,
+      "initialFlags": 131072,
+      "defaultProof": "amethyst2_4.dll100049C0..10004A90;core.cppCreateNewTable"
+    },
+    "sourceOwnHealthConverted": 0,
+    "sourceExperienceDefaults": {
+      "contract": "source-default-experience-new-creature-v1",
+      "nativeDefaultCarrier": "creature-json",
+      "rows": [
+        {
+          "source": "crexpbon.txt",
+          "line": 2,
+          "sourceCreature": -8,
+          "code": "H",
+          "modifier": "%",
+          "values": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "source": "crexpbon.txt",
+          "line": 23,
+          "sourceCreature": -6,
+          "code": "A",
+          "modifier": "+",
+          "values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "source": "crexpbon.txt",
+          "line": 24,
+          "sourceCreature": -6,
+          "code": "D",
+          "modifier": "+",
+          "values": [
+            0,
+            1,
+            2,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "source": "crexpbon.txt",
+          "line": 25,
+          "sourceCreature": -6,
+          "code": "M",
+          "modifier": "+",
+          "values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            8,
+            9
+          ]
+        },
+        {
+          "source": "crexpbon.txt",
+          "line": 26,
+          "sourceCreature": -6,
+          "code": "m",
+          "modifier": "+",
+          "values": [
+            0,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "replacedByOwn": []
+    },
+    "sourceSkeletonTarget": {
+      "target": "core:skeleton",
+      "living": false
+    },
+    "mapTemplate": {
+      "animation": "tum-era/creatures/324/AVWCR324.def",
+      "mask": [
+        "VV",
+        "VA"
+      ],
+      "visitableFrom": [
+        "+++",
+        "+-+",
+        "+++"
+      ],
+      "allowedTerrains": [
+        "dirt"
+      ],
+      "zIndex": 0
+    },
+    "mapTemplateScope": "Original mask/animation/all-sided access; native monster terrain workaround and RMG placement require independent controls"
+  },
+  "fullNativeValidationRequired": true,
+  "constructDefaults": {
+    "source": "Amethyst tables.cpp13654..13655",
+    "ids": [
+      30,
+      31,
+      32,
+      33,
+      116,
+      117,
+      133
+    ]
+  },
+  "scope": "Explicit construct membership remains independent of ALIVE/UNDEAD/MIND/NO_MORALE; source repair target condition consumes actual membership."
+}

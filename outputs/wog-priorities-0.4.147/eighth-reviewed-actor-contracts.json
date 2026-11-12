@@ -1,0 +1,201 @@
+{
+  "enabled": false,
+  "scope": "Reviewed partial actor inventory; town8 activation still requires all18 original actors atomically",
+  "actorContracts": {
+    "269": {
+      "nativeId": "tum-era:eraCreature269",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "7bf85f0b8264e888f69336377f8a245a0d1d5d7b335b16f5fe9a36e9215ac2eb",
+      "nativeEvidence": [
+        "native-templars-phase3.json"
+      ],
+      "sourceScope": "Original numeric CFG plus original XP rows/defaults; inherited native behavior retained through existing bridge controls"
+    },
+    "271": {
+      "nativeId": "tum-era:eraCreature271",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "84922a1ed2abc73fc99c8d773e0800ee0c987eaa5868b32c80594de06d644d21",
+      "nativeEvidence": [
+        "native-eighth-stats-upgrades-splash.json",
+        "native-eighth-preemption.json"
+      ],
+      "sourceScope": "Original numeric CFG plus original XP rows/defaults; inherited native behavior retained through existing bridge controls"
+    },
+    "275": {
+      "nativeId": "tum-era:eraCreature275",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "3e18a903d5a5693d82b4aa4493c79ffcea6d6e7d8856ebeb92cf9493307c5a80",
+      "nativeEvidence": [
+        "native-stronghold-stats.json",
+        "native-stronghold-spells.json",
+        "native-stronghold-fire-shield.json",
+        "native-stronghold-spread.json",
+        "native-stronghold-hate.json",
+        "native-stronghold-upgrade.json"
+      ],
+      "sourceScope": "Whole original CFG/XP/defaults plus exact global creature-event immunity and conditional sourceHATE targets. No unported neutral is created."
+    },
+    "278": {
+      "nativeId": "tum-era:eraCreature278",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "2808ab24dab3970828c6b25e7b0b579c78e6500ab22e942a867de233390918bb",
+      "nativeEvidence": [
+        "native-templars-phase3.json"
+      ],
+      "sourceScope": "Original numeric CFG plus original XP rows/defaults; inherited native behavior retained through existing bridge controls"
+    },
+    "280": {
+      "nativeId": "tum-era:eraCreature280",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "5d82651cd3bf8ff6b280329fea9ddd77dc637fe9e294cc1486effc28aeec04e1",
+      "nativeEvidence": [
+        "native-eighth-stats-upgrades-splash.json",
+        "native-eighth-preemption.json"
+      ],
+      "sourceScope": "Original numeric CFG plus original XP rows/defaults; inherited native behavior retained through existing bridge controls"
+    },
+    "283": {
+      "nativeId": "tum-era:eraCreature283",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "5e7d525a3d01ba5a894cde3b20df77551da5a42677fefe9bab0fa43882ef375a",
+      "nativeEvidence": [
+        "native-stronghold-stats.json",
+        "native-stronghold-spells.json",
+        "native-stronghold-fire-shield.json",
+        "native-stronghold-spread.json",
+        "native-stronghold-hate.json",
+        "native-stronghold-upgrade.json"
+      ],
+      "sourceScope": "Whole original CFG/XP/defaults plus exact global creature-event immunity and conditional sourceHATE targets. No unported neutral is created."
+    },
+    "331": {
+      "nativeId": "tum-era:eraCreature331",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "df903f8e18d3dae9645cc85b06242761c18376dad1e14eb19bb1c49d54afcbd0",
+      "nativeEvidence": [
+        "native-templars-phase3.json"
+      ],
+      "sourceScope": "Original numeric CFG plus original XP rows/defaults; inherited native behavior retained through existing bridge controls"
+    },
+    "332": {
+      "nativeId": "tum-era:eraCreature332",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "11787e692de1a33db8869129a248d2ad3b596ff898de3a36341db27786bba185",
+      "nativeEvidence": [
+        "native-templars-phase3.json"
+      ],
+      "sourceScope": "Original numeric CFG plus original XP rows/defaults; inherited native behavior retained through existing bridge controls"
+    },
+    "337": {
+      "nativeId": "tum-era:eraCreature337",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "9a24ae905875a781c61676f58b510b4e66f4c548d26fc852346cc8bcdd91b3bb",
+      "nativeEvidence": [
+        "native-inferno-phase4.json",
+        "native-pit-master-phase3.json",
+        "native-demonology-phase4.json"
+      ],
+      "sourceScope": "Complete original CFG/CRTRAITS/CRANIM/XP/defaults/assets. Action7 resistance and canonical217 conversion; original eight-tier town access remains atomically gated."
+    },
+    "338": {
+      "nativeId": "tum-era:eraCreature338",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "d7c49a738ca38927e0c9547a3f161418bd897f66099ecee351dbd502a39d86f6",
+      "nativeEvidence": [
+        "native-inferno-phase4.json",
+        "native-pit-master-phase3.json",
+        "native-demonology-phase4.json"
+      ],
+      "sourceScope": "Complete original CFG/CRTRAITS/CRANIM/XP/defaults/assets. Action7 resistance and canonical217 conversion; original eight-tier town access remains atomically gated."
+    },
+    "349": {
+      "nativeId": "tum-era:eraCreature349",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "d1e58e40e0af2d41f2bd3c8621e08e319290a6c414d18a22eb969b24f6ff371b",
+      "nativeEvidence": [
+        "native-eighth-stats-upgrades-splash.json",
+        "native-eighth-healing.json"
+      ],
+      "sourceScope": "Original numeric CFG plus original XP rows/defaults; inherited native behavior retained through existing bridge controls"
+    },
+    "350": {
+      "nativeId": "tum-era:eraCreature350",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "cf70a7bb72e715c1956638506bf48d0e5269db0cd2c443bb161453dd86553b89",
+      "nativeEvidence": [
+        "native-eighth-stats-upgrades-splash.json",
+        "native-eighth-healing.json",
+        "native-cure-phase3.json"
+      ],
+      "sourceScope": "Original numeric CFG plus original XP rows/defaults; inherited native behavior retained through existing bridge controls"
+    },
+    "351": {
+      "nativeId": "tum-era:eraCreature351",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "1a71c6109beb259cb8bc9531272e83c1d73b444b70bf1d82949f2d8987f61f8e",
+      "nativeEvidence": [
+        "native-dungeon.json"
+      ],
+      "sourceScope": "Original whole CFG, CRTRAITS/CRANIM, assets, XP rows/common+tier defaults; source c54 and raw ChainShot4, pixel nearest scan, friendly termination, B/L wrappers and Win32 signed physical consumer. Undefined second-pass ABI register fixed0 by explicit owner preference.",
+      "nativeChecks": "Independent stats, realR10 c54 duration/minimum1/Haste cancellation, zero-power352, four-hop rawdamage/ammo, friendly termination, Recanter, white ray/range, paid sulphur/gold upgrade with Goonks preserved, mobile portrait and iPad landscape, signed32 overflow."
+    },
+    "352": {
+      "nativeId": "tum-era:eraCreature352",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "4d672e369bdc7b105f82d8eee5889fb2d2dbbe47340869f0c71c04c324642620",
+      "nativeEvidence": [
+        "native-dungeon.json"
+      ],
+      "sourceScope": "Original whole CFG, CRTRAITS/CRANIM, assets, XP rows/common+tier defaults; source c54 and raw ChainShot4, pixel nearest scan, friendly termination, B/L wrappers and Win32 signed physical consumer. Undefined second-pass ABI register fixed0 by explicit owner preference.",
+      "nativeChecks": "Independent stats, realR10 c54 duration/minimum1/Haste cancellation, zero-power352, four-hop rawdamage/ammo, friendly termination, Recanter, white ray/range, paid sulphur/gold upgrade with Goonks preserved, mobile portrait and iPad landscape, signed32 overflow."
+    },
+    "353": {
+      "nativeId": "tum-era:eraCreature353",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "794924702c19b0ebea6b82758ed1f7caf04423dc0eead0ef1fce5723d6f2058e",
+      "nativeEvidence": [
+        "native-fortress.json",
+        "source354-mimic71-consumer.json",
+        "fortress-source/installed-source.json"
+      ],
+      "sourceScope": "Whole original CFG/CRTRAITS/CRANIM and XP/defaults, source nature137, Fury normal-counter override only, Twice double hit before one counter consumption, poison exact rank chance, native source fear/fearless and reciprocal353/354 upgrade with original price clamp. Artifact71 generic query preserved; naval consumer bypasses mimic, so no invented sea bonus.",
+      "nativeChecks": "Two rounds of real counters, NO_RETALIATION controls, realR10 poison tick, Hypnotize/Poison/Age/Resurrection/Cure nature,4x40 fear rounds, naval mimic0/real Necklace+1000, paid/free reciprocal conversion, Goonk preservation,390x844 portrait."
+    },
+    "354": {
+      "nativeId": "tum-era:eraCreature354",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "61db6be6ee109687dd5511030be7ced7fdac9c65b91ad3768c9595a4c782525d",
+      "nativeEvidence": [
+        "native-fortress.json",
+        "source354-mimic71-consumer.json",
+        "fortress-source/installed-source.json"
+      ],
+      "sourceScope": "Whole original CFG/CRTRAITS/CRANIM and XP/defaults, source nature137, Fury normal-counter override only, Twice double hit before one counter consumption, poison exact rank chance, native source fear/fearless and reciprocal353/354 upgrade with original price clamp. Artifact71 generic query preserved; naval consumer bypasses mimic, so no invented sea bonus.",
+      "nativeChecks": "Two rounds of real counters, NO_RETALIATION controls, realR10 poison tick, Hypnotize/Poison/Age/Resurrection/Cure nature,4x40 fear rounds, naval mimic0/real Necklace+1000, paid/free reciprocal conversion, Goonk preservation,390x844 portrait."
+    }
+  },
+  "missingOriginalRosterIds": [
+    355,
+    356
+  ],
+  "pendingActors": [
+    355,
+    356
+  ]
+}

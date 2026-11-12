@@ -1,0 +1,472 @@
+{
+  "eraCreature353": {
+    "name": {
+      "singular": "Sea Serpent",
+      "plural": "Sea Serpents"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 1,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 2200
+    },
+    "fightValue": 3727,
+    "aiValue": 3953,
+    "growth": 1,
+    "hitPoints": 180,
+    "speed": 9,
+    "attack": 22,
+    "defense": 16,
+    "damage": {
+      "min": 30,
+      "max": 55
+    },
+    "advMapAmount": {
+      "min": 4,
+      "max": 10
+    },
+    "abilities": {
+      "amethyst_flag_3": {
+        "type": "TWO_HEX_ATTACK_BREATH",
+        "val": 0
+      },
+      "amethystKing": {
+        "type": "KING",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "ERA_SOURCE_INANIMATE"
+      },
+      "amethyst_Sktransformer": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "val": 0,
+        "subtype": "core:boneDragon"
+      }
+    },
+    "doubleWide": true,
+    "level": 7,
+    "faction": "core:fortress",
+    "upgrades": [
+      "tum-era:eraCreature354"
+    ],
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 0,
+          "valueType": "INDEPENDENT_MIN"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "Souffle sur deux cases. Riposte même contre les attaques qui bloquent normalement les ripostes.",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/353/CR353",
+      "map": "tum-era/creatures/353/AVWCR353.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/353/small",
+      "iconLarge": "tum-era/creatures/353/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/353/S353ATTK.wav",
+      "defend": "tum-era/creatures/353/S353DFND.wav",
+      "killed": "tum-era/creatures/353/S353KILL.wav",
+      "move": "tum-era/creatures/353/S353MOVE.wav",
+      "wince": "tum-era/creatures/353/S353WNCE.wav"
+    }
+  },
+  "eraCreature354": {
+    "name": {
+      "singular": "Leviathan",
+      "plural": "Leviathans"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 2,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 4000
+    },
+    "fightValue": 6985,
+    "aiValue": 7220,
+    "growth": 1,
+    "hitPoints": 300,
+    "speed": 12,
+    "attack": 29,
+    "defense": 20,
+    "damage": {
+      "min": 30,
+      "max": 55
+    },
+    "advMapAmount": {
+      "min": 3,
+      "max": 8
+    },
+    "abilities": {
+      "sourceRetaliations": {
+        "type": "ADDITIONAL_RETALIATION",
+        "val": 1
+      },
+      "sourceFear": {
+        "type": "FEARFUL",
+        "val": 10,
+        "valueType": "INDEPENDENT_MAX",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE",
+          [
+            "noneOf",
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NO_MORALE"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "UNDEAD"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NON_LIVING"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "MECHANICAL"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "SIEGE_WEAPON"
+            }
+          ]
+        ],
+        "stacking": "eraSourceFear:354:v1"
+      },
+      "amethyst_flag_3": {
+        "type": "TWO_HEX_ATTACK_BREATH",
+        "val": 0
+      },
+      "amethystKing": {
+        "type": "KING",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "ERA_SOURCE_INANIMATE"
+      },
+      "amethyst_Fearless": {
+        "type": "FEARFUL",
+        "val": 0,
+        "valueType": "INDEPENDENT_MIN"
+      },
+      "amethyst_Sktransformer": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "val": 0,
+        "subtype": "core:boneDragon"
+      }
+    },
+    "doubleWide": true,
+    "level": 7,
+    "faction": "core:fortress",
+    "upgrades": [
+      "tum-era:eraCreature353"
+    ],
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_DEFENSE_REDUCTION",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          32,
+          36,
+          40
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "Souffle sur deux cases. Provoque la peur et y résiste. Deux coups par riposte, deux ripostes de base par tour, même contre les troupes qui bloquent les ripostes.",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/354/CR354",
+      "map": "tum-era/creatures/354/AVWCR354.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/354/small",
+      "iconLarge": "tum-era/creatures/354/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/354/S354ATTK.wav",
+      "defend": "tum-era/creatures/354/S354DFND.wav",
+      "killed": "tum-era/creatures/354/S354KILL.wav",
+      "move": "tum-era/creatures/354/S354MOVE.wav",
+      "wince": "tum-era/creatures/354/S354WNCE.wav"
+    }
+  }
+}

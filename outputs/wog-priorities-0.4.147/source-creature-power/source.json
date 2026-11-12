@@ -1,0 +1,18 @@
+{
+  "supersedes": "0.4.145 and initial0.4.147 references to fixed XPpower3 and unmodified mode8 power5*count; those were intermediate callarguments before the globally registered Amethyst5A0145 hook",
+  "sourceBinarySha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "sourcePluginSha256": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+  "proof": {
+    "registration": "shippedDLL10012EFE..10012F19 registers callback100151D0 at5A0145",
+    "defaults": "shippedDLL10012DBD..10012DDF initializes mul=1,div=1,add=0; source onlycore134defaultmul5; scoped CFGoverride table preserved",
+    "XPcaller": "h3era71DB38 intermediatepower3;71DB3A originalmastery;71DB3F sourcekind1;71DB51call5A0140",
+    "hook": "shippedDLL100152AA requireskind1;100152CD..10015305 reads CURRENT manager stack type/count;10015353 overwrites initialpower;10015387 mul;1001539E unsigneddiv;100153B2add",
+    "exceptions": "kind>2 normalize to1 thenRETURNunchanged at100151E9;kind2artifacts returnunchanged;spell62 and70..80 returnunchanged unlessOverrideSpecialSpells, absentallTUMCFGs",
+    "activeContext": "Beforeattack and retaliation use battle.battleActiveUnit; never substitute retaliatingCaster count when manager active staysprimary",
+    "commander": "Source76BEEA rawmagicSkill4,ceilquarter/min1 except178/187SoulEater; native usesexistingbridge rawmagicbonus/100 then sourceclass reduction. Source skill table addresses7A1BD8..7A1BE8 (levels1..5) values1/3/6/14/29 matchexistingnativecurve; this preservesexistingcommanderstat adaptation ratherthan rewriting its progression.",
+    "commanderBase": "h3era NPCinitializer769AB4 clearslearnedskilllevels769AF1, writes rawmagicbase1 atNPC+2C at769B26. GetSkill76948C readsbase1C+4*skill4 =2C. NativebaseCREATURESPELLPOWER100 plusCGameHandler253 learnedleveldifference*100 matchesrawbase+sourcecurve exactly.",
+    "commanderExistingScope": "Native existingcommanderartifact-stat adaptation remains unchanged; newsourceXP resolver consumes itsrawmagicstat, thenappliesoriginalclassquarter/SoulEater exception."
+  },
+  "unitValidation": "tests/era-source-creature-spell-power.test.mjs UBSan passes counts1/4/7,134\u00d75,258\u00d710+1,allkind/exceptiongates,unsignedwrap,commanders",
+  "nativeValidation": "PASS894ad49 phase3; source278 counts1/4/7 damages60/90/120 (expertbase50); source332 counts1/4/7 damages35/50/65 (expertbase30); sourcecasters unchanged, enemies owned frozen+NO_RETALIATION, manualcharges unchanged. See native-xp-active-power.json."
+}

@@ -9,6 +9,8 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraGooseReflectionRuntime.h"
+#include "../era/EraAdvancedArtifactRuntimeNative.h"
 #include "CGHeroInstance.h"
 #include "../era/EraCreatureArtifactMimic.h"
 
@@ -745,7 +747,8 @@ uint64_t CGHeroInstance::getValueForDiplomacy() const
 		(1.0 + 0.05 * getPrimSkillLevel(PrimarySkill::DEFENSE))
 		);
 
-	return heroStrength * armyStrength;
+	return ::era_bridge::diplomatPerceivedStrength(static_cast<uint64_t>(heroStrength * armyStrength),
+        era_compat::sourceDiplomatEquipped(*this));
 }
 
 bool CGHeroInstance::compareCampaignValue(const CGHeroInstance * left, const CGHeroInstance * right)
@@ -1775,8 +1778,14 @@ ResourceSet CGHeroInstance::dailyIncome() const
 	for (GameResID k : LIBRARY->resourceTypeHandler->getAllObjects())
 		income[k] += valOfBonuses(BonusType::GENERATE_RESOURCE, BonusSubtypeID(k));
 
+    const auto goose=era_compat::sourceGooseIncome(*this);
+    const GameResID gold(GameResID::GOLD);
+    income[gold]=era_compat::sourceGooseGoldValue(static_cast<int64_t>(income[gold])-goose.nativeComponentGold);
+
 	const auto & playerSettings = cb->getPlayerSettings(getOwner());
 	income.applyHandicap(playerSettings->handicap.percentIncome);
+    // Source OW:R is a raw resource grant, not handicap-scaled daily income.
+    income[gold]=era_compat::sourceGooseGoldValue(static_cast<int64_t>(income[gold])+goose.sourceRawGold);
 	return income;
 }
 

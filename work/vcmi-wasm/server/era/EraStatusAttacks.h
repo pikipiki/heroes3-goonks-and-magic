@@ -69,8 +69,10 @@ inline void emitSourceStatusRejection(CGameHandler & handler,const CBattleInfoCa
 inline bool selectSourceCStatus(CGameHandler & handler,const CBattleInfoCallback & battle,
     const CStack * actor,const CStack * target,int sourceSpell)
 {
-    // 71D7A9 rolls before life checks; rank0 consumes no roll. Source c71/254 and c75/224 only.
-    const auto chance=std::clamp(statusRank(actor),0,10)*(sourceSpell==75?8:5);
+    // 71D7A9 rolls before life checks; rank0 consumes no roll. Explicitly registered source c71/c75 actors only.
+    const auto sourceActorId=StatusAttacks::get().id(actor->creatureId().toCreature()->getJsonKey());
+    const int rank=std::clamp(statusRank(actor),0,10);
+    const auto chance=sourceSpell==71 && sourceActorId==354 ? std::min(95,rank*10) : rank*(sourceSpell==75?8:5);
     auto & rng=handler.getRandomGenerator();
     if(chance==0 || !era_bridge::statusRollAccepts(chance,rng.nextInt(1,100)))return false;
     if(!actor->alive() || !target || !target->alive())return false;

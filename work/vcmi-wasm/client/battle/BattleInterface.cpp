@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "BattleInterface.h"
+#include "EraDungeonChainAnimation.h"
 #include "../MobileBridge.h"
 #include "../../lib/json/JsonNode.h"
 
@@ -423,6 +424,15 @@ void BattleInterface::spellCast(const BattleSpellCast * sc)
 			ENGINE->sound().playSound(castSoundPath);
 		});
 	}
+
+    if(spell->getJsonKey()=="tum-era:sourceSpiderChainShot" && !sc->activeCast && !sc->castByHero)
+    {
+        const auto * previous=getBattle()->battleGetStackByID(sc->casterStack,false);
+        const auto * target=getBattle()->battleGetStackByPos(targetedTile);
+        if(previous && target && previous->getPosition().isValid())
+            addToAnimationStage(EAnimationEvents::BEFORE_HIT,[this,previous,target]()
+                {stacksController->addNewAnim(new EraDungeonChainAnimation(*this,previous,target));});
+    }
 
 	if ( sc->activeCast )
 	{

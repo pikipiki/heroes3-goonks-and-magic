@@ -1,0 +1,101 @@
+{
+  "passed": true,
+  "errors": [],
+  "report": {
+    "dungeonStats": [
+      {
+        "aiValue": 3388,
+        "attack": 17,
+        "cost": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          2000,
+          0
+        ],
+        "count": 3,
+        "damageMax": 45,
+        "damageMin": 25,
+        "defense": 15,
+        "description": "Tire un rayon blanc sans p\u00e9nalit\u00e9 de distance ou de muraille. L\u2019exp\u00e9rience peut ralentir sa cible apr\u00e8s son action.",
+        "fightValue": 2420,
+        "growth": 1,
+        "health": 150,
+        "icon": "tum-era/creatures/351/large",
+        "id": 300,
+        "key": "tum-era:eraCreature351",
+        "magicDamageReduction": 0,
+        "name": "Lady Spider",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": false,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "physicalDamageBonus": 0,
+        "rangedDamageBonus": 0,
+        "shooter": true,
+        "shots": 20,
+        "slot": 0,
+        "speed": 9
+      },
+      {
+        "aiValue": 4696,
+        "attack": 19,
+        "cost": [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          3200,
+          0
+        ],
+        "count": 3,
+        "damageMax": 50,
+        "damageMin": 30,
+        "defense": 17,
+        "description": "Tir en cha\u00eene physique sur quatre cibles au maximum, d\u00e9g\u00e2ts divis\u00e9s par deux \u00e0 chaque saut. La cha\u00eene s\u2019arr\u00eate au premier alli\u00e9 rencontr\u00e9. Son effet de ralentissement annule H\u00e2te, mais sa puissance nulle ne r\u00e9duit pas la vitesse.",
+        "fightValue": 3228,
+        "growth": 1,
+        "health": 230,
+        "icon": "tum-era/creatures/352/large",
+        "id": 301,
+        "key": "tum-era:eraCreature352",
+        "magicDamageReduction": 0,
+        "name": "Priestess Spider",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": false,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "physicalDamageBonus": 0,
+        "rangedDamageBonus": 0,
+        "shooter": true,
+        "shots": 25,
+        "slot": 1,
+        "speed": 11
+      }
+    ]
+  },
+  "engineSha256": "1546085410670419fb243df7737226e70f7d19dc35f600119a1f8ad6b91c4b51",
+  "origin": "http://127.0.0.1:8797",
+  "sourceContract": "source-dungeon-eighth-v1",
+  "activation": false,
+  "scope": "Native controlled proof only; full family activation waits complete controls and minimum-speed correction."
+}

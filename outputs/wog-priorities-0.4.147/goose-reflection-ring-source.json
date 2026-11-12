@@ -1,0 +1,40 @@
+{
+  "ids": [
+    179,
+    181,
+    197
+  ],
+  "scriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "archiveSHA256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "goose": {
+    "sourceGoldPerCopy": 7000,
+    "sourceOptionalBackpackSwitch": 727,
+    "defaultBackpackOption": false,
+    "nativeComponents": [
+      115,
+      116,
+      117
+    ],
+    "nativeEquivalence": "Subtract each equipped Goose instance native inherited gold generation before native income handicap, then add raw7000 per eligible source copy after handicap. Separate native resource artifacts remain untouched."
+  },
+  "reflection": {
+    "source": "OnDwarfMagicResistance: add20 to current resistance then clamp0..100; equipped original hero only",
+    "nativeEquivalence": "Apply after native base/aura aggregation, not a pre-aura MAGIC_RESISTANCE bonus",
+    "components": [
+      57,
+      58,
+      59
+    ]
+  },
+  "ring": {
+    "source": "Ring of Elements OnBattleRound0 / tum_ActivateElemRing",
+    "native": "Per-casting-side equipped ring; require at least one human participant in native detailed combat; ordinary restriction remains for the other side"
+  },
+  "pending": [
+    "Native daily-income adapter and handler",
+    "Native reflection post-aura adapter",
+    "Native copies, equip/backpack, income-handicap controls",
+    "Native resistance/aura/hostile spell and component immunity controls"
+  ],
+  "activationReady": false
+}

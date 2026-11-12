@@ -280,6 +280,13 @@ void CCallback::trade(const ObjectInstanceID marketId, EMarketMode mode, const s
 	sendRequest(pack);
 }
 
+void CCallback::refreshArtifactState(const CGHeroInstance * hero)
+{
+	if(!hero)return;
+	RefreshArtifactState pack;pack.hid=hero->id;
+	sendRequest(pack);
+}
+
 void CCallback::setFormation(const CGHeroInstance * hero, EArmyFormation mode)
 {
 	SetFormation pack(hero->id, mode);

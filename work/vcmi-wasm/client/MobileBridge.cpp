@@ -1,6 +1,8 @@
 /* Mobile presentation bridge for Heroes Goonk. Engine callbacks remain authoritative. */
 #include "StdInc.h"
 #include "../lib/era/EraCreatureSpecialists.h"
+#include "../lib/era/EraAtmaStateNative.h"
+#include "../lib/era/EraInterferenceState.h"
 #include "MobileBridge.h"
 #ifdef VCMI_EMSCRIPTEN
 #include <emscripten/emscripten.h>
@@ -103,6 +105,16 @@
 
 extern "C" void vcmiMobileCommand(int,int,int,int,int,int);
 namespace {
+JsonNode mobileHeroSpellPower(const CBattleInfoCallback & battle,const CGHeroInstance * caster)
+{
+ JsonNode value;if(!caster)return value;
+ const auto power=era_compat::sourceInterferencePower(battle,caster);
+ const int original=caster->getPrimSkillLevel(PrimarySkill::SPELL_POWER);
+ value["original"].Integer()=power?power->original:original;
+ value["effective"].Integer()=power?power->effective:original;
+ value["interference"].Bool()=bool(power);
+ return value;
+}
 std::optional<std::array<int,6>> deferredMapAction;
 uint32_t mapReadySince=0;
 std::string mobileVisitedName;bool mobileVisitShown=false;
@@ -935,7 +947,13 @@ void publishMobileState(){
  else if(const auto result=ENGINE->windows().topWindow<BattleResultWindow>()){
   n["mode"].String()="dialog";n["dialogKind"].String()="battle-result";n["battleResult"]=result->mobileResult;
  }
- else if(spellWindow){n["mode"].String()="spellbook";n["spellbook"]=spellWindow->mobileSnapshot();}
+ else if(spellWindow){n["mode"].String()="spellbook";n["spellbook"]=spellWindow->mobileSnapshot();
+  if(n["spellbook"]["inCombat"].Bool()&&CPlayerInterface::battleInt)
+  {
+   const auto battle=CPlayerInterface::battleInt;
+   n["spellbook"]["heroSpellPower"]=mobileHeroSpellPower(*battle->getBattle(),battle->currentHero());
+  }
+ }
  else if(const auto guild=ENGINE->windows().topWindow<CMageGuildScreen>()){
   n["mode"].String()="mage-guild";
   n["mageGuild"]=guild->mobileSnapshot();
@@ -1230,6 +1248,7 @@ void publishMobileState(){
   }
   if(heroWindow&&hero){auto & h=n["heroWindow"];h["owned"].Bool()=hero->getOwner()==p->playerID;h["name"].String()=hero->getNameTranslated();h["className"].String()=hero->getClassNameTranslated();h["level"].Integer()=hero->level;h["mana"].Integer()=hero->mana;h["manaLimit"].Integer()=hero->manaLimit();h["portrait"]=rect(Rect(heroWindow->pos.x+19,heroWindow->pos.y+19,58,64));
    h["id"].Integer()=hero->id.getNum();
+   h["canRebalanceSourceArtifacts"].Bool()=h["owned"].Bool()&&p->makingTurn&&!CPlayerInterface::battleInt&&!heroWindow->getPickedArtifact()&&era_compat::hasEquippedAtma(*hero);
    if(h["owned"].Bool()&&p->cb->getSettings().getBoolean(EGameSettings::MODULE_STACK_ARTIFACT))
     n["troopEquipment"]=troopEquipmentSnapshot(*hero,p->makingTurn&&!heroWindow->getPickedArtifact());
    HeroIconFrames icons;
@@ -1253,7 +1272,7 @@ void publishMobileState(){
    if(const auto progression=era_compat::sourceCreatureSpecialty(*hero))
    {
     auto & growth=h["specialty"]["sourceProgression"];growth["family"].String()=progression->family.toCreature()->getNameSingularTranslated();
-    growth["attackDefense"].Integer()=progression->attackDefense;growth["damage"].Integer()=progression->damage;growth["healthPercent"].Integer()=progression->healthPercent;
+    growth["attackDefense"].Integer()=progression->attackDefense;growth["damage"].Integer()=progression->damage;growth["healthPercent"].Integer()=progression->healthPercent;growth["warMachines"].Bool()=progression->warMachines;
    }
    h["specialty"]["name"].String()=hero->getHeroType()->getSpecialtyNameTranslated();
    h["specialty"]["description"].String()=hero->getHeroType()->getSpecialtyDescriptionTranslated();
@@ -1373,11 +1392,12 @@ void publishMobileState(){
    n["canRetreat"].Bool()=!tactics&&b->round>0&&b->makingTurn()&&!b->hasAnimations()&&b->getBattle()->battleCanFlee();
    n["canUseMagic"].Bool()=manualControl&&!tactics&&b->round>0&&b->makingTurn()&&!b->openingPlaying()&&!b->hasAnimations();
    const auto caster=b->currentHero();n["heroHasSpellbook"].Bool()=caster&&caster->hasSpellbook();if(caster)n["heroMana"].Integer()=caster->mana;
+   if(caster)n["heroSpellPower"]=mobileHeroSpellPower(*b->getBattle(),caster);
    const auto spellProblem=caster?b->getBattle()->battleCanCastSpell(caster,spells::Mode::HERO):ESpellCastProblem::NO_HERO_TO_CAST_SPELL;
    n["heroSpellCastLimitReached"].Bool()=spellProblem==ESpellCastProblem::CASTS_PER_TURN_LIMIT;
    n["heroCanCast"].Bool()=manualControl&&!tactics&&caster&&(spellProblem==ESpellCastProblem::OK||spellProblem==ESpellCastProblem::MAGIC_IS_BLOCKED);
    n["canAct"].Bool()=manualControl&&b->makingTurn();n["round"].Integer()=b->round;n["battlePlayerAttacks"].Bool()=b->getBattle()->getBattle()->getSidePlayer(BattleSide::ATTACKER)==p->playerID;const auto active=b->stacksController->getActiveStack();if(active)n["canWait"].Bool()=!active->waitedThisTurn;n["creatureCanCast"].Bool()=!tactics&&active&&active->hasBonusOfType(BonusType::SPELLCASTER)&&active->canCast();if(active){n["activeUnit"]=creature(active->unitType(),active->getCount());n["activeUnit"]["controlled"].Bool()=b->getBattle()->battleGetOwner(active)==p->playerID;n["activeUnit"]["commander"].Bool()=active->unitSlot()==SlotID::COMMANDER_SLOT_PLACEHOLDER;n["activeUnit"]["remainingShots"].Integer()=active->shots.available();n["activeUnit"]["canShoot"].Bool()=b->getBattle()->battleCanShoot(active);n["activeStack"].Integer()=active->unitId();const auto center=b->fieldController->hexPositionAbsolute(active->getPosition()).center();n["focus"]["x"].Integer()=center.x;n["focus"]["y"].Integer()=center.y;}
-   for(const auto stack:b->getBattle()->battleGetAllStacks()){if(stack->getCount()<=0||!stack->getPosition().isValid())continue;auto item=creature(stack->unitType(),stack->getCount());mobileStackExperience(item,stack->base);item["stackId"].Integer()=stack->unitId();item["eraSlot"].Integer()=stack->sourceMassSlot();item["armySlot"].Integer()=stack->unitSlot().getNum();item["currentHealth"].Integer()=stack->getFirstHPleft();item["maximumHealth"].Integer()=stack->getMaxHealth();item["cloned"].Bool()=stack->isClone();item["remainingCasts"].Integer()=stack->casts.available();item["remainingShots"].Integer()=stack->shots.available();item["speed"].Integer()=stack->getMovementRange();item["remainingRetaliations"].Integer()=stack->counterAttacks.available();item["attack"].Integer()=stack->getAttack(false);item["defense"].Integer()=stack->getDefense(false);item["damageMin"].Integer()=stack->getMinDamage(stack->hasBonusOfType(BonusType::SHOOTER));item["damageMax"].Integer()=stack->getMaxDamage(stack->hasBonusOfType(BonusType::SHOOTER));item["morale"].Integer()=stack->moraleVal();for(const auto hex:stack->getHexes())item["occupied"].Vector().push_back(JsonNode(double(hex.toInt())));const auto center=b->fieldController->hexPositionAbsolute(stack->getPosition()).center();item["x"].Integer()=center.x;item["y"].Integer()=center.y;item["enemy"].Bool()=stack->getOwner()!=p->playerID;n["battleUnits"].Vector().push_back(item);}const auto accessibility=b->getBattle()->getAccessibility();const auto reachable=active?b->getBattle()->battleGetAvailableHexes(active,false):BattleHexArray();
+   for(const auto stack:b->getBattle()->battleGetAllStacks()){if(stack->getCount()<=0||!stack->getPosition().isValid())continue;auto item=creature(stack->unitType(),stack->getCount());mobileStackExperience(item,stack->base);item["stackId"].Integer()=stack->unitId();item["eraSlot"].Integer()=stack->sourceMassSlot();item["armySlot"].Integer()=stack->unitSlot().getNum();item["currentHealth"].Integer()=stack->getFirstHPleft();item["maximumHealth"].Integer()=stack->getMaxHealth();item["cloned"].Bool()=stack->isClone();item["remainingCasts"].Integer()=stack->casts.available();item["remainingShots"].Integer()=stack->shots.available();item["speed"].Integer()=stack->getMovementRange();item["remainingRetaliations"].Integer()=stack->counterAttacks.available();item["attack"].Integer()=stack->getAttack(false);item["defense"].Integer()=stack->getDefense(false);item["damageMin"].Integer()=stack->getMinDamage(stack->hasBonusOfType(BonusType::SHOOTER));item["damageMax"].Integer()=stack->getMaxDamage(stack->hasBonusOfType(BonusType::SHOOTER));item["morale"].Integer()=stack->moraleVal();item["luck"].Integer()=stack->luckVal();item["magicResistance"].Integer()=stack->magicResistance();for(const auto hex:stack->getHexes())item["occupied"].Vector().push_back(JsonNode(double(hex.toInt())));const auto center=b->fieldController->hexPositionAbsolute(stack->getPosition()).center();item["x"].Integer()=center.x;item["y"].Integer()=center.y;item["enemy"].Bool()=stack->getOwner()!=p->playerID;n["battleUnits"].Vector().push_back(item);}const auto accessibility=b->getBattle()->getAccessibility();const auto reachable=active?b->getBattle()->battleGetAvailableHexes(active,false):BattleHexArray();
    const bool previewSpellTargets=targeting&&manualControl;
    if(!targeting)if(const auto spell=b->actionsController->targetedSpell())n["creatureSpellName"].String()=spell->getNameTranslated();
    if(targeting)
@@ -1805,6 +1825,12 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
    p->cb->recruitCreatures(town,destination,id,std::min(c,int(row.first)),a);
   }
   lastPublished=0;return;
+ }
+ if(action==102)
+ {
+  const auto window=ENGINE->windows().topWindow<CHeroWindow>();const auto owner=window?window->curHero:nullptr;
+  if(!owner||owner->id.getNum()!=a||owner->getOwner()!=p->playerID||!p->makingTurn||battle||window->getPickedArtifact()||!era_compat::hasEquippedAtma(*owner))return;
+  p->cb->refreshArtifactState(owner);lastPublished=0;return;
  }
  if(action==101)
  {

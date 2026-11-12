@@ -1291,6 +1291,13 @@ PossiblePlayerBattleAction BattleActionsController::mobileActionForHex(const Bat
 	for(const auto & action : actions)
 		if((action.get() == PossiblePlayerBattleAction::SHOOT || action.get() == PossiblePlayerBattleAction::ATTACK || action.get() == PossiblePlayerBattleAction::WALK_AND_ATTACK || action.get() == PossiblePlayerBattleAction::ATTACK_AND_RETURN) && !friendly && actionIsLegal(action, hex))
 			return action;
+	// Empty reachable ground means movement on touch screens. Area spellcasters
+	// otherwise spend a random spell charge on the very tile the player chose
+	// to walk to. The Magic button already enters explicit spell targeting.
+	if(!target)
+		for(const auto & action : actions)
+			if(action.get() == PossiblePlayerBattleAction::MOVE_STACK && actionIsLegal(action, hex))
+				return action;
 	for(const auto & action : actions)
 	{
 		if(action.get() == PossiblePlayerBattleAction::RANDOM_GENIE_SPELL)

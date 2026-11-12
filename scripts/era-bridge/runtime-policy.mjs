@@ -24,15 +24,23 @@ export function validateRuntimePolicy(policy){
  for(const [id,operations] of Object.entries(policy.creatures)){
   if(!/^[-a-zA-Z0-9_.]+:[-a-zA-Z0-9_]+$/.test(id)||!object(operations))throw new TypeError('Invalid native ERA creature '+id);
   for(const [operation,service] of Object.entries(operations)){
-   if(!['regeneration','rebirth','meleeRage','petrification','blindness','allSpellImmunity','armySpellCost','spellDamageInversion','vampireDrain','artifactMimic','angelicArmyMorale','imposedSpells','dailyResources','physicalDeflection','defenseReduction'].includes(operation))throw new TypeError('Unknown native ERA operation '+operation);
+   if(!['regeneration','sourceRegeneration','rebirth','meleeRage','petrification','blindness','allSpellImmunity','armySpellCost','spellDamageInversion','vampireDrain','artifactMimic','angelicArmyMorale','imposedSpells','dailyResources','physicalDeflection','experienceRegeneration','physicalBlock','sourceSplashRangeOne','sourceRangedResistance30','sourceRoundTwoDemons','preemptiveRetaliation','deathBlowCRT','defenseReduction'].includes(operation))throw new TypeError('Unknown native ERA operation '+operation);
    let valid=false;
    if(operation==='regeneration')valid=keys(service,['hitPoints','chancePercent'])&&Number.isInteger(service.hitPoints)&&fraction(service.hitPoints,1000000000)&&Number.isInteger(service.chancePercent)&&fraction(service.chancePercent,100);
+   if(operation==='sourceRegeneration')valid=id==='tum-era:eraCreature350'&&keys(service,['hitPoints','chancePercent'])&&service.hitPoints===100&&service.chancePercent===100;
    if(operation==='rebirth')valid=keys(service,['chance','fraction','guaranteedFraction'])&&fraction(service.chance,1)&&fraction(service.fraction,1000)&&fraction(service.guaranteedFraction,1000);
    if(operation==='vampireDrain')valid=id==='tum-era:redBonesDragon'&&keys(service,[]);
    if(operation==='meleeRage'||operation==='petrification'||operation==='blindness'||operation==='allSpellImmunity'||operation==='armySpellCost'||operation==='spellDamageInversion')valid=keys(service,[]);
+   if(operation==='deathBlowCRT')valid=['tum-era:eraCreature318','tum-era:eraCreature319','tum-era:ancestralBehemoth','tum-era:eraCreature361'].includes(id)&&keys(service,[]);
    if(operation==='defenseReduction')valid=keys(service,['percent'])&&service.percent===95;
+   if(operation==='experienceRegeneration')valid=['tum-era:eraCreature267','tum-era:eraCreature268','tum-era:eraCreature273'].includes(id)&&keys(service,['chancePercent','values'])&&service.chancePercent===(id==='tum-era:eraCreature273'?50:100)&&Array.isArray(service.values)&&service.values.length===11&&service.values.every((v,i)=>v===i*(id==='tum-era:eraCreature273'?4:9));
+   if(operation==='sourceRoundTwoDemons')valid=id==='third-upgrades:tumPitMaster'&&keys(service,['values'])&&Array.isArray(service.values)&&service.values.length===11&&service.values.every((v,i)=>v===[0,0,0,10,10,15,15,20,20,25,25][i]);
+   if(operation==='sourceRangedResistance30')valid=['tum-era:eraCreature337','tum-era:eraCreature338'].includes(id)&&keys(service,[]);
+   if(operation==='sourceSplashRangeOne')valid=id==='tum-era:eraCreature350'&&keys(service,[]);
+   if(operation==='preemptiveRetaliation')valid=id==='tum-era:eraCreature280'&&keys(service,[]);
+   if(operation==='physicalBlock')valid=['tum-era:eraCreature268','tum-era:eraCreature258'].includes(id)&&keys(service,['values'])&&Array.isArray(service.values)&&service.values.length===11&&service.values.every((v,i)=>v===Math.min(25,i*5));
    if(operation==='physicalDeflection')valid=keys(service,['modifier','values'])&&Number.isInteger(service.modifier)&&fraction(service.modifier,255)&&Array.isArray(service.values)&&service.values.length===11&&service.values.every(v=>Number.isInteger(v)&&fraction(v,255));
-   if(operation==='artifactMimic')valid=keys(service,['artifact'])&&[129,135].includes(service.artifact);
+   if(operation==='artifactMimic')valid=keys(service,['artifact'])&&([129,135].includes(service.artifact)||(service.artifact===71&&id==='tum-era:eraCreature354'));
    if(operation==='angelicArmyMorale')valid=keys(service,['supremeArchangel'])&&qualified(service.supremeArchangel);
    if(operation==='imposedSpells')valid=Array.isArray(service)&&service.length<=3&&service.every(slot=>keys(slot,['spell','mastery'])&&supportedImposedSpells.includes(slot.spell)&&Number.isInteger(slot.mastery)&&fraction(slot.mastery,3));
    if(operation==='dailyResources')valid=keys(service,['resource','amount','goldPerCreature'])&&qualified(service.resource)&&Number.isInteger(service.amount)&&fraction(service.amount,1000000000)&&Number.isInteger(service.goldPerCreature)&&fraction(service.goldPerCreature,1000000000);
@@ -43,7 +51,14 @@ export function validateRuntimePolicy(policy){
  if(policy.artifacts!==undefined){
   if(!object(policy.artifacts))throw new TypeError('Invalid ERA artifact policies');
   for(const [id,service] of Object.entries(policy.artifacts)){
-   if(!qualified(id)||!keys(service,['dailyConversions'])||!Array.isArray(service.dailyConversions)||!service.dailyConversions.length||service.dailyConversions.length>9||!service.dailyConversions.every(pair=>keys(pair,['from','to'])&&qualified(pair.from)&&qualified(pair.to)))throw new TypeError('Invalid ERA artifact daily conversions for '+id);
+   if(!qualified(id)||!object(service)||!Object.keys(service).length||Object.keys(service).some(k=>!['dailyConversions','openingSummons','exchangeCloak','massSpells','goldenGoose','reflection','elementalFreedom'].includes(k)))throw new TypeError('Invalid ERA artifact services for '+id);
+   if(service.elementalFreedom!==undefined&&(id!=='tum-era:artifact197'||!keys(service.elementalFreedom,[])))throw new TypeError('Invalid source Ring of Elements service for '+id);
+   if(service.goldenGoose!==undefined&&(id!=='tum-era:artifact179'||!keys(service.goldenGoose,['countBackpack'])||typeof service.goldenGoose.countBackpack!=='boolean'))throw new TypeError('Invalid source Golden Goose service for '+id);
+   if(service.reflection!==undefined&&(id!=='tum-era:artifact181'||!keys(service.reflection,['resistanceBonus'])||service.reflection.resistanceBonus!==20))throw new TypeError('Invalid source Reflection service for '+id);
+   if(service.massSpells!==undefined){const expected=id==='tum-era:artifact262'?['core:resurrection','core:animateDead']:id==='tum-era:artifact263'?['core:implosion']:null;if(!expected||!keys(service.massSpells,['spells','powerPercent'])||service.massSpells.powerPercent!==30||JSON.stringify(service.massSpells.spells)!==JSON.stringify(expected))throw new TypeError('Invalid ERA artifact mass spells for '+id);}
+   if(service.exchangeCloak!==undefined&&(id!=='tum-era:artifact261'||!keys(service.exchangeCloak,[])))throw new TypeError('Invalid ERA Exchange Cloak service for '+id);
+   if(service.dailyConversions!==undefined&&(!Array.isArray(service.dailyConversions)||!service.dailyConversions.length||service.dailyConversions.length>9||!service.dailyConversions.every(pair=>keys(pair,['from','to'])&&qualified(pair.from)&&qualified(pair.to))))throw new TypeError('Invalid ERA artifact daily conversions for '+id);
+   if(service.openingSummons!==undefined&&(!Array.isArray(service.openingSummons)||!service.openingSummons.length||service.openingSummons.length>9||!service.openingSummons.every(item=>keys(item,['creature','encodedPower'])&&qualified(item.creature)&&Number.isInteger(item.encodedPower)&&item.encodedPower>=-2147483648&&item.encodedPower<=2147483647)))throw new TypeError('Invalid ERA artifact opening summons for '+id);
   }
  }
  return structuredClone(policy);

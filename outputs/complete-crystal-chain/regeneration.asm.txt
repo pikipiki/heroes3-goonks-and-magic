@@ -1,0 +1,124 @@
+
+../era-project-eng/h3era.exe:	file format coff-i386
+
+Disassembly of section .text:
+
+00701000 <.text>:
+  71eaa6: 55                           	pushl	%ebp
+  71eaa7: 8b ec                        	movl	%esp, %ebp
+  71eaa9: 83 ec 10                     	subl	$0x10, %esp
+  71eaac: 53                           	pushl	%ebx
+  71eaad: 56                           	pushl	%esi
+  71eaae: 57                           	pushl	%edi
+  71eaaf: 90                           	nop
+  71eab0: 90                           	nop
+  71eab1: 90                           	nop
+  71eab2: 90                           	nop
+  71eab3: 90                           	nop
+  71eab4: 90                           	nop
+  71eab5: 90                           	nop
+  71eab6: 90                           	nop
+  71eab7: 90                           	nop
+  71eab8: 90                           	nop
+  71eab9: 90                           	nop
+  71eaba: 90                           	nop
+  71eabb: 90                           	nop
+  71eabc: 90                           	nop
+  71eabd: 90                           	nop
+  71eabe: 90                           	nop
+  71eabf: 90                           	nop
+  71eac0: 90                           	nop
+  71eac1: 90                           	nop
+  71eac2: 83 3d 38 f1 79 00 00         	cmpl	$0x0, 0x79f138
+  71eac9: 74 0c                        	je	0x71ead7 <.text+0x1dad7>
+  71eacb: 90                           	nop
+  71eacc: 90                           	nop
+  71eacd: 90                           	nop
+  71eace: 90                           	nop
+  71eacf: 90                           	nop
+  71ead0: 33 c0                        	xorl	%eax, %eax
+  71ead2: e9 c9 00 00 00               	jmp	0x71eba0 <.text+0x1dba0>
+  71ead7: 6a 01                        	pushl	$0x1
+  71ead9: 8b 45 08                     	movl	0x8(%ebp), %eax
+  71eadc: 50                           	pushl	%eax
+  71eadd: e8 8b d6 ff ff               	calll	0x71c16d <.text+0x1b16d>
+  71eae2: 83 c4 08                     	addl	$0x8, %esp
+  71eae5: 85 c0                        	testl	%eax, %eax
+  71eae7: 75 0c                        	jne	0x71eaf5 <.text+0x1daf5>
+  71eae9: 90                           	nop
+  71eaea: 90                           	nop
+  71eaeb: 90                           	nop
+  71eaec: 90                           	nop
+  71eaed: 90                           	nop
+  71eaee: 33 c0                        	xorl	%eax, %eax
+  71eaf0: e9 ab 00 00 00               	jmp	0x71eba0 <.text+0x1dba0>
+  71eaf5: c7 45 f8 00 00 00 00         	movl	$0x0, -0x8(%ebp)
+  71eafc: eb 09                        	jmp	0x71eb07 <.text+0x1db07>
+  71eafe: 8b 4d f8                     	movl	-0x8(%ebp), %ecx
+  71eb01: 83 c1 01                     	addl	$0x1, %ecx
+  71eb04: 89 4d f8                     	movl	%ecx, -0x8(%ebp)
+  71eb07: 83 7d f8 0e                  	cmpl	$0xe, -0x8(%ebp)
+  71eb0b: 0f 8d 88 00 00 00            	jge	0x71eb99 <.text+0x1db99>
+  71eb11: 8b 55 f8                     	movl	-0x8(%ebp), %edx
+  71eb14: 6b d2 11                     	imull	$0x11, %edx, %edx
+  71eb17: 81 c2 98 7d 84 00            	addl	$0x847d98, %edx         # imm = 0x847D98
+  71eb1d: 89 55 f4                     	movl	%edx, -0xc(%ebp)
+  71eb20: 8b 45 f4                     	movl	-0xc(%ebp), %eax
+  71eb23: 8b 08                        	movl	(%eax), %ecx
+  71eb25: 83 e1 01                     	andl	$0x1, %ecx
+  71eb28: 85 c9                        	testl	%ecx, %ecx
+  71eb2a: 75 02                        	jne	0x71eb2e <.text+0x1db2e>
+  71eb2c: eb d0                        	jmp	0x71eafe <.text+0x1dafe>
+  71eb2e: 8b 55 f4                     	movl	-0xc(%ebp), %edx
+  71eb31: 8a 42 04                     	movb	0x4(%edx), %al
+  71eb34: 88 45 f0                     	movb	%al, -0x10(%ebp)
+  71eb37: 80 7d f0 72                  	cmpb	$0x72, -0x10(%ebp)
+  71eb3b: 74 02                        	je	0x71eb3f <.text+0x1db3f>
+  71eb3d: eb 55                        	jmp	0x71eb94 <.text+0x1db94>
+  71eb3f: 8b 4d f4                     	movl	-0xc(%ebp), %ecx
+  71eb42: 03 0d 94 7d 84 00            	addl	0x847d94, %ecx
+  71eb48: 0f b6 51 06                  	movzbl	0x6(%ecx), %edx
+  71eb4c: 89 55 fc                     	movl	%edx, -0x4(%ebp)
+  71eb4f: 6a 64                        	pushl	$0x64
+  71eb51: 6a 01                        	pushl	$0x1
+  71eb53: e8 b1 19 ff ff               	calll	0x710509 <.text+0xf509>
+  71eb58: 83 c4 08                     	addl	$0x8, %esp
+  71eb5b: 8b 4d f4                     	movl	-0xc(%ebp), %ecx
+  71eb5e: 0f be 51 05                  	movsbl	0x5(%ecx), %edx
+  71eb62: 3b c2                        	cmpl	%edx, %eax
+  71eb64: 7e 09                        	jle	0x71eb6f <.text+0x1db6f>
+  71eb66: 90                           	nop
+  71eb67: 90                           	nop
+  71eb68: 90                           	nop
+  71eb69: 90                           	nop
+  71eb6a: 90                           	nop
+  71eb6b: 33 c0                        	xorl	%eax, %eax
+  71eb6d: eb 31                        	jmp	0x71eba0 <.text+0x1dba0>
+  71eb6f: 8b 45 fc                     	movl	-0x4(%ebp), %eax
+  71eb72: 3b 45 0c                     	cmpl	0xc(%ebp), %eax
+  71eb75: 7e 06                        	jle	0x71eb7d <.text+0x1db7d>
+  71eb77: 8b 4d 0c                     	movl	0xc(%ebp), %ecx
+  71eb7a: 89 4d fc                     	movl	%ecx, -0x4(%ebp)
+  71eb7d: 83 7d fc 00                  	cmpl	$0x0, -0x4(%ebp)
+  71eb81: 7d 07                        	jge	0x71eb8a <.text+0x1db8a>
+  71eb83: c7 45 fc 00 00 00 00         	movl	$0x0, -0x4(%ebp)
+  71eb8a: 90                           	nop
+  71eb8b: 90                           	nop
+  71eb8c: 90                           	nop
+  71eb8d: 90                           	nop
+  71eb8e: 90                           	nop
+  71eb8f: 8b 45 fc                     	movl	-0x4(%ebp), %eax
+  71eb92: eb 0c                        	jmp	0x71eba0 <.text+0x1dba0>
+  71eb94: e9 65 ff ff ff               	jmp	0x71eafe <.text+0x1dafe>
+  71eb99: 90                           	nop
+  71eb9a: 90                           	nop
+  71eb9b: 90                           	nop
+  71eb9c: 90                           	nop
+  71eb9d: 90                           	nop
+  71eb9e: 33 c0                        	xorl	%eax, %eax
+  71eba0: 5f                           	popl	%edi
+  71eba1: 5e                           	popl	%esi
+  71eba2: 5b                           	popl	%ebx
+  71eba3: 8b e5                        	movl	%ebp, %esp
+  71eba5: 5d                           	popl	%ebp
+  71eba6: c3                           	retl

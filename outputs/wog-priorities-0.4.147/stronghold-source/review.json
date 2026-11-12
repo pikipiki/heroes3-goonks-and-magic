@@ -1,0 +1,49 @@
+{
+  "scope": "Phase4 source-only review, not active runtime",
+  "sourceScriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "sourceIds": [
+    283,
+    346,
+    347
+  ],
+  "notSourceImmune": [
+    275
+  ],
+  "cleanseIds": [
+    42,
+    52,
+    45,
+    54,
+    50,
+    62,
+    59,
+    60,
+    61,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75
+  ],
+  "timing": "After each battle action, living source slots0..41, regardless of spell caster origin; no broad spell immunity or resistance gate",
+  "damageOriginReturnAddresses": [
+    4460149,
+    4455746,
+    4458589,
+    4460621,
+    4461137,
+    4462479,
+    5902442
+  ],
+  "primaryExceptions": [
+    4455746,
+    4460621
+  ],
+  "unresolved": [
+    "Identify ring-origin native equivalent from original callers, including breath attack",
+    "Map all7 source damage origins to native consumers preserving RNG/animation order",
+    "Native battle controls for temporary hero debuffs, post-action cleanse, primary/spread damage",
+    "Complete275/283 XP and eighth-recruitment family"
+  ]
+}

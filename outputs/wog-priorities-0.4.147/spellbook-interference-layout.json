@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "browsers": [
+    "chromium",
+    "webkit"
+  ],
+  "viewports": [
+    [
+      320,
+      568
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      568,
+      320
+    ],
+    [
+      844,
+      390
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      1024,
+      768
+    ],
+    [
+      1180,
+      820
+    ]
+  ],
+  "checks": [
+    "Effective power17\u21927 remains inside screen",
+    "Thirty identical updates preserve the power node with zero removed nodes",
+    "Unchanged power hides extra label",
+    "Close/category/cast controls remain44px and inside small landscape viewport",
+    "Adventure/combat lists and return to equipment remain usable"
+  ],
+  "nativeMechanics": false,
+  "harness": "work/browser-tests/hero-spellbook-e2e.mjs",
+  "sourceSHA256": {
+    "web/spellbook.mjs": "e9d16a8b564f09d6443a36331fea84250661e28f649f79802a9db371294bb23f",
+    "web/mobile-review.css": "0cca0cb63a8c44bda9b9f8057cf7c45ce3f629e13ab7480d496ac0ee631f110d"
+  }
+}

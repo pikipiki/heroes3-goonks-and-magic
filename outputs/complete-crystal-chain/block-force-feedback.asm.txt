@@ -1,0 +1,44 @@
+
+../era-project-eng/h3era.exe:	file format coff-i386
+
+Disassembly of section .text:
+
+00401000 <.text>:
+  4b6750: 56                           	pushl	%esi
+  4b6751: 8b f1                        	movl	%ecx, %esi
+  4b6753: 8b 0d d4 6d 69 00            	movl	0x696dd4, %ecx
+  4b6759: 57                           	pushl	%edi
+  4b675a: 85 c9                        	testl	%ecx, %ecx
+  4b675c: 8b fa                        	movl	%edx, %edi
+  4b675e: 75 05                        	jne	0x4b6765 <.text+0xb5765>
+  4b6760: 5f                           	popl	%edi
+  4b6761: 32 c0                        	xorb	%al, %al
+  4b6763: 5e                           	popl	%esi
+  4b6764: c3                           	retl
+  4b6765: a1 d8 6d 69 00               	movl	0x696dd8, %eax
+  4b676a: 85 c0                        	testl	%eax, %eax
+  4b676c: 74 0d                        	je	0x4b677b <.text+0xb577b>
+  4b676e: 50                           	pushl	%eax
+  4b676f: ff 15 7c a0 63 00            	calll	*0x63a07c
+  4b6775: 8b 0d d4 6d 69 00            	movl	0x696dd4, %ecx
+  4b677b: 6a 00                        	pushl	$0x0
+  4b677d: 6a 00                        	pushl	$0x0
+  4b677f: 56                           	pushl	%esi
+  4b6780: ff 15 78 a0 63 00            	calll	*0x63a078
+  4b6786: 85 c0                        	testl	%eax, %eax
+  4b6788: a3 d8 6d 69 00               	movl	%eax, 0x696dd8
+  4b678d: 74 17                        	je	0x4b67a6 <.text+0xb57a6>
+  4b678f: 6a 00                        	pushl	$0x0
+  4b6791: 57                           	pushl	%edi
+  4b6792: 8b c8                        	movl	%eax, %ecx
+  4b6794: ff 15 74 a0 63 00            	calll	*0x63a074
+  4b679a: 85 c0                        	testl	%eax, %eax
+  4b679c: 74 08                        	je	0x4b67a6 <.text+0xb57a6>
+  4b679e: 5f                           	popl	%edi
+  4b679f: b8 01 00 00 00               	movl	$0x1, %eax
+  4b67a4: 5e                           	popl	%esi
+  4b67a5: c3                           	retl
+  4b67a6: 5f                           	popl	%edi
+  4b67a7: 33 c0                        	xorl	%eax, %eax
+  4b67a9: 5e                           	popl	%esi
+  4b67aa: c3                           	retl

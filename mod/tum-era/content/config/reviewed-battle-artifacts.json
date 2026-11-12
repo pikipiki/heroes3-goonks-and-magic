@@ -1,0 +1,70 @@
+{
+  "artifact261": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 20000,
+    "slot": [
+      "SHOULDERS"
+    ],
+    "text": {
+      "name": "Exchange Cloak",
+      "description": "{Exchange Cloak}\n\nWhen worn, the Attack and Defense of the allied hero and enemy hero are reversed.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/261/icon.png",
+      "map": "tum-era/artifacts/261/map.def",
+      "scenarioBonus": "tum-era/artifacts/261/scenario.png"
+    },
+    "bonuses": {}
+  },
+  "artifact262": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 35000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Amulet of the return of Samsara",
+      "description": "{Amulet of the return of Samsara}\n\nWhen casting Resurrection and Animate Undaed, the spells will also be cast on all the ally creatures with 30% of the hero's power. Transform different skeletons into their living forms.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/262/icon.png",
+      "map": "tum-era/artifacts/262/map.def",
+      "scenarioBonus": "tum-era/artifacts/262/scenario.png"
+    },
+    "bonuses": {}
+  },
+  "artifact263": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 25000,
+    "slot": [
+      "LEFT_RING",
+      "RIGHT_RING"
+    ],
+    "text": {
+      "name": "Implosion Amplifying Bracelet",
+      "description": "{Implosion Amplifying Bracelet}\n\nWhen casting implosion, the spell will also be cast on all the other enemy creatures with 30% of the hero's power.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/263/icon.png",
+      "map": "tum-era/artifacts/263/map.def",
+      "scenarioBonus": "tum-era/artifacts/263/scenario.png"
+    },
+    "bonuses": {}
+  }
+}

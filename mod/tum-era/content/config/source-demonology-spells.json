@@ -1,0 +1,112 @@
+{
+  "sourceDemonology49": {
+    "type": "ability",
+    "targetType": "CREATURE",
+    "name": "Demonology",
+    "school": {},
+    "level": 2,
+    "power": 50,
+    "defaultGainChance": 0,
+    "gainChance": {},
+    "animation": {
+      "affect": [
+        {
+          "defName": "C01SPE0",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "sounds": {
+      "cast": "RESURECT"
+    },
+    "graphics": {
+      "iconBook": "tum-era/demonology/resurrection-book.png",
+      "iconEffect": "tum-era/demonology/resurrection-effect.png",
+      "iconScenarioBonus": "tum-era/demonology/resurrection-scenariobonus.png",
+      "iconScroll": "tum-era/demonology/resurrection-scroll.png"
+    },
+    "levels": {
+      "base": {
+        "description": "Converts a fallen living allied troop into Horned Demons. Each surviving caster supplies 50 hit points, capped by the original corpse hit points and creature count. The converted troop keeps its original army slot.",
+        "power": 40,
+        "cost": 1,
+        "targetModifier": {
+          "smart": true
+        },
+        "range": "0",
+        "battleEffects": {
+          "demonSummon": {
+            "id": "core:hornedDemon",
+            "permanent": true,
+            "type": "core:demonSummon",
+            "eraDemonology": true
+          }
+        }
+      },
+      "none": {},
+      "basic": {},
+      "advanced": {},
+      "expert": {}
+    },
+    "flags": {
+      "rising": true,
+      "positive": true
+    },
+    "targetCondition": {}
+  },
+  "sourceDemonology217": {
+    "type": "ability",
+    "targetType": "CREATURE",
+    "name": "Demonology",
+    "school": {},
+    "level": 2,
+    "power": 50,
+    "defaultGainChance": 0,
+    "gainChance": {},
+    "animation": {
+      "affect": [
+        {
+          "defName": "C01SPE0",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "sounds": {
+      "cast": "RESURECT"
+    },
+    "graphics": {
+      "iconBook": "tum-era/demonology/resurrection-book.png",
+      "iconEffect": "tum-era/demonology/resurrection-effect.png",
+      "iconScenarioBonus": "tum-era/demonology/resurrection-scenariobonus.png",
+      "iconScroll": "tum-era/demonology/resurrection-scroll.png"
+    },
+    "levels": {
+      "base": {
+        "description": "Converts a fallen living allied troop into Pit Masters. Each surviving caster supplies 50 hit points, capped by the original corpse hit points and creature count. The converted troop keeps its original army slot.",
+        "power": 40,
+        "cost": 1,
+        "targetModifier": {
+          "smart": true
+        },
+        "range": "0",
+        "battleEffects": {
+          "demonSummon": {
+            "id": "third-upgrades:tumPitMaster",
+            "permanent": true,
+            "type": "core:demonSummon",
+            "eraDemonology": true
+          }
+        }
+      },
+      "none": {},
+      "basic": {},
+      "advanced": {},
+      "expert": {}
+    },
+    "flags": {
+      "rising": true,
+      "positive": true
+    },
+    "targetCondition": {}
+  }
+}

@@ -1,0 +1,10 @@
+/** Stage only whole source258 for native validation; never changes the active mod. */
+import fs from 'node:fs';import path from 'node:path';import {validateRuntimePolicy} from '../runtime-policy.mjs';
+const review=path.resolve(process.argv[2]||'/tmp/goonk-primal-review147b'),out=path.resolve(process.argv[3]||'/tmp/goonk-primal-stage147'),read=p=>JSON.parse(fs.readFileSync(p)),write=(name,value)=>{const file=path.join(out,name);fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,JSON.stringify(value,null,2)+'\n');};
+const report=read(review+'/native-closed-import-review.json'),record=report.records.find(r=>r.eraId===258),key='tum-era:eraCreature258';if(report.nativePrimalFaerieOptIn!=='source-primal-faerie-v1'||!report.candidateIds.includes(258)||record.obligations.length)throw Error('Whole source258 contract incomplete');
+const definition=read(review+'/content/config/native-closed-creatures.candidate.json').eraCreature258;
+write('content/config/complete-primal-faerie.json',{eraCreature258:definition,'core:fairieDragon':{upgrades:[key],abilities:{castsMagicArrow:{type:'SPELLCASTER',subtype:'core:magicArrow',val:2,addInfo:10}}}});
+for(const a of record.assets){const target=path.join(out,a.path);fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(review+'/'+a.path,target);}
+for(const name of ['era-bridge-experience','era-bridge-skeleton-transformations','era-bridge-runtime']){const candidate=read(review+'/content/config/'+name+'.candidate.json'),patch={schemaVersion:1,creatures:{[key]:candidate.creatures[key]}};if(name==='era-bridge-runtime')validateRuntimePolicy(patch);write('patches/'+name+'.json',patch);}
+write('content/config/era-bridge-primal-faerie.json',read(review+'/content/config/era-bridge-primal-faerie.candidate.json'));
+write('stage.json',{sourceId:258,key,creatures:['config/complete-primal-faerie.json'],sourcePins:report.sourcePins,record,activation:false});console.log(JSON.stringify({out,activated:false,sourceId:258}));

@@ -1,0 +1,56 @@
+{
+  "binarySha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "analysis": "Local offline LLVM objdump; no binary uploaded or target process executed.",
+  "ranges": {
+    "source-resurrection-alive.asm": [
+      "0x5a4029",
+      "0x5a4049"
+    ],
+    "source-dead-resurrection-alive.asm": [
+      "0x5a40c1",
+      "0x5a40cf"
+    ],
+    "source-poison-alive.asm": [
+      "0x44a3e3",
+      "0x44a416"
+    ],
+    "source-deathstare-alive.asm": [
+      "0x440bd6",
+      "0x440bed"
+    ],
+    "source-positive-morale-order.asm": [
+      "0x44add0",
+      "0x44ae10"
+    ],
+    "source-positive-morale-floor.asm": [
+      "0x44aef1",
+      "0x44af28"
+    ],
+    "source-active-caster-mode8.asm": [
+      "0x44835e",
+      "0x448384"
+    ],
+    "source-receptivity-dispatch.asm": [
+      "0x44a247",
+      "0x44a26f"
+    ]
+  },
+  "observations": {
+    "nature": "Native creatureNature-only marker suppresses automaticLIVING without inheriting native NON_LIVING/UNDEAD morale or mental immunities.",
+    "resurrection": "Both living target and corpse selection require sourceALIVEbit4.",
+    "poison": "Regular poison71receptivity requires sourceALIVEbit4.",
+    "deathStare": "InnateDeathStare target requires sourceALIVEbit4 beforeRNG.",
+    "ageAndDisease": "No addedALIVE exclusion. These IDs73/75 lie beyond basic17..71receptivitydispatch; sourceXPcAge predicates also distinguishUndead/explicitIDs, notALIVE.",
+    "morale": "SourceNO_MORALE returns0 beforepositivefloor1; Spirit84suppressespositiveafterfloor. NativeNO_MORALE earlyreturn and independentMax1/independentMin0 ordering agree.",
+    "activeCast": "Source mode8power5*currentCount; mode10powercurrentCount via originalAmethystSpell_1_mode_exact; bothadvancedmastery2. Spells4copiesCastsSpell into activechosenfield4E0.",
+    "werewolf": "Source273r#50=50percentchance/4HPperrank; L#125=25percentchance/6percentdamageperrank. ExistingnativeXPregen+deflectionadapters used."
+  },
+  "pending": [
+    "Actualnativebattle/charges/damage/morale/stat/upgradecontrols",
+    "All18eighthactorsbeforeatomicnativeeighthtownactivation"
+  ],
+  "limitations": [
+    "Static sourcebehavior proof does not claim originalAI score/RNG or arbitraryERM compatibility.",
+    "No additional spell-immunity category is inferred for newmarker."
+  ]
+}

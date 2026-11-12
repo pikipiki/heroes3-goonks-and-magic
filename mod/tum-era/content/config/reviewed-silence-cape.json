@@ -1,0 +1,112 @@
+{
+  "artifact267": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 7500,
+    "slot": [
+      "SHOULDERS"
+    ],
+    "text": {
+      "name": "Cape of Silence",
+      "description": "{Cape of Silence}\n\nProtects the wearer’s army against Ice Bolt, Lightning Bolt, Implosion, Death Ripple, Fire Wall, Shield, Protection from Fire or Water, Magic Mirror, Cure, Bless, Curse, Bloodlust, Weakness, Stone Skin, Disrupting Ray, Fortune, Haste, Slow and Blind. Also prevents the listed beneficial spells.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/267/icon.png",
+      "map": "tum-era/artifacts/267/map.def",
+      "scenarioBonus": "tum-era/artifacts/267/scenario.png"
+    },
+    "bonuses": {
+      "immunity43": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:bloodlust"
+      },
+      "immunity37": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:cure"
+      },
+      "immunity42": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:curse"
+      },
+      "immunity41": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:bless"
+      },
+      "immunity53": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:haste"
+      },
+      "immunity36": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:magicMirror"
+      },
+      "immunity31": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:protectFire"
+      },
+      "immunity32": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:protectWater"
+      },
+      "immunity27": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:shield"
+      },
+      "immunity54": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:slow"
+      },
+      "immunity46": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:stoneSkin"
+      },
+      "immunity62": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:blind"
+      },
+      "immunity24": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:deathRipple"
+      },
+      "immunity47": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:disruptingRay"
+      },
+      "immunity13": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:fireWall"
+      },
+      "immunity51": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:fortune"
+      },
+      "immunity16": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:iceBolt"
+      },
+      "immunity17": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:lightningBolt"
+      },
+      "immunity18": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:implosion"
+      },
+      "immunity10": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:quicksand"
+      },
+      "immunity64": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:removeObstacle"
+      },
+      "immunity45": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:weakness"
+      }
+    }
+  }
+}

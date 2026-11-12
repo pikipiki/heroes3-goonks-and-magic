@@ -1,0 +1,1002 @@
+{
+  "source": {
+    "banksSha256": "693453dd8a54c22cc918a4236ebbf5e4be3bfbd15a05f6b4e06e4407da8b7294",
+    "manifestSha256": "d7d931ccc14dafe7ee916e035ec6c0c13e7b6ffd28fedea4ba21f413d0481871",
+    "identitiesSha256": "d35d9c960a11aa9eb817a321684e76dd18beaa4c8a0707470d0b360d0c5d25cd",
+    "archives": [
+      {
+        "file": "AmeCre.pac",
+        "sha256": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c"
+      },
+      {
+        "file": "AmeEfect.pac",
+        "sha256": "87cca84591b1647af3895c369675051348f69208251800179031c14d017c8c87"
+      },
+      {
+        "file": "Common Def.pac",
+        "sha256": "76d25c568e4af817ea574639063f8af8ae8ac7e697a5bc6e7f42adeaa247a253"
+      },
+      {
+        "file": "Eighth Monsters.pac",
+        "sha256": "ac5e716b9ad5ded34ae951e50e8d2017372464470b2592f89860157ad1b824a8"
+      },
+      {
+        "file": "EmeraldArtifacts.pac",
+        "sha256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893"
+      },
+      {
+        "file": "FREDOBJ.pac",
+        "sha256": "1c99c4839c33db289457bf99d142d18e2ad7564201aa06420903c0409e32a033"
+      },
+      {
+        "file": "WF_creatures.pac",
+        "sha256": "770ea78b915d59b0f9da41b2a53b722ca9418398d4c3e8140dcc862a6dcf0d99"
+      }
+    ],
+    "registeredIdentities": 265,
+    "spellSource": {
+      "archiveSha256": "774cbfa7cfed6713ec80c48f8619a258dac14260e4f85faeebb29c053950a5a8",
+      "member": "SPTRAITS.txt",
+      "memberSha256": "0809ed7b2d7fc1357d96e4cd87bb5f9db6ad813b42d69dab29ab35fa3e1c11b9"
+    }
+  },
+  "compiled": [
+    {
+      "kind": "bank",
+      "id": "45",
+      "config": "content/config/objects/bank45.json",
+      "provenance": [
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/name",
+          "line": null,
+          "column": null,
+          "operation": "native bank name",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/properties",
+          "line": null,
+          "column": null,
+          "operation": "opaque ERA object-template lines retained in report; native templates supplied explicitly",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/density",
+          "line": null,
+          "column": null,
+          "operation": "ERA RMG metadata retained; no automatic distribution equivalence claimed",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/value",
+          "line": null,
+          "column": null,
+          "operation": "ERA RMG metadata retained; no automatic distribution equivalence claimed",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/enabled",
+          "line": null,
+          "column": null,
+          "operation": "source bank enabled gate",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/sound/enter",
+          "line": null,
+          "column": null,
+          "operation": "verified ERA null sound inherit",
+          "evidence": "ERA Trans.pas commit8c2fd47b22b1e67c980f42583a525d36fc318364 LoadLangData.ProcessBox excludes Json.jsNull (l217); tr returns the key when absent (l118..130). SHA2566be845c5bf96792c95a72ec0f568f906e4f50a12bd9f960a5e9a0e2db5edd192; h3era-plugins commit99e949d9d910556e57d19914b41976d5a07da577 SoundManager.cpp l272..306: override only when EraJS::read success; eraJson.hpp l51..55 success means translated text differs from key; RMG_CustomizeObjectProperties.dll SHA2560a44dc321ac59c4df280a005906b70f6829be1ab7b08584cec4b5a62f80e1031 0x100108E0..0x10010A42: absent/equal-key result returns EXEC_DEFAULT; explicit empty translated string suppresses default; h3era.exe SHA256451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181 0x4AA757 calls0x4AB100; object16 dispatch0x4AB65C[14]=8 ->0x4AB21D uses0x677854=\"Rogue.wav\"; native VCMI config/objects/creatureBanks.json base.sounds.visit=[\"ROGUE\"]"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/sound/loop",
+          "line": null,
+          "column": null,
+          "operation": "native ambient sound",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "",
+          "line": null,
+          "column": null,
+          "operation": "caller-supplied native RMG policy; ERA density/value are report-only",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states",
+          "line": null,
+          "column": null,
+          "operation": "ERA draws1..100, subtracts first three chances, fourth state receives remainder; fourth declared chance is unused",
+          "evidence": "h3era.exe sha256451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181; REA ev_1e22d8e4a59ce00df9320a7c287efc2d6f215628285187aa18db3af920f8cecc;0x47A6C0..0x47A713; RNG ev_882ac61b93ad59740d01abacc2736d0bf049ee4c89439dbeb99e0e926ae4d687"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/chance",
+          "line": null,
+          "column": null,
+          "operation": "shared native 0..99 dice, disjoint [min,max) state interval",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/guardians/type/0",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/guardians/count/0",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/guardians/type/1",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/guardians/count/1",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/guardians/type/2",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/guardians/count/2",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/guardians/type/3",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/guardians/count/3",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/guardians/type/4",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/guardians/count/4",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/guardians/type/5",
+          "line": null,
+          "column": null,
+          "operation": "ERA army type-1 sentinel disables slot irrespective of count0/-1",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/guardians/type/6",
+          "line": null,
+          "column": null,
+          "operation": "ERA army type-1 sentinel disables slot irrespective of count0/-1",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/resources/0",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/resources/1",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/resources/2",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/resources/3",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/resources/4",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/resources/5",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/resources/6",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/creatureRewardType",
+          "line": null,
+          "column": null,
+          "operation": "resolved native reward creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/creatureRewardCount",
+          "line": null,
+          "column": null,
+          "operation": "native creature reward amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/artifactTypeCounts/0",
+          "line": null,
+          "column": null,
+          "operation": "native random artifact class TREASURE",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/artifactTypeCounts/1",
+          "line": null,
+          "column": null,
+          "operation": "native random artifact class MINOR",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/artifactTypeCounts/2",
+          "line": null,
+          "column": null,
+          "operation": "native random artifact class MAJOR",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/0/artifactTypeCounts/3",
+          "line": null,
+          "column": null,
+          "operation": "native random artifact class RELIC",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/chance",
+          "line": null,
+          "column": null,
+          "operation": "shared native 0..99 dice, disjoint [min,max) state interval",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/guardians/type/0",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/guardians/count/0",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/guardians/type/1",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/guardians/count/1",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/guardians/type/2",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/guardians/count/2",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/guardians/type/3",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/guardians/count/3",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/guardians/type/4",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/guardians/count/4",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/guardians/type/5",
+          "line": null,
+          "column": null,
+          "operation": "ERA army type-1 sentinel disables slot irrespective of count0/-1",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/guardians/type/6",
+          "line": null,
+          "column": null,
+          "operation": "ERA army type-1 sentinel disables slot irrespective of count0/-1",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/resources/0",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/resources/1",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/resources/2",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/resources/3",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/resources/4",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/resources/5",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/resources/6",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/creatureRewardType",
+          "line": null,
+          "column": null,
+          "operation": "resolved native reward creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/creatureRewardCount",
+          "line": null,
+          "column": null,
+          "operation": "native creature reward amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/artifactTypeCounts/0",
+          "line": null,
+          "column": null,
+          "operation": "native random artifact class TREASURE",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/artifactTypeCounts/1",
+          "line": null,
+          "column": null,
+          "operation": "native random artifact class MINOR",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/artifactTypeCounts/2",
+          "line": null,
+          "column": null,
+          "operation": "native random artifact class MAJOR",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/1/artifactTypeCounts/3",
+          "line": null,
+          "column": null,
+          "operation": "native random artifact class RELIC",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/chance",
+          "line": null,
+          "column": null,
+          "operation": "shared native 0..99 dice, disjoint [min,max) state interval",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/guardians/type/0",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/guardians/count/0",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/guardians/type/1",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/guardians/count/1",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/guardians/type/2",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/guardians/count/2",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/guardians/type/3",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/guardians/count/3",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/guardians/type/4",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/guardians/count/4",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/guardians/type/5",
+          "line": null,
+          "column": null,
+          "operation": "ERA army type-1 sentinel disables slot irrespective of count0/-1",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/guardians/type/6",
+          "line": null,
+          "column": null,
+          "operation": "ERA army type-1 sentinel disables slot irrespective of count0/-1",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/resources/0",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/resources/1",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/resources/2",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/resources/3",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/resources/4",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/resources/5",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/resources/6",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/creatureRewardType",
+          "line": null,
+          "column": null,
+          "operation": "resolved native reward creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/creatureRewardCount",
+          "line": null,
+          "column": null,
+          "operation": "native creature reward amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/artifactTypeCounts/0",
+          "line": null,
+          "column": null,
+          "operation": "native random artifact class TREASURE",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/artifactTypeCounts/1",
+          "line": null,
+          "column": null,
+          "operation": "native random artifact class MINOR",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/artifactTypeCounts/2",
+          "line": null,
+          "column": null,
+          "operation": "native random artifact class MAJOR",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/2/artifactTypeCounts/3",
+          "line": null,
+          "column": null,
+          "operation": "native random artifact class RELIC",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/chance",
+          "line": null,
+          "column": null,
+          "operation": "shared native 0..99 dice, disjoint [min,max) state interval",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/guardians/type/0",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/guardians/count/0",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/guardians/type/1",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/guardians/count/1",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/guardians/type/2",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/guardians/count/2",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/guardians/type/3",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/guardians/count/3",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/guardians/type/4",
+          "line": null,
+          "column": null,
+          "operation": "resolved native guardian creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/guardians/count/4",
+          "line": null,
+          "column": null,
+          "operation": "native guardian amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/guardians/count/5",
+          "line": null,
+          "column": null,
+          "operation": "zero-count guardian slot ignored",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/guardians/type/5",
+          "line": null,
+          "column": null,
+          "operation": "zero-count guardian slot identity unused",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/guardians/count/6",
+          "line": null,
+          "column": null,
+          "operation": "zero-count guardian slot ignored",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/guardians/type/6",
+          "line": null,
+          "column": null,
+          "operation": "zero-count guardian slot identity unused",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/upgrade",
+          "line": null,
+          "column": null,
+          "operation": "ONE inclusive1..100 roll upgrades source slot0; original source value clamped0..100; native unique upgrade verified",
+          "evidence": "Original H3 town upgrade fallback0x47AA50/0x47AAD0 matched to native core indexed upgrade, no TUM cfg/MA:U override; Objects_CreatureBanksExtender.dll SHA256302025e001b02df14ae8ed5ee10b281b69ae3cf60846dd614099b10f4441ed00;0x10004683..0x100046BE; REA ev_f0e217b106ba55c91bc2695900a2b1b084f0c620fe1b08493e4e1899581bb51e; h3era.exe0x47A9A2..0x47AA24"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/resources/0",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/resources/1",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/resources/2",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/resources/3",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/resources/4",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/resources/5",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/resources/6",
+          "line": null,
+          "column": null,
+          "operation": "zero resource reward",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/creatureRewardType",
+          "line": null,
+          "column": null,
+          "operation": "resolved native reward creature",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/creatureRewardCount",
+          "line": null,
+          "column": null,
+          "operation": "native creature reward amount",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/artifactTypeCounts/0",
+          "line": null,
+          "column": null,
+          "operation": "native random artifact class TREASURE",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/artifactTypeCounts/1",
+          "line": null,
+          "column": null,
+          "operation": "native random artifact class MINOR",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/artifactTypeCounts/2",
+          "line": null,
+          "column": null,
+          "operation": "native random artifact class MAJOR",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        },
+        {
+          "source": "Lang/TUM_CreatureBanks.json",
+          "pointer": "/states/3/artifactTypeCounts/3",
+          "line": null,
+          "column": null,
+          "operation": "native random artifact class RELIC",
+          "evidence": "VCMI config/schemas/rewardable.json; lib/rewardable/Info.cpp configureRewards; lib/json/JsonRandom.cpp loadArtifacts/filterKeysTyped"
+        }
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "object": "bank:45",
+      "path": "content/Sprites/tum-era/objects/CB13.def",
+      "sourceArchive": "AmeCre.pac",
+      "sha256": "ab2fcdedb34b8683b89e8325bbd2f972432537793cfb34077eb22db39eb8b42d"
+    },
+    {
+      "object": "bank:45",
+      "path": "content/Sprites/tum-era/objects/CB13.msk",
+      "sourceArchive": "AmeCre.pac",
+      "sha256": "93bcad2c3288101d3050493b3c9c7e5a42000b5b3f77ce7e7145b22b36747ce7"
+    },
+    {
+      "object": "bank:45",
+      "path": "content/Sounds/tum-era/objects/SEMINARIUMLOOP.wav",
+      "sourceArchive": "AmeCre.snd",
+      "sourceArchiveSha256": "1da1264707a6dd7da79490bed64798a7bd6cf7cba12581e5b93549f0c29bbc32",
+      "sha256": "75f87bba33d02e6a1ab467e1e42e9c12079615dda6b7efe8860426baad6e0e63"
+    }
+  ],
+  "nativeValidation": "outputs/wog-priorities-0.4.147/native-seminarium.json"
+}

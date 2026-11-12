@@ -8,7 +8,9 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/bonuses/BonusParameters.h"
 #include "BattleResultProcessor.h"
+#include "../era/EraOblivionRuntime.h"
 #include "battle/BattleInfo.h"
 
 #include "../CGameHandler.h"
@@ -50,6 +52,11 @@ CasualtiesAfterBattle::CasualtiesAfterBattle(const CBattleInfoCallback & battle,
 		if (stack->summoned)//don't take into account temporary summoned stacks
 			return false;
 
+        // Source463E61..68 excludes overland slot-1 independently of SUMMON.
+        // Only persistence uses this marker; slain units still award XP.
+        if(stack->hasBonusOfType(BonusType::ERA_SOURCE_UNOWNED_STACK))
+            return false;
+
 		if(stack->unitOwner() != color) //remove only our stacks
 			return false;
 
@@ -90,6 +97,17 @@ CasualtiesAfterBattle::CasualtiesAfterBattle(const CBattleInfoCallback & battle,
 		}
 		else if(st->unitSlot() == SlotID::SUMMONED_SLOT_PLACEHOLDER)
 		{
+            const auto sourceSlot=st->getBonus(Selector::type()(BonusType::ERA_SOURCE_NON_ELEMENTAL_SUMMON));
+            if(sourceSlot && sourceSlot->parameters)
+            {
+                const int slot=sourceSlot->parameters->toNumber();
+                if(slot<0 || slot>=7)throw std::runtime_error("ERA Demonology: invalid original corpse slot");
+                if(st->alive() && st->getCount()>0)
+                    sourceConvertedSlots[slot]={st->creatureId(),st->getCount()};
+                else
+                    newStackCounts.emplace_back(StackLocation(army->id,SlotID(slot)),0);
+                continue;
+            }
 			if(st->alive() && st->getCount() > 0)
 			{
 				logGlobal->debug("Permanently summoned %d units.", st->getCount());
@@ -154,6 +172,13 @@ void CasualtiesAfterBattle::updateArmy(CGameHandler *gh)
 		else
 			gh->eraseStack(ncount.first, true);
 	}
+    for(const auto & converted:sourceConvertedSlots)
+    {
+        const SlotID slot(converted.first);
+        const StackLocation location(army->id,slot);
+        if(!army->slotEmpty(slot))gh->eraseStack(location,true);
+        gh->insertNewStack(location,converted.second.first.toCreature(),converted.second.second);
+    }
 	for (auto summoned_iter : summoned)
 	{
 		SlotID slot = army->getSlotFor(summoned_iter.first);
@@ -390,6 +415,8 @@ void BattleResultProcessor::endBattleConfirm(const CBattleInfoCallback & battle)
 	raccepted.heroResult[BattleSide::ATTACKER].exp = battleResult->exp[BattleSide::ATTACKER];
 	raccepted.heroResult[BattleSide::DEFENDER].exp = battleResult->exp[BattleSide::DEFENDER];
 	raccepted.winnerSide = finishingBattle->winnerSide;
+    carryEraOblivionResult(*gameHandler,battle,finishingBattle->isDraw()?nullptr:
+        battle.getBattle()->getSideHero(finishingBattle->winnerSide));
 	gameHandler->sendAndApply(raccepted);
 
 	gameHandler->queries->popIfTop(battleQuery); // Workaround to remove battle query for AI case. TODO Think of a cleaner solution.
@@ -506,7 +533,9 @@ void BattleResultProcessor::battleFinalize(const BattleID & battleID, const Batt
 
 		// Necromancy handling
 		// Give raised units to winner, if any were raised, units will be given after casualties are taken
-		resultsApplied.raisedStack = winnerHero->calculateNecromancy(result);
+        if(!era_compat::sourceOblivionResult(*winnerHero,battleID))
+            resultsApplied.raisedStack = winnerHero->calculateNecromancy(result);
+        clearEraOblivionResult(*gameHandler,*winnerHero,battleID);
 		const SlotID necroSlot = resultsApplied.raisedStack.getCreature() ? winnerHero->getSlotFor(resultsApplied.raisedStack.getCreature()) : SlotID();
 		if(necroSlot != SlotID() && !finishingBattle->isDraw())
 			gameHandler->addToSlot(StackLocation(finishingBattle->winnerId, necroSlot), resultsApplied.raisedStack.getCreature(), resultsApplied.raisedStack.getCount());

@@ -100,6 +100,7 @@ public:
 	virtual boost::logic::tribool isSmart() const = 0;
 	virtual boost::logic::tribool isMassive() const = 0;
 	virtual bool isEraExperiencePreAttack() const { return false; }
+	virtual bool isEraArtifactMassHypnotize() const { return false; }
 };
 
 ///all parameters of particular cast event
@@ -107,6 +108,8 @@ class DLL_LINKAGE BattleCast : public IBattleCast
 {
 public:
 	bool eraExperiencePreAttack = false;
+	bool eraArtifactMassHypnotize = false;
+	bool isEraArtifactMassHypnotize() const override { return eraArtifactMassHypnotize; }
 	bool isEraExperiencePreAttack() const override { return eraExperiencePreAttack; }
 	boost::logic::tribool smart;
 	boost::logic::tribool massive;
@@ -226,6 +229,8 @@ public:
 
 	virtual void castEval(ServerCallback * server, const Target & target) = 0;
 
+	virtual bool isHeroCast() const { return false; }
+	virtual bool isEraArtifactMassHypnotize() const { return false; }
 	virtual bool isReceptive(const battle::Unit * target) const = 0;
 	virtual bool wouldResist(const battle::Unit * target) const = 0;
 
@@ -312,6 +317,8 @@ public:
 
 	PlayerColor getCasterColor() const override;
 
+	bool isHeroCast() const override { return mode == Mode::HERO; }
+	bool isEraArtifactMassHypnotize() const override { return eraArtifactMassHypnotize; }
 	bool isSmart() const override;
 	bool isMassive() const override;
 	bool requiresClearTiles() const override;
@@ -342,6 +349,7 @@ public:
 
 protected:
 	bool eraExperiencePreAttack = false;
+	bool eraArtifactMassHypnotize = false;
 	const CSpell * owner;
 	Mode mode;
 

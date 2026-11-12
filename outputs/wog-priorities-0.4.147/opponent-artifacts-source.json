@@ -1,0 +1,25 @@
+{
+  "artifactIds": [
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    249,
+    250,
+    252
+  ],
+  "scriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "archiveSHA256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "sourceFunctions": [
+    "tum_MinusMorale",
+    "tum_MinusLuck"
+  ],
+  "sourceScope": "Third Upgrade Mod.erm enemy hero equipped checks, one subtraction per artifact identity; source ids183..188,249,250,252",
+  "nativeCarrier": "MORALE/LUCK ADDITIVE_VALUE, BATTLE_WIDE propagator and OPPOSITE_SIDE limiter",
+  "pending": [
+    "Native controls: enemy versus own stacks, equip/backpack, both heroes, additive artifacts, unaffected map stats, save/load"
+  ],
+  "activationReady": false
+}

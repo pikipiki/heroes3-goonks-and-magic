@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraAdvancedArtifactRuntimeNative.h"
 #include "CGameState.h"
 
 #include "EVictoryLossCheckResult.h"
@@ -1478,7 +1479,7 @@ void CGameState::obtainPlayersStats(SThievesGuildInfo & tgi, int level) const
 	}
 	if(level >= 4) //army strength
 	{
-		FILL_FIELD(army, Statistic::getArmyStrength(&g->second))
+		FILL_FIELD(army, era_compat::sourceDiplomatGuildStrength(g->second))
 	}
 	if(level >= 5) //income
 	{

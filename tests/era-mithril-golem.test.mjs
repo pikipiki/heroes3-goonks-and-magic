@@ -1,0 +1,14 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import os from 'node:os';import path from 'node:path';import {execFileSync} from 'node:child_process';
+import {compileCreatureProperties} from '../scripts/era-bridge/creatures/creature-properties.mjs';import {reviewedMithrilGolem,SOURCE_MITHRIL_GOLEM_CONTRACT} from '../scripts/era-bridge/roster8/mithril-golem.mjs';
+const cfg='ResGen_Type=7\nResGen_Amount=1\nFlags=131072\nLevel=5\nFearless=1\nisConstruct=1\n';
+test('Mithril construct membership requires exact reviewed actor and retains independent source biology',()=>{
+ const r=reviewedMithrilGolem(cfg,{sourceId:324,contract:SOURCE_MITHRIL_GOLEM_CONTRACT});assert.deepEqual(r.dailyResources,{resource:'wake-of-gods.mithril:mithril',amount:1,goldPerCreature:0});
+ assert.throws(()=>reviewedMithrilGolem(cfg,{sourceId:323,contract:SOURCE_MITHRIL_GOLEM_CONTRACT}));assert.throws(()=>reviewedMithrilGolem(cfg.replace('isConstruct=1','isConstruct=0'),{sourceId:324,contract:SOURCE_MITHRIL_GOLEM_CONTRACT}));
+ const compiled=compileCreatureProperties(cfg,{sourceCreatureId:324,freshDefinition:true,analyseOnly:true,nativeBiologyContract:'source-biological-flags-inanimate-v1',nativeConstructContract:SOURCE_MITHRIL_GOLEM_CONTRACT});const types=Object.values(compiled.definition.abilities).map(b=>b.type);
+ for(const type of ['ERA_SOURCE_INANIMATE','ERA_SOURCE_CONSTRUCT','NO_MORALE'])assert(types.includes(type));for(const type of ['MECHANICAL','MIND_IMMUNITY','LIVING','UNDEAD','NON_LIVING'])assert(!types.includes(type));
+ assert(compiled.policies.every(p=>p.kind==='era-daily-resource-generation'));
+ const strict=compileCreatureProperties(cfg,{sourceCreatureId:324,freshDefinition:true,analyseOnly:true,nativeBiologyContract:'source-biological-flags-inanimate-v1'});assert(strict.policies.some(p=>p.kind==='era-property-isConstruct'));
+});
+test('Repair selects friendly constructs with whole-creature losses, including corpses; injury alone is insufficient',()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'source-construct-'));try{const cpp=path.join(dir,'x.cpp'),bin=path.join(dir,'x');fs.writeFileSync(cpp,`#include "${path.resolve('work/vcmi-wasm/lib/era/EraSourceConstructRule.h')}"\n#include <cassert>\nint main(){using era_bridge::sourceRepairTarget;assert(era_bridge::sourceDefaultConstruct("core:crystalDragon"));assert(era_bridge::sourceDefaultConstruct("core:stoneGargoyle"));assert(!era_bridge::sourceDefaultConstruct("core:blackDragon"));assert(sourceRepairTarget(true,true,4,5));assert(sourceRepairTarget(true,true,0,5));assert(!sourceRepairTarget(false,true,4,5));assert(!sourceRepairTarget(true,false,4,5));assert(!sourceRepairTarget(true,true,5,5));assert(!sourceRepairTarget(true,true,6,5));assert(!sourceRepairTarget(true,true,-1,5));}`);execFileSync('c++',['-std=c++17','-fsanitize=undefined',cpp,'-o',bin]);execFileSync(bin);}finally{fs.rmSync(dir,{recursive:true,force:true});}
+});

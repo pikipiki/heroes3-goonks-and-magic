@@ -1,0 +1,47 @@
+{
+  "sourceArtifact": 253,
+  "binarySHA256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "sourceCfgSHA256": "e221acf979a46cebcd6b1dc0255ea9a5f5ae8e085ee1363feb0ca555c1109462",
+  "sourceCppSHA256": "c6c50ba37671fcd398ef52acf5774fc4f0b0c3527f4582fd87d53675376a6a43",
+  "sourceCfg": "Autospell=60",
+  "openingSide": "Emerald hooks464FBA. Original464F69..88 computes active stack effective side (Hypnotize-aware),464F8E stores132C0,464FAB loads that side hero intoEDI before the hook. Native opening caster-side scope must explicitly preserve this when no active unit exists.",
+  "entry": "Emerald CastArtifactSpell150..159: CanCast5A43E0(spell60,expert3,side,1,2), then5A0140(spell60,hex−1,mode2,hex2−1,expert3,duration50).",
+  "dispatch": "5A2B48[60−10]=17;5A2AB0[17]=5A138F. A missing target takes5A13BB→5A69E0, the mass timed-spell helper.",
+  "targetContract": "Original5A69E0 scans both original sides and source slots in order. It excludes already-hypnotized stacks before resistance RNG, then tests contextual reception for each candidate. 5A8616..8634 rejects negative spells on the caster original side; those candidates still consume RNG. Every remaining candidate consumes RNG1..100 including0/100 accuracy.",
+  "eligibility": {
+    "power": "5A8689 reads cached CombatManager21460[actingSide], not explicit opening duration50.",
+    "mastery": "5A8673..8681 obtains the actual hero school level using source terrain context, not the explicit expert3 effect argument.",
+    "threshold": "Cached power × native Hypnotize coefficient + actual-mastery base + hero spell bonus4E6260; compare count × maximum per-creature HP (5A86C0..CC), including the wounded first creature at full HP. The two-operand IMUL truncates to32bits and JLE compares signed DWORD; reproduce wrap without C++ signed overflow. Preserve mirror/image exceptions from5A86B6 onward.",
+    "effect": "The installed status uses explicit duration50 and explicit effect mastery3. Do not conflate reception threshold with status duration."
+  },
+  "nativePlan": "Add one specifically marked source253 opening cast. Reuse proven source-slot enumeration and reception RNG semantics; retain cached effective hero power and actual mastery for the Hypnotize HP condition while forcing duration50. Do not enable unrelated targeted autocasts.",
+  "boundedCode": [
+    {
+      "address": "464f69",
+      "length": 87,
+      "sha256": "2abc258b095e11463a9cbcaafa1b769a7249640fa1d5fc72cca8cc7e4ae3e152"
+    },
+    {
+      "address": "5a138f",
+      "length": 75,
+      "sha256": "77306f5ccafa0c0f60384eeca71db79aece723be58b21a6dd349f0cfc199f7c7"
+    },
+    {
+      "address": "5a69e0",
+      "length": 230,
+      "sha256": "57661320b176d332d8753e0098e0524865375186f4cfd6c0d397d0a958d08375"
+    },
+    {
+      "address": "5a8673",
+      "length": 115,
+      "sha256": "cacaf5cb3bfc701d4e48a4dfa6ade1fc5867e3f72ceea32df138cae5da4262f3"
+    }
+  ],
+  "activationReady": false,
+  "pending": [
+    "Exact native marked mass253 adapter",
+    "Native eligible/ineligible HP boundaries and actual mastery",
+    "Both original sides; resistance/immunity/context and backpack controls",
+    "Duration50 independent of threshold power; RNG and already-hypnotized exclusion"
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "passed": true,
+  "report": {
+    "fixture": {
+      "experienceProfile": "Owned test overlay fullRank10=100, battlePercent=100; source rank effects and production data unmodified",
+      "enduranceEnemy": "Owned test gnoll high HP, fixed50 damage; source dragon combat rules unchanged"
+    },
+    "tum-era:eraCreature268": {
+      "trained": {
+        "aiValue": 89338,
+        "attack": 80,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          25,
+          0,
+          40000,
+          0
+        ],
+        "count": 1,
+        "damageMax": 105,
+        "damageMin": 95,
+        "defense": 90,
+        "description": "",
+        "fightValue": 80260,
+        "growth": 1,
+        "health": 1500,
+        "icon": "tum-era/creatures/268/large",
+        "id": 276,
+        "key": "tum-era:eraCreature268",
+        "magicDamageReduction": 0,
+        "name": "Sapphire Dragon",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": false,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "physicalDamageBonus": 0,
+        "rangedDamageBonus": 0,
+        "shooter": false,
+        "shots": 0,
+        "slot": 0,
+        "speed": 21
+      },
+      "observed": [
+        {
+          "round": 1,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 2,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 3,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 4,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 5,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 6,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 7,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 8,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 9,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 10,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 11,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 12,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 13,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 14,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 15,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 16,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 17,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 18,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 19,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 20,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 21,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 22,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 23,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 24,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 25,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 26,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 27,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 28,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 29,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 30,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 31,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        },
+        {
+          "round": 32,
+          "hp": 1500,
+          "max": 1500,
+          "count": 1
+        }
+      ],
+      "blocks": 5,
+      "visualReads": [
+        {
+          "file": "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/crystal-block/block.def",
+          "ms": 17450.29500001669
+        }
+      ]
+    }
+  },
+  "validatedEngineSHA256": "aeaff64a9482c6f51900b54fe20deb051c3601508092549cc860bd846bc57806",
+  "viewport": "390x844",
+  "sourceBlockVisual": "NativeHITstage originalWoGZMGC01.DEF; MGblock2 is an optionalImmersionhaptic-effect name, not audio"
+}

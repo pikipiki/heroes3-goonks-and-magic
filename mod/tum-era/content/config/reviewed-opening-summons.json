@@ -1,0 +1,475 @@
+{
+  "artifact219": {
+    "type": [
+      "HERO"
+    ],
+    "class": "SPECIAL",
+    "value": 80000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Compendium of Magic",
+      "description": "{Compendium of Magic}\n\nIn addition to component effect, at the begining of each battle the Compendium of Magic summon all four third upgrades elementals.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/219/icon.png",
+      "map": "tum-era/artifacts/219/map.def",
+      "scenarioBonus": "tum-era/artifacts/219/scenario.png"
+    },
+    "bonuses": {
+      "givenSpell0": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:summonBoat"
+      },
+      "givenSpell1": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:scuttleBoat"
+      },
+      "givenSpell2": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:visions"
+      },
+      "givenSpell3": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:viewEarth"
+      },
+      "givenSpell4": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:disguise"
+      },
+      "givenSpell5": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:viewAir"
+      },
+      "givenSpell6": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:fly"
+      },
+      "givenSpell7": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:waterWalk"
+      },
+      "givenSpell8": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:dimensionDoor"
+      },
+      "givenSpell9": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:townPortal"
+      },
+      "givenSpell10": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:quicksand"
+      },
+      "givenSpell11": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:landMine"
+      },
+      "givenSpell12": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:forceField"
+      },
+      "givenSpell13": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:fireWall"
+      },
+      "givenSpell14": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:earthquake"
+      },
+      "givenSpell15": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:magicArrow"
+      },
+      "givenSpell16": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:iceBolt"
+      },
+      "givenSpell17": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:lightningBolt"
+      },
+      "givenSpell18": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:implosion"
+      },
+      "givenSpell19": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:chainLightning"
+      },
+      "givenSpell20": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:frostRing"
+      },
+      "givenSpell21": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:fireball"
+      },
+      "givenSpell22": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:inferno"
+      },
+      "givenSpell23": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:meteorShower"
+      },
+      "givenSpell24": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:deathRipple"
+      },
+      "givenSpell25": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:destroyUndead"
+      },
+      "givenSpell26": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:armageddon"
+      },
+      "givenSpell27": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:shield"
+      },
+      "givenSpell28": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:airShield"
+      },
+      "givenSpell29": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:fireShield"
+      },
+      "givenSpell30": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:protectAir"
+      },
+      "givenSpell31": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:protectFire"
+      },
+      "givenSpell32": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:protectWater"
+      },
+      "givenSpell33": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:protectEarth"
+      },
+      "givenSpell34": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:antiMagic"
+      },
+      "givenSpell35": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:dispel"
+      },
+      "givenSpell36": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:magicMirror"
+      },
+      "givenSpell37": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:cure"
+      },
+      "givenSpell38": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:resurrection"
+      },
+      "givenSpell39": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:animateDead"
+      },
+      "givenSpell40": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:sacrifice"
+      },
+      "givenSpell41": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:bless"
+      },
+      "givenSpell42": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:curse"
+      },
+      "givenSpell43": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:bloodlust"
+      },
+      "givenSpell44": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:precision"
+      },
+      "givenSpell45": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:weakness"
+      },
+      "givenSpell46": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:stoneSkin"
+      },
+      "givenSpell47": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:disruptingRay"
+      },
+      "givenSpell48": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:prayer"
+      },
+      "givenSpell49": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:mirth"
+      },
+      "givenSpell50": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:sorrow"
+      },
+      "givenSpell51": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:fortune"
+      },
+      "givenSpell52": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:misfortune"
+      },
+      "givenSpell53": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:haste"
+      },
+      "givenSpell54": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:slow"
+      },
+      "givenSpell55": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:slayer"
+      },
+      "givenSpell56": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:frenzy"
+      },
+      "givenSpell57": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:titanBolt"
+      },
+      "givenSpell58": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:counterstrike"
+      },
+      "givenSpell59": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:berserk"
+      },
+      "givenSpell60": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:hypnotize"
+      },
+      "givenSpell61": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:forgetfulness"
+      },
+      "givenSpell62": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:blind"
+      },
+      "givenSpell63": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:teleport"
+      },
+      "givenSpell64": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:removeObstacle"
+      },
+      "givenSpell65": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:clone"
+      },
+      "givenSpell66": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:fireElemental"
+      },
+      "givenSpell67": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:earthElemental"
+      },
+      "givenSpell68": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:waterElemental"
+      },
+      "givenSpell69": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:airElemental"
+      }
+    },
+    "components": [
+      "core:tomeOfFireMagic",
+      "core:tomeOfAirMagic",
+      "core:tomeOfWaterMagic",
+      "core:tomeOfEarthMagic"
+    ]
+  },
+  "artifact231": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 50000,
+    "slot": [
+      "RIGHT_HAND"
+    ],
+    "text": {
+      "name": "Black Luster Sword",
+      "description": "{Black Luster Sword}\n\nHeld with the right hand, the Black Luster Sword increases all four primary skills by +5. Summon Archangels on the battlefield. Cast Mirth on your units",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/231/icon.png",
+      "map": "tum-era/artifacts/231/map.def",
+      "scenarioBonus": "tum-era/artifacts/231/scenario.png"
+    },
+    "bonuses": {
+      "Attack": {
+        "type": "PRIMARY_SKILL",
+        "val": 5,
+        "subtype": "primarySkill.attack"
+      },
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 5,
+        "subtype": "primarySkill.defence"
+      },
+      "Knowledge": {
+        "type": "PRIMARY_SKILL",
+        "val": 5,
+        "subtype": "primarySkill.knowledge"
+      },
+      "Spellpower": {
+        "type": "PRIMARY_SKILL",
+        "val": 5,
+        "subtype": "primarySkill.spellpower"
+      },
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:mirth",
+        "addInfo": [
+          3,
+          0
+        ]
+      }
+    }
+  },
+  "artifact279": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 250000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Necronomicon",
+      "description": "{Necronomicon}\n\nThis artifact allows you to summon Skeleton Angels at the start of each battle, and adds Death Ripple and Animate Dead to your spellbook.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/279/icon.png",
+      "map": "tum-era/artifacts/279/map.def",
+      "scenarioBonus": "tum-era/artifacts/279/scenario.png"
+    },
+    "bonuses": {
+      "givenSpell24": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:deathRipple"
+      },
+      "givenSpell39": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:animateDead"
+      },
+      "Morale": {
+        "type": "MORALE",
+        "val": -3
+      }
+    }
+  }
+}

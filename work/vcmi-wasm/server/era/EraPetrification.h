@@ -3,6 +3,7 @@
 #include "../CGameHandler.h"
 #include "EraStatusAttacks.h"
 #include "EraCDispelRuntime.h"
+#include "EraCSlowRuntime.h"
 #include "../../lib/CStack.h"
 #include "../../lib/CCreatureHandler.h"
 #include "../../lib/battle/CBattleInfoCallback.h"
@@ -28,8 +29,9 @@ class EraPetrificationSequence
     {
         spells::BattleCast cast(&battle, caster, spells::Mode::PASSIVE,
             spell.toSpell());
-        // Original468CD8 passes duration3 and mastery0 for ALL queued spells. Creature XP/hero enchant
-        // power and school skill must not change these constants.
+        // Original468CD8 passes power3/mastery0. Queued62/70..80 are exempt
+        // from the global5A0145 power override; other queued spells use the
+        // current active stack override (Slow54 is handled separately).
         cast.setSpellLevel(0);
         cast.setEffectPower(3);
         cast.setEffectDuration(3);
@@ -39,7 +41,8 @@ public:
     void beforeAction(CGameHandler & handler,const CBattleInfoCallback & battle,
         const CStack * actor,const CStack * target)
     {
-        if(era_compat_server::StatusAttacks::get().enabled(actor)
+        if((era_compat_server::StatusAttacks::get().enabled(actor)
+            || era_compat_server::StatusAttacks::get().queuedPoison(actor))
             && era_compat_server::selectSourceCPoison(handler,battle,actor,target))
         {
             pending.markSpell(target->unitId(),actor->unitId(),71);
@@ -50,6 +53,12 @@ public:
             && era_compat_server::selectSourceCAge(handler,battle,actor,target))
         {
             pending.markSpell(target->unitId(),actor->unitId(),75);
+            statusOwners[target->unitId()]=battle.battleGetOwner(actor);
+        }
+        else if(era_compat_server::StatusAttacks::get().queuedSlow(actor)
+            && era_compat_server::selectSourceCSlow(handler,battle,actor,target))
+        {
+            pending.markSpell(target->unitId(),actor->unitId(),54);
             statusOwners[target->unitId()]=battle.battleGetOwner(actor);
         }
         else if(era_compat_server::StatusAttacks::get().queuedDispel(actor)
@@ -142,6 +151,11 @@ public:
                 continue;
             const auto * attacker = battle.battleGetStackByID(*source,false);
             const auto queuedSpell=SpellID(pending.spell(target->unitId()));
+            if(queuedSpell.num==54 && statusOwners.count(target->unitId()))
+            {
+                era_compat_server::applySourceCSlow(handler,battle,attacker,target,statusOwners.at(target->unitId()));
+                continue;
+            }
             if(queuedSpell.num==71 || queuedSpell.num==75 || queuedSpell.num==78 || queuedSpell.num==80 || ((queuedSpell.num==62 || queuedSpell.num==70) && statusOwners.count(target->unitId())))
             {
                 // Original468CD8 does not repeat the earlier selector accuracy.

@@ -37,7 +37,19 @@
     "config/chasm-dragon.json",
     "config/source-level8-visuals.json",
     "config/source-experience-defaults.json",
-    "config/reviewed-crystal-chain.json"
+    "config/reviewed-crystal-chain.json",
+    "config/complete-crystal-chain.json",
+    "config/reviewed-conversion-creatures.json",
+    "config/reviewed-templars.json",
+    "config/reviewed-golems.json",
+    "config/reviewed-spirits.json",
+    "config/complete-mithril-golem.json",
+    "config/complete-primal-faerie.json",
+    "config/reviewed-stronghold.json",
+    "config/complete-pit-master.json",
+    "config/reviewed-inferno-eighth.json",
+    "config/source-fortress.json",
+    "config/reviewed-dungeon-eighth.json"
   ],
   "factions": [
     "config/necropolis.json",
@@ -62,7 +74,17 @@
   "artifacts": [
     "config/native-artifacts.json",
     "config/reviewed-artifacts.json",
-    "config/source-necromancy-cloak.json"
+    "config/source-necromancy-cloak.json",
+    "config/reviewed-opening-summons.json",
+    "config/reviewed-opponent-artifacts.json",
+    "config/reviewed-conversion-artifacts.json",
+    "config/reviewed-battle-artifacts.json",
+    "config/reviewed-utility-artifacts.json",
+    "config/reviewed-advanced-artifacts.json",
+    "config/reviewed-silence-cape.json",
+    "config/reviewed-atma-artifacts.json",
+    "config/reviewed-interference-artifacts.json",
+    "config/reviewed-mass-hypnotize253-artifact.json"
   ],
   "objects": [
     "config/objects/dwelling20_2.json",
@@ -101,7 +123,12 @@
     "config/objects/bank54.json",
     "config/objects/bank55.json",
     "config/objects/bank58.json",
-    "config/objects/bank60.json"
+    "config/objects/bank60.json",
+    "config/objects/bank49.json",
+    "config/objects/bank45.json",
+    "config/objects/bank34.json",
+    "config/objects/bank35.json",
+    "config/objects/bank50.json"
   ],
   "settings": {
     "combat": {
@@ -369,6 +396,54 @@
             87,
             8
           ]
+        },
+        "eraBank49MixedLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            171,
+            1,
+            100,
+            87,
+            8
+          ]
+        },
+        "eraBank50MixedLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            171,
+            1,
+            100,
+            87,
+            8
+          ]
         }
       }
     }
@@ -380,13 +455,26 @@
     "translations": [
       "translation/tum-era-ui-french.json",
       "translation/reviewed-artifacts-french.json",
-      "translation/source-necromancy-french.json"
+      "translation/source-necromancy-french.json",
+      "translation/reviewed-opening-artifacts-french.json",
+      "translation/reviewed-banks-french.json",
+      "translation/reviewed-conversion-artifacts-french.json",
+      "translation/reviewed-battle-artifacts-french.json",
+      "translation/reviewed-utility-artifacts-french.json",
+      "translation/reviewed-creatures-french.json",
+      "translation/reviewed-advanced-artifacts-french.json",
+      "translation/reviewed-silence-cape-french.json",
+      "translation/reviewed-atma-artifacts-french.json",
+      "translation/reviewed-interference-artifacts-french.json",
+      "translation/reviewed-mass-hypnotize253-artifact-french.json"
     ],
     "name": "TUM — évolutions et expérience"
   },
   "spells": [
     "config/skeletal-transformation.json",
-    "config/necross-spells.json"
+    "config/necross-spells.json",
+    "config/source-demonology-spells.json",
+    "config/source-dungeon-spells.json"
   ],
   "skills": [
     "config/source-necromancy-skill.json"

@@ -653,6 +653,11 @@ void TradeOnMarketplace::visitTyped(ICPackVisitor & visitor)
 	visitor.visitTradeOnMarketplace(*this);
 }
 
+void RefreshArtifactState::visitTyped(ICPackVisitor & visitor)
+{
+	visitor.visitRefreshArtifactState(*this);
+}
+
 void SetFormation::visitTyped(ICPackVisitor & visitor)
 {
 	visitor.visitSetFormation(*this);

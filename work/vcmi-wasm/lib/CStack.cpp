@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "era/EraGooseReflectionRuntime.h"
 #include "era/EraCreatureSpecialists.h"
 #include "era/EraStatusHealthRuntime.h"
 #include "CStack.h"
@@ -92,15 +93,20 @@ void CStack::localInit(BattleInfo * battleInfo)
     if(!hasBonusOfType(BonusType::ERA_SPECIALIST_HEALTH_PERCENT))
         if(const auto hero=battle->battleGetFightingHero(side))
             if(const auto progression=era_compat::sourceCreatureSpecialty(*hero))
-                if(typeID==progression->family || progression->family.toCreature()->isMyDirectOrIndirectUpgrade(typeID.toCreature()))
+                if(typeID==progression->family || progression->family.toCreature()->isMyDirectOrIndirectUpgrade(typeID.toCreature())
+                    || (progression->warMachines && (typeID==CreatureID::FIRST_AID_TENT || typeID==CreatureID::AMMO_CART)))
                 {
                     const auto add=[&](BonusType type,int value,BonusSubtypeID subtype=BonusSubtypeID()) {
                         addNewBonus(std::make_shared<Bonus>(BonusDuration::ONE_BATTLE,type,
                             BonusSource::HERO_SPECIAL,value,BonusSourceID(hero->getHeroTypeID()),subtype));
                     };
-                    add(BonusType::PRIMARY_SKILL,progression->attackDefense,BonusSubtypeID(PrimarySkill::ATTACK));
+                    // Source Third_Upgrade_0 excludes tent/cart attack and only
+                    // increases damage when its original maximum is positive.
+                    if(!progression->warMachines || typeID==CreatureID::BALLISTA)
+                        add(BonusType::PRIMARY_SKILL,progression->attackDefense,BonusSubtypeID(PrimarySkill::ATTACK));
                     add(BonusType::PRIMARY_SKILL,progression->attackDefense,BonusSubtypeID(PrimarySkill::DEFENSE));
-                    add(BonusType::CREATURE_DAMAGE,progression->damage,BonusSubtypeID(BonusCustomSubtype::creatureDamageBoth));
+                    if(!progression->warMachines || getMaxDamage(hasBonusOfType(BonusType::SHOOTER))>0)
+                        add(BonusType::CREATURE_DAMAGE,progression->damage,BonusSubtypeID(BonusCustomSubtype::creatureDamageBoth));
                     add(BonusType::ERA_SPECIALIST_HEALTH_PERCENT,progression->healthPercent);
                 }
 	CUnitState::localInit(this); //it causes execution of the CStack::isOnNativeTerrain where nativeTerrain will be considered
@@ -130,7 +136,9 @@ si32 CStack::magicResistance() const
 	vstd::abetween(magicResistance, 0, 100);
 	float castChance = (100 - magicResistance) * (100 - auraBonus)/100.0;
 
-	return static_cast<si32>(100 - castChance);
+    const auto * hero=battle?battle->battleGetFightingHero(side):nullptr;
+	return ::era_bridge::reflectionResistanceAfterAura(static_cast<si32>(100-castChance),
+        hero && era_compat::sourceReflectionEquipped(*hero));
 }
 
 std::vector<SpellID> CStack::activeSpells() const

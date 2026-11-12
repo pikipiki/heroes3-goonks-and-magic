@@ -1,0 +1,544 @@
+{
+  "eraCreature271": {
+    "name": {
+      "singular": "Drake Golem",
+      "plural": "Drake Golems"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 2000
+    },
+    "fightValue": 3050,
+    "aiValue": 2950,
+    "growth": 1,
+    "hitPoints": 200,
+    "speed": 9,
+    "attack": 16,
+    "defense": 19,
+    "damage": {
+      "min": 40,
+      "max": 50
+    },
+    "advMapAmount": {
+      "min": 4,
+      "max": 10
+    },
+    "abilities": {
+      "amethyst_flag_10": {
+        "type": "MIND_IMMUNITY",
+        "val": 0
+      },
+      "amethyst_flag_17": {
+        "type": "NO_MORALE",
+        "val": 0
+      },
+      "amethyst_flag_31": {
+        "type": "DRAGON_NATURE",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "ERA_SOURCE_INANIMATE"
+      },
+      "amethyst_Fearless": {
+        "type": "FEARFUL",
+        "val": 0,
+        "valueType": "INDEPENDENT_MIN"
+      },
+      "crexp_2_rank0": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "valueType": "ADDITIVE_VALUE",
+        "val": 40
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "doubleWide": true,
+    "level": 7,
+    "faction": "core:tower",
+    "upgrades": [
+      "tum-era:eraCreature280"
+    ],
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "BLOCKS_RETALIATION"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          55
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ADDITIONAL_RETALIATION",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          4
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/271/CR271",
+      "map": "tum-era/creatures/271/AVWCR271.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/271/small",
+      "iconLarge": "tum-era/creatures/271/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/271/S271ATTK.wav",
+      "defend": "tum-era/creatures/271/S271DFND.wav",
+      "killed": "tum-era/creatures/271/S271KILL.wav",
+      "move": "tum-era/creatures/271/S271MOVE.wav",
+      "wince": "tum-era/creatures/271/S271WNCE.wav"
+    }
+  },
+  "eraCreature280": {
+    "name": {
+      "singular": "Dragon Golem",
+      "plural": "Dragon Golems"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 1,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 4000
+    },
+    "fightValue": 3550,
+    "aiValue": 3950,
+    "growth": 1,
+    "hitPoints": 300,
+    "speed": 15,
+    "attack": 18,
+    "defense": 25,
+    "damage": {
+      "min": 40,
+      "max": 50
+    },
+    "advMapAmount": {
+      "min": 3,
+      "max": 8
+    },
+    "abilities": {
+      "amethyst_flag_10": {
+        "type": "MIND_IMMUNITY",
+        "val": 0
+      },
+      "amethyst_flag_17": {
+        "type": "NO_MORALE",
+        "val": 0
+      },
+      "amethyst_flag_31": {
+        "type": "DRAGON_NATURE",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "ERA_SOURCE_INANIMATE"
+      },
+      "amethyst_Fearless": {
+        "type": "FEARFUL",
+        "val": 0,
+        "valueType": "INDEPENDENT_MIN"
+      },
+      "crexp_1_rank0": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "valueType": "ADDITIVE_VALUE",
+        "val": 80
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "doubleWide": true,
+    "level": 7,
+    "faction": "core:tower",
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          10,
+          12,
+          14,
+          15,
+          19
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ADDITIONAL_RETALIATION",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ADDITIONAL_ATTACK",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "MAGIC_RESISTANCE",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/280/CR280",
+      "map": "tum-era/creatures/280/AVWCR280.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/280/small",
+      "iconLarge": "tum-era/creatures/280/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/280/S280ATTK.wav",
+      "defend": "tum-era/creatures/280/S280DFND.wav",
+      "killed": "tum-era/creatures/280/S280KILL.wav",
+      "move": "tum-era/creatures/280/S280MOVE.wav",
+      "wince": "tum-era/creatures/280/S280WNCE.wav"
+    }
+  }
+}

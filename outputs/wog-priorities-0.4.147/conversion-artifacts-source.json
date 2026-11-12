@@ -1,0 +1,116 @@
+{
+  "ids": [
+    202,
+    273,
+    274,
+    277
+  ],
+  "archiveSHA256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "artifacts": [
+    {
+      "id": 202,
+      "included": true,
+      "key": "tum-era:artifact202",
+      "sourceTraits": "artraits.txt:652",
+      "aiDecisions": [],
+      "warnings": [],
+      "textRepairs": [],
+      "eventTextAvailable": false
+    },
+    {
+      "id": 273,
+      "included": true,
+      "key": "tum-era:artifact273",
+      "sourceTraits": "artraits.txt:867",
+      "aiDecisions": [],
+      "warnings": [],
+      "textRepairs": [],
+      "eventTextAvailable": false
+    },
+    {
+      "id": 274,
+      "included": true,
+      "key": "tum-era:artifact274",
+      "sourceTraits": "artraits.txt:870",
+      "aiDecisions": [],
+      "warnings": [],
+      "textRepairs": [],
+      "eventTextAvailable": false
+    },
+    {
+      "id": 277,
+      "included": true,
+      "key": "tum-era:artifact277",
+      "sourceTraits": "artraits.txt:879",
+      "aiDecisions": [],
+      "warnings": [],
+      "textRepairs": [],
+      "eventTextAvailable": false
+    }
+  ],
+  "policies": {
+    "tum-era:artifact202": {
+      "dailyConversions": [
+        {
+          "from": "core:archer",
+          "to": "third-upgrades:tumCrossbowman"
+        },
+        {
+          "from": "core:marksman",
+          "to": "third-upgrades:tumCrossbowman"
+        },
+        {
+          "from": "core:cavalier",
+          "to": "tum-era:eraCreature318"
+        }
+      ]
+    },
+    "tum-era:artifact273": {
+      "dailyConversions": [
+        {
+          "from": "tum-era:eraCreature341",
+          "to": "core:greenDragon"
+        },
+        {
+          "from": "core:boneDragon",
+          "to": "core:greenDragon"
+        },
+        {
+          "from": "core:ghostDragon",
+          "to": "core:greenDragon"
+        }
+      ]
+    },
+    "tum-era:artifact274": {
+      "dailyConversions": [
+        {
+          "from": "tum-era:eraCreature342",
+          "to": "core:redDragon"
+        },
+        {
+          "from": "core:boneDragon",
+          "to": "core:redDragon"
+        },
+        {
+          "from": "core:ghostDragon",
+          "to": "core:redDragon"
+        }
+      ]
+    },
+    "tum-era:artifact277": {
+      "dailyConversions": [
+        {
+          "from": "tum-era:eraCreature345",
+          "to": "core:azureDragon"
+        },
+        {
+          "from": "wake-of-gods.creatures:dracolich",
+          "to": "core:azureDragon"
+        }
+      ]
+    }
+  },
+  "source": "Emerald3/emerald/events.cpp303..308",
+  "nativeService": "Existing dailyConversions bridgev2; source pair order, equipment slot order and seven independent stack updates",
+  "nativeValidationRequired": true
+}

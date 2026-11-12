@@ -18,6 +18,7 @@
 #include "processors/TurnOrderProcessor.h"
 #include "queries/QueriesProcessor.h"
 #include "queries/MapQueries.h"
+#include "era/EraAtmaRuntime.h"
 
 #include "../lib/CPlayerState.h"
 #include "../lib/mapObjects/CGTownInstance.h"
@@ -368,6 +369,20 @@ void ApplyGhNetPackVisitor::visitTradeOnMarketplace(TradeOnMarketplace & pack)
 	default:
 		gh.throwAndComplain(connection, "Unknown exchange pack.mode!");
 	}
+}
+
+void ApplyGhNetPackVisitor::visitRefreshArtifactState(RefreshArtifactState & pack)
+{
+	gh.throwIfWrongOwner(connection, &pack, pack.hid);
+	gh.throwIfPlayerNotActive(connection, &pack);
+	const auto * hero=gh.gameInfo().getHero(pack.hid);
+	if(!hero || gh.gameState().getBattle(hero->getOwner()) || !era_compat::hasEquippedAtma(*hero))
+	{
+		result=false;
+		return;
+	}
+	refreshEraAtma(gh,*hero);
+	result=true;
 }
 
 void ApplyGhNetPackVisitor::visitSetFormation(SetFormation & pack)

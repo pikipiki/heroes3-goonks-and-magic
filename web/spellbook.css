@@ -65,6 +65,9 @@ html.goonk-mobile #mobile-app[data-mode=spellbook]{grid-template-columns:minmax(
  align-content:start;gap:4px;padding:5px;border-radius:3px 3px 0 0
 }
 .mobile-spellbook .spell-list>p{grid-column:1/-1;margin:6px}
+@container goonk-viewport (orientation:portrait) and (max-width:360px){
+ .mobile-spellbook .spell-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 #mobile-app .mobile-spellbook .spell-row{
  display:grid;grid-template-rows:var(--spell-icon-size) auto auto;justify-items:center;align-content:start;gap:2px;
  padding:3px;text-align:center;border:1px solid transparent;border-image:none;border-bottom-color:#d0cad74d;border-radius:6px;
@@ -99,12 +102,18 @@ html.goonk-mobile #mobile-app[data-mode=spellbook]{grid-template-columns:minmax(
  #mobile-app .mobile-spellbook[data-browsing=true]{grid-template-areas:"title reuse" "contexts schools" "book book" "footer footer";grid-template-rows:44px 44px minmax(0,1fr) auto}
  .mobile-spellbook .spell-content{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr);gap:2px}
  .mobile-spellbook .spell-list{border-radius:4px 0 0 4px;box-shadow:inset -8px 0 13px -11px #4e2d16}
+ .mobile-spellbook .spell-list{grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr))}
  #mobile-app .mobile-spellbook .spell-row{grid-template:"icon name" auto "icon cost" auto / var(--spell-icon-size) minmax(0,1fr);justify-items:start;align-content:center;align-items:center;text-align:left}
  .mobile-spellbook .spell-row .spell-symbol{grid-area:icon}
  .mobile-spellbook .spell-row strong{grid-area:name}
  .mobile-spellbook .spell-row small{grid-area:cost}
  .mobile-spellbook .spell-selection{border-radius:0 4px 4px 0;box-shadow:inset 8px 0 13px -11px #4e2d16}
  .mobile-spellbook>footer{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);grid-template-rows:46px}
+}
+@container goonk-viewport (orientation:landscape) and (max-width:700px){
+ .mobile-spellbook .spell-content{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) clamp(105px,35dvh,135px)}
+ .mobile-spellbook .spell-list{border-radius:4px 4px 0 0}
+ .mobile-spellbook .spell-selection{border-radius:0 0 4px 4px}
 }
 @container goonk-viewport (orientation:landscape) and (max-height:360px){
  #mobile-app .mobile-spellbook{--spell-icon-size:34px;--spell-detail-icon-size:52px;gap:3px;padding-top:3px}

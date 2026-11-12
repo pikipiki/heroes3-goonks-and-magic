@@ -19,6 +19,7 @@
 /* Tabs: fixed touch axis, horizontal scroll only, no dragging/lifting */
 .hero-bag-tabs{display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;gap:5px;padding:4px 8px 6px;border-bottom:2px solid #5d421d;touch-action:pan-x!important;user-select:none!important;-webkit-user-select:none!important;-webkit-user-drag:none!important;-webkit-touch-callout:none!important;overscroll-behavior-y:contain;overscroll-behavior-x:auto}
 .hero-bag-tabs::-webkit-scrollbar{display:none}
+#mobile-app .hero-bag-tabs [data-hero-source-rebalance]{flex:0 0 auto;min-height:44px;background:#382705;border-color:#c29415;color:#fff3cd}
 .hero-bag-tabs *{user-select:none!important;-webkit-user-select:none!important;-webkit-touch-callout:none!important;-webkit-user-drag:none!important;pointer-events:none}
 #mobile-app .hero-bag-tabs button{pointer-events:auto;flex:1 0 auto;font-size:clamp(11px,3.2vw,13px);line-height:1.1;padding:6px 9px;min-width:0;white-space:nowrap;touch-action:pan-x!important;user-select:none!important;-webkit-user-select:none!important;-webkit-user-drag:none!important;-webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent;border-radius:4px;border:2px solid transparent;border-image:none!important;font-weight:700;margin-bottom:2px;transition:all .15s ease}
 #mobile-app .hero-bag-tabs [data-hero-commander]{flex:0 0 44px;min-width:44px;display:grid;place-items:center;padding:0;border-image:none!important;background:#311b2e!important;border:2px solid #9c27b0!important}

@@ -1,0 +1,296 @@
+{
+  "uiAssets": {
+    "purpose": "UI reuse of original Resurrection38 icons only; Demonology animations/sounds/mechanics unchanged",
+    "archiveSha256": "57caf2c50573f33a0d91e4222e51d3a73c136d44decf59dde21cacad88fe5d66",
+    "files": [
+      {
+        "path": "content/Sprites/tum-era/demonology/resurrection-book.png",
+        "sha256": "06fb9f14f9bfca00193f16bc6343c363571a29f0c5b56d02e20af28f4800bc2d",
+        "source": "spells.def",
+        "sourceFrame": 38,
+        "sourceDefSha256": "a33697d204514cbb5921c8eb468365b19ef73180a21ae69ee620a850e51f1b4e"
+      },
+      {
+        "path": "content/Sprites/tum-era/demonology/resurrection-effect.png",
+        "sha256": "6b293c6b16c0a7c63938fceef85b2bd42abf584591fc4257673df27106a3175d",
+        "source": "spellint.def",
+        "sourceFrame": 39,
+        "sourceDefSha256": "4f95256d5bc35e1ec3a61a8d94a3827416ffb3a04b4242f805c3e91c2ac82d47"
+      },
+      {
+        "path": "content/Sprites/tum-era/demonology/resurrection-scenariobonus.png",
+        "sha256": "43aaf24f9847cce72ccffeaf72ae87a9189aab9ad9cacca266382cda7e4cd247",
+        "source": "spellbon.def",
+        "sourceFrame": 38,
+        "sourceDefSha256": "87531c623cbd60b91bcbf41067782f57eed0e919b6cca3a666db97573b11d829"
+      },
+      {
+        "path": "content/Sprites/tum-era/demonology/resurrection-scroll.png",
+        "sha256": "b0859750edf25217b3dc94def1ae571de25e538e161a7b568d392efa39f290bb",
+        "source": "spellscr.def",
+        "sourceFrame": 38,
+        "sourceDefSha256": "e9b25c71b91b494d53621eb685baf98c7a357136c2d13b503cf5652ab8e6122b"
+      }
+    ]
+  },
+  "active": true,
+  "sourceId": 217,
+  "canonical": "third-upgrades:tumPitMaster",
+  "sourceCfgSha256": "71cf322d895d7b8d9a1b732f3ed48a9198247949b0149f9a0ac386c20e9513a0",
+  "archiveSha256": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+  "originalBattleSpriteSha256": "fb38096ae1df622a1acf4503890b5149d8c0b61ae4264a1807bc1393f38b1320",
+  "replacesExistingAlias": true,
+  "legacyAbilitiesRebound": [
+    "summons50HP",
+    "resurrects",
+    "noRetaliation",
+    "castsAmount",
+    "attackAround"
+  ],
+  "sourceXP": [
+    {
+      "creature": 217,
+      "code": "s",
+      "modifier": "#31",
+      "values": [
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3
+      ],
+      "comment": "Pit Master: Protection from Fire R1=30% R5=50%",
+      "source": "crexpbon.txt",
+      "line": 1061
+    },
+    {
+      "creature": 217,
+      "code": "w",
+      "modifier": "m",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "comment": "Pit Master: Immune to Hostile Mind Spells R6",
+      "source": "crexpbon.txt",
+      "line": 1062
+    },
+    {
+      "creature": 217,
+      "code": "f",
+      "modifier": "D",
+      "values": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "comment": "Pit Master: Strike Twice R7",
+      "source": "crexpbon.txt",
+      "line": 1063
+    },
+    {
+      "creature": 217,
+      "code": "f",
+      "modifier": "f",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "comment": "Pit Master: Fearless R7",
+      "source": "crexpbon.txt",
+      "line": 1064
+    },
+    {
+      "creature": 217,
+      "code": "u",
+      "modifier": "#48",
+      "values": [
+        0,
+        0,
+        0,
+        10,
+        10,
+        15,
+        15,
+        20,
+        20,
+        25,
+        25
+      ],
+      "comment": "Pit Master: Summon Demons round 2 R3/R5/R7/R9",
+      "source": "crexpbon.txt",
+      "line": 1065
+    }
+  ],
+  "runtimeBindings": [
+    {
+      "source": "crexpbon.txt",
+      "line": 1065,
+      "contract": "source-demonology-mode2-v1",
+      "creatureId": 217,
+      "operation": "sourceRoundTwoDemons",
+      "service": {
+        "values": [
+          0,
+          0,
+          0,
+          10,
+          10,
+          15,
+          15,
+          20,
+          20,
+          25,
+          25
+        ]
+      },
+      "sourceReference": "h3era71DF45..71E3F5,463E61..68,469F64..9FA3",
+      "timing": "round2reset afterenchants; currentcount percentage rounded;3orderedforwardhexes;source20slots;unownedwithoutSUMMONflag"
+    }
+  ],
+  "defaults": [
+    {
+      "source": "crexpbon.txt",
+      "line": 2,
+      "sourceCreature": -8,
+      "code": "H",
+      "modifier": "%",
+      "values": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ]
+    },
+    {
+      "source": "crexpbon.txt",
+      "line": 19,
+      "sourceCreature": -5,
+      "code": "A",
+      "modifier": "+",
+      "values": [
+        0,
+        1,
+        1,
+        2,
+        3,
+        4,
+        5,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "source": "crexpbon.txt",
+      "line": 20,
+      "sourceCreature": -5,
+      "code": "D",
+      "modifier": "+",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        3,
+        4,
+        5,
+        6,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "source": "crexpbon.txt",
+      "line": 21,
+      "sourceCreature": -5,
+      "code": "M",
+      "modifier": "+",
+      "values": [
+        0,
+        1,
+        2,
+        2,
+        3,
+        4,
+        4,
+        5,
+        6,
+        7,
+        7
+      ]
+    },
+    {
+      "source": "crexpbon.txt",
+      "line": 22,
+      "sourceCreature": -5,
+      "code": "m",
+      "modifier": "+",
+      "values": [
+        0,
+        0,
+        1,
+        2,
+        3,
+        3,
+        4,
+        5,
+        6,
+        6,
+        7
+      ]
+    }
+  ],
+  "pending": [
+    "Native round2 placement/no-persistence/casualtyXP/elemental-bookkeeping controls",
+    "Native mode2 corpse conversion and source quantity controls",
+    "Source canonical town recruitment and existing save identity controls"
+  ],
+  "nativeEvidence": [
+    "outputs/wog-priorities-0.4.147/native-pit-master-phase3.json",
+    "outputs/wog-priorities-0.4.147/native-demonology-phase4.json"
+  ],
+  "canonicalIdRetained": true,
+  "duplicateActorCreated": false
+}

@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraBridgePolicies.h"
 #include "GameStatePackVisitor.h"
 
 #include "CGameState.h"
@@ -1258,6 +1259,15 @@ void GameStatePackVisitor::visitBattleTriggerEffect(BattleTriggerEffect & pack)
 				b->val = pack.val;
 			break;
 		}
+        // Source full block is a cosmetic announcement. Damage is carried by
+        // BattleStackAttacked; never heal or mutate permanent armor here.
+        case BonusType::GENERAL_DAMAGE_REDUCTION:
+            if(!((pack.val==100 && pack.additionalInfo==85
+                    && era_compat::Policies::get().physicalBlock(st->creatureId().toCreature()->getJsonKey()))
+                || (pack.val==30 && pack.additionalInfo==89
+                    && era_compat::Policies::get().sourceRangedResistance30(st->creatureId().toCreature()->getJsonKey()))))
+                logNetwork->error("Unrecognized ERA damage reduction announcement");
+            break;
         // Source c selectors announce rejection only; no authoritative state changes.
         case BonusType::MAGIC_MIRROR:
         case BonusType::MAGIC_RESISTANCE:

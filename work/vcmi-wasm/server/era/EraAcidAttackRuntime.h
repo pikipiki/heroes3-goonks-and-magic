@@ -1,5 +1,7 @@
 /* ATT_DISRUPT selector4; only source-proven Necross254/Nightmare245 may opt in. */
 #pragma once
+#include "EraPhysicalBlockRuntime.h"
+#include "../../lib/era/EraCreatureSpellImmunityRuntime.h"
 #include "../../lib/era/EraDeflectionLog.h"
 #include "../../lib/era/EraAcidAttack.h"
 #include "../../lib/era/EraSourceSpellAccuracy.h"
@@ -45,7 +47,7 @@ inline void applyAcidAttack(CGameHandler & handler, const CBattleInfoCallback & 
 {
     // Original441991 calls ATT_DISRUPT only for melee, before4419A0 FireShield.
     // No magic accuracy gate, wards, damage inversion or caster spell bonus:
-    //44124C calls target443DB0 directly, whose registered L wrapper remains active.
+    //44124C calls target443DB0 directly, whose registered B-before-L wrapper remains active.
     if(ranged || !attacker || !defender || !defender->alive() || defender->isGhost() || !AcidAttacks::get().enabled(attacker))return;
     auto & rng=handler.getRandomGenerator();
     if(!era_bridge::AcidAttack::succeeds(rng.nextInt(1,AcidAttacks::get().nightmare(attacker)?19:100)))return;
@@ -57,12 +59,13 @@ inline void applyAcidAttack(CGameHandler & handler, const CBattleInfoCallback & 
     const int rolled=rng.nextInt(attacker->getMinDamage(false),attacker->getMaxDamage(false));
     const auto raw=era_bridge::AcidAttack::damage(rolled,attacker->getCount());
     if(raw<=0)return;
+    if(cancelsSourceCreatureSpellDamage(defender,::era_bridge::CreatureSpellDamageOrigin::Acid))return;
     BattleStackAttacked hit;
     hit.stackAttacked=defender->unitId();
     hit.attackerID=attacker->unitId();
     hit.flags|=BattleStackAttacked::SPELL_EFFECT;
     hit.spellID=SpellID(SpellID::ACID_BREATH_DAMAGE);
-    hit.damageAmount=applyEraDeflection(defender,rng,raw, [&](int strength,int chance){auto message=eraDeflectionLog(battle.getBattle()->getBattleID(),strength,chance);handler.sendAndApply(message);});
+    hit.damageAmount=applySourcePhysicalWrapper(handler,battle,defender,raw);
     defender->prepareAttacked(hit,rng);
     StacksInjured packet;
     packet.battleID=battle.getBattle()->getBattleID();

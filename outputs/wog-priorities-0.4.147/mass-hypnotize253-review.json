@@ -1,0 +1,24 @@
+{
+  "registered": false,
+  "activationReady": false,
+  "contract": "source-mass-hypnotize253-v1",
+  "sourceArchiveSha256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "source": "Emerald CastArtifactSpell; source5A13BB→5A69E0; threshold5A8673→5A86CC, see mass-hypnotize253-source.json",
+  "report": [
+    {
+      "id": 253,
+      "included": true,
+      "key": "tum-era:artifact253",
+      "sourceTraits": "artraits.txt:806",
+      "aiDecisions": [],
+      "warnings": [],
+      "textRepairs": [],
+      "eventTextAvailable": false
+    }
+  ],
+  "pending": [
+    "Native HP boundaries with actual mastery and cached power",
+    "Both original sides; immunity/context/RNG/already-hypnotized guards",
+    "Explicit duration50 and backpack/no mana/equipment order controls"
+  ]
+}

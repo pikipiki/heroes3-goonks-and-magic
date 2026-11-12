@@ -1,0 +1,349 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank49": {
+        "name": "Rotten Dragons Valley",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/avsutop1.def",
+            "mask": [
+              "VVVVVVV",
+              "VVVVVVV",
+              "VVVBBBB",
+              "VBBBBBV",
+              "VVVBBAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank49MixedLayout",
+        "onGuardedMessage": "This was known as Dragon Utopia, however, a mighty necromancer who wanted to have a kingdom of terror, decided to seize the Dragons to turn them into an army of undead that would fulfill their objective. Are you sure that you want to purge this Utopia?",
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "core:boneDragon",
+                "amount": 20
+              },
+              {
+                "type": "core:ghostDragon",
+                "amount": 15
+              },
+              {
+                "type": "wake-of-gods.level8units:bloodDragon",
+                "amount": 10
+              },
+              {
+                "type": "tum-era:redBonesDragon",
+                "amount": 5
+              },
+              {
+                "type": "wake-of-gods.creatures:dracolich",
+                "amount": 2
+              }
+            ],
+            "bonuses": [
+              {
+                "type": "MORALE",
+                "val": -3,
+                "duration": "ONE_BATTLE"
+              }
+            ],
+            "resources": [
+              {
+                "type": "core:mercury",
+                "amount": 20
+              },
+              {
+                "type": "core:gold",
+                "amount": 25000
+              },
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 5
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:necrossDragon",
+                "amount": 1
+              }
+            ],
+            "artifacts": [
+              {
+                "class": "MINOR"
+              },
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "RELIC"
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "core:boneDragon",
+                "amount": 40
+              },
+              {
+                "type": "core:ghostDragon",
+                "amount": 30
+              },
+              {
+                "type": "wake-of-gods.level8units:bloodDragon",
+                "amount": 20
+              },
+              {
+                "type": "tum-era:redBonesDragon",
+                "amount": 10
+              },
+              {
+                "type": "wake-of-gods.creatures:dracolich",
+                "amount": 4
+              }
+            ],
+            "bonuses": [
+              {
+                "type": "MORALE",
+                "val": -3,
+                "duration": "ONE_BATTLE"
+              }
+            ],
+            "resources": [
+              {
+                "type": "core:mercury",
+                "amount": 30
+              },
+              {
+                "type": "core:gold",
+                "amount": 50000
+              },
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 10
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:necrossDragon",
+                "amount": 2
+              }
+            ],
+            "artifacts": [
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "core:boneDragon",
+                "amount": 60
+              },
+              {
+                "type": "core:ghostDragon",
+                "amount": 40
+              },
+              {
+                "type": "wake-of-gods.level8units:bloodDragon",
+                "amount": 30
+              },
+              {
+                "type": "tum-era:redBonesDragon",
+                "amount": 20
+              },
+              {
+                "type": "wake-of-gods.creatures:dracolich",
+                "amount": 6
+              }
+            ],
+            "bonuses": [
+              {
+                "type": "MORALE",
+                "val": -3,
+                "duration": "ONE_BATTLE"
+              }
+            ],
+            "resources": [
+              {
+                "type": "core:mercury",
+                "amount": 50
+              },
+              {
+                "type": "core:gold",
+                "amount": 75000
+              },
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 15
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:necrossDragon",
+                "amount": 3
+              }
+            ],
+            "artifacts": [
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:boneDragon",
+                "amount": 80
+              },
+              {
+                "type": "core:ghostDragon",
+                "amount": 60
+              },
+              {
+                "type": "wake-of-gods.level8units:bloodDragon",
+                "amount": 50
+              },
+              {
+                "type": "tum-era:redBonesDragon",
+                "amount": 30
+              },
+              {
+                "type": "wake-of-gods.creatures:dracolich",
+                "amount": 8
+              }
+            ],
+            "bonuses": [
+              {
+                "type": "MORALE",
+                "val": -3,
+                "duration": "ONE_BATTLE"
+              }
+            ],
+            "resources": [
+              {
+                "type": "core:mercury",
+                "amount": 70
+              },
+              {
+                "type": "core:gold",
+                "amount": 90000
+              },
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 20
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:necrossDragon",
+                "amount": 4
+              }
+            ],
+            "artifacts": [
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "visit": [
+            "tum-era/objects/DRAGON.wav"
+          ],
+          "ambient": [
+            "tum-era/objects/LOOPDRAG.wav"
+          ]
+        },
+        "rmg": {
+          "value": 12000,
+          "rarity": 20
+        },
+        "eraBankAppearance": {
+          "chances": [
+            30,
+            30,
+            30,
+            10
+          ],
+          "animations": [
+            "tum-era/objects/avsutop1.def",
+            "tum-era/objects/AVSutop02.def",
+            "tum-era/objects/AVSutop03.def",
+            "tum-era/objects/AVSutop04.def"
+          ]
+        }
+      }
+    }
+  }
+}

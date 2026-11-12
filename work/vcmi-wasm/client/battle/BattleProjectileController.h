@@ -123,5 +123,6 @@ public:
 	/// creates (but not emits!) projectile and initializes it based on parameters
 	void createProjectile(const CStack * shooter, Point from, Point dest, const CStack * target = nullptr);
 	void createSpellProjectile(const CStack * shooter, Point from, Point dest, const CSpell * spell);
+	void createSourceDungeonChainArc(const CStack * previous, const CStack * target);
 	void createCatapultProjectile(const CStack * shooter, Point from, Point dest);
 };

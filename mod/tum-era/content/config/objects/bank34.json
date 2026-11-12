@@ -1,0 +1,201 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank34": {
+        "name": "Mithril Tower",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB2.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "dirt",
+              "grass"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 25
+            },
+            "guards": [
+              {
+                "type": "core:enchanter",
+                "amount": 30
+              },
+              {
+                "type": "core:enchanter",
+                "amount": 30
+              },
+              {
+                "type": "core:enchanter",
+                "amount": 30
+              },
+              {
+                "type": "core:enchanter",
+                "amount": 30
+              },
+              {
+                "type": "core:enchanter",
+                "amount": 30
+              }
+            ],
+            "resources": {
+              "gold": 2500
+            },
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature324",
+                "amount": 5
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 25,
+              "max": 50
+            },
+            "guards": [
+              {
+                "type": "core:enchanter",
+                "amount": 50
+              },
+              {
+                "type": "core:enchanter",
+                "amount": 50
+              },
+              {
+                "type": "core:enchanter",
+                "amount": 50
+              },
+              {
+                "type": "core:enchanter",
+                "amount": 50
+              },
+              {
+                "type": "core:enchanter",
+                "amount": 50
+              }
+            ],
+            "resources": {
+              "gold": 2500
+            },
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature324",
+                "amount": 10
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 50,
+              "max": 75
+            },
+            "guards": [
+              {
+                "type": "core:enchanter",
+                "amount": 75
+              },
+              {
+                "type": "core:enchanter",
+                "amount": 75
+              },
+              {
+                "type": "core:enchanter",
+                "amount": 75
+              },
+              {
+                "type": "core:enchanter",
+                "amount": 75
+              },
+              {
+                "type": "core:enchanter",
+                "amount": 75
+              }
+            ],
+            "resources": {
+              "gold": 5000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature324",
+                "amount": 15
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 75,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:enchanter",
+                "amount": 100
+              },
+              {
+                "type": "core:enchanter",
+                "amount": 100
+              },
+              {
+                "type": "core:enchanter",
+                "amount": 100
+              },
+              {
+                "type": "core:enchanter",
+                "amount": 100
+              },
+              {
+                "type": "core:enchanter",
+                "amount": 100
+              }
+            ],
+            "resources": {
+              "gold": 10000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature324",
+                "amount": 20
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "visit": [
+            "tum-era/objects/IVORYTOW.wav"
+          ],
+          "ambient": [
+            "tum-era/objects/IVORTWLO.wav"
+          ]
+        },
+        "rmg": {
+          "value": 2200,
+          "rarity": 100
+        }
+      }
+    }
+  }
+}

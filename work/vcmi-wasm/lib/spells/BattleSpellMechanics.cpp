@@ -8,11 +8,15 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraAdvancedArtifactRuntimeNative.h"
 #include "../era/EraPhysicalAbilities.h"
 #include "../era/EraSourceSpellAccuracy.h"
+#include "../era/EraConfluxPolicies.h"
+#include "../era/EraConfluxCaster.h"
 #include "../era/EraExperienceCastTargets.h"
 
 #include "BattleSpellMechanics.h"
+#include "../era/EraOblivion.h"
 
 #include "Problem.h"
 #include "CSpellHandler.h"
@@ -227,7 +231,30 @@ bool BattleSpellMechanics::canBeCast(Problem & problem) const
     if(!sourcePhysicalAbility && (battle()->battleMaxSpellLevel(side) < getSpellLevel() || battle()->battleMinSpellLevel(side) > getSpellLevel()))
 		return adaptProblem(ESpellCastProblem::SPELL_LEVEL_LIMIT_EXCEEDED, problem);
 
+    const auto * sourceActor=mode==Mode::CREATURE_ACTIVE?battle()->battleGetStackByID(caster->getCasterUnitId(),false):nullptr;
+    if(era_compat::sourceFaeriePoolActor(sourceActor) && getSpellIndex()>=15 && getSpellIndex()<=23 && getSpellIndex()!=18)
+    {
+        if(!sourceActor->casts.canUse(1))return adaptProblem(ESpellCastProblem::INVALID,problem);
+        for(const auto * target:battle()->battleGetAllStacks(true))
+            if(sourceFaeriePrimaryAllowed(sourceActor,target))return true;
+        return adaptProblem(ESpellCastProblem::NO_APPROPRIATE_TARGET,problem);
+    }
 	return effects->applicable(problem, this);
+}
+
+bool BattleSpellMechanics::sourceFaeriePrimaryAllowed(const CStack * actor,const battle::Unit * target) const
+{
+    if(!actor || !target)return false;
+    auto side=actor->unitSide();
+    if(actor->isHypnotized())side=side==BattleSide::ATTACKER?BattleSide::DEFENDER:BattleSide::ATTACKER;
+    era_compat::ConfluxSideScope context(side,1);
+    // Original spell types:15/16/17=-1 enemy,19..23=0 area. Source5A8616
+    // compares physical target.side for negative spells, not hypnotized owner.
+    if(getSpellIndex()<=17 && target->unitSide()==side)return false;
+    if(!era_compat::sourceSpellContextAllows(*battle(),target,getSpell()))return false;
+    if(const auto rod=era_compat::sourceLightningResistance(*battle(),getSpellIndex(),side,*target))return *rod<100;
+    return isReceptive(target)
+        && era_compat::statusRawAccuracy(*battle(),target)>0;
 }
 
 bool BattleSpellMechanics::canCastAtTarget(const battle::Unit * target) const
@@ -280,6 +307,14 @@ bool BattleSpellMechanics::canBeCastAt(const Target & target, Problem & problem)
 {
 	if(!canBeCast(problem))
 		return false;
+
+    const auto * sourceActor=mode==Mode::CREATURE_ACTIVE?battle()->battleGetStackByID(caster->getCasterUnitId(),false):nullptr;
+    if(era_compat::sourceFaeriePoolActor(sourceActor) && getSpellIndex()>=15 && getSpellIndex()<=23 && getSpellIndex()!=18)
+    {
+        if(target.empty())return false;
+        const auto * primary=target.front().unitValue?target.front().unitValue:battle()->battleGetUnitByPos(target.front().hexValue,true);
+        return sourceFaeriePrimaryAllowed(sourceActor,primary);
+    }
 
 	Target spellTarget = transformSpellTarget(target);
 
@@ -451,6 +486,10 @@ void BattleSpellMechanics::cast(ServerCallback * server, const Target & target)
 
 void BattleSpellMechanics::beforeCast(BattleSpellCast & sc, vstd::RNG & rng, const Target & target)
 {
+    const bool sourceConfluxCast=dynamic_cast<const era_compat::ConfluxCaster *>(caster)!=nullptr;
+    const bool sourceConfluxArea=sourceConfluxCast && getSpellIndex()>=20 && getSpellIndex()<=23;
+    std::optional<era_compat::ConfluxResistanceScope> confluxAreaQuery;
+    if(sourceConfluxArea)confluxAreaQuery.emplace(true);
 	affectedUnits.clear();
 
 	Target spellTarget = transformSpellTarget(target);
@@ -458,10 +497,40 @@ void BattleSpellMechanics::beforeCast(BattleSpellCast & sc, vstd::RNG & rng, con
 	std::vector <const battle::Unit *> resisted;
 
 	resistantUnitIds.clear();
-    const bool sourceMassTimed=eraExperiencePreAttack && getSpellIndex()==50 && isMassive();
+    const bool sourceMassTimed=isMassive() && ((eraExperiencePreAttack && getSpellIndex()==50)
+        || (eraArtifactMassHypnotize && getSpellIndex()==60));
 	if(isNegativeSpell() && isMagicalEffect())
 	{
-        if(eraExperiencePreAttack)
+        if(sourceConfluxArea)
+        {
+            std::vector<const battle::Unit *> targets;
+            if(!target.empty())for(const int hex:era_bridge::sourceAreaHexesReverse(
+                target.front().hexValue.toInt(),getSpellIndex()==22?2:1,getSpellIndex()!=20))
+            {
+                const auto * unit=battle()->battleGetUnitByPos(BattleHex(hex),true);
+                // Source CANNOT_MOVE bit21 is the removed/dead combat record,
+                // not ordinary paralysis. Native position lookup excludes ghosts.
+                if(unit && std::find(targets.begin(),targets.end(),unit)==targets.end())targets.push_back(unit);
+            }
+            //5A4A00 reverses the axial hex list while collecting unique units;
+            //5A4C80 reverses that list again before each per-unit resistance.
+            std::reverse(targets.begin(),targets.end());
+            for(const auto * unit:targets)
+            {
+                const int accuracy=era_compat::sourceSpellContextAllows(*battle(),unit,getSpell()) && isReceptive(unit)
+                    ?era_compat::statusRawAccuracy(*battle(),unit,true):0;
+                if(rng.nextInt(1,100)>accuracy)resistantUnitIds.insert(unit->unitId());
+            }
+        }
+        else if(sourceConfluxCast && getSpellIndex()>=15 && getSpellIndex()<=17)
+        {
+            //Faerie kind1 singles15/16/17 have one checked original target.
+            //canSpellBeCast only checks probability>0. Kind1 explicitly skips
+            //5A05E5..0628's resistance lottery at5A05DF, and15's dispatch
+            //5A0C9A..0D3B contains no further draw. Partial resistance therefore
+            //does not randomly prevent this automatic cast.
+        }
+		else if(eraExperiencePreAttack || eraArtifactMassHypnotize)
         {
             battle::Units sourceTargets;
             if(sourceMassTimed)
@@ -496,7 +565,14 @@ void BattleSpellMechanics::beforeCast(BattleSpellCast & sc, vstd::RNG & rng, con
             for(const auto * unit:sourceTargets)
             {
                 if(sourceMassTimed && unit->isHypnotized())continue; //before RNG at5A6A29.
-                const int accuracy=(era_compat::sourceSpellContextAllows(*battle(),unit,getSpell()) && isReceptive(unit))?era_compat::statusRawAccuracy(*battle(),unit):0;
+                //5A8616..8634 rejects negative spells on the caster's ORIGINAL
+                // side, but5A6A50 still consumes that candidate's RNG draw.
+                const bool sourceOwnerAllowed=!eraArtifactMassHypnotize || unit->unitSide()!=casterSide;
+                //5A86B6 rejects an active MagicMirror duration before the
+                // general immunity wrapper, even when Orb93 negates immunity.
+                const bool sourceMirrorAllowed=!eraArtifactMassHypnotize
+                    || !unit->hasBonus(Selector::source(BonusSource::SPELL_EFFECT,BonusSourceID(SpellID(36))));
+                const int accuracy=(sourceOwnerAllowed && sourceMirrorAllowed && era_compat::sourceSpellContextAllows(*battle(),unit,getSpell()) && isReceptive(unit))?era_compat::statusRawAccuracy(*battle(),unit):0;
                 if(rng.nextInt(1,100)>accuracy)resistantUnitIds.insert(unit->unitId());
             }
         }
@@ -505,7 +581,8 @@ void BattleSpellMechanics::beforeCast(BattleSpellCast & sc, vstd::RNG & rng, con
             // Native behavior for every unregistered cast.
             for(const auto * unit:battle()->battleGetAllUnits(false))
             {
-                const int prob=std::min(unit->magicResistance(),100);
+                const auto rod=era_compat::sourceLightningResistance(*battle(),getSpellIndex(),casterSide,*unit);
+                const int prob=rod?*rod:std::min(unit->magicResistance(),100);
                 if(rng.nextInt(0,99)<prob)resistantUnitIds.insert(unit->unitId());
             }
         }
@@ -541,6 +618,14 @@ void BattleSpellMechanics::beforeCast(BattleSpellCast & sc, vstd::RNG & rng, con
 
 	std::set<const battle::Unit *> unitTargets = collectTargets();
 
+    const bool oblivionRevival=era_compat::sourceOblivionActive(*battle())
+        && (getSpellIndex()==38 || getSpellIndex()==39 || getSpellIndex()==40);
+    if(oblivionRevival)
+    {
+        for(const auto * unit:unitTargets)
+            if(getSpellIndex()!=40 || unit->isDead())resistantUnitIds.insert(unit->unitId());
+    }
+
 	//process them
 	for(const auto * unit : unitTargets)
 		filterUnit(unit);
@@ -558,6 +643,13 @@ void BattleSpellMechanics::beforeCast(BattleSpellCast & sc, vstd::RNG & rng, con
 
 	for(const auto * unit : resisted)
 		sc.resistedCres.insert(unit->unitId());
+
+    if(oblivionRevival)
+    {
+        // MR:F100 is reception failure after a real cast, not a targeting ban.
+        // In particular Sacrifice must not consume its second (living) unit.
+        effectsToApply.clear();affectedUnits.clear();
+    }
 
 	resistantUnitIds.clear();
 }
@@ -813,6 +905,7 @@ std::vector<Destination> BattleSpellMechanics::getPossibleDestinations(size_t in
 
 bool BattleSpellMechanics::isReceptive(const battle::Unit * target) const
 {
+    if(target)if(const auto override=era_compat::sourceLightningReceptive(*battle(),getSpellIndex(),casterSide,*target))return *override;
 	return targetCondition->isReceptive(this, target);
 }
 

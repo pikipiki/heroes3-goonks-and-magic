@@ -1,0 +1,80 @@
+{
+  "status": "inactive-source-investigation",
+  "binary": {
+    "path": "../Third-Upgrade-Mod-Full/EraPlugins/amethyst2_4.dll",
+    "sha256": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180"
+  },
+  "inferno": {
+    "sourceIds": [
+      337,
+      338
+    ],
+    "rangedResistance": {
+      "value": 0.3,
+      "source": "tables.cpp937..986",
+      "binary": "1001B730..1001B8B2",
+      "stages": [
+        "float32 creature+stack resistance",
+        "float64 damage*(1-float32resistance)",
+        "truncate signed integer",
+        "StackBlockPartial71C710"
+      ],
+      "sampleDamage100": 69,
+      "caller": "h3era766AA2 full block71C5A9 -> if not blocked766AC8 resistance wrapper ->71C710 partial block"
+    },
+    "summoner338": {
+      "sourceMode": 2,
+      "demonTarget": 217,
+      "sourcePowerPerLivingCreature": 50,
+      "sourcePowerHook": "tables.cpp10898..10905;4470B0",
+      "pending": [
+        "Native source217u round2 integration, exact source flags0/unowned lifetime with casualty XP retained",
+        "Native actors217337338 full source definition and original resources review",
+        "Native resistance and caster controls, including elemental summon compatibility"
+      ],
+      "source217uLifecycle": {
+        "source": "463DD0 clears/restores hero army;463E61 reads stack+5C;463E64 rejects<0;463E68 rejects>=7",
+        "persist": false,
+        "summonedFlag": false,
+        "casualtyExperience": "469F64..9FA3 rejects SUMMONbit22 only; slot\u22121 not excluded",
+        "documentation": "https://www.h3wog.com/erm_help/receivers/receiver_bm_right.htm BM:O agrees slot\u22121 never appears in army after battle"
+      }
+    }
+  },
+  "dungeon": {
+    "sourceIds": [
+      351,
+      352
+    ],
+    "actor351": {
+      "sourceSharpshooterHook": "7893E0 original46723E\u219275DD41;467257..467331 distance>10 penalty;75DD50\u219275DDD2 returnsfalse",
+      "rayColor": 10092543,
+      "original16bitRay": {
+        "activeGate": "43F23D flagbit11",
+        "sourceColor": 10092543,
+        "sourceColorHex": "0x99ffff",
+        "renderer": "5A58B7 presets300..305 else5A5CC3..DE writeslow16RGB565",
+        "visibleColor": [
+          255,
+          255,
+          255
+        ],
+        "hdParity": "Not established; external HD renderer may override original16bit draw"
+      }
+    },
+    "actor352": {
+      "shotType": 4,
+      "meaning": "smart physical chain shot",
+      "source": "tables.cpp3743..3774;f43F72C_Hook3/4;chain_005A670A_hook",
+      "rawPower": "livingCount*uniformInclusive(damageLow,damageHigh)",
+      "enemyHop": "apply physical chain_damage then chain_damage>>=1",
+      "friendlyHop": "skip friendly side from enemy chain target",
+      "pending": [
+        "exact5A6670 chain target ordering/ties",
+        "damage pipeline and secondary attack events",
+        "native projectile, ammo and source c78 integration"
+      ]
+    }
+  },
+  "guard": "No actor activation or town8 completeness claim from this source-only report."
+}

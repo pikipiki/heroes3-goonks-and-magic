@@ -1,0 +1,71 @@
+{
+  "sourcePlugin": {
+    "path": "Third-Upgrade-Mod-Full/EraPlugins/amethyst2_4.dll",
+    "sha256": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+    "registration": "10014ED1..10014F25",
+    "fury": "10018000..1001802F at441AFF: if defender type table nonzero set return441B0D; only attacker flag0x10000 is bypassed",
+    "twice": "10018030..10018078 at441B62: second thiscall441330 before original counter decrement441B7E; exactly once additional hit; does not decrement twice"
+  },
+  "originalExecutable": {
+    "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+    "entry": "441AF4..441B85",
+    "preservedGates": [
+      "defender remaining count>0",
+      "defender blindness duration2B0 absent",
+      "defender remaining counters454>0",
+      "original savedAL inhibit absent"
+    ],
+    "counterDecrement": "441B78..441B84 after both hits"
+  },
+  "cfg": {
+    "353": {
+      "sha256": "794924702c19b0ebea6b82758ed1f7caf04423dc0eead0ef1fce5723d6f2058e",
+      "text": "Flags=137\nLevel=6\nTown=7\nUpgradesTo=353\nSktransformer=68\nCounterstrikeFury=1\n"
+    },
+    "354": {
+      "sha256": "61db6be6ee109687dd5511030be7ced7fdac9c65b91ad3768c9595a4c782525d",
+      "text": "Flags=137\nLevel=6\nTown=7\nUpgradesTo=353\nRetaliations=2\nFear=1\nFearless=1\nSktransformer=68\nCreatureMimicArtifact=71\nCounterstrikeFury=1\nCounterstrikeTwice=1\n"
+    }
+  },
+  "navalArtifact": {
+    "id": 71,
+    "name": "Necklace of Ocean Guidance",
+    "bonusForSource354": 0,
+    "consumerProof": "h3era4E4D75..4E4DC2 direct19slots physical71, then4E4DAE HasArtifact(parent136); Emerald ArtifactCombos.cpp227..229 BuildUpCombo136(slot7,{71,123}) sets combo71=7; no movement hook calls Creature2Artifact71; source MOVEMENT.TXT1000 applies only real71/parent136",
+    "mimicScope": "Emerald NewHasArtifact bool hook can expose71, but the source sea-movement consumer bypasses that query"
+  },
+  "activation": false,
+  "pending": [
+    "native Fury/Twice exhausted/status/nonblocking controls",
+    "source fear and biology/XP controls",
+    "town eighth recruitment354 despite CFG353selflink"
+  ],
+  "upgradeCycle": {
+    "initialCfg": {
+      "353": 353,
+      "354": 353
+    },
+    "lateErm": "ThirdUpgradeMod.erm360 unconditionally sets353\u2192354",
+    "finalEdges": {
+      "353": 354,
+      "354": 353
+    },
+    "sourceConsumer": "Amethyst HillFort hooks47AA50 returnsavailable1 for explicitupgtable,47AAD0 returnsexacttarget; bothinitializedvalidIDs",
+    "priceConsumer": "h3era54EB50..54EBB1 computes(count*max(newCost-oldCost,0)) perresource (54EB91 compare,54EBA0 storeszero); called528105",
+    "conclusion": "Verified initialized deterministic reciprocal conversion, not undefined memory:353\u2192354 costs1800gold+1sulfur perunit;354\u2192353 isfree, noresourcegain. Preservependingnativeparity.",
+    "hillFortSourceMultipliers": {
+      "address": "63EB4C",
+      "zeroBasedTier0to6": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "353and354Tier": 6,
+      "multiplier": 1.0
+    }
+  }
+}

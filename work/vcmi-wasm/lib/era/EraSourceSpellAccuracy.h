@@ -1,5 +1,6 @@
 #pragma once
 #include "EraStatusSelectors.h"
+#include "EraFortressCounterstrikes.h"
 #include "../CStack.h"
 #include "../GameLibrary.h"
 #include "../BattleFieldHandler.h"
@@ -24,6 +25,9 @@ class StatusAttacks
     bool dispelActive=false;
     bool gemBlindActive=false;
     bool antichristStoneActive=false;
+    bool serpentPoisonActive=false;
+    bool leviathanPoisonActive=false;
+    bool spiderSlowActive=false,priestessSlowActive=false;
     std::map<std::string,int> sourceIds;
 public:
     StatusAttacks()
@@ -42,6 +46,10 @@ public:
             else if(value.String()=="tum-era:chasmDragon" && !dispelActive)dispelActive=true;
             else if(value.String()=="tum-era:gemDragon" && !gemBlindActive)gemBlindActive=true;
             else if(value.String()=="tum-era:antichrist" && !antichristStoneActive)antichristStoneActive=true;
+            else if(value.String()=="tum-era:eraCreature353" && !serpentPoisonActive)serpentPoisonActive=true;
+            else if(value.String()=="tum-era:eraCreature354" && !leviathanPoisonActive)leviathanPoisonActive=true;
+            else if(value.String()=="tum-era:eraCreature351" && !spiderSlowActive)spiderSlowActive=true;
+            else if(value.String()=="tum-era:eraCreature352" && !priestessSlowActive)priestessSlowActive=true;
             else throw std::runtime_error("ERA status attacks: unproven or duplicate actor");
         }
         std::set<int> ids;
@@ -65,6 +73,23 @@ public:
             throw std::runtime_error("ERA status attacks: actor207 identity required");
         if(antichristStoneActive && id("tum-era:antichrist")!=219)
             throw std::runtime_error("ERA status attacks: actor219 identity required");
+        if((spiderSlowActive && id("tum-era:eraCreature351")!=351)
+            || (priestessSlowActive && id("tum-era:eraCreature352")!=352))
+            throw std::runtime_error("ERA status attacks: exact Dungeon identity required");
+        if((serpentPoisonActive || leviathanPoisonActive)
+            && !(serpentPoisonActive && leviathanPoisonActive
+                && FortressCounterstrikes::get().fury("tum-era:eraCreature353")))
+            throw std::runtime_error("ERA status attacks: whole Fortress contract required");
+        if((serpentPoisonActive && id("tum-era:eraCreature353")!=353)
+            || (leviathanPoisonActive && id("tum-era:eraCreature354")!=354))
+            throw std::runtime_error("ERA status attacks: exact Fortress identity required");
+    }
+    bool queuedSlow(const CStack * actor)const
+    {
+        if(!actor)return false;
+        const auto key=actor->creatureId().toCreature()->getJsonKey();
+        return (spiderSlowActive && key=="tum-era:eraCreature351")
+            || (priestessSlowActive && key=="tum-era:eraCreature352");
     }
     int id(const std::string & key)const
     {
@@ -72,6 +97,13 @@ public:
     }
     bool enabled(const CStack * actor)const
     {return active && actor && actor->creatureId().toCreature()->getJsonKey()=="tum-era:necrossDragon";}
+    bool queuedPoison(const CStack * actor)const
+    {
+        if(!actor)return false;
+        const auto key=actor->creatureId().toCreature()->getJsonKey();
+        return (serpentPoisonActive && key=="tum-era:eraCreature353")
+            || (leviathanPoisonActive && key=="tum-era:eraCreature354");
+    }
     bool intrinsicAge(const CStack * actor)const
     {return enabled(actor) || (redAgeActive && actor && actor->creatureId().toCreature()->getJsonKey()=="tum-era:redBonesDragon");}
     bool queuedDispel(const CStack * actor)const
@@ -131,7 +163,7 @@ inline float statusSourceAura(const CBattleInfoCallback & battle,const battle::U
     }
     return static_cast<float>(1.0-double(std::clamp(aura,0,100))/100.0);
 }
-inline int statusRawAccuracy(const CBattleInfoCallback & battle,const battle::Unit * target)
+inline int statusRawAccuracy(const CBattleInfoCallback & battle,const battle::Unit * target,bool =true,BattleSide =BattleSide::NONE)
 {
     if(!target || !target->alive() || target->isGhost())return 0;
     const auto sourceId=StatusAttacks::get().id(target->creatureId().toCreature()->getJsonKey());

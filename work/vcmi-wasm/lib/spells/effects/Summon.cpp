@@ -10,6 +10,7 @@
 #include "StdInc.h"
 
 #include "Summon.h"
+#include "../../era/EraElementalRing.h"
 #include "Registry.h"
 
 #include "../ISpellMechanics.h"
@@ -52,7 +53,7 @@ bool Summon::applicable(Problem & problem, const Mechanics * m) const
 		return m->adaptGenericProblem(problem);
 	}
 
-	if(exclusive)
+	if(exclusive && !era_compat::sourceAllowsDifferentElementals(*m->battle(),m->casterSide))
 	{
 		//check if there are summoned creatures of other type
 
@@ -61,6 +62,8 @@ bool Summon::applicable(Problem & problem, const Mechanics * m) const
 			return (unit->unitOwner() == m->getCasterColor())
 				&& (unit->unitSlot() == SlotID::SUMMONED_SLOT_PLACEHOLDER)
 				&& (!unit->isClone())
+				&& (!unit->hasBonusOfType(BonusType::ERA_ARTIFACT_SUMMON))
+                && (!unit->hasBonusOfType(BonusType::ERA_SOURCE_NON_ELEMENTAL_SUMMON))
 				&& (unit->creatureId() != creature);
 		});
 

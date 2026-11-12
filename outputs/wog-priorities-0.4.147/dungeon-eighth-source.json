@@ -1,0 +1,1056 @@
+{
+  "active": true,
+  "sourcePins": {
+    "archive": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+    "sound": "1da1264707a6dd7da79490bed64798a7bd6cf7cba12581e5b93549f0c29bbc32",
+    "templates": "87c32a48ad6855fa5d14d4a32b7e2522c499844dd2bac7f21cccdb5f0383cd93",
+    "cfgSet": "00a4d31d2418fd5fb9426b0c31f7d564085760b22452dbb32e92b5a1a963c6ac",
+    "plugin": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+    "upgradeProgram": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+    "constants": "cf39435c763439482ce6a96fc7d589abd27c96779de04e719678c2ec0db82d76",
+    "archer": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+    "names": "0e392924b9fea7ec05657634668f37d828657b066ce90a78c2a1547dc0974ba0"
+  },
+  "records": [
+    {
+      "eraId": 351,
+      "nativeId": "tum-era:eraCreature351",
+      "obligations": [],
+      "dependencies": [
+        "tum-era:eraCreature352"
+      ],
+      "sourceCfg": "Data/Creatures/351.cfg",
+      "sourceCfgSha256": "1a71c6109beb259cb8bc9531272e83c1d73b444b70bf1d82949f2d8987f61f8e",
+      "assets": [
+        {
+          "path": "content/Sprites/tum-era/creatures/351/CR351.def",
+          "sourceEntry": "CR351.def",
+          "sha256": "09a5e82ab716fcfc2bef719bcc2d23cfe43829a09cda5a6ce5c5ba591806a488",
+          "bytes": 175737
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/351/AVWCR351.def",
+          "sourceEntry": "AVWCR351.def",
+          "sha256": "b7dea484281fbf81bd757ede0696336d3f6b5821347b4fe89ea013fd1d3c26ae",
+          "bytes": 9264
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/351/AVWCR351.msk",
+          "sourceEntry": "AVWCR351.msk",
+          "sha256": "eb3d35d1bffd6b098c5ede0524404516e3462b6773cf371850fc47f42386d360",
+          "bytes": 14
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/351/small.png",
+          "sourceEntry": "CPRSMALL.def frame353",
+          "sha256": "1eec95a11d8d4cfba6dd9c4c719b2b2d5edc7a6e22aa248c4e93066cac111956",
+          "bytes": 983
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/351/large.png",
+          "sourceEntry": "TWCRPORT.def frame353",
+          "sha256": "e5974c5d5c84fe1a4fe5444d2a566c4dceaf279f427dbf596328ddb459a00ed7",
+          "bytes": 3298
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/351/S351ATTK.wav",
+          "sourceEntry": "S351ATTK",
+          "sha256": "febf8e635961f7f915025bb89b0c8241e6a37b766920dd072e5d63b4a9e7155e",
+          "bytes": 13644
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/351/S351DFND.wav",
+          "sourceEntry": "S351DFND",
+          "sha256": "60e4d32ca1a3080ab5efb5dee1c74a2bdeaeb60efa0723e0b0949284b16ca4b4",
+          "bytes": 189194
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/351/S351KILL.wav",
+          "sourceEntry": "S351KILL",
+          "sha256": "7631c51fb480ca4e2e368b7632118e41e029334bbcc41d3bf7dce9fc23018c86",
+          "bytes": 45606
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/351/S351MOVE.wav",
+          "sourceEntry": "S351MOVE",
+          "sha256": "1f68ac93150935106f0a016b770b9c9bec5afff8ef0ee05570edd8e23d54a366",
+          "bytes": 8944
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/351/S351WNCE.wav",
+          "sourceEntry": "S351WNCE",
+          "sha256": "b7241acee4668e350d48a70bda9c129706c0a41a411da98d0149da17141de8eb",
+          "bytes": 48546
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/351/S351SHOT.wav",
+          "sourceEntry": "S351SHOT",
+          "sha256": "a8b10eb7010922e1e29dc94228b752d623359cab9f390fb5ecdfed9199804e27",
+          "bytes": 13532
+        }
+      ],
+      "cfgMappings": [
+        {
+          "source": "Data/Creatures/351.cfg",
+          "line": 1,
+          "key": "Flags",
+          "rawValue": "2069",
+          "operation": "source-native-biology:LIVING",
+          "evidence": {
+            "file": "Amethyst2/amethyst/tables.cpp",
+            "lines": [
+              1624,
+              1626
+            ],
+            "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+            "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+            "sourceBinaryParity": "unverified"
+          }
+        },
+        {
+          "source": "Data/Creatures/351.cfg",
+          "line": 1,
+          "key": "Flags",
+          "rawValue": "2069",
+          "operation": "native flags with scoped biological correspondence",
+          "evidence": {
+            "file": "Amethyst2/amethyst/tables.cpp",
+            "lines": [
+              1624,
+              1626
+            ],
+            "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+            "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+            "sourceBinaryParity": "unverified"
+          }
+        },
+        {
+          "source": "Data/Creatures/351.cfg",
+          "line": 2,
+          "key": "Level",
+          "rawValue": "6",
+          "operation": "level + 1",
+          "evidence": {
+            "file": "Amethyst2/amethyst/tables.cpp",
+            "lines": [
+              1618,
+              1620,
+              1622
+            ],
+            "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+            "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+            "sourceBinaryParity": "unverified"
+          }
+        },
+        {
+          "source": "Data/Creatures/351.cfg",
+          "line": 3,
+          "key": "Town",
+          "rawValue": "5",
+          "operation": "faction",
+          "evidence": {
+            "file": "Amethyst2/amethyst/tables.cpp",
+            "lines": [
+              1637,
+              1639
+            ],
+            "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+            "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+            "sourceBinaryParity": "unverified"
+          }
+        },
+        {
+          "source": "Data/Creatures/351.cfg",
+          "line": 4,
+          "key": "UpgradesTo",
+          "rawValue": "352",
+          "operation": "creature.upgrades",
+          "evidence": {
+            "file": "Amethyst2/amethyst/tables.cpp",
+            "lines": [
+              1454,
+              1455
+            ],
+            "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+            "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+            "sourceBinaryParity": "unverified"
+          }
+        },
+        {
+          "source": "Data/Creatures/351.cfg",
+          "line": 5,
+          "key": "Sharpshooters",
+          "rawValue": "1",
+          "operation": "source-dungeon-eighth-v1 reviewed source service",
+          "evidence": {
+            "file": "Amethyst2/amethyst/tables.cpp",
+            "lines": [
+              1521,
+              1522
+            ],
+            "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+            "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+            "sourceBinaryParity": "unverified"
+          }
+        },
+        {
+          "source": "Data/Creatures/351.cfg",
+          "line": 6,
+          "key": "ShootingRayColor",
+          "rawValue": "10092543",
+          "operation": "source-dungeon-eighth-v1 reviewed source service",
+          "evidence": {
+            "file": "Amethyst2/amethyst/tables.cpp",
+            "lines": [
+              1299,
+              1300
+            ],
+            "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+            "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+            "sourceBinaryParity": "unverified"
+          }
+        }
+      ],
+      "sourceDungeon": {
+        "sourceId": 351,
+        "ray": {
+          "sourceColor": 10092543,
+          "rawLowWord": 65535,
+          "rgba": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "evidence": "43F271 passes raw color;5A5CD8 uses lowWORD RGB565;43F2xx/5A5F30 five lines"
+        },
+        "slow": {
+          "spell": 54,
+          "rankChance": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ],
+          "mastery": 0,
+          "power": "current-active-count",
+          "durationZero": "Cast visual and remove Haste53; no speed penalty because original getters require nonzero duration54"
+        },
+        "chain": null
+      },
+      "xpMapped": [
+        {
+          "source": "crexpbon.txt",
+          "line": 1834,
+          "code": "S",
+          "modifier": "+",
+          "rankZero": 0,
+          "mode": "numeric",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "bonus": {
+            "type": "STACKS_SPEED",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+        },
+        {
+          "source": "crexpbon.txt",
+          "line": 1835,
+          "code": "c",
+          "modifier": "#54",
+          "mode": "runtime",
+          "values": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ],
+          "runtimeBinding": {
+            "contract": "source-dungeon-eighth-v1",
+            "creatureId": 351,
+            "operation": "queuedSlow",
+            "spell": "core:slow",
+            "sourceCode": "c",
+            "sourceModifier": "#54",
+            "rankChances": [
+              0,
+              3,
+              6,
+              9,
+              12,
+              15,
+              18,
+              21,
+              24,
+              27,
+              30
+            ],
+            "endpoint": "EraPetrificationSequence::beforeAction/shared-target-EC",
+            "sourceReference": "h3era.exe71D7A9/75BBF0/468CD8/5A0145",
+            "timing": "selection-before-action; postsequence current-active-power flush"
+          }
+        },
+        {
+          "source": "crexpbon.txt",
+          "line": 1836,
+          "code": "f",
+          "modifier": "f",
+          "rankZero": false,
+          "mode": "toggle",
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "bonus": {
+            "type": "FEARFUL",
+            "val": 0,
+            "valueType": "INDEPENDENT_MIN"
+          },
+          "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+        }
+      ],
+      "requiredRuntimeBindings": [
+        {
+          "source": "crexpbon.txt",
+          "line": 1835,
+          "contract": "source-dungeon-eighth-v1",
+          "creatureId": 351,
+          "operation": "queuedSlow",
+          "spell": "core:slow",
+          "sourceCode": "c",
+          "sourceModifier": "#54",
+          "rankChances": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ],
+          "endpoint": "EraPetrificationSequence::beforeAction/shared-target-EC",
+          "sourceReference": "h3era.exe71D7A9/75BBF0/468CD8/5A0145",
+          "timing": "selection-before-action; postsequence current-active-power flush"
+        }
+      ],
+      "experienceProfile": {
+        "experienceMultiplier": 1,
+        "upgradeMultiplier": 0.75,
+        "fullRank10": 122500,
+        "battlePercent": 20,
+        "rank11Extra": 12250
+      },
+      "experienceFinalization": {
+        "contract": "tum35-archer-final-experience-v1",
+        "sourceFightValue": 2420,
+        "bloodFightValue": 4987,
+        "usesNativeLevel": false
+      },
+      "sourceDefaults": {
+        "levelZeroBased": 6,
+        "town": 5,
+        "initialFlags": 2069,
+        "defaultProof": "amethyst2_4.dll100049C0..10004A90;core.cppCreateNewTable"
+      },
+      "sourceOwnHealthConverted": 0,
+      "sourceExperienceDefaults": {
+        "contract": "source-default-experience-new-creature-v1",
+        "nativeDefaultCarrier": "creature-json",
+        "rows": [
+          {
+            "source": "crexpbon.txt",
+            "line": 2,
+            "sourceCreature": -8,
+            "code": "H",
+            "modifier": "%",
+            "values": [
+              0,
+              5,
+              10,
+              15,
+              20,
+              25,
+              30,
+              35,
+              40,
+              45,
+              50
+            ]
+          },
+          {
+            "source": "crexpbon.txt",
+            "line": 27,
+            "sourceCreature": -7,
+            "code": "A",
+            "modifier": "+",
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "source": "crexpbon.txt",
+            "line": 28,
+            "sourceCreature": -7,
+            "code": "D",
+            "modifier": "+",
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "source": "crexpbon.txt",
+            "line": 29,
+            "sourceCreature": -7,
+            "code": "M",
+            "modifier": "+",
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "source": "crexpbon.txt",
+            "line": 30,
+            "sourceCreature": -7,
+            "code": "m",
+            "modifier": "+",
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          }
+        ],
+        "replacedByOwn": []
+      },
+      "sourceSkeletonTarget": {
+        "target": "core:skeleton",
+        "living": true
+      },
+      "sourceUnconditionalUpgrade": {
+        "from": 351,
+        "to": 352,
+        "line": 359,
+        "text": "!!MA:U351/352;",
+        "conditionDepth": 0
+      },
+      "mapTemplate": {
+        "animation": "tum-era/creatures/351/AVWCR351.def",
+        "mask": [
+          "VV",
+          "VA"
+        ],
+        "visitableFrom": [
+          "+++",
+          "+-+",
+          "+++"
+        ],
+        "allowedTerrains": [
+          "dirt"
+        ],
+        "zIndex": 0
+      },
+      "mapTemplateScope": "Original mask/animation/all-sided access; native monster terrain workaround and RMG placement require independent controls"
+    },
+    {
+      "eraId": 352,
+      "nativeId": "tum-era:eraCreature352",
+      "obligations": [],
+      "dependencies": [],
+      "sourceCfg": "Data/Creatures/352.cfg",
+      "sourceCfgSha256": "4d672e369bdc7b105f82d8eee5889fb2d2dbbe47340869f0c71c04c324642620",
+      "assets": [
+        {
+          "path": "content/Sprites/tum-era/creatures/352/CR352.def",
+          "sourceEntry": "CR352.def",
+          "sha256": "8fc0b279d8daaa947eb4350c25d6e68b605b9672cb617fb334b243d2e1625f74",
+          "bytes": 198737
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/352/AVWCR352.def",
+          "sourceEntry": "AVWCR352.def",
+          "sha256": "a0d2aff245f335612e1d6499310ed884ebe882e300baa71f33e8ea8c4cd2210c",
+          "bytes": 8227
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/352/AVWCR352.msk",
+          "sourceEntry": "AVWCR352.msk",
+          "sha256": "94ba3e9f3307dc30931de13a4e164e3b091e9389a53230862fe29bd11b1bc40c",
+          "bytes": 14
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/352/small.png",
+          "sourceEntry": "CPRSMALL.def frame354",
+          "sha256": "06a5027bf81a8cd2860477c420558b20ebac538ebaf9223fb9a6dfdc9e576dc3",
+          "bytes": 1069
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/352/large.png",
+          "sourceEntry": "TWCRPORT.def frame354",
+          "sha256": "873ec06baf78f8b6c0328319f2b565b072bb5d2398350f7131f5374e2612657c",
+          "bytes": 3481
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/352/SHOT352.def",
+          "sourceEntry": "SHOT352.def",
+          "sha256": "eda16f6e9ad2f63cdd580343beea22a3781f5942bfe81fe42a3009340cb207ce",
+          "bytes": 1241
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/352/S352ATTK.wav",
+          "sourceEntry": "S352ATTK",
+          "sha256": "febf8e635961f7f915025bb89b0c8241e6a37b766920dd072e5d63b4a9e7155e",
+          "bytes": 13644
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/352/S352DFND.wav",
+          "sourceEntry": "S352DFND",
+          "sha256": "60e4d32ca1a3080ab5efb5dee1c74a2bdeaeb60efa0723e0b0949284b16ca4b4",
+          "bytes": 189194
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/352/S352KILL.wav",
+          "sourceEntry": "S352KILL",
+          "sha256": "7631c51fb480ca4e2e368b7632118e41e029334bbcc41d3bf7dce9fc23018c86",
+          "bytes": 45606
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/352/S352MOVE.wav",
+          "sourceEntry": "S352MOVE",
+          "sha256": "1f68ac93150935106f0a016b770b9c9bec5afff8ef0ee05570edd8e23d54a366",
+          "bytes": 8944
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/352/S352WNCE.wav",
+          "sourceEntry": "S352WNCE",
+          "sha256": "b7241acee4668e350d48a70bda9c129706c0a41a411da98d0149da17141de8eb",
+          "bytes": 48546
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/352/S352SHOT.wav",
+          "sourceEntry": "S352SHOT",
+          "sha256": "966d33c9afe41835407e5b5bf6b50e4cfd22d4ea53270ced9579c621465104b7",
+          "bytes": 20876
+        }
+      ],
+      "cfgMappings": [
+        {
+          "source": "Data/Creatures/352.cfg",
+          "line": 1,
+          "key": "Flags",
+          "rawValue": "21",
+          "operation": "source-native-biology:LIVING",
+          "evidence": {
+            "file": "Amethyst2/amethyst/tables.cpp",
+            "lines": [
+              1624,
+              1626
+            ],
+            "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+            "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+            "sourceBinaryParity": "unverified"
+          }
+        },
+        {
+          "source": "Data/Creatures/352.cfg",
+          "line": 1,
+          "key": "Flags",
+          "rawValue": "21",
+          "operation": "native flags with scoped biological correspondence",
+          "evidence": {
+            "file": "Amethyst2/amethyst/tables.cpp",
+            "lines": [
+              1624,
+              1626
+            ],
+            "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+            "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+            "sourceBinaryParity": "unverified"
+          }
+        },
+        {
+          "source": "Data/Creatures/352.cfg",
+          "line": 2,
+          "key": "Level",
+          "rawValue": "6",
+          "operation": "level + 1",
+          "evidence": {
+            "file": "Amethyst2/amethyst/tables.cpp",
+            "lines": [
+              1618,
+              1620,
+              1622
+            ],
+            "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+            "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+            "sourceBinaryParity": "unverified"
+          }
+        },
+        {
+          "source": "Data/Creatures/352.cfg",
+          "line": 3,
+          "key": "Town",
+          "rawValue": "5",
+          "operation": "faction",
+          "evidence": {
+            "file": "Amethyst2/amethyst/tables.cpp",
+            "lines": [
+              1637,
+              1639
+            ],
+            "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+            "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+            "sourceBinaryParity": "unverified"
+          }
+        },
+        {
+          "source": "Data/Creatures/352.cfg",
+          "line": 4,
+          "key": "CreatureSpellPowerMultiplier",
+          "rawValue": "0",
+          "operation": "source-dungeon-eighth-v1 reviewed source service",
+          "evidence": {
+            "file": "Amethyst2/amethyst/tables.cpp",
+            "lines": [
+              1464,
+              1465
+            ],
+            "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+            "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+            "sourceBinaryParity": "unverified"
+          }
+        },
+        {
+          "source": "Data/Creatures/352.cfg",
+          "line": 5,
+          "key": "Shot type",
+          "rawValue": "4",
+          "operation": "source-dungeon-eighth-v1 reviewed source service",
+          "evidence": {
+            "file": "Amethyst2/amethyst/tables.cpp",
+            "lines": [
+              1693,
+              1695
+            ],
+            "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+            "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+            "sourceBinaryParity": "unverified"
+          }
+        }
+      ],
+      "sourceDungeon": {
+        "sourceId": 352,
+        "ray": null,
+        "slow": {
+          "spell": 54,
+          "rankChance": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ],
+          "mastery": 0,
+          "power": "current-active-CFG-multiplier0",
+          "durationZero": "Cast visual and remove Haste53; no speed penalty because original getters require nonzero duration54"
+        },
+        "chain": {
+          "complete": false,
+          "nativeExecutor": "applyDungeonChainShot",
+          "kind": 4,
+          "hops": 4,
+          "undefinedSecondPhysicalPass": 0,
+          "exception": "Original EAX after void LeaveCriticalSection has no defined ABI value; fixed0 according to owner preference; verified nearest-friendly termination is retained"
+        }
+      },
+      "xpMapped": [
+        {
+          "source": "crexpbon.txt",
+          "line": 1837,
+          "code": "S",
+          "modifier": "+",
+          "rankZero": 0,
+          "mode": "numeric",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "bonus": {
+            "type": "STACKS_SPEED",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+        },
+        {
+          "source": "crexpbon.txt",
+          "line": 1838,
+          "code": "c",
+          "modifier": "#54",
+          "mode": "runtime",
+          "values": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ],
+          "runtimeBinding": {
+            "contract": "source-dungeon-eighth-v1",
+            "creatureId": 352,
+            "operation": "queuedSlow",
+            "spell": "core:slow",
+            "sourceCode": "c",
+            "sourceModifier": "#54",
+            "rankChances": [
+              0,
+              3,
+              6,
+              9,
+              12,
+              15,
+              18,
+              21,
+              24,
+              27,
+              30
+            ],
+            "endpoint": "EraPetrificationSequence::beforeAction/shared-target-EC",
+            "sourceReference": "h3era.exe71D7A9/75BBF0/468CD8/5A0145",
+            "timing": "selection-before-action; postsequence current-active-power flush"
+          }
+        },
+        {
+          "source": "crexpbon.txt",
+          "line": 1839,
+          "code": "f",
+          "modifier": "f",
+          "rankZero": false,
+          "mode": "toggle",
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "bonus": {
+            "type": "FEARFUL",
+            "val": 0,
+            "valueType": "INDEPENDENT_MIN"
+          },
+          "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+        },
+        {
+          "source": "crexpbon.txt",
+          "line": 1840,
+          "code": "i",
+          "modifier": "=",
+          "rankZero": false,
+          "mode": "toggle",
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true
+          ],
+          "bonus": {
+            "type": "NO_DISTANCE_PENALTY"
+          },
+          "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+        }
+      ],
+      "requiredRuntimeBindings": [
+        {
+          "source": "crexpbon.txt",
+          "line": 1838,
+          "contract": "source-dungeon-eighth-v1",
+          "creatureId": 352,
+          "operation": "queuedSlow",
+          "spell": "core:slow",
+          "sourceCode": "c",
+          "sourceModifier": "#54",
+          "rankChances": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ],
+          "endpoint": "EraPetrificationSequence::beforeAction/shared-target-EC",
+          "sourceReference": "h3era.exe71D7A9/75BBF0/468CD8/5A0145",
+          "timing": "selection-before-action; postsequence current-active-power flush"
+        }
+      ],
+      "experienceProfile": {
+        "experienceMultiplier": 1,
+        "upgradeMultiplier": 0.75,
+        "fullRank10": 122500,
+        "battlePercent": 20,
+        "rank11Extra": 12250
+      },
+      "experienceFinalization": {
+        "contract": "tum35-archer-final-experience-v1",
+        "sourceFightValue": 3228,
+        "bloodFightValue": 4987,
+        "usesNativeLevel": false
+      },
+      "sourceDefaults": {
+        "levelZeroBased": 6,
+        "town": 5,
+        "initialFlags": 21,
+        "defaultProof": "amethyst2_4.dll100049C0..10004A90;core.cppCreateNewTable"
+      },
+      "sourceOwnHealthConverted": 0,
+      "sourceExperienceDefaults": {
+        "contract": "source-default-experience-new-creature-v1",
+        "nativeDefaultCarrier": "creature-json",
+        "rows": [
+          {
+            "source": "crexpbon.txt",
+            "line": 2,
+            "sourceCreature": -8,
+            "code": "H",
+            "modifier": "%",
+            "values": [
+              0,
+              5,
+              10,
+              15,
+              20,
+              25,
+              30,
+              35,
+              40,
+              45,
+              50
+            ]
+          },
+          {
+            "source": "crexpbon.txt",
+            "line": 27,
+            "sourceCreature": -7,
+            "code": "A",
+            "modifier": "+",
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "source": "crexpbon.txt",
+            "line": 28,
+            "sourceCreature": -7,
+            "code": "D",
+            "modifier": "+",
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "source": "crexpbon.txt",
+            "line": 29,
+            "sourceCreature": -7,
+            "code": "M",
+            "modifier": "+",
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "source": "crexpbon.txt",
+            "line": 30,
+            "sourceCreature": -7,
+            "code": "m",
+            "modifier": "+",
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          }
+        ],
+        "replacedByOwn": []
+      },
+      "sourceSkeletonTarget": {
+        "target": "core:skeleton",
+        "living": true
+      },
+      "mapTemplate": {
+        "animation": "tum-era/creatures/352/AVWCR352.def",
+        "mask": [
+          "VV",
+          "VA"
+        ],
+        "visitableFrom": [
+          "+++",
+          "+-+",
+          "+++"
+        ],
+        "allowedTerrains": [
+          "dirt"
+        ],
+        "zIndex": 0
+      },
+      "mapTemplateScope": "Original mask/animation/all-sided access; native monster terrain workaround and RMG placement require independent controls"
+    }
+  ],
+  "nativeEvidence": "outputs/wog-priorities-0.4.147/native-dungeon.json",
+  "undefinedSourceException": {
+    "secondPhysicalPass": 0,
+    "reason": "Original EAX after void LeaveCriticalSection is ABI-undefined; owner authorized stable correction."
+  },
+  "eighthTownRecruitmentStillGated": true
+}

@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "active": false,
+  "nativeValidated": false,
+  "sourceIds": [
+    351,
+    352
+  ],
+  "binarySha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "pluginSha256": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+  "slow54": {
+    "experienceRows": "351/352 c#54: 3*rank, not c78",
+    "selection": "71D7A9/75B4CA/75BBF0",
+    "power": "468CD8 kind1 ->5A0145 reads CURRENT manager active stack;352 CFG multiplier0",
+    "duration": "spell54 main dispatch5A138F ->444610;duration dispatch44467B directly stores power4446C8 without clamp",
+    "zeroPower": "444A33 removes Haste53; speed getters4489F4/448A05 and441CCC/441CE3 require duration54!=0 before applying4C8 modifier. Emit54 and remove53 without native speed bonus.",
+    "absoluteExclusions": [
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167
+    ],
+    "orb93BypassableExclusions": [
+      26,
+      27,
+      151,
+      82,
+      83,
+      155,
+      132,
+      121
+    ],
+    "resistance": "hero rawinteger +racial16/17/133/196 +XP W; no unicorn aura; artifact134 forces200 evenOrb93",
+    "foreignBoundary": "Unregistered Goonk/mod species retain native receptivity and intrinsic resistance.",
+    "minimumSpeed": "Original448A2E..448A32 clamps speed>=1 outside siege. Scoped native Spell54 INDEPENDENT_MAX1 floor shares duration and dispel source.",
+    "counters": "444A33 explicitly removes Haste53 for ALL powers before Slow; native applyEffects bypasses generic counter processing, so adapter removes53 itself."
+  },
+  "ray351": {
+    "rawColor": 10092543,
+    "rawLowWord": 65535,
+    "color": "whiteRGB565",
+    "evidence": "43F271 passes rawcolor;5A58B7 preset index subtract300 does not modify fallback word5A5CD8",
+    "nativeRenderer": "five white RGBA rays; source five-line parameter; native line renderer replaces original16bit raster pipeline"
+  },
+  "chain352": {
+    "complete": false,
+    "sourceType": 4,
+    "hops": 4,
+    "damage": "currentlivingcount * inclusive RNG[dmgLow,dmgHigh], then integer half each hop",
+    "targetOrder": "originalside0 slots ascending,side1 slots ascending; spell19 accuracy alwaysdraw1..100 each unvisited candidate; floor(sqrt(pixel distance squared)); strict< preserves scan order on ties",
+    "pixelCentres": "446380 head+doublewide center;446350 hexY-trunc((267-firstDEFframe.marginTop)/2)",
+    "friendlyTermination": "Verified5A670A wrong-side branch incrementsECX=CombatManager pointer leftby4E7230 then jumpshexscan5A66DE; no remaining validhex ->chain ends. Preserve.",
+    "secondPhysicalPass": {
+      "source": "5A6870 uses local−10 setfromEAX after50D740 endingvoidLeaveCriticalSection",
+      "undefinedValuePolicy": 0,
+      "reason": "Owner explicitly authorized stable values for undefined source ABI registers. This normalization does not change the independently verified friendly-termination quirk."
+    },
+    "pending": [
+      "native final CSlow Haste-counter+minimum1 controls after corrected engine",
+      "native Win32 overflow negative-health control",
+      "native portrait beam anchors",
+      "native paid351→352 upgrade and resource controls"
+    ],
+    "machineInteger": "Win32 count*damage and total add wrap32; damage halves with signed SAR, including negative odd inputs. Negative physical input reaches the same443DB0 signed IDIV consumer as EraSignedDamage; clone priority retained."
+  },
+  "goonkJsonGeometryExtension": {
+    "scope": "Additional Goonks with JSON-only animations, including shipped Bubu goonk/fart",
+    "firstFrameTopFallback": 0,
+    "reason": "Original nearest-pixel geometry reads binaryDEF first-frame marginTop. JSON-only Goonks have no corresponding originalERA DEF; use documented stable0 compat fallback. Source351/352 originalDEF geometry remains exact.",
+    "mechanicsChanged": false,
+    "sourceCommentCorrectionPendingNextUnfrozenEdit": true
+  }
+}

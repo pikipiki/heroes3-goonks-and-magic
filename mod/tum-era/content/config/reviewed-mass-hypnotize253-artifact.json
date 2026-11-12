@@ -1,0 +1,34 @@
+{
+  "artifact253": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 10000,
+    "slot": [
+      "LEFT_RING",
+      "RIGHT_RING"
+    ],
+    "text": {
+      "name": "Ring of the Snake Eyesight",
+      "description": "{Ring of the Snake Eyesight}\n\nPuts a most susceptible enemy stacks under your control at the beginning of the battle.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/253/icon.png",
+      "map": "tum-era/artifacts/253/map.def",
+      "scenarioBonus": "tum-era/artifacts/253/scenario.png"
+    },
+    "bonuses": {
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:hypnotize",
+        "addInfo": [
+          3,
+          0
+        ]
+      }
+    }
+  }
+}

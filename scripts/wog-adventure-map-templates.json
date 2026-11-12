@@ -1,0 +1,37 @@
+{
+  "hillFort": {
+    "objectType": 35,
+    "objectSubtype": 0,
+    "category": 0,
+    "editorTerrainBits": "111111111",
+    "template": {
+      "animation": "AVXhilg0.def",
+      "mask": [
+        "VVV",
+        "VVV",
+        "VBA"
+      ],
+      "visitableFrom": [
+        "---",
+        "+-+",
+        "+++"
+      ],
+      "allowedTerrains": [
+        "grass"
+      ],
+      "zIndex": 0
+    },
+    "source": {
+      "line": "AVXhilg0.def 001111111111111111111111111111111111111111111111 100000000000000000000000000000000000000000000000 111111111 000000100 35 0 0 0",
+      "width": 3,
+      "height": 3,
+      "mskApplied": true,
+      "maskArchive": {
+        "archive": "H3sprite.lod",
+        "sha256": "57caf2c50573f33a0d91e4222e51d3a73c136d44decf59dde21cacad88fe5d66",
+        "member": "AVXhilg0.msk",
+        "memberSha256": "642f81ba28f1153b5ab89eb2d60860eca86f08301b4cedd52c69a97b1fdd4eed"
+      }
+    }
+  }
+}

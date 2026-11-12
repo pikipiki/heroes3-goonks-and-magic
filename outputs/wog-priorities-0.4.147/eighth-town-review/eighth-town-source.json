@@ -1,0 +1,675 @@
+{
+  "sourceArchive": "Data/Common Def.pac",
+  "sourceArchiveSha256": "76d25c568e4af817ea574639063f8af8ae8ac7e697a5bc6e7f42adeaa247a253",
+  "records": [
+    {
+      "townIndex": 0,
+      "town": "core:castle",
+      "sourceCfgSha256": "05c5cff6316a24c65b08fbcb41fa2c55118cc08d81d5dbc654bffb15426dc623",
+      "sourceScriptSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "roster": [
+        269,
+        278,
+        -1,
+        -1
+      ],
+      "guardian": 278,
+      "buildings": [
+        {
+          "sourceId": 88,
+          "nativeId": 150,
+          "key": "dwellingLvl8",
+          "name": "Cathedral",
+          "description": "The Cathedral allows you to recruit Light Templars.",
+          "cost": {
+            "wood": 15,
+            "mercury": 0,
+            "ore": 15,
+            "sulfur": 0,
+            "crystal": 10,
+            "gems": 0,
+            "gold": 8000
+          }
+        },
+        {
+          "sourceId": 89,
+          "nativeId": 151,
+          "key": "dwellingUpLvl8",
+          "name": "Upg. Cathedral",
+          "description": "The Cathedral allows you to recruit Light Paladins.",
+          "cost": {
+            "wood": 20,
+            "mercury": 0,
+            "ore": 20,
+            "sulfur": 0,
+            "crystal": 15,
+            "gems": 0,
+            "gold": 10000
+          }
+        }
+      ],
+      "upgradeAuthority": "Town level_7_creatures, not creature CFG UpgradesTo: Fortress353 self-upgrade is not the recruitment variant354."
+    },
+    {
+      "townIndex": 1,
+      "town": "core:rampart",
+      "sourceCfgSha256": "c904d9529e13088dfc3289dc365abf25939ceaf6b633485104502b8d3a8dc9e7",
+      "sourceScriptSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "roster": [
+        349,
+        350,
+        -1,
+        -1
+      ],
+      "guardian": 350,
+      "buildings": [
+        {
+          "sourceId": 88,
+          "nativeId": 150,
+          "key": "dwellingLvl8",
+          "name": "Spiritual Fountain",
+          "description": "The Spiritual Fountain allows you to recruit Forest Spirits.",
+          "cost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 15,
+            "sulfur": 0,
+            "crystal": 7,
+            "gems": 0,
+            "gold": 10000
+          }
+        },
+        {
+          "sourceId": 89,
+          "nativeId": 151,
+          "key": "dwellingUpLvl8",
+          "name": "Upg. Spiritual Fountain",
+          "description": "The Spiritual Fountain allows you to recruit Spring Spirits.",
+          "cost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 20,
+            "sulfur": 0,
+            "crystal": 12,
+            "gems": 0,
+            "gold": 12000
+          }
+        }
+      ],
+      "upgradeAuthority": "Town level_7_creatures, not creature CFG UpgradesTo: Fortress353 self-upgrade is not the recruitment variant354."
+    },
+    {
+      "townIndex": 2,
+      "town": "core:tower",
+      "sourceCfgSha256": "2f3e8de7928d28c2d06572d750687d133b401094047f72c7e0440a4410a1bd4b",
+      "sourceScriptSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "roster": [
+        271,
+        280,
+        -1,
+        -1
+      ],
+      "guardian": 280,
+      "buildings": [
+        {
+          "sourceId": 88,
+          "nativeId": 150,
+          "key": "dwellingLvl8",
+          "name": "Dragon Factory",
+          "description": "The Dragon Factory allows you to recruit Drake Golems.",
+          "cost": {
+            "wood": 15,
+            "mercury": 0,
+            "ore": 15,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 10000
+          }
+        },
+        {
+          "sourceId": 89,
+          "nativeId": 151,
+          "key": "dwellingUpLvl8",
+          "name": "Upg. Dragon Factory",
+          "description": "The Dragon Factory allows you to recruit Dragon Golems.",
+          "cost": {
+            "wood": 20,
+            "mercury": 15,
+            "ore": 20,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 15000
+          }
+        }
+      ],
+      "upgradeAuthority": "Town level_7_creatures, not creature CFG UpgradesTo: Fortress353 self-upgrade is not the recruitment variant354."
+    },
+    {
+      "townIndex": 3,
+      "town": "core:inferno",
+      "sourceCfgSha256": "5b7d0fb109a280730baba123d5b3ef5ef274a8725467abdbb52d7e3f5b5eab70",
+      "sourceScriptSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "roster": [
+        337,
+        338,
+        -1,
+        -1
+      ],
+      "guardian": 338,
+      "buildings": [
+        {
+          "sourceId": 88,
+          "nativeId": 150,
+          "key": "dwellingLvl8",
+          "name": "Infernal Vortex",
+          "description": "The Infernal Vortex allows you to recruit Ahrimans.",
+          "cost": {
+            "wood": 0,
+            "mercury": 20,
+            "ore": 0,
+            "sulfur": 15,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 10000
+          }
+        },
+        {
+          "sourceId": 89,
+          "nativeId": 151,
+          "key": "dwellingUpLvl8",
+          "name": "Upg. Infernal Vortex",
+          "description": "The Infernal Vortex allows you to recruit Archfiends.",
+          "cost": {
+            "wood": 0,
+            "mercury": 25,
+            "ore": 0,
+            "sulfur": 20,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 15000
+          }
+        }
+      ],
+      "upgradeAuthority": "Town level_7_creatures, not creature CFG UpgradesTo: Fortress353 self-upgrade is not the recruitment variant354."
+    },
+    {
+      "townIndex": 4,
+      "town": "core:necropolis",
+      "sourceCfgSha256": "898aa4de0968943f3620c0dd0fcf0335322dea3c4b771dec168db956e613c2a9",
+      "sourceScriptSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "roster": [
+        331,
+        332,
+        -1,
+        -1
+      ],
+      "guardian": 332,
+      "buildings": [
+        {
+          "sourceId": 88,
+          "nativeId": 150,
+          "key": "dwellingLvl8",
+          "name": "Dark Cathedral",
+          "description": "The Dark Cathedral allows you to recruit Dark Templars.",
+          "cost": {
+            "wood": 0,
+            "mercury": 15,
+            "ore": 25,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 8000
+          }
+        },
+        {
+          "sourceId": 89,
+          "nativeId": 151,
+          "key": "dwellingUpLvl8",
+          "name": "Upg. Dark Cathedral",
+          "description": "The Dark Cathedral allows you to recruit Dark Paladins.",
+          "cost": {
+            "wood": 0,
+            "mercury": 20,
+            "ore": 30,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 12000
+          }
+        }
+      ],
+      "upgradeAuthority": "Town level_7_creatures, not creature CFG UpgradesTo: Fortress353 self-upgrade is not the recruitment variant354."
+    },
+    {
+      "townIndex": 5,
+      "town": "core:dungeon",
+      "sourceCfgSha256": "7dd6080767e01e9cbc24b4c363a72b0d8bb70bf5a14095e1eccb9d422f6d9d5c",
+      "sourceScriptSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "roster": [
+        351,
+        352,
+        -1,
+        -1
+      ],
+      "guardian": 352,
+      "buildings": [
+        {
+          "sourceId": 88,
+          "nativeId": 150,
+          "key": "dwellingLvl8",
+          "name": "Spider Nest",
+          "description": "The Spider Nest allows you to recruit Lady Spiders.",
+          "cost": {
+            "wood": 20,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 15,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 9000
+          }
+        },
+        {
+          "sourceId": 89,
+          "nativeId": 151,
+          "key": "dwellingUpLvl8",
+          "name": "Upg. Spider Nest",
+          "description": "The Spider Nest allows you to recruit Priestess Spiders.",
+          "cost": {
+            "wood": 25,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 20,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 12000
+          }
+        }
+      ],
+      "upgradeAuthority": "Town level_7_creatures, not creature CFG UpgradesTo: Fortress353 self-upgrade is not the recruitment variant354."
+    },
+    {
+      "townIndex": 6,
+      "town": "core:stronghold",
+      "sourceCfgSha256": "9bc617808334077c271cfb05e177f93c0fc508c7107e52a82d20f1e7cd3562e0",
+      "sourceScriptSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "roster": [
+        275,
+        283,
+        -1,
+        -1
+      ],
+      "guardian": 283,
+      "buildings": [
+        {
+          "sourceId": 88,
+          "nativeId": 150,
+          "key": "dwellingLvl8",
+          "name": "Ziggurat",
+          "description": "The Ziggurat allows you to recruit Couatls.",
+          "cost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 15,
+            "sulfur": 10,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 9000
+          }
+        },
+        {
+          "sourceId": 89,
+          "nativeId": 151,
+          "key": "dwellingUpLvl8",
+          "name": "Upg. Ziggurat",
+          "description": "The Ziggurat allows you to recruit Quetzalcoualts.",
+          "cost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 30,
+            "sulfur": 20,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 12000
+          }
+        }
+      ],
+      "upgradeAuthority": "Town level_7_creatures, not creature CFG UpgradesTo: Fortress353 self-upgrade is not the recruitment variant354."
+    },
+    {
+      "townIndex": 7,
+      "town": "core:fortress",
+      "sourceCfgSha256": "f5c7373fa83d4f3030297e845ff78f2aafd060f892c7bbd1a85dc201b65c55b2",
+      "sourceScriptSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "roster": [
+        353,
+        354,
+        -1,
+        -1
+      ],
+      "guardian": 354,
+      "buildings": [
+        {
+          "sourceId": 88,
+          "nativeId": 150,
+          "key": "dwellingLvl8",
+          "name": "Maelstrom",
+          "description": "The Maelstrom allows you to recruit Sea Serpents.",
+          "cost": {
+            "wood": 15,
+            "mercury": 0,
+            "ore": 15,
+            "sulfur": 10,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 12000
+          }
+        },
+        {
+          "sourceId": 89,
+          "nativeId": 151,
+          "key": "dwellingUpLvl8",
+          "name": "Upg. Maelstrom",
+          "description": "The Maelstrom allows you to recruit Leviathans.",
+          "cost": {
+            "wood": 15,
+            "mercury": 0,
+            "ore": 15,
+            "sulfur": 20,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 15000
+          }
+        }
+      ],
+      "upgradeAuthority": "Town level_7_creatures, not creature CFG UpgradesTo: Fortress353 self-upgrade is not the recruitment variant354."
+    },
+    {
+      "townIndex": 8,
+      "town": "core:conflux",
+      "sourceCfgSha256": "465551387ed75f513e35973f16cdf2b6667d2a2bca16ea2f9a472a4f80b0e11b",
+      "sourceScriptSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "roster": [
+        355,
+        356,
+        -1,
+        -1
+      ],
+      "guardian": 356,
+      "buildings": [
+        {
+          "sourceId": 88,
+          "nativeId": 150,
+          "key": "dwellingLvl8",
+          "name": "Astral Plane",
+          "description": "The Astral Plane allows you to recruit Planeswalkers.",
+          "cost": {
+            "wood": 0,
+            "mercury": 10,
+            "ore": 0,
+            "sulfur": 10,
+            "crystal": 10,
+            "gems": 10,
+            "gold": 10000
+          }
+        },
+        {
+          "sourceId": 89,
+          "nativeId": 151,
+          "key": "dwellingUpLvl8",
+          "name": "Upg. Astral Plane",
+          "description": "The Astral Plane allows you to recruit Elementalists.",
+          "cost": {
+            "wood": 0,
+            "mercury": 15,
+            "ore": 0,
+            "sulfur": 15,
+            "crystal": 15,
+            "gems": 15,
+            "gold": 15000
+          }
+        }
+      ],
+      "upgradeAuthority": "Town level_7_creatures, not creature CFG UpgradesTo: Fortress353 self-upgrade is not the recruitment variant354."
+    }
+  ],
+  "halls": {
+    "core:castle": {
+      "animation": "tum-era/eighth-castle-hall",
+      "sourceFrames": {
+        "150": 88,
+        "151": 89
+      }
+    },
+    "core:rampart": {
+      "animation": "tum-era/eighth-rampart-hall",
+      "sourceFrames": {
+        "150": 88,
+        "151": 89
+      }
+    },
+    "core:tower": {
+      "animation": "tum-era/eighth-tower-hall",
+      "sourceFrames": {
+        "150": 88,
+        "151": 89
+      }
+    },
+    "core:inferno": {
+      "animation": "tum-era/eighth-inferno-hall",
+      "sourceFrames": {
+        "150": 88,
+        "151": 89
+      }
+    },
+    "core:necropolis": {
+      "animation": "tum-era/eighth-necropolis-hall",
+      "sourceFrames": {
+        "150": 88,
+        "151": 89
+      }
+    },
+    "core:dungeon": {
+      "animation": "tum-era/eighth-dungeon-hall",
+      "sourceFrames": {
+        "150": 88,
+        "151": 89
+      }
+    },
+    "core:stronghold": {
+      "animation": "tum-era/eighth-stronghold-hall",
+      "sourceFrames": {
+        "150": 88,
+        "151": 89
+      }
+    },
+    "core:fortress": {
+      "animation": "tum-era/eighth-fortress-hall",
+      "sourceFrames": {
+        "150": 88,
+        "151": 89
+      }
+    },
+    "core:conflux": {
+      "animation": "tum-era/eighth-conflux-hall",
+      "sourceFrames": {
+        "150": 88,
+        "151": 89
+      }
+    }
+  },
+  "resources": [
+    {
+      "town": "core:castle",
+      "sourceHall": "hallcstl.def",
+      "sourceFrame": 88,
+      "nativeFrame": 150,
+      "sprite": "tum-era/eighth-castle-88.png",
+      "rgbaSha256": "1b05c9a8b41dcd86e5842b9e1c2ec5ef04a950dd59955f2c40cc2d13ac2d91a7",
+      "pngSha256": "4a6ae25e17d6ad3c53f25d08430a4bd5205afe353521b78d39db5e0a43e4c178"
+    },
+    {
+      "town": "core:castle",
+      "sourceHall": "hallcstl.def",
+      "sourceFrame": 89,
+      "nativeFrame": 151,
+      "sprite": "tum-era/eighth-castle-89.png",
+      "rgbaSha256": "1b05c9a8b41dcd86e5842b9e1c2ec5ef04a950dd59955f2c40cc2d13ac2d91a7",
+      "pngSha256": "4a6ae25e17d6ad3c53f25d08430a4bd5205afe353521b78d39db5e0a43e4c178"
+    },
+    {
+      "town": "core:rampart",
+      "sourceHall": "hallramp.def",
+      "sourceFrame": 88,
+      "nativeFrame": 150,
+      "sprite": "tum-era/eighth-rampart-88.png",
+      "rgbaSha256": "274e7681c6269af8b41cb42677355c0a4e2b184e13ae47860d85f9f4fad4b59c",
+      "pngSha256": "18b39fa1f67e8214742913c543ca290d9193bbcb1cf595849f3503db9204da6d"
+    },
+    {
+      "town": "core:rampart",
+      "sourceHall": "hallramp.def",
+      "sourceFrame": 89,
+      "nativeFrame": 151,
+      "sprite": "tum-era/eighth-rampart-89.png",
+      "rgbaSha256": "274e7681c6269af8b41cb42677355c0a4e2b184e13ae47860d85f9f4fad4b59c",
+      "pngSha256": "18b39fa1f67e8214742913c543ca290d9193bbcb1cf595849f3503db9204da6d"
+    },
+    {
+      "town": "core:tower",
+      "sourceHall": "halltowr.def",
+      "sourceFrame": 88,
+      "nativeFrame": 150,
+      "sprite": "tum-era/eighth-tower-88.png",
+      "rgbaSha256": "236325d6427fc97b3a2f70cf28610b391a3b49d04dea9f238289bbbcfa69f816",
+      "pngSha256": "64beb74546e6c478905a0ee72f4f352cc68379616ee46639e03a6f3578f2b3d9"
+    },
+    {
+      "town": "core:tower",
+      "sourceHall": "halltowr.def",
+      "sourceFrame": 89,
+      "nativeFrame": 151,
+      "sprite": "tum-era/eighth-tower-89.png",
+      "rgbaSha256": "236325d6427fc97b3a2f70cf28610b391a3b49d04dea9f238289bbbcfa69f816",
+      "pngSha256": "64beb74546e6c478905a0ee72f4f352cc68379616ee46639e03a6f3578f2b3d9"
+    },
+    {
+      "town": "core:inferno",
+      "sourceHall": "hallinfr.def",
+      "sourceFrame": 88,
+      "nativeFrame": 150,
+      "sprite": "tum-era/eighth-inferno-88.png",
+      "rgbaSha256": "0c6d02b319e30258f6d0fad7957efe0bbe144a6791e678674a56157f2c0fbdac",
+      "pngSha256": "31ae34ffe11fb3b043cadec6ba15a9e9ff2249af96497571bb31e8f2b97994dc"
+    },
+    {
+      "town": "core:inferno",
+      "sourceHall": "hallinfr.def",
+      "sourceFrame": 89,
+      "nativeFrame": 151,
+      "sprite": "tum-era/eighth-inferno-89.png",
+      "rgbaSha256": "0c6d02b319e30258f6d0fad7957efe0bbe144a6791e678674a56157f2c0fbdac",
+      "pngSha256": "31ae34ffe11fb3b043cadec6ba15a9e9ff2249af96497571bb31e8f2b97994dc"
+    },
+    {
+      "town": "core:necropolis",
+      "sourceHall": "hallnecr.def",
+      "sourceFrame": 88,
+      "nativeFrame": 150,
+      "sprite": "tum-era/eighth-necropolis-88.png",
+      "rgbaSha256": "950ee7a48a8eec99b235d36a7460451221621305153a124b688ef3aab206f6ac",
+      "pngSha256": "2bbb7bcb1ecf83f6896a591edd9ba45a67f3b70b43df7536ee35df5f10b797f0"
+    },
+    {
+      "town": "core:necropolis",
+      "sourceHall": "hallnecr.def",
+      "sourceFrame": 89,
+      "nativeFrame": 151,
+      "sprite": "tum-era/eighth-necropolis-89.png",
+      "rgbaSha256": "950ee7a48a8eec99b235d36a7460451221621305153a124b688ef3aab206f6ac",
+      "pngSha256": "2bbb7bcb1ecf83f6896a591edd9ba45a67f3b70b43df7536ee35df5f10b797f0"
+    },
+    {
+      "town": "core:dungeon",
+      "sourceHall": "halldung.def",
+      "sourceFrame": 88,
+      "nativeFrame": 150,
+      "sprite": "tum-era/eighth-dungeon-88.png",
+      "rgbaSha256": "577e70598221c4f60598bb2f8991e18eee9f1b104ba32ef67761a88be36efd23",
+      "pngSha256": "b1fb2b86254c8d7ace0f807aff06a3d2fb46cc5f013d411522f7980d0662859d"
+    },
+    {
+      "town": "core:dungeon",
+      "sourceHall": "halldung.def",
+      "sourceFrame": 89,
+      "nativeFrame": 151,
+      "sprite": "tum-era/eighth-dungeon-89.png",
+      "rgbaSha256": "577e70598221c4f60598bb2f8991e18eee9f1b104ba32ef67761a88be36efd23",
+      "pngSha256": "b1fb2b86254c8d7ace0f807aff06a3d2fb46cc5f013d411522f7980d0662859d"
+    },
+    {
+      "town": "core:stronghold",
+      "sourceHall": "hallstrn.def",
+      "sourceFrame": 88,
+      "nativeFrame": 150,
+      "sprite": "tum-era/eighth-stronghold-88.png",
+      "rgbaSha256": "743452db81ecc15996832ed98fb97314399978719e2fa00853fa2a8931191370",
+      "pngSha256": "717d840fe1ecbdde7a7d4e1c9ebeb01fdb455c99e9901a01e863dcded770a659"
+    },
+    {
+      "town": "core:stronghold",
+      "sourceHall": "hallstrn.def",
+      "sourceFrame": 89,
+      "nativeFrame": 151,
+      "sprite": "tum-era/eighth-stronghold-89.png",
+      "rgbaSha256": "743452db81ecc15996832ed98fb97314399978719e2fa00853fa2a8931191370",
+      "pngSha256": "717d840fe1ecbdde7a7d4e1c9ebeb01fdb455c99e9901a01e863dcded770a659"
+    },
+    {
+      "town": "core:fortress",
+      "sourceHall": "hallfort.def",
+      "sourceFrame": 88,
+      "nativeFrame": 150,
+      "sprite": "tum-era/eighth-fortress-88.png",
+      "rgbaSha256": "51a856d6969b2addb36289195c049641758dc0f6414af8cb45b3e39dc4a95963",
+      "pngSha256": "8445845e53d4f29168d295e5b14a0440fd4b0d5163fd7444f569a815eac88846"
+    },
+    {
+      "town": "core:fortress",
+      "sourceHall": "hallfort.def",
+      "sourceFrame": 89,
+      "nativeFrame": 151,
+      "sprite": "tum-era/eighth-fortress-89.png",
+      "rgbaSha256": "51a856d6969b2addb36289195c049641758dc0f6414af8cb45b3e39dc4a95963",
+      "pngSha256": "8445845e53d4f29168d295e5b14a0440fd4b0d5163fd7444f569a815eac88846"
+    },
+    {
+      "town": "core:conflux",
+      "sourceHall": "hallelem.def",
+      "sourceFrame": 88,
+      "nativeFrame": 150,
+      "sprite": "tum-era/eighth-conflux-88.png",
+      "rgbaSha256": "cc5f379e6bf5993b8f733485038a4c6349077ed8f2375e14a1ecd283105a0310",
+      "pngSha256": "212463fbeeac36889a733add2b48ba2ca8dc7e6aa1f213b6e2d4aa2df2b39ee2"
+    },
+    {
+      "town": "core:conflux",
+      "sourceHall": "hallelem.def",
+      "sourceFrame": 89,
+      "nativeFrame": 151,
+      "sprite": "tum-era/eighth-conflux-89.png",
+      "rgbaSha256": "62e4367e99f5ae2e9be6931ad44d9feb176db70b70c3ec1dfd3c730821838e8a",
+      "pngSha256": "b8f4fb97ad3d194680b07d563956d1a4eb301af8bacc8f388fac8363df28810a"
+    }
+  ],
+  "enabled": false,
+  "registered": false,
+  "pending": [
+    "Complete creature source/XP/global-script contracts for all18 actors",
+    "Native construction, weeklygrowth, recruitment, upgrade, save/load and mobile hall controls"
+  ],
+  "sourceOverride": "Fortress353 upgrades to recruitment variant354 according to town roster even though its creatureCFG UpgradesTo is self353.",
+  "scope": "Original8th-monsters roster/buildings/hall extraction. No manifest activation or gameplay validation claimed."
+}

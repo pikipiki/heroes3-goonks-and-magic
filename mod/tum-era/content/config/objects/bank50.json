@@ -1,0 +1,297 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank50": {
+        "name": "Magical Utopia",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/avsutop2.def",
+            "mask": [
+              "VVVVVV",
+              "VVVVVV",
+              "VVBBBB",
+              "BBBBBV",
+              "VVBBAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank50MixedLayout",
+        "onGuardedMessage": "You approach an unusual variant of Dragon Utopia where Faeries Dragons inhabit guarding great wealth. Do you want to attack this mystical place full of magic?",
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "core:fairieDragon",
+                "amount": 10
+              },
+              {
+                "type": "core:fairieDragon",
+                "amount": 10
+              },
+              {
+                "type": "core:fairieDragon",
+                "amount": 10
+              },
+              {
+                "type": "core:fairieDragon",
+                "amount": 10
+              }
+            ],
+            "manaPoints": 50,
+            "manaOverflowFactor": 100,
+            "resources": [
+              {
+                "type": "core:gems",
+                "amount": 20
+              },
+              {
+                "type": "core:gold",
+                "amount": 25000
+              },
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 5
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature258",
+                "amount": 1
+              }
+            ],
+            "artifacts": [
+              {
+                "class": "MINOR"
+              },
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "RELIC"
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "core:fairieDragon",
+                "amount": 20
+              },
+              {
+                "type": "core:fairieDragon",
+                "amount": 20
+              },
+              {
+                "type": "core:fairieDragon",
+                "amount": 20
+              },
+              {
+                "type": "core:fairieDragon",
+                "amount": 20
+              }
+            ],
+            "manaPoints": 100,
+            "manaOverflowFactor": 100,
+            "resources": [
+              {
+                "type": "core:gems",
+                "amount": 30
+              },
+              {
+                "type": "core:gold",
+                "amount": 45000
+              },
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 10
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature258",
+                "amount": 2
+              }
+            ],
+            "artifacts": [
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "core:fairieDragon",
+                "amount": 30
+              },
+              {
+                "type": "core:fairieDragon",
+                "amount": 30
+              },
+              {
+                "type": "core:fairieDragon",
+                "amount": 30
+              },
+              {
+                "type": "core:fairieDragon",
+                "amount": 30
+              }
+            ],
+            "manaPoints": 150,
+            "manaOverflowFactor": 100,
+            "resources": [
+              {
+                "type": "core:gems",
+                "amount": 50
+              },
+              {
+                "type": "core:gold",
+                "amount": 70000
+              },
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 15
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature258",
+                "amount": 3
+              }
+            ],
+            "artifacts": [
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:fairieDragon",
+                "amount": 50
+              },
+              {
+                "type": "core:fairieDragon",
+                "amount": 50
+              },
+              {
+                "type": "core:fairieDragon",
+                "amount": 50
+              },
+              {
+                "type": "core:fairieDragon",
+                "amount": 50
+              }
+            ],
+            "manaPoints": 200,
+            "manaOverflowFactor": 100,
+            "resources": [
+              {
+                "type": "core:gems",
+                "amount": 70
+              },
+              {
+                "type": "core:gold",
+                "amount": 90000
+              },
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 20
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature258",
+                "amount": 4
+              }
+            ],
+            "artifacts": [
+              {
+                "class": "MAJOR"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "visit": [
+            "tum-era/objects/DRAGON.wav"
+          ],
+          "ambient": [
+            "tum-era/objects/LOOPDRAG.wav"
+          ]
+        },
+        "rmg": {
+          "value": 12000,
+          "rarity": 20
+        },
+        "eraBankSpellPointsCap": 999
+      }
+    }
+  }
+}

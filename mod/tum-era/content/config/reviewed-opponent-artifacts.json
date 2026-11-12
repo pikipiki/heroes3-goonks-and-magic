@@ -1,0 +1,332 @@
+{
+  "artifact183": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 7000,
+    "slot": [
+      "NECK"
+    ],
+    "text": {
+      "name": "Pendant of Downfall",
+      "description": "{Pendant of Downfall}\n\nWorn about the neck,this item decreases enemy's Morale by 2.",
+      "event": "You visit the jeweler's shop. You land your eyes on a bracelet, but the shopkeeper immediately warns you that it is cursed. You fear no curses, and put the bracelet on immediately. The bracelet vanishes in a flash. Enraged, you are about to kill the shopkeeper, but he offers you Pendant of Downfall in return. You agree."
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/183/icon.png",
+      "map": "tum-era/artifacts/183/map.def",
+      "scenarioBonus": "tum-era/artifacts/183/scenario.png"
+    },
+    "bonuses": {
+      "sourceOpponentMORALE": {
+        "type": "MORALE",
+        "val": -2,
+        "valueType": "ADDITIVE_VALUE",
+        "stacking": "tum-source-opponent-artifact-183",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE"
+        ]
+      }
+    }
+  },
+  "artifact184": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 4000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Shaman's Puppet",
+      "description": "{Shaman's Puppet}\n\nDecreases enemy's Luck by 2.",
+      "event": "The day looked not so great from the beginning. You walked under the ladder, met a woman with an empty bucket and stepped on a black cat. Apparently, it is not your misfortune, but the guy in rugs who has been following you. You order to seize the loser, but he runs away. As he vanishes, you notice a strange doll that he dropped."
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/184/icon.png",
+      "map": "tum-era/artifacts/184/map.def",
+      "scenarioBonus": "tum-era/artifacts/184/scenario.png"
+    },
+    "bonuses": {
+      "sourceOpponentLUCK": {
+        "type": "LUCK",
+        "val": -2,
+        "valueType": "ADDITIVE_VALUE",
+        "stacking": "tum-source-opponent-artifact-184",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE"
+        ]
+      }
+    }
+  },
+  "artifact185": {
+    "type": [
+      "HERO"
+    ],
+    "class": "TREASURE",
+    "value": 2000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Demon's Horseshoe",
+      "description": "{Demon's Horseshoe}\n\nDecreases enemy's Luck by 1.",
+      "event": "During your overnight stay you hear hooves clatter nearby. You look around in darkness and notice a demon's figure, ready to stab you with its horns. You barely survive the attack and keep his horseshoe as a trophy."
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/185/icon.png",
+      "map": "tum-era/artifacts/185/map.def",
+      "scenarioBonus": "tum-era/artifacts/185/scenario.png"
+    },
+    "bonuses": {
+      "sourceOpponentLUCK": {
+        "type": "LUCK",
+        "val": -1,
+        "valueType": "ADDITIVE_VALUE",
+        "stacking": "tum-source-opponent-artifact-185",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE"
+        ]
+      }
+    }
+  },
+  "artifact186": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 4000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Hideous Mask",
+      "description": "{Hideous Mask}\n\nDecreases enemy's Morale by 1.",
+      "event": "You meet a traveling circus on your way. One of the artists had such a deft disguise that you have drawn a sword, ready to defend yourself. It appeared that a pretty actress was hiding behind the mask. Laughing, she gifts you the mask."
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/186/icon.png",
+      "map": "tum-era/artifacts/186/map.def",
+      "scenarioBonus": "tum-era/artifacts/186/scenario.png"
+    },
+    "bonuses": {
+      "sourceOpponentMORALE": {
+        "type": "MORALE",
+        "val": -1,
+        "valueType": "ADDITIVE_VALUE",
+        "stacking": "tum-source-opponent-artifact-186",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE"
+        ]
+      }
+    }
+  },
+  "artifact187": {
+    "type": [
+      "HERO"
+    ],
+    "class": "TREASURE",
+    "value": 2000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Runes of Imminency",
+      "description": "{Runes of Imminency}\n\nDecreases enemy's Luck by 1.",
+      "event": "Close by, on a mountain edge you see a mage trying to cast a spell. Fiery symbols are already flashing in the sky, when he, while blinded by the light, trips and falls down. The mage perishes, and you gather the chain of mysterious stones in your backpack."
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/187/icon.png",
+      "map": "tum-era/artifacts/187/map.def",
+      "scenarioBonus": "tum-era/artifacts/187/scenario.png"
+    },
+    "bonuses": {
+      "sourceOpponentLUCK": {
+        "type": "LUCK",
+        "val": -1,
+        "valueType": "ADDITIVE_VALUE",
+        "stacking": "tum-source-opponent-artifact-187",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE"
+        ]
+      }
+    }
+  },
+  "artifact188": {
+    "type": [
+      "HERO"
+    ],
+    "class": "TREASURE",
+    "value": 4000,
+    "slot": [
+      "LEFT_RING",
+      "RIGHT_RING"
+    ],
+    "text": {
+      "name": "Ring of Suppression",
+      "description": "{Ring of Suppression}\n\nWorn on the finger, this ring decreases enemy's Morale by 1.",
+      "event": "You ordered fried eggs for breakfast. The cook managed to find the eggs for you. He also found a ring in the bird's nest that he passed to you."
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/188/icon.png",
+      "map": "tum-era/artifacts/188/map.def",
+      "scenarioBonus": "tum-era/artifacts/188/scenario.png"
+    },
+    "bonuses": {
+      "sourceOpponentMORALE": {
+        "type": "MORALE",
+        "val": -1,
+        "valueType": "ADDITIVE_VALUE",
+        "stacking": "tum-source-opponent-artifact-188",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE"
+        ]
+      }
+    }
+  },
+  "artifact249": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 4500,
+    "slot": [
+      "LEFT_RING",
+      "RIGHT_RING"
+    ],
+    "text": {
+      "name": "Misfortune Ring",
+      "description": "{Misfortune Ring}\n\nWorn on the finger, the Misfortune Ring reduces enemy's Luck by 3.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/249/icon.png",
+      "map": "tum-era/artifacts/249/map.def",
+      "scenarioBonus": "tum-era/artifacts/249/scenario.png"
+    },
+    "bonuses": {
+      "sourceOpponentLUCK": {
+        "type": "LUCK",
+        "val": -3,
+        "valueType": "ADDITIVE_VALUE",
+        "stacking": "tum-source-opponent-artifact-249",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE"
+        ]
+      }
+    }
+  },
+  "artifact250": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 4000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Dragon's Head",
+      "description": "{Dragon's Head}\n\nWhen equipped, this item reduces enemy's Morale by 2.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/250/icon.png",
+      "map": "tum-era/artifacts/250/map.def",
+      "scenarioBonus": "tum-era/artifacts/250/scenario.png"
+    },
+    "bonuses": {
+      "sourceOpponentMORALE": {
+        "type": "MORALE",
+        "val": -2,
+        "valueType": "ADDITIVE_VALUE",
+        "stacking": "tum-source-opponent-artifact-250",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE"
+        ]
+      }
+    }
+  },
+  "artifact252": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 9000,
+    "slot": [
+      "NECK"
+    ],
+    "text": {
+      "name": "Pendant of Despair",
+      "description": "{Pendant of Despair}\n\nWorn about the neck, the Pendant of Despair reduces enemy's Morale and Luck by 3.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/252/icon.png",
+      "map": "tum-era/artifacts/252/map.def",
+      "scenarioBonus": "tum-era/artifacts/252/scenario.png"
+    },
+    "bonuses": {
+      "sourceOpponentMORALE": {
+        "type": "MORALE",
+        "val": -3,
+        "valueType": "ADDITIVE_VALUE",
+        "stacking": "tum-source-opponent-artifact-252",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE"
+        ]
+      },
+      "sourceOpponentLUCK": {
+        "type": "LUCK",
+        "val": -3,
+        "valueType": "ADDITIVE_VALUE",
+        "stacking": "tum-source-opponent-artifact-252",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE"
+        ]
+      }
+    }
+  }
+}

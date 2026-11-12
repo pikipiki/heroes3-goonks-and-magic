@@ -35,6 +35,7 @@ protected:
 private:
 	CreatureID raisedCreatureType(const battle::Unit * unit) const;
 	bool eraCorpseTransform = false;
+	bool eraDemonology = false;
 
 	int32_t raisedCreatureAmount(const Mechanics * m, const battle::Unit * unit) const;
 

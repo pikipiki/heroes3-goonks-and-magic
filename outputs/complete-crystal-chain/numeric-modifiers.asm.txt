@@ -1,0 +1,77 @@
+
+../era-project-eng/h3era.exe:	file format coff-i386
+
+Disassembly of section .text:
+
+00701000 <.text>:
+  71c0ad: 55                           	pushl	%ebp
+  71c0ae: 8b ec                        	movl	%esp, %ebp
+  71c0b0: 51                           	pushl	%ecx
+  71c0b1: 53                           	pushl	%ebx
+  71c0b2: 56                           	pushl	%esi
+  71c0b3: 57                           	pushl	%edi
+  71c0b4: 90                           	nop
+  71c0b5: 90                           	nop
+  71c0b6: 90                           	nop
+  71c0b7: 90                           	nop
+  71c0b8: 90                           	nop
+  71c0b9: 90                           	nop
+  71c0ba: 90                           	nop
+  71c0bb: 90                           	nop
+  71c0bc: 90                           	nop
+  71c0bd: 90                           	nop
+  71c0be: 90                           	nop
+  71c0bf: 90                           	nop
+  71c0c0: 90                           	nop
+  71c0c1: 90                           	nop
+  71c0c2: 90                           	nop
+  71c0c3: 90                           	nop
+  71c0c4: 90                           	nop
+  71c0c5: 90                           	nop
+  71c0c6: 90                           	nop
+  71c0c7: 0f be 45 0c                  	movsbl	0xc(%ebp), %eax
+  71c0cb: 89 45 fc                     	movl	%eax, -0x4(%ebp)
+  71c0ce: 8b 4d fc                     	movl	-0x4(%ebp), %ecx
+  71c0d1: 83 e9 25                     	subl	$0x25, %ecx
+  71c0d4: 89 4d fc                     	movl	%ecx, -0x4(%ebp)
+  71c0d7: 83 7d fc 18                  	cmpl	$0x18, -0x4(%ebp)
+  71c0db: 77 57                        	ja	0x71c134 <.text+0x1b134>
+  71c0dd: 8b 55 fc                     	movl	-0x4(%ebp), %edx
+  71c0e0: 0f b6 82 54 c1 71 00         	movzbl	0x71c154(%edx), %eax
+  71c0e7: ff 24 85 40 c1 71 00         	jmpl	*0x71c140(,%eax,4)
+  71c0ee: db 45 10                     	fildl	0x10(%ebp)
+  71c0f1: 8b 4d 08                     	movl	0x8(%ebp), %ecx
+  71c0f4: d8 01                        	fadds	(%ecx)
+  71c0f6: 8b 55 08                     	movl	0x8(%ebp), %edx
+  71c0f9: d9 1a                        	fstps	(%edx)
+  71c0fb: eb 37                        	jmp	0x71c134 <.text+0x1b134>
+  71c0fd: db 45 10                     	fildl	0x10(%ebp)
+  71c100: 8b 45 08                     	movl	0x8(%ebp), %eax
+  71c103: d8 28                        	fsubrs	(%eax)
+  71c105: 8b 4d 08                     	movl	0x8(%ebp), %ecx
+  71c108: d9 19                        	fstps	(%ecx)
+  71c10a: eb 28                        	jmp	0x71c134 <.text+0x1b134>
+  71c10c: db 45 10                     	fildl	0x10(%ebp)
+  71c10f: 8b 55 08                     	movl	0x8(%ebp), %edx
+  71c112: d8 0a                        	fmuls	(%edx)
+  71c114: d8 35 28 51 78 00            	fdivs	0x785128
+  71c11a: d8 05 3c 51 78 00            	fadds	0x78513c
+  71c120: 8b 45 08                     	movl	0x8(%ebp), %eax
+  71c123: d8 00                        	fadds	(%eax)
+  71c125: 8b 4d 08                     	movl	0x8(%ebp), %ecx
+  71c128: d9 19                        	fstps	(%ecx)
+  71c12a: eb 08                        	jmp	0x71c134 <.text+0x1b134>
+  71c12c: db 45 10                     	fildl	0x10(%ebp)
+  71c12f: 8b 55 08                     	movl	0x8(%ebp), %edx
+  71c132: d9 1a                        	fstps	(%edx)
+  71c134: 90                           	nop
+  71c135: 90                           	nop
+  71c136: 90                           	nop
+  71c137: 90                           	nop
+  71c138: 90                           	nop
+  71c139: 5f                           	popl	%edi
+  71c13a: 5e                           	popl	%esi
+  71c13b: 5b                           	popl	%ebx
+  71c13c: 8b e5                        	movl	%ebp, %esp
+  71c13e: 5d                           	popl	%ebp
+  71c13f: c3                           	retl

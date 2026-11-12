@@ -1,0 +1,25 @@
+{
+  "file": "../Third-Upgrade-Mod-Full/EraPlugins/more_anims.era",
+  "sha256": "29b8c944d01a947a91fb8656ab0b9d59e339001186113ab822f8413b474e5791",
+  "mappingRows": [
+    {
+      "effectId": 85,
+      "tableAddress": "0x10017850",
+      "spritePointer": "0x10015644",
+      "sprite": "ZMGC01.def",
+      "hapticOrSoundPointer": "0x10015650",
+      "hapticOrSound": "MGblock2",
+      "flag": 1
+    },
+    {
+      "effectId": 89,
+      "tableAddress": "0x10017880",
+      "spritePointer": "0x100156a4",
+      "sprite": "shotres.def",
+      "hapticOrSoundPointer": "0x100156b0",
+      "hapticOrSound": "shotres",
+      "flag": 1
+    }
+  ],
+  "sourceSoundOverride": "tables.cpp155..210 anim_with_sound maps89 to shotres"
+}

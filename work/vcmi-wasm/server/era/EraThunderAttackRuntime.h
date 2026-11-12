@@ -1,5 +1,7 @@
 /* TUM212 ATT_THUNDER selector1: source440EA5..441048; opt-in only. */
 #pragma once
+#include "EraPhysicalBlockRuntime.h"
+#include "../../lib/era/EraCreatureSpellImmunityRuntime.h"
 #include "../../lib/era/EraDeflectionLog.h"
 #include "../../lib/era/EraThunderAttack.h"
 #include "../../lib/era/EraSourceSpellAccuracy.h"
@@ -63,11 +65,12 @@ inline void applySourceThunder(CGameHandler & handler,const CBattleInfoCallback 
     //440F1D explicitly rejects nonpositive adjusted damage. In particular,
     //selector11 inversion297 DOES NOT heal from intrinsic Thunder; p#57 does.
     if(adjusted<=0)return;
+    if(cancelsSourceCreatureSpellDamage(target,::era_bridge::CreatureSpellDamageOrigin::Thunder))return;
     BattleStackAttacked hit;
     hit.stackAttacked=target->unitId();hit.attackerID=actor->unitId();
     hit.flags|=BattleStackAttacked::SPELL_EFFECT;hit.spellID=SpellID(17);
-    //441048 belongs to the source thirteen-callsite L hook list.
-    hit.damageAmount=applyEraDeflection(target,rng,adjusted, [&](int strength,int chance){auto message=eraDeflectionLog(battle.getBattle()->getBattleID(),strength,chance);handler.sendAndApply(message);});
+    //441048 belongs to the source thirteen-callsite B-before-L wrapper hook list.
+    hit.damageAmount=applySourcePhysicalWrapper(handler,battle,target,adjusted);
     target->prepareAttacked(hit,rng);
     StacksInjured packet;packet.battleID=battle.getBattle()->getBattleID();packet.stacks.push_back(hit);
     handler.sendAndApply(packet);

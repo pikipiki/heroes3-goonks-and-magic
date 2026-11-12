@@ -1,0 +1,2511 @@
+{
+  "passed": true,
+  "engineSHA256": "e0ae4505231745c7bb5d6ea658a706b3f852cdbe7ddc670d862f786d234a078f",
+  "controls": {
+    "baseline": {
+      "passed": true,
+      "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 335,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 335,
+          "currentHealth": 335,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0
+        ]
+      }
+    },
+    "backpack": {
+      "passed": true,
+      "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 335,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 335,
+          "currentHealth": 335,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0
+        ]
+      }
+    },
+    "threshold-basic-exact": {
+      "passed": true,
+      "engineSHA256": "e0ae4505231745c7bb5d6ea658a706b3f852cdbe7ddc670d862f786d234a078f",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 335,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 335,
+          "currentHealth": 335,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0,
+          2
+        ]
+      }
+    },
+    "threshold-basic-over": {
+      "passed": true,
+      "engineSHA256": "e0ae4505231745c7bb5d6ea658a706b3f852cdbe7ddc670d862f786d234a078f",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 336,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 336,
+          "currentHealth": 336,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0
+        ]
+      }
+    },
+    "hp-imul32-positive": {
+      "passed": true,
+      "engineSHA256": "e0ae4505231745c7bb5d6ea658a706b3f852cdbe7ddc670d862f786d234a078f",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 65536,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 32767,
+          "maximumHealth": 65536,
+          "currentHealth": 65536,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0
+        ]
+      }
+    },
+    "earlier-opening-wound": {
+      "passed": true,
+      "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 336,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 336,
+          "currentHealth": 56,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0
+        ]
+      }
+    },
+    "multiple-eligible-stacks": {
+      "passed": true,
+      "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 335,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 335,
+          "currentHealth": 335,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:pikeman",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 335,
+          "currentHealth": 335,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 4,
+          "key": "core:blackDragon",
+          "armySlot": 2,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0,
+          2,
+          3
+        ]
+      }
+    },
+    "two-equipped-rings": {
+      "passed": true,
+      "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 335,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 335,
+          "currentHealth": 335,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0,
+          2
+        ]
+      }
+    },
+    "threshold-expert-exact": {
+      "passed": true,
+      "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+      "power": 13,
+      "threshold": 375,
+      "perCreatureHealth": 375,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 375,
+          "currentHealth": 375,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0,
+          2
+        ]
+      }
+    },
+    "threshold-expert-over": {
+      "passed": true,
+      "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+      "power": 13,
+      "threshold": 375,
+      "perCreatureHealth": 376,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 376,
+          "currentHealth": 376,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0
+        ]
+      }
+    },
+    "power-one": {
+      "passed": true,
+      "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+      "power": 1,
+      "threshold": 35,
+      "perCreatureHealth": 35,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 35,
+          "currentHealth": 35,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0,
+          2
+        ]
+      }
+    },
+    "power-twenty": {
+      "passed": true,
+      "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+      "power": 20,
+      "threshold": 510,
+      "perCreatureHealth": 510,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 510,
+          "currentHealth": 510,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0,
+          2
+        ]
+      }
+    },
+    "native-resistance100": {
+      "passed": true,
+      "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 335,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 335,
+          "currentHealth": 335,
+          "enemy": true,
+          "magicResistance": 100,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0
+        ]
+      }
+    },
+    "native-spell-immunity": {
+      "passed": true,
+      "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 335,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 335,
+          "currentHealth": 335,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0
+        ]
+      }
+    },
+    "opponent-recanter-context": {
+      "passed": true,
+      "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 335,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 335,
+          "currentHealth": 335,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0
+        ]
+      }
+    },
+    "duration50": {
+      "passed": true,
+      "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 335,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 335,
+          "currentHealth": 335,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0,
+          2
+        ],
+        "2": [
+          1,
+          0,
+          2
+        ],
+        "3": [
+          1,
+          0,
+          2
+        ],
+        "4": [
+          1,
+          0,
+          2
+        ],
+        "5": [
+          1,
+          0,
+          2
+        ],
+        "6": [
+          1,
+          0,
+          2
+        ],
+        "7": [
+          1,
+          0,
+          2
+        ],
+        "8": [
+          1,
+          0,
+          2
+        ],
+        "9": [
+          1,
+          0,
+          2
+        ],
+        "10": [
+          1,
+          0,
+          2
+        ],
+        "11": [
+          1,
+          0,
+          2
+        ],
+        "12": [
+          1,
+          0,
+          2
+        ],
+        "13": [
+          1,
+          0,
+          2
+        ],
+        "14": [
+          1,
+          0,
+          2
+        ],
+        "15": [
+          1,
+          0,
+          2
+        ],
+        "16": [
+          1,
+          0,
+          2
+        ],
+        "17": [
+          1,
+          0,
+          2
+        ],
+        "18": [
+          1,
+          0,
+          2
+        ],
+        "19": [
+          1,
+          0,
+          2
+        ],
+        "20": [
+          1,
+          0,
+          2
+        ],
+        "21": [
+          1,
+          0,
+          2
+        ],
+        "22": [
+          1,
+          0,
+          2
+        ],
+        "23": [
+          1,
+          0,
+          2
+        ],
+        "24": [
+          1,
+          0,
+          2
+        ],
+        "25": [
+          1,
+          0,
+          2
+        ],
+        "26": [
+          1,
+          0,
+          2
+        ],
+        "27": [
+          1,
+          0,
+          2
+        ],
+        "28": [
+          1,
+          0,
+          2
+        ],
+        "29": [
+          1,
+          0,
+          2
+        ],
+        "30": [
+          1,
+          0,
+          2
+        ],
+        "31": [
+          1,
+          0,
+          2
+        ],
+        "32": [
+          1,
+          0,
+          2
+        ],
+        "33": [
+          1,
+          0,
+          2
+        ],
+        "34": [
+          1,
+          0,
+          2
+        ],
+        "35": [
+          1,
+          0,
+          2
+        ],
+        "36": [
+          1,
+          0,
+          2
+        ],
+        "37": [
+          1,
+          0,
+          2
+        ],
+        "38": [
+          1,
+          0,
+          2
+        ],
+        "39": [
+          1,
+          0,
+          2
+        ],
+        "40": [
+          1,
+          0,
+          2
+        ],
+        "41": [
+          1,
+          0,
+          2
+        ],
+        "42": [
+          1,
+          0,
+          2
+        ],
+        "43": [
+          1,
+          0,
+          2
+        ],
+        "44": [
+          1,
+          0,
+          2
+        ],
+        "45": [
+          1,
+          0,
+          2
+        ],
+        "46": [
+          1,
+          0,
+          2
+        ],
+        "47": [
+          1,
+          0,
+          2
+        ],
+        "48": [
+          1,
+          0,
+          2
+        ],
+        "49": [
+          1,
+          0,
+          2
+        ],
+        "50": [
+          1,
+          0,
+          2
+        ],
+        "51": [
+          1,
+          0
+        ]
+      }
+    },
+    "defender-ring": {
+      "passed": true,
+      "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 335,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 335,
+          "currentHealth": 335,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1
+        ]
+      }
+    },
+    "defender-ring-backpack": {
+      "passed": true,
+      "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 335,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 335,
+          "currentHealth": 335,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0
+        ]
+      }
+    },
+    "earlier-magic-mirror": {
+      "passed": true,
+      "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 335,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 335,
+          "currentHealth": 335,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0
+        ]
+      }
+    },
+    "magic-mirror-with-orb": {
+      "passed": true,
+      "engineSHA256": "e0ae4505231745c7bb5d6ea658a706b3f852cdbe7ddc670d862f786d234a078f",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 335,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 335,
+          "currentHealth": 335,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0
+        ]
+      }
+    },
+    "hp-imul32-negative": {
+      "passed": true,
+      "engineSHA256": "e0ae4505231745c7bb5d6ea658a706b3f852cdbe7ddc670d862f786d234a078f",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 65536,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 32768,
+          "maximumHealth": 65536,
+          "currentHealth": 65536,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0,
+          2
+        ]
+      }
+    },
+    "hp-imul32-zero": {
+      "passed": true,
+      "engineSHA256": "e0ae4505231745c7bb5d6ea658a706b3f852cdbe7ddc670d862f786d234a078f",
+      "power": 13,
+      "threshold": 335,
+      "perCreatureHealth": 65536,
+      "firstRound": 1,
+      "manaAfterOpening": 200,
+      "units": [
+        {
+          "stackId": 2,
+          "key": "core:pikeman",
+          "armySlot": 0,
+          "count": 65536,
+          "maximumHealth": 65536,
+          "currentHealth": 65536,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 3,
+          "key": "core:blackDragon",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": true,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 0,
+          "key": "core:peasant",
+          "armySlot": 0,
+          "count": 1,
+          "maximumHealth": 1,
+          "currentHealth": 1,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        },
+        {
+          "stackId": 1,
+          "key": "core:archangel",
+          "armySlot": 1,
+          "count": 1,
+          "maximumHealth": 1000000,
+          "currentHealth": 1000000,
+          "enemy": false,
+          "magicResistance": 0,
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          }
+        }
+      ],
+      "realPlayerControlledStackIdsByRound": {
+        "1": [
+          1,
+          0,
+          2
+        ]
+      }
+    }
+  },
+  "pendingNativeControls": [],
+  "controlCount": 22,
+  "provenance": "All ordinary controls and exact50 playable rounds passed on f40e; final marked-event preflight, HP32 positive/negative/zero and hard MagicMirror+Orb guards passed on e0ae. Each control names its actual engine. Later source changes are confined to the253 preflight and repeat already validated ordinary threshold controls.",
+  "fixture": "Private memoryFS creature controls; native game maps/hero equipment/server casts and actual player-action turns. battleUnits.enemy is original owner, so mind control is proven through a real turn for the hostile source stack, not inferred from this presentation field. No production diagnostics."
+}

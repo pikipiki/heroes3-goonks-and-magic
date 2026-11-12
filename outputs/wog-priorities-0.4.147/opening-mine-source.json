@@ -1,0 +1,24 @@
+{
+  "registered": false,
+  "activationReady": false,
+  "contract": "source-fixed50-mine-v1",
+  "sourceArchiveSha256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "source": "Emerald3/emerald/emerald.cpp CastArtifactSpell; original5A041B preserves caller power in mode2",
+  "report": [
+    {
+      "id": 222,
+      "included": true,
+      "key": "tum-era:artifact222",
+      "sourceTraits": "artraits.txt:712",
+      "aiDecisions": [],
+      "warnings": [],
+      "textRepairs": [],
+      "eventTextAvailable": false
+    }
+  ],
+  "pending": [
+    "Native eight expert mines visible only to their owner, no mana use",
+    "Trigger600damage at distinct hero powers; backpack produces no mines",
+    "Source equipment/Autospell opening order and battle-wide cast restrictions"
+  ]
+}

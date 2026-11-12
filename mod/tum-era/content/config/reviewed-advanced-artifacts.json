@@ -1,0 +1,114 @@
+{
+  "artifact180": {
+    "type": [
+      "HERO"
+    ],
+    "class": "SPECIAL",
+    "value": 15000,
+    "slot": [
+      "SHOULDERS"
+    ],
+    "text": {
+      "name": "Diplomat's Cloak",
+      "description": "{Diplomat's Cloak}\n\nIn addition to component effect the Diplomat's Cloak multiplies your hero army strength by 3 (for neutral armies and Thieves guild).",
+      "event": "You met an unusual scarecrow today. Instead of scaring the, well, crows, it was intelligently persuading them to leave the field. You agreed to help the scarecrow to find the closest seer in exchange for the secret. The scarecrow gives you its cloak."
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/180/icon.png",
+      "map": "tum-era/artifacts/180/map.def",
+      "scenarioBonus": "tum-era/artifacts/180/scenario.png"
+    },
+    "bonuses": {},
+    "components": [
+      "core:statesmansMedal",
+      "core:diplomatsRing",
+      "core:ambassadorsSash"
+    ]
+  },
+  "artifact220": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 30000,
+    "slot": [
+      "RIGHT_HAND"
+    ],
+    "text": {
+      "name": "Lightning Rod",
+      "description": "{Lightning Rod}\n\nThis rod increases your Attack, Defense, Knowledge skills by 3 and your Power skill by 6. It gives the hero Lightning Bolt and Chain Lighnigs spells and makes all units vulnerable to these spells (only artifact immunity works). Chain lighting can be cast on all enemy units without damaging ally creatures. Each stack hit by the Chain Lightning spell gets an additional hit by Lightning Bolt.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/220/icon.png",
+      "map": "tum-era/artifacts/220/map.def",
+      "scenarioBonus": "tum-era/artifacts/220/scenario.png"
+    },
+    "bonuses": {
+      "Attack": {
+        "type": "PRIMARY_SKILL",
+        "val": 3,
+        "subtype": "primarySkill.attack"
+      },
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 3,
+        "subtype": "primarySkill.defence"
+      },
+      "Knowledge": {
+        "type": "PRIMARY_SKILL",
+        "val": 3,
+        "subtype": "primarySkill.knowledge"
+      },
+      "Spellpower": {
+        "type": "PRIMARY_SKILL",
+        "val": 6,
+        "subtype": "primarySkill.spellpower"
+      },
+      "GivesSpell": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:chainLightning"
+      },
+      "immunity19": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:chainLightning"
+      }
+    }
+  },
+  "artifact222": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 2500,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Dwarven Mine",
+      "description": "{Dwarven Mine}\n\nAt the beginning of battle casts expert Landmine.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/222/icon.png",
+      "map": "tum-era/artifacts/222/map.def",
+      "scenarioBonus": "tum-era/artifacts/222/scenario.png"
+    },
+    "bonuses": {
+      "Autospell": {
+        "type": "ERA_FIXED_POWER_OPENING_SPELL",
+        "val": 50,
+        "subtype": "core:landMine",
+        "addInfo": [
+          3,
+          0
+        ]
+      }
+    }
+  }
+}

@@ -376,6 +376,25 @@ void BattleProjectileController::createProjectile(const CStack * shooter, Point 
 	projectiles.push_back(projectile);
 }
 
+void BattleProjectileController::createSourceDungeonChainArc(const CStack * previous,const CStack * target)
+{
+    auto projectile=std::make_shared<ProjectileRay>();
+    // Original5A67EF color301 dispatches5A5CC3 (raw16-bit), not one of the
+    // palette presets. RGB5650x012D expands to(0,36,107). Keep endpoints
+    // anchored independently so portrait camera transforms cannot rotate a
+    // chain around the previous creature or move the impact to another hex.
+    const ColorRGBA color(0,36,107,255);
+    projectile->rayConfig.assign(9,{color,color});
+    projectile->mobileFromAnchor=owner.fieldController->hexPositionAbsolute(previous->getPosition()).center();
+    projectile->mobileDestAnchor=owner.fieldController->hexPositionAbsolute(target->getPosition()).center();
+    projectile->mobileAnchored=true;
+    projectile->from=projectile->mobileFromAnchor+Point(0,-38);
+    projectile->dest=projectile->mobileDestAnchor+Point(0,-38);
+    projectile->shooterID=previous->unitId();projectile->progress=0;
+    projectile->speed=1.0f/0.35f;projectile->playing=true;
+    projectiles.push_back(projectile);
+}
+
 void BattleProjectileController::createSpellProjectile(const CStack * shooter, Point from, Point dest, const CSpell * spell)
 {
 	double projectileAngle = std::abs(atan2(dest.x - from.x, dest.y - from.y));

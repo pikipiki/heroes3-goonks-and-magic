@@ -1,0 +1,51 @@
+
+../era-project-eng/h3era.exe:	file format coff-i386
+
+Disassembly of section .text:
+
+00401000 <.text>:
+  496510: 8b 45 08                     	movl	0x8(%ebp), %eax
+  496513: ba 01 00 00 00               	movl	$0x1, %edx
+  496518: 8b 88 1c 1e 64 00            	movl	0x641e1c(%eax), %ecx
+  49651e: e8 2d 02 02 00               	calll	0x4b6750 <.text+0xb5750>
+  496523: 8b 5d 10                     	movl	0x10(%ebp), %ebx
+  496526: 8b 86 e8 32 01 00            	movl	0x132e8(%esi), %eax
+  49652c: 8b 48 28                     	movl	0x28(%eax), %ecx
+  49652f: 85 c9                        	testl	%ecx, %ecx
+  496531: 7e 11                        	jle	0x496544 <.text+0x95544>
+  496533: 8b 48 2c                     	movl	0x2c(%eax), %ecx
+  496536: 83 39 00                     	cmpl	$0x0, (%ecx)
+  496539: 74 09                        	je	0x496544 <.text+0x95544>
+  49653b: 8b 50 1c                     	movl	0x1c(%eax), %edx
+  49653e: 8b 02                        	movl	(%edx), %eax
+  496540: 8b 00                        	movl	(%eax), %eax
+  496542: eb 02                        	jmp	0x496546 <.text+0x95546>
+  496544: 33 c0                        	xorl	%eax, %eax
+  496546: 3b f8                        	cmpl	%eax, %edi
+  496548: 7d 1b                        	jge	0x496565 <.text+0x95565>
+  49654a: 6a 01                        	pushl	$0x1
+  49654c: 6a 01                        	pushl	$0x1
+  49654e: 53                           	pushl	%ebx
+  49654f: 6a 00                        	pushl	$0x0
+  496551: 6a 00                        	pushl	$0x0
+  496553: 6a 01                        	pushl	$0x1
+  496555: 8b ce                        	movl	%esi, %ecx
+  496557: 89 be f0 32 01 00            	movl	%edi, 0x132f0(%esi)
+  49655d: e8 5e da ff ff               	calll	0x493fc0 <.text+0x92fc0>
+  496562: 47                           	incl	%edi
+  496563: eb c1                        	jmp	0x496526 <.text+0x95526>
+  496565: 8b 4d 0c                     	movl	0xc(%ebp), %ecx
+  496568: 6a 01                        	pushl	$0x1
+  49656a: 6a 01                        	pushl	$0x1
+  49656c: 53                           	pushl	%ebx
+  49656d: 6a 00                        	pushl	$0x0
+  49656f: c6 41 20 00                  	movb	$0x0, 0x20(%ecx)
+  496573: 6a 00                        	pushl	$0x0
+  496575: 6a 01                        	pushl	$0x1
+  496577: 8b ce                        	movl	%esi, %ecx
+  496579: e8 42 da ff ff               	calll	0x493fc0 <.text+0x92fc0>
+  49657e: 5f                           	popl	%edi
+  49657f: 5b                           	popl	%ebx
+  496580: 5e                           	popl	%esi
+  496581: 5d                           	popl	%ebp
+  496582: c2 10 00                     	retl	$0x10

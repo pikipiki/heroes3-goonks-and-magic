@@ -212,6 +212,12 @@ class JsonNode;
 	BONUS_NAME(ERA_EXPERIENCE_DEFENSE_REDUCTION) /* Source XP b: rational targetDEF reduction before truncation */ \
 	BONUS_NAME(ERA_PERSONAL_HATE_DAMAGE) /* Amethyst cfg creature-pair flat physical extra damage; not XP h% */ \
 	BONUS_NAME(ERA_SPECIALIST_HEALTH_PERCENT) /* TUM battle-only extra HP, after source experience rounding */ \
+	BONUS_NAME(ERA_SOURCE_INANIMATE) /* Source ALIVE=0 without derived native mind/morale exclusions */ \
+	BONUS_NAME(ERA_ARTIFACT_SUMMON) /* Artifact opening summons excluded from elemental exclusivity */ \
+	BONUS_NAME(ERA_SOURCE_CONSTRUCT) /* Source repair membership; independent of biological flags */ \
+	BONUS_NAME(ERA_SOURCE_UNOWNED_STACK) /* Original side -1 temporary combat stack */ \
+	BONUS_NAME(ERA_SOURCE_NON_ELEMENTAL_SUMMON) /* Source summons excluded from elemental exclusivity */ \
+	BONUS_NAME(ERA_SOURCE_ARTIFACT_STATE) /* Persistent typed state for source artifact event adapters */ \
 	/* end of list */
 
 #define BONUS_SOURCE_LIST \

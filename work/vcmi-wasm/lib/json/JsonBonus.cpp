@@ -226,6 +226,21 @@ static TBonusParametersPtr loadBonusAddInfo(BonusType type, const JsonNode & val
 
 	switch (type)
 	{
+        case BonusType::HATE:
+            // Explicit TUM source identity. No native creature identifier is
+            // requested until that source creature has actually been ported.
+            if(value.getModScope()=="tum-era" && value.isStruct()
+                && value.Struct().size()==2
+                && value["contract"].String()=="source-stronghold-creature-spell-immunity-v1"
+                && value["sourceCreatureId"].isNumber()
+                && (value["sourceCreatureId"].Float()==274 || value["sourceCreatureId"].Float()==282))
+                var=std::vector<int32_t>{static_cast<int32_t>(value["sourceCreatureId"].Integer())};
+            else
+            {
+                logMod->warn("Unsupported source HATE addInfo payload");
+                return nullptr;
+            }
+            break;
 		case BonusType::IMPROVED_NECROMANCY:
 		case BonusType::SPECIAL_ADD_VALUE_ENCHANT:
 		case BonusType::SPECIAL_FIXED_VALUE_ENCHANT:

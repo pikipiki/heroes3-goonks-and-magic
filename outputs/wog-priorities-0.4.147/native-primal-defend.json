@@ -1,0 +1,220 @@
+{
+  "passed": true,
+  "errors": [],
+  "report": {
+    "defend": {
+      "observed": [
+        {
+          "round": 1,
+          "hp": 700,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            87,
+            86
+          ]
+        },
+        {
+          "round": 2,
+          "hp": 700,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            87,
+            86
+          ]
+        },
+        {
+          "round": 3,
+          "hp": 697,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            140,
+            139
+          ]
+        },
+        {
+          "round": 4,
+          "hp": 694,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            37,
+            36
+          ]
+        },
+        {
+          "round": 5,
+          "hp": 691,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            140,
+            139
+          ]
+        },
+        {
+          "round": 6,
+          "hp": 688,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            37,
+            36
+          ]
+        },
+        {
+          "round": 7,
+          "hp": 685,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            140,
+            139
+          ]
+        },
+        {
+          "round": 8,
+          "hp": 682,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            37,
+            36
+          ]
+        },
+        {
+          "round": 9,
+          "hp": 679,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            124,
+            123
+          ]
+        },
+        {
+          "round": 10,
+          "hp": 676,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            37,
+            36
+          ]
+        },
+        {
+          "round": 11,
+          "hp": 673,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            140,
+            139
+          ]
+        },
+        {
+          "round": 12,
+          "hp": 659,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            37,
+            36
+          ]
+        },
+        {
+          "round": 13,
+          "hp": 645,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            140,
+            139
+          ]
+        },
+        {
+          "round": 14,
+          "hp": 631,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            37,
+            36
+          ]
+        },
+        {
+          "round": 15,
+          "hp": 617,
+          "defense": 35,
+          "charges": 10,
+          "occupied": [
+            140,
+            139
+          ]
+        }
+      ],
+      "deltas": [
+        {
+          "round": 2,
+          "lost": 0
+        },
+        {
+          "round": 3,
+          "lost": 3
+        },
+        {
+          "round": 4,
+          "lost": 3
+        },
+        {
+          "round": 5,
+          "lost": 3
+        },
+        {
+          "round": 6,
+          "lost": 3
+        },
+        {
+          "round": 7,
+          "lost": 3
+        },
+        {
+          "round": 8,
+          "lost": 3
+        },
+        {
+          "round": 9,
+          "lost": 3
+        },
+        {
+          "round": 10,
+          "lost": 3
+        },
+        {
+          "round": 11,
+          "lost": 3
+        },
+        {
+          "round": 12,
+          "lost": 14
+        },
+        {
+          "round": 13,
+          "lost": 14
+        },
+        {
+          "round": 14,
+          "lost": 14
+        },
+        {
+          "round": 15,
+          "lost": 14
+        }
+      ],
+      "charges": 10,
+      "sourceDuration": 11
+    }
+  }
+}

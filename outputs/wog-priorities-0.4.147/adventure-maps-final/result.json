@@ -1,0 +1,62 @@
+[
+  {
+    "filename": "003-Goonks-WoG.vmap",
+    "title": "Goonks — Trésors de WoG",
+    "map": {
+      "castleChoice": true,
+      "height": 144,
+      "humanCastleChoices": 1,
+      "humanSeats": 1,
+      "index": 0,
+      "name": "Goonks — Trésors de WoG",
+      "path": "MAPS/003-Goonks-WoG",
+      "players": 2,
+      "width": 144
+    },
+    "loaded": true,
+    "width": 144,
+    "mapSHA256": "6a60e6e8d23a46a99c0a7abb3547df88bb8c38fd9c2c6b3596329c273c76f653",
+    "engineBuild": {
+      "memoryVersion": 1,
+      "runtimeVersion": "f73b581d5bd0c449",
+      "wasm": "vcmiclient.3de6ebc8ac513301.wasm",
+      "sha256": "3de6ebc8ac51330156889731974593a97becc66af7ca4109dd549e4748398325",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216
+    },
+    "errors": []
+  },
+  {
+    "filename": "004-Goonks-WoG-Online.vmap",
+    "title": "Goonks — Trésors de WoG en ligne",
+    "map": {
+      "castleChoice": true,
+      "height": 144,
+      "humanCastleChoices": 2,
+      "humanSeats": 2,
+      "index": 1,
+      "name": "Goonks — Trésors de WoG en ligne",
+      "path": "MAPS/004-Goonks-WoG-Online",
+      "players": 2,
+      "width": 144
+    },
+    "loaded": true,
+    "width": 144,
+    "mapSHA256": "365a2187a18de204225d1cb821110909bee23be6c2b2bce0a43c8315b19e0a81",
+    "engineBuild": {
+      "memoryVersion": 1,
+      "runtimeVersion": "f73b581d5bd0c449",
+      "wasm": "vcmiclient.3de6ebc8ac513301.wasm",
+      "sha256": "3de6ebc8ac51330156889731974593a97becc66af7ca4109dd549e4748398325",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216
+    },
+    "errors": []
+  }
+]

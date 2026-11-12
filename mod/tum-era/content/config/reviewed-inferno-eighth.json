@@ -1,0 +1,615 @@
+{
+  "eraCreature337": {
+    "name": {
+      "singular": "Ahriman",
+      "plural": "Ahrimans"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 1,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 2400
+    },
+    "fightValue": 3843,
+    "aiValue": 3715,
+    "growth": 1,
+    "hitPoints": 180,
+    "speed": 12,
+    "attack": 28,
+    "defense": 30,
+    "damage": {
+      "min": 30,
+      "max": 40
+    },
+    "advMapAmount": {
+      "min": 4,
+      "max": 10
+    },
+    "abilities": {
+      "amethystKing": {
+        "type": "KING",
+        "val": 2
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "doubleWide": false,
+    "level": 7,
+    "faction": "core:inferno",
+    "upgrades": [
+      "tum-era:eraCreature338"
+    ],
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NEGATIVE_EFFECTS_IMMUNITY",
+          "subtype": "spellSchool.fire"
+        },
+        "values": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NEGATIVE_EFFECTS_IMMUNITY",
+          "subtype": "spellSchool.earth"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:airShield",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:airShield",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 2
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 0,
+          "valueType": "INDEPENDENT_MIN"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "MIND_IMMUNITY"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.5,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/337/CR337",
+      "map": "tum-era/creatures/337/AVWCR337.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/337/small",
+      "iconLarge": "tum-era/creatures/337/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/337/S337ATTK.wav",
+      "defend": "tum-era/creatures/337/S337DFND.wav",
+      "killed": "tum-era/creatures/337/S337KILL.wav",
+      "move": "tum-era/creatures/337/S337MOVE.wav",
+      "wince": "tum-era/creatures/337/S337WNCE.wav"
+    }
+  },
+  "eraCreature338": {
+    "name": {
+      "singular": "Archfiend",
+      "plural": "Archfiends"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 2,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 3700
+    },
+    "fightValue": 5250,
+    "aiValue": 5700,
+    "growth": 1,
+    "hitPoints": 220,
+    "speed": 14,
+    "attack": 30,
+    "defense": 32,
+    "damage": {
+      "min": 30,
+      "max": 40
+    },
+    "advMapAmount": {
+      "min": 3,
+      "max": 8
+    },
+    "abilities": {
+      "amethystKing": {
+        "type": "KING",
+        "val": 2
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "sourceDemonCaster": {
+        "type": "SPELLCASTER",
+        "subtype": "tum-era:sourceDemonology217",
+        "val": 0
+      },
+      "sourceDemonPower": {
+        "type": "SPECIFIC_SPELL_POWER",
+        "subtype": "tum-era:sourceDemonology217",
+        "val": 50
+      },
+      "sourceInitialCasts": {
+        "type": "CASTS",
+        "val": 1
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "doubleWide": true,
+    "level": 7,
+    "faction": "core:inferno",
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NEGATIVE_EFFECTS_IMMUNITY",
+          "subtype": "spellSchool.fire"
+        },
+        "values": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NEGATIVE_EFFECTS_IMMUNITY",
+          "subtype": "spellSchool.earth"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:airShield",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 0,
+          "valueType": "INDEPENDENT_MIN"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "MIND_IMMUNITY"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CASTS",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.5,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/338/CR338",
+      "map": "tum-era/creatures/338/AVWCR338.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/338/small",
+      "iconLarge": "tum-era/creatures/338/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/338/S338ATTK.wav",
+      "defend": "tum-era/creatures/338/S338DFND.wav",
+      "killed": "tum-era/creatures/338/S338KILL.wav",
+      "move": "tum-era/creatures/338/S338MOVE.wav",
+      "wince": "tum-era/creatures/338/S338WNCE.wav"
+    }
+  }
+}

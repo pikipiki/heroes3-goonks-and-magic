@@ -468,6 +468,9 @@ void BattleStacksController::stacksAreAttacked(std::vector<StackAttackedInfo> at
 
 	for(auto & attackedInfo : attackedInfos)
 	{
+        // Marker89 also announces positive damage; the effect controller
+        // consumes only actual pending85/89 packets, exactly once per hit.
+        owner.effectsController->queueFullBlockAtHit(attackedInfo.defender);
         // Deferred ERA rebirth has already played its death event in an earlier
         // packet. Only queue ResurrectionAnimation below, not a zero-damage hit.
         if(attackedInfo.rebirth && attackedInfo.damageDealt == 0 && attackedInfo.amountKilled == 0)

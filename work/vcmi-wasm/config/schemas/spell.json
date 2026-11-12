@@ -234,7 +234,8 @@
 							"chainFactor" : { "type" : "number" },
 							"id" : { "type" : "string" },
 							"permanent" : { "type" : "boolean" },
-							"eraCorpseTransform" : { "type" : "boolean", "default" : false }
+							"eraCorpseTransform" : { "type" : "boolean", "default" : false },
+							"eraDemonology" : { "type" : "boolean", "default" : false }
 						},
 						"additionalProperties" : false
 					}

@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "../../era/EraDeflectionLog.h"
+#include "../../era/EraCreatureSpellImmunityRuntime.h"
 
 #include "Damage.h"
 #include "Registry.h"
@@ -18,7 +19,9 @@
 #include "../../CStack.h"
 #include "../../CCreatureHandler.h"
 #include "../../era/EraBridgePolicies.h"
+#include "../../era/EraAdvancedArtifactRuntimeNative.h"
 #include "../../era/EraDeflectionRuntime.h"
+#include "../../era/EraCrystalExperienceRuntime.h"
 #include "../../networkPacks/SetStackEffect.h"
 #include "../../battle/IBattleState.h"
 #include "../../battle/CBattleInfoCallback.h"
@@ -40,6 +43,29 @@ namespace effects
 
 namespace
 {
+bool eraCreatureSpellDamageCanceled(const Mechanics * m,const battle::Unit * target)
+{
+    using Origin=::era_bridge::CreatureSpellDamageOrigin;
+    const auto spell=m->getSpellId();
+    const auto origin=spell==SpellID(SpellID::DEATH_RIPPLE)?Origin::DeathRipple
+        :spell==SpellID(SpellID::DEATH_STARE)?Origin::DeathStare
+        :spell==SpellID(SpellID::THUNDERBOLT)?Origin::Thunder
+        :spell==SpellID(SpellID::ACID_BREATH_DAMAGE)?Origin::Acid:Origin::Other;
+    // Original tests damage call origins, not caster kind. In particular a
+    // HERO DeathRipple is canceled; HERO LightningBolt/Fireball are not.
+    return cancelsSourceCreatureSpellDamage(target,origin);
+}
+
+int64_t eraLightningRodSupplement(const Mechanics * m,const battle::Unit * target)
+{
+    if(!m->isHeroCast() || m->getSpellIndex()!=19 || !target)return 0;
+    const auto * hero=m->battle()->battleGetFightingHero(m->casterSide);
+    if(!hero || !era_compat::sourceLightningRodEquipped(hero))return 0;
+    const auto * bolt=SpellID(SpellID::LIGHTNING_BOLT).toSpell();
+    return ::era_bridge::lightningRawSupplement(m->getSpellIndex(),true,true,
+        target->unitSide()!=m->casterSide,m->getEffectPower(),bolt->getBasePower(),
+        bolt->getLevelPower(hero->getSpellSchoolLevel(bolt)));
+}
 bool eraDeflectionSpell(const Mechanics * m)
 {
     // Shipped source hook records789A88..789B20 include5A1065 (DeathRipple)
@@ -76,13 +102,46 @@ void Damage::apply(ServerCallback * server, const Mechanics * m, const EffectTar
 	for(const auto & t : target)
 	{
 		const battle::Unit * unit = t.unitValue;
-		if(unit && unit->alive())
+		if(unit && unit->alive() && !eraCreatureSpellDamageCanceled(m,unit))
 		{
 			BattleStackAttacked bsa;
 			bsa.damageAmount = damageForTarget(targetIndex, m, unit);
+            const auto rodDamage=eraLightningRodSupplement(m,unit);
+            if(rodDamage>0)
+            {
+                // MR1 runs after ordinary corrected damage is computed, before
+                // that damage is applied. BM:V37 is visual only; BM:K is a
+                // separate raw strike, not a replacement or spell modifier.
+                BattleTriggerEffect animation;animation.battleID=stacksInjured.battleID;
+                animation.stackID=unit->unitId();animation.effect=BonusType::SPELL_DAMAGE;
+                animation.val=220;animation.additionalInfo=37;server->apply(animation);
+                BattleStackAttacked extra;extra.stackAttacked=unit->unitId();extra.attackerID=-1;
+                extra.damageAmount=rodDamage;auto extraState=unit->acquireState();
+                CStack::prepareAttacked(extra,*server->getRNG(),extraState);
+                StacksInjured raw;raw.battleID=stacksInjured.battleID;raw.stacks.push_back(extra);server->apply(raw);
+            }
             if(eraDeflectionSpell(m))
-                bsa.damageAmount = applyEraDeflection(m->battle()->battleGetStackByID(unit->unitId()),
-                    *server->getRNG(), bsa.damageAmount, [&](int strength,int chance){if(!describe)return;auto message=eraDeflectionLog(m->battle()->getBattle()->getBattleID(),strength,chance);server->apply(message);});
+            {
+                // Same source766A15 replacement wrapper as physical attacks:
+                // full block71C5A9 is checked before partial block71C710.
+                const auto * defender=m->battle()->battleGetStackByID(unit->unitId());
+                if(applyEraCrystalPhysicalBlock(defender,*server->getRNG()))
+                {
+                    bsa.damageAmount=0;
+                    BattleTriggerEffect blocked;blocked.battleID=stacksInjured.battleID;
+                    blocked.stackID=unit->unitId();blocked.effect=BonusType::GENERAL_DAMAGE_REDUCTION;
+                    blocked.val=100;blocked.additionalInfo=85;server->apply(blocked);
+                    if(describe)
+                    {
+                        BattleLogMessage message;message.battleID=stacksInjured.battleID;
+                        MetaString line;line.appendTextID("tum-era.deflection.fullBlock");message.lines.push_back(line);
+                        server->apply(message);
+                    }
+                }
+                else
+                    bsa.damageAmount = applyEraDeflection(defender,*server->getRNG(), bsa.damageAmount,
+                        [&](int strength,int chance){if(!describe)return;auto message=eraDeflectionLog(m->battle()->getBattle()->getBattleID(),strength,chance);server->apply(message);});
+            }
 			bsa.stackAttacked = unit->unitId();
 			bsa.attackerID = -1;
 			auto newState = unit->acquireState();
@@ -116,6 +175,7 @@ void Damage::apply(ServerCallback * server, const Mechanics * m, const EffectTar
 				killed += bsa.killedAmount;
 			}
 			stacksInjured.stacks.push_back(bsa);
+            if(rodDamage>0){server->apply(stacksInjured);stacksInjured.stacks.clear();}
 		}
 		targetIndex++;
 	}
@@ -145,23 +205,34 @@ SpellEffectValue Damage::getHealthChange(const Mechanics * m, const EffectTarget
 	for(auto const & t : spellTarget)
 	{
 		const battle::Unit * unit = t.unitValue;
-		if(unit && unit->alive())
+		if(unit && unit->alive() && !eraCreatureSpellDamageCanceled(m,unit))
 		{
 			BattleStackAttacked bsa;
 			bsa.damageAmount = damageForTarget(targetIndex, m, unit);
             if(eraDeflectionSpell(m))
-                bsa.damageAmount = applyEraDeflection(m->battle()->battleGetStackByID(unit->unitId()),
-                    fakeRng, bsa.damageAmount);
+            {
+                const auto * defender=m->battle()->battleGetStackByID(unit->unitId());
+                bsa.damageAmount=applyEraCrystalPhysicalBlock(defender,fakeRng) ? 0
+                    : applyEraDeflection(defender,fakeRng,bsa.damageAmount);
+            }
 			bsa.stackAttacked = unit->unitId();
 			bsa.attackerID = -1;
 			auto state = unit->acquireState();
 			int64_t before = state->getAvailableHealth();
-			CStack::prepareAttacked(bsa, fakeRng, state);
+            const auto rodDamage=eraLightningRodSupplement(m,unit);
+            if(rodDamage>0)
+            {
+                BattleStackAttacked raw;raw.damageAmount=rodDamage;
+                CStack::prepareAttacked(raw,fakeRng,state);
+            }
+            CStack::prepareAttacked(bsa, fakeRng, state);
 			int64_t after  = state->getAvailableHealth();
 			int64_t applied = before - after;
 
 			result.hpDelta -= applied;
-            if(bsa.damageAmount < 0 && era_compat::Policies::get().spellDamageInversion(
+            if(rodDamage>0)
+                result.unitsDelta += state->getCount() - unit->getCount();
+            else if(bsa.damageAmount < 0 && era_compat::Policies::get().spellDamageInversion(
                 unit->creatureId().toCreature()->getJsonKey()))
                 result.unitsDelta += state->getCount() - unit->getCount();
             else
@@ -176,6 +247,7 @@ SpellEffectValue Damage::getHealthChange(const Mechanics * m, const EffectTarget
 
 bool Damage::isReceptive(const Mechanics * m, const battle::Unit * unit) const
 {
+    if(const auto rod=era_compat::sourceLightningReceptive(*m->battle(),m->getSpellIndex(),m->casterSide,*unit))return *rod;
 	if(!UnitEffect::isReceptive(m, unit))
 		return false;
 

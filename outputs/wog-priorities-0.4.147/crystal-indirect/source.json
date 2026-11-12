@@ -1,0 +1,19 @@
+{
+  "sourceBinary": "h3era.exe",
+  "sourceSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "sourceOrder": [
+    "766A6D invokes source special damage interceptor76E71F",
+    "766AA2 invokes full block71C5A9",
+    "766AAE success stores authoritative zero damage",
+    "766AC8 otherwise invokes partial block71C710",
+    "766AE6 invokes source prepareAttacked443DB0"
+  ],
+  "nativeScope": "Same existing verified physical-wrapper replacements as native L deflection: ordinary attacks, DeathRipple, Thunderbolt, DeathStare, AcidBreathDamage and eight faction moats. Ordinary direct spell damage remains excluded. Custom source chain actor352 not active yet and requires its own source attack pipeline.",
+  "change": "Damage::apply checks B before L, announces original85 and source log; Damage::getHealthChange uses same fake-RNG order. Existing stacksAreAttacked consumes marker for indirect hits.",
+  "nativeValidation": "Pending phase3 engine build and source indirect hit controls; prior phase2 Sapphire32-round controls cover ordinary physical hits only.",
+  "nativeDirectAdapters": {
+    "ATT_DISRUPT": "EraAcidAttackRuntime.h:source44124C direct443DB0, native shared B-before-L wrapper",
+    "ATT_THUNDER": "EraThunderAttackRuntime.h:source441048 direct443DB0 after LightningBolt accuracy/modification, native shared B-before-L wrapper",
+    "FIRE_SHIELD": "BattleActionProcessor.cpp:source direct443DB0 wrapper; sourceBlock now selects direct mode avoiding native magicalward adjustment"
+  }
+}

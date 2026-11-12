@@ -1,0 +1,872 @@
+{
+  "passed": true,
+  "engineSha256": "a318c1f793c48bcea889b7a80fd2a7c167a86d8ad7a63c6712b9ddbc75ea1896",
+  "origin": "http://127.0.0.1:8801",
+  "sourceId": 258,
+  "script": "work/browser-tests/wog-faerie-casting-native-e2e.mjs",
+  "scriptSha256": "763879a2074ce35cf0d4ead0c09ba28ba3725e6d442a1e9449b939aa6aa778af",
+  "sourceArchiveSha256": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+  "method": "Paired identical-seed real native fixtures cast vs Defend; retreat and serialize real global minstd state in normal save. Independent host libc++ uniform_int_distribution(1,100) prediction includes rejection sampling; raw engine advances must not be mistaken for distribution calls. Fixture controls are FS overlays only and no runtime diagnostics enter game bundle.",
+  "sourceContract": {
+    "kind1Singles": "15/16/17 target probability>0; no resistance lottery",
+    "areas": "20 excludes primary;20/21/23 radius1;22 radius2;each living area unit consumes1..100 including probability0/100",
+    "chain": "19 five sequential hops at mastery2; selects after each hop, friendly targets allowed, current-side hero damage, no shot4 friendly-stop;10candidate calls with this5-unit layout",
+    "power": "10*currentCount+1;counts1/4/7 checked",
+    "primary": "living primary even location spell;negative singles enemy-only;neutral area/chain friendly primary eligible"
+  },
+  "cases": {
+    "15": {
+      "control": {
+        "id": 15,
+        "cast": false,
+        "seed": 62612,
+        "beforeRng": {
+          "offset": 120228,
+          "value": "258926292",
+          "index": 1001
+        },
+        "afterRng": {
+          "offset": 120145,
+          "value": "276215592",
+          "index": 1002
+        },
+        "changes": {
+          "core:ogre": 0,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "tum-era:eraCreature258": 0,
+          "goonk:bubu": 0
+        },
+        "originalCharges": 10,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 60,
+        "primaryHex": 94,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "cast": {
+        "id": 15,
+        "cast": true,
+        "seed": 62612,
+        "beforeRng": {
+          "offset": 120228,
+          "value": "258926292",
+          "index": 1001
+        },
+        "afterRng": {
+          "offset": 120145,
+          "value": "276215592",
+          "index": 1002
+        },
+        "changes": {
+          "core:ogre": -130,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "tum-era:eraCreature258": 0,
+          "goonk:bubu": 0
+        },
+        "originalCharges": 10,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 59,
+        "primaryHex": 94,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "expectedResistanceDraws": 0,
+      "uniformRolls": [],
+      "actualMinstdAdvances": 0
+    },
+    "16": {
+      "control": {
+        "id": 16,
+        "cast": false,
+        "seed": 62625,
+        "beforeRng": {
+          "offset": 120428,
+          "value": "1584038452",
+          "index": 1031
+        },
+        "afterRng": {
+          "offset": 120346,
+          "value": "1964865057",
+          "index": 1032
+        },
+        "changes": {
+          "core:ogre": 0,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "tum-era:eraCreature258": 0,
+          "goonk:bubu": 0
+        },
+        "originalCharges": 10,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 60,
+        "primaryHex": 94,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "cast": {
+        "id": 16,
+        "cast": true,
+        "seed": 62625,
+        "beforeRng": {
+          "offset": 120428,
+          "value": "1584038452",
+          "index": 1031
+        },
+        "afterRng": {
+          "offset": 120346,
+          "value": "1964865057",
+          "index": 1032
+        },
+        "changes": {
+          "core:ogre": -240,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "tum-era:eraCreature258": 0,
+          "goonk:bubu": 0
+        },
+        "originalCharges": 10,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 59,
+        "primaryHex": 94,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "expectedResistanceDraws": 0,
+      "uniformRolls": [],
+      "actualMinstdAdvances": 0
+    },
+    "17": {
+      "control": {
+        "id": 17,
+        "cast": false,
+        "seed": 62638,
+        "beforeRng": {
+          "offset": 120223,
+          "value": "1271176987",
+          "index": 1012
+        },
+        "afterRng": {
+          "offset": 120140,
+          "value": "934093746",
+          "index": 1013
+        },
+        "changes": {
+          "core:ogre": 0,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "tum-era:eraCreature258": 0,
+          "goonk:bubu": 0
+        },
+        "originalCharges": 10,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 60,
+        "primaryHex": 94,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "cast": {
+        "id": 17,
+        "cast": true,
+        "seed": 62638,
+        "beforeRng": {
+          "offset": 120223,
+          "value": "1271176987",
+          "index": 1012
+        },
+        "afterRng": {
+          "offset": 120140,
+          "value": "934093746",
+          "index": 1013
+        },
+        "changes": {
+          "core:ogre": -295,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "tum-era:eraCreature258": 0,
+          "goonk:bubu": 0
+        },
+        "originalCharges": 10,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 59,
+        "primaryHex": 94,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "expectedResistanceDraws": 0,
+      "uniformRolls": [],
+      "actualMinstdAdvances": 0
+    },
+    "20": {
+      "control": {
+        "id": 20,
+        "cast": false,
+        "seed": 62677,
+        "beforeRng": {
+          "offset": 120371,
+          "value": "635150812",
+          "index": 977
+        },
+        "afterRng": {
+          "offset": 120288,
+          "value": "1888301480",
+          "index": 978
+        },
+        "changes": {
+          "core:ogre": 0,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "tum-era:eraCreature258": 0,
+          "goonk:bubu": 0
+        },
+        "originalCharges": 10,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 60,
+        "primaryHex": 94,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "cast": {
+        "id": 20,
+        "cast": true,
+        "seed": 62677,
+        "beforeRng": {
+          "offset": 120371,
+          "value": "635150812",
+          "index": 977
+        },
+        "afterRng": {
+          "offset": 120288,
+          "value": "1214774467",
+          "index": 980
+        },
+        "changes": {
+          "core:ogre": 0,
+          "core:skeleton": -140,
+          "core:cyclopKing": 0,
+          "tum-era:eraCreature258": 0,
+          "goonk:bubu": -140
+        },
+        "originalCharges": 10,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 59,
+        "primaryHex": 94,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "expectedResistanceDraws": 2,
+      "uniformRolls": [
+        37,
+        67
+      ],
+      "actualMinstdAdvances": 2
+    },
+    "19": {
+      "control": {
+        "id": 19,
+        "cast": false,
+        "seed": 62664,
+        "beforeRng": {
+          "offset": 120287,
+          "value": "313761203",
+          "index": 1016
+        },
+        "afterRng": {
+          "offset": 120204,
+          "value": "1512351369",
+          "index": 1017
+        },
+        "changes": {
+          "core:ogre": 0,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "tum-era:eraCreature258": 0,
+          "goonk:bubu": 0
+        },
+        "originalCharges": 10,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 60,
+        "primaryHex": 94,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "cast": {
+        "id": 19,
+        "cast": true,
+        "seed": 62664,
+        "beforeRng": {
+          "offset": 120287,
+          "value": "313761203",
+          "index": 1016
+        },
+        "afterRng": {
+          "offset": 120204,
+          "value": "122843175",
+          "index": 1028
+        },
+        "changes": {
+          "core:ogre": -490,
+          "core:skeleton": -122,
+          "core:cyclopKing": -61,
+          "tum-era:eraCreature258": 7,
+          "goonk:bubu": -245
+        },
+        "originalCharges": 10,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 59,
+        "primaryHex": 94,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "expectedResistanceDraws": 10,
+      "actualMinstdAdvances": 11,
+      "uniformRolls": [
+        81,
+        14,
+        41,
+        68,
+        100,
+        77,
+        33,
+        62,
+        96,
+        39
+      ]
+    },
+    "21": {
+      "control": {
+        "id": 21,
+        "cast": false,
+        "seed": 62690,
+        "beforeRng": {
+          "offset": 120316,
+          "value": "917082042",
+          "index": 1026
+        },
+        "afterRng": {
+          "offset": 120233,
+          "value": "239350124",
+          "index": 1027
+        },
+        "changes": {
+          "core:ogre": 0,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "tum-era:eraCreature258": 0,
+          "goonk:bubu": 0
+        },
+        "originalCharges": 10,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 60,
+        "primaryHex": 94,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "cast": {
+        "id": 21,
+        "cast": true,
+        "seed": 62690,
+        "beforeRng": {
+          "offset": 120316,
+          "value": "917082042",
+          "index": 1026
+        },
+        "afterRng": {
+          "offset": 120233,
+          "value": "1562878945",
+          "index": 1031
+        },
+        "changes": {
+          "core:ogre": -140,
+          "core:skeleton": -140,
+          "core:cyclopKing": 0,
+          "tum-era:eraCreature258": 0,
+          "goonk:bubu": -140
+        },
+        "originalCharges": 10,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 59,
+        "primaryHex": 94,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "expectedResistanceDraws": 3,
+      "actualMinstdAdvances": 4,
+      "uniformRolls": [
+        88,
+        4,
+        97
+      ]
+    },
+    "22": {
+      "control": {
+        "id": 22,
+        "cast": false,
+        "seed": 62703,
+        "beforeRng": {
+          "offset": 120189,
+          "value": "5706047",
+          "index": 968
+        },
+        "afterRng": {
+          "offset": 120107,
+          "value": "558687921",
+          "index": 969
+        },
+        "changes": {
+          "core:ogre": 0,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "tum-era:eraCreature258": 0,
+          "goonk:bubu": 0
+        },
+        "originalCharges": 10,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 60,
+        "primaryHex": 94,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "cast": {
+        "id": 22,
+        "cast": true,
+        "seed": 62703,
+        "beforeRng": {
+          "offset": 120189,
+          "value": "5706047",
+          "index": 968
+        },
+        "afterRng": {
+          "offset": 120107,
+          "value": "1618042535",
+          "index": 974
+        },
+        "changes": {
+          "core:ogre": -150,
+          "core:skeleton": -150,
+          "core:cyclopKing": 0,
+          "tum-era:eraCreature258": 0,
+          "goonk:bubu": -150
+        },
+        "originalCharges": 10,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 59,
+        "primaryHex": 94,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "expectedResistanceDraws": 3,
+      "actualMinstdAdvances": 5,
+      "uniformRolls": [
+        26,
+        79,
+        39
+      ]
+    },
+    "23": {
+      "control": {
+        "id": 23,
+        "cast": false,
+        "seed": 62716,
+        "beforeRng": {
+          "offset": 120229,
+          "value": "859579196",
+          "index": 985
+        },
+        "afterRng": {
+          "offset": 120146,
+          "value": "1215826429",
+          "index": 986
+        },
+        "changes": {
+          "core:ogre": 0,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "tum-era:eraCreature258": 0,
+          "goonk:bubu": 0
+        },
+        "originalCharges": 10,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 60,
+        "primaryHex": 94,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "cast": {
+        "id": 23,
+        "cast": true,
+        "seed": 62716,
+        "beforeRng": {
+          "offset": 120229,
+          "value": "859579196",
+          "index": 985
+        },
+        "afterRng": {
+          "offset": 120146,
+          "value": "1488039764",
+          "index": 989
+        },
+        "changes": {
+          "core:ogre": -325,
+          "core:skeleton": -325,
+          "core:cyclopKing": 0,
+          "tum-era:eraCreature258": 0,
+          "goonk:bubu": -325
+        },
+        "originalCharges": 10,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 59,
+        "primaryHex": 94,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "expectedResistanceDraws": 3,
+      "actualMinstdAdvances": 3,
+      "uniformRolls": [
+        20,
+        84,
+        84
+      ]
+    }
+  },
+  "additionalControls": {
+    "portraitSecondaryImmunity": {
+      "21": {
+        "control": {
+          "id": 21,
+          "cast": false,
+          "seed": 62690,
+          "beforeRng": {
+            "offset": 120316,
+            "value": "917082042",
+            "index": 1026
+          },
+          "afterRng": {
+            "offset": 120233,
+            "value": "239350124",
+            "index": 1027
+          },
+          "changes": {
+            "core:ogre": 0,
+            "core:skeleton": 0,
+            "core:cyclopKing": 0,
+            "tum-era:eraCreature258": 0,
+            "goonk:bubu": 0
+          },
+          "originalCharges": 10,
+          "ownedAdditionalCharges": 50,
+          "remainingCasts": 60,
+          "primaryHex": 94,
+          "secondaryResistance": 100,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        "cast": {
+          "id": 21,
+          "cast": true,
+          "seed": 62690,
+          "beforeRng": {
+            "offset": 120316,
+            "value": "917082042",
+            "index": 1026
+          },
+          "afterRng": {
+            "offset": 120233,
+            "value": "1562878945",
+            "index": 1031
+          },
+          "changes": {
+            "core:ogre": -140,
+            "core:skeleton": 0,
+            "core:cyclopKing": 0,
+            "tum-era:eraCreature258": 0,
+            "goonk:bubu": -140
+          },
+          "originalCharges": 10,
+          "ownedAdditionalCharges": 50,
+          "remainingCasts": 59,
+          "primaryHex": 94,
+          "secondaryResistance": 100,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        "expectedResistanceDraws": 3,
+        "actualMinstdAdvances": 4,
+        "uniformRolls": [
+          88,
+          4,
+          97
+        ]
+      }
+    },
+    "ipadChain": {
+      "19": {
+        "control": {
+          "id": 19,
+          "cast": false,
+          "seed": 62664,
+          "beforeRng": {
+            "offset": 120287,
+            "value": "313761203",
+            "index": 1016
+          },
+          "afterRng": {
+            "offset": 120204,
+            "value": "1512351369",
+            "index": 1017
+          },
+          "changes": {
+            "core:ogre": 0,
+            "core:skeleton": 0,
+            "core:cyclopKing": 0,
+            "tum-era:eraCreature258": 0,
+            "goonk:bubu": 0
+          },
+          "originalCharges": 10,
+          "ownedAdditionalCharges": 50,
+          "remainingCasts": 60,
+          "primaryHex": 94,
+          "secondaryResistance": 0,
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          }
+        },
+        "cast": {
+          "id": 19,
+          "cast": true,
+          "seed": 62664,
+          "beforeRng": {
+            "offset": 120287,
+            "value": "313761203",
+            "index": 1016
+          },
+          "afterRng": {
+            "offset": 120204,
+            "value": "122843175",
+            "index": 1028
+          },
+          "changes": {
+            "core:ogre": -490,
+            "core:skeleton": -122,
+            "core:cyclopKing": -61,
+            "tum-era:eraCreature258": 7,
+            "goonk:bubu": -245
+          },
+          "originalCharges": 10,
+          "ownedAdditionalCharges": 50,
+          "remainingCasts": 59,
+          "primaryHex": 94,
+          "secondaryResistance": 0,
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          }
+        },
+        "expectedResistanceDraws": 10,
+        "actualMinstdAdvances": 11,
+        "uniformRolls": [
+          81,
+          14,
+          41,
+          68,
+          100,
+          77,
+          33,
+          62,
+          96,
+          39
+        ]
+      }
+    },
+    "powerCount4": {
+      "15": {
+        "control": {
+          "id": 15,
+          "cast": false,
+          "seed": 62612,
+          "sourceCount": 4,
+          "beforeRng": {
+            "offset": 120228,
+            "value": "258926292",
+            "index": 1001
+          },
+          "afterRng": {
+            "offset": 120145,
+            "value": "276215592",
+            "index": 1002
+          },
+          "changes": {
+            "core:ogre": 0,
+            "core:skeleton": 0,
+            "core:cyclopKing": 0,
+            "tum-era:eraCreature258": 0,
+            "goonk:bubu": 0
+          },
+          "originalCharges": 10,
+          "ownedAdditionalCharges": 50,
+          "remainingCasts": 60,
+          "primaryHex": 94,
+          "secondaryResistance": 0,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        "cast": {
+          "id": 15,
+          "cast": true,
+          "seed": 62612,
+          "sourceCount": 4,
+          "beforeRng": {
+            "offset": 120228,
+            "value": "258926292",
+            "index": 1001
+          },
+          "afterRng": {
+            "offset": 120145,
+            "value": "276215592",
+            "index": 1002
+          },
+          "changes": {
+            "core:ogre": -430,
+            "core:skeleton": 0,
+            "core:cyclopKing": 0,
+            "tum-era:eraCreature258": 0,
+            "goonk:bubu": 0
+          },
+          "originalCharges": 10,
+          "ownedAdditionalCharges": 50,
+          "remainingCasts": 59,
+          "primaryHex": 94,
+          "secondaryResistance": 0,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        "expectedResistanceDraws": 0,
+        "actualMinstdAdvances": 0,
+        "uniformRolls": []
+      }
+    },
+    "powerCount7": {
+      "15": {
+        "control": {
+          "id": 15,
+          "cast": false,
+          "seed": 62612,
+          "sourceCount": 7,
+          "beforeRng": {
+            "offset": 120228,
+            "value": "258926292",
+            "index": 1001
+          },
+          "afterRng": {
+            "offset": 120145,
+            "value": "276215592",
+            "index": 1002
+          },
+          "changes": {
+            "core:ogre": 0,
+            "core:skeleton": 0,
+            "core:cyclopKing": 0,
+            "tum-era:eraCreature258": 0,
+            "goonk:bubu": 0
+          },
+          "originalCharges": 10,
+          "ownedAdditionalCharges": 50,
+          "remainingCasts": 60,
+          "primaryHex": 94,
+          "secondaryResistance": 0,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        "cast": {
+          "id": 15,
+          "cast": true,
+          "seed": 62612,
+          "sourceCount": 7,
+          "beforeRng": {
+            "offset": 120228,
+            "value": "258926292",
+            "index": 1001
+          },
+          "afterRng": {
+            "offset": 120145,
+            "value": "276215592",
+            "index": 1002
+          },
+          "changes": {
+            "core:ogre": -730,
+            "core:skeleton": 0,
+            "core:cyclopKing": 0,
+            "tum-era:eraCreature258": 0,
+            "goonk:bubu": 0
+          },
+          "originalCharges": 10,
+          "ownedAdditionalCharges": 50,
+          "remainingCasts": 59,
+          "primaryHex": 94,
+          "secondaryResistance": 0,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        "expectedResistanceDraws": 0,
+        "actualMinstdAdvances": 0,
+        "uniformRolls": []
+      }
+    }
+  },
+  "screenshots": [
+    "outputs/wog-priorities-0.4.147/faerie-casting-source/faerie-19-1024x768.png",
+    "outputs/wog-priorities-0.4.147/faerie-casting-source/faerie-19-844x390.png",
+    "outputs/wog-priorities-0.4.147/faerie-casting-source/faerie-21-390x844.png",
+    "outputs/wog-priorities-0.4.147/faerie-casting-source/faerie-21-844x390.png"
+  ],
+  "limitations": [
+    "Core134 original Faerie is not admitted by this258-only correction; separate validation remains on source-gap backlog.",
+    "Screenshots capture final stable combat layout, not an assertion that every animation frame has been pixel-diff tested."
+  ]
+}

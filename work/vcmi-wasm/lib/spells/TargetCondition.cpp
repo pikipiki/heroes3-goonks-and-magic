@@ -11,6 +11,8 @@
 
 #include "TargetCondition.h"
 #include "../era/EraBridgePolicies.h"
+#include "../era/EraHypnotizeHealth.h"
+#include "../era/EraSourceConstruct.h"
 #include "../CCreatureHandler.h"
 
 #include "../GameConstants.h"
@@ -92,6 +94,19 @@ private:
 	CSelector sel;
 	si32 minVal = std::numeric_limits<si32>::min();
 	si32 maxVal = std::numeric_limits<si32>::max();
+};
+
+// Source get_repair_constructs tables.cpp2300..2375. Membership never
+// implies native MECHANICAL, mind immunity, undead status or morale rules.
+class SourceRepairTargetCondition : public TargetConditionItemBase
+{
+protected:
+    bool check(const Mechanics * m, const battle::Unit * target) const override
+    {
+        return target && target->isValidTarget(true) &&
+            ::era_bridge::sourceRepairTarget(m->ownerMatches(target,true),
+                isEraSourceConstruct(target),target->getCount(),target->unitBaseAmount());
+    }
 };
 
 class ResistanceCondition : public TargetConditionItemBase
@@ -274,7 +289,15 @@ protected:
 	{
 		//todo: maybe do not resist on passive cast
 		//TODO: what with other creatures casting hypnotize, Faerie Dragons style?
-		int64_t subjectHealth = target->getAvailableHealth();
+        // Original5A86B6 is absolute even with Orb93. The same condition
+        // must hold during the253 preflight, not only its mass resistance loop.
+        if(m->isEraArtifactMassHypnotize() && target->hasBonus(
+            Selector::source(BonusSource::SPELL_EFFECT,BonusSourceID(SpellID(36)))))return false;
+		// Original5A86C0..CC compares count*per-creature HP. Damage to the
+        // first creature does not lower this source253 opening threshold.
+        int64_t subjectHealth = m->isEraArtifactMassHypnotize()
+            ? ::era_bridge::sourceHypnotizeHealth(target->getCount(),target->getMaxHealth())
+            : target->getAvailableHealth();
 		//apply 'damage' bonus for hypnotize, including hero specialty
 		auto maxHealth = m->applySpellBonus(m->getEffectValue(), target);
 		return subjectHealth <= maxHealth;
@@ -411,6 +434,10 @@ public:
 			else
 				logMod->error("Invalid spell %s in spell target condition.", identifier);
 		}
+        else if(type == "sourceRepairTarget" && identifier == "eligible")
+        {
+            return std::make_shared<SourceRepairTargetCondition>();
+        }
 		else if(type == "healthValueSpecial")
 		{
 			return  std::make_shared<HealthValueCondition>();

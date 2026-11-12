@@ -1,0 +1,567 @@
+{
+  "eraCreature351": {
+    "name": {
+      "singular": "Lady Spider",
+      "plural": "Lady Spiders"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 1,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 2000
+    },
+    "fightValue": 2420,
+    "aiValue": 3388,
+    "growth": 1,
+    "hitPoints": 150,
+    "speed": 9,
+    "attack": 17,
+    "defense": 15,
+    "damage": {
+      "min": 25,
+      "max": 45
+    },
+    "advMapAmount": {
+      "min": 4,
+      "max": 10
+    },
+    "abilities": {
+      "sourceSharpshooter": {
+        "type": "NO_DISTANCE_PENALTY",
+        "val": 1
+      },
+      "amethyst_flag_2": {
+        "type": "SHOOTER",
+        "val": 0
+      },
+      "amethyst_flag_11": {
+        "type": "NO_WALL_PENALTY",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "missile": {
+        "offset": {
+          "upperX": 25,
+          "upperY": -105,
+          "middleX": 38,
+          "middleY": -98,
+          "lowerX": 16,
+          "lowerY": -92
+        },
+        "frameAngles": [
+          90,
+          72,
+          45,
+          27,
+          0,
+          -27,
+          -45,
+          -72,
+          -90,
+          0,
+          0,
+          0
+        ],
+        "attackClimaxFrame": 9,
+        "ray": [
+          {
+            "start": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "end": [
+              255,
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "end": [
+              255,
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "end": [
+              255,
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "end": [
+              255,
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "start": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "end": [
+              255,
+              255,
+              255,
+              255
+            ]
+          }
+        ]
+      },
+      "animation": "tum-era/creatures/351/CR351",
+      "map": "tum-era/creatures/351/AVWCR351.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/351/small",
+      "iconLarge": "tum-era/creatures/351/large"
+    },
+    "doubleWide": true,
+    "level": 7,
+    "faction": "core:dungeon",
+    "upgrades": [
+      "tum-era:eraCreature352"
+    ],
+    "shots": 20,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 0,
+          "valueType": "INDEPENDENT_MIN"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "Rayon blanc, sans pénalité de distance ni de muraille. Avec l’expérience, peut ralentir la cible après l’attaque.",
+    "sound": {
+      "attack": "tum-era/creatures/351/S351ATTK.wav",
+      "defend": "tum-era/creatures/351/S351DFND.wav",
+      "killed": "tum-era/creatures/351/S351KILL.wav",
+      "move": "tum-era/creatures/351/S351MOVE.wav",
+      "wince": "tum-era/creatures/351/S351WNCE.wav",
+      "shoot": "tum-era/creatures/351/S351SHOT.wav"
+    }
+  },
+  "eraCreature352": {
+    "name": {
+      "singular": "Priestess Spider",
+      "plural": "Priestess Spiders"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 2,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 3200
+    },
+    "fightValue": 3228,
+    "aiValue": 4696,
+    "growth": 1,
+    "hitPoints": 230,
+    "speed": 11,
+    "attack": 19,
+    "defense": 17,
+    "damage": {
+      "min": 30,
+      "max": 50
+    },
+    "advMapAmount": {
+      "min": 3,
+      "max": 8
+    },
+    "abilities": {
+      "amethyst_flag_2": {
+        "type": "SHOOTER",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "doubleWide": true,
+    "level": 7,
+    "faction": "core:dungeon",
+    "shots": 25,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 0,
+          "valueType": "INDEPENDENT_MIN"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NO_DISTANCE_PENALTY"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "Chaîne de quatre cibles au maximum, sans tenir compte de l’attaque, de la défense ni de la distance. Chaque saut divise les dégâts par deux et s’arrête au premier allié rencontré. Avec l’expérience, peut annuler Hâte sans ralentir davantage.",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "missile": {
+        "offset": {
+          "upperX": 28,
+          "upperY": -107,
+          "middleX": 43,
+          "middleY": -99,
+          "lowerX": 18,
+          "lowerY": -92
+        },
+        "frameAngles": [
+          90,
+          72,
+          45,
+          27,
+          0,
+          -27,
+          -45,
+          -72,
+          -90,
+          0,
+          0,
+          0
+        ],
+        "attackClimaxFrame": 9,
+        "projectile": "tum-era/creatures/352/SHOT352.def"
+      },
+      "animation": "tum-era/creatures/352/CR352",
+      "map": "tum-era/creatures/352/AVWCR352.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/352/small",
+      "iconLarge": "tum-era/creatures/352/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/352/S352ATTK.wav",
+      "defend": "tum-era/creatures/352/S352DFND.wav",
+      "killed": "tum-era/creatures/352/S352KILL.wav",
+      "move": "tum-era/creatures/352/S352MOVE.wav",
+      "wince": "tum-era/creatures/352/S352WNCE.wav",
+      "shoot": "tum-era/creatures/352/S352SHOT.wav"
+    }
+  }
+}

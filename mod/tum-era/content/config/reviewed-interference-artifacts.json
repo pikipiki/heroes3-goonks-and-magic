@@ -1,0 +1,70 @@
+{
+  "artifact269": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 5000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Charm of Eclipse",
+      "description": "{Charm of Eclipse}\n\nThis artifact reduces the Power skill of enemy hero by 10% during combat.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/269/icon.png",
+      "map": "tum-era/artifacts/269/map.def",
+      "scenarioBonus": "tum-era/artifacts/269/scenario.png"
+    },
+    "bonuses": {}
+  },
+  "artifact270": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 5000,
+    "slot": [
+      "LEFT_RING",
+      "RIGHT_RING"
+    ],
+    "text": {
+      "name": "Seal of Sunset",
+      "description": "{Seal of Sunset}\n\nThis artifact reduces the Power skill of enemy hero by 10% during combat.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/270/icon.png",
+      "map": "tum-era/artifacts/270/map.def",
+      "scenarioBonus": "tum-era/artifacts/270/scenario.png"
+    },
+    "bonuses": {}
+  },
+  "artifact271": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 10000,
+    "slot": [
+      "TORSO"
+    ],
+    "text": {
+      "name": "Plate of Dying Light",
+      "description": "{Plate of Dying Light}\n\nWorn on a torso, this item reduces the Power skill of enemy hero by 25% during combat.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/271/icon.png",
+      "map": "tum-era/artifacts/271/map.def",
+      "scenarioBonus": "tum-era/artifacts/271/scenario.png"
+    },
+    "bonuses": {}
+  }
+}

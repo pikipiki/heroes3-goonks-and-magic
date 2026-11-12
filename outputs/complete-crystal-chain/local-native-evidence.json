@@ -1,0 +1,49 @@
+{
+  "method": "Local offline LLVM objdump; no target execution, no external binary upload",
+  "binary": "era-project-eng/h3era.exe",
+  "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+  "ranges": [
+    {
+      "name": "regeneration",
+      "start": "0x71eaa6",
+      "endExclusive": "0x71eba7",
+      "assemblySHA256": "2f3e6f3fca873a7e76a3c0ab41d5ff3cc65dda18ac7e46fca42b92e516211e71"
+    },
+    {
+      "name": "regeneration-callsite",
+      "start": "0x75deca",
+      "endExclusive": "0x75df1f",
+      "assemblySHA256": "7a5352eba4ff4c32f164b13d5bb2601ccb772a74bcf81c841b246d183ae2932c"
+    },
+    {
+      "name": "full-block",
+      "start": "0x71c5a9",
+      "endExclusive": "0x71c710",
+      "assemblySHA256": "cf3d28269bdcc5ad5ba255b2bfd4b423f5c96998c95f0cff47191bcc40a3be58"
+    },
+    {
+      "name": "full-block-callsite",
+      "start": "0x766a85",
+      "endExclusive": "0x766aed",
+      "assemblySHA256": "531bffc0001804433d8856d986d37f938d45f4b8943c57d9623c005939c7def1"
+    },
+    {
+      "name": "numeric-modifiers",
+      "start": "0x71c0ad",
+      "endExclusive": "0x71c140",
+      "assemblySHA256": "bcd1c85b88fd2ad7547ac3f37e76f3b68bf4597afa2a5e7ae9d6387de562d90c"
+    }
+  ],
+  "observed": {
+    "regeneration": "r modifier signed chance; rank unsigned HP; RNG1..100 success<=chance; caps missing first-creature HP",
+    "fullBlock": "B= numeric chance with +0.5 truncation; RNG only nonzero chance; success<=chance; complete block before L partial deflection",
+    "defaultBlockChance": "20 only source creature196, otherwise0; scoped actor268 default0",
+    "visual": "SuccessfulB callsoriginalanimation85=ZMGC01.DEF. SecondsourcefieldMGblock2 is IFC20 Immersion forcefeedbackeffect (not audio); originalabsentdevicepath returns0 and DEFcontinues."
+  },
+  "limitations": [
+    "Static observations, not source executable runtime tests",
+    "RNG generator algorithms differ across VCMI and ERA; consumption and probability predicates ported",
+    "Native smoke controls must pass before shipping activated crystal chain"
+  ]
+}

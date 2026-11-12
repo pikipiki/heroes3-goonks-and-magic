@@ -1,6 +1,6 @@
 # Heroes Goonk
 
-Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.3.4, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
+Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.155, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
 
 ## Jouer sur ce Mac
 
@@ -15,7 +15,7 @@ L’interface mobile utilise les véritables commandes du moteur :
 - **Combat** : glisser/pincer et utiliser la petite vue d’ensemble. **Cibles** présente les unités et la magie ; choisir une cible puis **Confirmer**. Attendre et Défendre sont accessibles directement.
 - **Plus** : recentrer, sauvegarder et terminer le tour après confirmation. **Charger une partie** reprend la sauvegarde locale.
 
-En portrait, les commandes sont en bas et les panneaux occupent la largeur ; en paysage, les commandes passent à droite. Les dialogues secondaires natifs, notamment le livre des sorts, restent consultables dans la scène avec zoom/déplacement et Valider/Retour.
+En portrait, les commandes sont en bas et les panneaux occupent la largeur ; en paysage, les commandes passent à droite. Les dialogues secondaires natifs restent consultables dans la scène avec zoom/déplacement et Valider/Retour.
 
 ## Menu, son et codes de triche
 
@@ -641,3 +641,16 @@ Ce lot poursuit les sept chantiers demandés, en conservant désactivés les eff
 Les essais des spécialistes couvrent les formes de base et évoluées à deux niveaux, ainsi qu’un témoin non spécialisé. Les six résultats de nécromancie, les coûts des deux étapes au Fort des collines, les sept nouveaux artefacts et les neuf banques sont contrôlés dans le vrai moteur. Les bannières, la Tour d’émeraude et leur sauvegarde/reprise sont rejouées. La fiche des spécialistes est contrôlée en français sur sept tailles dans Chromium et WebKit, avec maintien des éléments lors des mises à jour ; le bouton Retour français de l’en-tête est corrigé pour ne pas déborder.
 
 Résultats et limites : `outputs/wog-priorities-0.4.145/validation.json` et `remaining-source.json`. Les avertissements hérités des mods, notamment les doublons de données et vidéos de taverne manquantes, ne sont pas assimilés à une validation exhaustive de toutes les combinaisons ERA.
+
+
+### Port WoG/TUM et cartes jouables — 0.4.155
+
+Ce point vérifié active 96 artefacts source, 44 identités de créatures ERA et 267 profils d’expérience. La chaîne Topaze → Améthyste → Rubis → Émeraude → Saphir est complète, avec paiements au Fort, revenus quotidiens et effets de combat contrôlés. Les spécialistes des machines conservent leurs règles originales. L’Anneau du regard du serpent hypnotise les troupes admissibles pendant 50 tours jouables ; ses seuils utilisent la maîtrise réelle du héros et le calcul 32 bits original, avec contrôles des immunités et du côté porteur. Seize des dix-huit acteurs des huitièmes familles sont validés ; le recrutement global reste désactivé tant que le Conflux 355/356 n’est pas terminé.
+
+Les deux nouvelles cartes **Goonks — Trésors de WoG** et sa variante à deux joueurs intègrent chacune quatorze banques par royaume et deux Forts des collines. Les accès, empreintes et chemins depuis les villes ont été vérifiés ; les objectifs fonctionnels existants sont conservés. Choisir ces cartes et commencer une nouvelle partie pour disposer de leurs lieux. Les anciennes sauvegardes gardent leur carte.
+
+Atma conserve les ajustements lors des gains de caractéristiques, des transferts et des sauvegardes. **Héros → Rééquilibrer** est une action explicite. Les artefacts d’interférence affichent la puissance originale puis effective dans le grimoire. Le Bouclier cramoisi utilise son identité WoG existante et rend la riposte originale contre les troupes qui la bloquent. Les listes de sorts restent lisibles sur petit téléphone en portrait et paysage ; les mises à jour identiques préservent les éléments et le défilement.
+
+La règle demandée pour le port est appliquée : comportement vérifiable reproduit, valeurs indéfinies remplacées par une valeur stable documentée. Le second passage non défini du tir en chaîne 352 utilise zéro. L’initialisation des objets Atma présents dès le départ est une adaptation explicite, faute de preuve du cycle d’équipement Win32 initial. Les détails et les limites figurent dans `outputs/wog-priorities-0.4.147/validation.json` et dans les revues par fonctionnalité. Le nom 147 désigne le début de cette série de preuves ; chaque rapport garde l’empreinte du moteur effectivement testé.
+
+Ce point ne revendique pas une compatibilité ERA complète : quatorze artefacts restent désactivés, les dépendances du Conflux et les écarts de combat déjà identifiés restent en cours. Les scripts ERM sont inventoriés ; aucun interpréteur arbitraire de mémoire Windows n’est ajouté.

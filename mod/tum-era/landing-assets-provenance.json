@@ -35,6 +35,16 @@
       "melee": {
         "animation": "tum-era/hit-effects/Burst25.def"
       }
+    },
+    "tum-era:eraCreature267": {
+      "melee": {
+        "animation": "tum-era/hit-effects/Burst43.def"
+      }
+    },
+    "tum-era:eraCreature268": {
+      "melee": {
+        "animation": "tum-era/hit-effects/Burst43.def"
+      }
     }
   },
   "assets": [
@@ -82,6 +92,11 @@
       "file": "content/Sounds/tum-era/hit-effects/DEATHCLS.wav",
       "sha256": "8cb1be6eead5294981957cf4114bd9ae91769dceea5ad6e949afc4bef8a89146",
       "bytes": 15288
+    },
+    {
+      "file": "content/Sprites/tum-era/hit-effects/Burst43.def",
+      "sha256": "39def8e0f1b063a77ade118972890e1fc14f148033f4113c7c39a0ba93e0df35",
+      "bytes": 3672
     }
   ],
   "requiresNativeLandingEffectAdapter": true,

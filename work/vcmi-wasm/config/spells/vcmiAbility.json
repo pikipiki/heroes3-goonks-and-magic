@@ -41,6 +41,7 @@
 		},
 		"targetCondition" : {
 			"noneOf" : {
+				"bonus.ERA_SOURCE_INANIMATE" : "absolute",
 				"bonus.NON_LIVING" : "absolute",
 				"bonus.MECHANICAL" : "absolute",
 				"bonus.SIEGE_WEAPON" : "absolute",

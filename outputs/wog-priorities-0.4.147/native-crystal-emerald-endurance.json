@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "actor": "tum-era:eraCreature267",
+  "distinctNativeActivations": 32,
+  "rank": 10,
+  "maximumHealth": 1275,
+  "firstCreatureHealthAtEachActivation": 1275,
+  "fullBlockNotifications": 0,
+  "source": "Live native browser assertions; see tool stdout PASS native R10 XP/regeneration/fullblock tum-era:eraCreature267",
+  "limitation": "Original aggregate test report could not be written because the disk became full; assertions had completed successfully. Sapphire rerun separately.",
+  "validatedEngineSHA256": "103c072c49b24c36ea41284775c495c3307d40fb522f5eaf18d1f15b206cedd6"
+}

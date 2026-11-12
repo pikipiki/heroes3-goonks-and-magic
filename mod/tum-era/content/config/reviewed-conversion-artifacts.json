@@ -1,0 +1,130 @@
+{
+  "artifact202": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 10000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Crossbow",
+      "description": "{Crossbow}\n\nWhen equipped, the Crossbow upgrades your Archers, Marksmen to Crossbowmen and Cavaliers to Arche Rider, and provides you with 10 additional shots.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/202/icon.png",
+      "map": "tum-era/artifacts/202/map.def",
+      "scenarioBonus": "tum-era/artifacts/202/scenario.png"
+    },
+    "bonuses": {
+      "Shots": {
+        "type": "SHOTS",
+        "val": 10
+      }
+    }
+  },
+  "artifact273": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 25000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Eye of the Green Dragon",
+      "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/273/icon.png",
+      "map": "tum-era/artifacts/273/map.def",
+      "scenarioBonus": "tum-era/artifacts/273/scenario.png"
+    },
+    "bonuses": {
+      "DamageMin": {
+        "type": "CREATURE_DAMAGE",
+        "val": 1,
+        "subtype": "creatureDamageMin"
+      }
+    }
+  },
+  "artifact274": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 25000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Eye of the Red Dragon",
+      "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/274/icon.png",
+      "map": "tum-era/artifacts/274/map.def",
+      "scenarioBonus": "tum-era/artifacts/274/scenario.png"
+    },
+    "bonuses": {
+      "DamageMax": {
+        "type": "CREATURE_DAMAGE",
+        "val": 1,
+        "subtype": "creatureDamageMax"
+      }
+    }
+  },
+  "artifact277": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 35000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Eye of the Azure Dragon",
+      "description": "{Eye of the Azure Dragon}\n\nThis powerful dragon eye increases the minimum and maximum damage by +2 and allows Azure Dragonling to be upgraded to Azure Dragon and become Dracolich into Azure Dragon the next day.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/277/icon.png",
+      "map": "tum-era/artifacts/277/map.def",
+      "scenarioBonus": "tum-era/artifacts/277/scenario.png"
+    },
+    "bonuses": {
+      "DamageMax": {
+        "type": "CREATURE_DAMAGE",
+        "val": 2,
+        "subtype": "creatureDamageMax"
+      },
+      "DamageMin": {
+        "type": "CREATURE_DAMAGE",
+        "val": 2,
+        "subtype": "creatureDamageMin"
+      }
+    }
+  }
+}

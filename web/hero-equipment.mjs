@@ -35,7 +35,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
  function renderSkills(hero){
   const description=text=>esc(text?.replace(/[{}]/g,''));
   const specialty=hero.specialty?.name?`<section class="hero-specialty">
-   ${heroIcon(hero.specialty.icon)}<div><h3>Specialty</h3><strong>${esc(hero.specialty.name)}</strong><p>${description(hero.specialty.description)}</p>${hero.specialty.sourceProgression?`<p class="hero-source-specialty">${getLanguage()==='fr'?'Bonus TUM en combat uniquement':'TUM bonus during combat only'} · ${esc(hero.specialty.sourceProgression.family)} : +${hero.specialty.sourceProgression.attackDefense} ATK/DEF · +${hero.specialty.sourceProgression.damage} ${getLanguage()==='fr'?'dégâts':'damage'} · +${hero.specialty.sourceProgression.healthPercent}% ${getLanguage()==='fr'?'PV':'HP'}</p>`:''}</div>
+   ${heroIcon(hero.specialty.icon)}<div><h3>Specialty</h3><strong>${esc(hero.specialty.name)}</strong><p>${description(hero.specialty.description)}</p>${hero.specialty.sourceProgression?`<p class="hero-source-specialty">${getLanguage()==='fr'?'Bonus TUM en combat uniquement':'TUM bonus during combat only'} · ${hero.specialty.sourceProgression.warMachines?(getLanguage()==='fr'?'Baliste, tente et chariot':"Ballista, tent and cart"):esc(hero.specialty.sourceProgression.family)} : +${hero.specialty.sourceProgression.attackDefense} ${hero.specialty.sourceProgression.warMachines?(getLanguage()==='fr'?'DEF (ATK pour la baliste)':'DEF (ATK for ballista)'):'ATK/DEF'} · +${hero.specialty.sourceProgression.damage} ${hero.specialty.sourceProgression.warMachines?(getLanguage()==='fr'?'dégâts de baliste':'ballista damage'):(getLanguage()==='fr'?'dégâts':'damage')} · +${hero.specialty.sourceProgression.healthPercent}% ${getLanguage()==='fr'?'PV':'HP'}</p>`:''}</div>
   </section>`:'';
   const combatStats=[['Morale',hero.morale],['Luck',hero.luck]].filter(([,stat])=>stat);
   const combat=combatStats.length?`<dl class="hero-combat-stats">${combatStats.map(([name,stat])=>`<div>
@@ -98,6 +98,8 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
  }
  function render(){
   const grid=panel.querySelector('.hero-equipment-grid');
+  const navScrollLeft=panel.querySelector('.hero-bag-tabs')?.scrollLeft||0;
+  const rebalanceFocused=panel.querySelector('[data-hero-source-rebalance]')===document.activeElement;
   if(grid)scrollPositions[panel.dataset.inventory||tab]=grid.scrollTop;
   panel.dataset.inventory=tab;
   const hero=state.heroWindow||{},picked=hero.picked,items=slots(),item=items.find(a=>a.slot===selected);
@@ -133,6 +135,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   <nav class="hero-bag-tabs" aria-label="Hero sheet">
    <button data-hero-tab="army" aria-pressed="${isArmy}" ${picked?'disabled':''}>${fr?'Armée':'Army'} · ${armyCount}</button>
    <button data-hero-tab="worn" aria-pressed="${tab==='worn'}">${fr?'Équipement':'Equipment'}</button>
+   ${hero.canRebalanceSourceArtifacts?`<button type="button" data-hero-source-rebalance ${picked||!state.turn||hero.owned===false?'disabled':''} title="${fr?'Actualiser les bonus des objets qui équilibrent les caractéristiques':'Refresh equipped artifacts that balance primary stats'}">${fr?'Rééquilibrer':'Rebalance'}</button>`:''}
    <button data-hero-tab="backpack" aria-pressed="${backpack}">${fr?'Sac':'Backpack'} · ${bagCount}</button>
    <button data-hero-tab="skills" aria-pressed="${skills}" ${picked?'disabled':''}>${fr?'Compétences':'Skills'}</button>
    ${hero.owned===false?'':'<button data-hero-classic>Classic</button>'}
@@ -166,9 +169,12 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
    `}
   </section>`;
   panel.querySelector('.hero-equipment-grid').scrollTop=scrollPositions[tab]||0;
+  panel.querySelector('.hero-bag-tabs').scrollLeft=navScrollLeft;
+  if(rebalanceFocused)panel.querySelector('[data-hero-source-rebalance]')?.focus({preventScroll:true});
  }
  panel.addEventListener('click',event=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
+  if(button.hasAttribute('data-hero-source-rebalance')){command(102,state.heroWindow.id);notify(getLanguage()==='fr'?'Actualisation des bonus demandée.':'Artifact refresh requested.');return;}
   if(button.hasAttribute('data-hero-troop-equipment')){troopEquipment.show(selectedArmySlot);return;}
   if(button.hasAttribute('data-hero-commander')){command(85);return;}
   if(button.hasAttribute('data-hero-classic')){switchView(true);return;}

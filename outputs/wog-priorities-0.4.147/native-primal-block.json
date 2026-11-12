@@ -1,0 +1,217 @@
+{
+  "passed": true,
+  "errors": [],
+  "report": {
+    "block": {
+      "trained": {
+        "aiValue": 28277,
+        "attack": 35,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          12,
+          17000,
+          0
+        ],
+        "count": 1,
+        "damageMax": 40,
+        "damageMin": 35,
+        "defense": 35,
+        "description": "",
+        "experience": 10,
+        "experiencePerUnit": 10,
+        "experienceRank": 10,
+        "fightValue": 26470,
+        "growth": 1,
+        "health": 700,
+        "icon": "tum-era/creatures/258/large",
+        "id": 273,
+        "key": "tum-era:eraCreature258",
+        "name": "Primal Faerie Dragon",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": true,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "shooter": false,
+        "shots": 0,
+        "speed": 17
+      },
+      "observed": [
+        {
+          "round": 1,
+          "hp": 1050,
+          "maximum": 1050
+        },
+        {
+          "round": 2,
+          "hp": 1025,
+          "maximum": 1050
+        },
+        {
+          "round": 3,
+          "hp": 1025,
+          "maximum": 1050
+        },
+        {
+          "round": 4,
+          "hp": 1025,
+          "maximum": 1050
+        },
+        {
+          "round": 5,
+          "hp": 1000,
+          "maximum": 1050
+        },
+        {
+          "round": 6,
+          "hp": 975,
+          "maximum": 1050
+        },
+        {
+          "round": 7,
+          "hp": 950,
+          "maximum": 1050
+        },
+        {
+          "round": 8,
+          "hp": 950,
+          "maximum": 1050
+        },
+        {
+          "round": 9,
+          "hp": 950,
+          "maximum": 1050
+        },
+        {
+          "round": 10,
+          "hp": 950,
+          "maximum": 1050
+        },
+        {
+          "round": 11,
+          "hp": 925,
+          "maximum": 1050
+        },
+        {
+          "round": 12,
+          "hp": 900,
+          "maximum": 1050
+        },
+        {
+          "round": 13,
+          "hp": 875,
+          "maximum": 1050
+        },
+        {
+          "round": 14,
+          "hp": 850,
+          "maximum": 1050
+        },
+        {
+          "round": 15,
+          "hp": 825,
+          "maximum": 1050
+        },
+        {
+          "round": 16,
+          "hp": 800,
+          "maximum": 1050
+        },
+        {
+          "round": 17,
+          "hp": 800,
+          "maximum": 1050
+        },
+        {
+          "round": 18,
+          "hp": 775,
+          "maximum": 1050
+        },
+        {
+          "round": 19,
+          "hp": 750,
+          "maximum": 1050
+        },
+        {
+          "round": 20,
+          "hp": 725,
+          "maximum": 1050
+        },
+        {
+          "round": 21,
+          "hp": 725,
+          "maximum": 1050
+        },
+        {
+          "round": 22,
+          "hp": 700,
+          "maximum": 1050
+        },
+        {
+          "round": 23,
+          "hp": 675,
+          "maximum": 1050
+        },
+        {
+          "round": 24,
+          "hp": 650,
+          "maximum": 1050
+        },
+        {
+          "round": 25,
+          "hp": 625,
+          "maximum": 1050
+        },
+        {
+          "round": 26,
+          "hp": 600,
+          "maximum": 1050
+        },
+        {
+          "round": 27,
+          "hp": 575,
+          "maximum": 1050
+        },
+        {
+          "round": 28,
+          "hp": 575,
+          "maximum": 1050
+        },
+        {
+          "round": 29,
+          "hp": 550,
+          "maximum": 1050
+        },
+        {
+          "round": 30,
+          "hp": 525,
+          "maximum": 1050
+        },
+        {
+          "round": 31,
+          "hp": 500,
+          "maximum": 1050
+        },
+        {
+          "round": 32,
+          "hp": 475,
+          "maximum": 1050
+        }
+      ],
+      "blocks": 8,
+      "visualReads": [
+        "/home/web_user/.local/share/vcmi/Mods/tum-era/content/Sprites/tum-era/crystal-block/block.def"
+      ]
+    }
+  }
+}

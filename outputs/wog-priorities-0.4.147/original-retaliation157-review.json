@@ -1,0 +1,14 @@
+{
+  "sourceArtifact": 157,
+  "identity": "wake-of-gods.artifacts:crimsonShieldOfRetribution",
+  "nativeDefinition": "mod/wake-of-gods/Mods/artifacts/content/config/artifacts/crimsonShieldOfRetribution.json",
+  "nativeDefinitionSHA256": "c6ea02ffa1d5bddec0492c196a769196d2dbff57a4ad17a8537c0dc1475e4af1",
+  "sourceCfgSHA256": "9d326864ca89ce3e2772cebd3fbc64875f1050369256564cced32729d34cf801",
+  "binaryEvidence": "original-retaliation157-source.json",
+  "operation": "Remove only the pre-existing VCMI50percent damage adaptation. Bind original WoG ordinary-retaliation override on effective defender hero. Preserve entity, map index157, +2Defense, class/value/slots/assets and all other retaliation gates.",
+  "activationReady": false,
+  "pending": [
+    "Native compiled original157 helper",
+    "Equipped/backpack/normal/no-retaliation and ordinary/status/exhaustion controls"
+  ]
+}

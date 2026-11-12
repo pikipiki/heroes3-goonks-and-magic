@@ -1,0 +1,973 @@
+{
+  "passed": true,
+  "baseline": [
+    {
+      "enemy": true,
+      "key": "core:ancientBehemoth",
+      "eraSlot": 0,
+      "morale": 1,
+      "luck": 0
+    },
+    {
+      "enemy": true,
+      "key": "wake-of-gods.level8units:ghostBehemoth",
+      "eraSlot": 1,
+      "morale": 1,
+      "luck": 0
+    },
+    {
+      "enemy": true,
+      "key": "core:ancientBehemoth",
+      "eraSlot": 2,
+      "morale": 1,
+      "luck": 0
+    },
+    {
+      "enemy": false,
+      "key": "wake-of-gods.commanders:paladin1",
+      "eraSlot": 2,
+      "morale": 0,
+      "luck": 0
+    },
+    {
+      "enemy": false,
+      "key": "core:blackDragon",
+      "eraSlot": 0,
+      "morale": 0,
+      "luck": 0
+    },
+    {
+      "enemy": false,
+      "key": "goonk:bubu",
+      "eraSlot": 1,
+      "morale": 0,
+      "luck": 0
+    }
+  ],
+  "report": {
+    "183-equipped": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": -1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": -1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": -1,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "183-backpack": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "184-equipped": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 1,
+        "luck": -2
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 1,
+        "luck": -2
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 1,
+        "luck": -2
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "184-backpack": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "185-equipped": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 1,
+        "luck": -1
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 1,
+        "luck": -1
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 1,
+        "luck": -1
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "185-backpack": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "186-equipped": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "186-backpack": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "187-equipped": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 1,
+        "luck": -1
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 1,
+        "luck": -1
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 1,
+        "luck": -1
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "187-backpack": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "188-equipped": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "188-backpack": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "249-equipped": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 1,
+        "luck": -3
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 1,
+        "luck": -3
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 1,
+        "luck": -3
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "249-backpack": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "250-equipped": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": -1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": -1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": -1,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "250-backpack": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "252-equipped": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": -2,
+        "luck": -3
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": -2,
+        "luck": -3
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": -2,
+        "luck": -3
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "252-backpack": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 1,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "same identity only once": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 1,
+        "luck": -2
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 1,
+        "luck": -2
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 1,
+        "luck": -2
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "different identities add": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": -2,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": -2,
+        "luck": 0
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": -2,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ],
+    "different luck identities add": [
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 0,
+        "morale": 1,
+        "luck": -2
+      },
+      {
+        "enemy": true,
+        "key": "wake-of-gods.level8units:ghostBehemoth",
+        "eraSlot": 1,
+        "morale": 1,
+        "luck": -2
+      },
+      {
+        "enemy": true,
+        "key": "core:ancientBehemoth",
+        "eraSlot": 2,
+        "morale": 1,
+        "luck": -2
+      },
+      {
+        "enemy": false,
+        "key": "wake-of-gods.commanders:paladin1",
+        "eraSlot": 2,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "core:blackDragon",
+        "eraSlot": 0,
+        "morale": 0,
+        "luck": 0
+      },
+      {
+        "enemy": false,
+        "key": "goonk:bubu",
+        "eraSlot": 1,
+        "morale": 0,
+        "luck": 0
+      }
+    ]
+  }
+}

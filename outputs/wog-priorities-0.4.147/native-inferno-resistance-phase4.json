@@ -1,0 +1,149 @@
+{
+  "passed": true,
+  "errors": [],
+  "report": {
+    "infernoResistance": {
+      "fixture": "Only control sourceRangedResistance30 removed; deterministic real archer shot, all other source337 properties unchanged",
+      "comparisons": [
+        {
+          "control": true,
+          "before": 180,
+          "actor": {
+            "aiValue": 3715,
+            "armySlot": 0,
+            "attack": 28,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              2400,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 172,
+            "damageMax": 40,
+            "damageMin": 30,
+            "defense": 30,
+            "description": "",
+            "enemy": false,
+            "eraSlot": 0,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 3843,
+            "growth": 1,
+            "health": 180,
+            "icon": "tum-era/creatures/337/large",
+            "id": 291,
+            "key": "tum-era:eraCreature337",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 180,
+            "morale": 1,
+            "name": "Ahriman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              86
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 0,
+            "speed": 12,
+            "stackId": 0,
+            "x": 80,
+            "y": 322
+          },
+          "loss": 8
+        },
+        {
+          "control": false,
+          "before": 180,
+          "actor": {
+            "aiValue": 3715,
+            "armySlot": 0,
+            "attack": 28,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              2400,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 175,
+            "damageMax": 40,
+            "damageMin": 30,
+            "defense": 30,
+            "description": "",
+            "enemy": false,
+            "eraSlot": 0,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 3843,
+            "growth": 1,
+            "health": 180,
+            "icon": "tum-era/creatures/337/large",
+            "id": 291,
+            "key": "tum-era:eraCreature337",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 180,
+            "morale": 1,
+            "name": "Ahriman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              86
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 0,
+            "speed": 12,
+            "stackId": 0,
+            "x": 80,
+            "y": 322
+          },
+          "loss": 5
+        }
+      ]
+    }
+  },
+  "engineSHA256": "337987e312594d265379e2a3f214cbf0a93a0fd7077733159d5d2b5d715c977f",
+  "sourceBoundary": "Original action7 only. Retaliation guard and cosmetic announcement validation follow in final clean build."
+}

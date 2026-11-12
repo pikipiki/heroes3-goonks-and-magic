@@ -1,5 +1,7 @@
 /* Native ERA service adapters for VCMI; GPL-2.0-or-later. */
 #pragma once
+#include "EraPrimalFaerie.h"
+#include "EraFortressCounterstrikes.h"
 #include "EraBridgeRuntime.h"
 #include "../filesystem/Filesystem.h"
 #include "../GameLibrary.h"
@@ -17,6 +19,7 @@ struct RegenerationPolicy { int hitPoints; int chancePercent; };
 struct DailyResourcePolicy { GameResID resource; int amount; int goldPerCreature; };
 struct ImposedSpellPolicy { std::string spell; int mastery; };
 struct PhysicalDeflectionPolicy { int modifier; std::vector<int> values; };
+struct ExperienceRegenerationPolicy { int chancePercent; std::vector<int> values; };
 struct RebirthPolicy { float chance; float fraction; float guaranteedFraction; };
 // Immutable, versioned native policies. This is not a DLL loader. Unknown
 // operations/fields are fatal configuration errors, never ignored commands.
@@ -25,8 +28,15 @@ class Policies
     std::map<std::string, DailyResourcePolicy> dailyResourcePolicies;
     std::map<std::string, std::vector<ImposedSpellPolicy>> imposedSpellPolicies;
     std::map<std::string, RegenerationPolicy> regenerationPolicies;
+    std::map<std::string, RegenerationPolicy> sourceRegenerationPolicies;
+    std::map<std::string, ExperienceRegenerationPolicy> experienceRegenerationPolicies;
+    std::map<std::string, std::vector<int>> physicalBlockPolicies;
     std::map<std::string, RebirthPolicy> rebirthPolicies;
     std::map<std::string, bool> meleeRagePolicies;
+    std::map<std::string, bool> preemptiveRetaliationPolicies;
+    std::map<std::string, bool> sourceSplashRangeOnePolicies;
+    std::map<std::string, bool> sourceRangedResistance30Policies;
+    std::map<std::string, std::vector<int>> sourceRoundTwoDemonsPolicies;
     std::map<std::string, bool> spellDamageInversionPolicies;
     std::map<std::string, bool> vampireDrainPolicies;
     std::map<std::string, int> artifactMimicPolicies;
@@ -114,6 +124,79 @@ public:
                         integer(operation.second["hitPoints"], 0, 1000000000),
                         integer(operation.second["chancePercent"], 0, 100)});
                 }
+                else if(operation.first == "sourceRegeneration")
+                {
+                    fields(operation.second, {"hitPoints", "chancePercent"});
+                    if(creature.first != "tum-era:eraCreature350")
+                        throw std::runtime_error("ERA bridge: unaudited source regeneration actor");
+                    sourceRegenerationPolicies.emplace(creature.first,RegenerationPolicy{integer(operation.second["hitPoints"],100,100),integer(operation.second["chancePercent"],100,100)});
+                }
+                else if(operation.first == "experienceRegeneration")
+                {
+                    fields(operation.second, {"chancePercent", "values"});
+                    if(creature.first != "tum-era:eraCreature267" && creature.first != "tum-era:eraCreature268" && creature.first != "tum-era:eraCreature273")
+                        throw std::runtime_error("ERA bridge: unaudited experience regeneration actor");
+                    const bool sourceWerewolf = creature.first == "tum-era:eraCreature273";
+                    const int chance = sourceWerewolf ? 50 : 100;
+                    const int perRank = sourceWerewolf ? 4 : 9;
+                    ExperienceRegenerationPolicy policy{integer(operation.second["chancePercent"], chance, chance), {}};
+                    const auto & values=operation.second["values"];
+                    if(!values.isVector() || values.Vector().size()!=11)
+                        throw std::runtime_error("ERA bridge: eleven regeneration rank values required");
+                    for(size_t rank=0;rank<11;++rank)
+                        policy.values.push_back(integer(values.Vector()[rank],static_cast<int>(rank)*perRank,static_cast<int>(rank)*perRank));
+                    experienceRegenerationPolicies.emplace(creature.first,std::move(policy));
+                }
+                else if(operation.first == "preemptiveRetaliation")
+                {
+                    fields(operation.second, {});
+                    if(creature.first != "tum-era:eraCreature280")
+                        throw std::runtime_error("ERA bridge: unaudited preemptive retaliation actor");
+                    preemptiveRetaliationPolicies.emplace(creature.first,true);
+                }
+                else if(operation.first == "sourceRoundTwoDemons")
+                {
+                    fields(operation.second, {"values"});
+                    if(creature.first!="third-upgrades:tumPitMaster" || !operation.second["values"].isVector()
+                        || operation.second["values"].Vector().size()!=11)
+                        throw std::runtime_error("ERA bridge: unproven source round2 actor or ranks");
+                    const std::vector<int> expected{0,0,0,10,10,15,15,20,20,25,25};
+                    std::vector<int> values;
+                    for(size_t i=0;i<expected.size();++i)
+                        values.push_back(integer(operation.second["values"].Vector()[i],expected[i],expected[i]));
+                    sourceRoundTwoDemonsPolicies.emplace(creature.first,std::move(values));
+                }
+                else if(operation.first == "sourceRangedResistance30")
+                {
+                    fields(operation.second, {});
+                    if(creature.first!="tum-era:eraCreature337" && creature.first!="tum-era:eraCreature338")
+                        throw std::runtime_error("ERA bridge: unproven source ranged resistance actor");
+                    sourceRangedResistance30Policies.emplace(creature.first,true);
+                }
+                else if(operation.first == "sourceSplashRangeOne")
+                {
+                    fields(operation.second, {});
+                    if(creature.first != "tum-era:eraCreature350")
+                        throw std::runtime_error("ERA bridge: unaudited source splash radius actor");
+                    sourceSplashRangeOnePolicies.emplace(creature.first,true);
+                }
+                else if(operation.first == "physicalBlock")
+                {
+                    fields(operation.second, {"values"});
+                    if(creature.first != "tum-era:eraCreature268" &&
+                        !(creature.first == "tum-era:eraCreature258" && PrimalFaerie::get().enabled(creature.first)))
+                        throw std::runtime_error("ERA bridge: unaudited full physical block actor");
+                    const auto & values=operation.second["values"];
+                    if(!values.isVector() || values.Vector().size()!=11)
+                        throw std::runtime_error("ERA bridge: eleven block rank values required");
+                    std::vector<int> ranks;
+                    for(size_t rank=0;rank<11;++rank)
+                    {
+                        const int expected=std::min(25,static_cast<int>(rank)*5);
+                        ranks.push_back(integer(values.Vector()[rank],expected,expected));
+                    }
+                    physicalBlockPolicies.emplace(creature.first,std::move(ranks));
+                }
                 else if(operation.first == "rebirth")
                 {
                     fields(operation.second, {"chance", "fraction", "guaranteedFraction"});
@@ -125,8 +208,10 @@ public:
                 else if(operation.first == "artifactMimic")
                 {
                     fields(operation.second, {"artifact"});
-                    const int artifact=integer(operation.second["artifact"],129,135);
-                    if(artifact!=129 && artifact!=135)
+                    const int artifact=integer(operation.second["artifact"],71,135);
+                    const bool source354 = artifact==71 && creature.first=="tum-era:eraCreature354"
+                        && FortressCounterstrikes::get().twice(creature.first);
+                    if(artifact!=129 && artifact!=135 && !source354)
                         throw std::runtime_error("ERA bridge: unproven creature artifact mimic");
                     artifactMimicPolicies.emplace(creature.first,artifact);
                 }
@@ -207,12 +292,27 @@ public:
                 throw std::runtime_error("ERA bridge: conflicting post-hit effects " + creature.first);
         }
     }
+    std::optional<RegenerationPolicy> sourceRegeneration(const std::string & creature) const
+    {
+        const auto found=sourceRegenerationPolicies.find(creature);
+        return found==sourceRegenerationPolicies.end()?std::nullopt:std::optional<RegenerationPolicy>(found->second);
+    }
     std::optional<RegenerationPolicy> regeneration(const std::string & creature) const
     {
         const auto found = regenerationPolicies.find(creature);
         if(found == regenerationPolicies.end())
             return std::nullopt;
         return found->second;
+    }
+    std::optional<ExperienceRegenerationPolicy> experienceRegeneration(const std::string & creature) const
+    {
+        const auto found=experienceRegenerationPolicies.find(creature);
+        return found==experienceRegenerationPolicies.end()?std::nullopt:std::optional<ExperienceRegenerationPolicy>(found->second);
+    }
+    std::optional<std::vector<int>> physicalBlock(const std::string & creature) const
+    {
+        const auto found=physicalBlockPolicies.find(creature);
+        return found==physicalBlockPolicies.end()?std::nullopt:std::optional<std::vector<int>>(found->second);
     }
     std::optional<RebirthPolicy> rebirth(const std::string & creature) const
     {
@@ -266,6 +366,23 @@ public:
     bool spellDamageInversion(const std::string & creature) const
     {
         return spellDamageInversionPolicies.count(creature) != 0;
+    }
+    bool preemptiveRetaliation(const std::string & creature) const
+    {
+        return preemptiveRetaliationPolicies.count(creature) != 0;
+    }
+    std::optional<std::vector<int>> sourceRoundTwoDemons(const std::string & creature) const
+    {
+        const auto found=sourceRoundTwoDemonsPolicies.find(creature);
+        return found==sourceRoundTwoDemonsPolicies.end()?std::nullopt:std::optional<std::vector<int>>(found->second);
+    }
+    bool sourceRangedResistance30(const std::string & creature) const
+    {
+        return sourceRangedResistance30Policies.count(creature) != 0;
+    }
+    bool sourceSplashRangeOne(const std::string & creature) const
+    {
+        return sourceSplashRangeOnePolicies.count(creature) != 0;
     }
     bool meleeRage(const std::string & creature) const
     {

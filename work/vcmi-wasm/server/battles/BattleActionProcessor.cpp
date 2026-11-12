@@ -8,18 +8,30 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraFaerieChainRuntime.h"
+#include "../../lib/era/EraConfluxCaster.h"
+#include "../era/EraCreatureSpellCleanse.h"
+#include "../../lib/era/EraFortressCounterstrikes.h"
+#include "../../lib/era/EraOriginalRetaliationShield.h"
+#include "../../lib/era/EraCrystalExperienceRuntime.h"
 #include "../../lib/era/EraDeflectionLog.h"
 #include "../../lib/era/EraExperienceAttackSpells.h"
 #include "../../lib/era/EraSourceAttackGate.h"
 #include "../../lib/era/EraDeathBlowChance.h"
 #include "BattleActionProcessor.h"
+#include "../era/EraOblivionRuntime.h"
 #include "../era/EraDoneRound.h"
 #include "../era/EraRebirth.h"
 #include "../era/EraPetrification.h"
+#include "../era/EraDungeonChainRuntime.h"
 #include "../era/EraStatusAttacks.h"
 #include "../../lib/era/EraDeflectionRuntime.h"
+#include "../../lib/era/EraSourceRangedResistance.h"
 #include "../era/EraAcidAttackRuntime.h"
+#include "../era/EraPhysicalBlockRuntime.h"
+#include "../era/EraPrimalFaerieRuntime.h"
 #include "../era/EraThunderAttackRuntime.h"
+#include "../era/EraArtifactMassSpellsRuntime.h"
 
 #include "BattleProcessor.h"
 
@@ -229,6 +241,7 @@ bool BattleActionProcessor::doDefendAction(const CBattleInfoCallback & battle, c
 
 	gameHandler->sendAndApply(message);
 
+    era_compat_server::primalFaerieAfterDefend(*gameHandler,battle,stack);
 	processBattleEventTriggers(battle, CombatEventType::DEFEND, stack, nullptr);
 	return true;
 }
@@ -336,9 +349,15 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
 	}
 
 	static const auto firstStrikeSelector = Selector::typeSubtype(BonusType::FIRST_STRIKE, BonusCustomSubtype::damageTypeAll).Or(Selector::typeSubtype(BonusType::FIRST_STRIKE, BonusCustomSubtype::damageTypeMelee));
-	const bool firstStrike = destinationStack->hasBonus(firstStrikeSelector) && !destinationStack->hasBonusOfType(BonusType::NOT_ACTIVE);
+	// Original Amethyst Before_Melee441ADE consumes one retaliation before
+	// the first hit. Unlike native FIRST_STRIKE it still allows the ordinary
+	// retaliation afterward when the source stack has counters remaining.
+	const bool sourcePreemptive = era_compat::Policies::get().preemptiveRetaliation(destinationStack->creatureId().toCreature()->getJsonKey());
+	const bool firstStrike = (sourcePreemptive || destinationStack->hasBonus(firstStrikeSelector)) && !destinationStack->hasBonusOfType(BonusType::NOT_ACTIVE);
 
 	const bool retaliation = destinationStack->ableToRetaliate();
+    const auto & sourceCounters = era_compat::FortressCounterstrikes::get();
+    const auto defenderKey = destinationStack->creatureId().toCreature()->getJsonKey();
 	bool ferocityApplied = false;
 	int32_t defenderInitialQuantity = destinationStack->getCount();
 
@@ -371,12 +390,27 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
 		//counterattack
 		//we check retaliation twice, so if it unblocked during attack it will work only on next attack
 		if(stack->alive()
-			&& !stack->hasBonusOfType(BonusType::BLOCKS_RETALIATION)
+			&& (!stack->hasBonusOfType(BonusType::BLOCKS_RETALIATION) || sourceCounters.fury(defenderKey)
+                || era_compat::OriginalRetaliationShield::get().equipped(battle,*destinationStack))
 			&& !stack->isInvincible()
-			&& (i == 0 && !firstStrike)
+			&& (i == 0 && (!firstStrike || sourcePreemptive))
 			&& retaliation && destinationStack->ableToRetaliate())
 		{
-			makeAttack(battle, destinationStack, stack, 0, stack->getPosition(), true, false, true, &petrification);
+            const bool twice = sourceCounters.twice(defenderKey);
+            // DLL10018030 injects the second441330 before original441B7E
+            // decrements the counter ONCE. Both hits retain counter semantics.
+            makeAttack(battle, destinationStack, stack, 0, stack->getPosition(), true, false, true, &petrification, !twice);
+            if(twice)
+            {
+                makeAttack(battle, destinationStack, stack, 0, stack->getPosition(), true, false, true, &petrification, false);
+                auto state = destinationStack->acquireState();
+                state->counterAttacks.use();
+                BattleUnitsChanged change;
+                change.battleID = battle.getBattle()->getBattleID();
+                change.changedStacks.emplace_back(destinationStack->unitId(), UnitChanges::EOperation::RESET_STATE);
+                state->save(change.changedStacks.back().data);
+                gameHandler->sendAndApply(change);
+            }
 		}
 	}
 
@@ -558,13 +592,23 @@ bool BattleActionProcessor::doUnitSpellAction(const CBattleInfoCallback & battle
 	}
 
 	const CSpell * spell = SpellID(spellID).toSpell();
-	spells::BattleCast parameters(&battle, stack, spells::Mode::CREATURE_ACTIVE, spell);
+    const bool sourceFaerie=era_compat::sourceFaeriePoolActor(stack);
+    auto sourceSide=stack->unitSide();
+    if(stack->isHypnotized())sourceSide=sourceSide==BattleSide::ATTACKER?BattleSide::DEFENDER:BattleSide::ATTACKER;
+    era_compat::ConfluxCaster sourceCaster(stack,battle.battleGetFightingHero(sourceSide),battle.sideToPlayer(sourceSide));
+    std::optional<era_compat::ConfluxSideScope> sourceContext;
+    if(sourceFaerie)sourceContext.emplace(sourceSide,1);
+	spells::BattleCast parameters(&battle, sourceFaerie?static_cast<const spells::Caster *>(&sourceCaster):stack, spells::Mode::CREATURE_ACTIVE, spell);
 	int32_t spellLvl = 0;
 	if(spellcaster)
 		vstd::amax(spellLvl, spellcaster->val);
 	if(randSpellcaster)
 		vstd::amax(spellLvl, randSpellcaster->val);
 	parameters.setSpellLevel(spellLvl);
+    if(sourceFaerie && !spell->battleMechanics(&parameters)->canBeCastAt(target))return false;
+    if(sourceFaerie && spellID==SpellID(19))
+        return era_compat_server::applyFaerieNormalChain(*gameHandler,battle,stack,
+            target.empty()?nullptr:battle.battleGetStackByPos(target.front().hexValue,true),parameters,sourceSide);
 	parameters.cast(gameHandler->spellcastEnvironment(), target);
 
 	processBattleEventTriggers(battle, CombatEventType::UNIT_SPELLCAST, stack, nullptr);
@@ -737,6 +781,17 @@ bool BattleActionProcessor::makeBattleActionImpl(const CBattleInfoCallback & bat
 {
 	logGlobal->trace("Making action: %s", ba.toString());
 	const CStack * stack = battle.battleGetStackByID(ba.stackNumber);
+    // Preserve the original hero-cast target even if its corpse disappears.
+    std::optional<uint32_t> artifactMainTarget;
+    if(ba.actionType==EActionType::HERO_SPELL)
+    {
+        const auto targets=ba.getTarget(&battle);
+        if(!targets.empty())
+        {
+            if(targets.front().unitValue)artifactMainTarget=targets.front().unitValue->unitId();
+            else if(const auto * target=battle.battleGetStackByPos(targets.front().hexValue,false))artifactMainTarget=target->unitId();
+        }
+    }
 
 	// StartAction marks the stack as having waited, so check before broadcasting it.
 	if (ba.actionType == EActionType::WAIT)
@@ -767,6 +822,10 @@ bool BattleActionProcessor::makeBattleActionImpl(const CBattleInfoCallback & bat
         || ba.actionType == EActionType::CATAPULT))
         applyEraRebirth(*gameHandler, battle);
 
+    if(result && ba.actionType==EActionType::HERO_SPELL)
+        if(const auto * hero=battle.battleGetFightingHero(ba.side))
+            applyEraArtifactMassSpell(*gameHandler,battle,*hero,ba.spell,ba.side,artifactMainTarget);
+
     // Ranged attacks, activated creature spells and ordinary moves become
     // DONE only after their synchronous action completes. WAIT and hero casts
     // do not set a creature DONE bit; tactics moves are also excluded.
@@ -775,6 +834,12 @@ bool BattleActionProcessor::makeBattleActionImpl(const CBattleInfoCallback & bat
         && ba.actionType != EActionType::HERO_SPELL)
     {
         markEraDoneRound(*gameHandler, battle, stack);
+    }
+
+    if(result && !ba.isBattleEndAction())applyEraCreatureSpellCleanse(*gameHandler,battle);
+    if(result && (ba.actionType==EActionType::HERO_SPELL || ba.actionType==EActionType::MONSTER_SPELL))
+    {
+        removeEraOblivionCorpses(*gameHandler,battle);
     }
 
 	if (!ba.isBattleEndAction())
@@ -1099,7 +1164,7 @@ BattleActionProcessor::MovementResult BattleActionProcessor::moveStack(const CBa
 	return { static_cast<int16_t>(pathDistance), !movementSuccess, false };
 }
 
-void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const CStack * attacker, const CStack * defender, int distance, const BattleHex & targetHex, bool first, bool ranged, bool counter, EraPetrificationSequence * petrification)
+void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const CStack * attacker, const CStack * defender, int distance, const BattleHex & targetHex, bool first, bool ranged, bool counter, EraPetrificationSequence * petrification, bool consumeCounter)
 {
 	if(defender && first && !counter)
 		handleAttackBeforeCasting(battle, ranged, attacker, defender);
@@ -1107,6 +1172,8 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
 	// If the attacker or defender is not alive before the attack action, the action should be skipped.
 	if((!attacker->alive()) || (defender && !defender->alive()))
 		return;
+
+    if(era_compat_server::applyDungeonChainShot(*gameHandler,battle,attacker,defender,ranged,counter,consumeCounter))return;
 
 	FireShieldInfo fireShield;
 	BattleAttack bat;
@@ -1143,7 +1210,9 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
         ? era_bridge::rollSourceDeathBlow(deathBlowChance, [&](){ return gameHandler->getRandomGenerator().nextInt(0,32767); })
         : gameHandler->randomizer->rollCombatAbility(ownerArmy, deathBlowChance);
     if(deathBlow)
+    {
         bat.flags |= BattleAttack::DEATH_BLOW;
+    }
 
 	const auto * ownerHero = battle.battleGetFightingHero(attacker->unitSide());
 	if(ownerHero)
@@ -1155,8 +1224,10 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
 
 	battle::HealInfo healInfo;
 
-	// only primary target
-	if(defender && defender->alive())
+	// The source custom all-around sweep excludes original allies even under
+	// Hypnotize; source350 may therefore sweep without damaging the click target.
+	const bool sourceSplash = !ranged && era_compat::Policies::get().sourceSplashRangeOne(attacker->creatureId().toCreature()->getJsonKey());
+	if(defender && defender->alive() && (!sourceSplash || defender->unitSide()!=attacker->unitSide()))
 		applyBattleEffects(battle, bat, attackerState, fireShield, defender, healInfo, distance, false);
 
 	//multiple-hex normal attack
@@ -1211,7 +1282,7 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
 		}
 	}
 
-	attackerState->afterAttack(ranged, counter);
+	attackerState->afterAttack(ranged, counter && consumeCounter);
 
 	{
 		UnitChanges info(attackerState->unitId(), UnitChanges::EOperation::RESET_STATE);
@@ -1276,7 +1347,8 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
             const auto & sourcePolicy=era_compat::Policies::get();
             const auto & targetKey=attacker->creatureId().toCreature()->getJsonKey();
             const bool sourceDirect=sourcePolicy.spellDamageInversion(targetKey)
-                || sourcePolicy.physicalDeflection(targetKey).has_value();
+                || sourcePolicy.physicalDeflection(targetKey).has_value()
+                || sourcePolicy.physicalBlock(targetKey).has_value();
             if(!sourceDirect)
             {
                 if(actorOwner)
@@ -1296,7 +1368,7 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
 			bsa.flags |= BattleStackAttacked::FIRE_SHIELD;
 			bsa.stackAttacked = attacker->unitId(); //invert
 			bsa.attackerID = defender->unitId();
-			bsa.damageAmount = applyEraDeflection(attacker, gameHandler->getRandomGenerator(), totalDamage, [&](int strength,int chance){auto message=eraDeflectionLog(battle.getBattle()->getBattleID(),strength,chance);gameHandler->sendAndApply(message);});
+			bsa.damageAmount = era_compat_server::applySourcePhysicalWrapper(*gameHandler,battle,attacker,totalDamage);
             totalDamage = bsa.damageAmount;
 			attacker->prepareAttacked(bsa, gameHandler->getRandomGenerator());
 
@@ -1319,6 +1391,7 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
 
 	gameHandler->sendAndApply(blm);
 
+    removeEraOblivionCorpses(*gameHandler,battle);
 	if(defender)
 		handleAfterAttackCasting(battle, ranged, attacker, defender);
 }
@@ -1397,8 +1470,9 @@ void BattleActionProcessor::attackCasting(const CBattleInfoCallback & battle, bo
             if(sourcePreAttack)
             {
                 parameters.setSpellLevel(sourceMastery);
-                parameters.setEffectDuration(3);
-                parameters.setEffectPower(3);
+                const int sourcePower=era_compat::experienceAttackPower(battle.battleActiveUnit(),spellID);
+                parameters.setEffectDuration(sourcePower);
+                parameters.setEffectPower(sourcePower);
             }
 
 			auto m = spell->battleMechanics(&parameters);
@@ -1694,6 +1768,20 @@ void BattleActionProcessor::handleAfterAttackCasting(const CBattleInfoCallback &
 
 void BattleActionProcessor::applyBattleEffects(const CBattleInfoCallback & battle, BattleAttack & bat, std::shared_ptr<battle::CUnitState> attackerState, FireShieldInfo & fireShield, const CStack * def, battle::HealInfo & healInfo, int distance, bool secondary) const
 {
+    // Only secondary Lich/Magog spell-like physical hits use these source
+    // origins; the direct target and ordinary breath/all-around hits remain.
+    bool sourceSecondaryCanceled=false;
+    if(secondary && bat.shot())
+    {
+        if(const auto spellLike=attackerState->getBonus(Selector::type()(BonusType::SPELL_LIKE_ATTACK)))
+        {
+            using Origin=::era_bridge::CreatureSpellDamageOrigin;
+            const auto spell=spellLike->subtype.as<SpellID>();
+            const auto origin=spell==SpellID(SpellID::DEATH_CLOUD)?Origin::DeathCloud
+                :spell==SpellID(SpellID::FIREBALL)?Origin::Fireball:Origin::Other;
+            sourceSecondaryCanceled=cancelsSourceCreatureSpellDamage(def,origin,false);
+        }
+    }
 	BattleStackAttacked bsa;
 	if(secondary)
 		bsa.flags |= BattleStackAttacked::SECONDARY; //all other targets do not suffer from spells & spell-like abilities
@@ -1701,6 +1789,7 @@ void BattleActionProcessor::applyBattleEffects(const CBattleInfoCallback & battl
 	bsa.attackerID = attackerState->unitId();
 	bsa.stackAttacked = def->unitId();
     int64_t rawDamageBeforeDeflection = 0;
+    bool sourcePhysicalBlocked = false;
 	{
 		BattleAttackInfo bai(attackerState.get(), def, distance, bat.shot());
 
@@ -1712,9 +1801,36 @@ void BattleActionProcessor::applyBattleEffects(const CBattleInfoCallback & battl
 		auto range = battle.calculateDmgRange(bai);
 		bsa.damageAmount = battle.getBattle()->getActualDamage(range.damage, attackerState->getCount(), gameHandler->getRandomGenerator());
         rawDamageBeforeDeflection = bsa.damageAmount;
+        if(sourceSecondaryCanceled)return; // MF:F0/Efalse occurs after raw damage, before source B/L.
         // Proven source replacement sites cover regular physical hits and
         // siege-tower hits; spell and moat entry points are scoped separately.
-        bsa.damageAmount = applyEraDeflection(def, gameHandler->getRandomGenerator(), bsa.damageAmount, [&](int strength,int chance){auto message=eraDeflectionLog(battle.getBattle()->getBattleID(),strength,chance);gameHandler->sendAndApply(message);});
+        sourcePhysicalBlocked = applyEraCrystalPhysicalBlock(def,gameHandler->getRandomGenerator());
+        if(sourcePhysicalBlocked)
+        {
+            bsa.damageAmount=0;
+            // Cosmetic announcement only; the authoritative zero-damage packet
+            // below owns the hit. Source71C6A7 uses animation85 before its log.
+            BattleTriggerEffect blocked;blocked.battleID=battle.getBattle()->getBattleID();
+            blocked.stackID=def->unitId();blocked.effect=BonusType::GENERAL_DAMAGE_REDUCTION;
+            blocked.val=100;blocked.additionalInfo=85;gameHandler->sendAndApply(blocked);
+            BattleLogMessage message;message.battleID=battle.getBattle()->getBattleID();
+            MetaString line;line.appendTextID("tum-era.deflection.fullBlock");message.lines.push_back(line);
+            gameHandler->sendAndApply(message);
+        }
+        else
+        {
+            // Source766AC8 is reached after full block71C5A9, and invokes
+            // the resistance wrapper before partial block71C710. This is not
+            // an Air Shield factor inside the earlier damage calculation.
+            if(bat.shot() && !bat.counter() && era_compat::Policies::get().sourceRangedResistance30(def->creatureId().toCreature()->getJsonKey()))
+            {
+                bsa.damageAmount=::era_bridge::sourceRangedResistance30(bsa.damageAmount);
+                BattleTriggerEffect resistance;resistance.battleID=battle.getBattle()->getBattleID();
+                resistance.stackID=def->unitId();resistance.effect=BonusType::GENERAL_DAMAGE_REDUCTION;
+                resistance.val=30;resistance.additionalInfo=89;gameHandler->sendAndApply(resistance);
+            }
+            bsa.damageAmount = applyEraDeflection(def, gameHandler->getRandomGenerator(), bsa.damageAmount, [&](int strength,int chance){auto message=eraDeflectionLog(battle.getBattle()->getBattleID(),strength,chance);gameHandler->sendAndApply(message);});
+        }
 		CStack::prepareAttacked(bsa, gameHandler->getRandomGenerator(), bai.defender->acquireState()); //calculate casualties
 	}
 
@@ -1726,7 +1842,7 @@ void BattleActionProcessor::applyBattleEffects(const CBattleInfoCallback & battl
         // calculated before the71C710 block in443DB0. Preserve it only for
         // source-profiled targets; other mods retain native drain behavior.
         const bool sourceBlock = era_compat::Policies::get().physicalDeflection(def->creatureId().toCreature()->getJsonKey()).has_value();
-        const int64_t drainDamage = (sourceBlock || sourceVampire) ? std::min<int64_t>(rawDamageBeforeDeflection, def->getAvailableHealth()) : bsa.damageAmount;
+        const int64_t drainDamage = sourcePhysicalBlocked ? 0 : (sourceBlock || sourceVampire) ? std::min<int64_t>(rawDamageBeforeDeflection, def->getAvailableHealth()) : bsa.damageAmount;
         // Amethyst selector0 jumps to440921: full min(raw damage, pre-hit
         // victim HP), including clone victims; no inherited WoG40% multiplier.
         int64_t toHeal = sourceVampire ? drainDamage : drainDamage * attackerState->valOfBonuses(BonusType::LIFE_DRAIN) / 100;
@@ -1753,6 +1869,7 @@ void BattleActionProcessor::applyBattleEffects(const CBattleInfoCallback & battl
 
 	//fire shield handling
 	if(!bat.shot() &&
+        !cancelsSourceCreatureSpellDamage(attackerState.get(),::era_bridge::CreatureSpellDamageOrigin::FireShield) &&
 		!def->isClone() &&
 		def->hasBonusOfType(BonusType::FIRE_SHIELD) &&
 		!attackerState->hasBonusOfType(BonusType::SPELL_SCHOOL_IMMUNITY, BonusSubtypeID(SpellSchool::FIRE)) &&

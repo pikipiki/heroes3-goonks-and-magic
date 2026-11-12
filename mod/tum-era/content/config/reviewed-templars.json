@@ -1,0 +1,1623 @@
+{
+  "eraCreature269": {
+    "name": {
+      "singular": "Light Templar",
+      "plural": "Light Templars"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 1400
+    },
+    "fightValue": 2946,
+    "aiValue": 3698,
+    "growth": 1,
+    "hitPoints": 175,
+    "speed": 5,
+    "attack": 15,
+    "defense": 15,
+    "damage": {
+      "min": 25,
+      "max": 45
+    },
+    "advMapAmount": {
+      "min": 4,
+      "max": 10
+    },
+    "abilities": {
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "sourceActiveCaster": {
+        "type": "SPELLCASTER",
+        "subtype": "core:destroyUndead",
+        "val": 2
+      },
+      "sourceActiveSpellPower": {
+        "type": "CREATURE_SPELL_POWER",
+        "val": 100
+      },
+      "sourcePositiveMorale": {
+        "type": "MORALE",
+        "val": 1,
+        "valueType": "INDEPENDENT_MAX"
+      },
+      "amethyst_Sktransformer": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "val": 0,
+        "subtype": "tum-era:eraCreature361"
+      },
+      "sourceInitialCasts": {
+        "type": "CASTS",
+        "val": 1
+      }
+    },
+    "doubleWide": false,
+    "level": 7,
+    "faction": "core:castle",
+    "upgrades": [
+      "tum-era:eraCreature278"
+    ],
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:bless",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:bless",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 2
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:bless",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 3
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 0,
+          "valueType": "INDEPENDENT_MIN"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "subtype": "tum-era:eraCreature273",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          20,
+          40,
+          60,
+          80,
+          100,
+          120,
+          140,
+          160,
+          180,
+          200
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "subtype": "wake-of-gods.creatures:werewolf",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          20,
+          40,
+          60,
+          80,
+          100,
+          120,
+          140,
+          160,
+          180,
+          200
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          6,
+          12,
+          18,
+          24,
+          30,
+          36,
+          42,
+          48,
+          54,
+          60
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          3,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          2,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1.1,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/269/CR269",
+      "map": "tum-era/creatures/269/AVWCR269.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/269/small",
+      "iconLarge": "tum-era/creatures/269/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/269/S269ATTK.wav",
+      "defend": "tum-era/creatures/269/S269DFND.wav",
+      "killed": "tum-era/creatures/269/S269KILL.wav",
+      "move": "tum-era/creatures/269/S269MOVE.wav",
+      "wince": "tum-era/creatures/269/S269WNCE.wav"
+    }
+  },
+  "eraCreature273": {
+    "name": {
+      "singular": "Werewolf",
+      "plural": "Werewolves"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 275
+    },
+    "fightValue": 503,
+    "aiValue": 522,
+    "growth": 5,
+    "hitPoints": 30,
+    "speed": 5,
+    "attack": 11,
+    "defense": 9,
+    "damage": {
+      "min": 6,
+      "max": 11
+    },
+    "advMapAmount": {
+      "min": 10,
+      "max": 20
+    },
+    "abilities": {
+      "amethyst_flag_10": {
+        "type": "MIND_IMMUNITY",
+        "val": 0
+      },
+      "amethyst_flag_17": {
+        "type": "NO_MORALE",
+        "val": 0
+      },
+      "amethyst_flag_18": {
+        "type": "UNDEAD",
+        "val": 0
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "doubleWide": false,
+    "level": 4,
+    "faction": "core:necropolis",
+    "upgrades": [
+      "wake-of-gods.creatures:werewolf"
+    ],
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          5,
+          6,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "subtype": "tum-era:eraCreature269",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          20,
+          40,
+          60,
+          80,
+          100,
+          120,
+          140,
+          160,
+          180,
+          200
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "subtype": "tum-era:eraCreature278",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          20,
+          40,
+          60,
+          80,
+          100,
+          120,
+          140,
+          160,
+          180,
+          200
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ADDITIONAL_RETALIATION",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          4
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/273/CR273",
+      "map": "tum-era/creatures/273/AVWCR273.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/273/small",
+      "iconLarge": "tum-era/creatures/273/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/273/S273ATTK.wav",
+      "defend": "tum-era/creatures/273/S273DFND.wav",
+      "killed": "tum-era/creatures/273/S273KILL.wav",
+      "move": "tum-era/creatures/273/S273MOVE.wav",
+      "wince": "tum-era/creatures/273/S273WNCE.wav"
+    }
+  },
+  "eraCreature278": {
+    "name": {
+      "singular": "Light Paladin",
+      "plural": "Light Paladins"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 1,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 3000
+    },
+    "fightValue": 5454,
+    "aiValue": 6925,
+    "growth": 1,
+    "hitPoints": 225,
+    "speed": 7,
+    "attack": 20,
+    "defense": 25,
+    "damage": {
+      "min": 25,
+      "max": 45
+    },
+    "advMapAmount": {
+      "min": 3,
+      "max": 8
+    },
+    "abilities": {
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "sourceActiveCaster": {
+        "type": "SPELLCASTER",
+        "subtype": "core:destroyUndead",
+        "val": 2
+      },
+      "sourceActiveSpellPower": {
+        "type": "CREATURE_SPELL_POWER",
+        "val": 100
+      },
+      "sourcePositiveMorale": {
+        "type": "MORALE",
+        "val": 1,
+        "valueType": "INDEPENDENT_MAX"
+      },
+      "amethyst_Sktransformer": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "val": 0,
+        "subtype": "tum-era:eraCreature361"
+      },
+      "sourceInitialCasts": {
+        "type": "CASTS",
+        "val": 3
+      }
+    },
+    "doubleWide": false,
+    "level": 7,
+    "faction": "core:castle",
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          6,
+          12,
+          18,
+          24,
+          30,
+          36,
+          42,
+          48,
+          54,
+          60
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          3,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          2,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "subtype": "tum-era:eraCreature273",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          20,
+          40,
+          60,
+          80,
+          100,
+          120,
+          140,
+          160,
+          180,
+          200
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "subtype": "wake-of-gods.creatures:werewolf",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          20,
+          40,
+          60,
+          80,
+          100,
+          120,
+          140,
+          160,
+          180,
+          200
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:bless",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:bless",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 2
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:bless",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 3
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:prayer",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:prayer",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 2
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:prayer",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 3
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_BEFORE_ATTACK",
+          "subtype": "core:destroyUndead",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": 3
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 0,
+          "valueType": "INDEPENDENT_MIN"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1.1,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/278/CR278",
+      "map": "tum-era/creatures/278/AVWCR278.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/278/small",
+      "iconLarge": "tum-era/creatures/278/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/278/S278ATTK.wav",
+      "defend": "tum-era/creatures/278/S278DFND.wav",
+      "killed": "tum-era/creatures/278/S278KILL.wav",
+      "move": "tum-era/creatures/278/S278MOVE.wav",
+      "wince": "tum-era/creatures/278/S278WNCE.wav"
+    }
+  },
+  "eraCreature331": {
+    "name": {
+      "singular": "Dark Templar",
+      "plural": "Dark Templars"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 1600
+    },
+    "fightValue": 3021,
+    "aiValue": 3730,
+    "growth": 1,
+    "hitPoints": 180,
+    "speed": 5,
+    "attack": 15,
+    "defense": 15,
+    "damage": {
+      "min": 20,
+      "max": 40
+    },
+    "advMapAmount": {
+      "min": 4,
+      "max": 10
+    },
+    "abilities": {
+      "amethyst_Hate0269": {
+        "type": "ERA_PERSONAL_HATE_DAMAGE",
+        "val": 200,
+        "subtype": "tum-era:eraCreature269"
+      },
+      "amethyst_Hate0278": {
+        "type": "ERA_PERSONAL_HATE_DAMAGE",
+        "val": 200,
+        "subtype": "tum-era:eraCreature278"
+      },
+      "amethyst_flag_17": {
+        "type": "NO_MORALE",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "sourceActiveCaster": {
+        "type": "SPELLCASTER",
+        "subtype": "core:deathRipple",
+        "val": 2
+      },
+      "sourceActiveSpellPower": {
+        "type": "CREATURE_SPELL_POWER",
+        "val": 100
+      },
+      "amethyst_Sktransformer": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "val": 0,
+        "subtype": "tum-era:eraCreature361"
+      },
+      "sourceInitialCasts": {
+        "type": "CASTS",
+        "val": 1
+      }
+    },
+    "doubleWide": false,
+    "level": 7,
+    "faction": "core:necropolis",
+    "upgrades": [
+      "tum-era:eraCreature332"
+    ],
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          6,
+          12,
+          18,
+          24,
+          30,
+          36,
+          42,
+          48,
+          54,
+          60
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          3,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          2,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:bloodlust",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:bloodlust",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 2
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:bloodlust",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 3
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 0,
+          "valueType": "INDEPENDENT_MIN"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1.1,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/331/CR331",
+      "map": "tum-era/creatures/331/AVWCR331.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/331/small",
+      "iconLarge": "tum-era/creatures/331/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/331/S331ATTK.wav",
+      "defend": "tum-era/creatures/331/S331DFND.wav",
+      "killed": "tum-era/creatures/331/S331KILL.wav",
+      "move": "tum-era/creatures/331/S331MOVE.wav",
+      "wince": "tum-era/creatures/331/S331WNCE.wav"
+    }
+  },
+  "eraCreature332": {
+    "name": {
+      "singular": "Dark Paladin",
+      "plural": "Dark Paladins"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 1,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 3200
+    },
+    "fightValue": 5654,
+    "aiValue": 7225,
+    "growth": 1,
+    "hitPoints": 230,
+    "speed": 8,
+    "attack": 15,
+    "defense": 25,
+    "damage": {
+      "min": 20,
+      "max": 40
+    },
+    "advMapAmount": {
+      "min": 3,
+      "max": 8
+    },
+    "abilities": {
+      "amethyst_Hate0269": {
+        "type": "ERA_PERSONAL_HATE_DAMAGE",
+        "val": 200,
+        "subtype": "tum-era:eraCreature269"
+      },
+      "amethyst_Hate0278": {
+        "type": "ERA_PERSONAL_HATE_DAMAGE",
+        "val": 200,
+        "subtype": "tum-era:eraCreature278"
+      },
+      "amethyst_flag_17": {
+        "type": "NO_MORALE",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "sourceActiveCaster": {
+        "type": "SPELLCASTER",
+        "subtype": "core:deathRipple",
+        "val": 2
+      },
+      "sourceActiveSpellPower": {
+        "type": "CREATURE_SPELL_POWER",
+        "val": 100
+      },
+      "amethyst_Fearless": {
+        "type": "FEARFUL",
+        "val": 0,
+        "valueType": "INDEPENDENT_MIN"
+      },
+      "amethyst_Sktransformer": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "val": 0,
+        "subtype": "tum-era:eraCreature361"
+      },
+      "sourceInitialCasts": {
+        "type": "CASTS",
+        "val": 2
+      }
+    },
+    "doubleWide": false,
+    "level": 7,
+    "faction": "core:necropolis",
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          6,
+          12,
+          18,
+          24,
+          30,
+          36,
+          42,
+          48,
+          54,
+          60
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          3,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          2,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:bloodlust",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:bloodlust",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 2
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:bloodlust",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 3
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:slayer",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:slayer",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 2
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:slayer",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 3
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_BEFORE_ATTACK",
+          "subtype": "core:deathRipple",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": 3
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1.1,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/332/CR332",
+      "map": "tum-era/creatures/332/AVWCR332.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/332/small",
+      "iconLarge": "tum-era/creatures/332/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/332/S332ATTK.wav",
+      "defend": "tum-era/creatures/332/S332DFND.wav",
+      "killed": "tum-era/creatures/332/S332KILL.wav",
+      "move": "tum-era/creatures/332/S332MOVE.wav",
+      "wince": "tum-era/creatures/332/S332WNCE.wav"
+    }
+  }
+}

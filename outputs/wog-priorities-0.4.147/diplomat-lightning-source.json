@@ -1,0 +1,39 @@
+{
+  "ids": [
+    180,
+    220
+  ],
+  "scriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "archerSHA256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+  "archiveSHA256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "activationReady": false,
+  "diplomat": {
+    "sourceDescription": "Threefold perceived hero army strength for neutrals and Thieves Guild; components66/67/68 native surrender discounts",
+    "optionalSourceHooks": [
+      "WOG_71_GetDiploBonus adds3 if EnhancedArtifactII present",
+      "ES_786_GetDiscountLevel adds3 if DiplomaticBargain present"
+    ],
+    "pending": [
+      "Verify original perceived-strength hook context and rounding",
+      "Native perceived-strength-only adapter; preserve actual combat stats and reward XP",
+      "External optional enhancement adapters must have explicit settings and native equivalents"
+    ]
+  },
+  "lightning": {
+    "source": "Third Upgrade Mod.erm1760..1843",
+    "receiverEvidence": "https://www.h3wog.com/erm_help/receivers/receiver_bm_right.htm BM:K direct strike; BM:V animation only",
+    "timingEvidence": "https://www.h3wog.com/erm_help/other/trigger_right.htm MR1 after standard correction is computed and before returned damage; local era.dll48FE6B registers named OnMagicCorrectedResistance30308",
+    "firstMatchCfg": "Only GivesSpell19 and Immunities19 survive Emerald repeated scalar parsing; do not invent GivesSpell17 or immunity17",
+    "contract": [
+      "Either side equipped: Lightning Bolt and Chain Lightning ignore natural immunity/resistance",
+      "Target artifact Pendant of Negativity or Ionized Armor retains immunity",
+      "Caster equipped: ChainLightning own-side targets are immune",
+      "Hero ChainLightning with equipped Rod: Every hostile target receives an additional direct BM:K injury of rawLightningBolt(power,LightningBolt mastery); ordinary declining ChainLightning damage remains"
+    ],
+    "pending": [
+      "Native separate raw injury before ordinary already-corrected chain injury; do not fold into spell damage modifiers",
+      "Native immunity/chain-target selection/flat-bounce adapter and controls",
+      "TUMReborn optional artifactImmunity hook has no active external provider in this build"
+    ]
+  }
+}

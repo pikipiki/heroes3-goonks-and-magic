@@ -14,10 +14,12 @@
 #include "../../lib/Color.h"
 #include "../../lib/filesystem/ResourcePath.h"
 #include "BattleConstants.h"
+#include <map>
 
 VCMI_LIB_NAMESPACE_BEGIN
 
 class BattleAction;
+class CStack;
 struct BattleTriggerEffect;
 
 VCMI_LIB_NAMESPACE_END
@@ -68,6 +70,11 @@ class BattleEffectsController
 
 	std::map<std::string, ColorMuxerEffect> colorMuxerEffects;
 
+	// Announcements precede the attack packet. Consume once at that hit,
+	// never animate early or carry a marker into a later action/battle.
+	std::multimap<uint32_t, BattleHex> pendingFullBlocks;
+	std::multimap<uint32_t, BattleHex> pendingRangedResistances;
+
 	void loadColorMuxers();
 public:
 	const ColorMuxerEffect &getMuxerEffect(const std::string & name);
@@ -81,6 +88,7 @@ public:
 	void displayEffect(EBattleEffect effect, const AudioPath & soundFile, const BattleHex & destTile, float transparencyFactor = 1.f);
 
 	void battleTriggerEffect(const BattleTriggerEffect & bte);
+	void queueFullBlockAtHit(const CStack * defender);
 
 	void collectRenderableObjects(BattleRenderer & renderer);
 

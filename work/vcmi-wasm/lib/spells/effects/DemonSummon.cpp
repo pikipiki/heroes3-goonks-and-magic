@@ -13,6 +13,8 @@
 #include "../../era/EraSkeletonTransformations.h"
 #include "../../era/EraCorpseTransformation.h"
 #include "Registry.h"
+#include "../../networkPacks/SetStackEffect.h"
+#include "../../bonuses/BonusParameters.h"
 #include "../ISpellMechanics.h"
 #include "../../battle/CBattleInfoCallback.h"
 #include "../../battle/BattleInfo.h"
@@ -81,6 +83,7 @@ void DemonSummon::apply(ServerCallback * server, const Mechanics * m, const Effe
 {
 	BattleUnitsChanged pack;
 	pack.battleID = m->battle()->getBattle()->getBattleID();
+    std::vector<SetStackEffect> sourceDemonMarkers;
 
 	for(const Destination & dest : target)
 	{
@@ -126,13 +129,53 @@ void DemonSummon::apply(ServerCallback * server, const Mechanics * m, const Effe
 		// add newly created creature
 		pack.changedStacks.emplace_back(info.id, UnitChanges::EOperation::ADD);
 		info.save(pack.changedStacks.back().data);
+        if(eraDemonology)
+        {
+            Bonus marker;marker.type=BonusType::ERA_SOURCE_NON_ELEMENTAL_SUMMON;
+            marker.val=1;marker.hidden=true;marker.duration=BonusDuration::ONE_BATTLE;
+            const auto * sourceCaster=m->battle()->battleGetStackByID(m->caster->getCasterUnitId(),false);
+            if(sourceCaster)
+            {
+                marker.source=BonusSource::CREATURE_ABILITY;
+                marker.sid=BonusSourceID(sourceCaster->creatureId());
+            }
+            else
+            {
+                marker.source=BonusSource::SPELL_EFFECT;
+                marker.sid=BonusSourceID(m->getSpellId());
+            }
+            int sourceSlot=targetStack->unitSlot().getNum();
+            if(sourceSlot<0)
+            {
+                const auto prior=targetStack->getBonus(Selector::type()(BonusType::ERA_SOURCE_NON_ELEMENTAL_SUMMON));
+                if(prior && prior->parameters)sourceSlot=prior->parameters->toNumber();
+            }
+            // Source5A777B copies the corpse's overland slot into its replacement.
+            // This metadata preserves slot order independently of summon lifetime.
+            std::vector<Bonus> markers;
+            if(sourceSlot>=0 && sourceSlot<7)
+                marker.parameters=std::make_shared<BonusParameters>(sourceSlot);
+            markers.push_back(marker);
+            if(sourceSlot<0 || sourceSlot>=7 || targetStack->hasBonusOfType(BonusType::ERA_SOURCE_UNOWNED_STACK))
+            {
+                Bonus unowned=marker;unowned.type=BonusType::ERA_SOURCE_UNOWNED_STACK;
+                unowned.parameters.reset();markers.push_back(unowned);
+            }
+            SetStackEffect effect;effect.battleID=pack.battleID;
+            effect.toAdd.emplace_back(info.id,std::move(markers));
+            // Apply after creation below, before another spell can inspect the unit.
+            sourceDemonMarkers.push_back(std::move(effect));
+        }
 
 		// and remove corpse to prevent second raising or resurrection
 		pack.changedStacks.emplace_back(targetStack->unitId(), UnitChanges::EOperation::REMOVE);
 	}
 
 	if(!pack.changedStacks.empty())
+    {
 		server->apply(pack);
+        for(auto & marker:sourceDemonMarkers)server->apply(marker);
+    }
 }
 
 SpellEffectValue DemonSummon::getHealthChange(const Mechanics * m, const EffectTarget & spellTarget) const
@@ -158,6 +201,15 @@ bool DemonSummon::isValidTarget(const Mechanics * m, const battle::Unit * unit) 
 {
 	if(!unit->isDead())
 		return false;
+
+    if(eraDemonology)
+    {
+        // Source5A41DC..E8 requires ALIVE, independently from mental or
+        // morale flags. Unknown extra mods retain their native living flag.
+        const auto * source=era_compat::SkeletonTransformations::get().find(unit->creatureId().toCreature()->getJsonKey());
+        if(!(source?source->living:unit->isLiving()))
+            return false;
+    }
 
 	//check if alive unit blocks rising
 	for(const BattleHex & hex : unit->getHexes())
@@ -195,6 +247,9 @@ void DemonSummon::serializeJsonUnitEffect(JsonSerializeFormat & handler)
 	handler.serializeId("id", creature, CreatureID());
 	handler.serializeBool("permanent", permanent, false);
 	handler.serializeBool("eraCorpseTransform", eraCorpseTransform, false);
+    handler.serializeBool("eraDemonology", eraDemonology, false);
+    if(eraDemonology && eraCorpseTransform)
+        throw std::runtime_error("ERA demonology cannot also transform corpse by source identity");
 }
 
 }

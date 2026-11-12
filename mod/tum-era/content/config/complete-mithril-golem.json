@@ -1,0 +1,255 @@
+{
+  "eraCreature324": {
+    "name": {
+      "singular": "Mithril Golem",
+      "plural": "Mithril Golems"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 1000
+    },
+    "fightValue": 975,
+    "aiValue": 975,
+    "growth": 2,
+    "hitPoints": 80,
+    "speed": 7,
+    "attack": 15,
+    "defense": 16,
+    "damage": {
+      "min": 12,
+      "max": 16
+    },
+    "advMapAmount": {
+      "min": 6,
+      "max": 10
+    },
+    "abilities": {
+      "amethyst_flag_17": {
+        "type": "NO_MORALE",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "ERA_SOURCE_INANIMATE"
+      },
+      "amethyst_Fearless": {
+        "type": "FEARFUL",
+        "val": 0,
+        "valueType": "INDEPENDENT_MIN"
+      },
+      "amethyst_isConstruct": {
+        "type": "ERA_SOURCE_CONSTRUCT",
+        "val": 0
+      },
+      "crexp_0_rank0": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:magicArrow"
+      },
+      "crexp_0_rank0_extra1": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:lightningBolt"
+      },
+      "crexp_0_rank0_extra2": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:chainLightning"
+      },
+      "crexp_0_rank0_extra3": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:meteorShower"
+      },
+      "crexp_0_rank0_extra4": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:implosion"
+      },
+      "crexp_0_rank0_extra5": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:fireball"
+      },
+      "crexp_0_rank0_extra6": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:armageddon"
+      },
+      "crexp_0_rank0_extra7": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:inferno"
+      },
+      "crexp_0_rank0_extra8": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:iceBolt"
+      },
+      "crexp_0_rank0_extra9": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:frostRing"
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "doubleWide": false,
+    "level": 6,
+    "faction": "core:neutral",
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          8,
+          9
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "bonus": {
+          "type": "BLOCKS_RETALIATION"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ADDITIONAL_ATTACK",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1.27,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/324/CR324",
+      "map": "tum-era/creatures/324/AVWCR324.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/324/small",
+      "iconLarge": "tum-era/creatures/324/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/324/S324ATTK.wav",
+      "defend": "tum-era/creatures/324/S324DFND.wav",
+      "killed": "tum-era/creatures/324/S324KILL.wav",
+      "move": "tum-era/creatures/324/S324MOVE.wav",
+      "wince": "tum-era/creatures/324/S324WNCE.wav"
+    }
+  }
+}

@@ -53,7 +53,7 @@ class BattleActionProcessor : boost::noncopyable
 	CGameHandler * gameHandler;
 
 	MovementResult moveStack(const CBattleInfoCallback & battle, int stack, BattleHex dest, const std::function<void()> & beforeMovement = {}); //returned value - travelled distance
-	void makeAttack(const CBattleInfoCallback & battle, const CStack * attacker, const CStack * defender, int distance, const BattleHex & targetHex, bool first, bool ranged, bool counter, EraPetrificationSequence * petrification = nullptr);
+	void makeAttack(const CBattleInfoCallback & battle, const CStack * attacker, const CStack * defender, int distance, const BattleHex & targetHex, bool first, bool ranged, bool counter, EraPetrificationSequence * petrification = nullptr, bool consumeCounter = true);
 
 	void handleAttackBeforeCasting(const CBattleInfoCallback & battle, bool ranged, const CStack * attacker, const CStack * defender);
 

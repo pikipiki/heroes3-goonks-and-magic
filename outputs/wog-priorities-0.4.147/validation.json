@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.155",
+  "status": "verified-checkpoint",
+  "unitTests": {
+    "command": "node --test --test-concurrency=4 tests/*.test.mjs",
+    "isolatedReviewTree": true,
+    "total": 591,
+    "passed": 563,
+    "failed": 0,
+    "skipped": 28,
+    "reasonForSkips": "Optional local upstream inputs or conditional fixtures; no failing test omitted."
+  },
+  "webPackage": {
+    "build": true,
+    "verify": true,
+    "manifestIncludesOriginalGameData": true,
+    "maps": [
+      "003-Goonks-WoG.vmap",
+      "004-Goonks-WoG-Online.vmap"
+    ],
+    "newBanksPerMap": 28
+  },
+  "mobileUI": {
+    "spellbookReadableWords": true,
+    "minimumActionTargetPx": 44,
+    "screenFormats": 14,
+    "identicalSnapshotUpdates": 30,
+    "unexpectedDOMRemovals": 0,
+    "evidence": "spellbook-readable-layout/result.json"
+  },
+  "faithfulnessPolicy": {
+    "undefinedWindowsValues": "Deterministic defined replacement, documented for source352 secondary injury (zero).",
+    "definedSignedOverflow": "Explicit Win32 DWORD wrap and signed interpretation preserved.",
+    "unvalidatedContracts": "Remain disabled."
+  },
+  "fullERACompatibility": false,
+  "remaining": [
+    "Conflux355/356 eighth-faction actors and atomic18-actor town roster activation",
+    "Remaining source artifact contracts and neutral creature dependencies",
+    "Documented source combat order gaps and complex scripts",
+    "Ring268 corpse geometry and Sacrifice validation"
+  ],
+  "wasmSHA256": "efdde3e2d7301dd2bc36bcc293f02809f973afbe01066a231dd74a928c646dc8",
+  "activeSourceArtifacts": 96,
+  "nativeRegressions": {
+    "sourceArtifacts": "native-mass-hypnotize253.json",
+    "existingGoonkBannersTowerSaveLoad": "progression-public155/result.json",
+    "publicMapsAndSelectionPreservation": "adventure-maps-public155/result.json",
+    "rawGooseIncomeAfterHandicap": "native-goose-handicap.json",
+    "eightFaerieSpellsRNGResistanceAndMobile": "native-primal-faerie-casting.json"
+  },
+  "fullPortComplete": false
+}

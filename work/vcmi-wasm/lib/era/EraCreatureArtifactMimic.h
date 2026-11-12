@@ -1,4 +1,4 @@
-/* Source-scoped native adapter for CreatureMimicArtifact=129; GPL-2.0-or-later. */
+/* Source-scoped native adapter for CreatureMimicArtifact queries129/135/71; GPL-2.0-or-later. */
 #pragma once
 #include "EraCreatureArtifactRuntime.h"
 #include "EraBridgePolicies.h"

@@ -1,0 +1,464 @@
+{
+  "passed": true,
+  "report": {
+    "diplomat-neutral-baseline": {
+      "skills": [
+        4,
+        7,
+        10,
+        20
+      ],
+      "unit": {
+        "aiValue": 8721,
+        "armySlot": 0,
+        "attack": 29,
+        "canMeleeAt": true,
+        "canShootAt": false,
+        "cloned": false,
+        "cost": [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          4000,
+          0
+        ],
+        "count": 300,
+        "currentHealth": 300,
+        "damageMax": 50,
+        "damageMin": 40,
+        "defense": 32,
+        "description": "",
+        "enemy": false,
+        "eraSlot": 0,
+        "experience": 0,
+        "experiencePerUnit": 0,
+        "experienceRank": 0,
+        "fightValue": 6783,
+        "growth": 1,
+        "health": 300,
+        "icon": "",
+        "id": 83,
+        "key": "core:blackDragon",
+        "luck": 0,
+        "magicResistance": 0,
+        "maximumHealth": 300,
+        "morale": 1,
+        "name": "Black Dragon",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": true,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "occupied": [
+          87,
+          86
+        ],
+        "remainingCasts": 0,
+        "remainingRetaliations": 1,
+        "remainingShots": 0,
+        "shooter": false,
+        "shots": 0,
+        "speed": 15,
+        "stackId": 0,
+        "x": 124,
+        "y": 322
+      }
+    },
+    "diplomat-neutral-backpack": {
+      "skills": [
+        4,
+        7,
+        10,
+        20
+      ],
+      "unit": {
+        "aiValue": 8721,
+        "armySlot": 0,
+        "attack": 29,
+        "canMeleeAt": true,
+        "canShootAt": false,
+        "cloned": false,
+        "cost": [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          4000,
+          0
+        ],
+        "count": 300,
+        "currentHealth": 300,
+        "damageMax": 50,
+        "damageMin": 40,
+        "defense": 32,
+        "description": "",
+        "enemy": false,
+        "eraSlot": 0,
+        "experience": 0,
+        "experiencePerUnit": 0,
+        "experienceRank": 0,
+        "fightValue": 6783,
+        "growth": 1,
+        "health": 300,
+        "icon": "",
+        "id": 83,
+        "key": "core:blackDragon",
+        "luck": 0,
+        "magicResistance": 0,
+        "maximumHealth": 300,
+        "morale": 1,
+        "name": "Black Dragon",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": true,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "occupied": [
+          87,
+          86
+        ],
+        "remainingCasts": 0,
+        "remainingRetaliations": 1,
+        "remainingShots": 0,
+        "shooter": false,
+        "shots": 0,
+        "speed": 15,
+        "stackId": 0,
+        "x": 124,
+        "y": 322
+      }
+    },
+    "diplomatFlee": {
+      "cancel": true,
+      "lines": [
+        "The Black Dragons, awed by the power of your forces, begin to scatter.  Do you wish to pursue and engage them?"
+      ],
+      "queryId": -1,
+      "title": "Game message",
+      "visitedObject": "Black Dragons"
+    },
+    "diplomat-neutral-equipped": {
+      "skills": [
+        4,
+        7,
+        10,
+        20
+      ],
+      "unit": {
+        "aiValue": 8721,
+        "armySlot": 0,
+        "attack": 29,
+        "canMeleeAt": true,
+        "canShootAt": false,
+        "cloned": false,
+        "cost": [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          4000,
+          0
+        ],
+        "count": 300,
+        "currentHealth": 300,
+        "damageMax": 50,
+        "damageMin": 40,
+        "defense": 32,
+        "description": "",
+        "enemy": false,
+        "eraSlot": 0,
+        "experience": 0,
+        "experiencePerUnit": 0,
+        "experienceRank": 0,
+        "fightValue": 6783,
+        "growth": 1,
+        "health": 300,
+        "icon": "",
+        "id": 83,
+        "key": "core:blackDragon",
+        "luck": 0,
+        "magicResistance": 0,
+        "maximumHealth": 300,
+        "morale": 1,
+        "name": "Black Dragon",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": true,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "occupied": [
+          87,
+          86
+        ],
+        "remainingCasts": 0,
+        "remainingRetaliations": 1,
+        "remainingShots": 0,
+        "shooter": false,
+        "shots": 0,
+        "speed": 15,
+        "stackId": 0,
+        "x": 124,
+        "y": 322
+      }
+    },
+    "diplomat-guild-baseline": {
+      "players": [
+        {
+          "color": 0,
+          "creature": "Black Dragon",
+          "hero": "Christian",
+          "name": "Red",
+          "personality": "Human"
+        },
+        {
+          "color": 1,
+          "creature": "Black Dragon",
+          "hero": "Orrin",
+          "name": "Blue"
+        }
+      ],
+      "rows": [
+        {
+          "label": "Towns",
+          "ranks": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "label": "Heroes",
+          "ranks": {
+            "0": 1,
+            "1": 1
+          }
+        },
+        {
+          "label": "Gold",
+          "ranks": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "label": "Wood and ore",
+          "ranks": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "label": "Rare resources",
+          "ranks": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "label": "Obelisks",
+          "ranks": {
+            "0": 1,
+            "1": 1
+          }
+        },
+        {
+          "label": "Artifacts",
+          "ranks": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "label": "Army strength",
+          "ranks": {
+            "0": 2,
+            "1": 1
+          }
+        },
+        {
+          "label": "Daily income"
+        }
+      ]
+    },
+    "diplomat-guild-backpack": {
+      "players": [
+        {
+          "color": 0,
+          "creature": "Black Dragon",
+          "hero": "Christian",
+          "name": "Red",
+          "personality": "Human"
+        },
+        {
+          "color": 1,
+          "creature": "Black Dragon",
+          "hero": "Orrin",
+          "name": "Blue"
+        }
+      ],
+      "rows": [
+        {
+          "label": "Towns",
+          "ranks": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "label": "Heroes",
+          "ranks": {
+            "0": 1,
+            "1": 1
+          }
+        },
+        {
+          "label": "Gold",
+          "ranks": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "label": "Wood and ore",
+          "ranks": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "label": "Rare resources",
+          "ranks": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "label": "Obelisks",
+          "ranks": {
+            "0": 1,
+            "1": 1
+          }
+        },
+        {
+          "label": "Artifacts",
+          "ranks": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "label": "Army strength",
+          "ranks": {
+            "0": 2,
+            "1": 1
+          }
+        },
+        {
+          "label": "Daily income"
+        }
+      ]
+    },
+    "diplomat-guild-equipped": {
+      "players": [
+        {
+          "color": 0,
+          "creature": "Black Dragon",
+          "hero": "Christian",
+          "name": "Red",
+          "personality": "Human"
+        },
+        {
+          "color": 1,
+          "creature": "Black Dragon",
+          "hero": "Orrin",
+          "name": "Blue"
+        }
+      ],
+      "rows": [
+        {
+          "label": "Towns",
+          "ranks": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "label": "Heroes",
+          "ranks": {
+            "0": 1,
+            "1": 1
+          }
+        },
+        {
+          "label": "Gold",
+          "ranks": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "label": "Wood and ore",
+          "ranks": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "label": "Rare resources",
+          "ranks": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "label": "Obelisks",
+          "ranks": {
+            "0": 1,
+            "1": 1
+          }
+        },
+        {
+          "label": "Artifacts",
+          "ranks": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "label": "Army strength",
+          "ranks": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "label": "Daily income"
+        }
+      ]
+    }
+  }
+}

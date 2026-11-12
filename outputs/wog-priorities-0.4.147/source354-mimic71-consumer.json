@@ -1,0 +1,52 @@
+{
+  "sourceCreature": 354,
+  "sourceProperty": {
+    "CreatureMimicArtifact": 71
+  },
+  "originalArtifact": 71,
+  "originalArtifactName": "Necklace of Ocean Guidance",
+  "originalNumericalBonus": 1000,
+  "conclusion": {
+    "navalMovementFromThisMimic": false,
+    "reason": "Original sea-movement function scans19 physical equipped slots for71. Its only HasArtifact fallback checks the parent combination136, not71. Creature2Artifact returns71 without remapping; NewHasArtifact boolean emulation does not intercept the physical-slot scan.",
+    "scope": "Supplied source, native original executable and no active compensating external callback; this is a dormant source effect, not authorization to add1000.",
+    "otherHasArtifactQueries": "Generic HasArtifact/ERM A2 lookup emulation is a separate contract; absence of naval movement does not waive such consumers."
+  },
+  "originalAddresses": {
+    "seaMovementEntry": "004E4C00(arg1)",
+    "navigationBranch": "004E4C24..004E4E21",
+    "physicalSlot71Loop": "004E4D75..004E4D8C",
+    "parentComboLoad": "004E4D8E..004E4DAA",
+    "parentHasArtifactCall": "004E4DAE",
+    "singleNavalAddition": "004E4DB7..004E4DC2",
+    "navalQuantityInitialization": "004D7664..004D7676 from MOVEMENT.TXT"
+  },
+  "combination": {
+    "index": 7,
+    "artifact": 136,
+    "parts": [
+      71,
+      123
+    ],
+    "source": "ArtifactCombos.cpp227..229; BuildUpCombo writes component.combonum=7; TUM only replaces combination13..22"
+  },
+  "hooks": {
+    "newHasArtifact": "duplicate.cpp482..601 returns1 on first original-army mimic, before checking later carriers; never returns a multiplicity",
+    "disabledVirtualEquipment": "handleCreatureAsArt and negativeArtSlots are commented out; installation references dllmain1046..1047 commented out",
+    "navalComboStride": "ArtifactCombos.cpp700..703 only changes element stride and resumes004E4DAA; does not change requested artifact to71"
+  },
+  "sourcePins": {
+    "artifactArchive": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+    "executable": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+    "emeraldPlugin": "3102fc09554a07619a19462f420c821cdf20b32d846ec8b4802c0f4415b60911",
+    "combos": "6a6c312be8d590f7e5495f0072a2465d637c40486b597d021d4a06f6b0719899",
+    "duplicate": "1549618290d5f1923eda07119fbd931d2ba2e3f6c907315bf1a2c3c140194391",
+    "mainScript": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+    "movementText": "a59b45652a8c02487b47b73113429a05234955c64f1bfe4f738c31e657e4d6be"
+  },
+  "boundedOriginalCode": {
+    "address": "004E4D75",
+    "length": 80,
+    "sha256": "2fb3b291f7bcd22ba5829e9ef482741b10e4f7e10e7ab79ed30c1013fdb11ff8"
+  }
+}

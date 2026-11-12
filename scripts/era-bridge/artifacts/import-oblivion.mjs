@@ -1,0 +1,28 @@
+/** Complete source268 candidate. No production activation occurs here. */
+import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';
+import {readEraArchive} from '../resources.mjs';
+import {readArtifactTraits,normalizeArtifactLanguage,decodeArtifactIcon,encodePng,scenarioIcon} from './importer.mjs';
+import {compileArtifactDefinition} from './artifacts.mjs';
+const [project,source,output]=process.argv.slice(2).map(p=>path.resolve(p));
+if(!output||output.startsWith(project+path.sep)||fs.existsSync(output))throw Error('PROJECT SOURCE FRESH_OUTPUT required');
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const script=fs.readFileSync(path.join(source,'Data/s/Third Upgrade Mod.erm'));
+if(sha(script)!=='0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315')throw Error('Changed original Ring script');
+if(fs.existsSync(path.join(source,'Data/Artifacts/268.cfg')))throw Error('Additional Ring CFG requires review');
+const archive=readEraArchive(fs.readFileSync(path.join(source,'Data/EmeraldArtifacts.pac')));
+if(archive.sha256!=='0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893')throw Error('Changed original artifact archive');
+const traits=readArtifactTraits(archive.extract('artraits.txt').toString('latin1'));
+const language=JSON.parse(fs.readFileSync(path.join(source,'Lang/TUM_Artifacts.json'))).era.artifacts;
+const trait=traits[268],asset='tum-era/artifacts/268',icon=decodeArtifactIcon(archive.extract('artifact.def'),268);
+if(!/^HrArt0*268\./i.test(icon.name))throw Error('Original Ring icon identity changed');
+const text=normalizeArtifactLanguage(trait,language[268]).text;
+text.description='{Ring of Oblivion}\n\nWhile equipped by either hero, prevents Resurrection, Animate Dead and Sacrifice from restoring units. Removes unoccupied corpses after attacks and spell actions, and prevents post-battle Necromancy.';
+const compiled=compileArtifactDefinition({id:268,text:'',authorizeAdapters:['oblivion'],baseArtifact:{type:['HERO'],class:trait.class,value:trait.value,slot:trait.slot,text},resolveAssets:()=>({image:asset+'/icon.png',map:asset+'/map.def',scenarioBonus:asset+'/scenario.png'})});
+if(!compiled.ok)throw Error(JSON.stringify(compiled.diagnostics));
+const write=(name,data)=>{const p=path.join(output,name);fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,Buffer.isBuffer(data)?data:JSON.stringify(data,null,2)+'\n');};
+write('content/config/oblivion.candidate.json',{artifact268:compiled.definition});
+write('runtime.candidate.json',{schemaVersion:1,artifact:'tum-era:artifact268'});
+for(const suffix of ['def','msk'])write('content/Sprites/'+asset+'/map.'+suffix,archive.extract('ava0268.'+suffix));
+write('content/Data/'+asset+'/icon.png',encodePng(icon));write('content/Data/'+asset+'/scenario.png',encodePng(scenarioIcon(icon)));
+write('source-review.json',{sourceId:268,scriptSHA256:sha(script),archiveSHA256:archive.sha256,sourceLines:[1925,1989],initialization:'Cache either equipped hero at battlefield setup, including hero versus neutral. No human-side gate.',revival:'Force final resistance100 for38/39/40 after actual cast selection; preserve mana and turn cost on living wounded targets.',corpses:'After each physical strike and hero/creature cast, remove only original slots0..41, dead, nonclone, nontower, not already removed, both footprint cells unoccupied by living units. Preserve summoned flag and casualty history.',necromancy:'Calculated winner power becomes0, independent of winning carrier side.',sourceException:'The original TODO to inhibit Life Drain and Attract Dead Souls is not implemented in the supplied source; do not invent that ban.',activationReady:false});
+console.log('Prepared complete Ring of Oblivion candidate; production unchanged.');

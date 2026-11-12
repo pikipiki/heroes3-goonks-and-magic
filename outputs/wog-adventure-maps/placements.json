@@ -1,0 +1,1150 @@
+[
+  {
+    "map": "003-Goonks-WoG.vmap",
+    "source": "001-Goonks.vmap",
+    "banks": [
+      {
+        "bank": 34,
+        "side": 0,
+        "anchor": [
+          21,
+          34
+        ],
+        "visit": [
+          21,
+          34
+        ],
+        "approach": [
+          22,
+          34
+        ]
+      },
+      {
+        "bank": 34,
+        "side": 1,
+        "anchor": [
+          122,
+          109
+        ],
+        "visit": [
+          122,
+          109
+        ],
+        "approach": [
+          123,
+          109
+        ]
+      },
+      {
+        "bank": 35,
+        "side": 0,
+        "anchor": [
+          31,
+          54
+        ],
+        "visit": [
+          30,
+          54
+        ],
+        "approach": [
+          29,
+          55
+        ]
+      },
+      {
+        "bank": 35,
+        "side": 1,
+        "anchor": [
+          112,
+          89
+        ],
+        "visit": [
+          111,
+          89
+        ],
+        "approach": [
+          110,
+          90
+        ]
+      },
+      {
+        "bank": 36,
+        "side": 0,
+        "anchor": [
+          36,
+          84
+        ],
+        "visit": [
+          36,
+          84
+        ],
+        "approach": [
+          35,
+          84
+        ]
+      },
+      {
+        "bank": 36,
+        "side": 1,
+        "anchor": [
+          107,
+          59
+        ],
+        "visit": [
+          107,
+          59
+        ],
+        "approach": [
+          106,
+          59
+        ]
+      },
+      {
+        "bank": 39,
+        "side": 0,
+        "anchor": [
+          48,
+          24
+        ],
+        "visit": [
+          47,
+          24
+        ],
+        "approach": [
+          46,
+          25
+        ]
+      },
+      {
+        "bank": 39,
+        "side": 1,
+        "anchor": [
+          95,
+          119
+        ],
+        "visit": [
+          94,
+          119
+        ],
+        "approach": [
+          93,
+          120
+        ]
+      },
+      {
+        "bank": 40,
+        "side": 0,
+        "anchor": [
+          44,
+          52
+        ],
+        "visit": [
+          43,
+          51
+        ],
+        "approach": [
+          42,
+          51
+        ]
+      },
+      {
+        "bank": 40,
+        "side": 1,
+        "anchor": [
+          99,
+          91
+        ],
+        "visit": [
+          98,
+          90
+        ],
+        "approach": [
+          97,
+          90
+        ]
+      },
+      {
+        "bank": 42,
+        "side": 0,
+        "anchor": [
+          46,
+          79
+        ],
+        "visit": [
+          46,
+          79
+        ],
+        "approach": [
+          45,
+          79
+        ]
+      },
+      {
+        "bank": 42,
+        "side": 1,
+        "anchor": [
+          97,
+          64
+        ],
+        "visit": [
+          97,
+          64
+        ],
+        "approach": [
+          96,
+          64
+        ]
+      },
+      {
+        "bank": 45,
+        "side": 0,
+        "anchor": [
+          55,
+          25
+        ],
+        "visit": [
+          55,
+          25
+        ],
+        "approach": [
+          56,
+          25
+        ]
+      },
+      {
+        "bank": 45,
+        "side": 1,
+        "anchor": [
+          88,
+          118
+        ],
+        "visit": [
+          88,
+          118
+        ],
+        "approach": [
+          89,
+          118
+        ]
+      },
+      {
+        "bank": 46,
+        "side": 0,
+        "anchor": [
+          58,
+          51
+        ],
+        "visit": [
+          57,
+          51
+        ],
+        "approach": [
+          56,
+          51
+        ]
+      },
+      {
+        "bank": 46,
+        "side": 1,
+        "anchor": [
+          85,
+          92
+        ],
+        "visit": [
+          84,
+          92
+        ],
+        "approach": [
+          83,
+          92
+        ]
+      },
+      {
+        "bank": 49,
+        "side": 0,
+        "anchor": [
+          47,
+          91
+        ],
+        "visit": [
+          46,
+          91
+        ],
+        "approach": [
+          47,
+          91
+        ]
+      },
+      {
+        "bank": 49,
+        "side": 1,
+        "anchor": [
+          96,
+          52
+        ],
+        "visit": [
+          95,
+          52
+        ],
+        "approach": [
+          96,
+          52
+        ]
+      },
+      {
+        "bank": 50,
+        "side": 0,
+        "anchor": [
+          64,
+          28
+        ],
+        "visit": [
+          63,
+          28
+        ],
+        "approach": [
+          64,
+          28
+        ]
+      },
+      {
+        "bank": 50,
+        "side": 1,
+        "anchor": [
+          79,
+          115
+        ],
+        "visit": [
+          78,
+          115
+        ],
+        "approach": [
+          79,
+          115
+        ]
+      },
+      {
+        "bank": 54,
+        "side": 0,
+        "anchor": [
+          25,
+          57
+        ],
+        "visit": [
+          24,
+          57
+        ],
+        "approach": [
+          23,
+          57
+        ]
+      },
+      {
+        "bank": 54,
+        "side": 1,
+        "anchor": [
+          118,
+          86
+        ],
+        "visit": [
+          117,
+          86
+        ],
+        "approach": [
+          116,
+          86
+        ]
+      },
+      {
+        "bank": 55,
+        "side": 0,
+        "anchor": [
+          63,
+          96
+        ],
+        "visit": [
+          63,
+          96
+        ],
+        "approach": [
+          64,
+          96
+        ]
+      },
+      {
+        "bank": 55,
+        "side": 1,
+        "anchor": [
+          80,
+          47
+        ],
+        "visit": [
+          80,
+          47
+        ],
+        "approach": [
+          81,
+          47
+        ]
+      },
+      {
+        "bank": 58,
+        "side": 0,
+        "anchor": [
+          48,
+          17
+        ],
+        "visit": [
+          47,
+          17
+        ],
+        "approach": [
+          46,
+          18
+        ]
+      },
+      {
+        "bank": 58,
+        "side": 1,
+        "anchor": [
+          95,
+          126
+        ],
+        "visit": [
+          94,
+          126
+        ],
+        "approach": [
+          93,
+          127
+        ]
+      },
+      {
+        "bank": 60,
+        "side": 0,
+        "anchor": [
+          50,
+          99
+        ],
+        "visit": [
+          48,
+          99
+        ],
+        "approach": [
+          47,
+          99
+        ]
+      },
+      {
+        "bank": 60,
+        "side": 1,
+        "anchor": [
+          93,
+          44
+        ],
+        "visit": [
+          91,
+          44
+        ],
+        "approach": [
+          90,
+          44
+        ]
+      }
+    ],
+    "hillForts": [
+      {
+        "bank": "hillFort",
+        "side": 0,
+        "anchor": [
+          64,
+          110
+        ],
+        "visit": [
+          64,
+          110
+        ],
+        "approach": [
+          65,
+          110
+        ]
+      },
+      {
+        "bank": "hillFort",
+        "side": 1,
+        "anchor": [
+          79,
+          33
+        ],
+        "visit": [
+          79,
+          33
+        ],
+        "approach": [
+          80,
+          33
+        ]
+      }
+    ],
+    "preservedObjectives": 212,
+    "clearedScenery": [
+      "goonksObject238",
+      "goonksObject239",
+      "goonksObject269",
+      "goonksObject365",
+      "goonksObject405",
+      "goonksObject411",
+      "goonksObject540",
+      "goonksObject541",
+      "goonksObject552",
+      "goonksObject553",
+      "goonksObject204",
+      "goonksObject205",
+      "goonksObject248",
+      "goonksObject286",
+      "goonksObject302",
+      "goonksObject372",
+      "goonksObject373",
+      "goonksObject432",
+      "goonksObject433",
+      "goonksObject452",
+      "goonksObject453",
+      "goonksObject484",
+      "goonksObject485",
+      "goonksObject509",
+      "goonksObject377",
+      "goonksObject298",
+      "goonksObject299",
+      "goonksObject406",
+      "goonksObject546",
+      "goonksObject547",
+      "goonksObject322",
+      "goonksObject323",
+      "goonksObject366",
+      "goonksObject434",
+      "goonksObject435",
+      "goonksObject333",
+      "goonksObject348",
+      "goonksObject349",
+      "goonksObject226",
+      "goonksObject227",
+      "goonksObject296",
+      "goonksObject297",
+      "goonksObject320",
+      "goonksObject321",
+      "goonksObject367",
+      "goonksObject386",
+      "goonksObject387",
+      "goonksObject476",
+      "goonksObject477",
+      "goonksObject260",
+      "goonksObject261",
+      "goonksObject276",
+      "goonksObject309",
+      "goonksObject336",
+      "goonksObject337",
+      "goonksObject439",
+      "goonksObject508",
+      "goonksObject240",
+      "goonksObject241",
+      "goonksObject282",
+      "goonksObject283",
+      "goonksObject334",
+      "goonksObject335",
+      "goonksObject350",
+      "goonksObject351",
+      "goonksObject420",
+      "goonksObject421",
+      "goonksObject527",
+      "goonksObject376",
+      "goonksObject288",
+      "goonksObject289",
+      "goonksObject392",
+      "goonksObject440",
+      "goonksObject441",
+      "goonksObject526",
+      "goonksObject264",
+      "goonksObject272",
+      "goonksObject273",
+      "goonksObject324",
+      "goonksObject325",
+      "goonksObject359",
+      "goonksObject529",
+      "goonksObject533"
+    ]
+  },
+  {
+    "map": "004-Goonks-WoG-Online.vmap",
+    "source": "002-Goonks-Online.vmap",
+    "banks": [
+      {
+        "bank": 34,
+        "side": 0,
+        "anchor": [
+          21,
+          34
+        ],
+        "visit": [
+          21,
+          34
+        ],
+        "approach": [
+          22,
+          34
+        ]
+      },
+      {
+        "bank": 34,
+        "side": 1,
+        "anchor": [
+          122,
+          109
+        ],
+        "visit": [
+          122,
+          109
+        ],
+        "approach": [
+          123,
+          109
+        ]
+      },
+      {
+        "bank": 35,
+        "side": 0,
+        "anchor": [
+          31,
+          54
+        ],
+        "visit": [
+          30,
+          54
+        ],
+        "approach": [
+          29,
+          55
+        ]
+      },
+      {
+        "bank": 35,
+        "side": 1,
+        "anchor": [
+          112,
+          89
+        ],
+        "visit": [
+          111,
+          89
+        ],
+        "approach": [
+          110,
+          90
+        ]
+      },
+      {
+        "bank": 36,
+        "side": 0,
+        "anchor": [
+          36,
+          84
+        ],
+        "visit": [
+          36,
+          84
+        ],
+        "approach": [
+          35,
+          84
+        ]
+      },
+      {
+        "bank": 36,
+        "side": 1,
+        "anchor": [
+          107,
+          59
+        ],
+        "visit": [
+          107,
+          59
+        ],
+        "approach": [
+          106,
+          59
+        ]
+      },
+      {
+        "bank": 39,
+        "side": 0,
+        "anchor": [
+          48,
+          24
+        ],
+        "visit": [
+          47,
+          24
+        ],
+        "approach": [
+          46,
+          25
+        ]
+      },
+      {
+        "bank": 39,
+        "side": 1,
+        "anchor": [
+          95,
+          119
+        ],
+        "visit": [
+          94,
+          119
+        ],
+        "approach": [
+          93,
+          120
+        ]
+      },
+      {
+        "bank": 40,
+        "side": 0,
+        "anchor": [
+          44,
+          52
+        ],
+        "visit": [
+          43,
+          51
+        ],
+        "approach": [
+          42,
+          51
+        ]
+      },
+      {
+        "bank": 40,
+        "side": 1,
+        "anchor": [
+          99,
+          91
+        ],
+        "visit": [
+          98,
+          90
+        ],
+        "approach": [
+          97,
+          90
+        ]
+      },
+      {
+        "bank": 42,
+        "side": 0,
+        "anchor": [
+          46,
+          79
+        ],
+        "visit": [
+          46,
+          79
+        ],
+        "approach": [
+          45,
+          79
+        ]
+      },
+      {
+        "bank": 42,
+        "side": 1,
+        "anchor": [
+          97,
+          64
+        ],
+        "visit": [
+          97,
+          64
+        ],
+        "approach": [
+          96,
+          64
+        ]
+      },
+      {
+        "bank": 45,
+        "side": 0,
+        "anchor": [
+          55,
+          25
+        ],
+        "visit": [
+          55,
+          25
+        ],
+        "approach": [
+          56,
+          25
+        ]
+      },
+      {
+        "bank": 45,
+        "side": 1,
+        "anchor": [
+          88,
+          118
+        ],
+        "visit": [
+          88,
+          118
+        ],
+        "approach": [
+          89,
+          118
+        ]
+      },
+      {
+        "bank": 46,
+        "side": 0,
+        "anchor": [
+          58,
+          51
+        ],
+        "visit": [
+          57,
+          51
+        ],
+        "approach": [
+          56,
+          51
+        ]
+      },
+      {
+        "bank": 46,
+        "side": 1,
+        "anchor": [
+          85,
+          92
+        ],
+        "visit": [
+          84,
+          92
+        ],
+        "approach": [
+          83,
+          92
+        ]
+      },
+      {
+        "bank": 49,
+        "side": 0,
+        "anchor": [
+          47,
+          91
+        ],
+        "visit": [
+          46,
+          91
+        ],
+        "approach": [
+          47,
+          91
+        ]
+      },
+      {
+        "bank": 49,
+        "side": 1,
+        "anchor": [
+          96,
+          52
+        ],
+        "visit": [
+          95,
+          52
+        ],
+        "approach": [
+          96,
+          52
+        ]
+      },
+      {
+        "bank": 50,
+        "side": 0,
+        "anchor": [
+          64,
+          28
+        ],
+        "visit": [
+          63,
+          28
+        ],
+        "approach": [
+          64,
+          28
+        ]
+      },
+      {
+        "bank": 50,
+        "side": 1,
+        "anchor": [
+          79,
+          115
+        ],
+        "visit": [
+          78,
+          115
+        ],
+        "approach": [
+          79,
+          115
+        ]
+      },
+      {
+        "bank": 54,
+        "side": 0,
+        "anchor": [
+          25,
+          57
+        ],
+        "visit": [
+          24,
+          57
+        ],
+        "approach": [
+          23,
+          57
+        ]
+      },
+      {
+        "bank": 54,
+        "side": 1,
+        "anchor": [
+          118,
+          86
+        ],
+        "visit": [
+          117,
+          86
+        ],
+        "approach": [
+          116,
+          86
+        ]
+      },
+      {
+        "bank": 55,
+        "side": 0,
+        "anchor": [
+          63,
+          96
+        ],
+        "visit": [
+          63,
+          96
+        ],
+        "approach": [
+          64,
+          96
+        ]
+      },
+      {
+        "bank": 55,
+        "side": 1,
+        "anchor": [
+          80,
+          47
+        ],
+        "visit": [
+          80,
+          47
+        ],
+        "approach": [
+          81,
+          47
+        ]
+      },
+      {
+        "bank": 58,
+        "side": 0,
+        "anchor": [
+          48,
+          17
+        ],
+        "visit": [
+          47,
+          17
+        ],
+        "approach": [
+          46,
+          18
+        ]
+      },
+      {
+        "bank": 58,
+        "side": 1,
+        "anchor": [
+          95,
+          126
+        ],
+        "visit": [
+          94,
+          126
+        ],
+        "approach": [
+          93,
+          127
+        ]
+      },
+      {
+        "bank": 60,
+        "side": 0,
+        "anchor": [
+          50,
+          99
+        ],
+        "visit": [
+          48,
+          99
+        ],
+        "approach": [
+          47,
+          99
+        ]
+      },
+      {
+        "bank": 60,
+        "side": 1,
+        "anchor": [
+          93,
+          44
+        ],
+        "visit": [
+          91,
+          44
+        ],
+        "approach": [
+          90,
+          44
+        ]
+      }
+    ],
+    "hillForts": [
+      {
+        "bank": "hillFort",
+        "side": 0,
+        "anchor": [
+          64,
+          110
+        ],
+        "visit": [
+          64,
+          110
+        ],
+        "approach": [
+          65,
+          110
+        ]
+      },
+      {
+        "bank": "hillFort",
+        "side": 1,
+        "anchor": [
+          79,
+          33
+        ],
+        "visit": [
+          79,
+          33
+        ],
+        "approach": [
+          80,
+          33
+        ]
+      }
+    ],
+    "preservedObjectives": 202,
+    "clearedScenery": [
+      "goonksObject238",
+      "goonksObject239",
+      "goonksObject269",
+      "goonksObject365",
+      "goonksObject405",
+      "goonksObject411",
+      "goonksObject540",
+      "goonksObject541",
+      "goonksObject552",
+      "goonksObject553",
+      "goonksObject204",
+      "goonksObject205",
+      "goonksObject248",
+      "goonksObject286",
+      "goonksObject302",
+      "goonksObject372",
+      "goonksObject373",
+      "goonksObject432",
+      "goonksObject433",
+      "goonksObject452",
+      "goonksObject453",
+      "goonksObject484",
+      "goonksObject485",
+      "goonksObject509",
+      "goonksObject377",
+      "goonksObject298",
+      "goonksObject299",
+      "goonksObject406",
+      "goonksObject546",
+      "goonksObject547",
+      "goonksObject322",
+      "goonksObject323",
+      "goonksObject366",
+      "goonksObject434",
+      "goonksObject435",
+      "goonksObject333",
+      "goonksObject348",
+      "goonksObject349",
+      "goonksObject226",
+      "goonksObject227",
+      "goonksObject296",
+      "goonksObject297",
+      "goonksObject320",
+      "goonksObject321",
+      "goonksObject367",
+      "goonksObject386",
+      "goonksObject387",
+      "goonksObject476",
+      "goonksObject477",
+      "goonksObject260",
+      "goonksObject261",
+      "goonksObject276",
+      "goonksObject309",
+      "goonksObject336",
+      "goonksObject337",
+      "goonksObject439",
+      "goonksObject508",
+      "goonksObject240",
+      "goonksObject241",
+      "goonksObject282",
+      "goonksObject283",
+      "goonksObject334",
+      "goonksObject335",
+      "goonksObject350",
+      "goonksObject351",
+      "goonksObject420",
+      "goonksObject421",
+      "goonksObject527",
+      "goonksObject376",
+      "goonksObject288",
+      "goonksObject289",
+      "goonksObject392",
+      "goonksObject440",
+      "goonksObject441",
+      "goonksObject526",
+      "goonksObject264",
+      "goonksObject272",
+      "goonksObject273",
+      "goonksObject324",
+      "goonksObject325",
+      "goonksObject359",
+      "goonksObject529",
+      "goonksObject533"
+    ]
+  }
+]

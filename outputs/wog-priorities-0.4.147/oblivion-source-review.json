@@ -1,0 +1,55 @@
+{
+  "sourceArtifact": 268,
+  "scriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "stdlibSHA256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+  "sourceLines": {
+    "main": [
+      1925,
+      1989
+    ],
+    "corpseFunction": [
+      445,
+      480
+    ],
+    "physicalHook": [
+      150,
+      192
+    ]
+  },
+  "setup": "Cache whether either original hero has the equipped Ring at battlefield setup; applies also hero-vs-neutral, no human gate.",
+  "revival": {
+    "spells": [
+      38,
+      39,
+      40
+    ],
+    "effect": "Set final reception/resistance MR:F100, even on living wounded stacks; preserve actual original cast mana/turn cost. A targeting prohibition alone would change source behavior."
+  },
+  "corpseRemoval": {
+    "physical": "tum_OnAfterAttack fires after each melee/shooting strike, before retaliation.",
+    "spells": "OnBattleActionEnd for hero or monster casts. Source computes mustCheckBattlefield but never tests it, therefore every such cast checks corpses.",
+    "slots": [
+      0,
+      41
+    ],
+    "conditions": [
+      "type>=0",
+      "type!=149 arrow tower",
+      "count<=0",
+      "not clone flag0x800000",
+      "not already corpse-removed flag0x10000000",
+      "no living creature on primary hex",
+      "if double-wide, no living creature on second hex"
+    ],
+    "changes": "Mark corpse removed0x10000000 and clear native battlefield corpse occupancy. Do not set summoned0x400000 because argument isCompletelyDestroyed isFALSE; retain casualty accounting."
+  },
+  "necromancy": "Force calculated winner necromancy power to0.",
+  "sourceTODO": "Life Drain and Attract Dead Souls inhibition is explicitly TODO in the source; do not add an invented ability ban.",
+  "pending": [
+    "Native named policy and correct post-strike/post-cast hooks",
+    "Resurrection/AnimateDead/Sacrifice cast cost and resistance controls",
+    "Wide/occupied corpse, clone, arrow tower and casualties controls",
+    "Winner/loser/backpack/both-side necromancy controls"
+  ],
+  "activationReady": false
+}

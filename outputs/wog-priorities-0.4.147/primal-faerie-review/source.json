@@ -1,0 +1,208 @@
+{
+  "active": false,
+  "sourceCfg": "AfterDefendSpell=27\r\nAfterDefendSpell2=28\r\nFlags=-2147483501\r\nLevel=6\r\nResistance effect=20\r\nVulnerability effect=9\r\nSpell 1=8\r\nSpell 2=7\r\nSpell 3=2\r\nCreatureSpellPowerMultiplier=10\r\nCreatureSpellPowerAdder=1\r\nisAimedCaster=1\r\nisFaerie=1\r\nSktransformer=68\r\n",
+  "cfgSha256": "ef95bbd9f84e9ac3a113546371475fc2248ece77fec3e581494ae6dc20e6a92b",
+  "sourceCppSha256": "10047a24ff1736db951f163c34bcfb58ebe5c0fab972308ca98edf715f61d0cf",
+  "sourceBinarySha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "stats": {
+    "name": {
+      "singular": "Primal Faerie Dragon",
+      "plural": "Primal Faerie Dragons"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 12,
+      "gold": 17000
+    },
+    "fightValue": 26470,
+    "aiValue": 28277,
+    "growth": 1,
+    "hitPoints": 700,
+    "speed": 17,
+    "attack": 35,
+    "defense": 35,
+    "damage": {
+      "min": 35,
+      "max": 40
+    },
+    "advMapAmount": {
+      "min": 1,
+      "max": 3
+    }
+  },
+  "ownXP": [
+    {
+      "creature": 258,
+      "code": "S",
+      "modifier": "+",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3
+      ],
+      "comment": "Primal Faerie Dragon: Speed R4/R6/R10",
+      "source": "crexpbon.txt",
+      "line": 1284
+    },
+    {
+      "creature": 258,
+      "code": "B",
+      "modifier": "=",
+      "values": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25
+      ],
+      "comment": "Primal Faerie Dragon: Block 5%/Rank to 25%",
+      "source": "crexpbon.txt",
+      "line": 1285
+    },
+    {
+      "creature": 258,
+      "code": "f",
+      "modifier": "f",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "comment": "Primal Faerie Dragon: Fearless R5",
+      "source": "crexpbon.txt",
+      "line": 1286
+    }
+  ],
+  "evidence": {
+    "faerieSelection": {
+      "trigger": "Amethyst ManaDrainPlus5150 branches46511C when isFaerie=true and ManaDrain=0;46511E calls447230 at own activation; castsRemaining0 exits without roll",
+      "tableAddress": "63B850",
+      "pool": [
+        {
+          "spell": 16,
+          "weight": 22
+        },
+        {
+          "spell": 17,
+          "weight": 22
+        },
+        {
+          "spell": 21,
+          "weight": 21
+        },
+        {
+          "spell": 15,
+          "weight": 10
+        },
+        {
+          "spell": 20,
+          "weight": 10
+        },
+        {
+          "spell": 19,
+          "weight": 5
+        },
+        {
+          "spell": 23,
+          "weight": 5
+        },
+        {
+          "spell": 22,
+          "weight": 5
+        }
+      ],
+      "selection": "44727E rand61842C then modulo100, subtract weights in table order; stores selectedSpell4E0 at4472A8",
+      "warning": "Native core fairieDragon MagicArrow addInfo22 differs source10; cannot copy all weights"
+    },
+    "activeCaster": {
+      "mode": 8,
+      "targetMode": 7,
+      "aiMode": 2,
+      "mastery": 2,
+      "power": "count*10+1",
+      "source": "mode8 ->44835E ->5A0140; Amethyst Creature_SpellPower_5A0145 tables7138..7189 overrides initial5*count with currentcount*multiplier/divider+adder",
+      "manualTarget": "isAimedCaster hook4755E7 tables9442..9455"
+    },
+    "afterDefend": {
+      "spells": [
+        27,
+        28
+      ],
+      "names": [
+        "core:shield",
+        "core:airShield"
+      ],
+      "mastery": 2,
+      "powerAndDuration": "count*10+1",
+      "source": "tables10580..10615 skips tactics,alive target,firstspell gatessecond; WoG_CastSpell7157F6 passes casterKind1 into5A0140, so same5A0145 override applies despite literalpower1 argument"
+    },
+    "debuffImmunity": {
+      "selector": 20,
+      "spellIds": [
+        42,
+        45,
+        47,
+        50,
+        52,
+        54,
+        61,
+        62,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78
+      ],
+      "source": "tables10156..10210 -> original44A521 zero success; normal magical immunity, not absoluteOrb-proof"
+    },
+    "vulnerability": {
+      "selector": 9,
+      "formula": "-floor(nonnegativeRawDamage/4)",
+      "source": "tables10224..10237 vulnerability_125 mov eax,ecx;cdq;sub eax,edx;sar eax,2;neg eax;mov ecx,eax;ret4",
+      "warning": "Negative final signed damage heals through original443DB0; not +25% damage vulnerability"
+    },
+    "physicalBlock": {
+      "selector": "B=",
+      "chance": "0,5,10,15,20,25,25,25,25,25,25",
+      "source": "same exact row as Sapphire268, but new actor258 admission requires dedicated native controls"
+    }
+  },
+  "pending": [
+    "Implement source poweradder/native duration policy",
+    "Implement exact afterDefend events with source caster power override",
+    "Implement exact debuff immunities and quarter signed damage inversion",
+    "Extend B actor allowlist only under exact whole258 contract",
+    "Native randomspell/charges/power/selfdefend/healing/XP controls",
+    "Wholebank50 plus51 dependencies253/339 remain unregistered"
+  ]
+}

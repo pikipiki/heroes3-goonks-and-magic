@@ -1,0 +1,44 @@
+{
+  "artifact264": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 15000,
+    "slot": [
+      "RIGHT_HAND"
+    ],
+    "text": {
+      "name": "Atma Sword",
+      "description": "{Atma Sword}\n\nWhen worn, this mysterious sword sets the lowest value of Attack and Defense to the highest value.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/264/icon.png",
+      "map": "tum-era/artifacts/264/map.def",
+      "scenarioBonus": "tum-era/artifacts/264/scenario.png"
+    },
+    "bonuses": {}
+  },
+  "artifact265": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 15000,
+    "slot": [
+      "SHOULDERS"
+    ],
+    "text": {
+      "name": "Atma Robe",
+      "description": "{Atma Robe}\n\nWhen worn, this mysterious robe sets the lowest value of Power and Knowledge to the highest value.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/265/icon.png",
+      "map": "tum-era/artifacts/265/map.def",
+      "scenarioBonus": "tum-era/artifacts/265/scenario.png"
+    },
+    "bonuses": {}
+  }
+}

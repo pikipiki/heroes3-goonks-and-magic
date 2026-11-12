@@ -1,0 +1,42 @@
+{
+  "regressionReproduced": true,
+  "engineSHA256": "f40e86091fac374a8a7436b436f3fe96155349b5ad79dd99961d6139222a3a14",
+  "cause": "BattleCast.castIfPossible calls CSpell.canBeCast, whose fresh BattleCast lacks source253 metadata. Generic64bit HP screening prevents the source32bit receiver from running for these boundary targets. Use this exact marked event for the253-only preflight, keeping all normal callers unchanged.",
+  "cases": [
+    {
+      "case": "hp-imul32-negative",
+      "count": 32768,
+      "maximumHealth": 65536,
+      "sourceSignedProduct": -2147483648,
+      "threshold": 335,
+      "controlledByRound": {
+        "1": [
+          1,
+          0
+        ]
+      },
+      "targetId": 2,
+      "expectedControlled": true,
+      "observedControlled": false
+    },
+    {
+      "case": "hp-imul32-zero",
+      "count": 65536,
+      "maximumHealth": 65536,
+      "sourceSignedProduct": 0,
+      "threshold": 335,
+      "controlledByRound": {
+        "1": [
+          1,
+          0
+        ]
+      },
+      "targetId": 2,
+      "expectedControlled": true,
+      "observedControlled": false
+    }
+  ],
+  "pending": [
+    "Native corrected preflight proof"
+  ]
+}

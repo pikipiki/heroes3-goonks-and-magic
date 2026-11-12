@@ -26,6 +26,7 @@ enum class EBattleEffect
 	REGENERATION = 74,
 	MANA_DRAIN   = 77,
 	RESISTANCE   = 78,
+	ERA_FULL_BLOCK = 85,
 
 	INVALID      = -1,
 };

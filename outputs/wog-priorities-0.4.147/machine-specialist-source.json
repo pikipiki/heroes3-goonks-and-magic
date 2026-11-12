@@ -1,0 +1,42 @@
+{
+  "binary": "era-project-eng/h3era.exe",
+  "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "method": "Local offline PE initialized data; no execution or external upload",
+  "pointerAddress": "0x6747b0",
+  "initialTableAddress": "0x6703b8",
+  "stride": "0x74",
+  "levelOffset": 4,
+  "ballista": {
+    "sourceId": 146,
+    "entryAddress": "0x6745e0",
+    "town": -1,
+    "zeroBasedLevel": 4,
+    "damageDivider": 10
+  },
+  "controls": {
+    "0": 0,
+    "1": 0,
+    "2": 1,
+    "3": 1,
+    "12": 6,
+    "13": 6,
+    "133": 6,
+    "145": 0,
+    "147": 0,
+    "148": 0,
+    "149": 0
+  },
+  "sourceReferences": [
+    "h3era-plugins/Emerald3/emerald/lib/h3api/H3Structures/H3Structures.cpp:1534 pointer accessor",
+    "h3era-plugins/Amethyst2/amethyst/PolymorphAttack.cpp:23 sizeof(MONSTER_PROP)==0x74",
+    "h3era-plugins/Amethyst2/amethyst/core.cpp:911 CreateNewTable copies original197 records",
+    "Third-Upgrade-Mod-Full/Data/s/Third Upgrade Mod.erm:Third_Upgrade_1 reads MA:L146, divider10 forlevel4"
+  ],
+  "limits": [
+    "Initial source table; maps may change levels through ERM, which remains outside this fixed specialist policy"
+  ],
+  "scopedBytes": {
+    "pointer": "b8036700",
+    "ballistaTownAndLevel": "ffffffff04000000"
+  }
+}

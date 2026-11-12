@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "../era/EraBridgePolicies.h"
+#include "../era/EraSourceSplashRange.h"
 #include "CBattleInfoCallback.h"
 
 #include <vcmi/scripting/Service.h>
@@ -1612,7 +1613,15 @@ AttackableTiles CBattleInfoCallback::getPotentiallyAttackableHexes(
 	
 	defenderPos = (defenderPos.toInt() != BattleHex::INVALID) ? defenderPos : defender->getPosition(); //real or hypothetical (cursor) position
 	
-	if(attacker->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT))
+	if(era_compat::Policies::get().sourceSplashRangeOne(attacker->creatureId().toCreature()->getJsonKey()))
+	{
+		const auto tail=attacker->doubleWide()?attacker->occupiedHex(attackOriginHex):BattleHex(BattleHex::INVALID);
+		for(int index=0;index<187;++index)
+			if(::era_bridge::sourceSplashRangeOne(attackOriginHex.toInt(),index)
+				|| ::era_bridge::sourceSplashRangeOne(tail.toInt(),index))
+				at.hostileCreaturePositions.insert(BattleHex(index));
+	}
+	else if(attacker->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT))
 		at.hostileCreaturePositions.insert(attacker->getSurroundingHexes(attackerPos));
 
 	// If attacker is double-wide and its head is not adjacent to enemy we need to turn around
@@ -1757,10 +1766,13 @@ std::pair<std::set<const CStack*>, bool> CBattleInfoCallback::getAttackedCreatur
 	else
 		at = getPotentiallyAttackableHexes(attacker, destinationTile, attackerPos);
 
+	const bool sourceSplash = !rangedAttack && era_compat::Policies::get().sourceSplashRangeOne(attacker->creatureId().toCreature()->getJsonKey());
 	for (const BattleHex & tile : at.hostileCreaturePositions) //all around & three-headed attack
 	{
 		const CStack * st = battleGetStackByPos(tile, true);
-		if(st && battleGetOwner(st) != battleGetOwner(attacker) && !st->isInvincible()) //only hostile stacks - does it work well with Berserk?
+		// The source custom sweep compares original stack.side, including under
+		// Hypnotize; ordinary native attacks keep effective owner semantics.
+		if(st && (sourceSplash ? st->unitSide()!=attacker->unitSide() : battleGetOwner(st) != battleGetOwner(attacker)) && !st->isInvincible())
 		{
 			attackedCres.first.insert(st);
 		}

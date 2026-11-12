@@ -147,6 +147,7 @@ public:
 	virtual void visitBuyArtifact(BuyArtifact & pack) {}
 	virtual void visitTradeOnMarketplace(TradeOnMarketplace & pack) {}
 	virtual void visitSetFormation(SetFormation & pack) {}
+	virtual void visitRefreshArtifactState(RefreshArtifactState & pack) {}
 	virtual void visitSetTactics(SetTactics & pack) {}
 	virtual void visitSetTownName(SetTownName & pack) {}
 	virtual void visitHireHero(HireHero & pack) {}

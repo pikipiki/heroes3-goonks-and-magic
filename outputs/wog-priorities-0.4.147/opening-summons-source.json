@@ -1,0 +1,26 @@
+{
+  "artifactIds": [
+    219,
+    231,
+    279
+  ],
+  "sourceArchiveSHA256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "cfgSHA256": {
+    "219": "69de00f9b975c258332668da0558f5193be068e0d6f6d76212aaf2b47cb4354b",
+    "231": "531c59606d4fad2e6bc026d81ce58e117d4f988997339514b2040bc4ed97ca98",
+    "279": "9ce1c33f704a448baf2d6263b85279197a1afe6ccf7f062cdd0ab148b98b65f8"
+  },
+  "sourceContract": {
+    "configuration": "Emerald3/emerald/emerald.cpp:133-147",
+    "ordering": "Emerald3/emerald/events.cpp:26-46",
+    "nativeFunction": "h3era.exe5A7390..5A7627",
+    "nativePointer": "emerald3_3.era.data10051020=005A7390",
+    "count": "SPTRAITS Visions base effect1 multiplied by encoded source power; integer truncation towards zero; zero becomes1",
+    "placement": "randomized rows0..10 from side x1/x15 inward; native wide-creature accessibility",
+    "elementalRestriction": "original left/right summon type restored after each artifact call; marker excluded by native Summon::applicable"
+  },
+  "pending": [
+    "Browser/native equipment versus backpack, source counts, both sides, no mana use, vanish after battle, ordinary elemental exclusivity and save/load controls"
+  ],
+  "activationReady": false
+}

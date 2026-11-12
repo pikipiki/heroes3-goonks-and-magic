@@ -1,0 +1,354 @@
+{
+  "eraCreature258": {
+    "name": {
+      "singular": "Primal Faerie Dragon",
+      "plural": "Primal Faerie Dragons"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 12,
+      "gold": 17000
+    },
+    "fightValue": 26470,
+    "aiValue": 28277,
+    "growth": 1,
+    "hitPoints": 700,
+    "speed": 17,
+    "attack": 35,
+    "defense": 35,
+    "damage": {
+      "min": 35,
+      "max": 40
+    },
+    "advMapAmount": {
+      "min": 1,
+      "max": 3
+    },
+    "abilities": {
+      "sourceFaeriePower": {
+        "type": "CREATURE_SPELL_POWER",
+        "val": 1000
+      },
+      "sourceFaerieCast16": {
+        "type": "SPELLCASTER",
+        "subtype": "core:iceBolt",
+        "val": 2,
+        "addInfo": 22
+      },
+      "sourceFaerieCast17": {
+        "type": "SPELLCASTER",
+        "subtype": "core:lightningBolt",
+        "val": 2,
+        "addInfo": 22
+      },
+      "sourceFaerieCast21": {
+        "type": "SPELLCASTER",
+        "subtype": "core:fireball",
+        "val": 2,
+        "addInfo": 21
+      },
+      "sourceFaerieCast15": {
+        "type": "SPELLCASTER",
+        "subtype": "core:magicArrow",
+        "val": 2,
+        "addInfo": 10
+      },
+      "sourceFaerieCast20": {
+        "type": "SPELLCASTER",
+        "subtype": "core:frostRing",
+        "val": 2,
+        "addInfo": 10
+      },
+      "sourceFaerieCast19": {
+        "type": "SPELLCASTER",
+        "subtype": "core:chainLightning",
+        "val": 2,
+        "addInfo": 5
+      },
+      "sourceFaerieCast23": {
+        "type": "SPELLCASTER",
+        "subtype": "core:meteorShower",
+        "val": 2,
+        "addInfo": 5
+      },
+      "sourceFaerieCast22": {
+        "type": "SPELLCASTER",
+        "subtype": "core:inferno",
+        "val": 2,
+        "addInfo": 5
+      },
+      "sourceDebuffImmunity42": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:curse"
+      },
+      "sourceDebuffImmunity45": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:weakness"
+      },
+      "sourceDebuffImmunity47": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:disruptingRay"
+      },
+      "sourceDebuffImmunity50": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:sorrow"
+      },
+      "sourceDebuffImmunity52": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:misfortune"
+      },
+      "sourceDebuffImmunity54": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:slow"
+      },
+      "sourceDebuffImmunity61": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:forgetfulness"
+      },
+      "sourceDebuffImmunity62": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:blind"
+      },
+      "sourceDebuffImmunity70": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:stoneGaze"
+      },
+      "sourceDebuffImmunity71": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:poison"
+      },
+      "sourceDebuffImmunity72": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:bind"
+      },
+      "sourceDebuffImmunity73": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:disease"
+      },
+      "sourceDebuffImmunity74": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:paralyze"
+      },
+      "sourceDebuffImmunity75": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:age"
+      },
+      "sourceDebuffImmunity76": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:deathCloud"
+      },
+      "sourceDebuffImmunity77": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:thunderbolt"
+      },
+      "sourceDebuffImmunity78": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:dispelHelpful"
+      },
+      "amethyst_flag_1": {
+        "type": "FLYING",
+        "val": 0
+      },
+      "amethyst_flag_31": {
+        "type": "DRAGON_NATURE",
+        "val": 0
+      },
+      "amethystKing": {
+        "type": "KING",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "amethyst_Sktransformer": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "val": 0,
+        "subtype": "core:boneDragon"
+      },
+      "sourceInitialCasts": {
+        "type": "CASTS",
+        "val": 10
+      }
+    },
+    "doubleWide": true,
+    "level": 7,
+    "faction": "core:neutral",
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 0,
+          "valueType": "INDEPENDENT_MIN"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.6,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/258/CR258",
+      "map": "tum-era/creatures/258/AVWCR258.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/258/small",
+      "iconLarge": "tum-era/creatures/258/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/258/S258ATTK.wav",
+      "defend": "tum-era/creatures/258/S258DFND.wav",
+      "killed": "tum-era/creatures/258/S258KILL.wav",
+      "move": "tum-era/creatures/258/S258MOVE.wav",
+      "wince": "tum-era/creatures/258/S258WNCE.wav"
+    }
+  },
+  "core:fairieDragon": {
+    "upgrades": [
+      "tum-era:eraCreature258"
+    ],
+    "abilities": {
+      "castsMagicArrow": {
+        "type": "SPELLCASTER",
+        "subtype": "core:magicArrow",
+        "val": 2,
+        "addInfo": 10
+      }
+    }
+  }
+}

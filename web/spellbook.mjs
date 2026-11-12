@@ -1,3 +1,4 @@
+import {getLanguage} from './i18n.mjs';
 import {spellSchoolIds,spellSchoolIndex} from './spell-schools.mjs';
 import {spellIconURL,warmSpellIcons} from './spell-icons.mjs';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -38,11 +39,13 @@ export function createMobileSpellbook({root,command}){
   const reuseDisabled=!previous||book.mana<previous.cost||!!reusing;
   const target=targets[active?.target];
   const warning=book.mana<active?.cost?'Not enough mana':'Spell unavailable now';
+  const power=book.inCombat===true?book.heroSpellPower:undefined;
+  const powerText=power&&Number.isFinite(power.original)&&Number.isFinite(power.effective)&&power.original!==power.effective?`${getLanguage()==='fr'?'Puissance':'Power'} ${power.original} → ${power.effective}`:'';
   const manaLimit=Number.isFinite(book.manaLimit)?` / ${book.manaLimit}`:'';
   const castLabel=book.inCombat===false?(book.combatSpells?'View spell':'Cast spell'):active?.target==='none'?'Cast spell':'Choose target';
   panel.innerHTML=`
    <header>
-    <h2>Spellbook <small>${book.mana??0}${manaLimit} mana</small></h2>
+    <h2>Spellbook <small>${book.mana??0}${manaLimit} mana</small>${powerText?`<small class="spell-effective-power">${esc(powerText)}</small>`:''}</h2>
     <button data-close-book aria-label="Close spellbook">✕</button>
    </header>
    <div class="spell-top-actions">

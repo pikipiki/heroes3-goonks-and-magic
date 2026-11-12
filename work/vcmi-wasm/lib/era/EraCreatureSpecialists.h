@@ -12,7 +12,7 @@
 VCMI_LIB_NAMESPACE_BEGIN
 namespace era_compat
 {
-struct CreatureSpecialtyProgression { CreatureID family; int attackDefense; int damage; int healthPercent; };
+struct CreatureSpecialtyProgression { CreatureID family; int attackDefense; int damage; int healthPercent; bool warMachines; };
 inline std::optional<CreatureSpecialtyProgression> sourceCreatureSpecialty(const CGHeroInstance & hero)
 {
     static const bool enabled=[] {
@@ -30,9 +30,10 @@ inline std::optional<CreatureSpecialtyProgression> sourceCreatureSpecialty(const
         const auto family=std::dynamic_pointer_cast<const CCreatureTypeLimiter>(bonus->limiter);
         if(!family || !family->includeUpgrades)continue;
         const int tier=family->creatureID.toCreature()->getLevel();
-        if(tier<1 || tier>7)continue; // Machine specialists have a separate source contract.
+        if(tier<1 || tier>7)continue;
         const auto stats=::era_bridge::sourceSpecialistStats(static_cast<int>(hero.level),tier);
-        return CreatureSpecialtyProgression{family->creatureID,stats.attackDefense,stats.damage,stats.healthPercent};
+        return CreatureSpecialtyProgression{family->creatureID,stats.attackDefense,stats.damage,stats.healthPercent,
+            family->creatureID==CreatureID::BALLISTA};
     }
     return std::nullopt;
 }

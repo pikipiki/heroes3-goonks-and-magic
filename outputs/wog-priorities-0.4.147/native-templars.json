@@ -1,0 +1,485 @@
+{
+  "passed": true,
+  "errors": [],
+  "report": {
+    "269": {
+      "spellPowerPerCurrentCreature": 5,
+      "chargesBefore": 1,
+      "chargesAfter": 0,
+      "deltas": [
+        {
+          "key": "core:skeleton",
+          "enemy": true,
+          "lost": 170
+        },
+        {
+          "key": "core:skeleton",
+          "enemy": true,
+          "lost": 170
+        },
+        {
+          "key": "core:skeletonWarrior",
+          "enemy": true,
+          "lost": 170
+        },
+        {
+          "key": "core:skeleton",
+          "enemy": true,
+          "lost": 170
+        },
+        {
+          "key": "core:skeleton",
+          "enemy": true,
+          "lost": 170
+        },
+        {
+          "key": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "lost": 0
+        },
+        {
+          "key": "tum-era:eraCreature269",
+          "enemy": false,
+          "lost": 0
+        },
+        {
+          "key": "core:skeleton",
+          "enemy": false,
+          "lost": 170
+        },
+        {
+          "key": "goonk:bubu",
+          "enemy": false,
+          "lost": 0
+        }
+      ],
+      "actor": {
+        "aiValue": 3698,
+        "armySlot": 0,
+        "attack": 16,
+        "canMeleeAt": true,
+        "canShootAt": false,
+        "cloned": false,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1400,
+          0
+        ],
+        "count": 3,
+        "currentHealth": 175,
+        "damageMax": 45,
+        "damageMin": 25,
+        "defense": 16,
+        "description": "",
+        "enemy": false,
+        "eraSlot": 0,
+        "experience": 0,
+        "experiencePerUnit": 0,
+        "experienceRank": 0,
+        "fightValue": 2946,
+        "growth": 1,
+        "health": 175,
+        "icon": "tum-era/creatures/269/large",
+        "id": 277,
+        "key": "tum-era:eraCreature269",
+        "luck": 0,
+        "maximumHealth": 175,
+        "morale": 1,
+        "name": "Light Templar",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": false,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "occupied": [
+          35
+        ],
+        "remainingCasts": 1,
+        "remainingRetaliations": 1,
+        "remainingShots": 0,
+        "shooter": false,
+        "shots": 0,
+        "speed": 6,
+        "stackId": 0,
+        "x": 102,
+        "y": 196
+      }
+    },
+    "278": {
+      "spellPowerPerCurrentCreature": 1,
+      "chargesBefore": 3,
+      "chargesAfter": 2,
+      "deltas": [
+        {
+          "key": "core:skeleton",
+          "enemy": true,
+          "lost": 50
+        },
+        {
+          "key": "core:skeleton",
+          "enemy": true,
+          "lost": 50
+        },
+        {
+          "key": "core:skeletonWarrior",
+          "enemy": true,
+          "lost": 50
+        },
+        {
+          "key": "core:skeleton",
+          "enemy": true,
+          "lost": 50
+        },
+        {
+          "key": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "lost": 0
+        },
+        {
+          "key": "tum-era:eraCreature278",
+          "enemy": false,
+          "lost": 0
+        },
+        {
+          "key": "core:skeleton",
+          "enemy": false,
+          "lost": 50
+        },
+        {
+          "key": "goonk:bubu",
+          "enemy": false,
+          "lost": 0
+        }
+      ],
+      "actor": {
+        "aiValue": 6925,
+        "armySlot": 0,
+        "attack": 21,
+        "canMeleeAt": true,
+        "canShootAt": false,
+        "cloned": false,
+        "cost": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          3000,
+          0
+        ],
+        "count": 3,
+        "currentHealth": 225,
+        "damageMax": 45,
+        "damageMin": 25,
+        "defense": 26,
+        "description": "",
+        "enemy": false,
+        "eraSlot": 0,
+        "experience": 0,
+        "experiencePerUnit": 0,
+        "experienceRank": 0,
+        "fightValue": 5454,
+        "growth": 1,
+        "health": 225,
+        "icon": "tum-era/creatures/278/large",
+        "id": 279,
+        "key": "tum-era:eraCreature278",
+        "luck": 0,
+        "maximumHealth": 225,
+        "morale": 1,
+        "name": "Light Paladin",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": false,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "occupied": [
+          35
+        ],
+        "remainingCasts": 3,
+        "remainingRetaliations": 1,
+        "remainingShots": 0,
+        "shooter": false,
+        "shots": 0,
+        "speed": 8,
+        "stackId": 0,
+        "x": 102,
+        "y": 196
+      }
+    },
+    "331": {
+      "spellPowerPerCurrentCreature": 5,
+      "chargesBefore": 1,
+      "chargesAfter": 0,
+      "deltas": [
+        {
+          "key": "core:ogre",
+          "enemy": true,
+          "lost": 95
+        },
+        {
+          "key": "core:ogre",
+          "enemy": true,
+          "lost": 95
+        },
+        {
+          "key": "core:ogre",
+          "enemy": true,
+          "lost": 95
+        },
+        {
+          "key": "core:ogreMage",
+          "enemy": true,
+          "lost": 95
+        },
+        {
+          "key": "core:ogre",
+          "enemy": true,
+          "lost": 95
+        },
+        {
+          "key": "core:ogre",
+          "enemy": true,
+          "lost": 95
+        },
+        {
+          "key": "core:ogre",
+          "enemy": true,
+          "lost": 95
+        },
+        {
+          "key": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "lost": 40
+        },
+        {
+          "key": "tum-era:eraCreature331",
+          "enemy": false,
+          "lost": 95
+        },
+        {
+          "key": "core:skeleton",
+          "enemy": false,
+          "lost": 0
+        },
+        {
+          "key": "goonk:bubu",
+          "enemy": false,
+          "lost": 95
+        }
+      ],
+      "actor": {
+        "aiValue": 3730,
+        "armySlot": 0,
+        "attack": 15,
+        "canMeleeAt": true,
+        "canShootAt": false,
+        "cloned": false,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1600,
+          0
+        ],
+        "count": 3,
+        "currentHealth": 180,
+        "damageMax": 40,
+        "damageMin": 20,
+        "defense": 15,
+        "description": "",
+        "enemy": false,
+        "eraSlot": 0,
+        "experience": 0,
+        "experiencePerUnit": 0,
+        "experienceRank": 0,
+        "fightValue": 3021,
+        "growth": 1,
+        "health": 180,
+        "icon": "tum-era/creatures/331/large",
+        "id": 285,
+        "key": "tum-era:eraCreature331",
+        "luck": 0,
+        "maximumHealth": 180,
+        "morale": 0,
+        "name": "Dark Templar",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": false,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": true,
+          "nonLiving": false,
+          "undead": false
+        },
+        "occupied": [
+          35
+        ],
+        "remainingCasts": 1,
+        "remainingRetaliations": 1,
+        "remainingShots": 0,
+        "shooter": false,
+        "shots": 0,
+        "speed": 5,
+        "stackId": 0,
+        "x": 102,
+        "y": 196
+      }
+    },
+    "332": {
+      "spellPowerPerCurrentCreature": 1,
+      "chargesBefore": 2,
+      "chargesAfter": 1,
+      "deltas": [
+        {
+          "key": "core:ogre",
+          "enemy": true,
+          "lost": 35
+        },
+        {
+          "key": "core:ogre",
+          "enemy": true,
+          "lost": 35
+        },
+        {
+          "key": "core:ogre",
+          "enemy": true,
+          "lost": 35
+        },
+        {
+          "key": "core:ogreMage",
+          "enemy": true,
+          "lost": 35
+        },
+        {
+          "key": "core:ogre",
+          "enemy": true,
+          "lost": 35
+        },
+        {
+          "key": "core:ogre",
+          "enemy": true,
+          "lost": 35
+        },
+        {
+          "key": "core:ogre",
+          "enemy": true,
+          "lost": 35
+        },
+        {
+          "key": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "lost": 33
+        },
+        {
+          "key": "tum-era:eraCreature332",
+          "enemy": false,
+          "lost": 35
+        },
+        {
+          "key": "core:skeleton",
+          "enemy": false,
+          "lost": 0
+        },
+        {
+          "key": "goonk:bubu",
+          "enemy": false,
+          "lost": 35
+        }
+      ],
+      "actor": {
+        "aiValue": 7225,
+        "armySlot": 0,
+        "attack": 15,
+        "canMeleeAt": true,
+        "canShootAt": false,
+        "cloned": false,
+        "cost": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          3200,
+          0
+        ],
+        "count": 3,
+        "currentHealth": 230,
+        "damageMax": 40,
+        "damageMin": 20,
+        "defense": 25,
+        "description": "",
+        "enemy": false,
+        "eraSlot": 0,
+        "experience": 0,
+        "experiencePerUnit": 0,
+        "experienceRank": 0,
+        "fightValue": 5654,
+        "growth": 1,
+        "health": 230,
+        "icon": "tum-era/creatures/332/large",
+        "id": 286,
+        "key": "tum-era:eraCreature332",
+        "luck": 0,
+        "maximumHealth": 230,
+        "morale": 0,
+        "name": "Dark Paladin",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": false,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": true,
+          "nonLiving": false,
+          "undead": false
+        },
+        "occupied": [
+          35
+        ],
+        "remainingCasts": 2,
+        "remainingRetaliations": 1,
+        "remainingShots": 0,
+        "shooter": false,
+        "shots": 0,
+        "speed": 8,
+        "stackId": 0,
+        "x": 102,
+        "y": 196
+      }
+    },
+    "suppression": {
+      "morale": 0
+    }
+  },
+  "engineSHA256": "103c072c49b24c36ea41284775c495c3307d40fb522f5eaf18d1f15b206cedd6",
+  "sourceFixture": "work/browser-tests/wog-templars-native-e2e.mjs",
+  "commanderExistingReduction": 5,
+  "supersededSourceExpectation": "Mode8 generic power override5A0145 discovered before release;269/331 corrected to count, pending rebuilt native retest",
+  "currentSourceParityValidated": false
+}

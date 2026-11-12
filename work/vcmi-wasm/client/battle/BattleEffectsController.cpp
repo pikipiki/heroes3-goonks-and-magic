@@ -8,6 +8,8 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraBridgePolicies.h"
+#include "../../lib/era/EraAdvancedArtifactPolicies.h"
 #include "BattleEffectsController.h"
 
 #include "BattleAnimationClasses.h"
@@ -68,6 +70,27 @@ void BattleEffectsController::battleTriggerEffect(const BattleTriggerEffect & bt
 	//don't show animation when no HP is regenerated
 	switch(bte.effect)
 	{
+        case BonusType::SPELL_DAMAGE:
+            if(bte.val!=220 || bte.additionalInfo!=37
+                || !era_compat::AdvancedArtifactPolicies::get().lightningRod("tum-era:artifact220"))return;
+            displayEffect(static_cast<EBattleEffect>(37),AudioPath(),stack->getPosition());
+            break;
+        case BonusType::GENERAL_DAMAGE_REDUCTION:
+        {
+            if(bte.val==30 && bte.additionalInfo==89
+                && era_compat::Policies::get().sourceRangedResistance30(stack->creatureId().toCreature()->getJsonKey()))
+            {
+                if(stack->alive() && stack->getPosition().isValid())
+                    pendingRangedResistances.emplace(stack->unitId(),stack->getPosition());
+                break;
+            }
+            if(bte.val!=100 || bte.additionalInfo!=85
+                || !era_compat::Policies::get().physicalBlock(stack->creatureId().toCreature()->getJsonKey()))
+                return;
+            if(stack->alive() && stack->getPosition().isValid())
+                pendingFullBlocks.emplace(stack->unitId(),stack->getPosition());
+            break;
+        }
         case BonusType::MAGIC_MIRROR:
             displayEffect(EBattleEffect::MAGIC_MIRROR, AudioPath::builtin("BACKLASH"), stack->getPosition());
             break;
@@ -100,8 +123,40 @@ void BattleEffectsController::battleTriggerEffect(const BattleTriggerEffect & bt
 	owner.waitForAnimations();
 }
 
+void BattleEffectsController::queueFullBlockAtHit(const CStack * defender)
+{
+    if(!defender) return;
+    const auto ranged=pendingRangedResistances.find(defender->unitId());
+    if(ranged!=pendingRangedResistances.end())
+    {
+        const auto position=ranged->second;
+        pendingRangedResistances.erase(ranged);
+        // Resistance89 is announced before casualties in the source and also
+        // appears on a lethal hit; do not require post-packet alive state.
+        if(position.isValid() && defender->getPosition()==position)
+            owner.addToAnimationStage(EAnimationEvents::HIT,[this,position]()
+            {
+                displayEffect(static_cast<EBattleEffect>(89),AudioPath::builtin("tum-era/inferno-resistance/shotres"),position);
+            });
+    }
+    const auto pending=pendingFullBlocks.find(defender->unitId());
+    if(pending==pendingFullBlocks.end()) return;
+    const auto position=pending->second;
+    pendingFullBlocks.erase(pending); // Exactly one announcement per hit.
+    if(!defender->alive() || !position.isValid() || defender->getPosition()!=position)
+        return; // Do not replay a stale marker on a changed/removed stack.
+    owner.addToAnimationStage(EAnimationEvents::HIT,[this,position]()
+    {
+        // MGblock2 in the source table is an IFC20 Immersion haptic effect,
+        // not a sound. Preserve its no-device no-op on the web (4B6750).
+        displayEffect(EBattleEffect::ERA_FULL_BLOCK,position);
+    });
+}
+
 void BattleEffectsController::startAction(const BattleAction & action)
 {
+    pendingFullBlocks.clear(); // Any unconsumed prior-action announcement is stale.
+    pendingRangedResistances.clear();
 	owner.checkForAnimations();
 
 	const CStack *stack = owner.getBattle()->battleGetStackByID(action.stackNumber);

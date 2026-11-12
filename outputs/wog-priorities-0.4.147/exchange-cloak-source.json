@@ -1,0 +1,34 @@
+{
+  "sourceId": 261,
+  "archiveSHA256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "scriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "source": "Third Upgrade Mod.erm BF&1000 Exchange Cloak and KO_cape/KO_cape2 functions",
+  "semantics": {
+    "humanBattle": true,
+    "bothHeroesRequired": true,
+    "exactlyOneEquipped": true,
+    "swapPersistentMana": true,
+    "attackDefense": "Existing original nonmachine battle stacks receive oppositeHeroPrimary minus ownHeroPrimary",
+    "excludedSourceCreatures": [
+      145,
+      146,
+      147,
+      148,
+      149
+    ],
+    "summons": "Subsequent summons retain their normal hero bonuses",
+    "rebornBranch": "Source reborn integration is not installed; default branch swaps mana."
+  },
+  "timingEvidence": [
+    "https://www.h3wog.com/erm_help/other/trigger_right.htm",
+    "https://www.h3wog.com/erm_help/other/variable_right.htm",
+    "Emerald opening hook464FBA occurs at side first-activation artifact pass"
+  ],
+  "pending": [
+    "Native no-hero/both-cloaks/backpack/AI-only guards",
+    "Hero-vs-hero swapped mana and both armies ATK/DEF",
+    "No machine changes and no adventure primary-stat mutation",
+    "Save/load and battle replay controls"
+  ],
+  "activationReady": false
+}

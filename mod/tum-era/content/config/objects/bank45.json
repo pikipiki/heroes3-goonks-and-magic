@@ -1,0 +1,185 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank45": {
+        "name": "Seminarium",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB13.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "grass"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 25
+            },
+            "guards": [
+              {
+                "type": "core:swordsman",
+                "amount": 10
+              },
+              {
+                "type": "core:swordsman",
+                "amount": 10
+              },
+              {
+                "type": "core:swordsman",
+                "amount": 10
+              },
+              {
+                "type": "core:swordsman",
+                "amount": 10
+              },
+              {
+                "type": "core:swordsman",
+                "amount": 10
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature269",
+                "amount": 2
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 25,
+              "max": 50
+            },
+            "guards": [
+              {
+                "type": "core:swordsman",
+                "amount": 20
+              },
+              {
+                "type": "core:swordsman",
+                "amount": 20
+              },
+              {
+                "type": "core:swordsman",
+                "amount": 20
+              },
+              {
+                "type": "core:swordsman",
+                "amount": 20
+              },
+              {
+                "type": "core:swordsman",
+                "amount": 20
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature269",
+                "amount": 4
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 50,
+              "max": 75
+            },
+            "guards": [
+              {
+                "type": "core:swordsman",
+                "amount": 30
+              },
+              {
+                "type": "core:swordsman",
+                "amount": 30
+              },
+              {
+                "type": "core:swordsman",
+                "amount": 30
+              },
+              {
+                "type": "core:swordsman",
+                "amount": 30
+              },
+              {
+                "type": "core:swordsman",
+                "amount": 30
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature269",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 75,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:swordsman",
+                "amount": 50,
+                "upgradeChance": 7
+              },
+              {
+                "type": "core:swordsman",
+                "amount": 50
+              },
+              {
+                "type": "core:swordsman",
+                "amount": 50
+              },
+              {
+                "type": "core:swordsman",
+                "amount": 50
+              },
+              {
+                "type": "core:swordsman",
+                "amount": 50
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature269",
+                "amount": 8
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "ambient": [
+            "tum-era/objects/SEMINARIUMLOOP.wav"
+          ]
+        },
+        "rmg": {
+          "value": 5000,
+          "rarity": 100
+        }
+      }
+    }
+  }
+}

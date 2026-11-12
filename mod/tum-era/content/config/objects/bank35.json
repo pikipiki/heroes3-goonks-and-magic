@@ -1,0 +1,187 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank35": {
+        "name": "Experimental Factory",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB3.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "BAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "dirt",
+              "grass",
+              "subterra"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumSteelGolem",
+                "amount": 10
+              },
+              {
+                "type": "third-upgrades:tumSteelGolem",
+                "amount": 10
+              },
+              {
+                "type": "third-upgrades:tumSteelGolem",
+                "amount": 10
+              },
+              {
+                "type": "third-upgrades:tumSteelGolem",
+                "amount": 10
+              },
+              {
+                "type": "third-upgrades:tumSteelGolem",
+                "amount": 10
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:giant",
+                "amount": 2
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumSteelGolem",
+                "amount": 15
+              },
+              {
+                "type": "third-upgrades:tumSteelGolem",
+                "amount": 15
+              },
+              {
+                "type": "third-upgrades:tumSteelGolem",
+                "amount": 15
+              },
+              {
+                "type": "third-upgrades:tumSteelGolem",
+                "amount": 15
+              },
+              {
+                "type": "third-upgrades:tumSteelGolem",
+                "amount": 15
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:titan",
+                "amount": 1
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "tum-era:eraCreature324",
+                "amount": 20
+              },
+              {
+                "type": "tum-era:eraCreature324",
+                "amount": 20
+              },
+              {
+                "type": "tum-era:eraCreature324",
+                "amount": 20
+              },
+              {
+                "type": "tum-era:eraCreature324",
+                "amount": 20
+              },
+              {
+                "type": "tum-era:eraCreature324",
+                "amount": 20
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:titan",
+                "amount": 2
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "tum-era:eraCreature324",
+                "amount": 50
+              },
+              {
+                "type": "tum-era:eraCreature324",
+                "amount": 50
+              },
+              {
+                "type": "tum-era:eraCreature324",
+                "amount": 50
+              },
+              {
+                "type": "tum-era:eraCreature324",
+                "amount": 50
+              },
+              {
+                "type": "tum-era:eraCreature324",
+                "amount": 50
+              }
+            ],
+            "creatures": [
+              {
+                "type": "wake-of-gods.level8units:lordOfThunder",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "ambient": [
+            "tum-era/objects/LOOPEXSH.wav"
+          ]
+        },
+        "rmg": {
+          "value": 3500,
+          "rarity": 80
+        }
+      }
+    }
+  }
+}
