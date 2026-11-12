@@ -84,6 +84,6 @@ void BattleRenderer::execute(BattleRenderer::RendererRef targetCanvas)
 void BattleRenderer::executeMobilePlane(RendererRef canvas, bool effects)
 {
  if(effects) owner.effectsController->collectRenderableObjects(*this);
- else {owner.obstacleController->collectRenderableObjects(*this);if(owner.siegeController)owner.siegeController->collectRenderableObjects(*this);}
+ else {owner.obstacleController->collectRenderableObjects(*this);}
  sortObjects();renderObjects(canvas);
 }

@@ -1,3 +1,4 @@
+import {siegeTargets,paintSiegeTargets} from './battle-siege.mjs';
 import {createCanvasSizer} from './mobile-render.mjs';
 import {isLandscapeOrientation} from './mobile-viewport.mjs';
 import {paintBattleFloor} from './battle-floor.mjs';
@@ -84,7 +85,7 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
  canvas.addEventListener('keydown',event=>{const delta={ArrowLeft:[-88,0],ArrowRight:[88,0],ArrowUp:[0,-84],ArrowDown:[0,84]}[event.key];if(!active||!delta||!currentLayout)return;event.preventDefault();const view=lastDetail||{x:0,y:0,w:800,h:555};onFocus({x:Math.max(0,Math.min(800,view.x+view.w/2+delta[0])),y:Math.max(0,Math.min(555,view.y+view.h/2+delta[1]))});});
  let lastDetail=null;
  function paint(original,detail,selected,view,isMove=true){if(!sync())return;const text=view?.label||'Vue rapprochée · Choisissez une case ou une cible';if(detailDescription.textContent!==text)detailDescription.textContent=text;const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;const pixels=surfaceSize.fit(canvas,w,h,Math.min(devicePixelRatio||1,2));ctx.setTransform(pixels.x,0,0,pixels.y,0,0);ctx.clearRect(0,0,w,h);const scale=w/800;const dy=Math.max(0,(h-555*scale)/2);currentLayout={x:0,y:0,w:800,h:555,scale,dx:0,dy};const l=currentLayout;ctx.drawImage(original,0,0,original.width,original.height*555/600,0,l.dy,w,555*scale);
-  const state=getState(),guidance=battleGuidance(state);paintBattleFloor(ctx,state,l);paintShotTargets(ctx,guidance.shotTargets,l);paintMeleeTargets(ctx,guidance.meleeTargets,l);paintActiveCreature(ctx,guidance,l);
+  const state=getState(),guidance=battleGuidance(state);paintBattleFloor(ctx,state,l);paintSiegeTargets(ctx,state,p=>({x:l.dx+(p.x-l.x)*l.scale,y:l.dy+(p.y-l.y)*l.scale}));paintShotTargets(ctx,guidance.shotTargets,l);paintMeleeTargets(ctx,guidance.meleeTargets,l);paintActiveCreature(ctx,guidance,l);
   if(!view?.preview)paintBattleAction(ctx,view,l);
   paintSpellTargets(ctx,[...new Set([...guidance.spellTargets,...(guidance.beneficialTargets||[])])],l);
   if(selected){

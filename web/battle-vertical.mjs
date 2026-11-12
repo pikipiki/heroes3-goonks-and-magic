@@ -1,3 +1,4 @@
+import {paintSiegeTargets,paintVerticalFortifications} from './battle-siege.mjs';
 import {BATTLE_HEX_VERTICES} from './battle-scene.mjs';
 import {battleGuidance} from './battle-guidance.mjs';
 
@@ -30,6 +31,9 @@ export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas
  ctx.save();ctx.globalAlpha=.65;ctx.drawImage(planes.ground,0,0,400,278,0,0,width,height);ctx.restore();
  const plane=image=>{ctx.save();ctx.transform(0,-scale,scale,0,geometry.left-66*scale,geometry.top+800*scale);ctx.drawImage(image,0,0,800,600);ctx.restore();};
  plane(planes.ground);
+ const siege=globalThis.window?.goonkSiegeAtlas,pieces=globalThis.window?.goonkSiegePieces||[];
+ paintVerticalFortifications(ctx,state,project,scale,siege,pieces);
+
  const cellPath=cell=>{ctx.beginPath();for(const [index,[dx,dy]] of BATTLE_HEX_VERTICES.entries()){const p=project({x:cell.x+dx,y:cell.y+dy});index?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);}ctx.closePath();};
  const occupied=new Set((state.battleUnits||[]).flatMap(u=>u.occupied||[]));
  for(const cell of state.battleCells||[]){cellPath(cell);const reachable=cell.reachable&&!occupied.has(cell.hex);ctx.fillStyle=reachable?'#f7d77430':'#00000008';ctx.fill();ctx.strokeStyle=reachable?'#ffe082':'#e6d89975';ctx.lineWidth=reachable?1.5:.7;ctx.stroke();}
@@ -53,6 +57,7 @@ export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas
  // The same target categories as the classic field, above sprites and effects.
  const marker=(unit,kind,color)=>{const p=project(unit),r=Math.max(7,10*scale),x=p.x+18*scale,y=p.y-8*scale;ctx.save();ctx.beginPath();ctx.arc(x,y,r+2,0,Math.PI*2);ctx.fillStyle='#101418e8';ctx.fill();ctx.strokeStyle=color;ctx.lineWidth=2;ctx.stroke();ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();if(kind==='heal'){ctx.moveTo(x-r*.6,y);ctx.lineTo(x+r*.6,y);ctx.moveTo(x,y-r*.6);ctx.lineTo(x,y+r*.6);}else if(kind==='shot'){ctx.arc(x,y,r*.45,0,Math.PI*2);ctx.moveTo(x-r,y);ctx.lineTo(x+r,y);ctx.moveTo(x,y-r);ctx.lineTo(x,y+r);}else{ctx.moveTo(x-r*.5,y+r*.5);ctx.lineTo(x+r*.5,y-r*.5);ctx.moveTo(x-r*.5,y-r*.5);ctx.lineTo(x+r*.5,y+r*.5);}ctx.stroke();ctx.restore();};
  for(const unit of guidance.shotTargets)marker(unit,'shot','#b2f5ff');for(const unit of guidance.meleeTargets)marker(unit,'melee','#ff6969');for(const unit of guidance.beneficialTargets)marker(unit,'heal','#b5f07a');for(const unit of guidance.spellTargets)marker(unit,unit.enemy?'shot':'heal','#b3a1ff');
+ paintSiegeTargets(ctx,state,project);
  geometry.pick=point=>geometry.units.slice().reverse().find(r=>point.x>=r.left&&point.x<=r.right&&point.y>=r.top&&point.y<=r.bottom)?.unit;
  ctx.restore();return geometry;
 }

@@ -64,6 +64,7 @@
 #include "battle/BattleResultWindow.h"
 #include "battle/BattleStacksController.h"
 #include "battle/BattleFieldController.h"
+#include "battle/BattleSiegeController.h"
 #include "../lib/json/JsonNode.h"
 #include "../lib/CConfigHandler.h"
 #include "../lib/filesystem/Filesystem.h"
@@ -472,8 +473,28 @@ void publishMobileVisitedObject(const CGObjectInstance * object){
 }
 // Export CPU ground/effect layers only for the portrait trial. No framebuffer
 // reads or preselected creature catalogue are needed.
+void publishMobileSiegeAtlas(BattleInterface & battle){
+ static uintptr_t previous=0;
+ if(!battle.siegeController){if(previous){previous=0;MAIN_THREAD_ASYNC_EM_ASM({window.goonkSiegeAtlas=null;window.goonkSiegePieces=[];});}return;}
+ const auto revision=battle.siegeController->mobileWallRevision();if(revision==previous)return;previous=revision;
+ constexpr int count=18,width=1024,height=1280;
+ auto atlas=SDL_CreateRGBSurfaceWithFormat(0,width,height,32,SDL_PIXELFORMAT_ARGB8888);
+ auto scratch=SDL_CreateRGBSurfaceWithFormat(0,1024,600,32,SDL_PIXELFORMAT_ARGB8888);
+ if(!atlas||!scratch){if(atlas)SDL_FreeSurface(atlas);if(scratch)SDL_FreeSurface(scratch);return;}
+ SDL_FillRect(atlas,nullptr,0);std::vector<int32_t> geometry;
+ for(int i=0;i<count;++i){SDL_FillRect(scratch,nullptr,0);Point position,dimensions;
+  {auto canvas=Canvas::createFromSurface(scratch,CanvasScalingPolicy::IGNORE);if(!battle.siegeController->drawMobileWall(canvas,i,position,dimensions))continue;}
+  const double scale=std::min(248.0/dimensions.x,248.0/dimensions.y);SDL_Rect from{0,0,dimensions.x,dimensions.y},to{(i%4)*256+int((256-dimensions.x*scale)/2),(i/4)*256+int((256-dimensions.y*scale)/2),int(dimensions.x*scale),int(dimensions.y*scale)};
+  SDL_SetSurfaceBlendMode(scratch,SDL_BLENDMODE_NONE);SDL_BlitScaled(scratch,&from,atlas,&to);geometry.insert(geometry.end(),{i,position.x,position.y,dimensions.x,dimensions.y});
+ }
+ auto rgba=SDL_ConvertSurfaceFormat(atlas,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(atlas);SDL_FreeSurface(scratch);if(!rgba)return;
+ const size_t prefix=geometry.size()*4,bytes=width*height*4;auto packet=static_cast<uint8_t*>(malloc(prefix+bytes));if(packet){memcpy(packet,geometry.data(),prefix);memcpy(packet+prefix,rgba->pixels,bytes);
+ MAIN_THREAD_ASYNC_EM_ASM({const ptr=$0;const n=$1;const w=$2;const h=$3;try{window.goonkSiegePieces=Array.from({length:n},(_,i)=>{const row=Array.from(HEAP32.subarray(ptr/4+i*5,ptr/4+i*5+5));return {index:row[0],x:row[1],y:row[2],w:row[3],h:row[4]};});const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+n*20,ptr+n*20+w*h*4)),w,h),0,0);window.goonkSiegeAtlas=c;}finally{_free(ptr);}},packet,geometry.size()/5,width,height);}
+ SDL_FreeSurface(rgba);
+}
 void publishMobileVerticalPlanes(BattleInterface & battle){
  if(!mobileVerticalBattle)return;
+ publishMobileSiegeAtlas(battle);
  constexpr int width=400,height=300;
  static SDL_Surface * scratch=SDL_CreateRGBSurfaceWithFormat(0,800,600,32,SDL_PIXELFORMAT_ARGB8888);
  static SDL_Surface * plane=SDL_CreateRGBSurfaceWithFormat(0,width,height,32,SDL_PIXELFORMAT_RGBA32);
@@ -1253,7 +1274,7 @@ void publishMobileState(){
     if(const auto spell=b->actionsController->targetedSpell())
      n["selectedSpell"].String()=spell->getNameTranslated();
    }
-   for(int row=0;row<11;row++)for(int col=1;col<16;col++){const BattleHex hex(col+17*row);const auto center=b->fieldController->hexPositionAbsolute(hex).center();JsonNode cell;cell["hex"].Integer()=hex.toInt();cell["x"].Integer()=center.x;cell["y"].Integer()=center.y;cell["kind"].Integer()=int(accessibility[hex.toInt()]);cell["reachable"].Bool()=active&&reachable.contains(hex);if(previewSpellTargets)cell["spellTarget"].Bool()=b->actionsController->canTargetSpellHex(hex);if(manualControl&&!tactics&&!targeting&&b->makingTurn()&&!b->hasAnimations())cell["actionLabel"].String()=b->actionsController->mobileActionLabel(hex);n["battleCells"].Vector().push_back(cell);}
+   for(int row=0;row<11;row++)for(int col=1;col<16;col++){const BattleHex hex(col+17*row);const auto center=b->fieldController->hexPositionAbsolute(hex).center();JsonNode cell;cell["hex"].Integer()=hex.toInt();cell["x"].Integer()=center.x;cell["y"].Integer()=center.y;cell["kind"].Integer()=int(accessibility[hex.toInt()]);if(b->siegeController){const auto part=b->getBattle()->battleHexToWallPart(hex);if(part!=EWallPart::INVALID){cell["siegeWall"].Bool()=true;cell["wallPart"].Integer()=int(part);cell["wallState"].Integer()=int(part)<0?2:int(b->getBattle()->battleGetWallState(part));}}if(active&&active->unitType()->getJsonKey()=="core:catapult"&&b->siegeController&&b->siegeController->isAttackableByCatapult(hex)){cell["siegeTarget"].Bool()=true;}cell["reachable"].Bool()=active&&reachable.contains(hex);if(previewSpellTargets)cell["spellTarget"].Bool()=b->actionsController->canTargetSpellHex(hex);if(manualControl&&!tactics&&!targeting&&b->makingTurn()&&!b->hasAnimations())cell["actionLabel"].String()=b->actionsController->mobileActionLabel(hex);n["battleCells"].Vector().push_back(cell);}
    const auto hovered=b->fieldController->getHoveredStack();if(hovered)n["targetUnit"]=creature(hovered->unitType(),hovered->getCount());if(active)for(auto & unit:n["battleUnits"].Vector()){const BattleHex position(unit["occupied"].Vector().empty()?0:unit["occupied"].Vector()[0].Integer());unit["canShootAt"].Bool()=b->getBattle()->battleCanShoot(active,position);unit["canMeleeAt"].Bool()=b->getBattle()->battleCanAttackHex(reachable,active,position);}}
  }
  publishPortraits();publishArtifactIcons();const auto text=n.toCompactString();

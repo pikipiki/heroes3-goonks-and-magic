@@ -389,3 +389,19 @@ const CGTownInstance *BattleSiegeController::getSiegedTown() const
 {
 	return town;
 }
+
+uintptr_t BattleSiegeController::mobileWallRevision() const
+{
+ uintptr_t revision=reinterpret_cast<uintptr_t>(this);
+ for(const auto & image:wallPieceImages)revision=(revision*31)^reinterpret_cast<uintptr_t>(image.get());
+ return revision;
+}
+bool BattleSiegeController::drawMobileWall(Canvas & canvas,int index,Point & position,Point & dimensions) const
+{
+ if(index<EWallVisual::KEEP||index>EWallVisual::UPPER_BATTLEMENT||index==EWallVisual::MOAT||index==EWallVisual::MOAT_BANK)return false;
+ const auto part=static_cast<EWallVisual::EWallVisual>(index);
+ if(!getWallPieceExistence(part)||!wallPieceImages[index])return false;
+ position=town->getTown()->clientInfo.siegePositions[index];
+ if(!position.isValid())return false;
+ dimensions=wallPieceImages[index]->dimensions();canvas.draw(wallPieceImages[index],Point(0,0));return true;
+}

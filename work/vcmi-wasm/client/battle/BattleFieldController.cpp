@@ -774,7 +774,13 @@ bool BattleFieldController::receiveEvent(const Point & position, int eventType) 
 void BattleFieldController::renderMobilePlane(Canvas & canvas, bool effects)
 {
  Canvas clipped(canvas,pos);
- if(!effects)showBackgroundImage(clipped);
+ if(!effects){
+  if(owner.siegeController){
+   // Reuse the original terrain texture; walls have their own upright atlas.
+   for(int y=0;y<600;y+=100)for(int x=0;x<800;x+=160)clipped.draw(background,Point(x,y),Rect(30,200,160,100));
+   owner.siegeController->showAbsoluteObstacles(clipped);
+  }else showBackgroundImage(clipped);
+ }
  BattleRenderer renderer(owner);renderer.executeMobilePlane(clipped,effects);
  if(effects)owner.projectilesController->render(clipped);
 }

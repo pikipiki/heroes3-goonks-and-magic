@@ -101,6 +101,8 @@ public:
 
 	/// call-ins from other battle controllers
 	void showAbsoluteObstacles(Canvas & canvas);
+ bool drawMobileWall(Canvas & canvas,int index,Point & position,Point & dimensions) const;
+ uintptr_t mobileWallRevision() const;
 	void collectRenderableObjects(BattleRenderer & renderer);
 
 	/// queries from other battle controllers

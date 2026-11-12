@@ -29,5 +29,23 @@ sys.stdout.buffer.write(out.getvalue())`,process.env.ROSTER||JSON.stringify(['pa
  const samples=await p.evaluate(async()=>{const rows=[];for(let n=0;n<40;n++){const atlas=goonkBattleAtlas,ctx=atlas.getContext('2d');rows.push(goonkBattleSpriteBounds.map(b=>{const i=goonkBattleAtlasIds.get(b.stackId),d=ctx.getImageData(i%8*128+8,Math.floor(i/8)*128+8,112,112).data;let opaque=0;for(let p=3;p<d.length;p+=4)if(d[p]>32)opaque++;return {...b,opaque};}));await new Promise(r=>setTimeout(r,50));}return rows;});fs.writeFileSync('/tmp/vertical-complex-samples.json',JSON.stringify(samples));const blanks=samples.flat().filter(r=>r.w===0||r.opaque===0);console.log('SAMPLES',samples.length,'BLANKS',blanks.length,'BOUNDS',samples[0]);
  for(const v of [{width:320,height:568},{width:390,height:740},{width:768,height:1024}]){await p.setViewportSize(v);await p.waitForTimeout(250);await p.screenshot({path:'/tmp/vertical-complex-'+caseName+'-'+v.width+'.png'});assert(await p.locator('.mobile-nav').evaluate(c=>c.getBoundingClientRect().bottom<=innerHeight+1));}
  fs.mkdirSync('outputs/combat-review/cases',{recursive:true});fs.writeFileSync('outputs/combat-review/cases/'+caseName+'.json',JSON.stringify({caseName,requested:JSON.parse(process.env.ROSTER||'[]'),units,samples:samples.length,blankSprites:blanks.length},null,2)+'\n');
+
+ if(process.env.ACTIONS==='1'){
+  const cdp=await context.newCDPSession(p);
+  for(const viewport of [{width:740,height:390},{width:390,height:740},{width:768,height:1024},{width:320,height:568}]){
+   await cdp.send('Page.setWebLifecycleState',{state:'frozen'});await p.waitForTimeout(100);await cdp.send('Page.setWebLifecycleState',{state:'active'});await p.setViewportSize(viewport);await p.waitForTimeout(650);
+   assert(await p.locator('.mobile-nav').evaluate(c=>c.getBoundingClientRect().bottom<=innerHeight+1));
+   assert(await p.locator('.battle-view').isVisible());
+  }
+  await p.setViewportSize({width:390,height:740});await p.waitForTimeout(400);
+  if(await p.locator('#mobile-app').getAttribute('data-vertical-battle')!=='true')await p.locator('.battle-view').tap();
+  const sampled=p.evaluate(async()=>{let frames=0,blank=0;const start=performance.now();while(performance.now()-start<6000&&goonkMobileState.mode==='battle'){
+   const a=window.goonkBattleAtlas,ids=window.goonkBattleAtlasIds,bounds=window.goonkBattleSpriteBounds||[],live=goonkMobileState.battleUnits||[];
+   if(a){const ctx=a.getContext('2d');for(const b of bounds){if(!live.some(u=>u.stackId===b.stackId&&u.count>0)||!ids.has(b.stackId))continue;const i=ids.get(b.stackId),d=ctx.getImageData(i%8*128,Math.floor(i/8)*128,128,128).data;let alpha=0;for(let j=3;j<d.length;j+=4)alpha+=d[j];frames++;if(!alpha)blank++;}}
+   await new Promise(r=>setTimeout(r,40));
+  }return {frames,blank};});
+  await command(44,1);const actionSamples=await sampled;console.log('ACTION SAMPLES',JSON.stringify(actionSamples));assert(actionSamples.frames>20);assert.equal(actionSamples.blank,0,'Living sprites retain visible pixels during native actions');
+  console.log('PASS freeze/resume and rotated layouts; native auto-combat sprite output');
+ }
  assert.equal(blanks.length,0,'Living native sprites never blink out during idle');console.log('PASS complex native army and commander');assert.deepEqual(errors,[]);
 }catch(error){console.error(error);await p.screenshot({path:'/tmp/vertical-complex-failed.png'});throw error;}finally{await browser.close();}
