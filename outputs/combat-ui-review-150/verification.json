@@ -1,0 +1,19 @@
+{
+  "version": "0.4.150",
+  "wasm_build": "ninja -j32 html5 passed, isolated published sources plus this change",
+  "web_tests": {
+    "passed": 509,
+    "failed": 0,
+    "skipped": 22
+  },
+  "relay_tests": {
+    "passed": 23,
+    "failed": 0
+  },
+  "browser_checks": [
+    "Chromium and WebKit: phone and iPad landscape combat/tactics rows fill width",
+    "Hosted creation checkbox unchecked by default, enabled choice sent in creation request",
+    "Native combat: 45 immutable image checks in each browser; seven creature families, commander and opponents; fire remains red and azure dragon blue"
+  ],
+  "physical_iphone": "Original symptom not reproduced in automation; immutable software-backed frame change needs confirmation on the physical device."
+}

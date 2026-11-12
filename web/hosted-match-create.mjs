@@ -19,6 +19,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
         <span><strong data-create-map-name></strong><small data-create-map-details></small><span data-create-map-label></span></span>
       </button>
       <label data-create-timer-field hidden><span></span><select data-create-timer aria-describedby="hosted-timer-help"></select><small id="hosted-timer-help"></small></label>
+      <label class="online-cheats-option"><input type="checkbox" data-create-cheats><span data-create-cheats-label></span></label>
       <div class="hosted-match-settings" data-create-roster hidden>
         <strong></strong><small data-create-roster-count aria-live="polite"></small>
         <div data-create-castles></div>
@@ -55,6 +56,8 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   picker.querySelector('header button').setAttribute('aria-label', t('Close map picker', 'Fermer le choix de carte'));
   picker.querySelector('footer button').textContent = t('← Back', '← Retour');
   picker.querySelector('.lobby-picker-search span').textContent = t('Search maps', 'Chercher une carte');
+  const cheats = section.querySelector('[data-create-cheats]');
+  section.querySelector('[data-create-cheats-label]').textContent = t('Allow cheats for all players', 'Autoriser la triche pour tous les joueurs');
   const timer = section.querySelector('[data-create-timer]');
   const timerField = timer.closest('label');
   const mapName = section.querySelector('[data-create-map-name]');
@@ -89,6 +92,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   let scenarios = [], selected, pending = false, previousRequest, requestBody;
   function render() {
     players.disabled = pending;
+    cheats.disabled = pending;
     timer.disabled = pending;
     map.disabled = pending;
     submit.disabled = pending || !selected;
@@ -218,7 +222,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   }
   async function create() {
     if (pending || !selected) return;
-    const settings = {players: Number(players.value), scenario: selected.id,
+    const settings = {players: Number(players.value), scenario: selected.id, cheatsAllowed: cheats.checked,
       ...(selected.seats ? {humanSeats: castles.humanSeats} : {}),
       ...(timerField.hidden ? {} : {turnMinutes: Number(timer.value)}),
       factions: castles.factions};

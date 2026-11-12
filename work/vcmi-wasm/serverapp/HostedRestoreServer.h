@@ -100,7 +100,7 @@ public:
 		return result;
 	}
 
-	void start(const std::string & mapName, const std::string & colors, const JsonNode & factions, double turnMinutes)
+	void start(const std::string & mapName, const std::string & colors, const JsonNode & factions, double turnMinutes, bool cheatsAllowed = false)
 	{
 		if(!(turnMinutes >= 0 && turnMinutes <= 10) || (mapName.empty() && turnMinutes != 0))
 			throw std::runtime_error("Invalid hosted turn timer");
@@ -150,10 +150,10 @@ public:
 			}
 		}
 
-		// A restored checkpoint may carry its original lobby's cheat setting.
-		si->extraOptionsInfo.cheatsAllowed = false;
+		// Apply the immutable setting supplied by the authenticated match registry.
+		si->extraOptionsInfo.cheatsAllowed = cheatsAllowed;
 		if(gh)
-			gh->gs->getStartInfo()->extraOptionsInfo.cheatsAllowed = false;
+			gh->gs->getStartInfo()->extraOptionsInfo.cheatsAllowed = cheatsAllowed;
 
 		if(si->simturnsInfo.requiredTurns || si->simturnsInfo.optionalTurns
 			|| mi->mapHeader->battleOnly || (gh && !gh->gameState().currentBattles.empty()))

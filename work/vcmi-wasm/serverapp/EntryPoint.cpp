@@ -40,6 +40,7 @@ static void handleCommandOptions(int argc, const char * argv[], boost::program_o
 	("hosted-scenarios-size", boost::program_options::value<unsigned>(), "List maps by total human and computer slots")
 	("hosted-factions", boost::program_options::value<std::string>(), "Starting castles in map color order, as a JSON array")
 	("hosted-turn-minutes", boost::program_options::value<double>()->default_value(0), "Minutes per dedicated adventure turn")
+	("hosted-cheats", "Allow cheats for every player in this dedicated match")
 	("hosted-restore", "Restore a dedicated match and accept authenticated loopback connections")
 	("verify-turn-checkpoint", "Load and validate the hosted save without opening a network listener")
 	("turn-checkpoint", "Save to Hosted-Turn.vsgm1 when a human turn starts (one game per user data directory)")
@@ -214,7 +215,7 @@ int main(int argc, const char * argv[])
 				factions = JsonNode(text.data(), text.size(), "hosted factions");
 			}
 			server.start(opts.count("hosted-map") ? opts["hosted-map"].as<std::string>() : "", opts["hosted-seats"].as<std::string>(),
-				factions, opts["hosted-turn-minutes"].as<double>());
+				factions, opts["hosted-turn-minutes"].as<double>(), opts.count("hosted-cheats") != 0);
 			server.run();
 			// The supervisor retires a match only after a confirmed game outcome.
 			if(server.matchFinished())

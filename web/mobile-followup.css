@@ -297,3 +297,14 @@ html.goonk-mobile #mobile-app[data-mode=creature]{grid-template-rows:auto minmax
 #game-menu>header{display:grid;grid-template-columns:minmax(0,1fr) 44px;align-items:center;gap:12px}
 #game-menu>header h2{min-width:0;overflow-wrap:anywhere;font-size:clamp(20px,3vw,32px)}
 #game-menu>header [data-menu=close]{width:44px;min-width:44px;justify-self:end;padding:0}
+
+/* Fill the combat rail on landscape phones and tablets, without intrinsic button widths. */
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle]:not([data-target-picker])>.mobile-nav{display:grid!important;padding:4px!important;gap:4px!important;width:100%!important;max-width:none!important;justify-items:stretch!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;grid-template-rows:none!important;grid-auto-rows:44px!important}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle]:not([data-target-picker])>.mobile-nav>button[data-ui]{width:100%!important;max-width:none!important;justify-self:stretch!important;grid-column:span 2!important;grid-row:auto!important;height:44px!important;box-sizing:border-box}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle]:not([data-target-picker])>.mobile-nav:has(>button:first-child:nth-last-child(5))>button[data-ui]:nth-last-child(-n+2){grid-column:span 3!important}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle]:not([data-target-picker])>.mobile-nav:has(>button:first-child:is(:nth-last-child(2),:nth-last-child(4)))>button[data-ui]{grid-column:span 3!important}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle]:not([data-target-picker])>.mobile-nav>button[data-ui]:only-child{grid-column:1/-1!important}
+}
+#game-menu .hosted-match-settings>.online-cheats-option{display:flex;flex-direction:row;align-items:center;gap:10px;min-height:44px}
+#game-menu .online-cheats-option input{width:22px;height:22px;min-height:22px;flex:0 0 22px}

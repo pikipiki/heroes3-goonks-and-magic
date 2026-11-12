@@ -13,12 +13,13 @@ export function animatedBattlePosition(previous,next,elapsed,duration=50){
  const t=Math.max(0,Math.min(1,elapsed/duration));
  return {x:previous.x+(next.x-previous.x)*t,y:previous.y+(next.y-previous.y)*t};
 }
-let previousBounds=null,previousAtlas=null,poses=new Map(),lastTime=0;
-export function resetVerticalBattle(){previousBounds=null;previousAtlas=null;poses.clear();lastTime=0;}
+let previousBounds=null,poses=new Map(),lastTime=0;
+export function resetVerticalBattle(){previousBounds=null;poses.clear();lastTime=0;}
 export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas,ids,bounds){
  if(!planes?.ground||!atlas||!ids||!bounds?.length)return null;
  const now=performance.now();
- if(atlas!==previousAtlas){poses.clear();previousBounds=null;previousAtlas=atlas;}
+ // Each atlas is an immutable RGBA frame; interpolate positions across frames.
+ // A new battle explicitly resets the pose history through resetVerticalBattle().
  if(bounds!==previousBounds){
   const present=new Set(bounds.map(b=>b.stackId));for(const id of poses.keys())if(!present.has(id))poses.delete(id);
   for(const b of bounds){if(b.w<=0||b.h<=0||!ids.has(b.stackId))continue;const old=poses.get(b.stackId),target={x:b.renderX,y:b.renderY};
