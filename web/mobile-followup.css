@@ -310,3 +310,6 @@ html.goonk-mobile #mobile-app[data-mode=creature]{grid-template-rows:auto minmax
 #game-menu .online-cheats-option input{width:22px;height:22px;min-height:22px;flex:0 0 22px}
 
 #mobile-app .mobile-nav .troops-nav-icon{width:22px;height:22px;display:inline-block;vertical-align:middle;flex:none;margin-right:4px}
+
+/* Selected spells and inspected creature forms share Confirm's gold frame. */
+html.goonk-mobile #mobile-app :is(.mobile-mage-guild [data-guild-spell],.recruit-variants [data-variant])[aria-pressed=true]{border:4px ridge #ffe18a!important;border-image:none!important;outline:none!important;box-shadow:inset 0 0 0 1px #60491b!important;box-sizing:border-box}
