@@ -199,3 +199,9 @@ html.goonk-mobile #mobile-app[data-battle-result]>*:not(.battle-result){display:
  html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-detail>*{flex:none!important}
  html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-actions{position:sticky;bottom:-1px;background:#25190d;padding-block:3px;margin-top:auto;z-index:2}
 }
+
+/* Keep the vertical board tall while retaining a scrollable complete stat card. */
+html.goonk-mobile #mobile-app[data-mode=battle][data-vertical-battle=true]>.battle-panel{height:82px!important;max-height:82px!important;display:flex!important;flex-direction:column!important;overflow-y:auto!important;touch-action:pan-y}
+html.goonk-mobile #mobile-app[data-mode=battle][data-vertical-battle=true] .battle-panel-card{min-height:51px!important;flex:none!important}
+html.goonk-mobile #mobile-app[data-mode=battle][data-vertical-battle=true] .battle-turn{white-space:normal!important;overflow-wrap:anywhere!important;overflow:visible!important;text-overflow:clip!important}
+html.goonk-mobile #mobile-app[data-mode=battle][data-vertical-battle=true] .battle-selection{flex:none!important;max-height:none!important;overflow:visible!important}

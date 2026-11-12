@@ -344,6 +344,11 @@ void CreatureAnimation::drawFrameAt(Canvas & canvas, const Point & position, con
 		image = reverse->getImage(frame, size_t(type));
 
 	if(image)
+		lastReadyFrame[facingRight ? 1 : 0] = image;
+	else
+		image = lastReadyFrame[facingRight ? 1 : 0];
+
+	if(image)
 	{
 		if (isIdle())
 			image->setOverlayColor(genBorderColor(getBorderStrength(elapsedTime), border));

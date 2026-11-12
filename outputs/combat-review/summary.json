@@ -1,0 +1,37 @@
+{
+  "version": "0.4.138",
+  "nativeCreatureDetails": 281,
+  "battleBatches": 41,
+  "catalogCreaturesInOrdinaryBattles": 276,
+  "specialUnitsCoveredSeparately": [
+    "core:catapult",
+    "core:ballista",
+    "core:firstAidTent",
+    "core:ammoCart",
+    "core:arrowTower"
+  ],
+  "blankSpriteSamples": 0,
+  "animationDefinitions": 290,
+  "uniqueAnimations": 288,
+  "animationFrames": 30385,
+  "missingAnimations": [],
+  "emptyPngFrames": [],
+  "focusedNativeScenarios": [
+    "Classic default and explicit portrait vertical toggle",
+    "Touch movement and animated Magic Arrow in Chromium and WebKit",
+    "Siege with castle walls, commander, ballista, first-aid tent, ammo cart and catapult",
+    "Summon Fire Elemental in the siege"
+  ],
+  "viewportSizes": [
+    "320x568",
+    "390x740",
+    "768x1024",
+    "844x390"
+  ],
+  "limitations": [
+    "Resource and rendering coverage is exhaustive for the active catalog, not every possible action combination.",
+    "Existing lateral sprite animations remain upright; no front/back artwork was generated.",
+    "Siege walls remain part of the rotated terrain plane.",
+    "Physical iOS/Android sleep and resume behavior is not established by browser emulation."
+  ]
+}

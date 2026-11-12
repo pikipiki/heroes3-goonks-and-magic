@@ -12,3 +12,4 @@ test('portrait battle keeps the full checkerboard visible and reverses touch coo
   assert(g.project({x:58,y:300}).y>g.project({x:742,y:300}).y,'Allied side is at the bottom');
  }
 });
+test('Native movement positions interpolate smoothly and never overshoot',async()=>{const {animatedBattlePosition}=await import('../web/battle-vertical.mjs');assert.deepEqual(animatedBattlePosition({x:0,y:10},{x:100,y:50},25,50),{x:50,y:30});assert.deepEqual(animatedBattlePosition({x:0,y:10},{x:100,y:50},90,50),{x:100,y:50});assert.deepEqual(animatedBattlePosition({x:0,y:10},{x:100,y:50},-1,50),{x:0,y:10});});

@@ -485,7 +485,7 @@ void publishMobileVerticalPlanes(BattleInterface & battle){
 std::atomic_bool atlasPending{false};
 void publishMobileBattleAtlas(){
  static uint32_t last=0;
- if(!mobileEnabled||!ENGINE||!GAME||atlasPending.load()||SDL_GetTicks()-last<83)return;
+ if(!mobileEnabled||!ENGINE||!GAME||atlasPending.load()||SDL_GetTicks()-last<(mobileVerticalBattle?50:83))return;
  const auto battle=CPlayerInterface::battleInt;
  if(!battle||!ENGINE->windows().topWindow<BattleWindow>())return;
  last=SDL_GetTicks();
@@ -659,7 +659,7 @@ void publishMobileMinimap(CMinimap & mini)
 void publishMobilePreviewAtlas()
 {
  static uint32_t last=0;
- if(!mobileEnabled||!ENGINE||!GAME||previewAtlasPending.load()||SDL_GetTicks()-last<83)return;
+ if(!mobileEnabled||!ENGINE||!GAME||previewAtlasPending.load()||SDL_GetTicks()-last<(mobileVerticalBattle?50:83))return;
  std::vector<CCreaturePic *> pictures;
  if(const auto fort=ENGINE->windows().topWindow<CFortScreen>()){
   if(const auto picture=fort->getMobilePreviewPicture())pictures.push_back(picture);

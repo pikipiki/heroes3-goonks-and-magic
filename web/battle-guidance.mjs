@@ -19,7 +19,8 @@ export function battleGuidance(state){
   ['archangel','mastergenie','firstaidtent','ogremage'].some(k=>(state.activeUnit?.key||'').toLowerCase().includes(k))||
   (state.activeUnit?.abilities||[]).some(a=>/soin|soign|guér|heal|resurrect|résurrect|bénéfique|beneficial/i.test(a))
  );
- const beneficialTargets=canHealOrBuff?(state.battleUnits||[]).filter(unit=>!unit.enemy&&unit.stackId!==actor.stackId):[];
+ const nativeActions=(state.battleCells||[]).some(cell=>Object.hasOwn(cell,'actionLabel'));
+ const beneficialTargets=canHealOrBuff?(state.battleUnits||[]).filter(unit=>!unit.enemy&&(nativeActions?(state.battleCells||[]).some(cell=>cell.x===unit.x&&cell.y===unit.y&&/^(Cast |Heal)/.test(cell.actionLabel||'')):unit.stackId!==actor.stackId)):[];
  return {actor,ready,cells,shotTargets,meleeTargets,spellTargets,beneficialTargets,label:cap.tactics?'À placer':'À jouer'};
 }
 export function paintActiveCreature(ctx,guidance,layout){

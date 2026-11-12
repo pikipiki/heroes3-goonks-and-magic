@@ -93,3 +93,10 @@ test('Battle destination feedback connects the endpoints without intermediate st
  assert(!lines.some(([x,y])=>x===190&&y===280),'The detailed path is not drawn');
  assert(!labels.some(label=>/Destination/.test(label)),'No destination badge obscures the battlefield');
 });
+
+test('Beneficial markers follow native legality, including self healing',()=>{
+ const healthy={stackId:2,enemy:false,x:200,y:200};
+ const combat={...state,tacticsMode:false,round:1,activeUnit:{key:'core:archangel',controlled:true},creatureCanCast:true,battleUnits:[actor,healthy],battleCells:[{x:actor.x,y:actor.y,actionLabel:'Heal'},{x:healthy.x,y:healthy.y,actionLabel:''}]};
+ assert.deepEqual(battleGuidance(combat).beneficialTargets,[actor]);
+ assert.deepEqual(battleGuidance({...combat,battleCells:combat.battleCells.map(c=>({...c,actionLabel:''}))}).beneficialTargets,[]);
+});

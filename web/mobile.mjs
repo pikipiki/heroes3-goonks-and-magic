@@ -1,6 +1,6 @@
 import {createBattleResult} from './battle-result.mjs';
 import {contextualBattleAction} from './battle-action.mjs';
-import {paintVerticalBattle} from './battle-vertical.mjs';
+import {paintVerticalBattle,resetVerticalBattle} from './battle-vertical.mjs';
 import {standardizeBackButtons} from './back-buttons.mjs';
 import {createTownServices} from './town-services.mjs';
 import {createDialogPresentation} from './dialog-presentation.mjs';
@@ -136,7 +136,7 @@ function mount(){
  const mapPan=createMapPan(d=>window.Module?._vcmiMobilePan?.(d.x,d.y));
  const notify=text=>{const box=root.querySelector('.toast-mobile');box.textContent=text;box.hidden=false;clearTimeout(box.timer);box.timer=setTimeout(()=>box.hidden=true,2800);};
  const director=createBattleDirector(),cameraMotion=matchMedia('(prefers-reduced-motion: reduce)');let battleDetailScale=1,battleSession=false;
- let portraitVertical=true,verticalCommand=false,verticalGeometry=null;
+ let portraitVertical=false,verticalCommand=false,verticalGeometry=null;
  const verticalActive=()=>state.mode==='battle'&&root.clientWidth<root.clientHeight&&portraitVertical;
  const syncVertical=()=>{const active=verticalActive();if(active!==verticalCommand){verticalCommand=active;window.Module?._vcmiMobileCommand?.(95,active?1:0,0);}root.dataset.verticalBattle=String(active);if(!active)verticalGeometry=null;};
  const dualBattle=createBattleDualView({root,scene,getState:effectiveBattle,getView:()=>verticalActive()?'vertical':battleView,onFocus:(point,unit)=>{
@@ -288,7 +288,7 @@ function mount(){
   }
   // Keep the army sheet on screen until the creature presentation is ready.
   if(change&&state.mode==='creature'&&sheetKind==='army')detailReturn='army';
-  if(change){battleTargetPicker=false;delete root.dataset.targetPicker;if(!['lobby','load'].includes(state.mode))requestedMapName=null;mode=state.mode;if(mode==='battle'){if(!battleSession){window.goonkBattleSpriteBounds=[];window.goonkBattlePlanes=null;command(15);battleCamera=null;battleView='whole';}battleSession=true;}if(mode==='town')townWhole=true;selectedPoint=null;zoom=1;focus=null;if(sheetKind)closeSheet();}
+  if(change){battleTargetPicker=false;delete root.dataset.targetPicker;if(!['lobby','load'].includes(state.mode))requestedMapName=null;mode=state.mode;if(mode==='battle'){if(!battleSession){resetVerticalBattle();portraitVertical=false;window.goonkBattleSpriteBounds=[];window.goonkBattlePlanes=null;command(15);battleCamera=null;battleView='whole';}battleSession=true;}if(mode==='town')townWhole=true;selectedPoint=null;zoom=1;focus=null;if(sheetKind)closeSheet();}
   if(state.mode==='battle'&&(change||changedActor||changedPhase)){selectedPoint=null;battleMove=false;const actor=battleGuidance(state).actor;if(actor){focus=state.focus||actor;battleCamera={...focus};}}
   battleResult.update(state);dialogPresentation.update(state);
   tavern.update(state);townServices.update(state);
@@ -335,7 +335,7 @@ function mount(){
   const next=paintVerticalBattle(ctx,w,h,state,selectedPoint,window.goonkBattlePlanes,window.goonkBattleAtlas,window.goonkBattleAtlasIds,window.goonkBattleSpriteBounds);
   if(!next)return false;verticalGeometry=next;layout={scale:next.scale};paintedGeometry=touchGeometry(scene);overview.hidden=true;return true;
  }
- function syncBattleView(){syncVertical();dualBattle.sync();const fr=getLanguage()==='fr',button=root.querySelector('.battle-view'),text=root.clientWidth<root.clientHeight?(verticalActive()?'Classic view':'Vertical view'):nativeBattleClose(scene.clientWidth,scene.clientHeight,battleView)?(fr?'Vue entière':'Full view'):(fr?'Rapprocher':'Zoom in');if(button.textContent!==text)button.textContent=text;const pressed=String(root.clientWidth<root.clientHeight?verticalActive():battleView==='whole');if(button.getAttribute('aria-pressed')!==pressed)button.setAttribute('aria-pressed',pressed);if(root.dataset.battleCamera!==battleView)root.dataset.battleCamera=battleView;}
+ function syncBattleView(){syncVertical();dualBattle.sync();const fr=getLanguage()==='fr',button=root.querySelector('.battle-view'),text=root.clientWidth<root.clientHeight?(verticalActive()?(fr?'Vue classique':'Classic view'):(fr?'Vue verticale':'Vertical view')):nativeBattleClose(scene.clientWidth,scene.clientHeight,battleView)?(fr?'Vue entière':'Full view'):(fr?'Rapprocher':'Zoom in');if(button.textContent!==text)button.textContent=text;const pressed=String(root.clientWidth<root.clientHeight?verticalActive():battleView==='whole');if(button.getAttribute('aria-pressed')!==pressed)button.setAttribute('aria-pressed',pressed);if(root.dataset.battleCamera!==battleView)root.dataset.battleCamera=battleView;}
  bindPress(root.querySelector('.battle-view'),()=>{if(state.mode!=='battle')return;const chosen=selectedPoint;if(root.clientWidth<root.clientHeight){portraitVertical=!portraitVertical;}else battleView=nativeBattleClose(scene.clientWidth,scene.clientHeight,battleView)?'whole':'close';resetGestures();selectedPoint=chosen;syncBattleView();renderBattlePanel();controls();});
  function closeSheet(){
   const weekly=sheetKind==='weekly-recruits';

@@ -76,6 +76,8 @@ private:
 
 	/// animation that has all its frames flipped for rendering stack facing left
 	std::shared_ptr<CAnimation> reverse;
+	// Keep a complete pose visible while a lazily loaded frame becomes available.
+	std::array<std::shared_ptr<IImage>, 2> lastReadyFrame;
 
 	int fullWidth;
 	int fullHeight;
