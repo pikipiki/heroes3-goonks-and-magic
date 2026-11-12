@@ -1,3 +1,5 @@
+import {setLanguage} from '../web/i18n.mjs';
+setLanguage('fr');
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
 import path from 'node:path';import {pathToFileURL,fileURLToPath}from'node:url';
 const project=process.env.TUM_PROJECT_ROOT||fileURLToPath(new URL('../',import.meta.url));

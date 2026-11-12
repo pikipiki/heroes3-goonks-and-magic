@@ -1,6 +1,6 @@
 import {resourceDescriptors} from './resources.mjs';
 import {getLanguage, translate} from './i18n.mjs';
-const resources=(values,metadata=[],lang='fr')=>resourceDescriptors(values,metadata).filter(r=>r.value>0).map(r=>`${r.value} ${translate(r.name,lang).toLowerCase()}`).join(' + ');
+const resources=(values,metadata=[],lang='fr')=>resourceDescriptors(values,metadata,lang).filter(r=>r.value>0).map(r=>`${r.value} ${translate(r.name,lang).toLowerCase()}`).join(' + ');
 export function recruitmentSummary(state, language = (typeof window !== 'undefined' ? getLanguage() : 'fr')){
  const fr=language==='fr';
  const unit=state.recruitUnit;if(!unit||!Array.isArray(unit.cost)||unit.cost.length<7)return fr?'Chargement du recrutement…':'Loading recruitment…';

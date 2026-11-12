@@ -61,6 +61,7 @@
 #include "battle/BattleInterface.h"
 #include "battle/BattleActionsController.h"
 #include "battle/BattleWindow.h"
+#include "battle/BattleResultWindow.h"
 #include "battle/BattleStacksController.h"
 #include "battle/BattleFieldController.h"
 #include "../lib/json/JsonNode.h"
@@ -871,6 +872,9 @@ void publishMobileState(){
     }
    }
  }
+ else if(const auto result=ENGINE->windows().topWindow<BattleResultWindow>()){
+  n["mode"].String()="dialog";n["dialogKind"].String()="battle-result";n["battleResult"]=result->mobileResult;
+ }
  else if(spellWindow){n["mode"].String()="spellbook";n["spellbook"]=spellWindow->mobileSnapshot();}
  else if(const auto guild=ENGINE->windows().topWindow<CMageGuildScreen>()){
   n["mode"].String()="mage-guild";
@@ -882,6 +886,8 @@ void publishMobileState(){
   data["unit"]=creature(smith->mobileCreature.toCreature(),1);
   data["cost"].Integer()=smith->mobileArtifact.toArtifact()->getPrice();
   data["canBuy"].Bool()=p&&p->makingTurn&&smith->mobileCanBuy;
+  const auto hero=p?dynamic_cast<const CGHeroInstance*>(p->cb->getObj(smith->mobileHero)):nullptr;
+  data["alreadyOwned"].Bool()=hero&&hero->hasArt(smith->mobileArtifact);
   data["preview"]=rect(smith->mobilePreview());
  }
  else if(const auto guild=ENGINE->windows().topWindow<CThievesGuildWindow>();guild&&p){

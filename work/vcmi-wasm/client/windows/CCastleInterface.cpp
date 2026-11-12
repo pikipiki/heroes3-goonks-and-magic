@@ -2473,6 +2473,7 @@ CBlacksmithDialog::CBlacksmithDialog(bool possible, CreatureID creMachineID, Art
 	mobileCreature = creMachineID;
 	mobileArtifact = aid;
 	mobileCanBuy = possible;
+	mobileHero = hid;
 
 	auto statusbarBackground = std::make_shared<CPicture>(background->getSurface(), barRect, 8, pos.h - 26);
 	statusbar = CGStatusBar::create(statusbarBackground);

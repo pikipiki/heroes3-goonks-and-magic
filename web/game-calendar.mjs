@@ -17,7 +17,7 @@ export function createGameCalendar(root){
  return (state,expanded=false)=>{
   const value=gameDate(state.day),visible=!!value&&!['menu','load','lobby','campaign','connecting','hero','battle'].includes(state.mode)&&state.resources?.length>=7;
   calendar.hidden=!visible;root.dataset.hasCalendar=String(visible);if(!visible)return;
-  const english=getLanguage()==='en',daysLeft=7-value.weekday,englishDays=daysLeft===1?'1 day left':`${daysLeft} days left`,label=english?`Day ${value.weekday}/7 · Week ${value.week} · Month ${value.month}`:`Jour ${value.weekday}/7 · Semaine ${value.week} · Mois ${value.month}`,remaining=english?(value.weekday===7?'Last day of the week':`${englishDays} this week`):value.weekday===7?'Dernier jour de la semaine':`Encore ${daysLeft} j cette semaine`;
+  const english=getLanguage()==='en',daysLeft=7-value.weekday,englishDays=daysLeft===1?'1 day left':`${daysLeft} days left`,label=english?`Day ${value.weekday} · Week ${value.week} · Month ${value.month}`:`Jour ${value.weekday} · Semaine ${value.week} · Mois ${value.month}`,remaining=english?(value.weekday===7?'Last day of the week':`${englishDays} this week`):value.weekday===7?'Dernier jour de la semaine':`Encore ${daysLeft} j cette semaine`;
   const recruits=canViewWeeklyRecruits(state);
   calendar.disabled=!recruits;
   if(recruits){calendar.setAttribute('aria-haspopup','dialog');calendar.setAttribute('aria-expanded',String(expanded));}
@@ -35,7 +35,7 @@ export function createGameCalendar(root){
   if(cueDays.textContent!==shortDays)cueDays.textContent=shortDays;
   if(date.textContent!==label)date.textContent=label;if(next.textContent!==remaining)next.textContent=remaining;
   if(state.mode==='map'){
-   const shortDate=english?`Day ${value.weekday}/7 · W${value.week} · M${value.month}`:`Jour ${value.weekday}/7 · S${value.week} · M${value.month}`;
+   const shortDate=english?`Day ${value.weekday} · W${value.week} · M${value.month}`:`Jour ${value.weekday} · S${value.week} · M${value.month}`;
    if(compactDate.textContent!==shortDate)compactDate.textContent=shortDate;
   }
   calendar.title=english?`Game day ${state.day}. ${label}. ${status}.`:`Jour ${state.day} de la partie. ${label}. ${status}.`;

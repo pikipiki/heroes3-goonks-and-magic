@@ -590,3 +590,10 @@ Le moteur fournit les couches de terrain et d’effets ainsi que les images anim
 Il s’agit d’un essai de présentation utilisant les animations existantes : les créatures conservent leurs poses latérales et les décors utilisent leur projection d’origine. Ce n’est pas une refonte graphique avec de nouvelles animations de face et de dos. Les couches supplémentaires sont exportées uniquement pendant le combat vertical et leur cadence est limitée par le transfert d’animations déjà en place.
 
 Vérifications de cet essai : `ninja -j32 html5`, 479 tests unitaires réussis (22 tests conditionnels ignorés), construction et vérification du site ; scénario natif Chromium et WebKit avec effet de Magic Arrow, animation visible du champ, déplacement confirmé depuis une case verticale, formats 320×568 / 390×740 / 768×1024 et retour au paysage. Les fixtures de test restent en mémoire et ne sont pas intégrées aux cartes publiées.
+
+
+### Mobile review 0.4.137 — general corrections
+
+Battle results use a responsive Heroes III panel with native losses and one confirmation. Resource amounts have their own row; dates omit the redundant /7. Back controls use a gold bevel and fill their available cell. Army transfer controls sit under the receiving army; short landscape rosters scroll without shrinking portraits. Long battle descriptions scroll. Visited artwork is centered on its visible pixels. Blacksmith dialogs explain an already-owned machine. Contextual battle orders use native legality, preserving flying movement, resurrection, healing and physical attacks.
+
+French native Heroes III strings come from [VCMI French translation](https://github.com/vcmi-mods/french-translation), revision `2c0ea59933da028bfe6c418d7797a4b3dae03d7f` (Fabrice TIERCELIN and contributors; original French game translation). Loaded only in French. Third Upgrade and TUM ERA creature names have dedicated French catalogs. English remains the default.

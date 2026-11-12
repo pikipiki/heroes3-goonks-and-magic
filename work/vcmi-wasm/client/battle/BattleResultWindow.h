@@ -35,6 +35,8 @@ struct BattleResultResources
 };
 
 /// Class which is responsible for showing the battle result window
+#include "../../lib/json/JsonNode.h"
+
 class BattleResultWindow : public WindowBase
 {
 private:
@@ -53,6 +55,7 @@ private:
 
 	void buttonPressed(int button); //internal function for button callbacks
 public:
+	JsonNode mobileResult;
 	BattleResultWindow(const BattleResult & br, CPlayerInterface & _owner, bool allowReplay = false);
 
 	void bExitf(); //exit button callback

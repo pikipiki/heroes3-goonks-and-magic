@@ -1,3 +1,4 @@
+import {createBattleResult} from './battle-result.mjs';
 import {contextualBattleAction} from './battle-action.mjs';
 import {paintVerticalBattle} from './battle-vertical.mjs';
 import {standardizeBackButtons} from './back-buttons.mjs';
@@ -21,7 +22,7 @@ import {heroMovementSummary,watchHeroMovement} from './hero-movement.mjs';
 import {createMenuLaunch,restartLaunchURL} from './menu-launch.mjs';
 import {touchGeometry,sameTouchGeometry,localPointer} from './touch-geometry.mjs';
 import {createLobbyOptions} from './lobby-options.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage,translate} from './i18n.mjs';
 import {creaturePortrait,paintCreaturePortraits} from './creature-portraits.mjs';
 import {createMobileSpellbook} from './spellbook.mjs';
 import {createMageGuild} from './mage-guild.mjs';
@@ -63,6 +64,7 @@ function mount(){
  const viewportAnchor=anchorMobileViewport(viewportFrame);
  const townZoom=document.createElement('button');townZoom.className='town-zoom-control';townZoom.dataset.ui='town-view';townZoom.textContent='＋ Zoom in';root.querySelector('.mobile-play').append(townZoom);
  root.addEventListener('click',event=>{if(newTownBuilding&&Number(event.target.closest('[data-town-building]')?.dataset.townBuilding)===newTownBuilding.id)clearNewBuilding();},{capture:true});
+ const battleResult=createBattleResult({root,command:(...args)=>command(...args)});
  const dialogPresentation=createDialogPresentation({root,command:(...args)=>command(...args),pointer:(...args)=>pointer(...args),refresh:()=>update(state,true)});
  enableFullscreenOnPlay();
  const updateCalendar=createGameCalendar(root);
@@ -200,10 +202,10 @@ function mount(){
    const action=contextualBattleAction(state,selectedPoint);
    const magicCancel=state.spellTargeting===true;
    const magicDisabled=!!spellRecovery.pending||(!magicCancel&&(!cap.magic||(!state.creatureCanCast&&(!state.heroHasSpellbook||state.heroCanCast===false))));
-   items=[btn(action.label,'battle-action',true,!cap.move||!!spellRecovery.pending||!action.enabled),
-    btn('Magic','battle-magic',false,magicDisabled),btn('◎ Targets','targets',false,!cap.move||!!spellRecovery.pending),
-    btn(state.canWait===false?'Already waited':'◷ Wait','wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),
-    btn('⛨ Defend','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending)].map(html=>html.replace('<button ','<button translate="no" '));
+   items=[btn(translate(action.label),'battle-action',true,!cap.move||!!spellRecovery.pending||!action.enabled),
+    btn(fr?'Magie':'Magic','battle-magic',false,magicDisabled),btn(fr?'◎ Cibles':'◎ Targets','targets',false,!cap.move||!!spellRecovery.pending),
+    btn(state.canWait===false?(fr?'Déjà attendu':'Already waited'):(fr?'◷ Attendre':'◷ Wait'),'wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),
+    btn(fr?'⛨ Défendre':'⛨ Defend','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending)].map(html=>html.replace('<button ','<button translate="no" '));
   }
   else if(m==='recruit')items=[btn(fr?'Recruter':'Recruit','confirm-recruit',true,!state.turn||recruitLoading||!(state.recruitAmount>0)),btn(fr?'Tout':'All','max-recruit',false,!(state.recruitMaximum>0)),btn('← Back','cancel-recruit')];
   else if(m==='campaign')items=[btn('Back','back')];
@@ -288,7 +290,7 @@ function mount(){
   if(change&&state.mode==='creature'&&sheetKind==='army')detailReturn='army';
   if(change){battleTargetPicker=false;delete root.dataset.targetPicker;if(!['lobby','load'].includes(state.mode))requestedMapName=null;mode=state.mode;if(mode==='battle'){if(!battleSession){window.goonkBattleSpriteBounds=[];window.goonkBattlePlanes=null;command(15);battleCamera=null;battleView='whole';}battleSession=true;}if(mode==='town')townWhole=true;selectedPoint=null;zoom=1;focus=null;if(sheetKind)closeSheet();}
   if(state.mode==='battle'&&(change||changedActor||changedPhase)){selectedPoint=null;battleMove=false;const actor=battleGuidance(state).actor;if(actor){focus=state.focus||actor;battleCamera={...focus};}}
-  dialogPresentation.update(state);
+  battleResult.update(state);dialogPresentation.update(state);
   tavern.update(state);townServices.update(state);
   root.querySelector('.recruit-close').hidden=state.mode!=='recruit';
   creatureView.update(state);spellbook.update(state);mageGuild.update(state);heroEquipment.update(state);heroExchange.update(state);campaignSetup.update(state);marketplace.update(state);onlineLogin.update(state);onlineLobby.update(state);
@@ -577,7 +579,7 @@ function mount(){
  overview.addEventListener('pointerdown',event=>{const r=overview.getBoundingClientRect();if(state.mode==='map'){event.preventDefault();event.stopPropagation();const point=mapOverviewTarget(state.mapOverview,event.clientX-r.left-overview.clientLeft,event.clientY-r.top-overview.clientTop,overview.clientWidth,overview.clientHeight);centerMapOverview(point);return;}if(state.mode==='town'){townWhole=false;focus={x:(event.clientX-r.left)/r.width*800,y:187};return;}focus={x:(event.clientX-r.left)/r.width*800,y:45+(event.clientY-r.top)/r.height*510};if(zoom===1)zoom=2;});
  overview.addEventListener('keydown',event=>{if(state.mode!=='map')return;const steps={ArrowLeft:[-24,0],ArrowRight:[24,0],ArrowUp:[0,-24],ArrowDown:[0,24]},step=steps[event.key];if(!step)return;event.preventDefault();event.stopPropagation();const area=mapOverviewViewport(state.mapOverview,layout,240,240);if(!area)return;const point=mapOverviewTarget(state.mapOverview,Math.max(0,Math.min(239,area.x+area.w/2+step[0])),Math.max(0,Math.min(239,area.y+area.h/2+step[1])),240,240);centerMapOverview(point);});
 
- function frame(time){requestAnimationFrame(frame);if(document.hidden||!original.width)return;if(heroTransition.frame())return;if(state.windowToken!==undefined&&window.goonkNativeWindowToken!==undefined&&state.windowToken!==window.goonkNativeWindowToken)return;paintCreaturePortraits(root);if(spellbook.active||mageGuild.active||marketplace.active||onlineLogin.active||onlineLobby.active)return;if(campaignSetup.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}if(heroEquipment.paint(original)||heroExchange.paint(original)||creatureView.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}lastFrame=time;const tracking=director.frame(state,selectedPoint);syncVertical();dualBattle.sync();if(dialogPresentation.paint(original)||tavern.paint(original)||townServices.paint(original)||nativeFort.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}const w=scene.clientWidth,h=scene.clientHeight;if(!w||!h)return;const pixels=sceneSize.fit(scene,w,h,Math.min(devicePixelRatio||1,2));
+ function frame(time){requestAnimationFrame(frame);if(document.hidden||!original.width)return;if(heroTransition.frame())return;if(state.windowToken!==undefined&&window.goonkNativeWindowToken!==undefined&&state.windowToken!==window.goonkNativeWindowToken)return;paintCreaturePortraits(root);if(spellbook.active||mageGuild.active||marketplace.active||onlineLogin.active||onlineLobby.active)return;if(campaignSetup.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}if(heroEquipment.paint(original)||heroExchange.paint(original)||creatureView.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}lastFrame=time;const tracking=director.frame(state,selectedPoint);syncVertical();dualBattle.sync();if(battleResult.paint(original)||dialogPresentation.paint(original)||tavern.paint(original)||townServices.paint(original)||nativeFort.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}const w=scene.clientWidth,h=scene.clientHeight;if(!w||!h)return;const pixels=sceneSize.fit(scene,w,h,Math.min(devicePixelRatio||1,2));
 
   ctx.setTransform(pixels.x,0,0,pixels.y,0,0);if(portraitTown.paint(ctx,w,h,state,townPortraitEnabled&&townWhole)){layout=null;overview.hidden=true;const view=root.querySelector('.town-view');view.textContent='Vue classique';view.setAttribute('aria-pressed','true');return;}
   syncViewButton();

@@ -455,5 +455,6 @@ public:
 	CreatureID mobileCreature;
 	ArtifactID mobileArtifact;
 	bool mobileCanBuy;
+	ObjectInstanceID mobileHero;
 	Rect mobilePreview() const;
 };

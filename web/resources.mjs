@@ -1,16 +1,18 @@
+import {getLanguage} from './i18n.mjs';
 export const RESOURCE_TYPES=[['wood','Bois'],['mercury','Mercure'],['ore','Minerai'],['sulfur','Soufre'],['crystal','Cristaux'],['gems','Gemmes'],['gold','Or']];
-const decimal=new Intl.NumberFormat('fr-FR',{maximumFractionDigits:1}),integer=new Intl.NumberFormat('fr-FR',{maximumFractionDigits:0});
+const locale=()=>getLanguage()==='fr'?'fr-FR':'en-US';
+const decimal={format:value=>new Intl.NumberFormat(locale(),{maximumFractionDigits:1}).format(value)},integer={format:value=>new Intl.NumberFormat(locale(),{maximumFractionDigits:0}).format(value)};
 const amount=value=>Number.isFinite(Number(value))?Math.trunc(Number(value)):0;
 export function compactResource(value){const n=amount(value);if(Math.abs(n)<1000)return String(n);const divisor=Math.abs(n)>=1e6?1e6:1e3,suffix=divisor===1e6?'M':'k';return decimal.format(Math.trunc(n/divisor*10)/10)+suffix;}
 /** Snapshot arrays follow the active native resource registry, not fixed IDs.
  * Baseline artwork/French labels remain unchanged. Extra names/icons come from
  * ResourceTypeHandler metadata; no Mithril index or invented artwork is used.
  */
-export function resourceDescriptors(values,metadata=[]){
+export function resourceDescriptors(values,metadata=[],language=getLanguage()){
  const size=Math.max(Array.isArray(values)?values.length:0,Array.isArray(metadata)?metadata.length:0);
  return Array.from({length:size},(_,index)=>{
   const native=(Array.isArray(metadata)?metadata[index]:undefined)||{},baseline=RESOURCE_TYPES[index];
-  return {index,id:Number.isInteger(native.id)?native.id:index,key:baseline?.[0]||native.key||`resource-${index}`,name:baseline?.[1]||native.name||`Ressource ${index+1}`,scope:native.scope||'',icon:native.icon||'',value:amount(values?.[index]),baseline:Boolean(baseline)};
+  return {index,id:Number.isInteger(native.id)?native.id:index,key:baseline?.[0]||native.key||`resource-${index}`,name:(baseline?(language==='fr'?baseline[1]:['Wood','Mercury','Ore','Sulfur','Crystal','Gems','Gold'][index]):null)||native.name||`${language==='fr'?'Ressource':'Resource'} ${index+1}`,scope:native.scope||'',icon:native.icon||'',value:amount(values?.[index]),baseline:Boolean(baseline)};
  });
 }
 /** Uses the same manifest entries as creature portraits. Prefer the owning mod,
@@ -37,7 +39,7 @@ export function formatResourceCost(values,metadata=[]){
 export function renderResources(container,values,metadata=[],{assets=globalThis.window?.goonkAssetURLs||[]}={}){
  if(!Array.isArray(values)||values.length<RESOURCE_TYPES.length){container.hidden=true;return false;}
  const rows=resourceDescriptors(values,metadata).map(r=>({...r,url:resourceIconURL(r,assets)}));
- container.hidden=false;container.setAttribute('role','list');container.setAttribute('aria-label','Ressources du royaume');container.style.setProperty('--resource-count',String(rows.length));
+ container.hidden=false;container.setAttribute('role','list');container.setAttribute('aria-label',getLanguage()==='fr'?'Ressources du royaume':'Kingdom resources');container.style.setProperty('--resource-count',String(rows.length));
  const signature=JSON.stringify(rows.map(({id,key,name,scope,url})=>({id,key,name,scope,url})));
  if(container.dataset.resourceSignature!==signature){
   container.replaceChildren();

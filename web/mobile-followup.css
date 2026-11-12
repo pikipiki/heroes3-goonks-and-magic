@@ -91,9 +91,6 @@
  #mobile-app .service-description{padding:6px}
  #mobile-app .guild-rankings th,#mobile-app .guild-rankings td{padding:5px}
 }
-/* Return actions use a consistent, tactile dark-blue frame. */
-html.goonk-mobile :is(#mobile-app,#game-menu-dialog,#mobile-viewport) button.back-button{border:5px ridge #385675!important;border-image:none!important;box-shadow:inset 0 0 0 1px #7592aa!important;background-color:#192d40!important;color:#ffedbd!important;font-weight:bold}
-html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav>[data-ui=back]{grid-column:auto!important}
 #mobile-app .building-tabs button{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:3px 6px;min-width:0;white-space:normal;overflow-wrap:anywhere;box-sizing:border-box}
 #mobile-app .building-tabs button small{flex:none}
 #mobile-app .hall-total{grid-column:1/-1!important;grid-row:auto!important;flex-wrap:wrap;min-height:24px;overflow:visible!important;align-self:center!important;line-height:1.25}
@@ -153,3 +150,52 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-vertical-battle=true] #batt
 html.goonk-mobile #mobile-app[data-mode=battle][data-vertical-battle=true] .battle-selection{font-size:11px!important;line-height:14px!important;max-height:28px!important;overflow:auto!important;margin:0!important}
 html.goonk-mobile #mobile-app[data-mode=battle][data-vertical-battle=true] .battle-turn{font-size:13px!important;line-height:16px!important;margin:0!important}
 html.goonk-mobile #mobile-app[data-mode=battle][data-vertical-battle=true] .scene-hint{display:none!important}
+/* Gold-framed return controls share the action buttons' full touch area. */
+html.goonk-mobile :is(#mobile-app,#game-menu-dialog,#mobile-viewport) button.back-button{border:5px ridge #e4c577!important;border-image:none!important;box-shadow:inset 0 0 0 1px #ffe39b!important;background:linear-gradient(#74521e,#35220c)!important;color:#fff0b7!important;justify-self:stretch!important;width:100%!important;max-width:none!important;box-sizing:border-box}
+html.goonk-mobile #mobile-app[data-has-resources=true]>.mobile-top .mobile-resources{grid-column:2/-1!important;grid-row:1!important;max-width:none!important;width:100%!important;overflow:visible!important;gap:3px!important}
+html.goonk-mobile #mobile-app[data-has-resources=true]>.mobile-top .mobile-calendar{grid-column:1/-1!important;grid-row:2!important;width:100%!important;justify-content:space-between!important;position:static!important;min-width:0!important}
+html.goonk-mobile #mobile-app .mobile-resources .resource-quantity{overflow:visible!important;text-overflow:clip!important;font-size:clamp(9px,2.4vw,12px)!important;line-height:15px!important}
+html.goonk-mobile #mobile-app .mobile-resources .mobile-resource{min-width:0!important;overflow:hidden!important}
+html.goonk-mobile #mobile-app .mobile-calendar>span:first-child{display:block!important;white-space:normal!important}
+html.goonk-mobile #mobile-app .calendar-compact{display:none!important}
+html.goonk-mobile #mobile-app[data-mode=battle]>.battle-panel{overflow-y:auto!important;overscroll-behavior:contain;touch-action:pan-y}
+html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel-card{flex:none!important;min-height:94px!important;overflow:visible!important}
+html.goonk-mobile #mobile-app[data-mode=battle] #battle-creature-detail{object-fit:contain!important;align-self:center!important;max-height:none!important}
+html.goonk-mobile #mobile-app[data-mode=battle] .battle-selection{flex:none!important;min-height:30px!important;max-height:80px!important;overflow-y:auto!important;touch-action:pan-y;white-space:normal!important}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-app[data-sheet=army] .army-rosters{overflow:auto!important;grid-template-rows:auto!important;align-items:start;touch-action:pan-y;min-height:0}
+ html.goonk-mobile #mobile-app[data-sheet=army] .army-roster{min-height:350px!important}
+ html.goonk-mobile #mobile-app[data-sheet=army] .army-grid{height:auto!important;flex:none!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:none!important;grid-auto-rows:100px!important}
+ html.goonk-mobile #mobile-app[data-sheet=army] .army-slot-art{min-height:64px!important;max-height:70px!important}
+ html.goonk-mobile #mobile-app[data-sheet=army] .army-slot-name{-webkit-line-clamp:2!important;max-height:28px!important}
+ html.goonk-mobile #mobile-app[data-sheet=army] .army-transfer-all{margin-top:6px}
+}
+#mobile-app .visited-object-art{align-self:center!important;justify-self:center!important}
+html.goonk-mobile #mobile-app[data-battle-result]>*:not(.battle-result){display:none!important}
+#mobile-app .battle-result{position:absolute;inset:0;display:grid;grid-template-rows:auto minmax(40px,auto) minmax(0,1fr) 48px;gap:10px;padding:12px;box-sizing:border-box;border:10px solid #b99b57;border-image:url('./h3-theme/recruit-frame.png') 12 stretch;background:#2b1d12 url('./h3-theme/stone.png');font-family:Georgia,serif;overflow:hidden}
+#mobile-app .battle-result[hidden]{display:none}
+#mobile-app .battle-result>header{background:linear-gradient(#7c261b,#3e180f);padding:8px 12px;border:2px ridge #d3ad5e}
+#mobile-app .battle-result h2{margin:0;color:#ffe29a;font-size:26px}
+#mobile-app .battle-result p{margin:0;line-height:1.4}
+#mobile-app .result-description{overflow:auto;max-height:130px;padding:8px 12px;border:1px solid #b7944d}
+#mobile-app .result-sides{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;min-height:0;overflow:auto}
+#mobile-app .result-sides>section{padding:10px;border:2px ridge #b99952;background:#20150dde;min-width:0;overflow:auto}
+#mobile-app .result-sides header{display:grid;grid-template-columns:48px minmax(0,1fr);gap:4px 8px;align-items:center}
+#mobile-app .result-sides header canvas{grid-row:1/3;width:48px;height:53px;border:2px ridge #d3ad5e}
+#mobile-app .result-sides h3{font-size:17px;margin:0;overflow-wrap:anywhere}
+#mobile-app .result-sides h4{font-size:15px;color:#ffe29a;margin:12px 0 8px}
+#mobile-app .result-losses article{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:8px;align-items:center;min-height:48px;border-top:1px solid #967b43}
+#mobile-app .result-losses .unit-portrait{width:38px;height:38px}
+@container goonk-viewport (orientation:landscape){#mobile-app .battle-result{grid-template-columns:minmax(0,1fr) minmax(180px,28%);grid-template-rows:auto minmax(0,1fr) 48px}#mobile-app .battle-result>header{grid-column:2;grid-row:1}#mobile-app .result-description{grid-column:2;grid-row:2;max-height:none}#mobile-app .result-sides{grid-column:1;grid-row:1/4}#mobile-app .battle-result>[data-result-confirm]{grid-column:2;grid-row:3}}
+@container goonk-viewport (orientation:portrait){
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav>[data-ui=back]{grid-column:span 3!important}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav>.town-action{grid-column:span 2!important}
+}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav>[data-ui=back]{grid-column:span 1!important}
+}
+@container goonk-viewport (orientation:landscape) and (max-height:360px){
+ html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-detail{display:flex!important;flex-direction:column!important;overflow-y:auto!important;scroll-padding:4px;touch-action:pan-y;min-height:0!important}
+ html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-detail>*{flex:none!important}
+ html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-actions{position:sticky;bottom:-1px;background:#25190d;padding-block:3px;margin-top:auto;z-index:2}
+}

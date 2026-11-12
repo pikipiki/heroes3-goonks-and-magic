@@ -25,3 +25,9 @@ test('Dynamic feedback and hero instructions translate while preserving names an
  assert.equal(translate('Recrutement confirmé : 12 créatures'),'Recruitment confirmed: 12 creatures');
  assert.equal(translate('Armée du héros (7 emplacements) : touche une troupe pour la scinder ou voir sa fiche animée.'),'Hero army (7 slots): tap a troop to split it or view its animated details.');
 });
+
+test('Contextual actions and owned war machines translate in both directions',()=>{
+ for(const [fr,en]of [['Lancer Résurrection','Cast Résurrection'],['Soigner','Heal'],['Ce héros possède déjà cette machine de guerre.','This hero already owns this war machine.']]){
+  assert.equal(translate(en,'fr'),fr);assert.equal(translate(fr,'en'),en);
+ }
+});

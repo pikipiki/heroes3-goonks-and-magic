@@ -151,6 +151,14 @@ BattleResultWindow::BattleResultWindow(const BattleResult & br, CPlayerInterface
 	}
 
 	auto resources = getResources(br);
+ mobileResult["won"].Bool() = br.winner == battle->battleGetMySide();
+ mobileResult["description"].String() = resources.resultText.toString();
+ for(auto side : {BattleSide::ATTACKER, BattleSide::DEFENDER}){
+  JsonNode row;row["name"].String()=sideNames[static_cast<int>(side)];row["winner"].Bool()=br.winner==side;
+  row["portrait"].Vector()={JsonNode(double(pos.x+(side==BattleSide::ATTACKER?21:392))),JsonNode(double(pos.y+38)),JsonNode(58.0),JsonNode(64.0)};
+  for(const auto & loss:br.casualties[side])if(loss.first!=CreatureID::ARROW_TOWERS){JsonNode c;c["id"].Integer()=loss.first.getNum();c["name"].String()=loss.first.toCreature()->getNameSingularTranslated();c["icon"].String()=loss.first.toCreature()->largeIconName;c["count"].Integer()=loss.second;row["losses"].Vector().push_back(c);}
+  mobileResult["sides"].Vector().push_back(row);
+ }
 
 	description = std::make_shared<CTextBox>(resources.resultText.toString(), Rect(69, 203, 330, 68), 0, FONT_SMALL, ETextAlignment::CENTER, Colors::WHITE);
 	videoPlayer = std::make_shared<VideoWidget>(Point(107, 70), resources.prologueVideo, resources.loopedVideo, false);
