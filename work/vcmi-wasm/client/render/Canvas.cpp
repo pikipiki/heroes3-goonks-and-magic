@@ -34,7 +34,8 @@ Canvas::Canvas(SDL_Surface * surface, CanvasScalingPolicy scalingPolicy):
 Canvas::Canvas(const Canvas & other):
 	scalingPolicy(other.scalingPolicy),
 	surface(other.surface),
-	renderArea(other.renderArea)
+	renderArea(other.renderArea),
+	mobileUprightImages(other.mobileUprightImages)
 {
 	surface->refcount++;
 }
@@ -42,7 +43,8 @@ Canvas::Canvas(const Canvas & other):
 Canvas::Canvas(Canvas && other):
 	scalingPolicy(other.scalingPolicy),
 	surface(other.surface),
-	renderArea(other.renderArea)
+	renderArea(other.renderArea),
+	mobileUprightImages(other.mobileUprightImages)
 {
 	surface->refcount++;
 }
@@ -110,14 +112,14 @@ void Canvas::draw(IVideoInstance & video, const Point & pos)
 
 void Canvas::draw(const IImage& image, const Point & pos)
 {
-	image.draw(surface, transformPos(pos), nullptr, getScalingFactor());
+	if(mobileUprightImages)drawMobileUpright(image,pos);
+	else image.draw(surface, transformPos(pos), nullptr, getScalingFactor());
 }
 
 void Canvas::draw(const std::shared_ptr<IImage>& image, const Point & pos)
 {
 	assert(image);
-	if (image)
-		image->draw(surface, transformPos(pos), nullptr, getScalingFactor());
+	if (image)draw(*image,pos);
 }
 
 void Canvas::draw(const std::shared_ptr<IImage>& image, const Point & pos, const Rect & sourceRect)
@@ -254,4 +256,19 @@ CanvasClipRectGuard::CanvasClipRectGuard(Canvas & canvas, const Rect & rect): su
 CanvasClipRectGuard::~CanvasClipRectGuard()
 {
 	CSDL_Ext::setClipRect(surf, oldRect);
+}
+
+void Canvas::drawMobileUpright(const IImage & image, const Point & pos)
+{
+ const int w=image.width(),h=image.height();if(w<=0||h<=0)return;
+ auto source=SDL_CreateRGBSurfaceWithFormat(0,w,h,32,SDL_PIXELFORMAT_ARGB8888);
+ auto rotated=SDL_CreateRGBSurfaceWithFormat(0,h,w,32,SDL_PIXELFORMAT_ARGB8888);
+ if(!source||!rotated){if(source)SDL_FreeSurface(source);if(rotated)SDL_FreeSurface(rotated);return;}
+ SDL_FillRect(source,nullptr,0);image.draw(source,Point(0,0),nullptr,1);
+ for(int y=0;y<h;++y){const auto row=reinterpret_cast<const uint32_t*>(static_cast<const uint8_t*>(source->pixels)+y*source->pitch);
+  for(int x=0;x<w;++x){auto target=reinterpret_cast<uint32_t*>(static_cast<uint8_t*>(rotated->pixels)+x*rotated->pitch);target[h-1-y]=row[x];}}
+ SDL_SetSurfaceBlendMode(rotated,SDL_BLENDMODE_BLEND);
+ const Point origin=mobileUprightImages==1?Point(pos.x+w/2,pos.y+h-w/2):Point(pos.x+(w-h)/2,pos.y+(h-w)/2);
+ SDL_Rect dest=CSDL_Ext::toSDL(Rect(transformPos(origin),Point(h,w)));
+ SDL_BlitSurface(rotated,nullptr,surface,&dest);SDL_FreeSurface(rotated);SDL_FreeSurface(source);
 }

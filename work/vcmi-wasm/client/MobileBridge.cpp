@@ -104,6 +104,7 @@ uint32_t mapReadySince=0;
 std::string mobileVisitedName;bool mobileVisitShown=false;
 ObjectInstanceID mobileVisitedID = ObjectInstanceID::NONE;
 bool mobileEnabled=false,stateEnabled=false,audioMuted=false,mobileVerticalBattle=false;
+uint32_t mobileVerticalGeneration=0;
 std::vector<int3> exchangeMarkerTiles;
 std::optional<int> mobileTownHall;
 ui32 previousSoundVolume=75,previousMusicVolume=75;
@@ -533,9 +534,10 @@ void publishMobileVerticalPlanes(BattleInterface & battle){
  static SDL_Surface * scratch=SDL_CreateRGBSurfaceWithFormat(0,800,600,32,SDL_PIXELFORMAT_ARGB8888);
  static SDL_Surface * plane=SDL_CreateRGBSurfaceWithFormat(0,width,height,32,SDL_PIXELFORMAT_RGBA32);
  if(!scratch||!plane)return;
- const size_t bytes=width*height*4;auto packet=static_cast<uint8_t*>(malloc(bytes*2));if(!packet)return;
- for(int layer=0;layer<2;++layer){SDL_FillRect(scratch,nullptr,0);{auto canvas=Canvas::createFromSurface(scratch,CanvasScalingPolicy::IGNORE);battle.fieldController->renderMobilePlane(canvas,layer==1);}SDL_SetSurfaceBlendMode(scratch,SDL_BLENDMODE_NONE);SDL_BlitScaled(scratch,nullptr,plane,nullptr);memcpy(packet+layer*bytes,plane->pixels,bytes);}
- MAIN_THREAD_ASYNC_EM_ASM({const ptr=$0;const w=$1;const h=$2;const n=w*h*4;try{const planes=window.goonkBattlePlanes||(window.goonkBattlePlanes={});for(let i=0;i<2;i++){const key=i===0?'ground':'effects';const c=planes[key]||(planes[key]=document.createElement('canvas'));if(c.width!==w||c.height!==h){c.width=w;c.height=h;}c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+i*n,ptr+(i+1)*n)),w,h),0,0);}planes.version=(planes.version||0)+1;}finally{_free(ptr);}},packet,width,height);
+ static uintptr_t previousBackground=0;static uint32_t previousGeneration=~uint32_t(0);const auto revision=battle.fieldController->mobileBackgroundRevision();const int layers=revision==previousBackground&&previousGeneration==mobileVerticalGeneration?2:3;
+ const size_t bytes=width*height*4;auto packet=static_cast<uint8_t*>(malloc(bytes*layers));if(!packet)return;previousBackground=revision;previousGeneration=mobileVerticalGeneration;
+ for(int layer=0;layer<layers;++layer){SDL_FillRect(scratch,nullptr,0);{auto canvas=Canvas::createFromSurface(scratch,CanvasScalingPolicy::IGNORE);if(layer==2)battle.fieldController->renderMobileBackground(canvas);else battle.fieldController->renderMobilePlane(canvas,layer==1);}SDL_SetSurfaceBlendMode(scratch,SDL_BLENDMODE_NONE);SDL_BlitScaled(scratch,nullptr,plane,nullptr);memcpy(packet+layer*bytes,plane->pixels,bytes);}
+ MAIN_THREAD_ASYNC_EM_ASM({const ptr=$0;const w=$1;const h=$2;const n=w*h*4;try{const planes=window.goonkBattlePlanes||(window.goonkBattlePlanes={});for(let i=0;i<$3;i++){const key=i===0?'ground':i===1?'effects':'background';const c=planes[key]||(planes[key]=document.createElement('canvas'));if(c.width!==w||c.height!==h){c.width=w;c.height=h;}c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+i*n,ptr+(i+1)*n)),w,h),0,0);}planes.version=(planes.version||0)+1;}finally{_free(ptr);}},packet,width,height,layers);
 }
 std::atomic_bool atlasPending{false};
 void publishMobileBattleAtlas(){
@@ -1492,7 +1494,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   lastPublished=0;return;
  }
  if(action==96){const auto player=GAME?GAME->interface():nullptr;if(player&&player->makingTurn)if(const auto window=ENGINE->windows().topWindow<CStackWindow>())window->selectMobileCommanderSkill(a);lastPublished=0;return;}
- if(action==95){mobileVerticalBattle=a!=0;lastPublished=0;return;}
+ if(action==95){if(a&&!mobileVerticalBattle)++mobileVerticalGeneration;mobileVerticalBattle=a!=0;lastPublished=0;return;}
  if(action==0){deferredMapAction.reset();ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});return;}if(action==1){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});return;}
  // A dedicated cancel operation cannot also accept a dialog or close the town
  // below it. Ignore delayed taps once the taverne is no longer on top.

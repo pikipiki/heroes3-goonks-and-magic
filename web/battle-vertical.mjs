@@ -28,7 +28,7 @@ export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas
  }
  const geometry=verticalBattleGeometry(width,height),{scale,project}=geometry,guidance=battleGuidance(state);
  ctx.save();ctx.fillStyle='#26351b';ctx.fillRect(0,0,width,height);
- ctx.save();ctx.globalAlpha=.65;ctx.drawImage(planes.ground,0,0,400,278,0,0,width,height);ctx.restore();
+ const backdrop=planes.background;if(backdrop){const ratio=Math.max(width/backdrop.width,height/backdrop.height),bw=backdrop.width*ratio,bh=backdrop.height*ratio;ctx.drawImage(backdrop,(width-bw)/2,(height-bh)/2,bw,bh);}
  const plane=image=>{ctx.save();ctx.transform(0,-scale,scale,0,geometry.left-66*scale,geometry.top+800*scale);ctx.drawImage(image,0,0,800,600);ctx.restore();};
  plane(planes.ground);
  const siege=globalThis.window?.goonkSiegeAtlas,pieces=globalThis.window?.goonkSiegePieces||[];

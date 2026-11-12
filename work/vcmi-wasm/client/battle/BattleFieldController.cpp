@@ -775,12 +775,25 @@ void BattleFieldController::renderMobilePlane(Canvas & canvas, bool effects)
 {
  Canvas clipped(canvas,pos);
  if(!effects){
-  if(owner.siegeController){
-   // Reuse the original terrain texture; walls have their own upright atlas.
-   for(int y=0;y<600;y+=100)for(int x=0;x<800;x+=160)clipped.draw(background,Point(x,y),Rect(30,200,160,100));
-   owner.siegeController->showAbsoluteObstacles(clipped);
-  }else showBackgroundImage(clipped);
- }
+  // Moats are terrain: they follow board coordinates. Scenery remains upright.
+  if(owner.siegeController)owner.siegeController->showAbsoluteObstacles(clipped);
+  clipped.setMobileUprightImages(1);
+  owner.obstacleController->showAbsoluteObstacles(clipped);
+ }else clipped.setMobileUprightImages(2);
  BattleRenderer renderer(owner);renderer.executeMobilePlane(clipped,effects);
+ clipped.setMobileUprightImages(0);
  if(effects)owner.projectilesController->render(clipped);
 }
+void BattleFieldController::renderMobileBackground(Canvas & canvas)
+{
+ if(owner.siegeController){
+  // Native siege backdrops contain baked walls. Keep their terrain texture,
+  // while the live fortification layer supplies intact and damaged walls.
+  for(int y=0;y<600;y+=100)for(int x=0;x<800;x+=160)canvas.draw(background,Point(x,y),Rect(30,200,160,100));
+ }else{
+  canvas.draw(background,Point(0,0));
+  const int remaining=600-background->height();
+  if(remaining>0)canvas.draw(background,Point(0,background->height()),Rect(0,background->height()-remaining,800,remaining));
+ }
+}
+uintptr_t BattleFieldController::mobileBackgroundRevision() const{return reinterpret_cast<uintptr_t>(background.get());}

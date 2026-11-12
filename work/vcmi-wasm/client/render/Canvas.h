@@ -38,6 +38,8 @@ class Canvas
 
 	/// Current rendering area, all rendering operations will be moved into selected area
 	Rect renderArea;
+	int mobileUprightImages = 0;
+	void drawMobileUpright(const IImage & image, const Point & pos);
 
 	/// constructs canvas using existing surface. Caller maintains ownership on the surface
 	explicit Canvas(SDL_Surface * surface, CanvasScalingPolicy scalingPolicy);
@@ -69,6 +71,8 @@ public:
 
 	/// if set to true, drawing this canvas onto another canvas will use alpha channel information
 	void applyTransparency(bool on);
+	// Counter-rotate sprite artwork before the portrait battlefield projection.
+	void setMobileUprightImages(int anchor) { mobileUprightImages = anchor; }
 
 	/// applies grayscale filter onto current image
 	void applyGrayscale();

@@ -114,6 +114,8 @@ public:
 	void redrawBackgroundWithHexes();
 	void renderBattlefield(Canvas & canvas);
 	void renderMobilePlane(Canvas & canvas, bool effects);
+	void renderMobileBackground(Canvas & canvas);
+	uintptr_t mobileBackgroundRevision() const;
 
 	/// Returns position of hex relative to owner (BattleInterface)
 	Rect hexPositionLocal(const BattleHex & hex) const;
