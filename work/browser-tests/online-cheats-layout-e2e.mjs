@@ -9,6 +9,6 @@ p.setDefaultTimeout(10000);try{
  const checkbox=p.locator('[data-online-cheats]');await checkbox.waitFor();assert(!await checkbox.isChecked());await checkbox.check();assert.deepEqual(await p.evaluate(()=>commands.at(-1)),[97,1]);
  await p.evaluate(()=>lobby.update({...state,onlineCheatsAllowed:true}));assert(await checkbox.isChecked());await checkbox.uncheck();assert.deepEqual(await p.evaluate(()=>commands.at(-1)),[97,0]);
  await p.evaluate(()=>{commands=[];lobby.update({...state,onlineHost:false,onlineCheatsAllowed:true});});assert(await checkbox.isDisabled());assert(await checkbox.isChecked());await checkbox.dispatchEvent('change');assert.equal(await p.evaluate(()=>commands.length),0);
- await p.evaluate(async()=>{(await import('/web/i18n.mjs')).setLanguage('fr');lobby.update({...state,onlineHost:true});});assert(await p.getByText('Autoriser la triche',{exact:true}).isVisible());
+ await p.evaluate(async()=>{const source=await(await fetch('/web/online-lobby.mjs')).text();const path=source.match(/from '([^']*i18n[^']*)'/)[1];(await import(new URL(path,location.origin+'/web/online-lobby.mjs').href)).setLanguage('fr');lobby.update({...state,onlineHost:true});});assert(await p.getByText('Autoriser la triche',{exact:true}).isVisible());
  await p.evaluate(()=>lobby.update({...state,onlineLoading:true}));assert(await checkbox.isDisabled());console.log('PASS host checkbox, guest read-only setting, saved-game lock and French label');
 }finally{await browser.close();}

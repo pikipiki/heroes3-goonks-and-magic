@@ -19,7 +19,7 @@ function mountGameMenu(){
   const toggle=document.createElement('button');toggle.id='game-menu-toggle';toggle.textContent='☰';toggle.setAttribute('aria-label','Menu du jeu');
   const brand=document.querySelector('#mobile-app .mobile-brand');if(brand)brand.replaceWith(toggle);else document.body.append(toggle);
   const dialog=document.createElement('dialog');dialog.id='game-menu';dialog.setAttribute('aria-labelledby','game-menu-title');
-  dialog.innerHTML='<header><button data-menu="back" hidden>← Back</button><h2 id="game-menu-title">Heroes Goonk</h2><button data-menu="close" aria-label="Fermer le menu">✕</button></header><p class="autosave-status" aria-live="polite">Sauvegarde automatique : toutes les 10 secondes</p><nav aria-label="Rubriques du menu"><button data-menu="hosted-match" hidden></button><button data-menu="settings">Réglages</button><button data-menu="cheats">Codes de triche</button><button data-menu="storage">Stockage du jeu</button><button data-menu="new-game" class="new-game-in-session">New game</button></nav><div class="game-menu-body"></div><footer class="game-menu-return"><button data-menu="back">Back</button></footer><p class="game-menu-status" role="status"></p>';
+  dialog.innerHTML='<header><button data-menu="back" hidden>← Back</button><h2 id="game-menu-title">Heroes Goonk</h2><button data-menu="close" data-native-click aria-label="Fermer le menu">✕</button></header><p class="autosave-status" aria-live="polite">Sauvegarde automatique : toutes les 10 secondes</p><nav aria-label="Rubriques du menu"><button data-menu="hosted-match" hidden></button><button data-menu="settings">Réglages</button><button data-menu="cheats">Codes de triche</button><button data-menu="storage">Stockage du jeu</button><button data-menu="new-game" class="new-game-in-session">New game</button></nav><div class="game-menu-body"></div><footer class="game-menu-return"><button data-menu="back">Back</button></footer><p class="game-menu-status" role="status"></p>';
   (document.querySelector('#mobile-viewport')||document.body).append(dialog);
   const onlineTurn=document.createElement('p');
   onlineTurn.className='desktop-online-turn';onlineTurn.hidden=true;onlineTurn.setAttribute('role','status');
@@ -144,7 +144,7 @@ function mountGameMenu(){
       if(newGamePending||!state.day||!window.Module?._vcmiMobileCommand)return;
       newGamePending=true;button.disabled=true;button.setAttribute('aria-busy','true');command(71);return;
     }
-    if(action==='close'){dialog.close();toggle.focus();}
+    if(action==='close'){menuPresses.cancel();dialog.close();toggle.focus({preventScroll:true});return;}
     if(action==='manage-storage'&&!['battle','dialog'].includes(state.mode)){location.assign(new URL('../storage.html',import.meta.url));return;}
     if(action==='settings'||action==='cheats'||action==='storage'){if(content.dataset.view==='new-game')delete content.dataset.view;tab=action;status.textContent='';render();}
     if(action==='turn-notifications'){

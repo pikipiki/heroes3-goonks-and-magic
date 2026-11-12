@@ -251,3 +251,10 @@ html.goonk-mobile #mobile-app .mobile-calendar{border:0!important;border-top:1px
 }
 #mobile-app .siege-target-icon{display:grid;place-items:center;width:44px;height:44px;border:2px ridge #d9ac65;background:#4d1b12;color:#ff8b78;font-size:30px}
 .online-cheats-option{display:flex;align-items:center;gap:.65rem;padding:.65rem;border-top:1px solid #b99b5c;color:#ffe5a2}.online-cheats-option input{flex:0 0 auto;width:1.35rem;height:1.35rem;accent-color:#a67b29}
+#mobile-app .guild-rankings{overflow-x:hidden;overflow-y:auto}
+#mobile-app .guild-rankings table{table-layout:fixed;width:100%;min-width:0}
+#mobile-app .guild-rankings th,#mobile-app .guild-rankings td{min-width:0!important;padding:5px 2px;overflow-wrap:anywhere}
+#mobile-app .guild-rankings th:first-child{width:27%;min-width:0!important}
+#mobile-app .guild-rankings .guild-rank{min-width:0;width:auto;padding:4px;display:inline-block}
+#mobile-app .guild-rankings .kingdom-flag{display:inline-block;width:12px;height:18px;margin:2px}
+@media(max-width:600px){#mobile-app .guild-rankings .kingdom-name{display:none}#mobile-app .guild-rankings table{font-size:11px}}

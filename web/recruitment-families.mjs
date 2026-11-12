@@ -10,6 +10,7 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
  const unlockBuilding=unit=>(state.buildings||[]).find(building=>building.id===unit.requiredBuildingId);
  const resizeRows=()=>{const list=panel.querySelector('.hall-families');if(!list)return;const style=getComputedStyle(list),rows=matchMedia('(orientation:landscape)').matches?1:2,space=list.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);const height=Math.max(rows===2?132:148,Math.floor((space-(rows-1)*8)/rows))+'px';if(list.style.getPropertyValue('--hall-row-height')!==height)list.style.setProperty('--hall-row-height',height);};
  const rowObserver=new ResizeObserver(resizeRows);
+ let lastTap=null;
  let state={},families=[],selectedId=null,amount=1,signature='',pending=null,savedScroll=null,previewTimer=null;
  // Remember the same point in the roster if rotation changes the row height.
  const rowStep=list=>(list.firstElementChild?.getBoundingClientRect().height||0)+(parseFloat(getComputedStyle(list).rowGap)||0);
@@ -75,7 +76,7 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
   if(key!==signature||!panel.querySelector('.hall-layout')){signature=key;const old=panel.querySelector('.hall-layout');
    scroll=old?readScroll(old.querySelector('.hall-families')):savedScroll;
    if(!old)savedScroll=null;if(old){for(const canvas of old.querySelectorAll('canvas')){canvas.width=0;canvas.height=0;}old.remove();}panel.insertAdjacentHTML('beforeend','<div class="hall-layout"><div class="hall-families" aria-label="Creature evolution families">'+families.map(f=>`<section class="hall-family"><div class="hall-family-label"><h3>Tier ${f.level+1}</h3><span data-family-stock="${f.level}"></span></div><div class="hall-forms" style="--forms:${f.variants.length}">`+f.variants.map(u=>`<button class="hall-form" data-family-select="${u.id}" ${u.built?'':'data-locked'} aria-pressed="false" aria-label="${esc(u.name)}, form ${rankName(u.rank)}${u.built?', unlocked':', locked'}"><span class="hall-rank" aria-hidden="true">${rankName(u.rank)}</span><span class="hall-art"><canvas data-hall-icon="${u.id}" aria-hidden="true"></canvas></span><span class="hall-form-name">${esc(u.name)}</span><span class="hall-quick-info">${u.built?'<span class="hall-open-mark" aria-hidden="true">✓</span><span class="hall-form-price">'+prices(u,1,state.resourceTypes)+'</span>':'<span class="hall-lock-mark"><span aria-hidden="true">🔒</span> Locked</span>'}</span></button>`).join('')+'</div></section>').join('')+'</div><section class="hall-detail" aria-label="Selected creature recruitment"></section></div>');
-   for(const b of panel.querySelectorAll('[data-family-select]')){bindPress(b,()=>select(Number(b.dataset.familySelect)));b.addEventListener('focus',()=>select(Number(b.dataset.familySelect)));}rowObserver.disconnect();rowObserver.observe(panel.querySelector('.hall-families'));
+   for(const b of panel.querySelectorAll('[data-family-select]')){bindPress(b,()=>{const id=Number(b.dataset.familySelect),time=performance.now();if(lastTap?.id===id&&time-lastTap.time<450&&selectedId===id){lastTap=null;clearTimeout(previewTimer);command(42,id);}else{lastTap={id,time};select(id);}});b.addEventListener('focus',()=>select(Number(b.dataset.familySelect)));}rowObserver.disconnect();rowObserver.observe(panel.querySelector('.hall-families'));
   }
   for(const f of families){const line=panel.querySelector(`[data-family-stock="${f.level}"]`);if(line&&line.textContent!==f.count+' available')line.textContent=f.count+' available';}
   if(!unit()){const first=families.find(f=>f.variants.some(u=>u.built))||families[0];const u=first?.variants.filter(u=>u.built).at(-1)||first?.variants[0];if(u)select(u.id);}
@@ -87,5 +88,5 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
  },focusUnit(id){
   const button=panel.querySelector(`[data-family-select="${id}"]`);
   if(button){select(id);button.focus({preventScroll:true});}
- },rememberScroll(){savedScroll=readScroll(panel.querySelector('.hall-families'));},reset(){clearTimeout(previewTimer);previewTimer=null;rowObserver.disconnect();signature='';pending=null;selectedId=null;savedScroll=null;},get canvases(){return[...panel.querySelectorAll('[data-hall-preview],[data-hall-icon]')];}};
+ },rememberScroll(){savedScroll=readScroll(panel.querySelector('.hall-families'));},reset(){lastTap=null;clearTimeout(previewTimer);previewTimer=null;rowObserver.disconnect();signature='';pending=null;selectedId=null;savedScroll=null;},get canvases(){return[...panel.querySelectorAll('[data-hall-preview],[data-hall-icon]')];}};
 }
