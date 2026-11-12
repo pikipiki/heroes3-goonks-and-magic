@@ -1,7 +1,7 @@
 /* Mobile combat: a complete native battlefield and a separate precision view. */
 .battle-strategic-view{display:none}
-#mobile-app[data-mode=battle][data-battle-layout=dual] .mobile-play{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);gap:0;background:#181b12;height:100%;overflow:hidden}
-#mobile-app[data-mode=battle][data-battle-layout=dual] .battle-strategic-view{position:relative;display:block;grid-column:1;grid-row:1;width:100%;aspect-ratio:800/555;height:auto;min-height:0;max-height:none;overflow:hidden;background:#181b12;border-bottom:2px ridge #ba974b;box-sizing:border-box;flex:none}
+#mobile-app[data-mode=battle][data-battle-layout=dual] .mobile-play{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:var(--battle-overview-height) minmax(0,1fr);gap:0;background:#181b12;height:100%;overflow:hidden}
+#mobile-app[data-mode=battle][data-battle-layout=dual] .battle-strategic-view{position:relative;display:block;grid-column:1;grid-row:1;width:100%;aspect-ratio:auto;height:100%;min-height:0;max-height:none;overflow:hidden;background:#181b12;border-bottom:2px ridge #ba974b;box-sizing:border-box;flex:none}
 #mobile-app[data-mode=battle][data-battle-layout=dual] #battle-strategic-scene{display:block;width:100%;height:100%;aspect-ratio:800/555;touch-action:none}
 #mobile-app[data-mode=battle][data-battle-layout=dual] #battle-strategic-scene:focus-visible{outline:3px solid #ffe082;outline-offset:-3px}
 #mobile-app[data-mode=battle][data-battle-layout=dual] #mobile-scene{grid-column:1;grid-row:2;width:100%;height:100%;min-height:0;max-height:none;aspect-ratio:auto;align-self:stretch}
@@ -32,3 +32,7 @@
 @container goonk-viewport (orientation:landscape){
  .battle-strategic-view{display:none!important}
 }
+
+/* Keep the portrait split within the available height on phones and tablets. */
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-layout=dual][data-vertical-battle]>.mobile-play{display:grid!important;grid-template-rows:var(--battle-overview-height) minmax(0,1fr)!important}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-layout=dual] #mobile-scene{grid-column:1;grid-row:2;min-height:0!important}

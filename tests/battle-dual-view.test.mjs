@@ -31,3 +31,12 @@ test('Small overview taps resolve nearby troop bodies to the closest row without
  assert.equal(overviewCreature({x:500,y:300},units,.3),null);
  assert.equal(overviewCreature(null,units,.3),null);
 });
+
+test('Portrait camera split reserves a follow pane on phones and wide iPads in the normal field view',async()=>{
+ const {portraitBattleSplit}=await import('../web/battle-dual-view.mjs');
+ for(const [w,h]of [[390,440],[430,360],[768,680],[1024,900]]){
+  const split=portraitBattleSplit(w,h);
+  assert(split.overview>100);assert(split.detail>=140);assert.equal(split.overview+split.detail,h);
+ }
+ assert.equal(portraitBattleSplit(390,200),null);
+});

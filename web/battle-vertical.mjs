@@ -1,5 +1,6 @@
 import {paintSiegeTargets,paintVerticalFortifications} from './battle-siege.mjs';
 import {BATTLE_HEX_VERTICES} from './battle-scene.mjs';
+import {paintBattleAction} from './battle-director.mjs';
 import {battleGuidance} from './battle-guidance.mjs';
 
 // Project the native board while retaining native legality and upright artwork.
@@ -15,7 +16,7 @@ export function animatedBattlePosition(previous,next,elapsed,duration=50){
 }
 let previousBounds=null,poses=new Map(),lastTime=0;
 export function resetVerticalBattle(){previousBounds=null;poses.clear();lastTime=0;}
-export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas,ids,bounds){
+export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas,ids,bounds,tracking){
  if(!planes?.ground||!atlas||!ids||!bounds?.length)return null;
  const now=performance.now();
  // Each atlas is an immutable RGBA frame; interpolate positions across frames.
@@ -40,7 +41,7 @@ export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas
  for(const cell of state.battleCells||[]){cellPath(cell);const reachable=cell.reachable&&!occupied.has(cell.hex);ctx.fillStyle=reachable?'#f7d77430':'#00000008';ctx.fill();ctx.strokeStyle=reachable?'#ffe082':'#e6d89975';ctx.lineWidth=reachable?1.5:.7;ctx.stroke();}
  const active=(state.battleUnits||[]).find(u=>u.stackId===state.activeStack),target=(state.battleUnits||[]).find(u=>selected&&Math.hypot(u.x-selected.x,u.y-selected.y)<18);
  const targetColor=target?.enemy?'#ff5757':target?'#b4a3ff':'#00f0ff';
- if(selected&&active){const a=project(active),b=project(selected);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle='#080c0f';ctx.lineWidth=5;ctx.stroke();ctx.setLineDash([6,4]);ctx.strokeStyle=targetColor;ctx.lineWidth=2.5;ctx.stroke();ctx.setLineDash([]);}
+
  if(selected){const cell=(state.battleCells||[]).find(c=>Math.hypot(c.x-selected.x,c.y-selected.y)<18);if(cell){cellPath(cell);ctx.fillStyle=target?.enemy?'#ff575755':'#00f0ff66';ctx.fill();ctx.strokeStyle='#080c0f';ctx.lineWidth=6;ctx.stroke();ctx.strokeStyle=targetColor;ctx.lineWidth=3;ctx.stroke();}}
  const units=new Map((state.battleUnits||[]).map(u=>[u.stackId,u]));geometry.units=[];
  const records=[...poses.values()].filter(({b})=>ids.has(b.stackId)).map(record=>({...record,p:project(animatedBattlePosition(record.from,record.target,now-record.time,record.duration))})).sort((a,b)=>a.p.y-b.p.y);
@@ -55,6 +56,8 @@ export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas
   }
  }
  if(planes.effects)plane(planes.effects);
+ // Project action paths into the upright field, keeping arrows and labels upright.
+ paintBattleAction(ctx,tracking,{project,scale,dx:0,dy:0,w:width/scale,h:height/scale});
  // The same target categories as the classic field, above sprites and effects.
  geometry.markers=[];
  const marker=(unit,kind,color)=>{const p=project(unit),r=Math.max(7,10*scale),x=p.x+18*scale,y=p.y-8*scale;geometry.markers.push({unit,x,y,r:Math.max(14,r+4)});ctx.save();ctx.beginPath();ctx.arc(x,y,r+2,0,Math.PI*2);ctx.fillStyle='#101418e8';ctx.fill();ctx.strokeStyle=color;ctx.lineWidth=2;ctx.stroke();ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();if(kind==='heal'){ctx.moveTo(x-r*.6,y);ctx.lineTo(x+r*.6,y);ctx.moveTo(x,y-r*.6);ctx.lineTo(x,y+r*.6);}else if(kind==='shot'){ctx.arc(x,y,r*.45,0,Math.PI*2);ctx.moveTo(x-r,y);ctx.lineTo(x+r,y);ctx.moveTo(x,y-r);ctx.lineTo(x,y+r);}else{ctx.moveTo(x-r*.5,y+r*.5);ctx.lineTo(x+r*.5,y-r*.5);ctx.moveTo(x-r*.5,y-r*.5);ctx.lineTo(x+r*.5,y+r*.5);}ctx.stroke();ctx.restore();};
