@@ -79,7 +79,7 @@ public:
 	void clickPressed(const Point & cursorPosition) override; //call-in
 	void clickDouble(const Point & cursorPosition) override; //call-in
 	CSelectableComponent(ComponentType Type, ComponentSubType Sub, int Val, ESize imageSize=large, std::function<void()> OnSelect = nullptr);
-	CSelectableComponent(const Component & c, std::function<void()> OnSelect = nullptr);
+	CSelectableComponent(const Component & c, std::function<void()> OnSelect = nullptr, ESize imageSize = large);
 };
 
 /// box with multiple components (up to 8?)
@@ -116,6 +116,7 @@ class CComponentBox : public CIntObject
 public:
 	/// return index of selected item
 	int selectedIndex();
+	bool selectMobileIndex(int index);
 
 	/// constructors for non-selectable components
 	CComponentBox(std::vector<std::shared_ptr<CComponent>> components, Rect position);

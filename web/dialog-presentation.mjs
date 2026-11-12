@@ -1,10 +1,12 @@
 import {plainGameText} from './game-text.mjs';
 import {renderCommanderTree} from './commander-tree.mjs';
 import {getLanguage} from './i18n.mjs';
+import {createProgressionChoices} from './progression-choices.mjs';
 const text=value=>plainGameText(value||'');
 // Keep all decisions native. The DOM is a responsive presentation of the live
 // components and sends clicks to their current logical coordinates.
 export function createDialogPresentation({root,command,pointer,refresh=()=>{}}){
+ const progression=createProgressionChoices({root,command});
  const panel=document.createElement('section');panel.className='dialog-presentation';panel.hidden=true;panel.setAttribute('aria-labelledby','dialog-presentation-title');root.append(panel);
  let state,key,dirty=false,icons=[],classic=false,inspect=0,lastMode='',captureAfter=0,hasSnapshot=false,snapshotGeometry='',treeOpen=false,treeFilter=null;
  window.addEventListener('goonk-language',()=>{key=undefined;if(state)update(state);});
@@ -18,6 +20,7 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{}}){
   else if(button.dataset.dialogChoice!==undefined){const choice=state.dialogPresentation.choices[Number(button.dataset.dialogChoice)];const r=choice.rect;pointer({x:Math.round(r.x+r.w/2),y:Math.round(r.y+r.h/2)},1);}
  });
  function update(next){
+  if(progression.update(next)){state=next;panel.hidden=true;key=undefined;icons=[];root.setAttribute('data-dialog-presentation','');return;}
   if(!['commander','commander-level-up'].includes(next.dialogKind)){treeOpen=false;treeFilter=null;}
   state=next;if(next.mode!==lastMode||next.dialogKind!=='commander'){classic=false;inspect=0;}lastMode=next.mode;const data=next.mode==='dialog'&&!classic&&next.dialogPresentation;
   panel.hidden=!data;root.toggleAttribute('data-dialog-presentation',!!data);
@@ -58,6 +61,6 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{}}){
  let trimmedObject=null,objectCrop=null;
  const snapshot=document.createElement('canvas');snapshot.width=800;snapshot.height=600;const context=snapshot.getContext('2d');
  function drawIcons(){for(const {canvas,rect:r}of icons)if(r?.w>0&&r.h>0){const ctx=canvas.getContext('2d');ctx.clearRect(0,0,96,96);const scale=Math.min(96/r.w,96/r.h);ctx.drawImage(snapshot,r.x,r.y,r.w,r.h,(96-r.w*scale)/2,(96-r.h*scale)/2,r.w*scale,r.h*scale);}}
- return{update,get classic(){return classic;},show(){classic=false;key=undefined;update(state);refresh();},paint(source){if(panel.hidden)return false;const preview=panel.querySelector('.commander-preview'),u=state.previewUnits?.[0],r=u&&window.goonkCreaturePreviewRects?.get(u.previewKey);if(preview&&r&&window.goonkCreaturePreviewAtlas){const c=preview.getContext('2d'),z=Math.min(preview.width/r.w,preview.height/r.h);c.clearRect(0,0,preview.width,preview.height);c.drawImage(window.goonkCreaturePreviewAtlas,r.x,r.y,r.w,r.h,(preview.width-r.w*z)/2,(preview.height-r.h*z)/2,r.w*z,r.h*z);}const art=panel.querySelector('.visited-object-art'),object=window.goonkVisitedObjectAtlas;if(art&&object){const c=art.getContext('2d');c.clearRect(0,0,art.width,art.height);if(trimmedObject!==object){trimmedObject=object;const d=object.getContext('2d').getImageData(0,0,object.width,object.height).data;let left=object.width,top=object.height,right=0,bottom=0;for(let y=0;y<object.height;y++)for(let x=0;x<object.width;x++)if(d[(y*object.width+x)*4+3]>32){left=Math.min(left,x);top=Math.min(top,y);right=Math.max(right,x);bottom=Math.max(bottom,y);}objectCrop=right>=left?{x:left,y:top,w:right-left+1,h:bottom-top+1}:{x:0,y:0,w:object.width,h:object.height};}const r=objectCrop,z=Math.min((art.width-16)/r.w,(art.height-16)/r.h);c.drawImage(object,r.x,r.y,r.w,r.h,(art.width-r.w*z)/2,(art.height-r.h*z)/2,r.w*z,r.h*z);}
+ return{update,get classic(){return classic;},show(){classic=false;key=undefined;update(state);refresh();},paint(source){if(progression.paint())return true;if(panel.hidden)return false;const preview=panel.querySelector('.commander-preview'),u=state.previewUnits?.[0],r=u&&window.goonkCreaturePreviewRects?.get(u.previewKey);if(preview&&r&&window.goonkCreaturePreviewAtlas){const c=preview.getContext('2d'),z=Math.min(preview.width/r.w,preview.height/r.h);c.clearRect(0,0,preview.width,preview.height);c.drawImage(window.goonkCreaturePreviewAtlas,r.x,r.y,r.w,r.h,(preview.width-r.w*z)/2,(preview.height-r.h*z)/2,r.w*z,r.h*z);}const art=panel.querySelector('.visited-object-art'),object=window.goonkVisitedObjectAtlas;if(art&&object){const c=art.getContext('2d');c.clearRect(0,0,art.width,art.height);if(trimmedObject!==object){trimmedObject=object;const d=object.getContext('2d').getImageData(0,0,object.width,object.height).data;let left=object.width,top=object.height,right=0,bottom=0;for(let y=0;y<object.height;y++)for(let x=0;x<object.width;x++)if(d[(y*object.width+x)*4+3]>32){left=Math.min(left,x);top=Math.min(top,y);right=Math.max(right,x);bottom=Math.max(bottom,y);}objectCrop=right>=left?{x:left,y:top,w:right-left+1,h:bottom-top+1}:{x:0,y:0,w:object.width,h:object.height};}const r=objectCrop,z=Math.min((art.width-16)/r.w,(art.height-16)/r.h);c.drawImage(object,r.x,r.y,r.w,r.h,(art.width-r.w*z)/2,(art.height-r.h*z)/2,r.w*z,r.h*z);}
 if(dirty&&performance.now()>=captureAfter){context.drawImage(source,0,0,800,600);drawIcons();hasSnapshot=true;dirty=false;panel.setAttribute('aria-busy','false');}return true;}};
 }

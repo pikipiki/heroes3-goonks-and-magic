@@ -20,7 +20,7 @@ with zipfile.ZipFile('maps/000-Goonk.vmap') as src,zipfile.ZipFile(out,'w',zipfi
    h=json.loads(data);h['name']='000 - Dialog regression test';data=json.dumps(h).encode()
   if name=='objects.json':
    objects=json.loads(data)
-   objects=[o for o in objects if o.get('instanceName') not in ['trainingGuard','trainingOgre'] and not o.get('instanceName','').startswith('goonkAdventure')]
+   objects=[o for o in objects if o.get('instanceName') not in ['trainingGuard','trainingOgre'] and not o.get('instanceName','').startswith(('goonkAdventure','goonkProgression'))]
    for o in objects:
     if o.get('instanceName')=='goonkHero':o['options'].update({'type':'core:christian','secondarySkills':{'core:wisdom':'basic'}})
    objects.append({'type':'core:treasureChest','subtype':'core:treasureChest','instanceName':'reviewChest','x':10,'y':11,'l':0,'template':{'animation':'AVTchst0.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{}})
@@ -57,4 +57,4 @@ sys.stdout.buffer.write(normalized.getvalue())`]);
  await failed.addInitScript(()=>sessionStorage.setItem('heroes-goonk.storage-failed','true'));
  await (await import('./silent-audio.mjs')).silenceTestAudio(failed);await failed.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8777')+'/game.html?mobile=1');
  await failed.locator('#status button').waitFor({timeout:30000});assert.equal(failures,2);assert.match(await failed.locator('#status').innerText(),/retry/i);await failed.close();console.log('PASS permanent package failure offers retry');
-}catch(error){console.error(error);process.exitCode=1;}finally{await browser.close();}
+}catch(error){const p=browser.pages?.()[0]||browser.contexts()[0]?.pages()[0];if(p){fs.writeFileSync(path.join(out,'failure-state.json'),JSON.stringify(await p.evaluate(()=>window.goonkMobileState),null,2));await p.screenshot({path:path.join(out,'failure.png')}).catch(()=>{});}console.error(error);process.exitCode=1;}finally{await browser.close();}

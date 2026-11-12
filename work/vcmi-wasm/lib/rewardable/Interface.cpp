@@ -21,6 +21,8 @@
 #include "../spells/CSpellHandler.h"
 #include "../spells/ISpellMechanics.h"
 #include "../mapObjects/CGHeroInstance.h"
+#include "../mapObjectConstructors/AObjectTypeHandler.h"
+#include "../entities/artifact/ArtifactUtils.h"
 #include "../mapObjects/MiscObjects.h"
 #include "../mapping/TerrainTile.h"
 #include "../networkPacks/StackLocation.h"
@@ -33,6 +35,9 @@ VCMI_LIB_NAMESPACE_BEGIN
 std::vector<ui32> Rewardable::Interface::getAvailableRewards(const CGHeroInstance * hero, Rewardable::EEventType event) const
 {
 	std::vector<ui32> ret;
+	if(hero)if(const auto object=dynamic_cast<const CGObjectInstance*>(getObject()))
+		if(object->getObjectHandler()->getJsonKey()=="goonk:bannerOutfitter"&&!ArtifactUtils::isBackpackFreeSlots(hero))return ret;
+
 
 	for(size_t i = 0; i < configuration.info.size(); i++)
 	{
@@ -418,9 +423,9 @@ void Rewardable::Interface::onBlockingDialogAnswered(IGameEventCallback & gameEv
 	if (answer == 0)
 		return; //Player refused
 
-	if(answer > 0 && answer - 1 < configuration.info.size())
+	auto list = getAvailableRewards(hero, Rewardable::EEventType::EVENT_FIRST_VISIT);
+	if(answer > 0 && answer - 1 < list.size())
 	{
-		auto list = getAvailableRewards(hero, Rewardable::EEventType::EVENT_FIRST_VISIT);
 		markAsVisited(gameEvents, hero);
 		grantReward(gameEvents, list[answer - 1], hero);
 	}

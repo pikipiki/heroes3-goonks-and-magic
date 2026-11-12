@@ -1,0 +1,56 @@
+{
+  "wake-of-gods.stackartifacts:warlordsBannerHealth": {
+    "text": {
+      "name": "Warlord’s Banner — Vitality",
+      "description": "{Warlord’s Banner — Vitality}\n\nAdds 2 health, then +10% total health (native rounding). One worn item per troop."
+    }
+  },
+  "wake-of-gods.stackartifacts:warlordsBannerAttack": {
+    "text": {
+      "name": "Warlord’s Banner — Attack",
+      "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop."
+    }
+  },
+  "wake-of-gods.stackartifacts:warlordsBannerDefence": {
+    "text": {
+      "name": "Warlord’s Banner — Defense",
+      "description": "{Warlord’s Banner — Defense}\n\nAdds 2 Defense, then +10% total Defense (native rounding). One worn item per troop."
+    }
+  },
+  "wake-of-gods.stackartifacts:warlordsBannerDamage": {
+    "text": {
+      "name": "Warlord’s Banner — Damage",
+      "description": "{Warlord’s Banner — Damage}\n\nAdds 1 base damage, then +10% total damage (native rounding). One worn item per troop."
+    }
+  },
+  "wake-of-gods.stackartifacts:warlordsBannerSpeed": {
+    "text": {
+      "name": "Warlord’s Banner — Speed",
+      "description": "{Warlord’s Banner — Speed}\n\nAdds 1 Speed, then +10% total Speed (native rounding). One worn item per troop."
+    }
+  },
+  "wake-of-gods.stackartifacts:warlordsBannerExperience": {
+    "text": {
+      "name": "Warlord’s Banner — Experience",
+      "description": "{Warlord’s Banner — Experience}\n\nAdds 50% to the native stack experience gain modifier. One worn item per troop."
+    }
+  },
+  "wake-of-gods.stackartifacts:warlordsBannerReducer": {
+    "text": {
+      "name": "Warlord’s Banner — Armor piercing",
+      "description": "{Warlord’s Banner — Armor piercing}\n\nIgnores 25% of the target’s Defense when attacking. One worn item per troop."
+    }
+  },
+  "wake-of-gods.stackartifacts:warlordsBannerBlocker": {
+    "text": {
+      "name": "Warlord’s Banner — Melee protection",
+      "description": "{Warlord’s Banner — Melee protection}\n\nReduces incoming physical melee damage by 25%. One worn item per troop."
+    }
+  },
+  "wake-of-gods.stackartifacts:warlordsBannerRetaliate": {
+    "text": {
+      "name": "Warlord’s Banner — Retaliation",
+      "description": "{Warlord’s Banner — Retaliation}\n\nAllows 2 additional retaliations per round. One worn item per troop."
+    }
+  }
+}

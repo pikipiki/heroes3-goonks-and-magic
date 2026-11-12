@@ -1,0 +1,785 @@
+{
+  "emeraldTower": {
+    "name": "Emerald Tower",
+    "handler": "configurable",
+    "types": {
+      "emeraldTower": {
+        "name": "Emerald Tower",
+        "description": "@goonk.progression.emeraldTower.description",
+        "onSelectMessage": "@goonk.progression.emeraldTower.select",
+        "onVisitedMessage": "@goonk.progression.emeraldTower.visited",
+        "onEmptyMessage": "@goonk.progression.emeraldTower.empty",
+        "selectMode": "selectPlayer",
+        "visitMode": "bonus",
+        "canRefuse": true,
+        "rewards": [
+          {
+            "description": "@goonk.progression.tower.paingpaing.vitality",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "STACK_HEALTH",
+                "val": 15,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:paingpaing",
+                  "includeUpgrades": true
+                },
+                "valueType": "PERCENT_TO_BASE"
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.paingpaing.power",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "GENERAL_DAMAGE_PREMY",
+                "val": 10,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:paingpaing",
+                  "includeUpgrades": true
+                }
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.paingpaing.ward",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "SPELL_DAMAGE_REDUCTION",
+                "val": 20,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:paingpaing",
+                  "includeUpgrades": true
+                },
+                "subtype": "any"
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.picpique.vitality",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "STACK_HEALTH",
+                "val": 15,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:picpique",
+                  "includeUpgrades": true
+                },
+                "valueType": "PERCENT_TO_BASE"
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.picpique.power",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "GENERAL_DAMAGE_PREMY",
+                "val": 10,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:picpique",
+                  "includeUpgrades": true
+                }
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.picpique.ward",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "SPELL_DAMAGE_REDUCTION",
+                "val": 20,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:picpique",
+                  "includeUpgrades": true
+                },
+                "subtype": "any"
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.zinzeclair.vitality",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "STACK_HEALTH",
+                "val": 15,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:zinzeclair",
+                  "includeUpgrades": true
+                },
+                "valueType": "PERCENT_TO_BASE"
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.zinzeclair.power",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "GENERAL_DAMAGE_PREMY",
+                "val": 10,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:zinzeclair",
+                  "includeUpgrades": true
+                }
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.zinzeclair.ward",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "SPELL_DAMAGE_REDUCTION",
+                "val": 20,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:zinzeclair",
+                  "includeUpgrades": true
+                },
+                "subtype": "any"
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.bubu.vitality",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "STACK_HEALTH",
+                "val": 15,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:bubu",
+                  "includeUpgrades": true
+                },
+                "valueType": "PERCENT_TO_BASE"
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.bubu.power",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "GENERAL_DAMAGE_PREMY",
+                "val": 10,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:bubu",
+                  "includeUpgrades": true
+                }
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.bubu.ward",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "SPELL_DAMAGE_REDUCTION",
+                "val": 20,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:bubu",
+                  "includeUpgrades": true
+                },
+                "subtype": "any"
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.glouglou.vitality",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "STACK_HEALTH",
+                "val": 15,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:glouglou",
+                  "includeUpgrades": true
+                },
+                "valueType": "PERCENT_TO_BASE"
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.glouglou.power",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "GENERAL_DAMAGE_PREMY",
+                "val": 10,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:glouglou",
+                  "includeUpgrades": true
+                }
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.glouglou.ward",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "SPELL_DAMAGE_REDUCTION",
+                "val": 20,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:glouglou",
+                  "includeUpgrades": true
+                },
+                "subtype": "any"
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.bobope.vitality",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "STACK_HEALTH",
+                "val": 15,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:bobope",
+                  "includeUpgrades": true
+                },
+                "valueType": "PERCENT_TO_BASE"
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.bobope.power",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "GENERAL_DAMAGE_PREMY",
+                "val": 10,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:bobope",
+                  "includeUpgrades": true
+                }
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.bobope.ward",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "SPELL_DAMAGE_REDUCTION",
+                "val": 20,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:bobope",
+                  "includeUpgrades": true
+                },
+                "subtype": "any"
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.maillemaille.vitality",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "STACK_HEALTH",
+                "val": 15,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:maillemaille",
+                  "includeUpgrades": true
+                },
+                "valueType": "PERCENT_TO_BASE"
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.maillemaille.power",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "GENERAL_DAMAGE_PREMY",
+                "val": 10,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:maillemaille",
+                  "includeUpgrades": true
+                }
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          },
+          {
+            "description": "@goonk.progression.tower.maillemaille.ward",
+            "resources": {
+              "gold": -3000,
+              "gems": -3
+            },
+            "limiter": {
+              "resources": {
+                "gold": 3000,
+                "gems": 3
+              }
+            },
+            "bonuses": [
+              {
+                "type": "SPELL_DAMAGE_REDUCTION",
+                "val": 20,
+                "duration": "PERMANENT",
+                "limiters": {
+                  "type": "CREATURE_TYPE_LIMITER",
+                  "creature": "goonk:maillemaille",
+                  "includeUpgrades": true
+                },
+                "subtype": "any"
+              },
+              {
+                "type": "STACK_HEALTH",
+                "val": 0,
+                "duration": "PERMANENT",
+                "hidden": true
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 6000,
+          "rarity": 40,
+          "zoneLimit": 1
+        },
+        "templates": {
+          "normal": {
+            "animation": "goonk/emerald-tower.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VAV"
+            ],
+            "visitableFrom": [
+              "+++",
+              "+-+",
+              "+++"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "bannerOutfitter": {
+    "name": "Banner outfitter",
+    "handler": "configurable",
+    "types": {
+      "bannerOutfitter": {
+        "name": "Banner outfitter",
+        "description": "@goonk.progression.bannerOutfitter.description",
+        "onSelectMessage": "@goonk.progression.bannerOutfitter.select",
+        "onVisitedMessage": "@goonk.progression.bannerOutfitter.visited",
+        "onEmptyMessage": "@goonk.progression.bannerOutfitter.empty",
+        "selectMode": "selectPlayer",
+        "visitMode": "unlimited",
+        "canRefuse": true,
+        "rewards": [
+          {
+            "description": "@goonk.progression.banner.assaultBanner",
+            "resources": {
+              "gold": -2000
+            },
+            "artifacts": [
+              "goonk:assaultBanner"
+            ],
+            "limiter": {
+              "resources": {
+                "gold": 2000
+              }
+            }
+          },
+          {
+            "description": "@goonk.progression.banner.guardianBanner",
+            "resources": {
+              "gold": -2000
+            },
+            "artifacts": [
+              "goonk:guardianBanner"
+            ],
+            "limiter": {
+              "resources": {
+                "gold": 2000
+              }
+            }
+          },
+          {
+            "description": "@goonk.progression.banner.wardingBanner",
+            "resources": {
+              "gold": -2000
+            },
+            "artifacts": [
+              "goonk:wardingBanner"
+            ],
+            "limiter": {
+              "resources": {
+                "gold": 2000
+              }
+            }
+          }
+        ],
+        "rmg": {
+          "value": 6000,
+          "rarity": 40,
+          "zoneLimit": 1
+        },
+        "templates": {
+          "normal": {
+            "animation": "AVXMKTT0.def",
+            "mask": [
+              "VVV",
+              "VAV"
+            ],
+            "visitableFrom": [
+              "+++",
+              "+-+",
+              "+++"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

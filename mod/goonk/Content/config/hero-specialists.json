@@ -1,0 +1,515 @@
+{
+  "gardienGoonk": {
+    "texts": {
+      "specialty": {
+        "name": "Paingpaing Guardian",
+        "description": "Paingpaing: +15% base health. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions.",
+        "tooltip": "{Paingpaing Guardian}\nPaingpaing: +15% base health. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions."
+      }
+    },
+    "specialty": {
+      "bonuses": {
+        "familyVitality": {
+          "type": "STACK_HEALTH",
+          "val": 15,
+          "duration": "PERMANENT",
+          "limiters": {
+            "type": "CREATURE_TYPE_LIMITER",
+            "creature": "goonk:paingpaing",
+            "includeUpgrades": true
+          },
+          "valueType": "PERCENT_TO_BASE"
+        }
+      }
+    }
+  },
+  "picpiqueSpecialist": {
+    "class": "goonkCaptain",
+    "female": false,
+    "special": false,
+    "texts": {
+      "name": "Picpique Keeper",
+      "biography": "Picpique: +2 Attack. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions.",
+      "specialty": {
+        "name": "Picpique Keeper",
+        "description": "Picpique: +2 Attack. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions.",
+        "tooltip": "{Picpique Keeper}\nPicpique: +2 Attack. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions."
+      }
+    },
+    "images": {
+      "large": "goonk/lancer-large.png",
+      "small": "goonk/lancer-small.png",
+      "specialtySmall": "goonk/lancer-small.png",
+      "specialtyLarge": "goonk/lancer-large.png"
+    },
+    "army": [
+      {
+        "creature": "paingpaing",
+        "min": 12,
+        "max": 16
+      },
+      {
+        "creature": "picpique",
+        "min": 3,
+        "max": 5
+      }
+    ],
+    "skills": [
+      {
+        "skill": "core:leadership",
+        "level": "basic"
+      },
+      {
+        "skill": "core:armorer",
+        "level": "basic"
+      }
+    ],
+    "specialty": {
+      "creature": "picpique",
+      "bonuses": {
+        "familyFocus": {
+          "type": "PRIMARY_SKILL",
+          "val": 2,
+          "duration": "PERMANENT",
+          "limiters": {
+            "type": "CREATURE_TYPE_LIMITER",
+            "creature": "goonk:picpique",
+            "includeUpgrades": true
+          },
+          "subtype": "attack"
+        }
+      }
+    }
+  },
+  "zinzeclairSpecialist": {
+    "class": "goonkCaptain",
+    "female": false,
+    "special": false,
+    "texts": {
+      "name": "Sonic Keeper",
+      "biography": "Sonic: +15% ranged damage bonus. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions.",
+      "specialty": {
+        "name": "Sonic Keeper",
+        "description": "Sonic: +15% ranged damage bonus. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions.",
+        "tooltip": "{Sonic Keeper}\nSonic: +15% ranged damage bonus. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions."
+      }
+    },
+    "images": {
+      "large": "goonk/archer-large.png",
+      "small": "goonk/archer-small.png",
+      "specialtySmall": "goonk/archer-small.png",
+      "specialtyLarge": "goonk/archer-large.png"
+    },
+    "army": [
+      {
+        "creature": "paingpaing",
+        "min": 12,
+        "max": 16
+      },
+      {
+        "creature": "zinzeclair",
+        "min": 3,
+        "max": 5
+      }
+    ],
+    "skills": [
+      {
+        "skill": "core:leadership",
+        "level": "basic"
+      },
+      {
+        "skill": "core:archery",
+        "level": "basic"
+      }
+    ],
+    "specialty": {
+      "creature": "zinzeclair",
+      "bonuses": {
+        "familyFocus": {
+          "type": "PERCENTAGE_DAMAGE_BOOST",
+          "val": 15,
+          "duration": "PERMANENT",
+          "limiters": {
+            "type": "CREATURE_TYPE_LIMITER",
+            "creature": "goonk:zinzeclair",
+            "includeUpgrades": true
+          },
+          "subtype": "damageTypeRanged"
+        }
+      }
+    }
+  },
+  "bubuSpecialist": {
+    "class": "goonkCaptain",
+    "female": false,
+    "special": false,
+    "texts": {
+      "name": "Bubu Keeper",
+      "biography": "Bubu: +3 Defense. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions.",
+      "specialty": {
+        "name": "Bubu Keeper",
+        "description": "Bubu: +3 Defense. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions.",
+        "tooltip": "{Bubu Keeper}\nBubu: +3 Defense. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions."
+      }
+    },
+    "images": {
+      "large": "goonk/fart-large.png",
+      "small": "goonk/fart-small.png",
+      "specialtySmall": "goonk/fart-small.png",
+      "specialtyLarge": "goonk/fart-large.png"
+    },
+    "army": [
+      {
+        "creature": "paingpaing",
+        "min": 12,
+        "max": 16
+      },
+      {
+        "creature": "bubu",
+        "min": 3,
+        "max": 5
+      }
+    ],
+    "skills": [
+      {
+        "skill": "core:leadership",
+        "level": "basic"
+      },
+      {
+        "skill": "core:armorer",
+        "level": "basic"
+      }
+    ],
+    "specialty": {
+      "creature": "bubu",
+      "bonuses": {
+        "familyFocus": {
+          "type": "PRIMARY_SKILL",
+          "val": 3,
+          "duration": "PERMANENT",
+          "limiters": {
+            "type": "CREATURE_TYPE_LIMITER",
+            "creature": "goonk:bubu",
+            "includeUpgrades": true
+          },
+          "subtype": "defence"
+        }
+      }
+    }
+  },
+  "glouglouSpecialist": {
+    "class": "goonkCaptain",
+    "female": false,
+    "special": false,
+    "texts": {
+      "name": "Bobope Keeper",
+      "biography": "Bobope: 20% less magic damage. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions.",
+      "specialty": {
+        "name": "Bobope Keeper",
+        "description": "Bobope: 20% less magic damage. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions.",
+        "tooltip": "{Bobope Keeper}\nBobope: 20% less magic damage. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions."
+      }
+    },
+    "images": {
+      "large": "goonk/vomit-large.png",
+      "small": "goonk/vomit-small.png",
+      "specialtySmall": "goonk/vomit-small.png",
+      "specialtyLarge": "goonk/vomit-large.png"
+    },
+    "army": [
+      {
+        "creature": "paingpaing",
+        "min": 12,
+        "max": 16
+      },
+      {
+        "creature": "glouglou",
+        "min": 1,
+        "max": 2
+      }
+    ],
+    "skills": [
+      {
+        "skill": "core:leadership",
+        "level": "basic"
+      },
+      {
+        "skill": "core:armorer",
+        "level": "basic"
+      }
+    ],
+    "specialty": {
+      "creature": "glouglou",
+      "bonuses": {
+        "familyFocus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "val": 20,
+          "duration": "PERMANENT",
+          "limiters": {
+            "type": "CREATURE_TYPE_LIMITER",
+            "creature": "goonk:glouglou",
+            "includeUpgrades": true
+          },
+          "subtype": "any"
+        }
+      }
+    }
+  },
+  "bobopeSpecialist": {
+    "class": "goonkCaptain",
+    "female": false,
+    "special": false,
+    "texts": {
+      "name": "DioupDioup Keeper",
+      "biography": "DioupDioup: +15% ranged damage bonus. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions.",
+      "specialty": {
+        "name": "DioupDioup Keeper",
+        "description": "DioupDioup: +15% ranged damage bonus. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions.",
+        "tooltip": "{DioupDioup Keeper}\nDioupDioup: +15% ranged damage bonus. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions."
+      }
+    },
+    "images": {
+      "large": "goonk/blue-large.png",
+      "small": "goonk/blue-small.png",
+      "specialtySmall": "goonk/blue-small.png",
+      "specialtyLarge": "goonk/blue-large.png"
+    },
+    "army": [
+      {
+        "creature": "paingpaing",
+        "min": 12,
+        "max": 16
+      },
+      {
+        "creature": "bobope",
+        "min": 1,
+        "max": 2
+      }
+    ],
+    "skills": [
+      {
+        "skill": "core:leadership",
+        "level": "basic"
+      },
+      {
+        "skill": "core:archery",
+        "level": "basic"
+      }
+    ],
+    "specialty": {
+      "creature": "bobope",
+      "bonuses": {
+        "familyFocus": {
+          "type": "PERCENTAGE_DAMAGE_BOOST",
+          "val": 15,
+          "duration": "PERMANENT",
+          "limiters": {
+            "type": "CREATURE_TYPE_LIMITER",
+            "creature": "goonk:bobope",
+            "includeUpgrades": true
+          },
+          "subtype": "damageTypeRanged"
+        }
+      }
+    }
+  },
+  "maillemailleSpecialist": {
+    "class": "goonkCaptain",
+    "female": false,
+    "special": false,
+    "texts": {
+      "name": "Maille Maille Keeper",
+      "biography": "Maille Maille: +15% physical damage bonus. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions.",
+      "specialty": {
+        "name": "Maille Maille Keeper",
+        "description": "Maille Maille: +15% physical damage bonus. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions.",
+        "tooltip": "{Maille Maille Keeper}\nMaille Maille: +15% physical damage bonus. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions."
+      }
+    },
+    "images": {
+      "large": "goonk/fire-large.png",
+      "small": "goonk/fire-small.png",
+      "specialtySmall": "goonk/fire-small.png",
+      "specialtyLarge": "goonk/fire-large.png"
+    },
+    "army": [
+      {
+        "creature": "paingpaing",
+        "min": 12,
+        "max": 16
+      },
+      {
+        "creature": "maillemaille",
+        "min": 1,
+        "max": 2
+      }
+    ],
+    "skills": [
+      {
+        "skill": "core:leadership",
+        "level": "basic"
+      },
+      {
+        "skill": "core:armorer",
+        "level": "basic"
+      }
+    ],
+    "specialty": {
+      "creature": "maillemaille",
+      "bonuses": {
+        "familyFocus": {
+          "type": "GENERAL_DAMAGE_PREMY",
+          "val": 15,
+          "duration": "PERMANENT",
+          "limiters": {
+            "type": "CREATURE_TYPE_LIMITER",
+            "creature": "goonk:maillemaille",
+            "includeUpgrades": true
+          }
+        }
+      }
+    }
+  },
+  "goonkEngineer": {
+    "class": "goonkCaptain",
+    "female": false,
+    "special": false,
+    "texts": {
+      "name": "Goonk Engineer",
+      "biography": "War machines gain +25% base health. Starts with basic Artillery and First Aid; buy the machines separately.",
+      "specialty": {
+        "name": "Goonk Engineer",
+        "description": "War machines gain +25% base health. Starts with basic Artillery and First Aid; buy the machines separately.",
+        "tooltip": "{Goonk Engineer}\nWar machines gain +25% base health. Starts with basic Artillery and First Aid; buy the machines separately."
+      }
+    },
+    "images": {
+      "large": "goonk/blue-large.png",
+      "small": "goonk/blue-small.png",
+      "specialtySmall": "goonk/blue-small.png",
+      "specialtyLarge": "goonk/blue-large.png"
+    },
+    "army": [
+      {
+        "creature": "paingpaing",
+        "min": 14,
+        "max": 18
+      },
+      {
+        "creature": "picpique",
+        "min": 3,
+        "max": 5
+      }
+    ],
+    "skills": [
+      {
+        "skill": "core:artillery",
+        "level": "basic"
+      },
+      {
+        "skill": "core:firstAid",
+        "level": "basic"
+      }
+    ],
+    "specialty": {
+      "bonuses": {
+        "ballista": {
+          "type": "STACK_HEALTH",
+          "val": 25,
+          "valueType": "PERCENT_TO_BASE",
+          "limiters": {
+            "type": "CREATURE_TYPE_LIMITER",
+            "creature": "core:ballista",
+            "includeUpgrades": false
+          }
+        },
+        "firstAidTent": {
+          "type": "STACK_HEALTH",
+          "val": 25,
+          "valueType": "PERCENT_TO_BASE",
+          "limiters": {
+            "type": "CREATURE_TYPE_LIMITER",
+            "creature": "core:firstAidTent",
+            "includeUpgrades": false
+          }
+        },
+        "ammoCart": {
+          "type": "STACK_HEALTH",
+          "val": 25,
+          "valueType": "PERCENT_TO_BASE",
+          "limiters": {
+            "type": "CREATURE_TYPE_LIMITER",
+            "creature": "core:ammoCart",
+            "includeUpgrades": false
+          }
+        },
+        "catapult": {
+          "type": "STACK_HEALTH",
+          "val": 25,
+          "valueType": "PERCENT_TO_BASE",
+          "limiters": {
+            "type": "CREATURE_TYPE_LIMITER",
+            "creature": "core:catapult",
+            "includeUpgrades": false
+          }
+        }
+      }
+    }
+  },
+  "goonkArcanist": {
+    "class": "goonkMystic",
+    "female": false,
+    "special": false,
+    "texts": {
+      "name": "Goonk Arcanist",
+      "biography": "Damage spells gain +15% damage. Starts with basic Wisdom and Sorcery, which also improves with the native Sorcery specialty as the hero levels up.",
+      "specialty": {
+        "name": "Goonk Arcanist",
+        "description": "Damage spells gain +15% damage. Starts with basic Wisdom and Sorcery, which also improves with the native Sorcery specialty as the hero levels up.",
+        "tooltip": "{Goonk Arcanist}\nDamage spells gain +15% damage. Starts with basic Wisdom and Sorcery, which also improves with the native Sorcery specialty as the hero levels up."
+      }
+    },
+    "images": {
+      "large": "goonk/fire-large.png",
+      "small": "goonk/fire-small.png",
+      "specialtySmall": "goonk/fire-small.png",
+      "specialtyLarge": "goonk/fire-large.png"
+    },
+    "army": [
+      {
+        "creature": "paingpaing",
+        "min": 12,
+        "max": 16
+      },
+      {
+        "creature": "zinzeclair",
+        "min": 2,
+        "max": 3
+      }
+    ],
+    "skills": [
+      {
+        "skill": "core:wisdom",
+        "level": "basic"
+      },
+      {
+        "skill": "core:sorcery",
+        "level": "basic"
+      }
+    ],
+    "specialty": {
+      "secondary": "core:sorcery",
+      "bonuses": {
+        "arcaneFocus": {
+          "type": "SPELL_DAMAGE",
+          "subtype": "any",
+          "val": 15
+        }
+      }
+    },
+    "spellbook": [
+      "core:magicArrow",
+      "core:cure"
+    ]
+  }
+}

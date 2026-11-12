@@ -379,8 +379,8 @@ void CSelectableComponent::init()
 	selected = false;
 }
 
-CSelectableComponent::CSelectableComponent(const Component &c, std::function<void()> OnSelect):
-	CComponent(c),onSelect(OnSelect)
+CSelectableComponent::CSelectableComponent(const Component &c, std::function<void()> OnSelect, ESize imageSize):
+	CComponent(c,imageSize),onSelect(OnSelect)
 {
 	setRedrawParent(true);
 	addUsedEvents(LCLICK | DOUBLECLICK | KEYBOARD);
@@ -600,4 +600,12 @@ CComponentBox::CComponentBox(std::vector<std::shared_ptr<CSelectableComponent>> 
 		key = vstd::next(key, 1);
 	}
 	selectionChanged(_components.front());
+}
+
+bool CComponentBox::selectMobileIndex(int index)
+{
+ if(index<0 || index>=int(components.size()))return false;
+ const auto component=std::dynamic_pointer_cast<CSelectableComponent>(components[index]);
+ if(!component)return false;
+ selectionChanged(component);redraw();return true;
 }

@@ -70,7 +70,7 @@ adventure_spec=spec_from_file_location('goonk_adventures',ROOT/'scripts/place-ad
 adventures=module_from_spec(adventure_spec);adventure_spec.loader.exec_module(adventures)
 adventures.place_adventures(objects,N)
 for obj in objects:
- if obj['instanceName'].startswith('goonkAdventure'):reserved|=area(obj['x'],obj['y'],5)
+ if obj['instanceName'].startswith(('goonkAdventure','goonkProgression')):reserved|=area(obj['x'],obj['y'],5)
 # Groves and rock outcrops use the original Heroes III footprints. Keep corridors clear.
 for i in range(2200):
  x,y=rng.randint(9,70),rng.randint(7,136)

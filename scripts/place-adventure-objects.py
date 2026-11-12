@@ -2,7 +2,7 @@
 from pathlib import Path
 import json,zipfile
 ROOT=Path(__file__).resolve().parents[1]
-CONFIG=json.loads((ROOT/'mod/goonk/Content/config/adventure-objects.json').read_text())
+CONFIG={**json.loads((ROOT/'mod/goonk/Content/config/adventure-objects.json').read_text()),**json.loads((ROOT/'mod/goonk/Content/config/progression-objects.json').read_text())}
 
 def adventure_object(kind,x,y,name):
     template=CONFIG[kind]['types'][kind]['templates']['normal']
@@ -19,6 +19,13 @@ def place_adventures(objects,size):
     for index,(kind,x,y) in enumerate(positions):
         name='goonkAdventure'+str(index)
         if name not in names: objects.append(adventure_object(kind,x,y,name))
+    progression=[('emeraldTower',22,13),('bannerOutfitter',8,23)] if size==36 else [('emeraldTower',29,19),('bannerOutfitter',15,25),('emeraldTower',114,124),('bannerOutfitter',128,118)]
+    for index,(kind,x,y) in enumerate(progression):
+        name='goonkProgression'+str(index)
+        if name not in names: objects.append(adventure_object(kind,x,y,name))
+        else:
+            obj=next(o for o in objects if o['instanceName']==name)
+            if obj['type']=='goonk:'+kind: obj['template']=adventure_object(kind,x,y,name)['template']
     return objects
 
 if __name__=='__main__':

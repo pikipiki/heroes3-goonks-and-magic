@@ -1,0 +1,83 @@
+{
+  "version": "0.4.143",
+  "baseCommit": "40844b52",
+  "scope": "Additive native Goonk rewards, troop artifacts and hero specialties. Existing ERA/TUM and battle rules are preserved. No claim of full original WoG equivalence.",
+  "wasmSHA256": "c325915a12601c958eba7aeccc631b95406f6396cf978a8b9b03b91e80299a2a",
+  "build": [
+    "ninja -j32 html5 (isolated source and build cache)",
+    "npm run prepare:web",
+    "npm run build:web (isolated copy excluding concurrent unrelated edits)",
+    "npm run verify:web"
+  ],
+  "nodeTests": {
+    "passed": 497,
+    "failed": 0,
+    "optionalSkipped": 22
+  },
+  "responsive": {
+    "browsers": [
+      "Chromium",
+      "WebKit"
+    ],
+    "languages": [
+      "English",
+      "French"
+    ],
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        568,
+        320
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1024,
+        768
+      ],
+      [
+        1180,
+        820
+      ]
+    ],
+    "checks": [
+      "44px reachable confirmations",
+      "no horizontal overflow",
+      "stable DOM nodes and scroll",
+      "zero child-list mutations over 40 identical updates",
+      "query-bound selection and confirmation"
+    ]
+  },
+  "native": {
+    "progression": "native-progression.json",
+    "specialists": "native-specialists.json",
+    "existingBridgeRegression": [
+      "commander graph, native ranks and confirmed level-up",
+      "exclusive rewards, cancellation and exact costs",
+      "global workshop limit, permanent projects after save/load",
+      "academy native training",
+      "effective improved machine health in battle",
+      "minimap, tavern, hero and commander skills, treasure choice",
+      "engine download retry and permanent failure recovery"
+    ]
+  },
+  "limits": [
+    "Automated browser tests, no physical iPad/iPhone test",
+    "Not an exhaustive validation of all ERA/TUM combinations",
+    "Existing maps saved before this version do not acquire new placed objects",
+    "Native inherited warnings include missing optional tavern videos; no missing emerald-tower animation after bundling the sprite"
+  ]
+}

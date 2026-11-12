@@ -1108,7 +1108,7 @@ void CPlayerInterface::showBlockingDialog(const std::string &text, const std::ve
 	{
 		std::vector<std::shared_ptr<CSelectableComponent>> intComps;
 		for (auto & component : components)
-			intComps.push_back(std::make_shared<CSelectableComponent>(component)); //will be deleted by CSelWindow::close
+			intComps.push_back(std::make_shared<CSelectableComponent>(component,nullptr,components.size()>12?CComponent::small:CComponent::large)); //will be deleted by CSelWindow::close
 
 		std::vector<std::pair<AnimationPath,CFunctionList<void()> > > pom;
 		pom.push_back({ AnimationPath::builtin("IOKAY.DEF"),0});

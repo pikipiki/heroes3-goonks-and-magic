@@ -1,0 +1,77 @@
+{
+  "assaultBanner": {
+    "type": [
+      "CREATURE"
+    ],
+    "slot": "MISC",
+    "class": "MAJOR",
+    "value": 2000,
+    "graphics": {
+      "image": "artifacts/HrArt156",
+      "scenarioBonus": "artifacts/HrArt156L",
+      "map": "artifacts/zart156.def"
+    },
+    "bonuses": {
+      "attack": {
+        "type": "PRIMARY_SKILL",
+        "subtype": "attack",
+        "val": 3
+      }
+    },
+    "text": {
+      "name": "Assault Banner",
+      "description": "{Assault Banner}\n\n+3 Attack for the equipped troop. One item per troop. Move it through the troop equipment screen.",
+      "event": "A banner is added to your backpack."
+    }
+  },
+  "guardianBanner": {
+    "type": [
+      "CREATURE"
+    ],
+    "slot": "MISC",
+    "class": "MAJOR",
+    "value": 2000,
+    "graphics": {
+      "image": "artifacts/HrArt156",
+      "scenarioBonus": "artifacts/HrArt156L",
+      "map": "artifacts/zart156.def"
+    },
+    "bonuses": {
+      "defense": {
+        "type": "PRIMARY_SKILL",
+        "subtype": "defence",
+        "val": 3
+      }
+    },
+    "text": {
+      "name": "Guardian Banner",
+      "description": "{Guardian Banner}\n\n+3 Defense for the equipped troop. One item per troop. Move it through the troop equipment screen.",
+      "event": "A banner is added to your backpack."
+    }
+  },
+  "wardingBanner": {
+    "type": [
+      "CREATURE"
+    ],
+    "slot": "MISC",
+    "class": "MAJOR",
+    "value": 2000,
+    "graphics": {
+      "image": "artifacts/HrArt156",
+      "scenarioBonus": "artifacts/HrArt156L",
+      "map": "artifacts/zart156.def"
+    },
+    "bonuses": {
+      "ward": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "any",
+        "val": 20
+      }
+    },
+    "text": {
+      "name": "Warding Banner",
+      "description": "{Warding Banner}\n\nMagic damage received by the equipped troop is reduced by 20%. One item per troop. Move it through the troop equipment screen.",
+      "event": "A banner is added to your backpack."
+    }
+  }
+}

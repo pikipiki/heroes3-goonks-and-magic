@@ -1,4 +1,5 @@
 import {getLanguage} from './i18n.mjs';
+import {createTroopEquipment} from './troop-equipment.mjs';
 
 // Decode the paper-doll silhouette while the game initializes, before opening equipment.
 if(typeof Image!=='undefined'){const silhouette=new Image();silhouette.src=new URL('./h3-theme/hero-silhouette.svg',import.meta.url).href;silhouette.decode?.().catch(()=>{});}
@@ -20,6 +21,7 @@ export function paintArtifactIcons(panel){
  }
 }
 export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()=>{},portrait=()=>'',notify=()=>{}}){
+ const troopEquipment=createTroopEquipment({root,command});
  const panel=document.createElement('section');panel.className='hero-equipment-page';panel.hidden=true;panel.setAttribute('aria-label','Hero equipment');root.querySelector('.mobile-play').append(panel);panel.addEventListener('dragstart',e=>e.preventDefault());let state={},tab='worn',selected=null,signature='',classic=false,selectedArmySlot=null,splitActive=false,splitAmount=1;const scrollPositions={worn:0,backpack:0,skills:0,army:0};
  const switchView=value=>{classic=value;root.dataset.heroView=value?'classic':'mobile';panel.hidden=classic||state.mode!=='hero';onViewChange();};
  const slots=()=>tab==='worn'?state.heroWindow?.slots||[]:tab==='backpack'?state.heroWindow?.backpack||[]:[];
@@ -142,6 +144,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
     <h3>${selectedUnit?esc(selectedUnit.name+' × '+selectedUnit.count):(fr?'Gestion des troupes':'Manage army')}</h3>
     <p class="hero-artifact-description">${selectedUnit?(selectedUnit.count>1?(fr?'Touche un emplacement libre pour déplacer, ou coche « Scinder » pour séparer les troupes.':'Tap another slot to move, or check « Split » to split the army.'):(fr?'Touche un autre emplacement pour déplacer ou fusionner.':'Tap another slot to move or merge.')):(fr?'Touche une troupe pour la réorganiser, la scinder ou voir sa fiche.':'Tap a unit stack to manage, split or view details.')}</p>
     <div class="hero-army-dock-tools">
+     ${state.troopEquipment?`<button type="button" data-hero-troop-equipment>${fr?'Équipement des troupes':'Troop equipment'}</button>`:''}
      <label class="hero-army-split-toggle">
       <input type="checkbox" id="hero-army-split" ${splitActive?'checked':''} ${!selectedUnit||selectedUnit.count<2||!state.turn?'disabled':''}>
       <span>${fr?'Scinder':'Split'}</span>
@@ -166,6 +169,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
  }
  panel.addEventListener('click',event=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
+  if(button.hasAttribute('data-hero-troop-equipment')){troopEquipment.show(selectedArmySlot);return;}
   if(button.hasAttribute('data-hero-commander')){command(85);return;}
   if(button.hasAttribute('data-hero-classic')){switchView(true);return;}
   if(button.hasAttribute('data-hero-close')){command(63);return;}
@@ -256,7 +260,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
    render();
   }
  });
- return{showMobile(){switchView(false);},update(next){if(state.mode!=='hero'&&next.mode==='hero'&&next.heroWindow?.owned===false){tab='worn';selected=null;selectedArmySlot=null;splitActive=false;scrollPositions.worn=0;scrollPositions.backpack=0;scrollPositions.skills=0;scrollPositions.army=0;}state=next;if(next.mode!=='hero'){panel.hidden=true;signature='';classic=false;delete root.dataset.heroView;return;}root.dataset.heroView=classic?'classic':'mobile';panel.hidden=classic;const key=JSON.stringify([next.heroWindow,next.turn,next.armies]);if(key!==signature){signature=key;render();}},paint(source){if(panel.hidden||classic)return false;if(document.hidden)return true;const rect=state.heroWindow?.portrait,face=panel.querySelector('.hero-face');if(face&&rect?.w){face.getContext('2d').drawImage(source,rect.x*source.width/800,rect.y*source.height/600,rect.w*source.width/800,rect.h*source.height/600,0,0,58,64);}const heroAtlas=window.goonkHeroIconAtlas;
+ return{showMobile(){switchView(false);},update(next){troopEquipment.update(next);if(state.mode!=='hero'&&next.mode==='hero'&&next.heroWindow?.owned===false){tab='worn';selected=null;selectedArmySlot=null;splitActive=false;scrollPositions.worn=0;scrollPositions.backpack=0;scrollPositions.skills=0;scrollPositions.army=0;}state=next;if(next.mode!=='hero'){panel.hidden=true;signature='';classic=false;delete root.dataset.heroView;return;}root.dataset.heroView=classic?'classic':'mobile';panel.hidden=classic;const key=JSON.stringify([next.heroWindow,next.turn,next.armies]);if(key!==signature){signature=key;render();}},paint(source){if(troopEquipment.paint())return true;if(panel.hidden||classic)return false;if(document.hidden)return true;const rect=state.heroWindow?.portrait,face=panel.querySelector('.hero-face');if(face&&rect?.w){face.getContext('2d').drawImage(source,rect.x*source.width/800,rect.y*source.height/600,rect.w*source.width/800,rect.h*source.height/600,0,0,58,64);}const heroAtlas=window.goonkHeroIconAtlas;
   if(heroAtlas){
    for(const canvas of panel.querySelectorAll('[data-hero-icon]')){
     if(canvas._heroIconAtlas===heroAtlas)continue;

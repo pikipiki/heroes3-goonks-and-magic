@@ -72,6 +72,8 @@
 #include "../lib/CBonusTypeHandler.h"
 #include "../lib/mapObjects/army/CCommanderInstance.h"
 #include "../lib/mapObjects/CRewardableObject.h"
+#include "../lib/mapObjectConstructors/AObjectTypeHandler.h"
+#include "../lib/IGameSettings.h"
 #include "../lib/CSkillHandler.h"
 #include "../lib/entities/hero/CHero.h"
 #include "../lib/GameLibrary.h"
@@ -341,6 +343,30 @@ void mobileStackExperience(JsonNode & node,const CStackInstance * stack)
  node["experience"].Integer()=static_cast<si64>(stack->getTotalExperience());
  node["experiencePerUnit"].Integer()=static_cast<si64>(stack->getAverageExperience());
  node["experienceRank"].Integer()=stack->getExpRank();
+}
+JsonNode troopEquipmentSnapshot(const CGHeroInstance & hero, bool canAct)
+{
+ JsonNode result;result["heroId"].Integer()=hero.id.getNum();result["heroName"].String()=hero.getNameTranslated();result["canAct"].Bool()=canAct;
+ auto describe=[](const CArtifactInstance * art){JsonNode item;const auto type=art->getType();item["id"].Integer()=art->getId().getNum();item["typeId"].Integer()=type->getId().getNum();item["name"].String()=type->getNameTranslated();item["description"].String()=type->getDescriptionTranslated();item["icon"].Integer()=type->getIconIndex();artifactIconIds.insert(type->getIconIndex());return item;};
+ const auto backpackSlot=ArtifactPosition(int(ArtifactPosition::BACKPACK_START)+int(hero.artifactsInBackpack.size()));
+ for(int slot=0;slot<7;++slot)if(hero.hasStackAtSlot(SlotID(slot)))
+ {
+  const auto & stack=hero.getStack(SlotID(slot));const auto equipped=stack.getArt(ArtifactPosition::CREATURE_SLOT);
+  auto entry=creature(stack.getCreature(),stack.getCount());entry["slot"].Integer()=slot;
+  entry["attack"].Integer()=stack.getAttack(stack.hasBonusOfType(BonusType::SHOOTER));entry["defense"].Integer()=stack.getDefense(false);entry["health"].Integer()=stack.getMaxHealth();entry["speed"].Integer()=stack.getMovementRange();entry["magicDamageReduction"].Integer()=stack.valOfBonuses(BonusType::SPELL_DAMAGE_REDUCTION,BonusSubtypeID(SpellSchool::ANY));entry["physicalDamageBonus"].Integer()=stack.valOfBonuses(BonusType::GENERAL_DAMAGE_PREMY);entry["rangedDamageBonus"].Integer()=stack.valOfBonuses(BonusType::PERCENTAGE_DAMAGE_BOOST,BonusCustomSubtype::damageTypeRanged);
+  if(equipped){entry["equipped"]=describe(equipped);entry["canRemove"].Bool()=canAct&&equipped->canBePutAt(&hero,backpackSlot);}
+  for(size_t i=0;i<hero.artifactsInBackpack.size();++i)
+  {
+   const auto art=hero.getArt(ArtifactPosition(int(ArtifactPosition::BACKPACK_START)+int(i)));if(!art)continue;
+   const auto & slots=art->getType()->getPossibleSlots();
+   if(!slots.count(ArtBearer::CREATURE)||slots.at(ArtBearer::CREATURE).empty())continue;
+   auto item=describe(art);item["backpackSlot"].Integer()=int(ArtifactPosition::BACKPACK_START)+i;
+   item["allowed"].Bool()=canAct&&art->canBePutAt(&stack,ArtifactPosition::CREATURE_SLOT,true)&&(!equipped||equipped->canBePutAt(&hero,ArtifactPosition(int(ArtifactPosition::BACKPACK_START)+int(i)),true));
+   entry["inventory"].Vector().push_back(std::move(item));
+  }
+  result["troops"].Vector().push_back(std::move(entry));
+ }
+ return result;
 }
 JsonNode army(const CArmedInstance * a,const std::string & name){JsonNode n;n["id"].Integer()=a->id.getNum();n["name"].String()=name;n["needsLastStack"].Bool()=a->needsLastStack();for(int i=0;i<7;i++){auto c=a->getCreature(SlotID(i));auto item=c?creature(c,a->getStackCount(SlotID(i))):JsonNode();if(c)mobileStackExperience(item,&a->getStack(SlotID(i)));n["slots"].Vector().push_back(item);}return n;}
 // Resolve army exchange from the persisted town/hero relationship, not from
@@ -1025,6 +1051,30 @@ void publishMobileState(){
        if(rewards.size()==choices.size()&&std::all_of(choices.begin(),choices.end(),[](const JsonNode & choice){return choice["selectable"].Bool();}))
         for(size_t i=0;i<rewards.size();++i){const auto description=object->configuration.info.at(rewards[i]).description.toString();if(!description.empty()){choices[i]["label"].String()=description;choices[i]["description"].String()=description;}}
       }
+   presentation["queryId"].Integer()=info->ID.getNum();
+   if(p&&p->cb&&mobileVisitedID!=ObjectInstanceID::NONE)
+    if(const auto object=dynamic_cast<const CRewardableObject*>(p->cb->getObj(mobileVisitedID)))
+     if(info->text&&info->text->label&&info->text->label->getText()==object->configuration.onSelect.toString())
+      if(const auto hero=p->localState->getCurrentHero())
+      {
+       const auto objectKey=object->getObjectHandler()->getJsonKey();
+       if(objectKey=="goonk:emeraldTower" || objectKey=="goonk:bannerOutfitter")
+       {
+        const auto rewards=object->getAvailableRewards(hero,Rewardable::EEventType::EVENT_FIRST_VISIT);
+        auto & choices=presentation["choices"].Vector();
+        if(rewards.size()==choices.size()&&choices.size()>1)
+        {
+         presentation["progression"].String()=objectKey=="goonk:emeraldTower"?"tower":"banners";
+         for(size_t i=0;i<rewards.size();++i)
+         {
+          const auto & reward=object->configuration.info.at(rewards[i]).reward;
+          if(!reward.heroBonuses.empty())if(const auto limiter=std::dynamic_pointer_cast<const CCreatureTypeLimiter>(reward.heroBonuses.front()->limiter))
+          {choices[i]["familyId"].Integer()=limiter->creatureID.getNum();choices[i]["familyName"].String()=limiter->creatureID.toCreature()->getNameSingularTranslated();}
+          if(!reward.grantedArtifacts.empty()){const auto type=reward.grantedArtifacts.front().toArtifact();choices[i]["icon"].Integer()=type->getIconIndex();artifactIconIds.insert(type->getIconIndex());}
+         }
+        }
+       }
+      }
    presentation["cancel"].Bool()=info->buttons.size()>1;if(!mobileVisitedName.empty()){presentation["visitedObject"].String()=mobileVisitedName;mobileVisitShown=true;}
   }
  }
@@ -1174,6 +1224,9 @@ void publishMobileState(){
     exchangeMarkerTiles.push_back(hero->visitablePos());
   }
   if(heroWindow&&hero){auto & h=n["heroWindow"];h["owned"].Bool()=hero->getOwner()==p->playerID;h["name"].String()=hero->getNameTranslated();h["className"].String()=hero->getClassNameTranslated();h["level"].Integer()=hero->level;h["mana"].Integer()=hero->mana;h["manaLimit"].Integer()=hero->manaLimit();h["portrait"]=rect(Rect(heroWindow->pos.x+19,heroWindow->pos.y+19,58,64));
+   h["id"].Integer()=hero->id.getNum();
+   if(h["owned"].Bool()&&p->cb->getSettings().getBoolean(EGameSettings::MODULE_STACK_ARTIFACT))
+    n["troopEquipment"]=troopEquipmentSnapshot(*hero,p->makingTurn&&!heroWindow->getPickedArtifact());
    HeroIconFrames icons;
    for(int i = 0; i < 4; ++i)
    {
@@ -1426,6 +1479,18 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiOnlineRoomAction(int action, const char
 }
 
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,int c,int d,int e){if(!ENGINE)return;ENGINE->dispatchMainThread([action,a,b,c,d,e](){
+ if(action>=98&&action<=100)
+ {
+  const auto player=GAME?GAME->interface():nullptr;
+  if(!player||!player->makingTurn)return;
+  if(const auto window=ENGINE->windows().topWindow<CSelWindow>();window&&window->ID.getNum()==b&&window->components)
+  {
+   if(action==98)window->components->selectMobileIndex(a);
+   if(action==99&&window->components->selectedIndex()==a)window->madeChoiceAndClose();
+   if(action==100&&window->buttons.size()>1){player->cb->selectionMade(0,window->ID);window->close();}
+  }
+  lastPublished=0;return;
+ }
  if(action==96){const auto player=GAME?GAME->interface():nullptr;if(player&&player->makingTurn)if(const auto window=ENGINE->windows().topWindow<CStackWindow>())window->selectMobileCommanderSkill(a);lastPublished=0;return;}
  if(action==95){mobileVerticalBattle=a!=0;lastPublished=0;return;}
  if(action==0){deferredMapAction.reset();ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});return;}if(action==1){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});return;}
@@ -1709,6 +1774,24 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
    const auto destination=town->getUpperArmy();
    if(!destination->getSlotFor(id).validSlot()&&id.toCreature()->warMachine==ArtifactID::NONE){p->showInfoDialog(LIBRARY->generaltexth->allTexts[17]);return;}
    p->cb->recruitCreatures(town,destination,id,std::min(c,int(row.first)),a);
+  }
+  lastPublished=0;return;
+ }
+ if(action==101)
+ {
+  const auto window=ENGINE->windows().topWindow<CHeroWindow>();const auto owner=window?window->curHero:nullptr;
+  if(!owner||owner->id.getNum()!=a||owner->getOwner()!=p->playerID||!p->makingTurn||window->getPickedArtifact()||b<0||b>=7||!owner->hasStackAtSlot(SlotID(b))||!p->cb->getSettings().getBoolean(EGameSettings::MODULE_STACK_ARTIFACT))return;
+  const auto & stack=owner->getStack(SlotID(b));const auto equipped=stack.getArt(ArtifactPosition::CREATURE_SLOT);
+  const ArtifactLocation troop(owner->id,std::optional<SlotID>(SlotID(b)),ArtifactPosition::CREATURE_SLOT);
+  if(c==-1)
+  {
+   const auto target=ArtifactPosition(int(ArtifactPosition::BACKPACK_START)+int(owner->artifactsInBackpack.size()));
+   if(equipped&&equipped->getId().getNum()==d&&equipped->canBePutAt(owner,target))p->cb->swapArtifacts(troop,ArtifactLocation(owner->id,target));
+  }
+  else if(c>=int(ArtifactPosition::BACKPACK_START)&&c<int(ArtifactPosition::BACKPACK_START)+int(owner->artifactsInBackpack.size()))
+  {
+   const auto art=owner->getArt(ArtifactPosition(c));
+   if(art&&art->getId().getNum()==d&&(equipped?equipped->getId().getNum():-1)==e&&art->canBePutAt(&stack,ArtifactPosition::CREATURE_SLOT,true)&&(!equipped||equipped->canBePutAt(owner,ArtifactPosition(c),true)))p->cb->swapArtifacts(ArtifactLocation(owner->id,ArtifactPosition(c)),troop);
   }
   lastPublished=0;return;
  }

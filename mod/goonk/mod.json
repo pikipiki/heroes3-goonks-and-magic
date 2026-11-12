@@ -14,14 +14,16 @@
     "config/creatures.json"
   ],
   "heroes": [
-    "config/heroes.json"
+    "config/heroes.json",
+    "config/hero-specialists.json"
   ],
   "keepDisabled": false,
   "french": {
     "translations": [
       "translation/french.json",
       "translation/h3-french.json",
-      "translation/adventures-french.json"
+      "translation/adventures-french.json",
+      "translation/progression-french.json"
     ],
     "name": "Goonk Castle — traduction française"
   },
@@ -29,9 +31,22 @@
     "config/spell-chances.json"
   ],
   "objects": [
-    "config/adventure-objects.json"
+    "config/adventure-objects.json",
+    "config/progression-objects.json"
   ],
   "translations": [
-    "translation/adventures-english.json"
+    "translation/adventures-english.json",
+    "translation/progression-english.json"
+  ],
+  "artifacts": [
+    "config/troop-banners.json",
+    "config/stock-banner-descriptions.json"
+  ],
+  "heroClasses": [
+    "config/specialist-classes.json"
+  ],
+  "depends": [
+    "wake-of-gods.commanders",
+    "wake-of-gods.stackartifacts"
   ]
 }

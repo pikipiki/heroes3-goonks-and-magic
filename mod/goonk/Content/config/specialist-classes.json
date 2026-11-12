@@ -1,0 +1,146 @@
+{
+  "goonkCaptain": {
+    "faction": "goonk",
+    "defaultTavern": 5,
+    "tavern": {
+      "goonk": 100
+    },
+    "commander": "wake-of-gods.commanders:paladin1",
+    "animation": {
+      "battle": {
+        "male": "CH00.DEF",
+        "female": "CH01.DEF"
+      }
+    },
+    "mapObject": {
+      "templates": {
+        "default": {
+          "animation": "AH00_.def",
+          "editorAnimation": "AH00_E.def"
+        }
+      }
+    },
+    "secondarySkills": {
+      "core:pathfinding": 4,
+      "core:archery": 4,
+      "core:logistics": 4,
+      "core:scouting": 4,
+      "core:diplomacy": 4,
+      "core:navigation": 4,
+      "core:leadership": 4,
+      "core:wisdom": 4,
+      "core:mysticism": 4,
+      "core:luck": 4,
+      "core:ballistics": 4,
+      "core:eagleEye": 4,
+      "core:necromancy": 0,
+      "core:estates": 4,
+      "core:fireMagic": 4,
+      "core:airMagic": 4,
+      "core:waterMagic": 4,
+      "core:earthMagic": 4,
+      "core:scholar": 4,
+      "core:tactics": 4,
+      "core:artillery": 4,
+      "core:learning": 4,
+      "core:offence": 4,
+      "core:armorer": 4,
+      "core:intelligence": 4,
+      "core:sorcery": 4,
+      "core:resistance": 4,
+      "core:firstAid": 4
+    },
+    "name": "Goonk Captain",
+    "affinity": "might",
+    "primarySkills": {
+      "attack": 2,
+      "defence": 2,
+      "spellpower": 1,
+      "knowledge": 1
+    },
+    "lowLevelChance": {
+      "attack": 35,
+      "defence": 35,
+      "spellpower": 15,
+      "knowledge": 15
+    },
+    "highLevelChance": {
+      "attack": 30,
+      "defence": 30,
+      "spellpower": 20,
+      "knowledge": 20
+    }
+  },
+  "goonkMystic": {
+    "faction": "goonk",
+    "defaultTavern": 5,
+    "tavern": {
+      "goonk": 100
+    },
+    "commander": "wake-of-gods.commanders:paladin1",
+    "animation": {
+      "battle": {
+        "male": "CH00.DEF",
+        "female": "CH01.DEF"
+      }
+    },
+    "mapObject": {
+      "templates": {
+        "default": {
+          "animation": "AH00_.def",
+          "editorAnimation": "AH00_E.def"
+        }
+      }
+    },
+    "secondarySkills": {
+      "core:pathfinding": 4,
+      "core:archery": 4,
+      "core:logistics": 4,
+      "core:scouting": 4,
+      "core:diplomacy": 4,
+      "core:navigation": 4,
+      "core:leadership": 4,
+      "core:wisdom": 4,
+      "core:mysticism": 4,
+      "core:luck": 4,
+      "core:ballistics": 4,
+      "core:eagleEye": 4,
+      "core:necromancy": 0,
+      "core:estates": 4,
+      "core:fireMagic": 4,
+      "core:airMagic": 4,
+      "core:waterMagic": 4,
+      "core:earthMagic": 4,
+      "core:scholar": 4,
+      "core:tactics": 4,
+      "core:artillery": 4,
+      "core:learning": 4,
+      "core:offence": 4,
+      "core:armorer": 4,
+      "core:intelligence": 4,
+      "core:sorcery": 4,
+      "core:resistance": 4,
+      "core:firstAid": 4
+    },
+    "name": "Goonk Mystic",
+    "affinity": "magic",
+    "primarySkills": {
+      "attack": 1,
+      "defence": 1,
+      "spellpower": 2,
+      "knowledge": 2
+    },
+    "lowLevelChance": {
+      "attack": 15,
+      "defence": 15,
+      "spellpower": 35,
+      "knowledge": 35
+    },
+    "highLevelChance": {
+      "attack": 20,
+      "defence": 20,
+      "spellpower": 30,
+      "knowledge": 30
+    }
+  }
+}

@@ -25,7 +25,7 @@ print(json.dumps(result))`],{encoding:'utf8',maxBuffer:8*1024*1024}));
   assert(!header.description.includes('Sanctuaire des voies'));
   assert(!objects.some(o=>o.type.startsWith('hero-paths:')));
  }
- assert.equal(maps[0].objects.filter(o=>!o.instanceName.startsWith('goonkAdventure')).length,5);assert.equal(maps[1].objects.filter(o=>!o.instanceName.startsWith('goonkAdventure')).length,554);
+ assert.equal(maps[0].objects.filter(o=>!o.instanceName.startsWith('goonkAdventure')&&!o.instanceName.startsWith('goonkProgression')).length,5);assert.equal(maps[1].objects.filter(o=>!o.instanceName.startsWith('goonkAdventure')&&!o.instanceName.startsWith('goonkProgression')).length,554);
  assert(!fs.readFileSync('scripts/build-goonks-map.py','utf8').includes('hero_paths'));
 });
 test('Public map normalization preserves mainHero references and is idempotent without changing source maps',()=>{

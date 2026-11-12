@@ -70,7 +70,7 @@ CSelWindow::CSelWindow( const std::string & Text, PlayerColor player, int charpe
 
 	if(!comps.empty())
 	{
-		components = std::make_shared<CComponentBox>(comps, Rect(0,0,0,0));
+		components = comps.size()>12 ? std::make_shared<CComponentBox>(comps, Rect(0,0,0,0),nullptr,10,6,8,7) : std::make_shared<CComponentBox>(comps, Rect(0,0,0,0));
 		for (auto & comp : comps)
 			comp->onChoose = [this](){ madeChoiceAndClose(); };
 	}

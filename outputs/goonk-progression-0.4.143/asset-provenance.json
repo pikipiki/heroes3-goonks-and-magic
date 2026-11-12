@@ -1,0 +1,7 @@
+{
+  "asset": "mod/goonk/Content/Sprites/goonk/emerald-tower.def",
+  "source": "mod/wake-of-gods/Mods/mapObjects/content/sprites/mapObjects/zobj007.def",
+  "upstream": "WOG-UPSTREAM.json",
+  "sha256": "5e553111df06a4c0a35f76001acb7b62a6b9f443f19b07ed155532088d444643",
+  "reason": "Copy the bundled WoG emerald tower sprite into the Goonk mod; do not enable the unrelated optional mapObjects submod."
+}
