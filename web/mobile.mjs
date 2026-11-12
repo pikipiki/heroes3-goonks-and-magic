@@ -1,3 +1,4 @@
+import {contextualBattleAction} from './battle-action.mjs';
 import {paintVerticalBattle} from './battle-vertical.mjs';
 import {standardizeBackButtons} from './back-buttons.mjs';
 import {createTownServices} from './town-services.mjs';
@@ -196,24 +197,13 @@ function mount(){
   else if(m==='town')items=[['Recruitment hall','town-fort','town-fort'],[fr?'Armées':'Armies','army','town-split'],[fr?'Construire':'Build','build','town-hall'],[fr?'Recruter des héros':'Recruit heroes','recruit-heroes','town-tavern'],['Mage guild','town-guild','town-hall'],['Marketplace','town-market','resource-gold']].map(([label,ui,icon])=>`<button data-ui="${ui}" class="town-action"><img src="./web/h3-theme/${icon}.${icon==='town-tavern'?'svg':'png'}" alt=""><span>${label}</span></button>`);
   else if(m==='battle'&&cap.tactics)items=[btn(fr?'✓ Placer':'✓ Place','target',true,!selectedPoint||!cap.move),btn(fr?'⚔ Combattre':'⚔ Fight','end-tactics',false,!cap.endTactics),btn(fr?'Troupes':'Army','tactic-units',false,!cap.endTactics),btn(fr?'Suivante':'Next','next-tactics',false,!cap.endTactics)];
   else if(m==='battle'){
-   const guidance=battleGuidance(effectiveBattle());
-   const hasCreatureSpell=!state.tacticsMode&&cap.combatReady&&(state.creatureCanCast===true||state.creatureSpellTargeting===true||(guidance.beneficialTargets&&guidance.beneficialTargets.length>0)||state.activeUnit?.canHealOrBuff===true);
-   const isCreatureTargeting=state.creatureSpellTargeting===true;
-   const isHeroTargeting=state.spellTargeting===true&&!isCreatureTargeting;
-   const magicCancel=isHeroTargeting;
-   const magicDisabled=!!spellRecovery.pending||isCreatureTargeting||(!magicCancel&&(!cap.magic||!state.heroHasSpellbook||state.heroCanCast===false));
-   const magicBtn=btn(spellRecovery.pending?(fr?'Annulation…':'Cancelling…'):magicCancel?(fr?'✕ Annuler le sort':'✕ Cancel spell'):(fr?'Magie':'Magic'),'battle-magic',false,magicDisabled);
-   if(hasCreatureSpell){
-    const moveLabel=state.spellTargeting?(fr?'✕ Annuler':'✕ Cancel'):target?.enemy?(target.canShootAt?(fr?'✓ Tirer':'✓ Shoot'):(fr?'✓ Attaquer':'✓ Attack')):(fr?'✓ Déplacer':'✓ Move');
-    const moveDisabled=state.spellTargeting?!!spellRecovery.pending:(blocked||!selectedPoint||!cap.move||!!spellRecovery.pending||(target&&!target.enemy)||(battleMove&&state.focus&&Math.hypot(selectedPoint.x-state.focus.x,selectedPoint.y-state.focus.y)<2));
-    const creatureSpellTitle=state.activeUnit?.commander?(fr?'✨ Sort commandant':'✨ Commander spell'):(fr?'✨ Sort créature':'✨ Creature spell');
-    const spellLabel=state.spellTargeting?(fr?'✓ Confirmer':'✓ Confirm'):creatureSpellTitle;
-    const spellDisabled=!!spellRecovery.pending||!cap.combatReady||(state.spellTargeting?!selectedPoint||!spellTargetCell(state,selectedPoint):state.creatureCanCast===false);
-    items=[btn(moveLabel,'battle-confirm-move',true,moveDisabled),btn(spellLabel,'battle-confirm-spell',true,spellDisabled),magicBtn,btn(fr?'◎ Cibles':'◎ Targets','targets',false,!cap.move||!!spellRecovery.pending),btn(state.canWait===false?(fr?'Déjà attendu':'Already waited'):(fr?'◷ Attendre':'◷ Wait'),'wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),btn(fr?'⛨ Défendre':'⛨ Defend','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending)];
-   }else{
-    const confirmDisabled=blocked||!selectedPoint||!cap.move||!!spellRecovery.pending||(target&&!target.enemy&&!state.spellTargeting)||(state.spellTargeting&&!spellTargetCell(state,selectedPoint))||(battleMove&&state.focus&&Math.hypot(selectedPoint.x-state.focus.x,selectedPoint.y-state.focus.y)<2);
-    items=[btn(state.spellTargeting?(fr?'✓ Confirmer':'✓ Confirm'):target?.enemy?(target.canShootAt?(fr?'✓ Confirmer le tir':'✓ Confirm shot'):(fr?'✓ Confirmer l’attaque':'✓ Confirm attack')):(fr?'✓ Confirmer':'✓ Confirm'),'target',true,confirmDisabled),magicBtn,btn(fr?'◎ Cibles':'◎ Targets','targets',false,!cap.move||!!spellRecovery.pending),btn(state.canWait===false?(fr?'Déjà attendu':'Already waited'):(fr?'◷ Attendre':'◷ Wait'),'wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),btn(fr?'⛨ Défendre':'⛨ Defend','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending)];
-   }
+   const action=contextualBattleAction(state,selectedPoint);
+   const magicCancel=state.spellTargeting===true;
+   const magicDisabled=!!spellRecovery.pending||(!magicCancel&&(!cap.magic||(!state.creatureCanCast&&(!state.heroHasSpellbook||state.heroCanCast===false))));
+   items=[btn(action.label,'battle-action',true,!cap.move||!!spellRecovery.pending||!action.enabled),
+    btn('Magic','battle-magic',false,magicDisabled),btn('◎ Targets','targets',false,!cap.move||!!spellRecovery.pending),
+    btn(state.canWait===false?'Already waited':'◷ Wait','wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),
+    btn('⛨ Defend','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending)].map(html=>html.replace('<button ','<button translate="no" '));
   }
   else if(m==='recruit')items=[btn(fr?'Recruter':'Recruit','confirm-recruit',true,!state.turn||recruitLoading||!(state.recruitAmount>0)),btn(fr?'Tout':'All','max-recruit',false,!(state.recruitMaximum>0)),btn('← Back','cancel-recruit')];
   else if(m==='campaign')items=[btn('Back','back')];
@@ -435,14 +425,14 @@ function mount(){
   const hasCreatureSpell=!state.tacticsMode&&cap.combatReady&&(state.creatureCanCast===true||state.creatureSpellTargeting===true||(guidance.beneficialTargets&&guidance.beneficialTargets.length>0)||state.activeUnit?.canHealOrBuff===true);
   const isCreatureTargeting=state.creatureSpellTargeting===true;
   const isHeroTargeting=state.spellTargeting===true&&!isCreatureTargeting;
-  const magicButton=panel.querySelector('[data-ui=battle-magic]');const magicCancel=isHeroTargeting;magicButton.textContent=spellRecovery.pending?'Cancelling…':magicCancel?'✕ Cancel spell':'Magie';magicButton.setAttribute('aria-label',magicCancel?'Cancel selected spell':'Magie');
+  const magicButton=panel.querySelector('[data-ui=battle-magic]');const magicCancel=state.spellTargeting===true;magicButton.textContent='Magic';magicButton.setAttribute('aria-label',state.spellTargeting?'Cancel selected spell':'Magic');
   const description=guidance.ready?`Créature active : ${guidance.actor.name} × ${guidance.actor.count}. ${guidance.cells.length} cases accessibles. ${shotHint}${meleeHint}${healHint}`.trim():state.spellTargeting?spellHint:'Champ de bataille';if(scene.getAttribute('aria-label')!==description)scene.setAttribute('aria-label',description);
   const creatureSpell=panel.querySelector('[data-ui=creature-spell]');
-  creatureSpell.hidden=!state.creatureCanCast||!cap.combatReady||state.spellTargeting;
+  creatureSpell.hidden=true;
   creatureSpell.textContent=state.activeUnit?.commander?(getLanguage()==='fr'?'Sort du commandant':'Commander spell'):(getLanguage()==='fr'?'Sort de la créature':'Creature spell');
   const precision=panel.querySelector('.battle-precision');precision.hidden=!selectedPoint;precision.classList.toggle('battle-preview-only',!battleMove);precision.querySelector('.battle-arrows').hidden=!battleMove;
   const list=panel.querySelector('.battle-unit-list');list.hidden=battleMove;
-  for(const button of panel.querySelectorAll('.battle-tools button')){button.setAttribute('aria-pressed',String(button.dataset.ui==='battle-'+(battleMove?'move':battleTab)));button.disabled=button.dataset.ui==='battle-magic'?!!spellRecovery.pending||isCreatureTargeting||(!magicCancel&&(!cap.magic||!state.heroHasSpellbook||state.heroCanCast===false)):button.dataset.ui==='battle-move'?!cap.move:button.dataset.ui==='battle-retreat'?!cap.combatReady||state.canRetreat===false:false;}for(const button of panel.querySelectorAll('[data-battle-step]')){const [dx,dy]=button.dataset.battleStep.split(',').map(Number),base=selectedPoint||state.focus||{x:300,y:300},candidate={x:base.x+dx,y:base.y+dy},snapped=battleHex(candidate);button.disabled=!state.canAct||Math.hypot(candidate.x-snapped.x,candidate.y-snapped.y)>1;}
+  for(const button of panel.querySelectorAll('.battle-tools button')){button.setAttribute('aria-pressed',String(button.dataset.ui==='battle-'+(battleMove?'move':battleTab)));button.disabled=button.dataset.ui==='battle-magic'?!!spellRecovery.pending||(!magicCancel&&(!cap.magic||(!state.creatureCanCast&&(!state.heroHasSpellbook||state.heroCanCast===false)))):button.dataset.ui==='battle-move'?!cap.move:button.dataset.ui==='battle-retreat'?!cap.combatReady||state.canRetreat===false:false;}for(const button of panel.querySelectorAll('[data-battle-step]')){const [dx,dy]=button.dataset.battleStep.split(',').map(Number),base=selectedPoint||state.focus||{x:300,y:300},candidate={x:base.x+dx,y:base.y+dy},snapped=battleHex(candidate);button.disabled=!state.canAct||Math.hypot(candidate.x-snapped.x,candidate.y-snapped.y)>1;}
   const html=(state.battleUnits||[]).filter(u=>(battleTab==='allies'?!u.enemy:u.enemy)&&(!state.spellTargeting||spellTargetCell(state,u))).map(u=>`<button class="battle-unit" data-battle-target="${u.x},${u.y}" ${!battleCapabilities(effectiveBattle()).move?'disabled':''} aria-pressed="${!!selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16}"><canvas width="90" height="90" data-unit-preview="${u.x},${u.y}" aria-hidden="true"></canvas><span>${escape(u.name)}<small>× ${u.count}</small>${battleTargetBadge(u,guidance)}</span></button>`).join('');if(list._sourceMarkup!==html){list._sourceMarkup=html;list.innerHTML=html;}
  }
  function battleTargetBadge(unit,guidance){
@@ -464,13 +454,18 @@ function mount(){
 
   if(ui==='battle-enemies'||ui==='battle-allies'){battleMove=false;battleTab=ui.split('-')[1];showBattleTargets();return;}if(ui==='battle-move'){battleMove=true;selectedPoint=battleHex(state.focus||selectedPoint||{x:300,y:300});focus=selectedPoint;pointer(selectedPoint,0);renderBattlePanel();controls();return;}
   if(ui==='battle-magic'){
-   if(state.creatureSpellTargeting)return;
    if(canCancelSpell(state)){cancelSpell();return;}
    if(!battleCapabilities(effectiveBattle()).magic)return;
+   if(state.creatureCanCast){
+    openSheet('battle-magic','Magic');
+    body.innerHTML=btn(state.creatureSpellName?'Cast '+state.creatureSpellName:'Cast ability','cast-creature-ability')+btn('Hero spells','cast-hero-spell',false,!state.heroHasSpellbook||state.heroCanCast===false);
+    return;
+   }
    if(!state.heroHasSpellbook||state.heroCanCast===false){notify(getLanguage()==='fr'?'Ton héros ne peut pas lancer de sort maintenant.':'Your hero cannot cast a spell right now.');return;}
    command(14);
    return;
   }
+  if(ui==='cast-creature-ability'||ui==='cast-hero-spell'){if(!battleCapabilities(effectiveBattle()).magic)return;closeSheet();command(14,ui==='cast-creature-ability'?1:0);return;}
   if(ui==='battle-auto'){if(canCancelSpell(state)){cancelSpell(44,1);return;}if(!battleTeamCapabilities(state).auto||pendingAuto!==null)return;autocombat.request(state,!state.autoCombat);return;}
   if(ui==='battle-retreat'||ui==='native-retreat'){if(canCancelSpell(state)&&state.canRetreat===true){cancelSpell(38);return;}if(!battleCapabilities(effectiveBattle()).combatReady||state.canRetreat===false)return;closeSheet();command(38);return;}
   if(['native-options','native-surrender'].includes(ui)){closeSheet();pointer({x:{'native-options':20,'native-retreat':125,'native-surrender':75}[ui],y:575},1);return;}
@@ -535,28 +530,11 @@ function mount(){
    return;
   }
   if(ui==='move'){command(2);selectedPoint=null;}
-  if(ui==='battle-confirm-move'){
-   if(state.spellTargeting){cancelSpell();return;}
-   if(selectedPoint&&!spellRecovery.pending&&battleCapabilities(effectiveBattle()).move){
-    const targetUnit=(state.battleUnits||[]).find(u=>Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16);
-    if(targetUnit&&!targetUnit.enemy)return;
-    director.confirm(state,selectedPoint);pointer(selectedPoint,1);selectedPoint=null;
-    return;
-   }
-  }
-  if(ui==='battle-confirm-spell'&&!spellRecovery.pending){
-   if(state.spellTargeting){
-    const cell=spellTargetCell(state,selectedPoint);
-    if(!cell)return;
-    director.confirm(state,cell);selectedPoint=null;controls();
-    command(14,3,cell.hex);
-   }else{
-    if(selectedPoint){
-     const cell=(state.battleCells||[]).find(c=>Math.hypot(c.x-selectedPoint.x,c.y-selectedPoint.y)<16);
-     if(cell)pendingCreatureSpellHex=cell.hex;
-    }
-    command(14,1);
-   }
+  if(ui==='battle-action'&&!spellRecovery.pending&&battleCapabilities(effectiveBattle()).move){
+   const action=contextualBattleAction(state,selectedPoint);
+   if(!action.enabled)return;
+   director.confirm(state,selectedPoint);selectedPoint=null;controls();
+   command(14,state.spellTargeting?3:4,action.hex);
    return;
   }
   if(ui==='target'&&selectedPoint&&!spellRecovery.pending&&battleCapabilities(effectiveBattle()).move){
@@ -587,7 +565,7 @@ function mount(){
    battleMove=false;
    if(!cell)notify('This spell cannot target that unit or hex.');
    renderBattlePanel();controls();return;
-  }if(state.tacticsMode&&unit){if(!unit.enemy)pointer({x:unit.x,y:unit.y},1);return;}selectedPoint=unit?{x:unit.x,y:unit.y}:battleHex(point);const cell=(state.battleCells||[]).find(c=>c.x===selectedPoint.x&&c.y===selectedPoint.y);if(unit?.enemy&&unit.canShootAt===false&&unit.canMeleeAt===false){selectedPoint=null;notify('Target out of range. Move closer before attacking.');return;}if(!unit&&cell&&!cell.reachable){selectedPoint=null;notify('Cette case est hors de portée ou bloquée.');return;}battleMove=!unit||unit.stackId===state.activeStack;pointer(selectedPoint,0);renderBattlePanel();controls();}
+  }if(state.tacticsMode&&unit){if(!unit.enemy)pointer({x:unit.x,y:unit.y},1);return;}selectedPoint=unit?{x:unit.x,y:unit.y}:battleHex(point);const cell=(state.battleCells||[]).find(c=>c.x===selectedPoint.x&&c.y===selectedPoint.y);if(unit?.enemy&&!cell?.actionLabel&&unit.canShootAt===false&&unit.canMeleeAt===false){selectedPoint=null;notify('Target out of range. Move closer before attacking.');return;}if(!unit&&cell&&!cell.reachable&&!cell.actionLabel){selectedPoint=null;notify('Cette case est hors de portée ou bloquée.');return;}battleMove=!unit||unit.stackId===state.activeStack;pointer(selectedPoint,0);renderBattlePanel();controls();}
  scene.addEventListener('pointerdown',event=>{event.preventDefault();if(verticalActive())paintPortraitBattle();if(state.mode==='battle'&&dualBattle.active&&state.battleCamera?.active)return;if(!sameTouchGeometry(scene,paintedGeometry))return;const local=localPointer(scene,event);if(!local)return;scene.setPointerCapture(event.pointerId);pointers.set(event.pointerId,{x:local.x,y:local.y});if(pointers.size===2){const [a,b]=[...pointers.values()];initialDistance=Math.hypot(a.x-b.x,a.y-b.y);gesture=null;return;}gesture={startX:local.x,startY:local.y,x:local.x,y:local.y,time:Date.now(),moved:false,geometry:touchGeometry(scene)};});
  scene.addEventListener('pointermove',event=>{if(!pointers.has(event.pointerId))return;if(!sameTouchGeometry(scene,paintedGeometry)){resetGestures();return;}const local=localPointer(scene,event);if(!local)return;pointers.set(event.pointerId,{x:local.x,y:local.y});if(pointers.size===2){if(state.mode==='battle')return;const [a,b]=[...pointers.values()],distance=Math.hypot(a.x-b.x,a.y-b.y);if(initialDistance>0)zoom=Math.max(.5,Math.min(4,zoom*distance/initialDistance));initialDistance=distance;return;}if(verticalActive()){if(gesture)gesture.moved ||= Math.hypot(local.x-gesture.startX,local.y-gesture.startY)>9;return;}if(!gesture||!layout)return;const dx=local.x-gesture.x,dy=local.y-gesture.y;gesture.moved ||= Math.hypot(local.x-gesture.startX,local.y-gesture.startY)>9;gesture.x=local.x;gesture.y=local.y;if(gesture.moved){if(state.mode==='map')(()=>{const d=mapDrag(dx,dy,layout.scale);mapPan.add(d.x,d.y);})();else if((state.mode!=='town'||!townWhole)&&(state.mode!=='battle'||(!state.battleCamera?.active&&(dualBattle.active||nativeBattleClose(scene.clientWidth,scene.clientHeight,battleView))))){focus={x:(focus?.x??layout.x+layout.w/2)-dx/layout.scale,y:(focus?.y??layout.y+layout.h/2)-dy/layout.scale};if(state.mode==='battle'){battleCamera={...focus};director.explore(focus);}}}});
  scene.addEventListener('pointerup',event=>{pointers.delete(event.pointerId);initialDistance=0;if(!gesture||!layout||!sameTouchGeometry(scene,paintedGeometry)||!sameTouchGeometry(scene,gesture.geometry)){resetGestures();return;}const local=localPointer(scene,event);if(!local)return;const g=gesture;gesture=null;if(g.moved)return;let point=verticalActive()&&verticalGeometry?(verticalGeometry.pick(local)||verticalGeometry.unproject(local)):scenePoint(local.x,local.y,layout);if(!point)return;if(Date.now()-g.time>550){if(state.mode==='map')selectedPoint=null;pointer(point,2);setTimeout(()=>pointer(point,3),1700);return;}if(state.mode==='battle'){if(!dualBattle.active)selectBattlePoint(point);}else if(state.mode==='map'){selectedPoint=point;pointer(point,4);}else{if(state.mode==='town'&&newTownBuilding?.rect){const r=newTownBuilding.rect;if(point.x>=r.x&&point.x<=r.x+r.w&&point.y>=r.y&&point.y<=r.y+r.h)clearNewBuilding();}pointer(point,1);}});

@@ -21,7 +21,7 @@ test('Mobile landscape battle controls move menu, stats and actions to the right
  assert.match(js,/<\/main><section class="battle-panel"/);
  assert.match(js,/const isCreatureTargeting=state\.creatureSpellTargeting===true;/);
  assert.match(js,/function renderBattlePanel\(\)\{\s*const fr=getLanguage\(\)==='fr';/);
- assert.match(js,/const magicDisabled=!!spellRecovery\.pending\|\|isCreatureTargeting/);
+ assert.match(js,/const magicDisabled=!!spellRecovery\.pending/);
  assert.match(js,/shown\?\.commander===true/);
  assert.match(js,/paintSelectedTile\(ctx,selectedPoint,layout,state/);
  assert.match(js,/const landscapeMap=matchMedia\('\(orientation:landscape\)'\);/);

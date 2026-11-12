@@ -1270,8 +1270,64 @@ bool BattleActionsController::canTargetSpellHex(const BattleHex & hex)
 
 	return std::any_of(possibleActions.begin(), possibleActions.end(), [this, &hex](const auto & action)
 	{
+		if(action.get() == PossiblePlayerBattleAction::RANDOM_GENIE_SPELL)
+		{
+			const auto target = getStackForHex(hex);
+			return target && target->alive() && target != owner.stacksController->getActiveStack() && owner.getBattle()->battleGetOwner(target) == owner.curInt->playerID;
+		}
 		return actionIsLegal(action, hex);
 	});
+}
+
+PossiblePlayerBattleAction BattleActionsController::mobileActionForHex(const BattleHex & hex)
+{
+	const auto active = owner.stacksController->getActiveStack();
+	if(!active || heroSpellcastingModeActive() || creatureSpellcastingModeActive())
+		return PossiblePlayerBattleAction::INVALID;
+	const auto target = getStackForHex(hex);
+	const bool friendly = target && owner.getBattle()->battleGetOwner(target) == owner.curInt->playerID;
+	const auto actions = getPossibleActionsForStack(active);
+	// Physical attacks stay available even for creatures with a default spell action.
+	for(const auto & action : actions)
+		if((action.get() == PossiblePlayerBattleAction::SHOOT || action.get() == PossiblePlayerBattleAction::ATTACK || action.get() == PossiblePlayerBattleAction::WALK_AND_ATTACK || action.get() == PossiblePlayerBattleAction::ATTACK_AND_RETURN) && !friendly && actionIsLegal(action, hex))
+			return action;
+	for(const auto & action : actions)
+	{
+		if(action.get() == PossiblePlayerBattleAction::RANDOM_GENIE_SPELL)
+		{
+			// Preview must not consume RNG. Legality is checked when the player confirms.
+			if(friendly && target != active && target->alive() && active->canCast()) return action;
+			continue;
+		}
+		if((action.spellcast() || action.get() == PossiblePlayerBattleAction::HEAL || action.get() == PossiblePlayerBattleAction::MOVE_STACK || action.get() == PossiblePlayerBattleAction::CATAPULT) && actionIsLegal(action, hex))
+			return action;
+	}
+	return PossiblePlayerBattleAction::INVALID;
+}
+
+std::string BattleActionsController::mobileActionLabel(const BattleHex & hex)
+{
+	const auto action = mobileActionForHex(hex);
+	if(action.spellcast()) return "Cast " + action.spell().toSpell()->getNameTranslated();
+	switch(action.get())
+	{
+		case PossiblePlayerBattleAction::RANDOM_GENIE_SPELL: return "Cast random spell";
+		case PossiblePlayerBattleAction::HEAL: return "Heal";
+		case PossiblePlayerBattleAction::SHOOT: return "Shoot";
+		case PossiblePlayerBattleAction::ATTACK:
+		case PossiblePlayerBattleAction::WALK_AND_ATTACK:
+		case PossiblePlayerBattleAction::ATTACK_AND_RETURN:
+		case PossiblePlayerBattleAction::CATAPULT: return "Attack";
+		case PossiblePlayerBattleAction::MOVE_STACK: return "Move";
+		default: return "";
+	}
+}
+
+void BattleActionsController::performMobileAction(const BattleHex & hex)
+{
+	const auto action = mobileActionForHex(hex);
+	if(action.get() != PossiblePlayerBattleAction::INVALID && actionIsLegal(action, hex))
+		actionRealize(action, hex);
 }
 
 bool BattleActionsController::currentActionSpellcasting(const BattleHex & hoveredHex)
