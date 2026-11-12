@@ -23,7 +23,7 @@ export function renderCommanderTree(tree,choices,{filter=null,onFilter=()=>{},on
  for(const skill of tree.skills){
   const group=el('div','tree-skill'),name=names[skill.id]??skill.name,b=button('',filter===skill.id,()=>onFilter(filter===skill.id?null:skill.id));b.dataset.treeSkill=skill.id;b.title=plainGameText(skill.description||'');
   const copy=el('span','tree-skill-copy');copy.append(el('strong','',name),el('small','',`${ranks[skill.rank]||skill.rank} · ${skill.rank}/${tree.maxRank}`));b.append(icon(skill.id),copy);
-  const progress=el('span','tree-ranks');progress.setAttribute('aria-hidden','true');for(let rank=1;rank<=tree.maxRank;rank++){const pip=el('i','');pip.dataset.filled=String(skill.rank>=rank);pip.dataset.master=String(rank===tree.masterRank);progress.append(pip);}b.append(progress);group.append(b);
+  const progress=el('span','tree-ranks');progress.setAttribute('role','meter');progress.setAttribute('aria-label',name);progress.setAttribute('aria-valuemin','0');progress.setAttribute('aria-valuemax',String(tree.maxRank));progress.setAttribute('aria-valuenow',String(skill.rank));for(let rank=1;rank<=tree.maxRank;rank++){const pip=el('i','');pip.dataset.filled=String(skill.rank>=rank);progress.append(pip);}b.append(progress);group.append(b);
   if(skill.selectable){const selected=tree.selectedSkill===skill.id,learn=button(selected?tr('✓ Selected','✓ Sélectionnée'):tr('Improve '+name,'Améliorer '+name),selected,()=>onSelect(skill.id));learn.dataset.treeChoose=skill.id;group.append(learn);}filters.append(group);
  }
  root.append(filters);

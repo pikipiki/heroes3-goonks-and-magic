@@ -31,6 +31,8 @@ struct ProjectileBase
 	virtual void show(Canvas & canvas) =  0;
 	virtual void tick(uint32_t msPassed) = 0;
 
+	Point mobileFromAnchor, mobileDestAnchor;
+	bool mobileAnchored = false;
 	Point from; // initial position on the screen
 	Point dest; // target position on the screen
 
@@ -119,7 +121,7 @@ public:
 	void emitStackProjectile(const CStack * stack);
 
 	/// creates (but not emits!) projectile and initializes it based on parameters
-	void createProjectile(const CStack * shooter, Point from, Point dest);
+	void createProjectile(const CStack * shooter, Point from, Point dest, const CStack * target = nullptr);
 	void createSpellProjectile(const CStack * shooter, Point from, Point dest, const CSpell * spell);
 	void createCatapultProjectile(const CStack * shooter, Point from, Point dest);
 };

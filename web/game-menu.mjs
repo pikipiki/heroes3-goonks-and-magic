@@ -1,3 +1,4 @@
+import {defaultBattleView,setDefaultBattleView} from './battle-preferences.mjs';
 import {isMobileLayout} from './mobile-render.mjs';
 import {createTurnNotifications} from './turn-notifications.mjs';
 import {mountHostedTurnNotifications, requestedHostedMatch} from './hosted-turn-notifications.mjs';
@@ -25,6 +26,7 @@ function mountGameMenu(){
   onlineTurn.className='desktop-online-turn';onlineTurn.hidden=true;onlineTurn.setAttribute('role','status');
   document.body.append(onlineTurn);
   const content=dialog.querySelector('.game-menu-body'),status=dialog.querySelector('.game-menu-status');
+  content.addEventListener('change',event=>{if(event.target.matches('[data-default-battle-view]'))setDefaultBattleView(event.target.value);});
   const command=(action,value=0,preview=0)=>window.Module?._vcmiMobileCommand?.(action,value,preview,0,0,0);
   let hostedAlerts, hostedRequested;
   let requestedMatch = requestedHostedMatch();
@@ -73,9 +75,10 @@ function mountGameMenu(){
     delete content.dataset.storage;
     if(tab==='settings'){
       if(content.dataset.view!=='settings'){
-        content.dataset.view='settings';content.innerHTML='<label class=language-setting>Language<select data-language><option value=en>English</option><option value=fr>Français</option></select></label><p>Native game text uses this language the next time you open the game.</p><section class="map-movement-settings"><h3>Déplacements sur la carte</h3><label class="map-speed-label">Vitesse de marche des héros<select data-map-speed aria-label="Vitesse de marche des héros">'+MAP_SPEEDS.map(speed=>'<option value="'+speed.value+'">'+speed.label+'</option>').join('')+'</select></label><p>La vitesse choisie s’applique à tes héros et à tes adversaires.</p><label><input type="checkbox" data-hide-enemy aria-describedby="enemy-movement-help"> Masquer les déplacements ennemis</label><p id="enemy-movement-help"></p><p class="map-settings-health" role="status"></p></section>'+'<h3>Musique et effets sonores</h3><p>Ce réglage est conservé sur cet appareil.</p><button class="sound-toggle primary" data-menu="sound" role="switch" aria-label="Son"></button><p class="audio-health" role="status"></p><h3 data-turn-heading></h3><button data-menu="turn-notifications" role="switch"></button><p data-turn-help></p>';
+        content.dataset.view='settings';content.innerHTML='<label class=language-setting>Language<select data-language><option value=en>English</option><option value=fr>Français</option></select></label><p>Native game text uses this language the next time you open the game.</p><section class="map-movement-settings"><h3>Déplacements sur la carte</h3><label class="map-speed-label">Vitesse de marche des héros<select data-map-speed aria-label="Vitesse de marche des héros">'+MAP_SPEEDS.map(speed=>'<option value="'+speed.value+'">'+speed.label+'</option>').join('')+'</select></label><p>La vitesse choisie s’applique à tes héros et à tes adversaires.</p><label><input type="checkbox" data-hide-enemy aria-describedby="enemy-movement-help"> Masquer les déplacements ennemis</label><p id="enemy-movement-help"></p><p class="map-settings-health" role="status"></p></section>'+'<section class="battle-view-setting"><h3>Vue de combat par défaut</h3><label>Champ de bataille<select data-default-battle-view><option value=classic>Vue classique</option><option value=vertical>Vue verticale</option></select></label><p>Pour les prochains combats en portrait. Réglage conservé sur cet appareil.</p></section><h3>Musique et effets sonores</h3><p>Ce réglage est conservé sur cet appareil.</p><button class="sound-toggle primary" data-menu="sound" role="switch" aria-label="Son"></button><p class="audio-health" role="status"></p><h3 data-turn-heading></h3><button data-menu="turn-notifications" role="switch"></button><p data-turn-help></p>';
       }
       content.querySelector('[data-language]').value=getLanguage();
+      content.querySelector('[data-default-battle-view]').value=defaultBattleView();
       const prefs=movement.current,speed=content.querySelector('[data-map-speed]'),hide=content.querySelector('[data-hide-enemy]');speed.disabled=hide.disabled=!prefs.ready;if(document.activeElement!==speed)speed.value=String(prefs.moveTime);hide.checked=prefs.hideEnemyMoves;
       const help=content.querySelector('#enemy-movement-help');
       const message=prefs.hideEnemyMoves?'Les adversaires jouent normalement, sans animation de marche ni suivi de caméra.':prefs.moveTime===0?'La caméra suit les héros ennemis visibles. La vitesse instantanée saute l’animation de marche.':'La caméra suit les héros ennemis pendant leur tour, dans les zones visibles de la carte.';

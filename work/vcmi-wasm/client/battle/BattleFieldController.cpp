@@ -781,7 +781,7 @@ void BattleFieldController::renderMobilePlane(Canvas & canvas, bool effects)
   owner.obstacleController->showAbsoluteObstacles(clipped);
  }else clipped.setMobileUprightImages(2);
  BattleRenderer renderer(owner);renderer.executeMobilePlane(clipped,effects);
- clipped.setMobileUprightImages(0);
+ clipped.setMobileUprightImages(effects?4:0);
  if(effects)owner.projectilesController->render(clipped);
 }
 void BattleFieldController::renderMobileBackground(Canvas & canvas)

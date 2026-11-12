@@ -56,9 +56,16 @@ export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas
  }
  if(planes.effects)plane(planes.effects);
  // The same target categories as the classic field, above sprites and effects.
- const marker=(unit,kind,color)=>{const p=project(unit),r=Math.max(7,10*scale),x=p.x+18*scale,y=p.y-8*scale;ctx.save();ctx.beginPath();ctx.arc(x,y,r+2,0,Math.PI*2);ctx.fillStyle='#101418e8';ctx.fill();ctx.strokeStyle=color;ctx.lineWidth=2;ctx.stroke();ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();if(kind==='heal'){ctx.moveTo(x-r*.6,y);ctx.lineTo(x+r*.6,y);ctx.moveTo(x,y-r*.6);ctx.lineTo(x,y+r*.6);}else if(kind==='shot'){ctx.arc(x,y,r*.45,0,Math.PI*2);ctx.moveTo(x-r,y);ctx.lineTo(x+r,y);ctx.moveTo(x,y-r);ctx.lineTo(x,y+r);}else{ctx.moveTo(x-r*.5,y+r*.5);ctx.lineTo(x+r*.5,y-r*.5);ctx.moveTo(x-r*.5,y-r*.5);ctx.lineTo(x+r*.5,y+r*.5);}ctx.stroke();ctx.restore();};
+ geometry.markers=[];
+ const marker=(unit,kind,color)=>{const p=project(unit),r=Math.max(7,10*scale),x=p.x+18*scale,y=p.y-8*scale;geometry.markers.push({unit,x,y,r:Math.max(14,r+4)});ctx.save();ctx.beginPath();ctx.arc(x,y,r+2,0,Math.PI*2);ctx.fillStyle='#101418e8';ctx.fill();ctx.strokeStyle=color;ctx.lineWidth=2;ctx.stroke();ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();if(kind==='heal'){ctx.moveTo(x-r*.6,y);ctx.lineTo(x+r*.6,y);ctx.moveTo(x,y-r*.6);ctx.lineTo(x,y+r*.6);}else if(kind==='shot'){ctx.arc(x,y,r*.45,0,Math.PI*2);ctx.moveTo(x-r,y);ctx.lineTo(x+r,y);ctx.moveTo(x,y-r);ctx.lineTo(x,y+r);}else{ctx.moveTo(x-r*.5,y+r*.5);ctx.lineTo(x+r*.5,y-r*.5);ctx.moveTo(x-r*.5,y-r*.5);ctx.lineTo(x+r*.5,y+r*.5);}ctx.stroke();ctx.restore();};
  for(const unit of guidance.shotTargets)marker(unit,'shot','#b2f5ff');for(const unit of guidance.meleeTargets)marker(unit,'melee','#ff6969');for(const unit of guidance.beneficialTargets)marker(unit,'heal','#b5f07a');for(const unit of guidance.spellTargets)marker(unit,unit.enemy?'shot':'heal','#b3a1ff');
  paintSiegeTargets(ctx,state,project);
- geometry.pick=point=>geometry.units.slice().reverse().find(r=>point.x>=r.left&&point.x<=r.right&&point.y>=r.top&&point.y<=r.bottom)?.unit;
+ geometry.pick=point=>pickVerticalUnit(point,geometry.units,geometry.markers);
  ctx.restore();return geometry;
+}
+
+export function pickVerticalUnit(point,units,markers=[]){
+ const marker=markers.map(m=>({...m,d:Math.hypot(point.x-m.x,point.y-m.y)})).filter(m=>m.d<=m.r).sort((a,b)=>a.d-b.d)[0];
+ if(marker)return marker.unit;
+ return units.slice().reverse().find(r=>point.x>=r.left&&point.x<=r.right&&point.y>=r.top&&point.y<=r.bottom)?.unit;
 }

@@ -95,6 +95,9 @@
 #include "../lib/GameConstants.h"
 #include "../lib/texts/CGeneralTextHandler.h"
 #include "../lib/mapping/CMapInfo.h"
+#include "../lib/mapping/CMapService.h"
+#include "../lib/mapping/CMap.h"
+#include "../lib/TerrainHandler.h"
 #include "../lib/mapping/GoonkScenario.h"
 #include "../lib/pathfinder/CGPathNode.h"
 
@@ -668,7 +671,7 @@ static void publishMobileScenarios(JsonNode & state, int roomLimit = 0, const CM
   if(roomLimit&&(map.humanSeats<roomLimit||map.battleOnly))continue;
   JsonNode entry;
   entry["index"].Integer()=i;
-  entry["name"].String()=map.name;
+  entry["name"].String()=map.name;entry["path"].String()=map.file;
   entry["width"].Integer()=map.width;
   entry["height"].Integer()=map.height;
   entry["players"].Integer()=map.players;
@@ -747,10 +750,9 @@ void publishMobilePreviewAtlas()
   memcpy(packet,geometry.data(),prefix);memcpy(packet+prefix,rgba->pixels,bytes);previewAtlasPending.store(true);
   MAIN_THREAD_ASYNC_EM_ASM({const ptr=$0;const w=$1;const h=$2;const n=$3;try{
    const entries=Array.from({length:n},(_,i)=>{const at=ptr/4+i*3;return [HEAPU32[at],{x:0,y:i*256,w:HEAP32[at+1],h:HEAP32[at+2]}];});
-   const canvas=window.goonkCreaturePreviewAtlas||(window.goonkCreaturePreviewAtlas=document.createElement('canvas'));
-   if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}
-   canvas.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+n*12,ptr+n*12+w*h*4)),w,h),0,0);
-   window.goonkCreaturePreviewRects=new Map(entries);window.goonkCreaturePreviewVersion=(window.goonkCreaturePreviewVersion||0)+1;
+   const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
+   canvas.getContext('2d',{willReadFrequently:true,colorSpace:'srgb'}).putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+n*12,ptr+n*12+w*h*4)),w,h),0,0);
+   window.goonkCreaturePreviewAtlas=canvas;window.goonkCreaturePreviewRects=new Map(entries);window.goonkCreaturePreviewVersion=(window.goonkCreaturePreviewVersion||0)+1;
   }finally{_free(ptr);Module._vcmiMobilePreviewAtlasAck();}},packet,width,height,pictures.size());
  }
  SDL_FreeSurface(rgba);
@@ -1408,6 +1410,25 @@ bool requestMobileTownHall(int townId)
  mobileTownHall=townId;
  lastPublished=0;
  return true;
+}
+extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePreviewMap(const char * requested)
+{
+ if(!ENGINE||!requested)return;
+ const std::string name(requested);
+ ENGINE->dispatchMainThread([name](){
+  try{
+   CMapService service;auto map=service.loadMap(ResourcePath(name,EResType::MAP),nullptr);
+   const int size=128,levels=map->levels(),bytes=size*size*4;
+   auto pixels=static_cast<uint8_t *>(malloc(bytes*levels));auto key=strdup(name.c_str());
+   if(!pixels||!key){free(pixels);free(key);return;}
+   for(int level=0;level<levels;++level)for(int y=0;y<size;++y)for(int x=0;x<size;++x){
+    const auto & tile=map->getTile(int3(x*map->width/size,y*map->height/size,level));
+    const auto color=tile.blocked()&&!tile.visitable()?tile.getTerrain()->minimapBlocked:tile.getTerrain()->minimapUnblocked;
+    auto at=pixels+level*bytes+(y*size+x)*4;at[0]=color.r;at[1]=color.g;at[2]=color.b;at[3]=255;
+   }
+   MAIN_THREAD_ASYNC_EM_ASM({const images=[];for(let z=0;z<$2;z++){const c=document.createElement('canvas');c.width=c.height=$1;const bytes=$1*$1*4;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice($0+z*bytes,$0+(z+1)*bytes)),$1,$1),0,0);images.push(c.toDataURL());}const key=UTF8ToString($3);_free($0);_free($3);window.dispatchEvent(new CustomEvent('goonk-map-preview',{detail:{key,images}}));},pixels,size,levels,key);
+  }catch(const std::exception &){auto key=strdup(name.c_str());if(key)MAIN_THREAD_ASYNC_EM_ASM({const key=UTF8ToString($0);_free($0);window.dispatchEvent(new CustomEvent('goonk-map-preview',{detail:{key,images:[]}}));},key);}
+ });
 }
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileEnable(int enabled){if(ENGINE)ENGINE->dispatchMainThread([enabled](){mobileEnabled=enabled==1;stateEnabled=enabled!=0;lastPublished=0;});}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePointer(int x,int y,int action)

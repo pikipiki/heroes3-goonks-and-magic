@@ -12,6 +12,7 @@
 
 #include "BattleInterface.h"
 #include "BattleSiegeController.h"
+#include "BattleFieldController.h"
 #include "BattleStacksController.h"
 #include "CreatureAnimation.h"
 
@@ -47,14 +48,17 @@ static double calculateCatapultParabolaY(const Point & from, const Point & dest,
 
 void ProjectileMissile::show(Canvas & canvas)
 {
+ const auto upright=[](const Point & p,const Point & anchor){return Point(anchor.x+anchor.y-p.y,anchor.y+p.x-anchor.x);};
+ const bool vertical=canvas.hasMobileUprightImages()&&mobileAnchored;
+ const Point start=vertical?upright(from,mobileFromAnchor):from,end=vertical?upright(dest,mobileDestAnchor):dest;
 	size_t group = reverse ? 1 : 0;
 	auto image = animation->getImage(frameNum, group, true);
 
 	if(image)
 	{
 		Point pos {
-			vstd::lerp(from.x, dest.x, progress) - image->width() / 2,
-			vstd::lerp(from.y, dest.y, progress) - image->height() / 2,
+			vstd::lerp(start.x, end.x, progress) - image->width() / 2,
+			vstd::lerp(start.y, end.y, progress) - image->height() / 2,
 		};
 
 		canvas.draw(image, pos);
@@ -104,40 +108,46 @@ void ProjectileCatapult::show(Canvas & canvas)
 
 void ProjectileRay::show(Canvas & canvas)
 {
-	Point curr {
-		vstd::lerp(from.x, dest.x, progress),
-		vstd::lerp(from.y, dest.y, progress),
+	const auto upright=[](const Point & p,const Point & anchor){return Point(anchor.x+anchor.y-p.y,anchor.y+p.x-anchor.x);};
+ const Point start=canvas.hasMobileUprightImages()&&mobileAnchored?upright(from,mobileFromAnchor):from;
+ const Point end=canvas.hasMobileUprightImages()&&mobileAnchored?upright(dest,mobileDestAnchor):dest;
+ // Hold the full beam for the final quarter, so a frame reaches the impact point.
+ const float extent=std::clamp(progress/0.75f,0.0f,1.0f);
+ const size_t strokeCount=canvas.hasMobileUprightImages()?std::max<size_t>(3,rayConfig.size()):rayConfig.size();
+ Point curr {
+		vstd::lerp(start.x, end.x, extent),
+		vstd::lerp(start.y, end.y, extent),
 	};
 
-	Point length = curr - from;
+	Point length = curr - start;
 
 	//select axis to draw ray on, we want angle to be less than 45 degrees so individual sub-rays won't overlap each other
 
 	if (std::abs(length.x) > std::abs(length.y)) // draw in horizontal axis
 	{
-		int y1 =  from.y - rayConfig.size() / 2;
-		int y2 =  curr.y - rayConfig.size() / 2;
+		int y1 =  start.y - strokeCount / 2;
+		int y2 =  curr.y - strokeCount / 2;
 
-		int x1 = from.x;
+		int x1 = start.x;
 		int x2 = curr.x;
 
-		for (size_t i = 0; i < rayConfig.size(); ++i)
+		for (size_t i = 0; i < strokeCount; ++i)
 		{
-			auto ray = rayConfig[i];
+			auto ray = rayConfig[std::min(i,rayConfig.size()-1)];
 			canvas.drawLine(Point(x1, y1 + i), Point(x2, y2+i), ray.start, ray.end);
 		}
 	}
 	else // draw in vertical axis
 	{
-		int x1 = from.x - rayConfig.size() / 2;
-		int x2 = curr.x - rayConfig.size() / 2;
+		int x1 = start.x - strokeCount / 2;
+		int x2 = curr.x - strokeCount / 2;
 
-		int y1 = from.y;
+		int y1 = start.y;
 		int y2 = curr.y;
 
-		for (size_t i = 0; i < rayConfig.size(); ++i)
+		for (size_t i = 0; i < strokeCount; ++i)
 		{
-			auto ray = rayConfig[i];
+			auto ray = rayConfig[std::min(i,rayConfig.size()-1)];
 
 			canvas.drawLine(Point(x1 + i, y1), Point(x2 + i, y2), ray.start, ray.end);
 		}
@@ -319,7 +329,7 @@ void BattleProjectileController::createCatapultProjectile(const CStack * shooter
 	projectiles.push_back(std::shared_ptr<ProjectileBase>(catapultProjectile));
 }
 
-void BattleProjectileController::createProjectile(const CStack * shooter, Point from, Point dest)
+void BattleProjectileController::createProjectile(const CStack * shooter, Point from, Point dest, const CStack * target)
 {
 	const CCreature & shooterInfo = getShooter(shooter);
 
@@ -336,9 +346,9 @@ void BattleProjectileController::createProjectile(const CStack * shooter, Point 
 
 		rayProjectile->rayConfig = shooterInfo.animation.projectileRay;
 		rayProjectile->speed     = computeProjectileFlightTime(from, dest, AnimationControls::getRayProjectileSpeed());
-		const float minimumFlightTime = shooterInfo.animation.minimumRayFlightTime;
+		const float minimumFlightTime = std::max(0.35f, shooterInfo.animation.minimumRayFlightTime);
 		if(minimumFlightTime > 0)
-			rayProjectile->speed = std::min(rayProjectile->speed, AnimationControls::getAnimationSpeedFactor() / minimumFlightTime);
+			rayProjectile->speed = std::min(rayProjectile->speed, 1.0f / minimumFlightTime);
 	}
 	else if (stackUsesMissileProjectile(shooter))
 	{
@@ -352,6 +362,11 @@ void BattleProjectileController::createProjectile(const CStack * shooter, Point 
 	}
 
 
+ projectile->mobileAnchored=shooter->getPosition().isValid()&&target&&target->getPosition().isValid();
+ if(projectile->mobileAnchored){
+  projectile->mobileFromAnchor=owner.fieldController->hexPositionAbsolute(shooter->getPosition()).center();
+  projectile->mobileDestAnchor=owner.fieldController->hexPositionAbsolute(target->getPosition()).center();
+ }
 	projectile->from      = from;
 	projectile->dest      = dest;
 	projectile->shooterID = shooter->unitId();

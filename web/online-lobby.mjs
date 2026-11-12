@@ -1,3 +1,4 @@
+import {showScenarioPreview} from './scenario-preview.mjs';
 import {isVisibleScenario,scenarioTitle} from './scenario-title.mjs';
 import {getLanguage} from './i18n.mjs';
 import {scenarioDetails} from './scenario-details.mjs';
@@ -81,6 +82,7 @@ export function createOnlineLobby(root, command) {
     })).join('');
     if (markup !== list.dataset.markup) {
       write(list, markup);
+      for(const [index,row]of [...list.children].entries()){const map=scenarios[index];if(map?.index===state.onlineScenarioIndex){const image=document.createElement('img');image.width=image.height=80;image.alt='';row.prepend(image);showScenarioPreview(image,map.path);}}
       scenarioFilters.update([...list.children].map((row, index) => ({row, map: scenarios[index]})), {french: fr});
     }
     body.querySelector('[data-online-scenario-loading]').hidden = !state.mapsLoading;

@@ -1,3 +1,4 @@
+import {showScenarioPreview} from './scenario-preview.mjs';
 import {requestHostedMatch} from './hosted-match-request.mjs';
 import {mountHostedCastles} from './hosted-castles.mjs';
 import {createHostedCodeCopy} from './hosted-code-copy.mjs';
@@ -132,6 +133,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
       row.dataset.nativeClick = '';
       row.setAttribute('aria-pressed', String(item === selected));
       row.innerHTML = '<img src="./web/h3-theme/adventure-map.svg" alt=""><span class="lobby-choice-copy"><span class="lobby-choice-name"></span><small class="lobby-map-meta"></small></span><span class="lobby-choice-check" aria-hidden="true"></span>';
+      if(item===selected)showScenarioPreview(row.querySelector('img'),item.id);
       const data = metadata(item);
       const details = row.querySelector('.lobby-map-meta');
       row.querySelector('.lobby-choice-name').textContent = scenarioTitle(item.name);
@@ -178,6 +180,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
     if (picker.open) renderPicker();
   }
   function showCastles() {
+    showScenarioPreview(map.querySelector('img'),selected?.id);
     mapName.textContent = selected ? scenarioTitle(selected.name) : t('Choose a map', 'Choisir une carte');
     if (!selected) mapDetails.textContent = '';
     castles.update(selected);

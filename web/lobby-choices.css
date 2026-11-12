@@ -145,3 +145,5 @@
 #game-menu .hosted-castle-heading>small{justify-self:end;font-size:14px}
 #game-menu .hosted-role-toggle button{min-height:44px;font-size:14px;padding:5px 7px}
 #game-menu .hosted-castle-list .lobby-choice-card{align-self:stretch;height:100%;box-sizing:border-box}
+
+:is(#game-menu,#mobile-app) img.scenario-terrain-preview[data-preview-ready=true]{object-fit:contain;background:#0b1117;image-rendering:pixelated;aspect-ratio:1;border:1px solid #bca26a;max-width:100%}

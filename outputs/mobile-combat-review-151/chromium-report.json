@@ -1,0 +1,40 @@
+{
+  "browser": "chromium",
+  "actions": [
+    {
+      "unit": "goonk:maillemailleSolar",
+      "frames": 72,
+      "pixels": 446,
+      "hits": 33
+    },
+    {
+      "unit": "goonk:zinzeclairExalted",
+      "frames": 73,
+      "pixels": 1156,
+      "hits": 1144
+    },
+    {
+      "unit": "goonk:glouglouExalted",
+      "frames": 64,
+      "pixels": 1370,
+      "hits": 82
+    },
+    {
+      "unit": "goonk:bobopeExalted",
+      "frames": 79,
+      "pixels": 98,
+      "hits": 0
+    },
+    {
+      "unit": "goonk:bubuExalted",
+      "frames": 66,
+      "pixels": 3354,
+      "hits": 35
+    }
+  ],
+  "rayHits": {
+    "goonk:maillemailleSolar": 33,
+    "goonk:glouglouExalted": 82,
+    "goonk:bubuExalted": 35
+  }
+}

@@ -764,7 +764,7 @@ ShootingAnimation::ShootingAnimation(BattleInterface & owner, const CStack * att
 
 void ShootingAnimation::createProjectile(const Point & from, const Point & dest) const
 {
-	owner.projectilesController->createProjectile(attackingStack, from, dest);
+	owner.projectilesController->createProjectile(attackingStack, from, dest, defendingStack);
 }
 
 uint32_t ShootingAnimation::getAttackClimaxFrame() const

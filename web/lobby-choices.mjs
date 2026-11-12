@@ -1,3 +1,4 @@
+import {showScenarioPreview} from './scenario-preview.mjs';
 import {getLanguage} from './i18n.mjs';
 import {factionArt, factionArtPaths} from './faction-art.mjs';
 import {scenarioDetails} from './scenario-details.mjs';
@@ -103,6 +104,7 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
    const copy=isFaction?name:`<span class="lobby-choice-copy">${name}${details}</span>`;
    return `<button type="button" data-choice-value="${esc(o.value)}" aria-pressed="${o.value===s.value}" ${o.disabled?'disabled':''}>${isFaction?art(s,o.value):'<img src="./web/h3-theme/adventure-map.svg" alt="">'}${copy}<span class="lobby-choice-check" aria-hidden="true">${o.value===s.value?'✓':''}</span></button>`;
   }).join('');
+  for(const image of dialog.querySelectorAll('[aria-pressed=true] img'))showScenarioPreview(image,maps.get(image.closest('[data-choice-value]').dataset.choiceValue)?.path);
   filters.update([...dialog.querySelectorAll('[data-choice-value]')].map(row=>({row,map:maps.get(row.dataset.choiceValue)})),{french:fr,enabled:isMap});
   if(opening){
    await Promise.all([...dialog.querySelectorAll('.lobby-faction-art img')].map(image=>image.decode().catch(()=>{image.hidden=true;})));
@@ -128,6 +130,7 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
     const busy=s.dataset.updating==='true',load=state.mode==='load',label=state.customMap?state.selectedMap:s.selectedOptions[0]?.textContent;
     const map=state.maps?.find(item=>String(item.index)===s.value);
     const selected=state.customMap?state.customMapOptions:map;
+    showScenarioPreview(c.querySelector('.lobby-map-emblem'),map?.path);
     const fr=getLanguage()==='fr';
     const summary=selected?scenarioDetails(state.customMap?{...selected,width:selected.size,height:selected.size}:soloMapMetadata(selected,state),fr):'';
     for(const [selector,text] of [['h3',title(s)],['small',load?'Saved adventure':summary||'Selected scenario'],['strong',busy?(label?'Selecting scenario…':'Loading scenarios…'):label||'Choose a scenario'],['em',busy?'Please wait…':load?'Choose save ›':'Browse maps ›']]){

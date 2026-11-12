@@ -1,3 +1,4 @@
+import {defaultBattleView} from './battle-preferences.mjs';
 import {siegeTargets,paintSiegeTargets} from './battle-siege.mjs';
 import {createBattleResult} from './battle-result.mjs';
 import {contextualBattleAction} from './battle-action.mjs';
@@ -289,7 +290,7 @@ function mount(){
   }
   // Keep the army sheet on screen until the creature presentation is ready.
   if(change&&state.mode==='creature'&&sheetKind==='army')detailReturn='army';
-  if(change){battleTargetPicker=false;delete root.dataset.targetPicker;if(!['lobby','load'].includes(state.mode))requestedMapName=null;mode=state.mode;if(mode==='battle'){if(!battleSession){resetVerticalBattle();portraitVertical=false;window.goonkBattleSpriteBounds=[];window.goonkBattlePlanes=null;command(15);battleCamera=null;battleView='whole';}battleSession=true;}if(mode==='town')townWhole=true;selectedPoint=null;zoom=1;focus=null;if(sheetKind)closeSheet();}
+  if(change){battleTargetPicker=false;delete root.dataset.targetPicker;if(!['lobby','load'].includes(state.mode))requestedMapName=null;mode=state.mode;if(mode==='battle'){if(!battleSession){resetVerticalBattle();portraitVertical=defaultBattleView()==='vertical';window.goonkBattleSpriteBounds=[];window.goonkBattlePlanes=null;command(15);battleCamera=null;battleView='whole';}battleSession=true;}if(mode==='town')townWhole=true;selectedPoint=null;zoom=1;focus=null;if(sheetKind)closeSheet();}
   if(state.mode==='battle'&&(change||changedActor||changedPhase)){selectedPoint=null;battleMove=false;const actor=battleGuidance(state).actor;if(actor){focus=state.focus||actor;battleCamera={...focus};}}
   battleResult.update(state);dialogPresentation.update(state);
   tavern.update(state);townServices.update(state);

@@ -1,0 +1,23 @@
+{
+  "version": "0.4.151",
+  "unit_tests": {
+    "passed": 511,
+    "failed": 0,
+    "skipped": 22
+  },
+  "wasm": "ninja -j32 html5 passed",
+  "browsers": [
+    "Chromium",
+    "WebKit"
+  ],
+  "checks": [
+    "Zero-rank commander meters have zero filled cells and no Master highlight",
+    "Twenty immutable commander preview checks with native engine",
+    "Visible reticles select enemies hidden by overlapping allied sprites",
+    "Native battle contains all seven maximum-evolution Goonk lineages",
+    "Ray-color pixels span the field and intersect the upright Titan for all three ray shooters",
+    "Settings chooses and persists the next portrait battle view",
+    "Selected A Bow of Hope thumbnail matches the native full terrain preview"
+  ],
+  "physical_iphone": "Not available; automated WebKit and Chromium checks only"
+}
