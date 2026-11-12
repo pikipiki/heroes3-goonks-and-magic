@@ -1,0 +1,17 @@
+{
+  "browser": "chromium",
+  "targetTeam": "enemy",
+  "scope": "Unmodified original spells, native obstacles/teleport/clone/summons",
+  "cases": [
+    {
+      "source": "core",
+      "spell": "earthquake",
+      "key": "visual46",
+      "targetType": "NO_TARGET",
+      "frames": 18,
+      "pixels": 6229,
+      "visualType": "timing/projectile",
+      "status": "passed"
+    }
+  ]
+}

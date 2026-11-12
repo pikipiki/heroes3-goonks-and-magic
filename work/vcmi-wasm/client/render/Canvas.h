@@ -39,7 +39,7 @@ class Canvas
 	/// Current rendering area, all rendering operations will be moved into selected area
 	Rect renderArea;
 	int mobileUprightImages = 0;
-	void drawMobileUpright(const IImage & image, const Point & pos);
+	void drawMobileUpright(const IImage & image, const Point & pos, const Point * anchor = nullptr, const Rect * region = nullptr);
 
 	/// constructs canvas using existing surface. Caller maintains ownership on the surface
 	explicit Canvas(SDL_Surface * surface, CanvasScalingPolicy scalingPolicy);
@@ -74,6 +74,8 @@ public:
 	// Counter-rotate sprite artwork before the portrait battlefield projection.
 	bool hasMobileUprightImages() const { return mobileUprightImages != 0; }
 	void setMobileUprightImages(int anchor) { mobileUprightImages = anchor; }
+	void drawMobileUprightAt(const std::shared_ptr<IImage> & image, const Point & pos, const Point & anchor);
+	void drawMobileUprightFootprint(const std::shared_ptr<IImage> & image, const Point & pos, std::vector<Point> anchors);
 
 	/// applies grayscale filter onto current image
 	void applyGrayscale();

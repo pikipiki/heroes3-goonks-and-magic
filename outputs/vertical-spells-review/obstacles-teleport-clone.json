@@ -1,0 +1,117 @@
+{
+  "browser": "chromium",
+  "targetTeam": "enemy",
+  "scope": "Unmodified original spells, native obstacles/teleport/clone/summons",
+  "cases": [
+    {
+      "source": "core",
+      "spell": "quicksand",
+      "key": "visual40",
+      "targetType": "NO_TARGET",
+      "frames": 16,
+      "pixels": 154,
+      "visualType": "timing/projectile",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "landMine",
+      "key": "visual42",
+      "targetType": "NO_TARGET",
+      "frames": 210,
+      "pixels": 180,
+      "visualType": "timing/projectile",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "forceField",
+      "key": "visual43",
+      "targetType": "LOCATION",
+      "target": {
+        "hex": 35,
+        "kind": 0,
+        "reachable": false,
+        "spellTarget": true,
+        "x": 102,
+        "y": 196
+      },
+      "frames": 4,
+      "pixels": 589,
+      "visualType": "timing/projectile",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "removeObstacle",
+      "key": "visual53",
+      "targetType": "OBSTACLE",
+      "target": {
+        "hex": 1,
+        "kind": 2,
+        "reachable": false,
+        "spellTarget": true,
+        "x": 102,
+        "y": 112
+      },
+      "frames": 6,
+      "pixels": 590,
+      "visualType": "timing/projectile",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "fireWall",
+      "key": "visual45",
+      "targetType": "LOCATION",
+      "target": {
+        "hex": 35,
+        "kind": 0,
+        "reachable": false,
+        "spellTarget": true,
+        "x": 102,
+        "y": 196
+      },
+      "frames": 10,
+      "pixels": 530,
+      "visualType": "timing/projectile",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "teleport",
+      "key": "visual52",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 2,
+        "kind": 0,
+        "reachable": false,
+        "spellTarget": true,
+        "x": 146,
+        "y": 112
+      },
+      "frames": 0,
+      "pixels": 0,
+      "visualType": "timing/projectile",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "clone",
+      "key": "visual54",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 2,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 146,
+        "y": 112
+      },
+      "frames": 0,
+      "pixels": 0,
+      "visualType": "timing/projectile",
+      "status": "passed"
+    }
+  ]
+}

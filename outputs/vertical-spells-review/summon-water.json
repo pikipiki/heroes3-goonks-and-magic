@@ -1,0 +1,17 @@
+{
+  "browser": "chromium",
+  "targetTeam": "enemy",
+  "scope": "Unmodified original spells, native obstacles/teleport/clone/summons",
+  "cases": [
+    {
+      "source": "core",
+      "spell": "waterElemental",
+      "key": "visual57",
+      "targetType": "NO_TARGET",
+      "frames": 0,
+      "pixels": 0,
+      "visualType": "timing/projectile",
+      "status": "passed"
+    }
+  ]
+}

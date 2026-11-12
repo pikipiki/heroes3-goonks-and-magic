@@ -46,6 +46,10 @@ struct BattleEffect
 
 	AnimType type;
 	bool bottomAligned = false;
+	bool screenFill = false;
+	bool hasMobileAnchor = false;
+	Point mobileAnchor;
+	std::vector<Point> mobileAnchors;
 	Point pos; //position on the screen
 	float currentFrame = 0.0;
 	float transparencyFactor = 1.0;

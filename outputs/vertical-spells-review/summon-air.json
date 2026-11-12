@@ -1,0 +1,17 @@
+{
+  "browser": "chromium",
+  "targetTeam": "enemy",
+  "scope": "Unmodified original spells, native obstacles/teleport/clone/summons",
+  "cases": [
+    {
+      "source": "core",
+      "spell": "airElemental",
+      "key": "visual58",
+      "targetType": "NO_TARGET",
+      "frames": 0,
+      "pixels": 0,
+      "visualType": "timing/projectile",
+      "status": "passed"
+    }
+  ]
+}

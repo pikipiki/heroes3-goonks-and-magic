@@ -1,0 +1,35 @@
+{
+  "version": "0.4.148",
+  "baseCommit": "9dfd1f4b",
+  "scope": "Vertical combat animation orientation, target anchoring, full-field tiling and magical obstacle footprints. Visual-only payload fixtures do not validate original spell gameplay prerequisites or every spell combination. Original mechanics cases are recorded separately.",
+  "counts": {
+    "catalogDefinitions": 99,
+    "animatedDefinitions": 66,
+    "browserAnimationReplays": 132,
+    "decodedResources": 78,
+    "decodedFrames": 1129,
+    "additionalOriginalSpellCases": 15
+  },
+  "browsers": {
+    "chromium": "enemy targets and global effects",
+    "webkit": "allied targets and global effects"
+  },
+  "audio": "All browser tests silenced before navigation",
+  "fixes": [
+    "Preserve native sprite offsets around the target in screen space",
+    "Tile full-field effects using counter-rotated image dimensions",
+    "Project multi-hex magical wall image strips and appearance effects at their actual occupied hexes"
+  ],
+  "validation": [
+    "ninja -j32 html5: passed in isolated build",
+    "Native C++ target-coordinate tests across all board positions: passed",
+    "Chrome and WebKit animation matrix: passed",
+    "Original quicksand, land mine, force field, remove obstacle, fire wall, teleport, clone: passed",
+    "Original four elemental summons: passed",
+    "Original earthquake in siege: passed",
+    "Original death ripple, destroy undead, armageddon: passed",
+    "Public build native lightning, movement, rotation and classic/vertical toggle: passed",
+    "Public engine fixture-payload exclusion: passed"
+  ],
+  "engineArchiveSha256": "893ab8150b1a85d6f3857df58ba28754aa68977c58eef5aab3423390696b0567"
+}

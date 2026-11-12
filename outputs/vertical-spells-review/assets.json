@@ -1,0 +1,1210 @@
+{
+  "spellDefinitions": 99,
+  "resources": [
+    {
+      "name": "sp11_.def",
+      "spells": [
+        "core:poison"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 20,
+      "sizes": [
+        "124x148"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "sp02_.def",
+      "spells": [
+        "core:bind"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 27,
+      "sizes": [
+        "74x49"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "sp05_.def",
+      "spells": [
+        "core:disease"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 19,
+      "sizes": [
+        "72x97"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "sp10_.def",
+      "spells": [
+        "core:paralyze"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 27,
+      "sizes": [
+        "86x120"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "sp01_.def",
+      "spells": [
+        "core:age"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 20,
+      "sizes": [
+        "96x94"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "sp04_.def",
+      "spells": [
+        "core:deathCloud"
+      ],
+      "stages": [
+        "hit"
+      ],
+      "bottomAligned": false,
+      "frames": 20,
+      "sizes": [
+        "142x139"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c03spa0.def",
+      "spells": [
+        "core:thunderbolt",
+        "core:lightningBolt",
+        "core:chainLightning",
+        "core:titanBolt"
+      ],
+      "stages": [
+        "affect",
+        "affect",
+        "affect",
+        "hit"
+      ],
+      "bottomAligned": true,
+      "frames": 1,
+      "sizes": [
+        "106x494"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c11spa1.def",
+      "spells": [
+        "core:thunderbolt",
+        "core:lightningBolt",
+        "core:chainLightning",
+        "core:titanBolt"
+      ],
+      "stages": [
+        "affect",
+        "affect",
+        "affect",
+        "hit"
+      ],
+      "bottomAligned": false,
+      "frames": 12,
+      "sizes": [
+        "114x110"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c05spw.def",
+      "spells": [
+        "core:dispelHelpful",
+        "core:dispel"
+      ],
+      "stages": [
+        "affect",
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 15,
+      "sizes": [
+        "199x201"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c07spe0.def",
+      "spells": [
+        "core:deathStare"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 20,
+      "sizes": [
+        "58x98"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c17spw0.def",
+      "spells": [
+        "core:acidBreath",
+        "core:acidBreathDamage",
+        "core:weakness"
+      ],
+      "stages": [
+        "affect",
+        "affect",
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 20,
+      "sizes": [
+        "97x114"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c09spf1.def",
+      "spells": [
+        "core:towerMoat",
+        "core:landMine",
+        "wake-of-gods/Mods/artifacts:boostSpot"
+      ],
+      "stages": [
+        "obstacle",
+        "obstacle",
+        "obstacle"
+      ],
+      "bottomAligned": false,
+      "frames": 1,
+      "sizes": [
+        "44x52"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c09spf0.def",
+      "spells": [
+        "core:towerMoat",
+        "core:landMine",
+        "wake-of-gods/Mods/artifacts:boostSpot"
+      ],
+      "stages": [
+        "obstacle",
+        "obstacle",
+        "obstacle"
+      ],
+      "bottomAligned": false,
+      "frames": 14,
+      "sizes": [
+        "44x52"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c20spx4.def",
+      "spells": [
+        "core:magicArrow"
+      ],
+      "stages": [
+        "projectile"
+      ],
+      "bottomAligned": false,
+      "frames": 15,
+      "sizes": [
+        "50x119"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c20spx3.def",
+      "spells": [
+        "core:magicArrow"
+      ],
+      "stages": [
+        "projectile"
+      ],
+      "bottomAligned": false,
+      "frames": 15,
+      "sizes": [
+        "82x109"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c20spx2.def",
+      "spells": [
+        "core:magicArrow"
+      ],
+      "stages": [
+        "projectile"
+      ],
+      "bottomAligned": false,
+      "frames": 15,
+      "sizes": [
+        "112x87"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c20spx1.def",
+      "spells": [
+        "core:magicArrow"
+      ],
+      "stages": [
+        "projectile"
+      ],
+      "bottomAligned": false,
+      "frames": 15,
+      "sizes": [
+        "123x59"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c20spx0.def",
+      "spells": [
+        "core:magicArrow"
+      ],
+      "stages": [
+        "projectile"
+      ],
+      "bottomAligned": false,
+      "frames": 14,
+      "sizes": [
+        "123x47"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c20spx.def",
+      "spells": [
+        "core:magicArrow"
+      ],
+      "stages": [
+        "hit"
+      ],
+      "bottomAligned": false,
+      "frames": 14,
+      "sizes": [
+        "133x116"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c08spw4.def",
+      "spells": [
+        "core:iceBolt"
+      ],
+      "stages": [
+        "projectile"
+      ],
+      "bottomAligned": false,
+      "frames": 10,
+      "sizes": [
+        "44x125"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c08spw3.def",
+      "spells": [
+        "core:iceBolt"
+      ],
+      "stages": [
+        "projectile"
+      ],
+      "bottomAligned": false,
+      "frames": 10,
+      "sizes": [
+        "85x107"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c08spw2.def",
+      "spells": [
+        "core:iceBolt"
+      ],
+      "stages": [
+        "projectile"
+      ],
+      "bottomAligned": false,
+      "frames": 10,
+      "sizes": [
+        "112x83"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c08spw1.def",
+      "spells": [
+        "core:iceBolt"
+      ],
+      "stages": [
+        "projectile"
+      ],
+      "bottomAligned": false,
+      "frames": 10,
+      "sizes": [
+        "122x57"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c08spw0.def",
+      "spells": [
+        "core:iceBolt"
+      ],
+      "stages": [
+        "projectile"
+      ],
+      "bottomAligned": false,
+      "frames": 9,
+      "sizes": [
+        "128x33"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c08spw5.def",
+      "spells": [
+        "core:iceBolt"
+      ],
+      "stages": [
+        "hit"
+      ],
+      "bottomAligned": false,
+      "frames": 16,
+      "sizes": [
+        "146x154"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c05spe0.def",
+      "spells": [
+        "core:implosion"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 19,
+      "sizes": [
+        "90x147"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c07spw.def",
+      "spells": [
+        "core:frostRing"
+      ],
+      "stages": [
+        "hit"
+      ],
+      "bottomAligned": false,
+      "frames": 15,
+      "sizes": [
+        "135x130"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c13spf.def",
+      "spells": [
+        "core:fireball"
+      ],
+      "stages": [
+        "hit"
+      ],
+      "bottomAligned": false,
+      "frames": 13,
+      "sizes": [
+        "142x155"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c04spf0.def",
+      "spells": [
+        "core:inferno"
+      ],
+      "stages": [
+        "hit"
+      ],
+      "bottomAligned": false,
+      "frames": 16,
+      "sizes": [
+        "207x217"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c08spe0.def",
+      "spells": [
+        "core:meteorShower"
+      ],
+      "stages": [
+        "hit"
+      ],
+      "bottomAligned": false,
+      "frames": 18,
+      "sizes": [
+        "144x144"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c04spe0.def",
+      "spells": [
+        "core:deathRipple"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 15,
+      "sizes": [
+        "134x134"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c14spa0.def",
+      "spells": [
+        "core:destroyUndead"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 15,
+      "sizes": [
+        "84x89"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c06spf0.def",
+      "spells": [
+        "core:armageddon"
+      ],
+      "stages": [
+        "hit"
+      ],
+      "bottomAligned": false,
+      "frames": 20,
+      "sizes": [
+        "200x200"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c17spe1.def",
+      "spells": [
+        "core:quicksand"
+      ],
+      "stages": [
+        "obstacle"
+      ],
+      "bottomAligned": false,
+      "frames": 8,
+      "sizes": [
+        "47x41"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c17spe0.def",
+      "spells": [
+        "core:quicksand"
+      ],
+      "stages": [
+        "obstacle"
+      ],
+      "bottomAligned": false,
+      "frames": 3,
+      "sizes": [
+        "47x41"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c09spf3.def",
+      "spells": [
+        "core:landMineTrigger"
+      ],
+      "stages": [
+        "hit"
+      ],
+      "bottomAligned": false,
+      "frames": 17,
+      "sizes": [
+        "140x153"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c15spe1.def",
+      "spells": [
+        "core:forceField"
+      ],
+      "stages": [
+        "obstacle"
+      ],
+      "bottomAligned": false,
+      "frames": 9,
+      "sizes": [
+        "61x136"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c15spe0.def",
+      "spells": [
+        "core:forceField"
+      ],
+      "stages": [
+        "obstacle"
+      ],
+      "bottomAligned": false,
+      "frames": 3,
+      "sizes": [
+        "61x136"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c15spe4.def",
+      "spells": [
+        "core:forceField"
+      ],
+      "stages": [
+        "obstacle"
+      ],
+      "bottomAligned": false,
+      "frames": 9,
+      "sizes": [
+        "55x115"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c15spe10.def",
+      "spells": [
+        "core:forceField"
+      ],
+      "stages": [
+        "obstacle"
+      ],
+      "bottomAligned": false,
+      "frames": 9,
+      "sizes": [
+        "60x178"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c15spe9.def",
+      "spells": [
+        "core:forceField"
+      ],
+      "stages": [
+        "obstacle"
+      ],
+      "bottomAligned": false,
+      "frames": 3,
+      "sizes": [
+        "60x178"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c15spe7.def",
+      "spells": [
+        "core:forceField"
+      ],
+      "stages": [
+        "obstacle"
+      ],
+      "bottomAligned": false,
+      "frames": 9,
+      "sizes": [
+        "48x143"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c15spe6.def",
+      "spells": [
+        "core:forceField"
+      ],
+      "stages": [
+        "obstacle"
+      ],
+      "bottomAligned": false,
+      "frames": 3,
+      "sizes": [
+        "48x143"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c07spf61.def",
+      "spells": [
+        "core:fireWall"
+      ],
+      "stages": [
+        "obstacle"
+      ],
+      "bottomAligned": false,
+      "frames": 10,
+      "sizes": [
+        "44x132"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c07spf60.def",
+      "spells": [
+        "core:fireWall"
+      ],
+      "stages": [
+        "obstacle"
+      ],
+      "bottomAligned": false,
+      "frames": 3,
+      "sizes": [
+        "44x132"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c03spw.def",
+      "spells": [
+        "core:cure"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 15,
+      "sizes": [
+        "94x119"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c01spe0.def",
+      "spells": [
+        "core:resurrection",
+        "core:animateDead",
+        "core:sacrifice",
+        "core:summonDemons",
+        "tum-era:skeletalTransformation"
+      ],
+      "stages": [
+        "affect",
+        "affect",
+        "affect",
+        "affect",
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 20,
+      "sizes": [
+        "98x95"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c13spe0.def",
+      "spells": [
+        "core:shield"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 16,
+      "sizes": [
+        "56x73"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c01spa0.def",
+      "spells": [
+        "core:airShield"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 15,
+      "sizes": [
+        "88x81"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c05spf0.def",
+      "spells": [
+        "core:fireShield"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 10,
+      "sizes": [
+        "75x62"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c11spe0.def",
+      "spells": [
+        "core:protectAir"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 16,
+      "sizes": [
+        "82x100"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c11spw0.def",
+      "spells": [
+        "core:protectFire"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 16,
+      "sizes": [
+        "76x99"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c11spf0.def",
+      "spells": [
+        "core:protectWater"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 15,
+      "sizes": [
+        "100x100"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c13spa0.def",
+      "spells": [
+        "core:protectEarth"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 16,
+      "sizes": [
+        "80x100"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c02spe0.def",
+      "spells": [
+        "core:antiMagic"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 16,
+      "sizes": [
+        "94x126"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c02spa0.def",
+      "spells": [
+        "core:magicMirror"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 10,
+      "sizes": [
+        "93x88"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c01spw.def",
+      "spells": [
+        "core:bless"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 20,
+      "sizes": [
+        "43x123"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c04spw.def",
+      "spells": [
+        "core:curse"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 21,
+      "sizes": [
+        "85x111"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c12spa0.def",
+      "spells": [
+        "core:precision"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 20,
+      "sizes": [
+        "76x75"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c16spe.def",
+      "spells": [
+        "core:stoneSkin"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 22,
+      "sizes": [
+        "89x83"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c07spa1.def",
+      "spells": [
+        "core:disruptingRay"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 16,
+      "sizes": [
+        "176x148"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c07spa0.def",
+      "spells": [
+        "core:disruptingRay"
+      ],
+      "stages": [
+        "projectile"
+      ],
+      "bottomAligned": false,
+      "frames": 8,
+      "sizes": [
+        "79x43"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c10spw.def",
+      "spells": [
+        "core:prayer"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": true,
+      "frames": 20,
+      "sizes": [
+        "54x556"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c09spw0.def",
+      "spells": [
+        "core:mirth"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 20,
+      "sizes": [
+        "94x127"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c14spe0.def",
+      "spells": [
+        "core:sorrow"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 20,
+      "sizes": [
+        "90x125"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c09spa0.def",
+      "spells": [
+        "core:fortune"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 15,
+      "sizes": [
+        "50x97"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c10spf0.def",
+      "spells": [
+        "core:misfortune"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 15,
+      "sizes": [
+        "51x96"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c15spa0.def",
+      "spells": [
+        "core:haste"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 15,
+      "sizes": [
+        "113x106"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c09spe0.def",
+      "spells": [
+        "core:slow"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": true,
+      "frames": 20,
+      "sizes": [
+        "74x54"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c13spw0.def",
+      "spells": [
+        "core:slayer"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 18,
+      "sizes": [
+        "80x100"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c08spf0.def",
+      "spells": [
+        "core:frenzy"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 18,
+      "sizes": [
+        "86x97"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c04spa0.def",
+      "spells": [
+        "core:counterstrike"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 16,
+      "sizes": [
+        "84x100"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c01spf.def",
+      "spells": [
+        "core:berserk"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 12,
+      "sizes": [
+        "61x99"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c10spa0.def",
+      "spells": [
+        "core:hypnotize"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 19,
+      "sizes": [
+        "99x90"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c06spw.def",
+      "spells": [
+        "core:forgetfulness"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 15,
+      "sizes": [
+        "119x75"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "c02spf0.def",
+      "spells": [
+        "core:blind"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 15,
+      "sizes": [
+        "125x123"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "sp12_.def",
+      "spells": [
+        "core:firstAid"
+      ],
+      "stages": [
+        "affect"
+      ],
+      "bottomAligned": false,
+      "frames": 20,
+      "sizes": [
+        "95x94"
+      ],
+      "status": "decoded-all-frames"
+    },
+    {
+      "name": "tum-era/hit-effects/burst17.def",
+      "spells": [
+        "tum-era:necrossDeathCloud"
+      ],
+      "stages": [
+        "hit"
+      ],
+      "bottomAligned": false,
+      "frames": 13,
+      "sizes": [
+        "96x96"
+      ],
+      "status": "decoded-all-frames"
+    }
+  ],
+  "totalFrames": 1129
+}

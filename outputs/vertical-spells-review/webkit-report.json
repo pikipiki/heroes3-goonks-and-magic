@@ -1,0 +1,1091 @@
+{
+  "browser": "webkit",
+  "targetTeam": "ally",
+  "scope": "Original animation definitions in native renderer with visual-only spell payloads; does not substitute for spell-rule tests",
+  "cases": [
+    {
+      "source": "core",
+      "spell": "stoneGaze",
+      "key": "visual0",
+      "targetType": "NO_TARGET",
+      "frames": 0,
+      "pixels": 0,
+      "visualType": "creature color transform",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "poison",
+      "key": "visual1",
+      "targetType": "NO_TARGET",
+      "frames": 36,
+      "pixels": 5345,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "bind",
+      "key": "visual2",
+      "targetType": "NO_TARGET",
+      "frames": 51,
+      "pixels": 1283,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "disease",
+      "key": "visual3",
+      "targetType": "NO_TARGET",
+      "frames": 33,
+      "pixels": 2656,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "paralyze",
+      "key": "visual4",
+      "targetType": "NO_TARGET",
+      "frames": 56,
+      "pixels": 3967,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "age",
+      "key": "visual5",
+      "targetType": "NO_TARGET",
+      "frames": 36,
+      "pixels": 3412,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "deathCloud",
+      "key": "visual6",
+      "targetType": "NO_TARGET",
+      "frames": 41,
+      "pixels": 56772,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "thunderbolt",
+      "key": "visual7",
+      "targetType": "NO_TARGET",
+      "frames": 26,
+      "pixels": 12434,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "dispelHelpful",
+      "key": "visual8",
+      "targetType": "NO_TARGET",
+      "frames": 33,
+      "pixels": 7554,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "deathStare",
+      "key": "visual9",
+      "targetType": "NO_TARGET",
+      "frames": 36,
+      "pixels": 2974,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "acidBreath",
+      "key": "visual10",
+      "targetType": "NO_TARGET",
+      "frames": 42,
+      "pixels": 2847,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "acidBreathDamage",
+      "key": "visual11",
+      "targetType": "NO_TARGET",
+      "frames": 38,
+      "pixels": 2847,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "magicArrow",
+      "key": "visual27",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 32,
+      "pixels": 1231,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "iceBolt",
+      "key": "visual28",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 37,
+      "pixels": 1850,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "lightningBolt",
+      "key": "visual29",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 24,
+      "pixels": 7134,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "implosion",
+      "key": "visual30",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 36,
+      "pixels": 1502,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "chainLightning",
+      "key": "visual31",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 25,
+      "pixels": 7134,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "frostRing",
+      "key": "visual32",
+      "targetType": "LOCATION",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 28,
+      "pixels": 1264,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "fireball",
+      "key": "visual33",
+      "targetType": "LOCATION",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 28,
+      "pixels": 2746,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "inferno",
+      "key": "visual34",
+      "targetType": "LOCATION",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 32,
+      "pixels": 6796,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "meteorShower",
+      "key": "visual35",
+      "targetType": "LOCATION",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 31,
+      "pixels": 1265,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "deathRipple",
+      "key": "visual36",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 27,
+      "pixels": 1101,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "destroyUndead",
+      "key": "visual37",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 31,
+      "pixels": 919,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "armageddon",
+      "key": "visual38",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 37,
+      "pixels": 2314,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "titanBolt",
+      "key": "visual39",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 25,
+      "pixels": 7134,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "landMineTrigger",
+      "key": "visual41",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 33,
+      "pixels": 2042,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "dispel",
+      "key": "visual47",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 31,
+      "pixels": 2012,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "cure",
+      "key": "visual48",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 32,
+      "pixels": 604,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "resurrection",
+      "key": "visual49",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 36,
+      "pixels": 1575,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "animateDead",
+      "key": "visual50",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 38,
+      "pixels": 1575,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "sacrifice",
+      "key": "visual51",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 36,
+      "pixels": 1573,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "removeObstacle",
+      "key": "visual53",
+      "targetType": "OBSTACLE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 0,
+      "pixels": 0,
+      "visualType": "timing/projectile",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "shield",
+      "key": "visual59",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 28,
+      "pixels": 469,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "airShield",
+      "key": "visual60",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 26,
+      "pixels": 1045,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "fireShield",
+      "key": "visual61",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 16,
+      "pixels": 637,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "protectAir",
+      "key": "visual62",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 31,
+      "pixels": 1044,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "protectFire",
+      "key": "visual63",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 31,
+      "pixels": 816,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "protectWater",
+      "key": "visual64",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 30,
+      "pixels": 977,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "protectEarth",
+      "key": "visual65",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 34,
+      "pixels": 952,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "antiMagic",
+      "key": "visual66",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 34,
+      "pixels": 1215,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "magicMirror",
+      "key": "visual67",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 21,
+      "pixels": 588,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "bless",
+      "key": "visual68",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 39,
+      "pixels": 521,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "curse",
+      "key": "visual69",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 40,
+      "pixels": 232,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "bloodlust",
+      "key": "visual70",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 0,
+      "pixels": 0,
+      "visualType": "creature color transform",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "precision",
+      "key": "visual71",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 41,
+      "pixels": 692,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "weakness",
+      "key": "visual72",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 40,
+      "pixels": 749,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "stoneSkin",
+      "key": "visual73",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 35,
+      "pixels": 704,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "disruptingRay",
+      "key": "visual74",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 34,
+      "pixels": 847,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "prayer",
+      "key": "visual75",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 40,
+      "pixels": 4830,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "mirth",
+      "key": "visual76",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 36,
+      "pixels": 1194,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "sorrow",
+      "key": "visual77",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 40,
+      "pixels": 1036,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "fortune",
+      "key": "visual78",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 27,
+      "pixels": 389,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "misfortune",
+      "key": "visual79",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 31,
+      "pixels": 512,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "haste",
+      "key": "visual80",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 32,
+      "pixels": 982,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "slow",
+      "key": "visual81",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 37,
+      "pixels": 392,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "slayer",
+      "key": "visual82",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 35,
+      "pixels": 653,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "frenzy",
+      "key": "visual83",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 38,
+      "pixels": 1344,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "counterstrike",
+      "key": "visual84",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 33,
+      "pixels": 514,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "berserk",
+      "key": "visual85",
+      "targetType": "LOCATION",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 26,
+      "pixels": 256,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "hypnotize",
+      "key": "visual86",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 37,
+      "pixels": 224,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "forgetfulness",
+      "key": "visual87",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 26,
+      "pixels": 1101,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "blind",
+      "key": "visual88",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 30,
+      "pixels": 672,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "summonDemons",
+      "key": "visual89",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 36,
+      "pixels": 1573,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "firstAid",
+      "key": "visual90",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 37,
+      "pixels": 1570,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "tum-era",
+      "spell": "skeletalTransformation",
+      "key": "visual93",
+      "targetType": "CREATURE",
+      "target": {
+        "hex": 87,
+        "kind": 1,
+        "reachable": true,
+        "spellTarget": true,
+        "x": 124,
+        "y": 322
+      },
+      "frames": 33,
+      "pixels": 1575,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "tum-era",
+      "spell": "necrossDeathCloud",
+      "key": "visual94",
+      "targetType": "NO_TARGET",
+      "frames": 25,
+      "pixels": 39534,
+      "visualType": "raster",
+      "status": "passed"
+    }
+  ]
+}

@@ -113,7 +113,9 @@ void BattleObstacleController::obstaclePlaced(const std::vector<std::shared_ptr<
 		// -> if we know how to blit obstacle, let's blit the effect in the same place
 		Point whereTo = getObstaclePosition(first, *oi);
 		ENGINE->sound().playSound( oi->getAppearSound() );
-		owner.stacksController->addNewAnim(new EffectAnimation(owner, oi->getAppearAnimation(), whereTo, oi->pos));
+		auto effect = new EffectAnimation(owner, oi->getAppearAnimation(), whereTo, oi->pos);
+		effect->setMobileFootprint(oi->getAffectedTiles());
+		owner.stacksController->addNewAnim(effect);
 
 		//so when multiple obstacles are added, they show up one after another
 		owner.waitForAnimations();
@@ -143,7 +145,11 @@ void BattleObstacleController::showAbsoluteObstacles(Canvas & canvas)
 			if(img)
 			{
 				Point p = getObstaclePosition(img, *obstacle);
-				canvas.draw(img, p);
+				if(canvas.hasMobileUprightImages() && obstacle->obstacleType==CObstacleInstance::SPELL_CREATED){
+					std::vector<Point> anchors;for(const auto hex:obstacle->getAffectedTiles())anchors.push_back(owner.fieldController->hexPositionLocal(hex).center());
+					if(anchors.size()>1)canvas.drawMobileUprightFootprint(img,p,anchors);
+					else canvas.drawMobileUprightAt(img,p,owner.fieldController->hexPositionLocal(obstacle->pos).center());
+				}else canvas.draw(img, p);
 			}
 		}
 	}
@@ -167,7 +173,11 @@ void BattleObstacleController::collectRenderableObjects(BattleRenderer & rendere
 			if(img)
 			{
 				Point p = getObstaclePosition(img, *obstacle);
-				canvas.draw(img, p);
+				if(canvas.hasMobileUprightImages() && obstacle->obstacleType==CObstacleInstance::SPELL_CREATED){
+					std::vector<Point> anchors;for(const auto hex:obstacle->getAffectedTiles())anchors.push_back(owner.fieldController->hexPositionLocal(hex).center());
+					if(anchors.size()>1)canvas.drawMobileUprightFootprint(img,p,anchors);
+					else canvas.drawMobileUprightAt(img,p,owner.fieldController->hexPositionLocal(obstacle->pos).center());
+				}else canvas.draw(img, p);
 			}
 		});
 	}

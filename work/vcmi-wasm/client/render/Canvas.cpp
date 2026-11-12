@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "Canvas.h"
+#include "MobileEffectGeometry.h"
 
 #include "../GameEngine.h"
 #include "../media/IVideoPlayer.h"
@@ -258,17 +259,44 @@ CanvasClipRectGuard::~CanvasClipRectGuard()
 	CSDL_Ext::setClipRect(surf, oldRect);
 }
 
-void Canvas::drawMobileUpright(const IImage & image, const Point & pos)
+void Canvas::drawMobileUprightAt(const std::shared_ptr<IImage> & image, const Point & pos, const Point & anchor)
 {
- const int w=image.width(),h=image.height();if(w<=0||h<=0)return;
+ drawMobileUpright(*image, pos, &anchor);
+}
+
+void Canvas::drawMobileUprightFootprint(const std::shared_ptr<IImage> & image, const Point & pos, std::vector<Point> anchors)
+{
+ std::sort(anchors.begin(),anchors.end(),[](const Point & a,const Point & b){return a.y<b.y;});
+ // Spell walls use several native hex rows. Keep each horizontal strip upright
+ // at its own hex instead of leaving the whole wall along the old board axis.
+ for(size_t i=0;i<anchors.size();++i){
+  const int top=i?std::clamp((anchors[i-1].y+anchors[i].y)/2-pos.y,0,image->height()):0;
+  const int bottom=i+1<anchors.size()?std::clamp((anchors[i].y+anchors[i+1].y)/2-pos.y,0,image->height()):image->height();
+  if(bottom<=top)continue;
+  const Rect region(0,top,image->width(),bottom-top);
+  drawMobileUpright(*image,pos+Point(0,top),&anchors[i],&region);
+ }
+}
+
+void Canvas::drawMobileUpright(const IImage & image, const Point & pos, const Point * anchor, const Rect * region)
+{
+ const int w=region?region->w:image.width(),h=region?region->h:image.height();if(w<=0||h<=0)return;
  auto source=SDL_CreateRGBSurfaceWithFormat(0,w,h,32,SDL_PIXELFORMAT_ARGB8888);
  auto rotated=SDL_CreateRGBSurfaceWithFormat(0,h,w,32,SDL_PIXELFORMAT_ARGB8888);
  if(!source||!rotated){if(source)SDL_FreeSurface(source);if(rotated)SDL_FreeSurface(rotated);return;}
- SDL_FillRect(source,nullptr,0);image.draw(source,Point(0,0),nullptr,1);
+ SDL_FillRect(source,nullptr,0);image.draw(source,region?Point(-region->x,-region->y):Point(0,0),nullptr,1);
  for(int y=0;y<h;++y){const auto row=reinterpret_cast<const uint32_t*>(static_cast<const uint8_t*>(source->pixels)+y*source->pitch);
   for(int x=0;x<w;++x){auto target=reinterpret_cast<uint32_t*>(static_cast<uint8_t*>(rotated->pixels)+x*rotated->pitch);target[h-1-y]=row[x];}}
  SDL_SetSurfaceBlendMode(rotated,SDL_BLENDMODE_BLEND);
- const Point origin=mobileUprightImages==1?Point(pos.x+w/2,pos.y+h-w/2):Point(pos.x+(w-h)/2,pos.y+(h-w)/2);
+ if(mobileUprightImages==3 && !anchor){
+  for(int y=0;y<renderArea.h;y+=w)for(int x=0;x<renderArea.w;x+=h){
+   SDL_Rect dest=CSDL_Ext::toSDL(Rect(transformPos(Point(x,y)),Point(h,w)));
+   SDL_BlitSurface(rotated,nullptr,surface,&dest);
+  }
+  SDL_FreeSurface(rotated);SDL_FreeSurface(source);return;
+ }
+ const auto anchored=anchor?mobile_effects::anchoredOrigin(pos.x,pos.y,h,anchor->x,anchor->y):mobile_effects::Origin{0,0};
+ const Point origin=anchor?Point(anchored.x,anchored.y):mobileUprightImages==1?Point(pos.x+w/2,pos.y+h-w/2):Point(pos.x+(w-h)/2,pos.y+(h-w)/2);
  SDL_Rect dest=CSDL_Ext::toSDL(Rect(transformPos(origin),Point(h,w)));
  SDL_BlitSurface(rotated,nullptr,surface,&dest);SDL_FreeSurface(rotated);SDL_FreeSurface(source);
 }

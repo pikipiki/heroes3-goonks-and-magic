@@ -1,0 +1,37 @@
+{
+  "browser": "chromium",
+  "targetTeam": "enemy",
+  "scope": "Unmodified original spells, native obstacles/teleport/clone/summons",
+  "cases": [
+    {
+      "source": "core",
+      "spell": "deathRipple",
+      "key": "visual36",
+      "targetType": "CREATURE",
+      "frames": 27,
+      "pixels": 4382,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "destroyUndead",
+      "key": "visual37",
+      "targetType": "CREATURE",
+      "frames": 31,
+      "pixels": 919,
+      "visualType": "raster",
+      "status": "passed"
+    },
+    {
+      "source": "core",
+      "spell": "armageddon",
+      "key": "visual38",
+      "targetType": "CREATURE",
+      "frames": 37,
+      "pixels": 27768,
+      "visualType": "raster",
+      "status": "passed"
+    }
+  ]
+}

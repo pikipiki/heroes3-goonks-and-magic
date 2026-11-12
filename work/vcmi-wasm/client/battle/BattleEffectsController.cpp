@@ -132,7 +132,17 @@ void BattleEffectsController::collectRenderableObjects(BattleRenderer & renderer
 			auto img = elem.animation->getImage(currentFrame, static_cast<size_t>(elem.type));
 			img->setAlpha(255 * elem.transparencyFactor);
 
-			if(canvas.hasMobileUprightImages())canvas.setMobileUprightImages(elem.bottomAligned ? 1 : 2);
+			if(canvas.hasMobileUprightImages())
+			{
+				// A screen effect is one upright tiled plane, rather than individually
+				// rotated native tiles (which leave gaps for non-square animations).
+				if(elem.screenFill && elem.pos != Point(0, 0))return;
+				if(elem.mobileAnchors.size()>1){canvas.drawMobileUprightFootprint(img,elem.pos,elem.mobileAnchors);return;}
+				if(!elem.screenFill && elem.hasMobileAnchor){
+					canvas.drawMobileUprightAt(img, elem.pos, elem.mobileAnchor);return;
+				}
+				canvas.setMobileUprightImages(elem.screenFill ? 3 : elem.bottomAligned ? 1 : 2);
+			}
 			canvas.draw(img, elem.pos);
 		});
 	}

@@ -967,6 +967,8 @@ bool EffectAnimation::init()
 	BattleEffect be;
 	be.effectID = ID;
 	be.bottomAligned = alignToBottom();
+	be.screenFill = screenFill();
+	for(const auto hex:mobileFootprint)be.mobileAnchors.push_back(owner.fieldController->hexPositionLocal(hex).center());
 	be.animation = animation;
 	be.currentFrame = 0;
 	be.transparencyFactor = transparencyFactor;
@@ -976,6 +978,8 @@ bool EffectAnimation::init()
 	{
 		bool hasTile = i < battlehexes.size();
 		bool hasPosition = i < positions.size();
+		be.hasMobileAnchor = hasTile;
+		if(hasTile)be.mobileAnchor = owner.fieldController->hexPositionLocal(battlehexes[i]).center();
 
 		if (hasTile && !forceOnTop())
 			be.tile = battlehexes[i];

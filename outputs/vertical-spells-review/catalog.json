@@ -1,0 +1,1460 @@
+[
+  {
+    "key": "visual0",
+    "source": "core",
+    "spell": "stoneGaze",
+    "originalIndex": 70,
+    "animation": {
+      "affect": [
+        {
+          "effectName": "petrification"
+        }
+      ]
+    },
+    "targetType": "NO_TARGET",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual1",
+    "source": "core",
+    "spell": "poison",
+    "originalIndex": 71,
+    "animation": {
+      "affect": [
+        "SP11_"
+      ]
+    },
+    "targetType": "NO_TARGET",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual2",
+    "source": "core",
+    "spell": "bind",
+    "originalIndex": 72,
+    "animation": {
+      "affect": [
+        "SP02_"
+      ]
+    },
+    "targetType": "NO_TARGET",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual3",
+    "source": "core",
+    "spell": "disease",
+    "originalIndex": 73,
+    "animation": {
+      "affect": [
+        "SP05_"
+      ]
+    },
+    "targetType": "NO_TARGET",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual4",
+    "source": "core",
+    "spell": "paralyze",
+    "originalIndex": 74,
+    "animation": {
+      "affect": [
+        "SP10_"
+      ]
+    },
+    "targetType": "NO_TARGET",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual5",
+    "source": "core",
+    "spell": "age",
+    "originalIndex": 75,
+    "animation": {
+      "affect": [
+        "SP01_"
+      ]
+    },
+    "targetType": "NO_TARGET",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual6",
+    "source": "core",
+    "spell": "deathCloud",
+    "originalIndex": 76,
+    "animation": {
+      "hit": [
+        {
+          "defName": "SP04_",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "targetType": "NO_TARGET",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual7",
+    "source": "core",
+    "spell": "thunderbolt",
+    "originalIndex": 77,
+    "animation": {
+      "affect": [
+        {
+          "defName": "C03SPA0",
+          "verticalPosition": "bottom"
+        },
+        "C11SPA1"
+      ]
+    },
+    "targetType": "NO_TARGET",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual8",
+    "source": "core",
+    "spell": "dispelHelpful",
+    "originalIndex": 78,
+    "animation": {
+      "affect": [
+        "C05SPW"
+      ]
+    },
+    "targetType": "NO_TARGET",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual9",
+    "source": "core",
+    "spell": "deathStare",
+    "originalIndex": 79,
+    "animation": {
+      "affect": [
+        "C07SPE0"
+      ]
+    },
+    "targetType": "NO_TARGET",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual10",
+    "source": "core",
+    "spell": "acidBreath",
+    "originalIndex": 80,
+    "animation": {
+      "affect": [
+        "C17SPW0"
+      ]
+    },
+    "targetType": "NO_TARGET",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual11",
+    "source": "core",
+    "spell": "acidBreathDamage",
+    "originalIndex": 81,
+    "animation": {
+      "affect": [
+        "C17SPW0"
+      ]
+    },
+    "targetType": "NO_TARGET",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual12",
+    "source": "core",
+    "spell": "castleMoatTrigger",
+    "animation": {},
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual13",
+    "source": "core",
+    "spell": "castleMoat",
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual14",
+    "source": "core",
+    "spell": "rampartMoatTrigger",
+    "animation": {},
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual15",
+    "source": "core",
+    "spell": "rampartMoat",
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual16",
+    "source": "core",
+    "spell": "towerMoat",
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": true,
+    "obstacleAnimations": [
+      "C09SPF1",
+      "C09SPF0"
+    ]
+  },
+  {
+    "key": "visual17",
+    "source": "core",
+    "spell": "infernoMoatTrigger",
+    "animation": {},
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual18",
+    "source": "core",
+    "spell": "infernoMoat",
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual19",
+    "source": "core",
+    "spell": "necropolisMoatTrigger",
+    "animation": {},
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual20",
+    "source": "core",
+    "spell": "necropolisMoat",
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual21",
+    "source": "core",
+    "spell": "dungeonMoatTrigger",
+    "animation": {},
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual22",
+    "source": "core",
+    "spell": "dungeonMoat",
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual23",
+    "source": "core",
+    "spell": "strongholdMoatTrigger",
+    "animation": {},
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual24",
+    "source": "core",
+    "spell": "strongholdMoat",
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual25",
+    "source": "core",
+    "spell": "fortressMoatTrigger",
+    "animation": {},
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual26",
+    "source": "core",
+    "spell": "fortressMoat",
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual27",
+    "source": "core",
+    "spell": "magicArrow",
+    "originalIndex": 15,
+    "animation": {
+      "projectile": [
+        {
+          "minimumAngle": 0,
+          "defName": "C20SPX4"
+        },
+        {
+          "minimumAngle": 0.6,
+          "defName": "C20SPX3"
+        },
+        {
+          "minimumAngle": 0.9,
+          "defName": "C20SPX2"
+        },
+        {
+          "minimumAngle": 1.2,
+          "defName": "C20SPX1"
+        },
+        {
+          "minimumAngle": 1.5,
+          "defName": "C20SPX0"
+        }
+      ],
+      "hit": [
+        "C20SPX"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual28",
+    "source": "core",
+    "spell": "iceBolt",
+    "originalIndex": 16,
+    "animation": {
+      "projectile": [
+        {
+          "minimumAngle": 0,
+          "defName": "C08SPW4"
+        },
+        {
+          "minimumAngle": 0.6,
+          "defName": "C08SPW3"
+        },
+        {
+          "minimumAngle": 0.9,
+          "defName": "C08SPW2"
+        },
+        {
+          "minimumAngle": 1.2,
+          "defName": "C08SPW1"
+        },
+        {
+          "minimumAngle": 1.5,
+          "defName": "C08SPW0"
+        }
+      ],
+      "hit": [
+        {
+          "defName": "C08SPW5",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual29",
+    "source": "core",
+    "spell": "lightningBolt",
+    "originalIndex": 17,
+    "animation": {
+      "affect": [
+        {
+          "defName": "C03SPA0",
+          "verticalPosition": "bottom"
+        },
+        "C11SPA1"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual30",
+    "source": "core",
+    "spell": "implosion",
+    "originalIndex": 18,
+    "animation": {
+      "affect": [
+        "C05SPE0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual31",
+    "source": "core",
+    "spell": "chainLightning",
+    "originalIndex": 19,
+    "animation": {
+      "affect": [
+        {
+          "defName": "C03SPA0",
+          "verticalPosition": "bottom"
+        },
+        "C11SPA1"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual32",
+    "source": "core",
+    "spell": "frostRing",
+    "originalIndex": 20,
+    "animation": {
+      "hit": [
+        "C07SPW"
+      ]
+    },
+    "targetType": "LOCATION",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual33",
+    "source": "core",
+    "spell": "fireball",
+    "originalIndex": 21,
+    "animation": {
+      "hit": [
+        "C13SPF"
+      ]
+    },
+    "targetType": "LOCATION",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual34",
+    "source": "core",
+    "spell": "inferno",
+    "originalIndex": 22,
+    "animation": {
+      "hit": [
+        "C04SPF0"
+      ]
+    },
+    "targetType": "LOCATION",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual35",
+    "source": "core",
+    "spell": "meteorShower",
+    "originalIndex": 23,
+    "animation": {
+      "hit": [
+        "C08SPE0"
+      ]
+    },
+    "targetType": "LOCATION",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual36",
+    "source": "core",
+    "spell": "deathRipple",
+    "originalIndex": 24,
+    "animation": {
+      "affect": [
+        "C04SPE0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": true,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual37",
+    "source": "core",
+    "spell": "destroyUndead",
+    "originalIndex": 25,
+    "animation": {
+      "affect": [
+        {
+          "defName": "C14SPA0",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": true,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual38",
+    "source": "core",
+    "spell": "armageddon",
+    "originalIndex": 26,
+    "animation": {
+      "hit": [
+        "C06SPF0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": true,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual39",
+    "source": "core",
+    "spell": "titanBolt",
+    "originalIndex": 57,
+    "animation": {
+      "hit": [
+        {
+          "defName": "C03SPA0",
+          "verticalPosition": "bottom"
+        },
+        "C11SPA1"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual40",
+    "source": "core",
+    "spell": "quicksand",
+    "originalIndex": 10,
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": true,
+    "obstacleAnimations": [
+      "C17SPE1",
+      "C17SPE0"
+    ]
+  },
+  {
+    "key": "visual41",
+    "source": "core",
+    "spell": "landMineTrigger",
+    "animation": {
+      "hit": [
+        "C09SPF3"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual42",
+    "source": "core",
+    "spell": "landMine",
+    "originalIndex": 11,
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": true,
+    "obstacleAnimations": [
+      "C09SPF1",
+      "C09SPF0"
+    ]
+  },
+  {
+    "key": "visual43",
+    "source": "core",
+    "spell": "forceField",
+    "originalIndex": 12,
+    "animation": {},
+    "targetType": "LOCATION",
+    "global": false,
+    "obstacles": true,
+    "obstacleAnimations": [
+      "C15SPE1",
+      "C15SPE0",
+      "C15SPE4",
+      "C15SPE10",
+      "C15SPE9",
+      "C15SPE7",
+      "C15SPE6"
+    ]
+  },
+  {
+    "key": "visual44",
+    "source": "core",
+    "spell": "fireWallTrigger",
+    "animation": {},
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual45",
+    "source": "core",
+    "spell": "fireWall",
+    "originalIndex": 13,
+    "animation": {},
+    "targetType": "LOCATION",
+    "global": false,
+    "obstacles": true,
+    "obstacleAnimations": [
+      "C07SPF61",
+      "C07SPF60"
+    ]
+  },
+  {
+    "key": "visual46",
+    "source": "core",
+    "spell": "earthquake",
+    "originalIndex": 14,
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual47",
+    "source": "core",
+    "spell": "dispel",
+    "originalIndex": 35,
+    "animation": {
+      "affect": [
+        "C05SPW"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual48",
+    "source": "core",
+    "spell": "cure",
+    "originalIndex": 37,
+    "animation": {
+      "affect": [
+        "C03SPW"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual49",
+    "source": "core",
+    "spell": "resurrection",
+    "originalIndex": 38,
+    "animation": {
+      "affect": [
+        {
+          "defName": "C01SPE0",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual50",
+    "source": "core",
+    "spell": "animateDead",
+    "originalIndex": 39,
+    "animation": {
+      "affect": [
+        {
+          "defName": "C01SPE0",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual51",
+    "source": "core",
+    "spell": "sacrifice",
+    "originalIndex": 40,
+    "animation": {
+      "affect": [
+        {
+          "defName": "C01SPE0",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual52",
+    "source": "core",
+    "spell": "teleport",
+    "originalIndex": 63,
+    "animation": {},
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual53",
+    "source": "core",
+    "spell": "removeObstacle",
+    "originalIndex": 64,
+    "animation": {
+      "cast": [
+        2
+      ]
+    },
+    "targetType": "OBSTACLE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual54",
+    "source": "core",
+    "spell": "clone",
+    "originalIndex": 65,
+    "animation": {},
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual55",
+    "source": "core",
+    "spell": "fireElemental",
+    "originalIndex": 66,
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual56",
+    "source": "core",
+    "spell": "earthElemental",
+    "originalIndex": 67,
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual57",
+    "source": "core",
+    "spell": "waterElemental",
+    "originalIndex": 68,
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual58",
+    "source": "core",
+    "spell": "airElemental",
+    "originalIndex": 69,
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual59",
+    "source": "core",
+    "spell": "shield",
+    "originalIndex": 27,
+    "animation": {
+      "affect": [
+        "C13SPE0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual60",
+    "source": "core",
+    "spell": "airShield",
+    "originalIndex": 28,
+    "animation": {
+      "affect": [
+        "C01SPA0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual61",
+    "source": "core",
+    "spell": "fireShield",
+    "originalIndex": 29,
+    "animation": {
+      "affect": [
+        "C05SPF0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual62",
+    "source": "core",
+    "spell": "protectAir",
+    "originalIndex": 30,
+    "animation": {
+      "affect": [
+        "C11SPE0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual63",
+    "source": "core",
+    "spell": "protectFire",
+    "originalIndex": 31,
+    "animation": {
+      "affect": [
+        "C11SPW0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual64",
+    "source": "core",
+    "spell": "protectWater",
+    "originalIndex": 32,
+    "animation": {
+      "affect": [
+        "C11SPF0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual65",
+    "source": "core",
+    "spell": "protectEarth",
+    "originalIndex": 33,
+    "animation": {
+      "affect": [
+        "C13SPA0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual66",
+    "source": "core",
+    "spell": "antiMagic",
+    "originalIndex": 34,
+    "animation": {
+      "affect": [
+        "C02SPE0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual67",
+    "source": "core",
+    "spell": "magicMirror",
+    "originalIndex": 36,
+    "animation": {
+      "affect": [
+        "C02SPA0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual68",
+    "source": "core",
+    "spell": "bless",
+    "originalIndex": 41,
+    "animation": {
+      "affect": [
+        "C01SPW"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual69",
+    "source": "core",
+    "spell": "curse",
+    "originalIndex": 42,
+    "animation": {
+      "affect": [
+        "C04SPW"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual70",
+    "source": "core",
+    "spell": "bloodlust",
+    "originalIndex": 43,
+    "animation": {
+      "affect": [
+        {
+          "effectName": "bloodlust"
+        }
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual71",
+    "source": "core",
+    "spell": "precision",
+    "originalIndex": 44,
+    "animation": {
+      "affect": [
+        "C12SPA0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual72",
+    "source": "core",
+    "spell": "weakness",
+    "originalIndex": 45,
+    "animation": {
+      "affect": [
+        "C17SPW0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual73",
+    "source": "core",
+    "spell": "stoneSkin",
+    "originalIndex": 46,
+    "animation": {
+      "affect": [
+        "C16SPE"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual74",
+    "source": "core",
+    "spell": "disruptingRay",
+    "originalIndex": 47,
+    "animation": {
+      "affect": [
+        {
+          "defName": "C07SPA1",
+          "transparency": 0.5
+        }
+      ],
+      "projectile": [
+        {
+          "defName": "C07SPA0"
+        }
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual75",
+    "source": "core",
+    "spell": "prayer",
+    "originalIndex": 48,
+    "animation": {
+      "affect": [
+        {
+          "defName": "C10SPW",
+          "verticalPosition": "bottom",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual76",
+    "source": "core",
+    "spell": "mirth",
+    "originalIndex": 49,
+    "animation": {
+      "affect": [
+        "C09SPW0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual77",
+    "source": "core",
+    "spell": "sorrow",
+    "originalIndex": 50,
+    "animation": {
+      "affect": [
+        "C14SPE0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual78",
+    "source": "core",
+    "spell": "fortune",
+    "originalIndex": 51,
+    "animation": {
+      "affect": [
+        "C09SPA0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual79",
+    "source": "core",
+    "spell": "misfortune",
+    "originalIndex": 52,
+    "animation": {
+      "affect": [
+        "C10SPF0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual80",
+    "source": "core",
+    "spell": "haste",
+    "originalIndex": 53,
+    "animation": {
+      "affect": [
+        "C15SPA0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual81",
+    "source": "core",
+    "spell": "slow",
+    "originalIndex": 54,
+    "animation": {
+      "affect": [
+        {
+          "defName": "C09SPE0",
+          "verticalPosition": "bottom"
+        }
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual82",
+    "source": "core",
+    "spell": "slayer",
+    "originalIndex": 55,
+    "animation": {
+      "affect": [
+        "C13SPW0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual83",
+    "source": "core",
+    "spell": "frenzy",
+    "originalIndex": 56,
+    "animation": {
+      "affect": [
+        "C08SPF0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual84",
+    "source": "core",
+    "spell": "counterstrike",
+    "originalIndex": 58,
+    "animation": {
+      "affect": [
+        "C04SPA0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual85",
+    "source": "core",
+    "spell": "berserk",
+    "originalIndex": 59,
+    "animation": {
+      "affect": [
+        "C01SPF"
+      ]
+    },
+    "targetType": "LOCATION",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual86",
+    "source": "core",
+    "spell": "hypnotize",
+    "originalIndex": 60,
+    "animation": {
+      "affect": [
+        "C10SPA0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual87",
+    "source": "core",
+    "spell": "forgetfulness",
+    "originalIndex": 61,
+    "animation": {
+      "affect": [
+        "C06SPW"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual88",
+    "source": "core",
+    "spell": "blind",
+    "originalIndex": 62,
+    "animation": {
+      "affect": [
+        "C02SPF0"
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual89",
+    "source": "core",
+    "spell": "summonDemons",
+    "animation": {
+      "affect": [
+        {
+          "defName": "C01SPE0",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual90",
+    "source": "core",
+    "spell": "firstAid",
+    "animation": {
+      "affect": [
+        {
+          "defName": "SP12_",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual91",
+    "source": "core",
+    "spell": "catapultShot",
+    "animation": {},
+    "targetType": "LOCATION",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual92",
+    "source": "core",
+    "spell": "cyclopsShot",
+    "animation": {},
+    "targetType": "LOCATION",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual93",
+    "source": "tum-era",
+    "spell": "skeletalTransformation",
+    "animation": {
+      "affect": [
+        {
+          "defName": "C01SPE0",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual94",
+    "source": "tum-era",
+    "spell": "necrossDeathCloud",
+    "animation": {
+      "hit": [
+        {
+          "defName": "tum-era/hit-effects/Burst17.def",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "targetType": "NO_TARGET",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual95",
+    "source": "wake-of-gods/Mods/artifacts",
+    "spell": "arrowtrigger",
+    "animation": {},
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual96",
+    "source": "wake-of-gods/Mods/artifacts",
+    "spell": "towerJammer",
+    "animation": {},
+    "targetType": "CREATURE",
+    "global": false,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual97",
+    "source": "wake-of-gods/Mods/artifacts",
+    "spell": "summonRedDragon",
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": false,
+    "obstacleAnimations": []
+  },
+  {
+    "key": "visual98",
+    "source": "wake-of-gods/Mods/artifacts",
+    "spell": "boostSpot",
+    "animation": {},
+    "targetType": "NO_TARGET",
+    "global": true,
+    "obstacles": true,
+    "obstacleAnimations": [
+      "C09SPF1",
+      "C09SPF0"
+    ]
+  }
+]

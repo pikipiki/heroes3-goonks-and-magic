@@ -320,6 +320,7 @@ class EffectAnimation : public BattleAnimation
 	std::shared_ptr<CAnimation>	animation;
 	std::vector<Point> positions;
 	BattleHexArray battlehexes;
+	BattleHexArray mobileFootprint;
 
 	bool alignToBottom() const;
 	bool waitForSound() const;
@@ -331,6 +332,8 @@ class EffectAnimation : public BattleAnimation
 	void playEffect(uint32_t msPassed);
 
 public:
+	void setMobileFootprint(const BattleHexArray & hexes) { mobileFootprint = hexes; }
+
 	enum EEffectFlags
 	{
 		ALIGN_TO_BOTTOM = 1,
