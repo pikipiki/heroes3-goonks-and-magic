@@ -850,7 +850,7 @@ void publishMobileState(){
    n["onlineLoading"].Bool()=server.screenType==ESelectionScreen::loadGame;
    if(server.isHost()&&server.screenType==ESelectionScreen::loadGame)
     n["onlineSaveAvailable"].Bool()=CResourceHandler::get()->existsResource(ResourcePath("SAVES/GOONK-ONLINE-AUTO",EResType::SAVEGAME));
-   if(server.si)n["onlineTurnMinutes"].Integer()=server.si->turnTimerInfo.turnTimer/60000;
+   if(server.si){n["onlineTurnMinutes"].Integer()=server.si->turnTimerInfo.turnTimer/60000;n["onlineCheatsAllowed"].Bool()=server.si->extraOptionsInfo.cheatsAllowed;}
    if(server.mi)
    {
     auto name=server.mi->getNameForList();
@@ -1541,6 +1541,17 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
    }
   }
   return;
+ }
+ if(action==97)
+ {
+  const auto & server=GAME->server();
+  if(ENGINE->windows().topWindow<CLobbyScreen>()&&server.inLobbyRoom()&&server.isHost()&&server.getState()==EClientState::LOBBY&&server.screenType==ESelectionScreen::newGame&&(a==0||a==1)&&server.si)
+  {
+   auto options=server.si->extraOptionsInfo;
+   options.cheatsAllowed=a!=0;
+   server.setExtraOptionsInfo(options);
+  }
+  lastPublished=0;return;
  }
  if(action==79)
  {

@@ -252,7 +252,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
         const item = current.buildings?.find(record => record.id === selected);
         if (item?.built) { closeSheet(); command(39, item.id); }
         else if (item?.allowed && current.turn && construction === undefined) {
-          if (project && !isGrail(item)) {
+          if (!isGrail(item)) {
             construction = item.id;
             constructionTimer = setTimeout(() => {
               clearConstruction();
@@ -264,7 +264,6 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
           } else {
             command(8, item.id);
             closeSheet();
-            if (!isGrail(item)) notify('Construction demandée : ' + plainGameText(item.name));
           }
         }
       }

@@ -25,6 +25,8 @@ function sendRoomAction(action, id) {
 export function createOnlineLobby(root, command) {
   const panel = document.createElement('section');
   panel.className = 'online-lobby';
+  // This panel renders both languages itself; player and scenario names are literal.
+  panel.setAttribute('translate', 'no');
   panel.hidden = true;
   panel.setAttribute('aria-labelledby', 'online-lobby-title');
   panel.innerHTML = '<header><div><h2 id="online-lobby-title"></h2><p data-online-account></p></div><button type="button" data-room-action="classic"></button></header><div class="online-lobby-body"></div><footer class="online-lobby-actions"></footer>';
@@ -158,6 +160,7 @@ export function createOnlineLobby(root, command) {
         <section><h3>${t('Scenario', 'Scénario')}</h3><p>${escape(scenarioTitle(state.selectedMap) || t('No scenario selected.', 'Aucun scénario sélectionné.'))}</p>
         ${state.onlineFactions?.length > 1 ? `<label>${t('Your castle', 'Ton château')}<select data-online-faction>${(state.onlineRandomFaction ? [{id:-1,name:t('Random','Aléatoire')}] : []).concat(state.onlineFactions).map(faction => `<option value="${faction.id}"${faction.id===state.onlineFaction?' selected':''}>${escape(faction.name)}</option>`).join('')}</select></label>` : ''}
         ${state.onlineHost && !state.onlineLoading ? `<div class="online-pair">${button(t('Choose a scenario', 'Choisir un scénario'), 'scenario', {disabled: !state.onlineRoomLimit})}${button(`${t('Turn timer', 'Chrono')} · ${minutes ? minutes + ' min' : t('Off', 'Désactivé')}`, 'timer', {disabled:!state.selectedMap})}</div>` : ''}
+        <label class="online-cheats-option"><input type="checkbox" data-online-cheats ${state.onlineCheatsAllowed ? 'checked' : ''} ${!state.onlineHost || state.onlineLoading ? 'disabled' : ''}>${t('Allow cheats', 'Autoriser la triche')}</label>
         ${state.onlineHost && state.onlineLoading && state.onlineSaveAvailable ? button(t('Last online save', 'Dernière sauvegarde en ligne'), 'save') : ''}</section>`);
       const canStart = pendingScenario === undefined && count >= 2 && !!state.selectedMap && (state.onlineLoading ? state.onlineCanResume : state.onlineScenarioFits !== false);
       write(footer, back() + (state.onlineHost ? button(
@@ -216,6 +219,7 @@ export function createOnlineLobby(root, command) {
 
   panel.addEventListener('change', event => {
     if (event.target.matches('[data-online-faction]')) command(37, Number(event.target.value));
+    if (event.target.matches('[data-online-cheats]') && state.onlineHost && !state.onlineLoading) command(97, event.target.checked ? 1 : 0);
   });
   return {
     get active() { return !panel.hidden; },

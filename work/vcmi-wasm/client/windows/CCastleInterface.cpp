@@ -2037,7 +2037,10 @@ CFortScreen::CFortScreen(const CGTownInstance * town):
 		fortSize--;
 	fortSize = std::min(fortSize, static_cast<ui32>(GameConstants::CREATURES_PER_TOWN)); // for 8 creatures + portal of summoning
 
-	const auto & fortBuilding = town->getTown()->buildings.at(BuildingID(town->fortLevel()+6));
+	// The mobile recruitment gallery is also accessible in unfortified towns.
+	// Building 6 is a shipyard, which some factions (such as Tower) do not define.
+	const auto fortID = town->fortLevel() == CGTownInstance::NONE ? BuildingID::FORT : BuildingID(town->fortLevel()+6);
+	const auto & fortBuilding = town->getTown()->buildings.at(fortID);
 	title = std::make_shared<CLabel>(400, 12, FONT_BIG, ETextAlignment::CENTER, Colors::WHITE, fortBuilding->getNameTranslated());
 
 	std::string text = boost::str(boost::format(LIBRARY->generaltexth->fcommands[6]) % fortBuilding->getNameTranslated());

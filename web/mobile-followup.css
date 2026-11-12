@@ -250,3 +250,4 @@ html.goonk-mobile #mobile-app .mobile-calendar{border:0!important;border-top:1px
  html.goonk-mobile #mobile-app[data-creature-view=fort] .creature-view-head h2{display:none!important}
 }
 #mobile-app .siege-target-icon{display:grid;place-items:center;width:44px;height:44px;border:2px ridge #d9ac65;background:#4d1b12;color:#ff8b78;font-size:30px}
+.online-cheats-option{display:flex;align-items:center;gap:.65rem;padding:.65rem;border-top:1px solid #b99b5c;color:#ffe5a2}.online-cheats-option input{flex:0 0 auto;width:1.35rem;height:1.35rem;accent-color:#a67b29}

@@ -63,7 +63,7 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
   }
   detail.querySelector('.hall-stock').textContent=u.built
    ? (hasRoom?`${u.count} available · Shared stock`:'Garrison full · Move troops to your hero')
-   : next?(fr?'🔒 Recrutement verrouillé':'🔒 Recruitment locked'):`Requires: ${plainGameText(u.requiredBuilding)||'Dwelling for this form'}`;
+   : building?.state===2?(fr?'Ce scénario interdit ce logement dans cette ville.':'This scenario forbids this dwelling in this town.'):next?(fr?'🔒 Recrutement verrouillé':'🔒 Recruitment locked'):`Requires: ${plainGameText(u.requiredBuilding)||'Dwelling for this form'}`;
   detail.dataset.locked=String(!u.built);const input=detail.querySelector('input');input.max=maximum;if(document.activeElement!==input)input.value=amount;
   const total=detail.querySelector('.hall-total'),totalMarkup='<span>'+(amount?'Total':'Cost per creature')+'</span>'+(prices(u,amount||1,state.resourceTypes)||'<span>Free</span>');if(total._sourceMarkup!==totalMarkup){total._sourceMarkup=totalMarkup;total.innerHTML=totalMarkup;}
   const buy=detail.querySelector('[data-hall-buy]');buy.textContent=pending?'Recruiting…':!state.turn?(fr?'Disponible à ton tour':'Available on your turn'):!u.built?'Dwelling required':!u.count?'Sold out':!maximum?'Not enough resources':`Recruit ${amount}`;buy.disabled=!!pending||!state.turn||!maximum||!amount||!hasRoom;buy.toggleAttribute('aria-busy',!!pending);
