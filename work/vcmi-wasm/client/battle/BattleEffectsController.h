@@ -45,6 +45,7 @@ struct BattleEffect
 	};
 
 	AnimType type;
+	bool bottomAligned = false;
 	Point pos; //position on the screen
 	float currentFrame = 0.0;
 	float transparencyFactor = 1.0;

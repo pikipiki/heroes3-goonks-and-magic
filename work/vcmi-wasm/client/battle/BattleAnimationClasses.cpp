@@ -966,6 +966,7 @@ bool EffectAnimation::init()
 
 	BattleEffect be;
 	be.effectID = ID;
+	be.bottomAligned = alignToBottom();
 	be.animation = animation;
 	be.currentFrame = 0;
 	be.transparencyFactor = transparencyFactor;

@@ -72,6 +72,7 @@ public:
 	/// if set to true, drawing this canvas onto another canvas will use alpha channel information
 	void applyTransparency(bool on);
 	// Counter-rotate sprite artwork before the portrait battlefield projection.
+	bool hasMobileUprightImages() const { return mobileUprightImages != 0; }
 	void setMobileUprightImages(int anchor) { mobileUprightImages = anchor; }
 
 	/// applies grayscale filter onto current image

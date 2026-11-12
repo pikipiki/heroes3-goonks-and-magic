@@ -132,6 +132,7 @@ void BattleEffectsController::collectRenderableObjects(BattleRenderer & renderer
 			auto img = elem.animation->getImage(currentFrame, static_cast<size_t>(elem.type));
 			img->setAlpha(255 * elem.transparencyFactor);
 
+			if(canvas.hasMobileUprightImages())canvas.setMobileUprightImages(elem.bottomAligned ? 1 : 2);
 			canvas.draw(img, elem.pos);
 		});
 	}
