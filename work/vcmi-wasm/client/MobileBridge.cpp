@@ -1942,7 +1942,21 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   const auto upper=town->getUpperArmy();const auto visitor=town->getVisitingHero();
   const CArmedInstance * from=upper->id.getNum()==a?upper:visitor;
   const CArmedInstance * to=upper->id.getNum()==b?upper:visitor;
-  if(from&&to&&from!=to&&from->id.getNum()==a&&to->id.getNum()==b&&from->getOwner()==p->playerID&&to->getOwner()==p->playerID&&!from->Slots().empty())p->cb->bulkMoveArmy(from->id,to->id,from->Slots().begin()->first);
+  if(from&&to&&from!=to&&from->id.getNum()==a&&to->id.getNum()==b&&from->getOwner()==p->playerID&&to->getOwner()==p->playerID&&!from->Slots().empty()){
+   // Replace the destination formation without losing its existing creatures.
+   // Exchange occupied pairs first, return displaced units, then move into blanks.
+   int sourceStacks=from->stacksCount();
+   for(int step=0;step<3;++step)for(int slot=0;slot<7;++slot){
+    const int phase=step==0?0:from->needsLastStack()?step:3-step;
+    const SlotID id(slot);const bool src=from->hasStackAtSlot(id),dst=to->hasStackAtSlot(id);
+    if(phase==0&&src&&dst)p->cb->swapCreatures(from,to,id,id);
+    if(phase==1&&!src&&dst){p->cb->swapCreatures(to,from,id,id);++sourceStacks;}
+    if(phase==2&&src&&!dst){
+     if(from->needsLastStack()&&sourceStacks==1){const auto count=from->getStackCount(id);if(count>1)p->cb->splitStack(from,to,id,id,count-1);}
+     else{p->cb->swapCreatures(from,to,id,id);--sourceStacks;}
+    }
+   }
+  }
   lastPublished=0;return;
  }
  if((action==10||action==11)&&p->makingTurn&&a>=0&&c>=0&&b>=0&&b<7&&d>=0&&d<7){const auto from=dynamic_cast<const CArmedInstance*>(p->cb->getObj(ObjectInstanceID(a)));const auto to=dynamic_cast<const CArmedInstance*>(p->cb->getObj(ObjectInstanceID(c)));if(from&&to&&from->getOwner()==p->playerID&&to->getOwner()==p->playerID&&from->hasStackAtSlot(SlotID(b))){if(action==10)p->cb->mergeOrSwapStacks(from,to,SlotID(b),SlotID(d));else if(e>0&&e<from->getStackCount(SlotID(b))&&!to->hasStackAtSlot(SlotID(d)))p->cb->splitStack(from,to,SlotID(b),SlotID(d),e);}}

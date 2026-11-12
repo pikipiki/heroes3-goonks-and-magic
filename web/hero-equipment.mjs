@@ -127,7 +127,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
    <div><h2>${esc(hero.name)}</h2><p>Level ${hero.level??1} ${esc(hero.className)}</p>
     <div class="hero-vitals"><span>${heroIcon(hero.manaIcon)}${hero.mana??0} / ${hero.manaLimit??0} mana</span>
      ${hero.experience===undefined?'':`<span>${heroIcon(hero.experienceIcon)}${hero.experience.toLocaleString()} XP</span>`}</div></div>
-   <button data-hero-close aria-label="${hero.owned===false?'Back':'Back to map'}">← ${fr?'Retour':'Back'}</button>
+   <button data-hero-close aria-label="${hero.owned===false?'Back':'Back to map'}">✕</button>
   </header>
   <dl class="hero-primary" aria-label="Primary stats">${['Attack','Defense','Power','Knowledge'].map((name,i)=>`<div><dt>${name}</dt><dd>${heroIcon(hero.primaryIcons?.[i])}${hero.primarySkills?.[i]??0}</dd></div>`).join('')}</dl>
   <nav class="hero-bag-tabs" aria-label="Hero sheet">

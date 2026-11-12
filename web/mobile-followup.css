@@ -151,7 +151,7 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-vertical-battle=true] .batt
 html.goonk-mobile #mobile-app[data-mode=battle][data-vertical-battle=true] .battle-turn{font-size:13px!important;line-height:16px!important;margin:0!important}
 html.goonk-mobile #mobile-app[data-mode=battle][data-vertical-battle=true] .scene-hint{display:none!important}
 /* Gold-framed return controls share the action buttons' full touch area. */
-html.goonk-mobile :is(#mobile-app,#game-menu-dialog,#mobile-viewport) button.back-button{border:5px ridge #e4c577!important;border-image:none!important;box-shadow:inset 0 0 0 1px #ffe39b!important;background:linear-gradient(#74521e,#35220c)!important;color:#fff0b7!important;justify-self:stretch!important;width:100%!important;max-width:none!important;box-sizing:border-box}
+html.goonk-mobile :is(#mobile-app,#game-menu-dialog,#mobile-viewport) button.back-button{border:2px solid #ffe39b!important;border-image:none!important;box-shadow:none!important;background:linear-gradient(#74521e,#35220c)!important;color:#fff0b7!important;max-width:100%!important;box-sizing:border-box}
 html.goonk-mobile #mobile-app[data-has-resources=true]>.mobile-top .mobile-resources{grid-column:2/-1!important;grid-row:1!important;max-width:none!important;width:100%!important;overflow:visible!important;gap:3px!important}
 html.goonk-mobile #mobile-app[data-has-resources=true]>.mobile-top .mobile-calendar{grid-column:1/-1!important;grid-row:2!important;width:100%!important;justify-content:space-between!important;position:static!important;min-width:0!important}
 html.goonk-mobile #mobile-app .mobile-resources .resource-quantity{overflow:visible!important;text-overflow:clip!important;font-size:clamp(9px,2.4vw,12px)!important;line-height:15px!important}
@@ -261,3 +261,16 @@ html.goonk-mobile #mobile-app .mobile-calendar{border:0!important;border-top:1px
 
 /* Header return buttons share a row with the hero name. Footer returns stay full width. */
 html.goonk-mobile #mobile-app .hero-card-head button.back-button{width:auto!important;max-width:45%!important;flex:0 0 auto}
+
+/* Stable control sizes in every rail, including a short browser viewport. */
+html.goonk-mobile #mobile-app .hall-actions{height:44px!important;min-height:44px!important;max-height:44px!important;flex:0 0 44px!important;align-self:stretch}
+html.goonk-mobile #mobile-app .hall-actions button{height:44px!important;min-height:44px!important;max-height:44px!important}
+html.goonk-mobile #mobile-app [data-hero-close]{width:44px!important;min-width:44px!important;max-width:44px!important;height:44px;align-self:start;justify-self:end;padding:0!important}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-detail{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:minmax(0,1fr) 18px 44px 44px!important;align-content:stretch!important;overflow:hidden!important;gap:3px!important;padding:4px 8px!important;box-sizing:border-box}
+ html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-feature{grid-row:1!important;min-height:0!important;overflow:auto!important}
+ html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-stock{grid-column:1!important;grid-row:2!important;min-height:0!important;overflow:auto!important}
+ html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-total{grid-column:2!important;grid-row:2!important;min-height:0!important;overflow:auto!important;font-size:11px}
+ html.goonk-mobile #mobile-app[data-creature-view=fort] :is(.hall-quantity,.hall-unlock-preview){grid-row:3!important;min-height:0!important;overflow:auto!important}
+ html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-actions{grid-row:4!important;padding:0!important;align-self:stretch!important}
+}

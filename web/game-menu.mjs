@@ -47,7 +47,7 @@ function mountGameMenu(){
     hostedEntry.hidden=Boolean(window.goonkMobileActive)||!window.goonkHostedAlerts||state.mode!=='menu';
     hostedEntry.textContent=hostedTitle;
     dialog.querySelector('nav [data-menu=cheats]').hidden=state.cheatsAllowed===false;
-    dialog.querySelector('.game-menu-return').hidden=tab==='home'||tab==='new-game';dialog.dataset.page=tab;dialog.querySelector('nav').hidden=tab!=='home';dialog.querySelector('[data-menu=back]').hidden=true;dialog.querySelector('#game-menu-title').textContent=({home:'Heroes Goonk','hosted-match':hostedTitle,settings:'Settings',cheats:'Cheat codes',storage:'Game storage','storage-help':'Storage help','new-game':'New game'})[tab]||'Heroes Goonk';dialog.querySelector('[data-menu=new-game]').hidden=tab!=='home'||!state.day;
+    dialog.querySelector('.game-menu-return').hidden=tab==='home'||tab==='new-game'||tab==='cheats';dialog.dataset.page=tab;dialog.querySelector('nav').hidden=tab!=='home';dialog.querySelector('[data-menu=back]').hidden=true;dialog.querySelector('#game-menu-title').textContent=({home:'Heroes Goonk','hosted-match':hostedTitle,settings:'Settings',cheats:'Cheat codes',storage:'Game storage','storage-help':'Storage help','new-game':'New game'})[tab]||'Heroes Goonk';dialog.querySelector('[data-menu=new-game]').hidden=tab!=='home'||!state.day;
     if(tab==='home'){content.innerHTML='';delete content.dataset.view;delete content.dataset.storage;return;}
     if(tab==='storage-help'){delete content.dataset.storage;if(content.dataset.view!=='storage-help'){content.dataset.view='storage-help';content.innerHTML=storageHelp();}return;}
     dialog.querySelector('[data-menu=settings]').setAttribute('aria-pressed',String(tab==='settings'));
@@ -125,7 +125,7 @@ function mountGameMenu(){
     window.goonkGameMenuState={muted,ready:initialAudioApplied,native:state};
   });
   window.addEventListener('goonk-autosave-status',e=>{const s=e.detail;dialog.querySelector('.autosave-status').textContent=s.phase==='error'?'Sauvegarde automatique : '+s.error:s.phase==='saving'?'Sauvegarde automatique en cours…':s.deferred?'Combat en cours : sauvegarde différée'+(s.lastSaved?' · dernière à '+new Date(s.lastSaved).toLocaleTimeString(getLanguage()==='fr'?'fr-FR':'en-GB'):''):s.lastSaved?'Sauvegarde automatique : '+new Date(s.lastSaved).toLocaleTimeString(getLanguage()==='fr'?'fr-FR':'en-GB')+' · cycle 10 s':'Sauvegarde automatique : cycle 10 s · en attente d’un état enregistrable';});
-  const menuPresses=protectMenuButtons(dialog,activateMenuButton,{context:()=>tab});
+  const menuPresses=protectMenuButtons(dialog,activateMenuButton,{context:()=>tab,nativeClick:true});
   bindPress(toggle,()=>{menuPresses.cancel();tab='home';render();status.textContent='';if(!dialog.open)dialog.showModal();});
   function activateMenuButton(button){
     if(!button?.isConnected||button.disabled)return;

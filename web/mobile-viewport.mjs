@@ -36,6 +36,7 @@ export function isLandscapeOrientation(win=typeof window!=='undefined'?window:nu
 // at the current scroll origin instead: client rects and finger coordinates then
 // share the same origin. This also follows browser toolbar/keyboard resizing.
 export function anchorMobileViewport(root,win=window){
+ const editingViewport=w=>/^(INPUT|TEXTAREA)$/.test(w.document?.activeElement?.tagName||'');
  const viewport=win.visualViewport;let pending=false,disposed=false,lastLayoutWidth;
  const wakeTimers=new Set();
  const probe=win.document?.createElement?.('div');if(probe){probe.setAttribute('aria-hidden','true');Object.assign(probe.style,{position:'fixed',width:'100dvw',height:'100dvh',visibility:'hidden',pointerEvents:'none',inset:'0'});win.document.body.append(probe);}
@@ -67,18 +68,20 @@ export function anchorMobileViewport(root,win=window){
   }
   // Safari can retain a height from before rotation even when both sizes have
   // the same orientation. Bound it by an independently aligned layout size.
-  if(!zoomed)for(const [w,h] of [[layoutWidth,layoutHeight],[win.innerWidth,win.innerHeight]])
+  if(!zoomed)for(const [w,h] of [[win.innerWidth,win.innerHeight]])
    if(w>0&&h>0&&Math.abs(w-finalWidth)<2&&(isLandscape?w>=h:h>=w))finalHeight=Math.min(finalHeight,h);
   const dynamic=probe?.getBoundingClientRect();
-  if(dynamic?.width>0&&dynamic.height>0&&Math.abs(dynamic.width-finalWidth)<2&&(isLandscape?dynamic.width>=dynamic.height:dynamic.height>=dynamic.width))finalHeight=Math.min(finalHeight,dynamic.height);
-  if(viewport?.height>0&&Math.abs(viewport.width-finalWidth)<2)finalHeight=Math.min(finalHeight,viewport.height);
+  const confirmedDynamic=dynamic?.width>0&&dynamic.height>0&&Math.abs(dynamic.width-finalWidth)<2&&Math.abs(dynamic.height-win.innerHeight)<2&&!editingViewport(win);
+  if(confirmedDynamic)finalHeight=dynamic.height;
+  else if(viewport?.height>0&&Math.abs(viewport.width-finalWidth)<2)finalHeight=Math.min(finalHeight,viewport.height);
   lastLayoutWidth=layoutWidth;
   if(root.dataset)root.dataset.orientation=isLandscape?'landscape':'portrait';
   // pageTop/pageLeft may lag scrollTo(0,0) after an iOS wake. Gameplay has no
   // keyboard panning; anchor its document-space box to the actual scroll origin.
   const editing=/^(INPUT|TEXTAREA)$/.test(win.document?.activeElement?.tagName||'');
   const left=editing&&Number.isFinite(viewport?.pageLeft)?viewport.pageLeft:win.scrollX||0;
-  const top=editing&&Number.isFinite(viewport?.pageTop)?viewport.pageTop:win.scrollY||0;
+  const visualOffset=Math.max(0,viewport?.offsetTop||0);
+  const top=editing&&Number.isFinite(viewport?.pageTop)?viewport.pageTop:(win.scrollY||0)+(Math.abs((viewport?.pageTop||0)-(win.scrollY||0)-visualOffset)<2?visualOffset:0);
   const next={position:'absolute',inset:'auto',left:left+'px',top:top+'px',width:finalWidth+'px',height:finalHeight+'px'};
   for(const [name,value] of Object.entries(next))if(root.style[name]!==value)root.style[name]=value;
  }
@@ -126,8 +129,10 @@ export function anchorMobileViewport(root,win=window){
   [viewport,'scroll',schedule]
  ].filter(([target])=>typeof target?.addEventListener==='function');
  for(const [target,event,listener] of bindings)target.addEventListener(event,listener,{passive:true});
+ // Chrome on iOS can settle its toolbar geometry without emitting resize.
+ const watchdog=typeof win.setInterval==='function'?win.setInterval(schedule,250):null;
  update();
- return{update:schedule,dispose(){disposed=true;probe?.remove();clearWakeTimers();for(const [target,event,listener] of bindings)target.removeEventListener(event,listener);}};
+ return{update:schedule,dispose(){disposed=true;if(watchdog!==null)win.clearInterval(watchdog);probe?.remove();clearWakeTimers();for(const [target,event,listener] of bindings)target.removeEventListener(event,listener);}};
 }
 
 export function enableFullscreenOnPlay(win=window){
