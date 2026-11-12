@@ -15,7 +15,7 @@ try{
   const onResponse=response=>{if(response.status()>=400&&!response.url().endsWith('/favicon.ico'))result.badResponses.push([response.status(),response.url()]);};
   page.on('pageerror',onError);page.on('response',onResponse);
   await page.setViewportSize({width:390,height:844});
-  await page.goto(url+'?mobile=1');
+  await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto(url+'?mobile=1');
   await page.waitForURL(/game\.html\?mobile=1/,{timeout:45000});
   result.isolation=await page.evaluate(()=>({isolated:crossOriginIsolated,sharedMemory:typeof SharedArrayBuffer==='function',worker:!!navigator.serviceWorker.controller,scope:location.pathname}));
   assert(result.isolation.isolated&&result.isolation.sharedMemory);
@@ -31,7 +31,7 @@ try{
   await page.waitForFunction(()=>goonkMobileState.mode==='map'&&goonkMobileState.heroName,null,{timeout:45000});
   result.realGame=true;
   await page.screenshot({path:'../../outputs/hosting-'+name+'.png'});
-  await page.goto(url+'?mobile=1');
+  await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto(url+'?mobile=1');
   await page.waitForFunction(()=>window.goonkMobileState?.mode==='menu',null,{timeout:60000});
   result.warmCache=await page.evaluate(()=>goonkCacheStats);assert.equal(result.warmCache.downloaded,0);
   assert.deepEqual(result.errors,[]);assert.deepEqual(result.badResponses,[]);

@@ -22,7 +22,7 @@ async function resume(label,expected){
  report.cycles.push({label,mode:state.mode});
 }
 try{
- await page.goto(process.env.GOONK_TEST_URL||'http://127.0.0.1:8767/game.html?mobile=1');await wait(()=>window.goonkMobileState?.mode==='menu');
+ await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto(process.env.GOONK_TEST_URL||'http://127.0.0.1:8767/game.html?mobile=1');await wait(()=>window.goonkMobileState?.mode==='menu');
  await click('Nouvelle aventure');await wait(()=>goonkMobileState.maps?.length);
  const map=await page.evaluate(()=>goonkMobileState.maps.find(m=>m.name.includes('Château Goonk')));assert(map);
  await page.locator('#mobile-map-select').selectOption(String(map.index));await page.waitForFunction(n=>goonkMobileState.selectedMap===n,map.name);await click('Commencer');await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.heroName);

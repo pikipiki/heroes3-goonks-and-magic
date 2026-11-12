@@ -3,7 +3,7 @@ const b=await chromium.connectOverCDP('http://127.0.0.1:9224'),c=b.contexts()[0]
 await p.addInitScript(()=>{let last=performance.now();window.mouseGaps=[];setInterval(()=>{const now=performance.now();if(now-last>150)mouseGaps.push(now-last);last=now;},25);});
 const wait=fn=>p.waitForFunction(fn,null,{timeout:60000}),command=(a,b=0)=>p.evaluate(([a,b])=>Module._vcmiMobileCommand(a,b,0,0,0,0),[a,b]);
 try{
- await p.setViewportSize({width:1024,height:768});await p.goto('http://127.0.0.1:8768/heroes-goonk/?mobile=0');
+ await p.setViewportSize({width:1024,height:768});await (await import('./silent-audio.mjs')).silenceTestAudio(p);await p.goto('http://127.0.0.1:8768/heroes-goonk/?mobile=0');
  assert.equal(await p.locator('input[type=file]').count(),0);
  await wait(()=>window.goonkGameMenuState?.ready);assert.equal(await p.evaluate(()=>!!Module._vcmiArmMouseContention),false);report.checks.push('Release engine contains no temporary contention hook');
  await command(20);await wait(()=>goonkGameMenuState.native.mode==='lobby');await command(21);await p.waitForTimeout(300);await command(22);await wait(()=>goonkGameMenuState.native.mode==='map');await command(4);await wait(()=>!!goonkGameMenuState.native.heroName);await p.waitForTimeout(300);

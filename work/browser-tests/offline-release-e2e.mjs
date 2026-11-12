@@ -43,13 +43,13 @@ try {
     try {
       const context = await browser.newContext();
       const page = await context.newPage();
-      await page.goto(url);
+      await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto(url);
       await ready(page, 'first');
       await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller));
       await page.evaluate(() => localStorage.setItem('saved-game-fixture', 'keep'));
 
       const playing = await context.newPage();
-      await playing.goto(url);
+      await (await import('./silent-audio.mjs')).silenceTestAudio(playing);await playing.goto(url);
       await ready(playing, 'first');
       version = 'second';
       await page.reload();
@@ -71,7 +71,7 @@ try {
 
       version = 'third';
       networkAvailable = false;
-      await page.goto(url.replace('?mobile=1', '?mobile=1&offline=1'));
+      await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto(url.replace('?mobile=1', '?mobile=1&offline=1'));
       await ready(page, 'slow');
       console.log('PASS', kind, 'update on launch, other game protected, offline launch');
     } finally {

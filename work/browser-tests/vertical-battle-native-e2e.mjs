@@ -9,7 +9,7 @@ let phase='boot';p.on('console',m=>{if(m.type()==='error'||/Map.+error|Error loa
 const wait=f=>p.waitForFunction(f,null,{timeout:90000}),cmd=(...a)=>p.evaluate(a=>Module._vcmiMobileCommand(...a),[...a,...Array(6-a.length).fill(0)]);
 try{
  await p.addInitScript(()=>sessionStorage.setItem('heroes-goonk.storage-failed','true'));
- await p.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8777')+'/game.html?mobile=1');
+ await (await import('./silent-audio.mjs')).silenceTestAudio(p);await p.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8777')+'/game.html?mobile=1');
  await wait(()=>window.goonkMobileState?.mode==='menu'&&window.goonkSessionRecovery?.phase==='done');
  const fixture=execFileSync('python3',['-c',`import zipfile,json,io,sys
 out=io.BytesIO()

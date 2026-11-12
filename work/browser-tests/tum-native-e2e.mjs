@@ -4,7 +4,7 @@ const browser=await chromium.connectOverCDP(process.env.CDP_URL||'http://127.0.0
 page.on('console',m=>report.logs.push(m.text()));page.on('pageerror',e=>report.errors.push(e.message));
 const wait=f=>page.waitForFunction(f,null,{timeout:180000}),click=n=>page.getByRole('button',{name:n,exact:true}).click();
 try{
- await page.goto((process.env.GAME_ORIGIN||'http://127.0.0.1:8770')+'/?mobile=1');await wait(()=>window.goonkMobileState?.mode==='menu');console.log('Menu ready');
+ await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto((process.env.GAME_ORIGIN||'http://127.0.0.1:8770')+'/?mobile=1');await wait(()=>window.goonkMobileState?.mode==='menu');console.log('Menu ready');
  await click('Nouvelle aventure');await wait(()=>goonkMobileState.maps?.length);
  const maps=await page.evaluate(()=>goonkMobileState.maps);const map=maps.find(m=>/1.*on.*1/i.test(m.name))||maps.find(m=>m.name==='Goonks');await page.locator('#mobile-map-select').selectOption(String(map.index));await page.waitForFunction(n=>goonkMobileState.selectedMap===n,map.name);
  const factions=await page.evaluate(()=>goonkMobileState.factions),necro=factions.find(f=>/necro/i.test(f.name));assert(necro);await page.locator('#mobile-faction-select').selectOption(String(necro.id));await page.waitForFunction(id=>goonkMobileState.selectedFaction===id,necro.id);await click('Commencer');await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.towns?.length);console.log('Game started');

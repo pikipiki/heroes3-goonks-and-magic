@@ -6,7 +6,7 @@ try{
  // A cold private load must recover from one failed engine package request.
  let dataRequests=0;await p.route(/\/vcmiclient\.[a-f0-9]+\.data$/,r=>++dataRequests===1?r.abort('connectionreset'):r.continue());
  await p.addInitScript(()=>sessionStorage.setItem('heroes-goonk.storage-failed','true'));
- await p.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8777')+'/game.html?mobile=1');
+ await (await import('./silent-audio.mjs')).silenceTestAudio(p);await p.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8777')+'/game.html?mobile=1');
  await p.waitForFunction(()=>window.goonkMobileState?.mode==='menu'&&window.goonkSessionRecovery?.phase==='done',null,{timeout:180000});assert(dataRequests>=2,'Retry the failed engine package');console.log('PASS engine package retry in temporary mode');
  const cmd=(...a)=>p.evaluate(a=>Module._vcmiMobileCommand(...a),[...a,...Array(6-a.length).fill(0)]),wait=(f,a)=>p.waitForFunction(f,a,{timeout:45000});
  const fixture=execFileSync('python3',['-c',`import zipfile,json,io,sys
@@ -46,6 +46,6 @@ sys.stdout.buffer.write(out.getvalue())`]);
  const failed=await browser.newPage({viewport:{width:390,height:740},hasTouch:true,bypassCSP:true});let failures=0;
  await failed.route(/\/vcmiclient\.[a-f0-9]+\.data$/,r=>{failures++;return r.abort('connectionreset')});
  await failed.addInitScript(()=>sessionStorage.setItem('heroes-goonk.storage-failed','true'));
- await failed.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8777')+'/game.html?mobile=1');
+ await (await import('./silent-audio.mjs')).silenceTestAudio(failed);await failed.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8777')+'/game.html?mobile=1');
  await failed.locator('#status button').waitFor({timeout:30000});assert.equal(failures,2);assert.match(await failed.locator('#status').innerText(),/retry/i);await failed.close();console.log('PASS permanent package failure offers retry');
 }catch(error){console.error(error);process.exitCode=1;}finally{await browser.close();}

@@ -25,7 +25,7 @@ for(const kind of ['chromium','webkit']){
   const page=await browser.newPage({viewport:{width:1024,height:768},hasTouch:true}),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.route('**/web/**',r=>{const file=path.resolve('web',new URL(r.request().url()).pathname.split('/web/')[1]);return fs.existsSync(file)?r.fulfill({path:file}):r.abort();});
   await page.route('**/rail?mobile=1',r=>r.fulfill({contentType:'text/html',body:`<!doctype html><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=/web/mobile.css><link rel=stylesheet href=/web/h3-theme.css><link rel=stylesheet href=/web/mobile-upgrade.css><link rel=stylesheet href=/web/marketplace.css><canvas id=canvas width=800 height=600></canvas><script>Module={_vcmiMobileEnable(){},_vcmiMobileCommand(){}};</script><script type=module src=/web/mobile.mjs></script>`}));
-  await page.goto('http://localhost/rail?mobile=1');await page.waitForSelector('#mobile-app');
+  await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto('http://localhost/rail?mobile=1');await page.waitForSelector('#mobile-app');
   await page.evaluate(()=>{const button=document.createElement('button');button.id='game-menu-toggle';button.textContent='☰';document.querySelector('.mobile-brand').replaceWith(button);});
   for(const [width,height] of [[844,390],[568,320],[1024,768],[1180,820]]){
    await page.setViewportSize({width,height});

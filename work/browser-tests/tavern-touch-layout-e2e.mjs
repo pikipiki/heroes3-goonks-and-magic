@@ -31,7 +31,7 @@ for (const [kind, engine, executablePath] of [
         window.goonkAssetsReady=Promise.resolve();window.goonkAssetURLs=[];</script>
         <script type="module" src="/web/mobile.mjs"></script>`,
     }));
-    await page.goto(origin + '/tavern-touch-test?mobile=1');
+    await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto(origin + '/tavern-touch-test?mobile=1');
     await page.waitForSelector('#mobile-app');
     const publish = detail => page.evaluate(detail => dispatchEvent(new CustomEvent('goonk-state', {detail})), detail);
     const panel = page.locator('.mobile-tavern');

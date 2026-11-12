@@ -12,7 +12,7 @@ const origin = process.env.GOONK_TEST_ORIGIN || 'http://127.0.0.1:8796';
 const accept = page.locator('.mobile-nav [data-ui=accept]');
 
 try {
-  await page.goto(origin + '/game.html?mobile=1');
+  await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto(origin + '/game.html?mobile=1');
   await wait(() => window.goonkMobileState?.mode === 'menu' && window.goonkSessionRecovery?.phase === 'done');
   await page.locator('[data-action="20"]').tap();
   await wait(() => goonkMobileState.mode === 'lobby' && goonkMobileState.lobbyReady && !!document.querySelector('[data-ui=begin]:enabled'));

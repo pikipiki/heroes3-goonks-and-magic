@@ -54,7 +54,7 @@ try{
   const log=()=>page.evaluate(()=>{try{return Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{return'';}});
   try{
    await page.addInitScript(()=>sessionStorage.setItem('heroes-goonk.storage-failed','true'));
-   await page.goto(origin+'/game.html?mobile=1');
+   await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto(origin+'/game.html?mobile=1');
    await page.waitForFunction(()=>window.goonkMobileState?.mode==='menu'&&window.goonkSessionRecovery?.phase==='done',null,{timeout:180000});
    assert(await page.evaluate(()=>Module.goonkTemporaryStorage),'Use the isolated in-memory path');
    await page.keyboard.press('Shift');

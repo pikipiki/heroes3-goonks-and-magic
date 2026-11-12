@@ -40,7 +40,7 @@ async function run(tactics){
   await page.screenshot({path:path.join(output,'goonk-guidance-'+label+'.png')});report.views.push({label,actor:actor.name,stack:actor.stackId,reachable:cells.length,gold,width:info.width,height:info.height});return actor.stackId;
  }
  try{
-  await page.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8775')+'/game.html?mobile=1');await wait(()=>window.goonkMobileState?.mode==='menu');
+  await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8775')+'/game.html?mobile=1');await wait(()=>window.goonkMobileState?.mode==='menu');
   await page.evaluate(bytes=>Module.FS.writeFile('/home/web_user/.local/share/vcmi/Maps/000-Goonk.vmap',new Uint8Array(bytes)),Array.from(fixture(tactics)));
   await click('Nouvelle aventure');await wait(()=>goonkMobileState.maps?.length);const map=await page.evaluate(()=>goonkMobileState.maps.find(m=>m.name.includes('Château Goonk')));await page.locator('#mobile-map-select').selectOption(String(map.index));await page.waitForFunction(name=>goonkMobileState.selectedMap===name,map.name);await click('Commencer');await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.heroName);
   await page.evaluate(()=>{window.battlePointerCalls=0;const pointer=Module._vcmiMobilePointer;Module._vcmiMobilePointer=(...args)=>{if(goonkMobileState.mode==='battle')battlePointerCalls++;return pointer(...args);};Module._vcmiMobilePointer(433,281,4);});await wait(()=>goonkMobileState.hasPath);await click('➤ Marcher');

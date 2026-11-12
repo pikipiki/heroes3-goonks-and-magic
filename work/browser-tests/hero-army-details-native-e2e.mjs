@@ -9,7 +9,7 @@ try{
  page.on('pageerror',e=>{errors.push(e.message);console.log('PAGE ERROR',e.message);});page.setDefaultTimeout(120000);
  const wait=f=>page.waitForFunction(f,null,{timeout:120000});
  const cmd=(...a)=>page.evaluate(a=>Module._vcmiMobileCommand(...a),[...a,...Array(6-a.length).fill(0)]);
- await page.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8777')+'/?mobile=1');
+ await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8777')+'/?mobile=1');
  await wait(()=>window.goonkMobileState?.mode==='menu'&&window.goonkSessionRecovery?.phase==='done');
  console.log('Engine ready');
  // Use the small showcase in memory; hidden test scenarios are intentionally absent from the public picker.

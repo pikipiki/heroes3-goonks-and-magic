@@ -24,7 +24,7 @@ try {
       return window.testPushReady ? {subscribe: async () => ({toJSON: () => ({endpoint: 'https://example.invalid/push'})})} : undefined;
     }});
   });
-  await page.goto(origin + '/game.html?mobile=1');
+  await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto(origin + '/game.html?mobile=1');
   await wait(() => window.goonkMobileState?.mode === 'menu' && window.goonkOnlineConfigured);
   const endpoint = await page.evaluate(() => window.goonkHostedAlerts?.endpoint);
   const simulateHostedSocket = () => page.evaluate(() => {

@@ -19,7 +19,7 @@ function mountGameMenu(){
   const toggle=document.createElement('button');toggle.id='game-menu-toggle';toggle.textContent='☰';toggle.setAttribute('aria-label','Menu du jeu');
   const brand=document.querySelector('#mobile-app .mobile-brand');if(brand)brand.replaceWith(toggle);else document.body.append(toggle);
   const dialog=document.createElement('dialog');dialog.id='game-menu';dialog.setAttribute('aria-labelledby','game-menu-title');
-  dialog.innerHTML='<header><button data-menu="back" hidden>← Back</button><h2 id="game-menu-title">Heroes Goonk</h2><button data-menu="close" aria-label="Fermer le menu">✕</button></header><p class="autosave-status" aria-live="polite">Sauvegarde automatique : toutes les 10 secondes</p><nav aria-label="Rubriques du menu"><button data-menu="hosted-match" hidden></button><button data-menu="settings">Réglages</button><button data-menu="cheats">Codes de triche</button><button data-menu="storage">Stockage du jeu</button><button data-menu="new-game" class="new-game-in-session">New game</button></nav><div class="game-menu-body"></div><p class="game-menu-status" role="status"></p>';
+  dialog.innerHTML='<header><button data-menu="back" hidden>← Back</button><h2 id="game-menu-title">Heroes Goonk</h2><button data-menu="close" aria-label="Fermer le menu">✕</button></header><p class="autosave-status" aria-live="polite">Sauvegarde automatique : toutes les 10 secondes</p><nav aria-label="Rubriques du menu"><button data-menu="hosted-match" hidden></button><button data-menu="settings">Réglages</button><button data-menu="cheats">Codes de triche</button><button data-menu="storage">Stockage du jeu</button><button data-menu="new-game" class="new-game-in-session">New game</button></nav><div class="game-menu-body"></div><footer class="game-menu-return"><button data-menu="back">Back</button></footer><p class="game-menu-status" role="status"></p>';
   (document.querySelector('#mobile-viewport')||document.body).append(dialog);
   const onlineTurn=document.createElement('p');
   onlineTurn.className='desktop-online-turn';onlineTurn.hidden=true;onlineTurn.setAttribute('role','status');
@@ -47,7 +47,7 @@ function mountGameMenu(){
     hostedEntry.hidden=Boolean(window.goonkMobileActive)||!window.goonkHostedAlerts||state.mode!=='menu';
     hostedEntry.textContent=hostedTitle;
     dialog.querySelector('nav [data-menu=cheats]').hidden=state.cheatsAllowed===false;
-    dialog.dataset.page=tab;dialog.querySelector('nav').hidden=tab!=='home';dialog.querySelector('[data-menu=back]').hidden=tab==='home';dialog.querySelector('#game-menu-title').textContent=({home:'Heroes Goonk','hosted-match':hostedTitle,settings:'Settings',cheats:'Cheat codes',storage:'Game storage','storage-help':'Storage help','new-game':'New game'})[tab]||'Heroes Goonk';dialog.querySelector('[data-menu=new-game]').hidden=tab!=='home'||!state.day;
+    dialog.querySelector('.game-menu-return').hidden=tab==='home'||tab==='new-game';dialog.dataset.page=tab;dialog.querySelector('nav').hidden=tab!=='home';dialog.querySelector('[data-menu=back]').hidden=true;dialog.querySelector('#game-menu-title').textContent=({home:'Heroes Goonk','hosted-match':hostedTitle,settings:'Settings',cheats:'Cheat codes',storage:'Game storage','storage-help':'Storage help','new-game':'New game'})[tab]||'Heroes Goonk';dialog.querySelector('[data-menu=new-game]').hidden=tab!=='home'||!state.day;
     if(tab==='home'){content.innerHTML='';delete content.dataset.view;delete content.dataset.storage;return;}
     if(tab==='storage-help'){delete content.dataset.storage;if(content.dataset.view!=='storage-help'){content.dataset.view='storage-help';content.innerHTML=storageHelp();}return;}
     dialog.querySelector('[data-menu=settings]').setAttribute('aria-pressed',String(tab==='settings'));
@@ -139,7 +139,7 @@ function mountGameMenu(){
     }
     if(action==='back'){tab=tab==='storage-help'?'storage':'home';delete content.dataset.view;render();return;}
     if(action==='storage-help'){tab='storage-help';render();return;}
-    if(action==='new-game'){tab='new-game';render();content.dataset.view='new-game';content.innerHTML='<h3>Retourner au menu principal ?</h3><p>The current session will end. Your existing saved games will be kept. Save first if you want to keep your latest progress.</p><button data-menu=confirm-new-game>Retour au menu principal</button><button data-menu=back>Back</button>';return;}
+    if(action==='new-game'){tab='new-game';render();content.dataset.view='new-game';content.innerHTML='<h3>Retourner au menu principal ?</h3><p>The current session will end. Your existing saved games will be kept. Save first if you want to keep your latest progress.</p><div class="menu-confirm-actions"><button data-menu=confirm-new-game>Retour au menu principal</button><button data-menu=back>Back</button></div>';return;}
     if(action==='confirm-new-game'){
       if(newGamePending||!state.day||!window.Module?._vcmiMobileCommand)return;
       newGamePending=true;button.disabled=true;button.setAttribute('aria-busy','true');command(71);return;

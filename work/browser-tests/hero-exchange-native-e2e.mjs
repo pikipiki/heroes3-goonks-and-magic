@@ -46,7 +46,7 @@ try{
    }});
   }});
  },fixture.toString('base64'));
- await page.goto(origin+'/game.html?mobile=1');
+ await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto(origin+'/game.html?mobile=1');
  await wait(()=>window.goonkMobileState?.mode==='menu'&&window.goonkSessionRecovery?.phase==='done');
  await command(20,1);
  await wait(()=>!goonkMobileState.mapsLoading&&goonkMobileState.maps?.some(map=>map.name==='Hero exchange fixture'));

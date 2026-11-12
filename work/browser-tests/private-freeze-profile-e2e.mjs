@@ -26,7 +26,7 @@ try{
   const timer=setInterval(()=>{const node=window.Module?.SDL2?.audio?.scriptProcessorNode;if(node?.onaudioprocess&&!node._profile){node._profile=true;const fn=node.onaudioprocess;let last;node.onaudioprocess=e=>{const at=performance.now();if(last)s.audio.push({at,ms:at-last});last=at;return fn.call(node,e);};}},200);
  });
  console.log('Opening private game');
- await page.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8777')+'/game.html?mobile=1');
+ await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8777')+'/game.html?mobile=1');
  const wait=(f,arg)=>page.waitForFunction(f,arg,{timeout:45000}),cmd=(...a)=>page.evaluate(a=>Module._vcmiMobileCommand(...a),[...a,...Array(6-a.length).fill(0)]);
  await page.waitForFunction(()=>window.goonkMobileState?.mode==='menu'&&window.goonkSessionRecovery?.phase==='done',null,{timeout:180000});assert(await page.evaluate(()=>Module.goonkTemporaryStorage));
  const cdp=kind==='chromium'?await context.newCDPSession(page):null;if(process.env.CPU_RATE)await cdp.send('Emulation.setCPUThrottlingRate',{rate:Number(process.env.CPU_RATE)});

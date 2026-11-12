@@ -18,7 +18,7 @@ for(const [kind,launcher] of Object.entries({chromium,webkit})){
    <canvas id=canvas width=800 height=600></canvas>
    <script>window.calls=[];Module={_vcmiMobileEnable(){},_vcmiMobileCommand(...a){calls.push(a)}};</script>
    <script type=module src=/web/mobile.mjs></script>`}));
-  await page.goto('http://127.0.0.1:8783/build-direct-test?mobile=1');
+  await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto('http://127.0.0.1:8783/build-direct-test?mobile=1');
   await page.waitForSelector('#mobile-app');
   const button=ui=>page.locator('[data-ui="'+ui+'"]:visible').first();
   const card=id=>page.locator('.mobile-sheet:not([hidden]) [data-building-id="'+id+'"]');

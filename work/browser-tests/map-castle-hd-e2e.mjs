@@ -15,7 +15,7 @@ const context=await browser.newContext({viewport:{width:390,height:844},hasTouch
 const page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));page.on('console',m=>{if(/Server encountered a problem|Assertion failed/i.test(m.text()))report.serverErrors.push(m.text());});
 const click=name=>page.getByRole('button',{name,exact:true}).click();
 try{
- await page.goto('http://127.0.0.1:8767/game.html?mobile=1');
+ await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto('http://127.0.0.1:8767/game.html?mobile=1');
  await page.waitForFunction(()=>window.goonkMobileState?.mode==='menu',null,{timeout:120000});
  await click('Nouvelle aventure');await page.waitForFunction(()=>goonkMobileState.selectedMap==='Goonks');await click('Commencer');
  await page.waitForFunction(()=>goonkMobileState.mode==='map'&&goonkMobileState.heroName,null,{timeout:90000});

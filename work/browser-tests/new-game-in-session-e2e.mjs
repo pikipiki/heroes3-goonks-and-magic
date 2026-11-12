@@ -21,7 +21,7 @@ try {
   await setting(control).locator('.lobby-choice-card').tap();
   await picker.locator(`[data-choice-value="${id}"]`).tap();
  }
- await page.goto((process.env.GOONK_TEST_ORIGIN || 'http://127.0.0.1:8784') + '/game.html?mobile=1');
+ await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto((process.env.GOONK_TEST_ORIGIN || 'http://127.0.0.1:8784') + '/game.html?mobile=1');
  await wait(() => window.goonkMobileState?.mode === 'menu' && window.goonkSessionRecovery?.phase === 'done');
  await page.locator('[data-action="20"]').tap();
  await waitForLobby();

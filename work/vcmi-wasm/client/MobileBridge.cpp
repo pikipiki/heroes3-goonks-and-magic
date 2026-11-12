@@ -928,11 +928,11 @@ void publishMobileState(){
   n["worldView"].Bool()=map->isWorldView();
  }
  else if(p||ENGINE->windows().topWindow<CBonusSelection>())n["mode"].String()="dialog";
- if(top&&(fortWindow||recruitWindow||n["mode"].String()=="creature"))mobilePreviews(top.get(),n["previewUnits"]);
+ if(top&&(fortWindow||recruitWindow||creatureWindow))mobilePreviews(top.get(),n["previewUnits"]);
  if(recruitWindow&&recruitWindow->dwelling)for(auto & unit:n["previewUnits"].Vector())
   for(const auto & family:recruitWindow->dwelling->creatures)for(size_t rank=0;rank<family.second.size();++rank)
    if(family.second[rank].getNum()==unit["id"].Integer())unit["upgradeRank"].Integer()=rank+1;
- if(creatureWindow && (n["mode"].String()=="creature" || n["dialogKind"].String()=="commander") && creatureWindow->getMobileCreature()){
+ if(creatureWindow && (n["mode"].String()=="creature" || n["dialogKind"].String()=="commander" || n["dialogKind"].String()=="commander-level-up") && creatureWindow->getMobileCreature()){
   auto item=creature(creatureWindow->getMobileCreature(),creatureWindow->getMobileCount());
   for(const auto & description : creatureWindow->getMobileAbilities())
    item["abilities"].Vector().emplace_back(description);
@@ -953,7 +953,7 @@ void publishMobileState(){
   unsigned skillIndex=0;
   mobileDialogContent(top.get(),presentation,creatureWindow.get(),skillIndex);
   const bool level=bool(ENGINE->windows().topWindow<CLevelWindow>());
-  if(n["dialogKind"].String()=="commander")presentation["unit"]=n["creatureUnit"];
+  if(creatureWindow)presentation["unit"]=n["creatureUnit"];
   presentation["title"].String()=n["dialogKind"].String()=="commander"?"Commander":level?"Level up":n["dialogKind"].String()=="commander-level-up"?"Commander level up":"Game message";
   if(auto info=ENGINE->windows().topWindow<CInfoWindow>()){
    presentation["cancel"].Bool()=info->buttons.size()>1;if(!mobileVisitedName.empty()){presentation["visitedObject"].String()=mobileVisitedName;mobileVisitShown=true;}
@@ -1087,7 +1087,7 @@ void publishMobileState(){
   if(n["mode"].String()=="map"&&adventureInt){auto mini=adventureInt->getMobileMinimap();if(mini){auto size=p->cb->getMapSize();auto & m=n["mapOverview"];m["rect"]=rect(mini->pos);m["view"]=rect(adventureInt->getMobileMapRect());m["viewport"]=rect(mini->mobileVisibleArea());m["width"].Integer()=size.x;m["height"].Integer()=size.y;m["level"].Integer()=mini->mobileLevel();publishMobileMinimap(*mini);}}
   const auto hero=heroWindow?heroWindow->curHero:p->localState->getCurrentHero();
   if(hero){n["heroName"].String()=hero->getNameTranslated();n["heroMana"].Integer()=hero->mana;n["heroManaLimit"].Integer()=hero->manaLimit();n["heroHasSpellbook"].Bool()=hero->hasSpellbook();n["movement"].Integer()=hero->movementPointsRemaining();n["heroId"].Integer()=hero->id.getNum();n["armies"].Vector().push_back(army(hero,hero->getNameTranslated()));if(p->localState->hasPath(hero)){n["hasPath"].Bool()=true;n["pathTurns"].Integer()=p->localState->getPath(hero).lastNode().turns;}}
-  if(n["mode"].String()=="map"&&hero){const auto town=mobileResidentTown(hero);if(town&&town->getOwner()==p->playerID)mobileTownArmies(n,town);}
+  if(n["mode"].String()=="map"&&hero){const auto town=mobileResidentTown(hero);if(town&&town->getOwner()==p->playerID)mobileTownArmies(n,town);const auto machine=town->getWarMachineInBuilding(BuildingID::BLACKSMITH);if(machine.hasValue())n["townWarMachine"]=creature(machine.toArtifact()->getWarMachine().toCreature(),1);}
   if(exchangeWindow)
    n["heroExchange"]=mobileExchange(*exchangeWindow,*p);
   if(mobileEnabled && n["mode"].String()=="map" && !n["worldView"].Bool())
@@ -1164,7 +1164,7 @@ void publishMobileState(){
     item["weeklyRecruits"] = weeklyRecruits(*town);
    n["towns"].Vector().push_back(std::move(item));
   }
-  if(townWindow||fortWindow){const auto town=townWindow?townWindow->town:fortWindow->getMobileTown();n["townName"].String()=town->getNameTranslated();n["townFaction"].String()=town->getFaction()->getJsonKey();mobileTownArmies(n,town);
+  if(townWindow||fortWindow){const auto town=townWindow?townWindow->town:fortWindow->getMobileTown();n["townName"].String()=town->getNameTranslated();n["townFaction"].String()=town->getFaction()->getJsonKey();mobileTownArmies(n,town);const auto machine=town->getWarMachineInBuilding(BuildingID::BLACKSMITH);if(machine.hasValue())n["townWarMachine"]=creature(machine.toArtifact()->getWarMachine().toCreature(),1);
    for(const auto & level:town->spells){JsonNode row;row.Vector();for(const auto spell:level)row.Vector().push_back(JsonNode(double(spell.getNum())));n["townSpells"].Vector().push_back(row);}
    std::map<BuildingID, CreatureID> dwellingCreatures;
    const auto & roster = town->getTown()->creatures;
