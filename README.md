@@ -1,6 +1,6 @@
 # Heroes Goonk
 
-Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.155, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
+Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.156, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
 
 ## Jouer sur ce Mac
 
@@ -654,3 +654,9 @@ Atma conserve les ajustements lors des gains de caractéristiques, des transfert
 La règle demandée pour le port est appliquée : comportement vérifiable reproduit, valeurs indéfinies remplacées par une valeur stable documentée. Le second passage non défini du tir en chaîne 352 utilise zéro. L’initialisation des objets Atma présents dès le départ est une adaptation explicite, faute de preuve du cycle d’équipement Win32 initial. Les détails et les limites figurent dans `outputs/wog-priorities-0.4.147/validation.json` et dans les revues par fonctionnalité. Le nom 147 désigne le début de cette série de preuves ; chaque rapport garde l’empreinte du moteur effectivement testé.
 
 Ce point ne revendique pas une compatibilité ERA complète : quatorze artefacts restent désactivés, les dépendances du Conflux et les écarts de combat déjà identifiés restent en cours. Les scripts ERM sont inventoriés ; aucun interpréteur arbitraire de mémoire Windows n’est ajouté.
+
+### Anneau d’oubli et accès hors ville — 0.4.156
+
+L’Anneau d’oubli est activé après 16 contrôles natifs : Résurrection, Animation des morts, Sacrifice, Nécromancie, cadavres occupés sur une ou deux cases, clones, pertes et second combat après rangement dans le sac. Le port suit le comportement effectif du script original ; son commentaire non implémenté sur le Drain de vie ne devient pas une interdiction nouvelle. Le catalogue atteint 97 artefacts source actifs sur 110.
+
+Le raccourci des machines de guerre ne consulte la ville que lorsque le héros visite réellement une ville qui lui appartient. Cette version conserve le moteur publié comme base et ne contient aucun port Conflux ou autre mécanisme encore en validation.

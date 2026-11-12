@@ -1,55 +1,22 @@
 {
-  "sourceArtifact": 268,
+  "sourceId": 268,
+  "definitionSHA256": "a8149fe710b7964429497f3ea3c9d3f8fbd8a219eeab6a162873e5e6be4c2f88",
+  "assetSHA256": {
+    "Data/tum-era/artifacts/268/icon.png": "ee757e9e098494d34014ebd801864356cbb6d499b6290b4db559f1f52791a3ec",
+    "Data/tum-era/artifacts/268/scenario.png": "b261340aa821a40fb0c3159cc88d0b9bbf198e62d5f25a58c6ed5cf83fe769d1",
+    "Sprites/tum-era/artifacts/268/map.def": "bfba8dba19122e2a8804008c3ad3d1b0c26f0d0ece64f19972e25fe7c77cfce8",
+    "Sprites/tum-era/artifacts/268/map.msk": "fdfc09f04ab09e0fbee625b96ba38bf3cf05722d8a17afc7ec4ded57b3322437"
+  },
   "scriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
-  "stdlibSHA256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
-  "sourceLines": {
-    "main": [
-      1925,
-      1989
-    ],
-    "corpseFunction": [
-      445,
-      480
-    ],
-    "physicalHook": [
-      150,
-      192
-    ]
-  },
-  "setup": "Cache whether either original hero has the equipped Ring at battlefield setup; applies also hero-vs-neutral, no human gate.",
-  "revival": {
-    "spells": [
-      38,
-      39,
-      40
-    ],
-    "effect": "Set final reception/resistance MR:F100, even on living wounded stacks; preserve actual original cast mana/turn cost. A targeting prohibition alone would change source behavior."
-  },
-  "corpseRemoval": {
-    "physical": "tum_OnAfterAttack fires after each melee/shooting strike, before retaliation.",
-    "spells": "OnBattleActionEnd for hero or monster casts. Source computes mustCheckBattlefield but never tests it, therefore every such cast checks corpses.",
-    "slots": [
-      0,
-      41
-    ],
-    "conditions": [
-      "type>=0",
-      "type!=149 arrow tower",
-      "count<=0",
-      "not clone flag0x800000",
-      "not already corpse-removed flag0x10000000",
-      "no living creature on primary hex",
-      "if double-wide, no living creature on second hex"
-    ],
-    "changes": "Mark corpse removed0x10000000 and clear native battlefield corpse occupancy. Do not set summoned0x400000 because argument isCompletelyDestroyed isFALSE; retain casualty accounting."
-  },
-  "necromancy": "Force calculated winner necromancy power to0.",
-  "sourceTODO": "Life Drain and Attract Dead Souls inhibition is explicitly TODO in the source; do not add an invented ability ban.",
-  "pending": [
-    "Native named policy and correct post-strike/post-cast hooks",
-    "Resurrection/AnimateDead/Sacrifice cast cost and resistance controls",
-    "Wide/occupied corpse, clone, arrow tower and casualties controls",
-    "Winner/loser/backpack/both-side necromancy controls"
+  "archiveSHA256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "sourceLines": [
+    1925,
+    1989
   ],
+  "initialization": "Cache either equipped hero at battlefield setup, including hero versus neutral. No human-side gate.",
+  "revival": "Force final resistance100 for38/39/40 after actual cast selection; preserve mana and turn cost on living wounded targets.",
+  "corpses": "After each physical strike and hero/creature cast, remove only original slots0..41, dead, nonclone, nontower, not already removed, both footprint cells unoccupied by living units. Preserve summoned flag and casualty history.",
+  "necromancy": "Calculated winner power becomes0, independent of winning carrier side.",
+  "sourceException": "The original TODO to inhibit Life Drain and Attract Dead Souls is not implemented in the supplied source; do not invent that ban.",
   "activationReady": false
 }

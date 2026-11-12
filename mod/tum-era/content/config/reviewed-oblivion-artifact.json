@@ -1,0 +1,24 @@
+{
+  "artifact268": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 7500,
+    "slot": [
+      "LEFT_RING",
+      "RIGHT_RING"
+    ],
+    "text": {
+      "name": "Ring of Oblivion",
+      "description": "{Ring of Oblivion}\n\nWhile equipped by either hero, prevents Resurrection, Animate Dead and Sacrifice from restoring units. Removes unoccupied corpses after attacks and spell actions, and prevents post-battle Necromancy.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/268/icon.png",
+      "map": "tum-era/artifacts/268/map.def",
+      "scenarioBonus": "tum-era/artifacts/268/scenario.png"
+    },
+    "bonuses": {}
+  }
+}

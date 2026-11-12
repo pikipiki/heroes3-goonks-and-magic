@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "engineSHA256": "f51546d9a2cb38aac30f11f3cf1ab30f0de654f4de21e5627cde6c31c589850f",
+  "report": {
+    "equipped-38": {
+      "before": {
+        "hp": 16970,
+        "mana": 176,
+        "count": 97
+      },
+      "after": {
+        "hp": 16970,
+        "count": 97,
+        "mana": 156
+      },
+      "cost": 20
+    }
+  },
+  "scope": "Bounded real revival and/or Necromancy controls selected by CASES. Corpse geometry, clone/casualty edges and Sacrifice remain separate obligations."
+}

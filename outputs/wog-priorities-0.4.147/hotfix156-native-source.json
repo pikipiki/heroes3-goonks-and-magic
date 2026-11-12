@@ -1,0 +1,11 @@
+{
+  "baseNativeCommit": "231f51abe68093abd3497d825c78e2ec9ff89b00",
+  "wasmSHA256": "f51546d9a2cb38aac30f11f3cf1ab30f0de654f4de21e5627cde6c31c589850f",
+  "engineArchiveSHA256": "abd32fc2ffd19a3410566516235bf835f68defa272902f169092095686ff38b3",
+  "buildCommand": "ninja -j32 html5",
+  "buildTargets": 771,
+  "sourceDeltaSHA256": {
+    "work/vcmi-wasm/client/MobileBridge.cpp": "a36b0129f8d244498f0a6848a746ee114f3125431891f9755735744a1b72fdc0"
+  },
+  "scope": "Only resident-town null/ownership guard added to the published engine base. Inactive future Conflux, movement and neutral creature ports excluded."
+}

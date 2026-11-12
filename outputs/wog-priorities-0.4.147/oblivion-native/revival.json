@@ -1,0 +1,59 @@
+{
+  "passed": true,
+  "engineSHA256": "866f32472e4790edde9518c9fbf57cac1ee4eaab81e79115f5e307eae26d6113",
+  "report": {
+    "equipped-38": {
+      "before": {
+        "hp": 16970,
+        "mana": 176,
+        "count": 97
+      },
+      "after": {
+        "hp": 16970,
+        "count": 97,
+        "mana": 156
+      },
+      "cost": 20
+    },
+    "equipped-39": {
+      "before": {
+        "hp": 3470,
+        "mana": 176,
+        "count": 87
+      },
+      "after": {
+        "hp": 3470,
+        "count": 87,
+        "mana": 161
+      },
+      "cost": 15
+    },
+    "backpack-38": {
+      "before": {
+        "hp": 16970,
+        "mana": 176,
+        "count": 97
+      },
+      "after": {
+        "hp": 17500,
+        "count": 100,
+        "mana": 156
+      },
+      "cost": 20
+    },
+    "backpack-39": {
+      "before": {
+        "hp": 3470,
+        "mana": 176,
+        "count": 87
+      },
+      "after": {
+        "hp": 4000,
+        "count": 100,
+        "mana": 161
+      },
+      "cost": 15
+    }
+  },
+  "scope": "Bounded real revival and/or Necromancy controls selected by CASES. Corpse geometry, clone/casualty edges and Sacrifice remain separate obligations."
+}

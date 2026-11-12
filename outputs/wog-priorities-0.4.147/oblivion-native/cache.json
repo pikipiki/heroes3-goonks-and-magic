@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "engineSHA256": "efdde3e2d7301dd2bc36bcc293f02809f973afbe01066a231dd74a928c646dc8",
+  "report": {
+    "firstBattleRaised": 0,
+    "secondBattleRaised": 3,
+    "ringInBackpack": true,
+    "army": [
+      {
+        "key": "core:blackDragon",
+        "count": 500
+      },
+      {
+        "key": "goonk:bubu",
+        "count": 2
+      },
+      {
+        "key": "third-upgrades:tumSkeletonKnight",
+        "count": 3
+      }
+    ]
+  }
+}

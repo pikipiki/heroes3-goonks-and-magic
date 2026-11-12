@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "engineSHA256": "efdde3e2d7301dd2bc36bcc293f02809f973afbe01066a231dd74a928c646dc8",
+  "report": {
+    "backpack": {
+      "originalCount": 5,
+      "cloneCount": 5,
+      "originalStackId": 1,
+      "cloneStackId": 7,
+      "army": [
+        {
+          "key": "core:blackDragon",
+          "count": 1
+        },
+        {
+          "key": "core:hydra",
+          "count": 30
+        },
+        {
+          "key": "goonk:bubu",
+          "count": 500
+        }
+      ]
+    },
+    "equipped": {
+      "originalCount": 5,
+      "cloneCount": 5,
+      "originalStackId": 1,
+      "cloneStackId": 7,
+      "army": [
+        {
+          "key": "core:blackDragon",
+          "count": 1
+        },
+        {
+          "key": "core:hydra",
+          "count": 30
+        },
+        {
+          "key": "goonk:bubu",
+          "count": 500
+        }
+      ]
+    }
+  }
+}

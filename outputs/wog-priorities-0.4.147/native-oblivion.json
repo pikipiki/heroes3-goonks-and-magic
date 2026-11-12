@@ -1,0 +1,772 @@
+{
+  "passed": true,
+  "contract": "source-ring-oblivion-v1",
+  "definitionSHA256": "a8149fe710b7964429497f3ea3c9d3f8fbd8a219eeab6a162873e5e6be4c2f88",
+  "controls": {
+    "revival-equipped-38": {
+      "passed": true,
+      "engineSHA256": "866f32472e4790edde9518c9fbf57cac1ee4eaab81e79115f5e307eae26d6113",
+      "observed": {
+        "before": {
+          "hp": 16970,
+          "mana": 176,
+          "count": 97
+        },
+        "after": {
+          "hp": 16970,
+          "count": 97,
+          "mana": 156
+        },
+        "cost": 20
+      }
+    },
+    "revival-equipped-39": {
+      "passed": true,
+      "engineSHA256": "866f32472e4790edde9518c9fbf57cac1ee4eaab81e79115f5e307eae26d6113",
+      "observed": {
+        "before": {
+          "hp": 3470,
+          "mana": 176,
+          "count": 87
+        },
+        "after": {
+          "hp": 3470,
+          "count": 87,
+          "mana": 161
+        },
+        "cost": 15
+      }
+    },
+    "revival-backpack-38": {
+      "passed": true,
+      "engineSHA256": "866f32472e4790edde9518c9fbf57cac1ee4eaab81e79115f5e307eae26d6113",
+      "observed": {
+        "before": {
+          "hp": 16970,
+          "mana": 176,
+          "count": 97
+        },
+        "after": {
+          "hp": 17500,
+          "count": 100,
+          "mana": 156
+        },
+        "cost": 20
+      }
+    },
+    "revival-backpack-39": {
+      "passed": true,
+      "engineSHA256": "866f32472e4790edde9518c9fbf57cac1ee4eaab81e79115f5e307eae26d6113",
+      "observed": {
+        "before": {
+          "hp": 3470,
+          "mana": 176,
+          "count": 87
+        },
+        "after": {
+          "hp": 4000,
+          "count": 100,
+          "mana": 161
+        },
+        "cost": 15
+      }
+    },
+    "necromancy-baseline": {
+      "passed": true,
+      "engineSHA256": "866f32472e4790edde9518c9fbf57cac1ee4eaab81e79115f5e307eae26d6113",
+      "observed": {
+        "raised": {
+          "key": "third-upgrades:tumSkeletonKnight",
+          "count": 3
+        },
+        "army": [
+          {
+            "aiValue": 8721,
+            "attack": 25,
+            "cost": [
+              0,
+              0,
+              0,
+              2,
+              0,
+              0,
+              4000,
+              0
+            ],
+            "count": 500,
+            "damageMax": 50,
+            "damageMin": 40,
+            "defense": 25,
+            "description": "",
+            "experience": 15000,
+            "experiencePerUnit": 30,
+            "experienceRank": 0,
+            "fightValue": 6783,
+            "growth": 1,
+            "health": 300,
+            "icon": "",
+            "id": 83,
+            "key": "core:blackDragon",
+            "name": "Black Dragon",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 15
+          },
+          {
+            "aiValue": 700,
+            "attack": 10,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              330,
+              0
+            ],
+            "count": 2,
+            "damageMax": 12,
+            "damageMin": 8,
+            "defense": 12,
+            "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+            "experience": 60,
+            "experiencePerUnit": 30,
+            "experienceRank": 0,
+            "fightValue": 700,
+            "growth": 6,
+            "health": 50,
+            "icon": "goonk/fart-large.png",
+            "id": 248,
+            "key": "goonk:bubu",
+            "name": "Bubu",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 12,
+            "speed": 5
+          },
+          {
+            "aiValue": 110,
+            "attack": 7,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              95,
+              0
+            ],
+            "count": 3,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 7,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 110,
+            "growth": 12,
+            "health": 6,
+            "icon": "creatures/necropolis/iconsBig/CPrL220X",
+            "id": 226,
+            "key": "third-upgrades:tumSkeletonKnight",
+            "name": "Skeleton Knight",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": false,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": true
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 6
+          }
+        ]
+      }
+    },
+    "necromancy-equipped": {
+      "passed": true,
+      "engineSHA256": "866f32472e4790edde9518c9fbf57cac1ee4eaab81e79115f5e307eae26d6113",
+      "observed": {
+        "raised": null,
+        "army": [
+          {
+            "aiValue": 8721,
+            "attack": 25,
+            "cost": [
+              0,
+              0,
+              0,
+              2,
+              0,
+              0,
+              4000,
+              0
+            ],
+            "count": 500,
+            "damageMax": 50,
+            "damageMin": 40,
+            "defense": 25,
+            "description": "",
+            "experience": 15000,
+            "experiencePerUnit": 30,
+            "experienceRank": 0,
+            "fightValue": 6783,
+            "growth": 1,
+            "health": 300,
+            "icon": "",
+            "id": 83,
+            "key": "core:blackDragon",
+            "name": "Black Dragon",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 15
+          },
+          {
+            "aiValue": 700,
+            "attack": 10,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              330,
+              0
+            ],
+            "count": 2,
+            "damageMax": 12,
+            "damageMin": 8,
+            "defense": 12,
+            "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+            "experience": 60,
+            "experiencePerUnit": 30,
+            "experienceRank": 0,
+            "fightValue": 700,
+            "growth": 6,
+            "health": 50,
+            "icon": "goonk/fart-large.png",
+            "id": 248,
+            "key": "goonk:bubu",
+            "name": "Bubu",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 12,
+            "speed": 5
+          }
+        ]
+      }
+    },
+    "necromancy-backpack": {
+      "passed": true,
+      "engineSHA256": "866f32472e4790edde9518c9fbf57cac1ee4eaab81e79115f5e307eae26d6113",
+      "observed": {
+        "raised": {
+          "key": "third-upgrades:tumSkeletonKnight",
+          "count": 3
+        },
+        "army": [
+          {
+            "aiValue": 8721,
+            "attack": 25,
+            "cost": [
+              0,
+              0,
+              0,
+              2,
+              0,
+              0,
+              4000,
+              0
+            ],
+            "count": 500,
+            "damageMax": 50,
+            "damageMin": 40,
+            "defense": 25,
+            "description": "",
+            "experience": 15000,
+            "experiencePerUnit": 30,
+            "experienceRank": 0,
+            "fightValue": 6783,
+            "growth": 1,
+            "health": 300,
+            "icon": "",
+            "id": 83,
+            "key": "core:blackDragon",
+            "name": "Black Dragon",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 15
+          },
+          {
+            "aiValue": 700,
+            "attack": 10,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              330,
+              0
+            ],
+            "count": 2,
+            "damageMax": 12,
+            "damageMin": 8,
+            "defense": 12,
+            "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+            "experience": 60,
+            "experiencePerUnit": 30,
+            "experienceRank": 0,
+            "fightValue": 700,
+            "growth": 6,
+            "health": 50,
+            "icon": "goonk/fart-large.png",
+            "id": 248,
+            "key": "goonk:bubu",
+            "name": "Bubu",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 12,
+            "speed": 5
+          },
+          {
+            "aiValue": 110,
+            "attack": 7,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              95,
+              0
+            ],
+            "count": 3,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 7,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 110,
+            "growth": 12,
+            "health": 6,
+            "icon": "creatures/necropolis/iconsBig/CPrL220X",
+            "id": 226,
+            "key": "third-upgrades:tumSkeletonKnight",
+            "name": "Skeleton Knight",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": false,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": true
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 6
+          }
+        ]
+      }
+    },
+    "necromancy-enemy": {
+      "passed": true,
+      "engineSHA256": "866f32472e4790edde9518c9fbf57cac1ee4eaab81e79115f5e307eae26d6113",
+      "observed": {
+        "raised": null,
+        "army": [
+          {
+            "aiValue": 8721,
+            "attack": 25,
+            "cost": [
+              0,
+              0,
+              0,
+              2,
+              0,
+              0,
+              4000,
+              0
+            ],
+            "count": 500,
+            "damageMax": 50,
+            "damageMin": 40,
+            "defense": 25,
+            "description": "",
+            "experience": 150000,
+            "experiencePerUnit": 300,
+            "experienceRank": 0,
+            "fightValue": 6783,
+            "growth": 1,
+            "health": 300,
+            "icon": "",
+            "id": 83,
+            "key": "core:blackDragon",
+            "name": "Black Dragon",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 15
+          },
+          {
+            "aiValue": 700,
+            "attack": 10,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              330,
+              0
+            ],
+            "count": 2,
+            "damageMax": 12,
+            "damageMin": 8,
+            "defense": 12,
+            "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+            "experience": 600,
+            "experiencePerUnit": 300,
+            "experienceRank": 0,
+            "fightValue": 700,
+            "growth": 6,
+            "health": 50,
+            "icon": "goonk/fart-large.png",
+            "id": 248,
+            "key": "goonk:bubu",
+            "name": "Bubu",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 12,
+            "speed": 5
+          }
+        ]
+      }
+    },
+    "necromancy-both": {
+      "passed": true,
+      "engineSHA256": "866f32472e4790edde9518c9fbf57cac1ee4eaab81e79115f5e307eae26d6113",
+      "observed": {
+        "raised": null,
+        "army": [
+          {
+            "aiValue": 8721,
+            "attack": 25,
+            "cost": [
+              0,
+              0,
+              0,
+              2,
+              0,
+              0,
+              4000,
+              0
+            ],
+            "count": 500,
+            "damageMax": 50,
+            "damageMin": 40,
+            "defense": 25,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 6783,
+            "growth": 1,
+            "health": 300,
+            "icon": "",
+            "id": 83,
+            "key": "core:blackDragon",
+            "name": "Black Dragon",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 15
+          },
+          {
+            "aiValue": 700,
+            "attack": 10,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              330,
+              0
+            ],
+            "count": 2,
+            "damageMax": 12,
+            "damageMin": 8,
+            "defense": 12,
+            "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 700,
+            "growth": 6,
+            "health": 50,
+            "icon": "goonk/fart-large.png",
+            "id": 248,
+            "key": "goonk:bubu",
+            "name": "Bubu",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 12,
+            "speed": 5
+          }
+        ]
+      }
+    },
+    "sacrifice-equipped": {
+      "passed": true,
+      "engineSHA256": "efdde3e2d7301dd2bc36bcc293f02809f973afbe01066a231dd74a928c646dc8",
+      "observed": {
+        "corpseHex": 70,
+        "cost": 25,
+        "manaBefore": 192,
+        "manaAfter": 167,
+        "raised": 0,
+        "donorBefore": 30,
+        "donorAfter": 30
+      }
+    },
+    "clone-equipped": {
+      "passed": true,
+      "engineSHA256": "efdde3e2d7301dd2bc36bcc293f02809f973afbe01066a231dd74a928c646dc8",
+      "observed": {
+        "originalCount": 5,
+        "cloneCount": 5,
+        "originalStackId": 1,
+        "cloneStackId": 7,
+        "army": [
+          {
+            "key": "core:blackDragon",
+            "count": 1
+          },
+          {
+            "key": "core:hydra",
+            "count": 30
+          },
+          {
+            "key": "goonk:bubu",
+            "count": 500
+          }
+        ]
+      }
+    },
+    "sacrifice-backpack": {
+      "passed": true,
+      "engineSHA256": "efdde3e2d7301dd2bc36bcc293f02809f973afbe01066a231dd74a928c646dc8",
+      "observed": {
+        "corpseHex": 70,
+        "cost": 25,
+        "manaBefore": 192,
+        "manaAfter": 167,
+        "raised": 1,
+        "donorBefore": 30,
+        "donorAfter": 0
+      }
+    },
+    "clone-backpack": {
+      "passed": true,
+      "engineSHA256": "efdde3e2d7301dd2bc36bcc293f02809f973afbe01066a231dd74a928c646dc8",
+      "observed": {
+        "originalCount": 5,
+        "cloneCount": 5,
+        "originalStackId": 1,
+        "cloneStackId": 7,
+        "army": [
+          {
+            "key": "core:blackDragon",
+            "count": 1
+          },
+          {
+            "key": "core:hydra",
+            "count": 30
+          },
+          {
+            "key": "goonk:bubu",
+            "count": 500
+          }
+        ]
+      }
+    },
+    "geometry-single": {
+      "passed": true,
+      "engineSHA256": "efdde3e2d7301dd2bc36bcc293f02809f973afbe01066a231dd74a928c646dc8",
+      "observed": {
+        "corpseHex": 70,
+        "occupiedHex": 70,
+        "coveredDragonFootprint": [
+          70,
+          69
+        ],
+        "targetableAfterLeaving": true,
+        "freeCorpseRemoved": true
+      }
+    },
+    "geometry-double": {
+      "passed": true,
+      "engineSHA256": "efdde3e2d7301dd2bc36bcc293f02809f973afbe01066a231dd74a928c646dc8",
+      "observed": {
+        "corpseHex": 71,
+        "occupiedHex": 70,
+        "coveredDragonFootprint": [
+          70,
+          69
+        ],
+        "targetableAfterLeaving": true,
+        "freeCorpseRemoved": true
+      }
+    },
+    "result-cache-cleared": {
+      "passed": true,
+      "engineSHA256": "efdde3e2d7301dd2bc36bcc293f02809f973afbe01066a231dd74a928c646dc8",
+      "observed": {
+        "firstBattleRaised": 0,
+        "secondBattleRaised": 3,
+        "ringInBackpack": true,
+        "army": [
+          {
+            "key": "core:blackDragon",
+            "count": 500
+          },
+          {
+            "key": "goonk:bubu",
+            "count": 2
+          },
+          {
+            "key": "third-upgrades:tumSkeletonKnight",
+            "count": 3
+          }
+        ]
+      }
+    }
+  },
+  "pendingNativeControls": [],
+  "limitations": [
+    "Original source TODO to ban Life Drain/Attract Dead Souls is unimplemented; no such prohibition is invented.",
+    "Each case records the binary actually tested."
+  ]
+}

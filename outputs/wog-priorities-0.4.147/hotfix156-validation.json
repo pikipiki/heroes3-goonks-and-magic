@@ -1,0 +1,36 @@
+{
+  "release": "0.4.156",
+  "fullPortComplete": false,
+  "sourceArtifacts": 97,
+  "inactiveSourceArtifacts": 13,
+  "wasmSHA256": "f51546d9a2cb38aac30f11f3cf1ab30f0de654f4de21e5627cde6c31c589850f",
+  "build": {
+    "command": "ninja -j32 html5",
+    "targets": 771,
+    "passed": true
+  },
+  "units": {
+    "total": 593,
+    "passed": 565,
+    "failed": 0,
+    "skipped": 28
+  },
+  "web": {
+    "build": true,
+    "verify": true
+  },
+  "nativeEvidence": {
+    "ring16": "native-oblivion.json",
+    "residentTownAndOutside": "hotfix156-residency/result.json",
+    "installedRingWithoutOverlay": "hotfix156-installed-ring/result.json",
+    "publicMaps": "hotfix156-adventure-maps/result.json",
+    "goonkBannersTowerSaveLoad": "hotfix156-progression/result.json"
+  },
+  "excludedFutureFeatures": [
+    "Conflux355/356",
+    "neutral286/294",
+    "Wayfarer260",
+    "HydraQueen259",
+    "global eighth-faction recruitment"
+  ]
+}

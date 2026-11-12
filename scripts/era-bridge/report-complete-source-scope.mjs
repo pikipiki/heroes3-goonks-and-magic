@@ -38,6 +38,7 @@ const sourceScripts=fs.readdirSync(path.join(source,'Data/s')).filter(f=>f.endsW
  return {file,sha256:sha(bytes),lines:text.split(/\r?\n/).length,triggers,receivers,containsWindowsMemoryAccess:/!!UN:C|!!SN:E/.test(text)};
 });
 const sourceMechanisms=[
+ {name:'Ring of Oblivion',source:'Third Upgrade Mod.erm1925..1989; source TODO Life Drain prohibition deliberately not invented',native:'lib/era/EraOblivion.h; cached either-hero flag, final revival resistance, occupied corpse geometry and post-battle Necromancy marker',ids:[268],evidence:['native-oblivion.json']},
  {name:'Ring of the Snake Eyesight mass Hypnotize',source:'Emerald Autospell60;5A13BB→5A69E0;5A8673 actual mastery/cached power and count×HPmax threshold',native:'Strict optional lib/era/EraMassHypnotizeArtifact.h; original-side mass reception/RNG and explicit50-turn effect',ids:[253],evidence:['native-mass-hypnotize253.json']},
  {name:'Interference cached battle power',source:'Third Upgrade Mod.erm1992..2040, original hero map stats retained',native:'server/era/EraInterferenceRuntime.h + BaseMechanics; named battle marker and hero-only power/duration, explicit fixed powers preserved',ids:[269,270,271],evidence:['native-interference.json']},
  {name:'Original WoG157 ordinary retaliation gate',source:'Original WoG70A007 scratch flag override at441AFF; identity157 preserved',native:'lib/era/EraOriginalRetaliationShield.h + ordinary BAP counter gate, original existing artifact without50percent adaptation',ids:[157],evidence:['native-original-retaliation157.json']},

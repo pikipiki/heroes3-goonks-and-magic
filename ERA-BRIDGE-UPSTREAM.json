@@ -114,7 +114,7 @@
   ],
   "activeContent": {
     "tumCreatures": 44,
-    "artifacts": 96,
+    "artifacts": 97,
     "mapObjects": 42,
     "experienceProfiles": 267,
     "fourthUpgradeTowns": [
@@ -256,10 +256,10 @@
     },
     "attribution": "Historical bridge-2 build record only; not the data-only release engine."
   },
-  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.155-engine.tar.gz",
-  "engineArchiveSHA256": "4ff8ad3e84f834cefc8c167524e88ce16095ce76f49e5b4dd95a07d47b40c67f",
-  "wasmSHA256": "efdde3e2d7301dd2bc36bcc293f02809f973afbe01066a231dd74a928c646dc8",
-  "engineAttribution": "Release0.4.155: clean504-target rebuild and recorded incremental ninja -j32 html5 builds; exact112 modified native source hashes in outputs/wog-priorities-0.4.147/phase7-native-source-sha256.json. Individual reports retain the binary SHA actually tested.",
+  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.156-engine.tar.gz",
+  "engineArchiveSHA256": "abd32fc2ffd19a3410566516235bf835f68defa272902f169092095686ff38b3",
+  "wasmSHA256": "f51546d9a2cb38aac30f11f3cf1ab30f0de654f4de21e5627cde6c31c589850f",
+  "engineAttribution": "Release0.4.156: published231f51ab native base plus resident-town null/ownership guard only. New Conflux and movement ports are excluded.",
   "knownCheckpointLimitations": [
     "Full TUM/ERA compatibility and an arbitrary ERM interpreter are not established.",
     "Conflux355/356 and dependent eighth-town recruitment remain disabled. Fifteen source artifact contracts remain inactive.",

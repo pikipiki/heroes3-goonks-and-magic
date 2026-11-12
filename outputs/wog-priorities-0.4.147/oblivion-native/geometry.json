@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "engineSHA256": "efdde3e2d7301dd2bc36bcc293f02809f973afbe01066a231dd74a928c646dc8",
+  "report": {
+    "single": {
+      "corpseHex": 70,
+      "occupiedHex": 70,
+      "coveredDragonFootprint": [
+        70,
+        69
+      ],
+      "targetableAfterLeaving": true,
+      "freeCorpseRemoved": true
+    },
+    "double": {
+      "corpseHex": 71,
+      "occupiedHex": 70,
+      "coveredDragonFootprint": [
+        70,
+        69
+      ],
+      "targetableAfterLeaving": true,
+      "freeCorpseRemoved": true
+    }
+  }
+}

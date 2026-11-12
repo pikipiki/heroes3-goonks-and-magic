@@ -1229,7 +1229,15 @@ void publishMobileState(){
   if(n["mode"].String()=="map"&&adventureInt){auto mini=adventureInt->getMobileMinimap();if(mini){auto size=p->cb->getMapSize();auto & m=n["mapOverview"];m["rect"]=rect(mini->pos);m["view"]=rect(adventureInt->getMobileMapRect());m["viewport"]=rect(mini->mobileVisibleArea());m["width"].Integer()=size.x;m["height"].Integer()=size.y;m["level"].Integer()=mini->mobileLevel();publishMobileMinimap(*mini);}}
   const auto hero=heroWindow?heroWindow->curHero:p->localState->getCurrentHero();
   if(hero){n["heroName"].String()=hero->getNameTranslated();n["heroMana"].Integer()=hero->mana;n["heroManaLimit"].Integer()=hero->manaLimit();n["heroHasSpellbook"].Bool()=hero->hasSpellbook();n["movement"].Integer()=hero->movementPointsRemaining();n["heroId"].Integer()=hero->id.getNum();n["armies"].Vector().push_back(army(hero,hero->getNameTranslated()));if(p->localState->hasPath(hero)){n["hasPath"].Bool()=true;n["pathTurns"].Integer()=p->localState->getPath(hero).lastNode().turns;}}
-  if(n["mode"].String()=="map"&&hero){const auto town=mobileResidentTown(hero);if(town&&town->getOwner()==p->playerID)mobileTownArmies(n,town);const auto machine=town->getWarMachineInBuilding(BuildingID::BLACKSMITH);if(machine.hasValue())n["townWarMachine"]=creature(machine.toArtifact()->getWarMachine().toCreature(),1);}
+  if(n["mode"].String()=="map"&&hero)
+  {
+   if(const auto town=mobileResidentTown(hero);town&&town->getOwner()==p->playerID)
+   {
+    mobileTownArmies(n,town);
+    const auto machine=town->getWarMachineInBuilding(BuildingID::BLACKSMITH);
+    if(machine.hasValue())n["townWarMachine"]=creature(machine.toArtifact()->getWarMachine().toCreature(),1);
+   }
+  }
   if(exchangeWindow)
    n["heroExchange"]=mobileExchange(*exchangeWindow,*p);
   if(mobileEnabled && n["mode"].String()=="map" && !n["worldView"].Bool())

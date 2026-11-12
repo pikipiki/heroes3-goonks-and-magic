@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "engineSHA256": "efdde3e2d7301dd2bc36bcc293f02809f973afbe01066a231dd74a928c646dc8",
+  "report": {
+    "sacrifice-backpack": {
+      "corpseHex": 70,
+      "cost": 25,
+      "manaBefore": 192,
+      "manaAfter": 167,
+      "raised": 1,
+      "donorBefore": 30,
+      "donorAfter": 0
+    },
+    "sacrifice-equipped": {
+      "corpseHex": 70,
+      "cost": 25,
+      "manaBefore": 192,
+      "manaAfter": 167,
+      "raised": 0,
+      "donorBefore": 30,
+      "donorAfter": 30
+    }
+  }
+}

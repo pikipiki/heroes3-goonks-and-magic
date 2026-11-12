@@ -3,8 +3,8 @@
   "fullEraCompatibility": false,
   "summary": {
     "sourceArtifacts": 110,
-    "activeArtifacts": 96,
-    "inactiveArtifacts": 14,
+    "activeArtifacts": 97,
+    "inactiveArtifacts": 13,
     "sourceScripts": 109,
     "sourceTriggerDeclarations": 484
   },
@@ -1314,21 +1314,11 @@
       "sourceId": 268,
       "name": "Ring of Oblivion",
       "hasCfg": false,
-      "nativeActive": false,
-      "requiredPolicies": [
-        {
-          "kind": "oblivion",
-          "artifactId": 268,
-          "source": "TUM Data/s/Third Upgrade Mod.erm:1113-2040; see special-policies.json"
-        }
-      ],
-      "diagnostics": [
-        {
-          "source": "268.cfg",
-          "code": "unbound-runtime-adapter",
-          "kind": "oblivion"
-        }
-      ],
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-oblivion-artifact.json",
+        "name": "Ring of Oblivion"
+      },
       "scriptedPolicies": [
         "oblivion"
       ]
@@ -3842,6 +3832,21 @@
     }
   ],
   "namedNativeMechanisms": [
+    {
+      "name": "Ring of Oblivion",
+      "source": "Third Upgrade Mod.erm1925..1989; source TODO Life Drain prohibition deliberately not invented",
+      "native": "lib/era/EraOblivion.h; cached either-hero flag, final revival resistance, occupied corpse geometry and post-battle Necromancy marker",
+      "ids": [
+        268
+      ],
+      "evidence": [
+        {
+          "file": "native-oblivion.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
     {
       "name": "Ring of the Snake Eyesight mass Hypnotize",
       "source": "Emerald Autospell60;5A13BB→5A69E0;5A8673 actual mastery/cached power and count×HPmax threshold",
