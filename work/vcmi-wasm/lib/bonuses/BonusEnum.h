@@ -211,7 +211,7 @@ class JsonNode;
 	BONUS_NAME(ERA_EXPERIENCE_HEALTH_PERCENT) /* Source XP H% rounding after pre-XP creature HP */ \
 	BONUS_NAME(ERA_EXPERIENCE_DEFENSE_REDUCTION) /* Source XP b: rational targetDEF reduction before truncation */ \
 	BONUS_NAME(ERA_PERSONAL_HATE_DAMAGE) /* Amethyst cfg creature-pair flat physical extra damage; not XP h% */ \
-
+	BONUS_NAME(ERA_SPECIALIST_HEALTH_PERCENT) /* TUM battle-only extra HP, after source experience rounding */ \
 	/* end of list */
 
 #define BONUS_SOURCE_LIST \

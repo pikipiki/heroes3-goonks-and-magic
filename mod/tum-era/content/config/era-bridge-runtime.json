@@ -150,6 +150,30 @@
           "to": "third-upgrades:tumSharpshooterElf"
         }
       ]
+    },
+    "tum-era:artifact223": {
+      "dailyConversions": [
+        {
+          "from": "core:monk",
+          "to": "core:lich"
+        },
+        {
+          "from": "core:zealot",
+          "to": "core:lich"
+        },
+        {
+          "from": "core:mage",
+          "to": "core:lich"
+        },
+        {
+          "from": "core:archMage",
+          "to": "core:lich"
+        },
+        {
+          "from": "third-upgrades:tumSupremeArchMage",
+          "to": "third-upgrades:tumLichKing"
+        }
+      ]
     }
   }
 }

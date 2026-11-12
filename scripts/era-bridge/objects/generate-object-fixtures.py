@@ -17,7 +17,9 @@ for item in report['compiled']:
  hero=next(o for o in objects if o['instanceName']=='goonkHero');hero['options']['type']='core:christian';hero['options']['army']=[{'type':'core:blackDragon','amount':500}];objects.append(target)
  header=copy.deepcopy(base_header);header['name']='TUM Bridge Fixture '+item['kind']+'-'+item['id'];header['description']='Isolated native object integration fixture: '+definition['name'];header['difficulty']='EASY'
  if not any(m.get('modId')==mod_id for m in header.get('mods',[])):header.setdefault('mods',[]).append({'modId':mod_id,'name':'TUM ERA bridge','version':'0.1.0'})
- contents={n:data for n,data in base.items() if n not in ['header.json','objects.json','surface_terrain.json']};contents.update({'header.json':json.dumps(header).encode(),'objects.json':json.dumps(objects).encode(),'surface_terrain.json':json.dumps([['gr49_' for x in range(36)]for y in range(36)]).encode()})
+ contents={n:data for n,data in base.items() if n not in ['header.json','objects.json','surface_terrain.json']};contents.update({'header.json':json.dumps(header,ensure_ascii=False).encode(),'objects.json':json.dumps(objects,ensure_ascii=False).encode(),'surface_terrain.json':json.dumps([['gr49_' for x in range(36)]for y in range(36)]).encode()})
+ for lang in ['english.json','french.json']:
+  translation=json.loads(contents[lang]);translation['mapName']=header['name'];contents[lang]=json.dumps(translation,ensure_ascii=False).encode()
  filename='TUM-'+item['kind']+'-'+item['id']+'.vmap'
  with zipfile.ZipFile(out/filename,'w',zipfile.ZIP_DEFLATED)as z:
   for name,data in contents.items():info=zipfile.ZipInfo(name,(2026,11,1,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;z.writestr(info,data)

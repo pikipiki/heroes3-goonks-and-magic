@@ -1,0 +1,73 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank58": {
+        "name": "Dragon City",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB26.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VBAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank58MixedLayout",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:blackDragon",
+                "amount": 20,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:blackDragon",
+                "amount": 20
+              },
+              {
+                "type": "core:blackDragon",
+                "amount": 20
+              },
+              {
+                "type": "core:blackDragon",
+                "amount": 20
+              }
+            ],
+            "resources": {
+              "sulfur": 25,
+              "gold": 10000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:chasmDragon",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 10000,
+          "rarity": 100
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank42": {
+        "name": "Bone Pillar",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB10.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "dirt",
+              "sand",
+              "rough",
+              "subterra",
+              "lava"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 25
+            },
+            "guards": [
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 18
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 18
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 18
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 18
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 18
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 18
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 18
+              }
+            ],
+            "resources": {
+              "gold": 2500
+            },
+            "creatures": [
+              {
+                "type": "third-upgrades:tumSpecter",
+                "amount": 4
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 25,
+              "max": 50
+            },
+            "guards": [
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 24
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 24
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 24
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 24
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 24
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 24
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 24
+              }
+            ],
+            "resources": {
+              "gold": 3000
+            },
+            "creatures": [
+              {
+                "type": "third-upgrades:tumSpecter",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 50,
+              "max": 75
+            },
+            "guards": [
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 30
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 30
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 30
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 30
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 30
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 30
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 30
+              }
+            ],
+            "resources": {
+              "gold": 3500
+            },
+            "creatures": [
+              {
+                "type": "third-upgrades:tumSpecter",
+                "amount": 8
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 75,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 30
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 30
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 30
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 30
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 30
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 30
+              },
+              {
+                "type": "wake-of-gods.creatures:ghost",
+                "amount": 30
+              }
+            ],
+            "resources": {
+              "gold": 4000
+            },
+            "creatures": [
+              {
+                "type": "third-upgrades:tumSpecter",
+                "amount": 10
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "ambient": [
+            "tum-era/objects/BONEPILLARLOOP.wav"
+          ]
+        },
+        "rmg": {
+          "value": 2500,
+          "rarity": 100
+        }
+      }
+    }
+  }
+}

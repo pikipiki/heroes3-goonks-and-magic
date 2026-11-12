@@ -1,0 +1,12 @@
+/** Activate the two closed source crystal-dragon stages; never enroll other candidates. */
+import fs from 'node:fs';import path from 'node:path';
+const out=process.argv[2];if(!out)throw Error('Reviewed overlay required');const root='mod/tum-era',read=p=>JSON.parse(fs.readFileSync(p)),write=(p,v)=>{fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,JSON.stringify(v,null,2)+'\n');};
+const report=read(out+'/native-closed-import-review.json'),ids=[265,266];if(ids.some(id=>!report.candidateIds.includes(id)))throw Error('Incomplete crystal chain');
+const definitions=read(out+'/content/config/native-closed-creatures.candidate.json'),selected={};
+for(const id of ids){const key='eraCreature'+id,record=report.records.find(r=>r.eraId===id);if(record.obligations.length)throw Error('Unclosed source actor');selected[key]=definitions[key];for(const asset of record.assets){const target=root+'/'+asset.path;fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(out+'/'+asset.path,target);}}
+write(root+'/content/config/reviewed-crystal-chain.json',selected);
+for(const file of ['era-bridge-experience','era-bridge-skeleton-transformations']){const p=root+'/content/config/'+file+'.json',current=read(p),candidate=read(out+'/content/config/'+file+'.candidate.json');for(const id of ids){const key='tum-era:eraCreature'+id;current.creatures[key]=candidate.creatures[key];}write(p,current);}
+const p=root+'/era-identities.json',identities=read(p);for(const id of ids)identities.creatures[id]='tum-era:eraCreature'+id;write(p,identities);
+for(const file of fs.readdirSync(root+'/content/config').filter(f=>/^era-bridge-.*\.json$/.test(f))){const p=root+'/content/config/'+file,data=read(p);if(!data.sourceIds)continue;for(const id of ids)data.sourceIds['tum-era:eraCreature'+id]=id;write(p,data);}
+const manifest=read(root+'/mod.json');manifest.creatures=[...new Set([...manifest.creatures,'config/reviewed-crystal-chain.json'])];write(root+'/mod.json',manifest);
+write('outputs/wog-priorities-0.4.145/crystal-source.json',{ids,sourcePins:report.sourcePins,records:report.records.filter(r=>ids.includes(r.eraId)),nativeValidationRequired:true,remainingStages:[267,268],globalScope:'Source stats, CFG, XP, assets, profile and unconditional upgrade chain. Does not claim full ERA/RMG script equivalence.'});console.log('Prepared Topaz -> Amethyst -> existing Crystal Dragon; later unclosed stages remain disabled.');

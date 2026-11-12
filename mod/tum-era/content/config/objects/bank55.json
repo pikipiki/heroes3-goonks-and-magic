@@ -1,0 +1,75 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank55": {
+        "name": "Olympus Forbidden",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB23.def",
+            "mask": [
+              "VVVVVV",
+              "VVVVVV",
+              "VVVVVV",
+              "VVVVVV",
+              "VVVBBV",
+              "VVVBBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:titan",
+                "amount": 20,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:titan",
+                "amount": 20
+              },
+              {
+                "type": "core:titan",
+                "amount": 20
+              },
+              {
+                "type": "core:titan",
+                "amount": 20
+              }
+            ],
+            "resources": {
+              "gems": 20,
+              "gold": 12000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:guardianOfZeus",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 10000,
+          "rarity": 100
+        }
+      }
+    }
+  }
+}

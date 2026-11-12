@@ -1,0 +1,24 @@
+{
+  "core:cloakOfTheUndeadKing": {
+    "text": {
+      "description": "{Cloak of the Undead King}\n\nRetains its component Necromancy bonuses. Raises Skeletons without the skill, Ghouls with Basic Necromancy, Specters with Advanced Necromancy, and Lich Kings with Expert Necromancy."
+    },
+    "bonuses": {
+      "walkingDead": {
+        "type": "IMPROVED_NECROMANCY",
+        "subtype": "third-upgrades:tumGhoul",
+        "addInfo": 1
+      },
+      "wight": {
+        "type": "IMPROVED_NECROMANCY",
+        "subtype": "third-upgrades:tumSpecter",
+        "addInfo": 2
+      },
+      "lich": {
+        "type": "IMPROVED_NECROMANCY",
+        "subtype": "third-upgrades:tumLichKing",
+        "addInfo": 3
+      }
+    }
+  }
+}

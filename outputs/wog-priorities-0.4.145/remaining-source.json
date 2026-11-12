@@ -1,0 +1,1861 @@
+{
+  "fullEraCompatibility": false,
+  "userPreference": "Faithful original port; incomplete elements stay disabled.",
+  "sourceScriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "priorities": [
+    {
+      "priority": 1,
+      "addedArtifacts": [
+        192,
+        193,
+        194,
+        195,
+        210,
+        223,
+        254
+      ],
+      "remaining": "Other special artifact event/summon/combination contracts remain excluded."
+    },
+    {
+      "priority": 2,
+      "addedBanks": [
+        36,
+        39,
+        40,
+        42,
+        46,
+        54,
+        55,
+        58,
+        60
+      ],
+      "remaining": "Unresolved original banks and dwellings stay outside the active manifest."
+    },
+    {
+      "priority": 3,
+      "addedNeutralStages": [
+        265,
+        266
+      ],
+      "disabledLaterStages": [
+        267,
+        268
+      ]
+    },
+    {
+      "priority": 4,
+      "contract": "tum_GetSpecMonsterStats",
+      "scope": "Generic creature family specialists. Source machine specialist variant remains unported."
+    },
+    {
+      "priority": 5,
+      "sourceNecromancyTable": [
+        56,
+        57,
+        220,
+        329,
+        261,
+        222
+      ]
+    },
+    {
+      "priority": 6,
+      "enabled": false,
+      "sourceActors": [
+        {
+          "sourceId": 269,
+          "active": false,
+          "obligations": [
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-property-Spell 1",
+                "parameters": {
+                  "value": 8
+                }
+              }
+            },
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-property-Spell 2",
+                "parameters": {
+                  "value": 7
+                }
+              }
+            },
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-property-Spell 3",
+                "parameters": {
+                  "value": 2
+                }
+              }
+            },
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-spell-event",
+                "parameters": {
+                  "property": "CastsSpell",
+                  "spell": "core:destroyUndead"
+                }
+              }
+            },
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-positive-morale",
+                "parameters": {
+                  "enabled": true
+                }
+              }
+            }
+          ],
+          "upgrade": {
+            "sourceId": 278,
+            "active": false,
+            "obligations": [
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-property-Spell 1",
+                  "parameters": {
+                    "value": 10
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-property-Spell 2",
+                  "parameters": {
+                    "value": 7
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-property-Spell 3",
+                  "parameters": {
+                    "value": 4
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-spell-event",
+                  "parameters": {
+                    "property": "CastsSpell",
+                    "spell": "core:destroyUndead"
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-positive-morale",
+                  "parameters": {
+                    "enabled": true
+                  }
+                }
+              },
+              {
+                "code": "xp-not-native-closed",
+                "details": {
+                  "source": "crexpbon.txt",
+                  "line": 1412,
+                  "code": "source-attack-spell-requires-specific-native-contract",
+                  "legacyCode": "p",
+                  "modifier": "#25"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "sourceId": 349,
+          "active": false,
+          "obligations": [
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-creature-flag-semantics",
+                "parameters": {
+                  "unsignedMask": 524290,
+                  "residualBits": [],
+                  "biology": {
+                    "sourceAlive": false,
+                    "sourceUndead": false,
+                    "nativeAutomaticLivingRequiresExplicitEquivalence": true
+                  },
+                  "category": {
+                    "source": {
+                      "alive": false,
+                      "undead": false,
+                      "mind": false,
+                      "noMorale": false
+                    },
+                    "closed": false,
+                    "reason": "NativeNON_LIVING/UNDEAD would introduce mental exclusions or zero morale absent from source flags"
+                  }
+                }
+              }
+            }
+          ],
+          "upgrade": {
+            "sourceId": 350,
+            "active": false,
+            "obligations": [
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-property-ACAST_CUSTOM_Chance",
+                  "parameters": {
+                    "value": 100
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-spell-event",
+                  "parameters": {
+                    "property": "ACAST_CUSTOM_Spell",
+                    "spell": "core:hypnotize"
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-spell-event",
+                  "parameters": {
+                    "property": "AfterDefendSpell2",
+                    "spell": "core:shield"
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-creature-flag-semantics",
+                  "parameters": {
+                    "unsignedMask": 524291,
+                    "residualBits": [],
+                    "biology": {
+                      "sourceAlive": false,
+                      "sourceUndead": false,
+                      "nativeAutomaticLivingRequiresExplicitEquivalence": true
+                    },
+                    "category": {
+                      "source": {
+                        "alive": false,
+                        "undead": false,
+                        "mind": false,
+                        "noMorale": false
+                      },
+                      "closed": false,
+                      "reason": "NativeNON_LIVING/UNDEAD would introduce mental exclusions or zero morale absent from source flags"
+                    }
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-regeneration",
+                  "parameters": {
+                    "hitPoints": 100,
+                    "chance": 100,
+                    "rollInclusive": [
+                      0,
+                      99
+                    ],
+                    "comparison": "roll < chance",
+                    "combination": "max(creature,stack)"
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-property-StrikeAllAroundRange",
+                  "parameters": {
+                    "value": 1
+                  }
+                }
+              },
+              {
+                "code": "xp-not-native-closed",
+                "details": {
+                  "source": "crexpbon.txt",
+                  "line": 1832,
+                  "code": "random-damage-deflection-requires-native-adapter",
+                  "legacyCode": "L",
+                  "modifier": "#125"
+                }
+              },
+              {
+                "code": "xp-not-native-closed",
+                "details": {
+                  "source": "crexpbon.txt",
+                  "line": 1833,
+                  "code": "source-attack-spell-requires-specific-native-contract",
+                  "legacyCode": "p",
+                  "modifier": "#37"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "sourceId": 271,
+          "active": false,
+          "obligations": [
+            {
+              "code": "xp-not-native-closed",
+              "details": {
+                "source": "crexpbon.txt",
+                "line": 1361,
+                "code": "random-damage-deflection-requires-native-adapter",
+                "legacyCode": "L",
+                "modifier": "#49"
+              }
+            }
+          ],
+          "upgrade": {
+            "sourceId": 280,
+            "active": false,
+            "obligations": [
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-property-PreventiveStrike",
+                  "parameters": {
+                    "value": 1
+                  }
+                }
+              },
+              {
+                "code": "xp-not-native-closed",
+                "details": {
+                  "source": "crexpbon.txt",
+                  "line": 1426,
+                  "code": "random-damage-deflection-requires-native-adapter",
+                  "legacyCode": "L",
+                  "modifier": "#49"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "sourceId": 337,
+          "active": false,
+          "obligations": [
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-property-ShootingResistance",
+                "parameters": {
+                  "value": 0.3
+                }
+              }
+            }
+          ],
+          "upgrade": {
+            "sourceId": 338,
+            "active": false,
+            "obligations": [
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-property-ShootingResistance",
+                  "parameters": {
+                    "value": 0.3
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-property-Spell 1",
+                  "parameters": {
+                    "value": 2
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-property-Spell 2",
+                  "parameters": {
+                    "value": 0
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-property-Spell 3",
+                  "parameters": {
+                    "value": 0
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-demonology",
+                  "parameters": {
+                    "creature": "third-upgrades:tumPitMaster"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "sourceId": 331,
+          "active": false,
+          "obligations": [
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-property-Spell 1",
+                "parameters": {
+                  "value": 8
+                }
+              }
+            },
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-property-Spell 2",
+                "parameters": {
+                  "value": 7
+                }
+              }
+            },
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-property-Spell 3",
+                "parameters": {
+                  "value": 2
+                }
+              }
+            },
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-spell-event",
+                "parameters": {
+                  "property": "CastsSpell",
+                  "spell": "core:deathRipple"
+                }
+              }
+            }
+          ],
+          "upgrade": {
+            "sourceId": 332,
+            "active": false,
+            "obligations": [
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-property-Spell 1",
+                  "parameters": {
+                    "value": 10
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-property-Spell 2",
+                  "parameters": {
+                    "value": 7
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-property-Spell 3",
+                  "parameters": {
+                    "value": 4
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-spell-event",
+                  "parameters": {
+                    "property": "CastsSpell",
+                    "spell": "core:deathRipple"
+                  }
+                }
+              },
+              {
+                "code": "xp-not-native-closed",
+                "details": {
+                  "source": "crexpbon.txt",
+                  "line": 1735,
+                  "code": "source-attack-spell-requires-specific-native-contract",
+                  "legacyCode": "p",
+                  "modifier": "#24"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "sourceId": 351,
+          "active": false,
+          "obligations": [
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-creature-flag-semantics",
+                "parameters": {
+                  "unsignedMask": 2069,
+                  "residualBits": [
+                    11
+                  ],
+                  "biology": {
+                    "sourceAlive": true,
+                    "sourceUndead": false,
+                    "nativeAutomaticLivingRequiresExplicitEquivalence": true
+                  },
+                  "category": {
+                    "source": {
+                      "alive": true,
+                      "undead": false,
+                      "mind": false,
+                      "noMorale": false
+                    },
+                    "closed": true,
+                    "nature": "LIVING",
+                    "reason": "Presence of nativeLIVING equals originalALIVE without adding native nature exclusions"
+                  }
+                }
+              }
+            },
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-property-Sharpshooters",
+                "parameters": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-property-ShootingRayColor",
+                "parameters": {
+                  "value": 10092543
+                }
+              }
+            },
+            {
+              "code": "xp-not-native-closed",
+              "details": {
+                "source": "crexpbon.txt",
+                "line": 1835,
+                "code": "source-c78-requires-explicit-native-contract",
+                "legacyCode": "c",
+                "modifier": "#54"
+              }
+            }
+          ],
+          "upgrade": {
+            "sourceId": 352,
+            "active": false,
+            "obligations": [
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-property-CreatureSpellPowerMultiplier",
+                  "parameters": {
+                    "value": 0
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-property-Shot type",
+                  "parameters": {
+                    "value": 4
+                  }
+                }
+              },
+              {
+                "code": "xp-not-native-closed",
+                "details": {
+                  "source": "crexpbon.txt",
+                  "line": 1838,
+                  "code": "source-c78-requires-explicit-native-contract",
+                  "legacyCode": "c",
+                  "modifier": "#54"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "sourceId": 275,
+          "active": false,
+          "obligations": [],
+          "upgrade": {
+            "sourceId": 283,
+            "active": false,
+            "obligations": []
+          }
+        },
+        {
+          "sourceId": 353,
+          "active": false,
+          "obligations": [
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-creature-flag-semantics",
+                "parameters": {
+                  "unsignedMask": 137,
+                  "residualBits": [],
+                  "biology": {
+                    "sourceAlive": false,
+                    "sourceUndead": false,
+                    "nativeAutomaticLivingRequiresExplicitEquivalence": true
+                  },
+                  "category": {
+                    "source": {
+                      "alive": false,
+                      "undead": false,
+                      "mind": false,
+                      "noMorale": false
+                    },
+                    "closed": false,
+                    "reason": "NativeNON_LIVING/UNDEAD would introduce mental exclusions or zero morale absent from source flags"
+                  }
+                }
+              }
+            },
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-property-CounterstrikeFury",
+                "parameters": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "code": "xp-not-native-closed",
+              "details": {
+                "source": "crexpbon.txt",
+                "line": 1842,
+                "code": "source-c78-requires-explicit-native-contract",
+                "legacyCode": "c",
+                "modifier": "#71"
+              }
+            }
+          ],
+          "upgrade": {
+            "sourceId": 353,
+            "active": false,
+            "obligations": [
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-creature-flag-semantics",
+                  "parameters": {
+                    "unsignedMask": 137,
+                    "residualBits": [],
+                    "biology": {
+                      "sourceAlive": false,
+                      "sourceUndead": false,
+                      "nativeAutomaticLivingRequiresExplicitEquivalence": true
+                    },
+                    "category": {
+                      "source": {
+                        "alive": false,
+                        "undead": false,
+                        "mind": false,
+                        "noMorale": false
+                      },
+                      "closed": false,
+                      "reason": "NativeNON_LIVING/UNDEAD would introduce mental exclusions or zero morale absent from source flags"
+                    }
+                  }
+                }
+              },
+              {
+                "code": "unbound-cfg-obligation",
+                "details": {
+                  "kind": "era-property-CounterstrikeFury",
+                  "parameters": {
+                    "value": 1
+                  }
+                }
+              },
+              {
+                "code": "xp-not-native-closed",
+                "details": {
+                  "source": "crexpbon.txt",
+                  "line": 1842,
+                  "code": "source-c78-requires-explicit-native-contract",
+                  "legacyCode": "c",
+                  "modifier": "#71"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "sourceId": 355,
+          "active": false,
+          "obligations": [
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-property-isTeleporter",
+                "parameters": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-spell-event",
+                "parameters": {
+                  "property": "AfterMeleeSpell",
+                  "spell": "core:magicArrow"
+                }
+              }
+            },
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-spell-event",
+                "parameters": {
+                  "property": "AfterDefendSpell",
+                  "spell": "core:fireWall"
+                }
+              }
+            },
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-spell-event",
+                "parameters": {
+                  "property": "AfterWoundSpell",
+                  "spell": "core:fireShield"
+                }
+              }
+            },
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-property-AfterActionSpellMastery",
+                "parameters": {
+                  "value": 0
+                }
+              }
+            },
+            {
+              "code": "unbound-cfg-obligation",
+              "details": {
+                "kind": "era-property-isSorceress",
+                "parameters": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "code": "xp-not-native-closed",
+              "details": {
+                "source": "crexpbon.txt",
+                "line": 1848,
+                "code": "source-attack-spell-requires-specific-native-contract",
+                "legacyCode": "p",
+                "modifier": "#21"
+              }
+            },
+            {
+              "code": "xp-not-native-closed",
+              "details": {
+                "source": "crexpbon.txt",
+                "line": 1849,
+                "code": "source-attack-spell-requires-specific-native-contract",
+                "legacyCode": "a",
+                "modifier": "#17"
+              }
+            },
+            {
+              "code": "xp-not-native-closed",
+              "details": {
+                "source": "crexpbon.txt",
+                "line": 1850,
+                "code": "source-attack-spell-requires-specific-native-contract",
+                "legacyCode": "p",
+                "modifier": "#23"
+              }
+            },
+            {
+              "code": "xp-not-native-closed",
+              "details": {
+                "source": "crexpbon.txt",
+                "line": 1851,
+                "code": "source-attack-spell-requires-specific-native-contract",
+                "legacyCode": "a",
+                "modifier": "#16"
+              }
+            }
+          ],
+          "upgrade": {
+            "sourceId": 356,
+            "active": false,
+            "obligations": [
+              {
+                "code": "cfg-not-native-closed",
+                "details": [
+                  {
+                    "source": "Data/Creatures/356.cfg",
+                    "line": 13,
+                    "key": "CreatureMimicArtifact2",
+                    "rawValue": "88",
+                    "code": "UNRESOLVED",
+                    "message": "Artifact 88"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "priority": 7,
+      "initializationSubset": [
+        {
+          "option": "WOG_OPT_4TH_UPGRADES",
+          "executed": true,
+          "factions": {
+            "core:castle": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:pikeman",
+                    "tum-era:halberdier",
+                    "tum-era:tumRoyalHalberdier"
+                  ],
+                  [
+                    "tum-era:archer",
+                    "tum-era:marksman",
+                    "tum-era:tumCrossbowman"
+                  ],
+                  [
+                    "tum-era:griffin",
+                    "tum-era:royalGriffin",
+                    "tum-era:tumCeasarGriffin"
+                  ],
+                  [
+                    "tum-era:swordsman",
+                    "tum-era:crusader",
+                    "tum-era:tumInquisitor"
+                  ],
+                  [
+                    "tum-era:monk",
+                    "tum-era:zealot",
+                    "tum-era:tumHighPriest"
+                  ],
+                  [
+                    "tum-era:cavalier",
+                    "tum-era:champion",
+                    "tum-era:tumHolyChampion"
+                  ],
+                  [
+                    "tum-era:angel",
+                    "tum-era:archangel",
+                    "tum-era:supremeArchangel",
+                    "tum-era:cherub"
+                  ]
+                ]
+              }
+            },
+            "core:rampart": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:centaur",
+                    "tum-era:centaurCaptain",
+                    "tum-era:tumCentaurGeneral"
+                  ],
+                  [
+                    "tum-era:dwarf",
+                    "tum-era:battleDwarf",
+                    "tum-era:tumBerserkerDwarf"
+                  ],
+                  [
+                    "tum-era:woodElf",
+                    "tum-era:grandElf",
+                    "tum-era:tumSharpshooterElf"
+                  ],
+                  [
+                    "tum-era:pegasus",
+                    "tum-era:silverPegasus",
+                    "tum-era:tumGoldenPegasus"
+                  ],
+                  [
+                    "tum-era:dendroidGuard",
+                    "tum-era:dendroidSoldier",
+                    "tum-era:tumElderDendroid"
+                  ],
+                  [
+                    "tum-era:unicorn",
+                    "tum-era:warUnicorn",
+                    "tum-era:tumLegendaryUnicorn"
+                  ],
+                  [
+                    "tum-era:greenDragon",
+                    "tum-era:goldDragon",
+                    "tum-era:diamondDragon",
+                    "tum-era:gemDragon"
+                  ]
+                ]
+              }
+            },
+            "core:tower": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:gremlin",
+                    "tum-era:masterGremlin",
+                    "tum-era:tumGrandmasterGremlin"
+                  ],
+                  [
+                    "tum-era:stoneGargoyle",
+                    "tum-era:obsidianGargoyle",
+                    "tum-era:tumMarbleGargoyle"
+                  ],
+                  [
+                    "tum-era:ironGolem",
+                    "tum-era:stoneGolem",
+                    "tum-era:tumSteelGolem"
+                  ],
+                  [
+                    "tum-era:mage",
+                    "tum-era:archMage",
+                    "tum-era:tumSupremeArchMage"
+                  ],
+                  [
+                    "tum-era:genie",
+                    "tum-era:masterGenie",
+                    "tum-era:tumArcaneGenie"
+                  ],
+                  [
+                    "tum-era:naga",
+                    "tum-era:nagaQueen",
+                    "tum-era:tumNagaEmpress"
+                  ],
+                  [
+                    "tum-era:giant",
+                    "tum-era:titan",
+                    "tum-era:lordOfThunder",
+                    "tum-era:guardianOfZeus"
+                  ]
+                ]
+              }
+            },
+            "core:inferno": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:imp",
+                    "tum-era:familiar",
+                    "tum-era:tumVermin"
+                  ],
+                  [
+                    "tum-era:gog",
+                    "tum-era:magog",
+                    "tum-era:tumWingedMagog"
+                  ],
+                  [
+                    "tum-era:hellHound",
+                    "tum-era:cerberus",
+                    "tum-era:tumAstralCerberus"
+                  ],
+                  [
+                    "tum-era:demon",
+                    "tum-era:hornedDemon",
+                    "tum-era:tumSharpHornedDemon"
+                  ],
+                  [
+                    "tum-era:pitFiend",
+                    "tum-era:pitLord",
+                    "tum-era:tumPitMaster"
+                  ],
+                  [
+                    "tum-era:efreet",
+                    "tum-era:efreetSultan",
+                    "tum-era:tumEfreetRajah"
+                  ],
+                  [
+                    "tum-era:devil",
+                    "tum-era:archDevil",
+                    "tum-era:hellBaron",
+                    "tum-era:antichrist"
+                  ]
+                ]
+              }
+            },
+            "core:necropolis": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:skeleton",
+                    "tum-era:skeletonWarrior",
+                    "tum-era:tumSkeletonKnight"
+                  ],
+                  [
+                    "tum-era:walkingDead",
+                    "tum-era:zombieLord",
+                    "tum-era:tumGhoul"
+                  ],
+                  [
+                    "tum-era:wight",
+                    "tum-era:wraith",
+                    "tum-era:tumSpecter"
+                  ],
+                  [
+                    "tum-era:vampire",
+                    "tum-era:vampireLord",
+                    "tum-era:tumNosferatu"
+                  ],
+                  [
+                    "tum-era:lich",
+                    "tum-era:powerLich",
+                    "tum-era:tumLichKing"
+                  ],
+                  [
+                    "tum-era:blackKnight",
+                    "tum-era:dreadKnight",
+                    "tum-era:tumDeathKnight"
+                  ],
+                  [
+                    "tum-era:boneDragon",
+                    "tum-era:ghostDragon",
+                    "tum-era:bloodDragon",
+                    "tum-era:redBonesDragon"
+                  ]
+                ]
+              }
+            },
+            "core:dungeon": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:troglodyte",
+                    "tum-era:infernalTroglodyte",
+                    "tum-era:tumPhosphorescentTroglodyte"
+                  ],
+                  [
+                    "tum-era:harpy",
+                    "tum-era:harpyHag",
+                    "tum-era:tumHarpySanguinary"
+                  ],
+                  [
+                    "tum-era:beholder",
+                    "tum-era:evilEye",
+                    "tum-era:tumMonstrousEye"
+                  ],
+                  [
+                    "tum-era:medusa",
+                    "tum-era:medusaQueen",
+                    "tum-era:tumMedusaEmpress"
+                  ],
+                  [
+                    "tum-era:minotaur",
+                    "tum-era:minotaurKing",
+                    "tum-era:tumBlackMinotaur"
+                  ],
+                  [
+                    "tum-era:manticore",
+                    "tum-era:scorpicore",
+                    "tum-era:tumChimera"
+                  ],
+                  [
+                    "tum-era:redDragon",
+                    "tum-era:blackDragon",
+                    "tum-era:darknessDragon",
+                    "tum-era:chasmDragon"
+                  ]
+                ]
+              }
+            },
+            "core:stronghold": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:goblin",
+                    "tum-era:hobgoblin",
+                    "tum-era:tumHobgoblinOverlord"
+                  ],
+                  [
+                    "tum-era:goblinWolfRider",
+                    "tum-era:hobgoblinWolfRider",
+                    "tum-era:tumWolfRiderKiller"
+                  ],
+                  [
+                    "tum-era:orc",
+                    "tum-era:orcChieftain",
+                    "tum-era:tumOrcLeader"
+                  ],
+                  [
+                    "tum-era:ogre",
+                    "tum-era:ogreMage",
+                    "tum-era:tumElderOgre"
+                  ],
+                  [
+                    "tum-era:roc",
+                    "tum-era:thunderbird",
+                    "tum-era:tumLightningbird"
+                  ],
+                  [
+                    "tum-era:cyclop",
+                    "tum-era:cyclopKing",
+                    "tum-era:tumCyclopsEmperor"
+                  ],
+                  [
+                    "tum-era:behemoth",
+                    "tum-era:ancientBehemoth",
+                    "tum-era:ghostBehemoth",
+                    "tum-era:ancestralBehemoth"
+                  ]
+                ]
+              }
+            },
+            "core:fortress": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:gnoll",
+                    "tum-era:gnollMarauder",
+                    "tum-era:tumGnollShaman"
+                  ],
+                  [
+                    "tum-era:lizardman",
+                    "tum-era:lizardWarrior",
+                    "tum-era:tumEliteLizard"
+                  ],
+                  [
+                    "tum-era:serpentFly",
+                    "tum-era:fireDragonFly",
+                    "tum-era:tumChaoticDragonFly"
+                  ],
+                  [
+                    "tum-era:basilisk",
+                    "tum-era:greaterBasilisk",
+                    "tum-era:tumLavaBasilisk"
+                  ],
+                  [
+                    "tum-era:gorgon",
+                    "tum-era:mightyGorgon",
+                    "tum-era:tumCatopleba"
+                  ],
+                  [
+                    "tum-era:wyvern",
+                    "tum-era:wyvernMonarch",
+                    "tum-era:tumAcidWyvern"
+                  ],
+                  [
+                    "tum-era:hydra",
+                    "tum-era:chaosHydra",
+                    "tum-era:hellHydra",
+                    "tum-era:nightmareHydra"
+                  ]
+                ]
+              }
+            },
+            "core:conflux": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:pixie",
+                    "tum-era:sprite",
+                    "tum-era:tumFairy"
+                  ],
+                  [
+                    "tum-era:airElemental",
+                    "tum-era:stormElemental",
+                    "tum-era:tumHurricaneElemental"
+                  ],
+                  [
+                    "tum-era:waterElemental",
+                    "tum-era:iceElemental",
+                    "tum-era:tumLifeElemental"
+                  ],
+                  [
+                    "tum-era:fireElemental",
+                    "tum-era:energyElemental",
+                    "tum-era:tumPlasmaElemental"
+                  ],
+                  [
+                    "tum-era:earthElemental",
+                    "tum-era:magmaElemental",
+                    "tum-era:tumMineralElemental"
+                  ],
+                  [
+                    "tum-era:psychicElemental",
+                    "tum-era:magicElemental",
+                    "tum-era:tumVoidElemental"
+                  ],
+                  [
+                    "tum-era:firebird",
+                    "tum-era:phoenix",
+                    "tum-era:sacredPhoenix",
+                    "tum-era:divinePhoenix"
+                  ]
+                ]
+              }
+            }
+          },
+          "assignments": [
+            {
+              "town": 0,
+              "tier": 6,
+              "variant": 3,
+              "creature": 202
+            },
+            {
+              "town": 1,
+              "tier": 6,
+              "variant": 3,
+              "creature": 207
+            },
+            {
+              "town": 2,
+              "tier": 6,
+              "variant": 3,
+              "creature": 212
+            },
+            {
+              "town": 3,
+              "tier": 6,
+              "variant": 3,
+              "creature": 219
+            },
+            {
+              "town": 4,
+              "tier": 6,
+              "variant": 3,
+              "creature": 224
+            },
+            {
+              "town": 5,
+              "tier": 6,
+              "variant": 3,
+              "creature": 231
+            },
+            {
+              "town": 6,
+              "tier": 6,
+              "variant": 3,
+              "creature": 238
+            },
+            {
+              "town": 7,
+              "tier": 6,
+              "variant": 3,
+              "creature": 245
+            },
+            {
+              "town": 8,
+              "tier": 6,
+              "variant": 3,
+              "creature": 252
+            }
+          ],
+          "scope": "Source initialization roster assignments only; no buildings, events, save mutation or DLL execution."
+        },
+        {
+          "option": "WOG_OPT_4TH_UPGRADES",
+          "executed": false,
+          "factions": {},
+          "assignments": [
+            {
+              "town": 0,
+              "tier": 6,
+              "variant": 3,
+              "creature": -1
+            },
+            {
+              "town": 1,
+              "tier": 6,
+              "variant": 3,
+              "creature": -1
+            },
+            {
+              "town": 2,
+              "tier": 6,
+              "variant": 3,
+              "creature": -1
+            },
+            {
+              "town": 3,
+              "tier": 6,
+              "variant": 3,
+              "creature": -1
+            },
+            {
+              "town": 4,
+              "tier": 6,
+              "variant": 3,
+              "creature": -1
+            },
+            {
+              "town": 5,
+              "tier": 6,
+              "variant": 3,
+              "creature": -1
+            },
+            {
+              "town": 6,
+              "tier": 6,
+              "variant": 3,
+              "creature": -1
+            },
+            {
+              "town": 7,
+              "tier": 6,
+              "variant": 3,
+              "creature": -1
+            },
+            {
+              "town": 8,
+              "tier": 6,
+              "variant": 3,
+              "creature": -1
+            }
+          ]
+        },
+        {
+          "option": "WOG_OPT_8TH_MONSTERS",
+          "executed": false,
+          "factions": {},
+          "assignments": [
+            {
+              "town": 0,
+              "tier": 7,
+              "variant": 0,
+              "creature": 269
+            },
+            {
+              "town": 1,
+              "tier": 7,
+              "variant": 0,
+              "creature": 349
+            },
+            {
+              "town": 2,
+              "tier": 7,
+              "variant": 0,
+              "creature": 271
+            },
+            {
+              "town": 3,
+              "tier": 7,
+              "variant": 0,
+              "creature": 337
+            },
+            {
+              "town": 4,
+              "tier": 7,
+              "variant": 0,
+              "creature": 331
+            },
+            {
+              "town": 5,
+              "tier": 7,
+              "variant": 0,
+              "creature": 351
+            },
+            {
+              "town": 6,
+              "tier": 7,
+              "variant": 0,
+              "creature": 275
+            },
+            {
+              "town": 7,
+              "tier": 7,
+              "variant": 0,
+              "creature": 353
+            },
+            {
+              "town": 8,
+              "tier": 7,
+              "variant": 0,
+              "creature": 355
+            }
+          ]
+        },
+        {
+          "option": "WOG_OPT_8TH_MONSTERS",
+          "executed": true,
+          "factions": {
+            "core:castle": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:pikeman",
+                    "tum-era:halberdier",
+                    "tum-era:tumRoyalHalberdier"
+                  ],
+                  [
+                    "tum-era:archer",
+                    "tum-era:marksman",
+                    "tum-era:tumCrossbowman"
+                  ],
+                  [
+                    "tum-era:griffin",
+                    "tum-era:royalGriffin",
+                    "tum-era:tumCeasarGriffin"
+                  ],
+                  [
+                    "tum-era:swordsman",
+                    "tum-era:crusader",
+                    "tum-era:tumInquisitor"
+                  ],
+                  [
+                    "tum-era:monk",
+                    "tum-era:zealot",
+                    "tum-era:tumHighPriest"
+                  ],
+                  [
+                    "tum-era:cavalier",
+                    "tum-era:champion",
+                    "tum-era:tumHolyChampion"
+                  ],
+                  [
+                    "tum-era:angel",
+                    "tum-era:archangel",
+                    "tum-era:supremeArchangel",
+                    "tum-era:cherub"
+                  ]
+                ]
+              }
+            },
+            "core:rampart": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:centaur",
+                    "tum-era:centaurCaptain",
+                    "tum-era:tumCentaurGeneral"
+                  ],
+                  [
+                    "tum-era:dwarf",
+                    "tum-era:battleDwarf",
+                    "tum-era:tumBerserkerDwarf"
+                  ],
+                  [
+                    "tum-era:woodElf",
+                    "tum-era:grandElf",
+                    "tum-era:tumSharpshooterElf"
+                  ],
+                  [
+                    "tum-era:pegasus",
+                    "tum-era:silverPegasus",
+                    "tum-era:tumGoldenPegasus"
+                  ],
+                  [
+                    "tum-era:dendroidGuard",
+                    "tum-era:dendroidSoldier",
+                    "tum-era:tumElderDendroid"
+                  ],
+                  [
+                    "tum-era:unicorn",
+                    "tum-era:warUnicorn",
+                    "tum-era:tumLegendaryUnicorn"
+                  ],
+                  [
+                    "tum-era:greenDragon",
+                    "tum-era:goldDragon",
+                    "tum-era:diamondDragon",
+                    "tum-era:gemDragon"
+                  ]
+                ]
+              }
+            },
+            "core:tower": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:gremlin",
+                    "tum-era:masterGremlin",
+                    "tum-era:tumGrandmasterGremlin"
+                  ],
+                  [
+                    "tum-era:stoneGargoyle",
+                    "tum-era:obsidianGargoyle",
+                    "tum-era:tumMarbleGargoyle"
+                  ],
+                  [
+                    "tum-era:ironGolem",
+                    "tum-era:stoneGolem",
+                    "tum-era:tumSteelGolem"
+                  ],
+                  [
+                    "tum-era:mage",
+                    "tum-era:archMage",
+                    "tum-era:tumSupremeArchMage"
+                  ],
+                  [
+                    "tum-era:genie",
+                    "tum-era:masterGenie",
+                    "tum-era:tumArcaneGenie"
+                  ],
+                  [
+                    "tum-era:naga",
+                    "tum-era:nagaQueen",
+                    "tum-era:tumNagaEmpress"
+                  ],
+                  [
+                    "tum-era:giant",
+                    "tum-era:titan",
+                    "tum-era:lordOfThunder",
+                    "tum-era:guardianOfZeus"
+                  ]
+                ]
+              }
+            },
+            "core:inferno": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:imp",
+                    "tum-era:familiar",
+                    "tum-era:tumVermin"
+                  ],
+                  [
+                    "tum-era:gog",
+                    "tum-era:magog",
+                    "tum-era:tumWingedMagog"
+                  ],
+                  [
+                    "tum-era:hellHound",
+                    "tum-era:cerberus",
+                    "tum-era:tumAstralCerberus"
+                  ],
+                  [
+                    "tum-era:demon",
+                    "tum-era:hornedDemon",
+                    "tum-era:tumSharpHornedDemon"
+                  ],
+                  [
+                    "tum-era:pitFiend",
+                    "tum-era:pitLord",
+                    "tum-era:tumPitMaster"
+                  ],
+                  [
+                    "tum-era:efreet",
+                    "tum-era:efreetSultan",
+                    "tum-era:tumEfreetRajah"
+                  ],
+                  [
+                    "tum-era:devil",
+                    "tum-era:archDevil",
+                    "tum-era:hellBaron",
+                    "tum-era:antichrist"
+                  ]
+                ]
+              }
+            },
+            "core:necropolis": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:skeleton",
+                    "tum-era:skeletonWarrior",
+                    "tum-era:tumSkeletonKnight"
+                  ],
+                  [
+                    "tum-era:walkingDead",
+                    "tum-era:zombieLord",
+                    "tum-era:tumGhoul"
+                  ],
+                  [
+                    "tum-era:wight",
+                    "tum-era:wraith",
+                    "tum-era:tumSpecter"
+                  ],
+                  [
+                    "tum-era:vampire",
+                    "tum-era:vampireLord",
+                    "tum-era:tumNosferatu"
+                  ],
+                  [
+                    "tum-era:lich",
+                    "tum-era:powerLich",
+                    "tum-era:tumLichKing"
+                  ],
+                  [
+                    "tum-era:blackKnight",
+                    "tum-era:dreadKnight",
+                    "tum-era:tumDeathKnight"
+                  ],
+                  [
+                    "tum-era:boneDragon",
+                    "tum-era:ghostDragon",
+                    "tum-era:bloodDragon",
+                    "tum-era:redBonesDragon"
+                  ]
+                ]
+              }
+            },
+            "core:dungeon": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:troglodyte",
+                    "tum-era:infernalTroglodyte",
+                    "tum-era:tumPhosphorescentTroglodyte"
+                  ],
+                  [
+                    "tum-era:harpy",
+                    "tum-era:harpyHag",
+                    "tum-era:tumHarpySanguinary"
+                  ],
+                  [
+                    "tum-era:beholder",
+                    "tum-era:evilEye",
+                    "tum-era:tumMonstrousEye"
+                  ],
+                  [
+                    "tum-era:medusa",
+                    "tum-era:medusaQueen",
+                    "tum-era:tumMedusaEmpress"
+                  ],
+                  [
+                    "tum-era:minotaur",
+                    "tum-era:minotaurKing",
+                    "tum-era:tumBlackMinotaur"
+                  ],
+                  [
+                    "tum-era:manticore",
+                    "tum-era:scorpicore",
+                    "tum-era:tumChimera"
+                  ],
+                  [
+                    "tum-era:redDragon",
+                    "tum-era:blackDragon",
+                    "tum-era:darknessDragon",
+                    "tum-era:chasmDragon"
+                  ]
+                ]
+              }
+            },
+            "core:stronghold": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:goblin",
+                    "tum-era:hobgoblin",
+                    "tum-era:tumHobgoblinOverlord"
+                  ],
+                  [
+                    "tum-era:goblinWolfRider",
+                    "tum-era:hobgoblinWolfRider",
+                    "tum-era:tumWolfRiderKiller"
+                  ],
+                  [
+                    "tum-era:orc",
+                    "tum-era:orcChieftain",
+                    "tum-era:tumOrcLeader"
+                  ],
+                  [
+                    "tum-era:ogre",
+                    "tum-era:ogreMage",
+                    "tum-era:tumElderOgre"
+                  ],
+                  [
+                    "tum-era:roc",
+                    "tum-era:thunderbird",
+                    "tum-era:tumLightningbird"
+                  ],
+                  [
+                    "tum-era:cyclop",
+                    "tum-era:cyclopKing",
+                    "tum-era:tumCyclopsEmperor"
+                  ],
+                  [
+                    "tum-era:behemoth",
+                    "tum-era:ancientBehemoth",
+                    "tum-era:ghostBehemoth",
+                    "tum-era:ancestralBehemoth"
+                  ]
+                ]
+              }
+            },
+            "core:fortress": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:gnoll",
+                    "tum-era:gnollMarauder",
+                    "tum-era:tumGnollShaman"
+                  ],
+                  [
+                    "tum-era:lizardman",
+                    "tum-era:lizardWarrior",
+                    "tum-era:tumEliteLizard"
+                  ],
+                  [
+                    "tum-era:serpentFly",
+                    "tum-era:fireDragonFly",
+                    "tum-era:tumChaoticDragonFly"
+                  ],
+                  [
+                    "tum-era:basilisk",
+                    "tum-era:greaterBasilisk",
+                    "tum-era:tumLavaBasilisk"
+                  ],
+                  [
+                    "tum-era:gorgon",
+                    "tum-era:mightyGorgon",
+                    "tum-era:tumCatopleba"
+                  ],
+                  [
+                    "tum-era:wyvern",
+                    "tum-era:wyvernMonarch",
+                    "tum-era:tumAcidWyvern"
+                  ],
+                  [
+                    "tum-era:hydra",
+                    "tum-era:chaosHydra",
+                    "tum-era:hellHydra",
+                    "tum-era:nightmareHydra"
+                  ]
+                ]
+              }
+            },
+            "core:conflux": {
+              "town": {
+                "creatures": [
+                  [
+                    "tum-era:pixie",
+                    "tum-era:sprite",
+                    "tum-era:tumFairy"
+                  ],
+                  [
+                    "tum-era:airElemental",
+                    "tum-era:stormElemental",
+                    "tum-era:tumHurricaneElemental"
+                  ],
+                  [
+                    "tum-era:waterElemental",
+                    "tum-era:iceElemental",
+                    "tum-era:tumLifeElemental"
+                  ],
+                  [
+                    "tum-era:fireElemental",
+                    "tum-era:energyElemental",
+                    "tum-era:tumPlasmaElemental"
+                  ],
+                  [
+                    "tum-era:earthElemental",
+                    "tum-era:magmaElemental",
+                    "tum-era:tumMineralElemental"
+                  ],
+                  [
+                    "tum-era:psychicElemental",
+                    "tum-era:magicElemental",
+                    "tum-era:tumVoidElemental"
+                  ],
+                  [
+                    "tum-era:firebird",
+                    "tum-era:phoenix",
+                    "tum-era:sacredPhoenix",
+                    "tum-era:divinePhoenix"
+                  ]
+                ]
+              }
+            }
+          },
+          "assignments": [
+            {
+              "town": 0,
+              "tier": 7,
+              "variant": 0,
+              "creature": -1
+            },
+            {
+              "town": 1,
+              "tier": 7,
+              "variant": 0,
+              "creature": -1
+            },
+            {
+              "town": 2,
+              "tier": 7,
+              "variant": 0,
+              "creature": -1
+            },
+            {
+              "town": 3,
+              "tier": 7,
+              "variant": 0,
+              "creature": -1
+            },
+            {
+              "town": 4,
+              "tier": 7,
+              "variant": 0,
+              "creature": -1
+            },
+            {
+              "town": 5,
+              "tier": 7,
+              "variant": 0,
+              "creature": -1
+            },
+            {
+              "town": 6,
+              "tier": 7,
+              "variant": 0,
+              "creature": -1
+            },
+            {
+              "town": 7,
+              "tier": 7,
+              "variant": 0,
+              "creature": -1
+            },
+            {
+              "town": 8,
+              "tier": 7,
+              "variant": 0,
+              "creature": -1
+            }
+          ],
+          "scope": "Source initialization roster assignments only; no buildings, events, save mutation or DLL execution."
+        }
+      ],
+      "fullErmRuntime": false,
+      "unsupported": "No arbitrary memory writes, DLL callbacks, conditional battle/map scripts or inferred options are executed."
+    }
+  ],
+  "nativeValidationRequired": true
+}

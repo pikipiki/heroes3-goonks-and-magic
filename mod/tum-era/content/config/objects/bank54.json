@@ -1,0 +1,73 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank54": {
+        "name": "Forbidden Cliffs",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB22.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank54MixedLayout",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:goldDragon",
+                "amount": 21,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:goldDragon",
+                "amount": 21
+              },
+              {
+                "type": "core:goldDragon",
+                "amount": 21
+              },
+              {
+                "type": "core:goldDragon",
+                "amount": 21
+              }
+            ],
+            "resources": {
+              "crystal": 22,
+              "gold": 10000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:gemDragon",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 10000,
+          "rarity": 100
+        }
+      }
+    }
+  }
+}

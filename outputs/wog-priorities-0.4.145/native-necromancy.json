@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "errors": [],
+  "report": {
+    "necro-basic-false": {
+      "type": "core:skeleton",
+      "count": 5
+    },
+    "necro-advanced-false": {
+      "type": "core:skeletonWarrior",
+      "count": 10
+    },
+    "necro-expert-false": {
+      "type": "third-upgrades:tumSkeletonKnight",
+      "count": 15
+    },
+    "necro-basic-true": {
+      "type": "third-upgrades:tumGhoul",
+      "count": 8
+    },
+    "necro-advanced-true": {
+      "type": "third-upgrades:tumSpecter",
+      "count": 12
+    },
+    "necro-expert-true": {
+      "type": "third-upgrades:tumLichKing",
+      "count": 6
+    }
+  }
+}

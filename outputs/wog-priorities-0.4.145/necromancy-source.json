@@ -1,0 +1,22 @@
+{
+  "source": "Data/necromancy.cfg",
+  "sha256": "376887090625b0eee7ee09301d659ae00bfa607d2697bec2ea0b3089de278dc6",
+  "ids": [
+    56,
+    57,
+    220,
+    329,
+    261,
+    222
+  ],
+  "types": [
+    "core:skeleton",
+    "core:skeletonWarrior",
+    "third-upgrades:tumSkeletonKnight",
+    "third-upgrades:tumGhoul",
+    "third-upgrades:tumSpecter",
+    "third-upgrades:tumLichKing"
+  ],
+  "implementation": "Native IMPROVED_NECROMANCY skill/combination thresholds; existing raising percentages and free-slot checks remain authoritative.",
+  "nativeValidationRequired": true
+}

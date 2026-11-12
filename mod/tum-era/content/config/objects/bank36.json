@@ -1,0 +1,188 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank36": {
+        "name": "Wolf Raider Gaol",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB4.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VVA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "dirt",
+              "sand",
+              "rough",
+              "subterra"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank36MixedLayout",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 20
+              },
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 20
+              },
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 20
+              },
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 20
+              },
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 20
+              }
+            ],
+            "creatures": [
+              {
+                "type": "third-upgrades:tumCyclopsEmperor",
+                "amount": 4
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 30
+              }
+            ],
+            "creatures": [
+              {
+                "type": "third-upgrades:tumCyclopsEmperor",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 40
+              },
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 40
+              },
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 40
+              },
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 40
+              },
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 40
+              }
+            ],
+            "creatures": [
+              {
+                "type": "third-upgrades:tumCyclopsEmperor",
+                "amount": 8
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 60
+              },
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 60
+              },
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 60
+              },
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 60
+              },
+              {
+                "type": "third-upgrades:tumWolfRiderKiller",
+                "amount": 60
+              }
+            ],
+            "creatures": [
+              {
+                "type": "third-upgrades:tumCyclopsEmperor",
+                "amount": 12
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "ambient": [
+            "tum-era/objects/LOOPPICK.wav"
+          ]
+        },
+        "rmg": {
+          "value": 9500,
+          "rarity": 70
+        }
+      }
+    }
+  }
+}

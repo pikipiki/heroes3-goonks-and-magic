@@ -1,0 +1,73 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank60": {
+        "name": "Volcanic Well",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB28.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VABV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank60MixedLayout",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:chaosHydra",
+                "amount": 22,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:chaosHydra",
+                "amount": 22
+              },
+              {
+                "type": "core:chaosHydra",
+                "amount": 22
+              },
+              {
+                "type": "core:chaosHydra",
+                "amount": 22
+              }
+            ],
+            "resources": {
+              "sulfur": 30,
+              "gold": 10000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:nightmareHydra",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 10000,
+          "rarity": 100
+        }
+      }
+    }
+  }
+}

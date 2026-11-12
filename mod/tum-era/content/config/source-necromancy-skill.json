@@ -1,0 +1,52 @@
+{
+  "core:necromancy": {
+    "basic": {
+      "description": "{Basic Necromancy}\n\nRaises up to 10% of defeated living creatures as Skeletons, limited by their health. With the Cloak of the Undead King: Ghouls.",
+      "effects": {
+        "main": {
+          "type": "UNDEAD_RAISE_PERCENTAGE",
+          "valueType": "BASE_NUMBER",
+          "val": 10
+        },
+        "power": {
+          "type": "IMPROVED_NECROMANCY",
+          "val": 1,
+          "subtype": "core:skeleton",
+          "addInfo": 0
+        }
+      }
+    },
+    "advanced": {
+      "description": "{Advanced Necromancy}\n\nRaises up to 20% of defeated living creatures as Skeleton Warriors, limited by their health. With the Cloak of the Undead King: Specters.",
+      "effects": {
+        "main": {
+          "type": "UNDEAD_RAISE_PERCENTAGE",
+          "valueType": "BASE_NUMBER",
+          "val": 20
+        },
+        "power": {
+          "type": "IMPROVED_NECROMANCY",
+          "val": 2,
+          "subtype": "core:skeletonWarrior",
+          "addInfo": 0
+        }
+      }
+    },
+    "expert": {
+      "description": "{Expert Necromancy}\n\nRaises up to 30% of defeated living creatures as Skeleton Knights, limited by their health. With the Cloak of the Undead King: Lich Kings.",
+      "effects": {
+        "main": {
+          "type": "UNDEAD_RAISE_PERCENTAGE",
+          "valueType": "BASE_NUMBER",
+          "val": 30
+        },
+        "power": {
+          "type": "IMPROVED_NECROMANCY",
+          "val": 3,
+          "subtype": "third-upgrades:tumSkeletonKnight",
+          "addInfo": 0
+        }
+      }
+    }
+  }
+}

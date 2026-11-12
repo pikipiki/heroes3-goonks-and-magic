@@ -1,0 +1,192 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank40": {
+        "name": "Monstrous Eyes' Sanctuary",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB8.def",
+            "mask": [
+              "VVV",
+              "VAB",
+              "VBB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "water"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 15
+              },
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 15
+              },
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 15
+              },
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 15
+              },
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 15
+              }
+            ],
+            "resources": {
+              "gold": 4000
+            },
+            "artifacts": [
+              {
+                "class": "MAJOR"
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 20
+              },
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 20
+              },
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 20
+              },
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 20
+              },
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 20
+              }
+            ],
+            "resources": {
+              "gold": 7000
+            },
+            "artifacts": [
+              {
+                "class": "MAJOR"
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 25
+              },
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 25
+              },
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 25
+              },
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 25
+              },
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 25
+              }
+            ],
+            "resources": {
+              "gold": 9000
+            },
+            "artifacts": [
+              {
+                "class": "RELIC"
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 40
+              },
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 40
+              },
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 40
+              },
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 40
+              },
+              {
+                "type": "third-upgrades:tumMonstrousEye",
+                "amount": 40
+              }
+            ],
+            "resources": {
+              "gold": 12000
+            },
+            "artifacts": [
+              {
+                "class": "RELIC"
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "ambient": [
+            "tum-era/objects/LOOPBEHD.wav"
+          ]
+        },
+        "rmg": {
+          "value": 3000,
+          "rarity": 100
+        }
+      }
+    }
+  }
+}

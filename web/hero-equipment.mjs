@@ -35,7 +35,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
  function renderSkills(hero){
   const description=text=>esc(text?.replace(/[{}]/g,''));
   const specialty=hero.specialty?.name?`<section class="hero-specialty">
-   ${heroIcon(hero.specialty.icon)}<div><h3>Specialty</h3><strong>${esc(hero.specialty.name)}</strong><p>${description(hero.specialty.description)}</p></div>
+   ${heroIcon(hero.specialty.icon)}<div><h3>Specialty</h3><strong>${esc(hero.specialty.name)}</strong><p>${description(hero.specialty.description)}</p>${hero.specialty.sourceProgression?`<p class="hero-source-specialty">${getLanguage()==='fr'?'Bonus TUM en combat uniquement':'TUM bonus during combat only'} · ${esc(hero.specialty.sourceProgression.family)} : +${hero.specialty.sourceProgression.attackDefense} ATK/DEF · +${hero.specialty.sourceProgression.damage} ${getLanguage()==='fr'?'dégâts':'damage'} · +${hero.specialty.sourceProgression.healthPercent}% ${getLanguage()==='fr'?'PV':'HP'}</p>`:''}</div>
   </section>`:'';
   const combatStats=[['Morale',hero.morale],['Luck',hero.luck]].filter(([,stat])=>stat);
   const combat=combatStats.length?`<dl class="hero-combat-stats">${combatStats.map(([name,stat])=>`<div>

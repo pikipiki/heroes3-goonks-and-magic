@@ -23,7 +23,10 @@
     "source hit landing effects",
     "source Red224 vampire damage100%, intrinsic Age and c75 experience selector",
     "source L49 combat logging",
-    "browser-thread audio mixer serialization and deferred sound chunk reclamation"
+    "browser-thread audio mixer serialization and deferred sound chunk reclamation",
+    "source generic creature-specialist battle progression",
+    "source six-entry necromancy table via native skill/cloak thresholds",
+    "source fixed-power opening artifact shields and four spell catalogues"
   ],
   "compiledAdaptersAwaitingCreatureActivation": [
     "Necross254 acid and Age",
@@ -40,10 +43,10 @@
     "whole declarative banks/dwellings with resolved guardians/rewards/resources/sounds"
   ],
   "tests": {
-    "passed": 377,
+    "passed": 505,
     "skipped": 22,
     "failed": 0,
-    "scope": "Node tests after merging Goonk0.4.36; portable native rules included. Native engine GTest additions not executed."
+    "scope": "Node tests for release0.4.145; bounded real WASM scenarios and limits recorded in outputs/wog-priorities-0.4.145/validation.json"
   },
   "wasmBuild": "ninja -j32 html5 succeeded; build pool constrained to fit 8GiB host",
   "referenceERA": {

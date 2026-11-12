@@ -27,7 +27,7 @@
     "buildings": "Five fourth-upgrade town chains with ERA building77 costs; advanced building artwork reused",
     "abilities": "Source-scoped native policies; inherited WoG behavior is distinguished from proven ERA behavior"
   },
-  "remaining": "Complete ERA 3.5 compatibility remains false; unclosed creatures, artifact specials, conditional scripts and mechanisms stay outside active content.",
+  "remaining": "Complete ERA 3.5 compatibility remains false. Original generic creature-specialist battle progression and the six-entry necromancy table are adapted; machine specialist extras, unclosed neutral stages, eighth faction rosters and arbitrary conditional ERM remain disabled.",
   "vcmiCompatibilityFixes": [
     "badLuckDice denominators converted to badLuckChance weights [2,4,6] for the native 24-sided luck roll",
     "Artifact bonuses converted to named objects; scenarioBonus graphics renamed",
@@ -38,10 +38,10 @@
     "Mobile construction panel opens the native hall for all advanced upgrade tiers"
   ],
   "activeContent": {
-    "tumCreatures": 17,
-    "artifacts": 56,
-    "mapObjects": 28,
-    "experienceProfiles": 240,
+    "tumCreatures": 19,
+    "artifacts": 63,
+    "mapObjects": 37,
+    "experienceProfiles": 242,
     "fourthUpgradeTowns": [
       "castle",
       "rampart",

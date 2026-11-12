@@ -1,0 +1,73 @@
+{
+  "version": "0.4.145",
+  "wasmSHA256": "ee93f67bd7e427f53e10632c461ee2cc3248a266d08a9169c060d705cce55673",
+  "fullEraCompatibility": false,
+  "preference": "Faithful port; incomplete source contracts remain disabled.",
+  "build": [
+    "ninja -j32 html5",
+    "npm run prepare:web",
+    "npm run build:web (isolated from concurrent UI changes)",
+    "npm run verify:web"
+  ],
+  "nodeTests": {
+    "passed": 505,
+    "failed": 0,
+    "optionalSkipped": 22
+  },
+  "nativeEvidence": [
+    "native-artifacts.json",
+    "native-banks.json",
+    "native-crystal-chain.json",
+    "native-specialists.json",
+    "native-necromancy.json",
+    "native-existing-progression.json"
+  ],
+  "responsive": {
+    "browsers": [
+      "Chromium",
+      "WebKit"
+    ],
+    "language": "French",
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        568,
+        320
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1024,
+        768
+      ],
+      [
+        1180,
+        820
+      ]
+    ],
+    "identicalUpdates": 30,
+    "childNodeReplacements": 0,
+    "sourceSnapshot": "Only hero specialty paragraph and scoped header return width; concurrent UI edits excluded."
+  },
+  "limits": [
+    "Not a complete ERA/ERM interpreter or complete TUM3.5 port.",
+    "One randomly selected source state per bank in the final native pass; declarative importer checks all original states.",
+    "Native Crystal Dragon133 remains the existing base-game target; ERA-specific Ruby overrides and later Emerald/Sapphire stages are outside this partial chain.",
+    "Source machine-specialist variant, original eighth recruitment families and unsupported scripts stay inactive.",
+    "No physical iPhone/iPad device test. Inherited third-party data warnings remain."
+  ],
+  "remaining": "remaining-source.json"
+}

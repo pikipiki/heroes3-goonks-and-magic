@@ -12,6 +12,7 @@
 #include "CUnitState.h"
 #include "../era/EraStatusHealth.h"
 #include "../era/EraExperienceHealth.h"
+#include "../era/EraSpecialistStats.h"
 #include "../era/EraStatusHealthBonuses.h"
 #include "../era/EraBridgePolicies.h"
 #include "../era/EraSignedDamage.h"
@@ -599,8 +600,10 @@ uint32_t CUnitState::getMaxHealth() const
 {
     const auto applyExperience = [this](int value)
     {
-        return hasBonusOfType(BonusType::ERA_EXPERIENCE_HEALTH_PERCENT)
+        const int experienced=hasBonusOfType(BonusType::ERA_EXPERIENCE_HEALTH_PERCENT)
             ? ::era_bridge::sourceExperienceHealth(value,valOfBonuses(BonusType::ERA_EXPERIENCE_HEALTH_PERCENT)) : value;
+        const int percentage=valOfBonuses(BonusType::ERA_SPECIALIST_HEALTH_PERCENT);
+        return ::era_bridge::sourceSpecialistHealth(experienced,percentage);
     };
     if(!era_compat::sourceStatusUsesProfile(*this))
         return std::max(1,applyExperience(bonusCache.getBonusValue(UnitBonusValuesProxy::STACK_HEALTH)));

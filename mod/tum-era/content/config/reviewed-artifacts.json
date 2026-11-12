@@ -1,0 +1,496 @@
+{
+  "artifact192": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MINOR",
+    "value": 6000,
+    "slot": [
+      "FEET"
+    ],
+    "text": {
+      "name": "Soothsayer's Boots",
+      "description": "{Soothsayer's Boots}\n\nWhen worn, this item allows you to cast all 1st level spells.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/192/icon.png",
+      "map": "tum-era/artifacts/192/map.def",
+      "scenarioBonus": "tum-era/artifacts/192/scenario.png"
+    },
+    "bonuses": {
+      "givenSpell0": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:summonBoat"
+      },
+      "givenSpell3": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:viewEarth"
+      },
+      "givenSpell5": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:viewAir"
+      },
+      "givenSpell15": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:magicArrow"
+      },
+      "givenSpell27": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:shield"
+      },
+      "givenSpell31": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:protectFire"
+      },
+      "givenSpell32": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:protectWater"
+      },
+      "givenSpell35": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:dispel"
+      },
+      "givenSpell37": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:cure"
+      },
+      "givenSpell41": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:bless"
+      },
+      "givenSpell42": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:curse"
+      },
+      "givenSpell43": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:bloodlust"
+      },
+      "givenSpell46": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:stoneSkin"
+      },
+      "givenSpell53": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:haste"
+      },
+      "givenSpell54": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:slow"
+      }
+    }
+  },
+  "artifact193": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 12000,
+    "slot": [
+      "LEFT_RING",
+      "RIGHT_RING"
+    ],
+    "text": {
+      "name": "Wizard's Ring",
+      "description": "{Wizard's Ring}\n\nWhen worn, the ring allows you to cast all 2nd level spells.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/193/icon.png",
+      "map": "tum-era/artifacts/193/map.def",
+      "scenarioBonus": "tum-era/artifacts/193/scenario.png"
+    },
+    "bonuses": {
+      "givenSpell1": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:scuttleBoat"
+      },
+      "givenSpell2": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:visions"
+      },
+      "givenSpell4": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:disguise"
+      },
+      "givenSpell10": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:quicksand"
+      },
+      "givenSpell13": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:fireWall"
+      },
+      "givenSpell16": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:iceBolt"
+      },
+      "givenSpell17": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:lightningBolt"
+      },
+      "givenSpell24": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:deathRipple"
+      },
+      "givenSpell30": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:protectAir"
+      },
+      "givenSpell44": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:precision"
+      },
+      "givenSpell45": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:weakness"
+      },
+      "givenSpell47": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:disruptingRay"
+      },
+      "givenSpell51": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:fortune"
+      },
+      "givenSpell62": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:blind"
+      },
+      "givenSpell64": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:removeObstacle"
+      }
+    }
+  },
+  "artifact194": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 18000,
+    "slot": [
+      "SHOULDERS"
+    ],
+    "text": {
+      "name": "Robe of the Magi",
+      "description": "{Robe of the Magi}\n\nThe Robe of Magi allows you to cast all 3rd level spells.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/194/icon.png",
+      "map": "tum-era/artifacts/194/map.def",
+      "scenarioBonus": "tum-era/artifacts/194/scenario.png"
+    },
+    "bonuses": {
+      "givenSpell11": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:landMine"
+      },
+      "givenSpell12": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:forceField"
+      },
+      "givenSpell14": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:earthquake"
+      },
+      "givenSpell20": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:frostRing"
+      },
+      "givenSpell21": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:fireball"
+      },
+      "givenSpell25": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:destroyUndead"
+      },
+      "givenSpell28": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:airShield"
+      },
+      "givenSpell33": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:protectEarth"
+      },
+      "givenSpell34": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:antiMagic"
+      },
+      "givenSpell39": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:animateDead"
+      },
+      "givenSpell49": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:mirth"
+      },
+      "givenSpell52": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:misfortune"
+      },
+      "givenSpell60": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:hypnotize"
+      },
+      "givenSpell61": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:forgetfulness"
+      },
+      "givenSpell63": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:teleport"
+      }
+    }
+  },
+  "artifact195": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 24000,
+    "slot": [
+      "RIGHT_HAND"
+    ],
+    "text": {
+      "name": "Magus Staff",
+      "description": "{Magus Staff}\n\nThe Magus Staff allows you to cast all 4th level spells.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/195/icon.png",
+      "map": "tum-era/artifacts/195/map.def",
+      "scenarioBonus": "tum-era/artifacts/195/scenario.png"
+    },
+    "bonuses": {
+      "givenSpell7": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:waterWalk"
+      },
+      "givenSpell9": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:townPortal"
+      },
+      "givenSpell19": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:chainLightning"
+      },
+      "givenSpell22": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:inferno"
+      },
+      "givenSpell23": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:meteorShower"
+      },
+      "givenSpell26": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:armageddon"
+      },
+      "givenSpell29": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:fireShield"
+      },
+      "givenSpell38": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:resurrection"
+      },
+      "givenSpell48": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:prayer"
+      },
+      "givenSpell50": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:sorrow"
+      },
+      "givenSpell55": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:slayer"
+      },
+      "givenSpell56": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:frenzy"
+      },
+      "givenSpell58": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:counterstrike"
+      },
+      "givenSpell59": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:berserk"
+      },
+      "givenSpell65": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:clone"
+      }
+    }
+  },
+  "artifact223": {
+    "type": [
+      "HERO"
+    ],
+    "class": "TREASURE",
+    "value": 750,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Ritual dagger",
+      "description": "{Ritual dagger}\n\nAllows to upgrade all Mages, Archmages, Monks and Zealots in your army to Liches.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/223/icon.png",
+      "map": "tum-era/artifacts/223/map.def",
+      "scenarioBonus": "tum-era/artifacts/223/scenario.png"
+    },
+    "bonuses": {}
+  },
+  "artifact210": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 9000,
+    "slot": [
+      "LEFT_HAND"
+    ],
+    "text": {
+      "name": "Shield of the Dark Paladin",
+      "description": "{Shield} {of} {the} {Dark} {Paladin}\n\nIncreases your Defense skill by +6 and casts Death Ripple at the beginning of combat.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/210/icon.png",
+      "map": "tum-era/artifacts/210/map.def",
+      "scenarioBonus": "tum-era/artifacts/210/scenario.png"
+    },
+    "bonuses": {
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 6,
+        "subtype": "primarySkill.defence"
+      },
+      "Autospell": {
+        "type": "ERA_FIXED_POWER_OPENING_SPELL",
+        "val": 50,
+        "subtype": "core:deathRipple",
+        "addInfo": [
+          3,
+          0
+        ]
+      },
+      "immunity24": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:deathRipple"
+      }
+    }
+  },
+  "artifact254": {
+    "type": [
+      "HERO"
+    ],
+    "class": "MAJOR",
+    "value": 6500,
+    "slot": [
+      "LEFT_HAND"
+    ],
+    "text": {
+      "name": "Shield of the Light Paladin",
+      "description": "{Shield of the Light Paladin}\n\nIncreases your Defense skill by +6 and casts Exorcism at the beginning of combat on all enemy undead.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/254/icon.png",
+      "map": "tum-era/artifacts/254/map.def",
+      "scenarioBonus": "tum-era/artifacts/254/scenario.png"
+    },
+    "bonuses": {
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 6,
+        "subtype": "primarySkill.defence"
+      },
+      "Autospell": {
+        "type": "ERA_FIXED_POWER_OPENING_SPELL",
+        "val": 50,
+        "subtype": "core:destroyUndead",
+        "addInfo": [
+          3,
+          0
+        ]
+      },
+      "immunity25": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:destroyUndead"
+      }
+    }
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank46": {
+        "name": "Phantom Ship",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB14.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "water"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 25
+            },
+            "guards": [
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 20
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 20
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 20
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 20
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 20
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 20
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 20
+              }
+            ],
+            "resources": {
+              "gold": 4500
+            },
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 8
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 25,
+              "max": 50
+            },
+            "guards": [
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 40
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 40
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 40
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 40
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 40
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 40
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 40
+              }
+            ],
+            "resources": {
+              "gold": 6000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 16
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 50,
+              "max": 75
+            },
+            "guards": [
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 60
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 60
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 60
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 60
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 60
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 60
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 60
+              }
+            ],
+            "resources": {
+              "gold": 8000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 24
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 75,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 80
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 80
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 80
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 80
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 80
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 80
+              },
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 80
+              }
+            ],
+            "resources": {
+              "gold": 10000
+            },
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature287",
+                "amount": 32
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "ambient": [
+            "tum-era/objects/LOOPWHIR.wav"
+          ]
+        },
+        "rmg": {
+          "value": 8000,
+          "rarity": 100
+        }
+      }
+    }
+  }
+}

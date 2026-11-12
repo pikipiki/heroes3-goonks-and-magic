@@ -1,0 +1,163 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank39": {
+        "name": "Lava Spit",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB7.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "swamp",
+              "lava"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank39MixedLayout",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumLavaBasilisk",
+                "amount": 8
+              },
+              {
+                "type": "third-upgrades:tumLavaBasilisk",
+                "amount": 8
+              },
+              {
+                "type": "third-upgrades:tumLavaBasilisk",
+                "amount": 8
+              },
+              {
+                "type": "third-upgrades:tumLavaBasilisk",
+                "amount": 8
+              }
+            ],
+            "resources": {
+              "gold": 5000
+            }
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumLavaBasilisk",
+                "amount": 16
+              },
+              {
+                "type": "third-upgrades:tumLavaBasilisk",
+                "amount": 16
+              },
+              {
+                "type": "third-upgrades:tumLavaBasilisk",
+                "amount": 16
+              },
+              {
+                "type": "third-upgrades:tumLavaBasilisk",
+                "amount": 16
+              }
+            ],
+            "resources": {
+              "gold": 9000
+            }
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumLavaBasilisk",
+                "amount": 20
+              },
+              {
+                "type": "third-upgrades:tumLavaBasilisk",
+                "amount": 20
+              },
+              {
+                "type": "third-upgrades:tumLavaBasilisk",
+                "amount": 20
+              },
+              {
+                "type": "third-upgrades:tumLavaBasilisk",
+                "amount": 20
+              }
+            ],
+            "resources": {
+              "gold": 12000
+            }
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "third-upgrades:tumLavaBasilisk",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumLavaBasilisk",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumLavaBasilisk",
+                "amount": 30
+              },
+              {
+                "type": "third-upgrades:tumLavaBasilisk",
+                "amount": 30
+              }
+            ],
+            "resources": {
+              "gold": 15000
+            }
+          }
+        ],
+        "eraBankGuardSlots": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "sounds": {
+          "ambient": [
+            "tum-era/objects/LOOPBASI.wav"
+          ]
+        },
+        "rmg": {
+          "value": 8000,
+          "rarity": 20
+        }
+      }
+    }
+  }
+}

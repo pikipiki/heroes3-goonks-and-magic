@@ -36,7 +36,8 @@
     "config/guardian-zeus.json",
     "config/chasm-dragon.json",
     "config/source-level8-visuals.json",
-    "config/source-experience-defaults.json"
+    "config/source-experience-defaults.json",
+    "config/reviewed-crystal-chain.json"
   ],
   "factions": [
     "config/necropolis.json",
@@ -59,7 +60,9 @@
     "config/fortress.json"
   ],
   "artifacts": [
-    "config/native-artifacts.json"
+    "config/native-artifacts.json",
+    "config/reviewed-artifacts.json",
+    "config/source-necromancy-cloak.json"
   ],
   "objects": [
     "config/objects/dwelling20_2.json",
@@ -89,7 +92,16 @@
     "config/objects/legacyDwelling17_84.json",
     "config/objects/legacyDwelling17_86.json",
     "config/objects/legacyDwelling17_88.json",
-    "config/objects/bank59.json"
+    "config/objects/bank59.json",
+    "config/objects/bank36.json",
+    "config/objects/bank39.json",
+    "config/objects/bank40.json",
+    "config/objects/bank42.json",
+    "config/objects/bank46.json",
+    "config/objects/bank54.json",
+    "config/objects/bank55.json",
+    "config/objects/bank58.json",
+    "config/objects/bank60.json"
   ],
   "settings": {
     "combat": {
@@ -237,6 +249,126 @@
             87,
             8
           ]
+        },
+        "eraBank36MixedLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            171,
+            1,
+            100,
+            87,
+            8
+          ]
+        },
+        "eraBank39MixedLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            171,
+            1,
+            100,
+            87,
+            8
+          ]
+        },
+        "eraBank54MixedLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            171,
+            1,
+            100,
+            87,
+            8
+          ]
+        },
+        "eraBank58MixedLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            171,
+            1,
+            100,
+            87,
+            8
+          ]
+        },
+        "eraBank60MixedLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            171,
+            1,
+            100,
+            87,
+            8
+          ]
         }
       }
     }
@@ -246,12 +378,17 @@
   ],
   "french": {
     "translations": [
-      "translation/tum-era-ui-french.json"
+      "translation/tum-era-ui-french.json",
+      "translation/reviewed-artifacts-french.json",
+      "translation/source-necromancy-french.json"
     ],
     "name": "TUM — évolutions et expérience"
   },
   "spells": [
     "config/skeletal-transformation.json",
     "config/necross-spells.json"
+  ],
+  "skills": [
+    "config/source-necromancy-skill.json"
   ]
 }
