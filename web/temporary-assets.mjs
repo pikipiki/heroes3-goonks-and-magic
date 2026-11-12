@@ -61,8 +61,16 @@ export function createTemporaryAssetReader({
   }
   return bytes;
  }
- function remember(key, bytes) {
-  if (bytes.length > maxBytes) return;
+ function remember(key, bytes, reserveBytes = null) {
+  if (bytes.length > maxBytes) return false;
+  // Speculative gameplay downloads must not evict assets the engine is using.
+  // Recheck after fetch: demand reads may have filled the cache in the meantime,
+  // and a host ignoring Range may have returned a much larger whole archive.
+  if(reserveBytes!==null){
+   let replaced=cache.get(key)?.length||0;
+   if(!key.includes('#'))for(const [part,value]of cache)if(part.startsWith(key+'#'))replaced+=value.length;
+   if(cachedBytes-replaced+bytes.length>Math.max(0,maxBytes-reserveBytes))return false;
+  }
   // Concurrent prefetches and Range fallbacks can return the same whole pack.
   // Replacing it must not charge its bytes twice or evict unrelated hot data.
   const previous=cache.get(key);
@@ -75,6 +83,7 @@ export function createTemporaryAssetReader({
   }
   cache.set(key, bytes);
   cachedBytes += bytes.length;
+  return true;
  }
  function source(url, size, start, end) {
   const whole = cached(url);
@@ -153,21 +162,26 @@ export function createTemporaryAssetReader({
   }
   onPlan(planned);
   const queue = [...plan.values()];
+  let cursor=0;const skipped=new Set();
   const worker = async () => {
-   for (let block; (block = queue.shift());) {
+   while(cursor<queue.length){
+    const block=queue[cursor++];
     const key = block.url + '#' + block.blockStart;
-    if (cache.has(block.url) || cache.has(key)) continue;
+    if (skipped.has(block.url)||cache.has(block.url) || cache.has(key)) continue;
     if (!trackProgress && cachedBytes + (block.blockEnd - block.blockStart) > maxBytes - reserveBytes) break;
     try {
      // Serialize reads from one archive. Hosts that ignore Range return the
      // whole pack, satisfying every queued block without duplicate downloads.
      const previous=downloads.get(block.url)||Promise.resolve();
      const task=previous.catch(()=>{}).then(async()=>{
-      if(cache.has(block.url)||cache.has(key))return;
+      if(skipped.has(block.url)||cache.has(block.url)||cache.has(key))return;
       const bytes = await fetchBlock(block.url, block.size, block.blockStart, block.blockEnd);
       if (trackProgress) onFetch(bytes.length);
-      if (bytes.length === block.size) remember(block.url, bytes);
-      else if (bytes.length === block.blockEnd - block.blockStart) remember(key, bytes);
+      if (bytes.length === block.size){
+       if(!remember(block.url,bytes,trackProgress?null:reserveBytes))skipped.add(block.url);
+      }else if(bytes.length===block.blockEnd-block.blockStart){
+       if(!remember(key,bytes,trackProgress?null:reserveBytes))skipped.add(block.url);
+      }
      });
      downloads.set(block.url,task);
      try{await task;}finally{if(downloads.get(block.url)===task)downloads.delete(block.url);}

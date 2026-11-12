@@ -117,3 +117,21 @@ test('Overlapping prefetches share whole-pack Range fallbacks and keep an exact 
  assert.equal(requests,1);reader(hot,new Uint8Array(8),0,8,0);assert.equal(hotReads,1,'The 16-byte pack must leave room for the existing 8-byte file');
  const out=new Uint8Array(16);reader(file,out,0,16,0);assert.deepEqual(out,bytes);
 });
+
+test('Background prefetch cannot evict demand-loaded blocks while its download is in flight',async()=>{
+ let finish,started;const downloading=new Promise(r=>started=r),reads=[];
+ const reader=createTemporaryAssetReader({maxBytes:12,blockBytes:4,read:(url,size,start,end)=>{reads.push(url+':'+start);return new Uint8Array(end-start).fill(start+1);},fetchBlock:async()=>{started();return new Promise(r=>finish=r);}});
+ const file=url=>({path:'Data/'+url+'.lod',url,size:16,chunks:[{offset:0,size:16}]}),hot=file('hot'),cold=file('cold'),out=new Uint8Array(4);
+ reader(hot,out,0,4,0);
+ const prefetch=reader.prefetch([['Data/cold.lod',0]],[cold],{trackProgress:false,reserveBytes:4});
+ await downloading;reader(hot,out,0,4,4);reader(hot,out,0,4,8);finish(new Uint8Array(4));await prefetch;
+ for(const position of [0,4,8])reader(hot,out,0,4,position);
+ assert.deepEqual(reads,['hot:0','hot:4','hot:8']);
+});
+
+test('Speculative whole-archive Range fallback preserves hot data and its memory reserve',async()=>{
+ let downloads=0;const reads=[];const reader=createTemporaryAssetReader({maxBytes:12,blockBytes:4,read:(url,size,start,end)=>{reads.push(url);return new Uint8Array(end-start).fill(7);},fetchBlock:async()=>{downloads++;return new Uint8Array(12); }});
+ const hot={url:'hot',size:4,chunks:[{offset:0,size:4}]},cold={path:'Data/cold.lod',url:'cold',size:12,chunks:[{offset:0,size:12}]},out=new Uint8Array(4);
+ reader(hot,out,0,4,0);await reader.prefetch([['Data/cold.lod',0],['Data/cold.lod',4]],[cold],{trackProgress:false,reserveBytes:4});reader(hot,out,0,4,0);
+ assert.deepEqual(reads,['hot']);assert.equal(downloads,1);assert.deepEqual([...out],[7,7,7,7]);
+});
