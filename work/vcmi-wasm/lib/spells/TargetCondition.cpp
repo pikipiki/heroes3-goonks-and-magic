@@ -13,6 +13,8 @@
 #include "../era/EraBridgePolicies.h"
 #include "../era/EraHypnotizeHealth.h"
 #include "../era/EraSourceConstruct.h"
+#include "../era/EraConfluxPolicies.h"
+#include "../mapObjects/CGHeroInstance.h"
 #include "../CCreatureHandler.h"
 
 #include "../GameConstants.h"
@@ -346,11 +348,16 @@ class ImmunityNegationCondition : public TargetConditionItemBase
 protected:
 	bool check(const Mechanics * m, const battle::Unit * target) const override
 	{
-		const bool battleWideNegation = target->hasBonusOfType(BonusType::NEGATE_ALL_NATURAL_IMMUNITIES, BonusCustomSubtype::immunityBattleWide);
-		const bool heroNegation = target->hasBonusOfType(BonusType::NEGATE_ALL_NATURAL_IMMUNITIES, BonusCustomSubtype::immunityEnemyHero);
+        const bool battleWideNegation=target->hasBonusOfType(BonusType::NEGATE_ALL_NATURAL_IMMUNITIES,BonusCustomSubtype::immunityBattleWide);
+        const bool heroNegation=target->hasBonusOfType(BonusType::NEGATE_ALL_NATURAL_IMMUNITIES,BonusCustomSubtype::immunityEnemyHero);
 		//Non-magical effects is not affected by orb of vulnerability
 		if(!m->isMagicalEffect())
 			return false;
+
+        // Source44A426 replaces only the caster-hero Orb query. The scan is
+        // currentActiveSide's21 physical battle slots, not a bilateral aura.
+        if(era_compat::confluxCatalystNegates(*m->battle(),era_compat::confluxQuerySide.value_or(m->casterSide),m->isHeroCast()))
+            return true;
 
 		//anyone can cast on artifact holder`s stacks
 		if(heroNegation)

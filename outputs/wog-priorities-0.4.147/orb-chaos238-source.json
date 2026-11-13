@@ -1,0 +1,73 @@
+{
+  "sourceArtifact": 238,
+  "gameSHA256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "eraSHA256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+  "sourceSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "sourceLines": [
+    1154,
+    1170
+  ],
+  "condition": "BG:A==HERO_CAST and CURRENT acting-side hero equipped238; body only. Not merely a non-null hero proxy.",
+  "arithmetic": "MR:D integer32 multiplied by3, explicit low32 decode, then signed division2 toward zero. Stable Win32-width semantics avoid host C++ signed overflow.",
+  "order": [
+    "5A7C26 hero4E59D0 computes existing hero/orb bonuses",
+    "5A7C3B original44B180 call replaced via7897F4 by75D88D",
+    "75D8D9 fires74D39B(mode0): MR0 BasicResistance30307",
+    "75D93544B180 applies innate target correction",
+    "75D95771E766 applies original XP g from MR0-adjusted originalRaw",
+    "75D966 fires74D39B(mode1): MR1 CorrectedResistance30308",
+    "5A7C46 calls5A7EC0 school Protection after wrapper returns"
+  ],
+  "receivers": {
+    "D": "75DCBD/75DCC5 points2860214 raw input",
+    "F": "75DCD4/75DCDC points283282C corrected result",
+    "proof": "75DC1D subtractASCII D;75DD31 byte table gives D→0,F→1;75DD19 DWORD table gives75DCBD,75DCD4. E is not corrected damage."
+  },
+  "componentInheritance": "UN:A17/238/79/80/81/82. Original4E59D0 checks matching physical orb then its configured combo parent via4D9460 at4E5A33/7E/C6 and4E5B09. Its existing school multiplier precedes the extra238 MR0 multiplier.",
+  "openingCfg": [
+    30,
+    31,
+    32,
+    33
+  ],
+  "openingDuration": 50,
+  "scope": "Outer BAP action RAII preserves BG:A for nested passive calls; BaseMechanics supplies mode fallback for previews and CURRENT side through the shared hypnosis-aware source context. No-target correction skipsMR0, matching5A7C2B.",
+  "nativeBaseline": "Pre-existing native hero-bonus arithmetic is retained; no claim of bit-exact original Win32 floating arithmetic for every pre-existing modifier.",
+  "xpGOrderingEvidence": {
+    "code": "71E8AD testsASCII g;71E8B5 loads originalRaw arg+10;71E8C1 unsigned XP byte;71E8CB..D9 computes originalRaw*(1-g/100),storesF32; clamps0..originalRaw;71E90E77CF50 truncates; then5A7EC0 protects and617F94 truncates.",
+    "counterexample": "raw30/g95=>F32(1.5)=>int1; ProtectionAir30%=>int0. The previous native School-first order gives21 then1."
+  },
+  "boundedCode": [
+    {
+      "address": "75d88d",
+      "length": 251,
+      "sha256": "addba07d0cd1e5a2bf3eb2d98d9f709cf836f175b543649d10e2aee170a7b673"
+    },
+    {
+      "address": "75dc13",
+      "length": 302,
+      "sha256": "2a7829592408055d1172551417e94bca1d4518491c18520f74fed97c2fa50b04"
+    },
+    {
+      "address": "5a7bf0",
+      "length": 91,
+      "sha256": "388d066d4b472df920be3acc128292bef03d6c49b701924556940cfd1b1fb5a3"
+    },
+    {
+      "address": "71e8ad",
+      "length": 124,
+      "sha256": "ddc0dde018e9eef3da246bbbf652483ccb3a7358911072052a4ec60ac44c0331"
+    },
+    {
+      "address": "5a7ec0",
+      "length": 193,
+      "sha256": "9a21882cf674cf4e2fb518644a0ccbb27d1e9aebb7df0210f2d0db66eefa93eb"
+    }
+  ],
+  "activationReady": false,
+  "pending": [
+    "New coordinated native238/g build",
+    "Hero/body/backpack/opposite and modifier-order controls",
+    "Source four expert50-round openings and passive/creature action gates"
+  ]
+}

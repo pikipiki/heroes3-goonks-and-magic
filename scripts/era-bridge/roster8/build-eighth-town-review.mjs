@@ -39,11 +39,17 @@ for(const [townIndex,name]of EIGHTH_TOWNS.entries()){
  }
  write('content/Sprites/'+animation+'.json',{images});halls[town]={animation,sourceFrames:{150:88,151:89}};
 }
-const contracts=contractsArg?read(path.resolve(contractsArg)):undefined;
-const compiled=compileEighthTownAccess(records,{enabled:Boolean(contracts),actorContracts:contracts,baselineTowns,halls});
+const ledger=contractsArg?read(path.resolve(contractsArg)):undefined,contracts=ledger?.actorContracts??ledger;
+const requiredActorIds=records.flatMap(r=>r.roster.slice(0,2)),missingActorIds=requiredActorIds.filter(id=>!contracts?.[id]?.complete||!contracts?.[id]?.nativeValidated);
+// A partial ledger remains useful for resource review. The strict compiler is
+// enabled only after all18 source contracts genuinely pass; never synthesize them.
+const compiled=compileEighthTownAccess(records,{enabled:Boolean(contracts)&&missingActorIds.length===0,actorContracts:contracts,baselineTowns,halls});
+const files=[];for(const town of Object.values(halls)){const p='content/Sprites/'+town.animation+'.json';files.push({path:p,sha256:sha(fs.readFileSync(path.join(out,p)))});}for(const r of resources){const p='content/Sprites/'+r.sprite;files.push({path:p,sha256:sha(fs.readFileSync(path.join(out,p)))});}
+const sourceGlobal=fs.readFileSync(tum+'/Data/towns.cfg','utf8');if(!/^EighthsSupported=1\s*$/m.test(sourceGlobal)||!/^disable_cathedral=0\s*$/m.test(sourceGlobal)||!/^buildings_daily=1\s*$/m.test(sourceGlobal)||!/^town_guardian_recruitable_from_grail=0\s*$/m.test(sourceGlobal))throw Error('Unreviewed global source eighth settings');
+
 if(compiled.enabled)write('content/config/eighth-town-access.candidate.json',compiled.patch);
-write('eighth-town-source.json',{sourceArchive:'Data/Common Def.pac',sourceArchiveSha256:sha(source),records,halls,resources,enabled:compiled.enabled,registered:false,
- pending:['Complete creature source/XP/global-script contracts for all18 actors','Native construction, weeklygrowth, recruitment, upgrade, save/load and mobile hall controls'],
+write('eighth-town-source.json',{schemaVersion:1,registered:false,requiredActorIds,missingActorIds,actorContracts:contracts??{},all18ActorContractsComplete:compiled.enabled,baselineTowns,baselineTownSha256:sha(Buffer.from(JSON.stringify(baselineTowns))),patchSha256:compiled.enabled?sha(Buffer.from(JSON.stringify(compiled.patch))):null,files,sourceGlobal:{path:'Data/towns.cfg',sha256:sha(Buffer.from(sourceGlobal)),eighthSupported:true,cathedralEnabled:true,buildingsPerDay:1,guardianGrailRecruitment:false},sourceArchive:'Data/Common Def.pac',sourceArchiveSha256:sha(source),records,halls,resources,enabled:compiled.enabled,
+ pending:[...(missingActorIds.length?['Complete source/native contracts for '+missingActorIds.join(',')]:[]),'Native construction, weeklygrowth, recruitment, upgrade, save/load and mobile hall controls'],
  sourceOverride:'Fortress recruitment353/354 comes from town roster; late ERM line360 MA:U353/354 overrides CFG353 self-upgrade, and CFG354 retains the reverse353 upgrade.',
  scope:'Original8th-monsters roster/buildings/hall extraction. No manifest activation or gameplay validation claimed.'});
 console.log(JSON.stringify({towns:records.length,resources:resources.length,candidate:compiled.enabled,registered:false,output:out}));

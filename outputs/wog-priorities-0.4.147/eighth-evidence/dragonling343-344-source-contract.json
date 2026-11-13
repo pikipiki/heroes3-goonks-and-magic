@@ -1,0 +1,51 @@
+{
+  "active": false,
+  "sourceIds": [
+    343,
+    344
+  ],
+  "pins": {
+    "exe": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+    "amethyst": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+    "cfg343": "ffedd25a57c4348b6839f6b137e0889927844dfdc3f4f7b333b23d82a75ce9d6",
+    "cfg344": "e71d3b8bfb8eb641a660822b13676c87cf0303ffccca371693dcd5a51470bfca",
+    "script": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315"
+  },
+  "343": {
+    "pool": "Same source8/7/2, isAimedCaster1, isFaerie1 as already validated258/356; original weighted pool16:22,17:22,21:21,15:10,20:10,19:5,23:5,22:5.",
+    "power": "Amethyst5A0145 CURRENTstack count*1/1+1; source343 does not inherit258 absorption, debuff immunities or teleport.",
+    "casts": 1,
+    "generation": "DoNotGenerate1 mapped independently to native special=true via existing verified source-random-exclusion-v1."
+  },
+  "344": {
+    "jump": "Amethyst aftercast_abilities_jumptable[8] 0x44050A; original table entry0x440654 also0x44050A.",
+    "selector": "Original44050A..537: alive count+4C>0, rawDEF+CC>0, queued marker+EC=80. No RNG, no generic magic-accuracy query. Amethyst z_Hook_0044050A rejects Toxic15.",
+    "flush": "468C99..D12 side/slot scan, power3, mastery0,kind1; spell80 exempt globalpoweroverride.",
+    "effect": "Existing source-native Nightmare Acid80 adapter: permanent cumulativeDEF\u2212min(3,currentDEF), preserving source clamp0 and savedDefend marker. No ATT_DISRUPT selector4/direct acid damage for344.",
+    "sharedNativeEvidence": "Existing Nightmare primitive retained;343/344 actual native controls pending."
+  },
+  "boundedExeHex": {
+    "440654": "0a054400",
+    "44050a": "8b45088b484c85c90f8e96fdffff8b88cc00000085c90f8e88fdffffc780ec000000500000005f32c05e8be55dc2",
+    "468ccf": "8b964cffffff8b4df86a036a006aff6a015250e859741300c706ffffffff"
+  },
+  "globalScriptObligation": {
+    "trigger": "OnEveryDay, nonReborn, currentplayer heroes only, army slots0..6, rank>=10",
+    "targets": {
+      "341": 26,
+      "342": 82,
+      "343": 134,
+      "344": 135,
+      "345": 132
+    },
+    "quantity": "Preserved",
+    "experience": "Reset0 after replacement",
+    "sourceLines": "879\u2013916",
+    "nativePort": "Not discharged by these CFG/XP contracts; remains pending independently."
+  },
+  "reviewStage": "/tmp/goonk-dragonlings343344-stage-157",
+  "nativeValidated": false,
+  "cfgXpNativeValidated": true,
+  "cfgXpNativeEvidence": "../native-dragonlings343-344.json",
+  "reason": "Actual casting/XP/acid native controls passed; global evolution script remains an independent unresolved source behavior."
+}

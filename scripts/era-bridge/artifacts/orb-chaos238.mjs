@@ -1,0 +1,1 @@
+export function validateOrbChaos238(root){if(!root||Object.keys(root).sort().join(',')!=='artifact,schemaVersion'||root.schemaVersion!==1||root.artifact!=='tum-era:artifact238')throw Error('Invalid source238 Orb Chaos binding');return structuredClone(root);}

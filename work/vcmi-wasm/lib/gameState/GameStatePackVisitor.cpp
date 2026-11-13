@@ -9,6 +9,8 @@
  */
 #include "StdInc.h"
 #include "../era/EraBridgePolicies.h"
+#include "../era/EraConfluxPolicies.h"
+#include "../era/EraWayfarerState.h"
 #include "GameStatePackVisitor.h"
 
 #include "CGameState.h"
@@ -505,6 +507,8 @@ void GameStatePackVisitor::visitTryMoveHero(TryMoveHero & pack)
 	const TerrainTile & destTile = gs.getMap().getTile(h->convertToVisitablePos(pack.end));
 
 	h->setMovementPoints(pack.movePoints);
+    if(pack.result==TryMoveHero::EMBARK || pack.result==TryMoveHero::DISEMBARK)
+        era_compat::resetWayfarerMaximumOnBoatTransition(*h);
 
 	if((pack.result == TryMoveHero::SUCCESS || pack.result == TryMoveHero::BLOCKING_VISIT || pack.result == TryMoveHero::EMBARK || pack.result == TryMoveHero::DISEMBARK) && pack.start != pack.end)
 	{
@@ -712,6 +716,16 @@ void GameStatePackVisitor::visitChangeStackCount(ChangeStackCount & pack)
 		srcObj->setStackCount(pack.slot, pack.count);
 	else
 		srcObj->changeStackCount(pack.slot, pack.count);
+}
+
+void GameStatePackVisitor::visitResetStackExperience(ResetStackExperience & pack)
+{
+    auto * army = gs.getArmyInstance(pack.army);
+    if(!army || !army->hasStackAtSlot(pack.slot)
+        || army->getStackPtr(pack.slot)->getId() != pack.expectedType)
+        throw std::runtime_error("ResetStackExperience: stale or invalid expected stack");
+    army->getStackPtr(pack.slot)->resetExperience();
+    army->nodeHasChanged();
 }
 
 void GameStatePackVisitor::visitSetStackType(SetStackType & pack)
@@ -1269,6 +1283,13 @@ void GameStatePackVisitor::visitBattleTriggerEffect(BattleTriggerEffect & pack)
                 logNetwork->error("Unrecognized ERA damage reduction announcement");
             break;
         // Source c selectors announce rejection only; no authoritative state changes.
+        case BonusType::MANA_CHANNELING:
+            // Source356's post-effect announcement carries animation only.
+            // Mana was already updated by the authoritative SetMana packet.
+            if(pack.val<=0 || (pack.additionalInfo!=0 && pack.additionalInfo!=1)
+                || !era_compat::ConfluxPolicies::get().is356(st->creatureId().toCreature()->getJsonKey()))
+                logNetwork->error("Unrecognized ERA mana channel announcement");
+            break;
         case BonusType::MAGIC_MIRROR:
         case BonusType::MAGIC_RESISTANCE:
 		case BonusType::ENCHANTER:

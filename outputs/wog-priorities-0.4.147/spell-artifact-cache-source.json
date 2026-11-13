@@ -1,0 +1,398 @@
+{
+  "binarySHA256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "coreFlags": [
+    1,
+    128,
+    123,
+    124,
+    86,
+    87,
+    88,
+    89,
+    135
+  ],
+  "coreInitialization": "44CC9D zeroes each record+1D;44CCE6..44CCFF iterates nine DWORD IDs at63B998..63B9BC and sets693A58+ID*32+1D.",
+  "bodyGive": "4E2C70..4E2E3F calls4D9840 at4E2E27 conditional on spellflag or combo branch.",
+  "bodyRemove": "4E2E40..4E2FBF calls4D9840 at4E2FA6 conditional on spellflag or combo branch.",
+  "backpackRemove": "4E2FC0..4E303B shifts backpack entries and decrements count; no calls. Mere backpack removal/reordering does not rebuild available spells.",
+  "tumCfgFlags": [
+    {
+      "artifact": 192,
+      "fields": [
+        {
+          "key": "GivesSpellSet",
+          "value": 9
+        }
+      ]
+    },
+    {
+      "artifact": 193,
+      "fields": [
+        {
+          "key": "GivesSpellSet",
+          "value": 10
+        }
+      ]
+    },
+    {
+      "artifact": 194,
+      "fields": [
+        {
+          "key": "GivesSpellSet",
+          "value": 11
+        }
+      ]
+    },
+    {
+      "artifact": 195,
+      "fields": [
+        {
+          "key": "GivesSpellSet",
+          "value": 12
+        }
+      ]
+    },
+    {
+      "artifact": 197,
+      "fields": [
+        {
+          "key": "GivesSpellSet",
+          "value": 17
+        }
+      ]
+    },
+    {
+      "artifact": 198,
+      "fields": [
+        {
+          "key": "GivesSpellSet",
+          "value": 14
+        }
+      ]
+    },
+    {
+      "artifact": 219,
+      "fields": [
+        {
+          "key": "GivesSpellSet",
+          "value": 13
+        }
+      ]
+    },
+    {
+      "artifact": 220,
+      "fields": [
+        {
+          "key": "GivesSpell",
+          "value": 19
+        },
+        {
+          "key": "GivesSpell",
+          "value": 17
+        }
+      ]
+    },
+    {
+      "artifact": 232,
+      "fields": [
+        {
+          "key": "GivesSpell",
+          "value": 26
+        }
+      ]
+    },
+    {
+      "artifact": 279,
+      "fields": [
+        {
+          "key": "GivesSpellSet",
+          "value": 18
+        }
+      ]
+    }
+  ],
+  "combinationOrder": [
+    {
+      "artifact": 129,
+      "index": 0,
+      "parts": [
+        34,
+        32,
+        31,
+        35,
+        33,
+        36
+      ]
+    },
+    {
+      "artifact": 130,
+      "index": 1,
+      "parts": [
+        56,
+        55,
+        54
+      ]
+    },
+    {
+      "artifact": 131,
+      "index": 2,
+      "parts": [
+        94,
+        95,
+        96
+      ]
+    },
+    {
+      "artifact": 132,
+      "index": 3,
+      "parts": [
+        8,
+        20,
+        26,
+        14
+      ]
+    },
+    {
+      "artifact": 133,
+      "index": 4,
+      "parts": [
+        118,
+        119,
+        120,
+        121,
+        122
+      ]
+    },
+    {
+      "artifact": 134,
+      "index": 5,
+      "parts": [
+        40,
+        41,
+        45,
+        37,
+        39,
+        38,
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "artifact": 135,
+      "index": 6,
+      "parts": [
+        30,
+        12,
+        24,
+        18
+      ]
+    },
+    {
+      "artifact": 136,
+      "index": 7,
+      "parts": [
+        71,
+        123
+      ]
+    },
+    {
+      "artifact": 137,
+      "index": 8,
+      "parts": [
+        60,
+        61,
+        62
+      ]
+    },
+    {
+      "artifact": 138,
+      "index": 9,
+      "parts": [
+        73,
+        74,
+        75
+      ]
+    },
+    {
+      "artifact": 139,
+      "index": 10,
+      "parts": [
+        76,
+        77,
+        78
+      ]
+    },
+    {
+      "artifact": 140,
+      "index": 11,
+      "parts": [
+        109,
+        110,
+        111,
+        113
+      ]
+    },
+    {
+      "artifact": 158,
+      "index": 12,
+      "parts": [
+        10,
+        16,
+        22,
+        28
+      ]
+    },
+    {
+      "artifact": 219,
+      "index": 13,
+      "parts": [
+        86,
+        87,
+        88,
+        89
+      ]
+    },
+    {
+      "artifact": 181,
+      "index": 14,
+      "parts": [
+        57,
+        58,
+        59
+      ]
+    },
+    {
+      "artifact": 180,
+      "index": 15,
+      "parts": [
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "artifact": 179,
+      "index": 16,
+      "parts": [
+        115,
+        116,
+        117
+      ]
+    },
+    {
+      "artifact": 238,
+      "index": 17,
+      "parts": [
+        79,
+        80,
+        81,
+        82
+      ]
+    },
+    {
+      "artifact": 258,
+      "index": 18,
+      "parts": [
+        23,
+        11,
+        29,
+        17
+      ]
+    },
+    {
+      "artifact": 182,
+      "index": 19,
+      "parts": [
+        171,
+        172,
+        173,
+        174
+      ]
+    },
+    {
+      "artifact": 232,
+      "index": 20,
+      "parts": [
+        128,
+        235,
+        236,
+        237
+      ]
+    },
+    {
+      "artifact": 259,
+      "index": 21,
+      "parts": [
+        175,
+        176,
+        177,
+        178
+      ]
+    },
+    {
+      "artifact": 278,
+      "index": 22,
+      "parts": [
+        273,
+        274,
+        276,
+        277
+      ]
+    }
+  ],
+  "comboAdded": [
+    136
+  ],
+  "finalFlags": [
+    1,
+    86,
+    87,
+    88,
+    89,
+    123,
+    124,
+    128,
+    135,
+    136,
+    192,
+    193,
+    194,
+    195,
+    197,
+    198,
+    219,
+    220,
+    232,
+    279
+  ],
+  "comboBranch": "4E2D0E checks record+14 assembled-combo index;4E2D7F..4E2D9B ORs only that assembled object component spellflags. Ordinary unflagged components do not independently trigger refresh.",
+  "emerald": "config.cpp327..363 sets spellflag for GivesSpell or GivesSpellSet; GivesSpell takes precedence. ArtifactCombos.cpp139..143 ORs own and component spellflags onto combo. Exact combo closure requires loaded combination definitions.",
+  "sourceHashes": [
+    {
+      "path": "../h3era-plugins/Emerald3/emerald/config.cpp",
+      "sha256": "5e35ad4b1a217b9844ad2f3e5571225007e5a6b8ec777efbe1f3c5768a9c58af"
+    },
+    {
+      "path": "../h3era-plugins/Emerald3/emerald/ArtifactCombos.cpp",
+      "sha256": "6a6c312be8d590f7e5495f0072a2465d637c40486b597d021d4a06f6b0719899"
+    }
+  ],
+  "boundedBinaryEvidence": [
+    {
+      "address": "44cc90",
+      "length": 113,
+      "sha256": "d84e30caa6bd33a893bf08e701de9c90d503e6dccb5c1f8e697c0a9bf2ae9c78"
+    },
+    {
+      "address": "63b998",
+      "length": 36,
+      "sha256": "c585868b66e11ad2f3cd26dd850172cde01bad17054287bb8c79a8bbca512413"
+    },
+    {
+      "address": "4e2c70",
+      "length": 972,
+      "sha256": "71e692f206103d01cfb915ca680a00a78ce329fbce4d998bf49e132640aada9b"
+    }
+  ]
+}

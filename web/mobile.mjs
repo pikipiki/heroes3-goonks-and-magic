@@ -46,7 +46,7 @@ import {anchorMobileViewport,coalesceViewportResize,createMapPan,enableFullscree
 import {canCloseTavern} from './native-dialog.mjs';
 import {createMobileTavern} from './mobile-tavern.mjs';
 import {renderResources} from './resources.mjs';
-import {createTownPortrait,isGoonkTown,supportsTownPortrait} from './town-portrait.mjs';
+import {createTownPortrait,isGoonkTown,supportsTownPortrait,eighthTownRecruitment} from './town-portrait.mjs';
 import {createTownBuildingMenu} from './town-building-menu.mjs';
 import {battleCapabilities,battleTeamCapabilities} from './battle-phase.mjs';
 import {bindPress,protectTouchClicks} from './mobile-press.mjs';
@@ -160,7 +160,7 @@ function mount(){
  const heroEquipment=createHeroEquipment({root,command,pointer,onViewChange:()=>controls(),portrait:u=>portrait(u),notify});
  const tavern=createMobileTavern({root,command,pointer});
  const nativeFort=createNativeFort({root,getState:()=>state,pointer});
- const portraitTown=createTownPortrait({root,scene,asset,command,getState:()=>state});
+ const portraitTown=createTownPortrait({root,scene,asset,command,getState:()=>state,openBuildings:(id,name,unitId)=>townBuildings.open({id,name,unitId})});
  const portrait=unit=>{if(hasHDCreaturePortrait(unit))return creaturePortrait(unit);const url=asset(unit?.icon);return url?`<img data-native-portrait="${Number(unit.id)}" src="${escape(url)}" alt="${escape(unit.name)}">`:creaturePortrait(unit);};
  const heroExchange=createHeroExchange({root,command,refresh:controls,portrait});
  root.addEventListener('error',event=>{const image=event.target;if(image.matches?.('img[data-native-portrait]')){const holder=document.createElement('span');holder.innerHTML=creaturePortrait({id:Number(image.dataset.nativePortrait),name:image.alt});image.replaceWith(holder.firstElementChild);}},true);
@@ -581,7 +581,7 @@ function mount(){
 
  function frame(time){requestAnimationFrame(frame);if(document.hidden||!original.width)return;if(heroTransition.frame())return;if(state.windowToken!==undefined&&window.goonkNativeWindowToken!==undefined&&state.windowToken!==window.goonkNativeWindowToken)return;paintCreaturePortraits(root);if(spellbook.active||mageGuild.active||marketplace.active||onlineLogin.active||onlineLobby.active)return;if(campaignSetup.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}if(heroEquipment.paint(original)||heroExchange.paint(original)||creatureView.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}lastFrame=time;const tracking=director.frame(state,selectedPoint);syncVertical();dualBattle.sync();if(battleResult.paint(original)||dialogPresentation.paint(original)||tavern.paint(original)||townServices.paint(original)||nativeFort.paint(original)){sceneSize.release(scene);layout=null;overview.hidden=true;return;}const w=scene.clientWidth,h=scene.clientHeight;if(!w||!h)return;const pixels=sceneSize.fit(scene,w,h,Math.min(devicePixelRatio||1,2));
 
-  ctx.setTransform(pixels.x,0,0,pixels.y,0,0);if(portraitTown.paint(ctx,w,h,state,townPortraitEnabled&&root.clientWidth<root.clientHeight)){layout=null;overview.hidden=true;const view=root.querySelector('.town-view');view.textContent='Vue classique';view.setAttribute('aria-pressed','true');return;}
+  ctx.setTransform(pixels.x,0,0,pixels.y,0,0);if(portraitTown.paint(ctx,w,h,state,townPortraitEnabled&&(root.clientWidth<root.clientHeight||!!eighthTownRecruitment(state)))){layout=null;overview.hidden=true;const view=root.querySelector('.town-view');view.textContent='Vue classique';view.setAttribute('aria-pressed','true');return;}
   syncViewButton();
   if(verticalActive()){if(paintPortraitBattle(tracking)){syncBattleView();paintBattlePreviews();return;}ctx.fillStyle='#26351b';ctx.fillRect(0,0,w,h);layout=null;return;}
   region=getRegion();let z=zoom;if(state.mode==='map'){const base=Math.min(w/region.w,h/region.h);const scale=root.clientWidth>root.clientHeight?Math.max(w/region.w,h/region.h):Math.min(1.4,Math.max(.8,Math.min(w/320,h/420)));z=zoom*scale/base;}if(state.mode==='battle'){const isZoomed=dualBattle.active||battleView==='close';const target=((isZoomed||tracking.kind)?tracking.focus:battleFocus(state,focus,battleCamera));if(!battleCamera)battleCamera={...target};else{const factor=cameraMotion.matches?1:.28;battleCamera.x+=(target.x-battleCamera.x)*factor;battleCamera.y+=(target.y-battleCamera.y)*factor;}}layout=state.mode==='battle'?((dualBattle.active||battleView==='close')?(()=>{const next=fitBattleDetail(w,h,battleCamera,tracking.points);battleDetailScale+=(next.scale-battleDetailScale)*(cameraMotion.matches?1:.18);return fitBattleDetail(w,h,battleCamera,tracking.points,battleDetailScale);})():fitNativeBattle(w,h,battleCamera,battleView)):state.mode==='town'?fitTown(w,h,focus,townWhole):fitRegion(w,h,region,state.mode==='battle'?1:z,state.mode==='battle'?null:focus);ctx.setTransform(pixels.x,0,0,pixels.y,0,0);ctx.clearRect(0,0,w,h);const sx=original.width/800,sy=original.height/600;ctx.drawImage(original,layout.x*sx,layout.y*sy,layout.w*sx,layout.h*sy,layout.dx,layout.dy,layout.w*layout.scale,layout.h*layout.scale);

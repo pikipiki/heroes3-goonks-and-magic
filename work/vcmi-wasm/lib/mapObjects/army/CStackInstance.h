@@ -126,6 +126,8 @@ public:
 	/// Gives specified amount of stack experience that will not be scaled by unit size
 	void giveAverageStackExperience(TExpType exp);
 	void giveTotalStackExperience(TExpType exp);
+    // Original HE:C0 slot/d/d/0/0, independent from paid-upgrade retention.
+    void resetExperience();
 
 	bool valid(bool allowUnrandomized) const;
 	ArtPlacementMap putArtifact(const ArtifactPosition & pos, const CArtifactInstance * art) override; //from CArtifactSet

@@ -1,0 +1,14 @@
+/** Private286/294 complete source overlay. */
+import fs from'node:fs';import{injectOwnedFiles}from'./eighth-owned-files.mjs';
+export async function applyNeutralDependenciesOverlay(page,options={}){
+ const stage=process.env.NEUTRAL_DEPENDENCIES_STAGE||'/tmp/goonk-neutral-dependencies-stage-151',read=n=>JSON.parse(fs.readFileSync(stage+'/'+n)),metadata=read('stage.json');await injectOwnedFiles(page,stage,metadata.records.flatMap(r=>r.assets));
+ const payload={definitions:read('content/config/source-neutral-dependencies.json'),summons:read('content/config/era-bridge-demilich-summons.json'),patches:Object.fromEntries(['era-bridge-experience','era-bridge-skeleton-transformations','era-bridge-experience-attack-spells','era-bridge-runtime','era-bridge-status-attacks'].map(n=>[n,read('patches/'+n+'.json')])),options};
+ await page.addInitScript(payload=>{const previous=Object.getOwnPropertyDescriptor(window,'Module');let current;Object.defineProperty(window,'Module',{configurable:true,get:()=>current,set:m=>{previous?.set?.call(window,m);current=m;const prior=Object.getOwnPropertyDescriptor(m,'callMain');let main;Object.defineProperty(m,'callMain',{configurable:true,set:f=>{main=f;prior?.set?.call(m,f);},get:()=>function(...args){const invoke=prior?.get?prior.get.call(m):main,root='/home/web_user/.local/share/vcmi/Mods/tum-era/',read=n=>JSON.parse(m.FS.readFile(root+n,{encoding:'utf8'})),write=(n,v)=>m.FS.writeFile(root+n,JSON.stringify(v));
+ const manifest=read('mod.json');manifest.creatures.push('config/neutral-dependencies-owned-test.json');
+ const fixtures={'core:gnoll':{hitPoints:payload.options.enemyHealth||1000000,attack:0,defense:0,speed:1,damage:{min:1,max:1},abilities:{noMorale:{type:'NO_MORALE'},inactive:{type:'NOT_ACTIVE',subtype:'core:blind'}}}};
+ if(payload.options.enemyInactive===false)delete fixtures['core:gnoll'].abilities.inactive;
+ if(payload.options.fixtures)Object.assign(fixtures,payload.options.fixtures);write('content/config/neutral-dependencies-owned-test.json',{...payload.definitions,...fixtures});
+ for(const[name,patch]of Object.entries(payload.patches)){const data=read('content/config/'+name+'.json');if(name==='era-bridge-status-attacks'){Object.assign(data.sourceIds,patch.sourceIds);for(const key of patch.creatures)if(!data.creatures.includes(key))data.creatures.push(key);}else for(const[key,value]of Object.entries(patch.creatures))data.creatures[key]=name==='era-bridge-runtime'?{...data.creatures[key],...value}:value;write('content/config/'+name+'.json',data);}
+ for(const name of m.FS.readdir(root+'content/config').filter(n=>/^era-bridge-.*\.json$/.test(n))){const data=read('content/config/'+name);if(data.sourceIds){Object.assign(data.sourceIds,payload.patches['era-bridge-status-attacks'].sourceIds);write('content/config/'+name,data);}}
+ write('content/config/era-bridge-demilich-summons.json',payload.summons);write('mod.json',manifest);return invoke.apply(m,args);}});}});},payload);
+}

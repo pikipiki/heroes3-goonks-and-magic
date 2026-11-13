@@ -1,0 +1,369 @@
+{
+  "new-summon-worn": {
+    "spell": 67,
+    "created": {
+      "aiValue": 330,
+      "armySlot": -3,
+      "attack": 21,
+      "canMeleeAt": false,
+      "canShootAt": false,
+      "cloned": false,
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        400,
+        0
+      ],
+      "count": 32,
+      "currentHealth": 40,
+      "damageMax": 8,
+      "damageMin": 4,
+      "defense": 24,
+      "description": "",
+      "enemy": false,
+      "eraSlot": 1,
+      "fightValue": 415,
+      "growth": 4,
+      "health": 40,
+      "icon": "",
+      "id": 113,
+      "key": "core:earthElemental",
+      "luck": 0,
+      "magicResistance": 0,
+      "maximumHealth": 40,
+      "morale": 0,
+      "name": "Earth Elemental",
+      "nativeFlags": {
+        "attacksAllAdjacent": true,
+        "blocksRetaliation": false,
+        "chargeImmune": false,
+        "flying": false,
+        "living": false,
+        "mindImmune": true,
+        "noMorale": false,
+        "nonLiving": true,
+        "undead": false
+      },
+      "occupied": [
+        1
+      ],
+      "remainingCasts": 0,
+      "remainingRetaliations": 1,
+      "remainingShots": 0,
+      "shooter": false,
+      "shots": 0,
+      "speed": 4,
+      "stackId": 4,
+      "x": 102,
+      "y": 112
+    }
+  },
+  "new-summon-backpack": {
+    "spell": 67,
+    "created": {
+      "aiValue": 330,
+      "armySlot": -3,
+      "attack": 14,
+      "canMeleeAt": false,
+      "canShootAt": false,
+      "cloned": false,
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        400,
+        0
+      ],
+      "count": 20,
+      "currentHealth": 40,
+      "damageMax": 8,
+      "damageMin": 4,
+      "defense": 17,
+      "description": "",
+      "enemy": false,
+      "eraSlot": 1,
+      "fightValue": 415,
+      "growth": 4,
+      "health": 40,
+      "icon": "",
+      "id": 113,
+      "key": "core:earthElemental",
+      "luck": 0,
+      "magicResistance": 0,
+      "maximumHealth": 40,
+      "morale": 0,
+      "name": "Earth Elemental",
+      "nativeFlags": {
+        "attacksAllAdjacent": false,
+        "blocksRetaliation": false,
+        "chargeImmune": false,
+        "flying": false,
+        "living": false,
+        "mindImmune": true,
+        "noMorale": false,
+        "nonLiving": true,
+        "undead": false
+      },
+      "occupied": [
+        1
+      ],
+      "remainingCasts": 0,
+      "remainingRetaliations": 1,
+      "remainingShots": 0,
+      "shooter": false,
+      "shots": 0,
+      "speed": 4,
+      "stackId": 4,
+      "x": 102,
+      "y": 112
+    }
+  },
+  "new-clone-worn": {
+    "spell": 65,
+    "created": {
+      "aiValue": 115,
+      "armySlot": -3,
+      "attack": 11,
+      "canMeleeAt": false,
+      "canShootAt": false,
+      "cloned": true,
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        75,
+        0
+      ],
+      "count": 1,
+      "currentHealth": 1000000,
+      "damageMax": 100,
+      "damageMin": 100,
+      "defense": 14,
+      "description": "",
+      "enemy": false,
+      "eraSlot": 1,
+      "fightValue": 115,
+      "growth": 14,
+      "health": 1000000,
+      "icon": "",
+      "id": 1,
+      "key": "core:halberdier",
+      "luck": 0,
+      "magicResistance": 0,
+      "maximumHealth": 1000000,
+      "morale": 0,
+      "name": "Halberdier",
+      "nativeFlags": {
+        "attacksAllAdjacent": true,
+        "blocksRetaliation": false,
+        "chargeImmune": true,
+        "flying": false,
+        "living": true,
+        "mindImmune": false,
+        "noMorale": true,
+        "nonLiving": false,
+        "undead": false
+      },
+      "occupied": [
+        88
+      ],
+      "remainingCasts": 0,
+      "remainingRetaliations": 0,
+      "remainingShots": 0,
+      "shooter": false,
+      "shots": 0,
+      "speed": 1,
+      "stackId": 4,
+      "x": 168,
+      "y": 322
+    }
+  },
+  "new-clone-backpack": {
+    "spell": 65,
+    "created": {
+      "aiValue": 115,
+      "armySlot": -3,
+      "attack": 4,
+      "canMeleeAt": false,
+      "canShootAt": false,
+      "cloned": true,
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        75,
+        0
+      ],
+      "count": 1,
+      "currentHealth": 1000000,
+      "damageMax": 100,
+      "damageMin": 100,
+      "defense": 7,
+      "description": "",
+      "enemy": false,
+      "eraSlot": 1,
+      "fightValue": 115,
+      "growth": 14,
+      "health": 1000000,
+      "icon": "",
+      "id": 1,
+      "key": "core:halberdier",
+      "luck": 0,
+      "magicResistance": 0,
+      "maximumHealth": 1000000,
+      "morale": 0,
+      "name": "Halberdier",
+      "nativeFlags": {
+        "attacksAllAdjacent": false,
+        "blocksRetaliation": false,
+        "chargeImmune": true,
+        "flying": false,
+        "living": true,
+        "mindImmune": false,
+        "noMorale": true,
+        "nonLiving": false,
+        "undead": false
+      },
+      "occupied": [
+        88
+      ],
+      "remainingCasts": 0,
+      "remainingRetaliations": 0,
+      "remainingShots": 0,
+      "shooter": false,
+      "shots": 0,
+      "speed": 1,
+      "stackId": 4,
+      "x": 168,
+      "y": 322
+    }
+  },
+  "baseline": {
+    "actor": "core:halberdier",
+    "primary": 1,
+    "wounds": [
+      {
+        "id": 1,
+        "loss": 62
+      },
+      {
+        "id": 2,
+        "loss": 0
+      },
+      {
+        "id": 3,
+        "loss": 0
+      }
+    ],
+    "affected": 1,
+    "ownBefore": 999997,
+    "ownAfter": 999993,
+    "roundBefore": 1,
+    "roundAfter": 2
+  },
+  "equipped": {
+    "actor": "core:halberdier",
+    "primary": 1,
+    "wounds": [
+      {
+        "id": 1,
+        "loss": 80
+      },
+      {
+        "id": 2,
+        "loss": 80
+      },
+      {
+        "id": 3,
+        "loss": 80
+      }
+    ],
+    "affected": 3,
+    "ownBefore": 999997,
+    "ownAfter": 999996,
+    "roundBefore": 1,
+    "roundAfter": 2
+  },
+  "backpack": {
+    "actor": "core:halberdier",
+    "primary": 1,
+    "wounds": [
+      {
+        "id": 1,
+        "loss": 62
+      },
+      {
+        "id": 2,
+        "loss": 0
+      },
+      {
+        "id": 3,
+        "loss": 0
+      }
+    ],
+    "affected": 1,
+    "ownBefore": 999997,
+    "ownAfter": 999993,
+    "roundBefore": 1,
+    "roundAfter": 2
+  },
+  "opposite-hero": {
+    "actor": "core:halberdier",
+    "primary": 1,
+    "wounds": [
+      {
+        "id": 1,
+        "loss": 44
+      },
+      {
+        "id": 2,
+        "loss": 0
+      },
+      {
+        "id": 3,
+        "loss": 0
+      }
+    ],
+    "affected": 1,
+    "ownBefore": 999998,
+    "ownAfter": 999993,
+    "roundBefore": 1,
+    "roundAfter": 2
+  },
+  "unrelated-head": {
+    "actor": "core:halberdier",
+    "primary": 1,
+    "wounds": [
+      {
+        "id": 1,
+        "loss": 62
+      },
+      {
+        "id": 2,
+        "loss": 0
+      },
+      {
+        "id": 3,
+        "loss": 0
+      }
+    ],
+    "affected": 1,
+    "ownBefore": 999997,
+    "ownAfter": 999993,
+    "roundBefore": 1,
+    "roundAfter": 2
+  }
+}

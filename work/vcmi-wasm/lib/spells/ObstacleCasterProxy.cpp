@@ -10,6 +10,8 @@
 
 #include "StdInc.h"
 #include "ObstacleCasterProxy.h"
+#include "../era/EraConfluxPolicies.h"
+#include "CSpellHandler.h"
 
 VCMI_LIB_NAMESPACE_BEGIN
 
@@ -34,8 +36,12 @@ int32_t ObstacleCasterProxy::getEffectLevel(const Spell * spell) const
 
 int64_t ObstacleCasterProxy::getSpellBonus(const Spell * spell, int64_t base, const battle::Unit * affectedStack) const
 {
+    const auto * sourceSpell=era_compat::ConfluxPolicies::get().enabled()
+        && spell->getJsonKey()=="tum-era:sourceConfluxFireWallTrigger"?SpellID(13).toSpell():spell;
+    //5A008F uses stored-side hero with the ORIGINAL13, not the trigger's
+    //synthetic native identifier. This preserves FireWall hero specialties.
 	if(actualCaster)
-		return std::max<int64_t>(actualCaster->getSpellBonus(spell, base, affectedStack), obs.minimalDamage);
+		return std::max<int64_t>(actualCaster->getSpellBonus(sourceSpell, base, affectedStack), obs.minimalDamage);
 
 	return std::max<int64_t>(base, obs.minimalDamage);
 }

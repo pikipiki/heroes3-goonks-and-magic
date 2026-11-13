@@ -1,0 +1,33 @@
+{
+  "artifactIds": [
+    227,
+    228,
+    229,
+    230,
+    232,
+    236
+  ],
+  "sourceScriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "sourceArchiveSHA256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "cfgSHA256": {
+    "227": "fe5c3e30857ff4633ef6a2075d703c2ab6b1d283b67cdaa7cce73db621a7f9eb",
+    "228": "2c163c83d611dbcebe97e2efe26855f3914f412fb590c4b5fc6f73185f64e630",
+    "229": "8b5ee8be336adbcae131798076b2dbc5d27291c787e38bf7e235bf2ddce346a8",
+    "230": "1c29affaa2251466b44fa3c9032cf748c1e4ac67e6fb48fdf0d177da3deab9cf",
+    "232": "8c5d6191742f4e55ae6db86268382b54828c1b842fdd917cfa985130b539be3b",
+    "236": "63111c910b899b340517007d948f87bd2ad40851d9a37ad3eac1514b1718b93a"
+  },
+  "sourceContract": {
+    "configuration": "Emerald3/emerald/emerald.cpp:133-147",
+    "ordering": "Emerald3/emerald/events.cpp:26-46",
+    "nativeFunction": "h3era.exe5A7390..5A7627",
+    "nativePointer": "emerald3_3.era.data10051020=005A7390",
+    "count": "SPTRAITS Visions base effect1 multiplied by encoded source power; integer truncation towards zero; zero becomes1",
+    "placement": "randomized rows0..10 from side x1/x15 inward; native wide-creature accessibility",
+    "elementalRestriction": "original left/right summon type restored after each artifact call; marker excluded by native Summon::applicable"
+  },
+  "pending": [
+    "Browser/native equipment versus backpack, source counts, both sides, no mana use, vanish after battle, ordinary elemental exclusivity and save/load controls"
+  ],
+  "activationReady": false
+}

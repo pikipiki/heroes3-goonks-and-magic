@@ -382,10 +382,39 @@
       },
       "afterDefend": {
         "spell": 13,
+        "name": "Fire Wall",
         "mastery": 0,
         "kind": 1,
         "power": "current creature count",
-        "tactics": false
+        "tactics": false,
+        "rawDamage": "10*count+10 corrected with NULL hero and target5A0B31..5A0B56",
+        "hexes": "own hex plus TR attacker or TL defender5A0BBB..5A0BF4",
+        "duration": "fixed2 at5A0C16",
+        "trigger": "59FFE0 uses5A83A0>0 without any random draw;5A008F then corrects stored raw damage with the stored-wall-side hero and current targetHero",
+        "afterDefendOrder": "479223→441C90→441CAD consumes existing walls before hook479231 creates the new wall; no immediate self-hit from that new wall",
+        "boundedCode": [
+          {
+            "address": "441CAD",
+            "hex": "e89e840200"
+          },
+          {
+            "address": "479223",
+            "hex": "e8688afcffc745e00100000033ffe9cd020000"
+          },
+          {
+            "address": "5A0045",
+            "hex": "e856830000d81d64ac6300dfe0f6c44174095f5e32c05b5dc20c008a451084c074096a00"
+          },
+          {
+            "address": "5A0084",
+            "hex": "0fbe43098b8c87cc530000516a0d528bcfe8567b00008bd88bce53e80c3deaff"
+          },
+          {
+            "address": "63AC64",
+            "hex": "00000000",
+            "float": 0
+          }
+        ]
       },
       "afterWound": {
         "spell": 29,
@@ -407,7 +436,9 @@
       "percent": 20,
       "combines": "maximum one effect; no per-stack sum",
       "side": "Hypnotize60 duration flips effective side",
-      "scope": "hero mana expenditure only"
+      "scope": "hero mana expenditure only",
+      "timing": "after spell effects5A2368..5A24DC, includes newly-dead/revived/Hypnotized state;floor(cost/5) once if eligible count>0",
+      "nativeStatus": "post-effect356-only adapter; generic native providers preserved until separate source43 validation"
     },
     "tome88": {
       "artifact": 88,
@@ -429,7 +460,10 @@
         16
       ],
       "afterTiming": "before FireShield; source756DBB calls original4408E0 then71DBD8, caller441991 then4419A0",
-      "power": "kind1 intermediate3 overridden by active manager count"
+      "power": "kind1 intermediate3 overridden by active manager count",
+      "primaryQuerySide": "71DA8A physical casterSide flipped byHypnotize, passed71DB21 to5A8950",
+      "areaQuerySide": "5A4D59 rereadsCURRENT132C0 for every victim; independent of primaryQuerySide",
+      "areaHero": "19..23 direct correction uses CURRENT-side hero, including on retaliation"
     },
     "xp356": {
       "summons": [

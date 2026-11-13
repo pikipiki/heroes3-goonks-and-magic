@@ -13,6 +13,7 @@
 #include "../era/EraAdvancedArtifactRuntimeNative.h"
 #include "CGHeroInstance.h"
 #include "../era/EraCreatureArtifactMimic.h"
+#include "../era/EraConfluxPolicies.h"
 
 #include <vcmi/ServerCallback.h>
 #include <vcmi/spells/Spell.h>
@@ -1284,6 +1285,17 @@ std::vector<BonusSourceID> CGHeroInstance::getSourcesForSpell(const SpellID & sp
     if(spellId==SpellID(57) && era_compat::originalArmyMimicsArtifact(*this,135)
         && std::find(sources.begin(),sources.end(),mimicSource)==sources.end())
         sources.push_back(mimicSource);
+    // MonGiveSpell modifies the available-spell cache, not the learned set.
+    // Original Tome88 includes its core water bitset even when map-banned.
+    if(era_compat::ConfluxPolicies::get().enabled() && spellId.getNum()>=0 && spellId.getNum()<70
+        && spellId.toSpell()->hasSchool(SpellSchool::WATER)
+        && hasBonus(Selector::type()(BonusType::ERA_SOURCE_TOME_CACHE)
+            .And(Selector::source(BonusSource::CREATURE_ABILITY,
+                BonusSourceID(CreatureID(CreatureID::decode("tum-era:eraCreature356")))))))
+    {
+        const BonusSourceID tome(ArtifactID(88));
+        if(std::find(sources.begin(),sources.end(),tome)==sources.end())sources.push_back(tome);
+    }
 	return sources;
 }
 

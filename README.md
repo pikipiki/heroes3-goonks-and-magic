@@ -1,6 +1,6 @@
 # Heroes Goonk
 
-Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.156, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
+Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.157, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
 
 ## Jouer sur ce Mac
 
@@ -660,3 +660,17 @@ Ce point ne revendique pas une compatibilité ERA complète : quatorze artefacts
 L’Anneau d’oubli est activé après 16 contrôles natifs : Résurrection, Animation des morts, Sacrifice, Nécromancie, cadavres occupés sur une ou deux cases, clones, pertes et second combat après rangement dans le sac. Le port suit le comportement effectif du script original ; son commentaire non implémenté sur le Drain de vie ne devient pas une interdiction nouvelle. Le catalogue atteint 97 artefacts source actifs sur 110.
 
 Le raccourci des machines de guerre ne consulte la ville que lorsque le héros visite réellement une ville qui lui appartient. Cette version conserve le moteur publié comme base et ne contient aucun port Conflux ou autre mécanisme encore en validation.
+
+### Artefacts, résistance et recrutement — 0.4.157
+
+Le catalogue atteint 106 artefacts source actifs sur110. L’Orbe du Chaos238 respecte le multiplicateur original, les protections et l’arrondi de la chaîne d’éclairs (21 groupes natifs). Le Casque de la reine hydre259 conserve les exclusions et la riposte originales (17 contrôles). Les Bottes du voyageur260 distinguent le joueur humain et l’IA, sur terre et en mer (18 groupes). Les six objets227–230/232/236 invoquent les demi-liches286 et les oiseaux vermillon294 ; leurs contrôles natifs couvrent les invocations, le sac, le camp adverse et les effets associés. Les demandes de puissance0 sont normalisées à1 par le héros natif ; le fallback interne zéro est couvert séparément par le test du service.
+
+Le dragon féerique original134 suit son ciblage, ses charges et ses tirages de résistance originaux. Ses29 contrôles incluent la Sorcellerie et une vraie Protection contre l’air. Les15 profils originaux de réduction magique utilisent désormais l’ordre de calcul WoG ; neuf contrôles sur les données effectivement migrées vérifient les rangs gagnés, les réductions, les Goonks et les bannières.
+
+Le recrutement conserve le neuvième stock du Portail de l’invocation quand une ville possède huit familles. Les témoins natifs vérifient les anciens huit emplacements puis les neuf, sur petit écran et iPad dans les deux orientations. Les textes identiques ne sont plus réassignés à chaque état ; aucun élément du panneau n’est retiré au repos.
+
+Conflux355/356, le recrutement global de la huitième famille, les quatre artefacts266/275/276/278 et les contrats source encore incomplets restent désactivés. Chaque preuve garde l’empreinte de son moteur ; cette version ne prétend pas reproduire tout ERA.
+
+La compilation vérifiée utilise Emscripten4.0.23 dans un volume Linux, sans en-têtes précompilés et avec des pools de compilation adaptés à la mémoire. La commande finale reste `ninja -j32 html5`. Le build applique le [correctif officiel Boost QVM](https://github.com/boostorg/qvm/commit/c4b9c063a076644575fe9a685c02cd4c10d24405) aux deux appels incompatibles de Boost1.86.
+
+Les dragonneaux féeriques343 et rouille344 sont activés avec leurs ressources originales. Les cinq dragonneaux341–345 évoluent au prochain tour journalier de leur propriétaire à partir du rang10 ; quantité et bannière sont conservées, puis l’expérience est remise à0. Neuf contrôles natifs vérifient aussi la garnison du héros, l’exclusion de l’armée de ville, Reborn, l’ordre des conversions d’artefacts et les sauvegardes.

@@ -1,0 +1,329 @@
+{
+  "passed": true,
+  "report": {
+    "20": {
+      "control": {
+        "id": 20,
+        "cast": false,
+        "blockedPrimary": false,
+        "sorcery": false,
+        "seed": 62677,
+        "sourceCount": 2,
+        "sourcePower": 10,
+        "actor": "core:fairieDragon",
+        "beforeRng": {
+          "offset": 120426,
+          "value": "635150812",
+          "index": 977
+        },
+        "afterRng": {
+          "offset": 120348,
+          "value": "1888301480",
+          "index": 978
+        },
+        "changes": {
+          "core:ogre": 0,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "core:fairieDragon": 0,
+          "goonk:bubu": 0
+        },
+        "originalCharges": 5,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 55,
+        "primaryHex": 94,
+        "secondaryResistance": 100,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "cast": {
+        "id": 20,
+        "cast": true,
+        "blockedPrimary": false,
+        "sorcery": false,
+        "seed": 62677,
+        "sourceCount": 2,
+        "sourcePower": 10,
+        "actor": "core:fairieDragon",
+        "beforeRng": {
+          "offset": 120426,
+          "value": "635150812",
+          "index": 977
+        },
+        "afterRng": {
+          "offset": 120348,
+          "value": "1214774467",
+          "index": 980
+        },
+        "changes": {
+          "core:ogre": 0,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "core:fairieDragon": 0,
+          "goonk:bubu": -130
+        },
+        "originalCharges": 5,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 54,
+        "primaryHex": 94,
+        "secondaryResistance": 100,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "expectedResistanceDraws": 2,
+      "actualMinstdAdvances": 2,
+      "uniformRolls": [
+        37,
+        67
+      ]
+    },
+    "21": {
+      "control": {
+        "id": 21,
+        "cast": false,
+        "blockedPrimary": false,
+        "sorcery": false,
+        "seed": 62690,
+        "sourceCount": 2,
+        "sourcePower": 10,
+        "actor": "core:fairieDragon",
+        "beforeRng": {
+          "offset": 120371,
+          "value": "917082042",
+          "index": 1026
+        },
+        "afterRng": {
+          "offset": 120293,
+          "value": "239350124",
+          "index": 1027
+        },
+        "changes": {
+          "core:ogre": 0,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "core:fairieDragon": 0,
+          "goonk:bubu": 0
+        },
+        "originalCharges": 5,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 55,
+        "primaryHex": 94,
+        "secondaryResistance": 100,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "cast": {
+        "id": 21,
+        "cast": true,
+        "blockedPrimary": false,
+        "sorcery": false,
+        "seed": 62690,
+        "sourceCount": 2,
+        "sourcePower": 10,
+        "actor": "core:fairieDragon",
+        "beforeRng": {
+          "offset": 120371,
+          "value": "917082042",
+          "index": 1026
+        },
+        "afterRng": {
+          "offset": 120293,
+          "value": "1562878945",
+          "index": 1031
+        },
+        "changes": {
+          "core:ogre": -130,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "core:fairieDragon": 0,
+          "goonk:bubu": -130
+        },
+        "originalCharges": 5,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 54,
+        "primaryHex": 94,
+        "secondaryResistance": 100,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "expectedResistanceDraws": 3,
+      "actualMinstdAdvances": 4,
+      "uniformRolls": [
+        88,
+        4,
+        97
+      ]
+    },
+    "22": {
+      "control": {
+        "id": 22,
+        "cast": false,
+        "blockedPrimary": false,
+        "sorcery": false,
+        "seed": 62703,
+        "sourceCount": 2,
+        "sourcePower": 10,
+        "actor": "core:fairieDragon",
+        "beforeRng": {
+          "offset": 120244,
+          "value": "5706047",
+          "index": 968
+        },
+        "afterRng": {
+          "offset": 120167,
+          "value": "558687921",
+          "index": 969
+        },
+        "changes": {
+          "core:ogre": 0,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "core:fairieDragon": 0,
+          "goonk:bubu": 0
+        },
+        "originalCharges": 5,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 55,
+        "primaryHex": 94,
+        "secondaryResistance": 100,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "cast": {
+        "id": 22,
+        "cast": true,
+        "blockedPrimary": false,
+        "sorcery": false,
+        "seed": 62703,
+        "sourceCount": 2,
+        "sourcePower": 10,
+        "actor": "core:fairieDragon",
+        "beforeRng": {
+          "offset": 120244,
+          "value": "5706047",
+          "index": 968
+        },
+        "afterRng": {
+          "offset": 120167,
+          "value": "1618042535",
+          "index": 974
+        },
+        "changes": {
+          "core:ogre": -140,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "core:fairieDragon": 0,
+          "goonk:bubu": -140
+        },
+        "originalCharges": 5,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 54,
+        "primaryHex": 94,
+        "secondaryResistance": 100,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "expectedResistanceDraws": 3,
+      "actualMinstdAdvances": 5,
+      "uniformRolls": [
+        26,
+        79,
+        39
+      ]
+    },
+    "23": {
+      "control": {
+        "id": 23,
+        "cast": false,
+        "blockedPrimary": false,
+        "sorcery": false,
+        "seed": 62716,
+        "sourceCount": 2,
+        "sourcePower": 10,
+        "actor": "core:fairieDragon",
+        "beforeRng": {
+          "offset": 120284,
+          "value": "859579196",
+          "index": 985
+        },
+        "afterRng": {
+          "offset": 120206,
+          "value": "1215826429",
+          "index": 986
+        },
+        "changes": {
+          "core:ogre": 0,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "core:fairieDragon": 0,
+          "goonk:bubu": 0
+        },
+        "originalCharges": 5,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 55,
+        "primaryHex": 94,
+        "secondaryResistance": 100,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "cast": {
+        "id": 23,
+        "cast": true,
+        "blockedPrimary": false,
+        "sorcery": false,
+        "seed": 62716,
+        "sourceCount": 2,
+        "sourcePower": 10,
+        "actor": "core:fairieDragon",
+        "beforeRng": {
+          "offset": 120284,
+          "value": "859579196",
+          "index": 985
+        },
+        "afterRng": {
+          "offset": 120206,
+          "value": "1488039764",
+          "index": 989
+        },
+        "changes": {
+          "core:ogre": -300,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "core:fairieDragon": 0,
+          "goonk:bubu": -300
+        },
+        "originalCharges": 5,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 54,
+        "primaryHex": 94,
+        "secondaryResistance": 100,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "expectedResistanceDraws": 3,
+      "actualMinstdAdvances": 3,
+      "uniformRolls": [
+        20,
+        84,
+        84
+      ]
+    }
+  },
+  "errors": []
+}

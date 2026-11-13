@@ -288,6 +288,11 @@ void ChangeStackCount::visitTyped(ICPackVisitor & visitor)
 	visitor.visitChangeStackCount(*this);
 }
 
+void ResetStackExperience::visitTyped(ICPackVisitor & visitor)
+{
+    visitor.visitResetStackExperience(*this);
+}
+
 void SetStackType::visitTyped(ICPackVisitor & visitor)
 {
 	visitor.visitSetStackType(*this);
@@ -656,6 +661,11 @@ void TradeOnMarketplace::visitTyped(ICPackVisitor & visitor)
 void RefreshArtifactState::visitTyped(ICPackVisitor & visitor)
 {
 	visitor.visitRefreshArtifactState(*this);
+}
+
+void RefreshConfluxTome::visitTyped(ICPackVisitor & visitor)
+{
+    visitor.visitRefreshConfluxTome(*this);
 }
 
 void SetFormation::visitTyped(ICPackVisitor & visitor)

@@ -1367,26 +1367,31 @@ void publishMobileState(){
    }
    if(fortWindow){
     if(const auto selected=fortWindow->getMobilePreviewCreature())n["fortSelectedId"].Integer()=selected->getId().getNum();
-    for(size_t level=0;level<town->getTown()->creatures.size();level++){
-     JsonNode family;family["level"].Integer()=level;family["count"].Integer()=town->creatures[level].first;
+    for(size_t level=0;level<town->creatures.size();level++){
      const auto & available=town->creatures[level].second;
-     const auto & roster=town->getTown()->creatures[level];
+     const bool portal=level==town->getTown()->creatures.size();
+     const auto portalBuilding=portal?town->getTown()->getSpecialBuilding(BuildingSubID::PORTAL_OF_SUMMONING):nullptr;
+     if(portal&&(!portalBuilding||available.empty()))continue;
+     if(level>town->getTown()->creatures.size())continue;
+     const auto & roster=portal?available:town->getTown()->creatures[level];
+     JsonNode family;family["level"].Integer()=level;family["count"].Integer()=town->creatures[level].first;
+     if(portal)family["label"].String()=portalBuilding->getNameTranslated();
      for(size_t rank=0;rank<roster.size();rank++){
       const auto id=roster[rank];auto variant=creature(id.toCreature(),town->creatures[level].first);variant["rank"].Integer()=rank;variant["level"].Integer()=level;variant["built"].Bool()=std::find(available.begin(),available.end(),id)!=available.end();
-      const auto bid = BuildingID(BuildingID::getDwellingFromLevel(level, rank));
-      if(town->getTown()->buildings.count(bid))
-      {
-       variant["requiredBuilding"].String() = town->getTown()->buildings.at(bid)->getNameTranslated();
-       variant["requiredBuildingId"].Integer() = bid.getNum();
+      const auto bid=portal?portalBuilding->bid:BuildingID(BuildingID::getDwellingFromLevel(level,rank));
+      if(town->getTown()->buildings.count(bid)){
+       variant["requiredBuilding"].String()=town->getTown()->buildings.at(bid)->getNameTranslated();
+       variant["requiredBuildingId"].Integer()=bid.getNum();
       }
       family["variants"].Vector().push_back(variant);
      }
      n["fortFamilies"].Vector().push_back(family);
+     if(!roster.empty()){
+      auto c=(!available.empty()?available.back():roster.front()).toCreature();
+      auto row=creature(c,town->creatures[level].first);row["level"].Integer()=level;row["built"].Bool()=!available.empty();n["fortRows"].Vector().push_back(row);
+     }
     }
-    for(size_t level=0;level<town->getTown()->creatures.size();level++){
-    const auto & available=town->creatures[level].second;auto c=!available.empty()?available.back().toCreature():town->getTown()->creatures[level].front().toCreature();
-    auto row=creature(c,town->creatures[level].first);row["level"].Integer()=level;row["built"].Bool()=!available.empty();n["fortRows"].Vector().push_back(row);
-   }}
+   }
    for(size_t level=0;level<town->creatures.size();level++)for(size_t variant=0;variant<town->creatures[level].second.size();variant++){auto c=town->creatures[level].second[variant].toCreature();JsonNode item=creature(c,town->creatures[level].first);item["level"].Integer()=level;item["variant"].Integer()=variant;n["recruits"].Vector().push_back(item);}
   }
   if(battleWindow&&CPlayerInterface::battleInt){const auto b=CPlayerInterface::battleInt;n["battleCamera"]=b->mobileCameraSnapshot();const bool targeting=b->actionsController->heroSpellcastingModeActive()||b->actionsController->creatureSpellcastingModeActive();n["spellTargeting"].Bool()=targeting;n["creatureSpellTargeting"].Bool()=b->actionsController->creatureSpellcastingModeActive();const bool tactics=b->tacticsMode||b->getBattle()->battleTacticDist()!=0;
@@ -1404,8 +1409,8 @@ void publishMobileState(){
    const auto spellProblem=caster?b->getBattle()->battleCanCastSpell(caster,spells::Mode::HERO):ESpellCastProblem::NO_HERO_TO_CAST_SPELL;
    n["heroSpellCastLimitReached"].Bool()=spellProblem==ESpellCastProblem::CASTS_PER_TURN_LIMIT;
    n["heroCanCast"].Bool()=manualControl&&!tactics&&caster&&(spellProblem==ESpellCastProblem::OK||spellProblem==ESpellCastProblem::MAGIC_IS_BLOCKED);
-   n["canAct"].Bool()=manualControl&&b->makingTurn();n["round"].Integer()=b->round;n["battlePlayerAttacks"].Bool()=b->getBattle()->getBattle()->getSidePlayer(BattleSide::ATTACKER)==p->playerID;const auto active=b->stacksController->getActiveStack();if(active)n["canWait"].Bool()=!active->waitedThisTurn;n["creatureCanCast"].Bool()=!tactics&&active&&active->hasBonusOfType(BonusType::SPELLCASTER)&&active->canCast();if(active){n["activeUnit"]=creature(active->unitType(),active->getCount());n["activeUnit"]["controlled"].Bool()=b->getBattle()->battleGetOwner(active)==p->playerID;n["activeUnit"]["commander"].Bool()=active->unitSlot()==SlotID::COMMANDER_SLOT_PLACEHOLDER;n["activeUnit"]["remainingShots"].Integer()=active->shots.available();n["activeUnit"]["canShoot"].Bool()=b->getBattle()->battleCanShoot(active);n["activeStack"].Integer()=active->unitId();const auto center=b->fieldController->hexPositionAbsolute(active->getPosition()).center();n["focus"]["x"].Integer()=center.x;n["focus"]["y"].Integer()=center.y;}
-   for(const auto stack:b->getBattle()->battleGetAllStacks()){if(stack->getCount()<=0||!stack->getPosition().isValid())continue;auto item=creature(stack->unitType(),stack->getCount());mobileStackExperience(item,stack->base);item["stackId"].Integer()=stack->unitId();item["eraSlot"].Integer()=stack->sourceMassSlot();item["armySlot"].Integer()=stack->unitSlot().getNum();item["currentHealth"].Integer()=stack->getFirstHPleft();item["maximumHealth"].Integer()=stack->getMaxHealth();item["cloned"].Bool()=stack->isClone();item["remainingCasts"].Integer()=stack->casts.available();item["remainingShots"].Integer()=stack->shots.available();item["speed"].Integer()=stack->getMovementRange();item["remainingRetaliations"].Integer()=stack->counterAttacks.available();item["attack"].Integer()=stack->getAttack(false);item["defense"].Integer()=stack->getDefense(false);item["damageMin"].Integer()=stack->getMinDamage(stack->hasBonusOfType(BonusType::SHOOTER));item["damageMax"].Integer()=stack->getMaxDamage(stack->hasBonusOfType(BonusType::SHOOTER));item["morale"].Integer()=stack->moraleVal();item["luck"].Integer()=stack->luckVal();item["magicResistance"].Integer()=stack->magicResistance();for(const auto hex:stack->getHexes())item["occupied"].Vector().push_back(JsonNode(double(hex.toInt())));const auto center=b->fieldController->hexPositionAbsolute(stack->getPosition()).center();item["x"].Integer()=center.x;item["y"].Integer()=center.y;item["enemy"].Bool()=stack->getOwner()!=p->playerID;n["battleUnits"].Vector().push_back(item);}const auto accessibility=b->getBattle()->getAccessibility();const auto reachable=active?b->getBattle()->battleGetAvailableHexes(active,false):BattleHexArray();
+   n["canAct"].Bool()=manualControl&&b->makingTurn();n["round"].Integer()=b->round;n["battlePlayerAttacks"].Bool()=b->getBattle()->getBattle()->getSidePlayer(BattleSide::ATTACKER)==p->playerID;const auto active=b->stacksController->getActiveStack();if(active)n["canWait"].Bool()=!active->waitedThisTurn;n["creatureCanCast"].Bool()=!tactics&&active&&active->hasBonusOfType(BonusType::SPELLCASTER)&&active->canCast();if(active){n["activeUnit"]=creature(active->unitType(),active->getCount());n["activeUnit"]["nativeFlags"]["attacksAllAdjacent"].Bool()=active->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT);n["activeUnit"]["controlled"].Bool()=b->getBattle()->battleGetOwner(active)==p->playerID;n["activeUnit"]["commander"].Bool()=active->unitSlot()==SlotID::COMMANDER_SLOT_PLACEHOLDER;n["activeUnit"]["remainingShots"].Integer()=active->shots.available();n["activeUnit"]["canShoot"].Bool()=b->getBattle()->battleCanShoot(active);n["activeStack"].Integer()=active->unitId();const auto center=b->fieldController->hexPositionAbsolute(active->getPosition()).center();n["focus"]["x"].Integer()=center.x;n["focus"]["y"].Integer()=center.y;}
+   for(const auto stack:b->getBattle()->battleGetAllStacks()){if(stack->getCount()<=0||!stack->getPosition().isValid())continue;auto item=creature(stack->unitType(),stack->getCount());item["nativeFlags"]["attacksAllAdjacent"].Bool()=stack->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT);mobileStackExperience(item,stack->base);item["stackId"].Integer()=stack->unitId();item["eraSlot"].Integer()=stack->sourceMassSlot();item["armySlot"].Integer()=stack->unitSlot().getNum();item["currentHealth"].Integer()=stack->getFirstHPleft();item["maximumHealth"].Integer()=stack->getMaxHealth();item["cloned"].Bool()=stack->isClone();item["remainingCasts"].Integer()=stack->casts.available();item["remainingShots"].Integer()=stack->shots.available();item["speed"].Integer()=stack->getMovementRange();item["remainingRetaliations"].Integer()=stack->counterAttacks.available();item["attack"].Integer()=stack->getAttack(false);item["defense"].Integer()=stack->getDefense(false);item["damageMin"].Integer()=stack->getMinDamage(stack->hasBonusOfType(BonusType::SHOOTER));item["damageMax"].Integer()=stack->getMaxDamage(stack->hasBonusOfType(BonusType::SHOOTER));item["morale"].Integer()=stack->moraleVal();item["luck"].Integer()=stack->luckVal();item["magicResistance"].Integer()=stack->magicResistance();for(const auto hex:stack->getHexes())item["occupied"].Vector().push_back(JsonNode(double(hex.toInt())));const auto center=b->fieldController->hexPositionAbsolute(stack->getPosition()).center();item["x"].Integer()=center.x;item["y"].Integer()=center.y;item["enemy"].Bool()=stack->getOwner()!=p->playerID;n["battleUnits"].Vector().push_back(item);}const auto accessibility=b->getBattle()->getAccessibility();const auto reachable=active?b->getBattle()->battleGetAvailableHexes(active,false):BattleHexArray();
    const bool previewSpellTargets=targeting&&manualControl;
    if(!targeting)if(const auto spell=b->actionsController->targetedSpell())n["creatureSpellName"].String()=spell->getNameTranslated();
    if(targeting)
@@ -1474,6 +1479,8 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePointer(int x,int y,int action)
   if(action==4&&(!GAME||!GAME->interface()||!GAME->interface()->makingTurn||!ENGINE->windows().topWindow<AdventureMapInterface>()))return;
   ENGINE->events().dispatchMouseMoved(Point(0,0),point);
   if(action==1||action==4){
+   if(GAME&&GAME->interface()&&GAME->interface()->makingTurn&&!CPlayerInterface::battleInt&&ENGINE->windows().topWindow<AdventureMapInterface>())
+    GAME->interface()->cb->refreshConfluxTome(GAME->interface()->localState->getCurrentHero());
    ENGINE->events().dispatchMouseLeftButtonPressed(point,4);
    ENGINE->events().dispatchMouseLeftButtonReleased(point,4);
   }
@@ -1553,7 +1560,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==0){deferredMapAction.reset();ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});return;}if(action==1){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});return;}
  // A dedicated cancel operation cannot also accept a dialog or close the town
  // below it. Ignore delayed taps once the taverne is no longer on top.
- if(action==62||action==63||action==64){if(auto window=ENGINE->windows().topWindow<CHeroWindow>()){if(action==63)window->close();else if(action==64){for(const auto & set:window->artSets)if(set)set->putBackPickedArtifact();}else if(window->curHero&&GAME->interface()&&window->curHero->getOwner()==GAME->interface()->playerID&&a>=0&&a<=int(ArtifactPosition::BACKPACK_START)+int(window->curHero->artifactsInBackpack.size()))window->clickPressedOnArtPlace(window->curHero,ArtifactPosition(a),true,false,false,window->pos.center());lastPublished=0;}return;}
+ if(action==62||action==63||action==64){if(auto window=ENGINE->windows().topWindow<CHeroWindow>()){if(action==63)window->close();else if(action==64){for(const auto & set:window->artSets)if(set)set->putBackPickedArtifact();}else if(window->curHero&&GAME->interface()&&window->curHero->getOwner()==GAME->interface()->playerID&&a>=0&&a<=int(ArtifactPosition::BACKPACK_START)+int(window->curHero->artifactsInBackpack.size())){GAME->interface()->cb->refreshConfluxTome(window->curHero);window->clickPressedOnArtPlace(window->curHero,ArtifactPosition(a),true,false,false,window->pos.center());}lastPublished=0;}return;}
  if(action==88)
  {
   mobileWeeklyRecruits = mobileEnabled && a != 0;
@@ -1823,8 +1830,10 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  // for ownership, stock, resources and available army slots.
  if((action==60||action==61)&&ENGINE->windows().topWindow<CFortScreen>()){
   const auto fort=ENGINE->windows().topWindow<CFortScreen>();const auto town=fort->getMobileTown();
-  if(town->getOwner()!=p->playerID||a<0||a>=int(town->getTown()->creatures.size()))return;
-  const CreatureID id(b);const auto & roster=town->getTown()->creatures[a];if(std::find(roster.begin(),roster.end(),id)==roster.end())return;
+  if(town->getOwner()!=p->playerID||a<0||a>=int(town->creatures.size())||a>int(town->getTown()->creatures.size()))return;
+  const bool portal=a==int(town->getTown()->creatures.size());
+  if(portal&&!town->getTown()->getSpecialBuilding(BuildingSubID::PORTAL_OF_SUMMONING))return;
+  const CreatureID id(b);const auto & roster=portal?town->creatures[a].second:town->getTown()->creatures[a];if(std::find(roster.begin(),roster.end(),id)==roster.end())return;
   if(action==60)fort->mobileSelectCreature(id.toCreature());
   else if(p->makingTurn&&c>0){
    const auto & row=town->creatures[a];if(row.first<=0||std::find(row.second.begin(),row.second.end(),id)==row.second.end())return;
@@ -1954,7 +1963,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
 
  if(action==2&&ENGINE->windows().topWindow<AdventureMapInterface>()&&hero&&p->localState->hasPath(hero)&&p->makingTurn)shortcut(EShortcut::ADVENTURE_MOVE_HERO);
  if(action==3&&ENGINE->windows().topWindow<AdventureMapInterface>()&&p->makingTurn){p->makingTurn=false;p->cb->endTurn();lastPublished=0;}
- if(action==4&&a>=0&&a<int(p->localState->getWanderingHeroes().size())&&ENGINE->windows().topWindow<AdventureMapInterface>()){const auto h=p->localState->getWanderingHero(a);p->localState->setSelection(h);adventureInt->centerOnObject(h);}
+ if(action==4&&a>=0&&a<int(p->localState->getWanderingHeroes().size())&&ENGINE->windows().topWindow<AdventureMapInterface>()){const auto h=p->localState->getWanderingHero(a);p->localState->setSelection(h);p->cb->refreshConfluxTome(h);adventureInt->centerOnObject(h);}
  if(action==5&&a>=0&&a<int(p->localState->getOwnedTowns().size())&&ENGINE->windows().topWindow<AdventureMapInterface>())p->openTownWindow(p->localState->getOwnedTown(a));
  if(action==6&&adventureInt&&hero)adventureInt->centerOnObject(hero);
  if(action==45&&adventureInt&&ENGINE->windows().topWindow<AdventureMapInterface>()&&!p->localState->getOwnedTowns().empty()){

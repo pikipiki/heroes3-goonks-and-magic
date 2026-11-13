@@ -1,0 +1,1408 @@
+{
+  "schemaVersion": 1,
+  "contract": "source-artifact-prerequisites-review-v1",
+  "activation": false,
+  "canRegister": false,
+  "sourcePins": {
+    "archive": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+    "sound": "1da1264707a6dd7da79490bed64798a7bd6cf7cba12581e5b93549f0c29bbc32"
+  },
+  "sourceIds": [
+    339,
+    343,
+    344,
+    346,
+    347
+  ],
+  "records": [
+    {
+      "sourceId": 339,
+      "fields": {
+        "ResGen_Type": 3,
+        "ResGen_Amount": 1,
+        "Flags": -2147483493,
+        "Level": 6,
+        "Spell effect": 8,
+        "Attack effect": 4,
+        "Resistance effect": 15,
+        "Fearless": 1,
+        "Sktransformer": 68,
+        "Poison": 100,
+        "Aging": 100,
+        "Paralyze": 100,
+        "ParalyzeChance": 3,
+        "isHellHydra": 1
+      },
+      "complete": false,
+      "nativeValidated": false,
+      "activationAllowed": false,
+      "pendingMechanics": [
+        "TOXIC resistance selector15 exact gates",
+        "Spell effect8 ACID and Attack effect4 DISRUPT ordering",
+        "Poison/Aging/Paralyze selectors and ParalyzeChance3",
+        "isHellHydra melee-area definition",
+        "daily resource3/amount1 owner/type proof",
+        "XP regeneration50% rank schedule and HATE source targets102/103/244"
+      ],
+      "sourceCfgSha256": "58e1ae42ebe9a30283a8ca05467766c48adc99dc7646edf3096ef510989cbdf8",
+      "stats": {
+        "name": {
+          "singular": "Sulfide Dragon",
+          "plural": "Sulfide Dragons"
+        },
+        "cost": {
+          "wood": 0,
+          "mercury": 0,
+          "ore": 0,
+          "sulfur": 30,
+          "crystal": 0,
+          "gems": 0,
+          "gold": 35000
+        },
+        "fightValue": 37030,
+        "aiValue": 44362,
+        "growth": 1,
+        "hitPoints": 850,
+        "speed": 20,
+        "attack": 35,
+        "defense": 35,
+        "damage": {
+          "min": 70,
+          "max": 70
+        },
+        "advMapAmount": {
+          "min": 1,
+          "max": 3
+        }
+      },
+      "shots": 0,
+      "casts": 0,
+      "animation": {
+        "eraId": 339,
+        "graphics": {
+          "timeBetweenFidgets": 1,
+          "animationTime": {
+            "walk": 0.6,
+            "attack": 1,
+            "idle": 10
+          }
+        },
+        "referenceName": "Rust Dragon",
+        "source": "cranim.txt:375"
+      },
+      "xp": [
+        {
+          "creature": 339,
+          "code": "S",
+          "modifier": "+",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            3
+          ],
+          "comment": "Sulfide Dragon: Speed R4/R6/R10",
+          "source": "crexpbon.txt",
+          "line": 1769
+        },
+        {
+          "creature": 339,
+          "code": "h",
+          "modifier": "#102",
+          "values": [
+            0,
+            0,
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "comment": "Sulfide Dragon: Hatred Dmg-Gorgon",
+          "source": "crexpbon.txt",
+          "line": 1770
+        },
+        {
+          "creature": 339,
+          "code": "h",
+          "modifier": "#103",
+          "values": [
+            0,
+            0,
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "comment": "Sulfide Dragon: Hatred Dmg-Mighty Gorgon",
+          "source": "crexpbon.txt",
+          "line": 1771
+        },
+        {
+          "creature": 339,
+          "code": "h",
+          "modifier": "#244",
+          "values": [
+            0,
+            0,
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "comment": "Sulfide Dragon: Hatred Dmg-Catoblepas",
+          "source": "crexpbon.txt",
+          "line": 1772
+        },
+        {
+          "creature": 339,
+          "code": "r",
+          "modifier": "#50",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            25,
+            50,
+            75,
+            125,
+            250,
+            250,
+            250
+          ],
+          "comment": "Sulfide Dragon: Regenerate 50% R4..R10",
+          "source": "crexpbon.txt",
+          "line": 1773
+        },
+        {
+          "creature": 339,
+          "code": "w",
+          "modifier": "m",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "comment": "Sulfide Dragon: Immune to Hostile Mind Spells R8",
+          "source": "crexpbon.txt",
+          "line": 1774
+        }
+      ],
+      "assets": [
+        {
+          "path": "content/Sprites/tum-era/creatures/339/CR339.def",
+          "sourceEntry": "CR339.def",
+          "sha256": "136c0c38871a30c1a1a737ae51edc6a0ee5bcfc8535709e27db137bf9d028e70",
+          "bytes": 681511
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/339/AVWCR339.def",
+          "sourceEntry": "AVWCR339.def",
+          "sha256": "28efa8dbbe1d084ea506aca07404101453eeafe5c7f0b0efe88f161135201089",
+          "bytes": 9844
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/339/AVWCR339.msk",
+          "sourceEntry": "AVWCR339.msk",
+          "sha256": "94ba3e9f3307dc30931de13a4e164e3b091e9389a53230862fe29bd11b1bc40c",
+          "bytes": 14
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/339/small.png",
+          "sourceEntry": "CPRSMALL.def frame341",
+          "sha256": "4d12017d56f1b1f7c63191fcc3e8eef648fefc414a72eb28dcad7fe5f4e83bbc",
+          "bytes": 1041
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/339/large.png",
+          "sourceEntry": "TWCRPORT.def frame341",
+          "sha256": "33819fb6a3b7506ee42520ff73b72a071572babe06cbbc70e63720a253d27ee4",
+          "bytes": 3232
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/339/S339ATTK.wav",
+          "sourceEntry": "S339ATTK",
+          "sha256": "c32b73549f4903a3526bf88ffe0b099f85a1d5586bbfc75acf8aaaf413f54423",
+          "bytes": 14404
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/339/S339DFND.wav",
+          "sourceEntry": "S339DFND",
+          "sha256": "9c095ff3b133a76213161d912bd143a4d4a30f96ef4806be4883fbed10d1aec4",
+          "bytes": 11408
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/339/S339KILL.wav",
+          "sourceEntry": "S339KILL",
+          "sha256": "aa320e5dbb64b676141f5f15f8cc815ca4bb76a689726f28d4ae76b97cb7d743",
+          "bytes": 13668
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/339/S339MOVE.wav",
+          "sourceEntry": "S339MOVE",
+          "sha256": "d3bc904a3f12d8255f46e775c0ca37697398ec2bf6be207cd4f97118dba33fbf",
+          "bytes": 7464
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/339/S339WNCE.wav",
+          "sourceEntry": "S339WNCE",
+          "sha256": "9454c9888714e744484460a782ae525257d4fdab1af46c0de8197f618970aa4e",
+          "bytes": 9796
+        }
+      ],
+      "missingResources": [],
+      "nativeDefinition": null,
+      "mapTemplate": "AVWCR339.def 011111111111111111111111111111111111111111111111 100000000000000000000000000000000000000000000000 111111111 000000001 54 339 2 0"
+    },
+    {
+      "sourceId": 343,
+      "fields": {
+        "DoNotGenerate": 1,
+        "Flags": -2147483501,
+        "Level": 4,
+        "Spell 1": 8,
+        "Spell 2": 7,
+        "Spell 3": 2,
+        "CreatureSpellPowerAdder": 1,
+        "isAimedCaster": 1,
+        "isFaerie": 1
+      },
+      "complete": false,
+      "nativeValidated": false,
+      "activationAllowed": false,
+      "pendingMechanics": [
+        "Faerie pool with currentcount+1 power",
+        "isAimedCaster primary/AI/manual target semantics",
+        "original no-random-generation selection exclusion"
+      ],
+      "sourceCfgSha256": "ffedd25a57c4348b6839f6b137e0889927844dfdc3f4f7b333b23d82a75ce9d6",
+      "stats": {
+        "name": {
+          "singular": "Faerie Dragonling",
+          "plural": "Faerie Dragonlings"
+        },
+        "cost": {
+          "wood": 0,
+          "mercury": 0,
+          "ore": 0,
+          "sulfur": 0,
+          "crystal": 0,
+          "gems": 2,
+          "gold": 3000
+        },
+        "fightValue": 760,
+        "aiValue": 820,
+        "growth": 1,
+        "hitPoints": 50,
+        "speed": 6,
+        "attack": 6,
+        "defense": 6,
+        "damage": {
+          "min": 8,
+          "max": 10
+        },
+        "advMapAmount": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "shots": 0,
+      "casts": 1,
+      "animation": {
+        "eraId": 343,
+        "graphics": {
+          "timeBetweenFidgets": 1,
+          "animationTime": {
+            "walk": 0.77,
+            "attack": 1,
+            "idle": 10
+          }
+        },
+        "referenceName": "Baby Faerie",
+        "source": "cranim.txt:379"
+      },
+      "xp": [
+        {
+          "creature": 343,
+          "code": "w",
+          "modifier": "1",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "comment": "B.Faerie Dragon: Immune to Hostile L1 Spells R4",
+          "source": "crexpbon.txt",
+          "line": 1790
+        },
+        {
+          "creature": 343,
+          "code": "w",
+          "modifier": "2",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "comment": "B.Faerie Dragon: Immune to Hostile L2 Spells R6",
+          "source": "crexpbon.txt",
+          "line": 1791
+        },
+        {
+          "creature": 343,
+          "code": "w",
+          "modifier": "3",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "comment": "B.Faerie Dragon: Immune to Hostile L3 Spells R8",
+          "source": "crexpbon.txt",
+          "line": 1792
+        },
+        {
+          "creature": 343,
+          "code": "w",
+          "modifier": "4",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "comment": "B.Faerie Dragon: Immune to Hostile L4 Spells R10",
+          "source": "crexpbon.txt",
+          "line": 1793
+        },
+        {
+          "creature": 343,
+          "code": "S",
+          "modifier": "+",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "comment": "B.Faerie Dragon: Speed R4/R10",
+          "source": "crexpbon.txt",
+          "line": 1794
+        }
+      ],
+      "assets": [
+        {
+          "path": "content/Sprites/tum-era/creatures/343/CR343.def",
+          "sourceEntry": "CR343.def",
+          "sha256": "512c0b9f063d46f88719e64275b96fc38928bbf9024f81fa5eef3d58376c1f45",
+          "bytes": 691805
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/343/AVWCR343.def",
+          "sourceEntry": "AVWCR343.def",
+          "sha256": "1eef60a7c30a234bf6e40ec5931a652ccdbbd5946d792869c8febc053edd5f17",
+          "bytes": 9675
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/343/AVWCR343.msk",
+          "sourceEntry": "AVWCR343.msk",
+          "sha256": "e518c68cce25f5b579648236008a9241dde284e45f7c303d6c59e965e546cd80",
+          "bytes": 14
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/343/small.png",
+          "sourceEntry": "CPRSMALL.def frame345",
+          "sha256": "8fbee4f278b912c8485500455dcddcbcfdbc73699e4db9e88ff632ede1525e6e",
+          "bytes": 1018
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/343/large.png",
+          "sourceEntry": "TWCRPORT.def frame345",
+          "sha256": "7f99007cf94ab10a780282e28d5544f1715c57fa56d7af1e9d593326afb438c2",
+          "bytes": 3458
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/343/S343ATTK.wav",
+          "sourceEntry": "S343ATTK",
+          "sha256": "851030b17176ba5e088e2876633da969795acd692191c90627a0d7fac53fc32d",
+          "bytes": 32980
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/343/S343DFND.wav",
+          "sourceEntry": "S343DFND",
+          "sha256": "15df50d5ee4cef38b40b44b0c270b7f7de0588b9ca6f09594e0425199cbd97cb",
+          "bytes": 32884
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/343/S343KILL.wav",
+          "sourceEntry": "S343KILL",
+          "sha256": "33d437433fe6674b01756b56d4495c84594b9b6abe2e0e962b105b8106ae2125",
+          "bytes": 44316
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/343/S343MOVE.wav",
+          "sourceEntry": "S343MOVE",
+          "sha256": "9eda028ffc391d509b91b005b1fedc06272cb02df3c10044ae1791cf4148f0bf",
+          "bytes": 25192
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/343/S343WNCE.wav",
+          "sourceEntry": "S343WNCE",
+          "sha256": "33d437433fe6674b01756b56d4495c84594b9b6abe2e0e962b105b8106ae2125",
+          "bytes": 44316
+        }
+      ],
+      "missingResources": [],
+      "nativeDefinition": null,
+      "mapTemplate": "AVWCR343.def 011111111111111111111111111111111111111111111111 100000000000000000000000000000000000000000000000 111111111 000000001 54 343 2 0"
+    },
+    {
+      "sourceId": 344,
+      "fields": {
+        "DoNotGenerate": 1,
+        "Flags": -2147483501,
+        "Level": 4,
+        "Spell effect": 8
+      },
+      "complete": false,
+      "nativeValidated": false,
+      "activationAllowed": false,
+      "pendingMechanics": [
+        "Spell effect8 ACID chance, DEF reduction/damage and sequencing",
+        "original no-random-generation selection exclusion"
+      ],
+      "sourceCfgSha256": "e71d3b8bfb8eb641a660822b13676c87cf0303ffccca371693dcd5a51470bfca",
+      "stats": {
+        "name": {
+          "singular": "Rust Dragonling",
+          "plural": "Rust Dragonlings"
+        },
+        "cost": {
+          "wood": 0,
+          "mercury": 0,
+          "ore": 0,
+          "sulfur": 3,
+          "crystal": 0,
+          "gems": 0,
+          "gold": 4000
+        },
+        "fightValue": 840,
+        "aiValue": 910,
+        "growth": 1,
+        "hitPoints": 75,
+        "speed": 8,
+        "attack": 8,
+        "defense": 8,
+        "damage": {
+          "min": 12,
+          "max": 12
+        },
+        "advMapAmount": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "shots": 0,
+      "casts": 0,
+      "animation": {
+        "eraId": 344,
+        "graphics": {
+          "timeBetweenFidgets": 1,
+          "animationTime": {
+            "walk": 0.77,
+            "attack": 1,
+            "idle": 10
+          }
+        },
+        "referenceName": "Baby Rust",
+        "source": "cranim.txt:380"
+      },
+      "xp": [
+        {
+          "creature": 344,
+          "code": "w",
+          "modifier": "1",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "comment": "B.Rust Dragon: Immune to Hostile L1 Spells R4",
+          "source": "crexpbon.txt",
+          "line": 1795
+        },
+        {
+          "creature": 344,
+          "code": "w",
+          "modifier": "2",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "comment": "B.Rust Dragon: Immune to Hostile L2 Spells R6",
+          "source": "crexpbon.txt",
+          "line": 1796
+        },
+        {
+          "creature": 344,
+          "code": "w",
+          "modifier": "3",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "comment": "B.Rust Dragon: Immune to Hostile L3 Spells R8",
+          "source": "crexpbon.txt",
+          "line": 1797
+        },
+        {
+          "creature": 344,
+          "code": "w",
+          "modifier": "4",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "comment": "B.Rust Dragon: Immune to Hostile L4 Spells R10",
+          "source": "crexpbon.txt",
+          "line": 1798
+        },
+        {
+          "creature": 344,
+          "code": "S",
+          "modifier": "+",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "comment": "B.Rust Dragon: Speed R4/R10",
+          "source": "crexpbon.txt",
+          "line": 1799
+        }
+      ],
+      "assets": [
+        {
+          "path": "content/Sprites/tum-era/creatures/344/CR344.def",
+          "sourceEntry": "CR344.def",
+          "sha256": "c75bbed652e84808bcd4ae3a5e9f68383adf66f20a16d2e4a0027f0b01780d82",
+          "bytes": 486309
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/344/AVWCR344.def",
+          "sourceEntry": "AVWCR344.def",
+          "sha256": "c5968f46cbc0580a21f1d474b78e5239ed7ca2c9bc0405ceed884af6ec39322f",
+          "bytes": 8159
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/344/AVWCR344.msk",
+          "sourceEntry": "AVWCR344.msk",
+          "sha256": "f9985a05c4b9268f89ff1980abb109e9335d7cfc62e93a77212e23c7c96deb45",
+          "bytes": 14
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/344/small.png",
+          "sourceEntry": "CPRSMALL.def frame346",
+          "sha256": "2809fef0e6aa487bf52d689621df89b0e1cf3660b0f8c2ba37448bc4c2123b98",
+          "bytes": 936
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/344/large.png",
+          "sourceEntry": "TWCRPORT.def frame346",
+          "sha256": "b54cbdbb82c29d353c876d5432aa2ecd979fd643316446adc51fa5fcb2f139af",
+          "bytes": 2815
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/344/S344ATTK.wav",
+          "sourceEntry": "S344ATTK",
+          "sha256": "851030b17176ba5e088e2876633da969795acd692191c90627a0d7fac53fc32d",
+          "bytes": 32980
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/344/S344DFND.wav",
+          "sourceEntry": "S344DFND",
+          "sha256": "15df50d5ee4cef38b40b44b0c270b7f7de0588b9ca6f09594e0425199cbd97cb",
+          "bytes": 32884
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/344/S344KILL.wav",
+          "sourceEntry": "S344KILL",
+          "sha256": "33d437433fe6674b01756b56d4495c84594b9b6abe2e0e962b105b8106ae2125",
+          "bytes": 44316
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/344/S344MOVE.wav",
+          "sourceEntry": "S344MOVE",
+          "sha256": "9eda028ffc391d509b91b005b1fedc06272cb02df3c10044ae1791cf4148f0bf",
+          "bytes": 25192
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/344/S344WNCE.wav",
+          "sourceEntry": "S344WNCE",
+          "sha256": "33d437433fe6674b01756b56d4495c84594b9b6abe2e0e962b105b8106ae2125",
+          "bytes": 44316
+        }
+      ],
+      "missingResources": [],
+      "nativeDefinition": null,
+      "mapTemplate": "AVWCR344.def 011111111111111111111111111111111111111111111111 100000000000000000000000000000000000000000000000 111111111 000000001 54 344 2 0"
+    },
+    {
+      "sourceId": 346,
+      "fields": {
+        "DoNotGenerate": 1,
+        "AfterMeleeSpell": 22,
+        "AfterDefendSpell": 29,
+        "AfterActionSpellMastery": 3,
+        "AfterMeleeSpell2": 22,
+        "AfterDefendSpell2": 29,
+        "Flags": -2147467109,
+        "Level": 6,
+        "Resistance effect": 4,
+        "Spell 1": 10,
+        "Spell 2": 7,
+        "Spell 3": 2,
+        "CreatureSpellPowerMultiplier": 5,
+        "CreatureSpellPowerAdder": 60,
+        "CastsSpell": 22,
+        "Fear": 1,
+        "Fearless": 1,
+        "hasFirewall": 1,
+        "Sktransformer": 254,
+        "Fire shield": 0.3
+      },
+      "complete": false,
+      "nativeValidated": false,
+      "activationAllowed": false,
+      "pendingMechanics": [
+        "MAGICIMMUNE selector4 full source semantics",
+        "active mode10/7/2 Inferno22 count*5+60",
+        "double AfterMeleeInferno22 and double AfterDefendFireShield29 mastery3 ordering",
+        "hasFirewall obstacle entry behavior",
+        "Fear and exact30% FireShield float32 behavior",
+        "XP p21/a13 current-active dynamic power and obstacle targeting"
+      ],
+      "sourceCfgSha256": "7cb4fae3d2dfad75a685b07996383ec433e0a63efcc362dfe9a8ca699d06a6c3",
+      "stats": {
+        "name": {
+          "singular": "Fire Dragon",
+          "plural": "Fire Dragons"
+        },
+        "cost": {
+          "wood": 0,
+          "mercury": 0,
+          "ore": 0,
+          "sulfur": 0,
+          "crystal": 0,
+          "gems": 0,
+          "gold": 100000
+        },
+        "fightValue": 300000,
+        "aiValue": 200000,
+        "growth": 1,
+        "hitPoints": 1500,
+        "speed": 25,
+        "attack": 100,
+        "defense": 90,
+        "damage": {
+          "min": 100,
+          "max": 120
+        },
+        "advMapAmount": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "shots": 0,
+      "casts": 10,
+      "animation": {
+        "eraId": 346,
+        "graphics": {
+          "timeBetweenFidgets": 1,
+          "animationTime": {
+            "walk": 1.5,
+            "attack": 1,
+            "idle": 10
+          }
+        },
+        "referenceName": "Fire Dragon",
+        "source": "cranim.txt:382"
+      },
+      "xp": [
+        {
+          "creature": 346,
+          "code": "H",
+          "modifier": "%",
+          "values": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            100
+          ],
+          "comment": "Fire Dragon: 10% Health Bonus per Rank",
+          "source": "crexpbon.txt",
+          "line": 1805
+        },
+        {
+          "creature": 346,
+          "code": "A",
+          "modifier": "+",
+          "values": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "comment": "Fire Dragon: Attack +2/Rank",
+          "source": "crexpbon.txt",
+          "line": 1806
+        },
+        {
+          "creature": 346,
+          "code": "D",
+          "modifier": "+",
+          "values": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "comment": "Fire Dragon: Defense +2/Rank",
+          "source": "crexpbon.txt",
+          "line": 1807
+        },
+        {
+          "creature": 346,
+          "code": "M",
+          "modifier": "+",
+          "values": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "comment": "Fire Dragon: Max. Damage +2/Rank",
+          "source": "crexpbon.txt",
+          "line": 1808
+        },
+        {
+          "creature": 346,
+          "code": "m",
+          "modifier": "+",
+          "values": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "comment": "Fire Dragon: Min. Damage +2/Rank",
+          "source": "crexpbon.txt",
+          "line": 1809
+        },
+        {
+          "creature": 346,
+          "code": "w",
+          "modifier": "5",
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "comment": "Fire Dragon: Immune to All Hostile Spells R0",
+          "source": "crexpbon.txt",
+          "line": 1810
+        },
+        {
+          "creature": 346,
+          "code": "p",
+          "modifier": "#21",
+          "values": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            100
+          ],
+          "comment": "Fire Dragon: Fireball pre-attack 10%/Rank",
+          "source": "crexpbon.txt",
+          "line": 1811
+        },
+        {
+          "creature": 346,
+          "code": "a",
+          "modifier": "#13",
+          "values": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            100
+          ],
+          "comment": "Fire Dragon: Fire Wall post-attack 10%/Rank",
+          "source": "crexpbon.txt",
+          "line": 1812
+        }
+      ],
+      "assets": [
+        {
+          "path": "content/Sprites/tum-era/creatures/346/CR346.def",
+          "sourceEntry": "CR346.def",
+          "sha256": "452e10e7054cdc6761899a7d18ae02b120fb0233ecac9b95a00ee1fea8d796da",
+          "bytes": 2774271
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/346/AVWCR346.def",
+          "sourceEntry": "AVWCR346.def",
+          "sha256": "6e8832b771b724f300de765f1e4c53206a30f55c18d7a8a9bad02a98dfeffa79",
+          "bytes": 18967
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/346/AVWCR346.msk",
+          "sourceEntry": "AVWCR346.msk",
+          "sha256": "94ba3e9f3307dc30931de13a4e164e3b091e9389a53230862fe29bd11b1bc40c",
+          "bytes": 14
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/346/small.png",
+          "sourceEntry": "CPRSMALL.def frame348",
+          "sha256": "827523b2a87afa490af84300f63cdc98e038dddfac2fbc46e8005129f201e1b6",
+          "bytes": 881
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/346/large.png",
+          "sourceEntry": "TWCRPORT.def frame348",
+          "sha256": "f4384b09b319745e34d6f08d03854080f6427720b6e33a7f6ed1bfbf5a2c1f92",
+          "bytes": 2803
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/346/S346ATTK.wav",
+          "sourceEntry": "S346ATTK",
+          "sha256": "2fd5b29fa64ea981d45db2606936e6e233fb45e3c0912056c49f40afb1db0b11",
+          "bytes": 83096
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/346/S346DFND.wav",
+          "sourceEntry": "S346DFND",
+          "sha256": "19c161e564c6ea3d41fb06b22715164bb78f1147697e8d91c12cb215fa5d3258",
+          "bytes": 47742
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/346/S346KILL.wav",
+          "sourceEntry": "S346KILL",
+          "sha256": "2e787ef58399ba217a9e33fb9779412769181201f1fb5362ea629fc1dc5e4154",
+          "bytes": 78718
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/346/S346MOVE.wav",
+          "sourceEntry": "S346MOVE",
+          "sha256": "d86a8d0437629547d9ad59b34b343fec081d9ff68c746c78a6bcb56162c6eb96",
+          "bytes": 7464
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/346/S346WNCE.wav",
+          "sourceEntry": "S346WNCE",
+          "sha256": "19c161e564c6ea3d41fb06b22715164bb78f1147697e8d91c12cb215fa5d3258",
+          "bytes": 47742
+        }
+      ],
+      "missingResources": [],
+      "nativeDefinition": null,
+      "mapTemplate": "AVWCR346.def 011111111111111111111111111111111111111111111111 100000000000000000000000000000000000000000000000 111111111 000000001 54 346 2 0"
+    },
+    {
+      "sourceId": 347,
+      "fields": {
+        "DoNotGenerate": 1,
+        "AfterMeleeSpell": 20,
+        "AfterDefendSpell": 20,
+        "AfterActionSpellMastery": 3,
+        "AfterMeleeSpell2": 16,
+        "AfterDefendSpell2": 20,
+        "Flags": -2013265765,
+        "Level": 6,
+        "Resistance effect": 4,
+        "Spell 1": 10,
+        "Spell 2": 7,
+        "Spell 3": 2,
+        "CreatureSpellPowerMultiplier": 10,
+        "CreatureSpellPowerAdder": 90,
+        "CastsSpell": 16,
+        "Fear": 1,
+        "Fearless": 1,
+        "Sktransformer": 254,
+        "MovesTwice": 1
+      },
+      "complete": false,
+      "nativeValidated": false,
+      "activationAllowed": false,
+      "pendingMechanics": [
+        "source flags bit27 initial DEFENDING state and +4DC lifecycle",
+        "MAGICIMMUNE selector4 full source semantics",
+        "active mode10/7/2 IceBolt16 count*10+90",
+        "AfterMelee20 then16, AfterDefend20 twice mastery3 ordering",
+        "MovesTwice turn state and Fear",
+        "XP p16/a20 current-active dynamic power"
+      ],
+      "sourceCfgSha256": "e909b74a0d140ebfbd56272259beed1b3befaec3d574786ad6cfd7dd45d41ea8",
+      "stats": {
+        "name": {
+          "singular": "Ice Dragon",
+          "plural": "Ice Dragons"
+        },
+        "cost": {
+          "wood": 0,
+          "mercury": 0,
+          "ore": 0,
+          "sulfur": 0,
+          "crystal": 0,
+          "gems": 0,
+          "gold": 200000
+        },
+        "fightValue": 350000,
+        "aiValue": 250000,
+        "growth": 1,
+        "hitPoints": 2500,
+        "speed": 25,
+        "attack": 120,
+        "defense": 100,
+        "damage": {
+          "min": 150,
+          "max": 150
+        },
+        "advMapAmount": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "shots": 0,
+      "casts": 10,
+      "animation": {
+        "eraId": 347,
+        "graphics": {
+          "timeBetweenFidgets": 1,
+          "animationTime": {
+            "walk": 1.5,
+            "attack": 1,
+            "idle": 10
+          }
+        },
+        "referenceName": "Ice Dragon",
+        "source": "cranim.txt:383"
+      },
+      "xp": [
+        {
+          "creature": 347,
+          "code": "H",
+          "modifier": "%",
+          "values": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            100
+          ],
+          "comment": "Ice Dragon: 10% Health Bonus per Rank",
+          "source": "crexpbon.txt",
+          "line": 1813
+        },
+        {
+          "creature": 347,
+          "code": "A",
+          "modifier": "+",
+          "values": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "comment": "Ice Dragon: Attack +2/Rank",
+          "source": "crexpbon.txt",
+          "line": 1814
+        },
+        {
+          "creature": 347,
+          "code": "D",
+          "modifier": "+",
+          "values": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "comment": "Ice Dragon: Defense +2/Rank",
+          "source": "crexpbon.txt",
+          "line": 1815
+        },
+        {
+          "creature": 347,
+          "code": "M",
+          "modifier": "+",
+          "values": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "comment": "Ice Dragon: Max. Damage +2/Rank",
+          "source": "crexpbon.txt",
+          "line": 1816
+        },
+        {
+          "creature": 347,
+          "code": "m",
+          "modifier": "+",
+          "values": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "comment": "Ice Dragon: Min. Damage +2/Rank",
+          "source": "crexpbon.txt",
+          "line": 1817
+        },
+        {
+          "creature": 347,
+          "code": "w",
+          "modifier": "5",
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "comment": "Ice Dragon: Immune to All Hostile Spells R0",
+          "source": "crexpbon.txt",
+          "line": 1818
+        },
+        {
+          "creature": 347,
+          "code": "p",
+          "modifier": "#16",
+          "values": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            100
+          ],
+          "comment": "Ice Dragon: Ice Bolt pre-attack 10%/Rank",
+          "source": "crexpbon.txt",
+          "line": 1819
+        },
+        {
+          "creature": 347,
+          "code": "a",
+          "modifier": "#20",
+          "values": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            100
+          ],
+          "comment": "Ice Dragon: Frost Ring pre-attack 10%/Rank",
+          "source": "crexpbon.txt",
+          "line": 1820
+        }
+      ],
+      "assets": [
+        {
+          "path": "content/Sprites/tum-era/creatures/347/CR347.def",
+          "sourceEntry": "CR347.def",
+          "sha256": "4da3423c5c8fff8a9261d61a9887106073c5e0e075b750c3b13ae9eff0e5310b",
+          "bytes": 2774271
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/347/AVWCR347.def",
+          "sourceEntry": "AVWCR347.def",
+          "sha256": "0a1f6c5b46402535bcac06e84a2f81658da72f131528eef1ea04702fabee08b8",
+          "bytes": 18967
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/347/AVWCR347.msk",
+          "sourceEntry": "AVWCR347.msk",
+          "sha256": "94ba3e9f3307dc30931de13a4e164e3b091e9389a53230862fe29bd11b1bc40c",
+          "bytes": 14
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/347/small.png",
+          "sourceEntry": "CPRSMALL.def frame349",
+          "sha256": "08a20dcc3d683aab1e88dafa471b5455cab36d110ef9f1742abd0080d96f0d27",
+          "bytes": 913
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/347/large.png",
+          "sourceEntry": "TWCRPORT.def frame349",
+          "sha256": "05543e100b7da314ae992326adb40cc6a7a13aa4e6406b30c70a7173d6ed481e",
+          "bytes": 2975
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/347/S347ATTK.wav",
+          "sourceEntry": "S347ATTK",
+          "sha256": "2fd5b29fa64ea981d45db2606936e6e233fb45e3c0912056c49f40afb1db0b11",
+          "bytes": 83096
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/347/S347DFND.wav",
+          "sourceEntry": "S347DFND",
+          "sha256": "19c161e564c6ea3d41fb06b22715164bb78f1147697e8d91c12cb215fa5d3258",
+          "bytes": 47742
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/347/S347KILL.wav",
+          "sourceEntry": "S347KILL",
+          "sha256": "2e787ef58399ba217a9e33fb9779412769181201f1fb5362ea629fc1dc5e4154",
+          "bytes": 78718
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/347/S347MOVE.wav",
+          "sourceEntry": "S347MOVE",
+          "sha256": "d86a8d0437629547d9ad59b34b343fec081d9ff68c746c78a6bcb56162c6eb96",
+          "bytes": 7464
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/347/S347WNCE.wav",
+          "sourceEntry": "S347WNCE",
+          "sha256": "19c161e564c6ea3d41fb06b22715164bb78f1147697e8d91c12cb215fa5d3258",
+          "bytes": 47742
+        }
+      ],
+      "missingResources": [],
+      "nativeDefinition": null,
+      "mapTemplate": "AVWCR347.def 011111111111111111111111111111111111111111111111 100000000000000000000000000000000000000000000000 111111111 000000001 54 347 2 0",
+      "sourceDefendingEvidence": {
+        "header": "Amethyst2/amethyst/H3CombatMonster.hpp H3CreatureFlags DEFENDING bit27",
+        "consumer": "h3era.exe446B8A..446BAD: subtract stored defense delta+4DC and clearbit on first activation",
+        "remaining": "Constructor/round lifecycle and early interactions must be proved before ignoring or porting initial state."
+      }
+    }
+  ],
+  "nativeDefinitions": [],
+  "pending": "Each complete CFG+XP+global hook contract and native controls required before any importer opt-in or production registration.",
+  "source339AdditionalEvidence": {
+    "isHellHydra": "Amethyst tables.cpp3370/13703 hook756D06; original756D0F..43 mutates ATT_DISRUPT RNGupper4411CE to19 aroundoriginalcall, restores100. No area attack is introduced.",
+    "independentStatuses": "Aging/Poison/Paralyze are independent postaction46453E /postnormal-retaliation441B62 hooks.339 powers100/100/100; ParalyzeChance3 is strict3>Randint(0,100), then nativeCastAcceptance; not dormant solely because SpellEffect8.",
+    "active": false,
+    "nativeValidated": false
+  }
+}

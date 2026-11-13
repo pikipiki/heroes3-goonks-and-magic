@@ -241,6 +241,11 @@ void ApplyClientNetPackVisitor::visitChangeStackCount(ChangeStackCount & pack)
 	dispatchGarrisonChange(cl, pack.army, ObjectInstanceID());
 }
 
+void ApplyClientNetPackVisitor::visitResetStackExperience(ResetStackExperience & pack)
+{
+    dispatchGarrisonChange(cl, pack.army, ObjectInstanceID());
+}
+
 void ApplyClientNetPackVisitor::visitSetStackType(SetStackType & pack)
 {
 	dispatchGarrisonChange(cl, pack.army, ObjectInstanceID());

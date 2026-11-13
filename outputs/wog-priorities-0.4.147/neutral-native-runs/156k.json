@@ -1,0 +1,3556 @@
+{
+  "passed": true,
+  "report": {
+    "neutralStage": {
+      "definitionSha256": "0b3b0cea76012e6b68cf455bf419b0dc6d09affd599ed7fc6780f75b512cac25",
+      "sourceIds": [
+        286,
+        294
+      ],
+      "creatures": [
+        "config/source-neutral-dependencies.json"
+      ],
+      "records": [
+        {
+          "eraId": 286,
+          "nativeId": "tum-era:eraCreature286",
+          "obligations": [],
+          "dependencies": [],
+          "sourceCfg": "Data/Creatures/286.cfg",
+          "sourceCfgSha256": "b871ef9e2358bf65dc92097953f861e3bbe0d0786ce39bd33af81e414b8f1497",
+          "assets": [
+            {
+              "path": "content/Sprites/tum-era/creatures/286/CR286.def",
+              "sourceEntry": "CR286.def",
+              "sha256": "752c4351d4f38b46c6ad8ee3c36da81a74b3e96844a7d82e0c47519a6112226a",
+              "bytes": 475835
+            },
+            {
+              "path": "content/Sprites/tum-era/creatures/286/AVWCR286.def",
+              "sourceEntry": "AVWCR286.def",
+              "sha256": "47fd2f0fac4508658fb9dff96d6e8d754feeaf05c2b09733e3311e6c9d559066",
+              "bytes": 33883
+            },
+            {
+              "path": "content/Sprites/tum-era/creatures/286/AVWCR286.msk",
+              "sourceEntry": "AVWCR286.msk",
+              "sha256": "544359ffcab49c1bea8f02e607bf52607c5a6890aa7bd7dc624fb6d3b0f3548a",
+              "bytes": 14
+            },
+            {
+              "path": "content/Sprites/tum-era/creatures/286/small.png",
+              "sourceEntry": "CPRSMALL.def frame288",
+              "sha256": "ec6661a131b5e59e6acc1fcd52bbdede6fbf6f8fea912d8752835a39c326862c",
+              "bytes": 1013
+            },
+            {
+              "path": "content/Sprites/tum-era/creatures/286/large.png",
+              "sourceEntry": "TWCRPORT.def frame288",
+              "sha256": "b35b094f0cb447da3c2ee6ba9ca8f45d8d610e9aa71822d91a652f0858ab8a7d",
+              "bytes": 3644
+            },
+            {
+              "path": "content/Sounds/tum-era/creatures/286/S286ATTK.wav",
+              "sourceEntry": "S286ATTK",
+              "sha256": "b0ca14e0d6b7636bad59882418300981caf87493694df8f3b0cf2e1ee0764e30",
+              "bytes": 33119
+            },
+            {
+              "path": "content/Sounds/tum-era/creatures/286/S286DFND.wav",
+              "sourceEntry": "S286DFND",
+              "sha256": "7cc32f65b1fd8a7727c00a7e929ae63267defeed9da521bcee3a7969f325f7af",
+              "bytes": 19683
+            },
+            {
+              "path": "content/Sounds/tum-era/creatures/286/S286KILL.wav",
+              "sourceEntry": "S286KILL",
+              "sha256": "472806bcf2ff4343540d5b89e0574aa27fd63a48a4ac25e10a94da7a60fd7a9e",
+              "bytes": 29100
+            },
+            {
+              "path": "content/Sounds/tum-era/creatures/286/S286MOVE.wav",
+              "sourceEntry": "S286MOVE",
+              "sha256": "9a66ba2dc04d8920ad03c72ae419b76a2f300f9d17c6380eabef933af18ae8a6",
+              "bytes": 33037
+            },
+            {
+              "path": "content/Sounds/tum-era/creatures/286/S286WNCE.wav",
+              "sourceEntry": "S286WNCE",
+              "sha256": "7bdc7da2b39e6a746704ed97b6760bd4a681bbebaa74dc41e32c4cbaa793dfa5",
+              "bytes": 21979
+            }
+          ],
+          "cfgMappings": [
+            {
+              "source": "Data/Creatures/286.cfg",
+              "line": 1,
+              "key": "Flags",
+              "rawValue": "394242",
+              "operation": "source-native-biology:UNDEAD",
+              "evidence": {
+                "file": "Amethyst2/amethyst/tables.cpp",
+                "lines": [
+                  1624,
+                  1626
+                ],
+                "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+                "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+                "sourceBinaryParity": "unverified"
+              }
+            },
+            {
+              "source": "Data/Creatures/286.cfg",
+              "line": 1,
+              "key": "Flags",
+              "rawValue": "394242",
+              "operation": "native flags with scoped biological correspondence",
+              "evidence": {
+                "file": "Amethyst2/amethyst/tables.cpp",
+                "lines": [
+                  1624,
+                  1626
+                ],
+                "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+                "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+                "sourceBinaryParity": "unverified"
+              }
+            },
+            {
+              "source": "Data/Creatures/286.cfg",
+              "line": 2,
+              "key": "Level",
+              "rawValue": "5",
+              "operation": "level + 1",
+              "evidence": {
+                "file": "Amethyst2/amethyst/tables.cpp",
+                "lines": [
+                  1618,
+                  1620,
+                  1622
+                ],
+                "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+                "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+                "sourceBinaryParity": "unverified"
+              }
+            }
+          ],
+          "sourceNeutralDependency": {
+            "preAttack": {
+              "spell": 24,
+              "mastery": 3,
+              "chances": [
+                5,
+                5,
+                10,
+                15,
+                20,
+                25,
+                30,
+                35,
+                40,
+                45,
+                50
+              ],
+              "power": "Current active stack; unconditional5A0145 override"
+            },
+            "afterAttack": {
+              "spell": 71,
+              "mastery": 1,
+              "chances": [
+                5,
+                5,
+                10,
+                15,
+                20,
+                25,
+                30,
+                35,
+                40,
+                45,
+                50
+              ],
+              "power": 3
+            },
+            "periodicSummon": {
+              "creature": 60,
+              "rankPercents": [
+                5,
+                10,
+                20,
+                30,
+                40,
+                50,
+                60,
+                70,
+                80,
+                90,
+                100
+              ],
+              "firstRound": 2,
+              "interval": 4,
+              "slot": -1,
+              "summoned": false,
+              "evidence": "71DFE0..71E006 roundIndex%4==1;714D22 flags0/slot−1;479B31..479BF2 sixtharg is graphical redraw only"
+            }
+          },
+          "xpMapped": [
+            {
+              "source": "crexpbon.txt",
+              "line": 1471,
+              "code": "p",
+              "modifier": "#24",
+              "rankZero": 5,
+              "mode": "numeric",
+              "values": [
+                5,
+                5,
+                10,
+                15,
+                20,
+                25,
+                30,
+                35,
+                40,
+                45,
+                50
+              ],
+              "bonus": {
+                "type": "SPELL_BEFORE_ATTACK",
+                "subtype": "core:deathRipple",
+                "valueType": "ADDITIVE_VALUE",
+                "addInfo": 3
+              },
+              "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+            },
+            {
+              "source": "crexpbon.txt",
+              "line": 1472,
+              "code": "w",
+              "modifier": "1",
+              "rankZero": false,
+              "mode": "toggle",
+              "values": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true
+              ],
+              "bonus": {
+                "type": "ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY",
+                "val": 1,
+                "valueType": "INDEPENDENT_MAX"
+              },
+              "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+            },
+            {
+              "source": "crexpbon.txt",
+              "line": 1473,
+              "code": "w",
+              "modifier": "2",
+              "rankZero": false,
+              "mode": "toggle",
+              "values": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                true
+              ],
+              "bonus": {
+                "type": "ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY",
+                "val": 2,
+                "valueType": "INDEPENDENT_MAX"
+              },
+              "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+            },
+            {
+              "source": "crexpbon.txt",
+              "line": 1474,
+              "code": "k",
+              "modifier": "#71",
+              "mode": "runtime",
+              "values": [
+                5,
+                5,
+                10,
+                15,
+                20,
+                25,
+                30,
+                35,
+                40,
+                45,
+                50
+              ],
+              "runtimeBinding": {
+                "contract": "source-neutral-transform-dependencies-v1",
+                "creatureId": 286,
+                "operation": "demilichPoison",
+                "spell": "core:poison",
+                "rankChances": [
+                  5,
+                  5,
+                  10,
+                  15,
+                  20,
+                  25,
+                  30,
+                  35,
+                  40,
+                  45,
+                  50
+                ],
+                "mastery": 1,
+                "power": 3,
+                "sourceReference": "71D939..71DB4C;beforeFireShield"
+              }
+            },
+            {
+              "source": "crexpbon.txt",
+              "line": 1475,
+              "code": "U",
+              "modifier": "#60",
+              "mode": "runtime",
+              "values": [
+                5,
+                10,
+                20,
+                30,
+                40,
+                50,
+                60,
+                70,
+                80,
+                90,
+                100
+              ],
+              "runtimeBinding": {
+                "contract": "source-neutral-transform-dependencies-v1",
+                "creatureId": 286,
+                "operation": "sourcePeriodicWights",
+                "creature": "core:wight",
+                "rankPercents": [
+                  5,
+                  10,
+                  20,
+                  30,
+                  40,
+                  50,
+                  60,
+                  70,
+                  80,
+                  90,
+                  100
+                ],
+                "sourceReference": "71DF45..71E3F5;U71DFE7..71E006",
+                "timing": "round2+4n;currentcount;unowned;notSUMMONED;3orderedforwardhexes;20sourceSlots"
+              }
+            },
+            {
+              "source": "crexpbon.txt",
+              "line": 1476,
+              "code": "H",
+              "modifier": "%",
+              "rankZero": 0,
+              "mode": "numeric",
+              "values": [
+                0,
+                7,
+                14,
+                21,
+                28,
+                35,
+                42,
+                49,
+                56,
+                63,
+                70
+              ],
+              "bonus": {
+                "type": "STACK_HEALTH",
+                "valueType": "PERCENT_TO_BASE"
+              },
+              "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+            },
+            {
+              "source": "crexpbon.txt",
+              "line": 1477,
+              "code": "A",
+              "modifier": "+",
+              "rankZero": 0,
+              "mode": "numeric",
+              "values": [
+                0,
+                0,
+                1,
+                1,
+                2,
+                2,
+                2,
+                3,
+                4,
+                4,
+                5
+              ],
+              "bonus": {
+                "type": "PRIMARY_SKILL",
+                "subtype": "primarySkill.attack",
+                "valueType": "ADDITIVE_VALUE"
+              },
+              "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+            },
+            {
+              "source": "crexpbon.txt",
+              "line": 1478,
+              "code": "D",
+              "modifier": "+",
+              "rankZero": 0,
+              "mode": "numeric",
+              "values": [
+                0,
+                1,
+                1,
+                1,
+                1,
+                1,
+                2,
+                2,
+                3,
+                4,
+                4
+              ],
+              "bonus": {
+                "type": "PRIMARY_SKILL",
+                "subtype": "primarySkill.defence",
+                "valueType": "ADDITIVE_VALUE"
+              },
+              "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+            },
+            {
+              "source": "crexpbon.txt",
+              "line": 1479,
+              "code": "M",
+              "modifier": "+",
+              "rankZero": 0,
+              "mode": "numeric",
+              "values": [
+                0,
+                0,
+                0,
+                1,
+                1,
+                2,
+                2,
+                2,
+                3,
+                3,
+                3
+              ],
+              "bonus": {
+                "type": "CREATURE_DAMAGE",
+                "subtype": "creatureDamageMax",
+                "valueType": "ADDITIVE_VALUE"
+              },
+              "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+            },
+            {
+              "source": "crexpbon.txt",
+              "line": 1480,
+              "code": "m",
+              "modifier": "+",
+              "rankZero": 0,
+              "mode": "numeric",
+              "values": [
+                0,
+                0,
+                0,
+                1,
+                1,
+                2,
+                2,
+                3,
+                3,
+                3,
+                3
+              ],
+              "bonus": {
+                "type": "CREATURE_DAMAGE",
+                "subtype": "creatureDamageMin",
+                "valueType": "ADDITIVE_VALUE"
+              },
+              "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+            },
+            {
+              "source": "crexpbon.txt",
+              "line": 1481,
+              "code": "S",
+              "modifier": "+",
+              "rankZero": 0,
+              "mode": "numeric",
+              "values": [
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "bonus": {
+                "type": "STACKS_SPEED",
+                "valueType": "ADDITIVE_VALUE"
+              },
+              "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+            }
+          ],
+          "requiredRuntimeBindings": [
+            {
+              "source": "crexpbon.txt",
+              "line": 1474,
+              "contract": "source-neutral-transform-dependencies-v1",
+              "creatureId": 286,
+              "operation": "demilichPoison",
+              "spell": "core:poison",
+              "rankChances": [
+                5,
+                5,
+                10,
+                15,
+                20,
+                25,
+                30,
+                35,
+                40,
+                45,
+                50
+              ],
+              "mastery": 1,
+              "power": 3,
+              "sourceReference": "71D939..71DB4C;beforeFireShield"
+            },
+            {
+              "source": "crexpbon.txt",
+              "line": 1475,
+              "contract": "source-neutral-transform-dependencies-v1",
+              "creatureId": 286,
+              "operation": "sourcePeriodicWights",
+              "creature": "core:wight",
+              "rankPercents": [
+                5,
+                10,
+                20,
+                30,
+                40,
+                50,
+                60,
+                70,
+                80,
+                90,
+                100
+              ],
+              "sourceReference": "71DF45..71E3F5;U71DFE7..71E006",
+              "timing": "round2+4n;currentcount;unowned;notSUMMONED;3orderedforwardhexes;20sourceSlots"
+            }
+          ],
+          "experienceProfile": {
+            "experienceMultiplier": 1,
+            "upgradeMultiplier": 0.75,
+            "fullRank10": 105000,
+            "battlePercent": 25,
+            "rank11Extra": 21000
+          },
+          "experienceFinalization": {
+            "contract": "tum35-archer-final-experience-v1",
+            "sourceFightValue": 1882,
+            "bloodFightValue": 4987,
+            "usesNativeLevel": false
+          },
+          "sourceDefaults": {
+            "levelZeroBased": 5,
+            "town": -1,
+            "initialFlags": 394242,
+            "defaultProof": "amethyst2_4.dll100049C0..10004A90;core.cppCreateNewTable"
+          },
+          "sourceOwnHealthConverted": 1,
+          "sourceExperienceDefaults": {
+            "contract": "source-default-experience-new-creature-v1",
+            "nativeDefaultCarrier": "creature-json",
+            "rows": [],
+            "replacedByOwn": [
+              {
+                "source": "crexpbon.txt",
+                "line": 2,
+                "sourceCreature": -8,
+                "code": "H",
+                "modifier": "%",
+                "values": [
+                  0,
+                  5,
+                  10,
+                  15,
+                  20,
+                  25,
+                  30,
+                  35,
+                  40,
+                  45,
+                  50
+                ]
+              },
+              {
+                "source": "crexpbon.txt",
+                "line": 23,
+                "sourceCreature": -6,
+                "code": "A",
+                "modifier": "+",
+                "values": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9
+                ]
+              },
+              {
+                "source": "crexpbon.txt",
+                "line": 24,
+                "sourceCreature": -6,
+                "code": "D",
+                "modifier": "+",
+                "values": [
+                  0,
+                  1,
+                  2,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9
+                ]
+              },
+              {
+                "source": "crexpbon.txt",
+                "line": 25,
+                "sourceCreature": -6,
+                "code": "M",
+                "modifier": "+",
+                "values": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  8,
+                  9
+                ]
+              },
+              {
+                "source": "crexpbon.txt",
+                "line": 26,
+                "sourceCreature": -6,
+                "code": "m",
+                "modifier": "+",
+                "values": [
+                  0,
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  5,
+                  6,
+                  7,
+                  8
+                ]
+              }
+            ]
+          },
+          "sourceSkeletonTarget": {
+            "target": "core:skeleton",
+            "living": false
+          },
+          "mapTemplate": {
+            "animation": "tum-era/creatures/286/AVWCR286.def",
+            "mask": [
+              "VV",
+              "VA"
+            ],
+            "visitableFrom": [
+              "+++",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "dirt"
+            ],
+            "zIndex": 0
+          },
+          "mapTemplateScope": "Original mask/animation/all-sided access; native monster terrain workaround and RMG placement require independent controls"
+        },
+        {
+          "eraId": 294,
+          "nativeId": "tum-era:eraCreature294",
+          "obligations": [],
+          "dependencies": [],
+          "sourceCfg": "Data/Creatures/294.cfg",
+          "sourceCfgSha256": "5ea0091186307f0dcf71697860d0c6af6ff05840b100f06f7290186950503f11",
+          "assets": [
+            {
+              "path": "content/Sprites/tum-era/creatures/294/CR294.def",
+              "sourceEntry": "CR294.def",
+              "sha256": "c9d58accae3fb6493831880a132d18c686f7605e998aa07971fdcff074c50cdd",
+              "bytes": 391325
+            },
+            {
+              "path": "content/Sprites/tum-era/creatures/294/AVWCR294.def",
+              "sourceEntry": "AVWCR294.def",
+              "sha256": "0fc17b81f5230cfb9550b381f56125345bb2986afc75c6d07b860ea181a73820",
+              "bytes": 12749
+            },
+            {
+              "path": "content/Sprites/tum-era/creatures/294/AVWCR294.msk",
+              "sourceEntry": "AVWCR294.msk",
+              "sha256": "94ba3e9f3307dc30931de13a4e164e3b091e9389a53230862fe29bd11b1bc40c",
+              "bytes": 14
+            },
+            {
+              "path": "content/Sprites/tum-era/creatures/294/small.png",
+              "sourceEntry": "CPRSMALL.def frame296",
+              "sha256": "1b808bea22d318e44a9e692edea19ac36b5669fe024217e60304068736cd0abd",
+              "bytes": 872
+            },
+            {
+              "path": "content/Sprites/tum-era/creatures/294/large.png",
+              "sourceEntry": "TWCRPORT.def frame296",
+              "sha256": "29ed810c74f3117a84f5ff96c0797ee33cc40f8541e081df71fd283d4de7e1bd",
+              "bytes": 2988
+            },
+            {
+              "path": "content/Sounds/tum-era/creatures/294/S294ATTK.wav",
+              "sourceEntry": "S294ATTK",
+              "sha256": "fe1896774c2c359d72a3d05a006f87b976c45c37fcc8ac1fe771b889d2b1d99a",
+              "bytes": 82696
+            },
+            {
+              "path": "content/Sounds/tum-era/creatures/294/S294DFND.wav",
+              "sourceEntry": "S294DFND",
+              "sha256": "e7a7b02262ada128b40b6e6ff7877c6be7c19709f0b4d4cdd6276b34974e4e03",
+              "bytes": 19456
+            },
+            {
+              "path": "content/Sounds/tum-era/creatures/294/S294KILL.wav",
+              "sourceEntry": "S294KILL",
+              "sha256": "a8d37ca1c5e0c215babeed450f55297298417383fd2777e77b617dafa5116eff",
+              "bytes": 29000
+            },
+            {
+              "path": "content/Sounds/tum-era/creatures/294/S294MOVE.wav",
+              "sourceEntry": "S294MOVE",
+              "sha256": "37b3dad77d2a7fac2388fc9e78a423ad69bcbcaba507ff9822dff776c7117b03",
+              "bytes": 102064
+            },
+            {
+              "path": "content/Sounds/tum-era/creatures/294/S294WNCE.wav",
+              "sourceEntry": "S294WNCE",
+              "sha256": "33d437433fe6674b01756b56d4495c84594b9b6abe2e0e962b105b8106ae2125",
+              "bytes": 44316
+            }
+          ],
+          "cfgMappings": [
+            {
+              "source": "Data/Creatures/294.cfg",
+              "line": 1,
+              "key": "Flags",
+              "rawValue": "16403",
+              "operation": "source-native-biology:LIVING",
+              "evidence": {
+                "file": "Amethyst2/amethyst/tables.cpp",
+                "lines": [
+                  1624,
+                  1626
+                ],
+                "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+                "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+                "sourceBinaryParity": "unverified"
+              }
+            },
+            {
+              "source": "Data/Creatures/294.cfg",
+              "line": 1,
+              "key": "Flags",
+              "rawValue": "16403",
+              "operation": "native flags with scoped biological correspondence",
+              "evidence": {
+                "file": "Amethyst2/amethyst/tables.cpp",
+                "lines": [
+                  1624,
+                  1626
+                ],
+                "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+                "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+                "sourceBinaryParity": "unverified"
+              }
+            },
+            {
+              "source": "Data/Creatures/294.cfg",
+              "line": 2,
+              "key": "Level",
+              "rawValue": "4",
+              "operation": "level + 1",
+              "evidence": {
+                "file": "Amethyst2/amethyst/tables.cpp",
+                "lines": [
+                  1618,
+                  1620,
+                  1622
+                ],
+                "tumRevision": "120d8a6ff8cfed7453a09e7f9ce7c63bb3fed404",
+                "sourceRevision": "99e949d9d910556e57d19914b41976d5a07da577",
+                "sourceBinaryParity": "unverified"
+              }
+            }
+          ],
+          "sourceNeutralDependency": {
+            "regeneration": {
+              "chancePercent": 100,
+              "rankHealth": [
+                0,
+                9,
+                18,
+                27,
+                36,
+                45,
+                54,
+                63,
+                72,
+                81,
+                90
+              ]
+            },
+            "afterAttack": {
+              "spell": 21,
+              "mastery": 3,
+              "chances": [
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100
+              ],
+              "power": "Current active stack; unconditional5A0145 override"
+            }
+          },
+          "xpMapped": [
+            {
+              "source": "crexpbon.txt",
+              "line": 1531,
+              "code": "r",
+              "modifier": "#100",
+              "mode": "runtime",
+              "values": [
+                0,
+                9,
+                18,
+                27,
+                36,
+                45,
+                54,
+                63,
+                72,
+                81,
+                90
+              ],
+              "runtimeBinding": {
+                "contract": "source-neutral-transform-dependencies-v1",
+                "creatureId": 294,
+                "operation": "experienceRegeneration",
+                "service": {
+                  "chancePercent": 100,
+                  "values": [
+                    0,
+                    9,
+                    18,
+                    27,
+                    36,
+                    45,
+                    54,
+                    63,
+                    72,
+                    81,
+                    90
+                  ]
+                },
+                "sourceReference": "h3era.exe71EAA6..71EBA6,75DECA..75DF13",
+                "timing": "first activation each round; draw1..100 even for certain chance"
+              }
+            },
+            {
+              "source": "crexpbon.txt",
+              "line": 1532,
+              "code": "a",
+              "modifier": "#21",
+              "rankZero": 100,
+              "mode": "numeric",
+              "values": [
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100
+              ],
+              "bonus": {
+                "type": "SPELL_AFTER_ATTACK",
+                "subtype": "core:fireball",
+                "valueType": "ADDITIVE_VALUE",
+                "addInfo": 3
+              },
+              "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+            },
+            {
+              "source": "crexpbon.txt",
+              "line": 1533,
+              "code": "S",
+              "modifier": "+",
+              "rankZero": 0,
+              "mode": "numeric",
+              "values": [
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                2,
+                2,
+                2,
+                2,
+                3
+              ],
+              "bonus": {
+                "type": "STACKS_SPEED",
+                "valueType": "ADDITIVE_VALUE"
+              },
+              "nativeReference": "VCMI lib/CCreatureHandler.cpp:975-1339"
+            }
+          ],
+          "requiredRuntimeBindings": [
+            {
+              "source": "crexpbon.txt",
+              "line": 1531,
+              "contract": "source-neutral-transform-dependencies-v1",
+              "creatureId": 294,
+              "operation": "experienceRegeneration",
+              "service": {
+                "chancePercent": 100,
+                "values": [
+                  0,
+                  9,
+                  18,
+                  27,
+                  36,
+                  45,
+                  54,
+                  63,
+                  72,
+                  81,
+                  90
+                ]
+              },
+              "sourceReference": "h3era.exe71EAA6..71EBA6,75DECA..75DF13",
+              "timing": "first activation each round; draw1..100 even for certain chance"
+            }
+          ],
+          "experienceProfile": {
+            "experienceMultiplier": 1,
+            "upgradeMultiplier": 0.75,
+            "fullRank10": 87500,
+            "battlePercent": 30,
+            "rank11Extra": 26250
+          },
+          "experienceFinalization": {
+            "contract": "tum35-archer-final-experience-v1",
+            "sourceFightValue": 1181,
+            "bloodFightValue": 4987,
+            "usesNativeLevel": false
+          },
+          "sourceDefaults": {
+            "levelZeroBased": 4,
+            "town": -1,
+            "initialFlags": 16403,
+            "defaultProof": "amethyst2_4.dll100049C0..10004A90;core.cppCreateNewTable"
+          },
+          "sourceOwnHealthConverted": 0,
+          "sourceExperienceDefaults": {
+            "contract": "source-default-experience-new-creature-v1",
+            "nativeDefaultCarrier": "creature-json",
+            "rows": [
+              {
+                "source": "crexpbon.txt",
+                "line": 2,
+                "sourceCreature": -8,
+                "code": "H",
+                "modifier": "%",
+                "values": [
+                  0,
+                  5,
+                  10,
+                  15,
+                  20,
+                  25,
+                  30,
+                  35,
+                  40,
+                  45,
+                  50
+                ]
+              },
+              {
+                "source": "crexpbon.txt",
+                "line": 19,
+                "sourceCreature": -5,
+                "code": "A",
+                "modifier": "+",
+                "values": [
+                  0,
+                  1,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  5,
+                  6,
+                  7,
+                  8
+                ]
+              },
+              {
+                "source": "crexpbon.txt",
+                "line": 20,
+                "sourceCreature": -5,
+                "code": "D",
+                "modifier": "+",
+                "values": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  3,
+                  4,
+                  5,
+                  6,
+                  6,
+                  7,
+                  8
+                ]
+              },
+              {
+                "source": "crexpbon.txt",
+                "line": 21,
+                "sourceCreature": -5,
+                "code": "M",
+                "modifier": "+",
+                "values": [
+                  0,
+                  1,
+                  2,
+                  2,
+                  3,
+                  4,
+                  4,
+                  5,
+                  6,
+                  7,
+                  7
+                ]
+              },
+              {
+                "source": "crexpbon.txt",
+                "line": 22,
+                "sourceCreature": -5,
+                "code": "m",
+                "modifier": "+",
+                "values": [
+                  0,
+                  0,
+                  1,
+                  2,
+                  3,
+                  3,
+                  4,
+                  5,
+                  6,
+                  6,
+                  7
+                ]
+              }
+            ],
+            "replacedByOwn": []
+          },
+          "sourceSkeletonTarget": {
+            "target": "core:skeleton",
+            "living": true
+          },
+          "mapTemplate": {
+            "animation": "tum-era/creatures/294/AVWCR294.def",
+            "mask": [
+              "VV",
+              "VA"
+            ],
+            "visitableFrom": [
+              "+++",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "dirt"
+            ],
+            "zIndex": 0
+          },
+          "mapTemplateScope": "Original mask/animation/all-sided access; native monster terrain workaround and RMG placement require independent controls"
+        }
+      ],
+      "sourcePins": {
+        "archive": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+        "sound": "1da1264707a6dd7da79490bed64798a7bd6cf7cba12581e5b93549f0c29bbc32",
+        "templates": "87c32a48ad6855fa5d14d4a32b7e2522c499844dd2bac7f21cccdb5f0383cd93",
+        "cfgSet": "00a4d31d2418fd5fb9426b0c31f7d564085760b22452dbb32e92b5a1a963c6ac",
+        "plugin": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+        "upgradeProgram": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+        "constants": "cf39435c763439482ce6a96fc7d589abd27c96779de04e719678c2ec0db82d76",
+        "archer": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+        "names": "0e392924b9fea7ec05657634668f37d828657b066ce90a78c2a1547dc0974ba0"
+      },
+      "activation": false,
+      "nativeValidationRequired": true,
+      "requiredControls": [
+        "originalStatsRank0AndRank10",
+        "demilichPreDeathRippleCurrentCount",
+        "demilichBasicPoisonChanceMin5BeforeShield",
+        "demilichSummonsRounds2And6",
+        "demilichSummonLivingCountFloatRoundAndSlotLimit",
+        "unownedWightsDoNotPersistButGiveCasualtyXp",
+        "vermilionFireballPrimaryDeathAndFriendlySplash",
+        "vermilionFireballCurrentSideHeroBonus",
+        "vermilionRank10Regeneration90ActualWound"
+      ]
+    },
+    "engineMetadata": {
+      "memoryVersion": 1,
+      "runtimeVersion": "7e3fe2fbda37b40f",
+      "wasm": "vcmiclient.866f32472e4790ed.wasm",
+      "sha256": "866f32472e4790edde9518c9fbf57cac1ee4eaab81e79115f5e307eae26d6113",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216
+    },
+    "demilichPeriodic": {
+      "rounds": [
+        {
+          "round": 1,
+          "units": []
+        },
+        {
+          "round": 2,
+          "units": [
+            {
+              "aiValue": 252,
+              "armySlot": -3,
+              "attack": 7,
+              "canMeleeAt": true,
+              "canShootAt": false,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                200,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 18,
+              "damageMax": 5,
+              "damageMin": 3,
+              "defense": 7,
+              "description": "",
+              "enemy": false,
+              "eraSlot": 2,
+              "fightValue": 231,
+              "growth": 7,
+              "health": 18,
+              "icon": "",
+              "id": 60,
+              "key": "core:wight",
+              "luck": 0,
+              "magicResistance": 0,
+              "maximumHealth": 18,
+              "morale": 0,
+              "name": "Wight",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": false,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": true
+              },
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "shooter": false,
+              "shots": 0,
+              "speed": 5,
+              "stackId": 3,
+              "x": 124,
+              "y": 322
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "units": [
+            {
+              "aiValue": 252,
+              "armySlot": -3,
+              "attack": 7,
+              "canMeleeAt": true,
+              "canShootAt": false,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                200,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 18,
+              "damageMax": 5,
+              "damageMin": 3,
+              "defense": 8,
+              "description": "",
+              "enemy": false,
+              "eraSlot": 2,
+              "fightValue": 231,
+              "growth": 7,
+              "health": 18,
+              "icon": "",
+              "id": 60,
+              "key": "core:wight",
+              "luck": 0,
+              "magicResistance": 0,
+              "maximumHealth": 18,
+              "morale": 0,
+              "name": "Wight",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": false,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": true
+              },
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "shooter": false,
+              "shots": 0,
+              "speed": 5,
+              "stackId": 3,
+              "x": 124,
+              "y": 322
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "units": [
+            {
+              "aiValue": 252,
+              "armySlot": -3,
+              "attack": 7,
+              "canMeleeAt": true,
+              "canShootAt": false,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                200,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 18,
+              "damageMax": 5,
+              "damageMin": 3,
+              "defense": 8,
+              "description": "",
+              "enemy": false,
+              "eraSlot": 2,
+              "fightValue": 231,
+              "growth": 7,
+              "health": 18,
+              "icon": "",
+              "id": 60,
+              "key": "core:wight",
+              "luck": 0,
+              "magicResistance": 0,
+              "maximumHealth": 18,
+              "morale": 0,
+              "name": "Wight",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": false,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": true
+              },
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "shooter": false,
+              "shots": 0,
+              "speed": 5,
+              "stackId": 3,
+              "x": 124,
+              "y": 322
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "units": [
+            {
+              "aiValue": 252,
+              "armySlot": -3,
+              "attack": 7,
+              "canMeleeAt": true,
+              "canShootAt": false,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                200,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 18,
+              "damageMax": 5,
+              "damageMin": 3,
+              "defense": 8,
+              "description": "",
+              "enemy": false,
+              "eraSlot": 2,
+              "fightValue": 231,
+              "growth": 7,
+              "health": 18,
+              "icon": "",
+              "id": 60,
+              "key": "core:wight",
+              "luck": 0,
+              "magicResistance": 0,
+              "maximumHealth": 18,
+              "morale": 0,
+              "name": "Wight",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": false,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": true
+              },
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "shooter": false,
+              "shots": 0,
+              "speed": 5,
+              "stackId": 3,
+              "x": 124,
+              "y": 322
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "units": [
+            {
+              "aiValue": 252,
+              "armySlot": -3,
+              "attack": 7,
+              "canMeleeAt": true,
+              "canShootAt": false,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                200,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 18,
+              "damageMax": 5,
+              "damageMin": 3,
+              "defense": 8,
+              "description": "",
+              "enemy": false,
+              "eraSlot": 2,
+              "fightValue": 231,
+              "growth": 7,
+              "health": 18,
+              "icon": "",
+              "id": 60,
+              "key": "core:wight",
+              "luck": 0,
+              "magicResistance": 0,
+              "maximumHealth": 18,
+              "morale": 0,
+              "name": "Wight",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": false,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": true
+              },
+              "occupied": [
+                87
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "shooter": false,
+              "shots": 0,
+              "speed": 5,
+              "stackId": 3,
+              "x": 124,
+              "y": 322
+            },
+            {
+              "aiValue": 252,
+              "armySlot": -3,
+              "attack": 7,
+              "canMeleeAt": true,
+              "canShootAt": false,
+              "cloned": false,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                200,
+                0
+              ],
+              "count": 1,
+              "currentHealth": 18,
+              "damageMax": 5,
+              "damageMin": 3,
+              "defense": 7,
+              "description": "",
+              "enemy": false,
+              "eraSlot": 3,
+              "fightValue": 231,
+              "growth": 7,
+              "health": 18,
+              "icon": "",
+              "id": 60,
+              "key": "core:wight",
+              "luck": 0,
+              "magicResistance": 0,
+              "maximumHealth": 18,
+              "morale": 0,
+              "name": "Wight",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": false,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": true
+              },
+              "occupied": [
+                69
+              ],
+              "remainingCasts": 0,
+              "remainingRetaliations": 1,
+              "remainingShots": 0,
+              "shooter": false,
+              "shots": 0,
+              "speed": 5,
+              "stackId": 4,
+              "x": 102,
+              "y": 280
+            }
+          ]
+        }
+      ],
+      "before": {
+        "activeStack": 0,
+        "activeUnit": {
+          "aiValue": 1396,
+          "attack": 15,
+          "canShoot": false,
+          "commander": false,
+          "controlled": true,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1000,
+            0
+          ],
+          "count": 10,
+          "damageMax": 20,
+          "damageMin": 15,
+          "defense": 11,
+          "description": "Mort-vivant volant. Peut lancer Onde mortelle avant une attaque et empoisonner après celle-ci. Invoque des Revenants au deuxième round, puis tous les quatre rounds ; leur nombre augmente avec son expérience.",
+          "fightValue": 1882,
+          "growth": 2,
+          "health": 75,
+          "icon": "tum-era/creatures/286/large",
+          "id": 285,
+          "key": "tum-era:eraCreature286",
+          "name": "Demilich",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": false,
+            "mindImmune": true,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": true
+          },
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 11
+        },
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 1396,
+                "attack": 15,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1000,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 20,
+                "damageMin": 15,
+                "defense": 11,
+                "description": "Mort-vivant volant. Peut lancer Onde mortelle avant une attaque et empoisonner après celle-ci. Invoque des Revenants au deuxième round, puis tous les quatre rounds ; leur nombre augmente avec son expérience.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 1882,
+                "growth": 2,
+                "health": 75,
+                "icon": "tum-era/creatures/286/large",
+                "id": 285,
+                "key": "tum-era:eraCreature286",
+                "name": "Demilich",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": false,
+                  "mindImmune": true,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": true
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 11
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autoCombat": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "battleCamera": {
+          "active": false,
+          "actor": {
+            "cells": [
+              {
+                "x": 168,
+                "y": 322
+              }
+            ],
+            "name": "Paladin",
+            "stackId": 2,
+            "x": 168,
+            "y": 322
+          },
+          "kind": "",
+          "label": "",
+          "sequence": 14
+        },
+        "battleCells": [
+          {
+            "actionLabel": "Move",
+            "hex": 1,
+            "kind": 0,
+            "reachable": true,
+            "x": 102,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 2,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 3,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 4,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 5,
+            "kind": 0,
+            "reachable": true,
+            "x": 278,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 6,
+            "kind": 0,
+            "reachable": true,
+            "x": 322,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 7,
+            "kind": 0,
+            "reachable": true,
+            "x": 366,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 8,
+            "kind": 0,
+            "reachable": true,
+            "x": 410,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 9,
+            "kind": 0,
+            "reachable": true,
+            "x": 454,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 10,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 11,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 12,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 13,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 14,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 15,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 18,
+            "kind": 0,
+            "reachable": true,
+            "x": 80,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 19,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 20,
+            "kind": 0,
+            "reachable": true,
+            "x": 168,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 21,
+            "kind": 0,
+            "reachable": true,
+            "x": 212,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 22,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 23,
+            "kind": 0,
+            "reachable": true,
+            "x": 300,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 24,
+            "kind": 0,
+            "reachable": true,
+            "x": 344,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 25,
+            "kind": 0,
+            "reachable": true,
+            "x": 388,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 26,
+            "kind": 0,
+            "reachable": true,
+            "x": 432,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 27,
+            "kind": 0,
+            "reachable": true,
+            "x": 476,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 28,
+            "kind": 0,
+            "reachable": false,
+            "x": 520,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 29,
+            "kind": 0,
+            "reachable": false,
+            "x": 564,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 30,
+            "kind": 0,
+            "reachable": false,
+            "x": 608,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 31,
+            "kind": 0,
+            "reachable": false,
+            "x": 652,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 32,
+            "kind": 0,
+            "reachable": false,
+            "x": 696,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 35,
+            "kind": 0,
+            "reachable": true,
+            "x": 102,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 36,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 37,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 38,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 39,
+            "kind": 0,
+            "reachable": true,
+            "x": 278,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 40,
+            "kind": 0,
+            "reachable": true,
+            "x": 322,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 41,
+            "kind": 0,
+            "reachable": true,
+            "x": 366,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 42,
+            "kind": 0,
+            "reachable": true,
+            "x": 410,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 43,
+            "kind": 0,
+            "reachable": true,
+            "x": 454,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 44,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 45,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 46,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 47,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 48,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 49,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 52,
+            "kind": 0,
+            "reachable": true,
+            "x": 80,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 53,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 54,
+            "kind": 0,
+            "reachable": true,
+            "x": 168,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 55,
+            "kind": 0,
+            "reachable": true,
+            "x": 212,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 56,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 57,
+            "kind": 0,
+            "reachable": true,
+            "x": 300,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 58,
+            "kind": 0,
+            "reachable": true,
+            "x": 344,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 59,
+            "kind": 0,
+            "reachable": true,
+            "x": 388,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 60,
+            "kind": 0,
+            "reachable": true,
+            "x": 432,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 61,
+            "kind": 0,
+            "reachable": true,
+            "x": 476,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 62,
+            "kind": 0,
+            "reachable": true,
+            "x": 520,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 63,
+            "kind": 0,
+            "reachable": false,
+            "x": 564,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 64,
+            "kind": 0,
+            "reachable": false,
+            "x": 608,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 65,
+            "kind": 0,
+            "reachable": false,
+            "x": 652,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 66,
+            "kind": 0,
+            "reachable": false,
+            "x": 696,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 69,
+            "kind": 1,
+            "reachable": false,
+            "x": 102,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 70,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 71,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 72,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 73,
+            "kind": 0,
+            "reachable": true,
+            "x": 278,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 74,
+            "kind": 0,
+            "reachable": true,
+            "x": 322,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 75,
+            "kind": 0,
+            "reachable": true,
+            "x": 366,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 76,
+            "kind": 0,
+            "reachable": true,
+            "x": 410,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 77,
+            "kind": 0,
+            "reachable": true,
+            "x": 454,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 78,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 79,
+            "kind": 0,
+            "reachable": true,
+            "x": 542,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 80,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 81,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 82,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 83,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 86,
+            "kind": 1,
+            "reachable": true,
+            "x": 80,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 87,
+            "kind": 1,
+            "reachable": false,
+            "x": 124,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 88,
+            "kind": 1,
+            "reachable": false,
+            "x": 168,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 89,
+            "kind": 0,
+            "reachable": true,
+            "x": 212,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 90,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 91,
+            "kind": 2,
+            "reachable": false,
+            "x": 300,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 92,
+            "kind": 2,
+            "reachable": false,
+            "x": 344,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 93,
+            "kind": 2,
+            "reachable": false,
+            "x": 388,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 94,
+            "kind": 2,
+            "reachable": false,
+            "x": 432,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 95,
+            "kind": 0,
+            "reachable": true,
+            "x": 476,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 96,
+            "kind": 0,
+            "reachable": true,
+            "x": 520,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 97,
+            "kind": 0,
+            "reachable": true,
+            "x": 564,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 98,
+            "kind": 0,
+            "reachable": false,
+            "x": 608,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 99,
+            "kind": 0,
+            "reachable": false,
+            "x": 652,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 100,
+            "kind": 1,
+            "reachable": false,
+            "x": 696,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 103,
+            "kind": 0,
+            "reachable": true,
+            "x": 102,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 104,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 105,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 106,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 107,
+            "kind": 0,
+            "reachable": true,
+            "x": 278,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 108,
+            "kind": 2,
+            "reachable": false,
+            "x": 322,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 109,
+            "kind": 2,
+            "reachable": false,
+            "x": 366,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 110,
+            "kind": 2,
+            "reachable": false,
+            "x": 410,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 111,
+            "kind": 2,
+            "reachable": false,
+            "x": 454,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 112,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 113,
+            "kind": 0,
+            "reachable": true,
+            "x": 542,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 114,
+            "kind": 2,
+            "reachable": false,
+            "x": 586,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 115,
+            "kind": 2,
+            "reachable": false,
+            "x": 630,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 116,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 117,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 120,
+            "kind": 0,
+            "reachable": true,
+            "x": 80,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 121,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 122,
+            "kind": 0,
+            "reachable": true,
+            "x": 168,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 123,
+            "kind": 0,
+            "reachable": true,
+            "x": 212,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 124,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 125,
+            "kind": 0,
+            "reachable": true,
+            "x": 300,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 126,
+            "kind": 0,
+            "reachable": true,
+            "x": 344,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 127,
+            "kind": 0,
+            "reachable": true,
+            "x": 388,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 128,
+            "kind": 0,
+            "reachable": true,
+            "x": 432,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 129,
+            "kind": 0,
+            "reachable": true,
+            "x": 476,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 130,
+            "kind": 0,
+            "reachable": true,
+            "x": 520,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 131,
+            "kind": 0,
+            "reachable": false,
+            "x": 564,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 132,
+            "kind": 0,
+            "reachable": false,
+            "x": 608,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 133,
+            "kind": 0,
+            "reachable": false,
+            "x": 652,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 134,
+            "kind": 0,
+            "reachable": false,
+            "x": 696,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 137,
+            "kind": 0,
+            "reachable": true,
+            "x": 102,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 138,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 139,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 140,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 141,
+            "kind": 2,
+            "reachable": false,
+            "x": 278,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 142,
+            "kind": 2,
+            "reachable": false,
+            "x": 322,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 143,
+            "kind": 0,
+            "reachable": true,
+            "x": 366,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 144,
+            "kind": 0,
+            "reachable": true,
+            "x": 410,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 145,
+            "kind": 0,
+            "reachable": true,
+            "x": 454,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 146,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 147,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 148,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 149,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 150,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 151,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 154,
+            "kind": 0,
+            "reachable": true,
+            "x": 80,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 155,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 156,
+            "kind": 0,
+            "reachable": true,
+            "x": 168,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 157,
+            "kind": 0,
+            "reachable": true,
+            "x": 212,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 158,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 159,
+            "kind": 0,
+            "reachable": true,
+            "x": 300,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 160,
+            "kind": 0,
+            "reachable": true,
+            "x": 344,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 161,
+            "kind": 0,
+            "reachable": true,
+            "x": 388,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 162,
+            "kind": 0,
+            "reachable": true,
+            "x": 432,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 163,
+            "kind": 0,
+            "reachable": true,
+            "x": 476,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 164,
+            "kind": 0,
+            "reachable": false,
+            "x": 520,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 165,
+            "kind": 0,
+            "reachable": false,
+            "x": 564,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 166,
+            "kind": 0,
+            "reachable": false,
+            "x": 608,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 167,
+            "kind": 0,
+            "reachable": false,
+            "x": 652,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 168,
+            "kind": 0,
+            "reachable": false,
+            "x": 696,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 171,
+            "kind": 0,
+            "reachable": true,
+            "x": 102,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 172,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 173,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 174,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 175,
+            "kind": 0,
+            "reachable": true,
+            "x": 278,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 176,
+            "kind": 0,
+            "reachable": true,
+            "x": 322,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 177,
+            "kind": 0,
+            "reachable": true,
+            "x": 366,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 178,
+            "kind": 0,
+            "reachable": true,
+            "x": 410,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 179,
+            "kind": 0,
+            "reachable": true,
+            "x": 454,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 180,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 181,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 182,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 183,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 184,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 185,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 532
+          }
+        ],
+        "battlePlayerAttacks": true,
+        "battleUnits": [
+          {
+            "aiValue": 56,
+            "armySlot": 0,
+            "attack": 0,
+            "canMeleeAt": false,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              50,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 1000,
+            "damageMax": 1,
+            "damageMin": 1,
+            "defense": 0,
+            "description": "",
+            "enemy": true,
+            "eraSlot": 0,
+            "experience": 100,
+            "experiencePerUnit": 100,
+            "experienceRank": 0,
+            "fightValue": 70,
+            "growth": 12,
+            "health": 1000,
+            "icon": "",
+            "id": 98,
+            "key": "core:gnoll",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 1000,
+            "morale": 0,
+            "name": "Gnoll",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              100
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 0,
+            "speed": 1,
+            "stackId": 1,
+            "x": 696,
+            "y": 322
+          },
+          {
+            "aiValue": 156,
+            "armySlot": -2,
+            "attack": 6,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              140,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 40,
+            "damageMax": 12,
+            "damageMin": 6,
+            "defense": 7,
+            "description": "",
+            "enemy": false,
+            "eraSlot": 1,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 1,
+            "fightValue": 130,
+            "growth": 9,
+            "health": 40,
+            "icon": "commanders/CPrL174n",
+            "id": 240,
+            "key": "wake-of-gods.commanders:paladin1",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 40,
+            "morale": 0,
+            "name": "Paladin",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              88
+            ],
+            "remainingCasts": 1,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 24,
+            "speed": 5,
+            "stackId": 2,
+            "x": 168,
+            "y": 322
+          },
+          {
+            "aiValue": 1396,
+            "armySlot": 0,
+            "attack": 15,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "count": 10,
+            "currentHealth": 75,
+            "damageMax": 20,
+            "damageMin": 15,
+            "defense": 11,
+            "description": "Mort-vivant volant. Peut lancer Onde mortelle avant une attaque et empoisonner après celle-ci. Invoque des Revenants au deuxième round, puis tous les quatre rounds ; leur nombre augmente avec son expérience.",
+            "enemy": false,
+            "eraSlot": 0,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 1882,
+            "growth": 2,
+            "health": 75,
+            "icon": "tum-era/creatures/286/large",
+            "id": 285,
+            "key": "tum-era:eraCreature286",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 75,
+            "morale": 0,
+            "name": "Demilich",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": false,
+              "mindImmune": true,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": true
+            },
+            "occupied": [
+              86
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 0,
+            "speed": 11,
+            "stackId": 0,
+            "x": 80,
+            "y": 322
+          },
+          {
+            "aiValue": 252,
+            "armySlot": -3,
+            "attack": 7,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              200,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 18,
+            "damageMax": 5,
+            "damageMin": 3,
+            "defense": 8,
+            "description": "",
+            "enemy": false,
+            "eraSlot": 2,
+            "fightValue": 231,
+            "growth": 7,
+            "health": 18,
+            "icon": "",
+            "id": 60,
+            "key": "core:wight",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 18,
+            "morale": 0,
+            "name": "Wight",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": false,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": true
+            },
+            "occupied": [
+              87
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 0,
+            "speed": 5,
+            "stackId": 3,
+            "x": 124,
+            "y": 322
+          },
+          {
+            "aiValue": 252,
+            "armySlot": -3,
+            "attack": 7,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              200,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 18,
+            "damageMax": 5,
+            "damageMin": 3,
+            "defense": 7,
+            "description": "",
+            "enemy": false,
+            "eraSlot": 3,
+            "fightValue": 231,
+            "growth": 7,
+            "health": 18,
+            "icon": "",
+            "id": 60,
+            "key": "core:wight",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 18,
+            "morale": 0,
+            "name": "Wight",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": false,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": true
+            },
+            "occupied": [
+              69
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 0,
+            "speed": 5,
+            "stackId": 4,
+            "x": 102,
+            "y": 280
+          }
+        ],
+        "canAct": true,
+        "canAutoCombat": true,
+        "canEndTactics": false,
+        "canQueueAutoCombat": false,
+        "canRetreat": true,
+        "canUseMagic": true,
+        "canWait": true,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "creatureCanCast": false,
+        "creatureSpellTargeting": false,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "focus": {
+          "x": 80,
+          "y": 322
+        },
+        "heroCanCast": true,
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 200,
+        "heroManaLimit": 200,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroSpellCastLimitReached": false,
+        "heroSpellPower": {
+          "effective": 1000,
+          "interference": false,
+          "original": 1000
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 1900,
+            "movementLimit": 2000,
+            "name": "Christian"
+          }
+        ],
+        "manualControl": true,
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "battle",
+        "movement": 1900,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          26,
+          10,
+          26,
+          10,
+          10,
+          10,
+          20000,
+          0
+        ],
+        "round": 6,
+        "sessionState": 6,
+        "soundVolume": 88,
+        "spellTargeting": false,
+        "tacticsMode": false,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true,
+        "windowToken": 116166416
+      },
+      "army": {
+        "id": 1,
+        "name": "Christian",
+        "needsLastStack": true,
+        "slots": [
+          {
+            "aiValue": 1396,
+            "attack": 15,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000,
+              0
+            ],
+            "count": 10,
+            "damageMax": 20,
+            "damageMin": 15,
+            "defense": 11,
+            "description": "Mort-vivant volant. Peut lancer Onde mortelle avant une attaque et empoisonner après celle-ci. Invoque des Revenants au deuxième round, puis tous les quatre rounds ; leur nombre augmente avec son expérience.",
+            "experience": 10000,
+            "experiencePerUnit": 1000,
+            "experienceRank": 0,
+            "fightValue": 1882,
+            "growth": 2,
+            "health": 75,
+            "icon": "tum-era/creatures/286/large",
+            "id": 285,
+            "key": "tum-era:eraCreature286",
+            "name": "Demilich",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": false,
+              "mindImmune": true,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": true
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 11
+          },
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
+  }
+}

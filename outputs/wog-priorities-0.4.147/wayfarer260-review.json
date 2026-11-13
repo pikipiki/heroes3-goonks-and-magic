@@ -1,0 +1,21 @@
+{
+  "ids": [
+    260
+  ],
+  "scriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "archiveSHA256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "sourceLines": [
+    1398,
+    1430
+  ],
+  "mechanism": "Human: overwrite only the movement-cost Pathfinding input withExpert3, canonical terrain discount75. AI: once at owning turn OnEveryDay, add400 to remaining points HE:W and current daily maximum HE:G, after ordinary movement regeneration. No AI terrain bypass; no human daily400.",
+  "binaryEvidence": "wayfarer260-source.json",
+  "nativeState": "ONE_DAY ERA_SOURCE_ARTIFACT_STATE [1,260,day,initialBoatMode] on the hero prevents duplicate new-day receipt on resume. A separate post-multiplier MOVEMENT400 maximum applies only to the current initial land/sea layer; boarding/disembarking removes that maximum, keeps the day receipt and the native scaled/consumed remaining points.",
+  "scope": "Source OW:A reads the selected human hero. The native TurnInfo argument is the actual hero being calculated; ordinary mobile path requests use that selected hero, while unrelated native prediction queries do not borrow another hero equipment.",
+  "pending": [],
+  "activationReady": true,
+  "nativeEvidence": "native-wayfarer260.json",
+  "verificationLimits": [
+    "The AI day receipt and current-layer maximum were observed in a real native save as two encoded [1,260,day,layer] vectors. A fresh-context human save/load verifies the ordinary movement/equipment pipeline; the AI receipt itself was not directly replayed after load."
+  ]
+}

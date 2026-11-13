@@ -1,0 +1,1259 @@
+{
+  "core:monk": {
+    "abilities": {
+      "sourceExperienceMagicReductionRank0": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 8
+        },
+        "val": 0
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 8
+          }
+        },
+        "values": [
+          3,
+          6,
+          9,
+          12,
+          15,
+          21,
+          24,
+          27,
+          30,
+          33
+        ]
+      }
+    ]
+  },
+  "core:zealot": {
+    "abilities": {
+      "sourceExperienceMagicReductionRank0": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 9
+        },
+        "val": 0
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 9
+          }
+        },
+        "values": [
+          3,
+          6,
+          9,
+          12,
+          15,
+          21,
+          24,
+          27,
+          30,
+          33
+        ]
+      }
+    ]
+  },
+  "core:ironGolem": {
+    "abilities": {
+      "magicResistance": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "val": 50,
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 32
+        }
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 32
+          }
+        },
+        "values": [
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          32,
+          36,
+          40
+        ]
+      }
+    ]
+  },
+  "core:stoneGolem": {
+    "abilities": {
+      "magicResistance": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "val": 75,
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 33
+        }
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 33
+          }
+        },
+        "values": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20
+        ]
+      }
+    ]
+  },
+  "core:magmaElemental": {
+    "abilities": {
+      "sourceExperienceMagicReductionRank0": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 125
+        },
+        "val": 0
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 125
+          }
+        },
+        "values": [
+          3,
+          6,
+          9,
+          12,
+          15,
+          18,
+          21,
+          24,
+          27,
+          30
+        ]
+      }
+    ]
+  },
+  "core:phoenix": {
+    "abilities": {
+      "sourceExperienceMagicReductionRank0": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 131
+        },
+        "val": 0
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 131
+          }
+        },
+        "values": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20
+        ]
+      }
+    ]
+  },
+  "core:goldGolem": {
+    "abilities": {
+      "magicResistance": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "val": 85,
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 116
+        }
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 116
+          }
+        },
+        "values": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          15,
+          15,
+          15
+        ]
+      }
+    ]
+  },
+  "core:diamondGolem": {
+    "abilities": {
+      "magicResistance": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "val": 95,
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 117
+        }
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 117
+          }
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      }
+    ]
+  },
+  "core:mummy": {
+    "abilities": {
+      "sourceExperienceMagicReductionRank0": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 141
+        },
+        "val": 0
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 141
+          }
+        },
+        "values": [
+          3,
+          6,
+          9,
+          12,
+          15,
+          18,
+          21,
+          24,
+          27,
+          30
+        ]
+      }
+    ]
+  },
+  "third-upgrades:tumSteelGolem": {
+    "abilities": {
+      "magicResistance": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "val": 80,
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 209
+        }
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 209
+          }
+        },
+        "values": [
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          13,
+          14,
+          15
+        ]
+      }
+    ]
+  },
+  "third-upgrades:tumHurricaneElemental": {
+    "abilities": {
+      "sourceExperienceMagicReductionRank0": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 247
+        },
+        "val": 0
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "SPELL_AFTER_ATTACK",
+          "subtype": "spell.thunderbolt",
+          "addInfo": [
+            1,
+            1
+          ]
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "air"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "bonus": {
+          "type": "MIND_IMMUNITY"
+        },
+        "values": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SHOTS"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 247
+          }
+        },
+        "values": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20
+        ]
+      }
+    ]
+  },
+  "third-upgrades:tumMineralElemental": {
+    "abilities": {
+      "sourceExperienceMagicReductionRank0": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 250
+        },
+        "val": 0
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 250
+          }
+        },
+        "values": [
+          3,
+          6,
+          9,
+          12,
+          15,
+          18,
+          21,
+          24,
+          27,
+          30
+        ]
+      }
+    ]
+  },
+  "tum-era:divinePhoenix": {
+    "abilities": {
+      "sourceExperienceMagicReductionRank0": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 252
+        },
+        "val": 0
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:mirth",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 1
+        },
+        "values": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:mirth",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 2
+        },
+        "values": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:mirth",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 3
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:mirth",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 6
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ADDITIONAL_RETALIATION",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CASTS",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          4
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_IMMUNITY",
+          "subtype": "core:hypnotize"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "REBIRTH",
+          "subtype": "rebirthRegular",
+          "val": 20
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 252
+          }
+        },
+        "values": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20
+        ]
+      }
+    ]
+  },
+  "tum-era:eraCreature271": {
+    "abilities": {
+      "crexp_2_rank0": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "valueType": "ADDITIVE_VALUE",
+        "val": 40,
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 271
+        }
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "BLOCKS_RETALIATION"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ADDITIONAL_RETALIATION",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 271
+          }
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          55
+        ]
+      }
+    ]
+  },
+  "tum-era:eraCreature280": {
+    "abilities": {
+      "crexp_1_rank0": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "valueType": "ADDITIVE_VALUE",
+        "val": 80,
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 280
+        }
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ADDITIONAL_RETALIATION",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ADDITIONAL_ATTACK",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "MAGIC_RESISTANCE",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 280
+          }
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          10,
+          12,
+          14,
+          15,
+          19
+        ]
+      }
+    ]
+  }
+}

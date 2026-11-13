@@ -15,10 +15,13 @@
 #include "BattleFlowProcessor.h"
 #include "../era/EraImposedSpells.h"
 #include "../era/EraRoundTwoDemons.h"
+#include "../era/EraDemilichSummonRuntime.h"
 #include "../era/EraRebirth.h"
 #include "../era/EraSourceFear.h"
 #include "../era/EraArtifactOpeningSummons.h"
 #include "../era/EraExchangeCloakRuntime.h"
+#include "../era/EraConfluxTomeRuntime.h"
+#include "../era/EraConfluxSummons.h"
 #include "../../lib/CCreatureHandler.h"
 #include "../../lib/era/EraBridgePolicies.h"
 #include "../../lib/era/EraCreatureArtifactMimic.h"
@@ -155,6 +158,8 @@ void BattleFlowProcessor::tryPlaceMoats(const CBattleInfoCallback & battle)
 
 void BattleFlowProcessor::onBattleStarted(const CBattleInfoCallback & battle)
 {
+    for(const auto side:{BattleSide::ATTACKER,BattleSide::DEFENDER})
+        if(const auto * hero=battle.battleGetFightingHero(side))appendEraConfluxTome(*gameHandler,*hero);
     setupEraOblivion(*gameHandler,battle);
     applyEraInterference(*gameHandler,battle);
     applyEraExchangeCloak(*gameHandler,battle);
@@ -272,6 +277,9 @@ void BattleFlowProcessor::castOpeningSpells(const CBattleInfoCallback & battle)
 		if (!h)
 			continue;
 
+        // Source464F8E sets CURRENT effective side before464FBA's artifact
+        // opening hook. Native opening has no active unit yet.
+        era_compat::ConfluxSideScope sourceOpeningSide(i,0);
         applyEraArtifactOpeningSummons(*gameHandler,battle,*h,i);
 
 		auto openingSpells = *h->getBonuses([](const Bonus * bonus) {
@@ -396,6 +404,8 @@ void BattleFlowProcessor::startNextRound(const CBattleInfoCallback & battle, boo
             applyEraImposedSpells(*gameHandler, battle, stack);
 			stackEnchantedTrigger(battle, stack);
             applyEraRoundTwoDemons(*gameHandler,battle,stack);
+            applyEraDemilichSummon(*gameHandler,battle,stack);
+            applyEraConfluxRoundTwo(*gameHandler,battle,stack);
         }
 	}
 }

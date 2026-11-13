@@ -306,6 +306,8 @@ void registerTypes(Serializer &s)
 	s.template registerType<CompositeUpdater>(263);
 	s.template registerType<BonusParameters>(264);
 	s.template registerType<RefreshArtifactState>(265);
+    s.template registerType<RefreshConfluxTome>(266);
+    s.template registerType<ResetStackExperience>(267);
 }
 
 VCMI_LIB_NAMESPACE_END

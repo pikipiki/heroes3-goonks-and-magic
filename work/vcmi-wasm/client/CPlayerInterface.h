@@ -195,6 +195,7 @@ public: // public interface for use by client via GAME->interface() access
 	void openTownWindow(const CGTownInstance * town); //shows townscreen
 	bool mobileHeroMoving() const;
 	void openHeroWindow(const CGHeroInstance * hero); //shows hero window with given hero
+    void sourceConfluxUIClick();
 
 	void showInfoDialog(const std::string &text, std::shared_ptr<CComponent> component);
 	void showInfoDialog(const std::string &text, const std::vector<std::shared_ptr<CComponent>> & components = std::vector<std::shared_ptr<CComponent>>(), int soundID = 0);

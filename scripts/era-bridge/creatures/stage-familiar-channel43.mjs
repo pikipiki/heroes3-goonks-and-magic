@@ -1,0 +1,33 @@
+/** Whole source43 candidate, inactive until independent native controls. */
+import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import assert from 'node:assert/strict';
+import {readEraArchive,readCreatureTable,creatureStats} from '../resources.mjs';
+import {parseCreatureExperience,compileCreatureExperience} from './crexpbon.mjs';
+import {compileCreatureProperties} from './creature-properties.mjs';
+import {createProductionObjectResolvers,readJsonc} from '../objects/production-resolvers.mjs';
+const[projectArg='.',sourceArg='../Third-Upgrade-Mod-Full',pluginsArg='../h3era-plugins',outArg='work/downloads/wog-port157/familiar43-stage']=process.argv.slice(2);
+const project=path.resolve(projectArg),source=path.resolve(sourceArg),out=path.resolve(outArg),allowed=path.join(project,'work/downloads/wog-port157')+path.sep;
+if(out===project||out.startsWith(project+path.sep)&&!out.startsWith(allowed)||fs.existsSync(out)&&fs.readdirSync(out).length)throw Error('Fresh isolated/owned review output required');
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex'),archive=readEraArchive(fs.readFileSync(path.join(source,'Data/AmeCre.pac')));assert.equal(archive.sha256,'452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c');
+const cfgBytes=fs.readFileSync(path.join(source,'Data/Creatures/43.cfg')),cfg=cfgBytes.toString('utf8');assert.equal(cfg.trim(),'Hate0255=200');
+const tables=fs.readFileSync(path.join(pluginsArg,'Amethyst2/amethyst/tables.cpp'));
+assert(/MagicChannel_Table\[43\]\s*=\s*1/.test(tables.toString('utf8')));
+const resolver=createProductionObjectResolvers({sourceRoot:source,projectRoot:project});assert.equal(resolver.resolveCreature(43),'core:familiar');
+const native=resolver.byNative.get('core:familiar'),channels=Object.values(native.abilities||{}).filter(b=>b.type==='MANA_CHANNELING');assert.equal(channels.length,1);assert.equal(channels[0].val,20,'Retain canonical20, never add a duplicate20');
+const sourceStats=creatureStats(readCreatureTable(archive.extract('Crtraits.txt').toString('latin1'))[43]);
+const baseArchive=readEraArchive(fs.readFileSync(path.join(project,'work/game-data/homm3eng/home/web_user/.local/share/vcmi/Data/H3bitmap.lod'))),baseStats=creatureStats(readCreatureTable(baseArchive.extract('CRTRAITS.TXT').toString('latin1'))[43]);
+for(const key of ['cost','fightValue','aiValue','growth','hitPoints','speed','attack','defense','damage','advMapAmount'])assert.deepEqual(native[key]??baseStats[key],sourceStats[key],'Canonical43 stat '+key);
+const profiles=readJsonc(path.join(project,'mod/tum-era/content/config/era-bridge-experience.json'));assert(profiles.creatures['core:familiar']);
+const properties=compileCreatureProperties(cfg,{freshDefinition:true,sourceCreatureId:43,nativeExperienceProfile:true,analyseOnly:true,resolveCreature:id=>resolver.resolveCreature(id)});assert.equal(properties.mappings.length,1);assert.equal(properties.mappings[0].operation,'ERA_PERSONAL_HATE_DAMAGE');assert.equal(properties.policies.length,0);assert.deepEqual(properties.definition.abilities.amethyst_Hate0255,{type:'ERA_PERSONAL_HATE_DAMAGE',val:200,subtype:'third-upgrades:tumGrandmasterGremlin'});for(const key of Object.keys(properties.definition.abilities))assert(!native.abilities?.[key],'No inherited creature ability may be overwritten');assert(!native.stackExperience?.length,'Unexpected inherited JSON XP requires explicit reconciliation');
+const rows=parseCreatureExperience(archive.extract('crexpbon.txt').toString('latin1')).filter(r=>r.creature===43);
+assert.deepEqual(rows.map(r=>[r.code,r.modifier]),[['S','+'],['f','F'],['h','#28'],['h','#29'],['s','#51']]);
+const xp=compileCreatureExperience(rows,{creatureId:43,installedRows:[],rankZero:'intrinsic',nativeExperienceProfile:true,resolveCreature:id=>resolver.resolveCreature(id),resolveSpell:id=>id===51?'core:fortune':undefined});assert.equal(xp.ok,true,JSON.stringify(xp.diagnostics));
+const legacyRelative='mod/wake-of-gods/Mods/stackExperience/Content/data/crexpbon.txt',legacy=fs.readFileSync(path.join(project,legacyRelative)),installed=parseCreatureExperience(legacy.toString('latin1')),old=installed.filter(r=>r.creature===43);
+for(const r of old){const expected=rows.find(s=>s.code===r.code&&s.modifier===r.modifier);assert(expected);assert.deepEqual(r.values,expected.values);}
+const lines=legacy.toString('latin1').match(/[^\n]*\n|[^\n]+$/g)||[],removed=new Set(old.map(r=>r.line)),candidate=Buffer.from(lines.filter((line,i)=>!removed.has(i+1)).join(''),'latin1');
+assert.deepEqual(parseCreatureExperience(candidate.toString('latin1')).map(({source,line,...r})=>r),installed.filter(r=>r.creature!==43).map(({source,line,...r})=>r));
+const write=(relative,data)=>{const p=path.join(out,relative);fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,data);};
+write('content/config/source-familiar43.candidate.json',JSON.stringify({'core:familiar':{abilities:{...properties.definition.abilities,...xp.definition.abilities},stackExperience:xp.definition.stackExperience}},null,2)+'\n');
+write('content/config/era-core-familiar-channel43.candidate.json',JSON.stringify({schemaVersion:1,creature:'core:familiar'},null,2)+'\n');
+write('legacy/crexpbon-without43.candidate.txt',candidate);
+write('review.json',JSON.stringify({activation:false,nativeValidationRequired:true,sourceId:43,nativeId:'core:familiar',sourcePins:{archive:archive.sha256,cfg:sha(cfgBytes),tables:sha(tables)},sourceStats,canonicalStatsVerified:true,canonicalBaseArchiveSha256:baseArchive.sha256,channel:{percent:20,sourceInitialization:'tables.cpp MagicChannel_Table43=1;hook5A24DC',timing:'after effects',effectiveSide:'Hypnotize-aware',maxNotSum:true,uncappedMana:true,ordinaryUnregisteredProviders:'retain previous native pre-effect behavior'},cfg:cfg.trim(),sourceRows:rows,legacyRowsRemoved:old,missingLegacyRows:rows.filter(r=>!old.some(s=>s.code===r.code&&s.modifier===r.modifier)),independentFortune:'Compiler emits absolute1/2/3, not cumulative INDEPENDENT_MAX differences1/1/1',legacyRelative,legacyBeforeSha256:sha(legacy),legacyAfterSha256:sha(candidate),requiredNativeControls:['canonical43 stats/R0/R5/R8/R10, flight/speed andFortune','personalHate255+200% andR10h28/h29+50%','two43 and43+356 max20% once','post-Hypnotize/death no stale gain','no recipientHero no gain','unregistered Goonk40% pre-route retained and max merged']},null,2)+'\n');
+console.log(JSON.stringify({out,activation:false,source43Rows:rows.length,legacy43Removed:old.length}));

@@ -1,0 +1,181 @@
+{
+  "passed": true,
+  "report": {
+    "human-other-hero": {
+      "day": 1,
+      "heroId": 3,
+      "name": "Adela",
+      "movement": 1630,
+      "limit": 1630,
+      "move": {
+        "before": 1630,
+        "after": 1280,
+        "cost": 350,
+        "hero": {
+          "hasSpellbook": true,
+          "id": 3,
+          "index": 1,
+          "mana": 200,
+          "manaLimit": 200,
+          "movement": 1280,
+          "movementLimit": 1630,
+          "name": "Adela"
+        }
+      }
+    },
+    "human-baseline": {
+      "day": 1,
+      "heroId": 1,
+      "name": "Christian",
+      "movement": 1630,
+      "limit": 1630,
+      "move": {
+        "before": 1630,
+        "after": 1280,
+        "cost": 350,
+        "hero": {
+          "hasSpellbook": true,
+          "id": 1,
+          "index": 0,
+          "mana": 200,
+          "manaLimit": 200,
+          "movement": 1280,
+          "movementLimit": 1630,
+          "name": "Christian"
+        }
+      }
+    },
+    "human-worn": {
+      "day": 1,
+      "heroId": 1,
+      "name": "Christian",
+      "movement": 1630,
+      "limit": 1630,
+      "move": {
+        "before": 1630,
+        "after": 1430,
+        "cost": 200,
+        "hero": {
+          "hasSpellbook": true,
+          "id": 1,
+          "index": 0,
+          "mana": 200,
+          "manaLimit": 200,
+          "movement": 1430,
+          "movementLimit": 1630,
+          "name": "Christian"
+        }
+      }
+    },
+    "human-backpack": {
+      "day": 1,
+      "heroId": 1,
+      "name": "Christian",
+      "movement": 1630,
+      "limit": 1630,
+      "move": {
+        "before": 1630,
+        "after": 1280,
+        "cost": 350,
+        "hero": {
+          "hasSpellbook": true,
+          "id": 1,
+          "index": 0,
+          "mana": 200,
+          "manaLimit": 200,
+          "movement": 1280,
+          "movementLimit": 1630,
+          "name": "Christian"
+        }
+      }
+    },
+    "human-basic-worn": {
+      "day": 1,
+      "heroId": 1,
+      "name": "Christian",
+      "movement": 1630,
+      "limit": 1630,
+      "move": {
+        "before": 1630,
+        "after": 1430,
+        "cost": 200,
+        "hero": {
+          "hasSpellbook": true,
+          "id": 1,
+          "index": 0,
+          "mana": 200,
+          "manaLimit": 200,
+          "movement": 1430,
+          "movementLimit": 1630,
+          "name": "Christian"
+        }
+      }
+    },
+    "human-expert-worn": {
+      "day": 1,
+      "heroId": 1,
+      "name": "Christian",
+      "movement": 1630,
+      "limit": 1630,
+      "move": {
+        "before": 1630,
+        "after": 1430,
+        "cost": 200,
+        "hero": {
+          "hasSpellbook": true,
+          "id": 1,
+          "index": 0,
+          "mana": 200,
+          "manaLimit": 200,
+          "movement": 1430,
+          "movementLimit": 1630,
+          "name": "Christian"
+        }
+      }
+    },
+    "human-road-baseline": {
+      "day": 1,
+      "heroId": 1,
+      "name": "Christian",
+      "movement": 1630,
+      "limit": 1630,
+      "move": {
+        "before": 1630,
+        "after": 1480,
+        "cost": 150,
+        "hero": {
+          "hasSpellbook": true,
+          "id": 1,
+          "index": 0,
+          "mana": 200,
+          "manaLimit": 200,
+          "movement": 1480,
+          "movementLimit": 1630,
+          "name": "Christian"
+        }
+      }
+    },
+    "human-road-worn": {
+      "day": 1,
+      "heroId": 1,
+      "name": "Christian",
+      "movement": 1630,
+      "limit": 1630,
+      "move": {
+        "before": 1630,
+        "after": 1480,
+        "cost": 150,
+        "hero": {
+          "hasSpellbook": true,
+          "id": 1,
+          "index": 0,
+          "mana": 200,
+          "manaLimit": 200,
+          "movement": 1480,
+          "movementLimit": 1630,
+          "name": "Christian"
+        }
+      }
+    }
+  }
+}

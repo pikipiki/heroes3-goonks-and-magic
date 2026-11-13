@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraConfluxTomeRuntime.h"
 #include "../../lib/bonuses/BonusParameters.h"
 #include "BattleResultProcessor.h"
 #include "../era/EraOblivionRuntime.h"
@@ -619,6 +620,9 @@ void BattleResultProcessor::battleFinalize(const BattleID & battleID, const Batt
 	resultsApplied.loser = finishingBattle->loser;
 	//BattleResultsApplied does not end the battle, it only applies most of its consequences
 	gameHandler->sendAndApply(resultsApplied);
+
+    for(const auto * hero:{attackerHero,defenderHero})
+        if(hero)appendEraConfluxTome(*gameHandler,*hero);
 
 	// Remove beaten hero
 	if(loserHero)

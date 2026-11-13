@@ -11,6 +11,7 @@
 #include "../../lib/callback/GameRandomizer.h"
 #include "../../lib/era/EraBridgePolicies.h"
 #include "EraAcidAttackRuntime.h"
+#include "../../lib/era/EraRustDragonling.h"
 #include "../../lib/era/EraPetrificationPending.h"
 #include "../../lib/networkPacks/PacksForClientBattle.h"
 #include "../../lib/spells/AbilityCaster.h"
@@ -71,7 +72,8 @@ public:
     void collect(CGameHandler & handler, const CBattleInfoCallback & battle,
         const CStack * attacker, const BattleAttack & attack, const CStack * primary = nullptr)
     {
-        if(era_compat_server::AcidAttacks::get().nightmare(attacker))
+        if(era_compat_server::AcidAttacks::get().nightmare(attacker)
+            || (attacker && era_compat::RustDragonling::get().enabled(attacker->creatureId().toCreature()->getJsonKey())))
         {
             // SpellEffect8 original44050A: primary ONLY, alive+DEF>0,
             // no proc or magic-accuracy draws. Amethyst Toxic15 bypasses it.

@@ -1,0 +1,29 @@
+{
+  "artifact259": {
+    "type": [
+      "HERO"
+    ],
+    "class": "SPECIAL",
+    "value": 30000,
+    "slot": [
+      "HEAD"
+    ],
+    "text": {
+      "name": "Helm of the Hydra Queen",
+      "description": "{Helm of the Hydra Queen}\n\nOne-hex troops without a breath attack strike every adjacent enemy. The original vampire, ghost, red-skeleton and life-draining dragon types are excluded.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/259/icon.png",
+      "map": "tum-era/artifacts/259/map.def",
+      "scenarioBonus": "tum-era/artifacts/259/scenario.png"
+    },
+    "bonuses": {},
+    "components": [
+      "tum-era:artifact175",
+      "tum-era:artifact176",
+      "tum-era:artifact177",
+      "tum-era:artifact178"
+    ]
+  }
+}

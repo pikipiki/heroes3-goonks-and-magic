@@ -85,7 +85,10 @@ if(EMSCRIPTEN)
 			PREFIX "boost"
 			URL "https://github.com/boostorg/boost/releases/download/boost-1.86.0/boost-1.86.0-cmake.zip"
 			BUILD_IN_SOURCE true
-			PATCH_COMMAND find . -name *.sh -execdir chmod u+x {} +
+			PATCH_COMMAND "${CMAKE_COMMAND}"
+				"-DBOOST_SOURCE_DIR=<SOURCE_DIR>"
+				-P "${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules/PatchBoostQvm.cmake"
+			COMMAND find . -name *.sh -execdir chmod u+x {} +
 			CONFIGURE_COMMAND ./bootstrap.sh
 			BUILD_COMMAND ./b2 install
 				--with-date_time

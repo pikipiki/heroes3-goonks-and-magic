@@ -11,6 +11,9 @@
 #include "StdInc.h"
 #include "../era/EraPrimalFaerie.h"
 #include "../era/EraBridgePolicies.h"
+#include "../era/EraExperienceMagicReductionNative.h"
+#include "../era/EraOrbChaos238Runtime.h"
+#include "../era/EraConfluxCaster.h"
 #include "../CCreatureHandler.h"
 
 #include <cctype>
@@ -375,6 +378,48 @@ void CSpell::getEffects(std::vector<Bonus> & lst, const int level, const bool cu
 int64_t CSpell::adjustRawDamage(const spells::Caster * caster, const battle::Unit * affectedCreature, int64_t rawDamage) const
 {
 	auto ret = rawDamage;
+    const auto sourceG=isMagical()?era_compat::sourceMagicReduction(affectedCreature):std::nullopt;
+    const bool orbChaos=era_compat::eraOrbChaosRawDamageActive(caster,this,affectedCreature);
+    const bool sourceCaster=dynamic_cast<const era_compat::ConfluxCaster *>(caster)!=nullptr;
+    if(affectedCreature && (sourceG || orbChaos || sourceCaster))
+    {
+        // Source5A7C26 applies caster bonuses before MR0, innate44B180,
+        // XP71E766 and finally school protections5A7EC0. This branch is only
+        // entered by explicit source metadata or an active source238 action.
+        ret=caster->getSpellBonus(this,rawDamage,affectedCreature);
+        if(const auto amplified=era_compat::applyEraOrbChaosRawDamage(caster,this,affectedCreature,ret))ret=*amplified;
+        const auto beforeInnate=ret;
+        const auto * bearer=affectedCreature->getBonusBearer();
+        if(isMagical() && era_compat::Policies::get().spellDamageInversion(
+            affectedCreature->creatureId().toCreature()->getJsonKey()))
+            ret=era_compat::PrimalFaerie::get().enabled(affectedCreature->creatureId().toCreature()->getJsonKey())
+                ?::era_bridge::sourceQuarterSpellDamage(ret):-ret;
+        if(bearer->hasBonusOfType(BonusType::MORE_DAMAGE_FROM_SPELL,BonusSubtypeID(id)))
+            ret=ret*(100+bearer->valOfBonuses(BonusType::MORE_DAMAGE_FROM_SPELL,BonusSubtypeID(id)))/100;
+        if(sourceG)
+            // g% replaces the innate correction from ORIGINALRAW, not its
+            // output. Non-source equipment ANY bonuses remain a separate path.
+            ret=::era_bridge::sourceExperienceMagicReduction(beforeInnate,*sourceG);
+        else if(isMagical())
+        {
+            const auto intrinsic=era_compat::nonSourceMagicReduction()
+                .And(Selector::sourceTypeSel(BonusSource::CREATURE_ABILITY));
+            if(bearer->hasBonus(intrinsic))ret=ret*(100-bearer->valOfBonuses(intrinsic))/100;
+        }
+        forEachSchool([&](const SpellSchool & school,bool & stop)
+        {
+            if(bearer->hasBonusOfType(BonusType::SPELL_DAMAGE_REDUCTION,BonusSubtypeID(school)))
+            {
+                ret=ret*(100-bearer->valOfBonuses(BonusType::SPELL_DAMAGE_REDUCTION,BonusSubtypeID(school)))/100;
+                stop=true;
+            }
+        });
+        const auto remainder=era_compat::nonSourceMagicReduction(false);
+        if(isMagical() && bearer->hasBonus(remainder))
+            ret=ret*(100-bearer->valOfBonuses(remainder))/100;
+        if(affectedCreature->isInvincible())ret=0;
+        return ret;
+    }
 	//affected creature-specific part
 	if(nullptr != affectedCreature)
 	{

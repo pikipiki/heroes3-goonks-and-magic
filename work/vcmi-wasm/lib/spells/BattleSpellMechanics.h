@@ -43,6 +43,7 @@ public:
 	/// Returns false if spell can not be cast at specified target
 	bool canBeCastAt(const Target & target) const override;
 	bool canBeCastAt(const Target & target, Problem & problem) const override;
+    bool sourceConfluxWallTargetAllowed(const battle::Unit * target) const;
     bool sourceFaeriePrimaryAllowed(const CStack * actor,const battle::Unit * target) const;
 
 	// TODO: ??? (what's the difference compared to applyEffects?)

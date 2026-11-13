@@ -14,6 +14,8 @@
 #include "CGameHandler.h"
 #include "era/EraImposedSpells.h"
 #include "era/EraAtmaRuntime.h"
+#include "era/EraConfluxTomeRuntime.h"
+#include "era/EraConfluxRuntime.h"
 #include "../lib/networkPacks/PacksForClientBattle.h"
 
 #include "CVCMIServer.h"
@@ -1575,8 +1577,11 @@ void CGameHandler::heroExchange(ObjectInstanceID hero1, ObjectInstanceID hero2)
 void CGameHandler::sendAndApply(CPackForClient & pack)
 {
     const auto atmaInventory=captureEraAtmaInventory(pack,gameInfo());
+    const auto confluxInventory=captureEraConfluxInventory(pack,gameInfo());
     gameServer().applyPack(pack);
     reconcileEraAtmaInventory(*this,atmaInventory);
+    reconcileEraConfluxInventory(*this,confluxInventory);
+    era_compat_server::confluxAfterWounds(*this,pack);
     // All summon/clone/guardian/transmutation creation paths eventually send
     // ADD here. RESET_STATE (healing, resurrection and damage) must not reapply.
     if(const auto * changed = dynamic_cast<const BattleUnitsChanged *>(&pack))

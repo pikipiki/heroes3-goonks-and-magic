@@ -60,7 +60,8 @@ class BattleActionProcessor : boost::noncopyable
 	void handleDeathStare(const CBattleInfoCallback &battle, bool ranged, const CStack *attacker, const CStack *defender);
 
 	void handleAfterAttackCasting(const CBattleInfoCallback & battle, bool ranged, const CStack * attacker, const CStack * defender);
-	void attackCasting(const CBattleInfoCallback & battle, bool ranged, BonusType attackMode, const battle::Unit * attacker, const CStack * defender);
+    enum class AttackCastFilter { All, SourceOnly, NativeOnly };
+	void attackCasting(const CBattleInfoCallback & battle, bool ranged, BonusType attackMode, const battle::Unit * attacker, const CStack * defender, AttackCastFilter filter=AttackCastFilter::All);
 
 	std::set<SpellID> getSpellsForAttackCasting(const TConstBonusListPtr & spells, const CStack *defender);
 

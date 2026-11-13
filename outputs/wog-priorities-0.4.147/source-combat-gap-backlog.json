@@ -5,6 +5,37 @@
   "sourceExecutableSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
   "obligations": [
     {
+      "id": "original-familiar43-mana-channel",
+      "status": "open",
+      "sourceId": 43,
+      "nativeId": "core:familiar",
+      "sourceEvidence": "Amethyst initializesMagicChannel_Table43=1;5A24DC uses post-effect alive/Hypnotize side and grants floor(cost/5) once.",
+      "nativeDifference": "New356 adapter deliberately leaves ordinary VCMI providers with their previous pre-effect timing and physical owner, pending independent43 controls.",
+      "requiredFix": "Admit43 only after canonical core data and native post-Hypnotize/death/max-not-sum controls; preserve unregistered Goonk channels."
+    },
+    {
+      "id": "original-fairie134-casting-resistance-rng",
+      "status": "closed",
+      "sourceId": 134,
+      "nativeId": "core:fairieDragon",
+      "sourceEvidence": "Same original kind1/5A0140 and normal19/5A6670 paths as258, but134 multiplier5 and original core configuration require independent controls.",
+      "nativeDifference": "Independent optional source134 policy now routes only core:fairieDragon through the verified kind1 targeting/resistance and normal19 chain path; generic Goonk casters retain their prior path.",
+      "requiredFix": "Separate whole134 source policy after verifying core stats/flags/pool/mastery/charges and8-spell native parity; do not silently generalize258.",
+      "requiredNativeControls": [
+        "134 exact currentcount multiplier5",
+        "eight source spells partial/full resistance and true serialized RNG",
+        "normal19 friendly hops and current-side hero correction",
+        "unregistered Goonk casters unchanged"
+      ],
+      "nativeValidation": {
+        "report": "native-original-faerie134.json",
+        "pairedControlGroups": 29,
+        "engineSHA256": "bc514533080af5fc20d742fd01315ff9cbf159e946c306df15a1124173b538ea",
+        "scope": "Eight original spells, partial resistance, full immunity, rejected primary without charge/RNG cost, original5*count power, friendly chain hops and hero Sorcery area-only.",
+        "protectionOrderEngineSHA256": "b93b3bc6af5e3aa1088a85775a7194c8a7f3632993fcb94d134b64222897b9de"
+      }
+    },
+    {
       "id": "source-xp-after-before-fire-shield",
       "status": "open",
       "sourceEvidence": "756DBB wrapper calls original4408E0 then71DBD8 at756E65; original caller441991 invokes4408E0 before4419A0 FireShield4406E0",

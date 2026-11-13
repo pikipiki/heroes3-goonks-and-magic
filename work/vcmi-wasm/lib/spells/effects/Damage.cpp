@@ -10,6 +10,9 @@
 #include "StdInc.h"
 #include "../../era/EraDeflectionLog.h"
 #include "../../era/EraCreatureSpellImmunityRuntime.h"
+#include "../../era/EraExperienceMagicReductionNative.h"
+#include "../../era/EraOrbChaos238Runtime.h"
+#include "../../era/EraConfluxCaster.h"
 
 #include "Damage.h"
 #include "Registry.h"
@@ -251,7 +254,13 @@ bool Damage::isReceptive(const Mechanics * m, const battle::Unit * unit) const
 	if(!UnitEffect::isReceptive(m, unit))
 		return false;
 
-	bool isImmune = m->getSpell()->isMagical() && (unit->getBonusBearer()->valOfBonuses(BonusType::SPELL_DAMAGE_REDUCTION, BonusSubtypeID(SpellSchool::ANY)) >= 100); //General spell damage immunity
+	// XPg100 is a zero-damage strike, not eligibility immunity: its surviving
+    // target still reaches443E36 (e.g. source355 AfterWound). Ordinary native
+    // ANY bonuses, including equipment, retain their immunity behavior.
+    const auto general=era_compat::sourceMagicReduction(unit)
+        ?unit->getBonusBearer()->valOfBonuses(era_compat::nonSourceMagicReduction())
+        :unit->getBonusBearer()->valOfBonuses(BonusType::SPELL_DAMAGE_REDUCTION,BonusSubtypeID(SpellSchool::ANY));
+    bool isImmune=m->getSpell()->isMagical() && general>=100;
 	//elemental immunity for damage
 	m->getSpell()->forEachSchool([&](const SpellSchool & cnf, bool & stop)
 	{
@@ -269,6 +278,22 @@ void Damage::serializeJsonUnitEffect(JsonSerializeFormat & handler)
 
 int64_t Damage::damageForTarget(size_t targetIndex, const Mechanics * m, const battle::Unit * target) const
 {
+	if(!killByPercentage && !killByCount && chainLength>1 && chainFactor==0.5
+		&& targetIndex>0 && m->getSpellIndex()==19)
+	{
+		era_compat::OrbChaosCastScope sourceCast(m->isHeroCast(),m->battle(),m->casterSide);
+		const auto * spell=m->getSpellId().toSpell();
+		const bool sourceG=spell->isMagical() && era_compat::sourceMagicReduction(target).has_value();
+		if(sourceG || dynamic_cast<const era_compat::ConfluxCaster *>(m->caster)!=nullptr
+			|| era_compat::eraOrbChaosRawDamageActive(m->caster,spell,target))
+		{
+			// Original5A687D corrects each victim from its already-halved raw
+			// base. Faerie's source path supplies one accepted victim per call
+			// (targetIndex0), so its explicit raw/=2 is never repeated here.
+			return spell->adjustRawDamage(m->caster,target,
+				::era_bridge::sourceChainRawDamage(m->getEffectValue(),targetIndex));
+		}
+	}
 	int64_t baseDamage;
 
 	if(killByPercentage)

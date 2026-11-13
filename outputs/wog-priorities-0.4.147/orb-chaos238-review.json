@@ -1,0 +1,31 @@
+{
+  "ids": [
+    238
+  ],
+  "scriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "archiveSHA256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "sourceLines": [
+    1154,
+    1170
+  ],
+  "mechanism": "MR0 OnMagicBasicResistance: BG:A=HERO_CAST only, CURRENT acting-side hero equipped238; MR:D = signed32wrap(damage*3) /2 truncated toward zero. Apply after existing hero bonuses/orb components but before target innate correction, XP g and school protections.",
+  "components": [
+    79,
+    80,
+    81,
+    82
+  ],
+  "openingSpells": [
+    30,
+    31,
+    32,
+    33
+  ],
+  "openingDuration": 50,
+  "sourceIdentity": "Original4E59D0 recognizes an orb component through its combo parent and applies the usual school bonus beforeMR0; the238script is additional and multiplicative.",
+  "nativeState": "Scoped BaseMechanics::adjustEffectValue context: action=HERO, non-null actual target, CURRENT side from the shared source battle context (effective hypnosis-aware side), equipment body0..18. Passive openings/creature actions are excluded; no always-on SPELL_DAMAGE50 aura is added.",
+  "baseline": "Preserves existing native bridge caster-specific spell-bonus calculation; the source MR0 integer multiplier and ordering are explicit. No claim of bit-exact Win32 floating arithmetic across all pre-existing hero modifiers.",
+  "pending": [],
+  "activationReady": true,
+  "nativeEvidence": "native-orb-chaos238.json"
+}

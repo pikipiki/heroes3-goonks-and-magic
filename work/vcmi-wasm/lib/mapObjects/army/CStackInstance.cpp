@@ -84,6 +84,11 @@ int CStackInstance::getLevel() const
 	return std::max(1, getType()->getLevel());
 }
 
+void CStackInstance::resetExperience()
+{
+    totalExperience = 0;
+}
+
 void CStackInstance::giveAverageStackExperience(TExpType desiredAmountPerUnit)
 {
 	if(!canGainExperience())

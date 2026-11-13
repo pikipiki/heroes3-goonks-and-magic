@@ -16,6 +16,8 @@
 #include "../mapping/CMap.h"
 #include "../networkPacks/PacksForServer.h"
 #include "../networkPacks/SaveLocalState.h"
+#include "../era/EraConfluxPolicies.h"
+#include "../mapObjects/army/CStackInstance.h"
 
 #define ASSERT_IF_CALLED_WITH_PLAYER if(!getPlayerID()) {logGlobal->error(BOOST_CURRENT_FUNCTION); assert(0);}
 
@@ -285,6 +287,19 @@ void CCallback::refreshArtifactState(const CGHeroInstance * hero)
 	if(!hero)return;
 	RefreshArtifactState pack;pack.hid=hero->id;
 	sendRequest(pack);
+}
+
+void CCallback::refreshConfluxTome(const CGHeroInstance * hero)
+{
+    if(!hero || !getPlayerID() || hero->getOwner()!=*getPlayerID()
+        || !era_compat::ConfluxPolicies::get().enabled())return;
+    if(hero->hasBonusOfType(BonusType::ERA_SOURCE_TOME_CACHE))return;
+    for(const auto & slot:hero->Slots())
+        if(slot.second->getCount()>0
+            && era_compat::ConfluxPolicies::get().is356(slot.second->getCreatureID().toCreature()->getJsonKey()))
+        {
+            RefreshConfluxTome pack;pack.hid=hero->id;sendRequest(pack);return;
+        }
 }
 
 void CCallback::setFormation(const CGHeroInstance * hero, EArmyFormation mode)

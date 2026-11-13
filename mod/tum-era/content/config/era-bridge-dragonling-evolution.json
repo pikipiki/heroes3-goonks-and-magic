@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "rebornEnabled": false,
+  "minimumRank": 10,
+  "pairs": [
+    {
+      "from": "tum-era:eraCreature341",
+      "to": "core:greenDragon"
+    },
+    {
+      "from": "tum-era:eraCreature342",
+      "to": "core:redDragon"
+    },
+    {
+      "from": "tum-era:eraCreature343",
+      "to": "core:fairieDragon"
+    },
+    {
+      "from": "tum-era:eraCreature344",
+      "to": "core:rustDragon"
+    },
+    {
+      "from": "tum-era:eraCreature345",
+      "to": "core:azureDragon"
+    }
+  ]
+}

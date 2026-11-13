@@ -58,11 +58,9 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 8	S	+	0	0	0	0	1	1	1	1	1	1	1	Monk: Speed R4
 8	w	m	0	0	0	1	1	1	1	1	1	1	1	Monk: Immune to Hostile Mind Spells R3
 8	r	#100	0	0	0	0	0	50	50	50	50	50	50	Monk: Regeneration-50 50% R5
-8	g	%	0	3	6	9	12	15	21	24	27	30	33	Monk: Reduced Spell Damage 3%/Rank
 9	S	+	0	0	0	0	1	1	1	1	1	1	2	Zealot: Speed R4/R10
 9	w	m	0	0	0	1	1	1	1	1	1	1	1	Zealot: Immune to Hostile Mind Spells R3
 9	r	#100	0	0	0	0	0	50	50	50	50	50	50	Zealot: Regeneration-50 50% R5
-9	g	%	0	3	6	9	12	15	21	24	27	30	33	Zealot: Reduced Spell Damage 3%/Rank
 10	S	+	0	0	0	0	1	1	1	1	1	1	2	Cavalier: Speed 40/100%
 10	f	b	0	0	0	1	1	1	1	1	1	1	1	Cavalier: Strike & Return R3
 10	s	#55	0	0	0	0	0	0	0	1	2	3	3	Cavalier: Slayer R7/R8/R9
@@ -207,10 +205,8 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 31	w	E	0	0	0	0	0	0	0	1	1	1	1	Obsidian Gargoyle: Immune to Hostile Earth Spells R7
 32	S	+	0	0	0	0	1	1	1	1	1	1	1	Stone Golem: Speed R4
 32	f	R	2	2	2	2	2	1	1	1	1	1	1	Stone Golem: No Retaliation R5
-32	g	%	50	54	58	62	66	70	74	78	82	86	90	Stone Golem: Reduced Spell Damage +4%/Rank
 33	S	+	0	0	0	0	1	1	1	1	1	1	1	Iron Golem: Speed R4
 33	f	R	2	2	2	2	2	1	1	1	1	1	1	Iron Golem: No Retaliation R5
-33	g	%	75	77	79	81	83	85	87	89	91	93	95	Iron Golems: Reduced Spell Damage +2%/Rank
 34	S	+	0	0	0	0	1	1	1	1	1	1	1	Mage: Speed R4
 34	C	+	0	0	0	0	0	1	1	2	2	3	4	Mage: Mana Reduction R5/R7/R9/R10
 35	S	+	0	0	0	0	1	1	1	1	1	1	2	Arch Mage: Speed R40/R10
@@ -585,7 +581,6 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 125	S	+	0	0	0	0	1	1	1	1	1	1	2	Magma Elemental: Speed R4/R10
 125	u	#113	0	10	20	30	40	50	60	70	80	90	100	Magma Elemental: Summon Earth Elementals 10%/Rank
 125	w	S	0	0	0	0	0	0	0	1	1	1	1	Magma Elemental: Immune to Slow at R7
-125	g	%	0	3	6	9	12	15	18	21	24	27	30	Magma Elemental: Reduce Spell Damage 3%/Rank
 120	S	+	0	0	0	0	1	1	1	1	1	1	2	Psychic Elemental: Speed R4/R10
 120	c	#60	0	2	4	6	8	10	12	14	16	18	20	Psychic Elemental: Hypnotize 2%/Rank
 120	W	+	0	2	4	6	8	10	12	14	16	18	20	Psychic Elemental: Magic Resistance 2%/Rank
@@ -602,13 +597,10 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 131	s	#29	0	1	1	1	1	2	2	2	3	3	6	"Phoenix: Fire Shield, Mass at R10"
 131	P	+	0	0	0	0	0	0	0	0	0	0	1	Phoenix: Extra Rebirth R10
 131	f	f	0	0	0	0	0	1	1	1	1	1	1	Phoenix: Fearless R5
-131	g	%	0	2	4	6	8	10	12	14	16	18	20	Phoenix: Reduce Damage 2%/Rank
 116	S	+	0	0	0	0	1	1	1	1	1	1	1	Gold Golem: Speed R4
 116	f	R	2	2	2	2	2	1	1	1	1	1	1	Gold Golem: No Retaliation R5
-116	g	%	85	87	89	91	93	95	97	99	100	100	100	Gold Golem: Reduced Spell Damage +2%/Rank
 117	S	+	0	0	0	0	1	1	1	1	1	1	1	Diamond Golem: Speed R4
 117	f	R	2	2	2	2	2	1	1	1	1	1	1	Diamond Golem: No Retaliation R5
-117	g	%	95	96	97	98	99	100	100	100	100	100	100	Diamond Golem: Reduced Spell Damage +1%/Rank
 132	S	+	0	0	0	0	1	1	2	2	2	2	3	Azure Dragon: Speed R4/R6/R10
 132	U	#123	0	20	40	60	80	100	120	140	160	180	200	Azure Dragon: Summon 20%/Rank Ice Elementals
 132	w	4	0	0	0	0	0	1	1	1	1	1	1	Azure Dragon: Immune to Hostile L4 Spells R5
@@ -652,7 +644,6 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 140	c	#73	0	5	10	15	20	25	30	35	40	45	50	Boar: Disease 5%/Rank
 141	S	+	0	0	0	0	1	1	1	1	1	1	1	Mummy: Speed R4
 141	a	#42	0	2	4	6	8	10	12	14	16	18	20	Mummy: Mass Curse post-attack 2%/Rank
-141	g	%	0	3	6	9	12	15	18	21	24	27	30	Mummy: Reduce Spell Damage 3%/Rank
 142	S	+	0	0	0	0	1	1	1	1	1	1	2	Nomad: Speed R4/R10
 142	f	b	0	0	0	1	1	1	1	1	1	1	1	Nomad: Strike & Return R3
 142	f	c	0	0	0	0	0	0	0	1	1	1	1	Nomad: Champion Charge R7

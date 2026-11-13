@@ -588,6 +588,17 @@ struct DLL_LINKAGE RefreshArtifactState : public CPackForServer
 	}
 };
 
+struct DLL_LINKAGE RefreshConfluxTome : public CPackForServer
+{
+    ObjectInstanceID hid;
+    void visitTyped(ICPackVisitor & visitor) override;
+    template <typename Handler> void serialize(Handler & h)
+    {
+        h & static_cast<CPackForServer &>(*this);
+        h & hid;
+    }
+};
+
 struct DLL_LINKAGE SetFormation : public CPackForServer
 {
 	SetFormation() = default;

@@ -1,0 +1,135 @@
+{
+  "sourceArtifact": 260,
+  "binarySHA256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "scriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "cfgAbsent": true,
+  "human": {
+    "source": "Third Upgrade Mod.erm1398..1416; stdlib hook4920480=4B14A0",
+    "roleGate": "timerIsHuman AND tum_emerald_on",
+    "equipment": "OW:A(CURRENT_PLAYER) selected hero; body-equipped260 only.",
+    "operation": "Set the movement-cost Pathfinding input toExpert3. It does not train the skill, add a stacking75 aura or change current/max movement.",
+    "native": "Replace the canonical secondary-skill Pathfinding bonus contribution in temporary TurnInfo; keep other native bridge bonuses and no-terrain/native-army/road rules. Use the actual path calculation hero rather than borrowing equipment from a different selected hero."
+  },
+  "ai": {
+    "source": "Third Upgrade Mod.erm1418..1430, OnEveryDay timerIsAi",
+    "operation": "Iterate source hero roster, same owner as timerOwner, equipped260: HE:Wd400/1 Gd400.",
+    "remainingField": "HE:W dispatch746174..61A8 writes hero+4D; second argument1 skips UI recalculation7126EA only.",
+    "maximumField": "HE:G dispatch7461AD..61D6 writes hero+49. H3API H3Hero labels+49maxMovement and+4Dmovement.",
+    "landAndSea": "No boat condition exists in this event. The increment applies to whichever daily limit the hero currently has.",
+    "layerTransition": "Original49E32C..33B and4A0CF3..0D03 recompute new land/sea maximum via4E4C00 and scale current movement; this overwrites the earlier maximum-field400. Do not carry a continuous equipped aura into the other layer."
+  },
+  "terrainCosts": [
+    [
+      100,
+      100,
+      100,
+      100
+    ],
+    [
+      150,
+      125,
+      100,
+      100
+    ],
+    [
+      100,
+      100,
+      100,
+      100
+    ],
+    [
+      150,
+      125,
+      100,
+      100
+    ],
+    [
+      175,
+      150,
+      125,
+      100
+    ],
+    [
+      125,
+      100,
+      100,
+      100
+    ],
+    [
+      100,
+      100,
+      100,
+      100
+    ],
+    [
+      100,
+      100,
+      100,
+      100
+    ],
+    [
+      100,
+      100,
+      100,
+      100
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      75,
+      75,
+      75,
+      75
+    ],
+    [
+      65,
+      65,
+      65,
+      65
+    ],
+    [
+      50,
+      50,
+      50,
+      50
+    ]
+  ],
+  "originalTerrainCostsAddress": "0063E510, four skill columns per terrain/road row",
+  "boundedCode": [
+    {
+      "address": "746174",
+      "length": 103,
+      "sha256": "a3aec86a78de9c755c1e362273846efc7e9ee6d0a17487f53760ad4fff91911e"
+    },
+    {
+      "address": "4b14a0",
+      "length": 173,
+      "sha256": "994ed9ec7c3b8215bf5067e792cb4b04c1b8971266eb9142e364437784090704"
+    },
+    {
+      "address": "49e30c",
+      "length": 54,
+      "sha256": "76721ab0584bcecd8a16cf777f351db3bd937ad9101f3d0beed12277ce521fcc"
+    },
+    {
+      "address": "4a0cd0",
+      "length": 55,
+      "sha256": "33dd013357b0aabe7061b44745fa4ad59624ada979bccc4c6b72d56f932da6ae"
+    },
+    {
+      "address": "63e510",
+      "length": 208,
+      "sha256": "7b6a2e5498682fa16c7519ae18c1a7fb679462327a19d27b3c6b99e947e6fe90"
+    }
+  ],
+  "activationReady": false,
+  "pending": [
+    "Native role split and path costs",
+    "AI remaining/max400 after multipliers and daily reset",
+    "Save/load receipt and boat transition controls"
+  ]
+}

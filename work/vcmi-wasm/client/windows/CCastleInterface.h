@@ -365,7 +365,7 @@ class CFortScreen : public CStatusbarWindow
 		const CCreature * getMyCreature();
 		const CBuilding * getMyBuilding();
 	public:
-		RecruitArea(int posX, int posY, const CGTownInstance *town, int level);
+		RecruitArea(int posX, int posY, const CGTownInstance *town, int level, bool compact = false);
 
 		void creaturesChangedEventHandler();
 		void hover(bool on) override;

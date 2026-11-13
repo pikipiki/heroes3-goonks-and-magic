@@ -1,0 +1,36 @@
+{
+  "id": 20,
+  "cast": true,
+  "blockedPrimary": false,
+  "sorcery": true,
+  "seed": 62677,
+  "sourceCount": 2,
+  "sourcePower": 10,
+  "actor": "core:fairieDragon",
+  "beforeRng": {
+    "offset": 120462,
+    "value": "635150812",
+    "index": 977
+  },
+  "afterRng": {
+    "offset": 120384,
+    "value": "1214774467",
+    "index": 980
+  },
+  "changes": {
+    "core:ogre": 0,
+    "core:skeleton": -149,
+    "core:cyclopKing": 0,
+    "core:fairieDragon": 0,
+    "goonk:bubu": -149
+  },
+  "originalCharges": 5,
+  "ownedAdditionalCharges": 50,
+  "remainingCasts": 54,
+  "primaryHex": 94,
+  "secondaryResistance": 0,
+  "viewport": {
+    "width": 844,
+    "height": 390
+  }
+}

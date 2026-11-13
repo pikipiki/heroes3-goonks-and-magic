@@ -1,0 +1,53 @@
+{
+  "active": true,
+  "nativeValidated": true,
+  "contract": "source-dragonling-daily-evolution-v1",
+  "pins": {
+    "sourceErm": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+    "emeraldEvents": "ca03103263c86448fe6ca85eb11ed272b434b81090e7918be3c28566d783fadf",
+    "eraDll": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+    "primaryEraErmPas": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941"
+  },
+  "primarySource": "https://github.com/ethernidee/era/blob/master/Erm.pas",
+  "primarySourceFunction": "ProcessErm calls EventManager.Fire numeric then named before executing ERM trigger loop; Hook_RunTimer dispatches daily trigger77018 before ordinaryTM timers.",
+  "boundedBinaryProof": {
+    "eventNameMapping": "era.dll4901D1 maps OnEveryDay to77018",
+    "nativeHandlerCalls": {
+      "address": "494E67..494EA7",
+      "hex": "6a048d8d60eaffff8b95a0e6ffff8b8590e6ffffe88450f9ff6a048d8d60eaffff8b959ce6ffff8b8590e6ffffe86b50f9ffa138014b008338000f84580700008b9d94e6ffff"
+    },
+    "order": "494E7B and494E94 call429F04/EventManager.Fire; then script loop starts494EB2.429F04 exhausts registered handlers byascendingindex before return."
+  },
+  "originalRule": {
+    "sourceLines": "TUM879\u2013916",
+    "sources": [
+      341,
+      342,
+      343,
+      344,
+      345
+    ],
+    "targets": [
+      26,
+      82,
+      134,
+      135,
+      132
+    ],
+    "minimumRank": 10,
+    "owner": "Current player, hero army slots0..6; garrison heroes included, town army excluded.",
+    "quantity": "unchanged",
+    "experience": "reset0 explicitly after type replacement",
+    "reborn": "script suppressed when tum_reborn_on true"
+  },
+  "nativeAdaptation": {
+    "customHeroes": "Enumerate all native owner heroes including Goonk records beyond original156 capacity; stable HeroTypeID then instanceID ordering. Owner/slots/rank rule unchanged.",
+    "messages": "French explanatory message with native creature names, actual count component.",
+    "packet": "Dedicated ResetStackExperience registered267; old SetStackType serialization and paidupgrade behavior unchanged."
+  },
+  "validationPending": [],
+  "dailyEvolutionNativeValidated": true,
+  "dailyEvolutionNativeEvidence": "outputs/wog-priorities-0.4.147/native-dragonling-daily-evolution.json",
+  "dailyEvolutionEngineSha256": "b93b3bc6af5e3aa1088a85775a7194c8a7f3632993fcb94d134b64222897b9de",
+  "activationRecord": "outputs/wog-priorities-0.4.147/dragonling-evolution-source.json"
+}

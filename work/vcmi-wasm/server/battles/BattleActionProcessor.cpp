@@ -8,6 +8,9 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraOrbChaos238Runtime.h"
+#include "../era/EraConfluxRuntime.h"
+#include "../era/EraConfluxExperience.h"
 #include "../era/EraFaerieChainRuntime.h"
 #include "../../lib/era/EraConfluxCaster.h"
 #include "../era/EraCreatureSpellCleanse.h"
@@ -396,6 +399,11 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
 			&& (i == 0 && (!firstStrike || sourcePreemptive))
 			&& retaliation && destinationStack->ableToRetaliate())
 		{
+            //441B4F..55 flips CURRENT side for the normal441330 counter,
+            //441B67..72 restores it. Before_strike's earlier call does NOT.
+            const auto sourceCurrent=era_compat::confluxActiveSide(battle);
+            const auto counterSide=sourceCurrent==BattleSide::ATTACKER?BattleSide::DEFENDER:BattleSide::ATTACKER;
+            era_compat::ConfluxCurrentSideScope sourceCounterSide(counterSide);
             const bool twice = sourceCounters.twice(defenderKey);
             // DLL10018030 injects the second441330 before original441B7E
             // decrements the counter ONCE. Both hits retain counter semantics.
@@ -413,6 +421,8 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
             }
 		}
 	}
+
+    era_compat_server::confluxAfterMelee(*gameHandler,battle,stack,destinationStack);
 
     // Original468C99 consumes queued per-target spells after all strikes.
     petrification.flush(*gameHandler, battle);
@@ -603,12 +613,19 @@ bool BattleActionProcessor::doUnitSpellAction(const CBattleInfoCallback & battle
 	if(spellcaster)
 		vstd::amax(spellLvl, spellcaster->val);
 	if(randSpellcaster)
+	{
 		vstd::amax(spellLvl, randSpellcaster->val);
+	}
 	parameters.setSpellLevel(spellLvl);
-    if(sourceFaerie && !spell->battleMechanics(&parameters)->canBeCastAt(target))return false;
+    if(sourceFaerie && !spell->battleMechanics(&parameters)->canBeCastAt(target))
+    {
+        return false;
+    }
     if(sourceFaerie && spellID==SpellID(19))
+    {
         return era_compat_server::applyFaerieNormalChain(*gameHandler,battle,stack,
             target.empty()?nullptr:battle.battleGetStackByPos(target.front().hexValue,true),parameters,sourceSide);
+    }
 	parameters.cast(gameHandler->spellcastEnvironment(), target);
 
 	processBattleEventTriggers(battle, CombatEventType::UNIT_SPELLCAST, stack, nullptr);
@@ -779,6 +796,7 @@ bool BattleActionProcessor::dispatchBattleAction(const CBattleInfoCallback & bat
 
 bool BattleActionProcessor::makeBattleActionImpl(const CBattleInfoCallback & battle, const BattleAction &ba)
 {
+	era_compat::OrbChaosActionScope sourceAction(ba.actionType==EActionType::HERO_SPELL);
 	logGlobal->trace("Making action: %s", ba.toString());
 	const CStack * stack = battle.battleGetStackByID(ba.stackNumber);
     // Preserve the original hero-cast target even if its corpse disappears.
@@ -851,6 +869,11 @@ bool BattleActionProcessor::makeBattleActionImpl(const CBattleInfoCallback & bat
 
 	if(ba.actionType == EActionType::WAIT || ba.actionType == EActionType::DEFEND || ba.actionType == EActionType::SHOOT || ba.actionType == EActionType::MONSTER_SPELL)
 		battle.handleObstacleTriggersForUnit(*gameHandler->spellEnv, *stack);
+
+    //479223/441CAD consumes old obstacles BEFORE Amethyst479231 creates
+    //355's new wall. A wall placed under its caster must not hit it here.
+    if(result && ba.actionType==EActionType::DEFEND)
+        era_compat_server::confluxAfterDefend(*gameHandler,battle,stack);
 
 	return result;
 }
@@ -1328,6 +1351,15 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
     era_compat_server::applySourceThunder(*gameHandler,battle,ranged,attacker,defender);
     era_compat_server::applyAcidAttack(*gameHandler, battle, ranged, attacker, defender);
 
+    // Source756DBB calls71DBD8 immediately after4408E0, before the caller's
+    //4419A0 FireShield. Keep ordinary VCMI after-attack casts at their old point.
+    if(defender)
+    {
+        attackCasting(battle,ranged,BonusType::SPELL_AFTER_ATTACK,attacker,defender,AttackCastFilter::SourceOnly);
+        era_compat_server::confluxExperienceCasts(*gameHandler,battle,attacker,defender,true);
+        era_compat_server::applySourceKPoison(*gameHandler,battle,attacker,defender);
+    }
+
 	if(!fireShield.empty())
 	{
 		//todo: this should be "virtual" spell instead, we only need fire spell school bonus here
@@ -1348,7 +1380,8 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
             const auto & targetKey=attacker->creatureId().toCreature()->getJsonKey();
             const bool sourceDirect=sourcePolicy.spellDamageInversion(targetKey)
                 || sourcePolicy.physicalDeflection(targetKey).has_value()
-                || sourcePolicy.physicalBlock(targetKey).has_value();
+                || sourcePolicy.physicalBlock(targetKey).has_value()
+                || era_compat::ConfluxPolicies::get().owns(targetKey);
             if(!sourceDirect)
             {
                 if(actorOwner)
@@ -1396,9 +1429,10 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
 		handleAfterAttackCasting(battle, ranged, attacker, defender);
 }
 
-void BattleActionProcessor::attackCasting(const CBattleInfoCallback & battle, bool ranged, BonusType attackMode, const battle::Unit * attacker, const CStack * defender)
+void BattleActionProcessor::attackCasting(const CBattleInfoCallback & battle, bool ranged, BonusType attackMode, const battle::Unit * attacker, const CStack * defender, AttackCastFilter filter)
 {
 	ObjectInstanceID ownerArmy = battle.getBattle()->getSideArmy(attacker->unitSide())->id;
+    const bool sourceEntryAlive=attacker->alive() && defender->alive();
 
 	if(attacker->hasBonusOfType(attackMode))
 	{
@@ -1423,15 +1457,17 @@ void BattleActionProcessor::attackCasting(const CBattleInfoCallback & battle, bo
             // counterstrikes; never cast an inherited immediate copy.
             const int sourceMastery = sourceContracts.mastery(creatureKey, spellID.toSpell()->getJsonKey(), attackMode);
             const bool sourceExperienceCast = sourceMastery >= 0;
+            if((filter==AttackCastFilter::SourceOnly && !sourceExperienceCast)
+                || (filter==AttackCastFilter::NativeOnly && sourceExperienceCast))continue;
             const bool queuedIntrinsic = (spellID == SpellID(SpellID::STONE_GAZE)
                 && era_compat::Policies::get().petrification(creatureKey))
                 || (spellID == SpellID(SpellID::BLIND)
                 && era_compat::Policies::get().blindness(creatureKey));
             if(queuedIntrinsic && !sourceExperienceCast) continue;
             //71D98D/71D9A0 reject a dead caster or target before any RNG draws.
-            if(sourceExperienceCast && !attacker->alive()) continue;
+            if(sourceExperienceCast && !sourceEntryAlive) continue;
 			bool castMe = false;
-			if(!defender->alive())
+			if(!defender->alive() && !sourceExperienceCast)
 			{
 				logGlobal->debug("attackCasting: all attacked creatures have been killed");
 				return;
@@ -1460,7 +1496,13 @@ void BattleActionProcessor::attackCasting(const CBattleInfoCallback & battle, bo
             if(sourcePreAttack && attacker->isHypnotized())
                 effectiveSide = effectiveSide == BattleSide::ATTACKER ? BattleSide::DEFENDER : BattleSide::ATTACKER;
             era_compat::ExperienceAttackCaster sourceCaster(attacker, battle.getBattle()->getSidePlayer(effectiveSide), sourceExperienceCast ? sourceMastery : 3);
-            const spells::Caster * selectedCaster = sourcePreAttack ? static_cast<const spells::Caster *>(&sourceCaster) : &caster;
+            const auto currentSourceSide=sourceExperienceCast?era_compat::confluxActiveSide(battle):effectiveSide;
+            era_compat::ConfluxCaster sourceAreaCaster(&sourceCaster,battle.battleGetFightingHero(currentSourceSide),battle.sideToPlayer(effectiveSide));
+            const bool source294Area=sourceExperienceCast && creatureKey=="tum-era:eraCreature294" && spellID==SpellID(21);
+            const spells::Caster * selectedCaster = source294Area?static_cast<const spells::Caster *>(&sourceAreaCaster)
+                :sourcePreAttack ? static_cast<const spells::Caster *>(&sourceCaster) : &caster;
+            std::optional<era_compat::ConfluxSideScope> sourceContext;
+            if(sourceExperienceCast)sourceContext.emplace(currentSourceSide,1);
 
 			spells::Target target;
 			target.emplace_back(defender);
@@ -1484,6 +1526,7 @@ void BattleActionProcessor::attackCasting(const CBattleInfoCallback & battle, bo
             // defender's resistance before any expert mass spell is dispatched.
             if(sourcePreAttack)
             {
+                era_compat::ConfluxResistanceScope primaryQuery(true,effectiveSide);
                 if(chance <= 0) continue; //71DA44 rejects zero chance before RNG.
                 if(!::era_bridge::experienceAttackTriggers(chance, gameHandler->getRandomGenerator().nextInt(1,100)))
                     continue;
@@ -1566,6 +1609,7 @@ std::set<SpellID> BattleActionProcessor::getSpellsForAttackCasting(const TConstB
 void BattleActionProcessor::handleAttackBeforeCasting(const CBattleInfoCallback & battle, bool ranged, const CStack * attacker, const CStack * defender)
 {
 	attackCasting(battle, ranged, BonusType::SPELL_BEFORE_ATTACK, attacker, defender); //no death stare / acid breath needed?
+    era_compat_server::confluxExperienceCasts(*gameHandler,battle,attacker,defender,false);
 	processBattleEventTriggers(battle, CombatEventType::BEFORE_ATTACK, attacker, defender);
 	processBattleEventTriggers(battle, CombatEventType::BEFORE_ATTACKED, defender, attacker);
 }
@@ -1638,8 +1682,7 @@ void BattleActionProcessor::handleAfterAttackCasting(const CBattleInfoCallback &
 	if(!attacker->alive() || !defender->alive()) // can be already dead
 		return;
 
-    era_compat_server::applySourceKPoison(*gameHandler,battle,attacker,defender);
-	attackCasting(battle, ranged, BonusType::SPELL_AFTER_ATTACK, attacker, defender);
+	attackCasting(battle, ranged, BonusType::SPELL_AFTER_ATTACK, attacker, defender,AttackCastFilter::NativeOnly);
 	processBattleEventTriggers(battle, CombatEventType::AFTER_ATTACK, attacker, defender);
 	processBattleEventTriggers(battle, CombatEventType::AFTER_ATTACKED, defender, attacker);
 

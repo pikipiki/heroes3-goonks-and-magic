@@ -40,6 +40,7 @@ export function readSourceEighthTown(text,{townIndex,script}={}){
 export function compileEighthTownAccess(records,{enabled,baselineTowns,actorContracts,halls}={}){
  if(typeof enabled!=='boolean')throw Error('Explicit eighth-monsters option required');
  if(records.length!==9||new Set(records.map(r=>r.town)).size!==9||records.some((r,i)=>r.town!=='core:'+EIGHTH_TOWNS[i]))throw Error('All nine source towns must be compiled atomically');
+ if(new Set(records.flatMap(r=>r.roster.slice(0,2))).size!==18)throw Error('All eighteen original eighth actors must be distinct');
  if(!enabled)return {enabled:false,patch:{},source:records,scope:'No roster, building or availability changes.'};
  const patch={};
  for(const record of records){

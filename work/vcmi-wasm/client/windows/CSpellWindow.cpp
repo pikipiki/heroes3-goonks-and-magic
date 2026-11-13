@@ -284,6 +284,17 @@ CSpellWindow::~CSpellWindow()
 {
 }
 
+void CSpellWindow::refreshSourceAvailableSpells(const CGHeroInstance * hero)
+{
+    if(hero!=myHero)return;
+    const int page=currentPage;
+    sitesPerTabAdv.clear();sitesPerTabBattle.clear();
+    processSpells();
+    setCurrentPage(std::clamp(page,0,std::max(0,pagesWithinCurrentTab()-1)));
+    computeSpellsPerArea();
+    redraw();
+}
+
 void CSpellWindow::searchInput()
 {
 	if(searchBox)

@@ -1,0 +1,32 @@
+{
+  "ids": [
+    259
+  ],
+  "scriptSHA256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+  "archiveSHA256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "sourceLines": [
+    1370,
+    1397
+  ],
+  "mechanism": "After source stack initialization43D5C7: original-side hero259 equipped; except149 towers, double-wide flag, breath flag and exact WOG44 life-drain type whitelist, set monster flag19 ATTACKS_ALL_AROUND. No separate NO_RETALIATION bit is assigned by the actual script.",
+  "excludedTypes": [
+    63,
+    154,
+    159,
+    221,
+    224,
+    296,
+    325
+  ],
+  "sourceIdentityRegistry": "era-bridge-status-attacks.sourceIds, canonical native-key to original-ID mapping; future ported source296/325 are excluded as soon as their canonical binding exists.",
+  "nativeState": "CStack::localInit after army/creature bonuses attach and before UnitState caches: ONE_BATTLE ATTACKS_ALL_ADJACENT sourced to259; same source-selector dedup on save/load; original side hero is used for new summoned/cloned stacks.",
+  "components": [
+    175,
+    176,
+    177,
+    178
+  ],
+  "pending": [],
+  "activationReady": true,
+  "nativeEvidence": "native-hydra-queen259.json"
+}

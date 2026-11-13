@@ -39,6 +39,7 @@ public:
 	void visitFoWChange(FoWChange & pack) override;
 	void visitChangeStackCount(ChangeStackCount & pack) override;
 	void visitSetStackType(SetStackType & pack) override;
+    void visitResetStackExperience(ResetStackExperience & pack) override;
 	void visitEraseStack(EraseStack & pack) override;
 	void visitSwapStacks(SwapStacks & pack) override;
 	void visitInsertNewStack(InsertNewStack & pack) override;

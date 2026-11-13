@@ -28,6 +28,7 @@
 
 #include "../../lib/CStack.h"
 #include "../../lib/GameLibrary.h"
+#include "../../lib/era/EraConfluxPolicies.h"
 #include "../../lib/battle/BattleAction.h"
 #include "../../lib/battle/CPlayerBattleCallback.h"
 #include "../../lib/filesystem/ResourcePath.h"
@@ -100,6 +101,19 @@ void BattleEffectsController::battleTriggerEffect(const BattleTriggerEffect & bt
 		case BonusType::HP_REGENERATION:
 			displayEffect(EBattleEffect::REGENERATION, AudioPath::builtin("REGENER"), stack->getPosition(), 0.5);
 			break;
+        case BonusType::MANA_CHANNELING:
+        {
+            if(bte.val<=0 || (bte.additionalInfo!=0 && bte.additionalInfo!=1)
+                || !era_compat::ConfluxPolicies::get().is356(stack->creatureId().toCreature()->getJsonKey()))return;
+            // Server evaluates source356 after effects. checkForAnimations()
+            // has completed that spell, so enqueue the original SP07 pair now.
+            const bool defender=bte.additionalInfo==1;
+            owner.stacksController->addNewAnim(new EffectAnimation(owner,
+                AnimationPath::builtin(defender?"SP07_A.DEF":"SP07_B.DEF"),Point(15,30)));
+            owner.stacksController->addNewAnim(new EffectAnimation(owner,
+                AnimationPath::builtin(defender?"SP07_B.DEF":"SP07_A.DEF"),Point(755,30)));
+            break;
+        }
 		case BonusType::MANA_DRAIN:
 			displayEffect(EBattleEffect::MANA_DRAIN, AudioPath::builtin("MANADRAI"), stack->getPosition());
 			break;

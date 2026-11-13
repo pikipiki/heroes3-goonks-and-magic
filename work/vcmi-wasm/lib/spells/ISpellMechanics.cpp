@@ -10,6 +10,7 @@
 
 #include "StdInc.h"
 #include "ISpellMechanics.h"
+#include "../era/EraOrbChaos238Runtime.h"
 
 #include "../GameLibrary.h"
 
@@ -548,6 +549,7 @@ bool BaseMechanics::isMagicalEffect() const
 
 int64_t BaseMechanics::adjustEffectValue(const battle::Unit * target) const
 {
+	era_compat::OrbChaosCastScope sourceCast(isHeroCast(),battle(),casterSide);
 	return owner->adjustRawDamage(caster, target, getEffectValue());
 }
 

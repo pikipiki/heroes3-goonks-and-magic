@@ -19,6 +19,7 @@
 #include "queries/QueriesProcessor.h"
 #include "queries/MapQueries.h"
 #include "era/EraAtmaRuntime.h"
+#include "era/EraConfluxTomeRuntime.h"
 
 #include "../lib/CPlayerState.h"
 #include "../lib/mapObjects/CGTownInstance.h"
@@ -383,6 +384,17 @@ void ApplyGhNetPackVisitor::visitRefreshArtifactState(RefreshArtifactState & pac
 	}
 	refreshEraAtma(gh,*hero);
 	result=true;
+}
+
+void ApplyGhNetPackVisitor::visitRefreshConfluxTome(RefreshConfluxTome & pack)
+{
+    gh.throwIfWrongOwner(connection,&pack,pack.hid);
+    gh.throwIfPlayerNotActive(connection,&pack);
+    const auto * hero=gh.gameInfo().getHero(pack.hid);
+    if(!hero || gh.gameState().getBattle(hero->getOwner()) || !eraConfluxTomeCarrier(*hero))
+    {result=false;return;}
+    appendEraConfluxTome(gh,*hero);
+    result=true;
 }
 
 void ApplyGhNetPackVisitor::visitSetFormation(SetFormation & pack)

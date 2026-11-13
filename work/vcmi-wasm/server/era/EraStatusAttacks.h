@@ -38,9 +38,15 @@ class StatusAttackCaster final : public spells::AbilityCaster
 {
     PlayerColor effectiveOwner;
     int sourceMastery;
+    era_compat::ConfluxCastQueryScope sourceContext;
+    static BattleSide sourceSide(const CStack * actor)
+    {
+        const auto side=actor->unitSide();
+        return actor->isHypnotized()?(side==BattleSide::ATTACKER?BattleSide::DEFENDER:BattleSide::ATTACKER):side;
+    }
 public:
     StatusAttackCaster(const CStack * actor,int mastery,PlayerColor owner)
-        : spells::AbilityCaster(actor,mastery),effectiveOwner(owner),sourceMastery(mastery){}
+        : spells::AbilityCaster(actor,mastery),effectiveOwner(owner),sourceMastery(mastery),sourceContext(sourceSide(actor),1){}
     PlayerColor getCasterOwner() const override{return effectiveOwner;}
     int32_t getSpellSchoolLevel(const spells::Spell *,SpellSchool * = nullptr) const override{return sourceMastery;}
     int32_t getEffectLevel(const spells::Spell *) const override{return sourceMastery;}
@@ -194,8 +200,9 @@ inline void applySourceStatus(CGameHandler & handler,const CBattleInfoCallback &
 inline void applySourceKPoison(CGameHandler & handler,const CBattleInfoCallback & battle,
     const CStack * actor,const CStack * target)
 {
-    if(!StatusAttacks::get().enabled(actor) || !actor->alive() || !target || !target->alive())return;
-    const int chance=era_bridge::sourcePoisonChance(statusRank(actor));
+    if(!StatusAttacks::get().kPoison(actor) || !actor->alive() || !target || !target->alive())return;
+    const int chance=StatusAttacks::get().demilichPoison(actor)
+        ?era_bridge::demilichPoisonChance(statusRank(actor)):era_bridge::sourcePoisonChance(statusRank(actor));
     if(chance==0 || !era_bridge::statusRollAccepts(chance,handler.getRandomGenerator().nextInt(1,100)))return;
     if(statusPrimaryAccepts(handler,battle,actor,target,SpellID(71)))applySourceStatus(handler,battle,actor,target,SpellID(71),1);
 }

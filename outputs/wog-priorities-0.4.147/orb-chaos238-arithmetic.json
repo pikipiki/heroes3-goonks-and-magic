@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checks": 14,
+  "instrumentation": [
+    "AddressSanitizer",
+    "UndefinedBehaviorSanitizer"
+  ],
+  "purpose": "Explicit signed32 multiply-wrap and toward-zero chain-raw halving. Gameplay native238 remains unvalidated.",
+  "files": {
+    "work/vcmi-wasm/lib/era/EraOrbChaos238.h": "f04bc33310eeef9ced6621ea0d3d9187fa2bd62a21a0b26c9f0c7f59889baa62",
+    "work/vcmi-wasm/lib/spells/effects/Damage.cpp": "daf89e1dafa392648f5378c2e6f116b7bce3d9f22bc89dd3952ec8a92dd612e9",
+    "tests/native/EraOrbChaos238.test.cpp": "1b88d4aab50ca1385d9c4db5cc1f0d8f034ad76d3c9cecc281b624ef5018545f"
+  }
+}

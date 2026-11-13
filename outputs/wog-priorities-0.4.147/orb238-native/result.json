@@ -1,0 +1,303 @@
+{
+  "passed": true,
+  "report": {
+    "four-school-wards": {
+      "schools": [
+        {
+          "spell": 17,
+          "damage": 30
+        },
+        {
+          "spell": 21,
+          "damage": 17
+        },
+        {
+          "spell": 16,
+          "damage": 25
+        },
+        {
+          "spell": 23,
+          "damage": 37
+        }
+      ]
+    },
+    "ward-duration50": {
+      "observations": [
+        {
+          "round": 1,
+          "damage": 15
+        },
+        {
+          "round": 50,
+          "damage": 15
+        },
+        {
+          "round": 51,
+          "damage": 30
+        }
+      ]
+    },
+    "chain-sorcery": {
+      "damage": 166,
+      "manaBefore": 200,
+      "manaAfter": 180,
+      "unitsBefore": [
+        {
+          "aiValue": 80,
+          "armySlot": 0,
+          "attack": 15,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 1000000,
+          "damageMax": 1,
+          "damageMin": 1,
+          "defense": 26,
+          "description": "",
+          "enemy": true,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 100,
+          "growth": 14,
+          "health": 1000000,
+          "icon": "",
+          "id": 0,
+          "key": "core:pikeman",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 1000000,
+          "morale": 0,
+          "name": "Pikeman",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            100
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 2,
+          "stackId": 1,
+          "x": 696,
+          "y": 322
+        },
+        {
+          "aiValue": 115,
+          "armySlot": 0,
+          "attack": 11,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            75,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 1000000,
+          "damageMax": 1,
+          "damageMin": 1,
+          "defense": 13,
+          "description": "",
+          "enemy": false,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 115,
+          "growth": 14,
+          "health": 1000000,
+          "icon": "",
+          "id": 1,
+          "key": "core:halberdier",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 1000000,
+          "morale": 0,
+          "name": "Halberdier",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            86
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 0,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 51,
+          "stackId": 0,
+          "x": 80,
+          "y": 322
+        }
+      ],
+      "unitsAfter": [
+        {
+          "aiValue": 80,
+          "armySlot": 0,
+          "attack": 15,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 999834,
+          "damageMax": 1,
+          "damageMin": 1,
+          "defense": 26,
+          "description": "",
+          "enemy": true,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 100,
+          "growth": 14,
+          "health": 1000000,
+          "icon": "",
+          "id": 0,
+          "key": "core:pikeman",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 1000000,
+          "morale": 0,
+          "name": "Pikeman",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            100
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 2,
+          "stackId": 1,
+          "x": 696,
+          "y": 322
+        },
+        {
+          "aiValue": 115,
+          "armySlot": 0,
+          "attack": 11,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            75,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 999960,
+          "damageMax": 1,
+          "damageMin": 1,
+          "defense": 13,
+          "description": "",
+          "enemy": false,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 115,
+          "growth": 14,
+          "health": 1000000,
+          "icon": "",
+          "id": 1,
+          "key": "core:halberdier",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 1000000,
+          "morale": 0,
+          "name": "Halberdier",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            86
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 0,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 51,
+          "stackId": 0,
+          "x": 80,
+          "y": 322
+        }
+      ],
+      "round": 1
+    }
+  }
+}

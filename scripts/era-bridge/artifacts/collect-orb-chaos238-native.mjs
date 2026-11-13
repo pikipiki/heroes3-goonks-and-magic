@@ -1,0 +1,17 @@
+/** Retain all asserted source238 native gates and damage-order controls. */
+import fs from'node:fs';import assert from'node:assert/strict';
+const[input,engineSHA256,root='outputs/wog-priorities-0.4.147']=process.argv.slice(2);
+if(!input||!/^[a-f0-9]{64}$/.test(engineSHA256??''))throw Error('INPUT ENGINE_SHA256 [REPORT_DIR] required');
+const read=p=>JSON.parse(fs.readFileSync(p)),result=read(input+'/result.json');assert.equal(result.passed,true);
+const prior=process.env.ORB_PRIOR_COMPLETED?read(process.env.ORB_PRIOR_COMPLETED):null;if(prior){assert.equal(Object.keys(prior).length,18);result.report={...prior,...result.report};}
+const expected={baseline:30,components:45,worn:67,backpack:30,opposite:15,unrelated:30,school30:46,innate75:16,'innate75-school30':11,'source-g95-school30-control':0,'source-g95-school30-worn':2,'source-g0-overrides-innate':46,'vulnerability-school30':93,'source-g-overrides-vulnerability':2};
+const names=[...Object.keys(expected),'creature-components','creature-worn','opening-components','opening-worn','four-school-wards','ward-duration50','chain-sorcery'];
+assert.deepEqual(Object.keys(result.report).sort(),names.sort());for(const[name,damage]of Object.entries(expected))assert.equal(result.report[name].damage,damage);
+for(const name of['creature-components','creature-worn'])assert.equal(result.report[name].manaBefore,result.report[name].manaAfter);
+assert.equal(result.report['creature-components'].damage,result.report['creature-worn'].damage);
+assert.equal(result.report['opening-components'].openingDamage,result.report['opening-worn'].openingDamage);
+assert.deepEqual(result.report['four-school-wards'].schools,[{spell:17,damage:30},{spell:21,damage:17},{spell:16,damage:25},{spell:23,damage:37}]);
+assert.deepEqual(result.report['ward-duration50'].observations,[{round:1,damage:15},{round:50,damage:15},{round:51,damage:30}]);
+const chain=result.report['chain-sorcery'];assert.equal(chain.damage,166);const own=chain.unitsBefore.find(u=>!u.enemy&&u.key==='core:halberdier'),after=chain.unitsAfter.find(u=>u.stackId===own.stackId),hp=u=>(u.count-1)*u.maximumHealth+u.currentHealth;assert.equal(hp(own)-hp(after),40);
+const folder=root+'/orb238-native';fs.mkdirSync(folder,{recursive:true});fs.copyFileSync(input+'/result.json',folder+'/result.json');if(prior)fs.copyFileSync(process.env.ORB_PRIOR_COMPLETED,folder+'/first-eighteen-completed.json');for(const name of['worn','four-school-wards','ward-duration50','chain-sorcery'])fs.copyFileSync((prior&&name==='worn'?process.env.ORB_PRIOR_COMPLETED.replace(/\/partial-result\.json$/,''):input)+'/'+name+'.png',folder+'/'+name+'.png');
+const proof={passed:true,engineSHA256,controls:result.report,pendingNativeControls:[],collectionNotes:prior?['The first18 asserted controls completed before a moving-target fixture attempted an obsolete hex in the next multi-round control. Only these completed assertions are retained. The final3 controls use a refreshed target position before every cast and passed in a separate run on the same immutable engine.']:[],baselineArithmetic:'Preserves existing bridge hero bonuses; source238 adds signed32wrap(raw*3)/2 before source target corrections. Source chain19 halves raw before per-victim caster/target corrections.'};fs.writeFileSync(root+'/native-orb-chaos238.json',JSON.stringify(proof,null,2)+'\n');console.log('Retained21 asserted native source238 groups.');

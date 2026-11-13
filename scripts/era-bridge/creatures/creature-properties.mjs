@@ -1,4 +1,8 @@
+import{reviewedRustDragonling,SOURCE_RUST_DRAGONLING_CONTRACT}from'../roster8/rust-dragonling.mjs';
+import{reviewedFaerieDragonling,SOURCE_FAERIE_DRAGONLING_CONTRACT}from'../roster8/faerie-dragonling.mjs';
+import {reviewedNeutralDependency,SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT} from '../roster8/neutral-transform-source.mjs';
 import {reviewedDungeon,SOURCE_DUNGEON_CONTRACT} from '../roster8/dungeon-source.mjs';
+import {reviewedConflux,SOURCE_CONFLUX_CONTRACT} from '../roster8/conflux-source.mjs';
 import {reviewedFortress,SOURCE_FORTRESS_CONTRACT} from '../roster8/fortress-counterstrikes.mjs';
 import {reviewedPrimalFaerie,SOURCE_PRIMAL_FAERIE_CONTRACT} from '../roster8/primal-faerie.mjs';
 import {reviewedMithrilGolem,SOURCE_MITHRIL_GOLEM_CONTRACT} from '../roster8/mithril-golem.mjs';
@@ -30,7 +34,7 @@ const enumNames = {
 const flagBonus = {
   1:['FLYING'], 2:['SHOOTER'], 3:['TWO_HEX_ATTACK_BREATH'],
   10:['MIND_IMMUNITY'], 11:['NO_WALL_PENALTY'], 12:['NO_MELEE_PENALTY'],
-  14:['SPELL_SCHOOL_IMMUNITY',0,1], 15:['ADDITIONAL_ATTACK',1],
+  14:['SPELL_SCHOOL_IMMUNITY',0,'spellSchool.fire'], 15:['ADDITIONAL_ATTACK',1],
   16:['BLOCKS_RETALIATION'],17:['NO_MORALE'],18:['UNDEAD'],
   19:['ATTACKS_ALL_ADJACENT'],31:['DRAGON_NATURE'],
 };
@@ -56,16 +60,26 @@ export function parseCreatureProperties(text,{source='<cfg>'}={}) {
  * resolveCreature/Spell/Town/Artifact return fully qualified VCMI identifiers.
  */
 export function compileCreatureProperties(text,options={}) {
+  if(options.nativeRustDragonlingContract!==undefined&&options.nativeRustDragonlingContract!==SOURCE_RUST_DRAGONLING_CONTRACT)throw new TypeError('Unknown source344 contract');
+  if(options.nativeFaerieDragonlingContract!==undefined&&options.nativeFaerieDragonlingContract!==SOURCE_FAERIE_DRAGONLING_CONTRACT)throw new TypeError('Unknown source343 contract');
+  if(options.nativeNeutralDependenciesContract!==undefined&&options.nativeNeutralDependenciesContract!==SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT)throw new TypeError('Unknown neutral dependency contract');
+  if(options.nativeNeutralDependenciesContract&&[286,294].includes(options.sourceCreatureId))reviewedNeutralDependency(text,{sourceId:options.sourceCreatureId,contract:options.nativeNeutralDependenciesContract});
+  if(options.nativeConfluxContract!==undefined&&options.nativeConfluxContract!==SOURCE_CONFLUX_CONTRACT)throw new TypeError('Unknown native Conflux contract');
   if(options.nativeDungeonContract!==undefined&&options.nativeDungeonContract!==SOURCE_DUNGEON_CONTRACT)throw new TypeError('Unknown native Dungeon contract');
   if(options.nativeFortressContract!==undefined&&options.nativeFortressContract!==SOURCE_FORTRESS_CONTRACT)throw new TypeError("Unknown native Fortress contract");
   if(options.nativePrimalFaerieContract!==undefined&&options.nativePrimalFaerieContract!==SOURCE_PRIMAL_FAERIE_CONTRACT)throw new TypeError('Unknown native Primal Faerie contract');
   if(options.nativeConstructContract!==undefined&&options.nativeConstructContract!==SOURCE_MITHRIL_GOLEM_CONTRACT)throw new TypeError('Unknown native construct contract');
   if(options.nativeBiologyContract!==undefined&&![nativeBiologyContract,SOURCE_INANIMATE_BIOLOGY_CONTRACT].includes(options.nativeBiologyContract))throw new TypeError('Unknown native biology contract');
   const entries=parseCreatureProperties(text,options),definition={abilities:{}},policies=[],mappings=[],diagnostics=[];
+  const conflux=options.nativeConfluxContract===SOURCE_CONFLUX_CONTRACT&&[355,356].includes(options.sourceCreatureId)?reviewedConflux(text,{sourceId:options.sourceCreatureId,contract:options.nativeConfluxContract,resolveSpell:options.resolveSpell}):undefined;
+  if(conflux)Object.assign(definition.abilities,conflux.abilities);
   const dungeon=options.nativeDungeonContract===SOURCE_DUNGEON_CONTRACT&&[351,352].includes(options.sourceCreatureId)?reviewedDungeon(text,{sourceId:options.sourceCreatureId,contract:options.nativeDungeonContract}):undefined;
   if(dungeon){Object.assign(definition.abilities,dungeon.abilities);if(dungeon.graphics)definition.graphics=dungeon.graphics;}
   const fortress=options.nativeFortressContract===SOURCE_FORTRESS_CONTRACT&&[353,354].includes(options.sourceCreatureId)?reviewedFortress(text,{sourceId:options.sourceCreatureId,contract:options.nativeFortressContract}):undefined;
   if(fortress)Object.assign(definition.abilities,fortress.abilities);
+  const rustDragonling=options.nativeRustDragonlingContract===SOURCE_RUST_DRAGONLING_CONTRACT&&options.sourceCreatureId===344?reviewedRustDragonling(text,{sourceId:344,contract:options.nativeRustDragonlingContract}):undefined;
+  const faerieDragonling=options.nativeFaerieDragonlingContract===SOURCE_FAERIE_DRAGONLING_CONTRACT&&options.sourceCreatureId===343?reviewedFaerieDragonling(text,{sourceId:343,contract:options.nativeFaerieDragonlingContract,resolveSpell:options.resolveSpell}):undefined;
+  if(faerieDragonling)Object.assign(definition.abilities,faerieDragonling.abilities);
   const primalFaerie=options.nativePrimalFaerieContract===SOURCE_PRIMAL_FAERIE_CONTRACT&&options.sourceCreatureId===258?reviewedPrimalFaerie(text,{sourceId:258,contract:options.nativePrimalFaerieContract,resolveSpell:options.resolveSpell}):undefined;
   if(primalFaerie)Object.assign(definition.abilities,primalFaerie.abilities);
   const mithrilGolem=options.nativeConstructContract===SOURCE_MITHRIL_GOLEM_CONTRACT&&options.sourceCreatureId===324?reviewedMithrilGolem(text,{sourceId:324,contract:options.nativeConstructContract}):undefined;
@@ -108,8 +122,11 @@ export function compileCreatureProperties(text,options={}) {
     if(key==='DoNotGenerate'&&options.nativeRandomExclusionContract==='source-random-exclusion-v1'){
       const value=integer(e,0,1);if(value===1)definition.special=true;mapped(e,'creature.special excludes native random selection');
     }
+    else if(conflux?.consumedKeys.includes(key)){mapped(e,'source-conflux-eighth-v1 whole reviewed source service');}
     else if(dungeon?.consumedKeys.includes(key)){mapped(e,'source-dungeon-eighth-v1 reviewed source service');}
     else if(fortress?.consumedKeys.includes(key)){mapped(e,'source-fortress-counterstrikes-v1 whole reviewed service');}
+    else if(rustDragonling?.consumedKeys.includes(key)){mapped(e,'source-rust-dragonling-v1 queued acid defence80 service');}
+    else if(faerieDragonling?.consumedKeys.includes(key)){mapped(e,'source-faerie-dragonling-v1 whole reviewed pool/aim/power service');}
     else if(primalFaerie?.consumedKeys.includes(key)){mapped(e,'source-primal-faerie-v1 whole reviewed casting/defend/absorption service');}
     else if(demonology&&['Spell 1','Spell 2','Spell 3','Demonology'].includes(key)){
       Object.assign(definition.abilities,demonology.abilities);mapped(e,'source-mode2-demonology-caster');

@@ -16,6 +16,7 @@
 #include "../era/EraExperienceCastTargets.h"
 
 #include "BattleSpellMechanics.h"
+#include "TargetCondition.h"
 #include "../era/EraOblivion.h"
 
 #include "Problem.h"
@@ -234,12 +235,31 @@ bool BattleSpellMechanics::canBeCast(Problem & problem) const
     const auto * sourceActor=mode==Mode::CREATURE_ACTIVE?battle()->battleGetStackByID(caster->getCasterUnitId(),false):nullptr;
     if(era_compat::sourceFaeriePoolActor(sourceActor) && getSpellIndex()>=15 && getSpellIndex()<=23 && getSpellIndex()!=18)
     {
+        //StartAction already marks castSpellThisTurn before server dispatch.
+        //Only ammunition is checked here; action ownership remains in BAP.
         if(!sourceActor->casts.canUse(1))return adaptProblem(ESpellCastProblem::INVALID,problem);
         for(const auto * target:battle()->battleGetAllStacks(true))
             if(sourceFaeriePrimaryAllowed(sourceActor,target))return true;
         return adaptProblem(ESpellCastProblem::NO_APPROPRIATE_TARGET,problem);
     }
 	return effects->applicable(problem, this);
+}
+
+bool BattleSpellMechanics::sourceConfluxWallTargetAllowed(const battle::Unit * target) const
+{
+    const auto * source=SpellID(13).toSpell();
+    if(!era_compat::sourceSpellContextAllows(*battle(),target,source))return false;
+    BattleCast query(battle(),caster,Mode::PASSIVE,source);
+    auto mechanics=source->battleMechanics(&query);
+    const auto * factory=TargetConditionItemFactory::getDefault();
+    TargetCondition condition;
+    condition.absolute={factory->createAbsoluteSpell(),factory->createAbsoluteLevel()};
+    condition.normal={factory->createElemental(),factory->createNormalLevel(),factory->createNormalSpell()};
+    condition.negation={factory->createReceptiveFeature(),factory->createImmunityNegation()};
+    //59FFE0 queries the stored wall side, while Catalyst still reads CURRENT.
+    era_compat::ConfluxResistanceScope querySide(true,casterSide);
+    return condition.isReceptive(mechanics.get(),target)
+        && era_compat::statusRawAccuracy(*battle(),target,true,casterSide)>0;
 }
 
 bool BattleSpellMechanics::sourceFaeriePrimaryAllowed(const CStack * actor,const battle::Unit * target) const
@@ -307,6 +327,10 @@ bool BattleSpellMechanics::canBeCastAt(const Target & target, Problem & problem)
 {
 	if(!canBeCast(problem))
 		return false;
+
+    if(era_compat::ConfluxPolicies::get().enabled()
+        && getSpell()->getJsonKey()=="tum-era:sourceConfluxFireWallTrigger")
+        return !target.empty() && sourceConfluxWallTargetAllowed(target.front().unitValue);
 
     const auto * sourceActor=mode==Mode::CREATURE_ACTIVE?battle()->battleGetStackByID(caster->getCasterUnitId(),false):nullptr;
     if(era_compat::sourceFaeriePoolActor(sourceActor) && getSpellIndex()>=15 && getSpellIndex()<=23 && getSpellIndex()!=18)
@@ -416,6 +440,10 @@ void BattleSpellMechanics::cast(ServerCallback * server, const Target & target)
 			int manaChannel = 0;
 			for(const auto * stack : battle()->battleGetAllStacks(true)) //TODO: shouldn't bonus system handle it somehow?
 			{
+                // Original5A24DC flips the channel side while Hypnotize60 is
+                // active. Keep other, unregistered VCMI channel providers intact.
+                const bool sourceChannel=era_compat::ConfluxPolicies::get().is356(stack->creatureId().toCreature()->getJsonKey());
+                if(sourceChannel)continue; // Original5A24DC evaluates356 AFTER spell effects.
 				if(stack->unitOwner() == otherHero->tempOwner && stack->alive())
 					vstd::amax(manaChannel, stack->valOfBonuses(BonusType::MANA_CHANNELING));
 			}
@@ -466,6 +494,33 @@ void BattleSpellMechanics::cast(ServerCallback * server, const Target & target)
 	for(auto & p : effectsToApply)
 		p.first->apply(server, this, p.second);
 
+    std::optional<BattleTriggerEffect> sourceChannelVisual;
+    if(mode==Mode::HERO && otherHero && era_compat::ConfluxPolicies::get().enabled())
+    {
+        int sourceChannel=0;
+        const CStack * sourceProvider=nullptr;
+        for(const auto * stack:battle()->battleGetAllStacks(true))
+            if(stack->alive() && battle()->battleGetOwner(stack)==otherHero->tempOwner
+                && era_compat::ConfluxPolicies::get().is356(stack->creatureId().toCreature()->getJsonKey()))
+            {
+                sourceChannel=std::max(sourceChannel,stack->valOfBonuses(BonusType::MANA_CHANNELING));
+                sourceProvider=stack;
+            }
+        const int sourceGain=(sourceChannel*spellCost)/100;
+        if(sourceGain>sc.manaGained)
+        {
+            // The ordinary native channel animation was already queued only
+            // when its own pre-cast providers supplied mana. Avoid duplication.
+            if(sc.manaGained==0 && sourceProvider)
+            {
+                BattleTriggerEffect channel;channel.battleID=sc.battleID;
+                channel.stackID=sourceProvider->unitId();channel.effect=BonusType::MANA_CHANNELING;
+                channel.val=sourceGain;channel.additionalInfo=static_cast<int>(casterSide);
+                sourceChannelVisual=channel;
+            }
+            sc.manaGained=sourceGain;
+        }
+    }
 	if(sc.activeCast)
 	{
 		caster->spendMana(server, spellCost);
@@ -476,6 +531,8 @@ void BattleSpellMechanics::cast(ServerCallback * server, const Target & target)
 			otherHero->spendMana(server, -sc.manaGained);
 		}
 	}
+
+    if(sourceChannelVisual)server->apply(*sourceChannelVisual); // Grant mana before the source SP07 animation.
 
 	// send empty event to client
 	// temporary(?) workaround to force animations to trigger
@@ -489,7 +546,7 @@ void BattleSpellMechanics::beforeCast(BattleSpellCast & sc, vstd::RNG & rng, con
     const bool sourceConfluxCast=dynamic_cast<const era_compat::ConfluxCaster *>(caster)!=nullptr;
     const bool sourceConfluxArea=sourceConfluxCast && getSpellIndex()>=20 && getSpellIndex()<=23;
     std::optional<era_compat::ConfluxResistanceScope> confluxAreaQuery;
-    if(sourceConfluxArea)confluxAreaQuery.emplace(true);
+    if(sourceConfluxArea)confluxAreaQuery.emplace(true,era_compat::confluxActiveSide(*battle()));
 	affectedUnits.clear();
 
 	Target spellTarget = transformSpellTarget(target);
@@ -522,9 +579,15 @@ void BattleSpellMechanics::beforeCast(BattleSpellCast & sc, vstd::RNG & rng, con
                 if(rng.nextInt(1,100)>accuracy)resistantUnitIds.insert(unit->unitId());
             }
         }
-        else if(sourceConfluxCast && getSpellIndex()>=15 && getSpellIndex()<=17)
+        else if(era_compat::ConfluxPolicies::get().enabled()
+            && getSpell()->getJsonKey()=="tum-era:sourceConfluxFireWallTrigger")
         {
-            //Faerie kind1 singles15/16/17 have one checked original target.
+            //59FFE0/5A0045 tests probability>0; it never rolls resistance.
+        }
+        else if((era_compat::confluxCastKind && *era_compat::confluxCastKind==1 && getSpellIndex()==15)
+            || (sourceConfluxCast && getSpellIndex()>=15 && getSpellIndex()<=17))
+        {
+            //355 AfterMelee is Magic Arrow15, a single original target.
             //canSpellBeCast only checks probability>0. Kind1 explicitly skips
             //5A05E5..0628's resistance lottery at5A05DF, and15's dispatch
             //5A0C9A..0D3B contains no further draw. Partial resistance therefore
@@ -582,7 +645,8 @@ void BattleSpellMechanics::beforeCast(BattleSpellCast & sc, vstd::RNG & rng, con
             for(const auto * unit:battle()->battleGetAllUnits(false))
             {
                 const auto rod=era_compat::sourceLightningResistance(*battle(),getSpellIndex(),casterSide,*unit);
-                const int prob=rod?*rod:std::min(unit->magicResistance(),100);
+                const bool catalyst=era_compat::confluxCatalystNegates(*battle(),casterSide,isHeroCast());
+                const int prob=rod?*rod:catalyst?100-era_compat::statusRawAccuracy(*battle(),unit,true):std::min(unit->magicResistance(),100);
                 if(rng.nextInt(0,99)<prob)resistantUnitIds.insert(unit->unitId());
             }
         }

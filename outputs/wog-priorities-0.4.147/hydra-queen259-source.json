@@ -1,0 +1,70 @@
+{
+  "sourceArtifact": 259,
+  "activationReady": false,
+  "sourceFiles": [
+    {
+      "path": "../Third-Upgrade-Mod-Full/Data/s/Third Upgrade Mod.erm",
+      "sha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315"
+    },
+    {
+      "path": "../Third-Upgrade-Mod-Full/Data/s/-1000 tum - Archer.erm",
+      "sha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e"
+    },
+    {
+      "path": "../Third-Upgrade-Mod-Full/Data/s/1000 tum - stdlib.erm",
+      "sha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4"
+    },
+    {
+      "path": "/tmp/goonk-wog-modern-emerald34.erm",
+      "sha256": "cee4372634b66bf7091427760b282169fdf452d9484b3944d4f9c1350617c984"
+    }
+  ],
+  "wogBase": {
+    "repository": "ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "path": "Mods/WoG Scripts/Data/s/34 wog - emerald tower.erm",
+    "function": "WOG_44_CheckIfMonDrainsLife",
+    "lines": [
+      1023,
+      1030
+    ],
+    "default": false,
+    "types": [
+      63,
+      159,
+      154
+    ]
+  },
+  "tumAddedTypes": [
+    221,
+    224,
+    296,
+    325
+  ],
+  "hook": {
+    "address": "0043D5C7",
+    "declaration": "1000 tum - stdlib.erm158",
+    "dispatch": "194..199",
+    "event": "AfterStackInitParams"
+  },
+  "operation": "Original-side hero wearing259: OR monster flag19 ATTACKS_ALL_AROUND, except tower149/doubleWide/breath flag and seven source life-drain creature types. No NO_RETALIATION flag assignment occurs in active script. The comment promises more than the observable code; implementation follows code.",
+  "native": "Optional exact259 registry. CStack::localInit after attached creature/army bonuses, before UnitState caches. ONE_BATTLE ATTACKS_ALL_ADJACENT, source-artifact259 selector deduplicates serialized battle initialization. Canonical sourceIds registry avoids treating arbitrary LIFE_DRAIN bonuses as the source hardcoded type predicate.",
+  "components": [
+    175,
+    176,
+    177,
+    178
+  ],
+  "pending": [
+    "Compile next coordinated native bundle",
+    "Adjacent secondary damage and retaliation controls",
+    "Body/backpack/opposite/nohero/wide/breath/type guards",
+    "Summon/clone and battle save/load"
+  ],
+  "retaliationProof": {
+    "consumer": "441AFF..441B23 checks only attacker flag16 and special-effect returnAL, plus defender capacity/status. Source259 sets flag19 only.",
+    "ordinaryHalberdier": "440228..440231 computes type-22; source halberdier1 is outside0..119 and branches4402AE, which returnsAL0 at4402AF. No attack-all-around test occurs in this default type path.",
+    "areaDamageConsumer": "44134B..441359 reads flag19 for area attack; same441330 function is called for ordinary strike441AE5 and counter441B5D.",
+    "scope": "Ordinary halberdier against plain Imp without source157 or status effects; no general claim about every scripted special attack."
+  }
+}

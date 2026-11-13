@@ -1,0 +1,185 @@
+{
+  "passed": true,
+  "report": {
+    "ai-sea-baseline": {
+      "day": 1,
+      "heroId": 3,
+      "name": "Orrin",
+      "movement": 1630,
+      "limit": 1630,
+      "move": null,
+      "sea": {
+        "board": {
+          "before": 1630,
+          "after": 0,
+          "cost": 1630,
+          "hero": {
+            "hasSpellbook": false,
+            "id": 3,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 0,
+            "movementLimit": 1500,
+            "name": "Orrin"
+          }
+        },
+        "afterBoard": {
+          "day": 1,
+          "movement": 0,
+          "limit": 1500
+        },
+        "nextSeaDay": {
+          "day": 2,
+          "movement": 1500,
+          "limit": 1500
+        },
+        "disembark": {
+          "before": 1500,
+          "after": 0,
+          "cost": 1500,
+          "hero": {
+            "hasSpellbook": false,
+            "id": 3,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 0,
+            "movementLimit": 1630,
+            "name": "Orrin"
+          }
+        },
+        "afterDisembark": {
+          "day": 2,
+          "movement": 0,
+          "limit": 1630
+        },
+        "nextLandDay": {
+          "day": 3,
+          "movement": 1630,
+          "limit": 1630
+        }
+      }
+    },
+    "ai-sea-worn": {
+      "day": 1,
+      "heroId": 3,
+      "name": "Orrin",
+      "movement": 2030,
+      "limit": 2030,
+      "move": null,
+      "sea": {
+        "board": {
+          "before": 2030,
+          "after": 0,
+          "cost": 2030,
+          "hero": {
+            "hasSpellbook": false,
+            "id": 3,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 0,
+            "movementLimit": 1500,
+            "name": "Orrin"
+          }
+        },
+        "afterBoard": {
+          "day": 1,
+          "movement": 0,
+          "limit": 1500
+        },
+        "nextSeaDay": {
+          "day": 2,
+          "movement": 1900,
+          "limit": 1900
+        },
+        "disembark": {
+          "before": 1900,
+          "after": 0,
+          "cost": 1900,
+          "hero": {
+            "hasSpellbook": false,
+            "id": 3,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 0,
+            "movementLimit": 1630,
+            "name": "Orrin"
+          }
+        },
+        "afterDisembark": {
+          "day": 2,
+          "movement": 0,
+          "limit": 1630
+        },
+        "nextLandDay": {
+          "day": 3,
+          "movement": 2030,
+          "limit": 2030
+        }
+      }
+    },
+    "ai-sea-navigation": {
+      "day": 1,
+      "heroId": 3,
+      "name": "Orrin",
+      "movement": 2030,
+      "limit": 2030,
+      "move": null,
+      "sea": {
+        "board": {
+          "before": 2030,
+          "after": 0,
+          "cost": 2030,
+          "hero": {
+            "hasSpellbook": false,
+            "id": 3,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 0,
+            "movementLimit": 3750,
+            "name": "Orrin"
+          }
+        },
+        "afterBoard": {
+          "day": 1,
+          "movement": 0,
+          "limit": 3750
+        },
+        "nextSeaDay": {
+          "day": 2,
+          "movement": 4150,
+          "limit": 4150
+        },
+        "disembark": {
+          "before": 4150,
+          "after": 0,
+          "cost": 4150,
+          "hero": {
+            "hasSpellbook": false,
+            "id": 3,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 0,
+            "movementLimit": 1630,
+            "name": "Orrin"
+          }
+        },
+        "afterDisembark": {
+          "day": 2,
+          "movement": 0,
+          "limit": 1630
+        },
+        "nextLandDay": {
+          "day": 3,
+          "movement": 2030,
+          "limit": 2030
+        }
+      }
+    }
+  }
+}

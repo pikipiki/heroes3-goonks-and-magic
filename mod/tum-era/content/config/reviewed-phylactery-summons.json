@@ -1,0 +1,258 @@
+{
+  "artifact227": {
+    "type": [
+      "HERO"
+    ],
+    "class": "SPECIAL",
+    "value": 4000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Minor Phylactery",
+      "description": "{Minor Phylactery}\n\nSummons scary Demiliches to help you in the battlefield.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/227/icon.png",
+      "map": "tum-era/artifacts/227/map.def",
+      "scenarioBonus": "tum-era/artifacts/227/scenario.png"
+    },
+    "bonuses": {}
+  },
+  "artifact228": {
+    "type": [
+      "HERO"
+    ],
+    "class": "SPECIAL",
+    "value": 6000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Major Phylactery",
+      "description": "{Major Phylactery}\n\nSummons scary Demiliches to help you in the battlefield.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/228/icon.png",
+      "map": "tum-era/artifacts/228/map.def",
+      "scenarioBonus": "tum-era/artifacts/228/scenario.png"
+    },
+    "bonuses": {}
+  },
+  "artifact229": {
+    "type": [
+      "HERO"
+    ],
+    "class": "SPECIAL",
+    "value": 8000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Supreme Phylactery",
+      "description": "{Supreme Phylactery}\n\nSummons scary Demiliches to help you in the battlefield.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/229/icon.png",
+      "map": "tum-era/artifacts/229/map.def",
+      "scenarioBonus": "tum-era/artifacts/229/scenario.png"
+    },
+    "bonuses": {}
+  },
+  "artifact230": {
+    "type": [
+      "HERO"
+    ],
+    "class": "SPECIAL",
+    "value": 10000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Relic Phylactery",
+      "description": "{Relic Phylactery}\n\nSummons scary Demiliches to help you in the battlefield.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/230/icon.png",
+      "map": "tum-era/artifacts/230/map.def",
+      "scenarioBonus": "tum-era/artifacts/230/scenario.png"
+    },
+    "bonuses": {}
+  },
+  "artifact232": {
+    "type": [
+      "HERO"
+    ],
+    "class": "SPECIAL",
+    "value": 100000,
+    "slot": [
+      "RIGHT_HAND"
+    ],
+    "text": {
+      "name": "Apocalypse's Blade",
+      "description": "{Apocalypse's Blade}\n\nIn addition to components effects, at the beginning of combat Apocalypse's Blade cast Bloodlust, Protection from Fire, Fire Shield, Frenzy and Slayer to the allies. (This does not prevent you from being immune to the enemy's Fire Shield.)",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/232/icon.png",
+      "map": "tum-era/artifacts/232/map.def",
+      "scenarioBonus": "tum-era/artifacts/232/scenario.png"
+    },
+    "bonuses": {
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:bloodlust",
+        "addInfo": [
+          3,
+          0
+        ]
+      },
+      "Autospell2": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:protectFire",
+        "addInfo": [
+          3,
+          1
+        ]
+      },
+      "Autospell3": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:fireShield",
+        "addInfo": [
+          3,
+          2
+        ]
+      },
+      "Autospell4": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:slayer",
+        "addInfo": [
+          3,
+          3
+        ]
+      },
+      "Autospell5": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:frenzy",
+        "addInfo": [
+          3,
+          4
+        ]
+      },
+      "GivesSpell": {
+        "type": "SPELL",
+        "val": 0,
+        "subtype": "core:armageddon"
+      },
+      "immunity11": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:landMine"
+      },
+      "immunity13": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:fireWall"
+      },
+      "immunity21": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:fireball"
+      },
+      "immunity22": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:inferno"
+      },
+      "immunity26": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:armageddon"
+      },
+      "immunity42": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:curse"
+      },
+      "immunity52": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:misfortune"
+      },
+      "immunity59": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:berserk"
+      },
+      "immunity62": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:blind"
+      }
+    },
+    "components": [
+      "core:armageddonsBlade",
+      "tum-era:artifact235",
+      "tum-era:artifact236",
+      "tum-era:artifact237"
+    ]
+  },
+  "artifact236": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 40000,
+    "slot": [
+      "LEFT_HAND"
+    ],
+    "text": {
+      "name": "Shield of the Vermillion Bird",
+      "description": "{Shield of the Vermillion Bird}\n\nIncrease your Attack, Defense and Power skill by +7 and Knowledge by +4. Summon Vermilion Birds on the battlefield.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/236/icon.png",
+      "map": "tum-era/artifacts/236/map.def",
+      "scenarioBonus": "tum-era/artifacts/236/scenario.png"
+    },
+    "bonuses": {
+      "Attack": {
+        "type": "PRIMARY_SKILL",
+        "val": 7,
+        "subtype": "primarySkill.attack"
+      },
+      "Defence": {
+        "type": "PRIMARY_SKILL",
+        "val": 7,
+        "subtype": "primarySkill.defence"
+      },
+      "Knowledge": {
+        "type": "PRIMARY_SKILL",
+        "val": 4,
+        "subtype": "primarySkill.knowledge"
+      },
+      "Spellpower": {
+        "type": "PRIMARY_SKILL",
+        "val": 7,
+        "subtype": "primarySkill.spellpower"
+      }
+    }
+  }
+}

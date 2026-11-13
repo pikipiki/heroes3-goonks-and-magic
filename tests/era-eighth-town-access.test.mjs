@@ -28,6 +28,7 @@ test('source eighth recruitment uses town variants and native150/151 without alt
 test('atomic source option rejects incomplete actors, missing original icons and ambiguous rosters',()=>{
  assert.deepEqual(compileEighthTownAccess(records(),{enabled:false}).patch,{});
  assert.throws(()=>compileEighthTownAccess(records(),{}),/Explicit/);
+ const duplicate=records();duplicate[1].roster[0]=duplicate[0].roster[0];assert.throws(()=>compileEighthTownAccess(duplicate,{enabled:true,baselineTowns,actorContracts,halls}),/eighteen.*distinct/);
  const incomplete=structuredClone(actorContracts);incomplete[278].nativeValidated=false;
  assert.throws(()=>compileEighthTownAccess(records(),{enabled:true,baselineTowns,actorContracts:incomplete,halls}),/Incomplete eighth creature contract 278/);
  const wrongHalls=structuredClone(halls);wrongHalls['core:castle'].sourceFrames[150]=44;

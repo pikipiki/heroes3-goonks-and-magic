@@ -1,0 +1,189 @@
+{
+  "passed": true,
+  "report": {
+    "wide": {
+      "actor": "core:cavalier",
+      "primary": 1,
+      "wounds": [
+        {
+          "id": 1,
+          "loss": 80
+        },
+        {
+          "id": 2,
+          "loss": 0
+        },
+        {
+          "id": 3,
+          "loss": 0
+        }
+      ],
+      "affected": 1,
+      "ownBefore": 999997,
+      "ownAfter": 999993,
+      "roundBefore": 1,
+      "roundAfter": 2
+    },
+    "breath": {
+      "actor": "core:halberdier",
+      "primary": 1,
+      "wounds": [
+        {
+          "id": 1,
+          "loss": 80
+        },
+        {
+          "id": 2,
+          "loss": 0
+        },
+        {
+          "id": 3,
+          "loss": 0
+        }
+      ],
+      "affected": 1,
+      "ownBefore": 999997,
+      "ownAfter": 999993,
+      "roundBefore": 1,
+      "roundAfter": 2
+    },
+    "source-vampire63": {
+      "actor": "core:vampireLord",
+      "primary": 1,
+      "wounds": [
+        {
+          "id": 1,
+          "loss": 77
+        },
+        {
+          "id": 2,
+          "loss": 0
+        },
+        {
+          "id": 3,
+          "loss": 0
+        }
+      ],
+      "affected": 1,
+      "ownBefore": 999997,
+      "ownAfter": 999997,
+      "roundBefore": 1,
+      "roundAfter": 2
+    },
+    "source-ghost159": {
+      "actor": "wake-of-gods.creatures:ghost",
+      "primary": 1,
+      "wounds": [
+        {
+          "id": 1,
+          "loss": 77
+        },
+        {
+          "id": 2,
+          "loss": 0
+        },
+        {
+          "id": 3,
+          "loss": 0
+        }
+      ],
+      "affected": 1,
+      "ownBefore": 999997,
+      "ownAfter": 999993,
+      "roundBefore": 1,
+      "roundAfter": 2
+    },
+    "source-nosferatu221": {
+      "actor": "third-upgrades:tumNosferatu",
+      "primary": 1,
+      "wounds": [
+        {
+          "id": 1,
+          "loss": 77
+        },
+        {
+          "id": 2,
+          "loss": 0
+        },
+        {
+          "id": 3,
+          "loss": 0
+        }
+      ],
+      "affected": 1,
+      "ownBefore": 999997,
+      "ownAfter": 999997,
+      "roundBefore": 1,
+      "roundAfter": 2
+    },
+    "source-redbones224-one-hex": {
+      "actor": "tum-era:redBonesDragon",
+      "primary": 1,
+      "wounds": [
+        {
+          "id": 1,
+          "loss": 77
+        },
+        {
+          "id": 2,
+          "loss": 0
+        },
+        {
+          "id": 3,
+          "loss": 0
+        }
+      ],
+      "affected": 1,
+      "ownBefore": 1000000,
+      "ownAfter": 1000000,
+      "roundBefore": 1,
+      "roundAfter": 2
+    },
+    "goonk": {
+      "actor": "goonk:bubu",
+      "primary": 1,
+      "wounds": [
+        {
+          "id": 1,
+          "loss": 40
+        },
+        {
+          "id": 2,
+          "loss": 40
+        },
+        {
+          "id": 3,
+          "loss": 40
+        }
+      ],
+      "affected": 3,
+      "ownBefore": 999997,
+      "ownAfter": 999993,
+      "roundBefore": 1,
+      "roundAfter": 2
+    },
+    "nonlisted-life-drain": {
+      "actor": "core:halberdier",
+      "primary": 1,
+      "wounds": [
+        {
+          "id": 1,
+          "loss": 80
+        },
+        {
+          "id": 2,
+          "loss": 80
+        },
+        {
+          "id": 3,
+          "loss": 80
+        }
+      ],
+      "affected": 3,
+      "ownBefore": 999997,
+      "ownAfter": 999996,
+      "roundBefore": 1,
+      "roundAfter": 2
+    }
+  }
+}

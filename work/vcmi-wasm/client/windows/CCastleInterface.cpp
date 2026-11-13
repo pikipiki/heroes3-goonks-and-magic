@@ -29,6 +29,7 @@
 #include "../media/IMusicPlayer.h"
 #include "../media/ISoundPlayer.h"
 #include "../widgets/MiscWidgets.h"
+#include "../widgets/GraphicalPrimitiveCanvas.h"
 #include "../widgets/CComponent.h"
 #include "../widgets/CGarrisonInt.h"
 #include "../widgets/CTextInput.h"
@@ -2035,7 +2036,7 @@ CFortScreen::CFortScreen(const CGTownInstance * town):
 	ui32 fortSize = static_cast<ui32>(town->creatures.size());
 	if(fortSize > town->getTown()->creatures.size() && town->creatures.back().second.empty())
 		fortSize--;
-	fortSize = std::min(fortSize, static_cast<ui32>(GameConstants::CREATURES_PER_TOWN)); // for 8 creatures + portal of summoning
+	fortSize = std::min(fortSize, static_cast<ui32>(GameConstants::CREATURES_PER_TOWN + 1)); // eighth tier plus Portal of Summoning
 
 	// The mobile recruitment gallery is also accessible in unfortified towns.
 	// Building 6 is a shipyard, which some factions (such as Tower) do not define.
@@ -2053,7 +2054,14 @@ CFortScreen::CFortScreen(const CGTownInstance * town):
 		Point(10, 288), Point(404,288)
 	};
 
-	if(fortSize == GameConstants::CREATURES_PER_TOWN)
+	const bool compact = fortSize > GameConstants::CREATURES_PER_TOWN;
+	if(compact)
+	{
+		positions.clear();
+		for(ui32 i = 0; i < fortSize; ++i)
+			positions.emplace_back(10 + 264 * (i % 3), 22 + 176 * (i / 3));
+	}
+	else if(fortSize == GameConstants::CREATURES_PER_TOWN)
 	{
 		positions.push_back(Point(10, 421));
 		positions.push_back(Point(404,421));
@@ -2081,7 +2089,7 @@ CFortScreen::CFortScreen(const CGTownInstance * town):
 			buildingID = BuildingID::SPECIAL_3;
 		}
 
-		recAreas.push_back(std::make_shared<RecruitArea>(positions[i].x, positions[i].y, town, i));
+		recAreas.push_back(std::make_shared<RecruitArea>(positions[i].x, positions[i].y, town, i, compact));
 	}
 
 	resdatabar = std::make_shared<CMinorResDataBar>();
@@ -2143,7 +2151,7 @@ void CFortScreen::creaturesChangedEventHandler()
 	GAME->interface()->castleInt->creaturesChangedEventHandler();
 }
 
-CFortScreen::RecruitArea::RecruitArea(int posX, int posY, const CGTownInstance * Town, int Level):
+CFortScreen::RecruitArea::RecruitArea(int posX, int posY, const CGTownInstance * Town, int Level, bool compact):
 	town(Town),
 	level(Level),
 	availableCount(nullptr)
@@ -2151,36 +2159,38 @@ CFortScreen::RecruitArea::RecruitArea(int posX, int posY, const CGTownInstance *
 	OBJECT_CONSTRUCTION;
 	pos.x +=posX;
 	pos.y +=posY;
-	pos.w = 386;
-	pos.h = 126;
+	pos.w = compact ? 252 : 386;
+	pos.h = compact ? 176 : 126;
+	if(compact)
+		new TransparentFilledRectangle(Rect(0, 0, pos.w, pos.h), ColorRGBA(25, 20, 15, 255), ColorRGBA(120, 100, 65, 255));
 
 	if(!town->creatures[level].second.empty())
 		addUsedEvents(LCLICK | HOVER);//Activate only if dwelling is present
 
 	addUsedEvents(SHOW_POPUP);
 
-	icons = std::make_shared<CPicture>(ImagePath::builtin("TPCAINFO"), 261, 3);
+	icons = std::make_shared<CPicture>(ImagePath::builtin("TPCAINFO"), compact ? 154 : 261, compact ? 22 : 3);
 
 	if(getMyBuilding() != nullptr)
 	{
-		buildingIcon = std::make_shared<CAnimImage>(town->getTown()->clientInfo.buildingsIcons, getMyBuilding()->bid, 0, 4, 21);
-		buildingName = std::make_shared<CLabel>(78, 101, FONT_SMALL, ETextAlignment::CENTER, Colors::WHITE, getMyBuilding()->getNameTranslated(), 152);
+		if(!compact)buildingIcon = std::make_shared<CAnimImage>(town->getTown()->clientInfo.buildingsIcons, getMyBuilding()->bid, 0, 4, 21);
+		buildingName = std::make_shared<CLabel>(compact ? 126 : 78, compact ? 149 : 101, FONT_SMALL, ETextAlignment::CENTER, Colors::WHITE, getMyBuilding()->getNameTranslated(), compact ? 244 : 152);
 
 		if(town->hasBuilt(getMyBuilding()->bid))
 		{
 			ui32 available = town->creatures[level].first;
 			std::string availableText = LIBRARY->generaltexth->allTexts[217]+ std::to_string(available);
-			availableCount = std::make_shared<CLabel>(78, 119, FONT_SMALL, ETextAlignment::CENTER, Colors::WHITE, availableText);
+			availableCount = std::make_shared<CLabel>(compact ? 126 : 78, compact ? 166 : 119, FONT_SMALL, ETextAlignment::CENTER, Colors::WHITE, availableText);
 		}
 	}
 
 	if(getMyCreature() != nullptr)
 	{
 		hoverText = boost::str(boost::format(LIBRARY->generaltexth->tcommands[21]) % getMyCreature()->getNamePluralTranslated());
-		new CCreaturePic(159, 4, getMyCreature(), false);
-		new CLabel(78,  11, FONT_SMALL, ETextAlignment::CENTER, Colors::WHITE, getMyCreature()->getNamePluralTranslated(), 152);
+		new CCreaturePic(compact ? 8 : 159, compact ? 22 : 4, getMyCreature(), false);
+		new CLabel(compact ? 126 : 78, 11, FONT_SMALL, ETextAlignment::CENTER, Colors::WHITE, getMyCreature()->getNamePluralTranslated(), compact ? 244 : 152);
 
-		Rect sizes(287, 4, 96, 18);
+		Rect sizes(compact ? 180 : 287, compact ? 22 : 4, compact ? 70 : 96, 18);
 		values.push_back(std::make_shared<LabeledValue>(sizes, LIBRARY->generaltexth->allTexts[190], LIBRARY->generaltexth->fcommands[0], getMyCreature()->getAttack(false)));
 		sizes.y+=20;
 		values.push_back(std::make_shared<LabeledValue>(sizes, LIBRARY->generaltexth->allTexts[191], LIBRARY->generaltexth->fcommands[1], getMyCreature()->getDefense(false)));
@@ -2199,7 +2209,7 @@ const CCreature * CFortScreen::RecruitArea::getMyCreature()
 {
 	if(!town->creatures.at(level).second.empty()) // built
 		return town->creatures.at(level).second.back().toCreature();
-	if(!town->getTown()->creatures.at(level).empty()) // there are creatures on this level
+	if(level < town->getTown()->creatures.size() && !town->getTown()->creatures.at(level).empty()) // there are creatures on this level
 		return town->getTown()->creatures.at(level).front().toCreature();
 	return nullptr;
 }

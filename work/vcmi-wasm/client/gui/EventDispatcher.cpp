@@ -16,6 +16,8 @@
 #include "MouseButton.h"
 #include "WindowHandler.h"
 #include "gui/Shortcut.h"
+#include "../CPlayerInterface.h"
+#include "../GameInstance.h"
 
 #include "../../lib/CConfigHandler.h"
 #include "../../lib/Rect.h"
@@ -157,6 +159,7 @@ void EventDispatcher::dispatchMouseDoubleClick(const Point & position, int toler
 
 void EventDispatcher::dispatchMouseLeftButtonPressed(const Point & position, int tolerance)
 {
+    if(GAME && GAME->interface())GAME->interface()->sourceConfluxUIClick();
 	handleLeftButtonClick(position, tolerance, true);
 }
 

@@ -1,0 +1,160 @@
+{
+  "passed": true,
+  "allOtherModFilesHashUnchanged": true,
+  "beforeFileCount": 8826,
+  "afterFileCount": 8850,
+  "preservedExistingModFiles": 8821,
+  "manifestOnlyChange": "+creatures/config/reviewed-dragonling-pair.json",
+  "identityOnlyChanges": [
+    343,
+    344
+  ],
+  "changedFiles": [
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/343/S343ATTK.wav",
+      "before": null,
+      "after": "851030b17176ba5e088e2876633da969795acd692191c90627a0d7fac53fc32d"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/343/S343DFND.wav",
+      "before": null,
+      "after": "15df50d5ee4cef38b40b44b0c270b7f7de0588b9ca6f09594e0425199cbd97cb"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/343/S343KILL.wav",
+      "before": null,
+      "after": "33d437433fe6674b01756b56d4495c84594b9b6abe2e0e962b105b8106ae2125"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/343/S343MOVE.wav",
+      "before": null,
+      "after": "9eda028ffc391d509b91b005b1fedc06272cb02df3c10044ae1791cf4148f0bf"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/343/S343WNCE.wav",
+      "before": null,
+      "after": "33d437433fe6674b01756b56d4495c84594b9b6abe2e0e962b105b8106ae2125"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/344/S344ATTK.wav",
+      "before": null,
+      "after": "851030b17176ba5e088e2876633da969795acd692191c90627a0d7fac53fc32d"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/344/S344DFND.wav",
+      "before": null,
+      "after": "15df50d5ee4cef38b40b44b0c270b7f7de0588b9ca6f09594e0425199cbd97cb"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/344/S344KILL.wav",
+      "before": null,
+      "after": "33d437433fe6674b01756b56d4495c84594b9b6abe2e0e962b105b8106ae2125"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/344/S344MOVE.wav",
+      "before": null,
+      "after": "9eda028ffc391d509b91b005b1fedc06272cb02df3c10044ae1791cf4148f0bf"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/344/S344WNCE.wav",
+      "before": null,
+      "after": "33d437433fe6674b01756b56d4495c84594b9b6abe2e0e962b105b8106ae2125"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/343/AVWCR343.def",
+      "before": null,
+      "after": "1eef60a7c30a234bf6e40ec5931a652ccdbbd5946d792869c8febc053edd5f17"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/343/AVWCR343.msk",
+      "before": null,
+      "after": "e518c68cce25f5b579648236008a9241dde284e45f7c303d6c59e965e546cd80"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/343/CR343.def",
+      "before": null,
+      "after": "512c0b9f063d46f88719e64275b96fc38928bbf9024f81fa5eef3d58376c1f45"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/343/large.png",
+      "before": null,
+      "after": "7f99007cf94ab10a780282e28d5544f1715c57fa56d7af1e9d593326afb438c2"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/343/small.png",
+      "before": null,
+      "after": "8fbee4f278b912c8485500455dcddcbcfdbc73699e4db9e88ff632ede1525e6e"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/344/AVWCR344.def",
+      "before": null,
+      "after": "c5968f46cbc0580a21f1d474b78e5239ed7ca2c9bc0405ceed884af6ec39322f"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/344/AVWCR344.msk",
+      "before": null,
+      "after": "f9985a05c4b9268f89ff1980abb109e9335d7cfc62e93a77212e23c7c96deb45"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/344/CR344.def",
+      "before": null,
+      "after": "c75bbed652e84808bcd4ae3a5e9f68383adf66f20a16d2e4a0027f0b01780d82"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/344/large.png",
+      "before": null,
+      "after": "b54cbdbb82c29d353c876d5432aa2ecd979fd643316446adc51fa5fcb2f139af"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/344/small.png",
+      "before": null,
+      "after": "2809fef0e6aa487bf52d689621df89b0e1cf3660b0f8c2ba37448bc4c2123b98"
+    },
+    {
+      "path": "mod/tum-era/content/config/era-bridge-dragonling-evolution.json",
+      "before": null,
+      "after": "c127fdca918966a8e87d3485389df544f3589a1ee9fa4e012ed93a95ccd7c326"
+    },
+    {
+      "path": "mod/tum-era/content/config/era-bridge-experience.json",
+      "before": "d15c272797cf4b91f93bcf92a76106220ca57b0ebb7a8c498010f5763975ac18",
+      "after": "6c28bfcd8fb9ccd838737b30f59f0eda40159f5a8c52c7a01607bccd9c20fa73"
+    },
+    {
+      "path": "mod/tum-era/content/config/era-bridge-faerie-dragonling.json",
+      "before": null,
+      "after": "ff0c4486007a3f5d09dbb995c246d202318d757ff0344df97a7112fff01fa62e"
+    },
+    {
+      "path": "mod/tum-era/content/config/era-bridge-rust-dragonling.json",
+      "before": null,
+      "after": "99ff88ab1c855ddf100fd375053dc6679731a983ea43d267cbb2f4c14532c476"
+    },
+    {
+      "path": "mod/tum-era/content/config/era-bridge-skeleton-transformations.json",
+      "before": "e0abd595701839870b274caff5e28c88d54324b37758baea0c2388ce07c04200",
+      "after": "d73b4fd95e581b9142adf16e4b14955f6734093c8b0c18e4dda54206f022888c"
+    },
+    {
+      "path": "mod/tum-era/content/config/era-bridge-status-attacks.json",
+      "before": "ccee6e26521b2b085219fbe4b6037f0696b4d5cf126b5208e66ce26f10a5a2ea",
+      "after": "b2c9a32a5a0757fd571f74c530d5118b3d6d8355c9139d781690ecfdee3dc593"
+    },
+    {
+      "path": "mod/tum-era/content/config/reviewed-dragonling-pair.json",
+      "before": null,
+      "after": "ae5e81c4d67db0278396dd70ef200e4135bbfc5fafaba25e4dde084c522c2f85"
+    },
+    {
+      "path": "mod/tum-era/era-identities.json",
+      "before": "0ae81d54b891efb94decc08d3b3a19a83ac4cda108c5a1ada1a4a317ce92b453",
+      "after": "185255998e062a190ebc7e871e71af405adeb5e8f406de526df07bd39dbc406b"
+    },
+    {
+      "path": "mod/tum-era/mod.json",
+      "before": "ead83d3378ee1cd642e857ecc2a3881c9f477b18f30666e30bf295da2f883838",
+      "after": "e248f15c666000713d6ae475be06d03ec1fd2923c918a87d4010568e6e8156fc"
+    }
+  ],
+  "sourceProof": "native-dragonling-daily-evolution.json"
+}

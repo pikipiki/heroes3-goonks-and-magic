@@ -75,6 +75,7 @@ public:
 	virtual void visitNewArtifact(NewArtifact & pack) {}
 	virtual void visitChangeStackCount(ChangeStackCount & pack) {}
 	virtual void visitSetStackType(SetStackType & pack) {}
+    virtual void visitResetStackExperience(ResetStackExperience & pack) {}
 	virtual void visitEraseStack(EraseStack & pack) {}
 	virtual void visitSwapStacks(SwapStacks & pack) {}
 	virtual void visitInsertNewStack(InsertNewStack & pack) {}
@@ -148,6 +149,7 @@ public:
 	virtual void visitTradeOnMarketplace(TradeOnMarketplace & pack) {}
 	virtual void visitSetFormation(SetFormation & pack) {}
 	virtual void visitRefreshArtifactState(RefreshArtifactState & pack) {}
+    virtual void visitRefreshConfluxTome(RefreshConfluxTome & pack) {}
 	virtual void visitSetTactics(SetTactics & pack) {}
 	virtual void visitSetTownName(SetTownName & pack) {}
 	virtual void visitHireHero(HireHero & pack) {}

@@ -14,12 +14,13 @@ inline int64_t sourceRoundTwoSummonCount(int32_t livingCount,int percent)
         +static_cast<double>(original)*percent/100.0+0.5);
     return static_cast<int64_t>(static_cast<double>(augmented)-original);
 }
-inline std::array<int,3> sourcePitMasterSummonPositions(int origin,bool defender)
+inline std::array<int,3> sourcePitMasterSummonPositions(int origin,bool defender,bool doubleWide=false)
 {
     if(origin<0 || origin>=187 || origin%17<1 || origin%17>15)return {-1,-1,-1};
     const int row=origin/17;
     const int x=2*(origin%17-1)+(row%2==0?1:0);
     const int sign=defender?-1:1;
+    const int width=doubleWide?2:0; //71E062..072; used by both side branches.
     auto hex=[](int px,int py)
     {
         //75B1A8 rejects these bounds before75B06D table lookup. The three
@@ -29,6 +30,6 @@ inline std::array<int,3> sourcePitMasterSummonPositions(int origin,bool defender
         if((px&1)!=parity)return -1;
         return 17*py+(px-parity)/2+1;
     };
-    return {hex(x+2*sign,row),hex(x+sign,row-1),hex(x+sign,row+1)};
+    return {hex(x+(2+width)*sign,row),hex(x+(1+width)*sign,row-1),hex(x+(1+width)*sign,row+1)};
 }
 }

@@ -1209,8 +1209,19 @@ void CPlayerInterface::tileHidden(const FowTilesType &pos)
 	adventureInt->onMapTilesChanged(pos);
 }
 
+void CPlayerInterface::sourceConfluxUIClick()
+{
+    if(!makingTurn || battleInt)return;
+    if(ENGINE->windows().topWindow<AdventureMapInterface>()
+        || ENGINE->windows().topWindow<CHeroWindow>()
+        || ENGINE->windows().topWindow<CCastleInterface>()
+        || ENGINE->windows().topWindow<CExchangeWindow>())
+        cb->refreshConfluxTome(localState->getCurrentHero());
+}
+
 void CPlayerInterface::openHeroWindow(const CGHeroInstance *hero)
 {
+    if(makingTurn && !battleInt)cb->refreshConfluxTome(hero);
 	ENGINE->windows().createAndPushWindow<CHeroWindow>(hero);
 }
 
@@ -1244,6 +1255,12 @@ void CPlayerInterface::heroBonusChanged( const CGHeroInstance *hero, const Bonus
 	EVENT_HANDLER_CALLED_BY_CLIENT;
 	if (bonus.type == BonusType::NONE)
 		return;
+
+    if(bonus.type==BonusType::ERA_SOURCE_TOME_CACHE)
+    {
+        for(const auto & window:ENGINE->windows().findWindows<CSpellWindow>())
+            window->refreshSourceAvailableSpells(hero);
+    }
 
 	adventureInt->onHeroChanged(hero);
 

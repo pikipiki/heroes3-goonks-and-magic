@@ -1,0 +1,62 @@
+import{installReviewedHydraQueen259Overlay}from'./hydra-queen259-overlay.mjs';
+import {readEraArchive} from '../../scripts/era-bridge/resources.mjs';
+import {chromium} from 'playwright-core';import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {silenceTestAudio} from './silent-audio.mjs';
+const out=process.env.REVIEW_OUTPUT||'/tmp/goonk-hydra259-native';fs.mkdirSync(out,{recursive:true});const origin=process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8797';const browser=await chromium.launch({headless:true});let p;const errors=[],report={},consoleLines=[];
+const wait=(f,a,t=60000)=>p.waitForFunction(f,a,{timeout:t}),cmd=(...a)=>p.evaluate(a=>Module._vcmiMobileCommand(...a),[...a,...Array(6-a.length).fill(0)]),state=()=>p.evaluate(()=>goonkMobileState);
+const fixture=options=>execFileSync('python3',['-c',`import zipfile,json,io,sys,importlib.util,copy
+opts=json.loads(sys.argv[1]);z=zipfile.ZipFile('maps/000-Goonk.vmap');entries={n:z.read(n) for n in z.namelist()};objects=json.loads(entries['objects.json']);objects=[o for o in objects if o['instanceName'] in ['goonkTown','goonkHero','enemyTown']]
+for o in objects:
+ if o['instanceName']=='goonkHero':o['options'].update({'type':'core:christian','primarySkills':{'attack':opts.get('attack',4),'defence':opts.get('defense',7),'spellpower':opts.get('power',10),'knowledge':20},'secondarySkills':opts.get('skills',{'core:wisdom':'expert'}),'spellBook':opts.get('spells',['preset','core:implosion','core:resurrection','core:animateDead','core:armageddon']),'artifacts':dict({'spellbook':'core:spellBook','misc5':'core:shacklesOfWar'},**opts['artifacts']),'army':opts.get('army',[{'type':'core:blackDragon','amount':500},{'type':'goonk:bubu','amount':10}])})
+if opts.get('guild'):
+ town=next(o for o in objects if o['instanceName']=='goonkTown')
+ for i,x in enumerate([5,10,15]):
+  extra=copy.deepcopy(town);extra.update({'instanceName':'extraTavern'+str(i),'x':x,'y':25});objects.append(extra)
+if opts.get('enemyHero'):
+ hero=next(o for o in objects if o['instanceName']=='goonkHero')
+ objects.append({'type':'core:hero','subtype':'core:knight','instanceName':'enemyHero','x':11,'y':11,'l':0,'template':hero['template'],'options':{'owner':'blue','type':'core:orrin','primarySkills':{'attack':10,'defence':20,'spellpower':3,'knowledge':5},'artifacts':opts.get('enemyArtifacts',{'shoulders':'tum-era:artifact261'} if opts.get('enemyCloak') else {}),'army':opts.get('enemyArmy',opts['army'])}})
+elif opts.get('battle'):
+ objects.append({'type':'core:monster','subtype':opts.get('enemy','core:ancientBehemoth'),'instanceName':'artifactGuard','x':10,'y':11,'l':0,'template':{'animation':'AVWbhmX0.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{'amount':opts.get('enemyCount',100),'character':opts.get('character','savage'),'neverFlees':opts.get('neverFlees',True)}})
+
+if opts.get('terrain'):
+ terrain=json.loads(entries['surface_terrain.json']);entries['surface_terrain.json']=json.dumps([[opts['terrain']+'0_' for tile in row] for row in terrain]).encode()
+entries['objects.json']=json.dumps(objects).encode();h=json.loads(entries['header.json']);h['allowedArtifacts']={'anyOf':['core:speculum']};h['name']='000 - Artifact validation';entries['header.json']=json.dumps(h).encode()
+for n in ['english.json','french.json']:
+ t=json.loads(entries[n]);t['mapName']='000 - Artifact validation';entries[n]=json.dumps(t).encode()
+spec=importlib.util.spec_from_file_location('n','scripts/normalize-map-instances.py');n=importlib.util.module_from_spec(spec);spec.loader.exec_module(n);entries=n.normalize(entries);out=io.BytesIO()
+with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as z:
+ for name,data in entries.items():z.writestr(name,data)
+sys.stdout.buffer.write(out.getvalue())`,JSON.stringify(options)]);
+async function boot(options){console.log('BOOT',JSON.stringify(options));p=await browser.newPage({viewport:JSON.parse(process.env.VIEWPORT||'{"width":844,"height":390}'),hasTouch:true,bypassCSP:true});await silenceTestAudio(p);await installReviewedHydraQueen259Overlay(p,process.env.HYDRA_REVIEW||'/tmp/goonk157-hydra259-review',{controls:options.controls||{},noCommanders:true});p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(consoleLines.length<4000)consoleLines.push((m.type()+': '+m.text()).slice(0,1000));});await p.addInitScript(()=>sessionStorage.setItem('heroes-goonk.storage-failed','true'));await p.goto(origin+'/game.html?mobile=1');await wait(()=>window.goonkMobileState?.mode==='menu'&&window.goonkSessionRecovery?.phase==='done',null,240000);await p.evaluate(bytes=>Module.FS.writeFile('/home/web_user/.local/share/vcmi/Maps/001-Goonks.vmap',new Uint8Array(bytes)),[...fixture(options)]);await cmd(20,1);await wait(()=>goonkMobileState.mode==='lobby'&&goonkMobileState.lobbyReady);await cmd(21);await wait(()=>goonkMobileState.selectedMap==='000 - Artifact validation');await cmd(22);await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);console.log('MAP READY');}
+async function combat(){await cmd(6);await p.waitForTimeout(150);await p.evaluate(()=>{const v=goonkMobileState.mapOverview.view;Module._vcmiMobilePointer(v.x+v.w/2+64,v.y+v.h/2,1);});await wait(()=>goonkMobileState.hasPath);await cmd(2);await wait(()=>goonkMobileState.mode==='battle'&&goonkMobileState.battleUnits?.length);await cmd(15);await wait(()=>goonkMobileState.canAct&&goonkMobileState.canUseMagic);return state();}
+async function cast(id,target){await cmd(14);await wait(()=>goonkMobileState.mode==='spellbook');await cmd(51,0);for(let i=0;i<8&&!(await state()).spellbook.spells.some(s=>s.id===id);i++){const page=(await state()).spellbook.page;await cmd(50,1);await wait(old=>goonkMobileState.spellbook.page!==old,page);}const entry=(await state()).spellbook.spells.find(s=>s.id===id);assert(entry?.enabled,'Known native spell enabled: '+id);await cmd(49,id);await wait(()=>goonkMobileState.mode==='battle');if(target){await wait(()=>goonkMobileState.spellTargeting);await cmd(14,3,target.occupied[0]);}await wait(()=>goonkMobileState.mode==='battle'&&!goonkMobileState.spellTargeting&&goonkMobileState.canAct&&!goonkMobileState.heroCanCast);}
+async function haste(){await cmd(14);await wait(()=>goonkMobileState.mode==='spellbook');await cmd(51,0);for(let i=0;i<8&&!(await state()).spellbook.spells.some(s=>s.id===53);i++){const page=(await state()).spellbook.page;await cmd(50,1);await wait(old=>goonkMobileState.spellbook.page!==old,page);}const entry=(await state()).spellbook.spells.find(s=>s.id===53);assert(entry?.enabled);await cmd(49,53);await wait(()=>goonkMobileState.mode==='battle'&&!goonkMobileState.spellTargeting&&goonkMobileState.canAct&&!goonkMobileState.heroCanCast);}
+const hp=u=>(u.count-1)*u.maximumHealth+u.currentHealth;
+const identity='tum-era:artifact259',cases=[
+ {name:'new-summon-worn',worn:true,newEffect:67},{name:'new-summon-backpack',backpack:true,newEffect:67},{name:'new-clone-worn',worn:true,newEffect:65},{name:'new-clone-backpack',backpack:true,newEffect:65},{name:'native-all-adjacent-haste',nativeAll:true,haste:true,all:true},{name:'equipped-slow',worn:true,all:true},{name:'baseline'}, {name:'equipped',worn:true,haste:true,all:true}, {name:'backpack',backpack:true},
+ {name:'opposite-hero',opposite:true}, {name:'unrelated-head',unrelated:true},
+ {name:'wide',worn:true,actor:'core:cavalier'},
+ {name:'breath',worn:true,breath:true},
+ {name:'source-vampire63',worn:true,actor:'core:vampireLord'},
+ {name:'source-ghost159',worn:true,actor:'wake-of-gods.creatures:ghost'},
+ {name:'source-nosferatu221',worn:true,actor:'third-upgrades:tumNosferatu'},
+ {name:'source-redbones224-one-hex',worn:true,actor:'tum-era:redBonesDragon',oneHex:true},
+ {name:'goonk',worn:true,actor:'goonk:bubu',all:true},
+ {name:'nonlisted-life-drain',worn:true,drain:true,all:true},
+];
+try{
+ for(const c of cases){
+  if(process.env.HYDRA_CASES&&!process.env.HYDRA_CASES.split(',').includes(c.name))continue;
+  const actor=c.actor||'core:halberdier',calm={morale:{type:'NO_MORALE'},luck:{type:'NO_LUCK'}},controls={
+   'core:imp':{hitPoints:1000000,speed:25,attack:0,defense:0,damage:{min:1,max:1},abilities:calm},
+   [actor]:{hitPoints:1000000,speed:c.haste?23:1,attack:0,defense:0,damage:{min:100,max:100},...(c.oneHex?{doubleWide:false}:{}),abilities:{...calm,noCounter:{type:'ADDITIONAL_RETALIATION',val:-1},...(c.nativeAll?{sourceControlAll:{type:'ATTACKS_ALL_ADJACENT'}}:{}),...(c.breath?{sourceBreath:{type:'TWO_HEX_ATTACK_BREATH'}}:{}),...(c.drain?{sourceForeignDrain:{type:'LIFE_DRAIN',val:100}}:{})}}
+  };
+  await boot({artifacts:c.worn?{head:identity}:c.backpack?{backpack:[identity]}:c.unrelated?{head:'core:crownOfTheSupremeMagi'}:{},army:[{type:actor,amount:1}],enemyHero:true,enemyArmy:Array.from({length:3},()=>({type:'core:imp',amount:1})),enemyArtifacts:c.opposite?{head:identity}:{},spells:['preset','core:haste','core:earthElemental','core:clone'],skills:{'core:wisdom':'expert','core:airMagic':'expert'},controls});
+  await combat();if(c.newEffect){const initial=await state(),ids=new Set(initial.battleUnits.map(u=>u.stackId));await cast(c.newEffect,c.newEffect===65?initial.battleUnits.find(u=>!u.enemy&&u.key===actor):null);await wait(ids=>goonkMobileState.battleUnits.some(u=>!ids.includes(u.stackId)),[...ids]);const created=(await state()).battleUnits.filter(u=>!ids.has(u.stackId));assert.equal(created.length,1);assert.equal(created[0].nativeFlags.attacksAllAdjacent,!!c.worn,'Real newly initialized summon/clone receives259 only from equipped owning hero');assert.equal(created[0].enemy,false);report[c.name]={spell:c.newEffect,created:created[0]};await p.screenshot({path:path.join(out,c.name+'.png')});await p.close();fs.writeFileSync(path.join(out,'partial-result.json'),JSON.stringify(report,null,2));console.log('PASS source259 '+c.name);continue;}if(c.haste)await haste();const before=await state();assert.equal(before.activeUnit.key,actor);assert.equal(before.battleUnits.find(u=>u.stackId===before.activeStack).nativeFlags.attacksAllAdjacent,!!c.all,'Existing battle UI trait reflects effective259 state');const enemies=before.battleUnits.filter(u=>u.enemy&&u.armySlot>=0);assert.equal(enemies.length,3);const target=enemies.find(u=>u.canMeleeAt);assert(target,'Three faster enemies surround the actor');
+  fs.writeFileSync(path.join(out,c.name+'-before.json'),JSON.stringify(before));const own=before.battleUnits.find(u=>!u.enemy&&u.key===actor);await cmd(14,4,target.occupied[0]);await wait(({id,round})=>goonkMobileState.round>round||goonkMobileState.activeStack!==id||!goonkMobileState.canAct,{id:before.activeStack,round:before.round});await wait(({round,actor})=>goonkMobileState.round>round&&goonkMobileState.canAct&&goonkMobileState.activeUnit?.key===actor,{round:before.round,actor});
+  const after=await state(),wounds=enemies.map(u=>({id:u.stackId,loss:hp(u)-hp(after.battleUnits.find(v=>v.stackId===u.stackId))}));const affected=wounds.filter(w=>w.loss>0).length;
+  if(c.breath)assert(affected<=2,'Breath exclusion cannot become all-around3');else assert.equal(affected,c.all?3:1,'Only the eligible wearer army gains source259 all-adjacent attack');
+  const ownAfter=after.battleUnits.find(u=>u.stackId===own.stackId);if(c.haste){assert.equal(after.round,2);assert.equal(after.activeUnit?.key,actor,'Expert Haste gives wearer the next round before enemies can act');assert.equal(hp(own)-hp(ownAfter),1,'Primary defender retaliates: source259 never sets the separate no-retaliation flag');}
+  report[c.name]={actor,primary:target.stackId,wounds,affected,ownBefore:hp(own),ownAfter:hp(ownAfter),roundBefore:before.round,roundAfter:after.round};fs.writeFileSync(path.join(out,'partial-result.json'),JSON.stringify(report,null,2));await p.screenshot({path:path.join(out,c.name+'.png')});await p.close();console.log('PASS source259 '+c.name,JSON.stringify(report[c.name]));
+ }
+ assert.equal(errors.length,0,errors.join('\n'));fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,report},null,2));
+}catch(error){fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:false,report,error:String(error.stack||error),state:await state(),errors},null,2));if(p&&!p.isClosed())await p.screenshot({path:path.join(out,'failure.png')});throw error;}finally{fs.writeFileSync(path.join(out,'console.json'),JSON.stringify(consoleLines));await browser.close();}

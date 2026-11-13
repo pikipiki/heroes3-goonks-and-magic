@@ -11,6 +11,7 @@
 #include "era/EraGooseReflectionRuntime.h"
 #include "era/EraCreatureSpecialists.h"
 #include "era/EraStatusHealthRuntime.h"
+#include "era/EraHydraQueen259Runtime.h"
 #include "CStack.h"
 #include "era/EraBridgePolicies.h"
 #include "CCreatureHandler.h"
@@ -109,6 +110,7 @@ void CStack::localInit(BattleInfo * battleInfo)
                         add(BonusType::CREATURE_DAMAGE,progression->damage,BonusSubtypeID(BonusCustomSubtype::creatureDamageBoth));
                     add(BonusType::ERA_SPECIALIST_HEALTH_PERCENT,progression->healthPercent);
                 }
+    era_compat::HydraQueen259::get().initialize(*this,battle->battleGetFightingHero(side));
 	CUnitState::localInit(this); //it causes execution of the CStack::isOnNativeTerrain where nativeTerrain will be considered
 	position = initialPosition;
 }

@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "report": {
+    "ai-worn": {
+      "day": 1,
+      "heroId": 3,
+      "name": "Orrin",
+      "movement": 2030,
+      "limit": 2030,
+      "move": null,
+      "followups": {
+        "day2": {
+          "day": 2,
+          "movement": 2030,
+          "limit": 2030
+        },
+        "serializedReceipt": [
+          {
+            "name": "Goonk-mobile.vsgm1",
+            "bytes": 114195,
+            "receiptPatterns": 2
+          }
+        ],
+        "unequippedDay2": {
+          "day": 2,
+          "movement": 2030,
+          "limit": 2030
+        },
+        "day3": {
+          "day": 3,
+          "movement": 1630,
+          "limit": 1630
+        },
+        "reequippedDay3": {
+          "day": 3,
+          "movement": 1630,
+          "limit": 1630
+        },
+        "day4": {
+          "day": 4,
+          "movement": 2030,
+          "limit": 2030
+        }
+      }
+    }
+  }
+}

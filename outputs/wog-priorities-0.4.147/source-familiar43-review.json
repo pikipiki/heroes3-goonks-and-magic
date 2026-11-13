@@ -1,0 +1,281 @@
+{
+  "activation": false,
+  "nativeValidationRequired": true,
+  "sourceId": 43,
+  "nativeId": "core:familiar",
+  "sourcePins": {
+    "archive": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+    "cfg": "21ab6040d8cffec14e14f61ed83b2aa8425b29b460cd5b56523264c70b3a8e55",
+    "tables": "10047a24ff1736db951f163c34bcfb58ebe5c0fab972308ca98edf715f61d0cf"
+  },
+  "sourceStats": {
+    "name": {
+      "singular": "Familiar",
+      "plural": "Familiars"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 60
+    },
+    "fightValue": 60,
+    "aiValue": 60,
+    "growth": 15,
+    "hitPoints": 4,
+    "speed": 7,
+    "attack": 4,
+    "defense": 4,
+    "damage": {
+      "min": 1,
+      "max": 2
+    },
+    "advMapAmount": {
+      "min": 20,
+      "max": 30
+    }
+  },
+  "canonicalStatsVerified": true,
+  "canonicalBaseArchiveSha256": "774cbfa7cfed6713ec80c48f8619a258dac14260e4f85faeebb29c053950a5a8",
+  "channel": {
+    "percent": 20,
+    "sourceInitialization": "tables.cpp MagicChannel_Table43=1;hook5A24DC",
+    "timing": "after effects",
+    "effectiveSide": "Hypnotize-aware",
+    "maxNotSum": true,
+    "uncappedMana": true,
+    "ordinaryUnregisteredProviders": "retain previous native pre-effect behavior"
+  },
+  "cfg": "Hate0255=200",
+  "sourceRows": [
+    {
+      "creature": 43,
+      "code": "S",
+      "modifier": "+",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2
+      ],
+      "comment": "Familiar: Speed R5/R10",
+      "source": "crexpbon.txt",
+      "line": 285
+    },
+    {
+      "creature": 43,
+      "code": "f",
+      "modifier": "F",
+      "values": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "comment": "Familiar: Flying R5",
+      "source": "crexpbon.txt",
+      "line": 286
+    },
+    {
+      "creature": 43,
+      "code": "h",
+      "modifier": "#28",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "comment": "Imp: Hatred Dmg-Gremlin (50% R10)",
+      "source": "crexpbon.txt",
+      "line": 287
+    },
+    {
+      "creature": 43,
+      "code": "h",
+      "modifier": "#29",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "comment": "Familiar: Hatred Dmg-Master Gremlin (50% R10)",
+      "source": "crexpbon.txt",
+      "line": 288
+    },
+    {
+      "creature": 43,
+      "code": "s",
+      "modifier": "#51",
+      "values": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3
+      ],
+      "comment": "Familiar: Fortune R1/R5/R8 (Expert R8)",
+      "source": "crexpbon.txt",
+      "line": 289
+    }
+  ],
+  "legacyRowsRemoved": [
+    {
+      "creature": 43,
+      "code": "S",
+      "modifier": "+",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2
+      ],
+      "comment": "Familiar: Speed R5/R10",
+      "source": "crexpbon.txt",
+      "line": 255
+    },
+    {
+      "creature": 43,
+      "code": "f",
+      "modifier": "F",
+      "values": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "comment": "Familiar: Flying R5",
+      "source": "crexpbon.txt",
+      "line": 256
+    },
+    {
+      "creature": 43,
+      "code": "h",
+      "modifier": "#29",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "comment": "Familiar: Hatred Dmg-Master Gremlin (50% R10)",
+      "source": "crexpbon.txt",
+      "line": 257
+    },
+    {
+      "creature": 43,
+      "code": "s",
+      "modifier": "#51",
+      "values": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3
+      ],
+      "comment": "Familiar: Fortune R1/R5/R8 (Expert R8)",
+      "source": "crexpbon.txt",
+      "line": 258
+    }
+  ],
+  "missingLegacyRows": [
+    {
+      "creature": 43,
+      "code": "h",
+      "modifier": "#28",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "comment": "Imp: Hatred Dmg-Gremlin (50% R10)",
+      "source": "crexpbon.txt",
+      "line": 287
+    }
+  ],
+  "independentFortune": "Compiler emits absolute1/2/3, not cumulative INDEPENDENT_MAX differences1/1/1",
+  "legacyRelative": "mod/wake-of-gods/Mods/stackExperience/Content/data/crexpbon.txt",
+  "legacyBeforeSha256": "b5d78be03702441dd49ecfccf9f9a7e8773d6410526d2110bd4f943adc290dc3",
+  "legacyAfterSha256": "14b82b1cf0043ee20bebb328e6a5d429f953961b88fceb7dae05f77c964edde2",
+  "requiredNativeControls": [
+    "canonical43 stats/R0/R5/R8/R10, flight/speed andFortune",
+    "personalHate255+200% andR10h28/h29+50%",
+    "two43 and43+356 max20% once",
+    "post-Hypnotize/death no stale gain",
+    "no recipientHero no gain",
+    "unregistered Goonk40% pre-route retained and max merged"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "report": {
+    "human-worn": {
+      "day": 1,
+      "heroId": 1,
+      "name": "Christian",
+      "movement": 1630,
+      "limit": 1630,
+      "move": {
+        "before": 1630,
+        "after": 1430,
+        "cost": 200,
+        "hero": {
+          "hasSpellbook": true,
+          "id": 1,
+          "index": 0,
+          "mana": 200,
+          "manaLimit": 200,
+          "movement": 1430,
+          "movementLimit": 1630,
+          "name": "Christian"
+        }
+      },
+      "saveLoad": {
+        "savedMovement": 1430,
+        "loadedMovement": 1430,
+        "limit": 1630,
+        "subsequentMove": 200,
+        "saveBytes": 113928
+      }
+    }
+  }
+}

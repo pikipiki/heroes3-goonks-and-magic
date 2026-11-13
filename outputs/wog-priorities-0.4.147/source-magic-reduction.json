@@ -1,0 +1,97 @@
+{
+  "sourceExeSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "localOfflineOnly": true,
+  "activation": false,
+  "evidence": [
+    {
+      "address": "0x701000",
+      "length": 24,
+      "hex": "606818107000ff15fca16300ff156876880061e96c98f1ff"
+    },
+    {
+      "address": "0x61a929",
+      "length": 5,
+      "hex": "e88feaffff"
+    },
+    {
+      "address": "0x6193bd",
+      "length": 11,
+      "hex": "a128f7680085c07402ffd0"
+    },
+    {
+      "address": "0x68f728",
+      "length": 4,
+      "hex": "447f6100"
+    },
+    {
+      "address": "0x617f44",
+      "length": 23,
+      "hex": "e813000000e84b660000a350b76a00e8f1650000dbe2c3"
+    },
+    {
+      "address": "0x61e549",
+      "length": 18,
+      "hex": "68000003006800000100e8326b00005959c3"
+    },
+    {
+      "address": "0x5a7c20",
+      "length": 45,
+      "hex": "c37408575356e8a5ddf3ff85ff0f84770200008b4f348bd6518bc8e84035eaff8b4df0575650e8750200008bf0"
+    },
+    {
+      "address": "0x75d93c",
+      "length": 31,
+      "hex": "8b151c02860252a114028602508b0d2c288302518b158468840252e80a0efc"
+    },
+    {
+      "address": "0x71e8ad",
+      "length": 118,
+      "hex": "807de0677402eb60db45108b45ec0305947d84000fb64806894ddcdb45dcd83528517800d82d20517800dec9d95dfcdb4510d85dfcdfe0f6c4057a06db4510d95dfcd945fcd81d845c7800dfe0f6c4057a07c745fc000000009090909090d945fce83de60500eb0de95affffff90909090908b450c5f"
+    }
+  ],
+  "contract": {
+    "code": "g",
+    "rankValue": "unsigned byte",
+    "raw": "arg3 ORIGINALRAW, not corrected44B180 output",
+    "precision": "Entry701000 jumps61A884; CRT61A929→6193BD→[68F728]=617F44→61E549 invokes controlFP(value0x10000,mask0x30000): 53-bit precision. g arithmetic then stores F32 at71E8D9.",
+    "order": [
+      "caster bonuses5A7C26",
+      "MR0",
+      "innate44B180",
+      "g71E766 replacing innate output",
+      "MR1",
+      "school protections5A7EC0"
+    ],
+    "truncation": "F32 stored before MSVCftol2 call71E90E; source clamp itself writes ORIGINALRAW back as F32",
+    "examples": [
+      {
+        "raw": 30,
+        "g": 95,
+        "stored": 1.5,
+        "integer": 1,
+        "schoolReduction": 30,
+        "final": 0,
+        "nativeFormerSchoolFirst": 1
+      },
+      {
+        "raw": 16777219,
+        "g": 0,
+        "integer": 16777220,
+        "reason": "Defined F32 upward rounding retained"
+      }
+    ]
+  },
+  "documentedExtensionFix": {
+    "condition": "raw outside nonnegative signed Win32 input domain, or F32 result outside signed Win32 return domain",
+    "behavior": "Saturate safely to0..INT32_MAX; no undefined/overflowing integer conversion replicated"
+  },
+  "requiredNativeControls": [
+    "g0 mixed ANY",
+    "unregistered Goonk ANY unchanged",
+    "g50 Golem innate replacement",
+    "actual equipped WardingBanner preserved",
+    "g95 before school and Sorcery",
+    "g100 zero-damage eligibility",
+    "source355 zero-wound Shield before first physical hit"
+  ]
+}

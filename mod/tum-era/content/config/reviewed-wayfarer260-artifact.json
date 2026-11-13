@@ -1,0 +1,23 @@
+{
+  "artifact260": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 5000,
+    "slot": [
+      "FEET"
+    ],
+    "text": {
+      "name": "Wayfarer's Boots",
+      "description": "{Wayfarer's Boots}\n\nHuman-controlled heroes cross terrain as if they had Expert Pathfinding. Computer-controlled heroes instead gain 400 extra movement points at the start of each turn.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/260/icon.png",
+      "map": "tum-era/artifacts/260/map.def",
+      "scenarioBonus": "tum-era/artifacts/260/scenario.png"
+    },
+    "bonuses": {}
+  }
+}

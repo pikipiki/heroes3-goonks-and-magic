@@ -49,7 +49,10 @@
     "config/complete-pit-master.json",
     "config/reviewed-inferno-eighth.json",
     "config/source-fortress.json",
-    "config/reviewed-dungeon-eighth.json"
+    "config/reviewed-dungeon-eighth.json",
+    "config/reviewed-neutral-transform-dependencies.json",
+    "config/source-experience-magic-reduction.json",
+    "config/reviewed-dragonling-pair.json"
   ],
   "factions": [
     "config/necropolis.json",
@@ -85,7 +88,11 @@
     "config/reviewed-atma-artifacts.json",
     "config/reviewed-interference-artifacts.json",
     "config/reviewed-mass-hypnotize253-artifact.json",
-    "config/reviewed-oblivion-artifact.json"
+    "config/reviewed-oblivion-artifact.json",
+    "config/reviewed-wayfarer260-artifact.json",
+    "config/reviewed-hydra-queen259-artifact.json",
+    "config/reviewed-orb-chaos238-artifact.json",
+    "config/reviewed-phylactery-summons.json"
   ],
   "objects": [
     "config/objects/dwelling20_2.json",
@@ -468,7 +475,11 @@
       "translation/reviewed-atma-artifacts-french.json",
       "translation/reviewed-interference-artifacts-french.json",
       "translation/reviewed-mass-hypnotize253-artifact-french.json",
-      "translation/reviewed-oblivion-artifact-french.json"
+      "translation/reviewed-oblivion-artifact-french.json",
+      "translation/reviewed-wayfarer260-artifact-french.json",
+      "translation/reviewed-hydra-queen259-artifact-french.json",
+      "translation/reviewed-orb-chaos238-artifact-french.json",
+      "translation/reviewed-phylactery-summons-french.json"
     ],
     "name": "TUM — évolutions et expérience"
   },

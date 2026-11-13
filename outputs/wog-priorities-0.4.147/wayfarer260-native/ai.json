@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "report": {
+    "ai-baseline": {
+      "day": 1,
+      "heroId": 3,
+      "name": "Orrin",
+      "movement": 1630,
+      "limit": 1630,
+      "move": null
+    },
+    "ai-worn": {
+      "day": 1,
+      "heroId": 3,
+      "name": "Orrin",
+      "movement": 2030,
+      "limit": 2030,
+      "move": null
+    },
+    "ai-backpack": {
+      "day": 1,
+      "heroId": 3,
+      "name": "Orrin",
+      "movement": 1630,
+      "limit": 1630,
+      "move": null
+    }
+  }
+}

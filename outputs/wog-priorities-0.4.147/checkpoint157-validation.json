@@ -1,0 +1,350 @@
+{
+  "schemaVersion": 1,
+  "completePort": false,
+  "release": "0.4.157",
+  "baseCommit": "731e6f35fce442fce2174b69e2683c52770de79d",
+  "integratedConcurrentCommit": "759d944601a39bb8ad3cc8e51136d3cb178baa71",
+  "engineSHA256": "b93b3bc6af5e3aa1088a85775a7194c8a7f3632993fcb94d134b64222897b9de",
+  "engineArchiveSHA256": "d789dffff0c75c8e0a7d0bf1179da3a0782bfb2b4400451f346a4e16639c8d0d",
+  "build": {
+    "passed": true,
+    "command": "ninja -j32 html5",
+    "emscripten": "4.0.23",
+    "configuration": "MinSizeRel; ENABLE_PCH=OFF; compile pool6/link pool1; Linux named volume",
+    "dependencyPatch": "cmake_modules/PatchBoostQvm.cmake; official boostorg/qvm c4b9c063a076644575fe9a685c02cd4c10d24405"
+  },
+  "units": {
+    "total": 622,
+    "passed": 608,
+    "skipped": 14,
+    "failed": 0,
+    "canonicalTUMSource": true
+  },
+  "siteBuild": true,
+  "siteVerification": true,
+  "nativeRegressions": {
+    "progression": "outputs/wog-priorities-0.4.147/checkpoint157-regressions/progression/result.json",
+    "residency": "outputs/wog-priorities-0.4.147/checkpoint157-regressions/residency/result.json",
+    "maps": "outputs/wog-priorities-0.4.147/checkpoint157-regressions/maps/result.json",
+    "faerie-production": "outputs/wog-priorities-0.4.147/checkpoint157-regressions/faerie-production/result.json"
+  },
+  "attribution": "These four replay reports used the final installed b93 engine and106-artifact data. Historical feature reports retain their own engine hashes. Private fixtures replace maps and selected control creatures; the source134 activation registry is supplied by installed production data, not injected. No Windows runtime equivalence claim.",
+  "sourceArtifactsActive": 106,
+  "sourceIdentities": 48,
+  "experienceProfiles": 271,
+  "fullTier8Activation": false,
+  "sourceChanges": [
+    {
+      "path": "work/vcmi-wasm/CMakeLists.txt",
+      "sha256": "29dff22a429328a03855701ed8f32eea50dee14c8847a9dc2cc82e5ede608b81"
+    },
+    {
+      "path": "work/vcmi-wasm/client/CPlayerInterface.cpp",
+      "sha256": "6f9c089eb60b7a18a5e0b7234c399f774119138a1b04e4883b215de4c8ae7ec8"
+    },
+    {
+      "path": "work/vcmi-wasm/client/CPlayerInterface.h",
+      "sha256": "1c94207d50337bae833734dd8363247153bc1c054c8b188809f305497d9c8e20"
+    },
+    {
+      "path": "work/vcmi-wasm/client/ClientNetPackVisitors.h",
+      "sha256": "467da10a229e1b2d39d5dfd4deb1c0e9f846862d6d7400702a59de845447baa0"
+    },
+    {
+      "path": "work/vcmi-wasm/client/MobileBridge.cpp",
+      "sha256": "e80bea44b296503faa4473cba53ee6df00cbae54f3bda09e8994d1eb7c349847"
+    },
+    {
+      "path": "work/vcmi-wasm/client/NetPacksClient.cpp",
+      "sha256": "4855f242337dbaddd189bb22d60191583356e6040c7d5f3bc39f4d0b51d3f7fd"
+    },
+    {
+      "path": "work/vcmi-wasm/client/battle/BattleEffectsController.cpp",
+      "sha256": "20afd33599e542817ebe612a608b0093ab2e880532245e4201dc7d15b637acb5"
+    },
+    {
+      "path": "work/vcmi-wasm/client/gui/EventDispatcher.cpp",
+      "sha256": "a0eeb4aad9044bc1ba33df107c973dcd876a94239c0af58097627114644b3919"
+    },
+    {
+      "path": "work/vcmi-wasm/client/windows/CCastleInterface.cpp",
+      "sha256": "bfd110ea670edbfef3b62a3220d3af1d55ec0072b5ac0e3db6c24f346aa9fe16"
+    },
+    {
+      "path": "work/vcmi-wasm/client/windows/CCastleInterface.h",
+      "sha256": "cf7689b8eec324baea59c25f6415af7d601541ad2c61999e33ecfb46eabcf1e1"
+    },
+    {
+      "path": "work/vcmi-wasm/client/windows/CSpellWindow.cpp",
+      "sha256": "d07394a66bf2fcb7e4a04cebf5d51570d2b13e3d9126dc9ae3ae2974da3d7701"
+    },
+    {
+      "path": "work/vcmi-wasm/client/windows/CSpellWindow.h",
+      "sha256": "7c1cb5f1afd659b5e8ce281032c9aa1a4a2d31a210402e1be7d7154461867e0c"
+    },
+    {
+      "path": "work/vcmi-wasm/cmake_modules/PatchBoostQvm.cmake",
+      "sha256": "1c667b21e630f3751470b6a92dc5d430a47ffb03f01aeda05ee0966cebd52d0c"
+    },
+    {
+      "path": "work/vcmi-wasm/config/bonuses.json",
+      "sha256": "c65cdd1e4428131b06c9b3d82f6be5137cab60ce8e70b6af2cda462463d2647f"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/CStack.cpp",
+      "sha256": "49eef4ce620e901834cab539a83bacbdcc0d6d2686445834f4c2a971b775b119"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/battle/CBattleInfoCallback.cpp",
+      "sha256": "ddac34409cbdad2b60fec501468bc053cb4e3e2f711dca72d61fff9df488401f"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/battle/CUnitState.cpp",
+      "sha256": "bea06eb4706d5b3f9551f2f93b453b7bfa21e6544d4ad1725959ce2f1a376dda"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/bonuses/BonusEnum.h",
+      "sha256": "2f15d4feb8316581bcdd5b1041a01187189055464821f3216f49664de11f7b79"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/callback/CCallback.cpp",
+      "sha256": "a1a8f72826dcda89a89c8cd69c3ee80fac3f19783cc8244bf6cda8b820df0906"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/callback/CCallback.h",
+      "sha256": "38dc827ddec1262fea28c6209de409cf11af7bd98758a9f0a13712086f6832f0"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraBridgePolicies.h",
+      "sha256": "56c2b5a8d9a1e1c667e8fab8bb0b6487fd14d873d2f669d8ca829f3ab1d6ff44"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraConfluxPolicies.h",
+      "sha256": "f79bbad0ad991d498109ec221b915f6726b8b7991b65728e8902e311cf217a4e"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraDemilichSummonRule.h",
+      "sha256": "3acec538121581852ecb90295f7c29596b999da729df9c21dd8bafe898fcd1fe"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraDemilichSummons.h",
+      "sha256": "3329a78425dfa593141837a08ec83899ecebd0fae8d234466cdbac4356d34d76"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraDragonlingEvolution.h",
+      "sha256": "f15e8e706e490010b81f2f4999f01e3c922ac710fffbac600e97625dd8ec9e62"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraDragonlingEvolutionRule.h",
+      "sha256": "7b4c1a435ab35d56874aa2028bbd9b5af879b7ada1d2de7a477938df1c642ff8"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraDragonlingFaerie.h",
+      "sha256": "750dbc1c450dfa26a3aaec319d8e9f7d8648a6d1165a537c8d091e1291ac9724"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraExperienceAttackSpells.h",
+      "sha256": "672c8785acaae060bcc4654a5b52bc513ae77def01641b046e7993d4dc5d958c"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraExperienceMagicReduction.h",
+      "sha256": "eea38ff6cb29b389c2cdfe7a90793c93b13a897afdbec892ad58d527ecd9d386"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraExperienceMagicReductionNative.h",
+      "sha256": "cb3fa5b9bd2c356e30790de8eb1755d1e1c0c9411479309a32d17adff7209097"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraHydraQueen259.h",
+      "sha256": "4000b60c0603d6a067c6b0201919a4de65894fa57fff4c806298ab57ff56b623"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraHydraQueen259Runtime.h",
+      "sha256": "152da6484abb0befb93c8a9476a9c0088de183f739a6592424c5f1910410e549"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraOrbChaos238.h",
+      "sha256": "f04bc33310eeef9ced6621ea0d3d9187fa2bd62a21a0b26c9f0c7f59889baa62"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraOrbChaos238Runtime.h",
+      "sha256": "c5474a3a39545fa0b25196d81a41e458cee9aab43f3129fb294d1ee6a3de27aa"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraOriginalFaerie.h",
+      "sha256": "bbff395a27e67cf00baef6a51259452719e8a4e22e3a459370fba6567e9430b7"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraRustDragonling.h",
+      "sha256": "e1fe3202fceb7cca9329b0cbf62ae089e109e553ca38cb039e9b35da76c8254c"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraSourceRoundTwoSummon.h",
+      "sha256": "638d03915d9b4752d157de234e81b409febea3b9dd15a0551f4375dffe8abe10"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraSourceSpellAccuracy.h",
+      "sha256": "08b101b652d266c0ca37ecded62e83307f16c46520c4867567df9d160b3679c6"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraWayfarerArtifact.h",
+      "sha256": "01f0278b9c0dbf139a366d648c0b13dfc0fd50d0ea9c1a0a85305d0404a19abd"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraWayfarerMovement.h",
+      "sha256": "3e1c04c40d07f1d50aa194c6d19210d15d30413255019089c4045b96016e5ecc"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/era/EraWayfarerState.h",
+      "sha256": "47dc47f3345af530539a2edf4f7e75f34babe49f9d0611900114fc5b91443217"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp",
+      "sha256": "6d0007c6a00378903cc13bdc4813fc49ae2055240686abeeb801a580ac9ff0d9"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.h",
+      "sha256": "6efe75bd40cbe07e51ddc3fdd57e590fc7de602e2d2aee8778d74ce3f7572d65"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/json/JsonBonus.cpp",
+      "sha256": "01cbf1754dc3ae8ae6f79ecd430ca7b3b087c0b4c695c8924497cae608c3d721"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/mapObjects/CGHeroInstance.cpp",
+      "sha256": "c3bda9d937d7f43f56ae26c5421d20f63dc8e54b445c3c239269af691589e8e4"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/mapObjects/army/CStackInstance.cpp",
+      "sha256": "2ffb86a6d91744f1cecab9946923afb5bfd7821a8d0201f306cbcf416b4da09f"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/mapObjects/army/CStackInstance.h",
+      "sha256": "eb017284b6b7f08c9e93012a0d0428fb84aeb89d71df62b3a2e8aef56d6587bf"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/networkPacks/NetPackVisitor.h",
+      "sha256": "96b73e83409b75cdb695bb0b61a6916ebcb1a285c0406f285f7907fa5e413ba9"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/networkPacks/NetPacksLib.cpp",
+      "sha256": "42a61456dc2c6eef7147c95c341f7b7cb26d68e6b1d1aba26b3ee18947a6d8c3"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/networkPacks/PacksForClient.h",
+      "sha256": "71226f8ae9478bc0136af902dffffad53fbbde2ae819d5d87b02c738164248a8"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/networkPacks/PacksForServer.h",
+      "sha256": "7a03e0193cc1e4d494425a488ebb5316206043c22f443ccda455a1be10350baf"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/pathfinder/TurnInfo.cpp",
+      "sha256": "9e08ba8c1f16d8e8b7213e23c2e2ab0afca1e32eed28848b8060a7b8902167eb"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/serializer/RegisterTypes.h",
+      "sha256": "f77497c6f413af4cb90bb07a7e18c94bad58edfef2a963db50ad87b59b96f066"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/spells/BattleSpellMechanics.cpp",
+      "sha256": "f775417081a5ec4c780e7eaa91a6d001ee79d5287adce49dc8f55b398f85a324"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/spells/BattleSpellMechanics.h",
+      "sha256": "2c91f80def80385d52727647ad65c790f7237a6db38506e179e0d6881f42da20"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/spells/CSpellHandler.cpp",
+      "sha256": "74384fd08aa880c50e6806ce07c585b71a9459405086f88525b2af30a98b5a57"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/spells/ISpellMechanics.cpp",
+      "sha256": "63bb3827e5b7f0b5d938dc6e00ac9235e22c36a41a710a69ae876baea7df2f9c"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/spells/ObstacleCasterProxy.cpp",
+      "sha256": "ba8c32465bbf57eea1e4aa515ab2e47a6c453b55111fa1b79ea110fe905b244b"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/spells/TargetCondition.cpp",
+      "sha256": "daafeedebe5d200901faa011eb94772fe3ca2c7dd9148a894fd51d81bb6f5632"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/spells/effects/Damage.cpp",
+      "sha256": "daf89e1dafa392648f5378c2e6f116b7bce3d9f22bc89dd3952ec8a92dd612e9"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/spells/effects/Obstacle.cpp",
+      "sha256": "10ff5da2ada672787ce621762c38a74d0cb30358a3a0350178a899b68c2a145f"
+    },
+    {
+      "path": "work/vcmi-wasm/server/CGameHandler.cpp",
+      "sha256": "84ace5d976255b4e1286a6a5c1f6bf34da4a0d15989003a0ba3af78382d67875"
+    },
+    {
+      "path": "work/vcmi-wasm/server/NetPacksServer.cpp",
+      "sha256": "1a2395bf38e34875bc0dbabd75396575c8ccfe4877929f5ceb3be4598bb6c20d"
+    },
+    {
+      "path": "work/vcmi-wasm/server/ServerNetPackVisitors.h",
+      "sha256": "082234dcf196902423c921bc5c7f20b0daf3e029f2cfa5d6e36659392a1d49d7"
+    },
+    {
+      "path": "work/vcmi-wasm/server/battles/BattleActionProcessor.cpp",
+      "sha256": "b0e6b56531071cea292d529836142dba3b228ff50f4830c2c09676c1beb3e2b2"
+    },
+    {
+      "path": "work/vcmi-wasm/server/battles/BattleActionProcessor.h",
+      "sha256": "4e6f28a6b144a5e60eccc896c6d748d62a8b0b9c2691cff48c451d5cd14de051"
+    },
+    {
+      "path": "work/vcmi-wasm/server/battles/BattleFlowProcessor.cpp",
+      "sha256": "c6d6437312adc8c4257f698f880f77486b5d56b1900fc17485e75e5cac2e469f"
+    },
+    {
+      "path": "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp",
+      "sha256": "a3dcb17cca592f9d0d331659efcb003608546384cb3ee17541e212ab53be24c2"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraConfluxExperience.h",
+      "sha256": "81713cb10ba890fc0c0e95fd5b333455c30419ad96c13996d440bd8cf5c3679c"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraConfluxRuntime.h",
+      "sha256": "9e8a85dca23d484cf75e5923aee413e83a9b5729d5e01059b747bcd81f40a84d"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraConfluxSummons.h",
+      "sha256": "2cfded55265a8de25933e8bc9cdc3818fd08ffa6e26fd1129c750eedee0add7b"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraConfluxTomeRuntime.h",
+      "sha256": "fa99f41cacb96a66f5f8a75b361b857b8e00c0c1a87979bd7a42a93262dc3d9f"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraDemilichSummonRuntime.h",
+      "sha256": "35c3fcb20f88778e128c8b28d50c15c97b77e8dcbe11c225083c36df152b1695"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraDragonlingEvolutionRuntime.h",
+      "sha256": "e19267d6caec198e66e1adfbf8bf264443fd0e6839311f2ba40a604118214cab"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraPetrification.h",
+      "sha256": "97012e2f4e79f92b807e5f8e648031fe85233fdedd919b2e24a5d56008878fdc"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraStatusAttacks.h",
+      "sha256": "5d8cb80fdd55bd9f907990f5c250dbcea22409f92103baaea01b39e1f1d16338"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraWayfarerRuntime.h",
+      "sha256": "7547b93cf76696d405ba8bdc57eb3028a028b6c1976f92c2e8eab61f569b156a"
+    },
+    {
+      "path": "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp",
+      "sha256": "7050906a5a0d64c1539d72e236743e12cd1b1afcac37e5a76a13719d13be08ba"
+    }
+  ]
+}

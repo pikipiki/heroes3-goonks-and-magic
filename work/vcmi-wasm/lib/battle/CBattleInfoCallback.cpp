@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "../era/EraBridgePolicies.h"
+#include "../era/EraConfluxPolicies.h"
 #include "../era/EraSourceSplashRange.h"
 #include "CBattleInfoCallback.h"
 
@@ -1092,13 +1093,30 @@ bool CBattleInfoCallback::handleObstacleTriggersForUnit(SpellCastEnvironment & s
 	if(!unit.alive())
 		return false;
 	bool movementStopped = false;
-	for(auto & obstacle : getAllAffectedObstaclesByStack(&unit, passed))
+	const auto affectedObstacles=getAllAffectedObstaclesByStack(&unit, passed);
+	for(auto & obstacle : affectedObstacles)
 	{
 		//helper info
 		const SpellCreatedObstacle * spellObstacle = dynamic_cast<const SpellCreatedObstacle *>(obstacle.get());
 
 		if(spellObstacle)
 		{
+            if(spellObstacle->ID==13 && era_compat::ConfluxPolicies::get().enabled())
+            {
+                bool sourceWall=false,newerWall=false;
+                for(const auto & other:affectedObstacles)
+                {
+                    const auto * wall=dynamic_cast<const SpellCreatedObstacle *>(other.get());
+                    if(!wall || wall->ID!=13 || wall->pos!=spellObstacle->pos)continue;
+                    sourceWall=sourceWall || (wall->trigger.hasValue()
+                        && wall->trigger.toSpell()->getJsonKey()=="tum-era:sourceConfluxFireWallTrigger");
+                    newerWall=newerWall || wall->uniqueID>spellObstacle->uniqueID;
+                }
+                // Original59FFE0/5A0022 reads ONE latest obstacle index from
+                // this hex. Keep all visuals, but do not stack old/new355 walls.
+                // Ordinary native walls without a source355 wall stay unchanged.
+                if(sourceWall && newerWall)continue;
+            }
 			auto revealObstacles = [&](const SpellCreatedObstacle & spellObstacle) -> void
 			{
 				// For the hidden spell created obstacles, e.g. QuickSand, it should be revealed after taking damage

@@ -13,6 +13,8 @@
 
 #include "Registry.h"
 #include "../ISpellMechanics.h"
+#include "../ProxyCaster.h"
+#include "../../era/EraConfluxPolicies.h"
 
 #include "../../battle/IBattleState.h"
 #include "../../battle/CBattleInfoCallback.h"
@@ -294,6 +296,12 @@ void Obstacle::placeObstacles(ServerCallback * server, const Mechanics * m, cons
 		obstacle.hidden = hidden;
 		obstacle.passable = passable;
 		obstacle.trigger = triggerAbility;
+        if(m->getSpellIndex()==13 && era_compat::ConfluxPolicies::get().enabled())
+        {
+            const auto * actor=m->battle()->battleGetStackByID(m->caster->getCasterUnitId(),false);
+            if(actor && era_compat::ConfluxPolicies::get().is355(actor->creatureId().toCreature()->getJsonKey()))
+                obstacle.trigger=SpellID(SpellID::decode("tum-era:sourceConfluxFireWallTrigger"));
+        }
 		obstacle.trap = trap;
 		obstacle.removeOnTrigger = removeOnTrigger;
 

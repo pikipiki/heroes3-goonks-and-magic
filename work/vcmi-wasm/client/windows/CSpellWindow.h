@@ -140,6 +140,7 @@ public:
 
 	JsonNode mobileSnapshot();
 	void mobileSelectSpell(int id);
+    void refreshSourceAvailableSpells(const CGHeroInstance * hero);
 	void fexitb();
 	void fadvSpellsb();
 	void fbattleSpellsb();

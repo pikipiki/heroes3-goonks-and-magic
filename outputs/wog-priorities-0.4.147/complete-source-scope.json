@@ -3,8 +3,8 @@
   "fullEraCompatibility": false,
   "summary": {
     "sourceArtifacts": 110,
-    "activeArtifacts": 97,
-    "inactiveArtifacts": 13,
+    "activeArtifacts": 106,
+    "inactiveArtifacts": 4,
     "sourceScripts": 109,
     "sourceTriggerDeclarations": 484
   },
@@ -713,19 +713,11 @@
       "name": "Minor Phylactery",
       "hasCfg": true,
       "cfgSHA256": "fe5c3e30857ff4633ef6a2075d703c2ab6b1d283b67cdaa7cce73db621a7f9eb",
-      "nativeActive": false,
-      "requiredPolicies": [],
-      "diagnostics": [
-        {
-          "source": "227.cfg",
-          "line": 2,
-          "key": "Autosummon",
-          "value": 286,
-          "kind": "creature",
-          "code": "unresolved-id",
-          "id": 286
-        }
-      ],
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-phylactery-summons.json",
+        "name": "Minor Phylactery"
+      },
       "scriptedPolicies": []
     },
     {
@@ -733,19 +725,11 @@
       "name": "Major Phylactery",
       "hasCfg": true,
       "cfgSHA256": "2c163c83d611dbcebe97e2efe26855f3914f412fb590c4b5fc6f73185f64e630",
-      "nativeActive": false,
-      "requiredPolicies": [],
-      "diagnostics": [
-        {
-          "source": "228.cfg",
-          "line": 2,
-          "key": "Autosummon",
-          "value": 286,
-          "kind": "creature",
-          "code": "unresolved-id",
-          "id": 286
-        }
-      ],
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-phylactery-summons.json",
+        "name": "Major Phylactery"
+      },
       "scriptedPolicies": []
     },
     {
@@ -753,19 +737,11 @@
       "name": "Supreme Phylactery",
       "hasCfg": true,
       "cfgSHA256": "8b5ee8be336adbcae131798076b2dbc5d27291c787e38bf7e235bf2ddce346a8",
-      "nativeActive": false,
-      "requiredPolicies": [],
-      "diagnostics": [
-        {
-          "source": "229.cfg",
-          "line": 2,
-          "key": "Autosummon",
-          "value": 286,
-          "kind": "creature",
-          "code": "unresolved-id",
-          "id": 286
-        }
-      ],
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-phylactery-summons.json",
+        "name": "Supreme Phylactery"
+      },
       "scriptedPolicies": []
     },
     {
@@ -773,19 +749,11 @@
       "name": "Relic Phylactery",
       "hasCfg": true,
       "cfgSHA256": "1c29affaa2251466b44fa3c9032cf748c1e4ac67e6fb48fdf0d177da3deab9cf",
-      "nativeActive": false,
-      "requiredPolicies": [],
-      "diagnostics": [
-        {
-          "source": "230.cfg",
-          "line": 2,
-          "key": "Autosummon",
-          "value": 286,
-          "kind": "creature",
-          "code": "unresolved-id",
-          "id": 286
-        }
-      ],
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-phylactery-summons.json",
+        "name": "Relic Phylactery"
+      },
       "scriptedPolicies": []
     },
     {
@@ -805,26 +773,11 @@
       "name": "Apocalypse's Blade",
       "hasCfg": true,
       "cfgSHA256": "8c5d6191742f4e55ae6db86268382b54828c1b842fdd917cfa985130b539be3b",
-      "nativeActive": false,
-      "requiredPolicies": [],
-      "diagnostics": [
-        {
-          "source": "232.cfg",
-          "line": 8,
-          "key": "Autosummon",
-          "value": 294,
-          "kind": "creature",
-          "code": "unresolved-id",
-          "id": 294
-        },
-        {
-          "source": "232.cfg",
-          "line": 0,
-          "code": "unresolved-id",
-          "kind": "artifact",
-          "id": 236
-        }
-      ],
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-phylactery-summons.json",
+        "name": "Apocalypse's Blade"
+      },
       "scriptedPolicies": []
     },
     {
@@ -868,19 +821,11 @@
       "name": "Shield of the Vermillion Bird",
       "hasCfg": true,
       "cfgSHA256": "63111c910b899b340517007d948f87bd2ad40851d9a37ad3eac1514b1718b93a",
-      "nativeActive": false,
-      "requiredPolicies": [],
-      "diagnostics": [
-        {
-          "source": "236.cfg",
-          "line": 5,
-          "key": "Autosummon",
-          "value": 294,
-          "kind": "creature",
-          "code": "unresolved-id",
-          "id": 294
-        }
-      ],
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-phylactery-summons.json",
+        "name": "Shield of the Vermillion Bird"
+      },
       "scriptedPolicies": []
     },
     {
@@ -900,21 +845,11 @@
       "name": "Orb of Chaos",
       "hasCfg": true,
       "cfgSHA256": "a9a27247f773e5d17afd0ee3430752e42d40759b6e0febd953ac30219fd0d2d5",
-      "nativeActive": false,
-      "requiredPolicies": [
-        {
-          "kind": "orbChaos",
-          "artifactId": 238,
-          "source": "TUM Data/s/Third Upgrade Mod.erm:1113-2040; see special-policies.json"
-        }
-      ],
-      "diagnostics": [
-        {
-          "source": "238.cfg",
-          "code": "unbound-runtime-adapter",
-          "kind": "orbChaos"
-        }
-      ],
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-orb-chaos238-artifact.json",
+        "name": "Orb of Chaos"
+      },
       "scriptedPolicies": [
         "orbChaos"
       ]
@@ -1167,21 +1102,11 @@
       "sourceId": 259,
       "name": "Helm of the Hydra Queen",
       "hasCfg": false,
-      "nativeActive": false,
-      "requiredPolicies": [
-        {
-          "kind": "hydraQueen",
-          "artifactId": 259,
-          "source": "TUM Data/s/Third Upgrade Mod.erm:1113-2040; see special-policies.json"
-        }
-      ],
-      "diagnostics": [
-        {
-          "source": "259.cfg",
-          "code": "unbound-runtime-adapter",
-          "kind": "hydraQueen"
-        }
-      ],
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-hydra-queen259-artifact.json",
+        "name": "Helm of the Hydra Queen"
+      },
       "scriptedPolicies": [
         "hydraQueen"
       ]
@@ -1190,21 +1115,11 @@
       "sourceId": 260,
       "name": "Wayfarer's Boots",
       "hasCfg": false,
-      "nativeActive": false,
-      "requiredPolicies": [
-        {
-          "kind": "wayfarer",
-          "artifactId": 260,
-          "source": "TUM Data/s/Third Upgrade Mod.erm:1113-2040; see special-policies.json"
-        }
-      ],
-      "diagnostics": [
-        {
-          "source": "260.cfg",
-          "code": "unbound-runtime-adapter",
-          "kind": "wayfarer"
-        }
-      ],
+      "nativeActive": true,
+      "active": {
+        "config": "config/reviewed-wayfarer260-artifact.json",
+        "name": "Wayfarer's Boots"
+      },
       "scriptedPolicies": [
         "wayfarer"
       ]
@@ -3832,6 +3747,91 @@
     }
   ],
   "namedNativeMechanisms": [
+    {
+      "name": "Dependent Demilich and Vermilion Bird opening summons",
+      "source": "Emerald CFG227/228/229/230/232/236; TUM UN:A20 combo232",
+      "native": "Existing equipped-slot opening-summon runtime with source encoded power and native placement; full source232 spells/immunities/combo and236 stats retained",
+      "ids": [
+        227,
+        228,
+        229,
+        230,
+        232,
+        236
+      ],
+      "evidence": [
+        {
+          "file": "native-phylactery-summons.json",
+          "available": true
+        },
+        {
+          "file": "phylactery-summons-source.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
+    {
+      "name": "Orb of Chaos",
+      "source": "Third Upgrade Mod.erm1154..1170, original MR0 receiverD and target correction order5A7C3B/75D88D",
+      "native": "Scoped HERO_CAST/CURRENT equipped238 multiplier, signed32 arithmetic before innate/XPg/school corrections, chain raw halved before per-victim corrections; four expert50-round openings",
+      "ids": [
+        238
+      ],
+      "evidence": [
+        {
+          "file": "native-orb-chaos238.json",
+          "available": true
+        },
+        {
+          "file": "orb-chaos238-source.json",
+          "available": true
+        },
+        {
+          "file": "orb-chaos238-arithmetic.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
+    {
+      "name": "Helm of the Hydra Queen",
+      "source": "Third Upgrade Mod.erm1370..1397; stdlib43D5C7; WOG44 type predicate plus TUM Archer additions",
+      "native": "CStack initialized-stack ATTACKS_ALL_ADJACENT for the equipped owning hero, exact tower/width/breath/source-type guards; ordinary retaliation retained",
+      "ids": [
+        259
+      ],
+      "evidence": [
+        {
+          "file": "native-hydra-queen259.json",
+          "available": true
+        },
+        {
+          "file": "hydra-queen259-source.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
+    {
+      "name": "Wayfarer Boots",
+      "source": "Third Upgrade Mod.erm1398..1430; stdlib hook4B14A0; original HE:W/G and boat transitions",
+      "native": "Human temporary Expert Pathfinding75; AI once-per-owning-turn remaining and current-layer maximum400; serialized day receipt and boat reset",
+      "ids": [
+        260
+      ],
+      "evidence": [
+        {
+          "file": "native-wayfarer260.json",
+          "available": true
+        },
+        {
+          "file": "wayfarer260-source.json",
+          "available": true
+        }
+      ],
+      "allEntitiesActive": true
+    },
     {
       "name": "Ring of Oblivion",
       "source": "Third Upgrade Mod.erm1925..1989; source TODO Life Drain prohibition deliberately not invented",

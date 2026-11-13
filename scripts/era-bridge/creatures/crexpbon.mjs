@@ -1,3 +1,5 @@
+import{SOURCE_CONFLUX_CONTRACT,reviewedConfluxExperienceRows}from'../roster8/conflux-source.mjs';
+import {SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT,DEMILICH_PROC_VALUES,DEMILICH_PERIODIC_VALUES} from '../roster8/neutral-transform-source.mjs';
 import{requireSourceDeathBlowBinding}from'./death-blow-contract.mjs';
 /** Independent compiler for the representable legacy CREXPBON subset.
  * Native mapping reference: VCMI CCreatureHandler.cpp loadStackExp (1020-1339).
@@ -18,11 +20,17 @@ export function parseCreatureExperience(text,{source='crexpbon.txt'}={}){
 const additive={A:['PRIMARY_SKILL','primarySkill.attack'],D:['PRIMARY_SKILL','primarySkill.defence'],M:['CREATURE_DAMAGE','creatureDamageMax'],m:['CREATURE_DAMAGE','creatureDamageMin'],S:['STACKS_SPEED'],O:['SHOTS'],b:['ENEMY_DEFENCE_REDUCTION'],C:['CHANGES_SPELL_COST_FOR_ALLY'],d:['DEFENSIVE_STANCE'],e:['DOUBLE_DAMAGE_CHANCE'],F:['FEARFUL'],P:['CASTS'],R:['ADDITIONAL_RETALIATION'],W:['MAGIC_RESISTANCE']};
 const toggles={A:'ATTACKS_ALL_ADJACENT',b:'RETURN_AFTER_STRIKE',B:'TWO_HEX_ATTACK_BREATH',f:'FEARFUL',F:'FLYING',M:'NO_MORALE',p:'MIND_IMMUNITY',P:'MIND_IMMUNITY',R:'BLOCKS_RETALIATION',s:'FREE_SHOOTING',u:'SPELL_RESISTANCE_AURA',U:'UNDEAD'};
 const spellImmunity={B:62,H:60,I:18,K:59,M:23,N:78,R:26,S:54};
-function rowMapping(row,{resolveSpell,resolveCreature,nativeExperienceProfile=false,dispelProtection,negativeSpellLevels,experienceAfterAttack,experienceStatusSelectors,experienceFortress,experienceDungeon,experienceBeforeAttack,experienceDefenseReduction,experienceCrystal,experienceWerewolf,experienceGolem,experienceSpring,experienceDemonology,experiencePrimalFaerie,experienceStronghold,deathBlowCRT}={}){
+function rowMapping(row,{resolveSpell,resolveCreature,nativeExperienceProfile=false,dispelProtection,negativeSpellLevels,experienceAfterAttack,experienceStatusSelectors,experienceFortress,experienceDungeon,experienceConflux,experienceNeutralDependencies,experienceBeforeAttack,experienceDefenseReduction,experienceCrystal,experienceWerewolf,experienceGolem,experienceSpring,experienceDemonology,experiencePrimalFaerie,experienceStronghold,deathBlowCRT}={}){
  const fail=(code,extra={})=>{throw new ExperienceCompileError([{source:row.source,line:row.line,code,legacyCode:row.code,modifier:row.modifier,...extra}]);};
  const resolved=(kind,n)=>{const value=(kind==='spell'?resolveSpell:resolveCreature)?.(n);if(typeof value!=='string'||!value.includes(':'))fail('unresolved-id',{kind,id:n});return value;};
  const numberMod=()=>{if(!/^#\d+$/.test(row.modifier))fail('unsupported-modifier');const n=Number(row.modifier.slice(1));if(!Number.isSafeInteger(n)||n>2147483647)fail('modifier-id-range');return n;};
  let bonus,mode='numeric',scale=1,additionalBonuses=[],additionalRuntimeBindings=[];
+ if(experienceConflux===SOURCE_CONFLUX_CONTRACT&&[355,356].includes(row.creature)&&['p','a','u'].includes(row.code)){
+  if(!nativeExperienceProfile)fail('Conflux-experience-requires-native-profile');
+  const id=numberMod(),summon=row.code==='u';
+  return{mode:'runtime',values:[...row.values],runtimeBinding:{contract:SOURCE_CONFLUX_CONTRACT,creatureId:row.creature,operation:summon?'sourceConfluxRoundTwoSummons':'sourceConfluxExperienceCasts',sourceCode:row.code,sourceModifier:row.modifier,...(summon?{creature:resolved('creature',id),rankPercents:[...row.values]}:{spell:resolved('spell',id),mastery:3,rankChances:[...row.values]}),endpoint:summon?'applyEraConfluxRoundTwo':'EraConfluxExperience::confluxExperienceCasts',timing:summon?'round2 reset; each ordered row gets fresh three-cell occupancy':'independent ordered row rolls; after rows before FireShield; current active power',sourceReference:summon?'h3era.exe71DC79/71DF45..71E3F5':'h3era.exe71D939/71DBD8/5A0145'}};
+ }
+
  if(row.code==='e'){
   if(!['+','='].includes(row.modifier)||row.values.some(v=>v<0||v>100))fail('source-deathblow-values-not-closed');
   let binding;try{binding=requireSourceDeathBlowBinding(deathBlowCRT,{sourceId:row.creature,kind:'xp',nativeExperienceProfile});}catch{fail('source-deathblow-crt-binding-required');}
@@ -37,7 +45,7 @@ function rowMapping(row,{resolveSpell,resolveCreature,nativeExperienceProfile=fa
  }else if(row.code==='H'){
   if(row.modifier!=='%')fail('unsupported-modifier');bonus={type:'STACK_HEALTH',valueType:'PERCENT_TO_BASE'};
  }else if(row.code==='g'){
-  if(row.modifier!=='%')fail('unsupported-modifier');bonus={type:'SPELL_DAMAGE_REDUCTION',subtype:'spellSchool.any',valueType:'ADDITIVE_VALUE'};
+  if(row.modifier!=='%')fail('unsupported-modifier');if(row.values.some(v=>v<0||v>255))fail('source-magic-reduction-byte-range');bonus={type:'SPELL_DAMAGE_REDUCTION',subtype:'spellSchool.any',valueType:'ADDITIVE_VALUE',addInfo:{contract:'source-experience-magic-reduction-v1',sourceCreatureId:row.creature}};
  }else if(row.code==='f'){
   mode='toggle';if(row.modifier==='r')bonus={type:'REBIRTH',subtype:'rebirthRegular',val:20};
   else if(row.modifier==='D')bonus={type:'ADDITIONAL_ATTACK',val:1};
@@ -72,13 +80,15 @@ function rowMapping(row,{resolveSpell,resolveCreature,nativeExperienceProfile=fa
    const zeus=id===57&&row.creature===212&&nativeExperienceProfile===true&&experienceBeforeAttack==='source-p57-v1'&&row.values.every((v,i)=>v===i);
    const templar=((id===25&&row.creature===278)||(id===24&&row.creature===332))&&nativeExperienceProfile===true&&experienceBeforeAttack==='source-p24-p25-v1'&&row.values.every((v,i)=>v===i*5);
    const spring=id===37&&row.creature===350&&nativeExperienceProfile===true&&experienceBeforeAttack==='source-p37-v1'&&row.values.every((v,i)=>v===i*5);
-   if(!zeus&&!templar&&!spring)fail('source-attack-spell-requires-specific-native-contract');
+   const demilich=row.creature===286&&id===24&&nativeExperienceProfile===true&&experienceNeutralDependencies===SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT&&row.values.every((v,i)=>v===DEMILICH_PROC_VALUES[i]);
+   if(!zeus&&!templar&&!spring&&!demilich)fail('source-attack-spell-requires-specific-native-contract');
   }
   bonus={type:'SPELL_BEFORE_ATTACK',subtype:resolved('spell',id),valueType:'ADDITIVE_VALUE',addInfo:3};
   if(row.values.some(v=>v<0||v>100))fail('chance-range');
  }else if(row.code==='a'||row.code==='K'){
-  if(experienceAfterAttack!=='source-a62-K59-v1'||nativeExperienceProfile!==true)fail('source-attack-spell-requires-specific-native-contract');
-  const id=numberMod();if(!((row.code==='a'&&id===62)||(row.code==='K'&&id===59)))fail('unproven-afterattack-spell-contract');
+  const vermilion=row.creature===294&&row.code==='a'&&row.modifier==='#21'&&experienceNeutralDependencies===SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT&&row.values.every(v=>v===100);
+  if((experienceAfterAttack!=='source-a62-K59-v1'&&!vermilion)||nativeExperienceProfile!==true)fail('source-attack-spell-requires-specific-native-contract');
+  const id=numberMod();if(!vermilion&&!((row.code==='a'&&id===62)||(row.code==='K'&&id===59)))fail('unproven-afterattack-spell-contract');
   bonus={type:'SPELL_AFTER_ATTACK',subtype:resolved('spell',id),valueType:'ADDITIVE_VALUE',addInfo:row.code==='a'?3:2};
   if(row.values.some(v=>v<0||v>100))fail('chance-range');
  }else if(row.code==='c'){
@@ -97,6 +107,9 @@ function rowMapping(row,{resolveSpell,resolveCreature,nativeExperienceProfile=fa
   if(nativeExperienceProfile!==true||experienceStatusSelectors!=='source-c78-v1')fail('source-c78-requires-explicit-native-contract');
   if(row.creature!==231||numberMod()!==78||row.values.some((v,i)=>v!==i*5))fail('unproven-c78-row');
   return {mode:'runtime',values:[...row.values],runtimeBinding:{contract:'source-c78-v1',creatureId:231,spell:resolved('spell',78),sourceCode:'c',sourceModifier:'#78',rankChances:[...row.values],endpoint:'EraPetrificationSequence::beforeAction/shared-target-EC',selector:'era_compat_server::selectSourceCDispel',sourceReference:'h3era.exe 71D7A9/75B4CA/75CAF8',timing:'selection-before-action; postsequence sharedEC flush; intrinsic marker may overwrite'}};
+ }else if(row.code==='k'&&row.creature===286&&experienceNeutralDependencies===SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT){
+  if(!nativeExperienceProfile||row.modifier!=='#71'||row.values.some((v,i)=>v!==DEMILICH_PROC_VALUES[i]))fail('source-demilich-poison-row-changed');
+  return {mode:'runtime',values:[...row.values],runtimeBinding:{contract:SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT,creatureId:286,operation:'demilichPoison',spell:resolved('spell',71),rankChances:[...row.values],mastery:1,power:3,sourceReference:'71D939..71DB4C;beforeFireShield'}};
  }else if(['k','J','j'].includes(row.code)){
   // WoG71D939 uses p/a expert3,J/K advanced2,j/k basic1. Its original
   // target resistance gate and spell-specific mass/target rules must be bound,
@@ -115,8 +128,9 @@ function rowMapping(row,{resolveSpell,resolveCreature,nativeExperienceProfile=fa
  }else if(row.code==='r'){
   const crystal=experienceCrystal==='source-crystal-experience-v1'&&nativeExperienceProfile&&[267,268].includes(row.creature)&&row.modifier==='#100'&&row.values.every((v,i)=>v===i*9);
   const werewolf=experienceWerewolf==='source-werewolf-experience-v1'&&nativeExperienceProfile&&row.creature===273&&row.modifier==='#50'&&row.values.every((v,i)=>v===i*4);
-  if(!crystal&&!werewolf)fail('regeneration-chance-requires-native-adapter');
-  return {mode:'runtime',values:[...row.values],runtimeBinding:{contract:crystal?'source-crystal-experience-v1':'source-werewolf-experience-v1',creatureId:row.creature,operation:'experienceRegeneration',service:{chancePercent:crystal?100:50,values:[...row.values]},sourceReference:'h3era.exe71EAA6..71EBA6,75DECA..75DF13',timing:'first activation each round; draw1..100 even for certain chance'}};
+  const vermilion=experienceNeutralDependencies===SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT&&nativeExperienceProfile&&row.creature===294&&row.modifier==='#100'&&row.values.every((v,i)=>v===i*9);
+  if(!crystal&&!werewolf&&!vermilion)fail('regeneration-chance-requires-native-adapter');
+  return {mode:'runtime',values:[...row.values],runtimeBinding:{contract:vermilion?SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT:crystal?'source-crystal-experience-v1':'source-werewolf-experience-v1',creatureId:row.creature,operation:'experienceRegeneration',service:{chancePercent:crystal||vermilion?100:50,values:[...row.values]},sourceReference:'h3era.exe71EAA6..71EBA6,75DECA..75DF13',timing:'first activation each round; draw1..100 even for certain chance'}};
  }else if(row.code==='B'){
   const primal=experiencePrimalFaerie==='source-primal-faerie-v1'&&row.creature===258;
   if(!((experienceCrystal==='source-crystal-experience-v1'&&row.creature===268)||primal)||!nativeExperienceProfile||row.modifier!=='='||row.values.some((v,i)=>v!==Math.min(25,i*5)))fail('source-physical-block-requires-specific-native-contract');
@@ -135,7 +149,10 @@ function rowMapping(row,{resolveSpell,resolveCreature,nativeExperienceProfile=fa
   if(experienceDemonology!=='source-demonology-mode2-v1'||!nativeExperienceProfile||row.creature!==217||row.modifier!=='#48'||row.values.some((v,i)=>v!==expected[i]))fail('source-round2-summoning-contract-required');
   return {mode:'runtime',values:[...row.values],runtimeBinding:{contract:'source-demonology-mode2-v1',creatureId:217,operation:'sourceRoundTwoDemons',service:{values:[...row.values]},sourceReference:'h3era71DF45..71E3F5,463E61..68,469F64..9FA3',timing:'round2reset afterenchants; currentcount percentage rounded;3orderedforwardhexes;source20slots;unownedwithoutSUMMONflag'}};
  }
- else if(row.code==='U')fail('periodic-summoning-requires-native-adapter');
+ else if(row.code==='U'){
+  if(experienceNeutralDependencies!==SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT||!nativeExperienceProfile||row.creature!==286||row.modifier!=='#60'||row.values.some((v,i)=>v!==DEMILICH_PERIODIC_VALUES[i]))fail('periodic-summoning-requires-native-adapter');
+  return {mode:'runtime',values:[...row.values],runtimeBinding:{contract:SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT,creatureId:286,operation:'sourcePeriodicWights',creature:resolved('creature',60),rankPercents:[...row.values],sourceReference:'71DF45..71E3F5;U71DFE7..71E006',timing:'round2+4n;currentcount;unowned;notSUMMONED;3orderedforwardhexes;20sourceSlots'}};
+ }
  else fail('unsupported-code');
  const values=row.values.map(v=>mode==='toggle'?v===1:v*scale);
  if(mode==='toggle'){let active=false;for(const value of values){if(active&&!value&&!nativeExperienceProfile)fail('toggle-disable-not-representable');active ||= value;}}
@@ -155,14 +172,17 @@ export function assertDefaultParity(sourceRows,installedRows){
  * passing ordinary numeric independent-max arrays would lose levels under the
  * native loader's generic delta conversion (e.g. ENCHANTED 1 -> 2 -> 3 -> 6).
  */
-export function compileCreatureExperience(rows,{creatureId,installedRows,rankZero='require-explicit',resolveSpell,resolveCreature,nativeExperienceProfile=false,dispelProtection,negativeSpellLevels,experienceAfterAttack,experienceStatusSelectors,experienceFortress,experienceDungeon,experienceBeforeAttack,experienceDefenseReduction,experienceCrystal,experienceWerewolf,experienceGolem,experienceSpring,experienceDemonology,experiencePrimalFaerie,experienceStronghold,deathBlowCRT,throwOnError=false}={}){
+export function compileCreatureExperience(rows,{creatureId,installedRows,rankZero='require-explicit',resolveSpell,resolveCreature,nativeExperienceProfile=false,dispelProtection,negativeSpellLevels,experienceAfterAttack,experienceStatusSelectors,experienceFortress,experienceDungeon,experienceConflux,experienceNeutralDependencies,experienceBeforeAttack,experienceDefenseReduction,experienceCrystal,experienceWerewolf,experienceGolem,experienceSpring,experienceDemonology,experiencePrimalFaerie,experienceStronghold,deathBlowCRT,throwOnError=false}={}){
  if(!Number.isSafeInteger(creatureId)||creatureId<0)throw new TypeError('A nonnegative source creatureId is required');
  if(!['require-explicit','intrinsic'].includes(rankZero))throw new TypeError('Unknown rank-zero policy');
  const diagnostics=[],abilities={},stackExperience=[],mapped=[],runtimeBindings=[];let defaults=null;
  try{if(!installedRows)throw new ExperienceCompileError([{code:'missing-installed-defaults'}]);defaults=assertDefaultParity(rows,installedRows);}catch(e){if(e instanceof ExperienceCompileError)diagnostics.push(...e.diagnostics);else throw e;}
  const selected=rows.filter(r=>r.creature===creatureId);
+ if(experienceConflux!==undefined){try{if(!nativeExperienceProfile)throw Error('native profile required');reviewedConfluxExperienceRows(selected,{sourceId:creatureId,contract:experienceConflux});}catch(e){diagnostics.push({code:'source-conflux-whole-experience-contract-required',message:e.message});}}
+
  for(const [index,row]of selected.entries()){
   try{
+   if(row.code==='g'&&selected.filter(r=>r.code==='g').length!==1)throw new ExperienceCompileError([{source:row.source,line:row.line,code:'duplicate-source-magic-reduction-row'}]);
    if(row.code==='e'&&selected.filter(r=>r.code==='e').length!==1)throw new ExperienceCompileError([{source:row.source,line:row.line,code:'duplicate-source-deathblow-row'}]);
    if(row.code==='b'&&selected.filter(r=>r.code==='b').length!==1)throw new ExperienceCompileError([{source:row.source,line:row.line,code:'duplicate-source-experience-defense-row'}]);
    if(row.code==='B'&&experiencePrimalFaerie==='source-primal-faerie-v1'&&selected.filter(r=>r.code==='B').length!==1)throw new ExperienceCompileError([{source:row.source,line:row.line,code:'duplicate-source-primal-block-row'}]);
@@ -171,7 +191,7 @@ export function compileCreatureExperience(rows,{creatureId,installedRows,rankZer
    if(row.code==='u'&&experienceDemonology==='source-demonology-mode2-v1'&&selected.filter(r=>r.code==='u').length!==1)throw new ExperienceCompileError([{source:row.source,line:row.line,code:'duplicate-source-round2-summoning-row'}]);
    if(row.code==='L'&&experienceGolem==='source-golem-experience-v1'&&selected.filter(r=>r.code==='L').length!==1)throw new ExperienceCompileError([{source:row.source,line:row.line,code:'duplicate-source-golem-deflection-row'}]);
    if(['p','L'].includes(row.code)&&experienceSpring==='source-spring-spirit-v1'&&selected.filter(r=>r.code===row.code).length!==1)throw new ExperienceCompileError([{source:row.source,line:row.line,code:'duplicate-source-spring-experience-row'}]);
-   const mapping=rowMapping(row,{resolveSpell,resolveCreature,nativeExperienceProfile,dispelProtection,negativeSpellLevels,experienceAfterAttack,experienceStatusSelectors,experienceFortress,experienceDungeon,experienceBeforeAttack,experienceDefenseReduction,experienceCrystal,experienceWerewolf,experienceGolem,experienceSpring,experienceDemonology,experiencePrimalFaerie,experienceStronghold,deathBlowCRT}),{bonus,mode,values}=mapping,base=values[0];
+   const mapping=rowMapping(row,{resolveSpell,resolveCreature,nativeExperienceProfile,dispelProtection,negativeSpellLevels,experienceAfterAttack,experienceStatusSelectors,experienceFortress,experienceDungeon,experienceConflux,experienceNeutralDependencies,experienceBeforeAttack,experienceDefenseReduction,experienceCrystal,experienceWerewolf,experienceGolem,experienceSpring,experienceDemonology,experiencePrimalFaerie,experienceStronghold,deathBlowCRT}),{bonus,mode,values}=mapping,base=values[0];
    if(mapping.additionalRuntimeBindings)runtimeBindings.push(...mapping.additionalRuntimeBindings.map(b=>({source:row.source,line:row.line,...b})));
    if(mode==='runtime'){
     runtimeBindings.push({source:row.source,line:row.line,...mapping.runtimeBinding});
@@ -180,7 +200,7 @@ export function compileCreatureExperience(rows,{creatureId,installedRows,rankZer
    }
    if(base&&rankZero!=='intrinsic')throw new ExperienceCompileError([{source:row.source,line:row.line,code:'rank-zero-requires-explicit-intrinsic-contract'}]);
    for(const [bonusIndex,emittedBonus]of[bonus,...mapping.additionalBonuses||[]].entries()){
-   if(base)abilities[`crexp_${index}_rank0${bonusIndex?"_extra"+bonusIndex:""}`]={...emittedBonus,...(mode==='toggle'?{}:{val:base})};
+   if(base||emittedBonus.addInfo?.contract==='source-experience-magic-reduction-v1')abilities[`crexp_${index}_rank0${bonusIndex?"_extra"+bonusIndex:""}`]={...emittedBonus,...(mode==='toggle'?{}:{val:base})};
    if(mode==='toggle'){
     if(!base&&values.slice(1).some(Boolean))stackExperience.push({bonus:emittedBonus,values:values.slice(1)});
    }else if(mode==='independent'){
@@ -193,6 +213,6 @@ export function compileCreatureExperience(rows,{creatureId,installedRows,rankZer
   }catch(e){if(e instanceof ExperienceCompileError)diagnostics.push(...e.diagnostics);else throw e;}
  }
  const ok=diagnostics.length===0;
- const result={ok,definition:ok?{abilities,stackExperience}:null,nativePreview:{abilities,stackExperience},diagnostics,defaults,mapped,runtimeBindings,creatureId,requirements:{...(selected.some(r=>r.code==='w'&&/^[1-5]$/.test(r.modifier))?{negativeSpellLevels:'source-w-level-v1'}:{}),...(runtimeBindings.some(b=>b.contract!=='source-deathblow-crt-v1')?{experienceStatusSelectors:runtimeBindings.find(b=>b.contract!=='source-deathblow-crt-v1').contract}:{}),...(selected.some(r=>r.code==='e')?{deathBlowCRT:'source-deathblow-crt-v1'}:{}),rankRangePolicy:'native-era-profile',...(selected.some(r=>r.code==='p')?{experiencePreAttackSpellPolicy:selected.some(r=>r.code==='p'&&r.modifier==='#37')?'source-p37-v1':selected.some(r=>r.code==='p'&&['#24','#25'].includes(r.modifier))?'source-p24-p25-v1':selected.some(r=>r.code==='p'&&r.modifier==='#57')?'source-p57-v1':'source-p50-v1'}:{}),...(selected.some(r=>['a','K'].includes(r.code))?{experienceAfterAttackSpellPolicy:'source-a62-K59-v1'}:{}),...(selected.some(r=>r.code==='w'&&['P','p'].includes(r.modifier))?{dispelProtection:'native-era-v1'}:{})}};
+ const result={ok,definition:ok?{abilities,stackExperience}:null,nativePreview:{abilities,stackExperience},diagnostics,defaults,mapped,runtimeBindings,creatureId,requirements:{...(experienceConflux===SOURCE_CONFLUX_CONTRACT?{experienceConflux:SOURCE_CONFLUX_CONTRACT}:{}),...(selected.some(r=>r.code==='w'&&/^[1-5]$/.test(r.modifier))?{negativeSpellLevels:'source-w-level-v1'}:{}),...(runtimeBindings.some(b=>b.contract!=='source-deathblow-crt-v1')?{experienceStatusSelectors:runtimeBindings.find(b=>b.contract!=='source-deathblow-crt-v1').contract}:{}),...(selected.some(r=>r.code==='e')?{deathBlowCRT:'source-deathblow-crt-v1'}:{}),rankRangePolicy:'native-era-profile',...(selected.some(r=>r.code==='p')?{experiencePreAttackSpellPolicy:experienceConflux===SOURCE_CONFLUX_CONTRACT?SOURCE_CONFLUX_CONTRACT:experienceNeutralDependencies===SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT&&creatureId===286?SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT:selected.some(r=>r.code==='p'&&r.modifier==='#37')?'source-p37-v1':selected.some(r=>r.code==='p'&&['#24','#25'].includes(r.modifier))?'source-p24-p25-v1':selected.some(r=>r.code==='p'&&r.modifier==='#57')?'source-p57-v1':'source-p50-v1'}:{}),...(selected.some(r=>['a','K'].includes(r.code))?{experienceAfterAttackSpellPolicy:experienceConflux===SOURCE_CONFLUX_CONTRACT?SOURCE_CONFLUX_CONTRACT:experienceNeutralDependencies===SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT&&creatureId===294?SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT:'source-a62-K59-v1'}:{}),...(selected.some(r=>r.code==='w'&&['P','p'].includes(r.modifier))?{dispelProtection:'native-era-v1'}:{})}};
  if(!ok&&throwOnError)throw new ExperienceCompileError(diagnostics);return result;
 }

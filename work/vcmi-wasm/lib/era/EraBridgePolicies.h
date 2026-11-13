@@ -134,7 +134,7 @@ public:
                 else if(operation.first == "experienceRegeneration")
                 {
                     fields(operation.second, {"chancePercent", "values"});
-                    if(creature.first != "tum-era:eraCreature267" && creature.first != "tum-era:eraCreature268" && creature.first != "tum-era:eraCreature273")
+                    if(creature.first != "tum-era:eraCreature267" && creature.first != "tum-era:eraCreature268" && creature.first != "tum-era:eraCreature273" && creature.first != "tum-era:eraCreature294")
                         throw std::runtime_error("ERA bridge: unaudited experience regeneration actor");
                     const bool sourceWerewolf = creature.first == "tum-era:eraCreature273";
                     const int chance = sourceWerewolf ? 50 : 100;

@@ -907,6 +907,21 @@ struct DLL_LINKAGE SetStackType : CGarrisonOperationPack
 	}
 };
 
+// Dedicated source daily-evolution reset; existing SetStackType wire format stays intact.
+struct DLL_LINKAGE ResetStackExperience : CGarrisonOperationPack
+{
+    ObjectInstanceID army;
+    SlotID slot;
+    CreatureID expectedType;
+    void visitTyped(ICPackVisitor & visitor) override;
+    template <typename Handler> void serialize(Handler & h)
+    {
+        h & army;
+        h & slot;
+        h & expectedType;
+    }
+};
+
 struct DLL_LINKAGE EraseStack : CGarrisonOperationPack
 {
 	ObjectInstanceID army;

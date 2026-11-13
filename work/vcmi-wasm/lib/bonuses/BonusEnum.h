@@ -218,6 +218,7 @@ class JsonNode;
 	BONUS_NAME(ERA_SOURCE_UNOWNED_STACK) /* Original side -1 temporary combat stack */ \
 	BONUS_NAME(ERA_SOURCE_NON_ELEMENTAL_SUMMON) /* Source summons excluded from elemental exclusivity */ \
 	BONUS_NAME(ERA_SOURCE_ARTIFACT_STATE) /* Persistent typed state for source artifact event adapters */ \
+    BONUS_NAME(ERA_SOURCE_TOME_CACHE) /* Emerald available-spell cache; never learned spells */ \
 	/* end of list */
 
 #define BONUS_SOURCE_LIST \

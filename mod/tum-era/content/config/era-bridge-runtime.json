@@ -347,6 +347,24 @@
       "artifactMimic": {
         "artifact": 71
       }
+    },
+    "tum-era:eraCreature294": {
+      "experienceRegeneration": {
+        "chancePercent": 100,
+        "values": [
+          0,
+          9,
+          18,
+          27,
+          36,
+          45,
+          54,
+          63,
+          72,
+          81,
+          90
+        ]
+      }
     }
   },
   "artifacts": {
@@ -532,6 +550,54 @@
     },
     "tum-era:artifact197": {
       "elementalFreedom": {}
+    },
+    "tum-era:artifact227": {
+      "openingSummons": [
+        {
+          "creature": "tum-era:eraCreature286",
+          "encodedPower": -1300
+        }
+      ]
+    },
+    "tum-era:artifact228": {
+      "openingSummons": [
+        {
+          "creature": "tum-era:eraCreature286",
+          "encodedPower": -2300
+        }
+      ]
+    },
+    "tum-era:artifact229": {
+      "openingSummons": [
+        {
+          "creature": "tum-era:eraCreature286",
+          "encodedPower": -3300
+        }
+      ]
+    },
+    "tum-era:artifact230": {
+      "openingSummons": [
+        {
+          "creature": "tum-era:eraCreature286",
+          "encodedPower": -4300
+        }
+      ]
+    },
+    "tum-era:artifact232": {
+      "openingSummons": [
+        {
+          "creature": "tum-era:eraCreature294",
+          "encodedPower": -3300
+        }
+      ]
+    },
+    "tum-era:artifact236": {
+      "openingSummons": [
+        {
+          "creature": "tum-era:eraCreature294",
+          "encodedPower": 0
+        }
+      ]
     }
   }
 }

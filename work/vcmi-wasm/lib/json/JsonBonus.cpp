@@ -9,6 +9,7 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraExperienceMagicReduction.h"
 #include "JsonBonus.h"
 
 #include "JsonValidator.h"
@@ -226,6 +227,21 @@ static TBonusParametersPtr loadBonusAddInfo(BonusType type, const JsonNode & val
 
 	switch (type)
 	{
+        case BonusType::SPELL_DAMAGE_REDUCTION:
+            if(value.getModScope()=="tum-era" && value.isStruct() && value.Struct().size()==2
+                && value["contract"].isString() && value["contract"].String()=="source-experience-magic-reduction-v1"
+                && value["sourceCreatureId"].isNumber()
+                && value["sourceCreatureId"].Float()==value["sourceCreatureId"].Integer()
+                && value["sourceCreatureId"].Integer()>=0
+                && value["sourceCreatureId"].Integer()<=std::numeric_limits<int32_t>::max())
+                var=std::vector<int32_t>{::era_bridge::sourceMagicReductionMarker,
+                    static_cast<int32_t>(value["sourceCreatureId"].Integer())};
+            else
+            {
+                logMod->warn("Unsupported source magic reduction addInfo payload");
+                return nullptr;
+            }
+            break;
         case BonusType::HATE:
             // Explicit TUM source identity. No native creature identifier is
             // requested until that source creature has actually been ported.

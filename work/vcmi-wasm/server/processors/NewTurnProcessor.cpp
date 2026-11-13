@@ -13,6 +13,8 @@
 #include "HeroPoolProcessor.h"
 
 #include "../CGameHandler.h"
+#include "../era/EraWayfarerRuntime.h"
+#include "../era/EraDragonlingEvolutionRuntime.h"
 
 #include "../../lib/CPlayerState.h"
 #include "../../lib/era/EraBridgeArtifactPolicies.h"
@@ -147,6 +149,7 @@ void NewTurnProcessor::handleTownEvents(const CGTownInstance * town)
 void NewTurnProcessor::onPlayerTurnStarted(PlayerColor which)
 {
 	const auto * playerState = gameHandler->gameState().getPlayerState(which);
+    applyEraWayfarerDay(*gameHandler,*playerState);
 
     // Amethyst Daily_Res: maximum per resource across eligible armies, but
     // gold tax is per individual. Garrison heroes are already in getHeroes().
@@ -211,6 +214,9 @@ void NewTurnProcessor::onPlayerTurnStarted(PlayerColor which)
 				gameHandler->sendAndApply(packet); // shared authoritative state, count unchanged
 			}
 		}
+
+    // Era ProcessErm fires native event handlers before the ERM trigger body.
+    applyEraDragonlingEvolutionDay(*gameHandler,*playerState);
 
 	handleTimeEvents(which);
 	for (const auto * t : playerState->getTowns())

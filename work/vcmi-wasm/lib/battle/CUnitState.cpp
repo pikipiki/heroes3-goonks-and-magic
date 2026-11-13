@@ -17,6 +17,7 @@
 #include "../era/EraBridgePolicies.h"
 #include "../era/EraSignedDamage.h"
 #include "../era/EraPrimalFaerie.h"
+#include "../era/EraDragonlingFaerie.h"
 
 #include <vcmi/spells/Spell.h>
 
@@ -462,6 +463,8 @@ int32_t CUnitState::getEffectLevel(const spells::Spell * spell) const
 
 int32_t CUnitState::getEffectPower(const spells::Spell * spell) const
 {
+    if(era_compat::DragonlingFaerie::get().enabled(creatureId().toCreature()->getJsonKey()))
+        return ::era_bridge::SourceCreatureSpellPower::forSource(343).apply(getCount());
     if(era_compat::PrimalFaerie::get().enabled(creatureId().toCreature()->getJsonKey()))
         return ::era_bridge::SourceCreatureSpellPower::forSource(258).apply(getCount());
 	return valOfBonuses(BonusType::CREATURE_SPELL_POWER) * getCount() / 100;

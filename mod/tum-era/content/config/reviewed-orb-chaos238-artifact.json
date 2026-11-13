@@ -1,0 +1,70 @@
+{
+  "artifact238": {
+    "type": [
+      "HERO"
+    ],
+    "class": "SPECIAL",
+    "value": 30000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Orb of Chaos",
+      "description": "{Orb of Chaos}\n\nAt battle start, grants expert Protection from all four schools for 50 rounds. The hero's damaging spell casts deal an additional 50% damage before target defenses, on top of the four elemental orbs in this combination.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/238/icon.png",
+      "map": "tum-era/artifacts/238/map.def",
+      "scenarioBonus": "tum-era/artifacts/238/scenario.png"
+    },
+    "bonuses": {
+      "Autospell": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:protectAir",
+        "addInfo": [
+          3,
+          0
+        ]
+      },
+      "Autospell2": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:protectFire",
+        "addInfo": [
+          3,
+          1
+        ]
+      },
+      "Autospell3": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:protectWater",
+        "addInfo": [
+          3,
+          2
+        ]
+      },
+      "Autospell4": {
+        "type": "OPENING_BATTLE_SPELL",
+        "val": 50,
+        "subtype": "core:protectEarth",
+        "addInfo": [
+          3,
+          3
+        ]
+      }
+    },
+    "components": [
+      "core:orbOfTheFirmament",
+      "core:orbOfSilt",
+      "core:orbOfTempestuousFire",
+      "core:orbOfDrivingRain"
+    ]
+  }
+}

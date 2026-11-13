@@ -1,0 +1,111 @@
+{
+  "cases": [
+    {
+      "width": 390,
+      "height": 844,
+      "box": {
+        "x": 192,
+        "y": 67,
+        "width": 190,
+        "height": 58
+      },
+      "stable": {
+        "same": true,
+        "removed": 0
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "box": {
+        "x": 664,
+        "y": 67,
+        "width": 172,
+        "height": 58
+      },
+      "stable": {
+        "same": true,
+        "removed": 0
+      }
+    },
+    {
+      "width": 820,
+      "height": 1180,
+      "box": {
+        "x": 622,
+        "y": 67,
+        "width": 190,
+        "height": 58
+      },
+      "stable": {
+        "same": true,
+        "removed": 0
+      }
+    },
+    {
+      "width": 1180,
+      "height": 820,
+      "box": {
+        "x": 982,
+        "y": 67,
+        "width": 190,
+        "height": 58
+      },
+      "stable": {
+        "same": true,
+        "removed": 0
+      }
+    },
+    {
+      "width": 568,
+      "height": 280,
+      "box": {
+        "x": 432,
+        "y": 67,
+        "width": 128,
+        "height": 58
+      },
+      "stable": {
+        "same": true,
+        "removed": 0
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "box": {
+        "x": 122,
+        "y": 67,
+        "width": 190,
+        "height": 58
+      },
+      "stable": {
+        "same": true,
+        "removed": 0
+      }
+    },
+    {
+      "width": 568,
+      "height": 320,
+      "box": {
+        "x": 432,
+        "y": 67,
+        "width": 128,
+        "height": 58
+      },
+      "stable": {
+        "same": true,
+        "removed": 0
+      }
+    }
+  ],
+  "passed": true,
+  "errors": [],
+  "scope": "Browser component with native-like state and real original portrait asset; same enabled predicate and callbacks as ROOT mobile integration. Not a substitute for pending native nine-town construction/recruitment/growth/save controls.",
+  "nativeEngineTest": false,
+  "integration": "web/mobile.mjs imports eighthTownRecruitment; custom town view enabled for portrait orientation OR actual T8 model; user classic-view opt-out preserved.",
+  "navigation": {
+    "construction": "actual openBuildings callback receives150,name,269 exactly once per tap",
+    "recruitment": "actual delegated recruitLevel7 handler once per tap"
+  }
+}

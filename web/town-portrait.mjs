@@ -1,3 +1,4 @@
+import{creaturePortrait}from'./creature-portraits.mjs';
 import {paintBuildingOutline} from './image-outline.mjs';
 import{plainGameText}from'./game-text.mjs';
 import{buildingSizes}from'./town-building-sizes.mjs';
@@ -35,7 +36,16 @@ export function townBuildingCardImage(state,building,asset){
  if(townBuildingArt[faction]?.[key])return buildingSprite(faction,key);
  return '';
 }
-export function factionPortraitBuildings(width,height,buildings,faction){
+export function eighthTownRecruitment(state){
+ if(state.mode!=='town')return null;
+ const base=(state.buildings||[]).find(b=>b.id===150&&localKey(b)==='dwellingLvl8'),upgrade=(state.buildings||[]).find(b=>b.id===151&&localKey(b)==='dwellingUpLvl8');
+ if(!base||!upgrade)return null;
+ const unit=(state.recruits||[]).filter(u=>u.level===7).sort((a,b)=>(b.variant||0)-(a.variant||0))[0]||base.unlocksCreature||upgrade.unlocksCreature;
+ if(!unit||!Number.isInteger(unit.id))return null;
+ return {base,upgrade,unit,built:!!(base.built||upgrade.built),level:7};
+}
+export function eighthTownViewport(width,height){const side=width>height&&height<480,strip=side?Math.min(188,Math.max(144,width*.23)):72;return {x:0,y:side?0:strip,width:side?width-strip:width,height:side?height:height-strip,badgeWidth:side?strip-16:Math.min(190,width-130)};}
+export function factionPortraitBuildings(width,height,buildings,faction,{minimumRowHeight=0}={}){
  if(faction==='goonk')return townPortraitBuildings(width,height,buildings);
  const catalog=townBuildingArt[faction]||{},byId=new Map(buildings.map(b=>[b.id,b])),groups=new Map();
  const base=b=>byId.get(b.baseId)||b;
@@ -43,7 +53,7 @@ export function factionPortraitBuildings(width,height,buildings,faction){
  for(const b of buildings){const key=localKey(base(b));if(!groups.has(key))groups.set(key,[]);groups.get(key).push(b);}
  const order=['fort','mageGuild1','grail','villageHall','marketplace','blacksmith',...Array.from({length:7},(_,i)=>'dwellingLvl'+(i+1))];
  const families=[...groups.keys()].filter(key=>groups.get(key).some(b=>catalog[localKey(b)])).sort((a,b)=>{const x=order.indexOf(a),y=order.indexOf(b);return(x<0?100:x)-(y<0?100:y)||a.localeCompare(b);});
- const columns=4,rows=Math.max(1,Math.ceil((families.length-3)/columns)),topHeight=Math.min(height*.25,Math.max(60,height*.21)),rowHeight=(height-topHeight-8)/rows,result=[];
+ const topHeight=Math.min(height*.25,Math.max(60,height*.21)),maxRows=minimumRowHeight?Math.max(1,Math.floor((height-topHeight-8)/minimumRowHeight)):Infinity,columns=Math.max(4,Math.ceil((families.length-3)/maxRows)),rows=Math.max(1,Math.ceil((families.length-3)/columns)),rowHeight=(height-topHeight-8)/rows,result=[];
  for(let i=0;i<families.length;i++){
   const records=groups.get(families[i]),building=records.filter(b=>b.built&&(!families[i].startsWith('dwelling')||localKey(b).startsWith('dwelling'))).sort((a,b)=>depth(b)-depth(a)||b.id-a.id)[0];if(!building)continue;
   const key=localKey(building),fallbacks=[key,...records.sort((a,b)=>depth(b)-depth(a)).map(localKey),key.replace('Up2','Up'),key.replace(/Up2|Up/g,'')],artKey=fallbacks.find(k=>catalog[k]);if(!artKey)continue;
@@ -54,9 +64,15 @@ export function factionPortraitBuildings(width,height,buildings,faction){
  }
  return result;
 }
-export function createTownPortrait({root,scene,asset,command,getState}){
+export function createTownPortrait({root,scene,asset,command,getState,openBuildings}){
  const overlay=document.createElement('section');overlay.className='town-portrait-buildings';overlay.setAttribute('aria-label','Bâtiments de la ville');overlay.hidden=true;root.querySelector('.mobile-play').append(overlay);
- const images=new Map(),buttons=new Map(),decoded=new WeakSet(),failed=new WeakSet();let hovered=null,signature='',activeFaction=null,newBuilding=null;
+ const images=new Map(),buttons=new Map(),decoded=new WeakSet(),failed=new WeakSet();let hovered=null,signature='',activeFaction=null,newBuilding=null,eighthButton=null,eighthSignature='';
+ const updateEighth=(state,width,height)=>{const model=eighthTownRecruitment(state);if(!model){eighthButton?.remove();eighthSignature='';return;}const view=eighthTownViewport(width,height);if(!eighthButton){eighthButton=document.createElement('button');eighthButton.className='town-eighth-access';eighthButton.dataset.townEighth='true';eighthButton.addEventListener('click',event=>{const latest=eighthTownRecruitment(getState());if(!latest||latest.built||!openBuildings)return;event.stopPropagation();void openBuildings(latest.base.id,latest.unit.name,latest.unit.id);});}
+  if(!eighthButton.isConnected)overlay.append(eighthButton);const next=JSON.stringify([model.unit.id,model.unit.name,model.built,model.unit.count,state.turn,view.badgeWidth]);if(eighthSignature===next)return;eighthSignature=next;
+  if(eighthButton.dataset.unit!==String(model.unit.id)){eighthButton.innerHTML=creaturePortrait(model.unit)+'<span class="town-eighth-copy"><strong></strong><span></span></span>';eighthButton.dataset.unit=model.unit.id;}
+  const label=model.built?'Recruter · VIII':'Bâtir · VIII',strong=eighthButton.querySelector('strong'),name=eighthButton.querySelector('.town-eighth-copy>span'),plainName=plainGameText(model.unit.name);if(strong.textContent!==label)strong.textContent=label;if(name.textContent!==plainName)name.textContent=plainName;eighthButton.setAttribute('aria-label',label+' · '+plainName);eighthButton.disabled=!state.turn;eighthButton.style.width=Math.max(112,view.badgeWidth)+'px';
+  if(model.built){eighthButton.dataset.recruitLevel='7';delete eighthButton.dataset.ui;}else{delete eighthButton.dataset.recruitLevel;eighthButton.dataset.ui='build';}
+ };
  const image=url=>{if(!url)return null;if(!images.has(url)){const img=new Image();img.addEventListener('error',()=>failed.add(img),{once:true});img.addEventListener('load',()=>{if(img.decode)img.decode().then(()=>decoded.add(img),()=>failed.add(img));else decoded.add(img);},{once:true});img.src=url;images.set(url,img);}return images.get(url);};
  const ready=img=>img?.complete&&img.naturalWidth>0&&decoded.has(img);
  const settled=img=>!img||ready(img)||failed.has(img);
@@ -67,7 +83,8 @@ export function createTownPortrait({root,scene,asset,command,getState}){
   const faction=portraitTownFaction(state);
   if(activeFaction!==faction){activeFaction=faction;buttons.clear();overlay.replaceChildren();hovered=null;signature='';}
   if(!backgrounds.has(faction))backgrounds.set(faction,image(new URL(faction==='goonk'?'./town/portrait-v2.webp':'./town/'+faction+'/portrait-v1.webp',import.meta.url).href));
-  const buildings=factionPortraitBuildings(width,height,state.buildings||[],faction);
+  const eighth=eighthTownRecruitment(state),view=eighth?eighthTownViewport(width,height):{x:0,y:0,width,height};
+  const buildings=factionPortraitBuildings(view.width,view.height,state.buildings||[],faction,{minimumRowHeight:eighth?44:0}).map(b=>({...b,x:b.x+view.x,y:b.y+view.y,hit:{...b.hit,x:b.hit.x+view.x,y:b.hit.y+view.y}}));
   return {faction,background:backgrounds.get(faction),buildings,artwork:buildings.map(b=>({b,picture:image(faction==='goonk'?asset('goonk/structure-'+b.artKey+'.png'):buildingSprite(faction,b.artKey)),outline:faction==='goonk'?image(asset('goonk/outline-'+b.artKey+'.png')):null}))};
  };
  const prepare=(state,enabled=true)=>{
@@ -87,9 +104,10 @@ export function createTownPortrait({root,scene,asset,command,getState}){
    const next=JSON.stringify([faction,width,height,buildings.map(b=>[b.id,b.name])]);
    if(signature!==next){signature=next;const active=new Set(buildings.map(b=>b.id));for(const [id,button]of buttons)if(!active.has(id)){button.remove();buttons.delete(id);if(hovered===id)hovered=null;}
     for(const b of buildings){let button=buttons.get(b.id);if(!button){button=document.createElement('button');button.className='town-building-hit';button.dataset.townBuilding=b.id;const label=document.createElement('span');label.className='town-building-name';button.append(label);button.addEventListener('pointerenter',()=>hovered=b.id);button.addEventListener('pointerleave',()=>hovered=null);button.addEventListener('focus',()=>hovered=b.id);button.addEventListener('blur',()=>hovered=null);button.addEventListener('click',event=>{event.stopPropagation();const current=getState();if(current.mode==='town'&&current.buildings?.some(record=>record.id===b.id&&record.built)){hovered=b.id;command(39,b.id);}});buttons.set(b.id,button);overlay.append(button);}
-     const name=plainGameText(b.name),isGrail=faction==='goonk'&&b.site==='grail';button.setAttribute('aria-label',name);button.toggleAttribute('data-town-grail',isGrail);const nameLabel=button.querySelector('span'),labelWidth=isGrail?64:Math.min(180,Math.max(70,name.length*6.5+16));nameLabel.textContent=isGrail?'Graal':name;nameLabel.style.width=labelWidth+'px';nameLabel.style.left=(Math.max(6,Math.min(width-labelWidth-6,b.hit.x+b.hit.w/2-labelWidth/2))-b.hit.x)+'px';Object.assign(button.style,{left:b.hit.x+'px',top:b.hit.y+'px',width:b.hit.w+'px',height:b.hit.h+'px'});
+     const name=plainGameText(b.name),isGrail=faction==='goonk'&&b.site==='grail';button.setAttribute('aria-label',name);button.toggleAttribute('data-town-grail',isGrail);const nameLabel=button.querySelector('span'),labelWidth=isGrail?64:Math.min(180,Math.max(70,name.length*6.5+16));if(nameLabel.textContent!==(isGrail?'Graal':name))nameLabel.textContent=isGrail?'Graal':name;nameLabel.style.width=labelWidth+'px';nameLabel.style.left=(Math.max(6,Math.min(width-labelWidth-6,b.hit.x+b.hit.w/2-labelWidth/2))-b.hit.x)+'px';Object.assign(button.style,{left:b.hit.x+'px',top:b.hit.y+'px',width:b.hit.w+'px',height:b.hit.h+'px'});
     }
    }
+   updateEighth(state,width,height);
    return true;
   }
  };

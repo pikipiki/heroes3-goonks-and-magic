@@ -11,6 +11,8 @@
 #include "TurnInfo.h"
 
 #include "../IGameSettings.h"
+#include "../CPlayerState.h"
+#include "../era/EraWayfarerArtifact.h"
 #include "../TerrainHandler.h"
 #include "../GameLibrary.h"
 #include "../bonuses/BonusList.h"
@@ -126,6 +128,20 @@ TurnInfo::TurnInfo(TurnInfoCache * sharedCache, const CGHeroInstance * target, i
 		static const CSelector selector = Selector::type()(BonusType::ROUGH_TERRAIN_DISCOUNT);
 		const auto & bonuses = sharedCache->roughTerrainDiscount.getBonusList(target, selector);
 		roughTerrainDiscountValue = bonuses->valOfBonuses(daySelector);
+        const auto * owner=target->cb->getPlayerState(target->getOwner(),false);
+        if(owner && owner->human && era_compat::WayfarerArtifact::get().equipped(*target))
+        {
+            // Original260 replaces only the Pathfinding skill input with3.
+            // Keep other native bridge bonuses and their value-type arithmetic.
+            BonusList effective;
+            for(const auto & bonus:*bonuses)
+                if(bonus->source!=BonusSource::SECONDARY_SKILL
+                    || bonus->sid!=BonusSourceID(SecondarySkill(SecondarySkill::PATHFINDING)))effective.push_back(bonus);
+            auto expert=std::make_shared<Bonus>();expert->type=BonusType::ROUGH_TERRAIN_DISCOUNT;
+            expert->source=BonusSource::SECONDARY_SKILL;expert->sid=BonusSourceID(SecondarySkill(SecondarySkill::PATHFINDING));
+            expert->valType=BonusValueType::BASE_NUMBER;expert->val=75;
+            effective.push_back(expert);roughTerrainDiscountValue=effective.valOfBonuses(daySelector);
+        }
 	}
 
 	{

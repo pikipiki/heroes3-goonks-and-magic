@@ -1,6 +1,8 @@
 #pragma once
 #include "EraStatusSelectors.h"
+#include "EraDemilichSummons.h"
 #include "EraFortressCounterstrikes.h"
+#include "EraConfluxPolicies.h"
 #include "../CStack.h"
 #include "../GameLibrary.h"
 #include "../BattleFieldHandler.h"
@@ -28,6 +30,7 @@ class StatusAttacks
     bool serpentPoisonActive=false;
     bool leviathanPoisonActive=false;
     bool spiderSlowActive=false,priestessSlowActive=false;
+    bool demilichPoisonActive=false;
     std::map<std::string,int> sourceIds;
 public:
     StatusAttacks()
@@ -50,6 +53,7 @@ public:
             else if(value.String()=="tum-era:eraCreature354" && !leviathanPoisonActive)leviathanPoisonActive=true;
             else if(value.String()=="tum-era:eraCreature351" && !spiderSlowActive)spiderSlowActive=true;
             else if(value.String()=="tum-era:eraCreature352" && !priestessSlowActive)priestessSlowActive=true;
+            else if(value.String()=="tum-era:eraCreature286" && !demilichPoisonActive)demilichPoisonActive=true;
             else throw std::runtime_error("ERA status attacks: unproven or duplicate actor");
         }
         std::set<int> ids;
@@ -73,6 +77,9 @@ public:
             throw std::runtime_error("ERA status attacks: actor207 identity required");
         if(antichristStoneActive && id("tum-era:antichrist")!=219)
             throw std::runtime_error("ERA status attacks: actor219 identity required");
+        if(demilichPoisonActive && (id("tum-era:eraCreature286")!=286
+            || !DemilichSummons::get().enabled("tum-era:eraCreature286")))
+            throw std::runtime_error("ERA status attacks: whole Demilich286 contract required");
         if((spiderSlowActive && id("tum-era:eraCreature351")!=351)
             || (priestessSlowActive && id("tum-era:eraCreature352")!=352))
             throw std::runtime_error("ERA status attacks: exact Dungeon identity required");
@@ -84,6 +91,9 @@ public:
             || (leviathanPoisonActive && id("tum-era:eraCreature354")!=354))
             throw std::runtime_error("ERA status attacks: exact Fortress identity required");
     }
+    bool demilichPoison(const CStack * actor)const
+    {return demilichPoisonActive&&actor&&actor->creatureId().toCreature()->getJsonKey()=="tum-era:eraCreature286";}
+    bool kPoison(const CStack * actor)const{return enabled(actor)||demilichPoison(actor);}
     bool queuedSlow(const CStack * actor)const
     {
         if(!actor)return false;
@@ -163,15 +173,20 @@ inline float statusSourceAura(const CBattleInfoCallback & battle,const battle::U
     }
     return static_cast<float>(1.0-double(std::clamp(aura,0,100))/100.0);
 }
-inline int statusRawAccuracy(const CBattleInfoCallback & battle,const battle::Unit * target,bool =true,BattleSide =BattleSide::NONE)
+inline int statusRawAccuracy(const CBattleInfoCallback & battle,const battle::Unit * target,bool heroQuery=true,BattleSide queryCasterSide=BattleSide::NONE)
 {
     if(!target || !target->alive() || target->isGhost())return 0;
+    const auto * active=battle.battleActiveUnit();
+    const auto side=queryCasterSide!=BattleSide::NONE?queryCasterSide:
+        confluxQuerySide.value_or(active?active->unitSide():BattleSide::NONE);
+    if(confluxCatalystNegates(battle,side,heroQuery))
+        return era_bridge::sourceAccuracyPercent(1.0f,statusSourceAura(battle,target));
     const auto sourceId=StatusAttacks::get().id(target->creatureId().toCreature()->getJsonKey());
     const auto * hero=battle.battleGetOwnerHero(target);
-    if(sourceId<0) // Additional game creatures keep native resistance and aura.
-        return std::clamp(100-target->magicResistance(),0,100);
     if(statusEitherArtifact(battle,93))
         return era_bridge::sourceAccuracyPercent(1.0f,statusSourceAura(battle,target));
+    if(sourceId<0) // Additional game creatures keep native resistance and aura.
+        return std::clamp(100-target->magicResistance(),0,100);
     // Reconstruct only source-owned intrinsic/XP and canonical hero inputs.
     // Unknown mod contributions retain native accuracy; they are not discarded.
     BonusList intrinsic;

@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "report": {
+    "ai-sea-hat": {
+      "day": 1,
+      "heroId": 3,
+      "name": "Orrin",
+      "movement": 2030,
+      "limit": 2030,
+      "move": null,
+      "sea": {
+        "board": {
+          "before": 2030,
+          "after": 2741,
+          "cost": -711,
+          "hero": {
+            "hasSpellbook": false,
+            "id": 3,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 2741,
+            "movementLimit": 3000,
+            "name": "Orrin"
+          }
+        },
+        "afterBoard": {
+          "day": 1,
+          "movement": 2741,
+          "limit": 3000
+        },
+        "disembark": {
+          "before": 2741,
+          "after": 1434,
+          "cost": 1307,
+          "hero": {
+            "hasSpellbook": false,
+            "id": 3,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 1434,
+            "movementLimit": 1630,
+            "name": "Orrin"
+          }
+        },
+        "afterDisembark": {
+          "day": 1,
+          "movement": 1434,
+          "limit": 1630
+        },
+        "nextLandDay": {
+          "day": 2,
+          "movement": 2030,
+          "limit": 2030
+        }
+      }
+    }
+  }
+}

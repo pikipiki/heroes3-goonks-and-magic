@@ -36,8 +36,10 @@ public:
             {
                 // XP71DB38 passes intermediate power3; Amethyst5A0145
                 // replaces it from CURRENT active creature except62/70..80.
-                if(!spell.isString() || (spell.String()!="core:sorrow" && spell.String()!="core:blind" && spell.String()!="core:berserk" && spell.String()!="core:titanBolt" && spell.String()!="core:destroyUndead" && spell.String()!="core:deathRipple" && spell.String()!="core:cure"))
+                if(!spell.isString() || (spell.String()!="core:sorrow" && spell.String()!="core:blind" && spell.String()!="core:berserk" && spell.String()!="core:titanBolt" && spell.String()!="core:destroyUndead" && spell.String()!="core:deathRipple" && spell.String()!="core:cure" && spell.String()!="core:fireball"))
                     throw std::runtime_error("ERA experience attack spells: unproven spell contract");
+                if(spell.String()=="core:fireball" && entry.first!="tum-era:eraCreature294")
+                    throw std::runtime_error("ERA experience attack spells: exact source294 area contract required");
                 if(!creatures[entry.first].insert(spell.String()).second)
                     throw std::runtime_error("ERA experience attack spells: duplicate spell");
             }
@@ -54,6 +56,7 @@ public:
         if(mode == BonusType::SPELL_BEFORE_ATTACK && (spell == "core:sorrow" || spell == "core:titanBolt" || spell == "core:destroyUndead" || spell == "core:deathRipple" || spell == "core:cure")) return 3;
         if(mode == BonusType::SPELL_AFTER_ATTACK && spell == "core:blind") return 3;
         if(mode == BonusType::SPELL_AFTER_ATTACK && spell == "core:berserk") return 2;
+        if(mode == BonusType::SPELL_AFTER_ATTACK && creature=="tum-era:eraCreature294" && spell=="core:fireball")return 3;
         return -1;
     }
     static const ExperienceAttackSpells & get()
