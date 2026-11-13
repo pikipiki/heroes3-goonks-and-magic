@@ -12,6 +12,7 @@
 #include "../../lib/bonuses/BonusParameters.h"
 #include "BattleResultProcessor.h"
 #include "../era/EraOblivionRuntime.h"
+#include "../era/EraHorn266Runtime.h"
 #include "battle/BattleInfo.h"
 
 #include "../CGameHandler.h"
@@ -50,8 +51,12 @@ CasualtiesAfterBattle::CasualtiesAfterBattle(const CBattleInfoCallback & battle,
 
 	auto allStacks = battle.battleGetStacksIf([color](const CStack * stack){
 
-		if (stack->summoned)//don't take into account temporary summoned stacks
-			return false;
+        // Source BU:E may capture an original army stack after failed BU:S.
+        // 463DDC clears all original slots; SUMMON then prevents reinsertion
+        // only when that side has a hero (463E39..4B).
+        const bool hornOriginal=era_compat::sourceHorn266ZeroBase(*stack)
+            && stack->unitSlot().getNum()>=0 && stack->unitSlot().getNum()<7;
+        if(stack->summoned && !hornOriginal)return false;
 
         // Source463E61..68 excludes overland slot-1 independently of SUMMON.
         // Only persistence uses this marker; slain units still award XP.
@@ -75,6 +80,13 @@ CasualtiesAfterBattle::CasualtiesAfterBattle(const CBattleInfoCallback & battle,
 
 		logGlobal->debug("Calculating casualties for %s", st->nodeName());
 
+        if(st->summoned && era_compat::sourceHorn266ZeroBase(*st)
+            && st->unitSlot().getNum()>=0 && st->unitSlot().getNum()<7
+            && dynamic_cast<const CGHeroInstance *>(army))
+        {
+            newStackCounts.emplace_back(StackLocation(army->id,st->unitSlot()),0);
+            continue;
+        }
 		st->health.takeResurrected();
 
 		if(st->unitSlot() == SlotID::WAR_MACHINES_SLOT)
@@ -418,6 +430,8 @@ void BattleResultProcessor::endBattleConfirm(const CBattleInfoCallback & battle)
 	raccepted.winnerSide = finishingBattle->winnerSide;
     carryEraOblivionResult(*gameHandler,battle,finishingBattle->isDraw()?nullptr:
         battle.getBattle()->getSideHero(finishingBattle->winnerSide));
+    carryEraHorn266Result(*gameHandler,battle,finishingBattle->isDraw()?nullptr:
+        battle.getBattle()->getSideHero(finishingBattle->winnerSide));
 	gameHandler->sendAndApply(raccepted);
 
 	gameHandler->queries->popIfTop(battleQuery); // Workaround to remove battle query for AI case. TODO Think of a cleaner solution.
@@ -541,6 +555,11 @@ void BattleResultProcessor::battleFinalize(const BattleID & battleID, const Batt
 		if(necroSlot != SlotID() && !finishingBattle->isDraw())
 			gameHandler->addToSlot(StackLocation(finishingBattle->winnerId, necroSlot), resultsApplied.raisedStack.getCreature(), resultsApplied.raisedStack.getCount());
 	}
+
+    // Source BA53 runs after the original battle has already performed
+    // Necromancy. Use a serialized one-shot receipt across result/level-up flow.
+    if(winnerHero)giveEraHorn266Result(*gameHandler,*winnerHero,battleID,
+        winnerHasUnitsLeft && !finishingBattle->isDraw());
 
 	if(loserHero)
 	{

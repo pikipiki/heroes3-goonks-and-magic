@@ -8,8 +8,10 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraExperienceMagicReductionNative.h"
 #include "../../lib/era/EraOrbChaos238Runtime.h"
 #include "../era/EraConfluxRuntime.h"
+#include "../era/EraSulfideStatusRuntime.h"
 #include "../era/EraConfluxExperience.h"
 #include "../era/EraFaerieChainRuntime.h"
 #include "../../lib/era/EraConfluxCaster.h"
@@ -19,6 +21,8 @@
 #include "../../lib/era/EraCrystalExperienceRuntime.h"
 #include "../../lib/era/EraDeflectionLog.h"
 #include "../../lib/era/EraExperienceAttackSpells.h"
+#include "../../lib/era/EraInterferenceState.h"
+#include "../../lib/era/EraHorn266.h"
 #include "../../lib/era/EraSourceAttackGate.h"
 #include "../../lib/era/EraDeathBlowChance.h"
 #include "BattleActionProcessor.h"
@@ -35,6 +39,7 @@
 #include "../era/EraPrimalFaerieRuntime.h"
 #include "../era/EraThunderAttackRuntime.h"
 #include "../era/EraArtifactMassSpellsRuntime.h"
+#include "../era/EraHorn266Runtime.h"
 
 #include "BattleProcessor.h"
 
@@ -419,6 +424,10 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
                 state->save(change.changedStacks.back().data);
                 gameHandler->sendAndApply(change);
             }
+            // Amethyst441B62 runs only after the normal441330 response,
+            // before441B67 restores CURRENT. Preemptive strikes never reach it.
+            era_compat_server::applySulfideStatuses(*gameHandler,battle,destinationStack,stack->getPosition());
+            era_compat_server::confluxAfterRetaliation(*gameHandler,battle,destinationStack,stack);
 		}
 	}
 
@@ -450,6 +459,8 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
 		if(maxReachbleIndex < path.first.size())
 			moveStack(battle, ba.stackNumber, path.first[maxReachbleIndex]);
 	}
+    // Amethyst46453E: CFG statuses after the completed primary action6.
+    era_compat_server::applySulfideStatuses(*gameHandler,battle,stack,destinationTile);
 	return true;
 }
 
@@ -529,6 +540,8 @@ bool BattleActionProcessor::doShootAction(const CBattleInfoCallback & battle, co
 	}
 
     petrification.flush(*gameHandler,battle);
+    // Same46453E service accepts primary action7, never ranged retaliation.
+    era_compat_server::applySulfideStatuses(*gameHandler,battle,stack,destination);
 	return true;
 }
 
@@ -800,6 +813,20 @@ bool BattleActionProcessor::makeBattleActionImpl(const CBattleInfoCallback & bat
 	logGlobal->trace("Making action: %s", ba.toString());
 	const CStack * stack = battle.battleGetStackByID(ba.stackNumber);
     // Preserve the original hero-cast target even if its corpse disappears.
+    std::optional<EraHorn266Target> hornPrimary,hornActor;
+    if(era_compat::Horn266Policy::enabled() && (ba.actionType==EActionType::HERO_SPELL || ba.actionType==EActionType::MONSTER_SPELL))
+    {
+        const auto targets=ba.getTarget(&battle);
+        if(!targets.empty())
+        {
+            const CStack * primary=nullptr;
+            if(targets.front().unitValue)primary=battle.battleGetStackByID(targets.front().unitValue->unitId(),false);
+            else primary=battle.battleGetStackByPos(targets.front().hexValue,false);
+            hornPrimary=captureEraHorn266Target(primary);
+        }
+        const auto * active=battle.battleActiveUnit();
+        hornActor=captureEraHorn266Target(active?battle.battleGetStackByID(active->unitId(),false):nullptr);
+    }
     std::optional<uint32_t> artifactMainTarget;
     if(ba.actionType==EActionType::HERO_SPELL)
     {
@@ -839,6 +866,9 @@ bool BattleActionProcessor::makeBattleActionImpl(const CBattleInfoCallback & bat
         || ba.actionType == EActionType::WALK_AND_CAST
         || ba.actionType == EActionType::CATAPULT))
         applyEraRebirth(*gameHandler, battle);
+
+    if(result && (ba.actionType==EActionType::HERO_SPELL || ba.actionType==EActionType::MONSTER_SPELL))
+        applyEraHorn266Spell(*gameHandler,battle,ba.side,hornPrimary,hornActor);
 
     if(result && ba.actionType==EActionType::HERO_SPELL)
         if(const auto * hero=battle.battleGetFightingHero(ba.side))
@@ -1197,6 +1227,8 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
 		return;
 
     if(era_compat_server::applyDungeonChainShot(*gameHandler,battle,attacker,defender,ranged,counter,consumeCounter))return;
+    // Shot4 jumps past source43FAD9, so only the ordinary attack path captures.
+    const auto hornTarget=captureEraHorn266Target(defender);
 
 	FireShieldInfo fireShield;
 	BattleAttack bat;
@@ -1360,6 +1392,9 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
         era_compat_server::applySourceKPoison(*gameHandler,battle,attacker,defender);
     }
 
+    // Source hook441996 follows4408E0/XP casts and precedes4419A0 shield.
+    applyEraHorn266Target(*gameHandler,battle,attacker->unitSide(),hornTarget);
+
 	if(!fireShield.empty())
 	{
 		//todo: this should be "virtual" spell instead, we only need fire spell school bonus here
@@ -1378,7 +1413,8 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
             // caster multipliers before a source L deflection wrapper.
             const auto & sourcePolicy=era_compat::Policies::get();
             const auto & targetKey=attacker->creatureId().toCreature()->getJsonKey();
-            const bool sourceDirect=sourcePolicy.spellDamageInversion(targetKey)
+            const bool sourceDirect=era_compat::sourceMagicReduction(attacker).has_value()
+                || sourcePolicy.spellDamageInversion(targetKey)
                 || sourcePolicy.physicalDeflection(targetKey).has_value()
                 || sourcePolicy.physicalBlock(targetKey).has_value()
                 || era_compat::ConfluxPolicies::get().owns(targetKey);
@@ -1495,7 +1531,10 @@ void BattleActionProcessor::attackCasting(const CBattleInfoCallback & battle, bo
             BattleSide effectiveSide = attacker->unitSide();
             if(sourcePreAttack && attacker->isHypnotized())
                 effectiveSide = effectiveSide == BattleSide::ATTACKER ? BattleSide::DEFENDER : BattleSide::ATTACKER;
-            era_compat::ExperienceAttackCaster sourceCaster(attacker, battle.getBattle()->getSidePlayer(effectiveSide), sourceExperienceCast ? sourceMastery : 3);
+            const bool sourceFangarm=sourceExperienceCast && creatureKey=="tum-era:eraCreature263" && spellID==SpellID(60);
+            const auto * fangarmHero=sourceFangarm?battle.getBattle()->getSideHero(effectiveSide):nullptr;
+            era_compat::ExperienceAttackCaster sourceCaster(attacker, battle.getBattle()->getSidePlayer(effectiveSide),
+                sourceExperienceCast ? sourceMastery : 3,fangarmHero,sourceFangarm);
             const auto currentSourceSide=sourceExperienceCast?era_compat::confluxActiveSide(battle):effectiveSide;
             era_compat::ConfluxCaster sourceAreaCaster(&sourceCaster,battle.battleGetFightingHero(currentSourceSide),battle.sideToPlayer(effectiveSide));
             const bool source294Area=sourceExperienceCast && creatureKey=="tum-era:eraCreature294" && spellID==SpellID(21);
@@ -1515,6 +1554,17 @@ void BattleActionProcessor::attackCasting(const CBattleInfoCallback & battle, bo
                 const int sourcePower=era_compat::experienceAttackPower(battle.battleActiveUnit(),spellID);
                 parameters.setEffectDuration(sourcePower);
                 parameters.setEffectPower(sourcePower);
+                if(sourceFangarm)
+                {
+                    const auto cache=era_compat::sourceInterferencePower(battle,fangarmHero);
+                    const int power=fangarmHero?(cache?cache->effective:fangarmHero->getPrimSkillLevel(PrimarySkill::SPELL_POWER)):0;
+                    const int actualMastery=fangarmHero?fangarmHero->getSpellSchoolLevel(spell):0;
+                    //71DB27 checks hero cached power/actual mastery BEFORE the
+                    //5A0145 creature power replacement. Absent hero is defined
+                    //as0/0/no specialty, replacing the original NULL reads.
+                    parameters.setEffectValue(::era_bridge::hornSigned32(static_cast<uint32_t>(
+                        spell->calculateRawEffectValue(actualMastery,power,1))));
+                }
             }
 
 			auto m = spell->battleMechanics(&parameters);

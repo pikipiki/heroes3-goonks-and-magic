@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "allControlsComplete": true,
+  "scope": "Existing source254 primaryintrinsicAge75/Ward134 correction; XPc75 separate200resistance handler unchanged",
+  "engineSHA": "077528260dcb9192dd2aa69245841bcce7a1c462d6028da8d244f37543d2aefd",
+  "actualTraining": {
+    "ward": {
+      "aiValue": 85500,
+      "attack": 80,
+      "cost": [
+        0,
+        50,
+        0,
+        0,
+        0,
+        0,
+        50000,
+        0
+      ],
+      "count": 1,
+      "damageMax": 100,
+      "damageMin": 75,
+      "defense": 70,
+      "description": "50% Magic Resist. Age. Acid breath. \nAttack twice. Fear. Fearless.",
+      "experience": 100,
+      "experiencePerUnit": 100,
+      "experienceRank": 10,
+      "fightValue": 78500,
+      "growth": 1,
+      "health": 1200,
+      "icon": "tum-era/creatures/254/large.png",
+      "id": 316,
+      "key": "tum-era:necrossDragon",
+      "name": "Necross Dragon",
+      "nativeFlags": {
+        "attacksAllAdjacent": false,
+        "blocksRetaliation": false,
+        "chargeImmune": false,
+        "flying": true,
+        "living": false,
+        "mindImmune": true,
+        "noMorale": true,
+        "nonLiving": false,
+        "undead": true
+      },
+      "shooter": true,
+      "shots": 10,
+      "speed": 20
+    },
+    "control": {
+      "aiValue": 85500,
+      "attack": 80,
+      "cost": [
+        0,
+        50,
+        0,
+        0,
+        0,
+        0,
+        50000,
+        0
+      ],
+      "count": 1,
+      "damageMax": 100,
+      "damageMin": 75,
+      "defense": 70,
+      "description": "50% Magic Resist. Age. Acid breath. \nAttack twice. Fear. Fearless.",
+      "experience": 100,
+      "experiencePerUnit": 100,
+      "experienceRank": 10,
+      "fightValue": 78500,
+      "growth": 1,
+      "health": 1200,
+      "icon": "tum-era/creatures/254/large.png",
+      "id": 316,
+      "key": "tum-era:necrossDragon",
+      "name": "Necross Dragon",
+      "nativeFlags": {
+        "attacksAllAdjacent": false,
+        "blocksRetaliation": false,
+        "chargeImmune": false,
+        "flying": true,
+        "living": false,
+        "mindImmune": true,
+        "noMorale": true,
+        "nonLiving": false,
+        "undead": true
+      },
+      "shooter": true,
+      "shots": 10,
+      "speed": 20
+    }
+  },
+  "controls": {
+    "ward": {
+      "attacks": 12,
+      "sawAge": true,
+      "sawPoison": false
+    },
+    "withoutWard": {
+      "attacks": 6,
+      "sawPoison": true
+    }
+  },
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/ward134162-console.log",
+      "sha256": "48f1d27f314204b343738e3df2e8fe183aac92d7a1276f29dd6fa7abd8d47ee4"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/ward134162-result.json",
+      "sha256": "de60d97aa397f2b513b8b36d06480f65f467a76fa0c2476f82c569d70232ea6e"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/ward134162-ward134-age-pass-poison-blocked.png",
+      "sha256": "70ff914c68d17c3192473de0c5bde3e747c41dbc0794e5d017759f5d6e3bd1cd"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/ward134162-ward134-poison-positive.png",
+      "sha256": "492578eb0b612afb8f46762ba1b6defdc17a1ef5708aab7639fe49b7c1b22fa3"
+    }
+  ],
+  "sourceProof": "eighth-evidence/native-status-spell-levels161.json",
+  "fixtureFailures": "fixture-failures/ward134-* preserve training1HP andhero-path false starts; none were Wardmechanic failures."
+}

@@ -1,0 +1,143 @@
+{
+  "ready": true,
+  "activated": true,
+  "sourceId": 43,
+  "sourcePins": {
+    "archive": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+    "cfg": "21ab6040d8cffec14e14f61ed83b2aa8425b29b460cd5b56523264c70b3a8e55",
+    "tables": "10047a24ff1736db951f163c34bcfb58ebe5c0fab972308ca98edf715f61d0cf"
+  },
+  "canonicalStatsVerified": true,
+  "sourceRows": [
+    {
+      "code": "S",
+      "modifier": "+",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2
+      ]
+    },
+    {
+      "code": "f",
+      "modifier": "F",
+      "values": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "code": "h",
+      "modifier": "#28",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "code": "h",
+      "modifier": "#29",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "code": "s",
+      "modifier": "#51",
+      "values": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3
+      ]
+    }
+  ],
+  "proofs": {
+    "progress": "65845a25fbda160aea5b71889e6760bd14b765cbf6343e1c7cd934d47657bddb",
+    "flying": "21fa97c37b21dc26bb6c4599db5f5dd6f33a191edfe63a8b3bfb4b0a83559008"
+  },
+  "plannedFiles": [
+    "mod/tum-era/content/config/source-familiar43.json",
+    "mod/tum-era/content/config/era-core-familiar-channel43.json",
+    "mod/wake-of-gods/Mods/stackExperience/Content/data/crexpbon.txt",
+    "mod/tum-era/mod.json"
+  ],
+  "plannedHashes": {
+    "mod/tum-era/content/config/source-familiar43.json": "757357223cf42a91befae0adcaf81ba87967d4eddee731ed99eb23d509a74f27",
+    "mod/tum-era/content/config/era-core-familiar-channel43.json": "cf5942be7f61d7d78010f2f0c052515fa0521dab06e5f9874ea5929c6c32648c",
+    "mod/wake-of-gods/Mods/stackExperience/Content/data/crexpbon.txt": "d3ca786b6f35f0caaaf48d5ff834402ffed51c9d9b60687a82d6aa5b1799918e",
+    "mod/tum-era/mod.json": "8ee1b12e1a5a5f2ff774162eae5a3aff69583227422e8b68525c786fd1bd9516"
+  },
+  "legacy": {
+    "beforeSha256": "311a1cb8e5dee68269a2d0a9ecf391907c67f700afcbf5da42c7b62ac6fe8688",
+    "afterSha256": "d3ca786b6f35f0caaaf48d5ff834402ffed51c9d9b60687a82d6aa5b1799918e",
+    "rowsRemoved": 4,
+    "otherRowsUnchanged": true,
+    "source42RowsRetained": 4
+  },
+  "artifactHashesPreserved": {
+    "mod/tum-era/content/config/native-artifacts.json": "1a5c83c42d32b483927524e73530175eb4826b54ee41c58ffa73332d9f9f00f5",
+    "mod/tum-era/content/config/reviewed-artifacts.json": "5de0ce3013856d50c27e90c4f5110de1eacbdf39a07bbe182c3293016246b9c7",
+    "mod/tum-era/content/config/source-necromancy-cloak.json": "965ed12ec3181563ef7ef247007f76a7f766f6d7039a5be4c004c2bd07ce91a2",
+    "mod/tum-era/content/config/reviewed-opening-summons.json": "7ef24dfa056d74b79e9a5deeff1024be85e5ceaa08858854bcb20183bba0a400",
+    "mod/tum-era/content/config/reviewed-opponent-artifacts.json": "d558f6a34202d05c10dafb4445bc5f57d469da8abef0dcc293d6860a2eff9a7a",
+    "mod/tum-era/content/config/reviewed-conversion-artifacts.json": "b1c682d393ddd5f3140813be6cfc3ad1b325c3a4041200311f8ca1dcea2d88c4",
+    "mod/tum-era/content/config/reviewed-battle-artifacts.json": "8e9777b564a727bb0015238f690e0235e5685b023e63248985edd6fa2cd9aaa2",
+    "mod/tum-era/content/config/reviewed-utility-artifacts.json": "a8c4afcae99f409fbf6ff64cb9303fc37ac7449e385755b005dc8d1e91c9bb27",
+    "mod/tum-era/content/config/reviewed-advanced-artifacts.json": "88030800a7d06f2f92a2f2f9bd295164a99a8e4191d70af9c78b8d4316abc913",
+    "mod/tum-era/content/config/reviewed-silence-cape.json": "102766f79326e5e240b971a34d22e00ff710ea365ddbedab4982f9518d04333d",
+    "mod/tum-era/content/config/reviewed-atma-artifacts.json": "43507780f4e80db1d364250b778cac9cdaabb9c37b66601aab1d4aa5eb72b4d8",
+    "mod/tum-era/content/config/reviewed-interference-artifacts.json": "0e416deff7b2a79da7a06c4c8687f465d8cf1e153d2fd3f686b0b5fdf6819786",
+    "mod/tum-era/content/config/reviewed-mass-hypnotize253-artifact.json": "0c4fe8c57ae9770b92a2fbbe0e6103dbdc634c07072883cfa42ee56d4a8b4d54",
+    "mod/tum-era/content/config/reviewed-oblivion-artifact.json": "bbb020a061f908881f9c7d92997de0b3e2253be9f84f19b1e973316d0450e3e3",
+    "mod/tum-era/content/config/reviewed-wayfarer260-artifact.json": "a8e92c92373cca81fb463a36bac727e0bd6293a29db64697b61a710cef6da574",
+    "mod/tum-era/content/config/reviewed-hydra-queen259-artifact.json": "3d191c753e40d99d2c8a46db0b7abe76a6d573460dc44891ef5bf20f19aaf77b",
+    "mod/tum-era/content/config/reviewed-orb-chaos238-artifact.json": "b0522359d19ccdd12df744d5ea165715cbe3993ef29e364be068ce8298819fd2",
+    "mod/tum-era/content/config/reviewed-phylactery-summons.json": "326ff9ea72d2fbf5c0f08b7027f650d8f23c4e974bf0d46702c44796c58af8c2",
+    "mod/tum-era/content/config/reviewed-eyes275-276.json": "9b3bb9989564900a1af6d0bd9adf3fbd0f277932d0efb6985beb8f06cd640928"
+  },
+  "limits": []
+}

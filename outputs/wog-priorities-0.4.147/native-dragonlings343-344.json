@@ -34507,11 +34507,9 @@
     }
   },
   "allCfgXpControlsComplete": true,
-  "active": false,
-  "wholeGlobalPortComplete": false,
-  "pendingGlobalScripts": [
-    "Original OnEveryDay rank10 hero dragonling evolution343\u2192134/344\u2192135 is not discharged by these CFG/XP native controls."
-  ],
+  "active": true,
+  "wholeGlobalPortComplete": true,
+  "pendingGlobalScripts": [],
   "errors": [],
   "provenance": {
     "engineSha256": "393147740a451952f3fb7dda9f36f91f4ead83424b43815d1b66c06e3189dc63",
@@ -34521,5 +34519,7 @@
     ],
     "historicalHarnessCorrection": "First defence10/attack8 physical damage34 follows native/source defence2.5% perpoint, replacing mistaken expectation32. No engine change.",
     "scriptSha256": "137ae7dae6d862887c259f78d19f2cf8ab8fd0bebb20519a002c7b83a437d2a5"
-  }
+  },
+  "dailyEvolutionNativeEvidence": "native-dragonling-daily-evolution.json",
+  "activationRecord": "outputs/wog-priorities-0.4.147/dragonling-evolution-source.json"
 }

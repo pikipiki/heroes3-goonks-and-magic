@@ -11,6 +11,7 @@
 #include "StdInc.h"
 #include "../era/EraBridgePolicies.h"
 #include "../era/EraDefenseReduction.h"
+#include "../era/EraEmeraldDamageRange.h"
 #include "../era/EraPersonalHate.h"
 #include "../era/EraSourceHate.h"
 #include "../era/EraSourceSpellAccuracy.h"
@@ -39,7 +40,7 @@ DamageRange DamageCalculator::getBaseDamageSingle() const
 	minDmg = info.attacker->getMinDamage(info.shooting);
 	maxDmg = info.attacker->getMaxDamage(info.shooting);
 
-	if(minDmg > maxDmg)
+	if(minDmg > maxDmg && !era_compat::sourceEmeraldDamageEndpoints(*info.attacker))
 	{
 	const auto & creatureName = info.attacker->creatureId().toEntity(LIBRARY)->getNamePluralTranslated();
 	logGlobal->error("Creature %s: min damage %lld exceeds max damage %lld.", creatureName, minDmg, maxDmg);
@@ -97,6 +98,13 @@ DamageRange DamageCalculator::getBaseDamageBlessCurse() const
 	int curseBlessAdditiveModifier = blessEffects->totalValue() - curseEffects->totalValue();
 
 	DamageRange baseDamage = getBaseDamageSingle();
+	if(baseDamage.min > baseDamage.max && era_compat::sourceEmeraldDamageEndpoints(*info.attacker))
+	{
+		const auto source=::era_bridge::sourceEmeraldInvertedDamage(baseDamage.min,baseDamage.max,
+			!blessEffects->empty(),blessEffects->totalValue(),!curseEffects->empty(),curseEffects->totalValue());
+		return {source.first,source.second};
+	}
+
 	DamageRange modifiedDamage = {
 		std::max(static_cast<int64_t>(1), baseDamage.min + curseBlessAdditiveModifier),
 		std::max(static_cast<int64_t>(1), baseDamage.max + curseBlessAdditiveModifier)

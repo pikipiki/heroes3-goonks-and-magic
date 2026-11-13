@@ -244,14 +244,6 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 41	w	0	0	0	0	1	1	1	1	1	1	1	1	Titan: No Immunity to Beneficial Mind Spells R3
 41	o	=	0	0	0	0	0	0	0	1	1	1	1	Titan: No Obstacle Penalty R7
 41	i	=	0	0	0	0	0	0	0	0	0	1	1	Titan: No Range Penalty R9
-42	S	+	0	0	0	0	0	1	1	1	1	1	2	Imp: Speed R5/R10
-42	f	F	2	2	2	2	2	1	1	1	1	1	1	Imp: Flying R5/R6/R7/R8/R9/R10
-42	h	#28	0	0	0	0	0	0	1	2	3	4	5	Imp: Hatred Dmg-Gremlin (50% R10)
-42	s	#51	0	1	1	1	1	2	2	2	3	3	3	Imp: Fortune R1/R5/R8  (Expert R8)
-43	S	+	0	0	0	0	0	1	1	1	1	1	2	Familiar: Speed R5/R10
-43	f	F	2	2	2	2	2	1	1	1	1	1	1	Familiar: Flying R5
-43	h	#29	0	0	0	0	0	0	1	2	3	4	5	Familiar: Hatred Dmg-Master Gremlin (50% R10)
-43	s	#51	0	1	1	1	1	2	2	2	3	3	3	Familiar: Fortune R1/R5/R8 (Expert R8)
 44	S	+	0	0	0	0	1	1	1	1	1	1	1	Gog: Speed R4
 44	s	#31	0	0	0	0	0	1	1	1	1	1	1	Gog: Protection from Fire R5 (30% Resistance)
 44	f	D	2	2	2	2	2	2	2	1	1	1	1	Gog: Shoot Twice R7

@@ -1,3 +1,4 @@
+import{reviewedSulfide,SOURCE_SULFIDE_CONTRACT}from'../roster8/sulfide-source.mjs';
 import{reviewedRustDragonling,SOURCE_RUST_DRAGONLING_CONTRACT}from'../roster8/rust-dragonling.mjs';
 import{reviewedFaerieDragonling,SOURCE_FAERIE_DRAGONLING_CONTRACT}from'../roster8/faerie-dragonling.mjs';
 import {reviewedNeutralDependency,SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT} from '../roster8/neutral-transform-source.mjs';
@@ -60,6 +61,7 @@ export function parseCreatureProperties(text,{source='<cfg>'}={}) {
  * resolveCreature/Spell/Town/Artifact return fully qualified VCMI identifiers.
  */
 export function compileCreatureProperties(text,options={}) {
+  if(options.nativeSulfideContract!==undefined&&options.nativeSulfideContract!==SOURCE_SULFIDE_CONTRACT)throw new TypeError('Unknown source339 contract');
   if(options.nativeRustDragonlingContract!==undefined&&options.nativeRustDragonlingContract!==SOURCE_RUST_DRAGONLING_CONTRACT)throw new TypeError('Unknown source344 contract');
   if(options.nativeFaerieDragonlingContract!==undefined&&options.nativeFaerieDragonlingContract!==SOURCE_FAERIE_DRAGONLING_CONTRACT)throw new TypeError('Unknown source343 contract');
   if(options.nativeNeutralDependenciesContract!==undefined&&options.nativeNeutralDependenciesContract!==SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT)throw new TypeError('Unknown neutral dependency contract');
@@ -71,6 +73,8 @@ export function compileCreatureProperties(text,options={}) {
   if(options.nativeConstructContract!==undefined&&options.nativeConstructContract!==SOURCE_MITHRIL_GOLEM_CONTRACT)throw new TypeError('Unknown native construct contract');
   if(options.nativeBiologyContract!==undefined&&![nativeBiologyContract,SOURCE_INANIMATE_BIOLOGY_CONTRACT].includes(options.nativeBiologyContract))throw new TypeError('Unknown native biology contract');
   const entries=parseCreatureProperties(text,options),definition={abilities:{}},policies=[],mappings=[],diagnostics=[];
+  const sulfide=options.nativeSulfideContract===SOURCE_SULFIDE_CONTRACT&&options.sourceCreatureId===339?reviewedSulfide(text,{sourceId:339,contract:options.nativeSulfideContract,resolveSpell:options.resolveSpell}):undefined;
+  if(sulfide)Object.assign(definition.abilities,sulfide.abilities);
   const conflux=options.nativeConfluxContract===SOURCE_CONFLUX_CONTRACT&&[355,356].includes(options.sourceCreatureId)?reviewedConflux(text,{sourceId:options.sourceCreatureId,contract:options.nativeConfluxContract,resolveSpell:options.resolveSpell}):undefined;
   if(conflux)Object.assign(definition.abilities,conflux.abilities);
   const dungeon=options.nativeDungeonContract===SOURCE_DUNGEON_CONTRACT&&[351,352].includes(options.sourceCreatureId)?reviewedDungeon(text,{sourceId:options.sourceCreatureId,contract:options.nativeDungeonContract}):undefined;
@@ -122,6 +126,7 @@ export function compileCreatureProperties(text,options={}) {
     if(key==='DoNotGenerate'&&options.nativeRandomExclusionContract==='source-random-exclusion-v1'){
       const value=integer(e,0,1);if(value===1)definition.special=true;mapped(e,'creature.special excludes native random selection');
     }
+    else if(sulfide?.consumedKeys.includes(key)){mapped(e,'source-sulfide-dragon-v1 whole reviewed service');}
     else if(conflux?.consumedKeys.includes(key)){mapped(e,'source-conflux-eighth-v1 whole reviewed source service');}
     else if(dungeon?.consumedKeys.includes(key)){mapped(e,'source-dungeon-eighth-v1 reviewed source service');}
     else if(fortress?.consumedKeys.includes(key)){mapped(e,'source-fortress-counterstrikes-v1 whole reviewed service');}

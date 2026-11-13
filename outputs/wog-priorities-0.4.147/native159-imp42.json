@@ -1,0 +1,136 @@
+{
+  "passed": true,
+  "active": false,
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "dd7f35c10020de5c",
+    "wasm": "vcmiclient.b77e062ac1bb6a14.wasm",
+    "sha256": "b77e062ac1bb6a140bcc6a8029fe98d2eb32d70eb729acb8edeba8d75d827361",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "productionConflux": true,
+  "rawReport": "work/downloads/wog-port158/native159-imp42/result.json",
+  "rawSha256": "6534aad568defa9a93a9aa6282cabd75af1ee613fbc2db4beb8ff5e7d0262496",
+  "ranks": {
+    "0": {
+      "passed": true,
+      "actualRank": 0,
+      "canonicalHealth": 4,
+      "canonicalAttack": 2,
+      "canonicalDefense": 3,
+      "effectiveSpeed": 5,
+      "fortuneLuck": 0,
+      "profile": {
+        "fullRank10": 100,
+        "rank11Extra": 1,
+        "battlePercent": 100,
+        "experienceMultiplier": 1,
+        "upgradeMultiplier": 0.75
+      },
+      "views": {
+        "army": false,
+        "equipment": false,
+        "activeUnit": false,
+        "battleUnits": false
+      }
+    },
+    "5": {
+      "passed": true,
+      "actualRank": 5,
+      "canonicalHealth": 4,
+      "canonicalAttack": 2,
+      "canonicalDefense": 3,
+      "effectiveSpeed": 6,
+      "fortuneLuck": 2,
+      "profile": {
+        "fullRank10": 500,
+        "rank11Extra": 1,
+        "battlePercent": 36,
+        "experienceMultiplier": 1,
+        "upgradeMultiplier": 0.75
+      },
+      "views": {
+        "army": true,
+        "equipment": true,
+        "activeUnit": true,
+        "battleUnits": true
+      }
+    },
+    "8": {
+      "passed": true,
+      "actualRank": 8,
+      "canonicalHealth": 4,
+      "canonicalAttack": 2,
+      "canonicalDefense": 3,
+      "effectiveSpeed": 6,
+      "fortuneLuck": 2,
+      "profile": {
+        "fullRank10": 250,
+        "rank11Extra": 1,
+        "battlePercent": 70,
+        "experienceMultiplier": 1,
+        "upgradeMultiplier": 0.75
+      },
+      "views": {
+        "army": true,
+        "equipment": true,
+        "activeUnit": true,
+        "battleUnits": true
+      }
+    },
+    "10": {
+      "passed": true,
+      "actualRank": 10,
+      "canonicalHealth": 4,
+      "canonicalAttack": 2,
+      "canonicalDefense": 3,
+      "effectiveSpeed": 7,
+      "fortuneLuck": 2,
+      "profile": {
+        "fullRank10": 100,
+        "rank11Extra": 1,
+        "battlePercent": 100,
+        "experienceMultiplier": 1,
+        "upgradeMultiplier": 0.75
+      },
+      "views": {
+        "army": true,
+        "equipment": true,
+        "activeUnit": true,
+        "battleUnits": true
+      }
+    }
+  },
+  "hate": {
+    "passed": true,
+    "observations": [
+      {
+        "key": "core:gnoll",
+        "damage": 10
+      },
+      {
+        "key": "core:gremlin",
+        "damage": 15
+      },
+      {
+        "key": "core:masterGremlin",
+        "damage": 15
+      },
+      {
+        "key": "third-upgrades:tumGrandmasterGremlin",
+        "damage": 210
+      }
+    ]
+  },
+  "noChannel": {
+    "passed": true,
+    "beforeMana": 200,
+    "afterMana": 200,
+    "survived": true
+  },
+  "scope": "Independent42 witnesses only. Real casualty rank awards use declared accelerated profile; no direct XP injection. No channel registry copied from43. Production activation not performed."
+}

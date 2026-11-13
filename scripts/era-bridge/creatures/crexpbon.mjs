@@ -1,3 +1,4 @@
+import{SOURCE_SULFIDE_CONTRACT,SULFIDE_REGENERATION}from'../roster8/sulfide-source.mjs';
 import{SOURCE_CONFLUX_CONTRACT,reviewedConfluxExperienceRows}from'../roster8/conflux-source.mjs';
 import {SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT,DEMILICH_PROC_VALUES,DEMILICH_PERIODIC_VALUES} from '../roster8/neutral-transform-source.mjs';
 import{requireSourceDeathBlowBinding}from'./death-blow-contract.mjs';
@@ -20,7 +21,7 @@ export function parseCreatureExperience(text,{source='crexpbon.txt'}={}){
 const additive={A:['PRIMARY_SKILL','primarySkill.attack'],D:['PRIMARY_SKILL','primarySkill.defence'],M:['CREATURE_DAMAGE','creatureDamageMax'],m:['CREATURE_DAMAGE','creatureDamageMin'],S:['STACKS_SPEED'],O:['SHOTS'],b:['ENEMY_DEFENCE_REDUCTION'],C:['CHANGES_SPELL_COST_FOR_ALLY'],d:['DEFENSIVE_STANCE'],e:['DOUBLE_DAMAGE_CHANCE'],F:['FEARFUL'],P:['CASTS'],R:['ADDITIONAL_RETALIATION'],W:['MAGIC_RESISTANCE']};
 const toggles={A:'ATTACKS_ALL_ADJACENT',b:'RETURN_AFTER_STRIKE',B:'TWO_HEX_ATTACK_BREATH',f:'FEARFUL',F:'FLYING',M:'NO_MORALE',p:'MIND_IMMUNITY',P:'MIND_IMMUNITY',R:'BLOCKS_RETALIATION',s:'FREE_SHOOTING',u:'SPELL_RESISTANCE_AURA',U:'UNDEAD'};
 const spellImmunity={B:62,H:60,I:18,K:59,M:23,N:78,R:26,S:54};
-function rowMapping(row,{resolveSpell,resolveCreature,nativeExperienceProfile=false,dispelProtection,negativeSpellLevels,experienceAfterAttack,experienceStatusSelectors,experienceFortress,experienceDungeon,experienceConflux,experienceNeutralDependencies,experienceBeforeAttack,experienceDefenseReduction,experienceCrystal,experienceWerewolf,experienceGolem,experienceSpring,experienceDemonology,experiencePrimalFaerie,experienceStronghold,deathBlowCRT}={}){
+function rowMapping(row,{resolveSpell,resolveCreature,nativeExperienceProfile=false,dispelProtection,negativeSpellLevels,experienceAfterAttack,experienceStatusSelectors,experienceFortress,experienceDungeon,experienceConflux,experienceNeutralDependencies,experienceSulfide,experienceBeforeAttack,experienceDefenseReduction,experienceCrystal,experienceWerewolf,experienceGolem,experienceSpring,experienceDemonology,experiencePrimalFaerie,experienceStronghold,deathBlowCRT}={}){
  const fail=(code,extra={})=>{throw new ExperienceCompileError([{source:row.source,line:row.line,code,legacyCode:row.code,modifier:row.modifier,...extra}]);};
  const resolved=(kind,n)=>{const value=(kind==='spell'?resolveSpell:resolveCreature)?.(n);if(typeof value!=='string'||!value.includes(':'))fail('unresolved-id',{kind,id:n});return value;};
  const numberMod=()=>{if(!/^#\d+$/.test(row.modifier))fail('unsupported-modifier');const n=Number(row.modifier.slice(1));if(!Number.isSafeInteger(n)||n>2147483647)fail('modifier-id-range');return n;};
@@ -129,8 +130,9 @@ function rowMapping(row,{resolveSpell,resolveCreature,nativeExperienceProfile=fa
   const crystal=experienceCrystal==='source-crystal-experience-v1'&&nativeExperienceProfile&&[267,268].includes(row.creature)&&row.modifier==='#100'&&row.values.every((v,i)=>v===i*9);
   const werewolf=experienceWerewolf==='source-werewolf-experience-v1'&&nativeExperienceProfile&&row.creature===273&&row.modifier==='#50'&&row.values.every((v,i)=>v===i*4);
   const vermilion=experienceNeutralDependencies===SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT&&nativeExperienceProfile&&row.creature===294&&row.modifier==='#100'&&row.values.every((v,i)=>v===i*9);
-  if(!crystal&&!werewolf&&!vermilion)fail('regeneration-chance-requires-native-adapter');
-  return {mode:'runtime',values:[...row.values],runtimeBinding:{contract:vermilion?SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT:crystal?'source-crystal-experience-v1':'source-werewolf-experience-v1',creatureId:row.creature,operation:'experienceRegeneration',service:{chancePercent:crystal||vermilion?100:50,values:[...row.values]},sourceReference:'h3era.exe71EAA6..71EBA6,75DECA..75DF13',timing:'first activation each round; draw1..100 even for certain chance'}};
+  const sulfide=experienceSulfide===SOURCE_SULFIDE_CONTRACT&&nativeExperienceProfile&&row.creature===339&&row.modifier==='#50'&&row.values.every((v,i)=>v===SULFIDE_REGENERATION[i]);
+  if(!crystal&&!werewolf&&!vermilion&&!sulfide)fail('regeneration-chance-requires-native-adapter');
+  return {mode:'runtime',values:[...row.values],runtimeBinding:{contract:sulfide?SOURCE_SULFIDE_CONTRACT:vermilion?SOURCE_NEUTRAL_DEPENDENCIES_CONTRACT:crystal?'source-crystal-experience-v1':'source-werewolf-experience-v1',creatureId:row.creature,operation:'experienceRegeneration',service:{chancePercent:crystal||vermilion?100:50,values:[...row.values]},sourceReference:'h3era.exe71EAA6..71EBA6,75DECA..75DF13',timing:'first activation each round; draw1..100 even for certain chance'}};
  }else if(row.code==='B'){
   const primal=experiencePrimalFaerie==='source-primal-faerie-v1'&&row.creature===258;
   if(!((experienceCrystal==='source-crystal-experience-v1'&&row.creature===268)||primal)||!nativeExperienceProfile||row.modifier!=='='||row.values.some((v,i)=>v!==Math.min(25,i*5)))fail('source-physical-block-requires-specific-native-contract');
@@ -172,7 +174,7 @@ export function assertDefaultParity(sourceRows,installedRows){
  * passing ordinary numeric independent-max arrays would lose levels under the
  * native loader's generic delta conversion (e.g. ENCHANTED 1 -> 2 -> 3 -> 6).
  */
-export function compileCreatureExperience(rows,{creatureId,installedRows,rankZero='require-explicit',resolveSpell,resolveCreature,nativeExperienceProfile=false,dispelProtection,negativeSpellLevels,experienceAfterAttack,experienceStatusSelectors,experienceFortress,experienceDungeon,experienceConflux,experienceNeutralDependencies,experienceBeforeAttack,experienceDefenseReduction,experienceCrystal,experienceWerewolf,experienceGolem,experienceSpring,experienceDemonology,experiencePrimalFaerie,experienceStronghold,deathBlowCRT,throwOnError=false}={}){
+export function compileCreatureExperience(rows,{creatureId,installedRows,rankZero='require-explicit',resolveSpell,resolveCreature,nativeExperienceProfile=false,dispelProtection,negativeSpellLevels,experienceAfterAttack,experienceStatusSelectors,experienceFortress,experienceDungeon,experienceConflux,experienceNeutralDependencies,experienceSulfide,experienceBeforeAttack,experienceDefenseReduction,experienceCrystal,experienceWerewolf,experienceGolem,experienceSpring,experienceDemonology,experiencePrimalFaerie,experienceStronghold,deathBlowCRT,throwOnError=false}={}){
  if(!Number.isSafeInteger(creatureId)||creatureId<0)throw new TypeError('A nonnegative source creatureId is required');
  if(!['require-explicit','intrinsic'].includes(rankZero))throw new TypeError('Unknown rank-zero policy');
  const diagnostics=[],abilities={},stackExperience=[],mapped=[],runtimeBindings=[];let defaults=null;
@@ -182,6 +184,7 @@ export function compileCreatureExperience(rows,{creatureId,installedRows,rankZer
 
  for(const [index,row]of selected.entries()){
   try{
+   if(row.code==='r'&&experienceSulfide===SOURCE_SULFIDE_CONTRACT&&selected.filter(r=>r.code==='r').length!==1)throw new ExperienceCompileError([{source:row.source,line:row.line,code:'duplicate-source-sulfide-regeneration-row'}]);
    if(row.code==='g'&&selected.filter(r=>r.code==='g').length!==1)throw new ExperienceCompileError([{source:row.source,line:row.line,code:'duplicate-source-magic-reduction-row'}]);
    if(row.code==='e'&&selected.filter(r=>r.code==='e').length!==1)throw new ExperienceCompileError([{source:row.source,line:row.line,code:'duplicate-source-deathblow-row'}]);
    if(row.code==='b'&&selected.filter(r=>r.code==='b').length!==1)throw new ExperienceCompileError([{source:row.source,line:row.line,code:'duplicate-source-experience-defense-row'}]);
@@ -191,7 +194,7 @@ export function compileCreatureExperience(rows,{creatureId,installedRows,rankZer
    if(row.code==='u'&&experienceDemonology==='source-demonology-mode2-v1'&&selected.filter(r=>r.code==='u').length!==1)throw new ExperienceCompileError([{source:row.source,line:row.line,code:'duplicate-source-round2-summoning-row'}]);
    if(row.code==='L'&&experienceGolem==='source-golem-experience-v1'&&selected.filter(r=>r.code==='L').length!==1)throw new ExperienceCompileError([{source:row.source,line:row.line,code:'duplicate-source-golem-deflection-row'}]);
    if(['p','L'].includes(row.code)&&experienceSpring==='source-spring-spirit-v1'&&selected.filter(r=>r.code===row.code).length!==1)throw new ExperienceCompileError([{source:row.source,line:row.line,code:'duplicate-source-spring-experience-row'}]);
-   const mapping=rowMapping(row,{resolveSpell,resolveCreature,nativeExperienceProfile,dispelProtection,negativeSpellLevels,experienceAfterAttack,experienceStatusSelectors,experienceFortress,experienceDungeon,experienceConflux,experienceNeutralDependencies,experienceBeforeAttack,experienceDefenseReduction,experienceCrystal,experienceWerewolf,experienceGolem,experienceSpring,experienceDemonology,experiencePrimalFaerie,experienceStronghold,deathBlowCRT}),{bonus,mode,values}=mapping,base=values[0];
+   const mapping=rowMapping(row,{resolveSpell,resolveCreature,nativeExperienceProfile,dispelProtection,negativeSpellLevels,experienceAfterAttack,experienceStatusSelectors,experienceFortress,experienceDungeon,experienceConflux,experienceNeutralDependencies,experienceSulfide,experienceBeforeAttack,experienceDefenseReduction,experienceCrystal,experienceWerewolf,experienceGolem,experienceSpring,experienceDemonology,experiencePrimalFaerie,experienceStronghold,deathBlowCRT}),{bonus,mode,values}=mapping,base=values[0];
    if(mapping.additionalRuntimeBindings)runtimeBindings.push(...mapping.additionalRuntimeBindings.map(b=>({source:row.source,line:row.line,...b})));
    if(mode==='runtime'){
     runtimeBindings.push({source:row.source,line:row.line,...mapping.runtimeBinding});

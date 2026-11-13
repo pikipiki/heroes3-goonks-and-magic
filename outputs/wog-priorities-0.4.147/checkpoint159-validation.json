@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "completePort": false,
+  "release": "0.4.159",
+  "baseCommit": "4ddafb2b9108d7847264b97bfa50cf289ebed3e4",
+  "engineSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771",
+  "engineArchiveSHA256": "9cfbcf556e9a1be0884fdb41c084d0bee629eafd4865856feb4aa0efd961a7b5",
+  "build": {
+    "passed": true,
+    "command": "ninja -j32 html5",
+    "emscripten": "4.0.23",
+    "configuration": "MinSizeRel; ENABLE_PCH=OFF; Linux named volume; compile6/link1 pool",
+    "sourceFiles": 38,
+    "temporaryDiagnosticTagsAbsent": true,
+    "evidence": "outputs/wog-priorities-0.4.147/checkpoint159-regressions/compiled-source.json"
+  },
+  "units": {
+    "total": 650,
+    "passed": 637,
+    "skipped": 13,
+    "failed": 0,
+    "canonicalTUMSource": true,
+    "frozenCompiledSource": true,
+    "includesSixInactiveFutureXPLedgerTests": true
+  },
+  "siteBuild": true,
+  "siteVerification": true,
+  "nativeRegressions": {
+    "town8-production": "outputs/wog-priorities-0.4.147/checkpoint159-regressions/town8-production/result.json",
+    "progression": "outputs/wog-priorities-0.4.147/checkpoint159-regressions/progression/result.json",
+    "residency": "outputs/wog-priorities-0.4.147/checkpoint159-regressions/residency/result.json",
+    "maps": "outputs/wog-priorities-0.4.147/checkpoint159-regressions/maps/result.json",
+    "machines": "outputs/wog-priorities-0.4.147/checkpoint159-regressions/machines-actions-v3/result.json",
+    "faerie-production": "outputs/wog-priorities-0.4.147/checkpoint159-regressions/faerie-production/result.json"
+  },
+  "additionalNativeProofs": {
+    "oldSevenStockSaveMigration": "outputs/wog-priorities-0.4.147/native161-eighth-town-save-compatibility.json",
+    "conflux355PositiveFractionalQuery": "outputs/wog-priorities-0.4.147/native-conflux355-positive162.json",
+    "ward134AgePoison": "outputs/wog-priorities-0.4.147/native-ward134-age-poison162.json",
+    "summonTerrain": "outputs/wog-priorities-0.4.147/native163-summon-terrain.json",
+    "fangarmAstral": "outputs/wog-priorities-0.4.147/native163-fangarm263-astral.json"
+  },
+  "sourceArtifactsActive": 108,
+  "sourceIdentities": 50,
+  "experienceProfiles": 273,
+  "fullTier8Activation": true,
+  "eighthFactionActors": 18,
+  "eighthTownFamilies": 9,
+  "remainingDisabled": [
+    "Horn266/Fangarm263: payout/capture/current-health/experience/retaliation controls incomplete",
+    "Artifact278 and whole actors339/346/347",
+    "Future source XP ordered-row service and remaining source-script obligations"
+  ],
+  "attribution": "Six final regression groups used installed production98ea engine and active nine-town/108-artifact data. T8 fixture supplies map towns and original prerequisite buildings, not a town/Conflux policy overlay (EIGHTH_PRODUCTION=1). Earlier feature reports retain their own engine hashes. Old7-save proof used genuine160 old stock data and161 migrated stock data; private native HotseatLoad preserves two humans. Summon terrain6/Astral3 used final163. Ward2/query3551 used162, whose only later CPP difference is battlefield terrain lookup. No Windows ERA runtime equivalence or exhaustive cross-version/campaign/device compatibility claim."
+}

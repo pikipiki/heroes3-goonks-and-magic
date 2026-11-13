@@ -72,7 +72,7 @@ public:
     void collect(CGameHandler & handler, const CBattleInfoCallback & battle,
         const CStack * attacker, const BattleAttack & attack, const CStack * primary = nullptr)
     {
-        if(era_compat_server::AcidAttacks::get().nightmare(attacker)
+        if(era_compat_server::AcidAttacks::get().queuedAcid(attacker)
             || (attacker && era_compat::RustDragonling::get().enabled(attacker->creatureId().toCreature()->getJsonKey())))
         {
             // SpellEffect8 original44050A: primary ONLY, alive+DEF>0,

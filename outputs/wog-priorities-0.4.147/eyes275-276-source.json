@@ -1,0 +1,157 @@
+{
+  "active": false,
+  "ids": [
+    275,
+    276
+  ],
+  "sourceStage": {
+    "active": false,
+    "sourceIds": [
+      275,
+      276
+    ],
+    "archiveSha256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+    "cfgs": {
+      "275": {
+        "text": "DamageMin=2\r\nUpgradeFrom=343\r\nUpgradeTo=134\r\nUpgradeFrom2=196\r\nUpgradeTo2=134\r\n",
+        "sha256": "09fbbc9a45e5b7e35ef1d039f05c83f3330eee0da42c29dd0f4a9578344fe087"
+      },
+      "276": {
+        "text": "DamageMax=2\r\nUpgradeFrom=344\r\nUpgradeTo=135\r\nUpgradeFrom2=196\r\nUpgradeTo2=135\r\n\r\n",
+        "sha256": "dc04f0b7edd92c84c3b209914d91f7ca2132dee3591ad454d395add15e461aa2"
+      }
+    },
+    "assets": [
+      {
+        "path": "content/Sprites/tum-era/artifacts/275/map.def",
+        "sha256": "4c32d1e17d82d6b19a72e62b47e929b06568ab6f04313e0656d250b21c41724a"
+      },
+      {
+        "path": "content/Sprites/tum-era/artifacts/275/map.msk",
+        "sha256": "bdf29b71b5e86aa0c6a980c268f02735832f3be2ae51310561529556d2d23d32"
+      },
+      {
+        "path": "content/Data/tum-era/artifacts/275/icon.png",
+        "sha256": "9453ccded6c112fb116e9cef2090aad7a4fa5a1eaf3536c99dcb2faf37c78f2b"
+      },
+      {
+        "path": "content/Data/tum-era/artifacts/275/scenario.png",
+        "sha256": "491473d1205ff99cca39f0a23b942bd8984bf9a76f01268b0a80bc4d136c39c4"
+      },
+      {
+        "path": "content/Sprites/tum-era/artifacts/276/map.def",
+        "sha256": "0bf768ff37d8c74ba909c481b2925d249d16751d60830ff7d0d8bbbf9f0e0fb0"
+      },
+      {
+        "path": "content/Sprites/tum-era/artifacts/276/map.msk",
+        "sha256": "bdf29b71b5e86aa0c6a980c268f02735832f3be2ae51310561529556d2d23d32"
+      },
+      {
+        "path": "content/Data/tum-era/artifacts/276/icon.png",
+        "sha256": "5f69575a2baeb7247c6ac2e783a7cc319572937a6e47a9cb78469550130d78d1"
+      },
+      {
+        "path": "content/Data/tum-era/artifacts/276/scenario.png",
+        "sha256": "3b286aea4502f4d3015f3fe960c7810e0422c3b9cdea63746d0385c73ed7eda4"
+      }
+    ],
+    "records": [
+      {
+        "id": 275,
+        "included": true,
+        "key": "tum-era:artifact275",
+        "sourceTraits": "artraits.txt:873",
+        "aiDecisions": [],
+        "warnings": [],
+        "textRepairs": [],
+        "eventTextAvailable": false
+      },
+      {
+        "id": 276,
+        "included": true,
+        "key": "tum-era:artifact276",
+        "sourceTraits": "artraits.txt:876",
+        "aiDecisions": [],
+        "warnings": [],
+        "textRepairs": [],
+        "eventTextAvailable": false
+      }
+    ],
+    "definitionSha256": "9b3bb9989564900a1af6d0bd9adf3fbd0f277932d0efb6985beb8f06cd640928",
+    "pendingNativeControls": [
+      "Eye275 source-defined inverted range requires scoped native correction and validation"
+    ]
+  },
+  "sourceExecutableSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "damageEndpoints": {
+    "source": "Emerald events.cpp OnCreatureParamInit67-68 adds DamageMax to damage_high and DamageMin to damage_low independently, equipped slots0..18.",
+    "sourceMinAboveMax": "Ordinary442F58 loads D0 intoESI(min),D4 intoEBX(max);442FE9/443024 callsFastcall50C7C0(min,max).50C7CF..D5 returns min without drawing when max<min. Bless442F64..81 uses high; Curse442F84..B6 uses low.",
+    "nativeCurrent": "Future1583433c709 selects original unswapped endpoints only for verified Emerald contributions when inverted;24 actual hits validated source and ordinary isolation. Historicalb93 swapped; retained separately.",
+    "boundedExeHex": {
+      "442f58": "8bb1d00000008b99d40000008b813c02000085c074168b89580400005f03cb5e0fafca8bc15b8be55dc20400",
+      "442fe5": "8bd38bcee8d2970c0003f88b45084889450875ec",
+      "443020": "8bd38bcee897970c0003f88b45084889450875ec8bc75f5e5b",
+      "50c7c0": "56578bf28bf93bf775058bc65f5ec37d058bc75f5ec3e851bc10002bf79946f7fe8bc203c75f5ec3"
+    }
+  },
+  "daily": "Whole two-pair source semantics, equipment-only, same count/XP/banner, owner-only, before independent rank10 evolution; native tests pending complete.",
+  "nativeEvidence": "native-eyes275-276.json",
+  "sourceTestsPassed": 3,
+  "nativePerformedControlsPassed": 8,
+  "nativeAllDailyPairsValidated": true,
+  "future158RangeCorrection": {
+    "nativeValidated": true,
+    "sourceFiles": [
+      {
+        "path": "lib/battle/DamageCalculator.cpp",
+        "sha256": "4f30fed38881dbfe99367ad4440c32fe4e34c4a7269ddaa584e6b136bb875dee"
+      },
+      {
+        "path": "lib/era/EraEmeraldDamageRangeRule.h",
+        "sha256": "f29d2f057773eab95bd73bf04b8adafceb07845ca68aa1fff414219f43da09ff"
+      },
+      {
+        "path": "lib/era/EraEmeraldDamageRange.h",
+        "sha256": "033b9832b3399e577df968d18afe6541a5b428f0cc12d68b73cb527652e6cf71"
+      }
+    ],
+    "frozenManifest": "work/downloads/wog-port158/emerald-range-freeze/manifest.json",
+    "scope": "Only inverted raw endpoints AND actual inherited CREATURE_DAMAGE from one of the six original Emerald Eyes; verified native artifact key plus exact own endpoint bonus definition. Backpack does not contribute a bonus. Unknown artifacts, changed original definitions and ordinary ordered ranges keep existing native behavior.",
+    "originalOrder": "Bless flag23C uses HIGH+458. Otherwise Curse240 uses max(1,LOW-45C). Otherwise Randint(LOW,HIGH); HIGH<LOW returns LOW before RNG.",
+    "normalExample": "Peasant1\u20131:273 min+1\u21922\u20131, sourceconstant2.275 min+2\u21923\u20131, sourceconstant3.276 max+2\u21921\u20133 remains ordinaryrandom.",
+    "blessExample": "2753\u20131: basicBless\u21921; advanced/expertBless\u21922. Native preselection swap would choose3/4 incorrectly.",
+    "curseExample": "2753\u20131: basicCurse\u21923; advanced/expertCurse\u21922, floor1. Native preselection swap would choose1 incorrectly.",
+    "limits": [
+      "No change to global native RNG or non-Emerald malformed definitions.",
+      "Original actual creature endpoints positive; external negative damage modifiers and integer overflow from arbitrary foreign mods are outside this source audit.",
+      "Forced simultaneous Bless/Curse chooses sourceBless-first for the inverted branch; the normal native spell system cancels opposite spell effects. Existing independent percentage/specialty factors are unchanged.",
+      "No claim of runtime equivalence under unknown third-party DLL patches; bounded original executable and available Emerald/Amethyst source were audited.",
+      "Compilation and native scope isolation remain mandatory before calling this correction complete."
+    ],
+    "pureTestsPassed": 2,
+    "nativeSampler": {
+      "path": "work/vcmi-wasm/lib/battle/BattleInfo.cpp:656",
+      "sha256": "b153f6595b58aa9e9c3c8cd8d9dbcfea8b918c1c22847bae06bc4c926ad2f6af",
+      "proof": "getActualDamage draws only if damage.min!=damage.max; the corrected constant range returns directly and consumes no draw, matching50C7CF-D5."
+    },
+    "engineSha256": "3433c709e7f955c446aa81cd1fdab0d6b50255b981c4efb86b59356d6e95000f",
+    "nativeEvidence": "native-eyes-range158.json",
+    "nativeCases": 8,
+    "nativeActualHits": 24,
+    "nativeOrdinaryScopePreserved": true
+  },
+  "perActorReadiness": {
+    "275": {
+      "complete": true,
+      "active": false,
+      "cfgAndDailyNativeEvidence": "native-eyes275-276.json",
+      "correctedRangeNativeEvidence": "native-eyes-range158.json"
+    },
+    "276": {
+      "complete": true,
+      "active": false,
+      "cfgAndDailyNativeEvidence": "native-eyes275-276.json",
+      "unchangedOrderedRangeNativeEvidence": "native-eyes-range158.json"
+    }
+  }
+}

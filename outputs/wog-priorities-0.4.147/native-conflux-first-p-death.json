@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "active": false,
+  "scope": "Declared-seed path witness only, not probability-rate validation. Real casualtyR10, real expertARM5970 sourceg95injury298; firstp21 kills2HP caster, independentp23 executes at CURRENTcount0 and expertbase100.",
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "0588b24812b26852",
+    "wasm": "vcmiclient.b93b3bc6af5e3aa1.wasm",
+    "sha256": "b93b3bc6af5e3aa1088a85775a7194c8a7f3632993fcb94d134b64222897b9de",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "rawReport": "work/downloads/wog-port157/native-conflux-predeath-d/result.json",
+  "rawSha256": "b0636b50352c75bd22c1ab94a94492ea47c9007efbd65ec7db3542da25b53003",
+  "trials": [
+    {
+      "seed": 84317,
+      "observerDamage": 100,
+      "dead": true,
+      "woundedHP": 2
+    }
+  ],
+  "priorFixtureFailures": "a/b synchronized before actual damage; c wrongly made primary immune21 (source correctly rejects whole firstcast); no runtime divergence concluded."
+}

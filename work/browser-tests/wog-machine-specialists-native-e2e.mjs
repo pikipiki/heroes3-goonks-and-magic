@@ -16,17 +16,28 @@ sys.stdout.buffer.write(out.getvalue())`,JSON.stringify(options)]);
 async function boot(options){p=await browser.newPage({viewport:{width:844,height:390},hasTouch:true,bypassCSP:true});await silenceTestAudio(p);p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>fs.appendFileSync(path.join(out,'console.log'),m.type()+': '+m.text()+'\n'));await p.addInitScript(()=>sessionStorage.setItem('heroes-goonk.storage-failed','true'));await p.goto(origin+'/game.html?mobile=1');await wait(()=>window.goonkMobileState?.mode==='menu'&&window.goonkSessionRecovery?.phase==='done',null,240000);await p.evaluate(bytes=>Module.FS.writeFile('/home/web_user/.local/share/vcmi/Maps/001-Goonks.vmap',new Uint8Array(bytes)),[...fixture(options)]);await cmd(20,1);await wait(()=>goonkMobileState.mode==='lobby'&&goonkMobileState.lobbyReady);await cmd(21);await wait(()=>goonkMobileState.selectedMap==='000 - Artifact validation');await cmd(22);await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);}
 async function sheet(){await p.locator('[data-ui=heroes]').tap();await wait(()=>goonkMobileState.mode==='hero'&&goonkMobileState.heroWindow);return state();}
 async function combat(){await cmd(6);await p.waitForTimeout(150);const t=await p.evaluate(()=>{const v=goonkMobileState.mapOverview.view;return{x:v.x+v.w/2+64,y:v.y+v.h/2};});await p.evaluate(t=>Module._vcmiMobilePointer(t.x,t.y,1),t);await wait(()=>goonkMobileState.hasPath);await cmd(2);await wait(()=>goonkMobileState.mode==='battle');await cmd(15);await wait(()=>goonkMobileState.canUseMagic&&goonkMobileState.battleUnits?.length);return state();}
-async function resolveBattle(){let started=false;for(let i=0;i<360;i++){const s=await state();if(s.mode==='map'&&!s.hasPath){if(started)return s;}else if(s.mode==='battle'){started=true;if(!s.autoCombat&&s.canAutoCombat)await cmd(44,1);}else if(s.mode==='dialog'||s.mode==='battle-result')await cmd(1);await p.waitForTimeout(150);}throw Error('Battle did not finish');}
+async function resolveBattle(started=false){for(let i=0;i<360;i++){const s=await state();if(s.mode==='map'&&!s.hasPath){if(started)return s;}else if(s.mode==='battle'){started=true;if(!s.autoCombat&&s.canAutoCombat)await cmd(44,1);}else if(s.mode==='dialog'||s.mode==='battle-result')await cmd(1);await p.waitForTimeout(150);}throw Error('Battle did not finish');}
 try{
  const artifacts={mach1:'core:ballista',mach2:'core:ammoCart',mach3:'core:firstAidTent'};
  const results=[];
  for(const hero of ['core:edric','core:gurnisson']){
-  await boot({hero,experience:100000,artifacts,battle:true,enemyAmount:20,army:[{type:'core:blackDragon',amount:10},{type:'goonk:bubu',amount:10}]});
+  await boot({hero,experience:100000,artifacts,battle:true,enemyAmount:process.env.MACHINE_ACTIONS==='1'?6:20,army:[{type:'core:blackDragon',amount:10},{type:'goonk:bubu',amount:10}]});
   const before=await sheet();const level=before.heroWindow.level;
-  await p.locator('[data-hero-close]').tap();const battle=await combat();
+  await p.locator('[data-hero-close]').tap();
+  if(process.env.MACHINE_ACTIONS==='1')await p.evaluate(()=>{window.machineActionFrames=[];addEventListener('goonk-state',({detail:s})=>{if(s?.mode!=='battle'||machineActionFrames.length>=3000)return;machineActionFrames.push({round:s.round,active:s.activeStack,units:(s.battleUnits||[]).filter(u=>!u.enemy).map(u=>({key:u.key,id:u.stackId,count:u.count,hp:u.currentHealth,max:u.maximumHealth,shots:u.remainingShots}))});});});
+  const battle=await combat();
   const machines=battle.battleUnits.filter(u=>!u.enemy&&['core:ballista','core:ammoCart','core:firstAidTent'].includes(u.key));
   assert.equal(machines.length,3);
-  results.push({hero,level,units:machines,control:battle.battleUnits.find(u=>!u.enemy&&u.key==='goonk:bubu')});
+  const entry={hero,level,units:machines,control:battle.battleUnits.find(u=>!u.enemy&&u.key==='goonk:bubu')};results.push(entry);
+  if(process.env.MACHINE_ACTIONS==='1'){
+   await cmd(44,1);const after=await resolveBattle(true),frames=await p.evaluate(()=>machineActionFrames);assert.equal(after.heroId,before.heroId,'Native autocombat ends with the original hero');
+   fs.writeFileSync(path.join(out,hero.split(':').at(-1)+'-action-frames.json'),JSON.stringify(frames,null,2));const log=await p.evaluate(()=>{try{return Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'}).slice(-100000);}catch{return '';}});fs.writeFileSync(path.join(out,hero.split(':').at(-1)+'-native-actions.log'),log);
+   // Autocombat intentionally hides activeStack; the Ammo Cart can keep shots
+   // unchanged. The native server trace still records SHOOT9 and STACK_HEAL13.
+   const ballista=machines.find(u=>u.key==='core:ballista'),tent=machines.find(u=>u.key==='core:firstAidTent');assert(log.includes("stackNumber '"+ballista.stackId+"', actionType '9'"),'Native server executes the ballista shot');assert(log.includes("stackNumber '"+tent.stackId+"', actionType '13'"),'Native server executes the First Aid Tent heal');
+   let previous,healed=false;for(const f of frames){const u=f.units.find(u=>u.key==='core:blackDragon');if(!u)continue;const health=(u.count-1)*u.max+u.hp;if(previous!==undefined&&health>previous)healed=true;previous=health;}assert(healed,'Native First Aid Tent actually heals a wounded dragon');
+   entry.actions={ballistaActed:true,firstAidHealed:true,autocombatFinished:true,frames,after};
+  }
   await p.close();p=null;
  }
  fs.writeFileSync(path.join(out,'observed.json'),JSON.stringify(results,null,2));

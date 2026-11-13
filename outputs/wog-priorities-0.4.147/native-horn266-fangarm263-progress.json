@@ -1,0 +1,152 @@
+{
+  "activationReady": false,
+  "engineSha256": "3be25d9ab551546312b50497cdc3017c6308c256789203f76028d4552daa0b94",
+  "preview": "http://127.0.0.1:8815",
+  "passed": [
+    {
+      "case": "K60-nohero-ten",
+      "status": "pass",
+      "source": "outputs/wog-priorities-0.4.147/native160-horn266-fangarm263-first15.json",
+      "sha256": "896e8594bb75497b36a99b937a2ec9d85bf38293a84467bfdd2b3e3acfff0103"
+    },
+    {
+      "case": "K60-nohero-eleven-wounded",
+      "status": "pass",
+      "source": "outputs/wog-priorities-0.4.147/native160-horn266-fangarm263-first15.json",
+      "sha256": "896e8594bb75497b36a99b937a2ec9d85bf38293a84467bfdd2b3e3acfff0103"
+    },
+    {
+      "case": "K60-basic-exact",
+      "status": "pass",
+      "source": "outputs/wog-priorities-0.4.147/native160-horn266-fangarm263-first15.json",
+      "sha256": "896e8594bb75497b36a99b937a2ec9d85bf38293a84467bfdd2b3e3acfff0103"
+    },
+    {
+      "case": "K60-basic-over",
+      "status": "pass",
+      "source": "outputs/wog-priorities-0.4.147/native160-horn266-fangarm263-first15.json",
+      "sha256": "896e8594bb75497b36a99b937a2ec9d85bf38293a84467bfdd2b3e3acfff0103"
+    },
+    {
+      "case": "K60-advanced-exact",
+      "status": "pass",
+      "source": "outputs/wog-priorities-0.4.147/native160-horn266-fangarm263-first15.json",
+      "sha256": "896e8594bb75497b36a99b937a2ec9d85bf38293a84467bfdd2b3e3acfff0103"
+    },
+    {
+      "case": "K60-expert-exact",
+      "status": "pass",
+      "source": "outputs/wog-priorities-0.4.147/native160-horn266-fangarm263-first15.json",
+      "sha256": "896e8594bb75497b36a99b937a2ec9d85bf38293a84467bfdd2b3e3acfff0103"
+    },
+    {
+      "case": "K60-sorcery-not-threshold",
+      "status": "pass",
+      "source": "outputs/wog-priorities-0.4.147/native160-horn266-fangarm263-first15.json",
+      "sha256": "896e8594bb75497b36a99b937a2ec9d85bf38293a84467bfdd2b3e3acfff0103"
+    },
+    {
+      "case": "K60-immunity",
+      "status": "pass",
+      "source": "outputs/wog-priorities-0.4.147/native160-horn266-fangarm263-first15.json",
+      "sha256": "896e8594bb75497b36a99b937a2ec9d85bf38293a84467bfdd2b3e3acfff0103"
+    },
+    {
+      "case": "Horn-targeted-hero",
+      "status": "pass",
+      "source": "outputs/wog-priorities-0.4.147/native160-horn266-fangarm263-first15.json",
+      "sha256": "896e8594bb75497b36a99b937a2ec9d85bf38293a84467bfdd2b3e3acfff0103"
+    },
+    {
+      "case": "Horn-backpack",
+      "status": "pass",
+      "source": "outputs/wog-priorities-0.4.147/native160-horn266-fangarm263-first15.json",
+      "sha256": "896e8594bb75497b36a99b937a2ec9d85bf38293a84467bfdd2b3e3acfff0103"
+    },
+    {
+      "case": "Horn-targeted-ring",
+      "status": "pass",
+      "source": "outputs/wog-priorities-0.4.147/native160-horn266-fangarm263-first15.json",
+      "sha256": "896e8594bb75497b36a99b937a2ec9d85bf38293a84467bfdd2b3e3acfff0103"
+    },
+    {
+      "case": "Horn-undead",
+      "status": "pass",
+      "source": "outputs/wog-priorities-0.4.147/native160-horn266-fangarm263-first15.json",
+      "sha256": "896e8594bb75497b36a99b937a2ec9d85bf38293a84467bfdd2b3e3acfff0103"
+    },
+    {
+      "case": "Horn-melee",
+      "status": "pass",
+      "source": "outputs/wog-priorities-0.4.147/native160-horn266-fangarm263-first15.json",
+      "sha256": "896e8594bb75497b36a99b937a2ec9d85bf38293a84467bfdd2b3e3acfff0103"
+    },
+    {
+      "case": "Horn-melee-ring",
+      "status": "pass",
+      "source": "outputs/wog-priorities-0.4.147/native160-horn266-fangarm263-first15.json",
+      "sha256": "896e8594bb75497b36a99b937a2ec9d85bf38293a84467bfdd2b3e3acfff0103"
+    },
+    {
+      "case": "Horn-melee-backpack",
+      "status": "pass",
+      "source": "outputs/wog-priorities-0.4.147/native160-horn266-fangarm263-first15.json",
+      "sha256": "896e8594bb75497b36a99b937a2ec9d85bf38293a84467bfdd2b3e3acfff0103"
+    }
+  ],
+  "open": [
+    {
+      "case": "Fangarm finite110 and rank5 no enemy retaliation",
+      "status": "not-yet-proved-by-native-boundary",
+      "observation": "Native reports initial remainingRetaliations110. This alone proves neither exhaustion at110/111 nor source rank5 f/R effect. Source configured110 finite is separately established by direct unsigned byte-load disassembly."
+    },
+    {
+      "case": "BU:E failed summon occupant capture and original army restoration",
+      "status": "not-tested-native160",
+      "implementation": "Clean160 includes faithful current-occupant capture and hero original-slot erasure. Eight persistence fixtures prepared, not run yet."
+    },
+    {
+      "case": "Horn survivor gains, first existing/free/full slots, Necromancy before payout and map save/load",
+      "status": "not-tested-native160"
+    },
+    {
+      "case": "Horn nonprimary/global AOE, enemy ownership, source352 exclusion, targeted creature casts, casualty XP and defeat/retreat",
+      "status": "not-tested-native160"
+    },
+    {
+      "case": "Fangarm R0/R10 XP, rank5 attack, max-HP winding and controlled-counter CURRENT duration",
+      "status": "partly-unvalidated-native"
+    }
+  ],
+  "excludedFixtures": [
+    {
+      "folder": "horn266-native159-main",
+      "reason": "After five further K60PASS, Horn cast fixture requested spell20, not Implosion18."
+    },
+    {
+      "folder": "horn266-native159-horn",
+      "reason": "ImplosionSP1damage175 does not kill4x50HP; target survived1x25HP."
+    },
+    {
+      "folder": "horn266-native159-horn-stable and horn266-private159-targeted",
+      "reason": "Invalid side-column own85 normalized onto defender86. This is useful deliberate occupant-capture160 fixture, but not a valid free-hex conversion control."
+    }
+  ],
+  "noHeroAdaptationValidated": {
+    "maxHp10": "Neutral Fangarm hypnotizes Pikeman, which attacks its distant own Dragon ally and loses original player-action turn. Dragon NO_RETALIATION prevents breaking the effect.",
+    "maxHp11": "Wounded down to10 by the real Fangarm strike, yet remains player-controlled; threshold uses full11HP, not wounded10.",
+    "sourceNullFix": "Cached heroPower0, mastery0 and no specialty replace original undefined NULL hero reads; threshold10."
+  },
+  "additionalVerified": [
+    {
+      "scope": "Six actor/terrain controls, both original Goonk and ordinary elemental summons; corrected neutral Horn summon stats",
+      "source": "outputs/wog-priorities-0.4.147/native163-summon-terrain.json",
+      "engineSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771"
+    },
+    {
+      "scope": "Three strict coreAstral/source263 K60 health boundaries",
+      "source": "outputs/wog-priorities-0.4.147/native163-fangarm263-astral.json",
+      "engineSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771"
+    }
+  ]
+}

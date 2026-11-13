@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "complete": false,
+  "activeFix": false,
+  "scope": "Two real native baseline observations before a proposed source g% direct-FireShield correction. They do not claim source parity.",
+  "engineSHA256": "b93b3bc6af5e3aa1088a85775a7194c8a7f3632993fcb94d134b64222897b9de",
+  "sourceEvidence": "source-g-fire-shield.json",
+  "cases": [
+    {
+      "name": "sourceGFireShield-g50",
+      "sourceExpected": 20,
+      "observed": 11,
+      "physicalInput": 100,
+      "report": "outputs/wog-priorities-0.4.147/source-g-fire-shield-native/sourceGFireShield-g50.json"
+    },
+    {
+      "name": "sourceGFireShield-ordinary",
+      "sourceExpected": 24,
+      "observed": 24,
+      "physicalInput": 105,
+      "report": "outputs/wog-priorities-0.4.147/source-g-fire-shield-native/sourceGFireShield-ordinary.json"
+    }
+  ],
+  "finding": "Source g50 incorrectly receives11 instead of raw20. Ordinary Goonk melee correctly retains Sorcery:24 from raw21. Native terrain differences are captured in physical input, not hidden by fixture stat guesses.",
+  "fixtureCorrections": [
+    "First test clicked the wrong hero footprint (64 instead of32 pixels) and never entered combat; no engine conclusion.",
+    "A Bubu ordinary witness shot at distance; FireShield does not react to ranged attacks. Replaced with melee Paingpaing. Failed trial is not a numeric parity witness."
+  ],
+  "requiredNext": "Compile the explicit typed-source guard and validate all six paired source/ordinary/gear and earnedR10 cases before closure."
+}

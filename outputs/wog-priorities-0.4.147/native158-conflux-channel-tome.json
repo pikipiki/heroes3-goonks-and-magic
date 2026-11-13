@@ -1,0 +1,149 @@
+{
+  "passed": true,
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "aa8cd2f338195ecf",
+    "wasm": "vcmiclient.3433c709e7f955c4.wasm",
+    "sha256": "3433c709e7f955c446aa81cd1fdab0d6b50255b981c4efb86b59356d6e95000f",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "rawReport": "work/downloads/wog-port157/native158-conflux-channel-tome/result.json",
+  "rawSha256": "1a143e67b3cfac1caf4430865e5aecf86ec6b4282c281205bfaf28a5b0790a9f",
+  "viewport": "390x844",
+  "tome": {
+    "passed": true,
+    "available": [
+      15,
+      41,
+      37,
+      35,
+      32,
+      16,
+      64,
+      45,
+      61,
+      20,
+      49,
+      63,
+      65,
+      48,
+      68,
+      0,
+      2,
+      1,
+      7
+    ],
+    "stale": [
+      15,
+      41,
+      37,
+      35,
+      32,
+      16,
+      64,
+      45,
+      61,
+      20,
+      49,
+      63,
+      65,
+      48,
+      68,
+      0,
+      2,
+      1,
+      7
+    ],
+    "restored": [
+      15,
+      41,
+      37,
+      35,
+      32,
+      16,
+      64,
+      45,
+      61,
+      20,
+      49,
+      63,
+      65,
+      48,
+      68,
+      0,
+      2,
+      1,
+      7
+    ],
+    "afterAxe": [
+      15,
+      41,
+      37,
+      35,
+      32,
+      16,
+      64,
+      45,
+      61,
+      20,
+      49,
+      63,
+      65,
+      48,
+      68,
+      0,
+      2,
+      1,
+      7
+    ],
+    "afterBackpack": [
+      15,
+      41,
+      37,
+      35,
+      32,
+      16,
+      64,
+      45,
+      61,
+      20,
+      49,
+      63,
+      65,
+      48,
+      68,
+      0,
+      2,
+      1,
+      7
+    ],
+    "reset": [
+      15
+    ],
+    "saveBytes": 120955
+  },
+  "channel": {
+    "channel-twoStacks": {
+      "passed": true,
+      "beforeMana": 200,
+      "afterMana": 201,
+      "controlled": null
+    },
+    "channel-hypnotize": {
+      "passed": true,
+      "beforeMana": 200,
+      "afterMana": 200,
+      "controlled": false
+    },
+    "channel-killed": {
+      "passed": true,
+      "beforeMana": 200,
+      "afterMana": 200,
+      "controlled": null
+    }
+  }
+}

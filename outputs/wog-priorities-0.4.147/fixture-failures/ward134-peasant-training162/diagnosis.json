@@ -1,0 +1,11 @@
+{
+  "fixtureFailure": true,
+  "engineRegressionClaim": false,
+  "engineSHA": "077528260dcb9192dd2aa69245841bcce7a1c462d6028da8d244f37543d2aefd",
+  "observed": {
+    "experience": 1,
+    "experienceRank": 0
+  },
+  "guard": "Requires actualnativeR10 beforePoison/Wardtest. Failed beforeanyWardspelltest.",
+  "fix": "Use realcoreArchangel5019 sourcefightValue unchanged, with causalHP/speed/attack control instead of sourcePeasantprivatefightValue override."
+}

@@ -1,0 +1,6 @@
+{
+  "fixtureFailure": true,
+  "engineRegressionClaim": false,
+  "failure": "Wrong command7 savedgame instead of endingturn; failedbeforecombat.",
+  "fix": "Use documented MobileBridge command3 forendturn."
+}

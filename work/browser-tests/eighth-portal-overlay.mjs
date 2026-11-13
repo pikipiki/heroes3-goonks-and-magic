@@ -3,7 +3,9 @@
 import fs from'node:fs';import assert from'node:assert/strict';import{injectOwnedFiles}from'./eighth-owned-files.mjs';
 export async function applyPortalTownOverlay(page,{eighth}){
  if(!eighth)return;
- const stage=process.env.PORTAL_TOWN_REVIEW||'/tmp/goonk-eighth-town-review-156',metadata=JSON.parse(fs.readFileSync(stage+'/eighth-town-source.json')),ledger=JSON.parse(fs.readFileSync('outputs/wog-priorities-0.4.147/eighth-reviewed-actor-contracts.json'));
+ const stage=process.env.PORTAL_TOWN_REVIEW||process.env.EIGHTH_TOWN_STAGE;
+ if(!stage)throw Error('PORTAL_TOWN_REVIEW or EIGHTH_TOWN_STAGE must point to the reviewed source town assets');
+ const metadata=JSON.parse(fs.readFileSync(stage+'/eighth-town-source.json')),ledger=JSON.parse(fs.readFileSync('outputs/wog-priorities-0.4.147/eighth-reviewed-actor-contracts.json'));
  const record=metadata.records.find(r=>r.town==='core:dungeon'),baseline=metadata.baselineTowns[record.town],hall=metadata.halls[record.town];assert.equal(baseline.creatures.length,7);
  const roster=record.roster.slice(0,2).map(id=>{const c=ledger.actorContracts[id];assert(c.complete&&c.nativeValidated,'Actual Dungeon actor proof required');return c.nativeId;});
  const hallSlots=structuredClone(baseline.hallSlots);hallSlots[4].push(['dwellingLvl8','dwellingUpLvl8']);

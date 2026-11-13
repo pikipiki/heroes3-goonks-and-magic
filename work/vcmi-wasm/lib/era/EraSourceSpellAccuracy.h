@@ -173,18 +173,23 @@ inline float statusSourceAura(const CBattleInfoCallback & battle,const battle::U
     }
     return static_cast<float>(1.0-double(std::clamp(aura,0,100))/100.0);
 }
-inline int statusRawAccuracy(const CBattleInfoCallback & battle,const battle::Unit * target,bool heroQuery=true,BattleSide queryCasterSide=BattleSide::NONE)
+inline int statusRawAccuracy(const CBattleInfoCallback & battle,const battle::Unit * target,bool heroQuery=true,BattleSide queryCasterSide=BattleSide::NONE,bool positiveQuery=false)
 {
+    //5A3CD0 queries float>0, unlike5A8950 which converts to integerchance.
+    //Existing callers retain the integer path; only explicit CFGquery opts in.
+    const auto accuracy=[positiveQuery](float natural,float aura)
+    {return positiveQuery?(static_cast<float>(double(natural)*double(aura))>0.0f?1:0)
+        :era_bridge::sourceAccuracyPercent(natural,aura);};
     if(!target || !target->alive() || target->isGhost())return 0;
     const auto * active=battle.battleActiveUnit();
     const auto side=queryCasterSide!=BattleSide::NONE?queryCasterSide:
         confluxQuerySide.value_or(active?active->unitSide():BattleSide::NONE);
     if(confluxCatalystNegates(battle,side,heroQuery))
-        return era_bridge::sourceAccuracyPercent(1.0f,statusSourceAura(battle,target));
+        return accuracy(1.0f,statusSourceAura(battle,target));
     const auto sourceId=StatusAttacks::get().id(target->creatureId().toCreature()->getJsonKey());
     const auto * hero=battle.battleGetOwnerHero(target);
     if(statusEitherArtifact(battle,93))
-        return era_bridge::sourceAccuracyPercent(1.0f,statusSourceAura(battle,target));
+        return accuracy(1.0f,statusSourceAura(battle,target));
     if(sourceId<0) // Additional game creatures keep native resistance and aura.
         return std::clamp(100-target->magicResistance(),0,100);
     // Reconstruct only source-owned intrinsic/XP and canonical hero inputs.
@@ -205,7 +210,7 @@ inline int statusRawAccuracy(const CBattleInfoCallback & battle,const battle::Un
     const float resistance=hero?era_bridge::sourceHeroResistance(hero->getSecSkillLevel(SecondarySkill::RESISTANCE),
         hero->level,statusThorgrim(hero),statusHasArtifact(hero,57),statusHasArtifact(hero,58),statusHasArtifact(hero,59)):0.0f;
     const float acceptance=static_cast<float>(double(natural)-double(resistance));
-    return era_bridge::sourceAccuracyPercent(acceptance,statusSourceAura(battle,target));
+    return accuracy(acceptance,statusSourceAura(battle,target));
 }
 }
 VCMI_LIB_NAMESPACE_END

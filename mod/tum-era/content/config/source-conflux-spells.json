@@ -1,0 +1,50 @@
+{
+  "sourceConfluxFireWallTrigger": {
+    "targetType": "CREATURE",
+    "type": "combat",
+    "name": "",
+    "school": {
+      "air": false,
+      "earth": false,
+      "fire": true,
+      "water": false
+    },
+    "level": 2,
+    "power": 10,
+    "gainChance": {},
+    "levels": {
+      "base": {
+        "power": 10,
+        "range": "0",
+        "description": "",
+        "cost": 0,
+        "battleEffects": {
+          "directDamage": {
+            "type": "core:damage"
+          }
+        },
+        "targetModifier": {
+          "smart": false
+        }
+      },
+      "none": {
+        "power": 10
+      },
+      "basic": {
+        "power": 10
+      },
+      "advanced": {
+        "power": 20
+      },
+      "expert": {
+        "power": 50
+      }
+    },
+    "flags": {
+      "damage": true,
+      "negative": true,
+      "special": true
+    },
+    "targetCondition": {}
+  }
+}

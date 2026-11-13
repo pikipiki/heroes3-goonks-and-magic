@@ -13,8 +13,10 @@
 #include "era/EraStatusHealthRuntime.h"
 #include "era/EraHydraQueen259Runtime.h"
 #include "CStack.h"
+#include "era/EraHorn266Policy.h"
 #include "era/EraBridgePolicies.h"
 #include "CCreatureHandler.h"
+#include "era/EraPrimordialState.h"
 
 #include <vstd/RNG.h>
 
@@ -111,6 +113,7 @@ void CStack::localInit(BattleInfo * battleInfo)
                     add(BonusType::ERA_SPECIALIST_HEALTH_PERCENT,progression->healthPercent);
                 }
     era_compat::HydraQueen259::get().initialize(*this,battle->battleGetFightingHero(side));
+    era_compat::initializePrimordialDefending(*this);
 	CUnitState::localInit(this); //it causes execution of the CStack::isOnNativeTerrain where nativeTerrain will be considered
 	position = initialPosition;
 }
@@ -341,6 +344,8 @@ const CCreature * CStack::unitType() const
 
 int32_t CStack::unitBaseAmount() const
 {
+    // TUM Horn explicitly sets BM:B0 after creating its temporary summon.
+    if(era_compat::sourceHorn266ZeroBase(*this))return 0;
 	return baseAmount;
 }
 

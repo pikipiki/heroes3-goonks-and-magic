@@ -1,6 +1,6 @@
 {
-  "enabled": false,
-  "scope": "Reviewed partial actor inventory; town8 activation still requires all18 original actors atomically",
+  "enabled": true,
+  "scope": "All18 original actors and all nine eighth recruitment pairs native-validated atomically",
   "actorContracts": {
     "269": {
       "nativeId": "tum-era:eraCreature269",
@@ -188,14 +188,45 @@
       ],
       "sourceScope": "Whole original CFG/CRTRAITS/CRANIM and XP/defaults, source nature137, Fury normal-counter override only, Twice double hit before one counter consumption, poison exact rank chance, native source fear/fearless and reciprocal353/354 upgrade with original price clamp. Artifact71 generic query preserved; naval consumer bypasses mimic, so no invented sea bonus.",
       "nativeChecks": "Two rounds of real counters, NO_RETALIATION controls, realR10 poison tick, Hypnotize/Poison/Age/Resurrection/Cure nature,4x40 fear rounds, naval mimic0/real Necklace+1000, paid/free reciprocal conversion, Goonk preservation,390x844 portrait."
+    },
+    "355": {
+      "nativeId": "tum-era:eraCreature355",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "968fab902ab5637c8de5405b305a096ec6327cd46086e10f844248e71b1ae992",
+      "nativeEvidence": [
+        "conflux-source-installation-review.json",
+        "native-conflux-progress.json",
+        "native158-dungeon-catalyst-query.json",
+        "native158-conflux-channel-tome.json",
+        "native-familiar43-progress.json",
+        "native-conflux355-counter160.json"
+      ],
+      "sourceScope": "Supplied complete CFG/defaults/XP and original combat services, independent native witnesses and strict reproducible source installation; no Windows runtime equivalence claim.",
+      "nativeChecks": "Eight spells, nativeRNG, source per-target corrections, FlameWall40/46/expiry/refresh, p/a independent casts and first-p caster death, summons, shield, Hypnotize-aware mana max, Tome/save-load, Catalyst352 regression.",
+      "productionRegistered": true,
+      "townRecruitmentPending": true
+    },
+    "356": {
+      "nativeId": "tum-era:eraCreature356",
+      "complete": true,
+      "nativeValidated": true,
+      "sourceCfgSha256": "572ea219a2218f2d6b9f892b9a8e8d8b7a2d197af8bfd4a888a0492cc56f6714",
+      "nativeEvidence": [
+        "conflux-source-installation-review.json",
+        "native-conflux-progress.json",
+        "native158-dungeon-catalyst-query.json",
+        "native158-conflux-channel-tome.json",
+        "native-familiar43-progress.json",
+        "native-conflux355-counter160.json"
+      ],
+      "sourceScope": "Supplied complete CFG/defaults/XP and original combat services, independent native witnesses and strict reproducible source installation; no Windows runtime equivalence claim.",
+      "nativeChecks": "Eight spells, nativeRNG, source per-target corrections, FlameWall40/46/expiry/refresh, p/a independent casts and first-p caster death, summons, shield, Hypnotize-aware mana max, Tome/save-load, Catalyst352 regression.",
+      "productionRegistered": true,
+      "townRecruitmentPending": true
     }
   },
-  "missingOriginalRosterIds": [
-    355,
-    356
-  ],
-  "pendingActors": [
-    355,
-    356
-  ]
+  "missingOriginalRosterIds": [],
+  "pendingActors": [],
+  "townNativeEvidence": "outputs/wog-priorities-0.4.147/native-town8-nine-towns160.json"
 }

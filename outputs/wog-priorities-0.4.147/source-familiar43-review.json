@@ -272,10 +272,17 @@
   "legacyAfterSha256": "14b82b1cf0043ee20bebb328e6a5d429f953961b88fceb7dae05f77c964edde2",
   "requiredNativeControls": [
     "canonical43 stats/R0/R5/R8/R10, flight/speed andFortune",
-    "personalHate255+200% andR10h28/h29+50%",
+    "flatPersonalHate255+200 andR10h28/h29+50%",
     "two43 and43+356 max20% once",
     "post-Hypnotize/death no stale gain",
     "no recipientHero no gain",
     "unregistered Goonk40% pre-route retained and max merged"
-  ]
+  ],
+  "sourceHateSemantics": {
+    "kind": "flat physical extra-damage accumulator",
+    "value": 200,
+    "targetSourceId": 255,
+    "separateExperienceRows": "h#28 andh#29 each+50% atR10",
+    "implementationEvidence": "lib/era/EraPersonalHate.h; existing tests/native/EraPersonalHate.test.cpp; original Amethyst10015DCA adds constant to accumulator"
+  }
 }

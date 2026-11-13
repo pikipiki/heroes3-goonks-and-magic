@@ -50,6 +50,11 @@ inline bool dungeonSourceAccuracy(CGameHandler & handler,const CBattleInfoCallba
     if(era_compat::sourceSpellContextAllows(battle,target,spell))
     {
         StatusAttackCaster caster(actor,0,battle.battleGetOwner(actor));
+        //5A6500/5A6582 queries side1 for a side0 candidate, and side0 for
+        //side1. This hero query is independent of CURRENT132C0 (Catalyst
+        //and ERM Lightning Rod), which remains the original action side.
+        era_compat::ConfluxResistanceScope query(true,target->unitSide()==BattleSide::ATTACKER
+            ?BattleSide::DEFENDER:BattleSide::ATTACKER);
         spells::BattleCast cast(&battle,&caster,spells::Mode::PASSIVE,spell);
         cast.setSpellLevel(0);cast.setEffectPower(0);cast.setEffectDuration(0);
         // Standard spell19 receptivity only, without ownership, ALIVE or
@@ -61,8 +66,7 @@ inline bool dungeonSourceAccuracy(CGameHandler & handler,const CBattleInfoCallba
         condition.negation={factory->createReceptiveFeature(),factory->createImmunityNegation()};
         // Original ERM MR_Quit replaces natural44A1A0 immunity as well as
         // resistance, but cannot bypass earlier5A83A0 context gates.
-        const auto * active=battle.battleActiveUnit();
-        const auto side=active?active->unitSide():actor->unitSide();
+        const auto side=era_compat::confluxActiveSide(battle);
         if(const auto forced=era_compat::sourceLightningResistance(battle,19,side,*target))accuracy=100-*forced;
         else if(condition.isReceptive(spell->battleMechanics(&cast).get(),target))accuracy=statusRawAccuracy(battle,target);
     }

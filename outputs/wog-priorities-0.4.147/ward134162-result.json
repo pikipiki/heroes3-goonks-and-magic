@@ -1,0 +1,5616 @@
+{
+  "passed": true,
+  "errors": [],
+  "report": {
+    "engineMetadata": {
+      "memoryVersion": 1,
+      "runtimeVersion": "4506c0024cc9c9a1",
+      "wasm": "vcmiclient.077528260dcb9192.wasm",
+      "sha256": "077528260dcb9192dd2aa69245841bcce7a1c462d6028da8d244f37543d2aefd",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216
+    },
+    "wardTraining": {
+      "anyHeroCanMove": true,
+      "armies": [
+        {
+          "id": 1,
+          "name": "Christian",
+          "needsLastStack": true,
+          "slots": [
+            {
+              "aiValue": 85500,
+              "attack": 80,
+              "cost": [
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                50000,
+                0
+              ],
+              "count": 1,
+              "damageMax": 100,
+              "damageMin": 75,
+              "defense": 70,
+              "description": "50% Magic Resist. Age. Acid breath. \nAttack twice. Fear. Fearless.",
+              "experience": 100,
+              "experiencePerUnit": 100,
+              "experienceRank": 10,
+              "fightValue": 78500,
+              "growth": 1,
+              "health": 1200,
+              "icon": "tum-era/creatures/254/large.png",
+              "id": 316,
+              "key": "tum-era:necrossDragon",
+              "name": "Necross Dragon",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": false,
+                "mindImmune": true,
+                "noMorale": true,
+                "nonLiving": false,
+                "undead": true
+              },
+              "shooter": true,
+              "shots": 10,
+              "speed": 20
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "audioMuted": false,
+      "autosaveAllowed": false,
+      "backpackCount": 0,
+      "cheatReady": false,
+      "cheatsAllowed": true,
+      "day": 1,
+      "equipment": [
+        {
+          "description": "{Skull Helmet}\n\nWorn on the head, this item increases your Knowledge skill by +2.",
+          "icon": 20,
+          "name": "Skull Helmet",
+          "slot": 0
+        },
+        {
+          "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+          "icon": 3,
+          "name": "Catapult",
+          "slot": 16
+        },
+        {
+          "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+          "icon": 0,
+          "name": "Spell Book",
+          "slot": 17
+        }
+      ],
+      "heroHasSpellbook": true,
+      "heroId": 1,
+      "heroMana": 201,
+      "heroManaLimit": 220,
+      "heroMoving": false,
+      "heroName": "Christian",
+      "heroWindow": {
+        "backpack": [
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 19
+          }
+        ],
+        "canRebalanceSourceArtifacts": false,
+        "className": "Knight",
+        "commanderIcon": 10,
+        "experience": 400,
+        "experienceIcon": 4,
+        "id": 1,
+        "level": 1,
+        "luck": {
+          "icon": 8,
+          "value": 0
+        },
+        "mana": 201,
+        "manaIcon": 5,
+        "manaLimit": 220,
+        "morale": {
+          "icon": 7,
+          "value": 0
+        },
+        "name": "Christian",
+        "owned": true,
+        "portrait": {
+          "h": 64,
+          "w": 58,
+          "x": 83,
+          "y": 26
+        },
+        "primaryIcons": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "primarySkills": [
+          0,
+          0,
+          1,
+          22
+        ],
+        "skills": [
+          {
+            "description": "{Expert Wisdom}\n\nExpert Wisdom allows your hero to learn fifth level spells.",
+            "icon": 9,
+            "mastery": "Expert",
+            "name": "Wisdom"
+          }
+        ],
+        "slots": [
+          {
+            "allowed": false,
+            "description": "{Skull Helmet}\n\nWorn on the head, this item increases your Knowledge skill by +2.",
+            "icon": 20,
+            "locked": false,
+            "movable": true,
+            "name": "Skull Helmet",
+            "slot": 0
+          },
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 1
+          },
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 2
+          },
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 3
+          },
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 4
+          },
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 5
+          },
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 6
+          },
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 7
+          },
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 8
+          },
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 9
+          },
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 10
+          },
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 11
+          },
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 12
+          },
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 13
+          },
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 14
+          },
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 15
+          },
+          {
+            "allowed": false,
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "locked": false,
+            "movable": false,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "allowed": false,
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "locked": false,
+            "movable": false,
+            "name": "Spell Book",
+            "slot": 17
+          },
+          {
+            "allowed": false,
+            "locked": false,
+            "movable": false,
+            "slot": 18
+          }
+        ],
+        "specialty": {
+          "description": "Increases the Attack and Defense skill of any Ballista for each level attained after 4th level.",
+          "icon": 6,
+          "name": "Ballista",
+          "sourceProgression": {
+            "attackDefense": 1,
+            "damage": 0,
+            "family": "Ballista",
+            "healthPercent": 10,
+            "warMachines": true
+          }
+        }
+      },
+      "heroes": [
+        {
+          "hasSpellbook": true,
+          "id": 1,
+          "index": 0,
+          "mana": 201,
+          "manaLimit": 220,
+          "movement": 1900,
+          "movementLimit": 2000,
+          "name": "Christian"
+        }
+      ],
+      "mapSettings": {
+        "enemyMoveTime": 150,
+        "moveTime": 150
+      },
+      "mode": "hero",
+      "movement": 1900,
+      "musicVolume": 88,
+      "onlineGame": false,
+      "rect": {
+        "h": 586,
+        "w": 672,
+        "x": 64,
+        "y": 7
+      },
+      "resourceTypes": [
+        {
+          "icon": "",
+          "id": 0,
+          "key": "wood",
+          "name": "Wood",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 1,
+          "key": "mercury",
+          "name": "Mercury",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 2,
+          "key": "ore",
+          "name": "Ore",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 3,
+          "key": "sulfur",
+          "name": "Sulfur",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 4,
+          "key": "crystal",
+          "name": "Crystal",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 5,
+          "key": "gems",
+          "name": "Gems",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 6,
+          "key": "gold",
+          "name": "Gold",
+          "scope": "core"
+        },
+        {
+          "icon": "mithril/small.png",
+          "id": 7,
+          "key": "mithril",
+          "name": "Mithril",
+          "scope": "wake-of-gods.mithril"
+        }
+      ],
+      "resources": [
+        20,
+        10,
+        20,
+        10,
+        10,
+        10,
+        20000,
+        0
+      ],
+      "sessionState": 6,
+      "soundVolume": 88,
+      "towns": [
+        {
+          "id": 0,
+          "index": 0,
+          "name": "Goonkbourg"
+        }
+      ],
+      "troopEquipment": {
+        "canAct": true,
+        "heroId": 1,
+        "heroName": "Christian",
+        "troops": [
+          {
+            "aiValue": 85500,
+            "attack": 90,
+            "cost": [
+              0,
+              50,
+              0,
+              0,
+              0,
+              0,
+              50000,
+              0
+            ],
+            "count": 1,
+            "damageMax": 110,
+            "damageMin": 85,
+            "defense": 80,
+            "description": "50% Magic Resist. Age. Acid breath. \nAttack twice. Fear. Fearless.",
+            "fightValue": 78500,
+            "growth": 1,
+            "health": 1800,
+            "icon": "tum-era/creatures/254/large.png",
+            "id": 316,
+            "key": "tum-era:necrossDragon",
+            "magicDamageReduction": 0,
+            "name": "Necross Dragon",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": false,
+              "mindImmune": true,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": true
+            },
+            "physicalDamageBonus": 0,
+            "rangedDamageBonus": 0,
+            "shooter": true,
+            "shots": 10,
+            "slot": 0,
+            "speed": 23
+          }
+        ]
+      },
+      "turn": true,
+      "windowToken": 71557160
+    },
+    "wardTrainingConfig": {
+      "fullRank10": 100,
+      "rank11Extra": 10,
+      "battlePercent": 100,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "ward134AgePassPoisonBlocked": {
+      "trained": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 85500,
+                "attack": 80,
+                "cost": [
+                  0,
+                  50,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50000,
+                  0
+                ],
+                "count": 1,
+                "damageMax": 100,
+                "damageMin": 75,
+                "defense": 70,
+                "description": "50% Magic Resist. Age. Acid breath. \nAttack twice. Fear. Fearless.",
+                "experience": 100,
+                "experiencePerUnit": 100,
+                "experienceRank": 10,
+                "fightValue": 78500,
+                "growth": 1,
+                "health": 1200,
+                "icon": "tum-era/creatures/254/large.png",
+                "id": 316,
+                "key": "tum-era:necrossDragon",
+                "name": "Necross Dragon",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": false,
+                  "mindImmune": true,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": true
+                },
+                "shooter": true,
+                "shots": 10,
+                "speed": 20
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Legs of Legion}\n\nThis item, when equipped by a hero in a town, increases the growth of your 2nd level units (in that town) by 5 per week.",
+            "icon": 118,
+            "name": "Legs of Legion",
+            "slot": 9
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 200,
+        "heroManaLimit": 200,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 19
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "className": "Knight",
+          "commanderIcon": 10,
+          "experience": 400,
+          "experienceIcon": 4,
+          "id": 1,
+          "level": 1,
+          "luck": {
+            "icon": 8,
+            "value": 0
+          },
+          "mana": 200,
+          "manaIcon": 5,
+          "manaLimit": 200,
+          "morale": {
+            "icon": 7,
+            "value": 0
+          },
+          "name": "Christian",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            0,
+            0,
+            1,
+            20
+          ],
+          "skills": [
+            {
+              "description": "{Expert Wisdom}\n\nExpert Wisdom allows your hero to learn fifth level spells.",
+              "icon": 9,
+              "mastery": "Expert",
+              "name": "Wisdom"
+            }
+          ],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "description": "{Legs of Legion}\n\nThis item, when equipped by a hero in a town, increases the growth of your 2nd level units (in that town) by 5 per week.",
+              "icon": 118,
+              "locked": false,
+              "movable": true,
+              "name": "Legs of Legion",
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "locked": false,
+              "movable": false,
+              "name": "Spell Book",
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Increases the Attack and Defense skill of any Ballista for each level attained after 4th level.",
+            "icon": 6,
+            "name": "Ballista",
+            "sourceProgression": {
+              "attackDefense": 1,
+              "damage": 0,
+              "family": "Ballista",
+              "healthPercent": 10,
+              "warMachines": true
+            }
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 1900,
+            "movementLimit": 2000,
+            "name": "Christian"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1900,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20000,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 1,
+          "heroName": "Christian",
+          "troops": [
+            {
+              "aiValue": 85500,
+              "attack": 90,
+              "cost": [
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                50000,
+                0
+              ],
+              "count": 1,
+              "damageMax": 110,
+              "damageMin": 85,
+              "defense": 80,
+              "description": "50% Magic Resist. Age. Acid breath. \nAttack twice. Fear. Fearless.",
+              "fightValue": 78500,
+              "growth": 1,
+              "health": 1800,
+              "icon": "tum-era/creatures/254/large.png",
+              "id": 316,
+              "key": "tum-era:necrossDragon",
+              "magicDamageReduction": 0,
+              "name": "Necross Dragon",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": false,
+                "mindImmune": true,
+                "noMorale": true,
+                "nonLiving": false,
+                "undead": true
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": true,
+              "shots": 10,
+              "slot": 0,
+              "speed": 23
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 75590056
+      },
+      "attacks": 12,
+      "sawAge": true,
+      "sawPoison": false,
+      "snapshots": [
+        {
+          "round": 1,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 1000000,
+          "first": 1000000
+        },
+        {
+          "round": 1,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 1000000,
+          "first": 999246
+        },
+        {
+          "round": 1,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "max": 1000000,
+          "first": 999246
+        },
+        {
+          "round": 1,
+          "active": "core:gnoll",
+          "enemy": true,
+          "max": 1000000,
+          "first": 999246
+        },
+        {
+          "round": 2,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 1000000,
+          "first": 999246
+        },
+        {
+          "round": 2,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 500000,
+          "first": 498620
+        },
+        {
+          "round": 2,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "max": 500000,
+          "first": 498620
+        },
+        {
+          "round": 2,
+          "active": "core:gnoll",
+          "enemy": true,
+          "max": 500000,
+          "first": 498620
+        },
+        {
+          "round": 3,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 500000,
+          "first": 498620
+        },
+        {
+          "round": 3,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 500000,
+          "first": 497849
+        },
+        {
+          "round": 3,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "max": 500000,
+          "first": 497849
+        },
+        {
+          "round": 3,
+          "active": "core:gnoll",
+          "enemy": true,
+          "max": 500000,
+          "first": 497849
+        },
+        {
+          "round": 4,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 500000,
+          "first": 497849
+        },
+        {
+          "round": 4,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 500000,
+          "first": 497211
+        },
+        {
+          "round": 4,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "max": 500000,
+          "first": 497211
+        },
+        {
+          "round": 4,
+          "active": "core:gnoll",
+          "enemy": true,
+          "max": 500000,
+          "first": 497211
+        },
+        {
+          "round": 5,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 1000000,
+          "first": 997211
+        },
+        {
+          "round": 5,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 1000000,
+          "first": 996450
+        },
+        {
+          "round": 5,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "max": 1000000,
+          "first": 996450
+        },
+        {
+          "round": 5,
+          "active": "core:gnoll",
+          "enemy": true,
+          "max": 1000000,
+          "first": 996450
+        },
+        {
+          "round": 6,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 1000000,
+          "first": 996450
+        },
+        {
+          "round": 6,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 1000000,
+          "first": 995752
+        },
+        {
+          "round": 6,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "max": 1000000,
+          "first": 995752
+        },
+        {
+          "round": 6,
+          "active": "core:gnoll",
+          "enemy": true,
+          "max": 1000000,
+          "first": 995752
+        },
+        {
+          "round": 7,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 1000000,
+          "first": 995752
+        },
+        {
+          "round": 7,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 1000000,
+          "first": 995046
+        },
+        {
+          "round": 7,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "max": 1000000,
+          "first": 995046
+        },
+        {
+          "round": 7,
+          "active": "core:gnoll",
+          "enemy": true,
+          "max": 1000000,
+          "first": 995046
+        },
+        {
+          "round": 8,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 1000000,
+          "first": 995046
+        },
+        {
+          "round": 8,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 1000000,
+          "first": 994404
+        },
+        {
+          "round": 8,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "max": 1000000,
+          "first": 994404
+        },
+        {
+          "round": 8,
+          "active": "core:gnoll",
+          "enemy": true,
+          "max": 1000000,
+          "first": 994404
+        },
+        {
+          "round": 9,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 1000000,
+          "first": 994404
+        },
+        {
+          "round": 9,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 1000000,
+          "first": 993713
+        },
+        {
+          "round": 9,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "max": 1000000,
+          "first": 993713
+        },
+        {
+          "round": 9,
+          "active": "core:gnoll",
+          "enemy": true,
+          "max": 1000000,
+          "first": 993713
+        },
+        {
+          "round": 10,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 1000000,
+          "first": 993713
+        },
+        {
+          "round": 10,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 1000000,
+          "first": 993027
+        },
+        {
+          "round": 10,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "max": 1000000,
+          "first": 993027
+        },
+        {
+          "round": 10,
+          "active": "core:gnoll",
+          "enemy": true,
+          "max": 1000000,
+          "first": 993027
+        },
+        {
+          "round": 11,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 1000000,
+          "first": 993027
+        },
+        {
+          "round": 11,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 1000000,
+          "first": 992332
+        },
+        {
+          "round": 11,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "max": 1000000,
+          "first": 992332
+        },
+        {
+          "round": 11,
+          "active": "core:gnoll",
+          "enemy": true,
+          "max": 1000000,
+          "first": 992332
+        },
+        {
+          "round": 12,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 1000000,
+          "first": 992332
+        },
+        {
+          "round": 12,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 1000000,
+          "first": 991609
+        }
+      ],
+      "after": {
+        "activeStack": 3,
+        "activeUnit": {
+          "aiValue": 156,
+          "attack": 5,
+          "canShoot": false,
+          "commander": true,
+          "controlled": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            140,
+            0
+          ],
+          "count": 1,
+          "damageMax": 12,
+          "damageMin": 6,
+          "defense": 5,
+          "description": "",
+          "fightValue": 130,
+          "growth": 9,
+          "health": 40,
+          "icon": "commanders/CPrL174n",
+          "id": 240,
+          "key": "wake-of-gods.commanders:paladin1",
+          "name": "Paladin",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 24,
+          "speed": 4
+        },
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 85500,
+                "attack": 80,
+                "cost": [
+                  0,
+                  50,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50000,
+                  0
+                ],
+                "count": 1,
+                "damageMax": 100,
+                "damageMin": 75,
+                "defense": 70,
+                "description": "50% Magic Resist. Age. Acid breath. \nAttack twice. Fear. Fearless.",
+                "experience": 100,
+                "experiencePerUnit": 100,
+                "experienceRank": 10,
+                "fightValue": 78500,
+                "growth": 1,
+                "health": 1200,
+                "icon": "tum-era/creatures/254/large.png",
+                "id": 316,
+                "key": "tum-era:necrossDragon",
+                "name": "Necross Dragon",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": false,
+                  "mindImmune": true,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": true
+                },
+                "shooter": true,
+                "shots": 10,
+                "speed": 20
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autoCombat": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "battleCamera": {
+          "active": false,
+          "actor": {
+            "cells": [
+              {
+                "x": 146,
+                "y": 112
+              },
+              {
+                "x": 102,
+                "y": 112
+              }
+            ],
+            "name": "Necross Dragon",
+            "stackId": 0,
+            "x": 146,
+            "y": 112
+          },
+          "destination": {
+            "x": 168,
+            "y": 154
+          },
+          "kind": "attack",
+          "label": "",
+          "sequence": 83,
+          "targets": [
+            {
+              "cells": [
+                {
+                  "x": 168,
+                  "y": 154
+                }
+              ],
+              "name": "Gnoll",
+              "stackId": 1,
+              "x": 168,
+              "y": 154
+            }
+          ]
+        },
+        "battleCells": [
+          {
+            "actionLabel": "",
+            "hex": 1,
+            "kind": 1,
+            "reachable": false,
+            "x": 102,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 2,
+            "kind": 1,
+            "reachable": false,
+            "x": 146,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 3,
+            "kind": 0,
+            "reachable": false,
+            "x": 190,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 4,
+            "kind": 0,
+            "reachable": false,
+            "x": 234,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 5,
+            "kind": 0,
+            "reachable": false,
+            "x": 278,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 6,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 7,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 8,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 9,
+            "kind": 0,
+            "reachable": false,
+            "x": 454,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 10,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 11,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 12,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 13,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 14,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 15,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 18,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 19,
+            "kind": 0,
+            "reachable": false,
+            "x": 124,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 20,
+            "kind": 1,
+            "reachable": false,
+            "x": 168,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 21,
+            "kind": 0,
+            "reachable": false,
+            "x": 212,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 22,
+            "kind": 0,
+            "reachable": false,
+            "x": 256,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 23,
+            "kind": 0,
+            "reachable": false,
+            "x": 300,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 24,
+            "kind": 0,
+            "reachable": false,
+            "x": 344,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 25,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 26,
+            "kind": 0,
+            "reachable": false,
+            "x": 432,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 27,
+            "kind": 0,
+            "reachable": false,
+            "x": 476,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 28,
+            "kind": 0,
+            "reachable": false,
+            "x": 520,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 29,
+            "kind": 0,
+            "reachable": false,
+            "x": 564,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 30,
+            "kind": 0,
+            "reachable": false,
+            "x": 608,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 31,
+            "kind": 0,
+            "reachable": false,
+            "x": 652,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 32,
+            "kind": 0,
+            "reachable": false,
+            "x": 696,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 35,
+            "kind": 0,
+            "reachable": false,
+            "x": 102,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 36,
+            "kind": 0,
+            "reachable": false,
+            "x": 146,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 37,
+            "kind": 0,
+            "reachable": false,
+            "x": 190,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 38,
+            "kind": 0,
+            "reachable": false,
+            "x": 234,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 39,
+            "kind": 0,
+            "reachable": false,
+            "x": 278,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 40,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 41,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 42,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 43,
+            "kind": 0,
+            "reachable": false,
+            "x": 454,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 44,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 45,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 46,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 47,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 48,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 49,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 52,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 53,
+            "kind": 0,
+            "reachable": false,
+            "x": 124,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 54,
+            "kind": 0,
+            "reachable": false,
+            "x": 168,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 55,
+            "kind": 0,
+            "reachable": false,
+            "x": 212,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 56,
+            "kind": 0,
+            "reachable": false,
+            "x": 256,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 57,
+            "kind": 0,
+            "reachable": false,
+            "x": 300,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 58,
+            "kind": 0,
+            "reachable": false,
+            "x": 344,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 59,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 60,
+            "kind": 0,
+            "reachable": false,
+            "x": 432,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 61,
+            "kind": 0,
+            "reachable": false,
+            "x": 476,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 62,
+            "kind": 0,
+            "reachable": true,
+            "x": 520,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 63,
+            "kind": 0,
+            "reachable": true,
+            "x": 564,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 64,
+            "kind": 0,
+            "reachable": true,
+            "x": 608,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 65,
+            "kind": 0,
+            "reachable": true,
+            "x": 652,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 66,
+            "kind": 0,
+            "reachable": true,
+            "x": 696,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 69,
+            "kind": 0,
+            "reachable": false,
+            "x": 102,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 70,
+            "kind": 0,
+            "reachable": false,
+            "x": 146,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 71,
+            "kind": 0,
+            "reachable": false,
+            "x": 190,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 72,
+            "kind": 0,
+            "reachable": false,
+            "x": 234,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 73,
+            "kind": 0,
+            "reachable": false,
+            "x": 278,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 74,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 75,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 76,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 77,
+            "kind": 0,
+            "reachable": false,
+            "x": 454,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 78,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 79,
+            "kind": 0,
+            "reachable": true,
+            "x": 542,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 80,
+            "kind": 0,
+            "reachable": true,
+            "x": 586,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 81,
+            "kind": 0,
+            "reachable": true,
+            "x": 630,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 82,
+            "kind": 0,
+            "reachable": true,
+            "x": 674,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 83,
+            "kind": 0,
+            "reachable": true,
+            "x": 718,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 86,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 87,
+            "kind": 0,
+            "reachable": false,
+            "x": 124,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 88,
+            "kind": 0,
+            "reachable": false,
+            "x": 168,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 89,
+            "kind": 0,
+            "reachable": false,
+            "x": 212,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 90,
+            "kind": 0,
+            "reachable": false,
+            "x": 256,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 91,
+            "kind": 0,
+            "reachable": false,
+            "x": 300,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 92,
+            "kind": 0,
+            "reachable": false,
+            "x": 344,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 93,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 94,
+            "kind": 0,
+            "reachable": false,
+            "x": 432,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 95,
+            "kind": 0,
+            "reachable": true,
+            "x": 476,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 96,
+            "kind": 0,
+            "reachable": true,
+            "x": 520,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 97,
+            "kind": 0,
+            "reachable": true,
+            "x": 564,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 98,
+            "kind": 0,
+            "reachable": true,
+            "x": 608,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 99,
+            "kind": 0,
+            "reachable": true,
+            "x": 652,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 100,
+            "kind": 0,
+            "reachable": true,
+            "x": 696,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 103,
+            "kind": 0,
+            "reachable": false,
+            "x": 102,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 104,
+            "kind": 0,
+            "reachable": false,
+            "x": 146,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 105,
+            "kind": 0,
+            "reachable": false,
+            "x": 190,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 106,
+            "kind": 0,
+            "reachable": false,
+            "x": 234,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 107,
+            "kind": 0,
+            "reachable": false,
+            "x": 278,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 108,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 109,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 110,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 111,
+            "kind": 0,
+            "reachable": true,
+            "x": 454,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 112,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 113,
+            "kind": 0,
+            "reachable": true,
+            "x": 542,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 114,
+            "kind": 0,
+            "reachable": true,
+            "x": 586,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 115,
+            "kind": 0,
+            "reachable": true,
+            "x": 630,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 116,
+            "kind": 0,
+            "reachable": true,
+            "x": 674,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 117,
+            "kind": 0,
+            "reachable": true,
+            "x": 718,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 120,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 121,
+            "kind": 0,
+            "reachable": false,
+            "x": 124,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 122,
+            "kind": 0,
+            "reachable": false,
+            "x": 168,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 123,
+            "kind": 0,
+            "reachable": false,
+            "x": 212,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 124,
+            "kind": 0,
+            "reachable": false,
+            "x": 256,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 125,
+            "kind": 0,
+            "reachable": false,
+            "x": 300,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 126,
+            "kind": 0,
+            "reachable": false,
+            "x": 344,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 127,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 128,
+            "kind": 0,
+            "reachable": true,
+            "x": 432,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 129,
+            "kind": 0,
+            "reachable": true,
+            "x": 476,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 130,
+            "kind": 0,
+            "reachable": true,
+            "x": 520,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 131,
+            "kind": 0,
+            "reachable": true,
+            "x": 564,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 132,
+            "kind": 0,
+            "reachable": true,
+            "x": 608,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 133,
+            "kind": 0,
+            "reachable": true,
+            "x": 652,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 134,
+            "kind": 0,
+            "reachable": true,
+            "x": 696,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 137,
+            "kind": 1,
+            "reachable": false,
+            "x": 102,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 138,
+            "kind": 0,
+            "reachable": false,
+            "x": 146,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 139,
+            "kind": 0,
+            "reachable": false,
+            "x": 190,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 140,
+            "kind": 0,
+            "reachable": false,
+            "x": 234,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 141,
+            "kind": 0,
+            "reachable": false,
+            "x": 278,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 142,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 143,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 144,
+            "kind": 0,
+            "reachable": true,
+            "x": 410,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 145,
+            "kind": 0,
+            "reachable": true,
+            "x": 454,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 146,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 147,
+            "kind": 0,
+            "reachable": true,
+            "x": 542,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 148,
+            "kind": 0,
+            "reachable": true,
+            "x": 586,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 149,
+            "kind": 1,
+            "reachable": true,
+            "x": 630,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 150,
+            "kind": 0,
+            "reachable": true,
+            "x": 674,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 151,
+            "kind": 0,
+            "reachable": true,
+            "x": 718,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 154,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 155,
+            "kind": 0,
+            "reachable": false,
+            "x": 124,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 156,
+            "kind": 0,
+            "reachable": false,
+            "x": 168,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 157,
+            "kind": 0,
+            "reachable": false,
+            "x": 212,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 158,
+            "kind": 0,
+            "reachable": false,
+            "x": 256,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 159,
+            "kind": 0,
+            "reachable": false,
+            "x": 300,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 160,
+            "kind": 0,
+            "reachable": false,
+            "x": 344,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 161,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 162,
+            "kind": 0,
+            "reachable": true,
+            "x": 432,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 163,
+            "kind": 0,
+            "reachable": true,
+            "x": 476,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 164,
+            "kind": 0,
+            "reachable": true,
+            "x": 520,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 165,
+            "kind": 0,
+            "reachable": true,
+            "x": 564,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 166,
+            "kind": 0,
+            "reachable": true,
+            "x": 608,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 167,
+            "kind": 0,
+            "reachable": true,
+            "x": 652,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 168,
+            "kind": 0,
+            "reachable": true,
+            "x": 696,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 171,
+            "kind": 0,
+            "reachable": false,
+            "x": 102,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 172,
+            "kind": 0,
+            "reachable": false,
+            "x": 146,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 173,
+            "kind": 0,
+            "reachable": false,
+            "x": 190,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 174,
+            "kind": 0,
+            "reachable": false,
+            "x": 234,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 175,
+            "kind": 0,
+            "reachable": false,
+            "x": 278,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 176,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 177,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 178,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 179,
+            "kind": 0,
+            "reachable": true,
+            "x": 454,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 180,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 181,
+            "kind": 0,
+            "reachable": true,
+            "x": 542,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 182,
+            "kind": 0,
+            "reachable": true,
+            "x": 586,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 183,
+            "kind": 0,
+            "reachable": true,
+            "x": 630,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 184,
+            "kind": 0,
+            "reachable": true,
+            "x": 674,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 185,
+            "kind": 0,
+            "reachable": true,
+            "x": 718,
+            "y": 532
+          }
+        ],
+        "battlePlayerAttacks": true,
+        "battleUnits": [
+          {
+            "aiValue": 156,
+            "armySlot": -2,
+            "attack": 22,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              140,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 40,
+            "damageMax": 12,
+            "damageMin": 6,
+            "defense": 22,
+            "description": "",
+            "enemy": true,
+            "eraSlot": 1,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 1,
+            "fightValue": 130,
+            "growth": 9,
+            "health": 40,
+            "icon": "commanders/CPrL174n",
+            "id": 240,
+            "key": "wake-of-gods.commanders:paladin1",
+            "luck": 1,
+            "magicResistance": 0,
+            "maximumHealth": 40,
+            "morale": 1,
+            "name": "Paladin",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              149
+            ],
+            "remainingCasts": 1,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 24,
+            "speed": 5,
+            "stackId": 3,
+            "x": 630,
+            "y": 448
+          },
+          {
+            "aiValue": 56,
+            "armySlot": 0,
+            "attack": 16,
+            "canMeleeAt": false,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              50,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 991609,
+            "damageMax": 1,
+            "damageMin": 1,
+            "defense": 43,
+            "description": "",
+            "enemy": true,
+            "eraSlot": 0,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 70,
+            "growth": 12,
+            "health": 1000000,
+            "icon": "",
+            "id": 98,
+            "key": "core:gnoll",
+            "luck": 1,
+            "magicResistance": 0,
+            "maximumHealth": 1000000,
+            "morale": 0,
+            "name": "Gnoll",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              20
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 0,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 0,
+            "speed": 1,
+            "stackId": 1,
+            "x": 168,
+            "y": 154
+          },
+          {
+            "aiValue": 156,
+            "armySlot": -2,
+            "attack": 6,
+            "canMeleeAt": false,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              140,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 40,
+            "damageMax": 12,
+            "damageMin": 6,
+            "defense": 7,
+            "description": "",
+            "enemy": false,
+            "eraSlot": 1,
+            "experience": 400,
+            "experiencePerUnit": 400,
+            "experienceRank": 1,
+            "fightValue": 130,
+            "growth": 9,
+            "health": 40,
+            "icon": "commanders/CPrL174n",
+            "id": 240,
+            "key": "wake-of-gods.commanders:paladin1",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 40,
+            "morale": 0,
+            "name": "Paladin",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              137
+            ],
+            "remainingCasts": 1,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 24,
+            "speed": 5,
+            "stackId": 2,
+            "x": 102,
+            "y": 448
+          },
+          {
+            "aiValue": 85500,
+            "armySlot": 0,
+            "attack": 90,
+            "canMeleeAt": false,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              50,
+              0,
+              0,
+              0,
+              0,
+              50000,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 1792,
+            "damageMax": 110,
+            "damageMin": 85,
+            "defense": 80,
+            "description": "50% Magic Resist. Age. Acid breath. \nAttack twice. Fear. Fearless.",
+            "enemy": false,
+            "eraSlot": 0,
+            "experience": 100,
+            "experiencePerUnit": 100,
+            "experienceRank": 10,
+            "fightValue": 78500,
+            "growth": 1,
+            "health": 1200,
+            "icon": "tum-era/creatures/254/large.png",
+            "id": 316,
+            "key": "tum-era:necrossDragon",
+            "luck": 0,
+            "magicResistance": 40,
+            "maximumHealth": 1800,
+            "morale": 0,
+            "name": "Necross Dragon",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": false,
+              "mindImmune": true,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": true
+            },
+            "occupied": [
+              2,
+              1
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "remainingShots": 15,
+            "shooter": true,
+            "shots": 10,
+            "speed": 23,
+            "stackId": 0,
+            "x": 146,
+            "y": 112
+          }
+        ],
+        "canAct": true,
+        "canAutoCombat": true,
+        "canEndTactics": false,
+        "canQueueAutoCombat": false,
+        "canRetreat": true,
+        "canUseMagic": true,
+        "canWait": true,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "creatureCanCast": true,
+        "creatureSpellName": "Cure",
+        "creatureSpellTargeting": false,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Legs of Legion}\n\nThis item, when equipped by a hero in a town, increases the growth of your 2nd level units (in that town) by 5 per week.",
+            "icon": 118,
+            "name": "Legs of Legion",
+            "slot": 9
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "focus": {
+          "x": 630,
+          "y": 448
+        },
+        "heroCanCast": true,
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 360,
+        "heroManaLimit": 200,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroSpellCastLimitReached": false,
+        "heroSpellPower": {
+          "effective": 17,
+          "interference": false,
+          "original": 17
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 1700,
+            "movementLimit": 2000,
+            "name": "Christian"
+          }
+        ],
+        "manualControl": true,
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "battle",
+        "movement": 1700,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20000,
+          0
+        ],
+        "round": 12,
+        "sessionState": 6,
+        "soundVolume": 88,
+        "spellTargeting": false,
+        "tacticsMode": false,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true,
+        "windowToken": 112944976
+      },
+      "fixture": "Existing originalsource254, nativeR10 earnedbykill; realenemyhero artifact134 equippedtorso. OnlytargetGnoll durability/speed/attack controls, no100%syntheticAge orPoison bonus."
+    },
+    "ward134PoisonControl": {
+      "trained": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 85500,
+                "attack": 80,
+                "cost": [
+                  0,
+                  50,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50000,
+                  0
+                ],
+                "count": 1,
+                "damageMax": 100,
+                "damageMin": 75,
+                "defense": 70,
+                "description": "50% Magic Resist. Age. Acid breath. \nAttack twice. Fear. Fearless.",
+                "experience": 100,
+                "experiencePerUnit": 100,
+                "experienceRank": 10,
+                "fightValue": 78500,
+                "growth": 1,
+                "health": 1200,
+                "icon": "tum-era/creatures/254/large.png",
+                "id": 316,
+                "key": "tum-era:necrossDragon",
+                "name": "Necross Dragon",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": false,
+                  "mindImmune": true,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": true
+                },
+                "shooter": true,
+                "shots": 10,
+                "speed": 20
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Skull Helmet}\n\nWorn on the head, this item increases your Knowledge skill by +2.",
+            "icon": 20,
+            "name": "Skull Helmet",
+            "slot": 0
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 201,
+        "heroManaLimit": 220,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 19
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "className": "Knight",
+          "commanderIcon": 10,
+          "experience": 400,
+          "experienceIcon": 4,
+          "id": 1,
+          "level": 1,
+          "luck": {
+            "icon": 8,
+            "value": 0
+          },
+          "mana": 201,
+          "manaIcon": 5,
+          "manaLimit": 220,
+          "morale": {
+            "icon": 7,
+            "value": 0
+          },
+          "name": "Christian",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            0,
+            0,
+            1,
+            22
+          ],
+          "skills": [
+            {
+              "description": "{Expert Wisdom}\n\nExpert Wisdom allows your hero to learn fifth level spells.",
+              "icon": 9,
+              "mastery": "Expert",
+              "name": "Wisdom"
+            }
+          ],
+          "slots": [
+            {
+              "allowed": false,
+              "description": "{Skull Helmet}\n\nWorn on the head, this item increases your Knowledge skill by +2.",
+              "icon": 20,
+              "locked": false,
+              "movable": true,
+              "name": "Skull Helmet",
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "locked": false,
+              "movable": false,
+              "name": "Spell Book",
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Increases the Attack and Defense skill of any Ballista for each level attained after 4th level.",
+            "icon": 6,
+            "name": "Ballista",
+            "sourceProgression": {
+              "attackDefense": 1,
+              "damage": 0,
+              "family": "Ballista",
+              "healthPercent": 10,
+              "warMachines": true
+            }
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 201,
+            "manaLimit": 220,
+            "movement": 1900,
+            "movementLimit": 2000,
+            "name": "Christian"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1900,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20000,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 1,
+          "heroName": "Christian",
+          "troops": [
+            {
+              "aiValue": 85500,
+              "attack": 90,
+              "cost": [
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                50000,
+                0
+              ],
+              "count": 1,
+              "damageMax": 110,
+              "damageMin": 85,
+              "defense": 80,
+              "description": "50% Magic Resist. Age. Acid breath. \nAttack twice. Fear. Fearless.",
+              "fightValue": 78500,
+              "growth": 1,
+              "health": 1800,
+              "icon": "tum-era/creatures/254/large.png",
+              "id": 316,
+              "key": "tum-era:necrossDragon",
+              "magicDamageReduction": 0,
+              "name": "Necross Dragon",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": false,
+                "mindImmune": true,
+                "noMorale": true,
+                "nonLiving": false,
+                "undead": true
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": true,
+              "shots": 10,
+              "slot": 0,
+              "speed": 23
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 71557160
+      },
+      "attacks": 6,
+      "sawAge": true,
+      "sawPoison": true,
+      "snapshots": [
+        {
+          "round": 1,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 1000000,
+          "first": 1000000
+        },
+        {
+          "round": 1,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 450000,
+          "first": 449132
+        },
+        {
+          "round": 1,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "max": 450000,
+          "first": 449132
+        },
+        {
+          "round": 1,
+          "active": "core:gnoll",
+          "enemy": true,
+          "max": 450000,
+          "first": 449132
+        },
+        {
+          "round": 2,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 400000,
+          "first": 399132
+        },
+        {
+          "round": 2,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 400000,
+          "first": 398272
+        },
+        {
+          "round": 2,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "max": 400000,
+          "first": 398272
+        },
+        {
+          "round": 2,
+          "active": "core:gnoll",
+          "enemy": true,
+          "max": 400000,
+          "first": 398272
+        },
+        {
+          "round": 3,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 350000,
+          "first": 348272
+        },
+        {
+          "round": 3,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 350000,
+          "first": 347407
+        },
+        {
+          "round": 3,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "max": 350000,
+          "first": 347407
+        },
+        {
+          "round": 3,
+          "active": "core:gnoll",
+          "enemy": true,
+          "max": 350000,
+          "first": 347407
+        },
+        {
+          "round": 4,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 600000,
+          "first": 597407
+        },
+        {
+          "round": 4,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 600000,
+          "first": 596555
+        },
+        {
+          "round": 4,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "max": 600000,
+          "first": 596555
+        },
+        {
+          "round": 4,
+          "active": "core:gnoll",
+          "enemy": true,
+          "max": 600000,
+          "first": 596555
+        },
+        {
+          "round": 5,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 500000,
+          "first": 496555
+        },
+        {
+          "round": 5,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 500000,
+          "first": 495791
+        },
+        {
+          "round": 5,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "max": 500000,
+          "first": 495791
+        },
+        {
+          "round": 5,
+          "active": "core:gnoll",
+          "enemy": true,
+          "max": 500000,
+          "first": 495791
+        },
+        {
+          "round": 6,
+          "active": "tum-era:necrossDragon",
+          "enemy": false,
+          "max": 500000,
+          "first": 495791
+        },
+        {
+          "round": 6,
+          "active": "wake-of-gods.commanders:paladin1",
+          "enemy": true,
+          "max": 250000,
+          "first": 244889
+        }
+      ],
+      "after": {
+        "activeStack": 3,
+        "activeUnit": {
+          "aiValue": 156,
+          "attack": 5,
+          "canShoot": false,
+          "commander": true,
+          "controlled": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            140,
+            0
+          ],
+          "count": 1,
+          "damageMax": 12,
+          "damageMin": 6,
+          "defense": 5,
+          "description": "",
+          "fightValue": 130,
+          "growth": 9,
+          "health": 40,
+          "icon": "commanders/CPrL174n",
+          "id": 240,
+          "key": "wake-of-gods.commanders:paladin1",
+          "name": "Paladin",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 24,
+          "speed": 4
+        },
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 85500,
+                "attack": 80,
+                "cost": [
+                  0,
+                  50,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50000,
+                  0
+                ],
+                "count": 1,
+                "damageMax": 100,
+                "damageMin": 75,
+                "defense": 70,
+                "description": "50% Magic Resist. Age. Acid breath. \nAttack twice. Fear. Fearless.",
+                "experience": 100,
+                "experiencePerUnit": 100,
+                "experienceRank": 10,
+                "fightValue": 78500,
+                "growth": 1,
+                "health": 1200,
+                "icon": "tum-era/creatures/254/large.png",
+                "id": 316,
+                "key": "tum-era:necrossDragon",
+                "name": "Necross Dragon",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": false,
+                  "mindImmune": true,
+                  "noMorale": true,
+                  "nonLiving": false,
+                  "undead": true
+                },
+                "shooter": true,
+                "shots": 10,
+                "speed": 20
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autoCombat": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "battleCamera": {
+          "active": false,
+          "actor": {
+            "cells": [
+              {
+                "x": 146,
+                "y": 112
+              },
+              {
+                "x": 102,
+                "y": 112
+              }
+            ],
+            "name": "Necross Dragon",
+            "stackId": 0,
+            "x": 146,
+            "y": 112
+          },
+          "destination": {
+            "x": 168,
+            "y": 154
+          },
+          "kind": "spell",
+          "label": "Age",
+          "sequence": 50,
+          "targets": [
+            {
+              "cells": [
+                {
+                  "x": 168,
+                  "y": 154
+                }
+              ],
+              "name": "Gnoll",
+              "stackId": 1,
+              "x": 168,
+              "y": 154
+            }
+          ]
+        },
+        "battleCells": [
+          {
+            "actionLabel": "",
+            "hex": 1,
+            "kind": 1,
+            "reachable": false,
+            "x": 102,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 2,
+            "kind": 1,
+            "reachable": false,
+            "x": 146,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 3,
+            "kind": 0,
+            "reachable": false,
+            "x": 190,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 4,
+            "kind": 0,
+            "reachable": false,
+            "x": 234,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 5,
+            "kind": 0,
+            "reachable": false,
+            "x": 278,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 6,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 7,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 8,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 9,
+            "kind": 0,
+            "reachable": false,
+            "x": 454,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 10,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 11,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 12,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 13,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 14,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 15,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 18,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 19,
+            "kind": 0,
+            "reachable": false,
+            "x": 124,
+            "y": 154
+          },
+          {
+            "actionLabel": "Cast Cure",
+            "hex": 20,
+            "kind": 1,
+            "reachable": false,
+            "x": 168,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 21,
+            "kind": 0,
+            "reachable": false,
+            "x": 212,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 22,
+            "kind": 0,
+            "reachable": false,
+            "x": 256,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 23,
+            "kind": 0,
+            "reachable": false,
+            "x": 300,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 24,
+            "kind": 0,
+            "reachable": false,
+            "x": 344,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 25,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 26,
+            "kind": 0,
+            "reachable": false,
+            "x": 432,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 27,
+            "kind": 0,
+            "reachable": false,
+            "x": 476,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 28,
+            "kind": 0,
+            "reachable": false,
+            "x": 520,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 29,
+            "kind": 0,
+            "reachable": false,
+            "x": 564,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 30,
+            "kind": 0,
+            "reachable": false,
+            "x": 608,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 31,
+            "kind": 0,
+            "reachable": false,
+            "x": 652,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 32,
+            "kind": 0,
+            "reachable": false,
+            "x": 696,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 35,
+            "kind": 0,
+            "reachable": false,
+            "x": 102,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 36,
+            "kind": 0,
+            "reachable": false,
+            "x": 146,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 37,
+            "kind": 0,
+            "reachable": false,
+            "x": 190,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 38,
+            "kind": 0,
+            "reachable": false,
+            "x": 234,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 39,
+            "kind": 0,
+            "reachable": false,
+            "x": 278,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 40,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 41,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 42,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 43,
+            "kind": 0,
+            "reachable": false,
+            "x": 454,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 44,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 45,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 46,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 47,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 48,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 49,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 52,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 53,
+            "kind": 0,
+            "reachable": false,
+            "x": 124,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 54,
+            "kind": 0,
+            "reachable": false,
+            "x": 168,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 55,
+            "kind": 0,
+            "reachable": false,
+            "x": 212,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 56,
+            "kind": 0,
+            "reachable": false,
+            "x": 256,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 57,
+            "kind": 0,
+            "reachable": false,
+            "x": 300,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 58,
+            "kind": 0,
+            "reachable": false,
+            "x": 344,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 59,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 60,
+            "kind": 0,
+            "reachable": false,
+            "x": 432,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 61,
+            "kind": 0,
+            "reachable": false,
+            "x": 476,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 62,
+            "kind": 0,
+            "reachable": true,
+            "x": 520,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 63,
+            "kind": 0,
+            "reachable": true,
+            "x": 564,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 64,
+            "kind": 0,
+            "reachable": true,
+            "x": 608,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 65,
+            "kind": 0,
+            "reachable": true,
+            "x": 652,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 66,
+            "kind": 0,
+            "reachable": true,
+            "x": 696,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 69,
+            "kind": 0,
+            "reachable": false,
+            "x": 102,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 70,
+            "kind": 0,
+            "reachable": false,
+            "x": 146,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 71,
+            "kind": 0,
+            "reachable": false,
+            "x": 190,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 72,
+            "kind": 0,
+            "reachable": false,
+            "x": 234,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 73,
+            "kind": 0,
+            "reachable": false,
+            "x": 278,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 74,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 75,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 76,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 77,
+            "kind": 0,
+            "reachable": false,
+            "x": 454,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 78,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 79,
+            "kind": 0,
+            "reachable": true,
+            "x": 542,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 80,
+            "kind": 0,
+            "reachable": true,
+            "x": 586,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 81,
+            "kind": 0,
+            "reachable": true,
+            "x": 630,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 82,
+            "kind": 0,
+            "reachable": true,
+            "x": 674,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 83,
+            "kind": 0,
+            "reachable": true,
+            "x": 718,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 86,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 87,
+            "kind": 0,
+            "reachable": false,
+            "x": 124,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 88,
+            "kind": 0,
+            "reachable": false,
+            "x": 168,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 89,
+            "kind": 0,
+            "reachable": false,
+            "x": 212,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 90,
+            "kind": 0,
+            "reachable": false,
+            "x": 256,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 91,
+            "kind": 0,
+            "reachable": false,
+            "x": 300,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 92,
+            "kind": 0,
+            "reachable": false,
+            "x": 344,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 93,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 94,
+            "kind": 0,
+            "reachable": false,
+            "x": 432,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 95,
+            "kind": 0,
+            "reachable": true,
+            "x": 476,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 96,
+            "kind": 0,
+            "reachable": true,
+            "x": 520,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 97,
+            "kind": 0,
+            "reachable": true,
+            "x": 564,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 98,
+            "kind": 0,
+            "reachable": true,
+            "x": 608,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 99,
+            "kind": 0,
+            "reachable": true,
+            "x": 652,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 100,
+            "kind": 0,
+            "reachable": true,
+            "x": 696,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 103,
+            "kind": 0,
+            "reachable": false,
+            "x": 102,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 104,
+            "kind": 0,
+            "reachable": false,
+            "x": 146,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 105,
+            "kind": 0,
+            "reachable": false,
+            "x": 190,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 106,
+            "kind": 0,
+            "reachable": false,
+            "x": 234,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 107,
+            "kind": 0,
+            "reachable": false,
+            "x": 278,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 108,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 109,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 110,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 111,
+            "kind": 0,
+            "reachable": true,
+            "x": 454,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 112,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 113,
+            "kind": 0,
+            "reachable": true,
+            "x": 542,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 114,
+            "kind": 0,
+            "reachable": true,
+            "x": 586,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 115,
+            "kind": 0,
+            "reachable": true,
+            "x": 630,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 116,
+            "kind": 0,
+            "reachable": true,
+            "x": 674,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 117,
+            "kind": 0,
+            "reachable": true,
+            "x": 718,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 120,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 121,
+            "kind": 0,
+            "reachable": false,
+            "x": 124,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 122,
+            "kind": 0,
+            "reachable": false,
+            "x": 168,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 123,
+            "kind": 0,
+            "reachable": false,
+            "x": 212,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 124,
+            "kind": 0,
+            "reachable": false,
+            "x": 256,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 125,
+            "kind": 0,
+            "reachable": false,
+            "x": 300,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 126,
+            "kind": 0,
+            "reachable": false,
+            "x": 344,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 127,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 128,
+            "kind": 0,
+            "reachable": true,
+            "x": 432,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 129,
+            "kind": 0,
+            "reachable": true,
+            "x": 476,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 130,
+            "kind": 0,
+            "reachable": true,
+            "x": 520,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 131,
+            "kind": 0,
+            "reachable": true,
+            "x": 564,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 132,
+            "kind": 0,
+            "reachable": true,
+            "x": 608,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 133,
+            "kind": 0,
+            "reachable": true,
+            "x": 652,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 134,
+            "kind": 0,
+            "reachable": true,
+            "x": 696,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 137,
+            "kind": 1,
+            "reachable": false,
+            "x": 102,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 138,
+            "kind": 0,
+            "reachable": false,
+            "x": 146,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 139,
+            "kind": 0,
+            "reachable": false,
+            "x": 190,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 140,
+            "kind": 0,
+            "reachable": false,
+            "x": 234,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 141,
+            "kind": 0,
+            "reachable": false,
+            "x": 278,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 142,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 143,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 144,
+            "kind": 0,
+            "reachable": true,
+            "x": 410,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 145,
+            "kind": 0,
+            "reachable": true,
+            "x": 454,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 146,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 147,
+            "kind": 0,
+            "reachable": true,
+            "x": 542,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 148,
+            "kind": 0,
+            "reachable": true,
+            "x": 586,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 149,
+            "kind": 1,
+            "reachable": true,
+            "x": 630,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 150,
+            "kind": 0,
+            "reachable": true,
+            "x": 674,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 151,
+            "kind": 0,
+            "reachable": true,
+            "x": 718,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 154,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 155,
+            "kind": 0,
+            "reachable": false,
+            "x": 124,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 156,
+            "kind": 0,
+            "reachable": false,
+            "x": 168,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 157,
+            "kind": 0,
+            "reachable": false,
+            "x": 212,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 158,
+            "kind": 0,
+            "reachable": false,
+            "x": 256,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 159,
+            "kind": 0,
+            "reachable": false,
+            "x": 300,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 160,
+            "kind": 0,
+            "reachable": false,
+            "x": 344,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 161,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 162,
+            "kind": 0,
+            "reachable": true,
+            "x": 432,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 163,
+            "kind": 0,
+            "reachable": true,
+            "x": 476,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 164,
+            "kind": 0,
+            "reachable": true,
+            "x": 520,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 165,
+            "kind": 0,
+            "reachable": true,
+            "x": 564,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 166,
+            "kind": 0,
+            "reachable": true,
+            "x": 608,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 167,
+            "kind": 0,
+            "reachable": true,
+            "x": 652,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 168,
+            "kind": 0,
+            "reachable": true,
+            "x": 696,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 171,
+            "kind": 0,
+            "reachable": false,
+            "x": 102,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 172,
+            "kind": 0,
+            "reachable": false,
+            "x": 146,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 173,
+            "kind": 0,
+            "reachable": false,
+            "x": 190,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 174,
+            "kind": 0,
+            "reachable": false,
+            "x": 234,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 175,
+            "kind": 0,
+            "reachable": false,
+            "x": 278,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 176,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 177,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 178,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 179,
+            "kind": 0,
+            "reachable": true,
+            "x": 454,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 180,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 181,
+            "kind": 0,
+            "reachable": true,
+            "x": 542,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 182,
+            "kind": 0,
+            "reachable": true,
+            "x": 586,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 183,
+            "kind": 0,
+            "reachable": true,
+            "x": 630,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 184,
+            "kind": 0,
+            "reachable": true,
+            "x": 674,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 185,
+            "kind": 0,
+            "reachable": true,
+            "x": 718,
+            "y": 532
+          }
+        ],
+        "battlePlayerAttacks": true,
+        "battleUnits": [
+          {
+            "aiValue": 156,
+            "armySlot": -2,
+            "attack": 6,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              140,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 40,
+            "damageMax": 12,
+            "damageMin": 6,
+            "defense": 6,
+            "description": "",
+            "enemy": true,
+            "eraSlot": 1,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 1,
+            "fightValue": 130,
+            "growth": 9,
+            "health": 40,
+            "icon": "commanders/CPrL174n",
+            "id": 240,
+            "key": "wake-of-gods.commanders:paladin1",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 40,
+            "morale": 0,
+            "name": "Paladin",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              149
+            ],
+            "remainingCasts": 2,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 24,
+            "speed": 5,
+            "stackId": 3,
+            "x": 630,
+            "y": 448
+          },
+          {
+            "aiValue": 56,
+            "armySlot": 0,
+            "attack": 0,
+            "canMeleeAt": false,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              50,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 244889,
+            "damageMax": 1,
+            "damageMin": 1,
+            "defense": 24,
+            "description": "",
+            "enemy": true,
+            "eraSlot": 0,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 70,
+            "growth": 12,
+            "health": 1000000,
+            "icon": "",
+            "id": 98,
+            "key": "core:gnoll",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 250000,
+            "morale": 0,
+            "name": "Gnoll",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              20
+            ],
+            "remainingCasts": 1,
+            "remainingRetaliations": 0,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 0,
+            "speed": 1,
+            "stackId": 1,
+            "x": 168,
+            "y": 154
+          },
+          {
+            "aiValue": 156,
+            "armySlot": -2,
+            "attack": 6,
+            "canMeleeAt": false,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              140,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 40,
+            "damageMax": 12,
+            "damageMin": 6,
+            "defense": 7,
+            "description": "",
+            "enemy": false,
+            "eraSlot": 1,
+            "experience": 400,
+            "experiencePerUnit": 400,
+            "experienceRank": 1,
+            "fightValue": 130,
+            "growth": 9,
+            "health": 40,
+            "icon": "commanders/CPrL174n",
+            "id": 240,
+            "key": "wake-of-gods.commanders:paladin1",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 40,
+            "morale": 0,
+            "name": "Paladin",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              137
+            ],
+            "remainingCasts": 1,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 24,
+            "speed": 5,
+            "stackId": 2,
+            "x": 102,
+            "y": 448
+          },
+          {
+            "aiValue": 85500,
+            "armySlot": 0,
+            "attack": 90,
+            "canMeleeAt": false,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              50,
+              0,
+              0,
+              0,
+              0,
+              50000,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 1797,
+            "damageMax": 110,
+            "damageMin": 85,
+            "defense": 80,
+            "description": "50% Magic Resist. Age. Acid breath. \nAttack twice. Fear. Fearless.",
+            "enemy": false,
+            "eraSlot": 0,
+            "experience": 100,
+            "experiencePerUnit": 100,
+            "experienceRank": 10,
+            "fightValue": 78500,
+            "growth": 1,
+            "health": 1200,
+            "icon": "tum-era/creatures/254/large.png",
+            "id": 316,
+            "key": "tum-era:necrossDragon",
+            "luck": 0,
+            "magicResistance": 40,
+            "maximumHealth": 1800,
+            "morale": 0,
+            "name": "Necross Dragon",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": false,
+              "mindImmune": true,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": true
+            },
+            "occupied": [
+              2,
+              1
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "remainingShots": 15,
+            "shooter": true,
+            "shots": 10,
+            "speed": 23,
+            "stackId": 0,
+            "x": 146,
+            "y": 112
+          }
+        ],
+        "canAct": true,
+        "canAutoCombat": true,
+        "canEndTactics": false,
+        "canQueueAutoCombat": false,
+        "canRetreat": true,
+        "canUseMagic": true,
+        "canWait": true,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "creatureCanCast": true,
+        "creatureSpellName": "Cure",
+        "creatureSpellTargeting": false,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Skull Helmet}\n\nWorn on the head, this item increases your Knowledge skill by +2.",
+            "icon": 20,
+            "name": "Skull Helmet",
+            "slot": 0
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "focus": {
+          "x": 630,
+          "y": 448
+        },
+        "heroCanCast": true,
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 200,
+        "heroManaLimit": 220,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroSpellCastLimitReached": false,
+        "heroSpellPower": {
+          "effective": 1,
+          "interference": false,
+          "original": 1
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 201,
+            "manaLimit": 220,
+            "movement": 1700,
+            "movementLimit": 2000,
+            "name": "Christian"
+          }
+        ],
+        "manualControl": true,
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "battle",
+        "movement": 1700,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20000,
+          0
+        ],
+        "round": 6,
+        "sessionState": 6,
+        "soundVolume": 88,
+        "spellTargeting": false,
+        "tacticsMode": false,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true,
+        "windowToken": 112948496
+      },
+      "fixture": "Existing originalsource254, nativeR10 earnedbykill; realenemyhero artifact134 equippedtorso. OnlytargetGnoll durability/speed/attack controls, no100%syntheticAge orPoison bonus."
+    }
+  }
+}

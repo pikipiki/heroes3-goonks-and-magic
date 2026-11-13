@@ -1,0 +1,15 @@
+{
+  "active": true,
+  "activationReady": true,
+  "sourceIds": [
+    275,
+    276
+  ],
+  "archiveSha256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+  "definitionSha256": "9b3bb9989564900a1af6d0bd9adf3fbd0f277932d0efb6985beb8f06cd640928",
+  "dailyEvidence": "outputs/wog-priorities-0.4.147/native-eyes275-276.json",
+  "rangeEvidence": "outputs/wog-priorities-0.4.147/native-eyes-range158.json",
+  "engineSha256": "3433c709e7f955c446aa81cd1fdab0d6b50255b981c4efb86b59356d6e95000f",
+  "source": "Original complete two daily pairs and equipment endpoints; defined inverted range corrected only for verified Emerald artifacts.",
+  "pending": []
+}

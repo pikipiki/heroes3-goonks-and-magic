@@ -1,0 +1,2547 @@
+{
+  "passed": true,
+  "errors": [],
+  "report": {
+    "eyesStage": {
+      "active": false,
+      "sourceIds": [
+        275,
+        276
+      ],
+      "archiveSha256": "0beb089b85dacd42d456dedd2eaf7dc0b4d35541806f857e24a08e2bad5d3893",
+      "cfgs": {
+        "275": {
+          "text": "DamageMin=2\r\nUpgradeFrom=343\r\nUpgradeTo=134\r\nUpgradeFrom2=196\r\nUpgradeTo2=134\r\n",
+          "sha256": "09fbbc9a45e5b7e35ef1d039f05c83f3330eee0da42c29dd0f4a9578344fe087"
+        },
+        "276": {
+          "text": "DamageMax=2\r\nUpgradeFrom=344\r\nUpgradeTo=135\r\nUpgradeFrom2=196\r\nUpgradeTo2=135\r\n\r\n",
+          "sha256": "dc04f0b7edd92c84c3b209914d91f7ca2132dee3591ad454d395add15e461aa2"
+        }
+      },
+      "assets": [
+        {
+          "path": "content/Sprites/tum-era/artifacts/275/map.def",
+          "sha256": "4c32d1e17d82d6b19a72e62b47e929b06568ab6f04313e0656d250b21c41724a"
+        },
+        {
+          "path": "content/Sprites/tum-era/artifacts/275/map.msk",
+          "sha256": "bdf29b71b5e86aa0c6a980c268f02735832f3be2ae51310561529556d2d23d32"
+        },
+        {
+          "path": "content/Data/tum-era/artifacts/275/icon.png",
+          "sha256": "9453ccded6c112fb116e9cef2090aad7a4fa5a1eaf3536c99dcb2faf37c78f2b"
+        },
+        {
+          "path": "content/Data/tum-era/artifacts/275/scenario.png",
+          "sha256": "491473d1205ff99cca39f0a23b942bd8984bf9a76f01268b0a80bc4d136c39c4"
+        },
+        {
+          "path": "content/Sprites/tum-era/artifacts/276/map.def",
+          "sha256": "0bf768ff37d8c74ba909c481b2925d249d16751d60830ff7d0d8bbbf9f0e0fb0"
+        },
+        {
+          "path": "content/Sprites/tum-era/artifacts/276/map.msk",
+          "sha256": "bdf29b71b5e86aa0c6a980c268f02735832f3be2ae51310561529556d2d23d32"
+        },
+        {
+          "path": "content/Data/tum-era/artifacts/276/icon.png",
+          "sha256": "5f69575a2baeb7247c6ac2e783a7cc319572937a6e47a9cb78469550130d78d1"
+        },
+        {
+          "path": "content/Data/tum-era/artifacts/276/scenario.png",
+          "sha256": "3b286aea4502f4d3015f3fe960c7810e0422c3b9cdea63746d0385c73ed7eda4"
+        }
+      ],
+      "records": [
+        {
+          "id": 275,
+          "included": true,
+          "key": "tum-era:artifact275",
+          "sourceTraits": "artraits.txt:873",
+          "aiDecisions": [],
+          "warnings": [],
+          "textRepairs": [],
+          "eventTextAvailable": false
+        },
+        {
+          "id": 276,
+          "included": true,
+          "key": "tum-era:artifact276",
+          "sourceTraits": "artraits.txt:876",
+          "aiDecisions": [],
+          "warnings": [],
+          "textRepairs": [],
+          "eventTextAvailable": false
+        }
+      ],
+      "definitionSha256": "9b3bb9989564900a1af6d0bd9adf3fbd0f277932d0efb6985beb8f06cd640928",
+      "pendingNativeControls": [
+        "equipped/backpack",
+        "actual positive XP/banner retention",
+        "owner turn and rank9",
+        "rank10 Emerald-before-evolution",
+        "Goonk DamageMin2 physical attack including min>max source order"
+      ]
+    },
+    "engineMetadata": {
+      "memoryVersion": 1,
+      "runtimeVersion": "0588b24812b26852",
+      "wasm": "vcmiclient.b93b3bc6af5e3aa1.wasm",
+      "sha256": "b93b3bc6af5e3aa1088a85775a7194c8a7f3632993fcb94d134b64222897b9de",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216
+    },
+    "eye275rank9-equipped": {
+      "before": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Goonk Guardian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 820,
+                "attack": 6,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  2,
+                  3000,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 10,
+                "damageMin": 8,
+                "defense": 6,
+                "description": "",
+                "experience": 950,
+                "experiencePerUnit": 95,
+                "experienceRank": 9,
+                "fightValue": 760,
+                "growth": 1,
+                "health": 50,
+                "icon": "tum-era/creatures/343/large",
+                "id": 299,
+                "key": "tum-era:eraCreature343",
+                "name": "Faerie Dragonling",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 6
+              },
+              {
+                "aiValue": 55000,
+                "attack": 45,
+                "cost": [
+                  0,
+                  15,
+                  0,
+                  0,
+                  0,
+                  0,
+                  25000,
+                  0
+                ],
+                "count": 2,
+                "damageMax": 80,
+                "damageMin": 50,
+                "defense": 45,
+                "description": "",
+                "experience": 800,
+                "experiencePerUnit": 400,
+                "experienceRank": 0,
+                "fightValue": 40000,
+                "growth": 1,
+                "health": 800,
+                "icon": "creatures/dracolich/CPrL196Z",
+                "id": 152,
+                "key": "wake-of-gods.creatures:dracolich",
+                "name": "Dracolich",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": false,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": true
+                },
+                "shooter": true,
+                "shots": 5,
+                "speed": 16
+              },
+              null,
+              {
+                "aiValue": 84,
+                "attack": 5,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  70,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 4,
+                "damageMin": 2,
+                "defense": 5,
+                "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                "experience": 4000,
+                "experiencePerUnit": 400,
+                "experienceRank": 0,
+                "fightValue": 84,
+                "growth": 16,
+                "health": 12,
+                "icon": "goonk/pink-large.png",
+                "id": 258,
+                "key": "goonk:paingpaing",
+                "name": "Paingpaing",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 5
+              },
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 2,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 200,
+        "heroManaLimit": 200,
+        "heroMoving": false,
+        "heroName": "Goonk Guardian",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "description": "{Eye of the Faerie Dragon}\n\nThis powerful dragon eye increases the minimum damage by +2 and allows Faerie Dragonling to be upgraded to Faerie Dragon and become Dracolich into Faerie Dragon the next day.",
+              "icon": 290,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Faerie Dragon",
+              "slot": 19
+            },
+            {
+              "allowed": false,
+              "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+              "icon": 182,
+              "locked": false,
+              "movable": true,
+              "name": "Warlord’s Banner — Attack",
+              "slot": 20
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 21
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "className": "Knight",
+          "commanderIcon": 11,
+          "experience": 1200,
+          "experienceIcon": 4,
+          "id": 1,
+          "level": 2,
+          "luck": {
+            "icon": 8,
+            "value": 0
+          },
+          "mana": 200,
+          "manaIcon": 5,
+          "manaLimit": 200,
+          "morale": {
+            "icon": 7,
+            "value": -2
+          },
+          "name": "Goonk Guardian",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            1,
+            0,
+            1,
+            20
+          ],
+          "skills": [
+            {
+              "description": "{Expert Wisdom}\n\nExpert Wisdom allows your hero to learn fifth level spells.",
+              "icon": 9,
+              "mastery": "Expert",
+              "name": "Wisdom"
+            },
+            {
+              "description": "{Basic Diplomacy}\n\nBasic Diplomacy allows you to negotiate with monsters who are weaker than your group, and reduces the cost of surrendering by 20%.",
+              "icon": 10,
+              "mastery": "Basic",
+              "name": "Diplomacy"
+            }
+          ],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "locked": false,
+              "movable": false,
+              "name": "Spell Book",
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Paingpaing: +15% base health. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions.",
+            "icon": 6,
+            "name": "Paingpaing Guardian",
+            "sourceProgression": {
+              "attackDefense": 1,
+              "damage": 0,
+              "family": "Paingpaing",
+              "healthPercent": 11,
+              "warMachines": false
+            }
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 1600,
+            "movementLimit": 1700,
+            "name": "Goonk Guardian"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1600,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20500,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 1,
+          "heroName": "Goonk Guardian",
+          "troops": [
+            {
+              "aiValue": 820,
+              "attack": 14,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                3000,
+                0
+              ],
+              "count": 10,
+              "damageMax": 17,
+              "damageMin": 14,
+              "defense": 13,
+              "description": "",
+              "fightValue": 760,
+              "growth": 1,
+              "health": 73,
+              "icon": "tum-era/creatures/343/large",
+              "id": 299,
+              "inventory": [
+                {
+                  "allowed": true,
+                  "backpackSlot": 20,
+                  "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+                  "icon": 182,
+                  "id": 2,
+                  "name": "Warlord’s Banner — Attack",
+                  "typeId": 177
+                }
+              ],
+              "key": "tum-era:eraCreature343",
+              "magicDamageReduction": 0,
+              "name": "Faerie Dragonling",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 7
+            },
+            {
+              "aiValue": 55000,
+              "attack": 46,
+              "cost": [
+                0,
+                15,
+                0,
+                0,
+                0,
+                0,
+                25000,
+                0
+              ],
+              "count": 2,
+              "damageMax": 80,
+              "damageMin": 50,
+              "defense": 45,
+              "description": "",
+              "fightValue": 40000,
+              "growth": 1,
+              "health": 800,
+              "icon": "creatures/dracolich/CPrL196Z",
+              "id": 152,
+              "inventory": [
+                {
+                  "allowed": true,
+                  "backpackSlot": 20,
+                  "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+                  "icon": 182,
+                  "id": 2,
+                  "name": "Warlord’s Banner — Attack",
+                  "typeId": 177
+                }
+              ],
+              "key": "wake-of-gods.creatures:dracolich",
+              "magicDamageReduction": 20,
+              "name": "Dracolich",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": false,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": true
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": true,
+              "shots": 5,
+              "slot": 1,
+              "speed": 16
+            },
+            {
+              "aiValue": 84,
+              "attack": 7,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                70,
+                0
+              ],
+              "count": 10,
+              "damageMax": 4,
+              "damageMin": 2,
+              "defense": 6,
+              "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+              "fightValue": 84,
+              "growth": 16,
+              "health": 13,
+              "icon": "goonk/pink-large.png",
+              "id": 258,
+              "inventory": [
+                {
+                  "allowed": true,
+                  "backpackSlot": 20,
+                  "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+                  "icon": 182,
+                  "id": 2,
+                  "name": "Warlord’s Banner — Attack",
+                  "typeId": 177
+                }
+              ],
+              "key": "goonk:paingpaing",
+              "magicDamageReduction": 0,
+              "name": "Paingpaing",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": false,
+              "shots": 0,
+              "slot": 3,
+              "speed": 6
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 54223144
+      },
+      "equippedState": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Goonk Guardian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 820,
+                "attack": 6,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  2,
+                  3000,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 10,
+                "damageMin": 8,
+                "defense": 6,
+                "description": "",
+                "experience": 950,
+                "experiencePerUnit": 95,
+                "experienceRank": 9,
+                "fightValue": 760,
+                "growth": 1,
+                "health": 50,
+                "icon": "tum-era/creatures/343/large",
+                "id": 299,
+                "key": "tum-era:eraCreature343",
+                "name": "Faerie Dragonling",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 6
+              },
+              {
+                "aiValue": 55000,
+                "attack": 45,
+                "cost": [
+                  0,
+                  15,
+                  0,
+                  0,
+                  0,
+                  0,
+                  25000,
+                  0
+                ],
+                "count": 2,
+                "damageMax": 80,
+                "damageMin": 50,
+                "defense": 45,
+                "description": "",
+                "experience": 800,
+                "experiencePerUnit": 400,
+                "experienceRank": 0,
+                "fightValue": 40000,
+                "growth": 1,
+                "health": 800,
+                "icon": "creatures/dracolich/CPrL196Z",
+                "id": 152,
+                "key": "wake-of-gods.creatures:dracolich",
+                "name": "Dracolich",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": false,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": true
+                },
+                "shooter": true,
+                "shots": 5,
+                "speed": 16
+              },
+              null,
+              {
+                "aiValue": 84,
+                "attack": 5,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  70,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 4,
+                "damageMin": 2,
+                "defense": 5,
+                "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                "experience": 4000,
+                "experiencePerUnit": 400,
+                "experienceRank": 0,
+                "fightValue": 84,
+                "growth": 16,
+                "health": 12,
+                "icon": "goonk/pink-large.png",
+                "id": 258,
+                "key": "goonk:paingpaing",
+                "name": "Paingpaing",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 5
+              },
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Eye of the Faerie Dragon}\n\nThis powerful dragon eye increases the minimum damage by +2 and allows Faerie Dragonling to be upgraded to Faerie Dragon and become Dracolich into Faerie Dragon the next day.",
+            "icon": 290,
+            "name": "Eye of the Faerie Dragon",
+            "slot": 9
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 200,
+        "heroManaLimit": 200,
+        "heroMoving": false,
+        "heroName": "Goonk Guardian",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 19
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "className": "Knight",
+          "commanderIcon": 11,
+          "experience": 1200,
+          "experienceIcon": 4,
+          "id": 1,
+          "level": 2,
+          "luck": {
+            "icon": 8,
+            "value": 0
+          },
+          "mana": 200,
+          "manaIcon": 5,
+          "manaLimit": 200,
+          "morale": {
+            "icon": 7,
+            "value": -2
+          },
+          "name": "Goonk Guardian",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            1,
+            0,
+            1,
+            20
+          ],
+          "skills": [
+            {
+              "description": "{Expert Wisdom}\n\nExpert Wisdom allows your hero to learn fifth level spells.",
+              "icon": 9,
+              "mastery": "Expert",
+              "name": "Wisdom"
+            },
+            {
+              "description": "{Basic Diplomacy}\n\nBasic Diplomacy allows you to negotiate with monsters who are weaker than your group, and reduces the cost of surrendering by 20%.",
+              "icon": 10,
+              "mastery": "Basic",
+              "name": "Diplomacy"
+            }
+          ],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "description": "{Eye of the Faerie Dragon}\n\nThis powerful dragon eye increases the minimum damage by +2 and allows Faerie Dragonling to be upgraded to Faerie Dragon and become Dracolich into Faerie Dragon the next day.",
+              "icon": 290,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Faerie Dragon",
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "locked": false,
+              "movable": false,
+              "name": "Spell Book",
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Paingpaing: +15% base health. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions.",
+            "icon": 6,
+            "name": "Paingpaing Guardian",
+            "sourceProgression": {
+              "attackDefense": 1,
+              "damage": 0,
+              "family": "Paingpaing",
+              "healthPercent": 11,
+              "warMachines": false
+            }
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 1600,
+            "movementLimit": 1700,
+            "name": "Goonk Guardian"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1600,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20500,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 1,
+          "heroName": "Goonk Guardian",
+          "troops": [
+            {
+              "aiValue": 820,
+              "attack": 14,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                3000,
+                0
+              ],
+              "count": 10,
+              "damageMax": 17,
+              "damageMin": 16,
+              "defense": 13,
+              "description": "",
+              "fightValue": 760,
+              "growth": 1,
+              "health": 73,
+              "icon": "tum-era/creatures/343/large",
+              "id": 299,
+              "key": "tum-era:eraCreature343",
+              "magicDamageReduction": 0,
+              "name": "Faerie Dragonling",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 7
+            },
+            {
+              "aiValue": 55000,
+              "attack": 52,
+              "canRemove": true,
+              "cost": [
+                0,
+                15,
+                0,
+                0,
+                0,
+                0,
+                25000,
+                0
+              ],
+              "count": 2,
+              "damageMax": 80,
+              "damageMin": 52,
+              "defense": 45,
+              "description": "",
+              "equipped": {
+                "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+                "icon": 182,
+                "id": 2,
+                "name": "Warlord’s Banner — Attack",
+                "typeId": 177
+              },
+              "fightValue": 40000,
+              "growth": 1,
+              "health": 800,
+              "icon": "creatures/dracolich/CPrL196Z",
+              "id": 152,
+              "key": "wake-of-gods.creatures:dracolich",
+              "magicDamageReduction": 20,
+              "name": "Dracolich",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": false,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": true
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": true,
+              "shots": 5,
+              "slot": 1,
+              "speed": 16
+            },
+            {
+              "aiValue": 84,
+              "attack": 7,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                70,
+                0
+              ],
+              "count": 10,
+              "damageMax": 4,
+              "damageMin": 4,
+              "defense": 6,
+              "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+              "fightValue": 84,
+              "growth": 16,
+              "health": 13,
+              "icon": "goonk/pink-large.png",
+              "id": 258,
+              "key": "goonk:paingpaing",
+              "magicDamageReduction": 0,
+              "name": "Paingpaing",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": false,
+              "shots": 0,
+              "slot": 3,
+              "speed": 6
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 54223144
+      },
+      "blue": {
+        "state": {
+          "audioMuted": false,
+          "autosaveAllowed": true,
+          "cheatReady": true,
+          "cheatsAllowed": true,
+          "day": 1,
+          "heroMoving": false,
+          "mapOverview": {
+            "height": 36,
+            "level": 0,
+            "rect": {
+              "h": 144,
+              "w": 144,
+              "x": 630,
+              "y": 26
+            },
+            "view": {
+              "h": 546,
+              "w": 594,
+              "x": 7,
+              "y": 7
+            },
+            "viewport": {
+              "h": 19,
+              "w": 20,
+              "x": 18,
+              "y": 20
+            },
+            "width": 36
+          },
+          "mapSettings": {
+            "enemyMoveTime": 150,
+            "moveTime": 150
+          },
+          "mode": "map",
+          "musicVolume": 88,
+          "onlineGame": false,
+          "rect": {
+            "h": 600,
+            "w": 800,
+            "x": 0,
+            "y": 0
+          },
+          "resourceTypes": [
+            {
+              "icon": "",
+              "id": 0,
+              "key": "wood",
+              "name": "Wood",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 1,
+              "key": "mercury",
+              "name": "Mercury",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 2,
+              "key": "ore",
+              "name": "Ore",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 3,
+              "key": "sulfur",
+              "name": "Sulfur",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 4,
+              "key": "crystal",
+              "name": "Crystal",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 5,
+              "key": "gems",
+              "name": "Gems",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 6,
+              "key": "gold",
+              "name": "Gold",
+              "scope": "core"
+            },
+            {
+              "icon": "mithril/small.png",
+              "id": 7,
+              "key": "mithril",
+              "name": "Mithril",
+              "scope": "wake-of-gods.mithril"
+            }
+          ],
+          "resources": [
+            20,
+            10,
+            20,
+            10,
+            10,
+            10,
+            20000,
+            0
+          ],
+          "selectedTownName": "Fort des gardes",
+          "sessionState": 6,
+          "soundVolume": 88,
+          "towns": [
+            {
+              "id": 2,
+              "index": 0,
+              "name": "Fort des gardes"
+            }
+          ],
+          "turn": true,
+          "windowToken": 108633280,
+          "worldView": false
+        },
+        "dialogs": [
+          {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Blue",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Player 2's turn."
+            ],
+            "queryId": -1,
+            "title": "Game message",
+            "visitedObject": "Peasants"
+          },
+          {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Blue",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Player 2's turn."
+            ],
+            "queryId": -1,
+            "title": "Game message",
+            "visitedObject": "Peasants"
+          }
+        ]
+      },
+      "observed": {
+        "key": "tum-era:eraCreature343",
+        "offset": 120236,
+        "count": 10,
+        "totalExperience": 950,
+        "bytesRead": 28
+      },
+      "red": {
+        "state": {
+          "anyHeroCanMove": true,
+          "armies": [
+            {
+              "id": 1,
+              "name": "Goonk Guardian",
+              "needsLastStack": true,
+              "slots": [
+                {
+                  "aiValue": 19580,
+                  "attack": 20,
+                  "cost": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    8,
+                    10000,
+                    0
+                  ],
+                  "count": 10,
+                  "damageMax": 30,
+                  "damageMin": 20,
+                  "defense": 20,
+                  "description": "",
+                  "experience": 950,
+                  "experiencePerUnit": 95,
+                  "experienceRank": 0,
+                  "fightValue": 16317,
+                  "growth": 1,
+                  "health": 500,
+                  "icon": "",
+                  "id": 134,
+                  "key": "core:fairieDragon",
+                  "name": "Faerie Dragon",
+                  "nativeFlags": {
+                    "attacksAllAdjacent": false,
+                    "blocksRetaliation": false,
+                    "chargeImmune": false,
+                    "flying": true,
+                    "living": true,
+                    "mindImmune": false,
+                    "noMorale": false,
+                    "nonLiving": false,
+                    "undead": false
+                  },
+                  "shooter": false,
+                  "shots": 0,
+                  "speed": 15
+                },
+                {
+                  "aiValue": 19580,
+                  "attack": 20,
+                  "cost": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    8,
+                    10000,
+                    0
+                  ],
+                  "count": 2,
+                  "damageMax": 30,
+                  "damageMin": 20,
+                  "defense": 20,
+                  "description": "",
+                  "experience": 800,
+                  "experiencePerUnit": 400,
+                  "experienceRank": 0,
+                  "fightValue": 16317,
+                  "growth": 1,
+                  "health": 500,
+                  "icon": "",
+                  "id": 134,
+                  "key": "core:fairieDragon",
+                  "name": "Faerie Dragon",
+                  "nativeFlags": {
+                    "attacksAllAdjacent": false,
+                    "blocksRetaliation": false,
+                    "chargeImmune": false,
+                    "flying": true,
+                    "living": true,
+                    "mindImmune": false,
+                    "noMorale": false,
+                    "nonLiving": false,
+                    "undead": false
+                  },
+                  "shooter": false,
+                  "shots": 0,
+                  "speed": 15
+                },
+                null,
+                {
+                  "aiValue": 84,
+                  "attack": 5,
+                  "cost": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    70,
+                    0
+                  ],
+                  "count": 10,
+                  "damageMax": 4,
+                  "damageMin": 2,
+                  "defense": 5,
+                  "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                  "experience": 4000,
+                  "experiencePerUnit": 400,
+                  "experienceRank": 0,
+                  "fightValue": 84,
+                  "growth": 16,
+                  "health": 12,
+                  "icon": "goonk/pink-large.png",
+                  "id": 258,
+                  "key": "goonk:paingpaing",
+                  "name": "Paingpaing",
+                  "nativeFlags": {
+                    "attacksAllAdjacent": false,
+                    "blocksRetaliation": false,
+                    "chargeImmune": false,
+                    "flying": false,
+                    "living": true,
+                    "mindImmune": false,
+                    "noMorale": false,
+                    "nonLiving": false,
+                    "undead": false
+                  },
+                  "shooter": false,
+                  "shots": 0,
+                  "speed": 5
+                },
+                null,
+                null,
+                null
+              ]
+            }
+          ],
+          "audioMuted": false,
+          "autosaveAllowed": true,
+          "backpackCount": 0,
+          "cheatReady": true,
+          "cheatsAllowed": true,
+          "day": 2,
+          "equipment": [
+            {
+              "description": "{Eye of the Faerie Dragon}\n\nThis powerful dragon eye increases the minimum damage by +2 and allows Faerie Dragonling to be upgraded to Faerie Dragon and become Dracolich into Faerie Dragon the next day.",
+              "icon": 290,
+              "name": "Eye of the Faerie Dragon",
+              "slot": 9
+            },
+            {
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "name": "Spell Book",
+              "slot": 17
+            }
+          ],
+          "heroHasSpellbook": true,
+          "heroId": 1,
+          "heroMana": 200,
+          "heroManaLimit": 200,
+          "heroMoving": false,
+          "heroName": "Goonk Guardian",
+          "heroes": [
+            {
+              "hasSpellbook": true,
+              "id": 1,
+              "index": 0,
+              "mana": 200,
+              "manaLimit": 200,
+              "movement": 1700,
+              "movementLimit": 1700,
+              "name": "Goonk Guardian"
+            }
+          ],
+          "mapOverview": {
+            "height": 36,
+            "level": 0,
+            "rect": {
+              "h": 144,
+              "w": 144,
+              "x": 630,
+              "y": 26
+            },
+            "view": {
+              "h": 546,
+              "w": 594,
+              "x": 7,
+              "y": 7
+            },
+            "viewport": {
+              "h": 19,
+              "w": 20,
+              "x": 0,
+              "y": 2
+            },
+            "width": 36
+          },
+          "mapSettings": {
+            "enemyMoveTime": 150,
+            "moveTime": 150
+          },
+          "mode": "map",
+          "movement": 1700,
+          "musicVolume": 88,
+          "onlineGame": false,
+          "rect": {
+            "h": 600,
+            "w": 800,
+            "x": 0,
+            "y": 0
+          },
+          "resourceTypes": [
+            {
+              "icon": "",
+              "id": 0,
+              "key": "wood",
+              "name": "Wood",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 1,
+              "key": "mercury",
+              "name": "Mercury",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 2,
+              "key": "ore",
+              "name": "Ore",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 3,
+              "key": "sulfur",
+              "name": "Sulfur",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 4,
+              "key": "crystal",
+              "name": "Crystal",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 5,
+              "key": "gems",
+              "name": "Gems",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 6,
+              "key": "gold",
+              "name": "Gold",
+              "scope": "core"
+            },
+            {
+              "icon": "mithril/small.png",
+              "id": 7,
+              "key": "mithril",
+              "name": "Mithril",
+              "scope": "wake-of-gods.mithril"
+            }
+          ],
+          "resources": [
+            20,
+            10,
+            20,
+            10,
+            10,
+            10,
+            21000,
+            0
+          ],
+          "sessionState": 6,
+          "soundVolume": 88,
+          "towns": [
+            {
+              "id": 0,
+              "index": 0,
+              "name": "Goonkbourg"
+            }
+          ],
+          "turn": true,
+          "windowToken": 108633280,
+          "worldView": false
+        },
+        "dialogs": [
+          {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Red",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Player 1's turn."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          },
+          {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Red",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Player 1's turn."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        ]
+      },
+      "after": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Goonk Guardian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 19580,
+                "attack": 20,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  8,
+                  10000,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 30,
+                "damageMin": 20,
+                "defense": 20,
+                "description": "",
+                "experience": 950,
+                "experiencePerUnit": 95,
+                "experienceRank": 0,
+                "fightValue": 16317,
+                "growth": 1,
+                "health": 500,
+                "icon": "",
+                "id": 134,
+                "key": "core:fairieDragon",
+                "name": "Faerie Dragon",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 15
+              },
+              {
+                "aiValue": 19580,
+                "attack": 20,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  8,
+                  10000,
+                  0
+                ],
+                "count": 2,
+                "damageMax": 30,
+                "damageMin": 20,
+                "defense": 20,
+                "description": "",
+                "experience": 800,
+                "experiencePerUnit": 400,
+                "experienceRank": 0,
+                "fightValue": 16317,
+                "growth": 1,
+                "health": 500,
+                "icon": "",
+                "id": 134,
+                "key": "core:fairieDragon",
+                "name": "Faerie Dragon",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 15
+              },
+              null,
+              {
+                "aiValue": 84,
+                "attack": 5,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  70,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 4,
+                "damageMin": 2,
+                "defense": 5,
+                "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                "experience": 4000,
+                "experiencePerUnit": 400,
+                "experienceRank": 0,
+                "fightValue": 84,
+                "growth": 16,
+                "health": 12,
+                "icon": "goonk/pink-large.png",
+                "id": 258,
+                "key": "goonk:paingpaing",
+                "name": "Paingpaing",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 5
+              },
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 2,
+        "equipment": [
+          {
+            "description": "{Eye of the Faerie Dragon}\n\nThis powerful dragon eye increases the minimum damage by +2 and allows Faerie Dragonling to be upgraded to Faerie Dragon and become Dracolich into Faerie Dragon the next day.",
+            "icon": 290,
+            "name": "Eye of the Faerie Dragon",
+            "slot": 9
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 200,
+        "heroManaLimit": 200,
+        "heroMoving": false,
+        "heroName": "Goonk Guardian",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 19
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "className": "Knight",
+          "commanderIcon": 11,
+          "experience": 1200,
+          "experienceIcon": 4,
+          "id": 1,
+          "level": 2,
+          "luck": {
+            "icon": 8,
+            "value": 0
+          },
+          "mana": 200,
+          "manaIcon": 5,
+          "manaLimit": 200,
+          "morale": {
+            "icon": 7,
+            "value": 0
+          },
+          "name": "Goonk Guardian",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            1,
+            0,
+            1,
+            20
+          ],
+          "skills": [
+            {
+              "description": "{Expert Wisdom}\n\nExpert Wisdom allows your hero to learn fifth level spells.",
+              "icon": 9,
+              "mastery": "Expert",
+              "name": "Wisdom"
+            },
+            {
+              "description": "{Basic Diplomacy}\n\nBasic Diplomacy allows you to negotiate with monsters who are weaker than your group, and reduces the cost of surrendering by 20%.",
+              "icon": 10,
+              "mastery": "Basic",
+              "name": "Diplomacy"
+            }
+          ],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "description": "{Eye of the Faerie Dragon}\n\nThis powerful dragon eye increases the minimum damage by +2 and allows Faerie Dragonling to be upgraded to Faerie Dragon and become Dracolich into Faerie Dragon the next day.",
+              "icon": 290,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Faerie Dragon",
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "locked": false,
+              "movable": false,
+              "name": "Spell Book",
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Paingpaing: +15% base health. Also grants +1 speed and the native level-based Attack/Defense creature specialty to that family and its evolutions.",
+            "icon": 6,
+            "name": "Paingpaing Guardian",
+            "sourceProgression": {
+              "attackDefense": 1,
+              "damage": 0,
+              "family": "Paingpaing",
+              "healthPercent": 11,
+              "warMachines": false
+            }
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 1700,
+            "movementLimit": 1700,
+            "name": "Goonk Guardian"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1700,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          21000,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 1,
+          "heroName": "Goonk Guardian",
+          "troops": [
+            {
+              "aiValue": 19580,
+              "attack": 21,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                8,
+                10000,
+                0
+              ],
+              "count": 10,
+              "damageMax": 30,
+              "damageMin": 22,
+              "defense": 20,
+              "description": "",
+              "fightValue": 16317,
+              "growth": 1,
+              "health": 500,
+              "icon": "",
+              "id": 134,
+              "key": "core:fairieDragon",
+              "magicDamageReduction": 0,
+              "name": "Faerie Dragon",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 15
+            },
+            {
+              "aiValue": 19580,
+              "attack": 25,
+              "canRemove": true,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                8,
+                10000,
+                0
+              ],
+              "count": 2,
+              "damageMax": 30,
+              "damageMin": 22,
+              "defense": 20,
+              "description": "",
+              "equipped": {
+                "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+                "icon": 182,
+                "id": 2,
+                "name": "Warlord’s Banner — Attack",
+                "typeId": 177
+              },
+              "fightValue": 16317,
+              "growth": 1,
+              "health": 500,
+              "icon": "",
+              "id": 134,
+              "key": "core:fairieDragon",
+              "magicDamageReduction": 0,
+              "name": "Faerie Dragon",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": false,
+              "shots": 0,
+              "slot": 1,
+              "speed": 15
+            },
+            {
+              "aiValue": 84,
+              "attack": 7,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                70,
+                0
+              ],
+              "count": 10,
+              "damageMax": 4,
+              "damageMin": 4,
+              "defense": 6,
+              "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+              "fightValue": 84,
+              "growth": 16,
+              "health": 13,
+              "icon": "goonk/pink-large.png",
+              "id": 258,
+              "key": "goonk:paingpaing",
+              "magicDamageReduction": 0,
+              "name": "Paingpaing",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": false,
+              "shots": 0,
+              "slot": 3,
+              "speed": 6
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 54217768
+      }
+    }
+  }
+}

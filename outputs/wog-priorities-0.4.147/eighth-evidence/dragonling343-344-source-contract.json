@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "sourceIds": [
     343,
     344
@@ -22,7 +22,7 @@
     "selector": "Original44050A..537: alive count+4C>0, rawDEF+CC>0, queued marker+EC=80. No RNG, no generic magic-accuracy query. Amethyst z_Hook_0044050A rejects Toxic15.",
     "flush": "468C99..D12 side/slot scan, power3, mastery0,kind1; spell80 exempt globalpoweroverride.",
     "effect": "Existing source-native Nightmare Acid80 adapter: permanent cumulativeDEF\u2212min(3,currentDEF), preserving source clamp0 and savedDefend marker. No ATT_DISRUPT selector4/direct acid damage for344.",
-    "sharedNativeEvidence": "Existing Nightmare primitive retained;343/344 actual native controls pending."
+    "sharedNativeEvidence": "Original Nightmare primitive and native343/344 controls validated; see native-dragonlings343-344.json."
   },
   "boundedExeHex": {
     "440654": "0a054400",
@@ -41,11 +41,15 @@
     "quantity": "Preserved",
     "experience": "Reset0 after replacement",
     "sourceLines": "879\u2013916",
-    "nativePort": "Not discharged by these CFG/XP contracts; remains pending independently."
+    "nativePort": "Discharged by native-dragonling-daily-evolution.json on engineb93; nine complete source controls."
   },
-  "reviewStage": "/tmp/goonk-dragonlings343344-stage-157",
-  "nativeValidated": false,
+  "reviewStage": "work/downloads/wog-port157/eighth-roster/dragonlings-stage",
+  "nativeValidated": true,
   "cfgXpNativeValidated": true,
   "cfgXpNativeEvidence": "../native-dragonlings343-344.json",
-  "reason": "Actual casting/XP/acid native controls passed; global evolution script remains an independent unresolved source behavior."
+  "reason": "Original CFG/XP and daily evolution fully native validated; registered atomically after publication freeze release.",
+  "dailyEvolutionNativeValidated": true,
+  "dailyEvolutionNativeEvidence": "outputs/wog-priorities-0.4.147/native-dragonling-daily-evolution.json",
+  "dailyEvolutionEngineSha256": "b93b3bc6af5e3aa1088a85775a7194c8a7f3632993fcb94d134b64222897b9de",
+  "activationRecord": "outputs/wog-priorities-0.4.147/dragonling-evolution-source.json"
 }

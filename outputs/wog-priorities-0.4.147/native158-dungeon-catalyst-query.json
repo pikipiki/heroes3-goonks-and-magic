@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "aa8cd2f338195ecf",
+    "wasm": "vcmiclient.3433c709e7f955c4.wasm",
+    "sha256": "3433c709e7f955c446aa81cd1fdab0d6b50255b981c4efb86b59356d6e95000f",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "rawReport": "work/downloads/wog-port157/native158-dungeon-catalyst/result.json",
+  "rawSha256": "18d762826545f465627a5b6db87dd4b154bdf63866cfac5f4c97a809f2df7378",
+  "cases": {
+    "dungeonCatalyst-physicalOrb": {
+      "primaryDamage": 500,
+      "otherDamage": 0,
+      "friendDamage": 0,
+      "sourceEvidence": "5A6500/5A6582 passes query1 for targetside0 and query0 for targetside1; CURRENT is separately preserved.44A420 guards only casterOrb/Catalyst query;44A436 still checks physical targetHeroOrb."
+    },
+    "dungeonCatalyst-catalyst": {
+      "primaryDamage": 500,
+      "otherDamage": 250,
+      "friendDamage": 0,
+      "sourceEvidence": "5A6500/5A6582 passes query1 for targetside0 and query0 for targetside1; CURRENT is separately preserved.44A420 guards only casterOrb/Catalyst query;44A436 still checks physical targetHeroOrb."
+    }
+  },
+  "activeConflux": false
+}

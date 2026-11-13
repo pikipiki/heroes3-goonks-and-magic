@@ -1,0 +1,108 @@
+{
+  "status": "source-audit-only-inactive",
+  "actors": [
+    346,
+    347
+  ],
+  "nativeValidated": false,
+  "artifact278Active": false,
+  "source": "../h3era-plugins/Amethyst2/amethyst/tables.cpp",
+  "sourceSha256": "10047a24ff1736db951f163c34bcfb58ebe5c0fab972308ca98edf715f61d0cf",
+  "contracts": {
+    "346": {
+      "power": "5*CURRENTprimaryAliveCount+60",
+      "afterMelee": [
+        22,
+        22
+      ],
+      "afterDefend": [
+        29,
+        29
+      ],
+      "mastery": 3,
+      "casts": 10,
+      "activeSpell": 22,
+      "activeMastery": 2,
+      "fireShieldIntrinsicFloat32": 0.3,
+      "allSpellImmunity": "Resistance effect4, native existing allSpellImmunity policy available; source global283/346/347 immunity separately available",
+      "queuedFireWall": "hasFirewall before primaryaction6 queues13 on actiontarget; skips deadtarget atflush; power5*CURRENTcount+60, mastery0; no accuracyroll"
+    },
+    "347": {
+      "power": "10*CURRENTprimaryAliveCount+90",
+      "afterMelee": [
+        20,
+        16
+      ],
+      "afterDefend": [
+        20,
+        20
+      ],
+      "mastery": 3,
+      "casts": 10,
+      "activeSpell": 16,
+      "activeMastery": 2,
+      "initialFlag": "bit27 DEFENDING, not ICEimmunity",
+      "movesTwice": "additional_moves hook4645BA; pending full activation-order proof"
+    }
+  },
+  "sourceHooks": {
+    "afterMeleePrimary": "441C01",
+    "afterMeleeNormalRetaliation": "441B62; directWoG, preserves flipped CURRENT and unchanged primarymanager creature",
+    "afterDefend": "479231, no canSpellBeCast prequery; fresh livingtarget per line",
+    "hasFirewall": "75CA39 beforeaction6 only; flush468C99",
+    "intrinsicShield": "442E61 table fallback;442E50 checks activeShield29 first, overrides intrinsic even if weaker",
+    "movesTwice": "tables.cpp3380..3400: after ordinary completion if additional_moves then flags&=F2FFFFFF,decrement; else ifMovesTwice set additional_moves+=1"
+  },
+  "openObligations": [
+    "Trace constructor initialization of originalstack4DC to prove initial347DEFENDING clears with zeroDEFdelta; do not set native defending=true because native willMove would skip actor.",
+    "Implement exactspell29 overriding intrinsicfloat0.3shield, source reflection float/truncation anddamagegates; reuse parent verifiedShieldorder rather than generic integer sum.",
+    "Prove originalMovesTwice actionselection/wait/defend timing before selecting native turnstate.",
+    "Implement doublecasts with freshalive tests and direct-callerCURRENT side semantics, no Monsterwrapper substitution.",
+    "Complete exactXP p/a independent line ordering+chance+currentpower, fear aura, immunity, sourceFireWallvisuals, activecaster targetselection; retaininactive until nativecontrols."
+  ],
+  "artifact278": {
+    "DamageMin": 5,
+    "DamageMax": 5,
+    "conversions": [
+      [
+        341,
+        346
+      ],
+      [
+        342,
+        346
+      ],
+      [
+        343,
+        258
+      ],
+      [
+        344,
+        339
+      ],
+      [
+        345,
+        347
+      ]
+    ],
+    "assemblyComponents": [
+      273,
+      274,
+      276,
+      277
+    ],
+    "pending": "Verify native assembly componentbonus retention vs source19equippedslot loop; all5families required."
+  },
+  "defending347Audit161": {
+    "allocation": "4EE35C allocates0x140EC through617492\u219261A9E7\u219261AA13; smallthreshold1016; manager usesHeapAlloc(flags0) at61AA58. No guaranteedzero.",
+    "constructor": "46239A constructs42\u00d70x548 with43CF70;4DC notinitialized.",
+    "reset": "Shared43D450 calls43D2E0; latter REPSTOS51DWORD from198 to2DC exclusive, not4DC. Explicitresets elsewhere inthisroutine also do notwrite4DC.43D450 copiescreaturedata74..E8 anddoesnotwrite4DC.",
+    "use": "446B94 subtracts4DC fromstoredDEFCC andclearsbit27 atfirstactivation. Defend4790CB/4791F3 writesdefineddelta; sourceflags347 setinitialbit27 beforeanyDefend.",
+    "preliminary": "Undefined firstread is supported by allocation/constructor/sharedreset evidence. Do not claim source-defined randomintegerdamage; a stable0initialdelta is the authorized correction candidate.",
+    "pending": [
+      "Prove first-turn selection masks and roundinitialization preserve/clearinitialbit27 before choosing347; do not equateNativeState.defending until observed semanticsestablished.",
+      "Audit subsequentbattle reusedslot history versus initialundefinedread and scope documentedcorrection."
+    ],
+    "nativeChangesMade": false
+  }
+}

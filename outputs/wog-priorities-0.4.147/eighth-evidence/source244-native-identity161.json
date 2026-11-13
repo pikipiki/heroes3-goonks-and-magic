@@ -1,0 +1,102 @@
+{
+  "identity": "third-upgrades:tumCatopleba",
+  "identityVerified": true,
+  "wholeActorPortComplete": false,
+  "sourceEvidence": [
+    {
+      "path": "../Third-Upgrade-Mod-Full/Data/s/1000 tum - consts.erm",
+      "sha256": "cf39435c763439482ce6a96fc7d589abd27c96779de04e719678c2ec0db82d76"
+    },
+    {
+      "path": "../Third-Upgrade-Mod-Full/Data/s/Third Upgrade Mod.erm",
+      "sha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315"
+    },
+    {
+      "path": "../Third-Upgrade-Mod-Full/Data/Creatures/244.cfg",
+      "sha256": "124f53efb7faf50c9985814c159d8b421156096fe51428512fca45d1b9a2394e"
+    }
+  ],
+  "nativeDefinition": {
+    "path": "mod/third-upgrades/content/config/creatures/fortress/lvl5Upg2.json",
+    "sha256": "0715acd886aa2bae7c5d55c2e7b77365c24189289121293084a052a994d57c63"
+  },
+  "sourceTraits": {
+    "eraId": 244,
+    "invalidRange": false,
+    "name": {
+      "singular": "Catoblepas",
+      "plural": "Catoblepas"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 700
+    },
+    "fightValue": 1439,
+    "aiValue": 1439,
+    "growth": 3,
+    "hitPoints": 80,
+    "speed": 8,
+    "attack": 12,
+    "defense": 16,
+    "damage": {
+      "min": 12,
+      "max": 16
+    },
+    "shots": 0,
+    "spells": 0,
+    "advMapAmount": {
+      "min": 12,
+      "max": 20
+    },
+    "source": "Crtraits.txt:336"
+  },
+  "nativeStats": {
+    "attack": 16,
+    "defense": 20,
+    "damage": {
+      "max": 16,
+      "min": 13
+    },
+    "cost": {
+      "gold": 800
+    },
+    "advMapAmount": {
+      "max": 10,
+      "min": 8
+    }
+  },
+  "resources": [
+    {
+      "sourceMember": "CR244.def",
+      "sourceSHA": "711e920d9b49ef0709ade0ce279538881a87c8148a2b303943480fb154e41aa7",
+      "nativeFile": "battle/cr244.def",
+      "nativeSHA": "a795015bf8df1929a6f25cb29edd92b2073d974e301c48a46663d3de74cca831",
+      "byteEqual": false
+    },
+    {
+      "sourceMember": "AVWCR244.def",
+      "sourceSHA": "14de1e623cf70c4da7ca514f239cca0874d6009300c57189cbd5e2bab2d9f0f7",
+      "nativeFile": "map/AVWCR244.def",
+      "nativeSHA": "97021f26fc006da2432a32d2ec3471cc12aa3fc2761065a315aa2dbd72bac8fb",
+      "byteEqual": false
+    },
+    {
+      "nativeFile": "iconssmall/CPrS244X.png",
+      "nativeSHA": "324d0fe76dd1e7dc24c6015a6d649665bc9fd5b4ff2a163c13d7a32a548cf81e"
+    },
+    {
+      "nativeFile": "iconsbig/CPrL244X.png",
+      "nativeSHA": "4b0835ce017f225862c8673af928cec08e0b3876c54b1b965c4655e78c26e85c"
+    }
+  ],
+  "conclusion": "Existing fortress fifth-tier thirdform is source244. Named UN:T was missed by numeric-only resolver. Bind existing saveidentity; do not create duplicate. Stats/XP/ability parity and resourcepixel parity remain unverified/different; no whole244 claim.",
+  "pending": [
+    "Source244Attackeffect2 exactDeathStare, Fear,Retaliations3,fullXP verification",
+    "Fourasset pixel/frame comparison ifport244 undertaken"
+  ]
+}

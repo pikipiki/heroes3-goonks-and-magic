@@ -1,0 +1,442 @@
+{
+  "anyHeroCanMove": true,
+  "armies": [
+    {
+      "id": 1,
+      "name": "Christian",
+      "needsLastStack": true,
+      "slots": [
+        {
+          "aiValue": 85500,
+          "attack": 80,
+          "cost": [
+            0,
+            50,
+            0,
+            0,
+            0,
+            0,
+            50000,
+            0
+          ],
+          "count": 1,
+          "damageMax": 100,
+          "damageMin": 75,
+          "defense": 70,
+          "description": "50% Magic Resist. Age. Acid breath. \nAttack twice. Fear. Fearless.",
+          "experience": 1,
+          "experiencePerUnit": 1,
+          "experienceRank": 0,
+          "fightValue": 78500,
+          "growth": 1,
+          "health": 1200,
+          "icon": "tum-era/creatures/254/large.png",
+          "id": 316,
+          "key": "tum-era:necrossDragon",
+          "name": "Necross Dragon",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": false,
+            "mindImmune": true,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": true
+          },
+          "shooter": true,
+          "shots": 10,
+          "speed": 20
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  ],
+  "audioMuted": false,
+  "autosaveAllowed": false,
+  "backpackCount": 0,
+  "cheatReady": false,
+  "cheatsAllowed": true,
+  "day": 1,
+  "equipment": [
+    {
+      "description": "{Ritual dagger}\n\nAllows to upgrade all Mages, Archmages, Monks and Zealots in your army to Liches.",
+      "icon": 246,
+      "name": "Ritual dagger",
+      "slot": 9
+    },
+    {
+      "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+      "icon": 3,
+      "name": "Catapult",
+      "slot": 16
+    },
+    {
+      "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+      "icon": 0,
+      "name": "Spell Book",
+      "slot": 17
+    }
+  ],
+  "heroHasSpellbook": true,
+  "heroId": 1,
+  "heroMana": 200,
+  "heroManaLimit": 200,
+  "heroMoving": false,
+  "heroName": "Christian",
+  "heroWindow": {
+    "backpack": [
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 19
+      }
+    ],
+    "canRebalanceSourceArtifacts": false,
+    "className": "Knight",
+    "commanderIcon": 10,
+    "experience": 1,
+    "experienceIcon": 4,
+    "id": 1,
+    "level": 1,
+    "luck": {
+      "icon": 8,
+      "value": 0
+    },
+    "mana": 200,
+    "manaIcon": 5,
+    "manaLimit": 200,
+    "morale": {
+      "icon": 7,
+      "value": 0
+    },
+    "name": "Christian",
+    "owned": true,
+    "portrait": {
+      "h": 64,
+      "w": 58,
+      "x": 83,
+      "y": 26
+    },
+    "primaryIcons": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "primarySkills": [
+      0,
+      0,
+      1,
+      20
+    ],
+    "skills": [
+      {
+        "description": "{Expert Wisdom}\n\nExpert Wisdom allows your hero to learn fifth level spells.",
+        "icon": 9,
+        "mastery": "Expert",
+        "name": "Wisdom"
+      }
+    ],
+    "slots": [
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 0
+      },
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 1
+      },
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 2
+      },
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 3
+      },
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 4
+      },
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 5
+      },
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 6
+      },
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 7
+      },
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 8
+      },
+      {
+        "allowed": false,
+        "description": "{Ritual dagger}\n\nAllows to upgrade all Mages, Archmages, Monks and Zealots in your army to Liches.",
+        "icon": 246,
+        "locked": false,
+        "movable": true,
+        "name": "Ritual dagger",
+        "slot": 9
+      },
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 10
+      },
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 11
+      },
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 12
+      },
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 13
+      },
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 14
+      },
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 15
+      },
+      {
+        "allowed": false,
+        "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+        "icon": 3,
+        "locked": false,
+        "movable": false,
+        "name": "Catapult",
+        "slot": 16
+      },
+      {
+        "allowed": false,
+        "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+        "icon": 0,
+        "locked": false,
+        "movable": false,
+        "name": "Spell Book",
+        "slot": 17
+      },
+      {
+        "allowed": false,
+        "locked": false,
+        "movable": false,
+        "slot": 18
+      }
+    ],
+    "specialty": {
+      "description": "Increases the Attack and Defense skill of any Ballista for each level attained after 4th level.",
+      "icon": 6,
+      "name": "Ballista",
+      "sourceProgression": {
+        "attackDefense": 1,
+        "damage": 0,
+        "family": "Ballista",
+        "healthPercent": 10,
+        "warMachines": true
+      }
+    }
+  },
+  "heroes": [
+    {
+      "hasSpellbook": true,
+      "id": 1,
+      "index": 0,
+      "mana": 200,
+      "manaLimit": 200,
+      "movement": 1900,
+      "movementLimit": 2000,
+      "name": "Christian"
+    }
+  ],
+  "mapSettings": {
+    "enemyMoveTime": 150,
+    "moveTime": 150
+  },
+  "mode": "hero",
+  "movement": 1900,
+  "musicVolume": 88,
+  "onlineGame": false,
+  "rect": {
+    "h": 586,
+    "w": 672,
+    "x": 64,
+    "y": 7
+  },
+  "resourceTypes": [
+    {
+      "icon": "",
+      "id": 0,
+      "key": "wood",
+      "name": "Wood",
+      "scope": "core"
+    },
+    {
+      "icon": "",
+      "id": 1,
+      "key": "mercury",
+      "name": "Mercury",
+      "scope": "core"
+    },
+    {
+      "icon": "",
+      "id": 2,
+      "key": "ore",
+      "name": "Ore",
+      "scope": "core"
+    },
+    {
+      "icon": "",
+      "id": 3,
+      "key": "sulfur",
+      "name": "Sulfur",
+      "scope": "core"
+    },
+    {
+      "icon": "",
+      "id": 4,
+      "key": "crystal",
+      "name": "Crystal",
+      "scope": "core"
+    },
+    {
+      "icon": "",
+      "id": 5,
+      "key": "gems",
+      "name": "Gems",
+      "scope": "core"
+    },
+    {
+      "icon": "",
+      "id": 6,
+      "key": "gold",
+      "name": "Gold",
+      "scope": "core"
+    },
+    {
+      "icon": "mithril/small.png",
+      "id": 7,
+      "key": "mithril",
+      "name": "Mithril",
+      "scope": "wake-of-gods.mithril"
+    }
+  ],
+  "resources": [
+    20,
+    10,
+    20,
+    10,
+    10,
+    10,
+    20000,
+    0
+  ],
+  "sessionState": 6,
+  "soundVolume": 88,
+  "towns": [
+    {
+      "id": 0,
+      "index": 0,
+      "name": "Goonkbourg"
+    }
+  ],
+  "troopEquipment": {
+    "canAct": true,
+    "heroId": 1,
+    "heroName": "Christian",
+    "troops": [
+      {
+        "aiValue": 85500,
+        "attack": 80,
+        "cost": [
+          0,
+          50,
+          0,
+          0,
+          0,
+          0,
+          50000,
+          0
+        ],
+        "count": 1,
+        "damageMax": 100,
+        "damageMin": 75,
+        "defense": 70,
+        "description": "50% Magic Resist. Age. Acid breath. \nAttack twice. Fear. Fearless.",
+        "fightValue": 78500,
+        "growth": 1,
+        "health": 1200,
+        "icon": "tum-era/creatures/254/large.png",
+        "id": 316,
+        "key": "tum-era:necrossDragon",
+        "magicDamageReduction": 0,
+        "name": "Necross Dragon",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": true,
+          "living": false,
+          "mindImmune": true,
+          "noMorale": true,
+          "nonLiving": false,
+          "undead": true
+        },
+        "physicalDamageBonus": 0,
+        "rangedDamageBonus": 0,
+        "shooter": true,
+        "shots": 10,
+        "slot": 0,
+        "speed": 20
+      }
+    ]
+  },
+  "turn": true,
+  "windowToken": 75592744
+}

@@ -1,0 +1,70 @@
+{
+  "activationReady": false,
+  "scope": {
+    "sourceCreature": 263,
+    "sourceXpCode": "K#60",
+    "nativeHero": "core:astral",
+    "spell": 60,
+    "unrelatedGoonkHeroes": "unchanged",
+    "otherNativeHeroCustomPercentages": "retained"
+  },
+  "gameSHA256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "proof": {
+    "specialty": "4E6260 validates specialtytype3/spell60, then4E62FD sign-extends short heroLevel, divides by target sourceLevel+1 (native creatureLevel), IMUL32 by raw threshold.",
+    "coefficient": {
+      "address": "63AC08",
+      "binary64": "b81e85eb51b89e3f",
+      "value": 0.03
+    },
+    "ceil": "4E6323 FSTP QWORD(%esp) stores the FMUL result as binary64 BEFORE4E6326 calls619297.6192AF FLD QWORD reloads it.619297 loads x87 CW1B3F from68F7F0 via620604 FLDCW; its rounding bits0x800 select round+infinity.620D8D FRNDINT computes CEIL;617F94 converts the integral result to integer.5A86B4 adds it to raw threshold.",
+    "expression": "signed32(raw + ceil(.03 * signed32((signed16(heroLevel) / targetLevel) * raw)))",
+    "numericAdaptation": "Integer ceil(3*product/100), equivalent over signed32 products under the original normal FP environment; no global rounding-mode state is introduced.",
+    "undefinedTargetLevel": "For custom level<=0, retain raw threshold instead of division by zero; normal source living creatures have positive levels."
+  },
+  "nativeTestsRequired": [
+    "Astrallevel1,targetlevel1,raw35:HP37accept/HP38reject",
+    "Astrallevel1,targetlevel2,raw260:HP261reject (existing native percentage incorrectly accepts)",
+    "Unrelated Christian263 baseline unchanged",
+    "Signed16 level truncation, signed32 IMUL and addition overflow, negative values"
+  ],
+  "portableTest": {
+    "file": "tests/native/EraFangarmHypnotize.test.cpp",
+    "asanUbsan": true,
+    "randomProducts": 1000000,
+    "binary64CeilOracle": true
+  },
+  "boundedEvidence": [
+    {
+      "address": "4e6260",
+      "bytes": 216,
+      "sha256": "ff1a3b66e5e53b6f8847100d6e2d09c8ac019134b21df3581acf2a0d313162ab"
+    },
+    {
+      "address": "619297",
+      "bytes": 206,
+      "sha256": "2473678f563535c718d9ff2bec01b736c668353b53bbc63597ccde959636ca14"
+    },
+    {
+      "address": "620604",
+      "bytes": 35,
+      "sha256": "84749c64e12c57ce2a4dec7bdb50573ab3dd9f851b65e73be2fba62d0cfec3b2"
+    },
+    {
+      "address": "620d85",
+      "bytes": 18,
+      "sha256": "a3cfd45fc82da22697161c8c1622c9c03d9cb2b967d72d4efec02688c38b8dfd"
+    },
+    {
+      "address": "617f94",
+      "bytes": 39,
+      "sha256": "d0a2aca68648a0ae9d5cbfae1b276d4a64d4f797fc0c60f28b64096cdfa3148c"
+    }
+  ],
+  "nativeValidation": {
+    "passed": true,
+    "cases": 3,
+    "source": "outputs/wog-priorities-0.4.147/native163-fangarm263-astral.json",
+    "engineSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771",
+    "scope": "Strict source263 K60 reception with coreAstral only; production activation remains gated by the full Horn/Fangarm contract"
+  }
+}

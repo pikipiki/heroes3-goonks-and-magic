@@ -1,3 +1,4 @@
+import{SULFIDE_REGENERATION}from'./roster8/sulfide-source.mjs';
 import {parseAmethystCreature,AmethystCompilationError} from './amethyst.mjs';
 // A named service adapter, not a declaration that the whole creature/plugin is
 // supported. This consumes exactly the two original regeneration properties.
@@ -33,7 +34,7 @@ export function validateRuntimePolicy(policy){
    if(operation==='meleeRage'||operation==='petrification'||operation==='blindness'||operation==='allSpellImmunity'||operation==='armySpellCost'||operation==='spellDamageInversion')valid=keys(service,[]);
    if(operation==='deathBlowCRT')valid=['tum-era:eraCreature318','tum-era:eraCreature319','tum-era:ancestralBehemoth','tum-era:eraCreature361'].includes(id)&&keys(service,[]);
    if(operation==='defenseReduction')valid=keys(service,['percent'])&&service.percent===95;
-   if(operation==='experienceRegeneration')valid=['tum-era:eraCreature267','tum-era:eraCreature268','tum-era:eraCreature273','tum-era:eraCreature294'].includes(id)&&keys(service,['chancePercent','values'])&&service.chancePercent===(id==='tum-era:eraCreature273'?50:100)&&Array.isArray(service.values)&&service.values.length===11&&service.values.every((v,i)=>v===i*(id==='tum-era:eraCreature273'?4:9));
+   if(operation==='experienceRegeneration')valid=id==='tum-era:eraCreature339'?(keys(service,['chancePercent','values'])&&service.chancePercent===50&&Array.isArray(service.values)&&service.values.length===11&&service.values.every((v,i)=>v===SULFIDE_REGENERATION[i])):['tum-era:eraCreature267','tum-era:eraCreature268','tum-era:eraCreature273','tum-era:eraCreature294'].includes(id)&&keys(service,['chancePercent','values'])&&service.chancePercent===(id==='tum-era:eraCreature273'?50:100)&&Array.isArray(service.values)&&service.values.length===11&&service.values.every((v,i)=>v===i*(id==='tum-era:eraCreature273'?4:9));
    if(operation==='sourceRoundTwoDemons')valid=id==='third-upgrades:tumPitMaster'&&keys(service,['values'])&&Array.isArray(service.values)&&service.values.length===11&&service.values.every((v,i)=>v===[0,0,0,10,10,15,15,20,20,25,25][i]);
    if(operation==='sourceRangedResistance30')valid=['tum-era:eraCreature337','tum-era:eraCreature338'].includes(id)&&keys(service,[]);
    if(operation==='sourceSplashRangeOne')valid=id==='tum-era:eraCreature350'&&keys(service,[]);

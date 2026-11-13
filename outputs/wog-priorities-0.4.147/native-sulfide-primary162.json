@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "initialControlsComplete": true,
+  "wholeActorNativeValidated": false,
+  "engineSHA": "077528260dcb9192dd2aa69245841bcce7a1c462d6028da8d244f37543d2aefd",
+  "controls": [
+    {
+      "target": "core:gnoll",
+      "maximumHealth": 450000,
+      "defenseBefore": 20,
+      "defenseAfter": 17,
+      "physical": 122,
+      "acid": 35,
+      "preservedWounds": 157,
+      "privateHealthMarkerAdded": false,
+      "ownActorAttackBefore": 35,
+      "ownActorAttackAfter": 35
+    },
+    {
+      "target": "goonk:bubu",
+      "maximumHealth": 450000,
+      "defenseBefore": 21,
+      "defenseAfter": 18,
+      "physical": 119,
+      "acid": 35,
+      "preservedWounds": 154,
+      "privateHealthMarkerAdded": false,
+      "ownActorAttackBefore": 35,
+      "ownActorAttackAfter": 32
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-primary162-console.log",
+      "sha256": "2f46b4b337536a088d88c47635465753f83b3335e079e539beea26dbb4ecbb29"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-primary162-result.json",
+      "sha256": "ba7573a4a402d64a9a7249212c69e83f1d01b550ceab289ec8253918509ae181"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-primary162-sulfide339-primary-core-gnoll.png",
+      "sha256": "4a2622d1d1bda6b0e19dd89c217fdfb6b0196c17a60458068b3fb29b0eda826f"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-primary162-sulfide339-primary-goonk-bubu.png",
+      "sha256": "f9b46c96502d587cccb73e58f628a1cc7fbcc5285551f5a0d69ca2062ba542a9"
+    }
+  ],
+  "healthConclusion": "Currentproduction module healthpolicy already gives sourceF32 profile to battleunits. RealGoonk target gives450000 without privatehealthmarker. Nonewglobalhealthchange made; originalBubuWeakness35→32 preserved.",
+  "pending": [
+    "Native100roundstatusduration/Poison50%cap/paralysis3of101",
+    "Regeneration r50 irregularranks anddaily ownerMAX sulfur",
+    "Biology/Toxic15/Orb/AgeUndead/normalcounter/primaryordering controls",
+    "Whole339 installer remains absent/off"
+  ]
+}

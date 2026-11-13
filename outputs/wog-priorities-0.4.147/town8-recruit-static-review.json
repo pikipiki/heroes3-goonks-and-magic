@@ -1,0 +1,57 @@
+{
+  "causeEstablished": false,
+  "scope": "Read-only static review; no Chromium or CPP mutations.",
+  "observed": {
+    "popupClosed": true,
+    "paid": false,
+    "stockChanged": false,
+    "garrisonAdded": false,
+    "consoleLines": 4000,
+    "consoleTruncatedAtHarnessLimit": true
+  },
+  "verifiedCallChain": [
+    {
+      "file": "client/windows/GUIClasses.cpp",
+      "method": "CRecruitmentWindow::confirmRecruitment/buy",
+      "fact": "buy validates makingTurn,selected,positivecount andfreeSlot; calls onRecruit then closes unconditionally, without waiting for request acceptance."
+    },
+    {
+      "file": "lib/callback/CCallback.cpp",
+      "method": "CCallback::recruitCreatures",
+      "fact": "Silent return if optional playerID differs from dwelling.tempOwner, except hardcodedneutral factory/refugee. Otherwise constructs RecruitCreatures(level si32) and sends request."
+    },
+    {
+      "file": "client/windows/CCastleInterface.cpp",
+      "method": "CCastleBuildings::enterDwelling",
+      "fact": "Classic callback also uses GAME->interface()->cb at buy time; same global lookup as MobileBridge30. Capturing callback is not established as rootcause."
+    },
+    {
+      "file": "server/CGameHandler.cpp",
+      "method": "recruitCreatures",
+      "fact": "No7-tier hardlimit; loopsdwelling.creatures.size, checksfromLvl/creature membership, stock, affordability, slot, ownership/destination. Any later rejection logscomplaint."
+    }
+  ],
+  "minimalExperiments": [
+    {
+      "experiment": "At same unchanged ownedtown state, closepopup and invoke native cmd9(7,0,1), inspectresources/stock/army afteracceptedstate, not merelypopupclose.",
+      "interpretation": "Success localizes popup/callback path; failure also affects commonCCallback/server/query path."
+    },
+    {
+      "experiment": "Repeat direct9 andpopup30/31/32 on ordinarytier1 in sameTown.",
+      "interpretation": "Distinguishes T8-specific path fromgenericowner/query/recruitment behavior."
+    },
+    {
+      "experiment": "Private harness enable settings.logging.console.threshold=trace and logging.loggers append {domain:network,level:trace}; capture only /RecruitCreatures|Cannot recruit|queries before|wrong.*player|not.*active|Sending a request/ into a separate bounded report.",
+      "interpretation": "A Sending request RecruitCreatures proves CCallback passedowner guard; complaint then identifiesserver rejection. No sending trace with confirmedbuy localizesclientguard."
+    }
+  ],
+  "sourceHashes": {
+    "client/MobileBridge.cpp": "12857e0ace4f8f8eac126fe0c233abd03311941d3ea3c9f94ab1156cea585513",
+    "client/windows/GUIClasses.cpp": "d3a63233e01f18ed655d2546973ea3d6c56068ee7764002dbccb267b5cafde2e",
+    "client/windows/CCastleInterface.cpp": "bfd110ea670edbfef3b62a3220d3af1d55ec0072b5ac0e3db6c24f346aa9fe16",
+    "lib/callback/CCallback.cpp": "a1a8f72826dcda89a89c8cd69c3ee80fac3f19783cc8244bf6cda8b820df0906",
+    "client/Client.cpp": "3a21378c7ea47f146291ce521035113ea07791b474ffa7b98b50e593640b8a49",
+    "server/CGameHandler.cpp": "84ace5d976255b4e1286a6a5c1f6bf34da4a0d15989003a0ba3af78382d67875",
+    "server/NetPacksServer.cpp": "1a2395bf38e34875bc0dbabd75396575c8ccfe4877929f5ceb3be4598bb6c20d"
+  }
+}

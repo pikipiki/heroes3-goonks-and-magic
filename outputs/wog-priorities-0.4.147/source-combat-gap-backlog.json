@@ -6,12 +6,21 @@
   "obligations": [
     {
       "id": "original-familiar43-mana-channel",
-      "status": "open",
+      "status": "closed",
       "sourceId": 43,
       "nativeId": "core:familiar",
       "sourceEvidence": "Amethyst initializesMagicChannel_Table43=1;5A24DC uses post-effect alive/Hypnotize side and grants floor(cost/5) once.",
-      "nativeDifference": "New356 adapter deliberately leaves ordinary VCMI providers with their previous pre-effect timing and physical owner, pending independent43 controls.",
-      "requiredFix": "Admit43 only after canonical core data and native post-Hypnotize/death/max-not-sum controls; preserve unregistered Goonk channels."
+      "nativeDifference": "Whole source43 CFG/XP explicitly registered. Post-effect alive/Hypnotize-aware max channel preserves ordinary unregistered Goonk behavior; effective XP flight is exposed by the native bridge.",
+      "requiredFix": "Admit43 only after canonical core data and native post-Hypnotize/death/max-not-sum controls; preserve unregistered Goonk channels.",
+      "nativeValidation": {
+        "reports": [
+          "native-familiar43-progress.json",
+          "native159-familiar43-flying.json",
+          "source-familiar43-installation-review.json"
+        ],
+        "wholeCandidateRegistered": true,
+        "flyingEngineSHA256": "b77e062ac1bb6a140bcc6a8029fe98d2eb32d70eb729acb8edeba8d75d827361"
+      }
     },
     {
       "id": "original-fairie134-casting-resistance-rng",
@@ -754,9 +763,9 @@
     },
     {
       "id": "source-g-percent-fire-shield-direct",
-      "status": "open",
+      "status": "closed",
       "sourceEvidence": "440858 sends cached FireShield raw amount straight to443DB0/ApplyPhysicalDamage, not normal magical damage adjustment.",
-      "nativeDifference": "Uncovered source g% recipients can incorrectly reduce FireShield with native adjustRawDamage.",
+      "nativeDifference": "Typed source g% uses the source raw physical reflection path; ordinary Goonk/ANY behavior preserved.",
       "registeredGPercentActors": [
         {
           "sourceId": 8,
@@ -1270,7 +1279,26 @@
         "same incoming physical damage, with and without source g% at nonzero rank",
         "exact raw FireShield numerical reflection",
         "ordinary unregistered magical damage reduction still applies to native FireShield"
-      ]
+      ],
+      "nativeValidation": {
+        "report": "native-source-g-fire-shield.json",
+        "controls": 6,
+        "engineSHA256": "b77e062ac1bb6a140bcc6a8029fe98d2eb32d70eb729acb8edeba8d75d827361"
+      }
+    },
+    {
+      "id": "original-imp42-personal-hate255",
+      "status": "closed",
+      "sourceId": 42,
+      "nativeId": "core:imp",
+      "sourceEvidence": "Original Creatures/42.cfg Hate0255=200; same flat personal-Hate property as independently reviewed43, not a percent bonus.",
+      "requiredFix": "Independently review whole42 native stats/flags/CFG/XP and admit its flat200 hate of source255 only after native target/control witnesses; do not infer full42 parity from43.",
+      "nativeValidation": {
+        "report": "native159-imp42.json",
+        "controls": 6,
+        "wholeSourceRegistered": true,
+        "engineSHA256": "b77e062ac1bb6a140bcc6a8029fe98d2eb32d70eb729acb8edeba8d75d827361"
+      }
     }
   ],
   "futureConflux": {

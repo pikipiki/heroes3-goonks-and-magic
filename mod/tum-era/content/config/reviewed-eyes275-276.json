@@ -1,0 +1,64 @@
+{
+  "artifact275": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 30000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Eye of the Faerie Dragon",
+      "description": "{Eye of the Faerie Dragon}\n\nThis powerful dragon eye increases the minimum damage by +2 and allows Faerie Dragonling to be upgraded to Faerie Dragon and become Dracolich into Faerie Dragon the next day.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/275/icon.png",
+      "map": "tum-era/artifacts/275/map.def",
+      "scenarioBonus": "tum-era/artifacts/275/scenario.png"
+    },
+    "bonuses": {
+      "DamageMin": {
+        "type": "CREATURE_DAMAGE",
+        "val": 2,
+        "subtype": "creatureDamageMin"
+      }
+    }
+  },
+  "artifact276": {
+    "type": [
+      "HERO"
+    ],
+    "class": "RELIC",
+    "value": 30000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Eye of the Rust Dragon",
+      "description": "{Eye of the Rust Dragon}\n\nThis powerful dragon eye increases the maximum damage by +2 and allows Rust Dragonling to be upgraded to Rust Dragon and become Dracolich into Rust Dragon the next day.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/276/icon.png",
+      "map": "tum-era/artifacts/276/map.def",
+      "scenarioBonus": "tum-era/artifacts/276/scenario.png"
+    },
+    "bonuses": {
+      "DamageMax": {
+        "type": "CREATURE_DAMAGE",
+        "val": 2,
+        "subtype": "creatureDamageMax"
+      }
+    }
+  }
+}

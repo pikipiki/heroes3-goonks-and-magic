@@ -1,0 +1,1619 @@
+{
+  "core:castle": {
+    "town": {
+      "creatures": [
+        [
+          "pikeman",
+          "halberdier",
+          "tumRoyalHalberdier"
+        ],
+        [
+          "archer",
+          "marksman",
+          "tumCrossbowman"
+        ],
+        [
+          "griffin",
+          "royalGriffin",
+          "tumCeasarGriffin"
+        ],
+        [
+          "swordsman",
+          "crusader",
+          "tumInquisitor"
+        ],
+        [
+          "monk",
+          "zealot",
+          "tumHighPriest"
+        ],
+        [
+          "cavalier",
+          "champion",
+          "tumHolyChampion"
+        ],
+        [
+          "angel",
+          "archangel",
+          "supremeArchangel",
+          "tum-era:cherub"
+        ],
+        [
+          "tum-era:eraCreature269",
+          "tum-era:eraCreature278"
+        ]
+      ],
+      "hallSlots": [
+        [
+          [
+            "villageHall",
+            "townHall",
+            "cityHall",
+            "capitol"
+          ],
+          [
+            "fort",
+            "citadel",
+            "castle"
+          ],
+          [
+            "tavern",
+            "special3"
+          ],
+          [
+            "blacksmith"
+          ]
+        ],
+        [
+          [
+            "marketplace",
+            "resourceSilo"
+          ],
+          [
+            "mageGuild1",
+            "mageGuild2",
+            "mageGuild3",
+            "mageGuild4"
+          ],
+          [
+            "shipyard",
+            "special1"
+          ]
+        ],
+        [
+          [
+            "special2"
+          ],
+          [
+            "horde1",
+            "horde1Upgr",
+            "horde2"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl1",
+            "dwellingUpLvl1",
+            "dwellingUp2Lvl1"
+          ],
+          [
+            "dwellingLvl2",
+            "dwellingUpLvl2",
+            "dwellingUp2Lvl2"
+          ],
+          [
+            "dwellingLvl3",
+            "dwellingUpLvl3",
+            "dwellingUp2Lvl3"
+          ],
+          [
+            "dwellingLvl4",
+            "dwellingUpLvl4",
+            "dwellingUp2Lvl4"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl5",
+            "dwellingUpLvl5",
+            "dwellingUp2Lvl5"
+          ],
+          [
+            "dwellingLvl6",
+            "dwellingUpLvl6",
+            "dwellingUp2Lvl6"
+          ],
+          [
+            "dwellingLvl7",
+            "dwellingUpLvl7",
+            "dwellingUp2Lvl7",
+            "dwellingUp3Lvl7"
+          ],
+          [
+            "dwellingLvl8",
+            "dwellingUpLvl8"
+          ]
+        ]
+      ],
+      "buildingsIcons": "tum-era/eighth-castle-hall",
+      "buildings": {
+        "dwellingLvl8": {
+          "id": 150,
+          "name": "Cathedral",
+          "description": "The Cathedral allows you to recruit Light Templars.",
+          "cost": {
+            "wood": 15,
+            "mercury": 0,
+            "ore": 15,
+            "sulfur": 0,
+            "crystal": 10,
+            "gems": 0,
+            "gold": 8000
+          },
+          "requires": [
+            "dwellingLvl6"
+          ]
+        },
+        "dwellingUpLvl8": {
+          "id": 151,
+          "name": "Upg. Cathedral",
+          "description": "The Cathedral allows you to recruit Light Paladins.",
+          "cost": {
+            "wood": 20,
+            "mercury": 0,
+            "ore": 20,
+            "sulfur": 0,
+            "crystal": 15,
+            "gems": 0,
+            "gold": 10000
+          },
+          "requires": [
+            "dwellingLvl8"
+          ],
+          "upgrades": "dwellingLvl8"
+        }
+      }
+    }
+  },
+  "core:rampart": {
+    "town": {
+      "creatures": [
+        [
+          "centaur",
+          "centaurCaptain",
+          "tumCentaurGeneral"
+        ],
+        [
+          "dwarf",
+          "battleDwarf",
+          "tumBerserkerDwarf"
+        ],
+        [
+          "woodElf",
+          "grandElf",
+          "tumSharpshooterElf"
+        ],
+        [
+          "pegasus",
+          "silverPegasus",
+          "tumGoldenPegasus"
+        ],
+        [
+          "dendroidGuard",
+          "dendroidSoldier",
+          "tumElderDendroid"
+        ],
+        [
+          "unicorn",
+          "warUnicorn",
+          "tumLegendaryUnicorn"
+        ],
+        [
+          "greenDragon",
+          "goldDragon",
+          "diamondDragon",
+          "tum-era:gemDragon"
+        ],
+        [
+          "tum-era:eraCreature349",
+          "tum-era:eraCreature350"
+        ]
+      ],
+      "hallSlots": [
+        [
+          [
+            "villageHall",
+            "townHall",
+            "cityHall",
+            "capitol"
+          ],
+          [
+            "fort",
+            "citadel",
+            "castle"
+          ],
+          [
+            "tavern"
+          ],
+          [
+            "blacksmith"
+          ]
+        ],
+        [
+          [
+            "marketplace",
+            "resourceSilo"
+          ],
+          [
+            "mageGuild1",
+            "mageGuild2",
+            "mageGuild3",
+            "mageGuild4",
+            "mageGuild5"
+          ],
+          [
+            "special1",
+            "special2"
+          ]
+        ],
+        [
+          [
+            "special3"
+          ],
+          [
+            "horde2",
+            "horde2Upgr",
+            "horde2Upgr2"
+          ],
+          [
+            "horde1",
+            "horde1Upgr",
+            "horde1Upgr2"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl1",
+            "dwellingUpLvl1",
+            "dwellingUp2Lvl1"
+          ],
+          [
+            "dwellingLvl2",
+            "dwellingUpLvl2",
+            "dwellingUp2Lvl2"
+          ],
+          [
+            "dwellingLvl3",
+            "dwellingUpLvl3",
+            "dwellingUp2Lvl3"
+          ],
+          [
+            "dwellingLvl4",
+            "dwellingUpLvl4",
+            "dwellingUp2Lvl4"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl5",
+            "dwellingUpLvl5",
+            "dwellingUp2Lvl5"
+          ],
+          [
+            "dwellingLvl6",
+            "dwellingUpLvl6",
+            "dwellingUp2Lvl6"
+          ],
+          [
+            "dwellingLvl7",
+            "dwellingUpLvl7",
+            "dwellingUp2Lvl7",
+            "dwellingUp3Lvl7"
+          ],
+          [
+            "dwellingLvl8",
+            "dwellingUpLvl8"
+          ]
+        ]
+      ],
+      "buildingsIcons": "tum-era/eighth-rampart-hall",
+      "buildings": {
+        "dwellingLvl8": {
+          "id": 150,
+          "name": "Spiritual Fountain",
+          "description": "The Spiritual Fountain allows you to recruit Forest Spirits.",
+          "cost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 15,
+            "sulfur": 0,
+            "crystal": 7,
+            "gems": 0,
+            "gold": 10000
+          },
+          "requires": [
+            "dwellingLvl6"
+          ]
+        },
+        "dwellingUpLvl8": {
+          "id": 151,
+          "name": "Upg. Spiritual Fountain",
+          "description": "The Spiritual Fountain allows you to recruit Spring Spirits.",
+          "cost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 20,
+            "sulfur": 0,
+            "crystal": 12,
+            "gems": 0,
+            "gold": 12000
+          },
+          "requires": [
+            "dwellingLvl8"
+          ],
+          "upgrades": "dwellingLvl8"
+        }
+      }
+    }
+  },
+  "core:tower": {
+    "town": {
+      "creatures": [
+        [
+          "gremlin",
+          "masterGremlin",
+          "tumGrandmasterGremlin"
+        ],
+        [
+          "stoneGargoyle",
+          "obsidianGargoyle",
+          "tumMarbleGargoyle"
+        ],
+        [
+          "ironGolem",
+          "stoneGolem",
+          "tumSteelGolem"
+        ],
+        [
+          "mage",
+          "archMage",
+          "tumSupremeArchMage"
+        ],
+        [
+          "genie",
+          "masterGenie",
+          "tumArcaneGenie"
+        ],
+        [
+          "naga",
+          "nagaQueen",
+          "tumNagaEmpress"
+        ],
+        [
+          "giant",
+          "titan",
+          "lordOfThunder",
+          "guardianOfZeus"
+        ],
+        [
+          "tum-era:eraCreature271",
+          "tum-era:eraCreature280"
+        ]
+      ],
+      "hallSlots": [
+        [
+          [
+            "villageHall",
+            "townHall",
+            "cityHall",
+            "capitol"
+          ],
+          [
+            "fort",
+            "citadel",
+            "castle"
+          ],
+          [
+            "tavern"
+          ],
+          [
+            "blacksmith"
+          ]
+        ],
+        [
+          [
+            "marketplace",
+            "resourceSilo"
+          ],
+          [
+            "mageGuild1",
+            "mageGuild2",
+            "mageGuild3",
+            "mageGuild4",
+            "mageGuild5"
+          ],
+          [
+            "special3"
+          ],
+          [
+            "special4"
+          ]
+        ],
+        [
+          [
+            "special1"
+          ],
+          [
+            "special2"
+          ],
+          [
+            "horde1",
+            "horde1Upgr",
+            "horde1Upgr2"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl1",
+            "dwellingUpLvl1",
+            "dwellingUp2Lvl1"
+          ],
+          [
+            "dwellingLvl2",
+            "dwellingUpLvl2",
+            "dwellingUp2Lvl2"
+          ],
+          [
+            "dwellingLvl3",
+            "dwellingUpLvl3",
+            "dwellingUp2Lvl3"
+          ],
+          [
+            "dwellingLvl4",
+            "dwellingUpLvl4",
+            "dwellingUp2Lvl4"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl5",
+            "dwellingUpLvl5",
+            "dwellingUp2Lvl5"
+          ],
+          [
+            "dwellingLvl6",
+            "dwellingUpLvl6",
+            "dwellingUp2Lvl6"
+          ],
+          [
+            "dwellingLvl7",
+            "dwellingUpLvl7",
+            "dwellingUp2Lvl7",
+            "dwellingUp3Lvl7"
+          ],
+          [
+            "dwellingLvl8",
+            "dwellingUpLvl8"
+          ]
+        ]
+      ],
+      "buildingsIcons": "tum-era/eighth-tower-hall",
+      "buildings": {
+        "dwellingLvl8": {
+          "id": 150,
+          "name": "Dragon Factory",
+          "description": "The Dragon Factory allows you to recruit Drake Golems.",
+          "cost": {
+            "wood": 15,
+            "mercury": 0,
+            "ore": 15,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 10000
+          },
+          "requires": [
+            "dwellingLvl6"
+          ]
+        },
+        "dwellingUpLvl8": {
+          "id": 151,
+          "name": "Upg. Dragon Factory",
+          "description": "The Dragon Factory allows you to recruit Dragon Golems.",
+          "cost": {
+            "wood": 20,
+            "mercury": 15,
+            "ore": 20,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 15000
+          },
+          "requires": [
+            "dwellingLvl8"
+          ],
+          "upgrades": "dwellingLvl8"
+        }
+      }
+    }
+  },
+  "core:inferno": {
+    "town": {
+      "creatures": [
+        [
+          "imp",
+          "familiar",
+          "tumVermin"
+        ],
+        [
+          "gog",
+          "magog",
+          "tumWingedMagog"
+        ],
+        [
+          "hellHound",
+          "cerberus",
+          "tumAstralCerberus"
+        ],
+        [
+          "demon",
+          "hornedDemon",
+          "tumSharpHornedDemon"
+        ],
+        [
+          "pitFiend",
+          "pitLord",
+          "tumPitMaster"
+        ],
+        [
+          "efreet",
+          "efreetSultan",
+          "tumEfreetRajah"
+        ],
+        [
+          "devil",
+          "archDevil",
+          "hellBaron",
+          "antichrist"
+        ],
+        [
+          "tum-era:eraCreature337",
+          "tum-era:eraCreature338"
+        ]
+      ],
+      "hallSlots": [
+        [
+          [
+            "villageHall",
+            "townHall",
+            "cityHall",
+            "capitol"
+          ],
+          [
+            "fort",
+            "citadel",
+            "castle"
+          ],
+          [
+            "tavern"
+          ],
+          [
+            "blacksmith"
+          ]
+        ],
+        [
+          [
+            "marketplace",
+            "resourceSilo"
+          ],
+          [
+            "mageGuild1",
+            "mageGuild2",
+            "mageGuild3",
+            "mageGuild4",
+            "mageGuild5"
+          ],
+          [
+            "special4"
+          ],
+          [
+            "special2"
+          ]
+        ],
+        [
+          [
+            "special3"
+          ],
+          [
+            "horde1",
+            "horde1Upgr",
+            "horde4"
+          ],
+          [
+            "horde2",
+            "horde2Upgr",
+            "horde3"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl1",
+            "dwellingUpLvl1",
+            "dwellingUp2Lvl1"
+          ],
+          [
+            "dwellingLvl2",
+            "dwellingUpLvl2",
+            "dwellingUp2Lvl2"
+          ],
+          [
+            "dwellingLvl3",
+            "dwellingUpLvl3",
+            "dwellingUp2Lvl3"
+          ],
+          [
+            "dwellingLvl4",
+            "dwellingUpLvl4",
+            "dwellingUp2Lvl4"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl5",
+            "dwellingUpLvl5",
+            "dwellingUp2Lvl5"
+          ],
+          [
+            "dwellingLvl6",
+            "dwellingUpLvl6",
+            "dwellingUp2Lvl6"
+          ],
+          [
+            "dwellingLvl7",
+            "dwellingUpLvl7",
+            "dwellingUp2Lvl7",
+            "dwellingUp3Lvl7"
+          ],
+          [
+            "dwellingLvl8",
+            "dwellingUpLvl8"
+          ]
+        ]
+      ],
+      "buildingsIcons": "tum-era/eighth-inferno-hall",
+      "buildings": {
+        "dwellingLvl8": {
+          "id": 150,
+          "name": "Infernal Vortex",
+          "description": "The Infernal Vortex allows you to recruit Ahrimans.",
+          "cost": {
+            "wood": 0,
+            "mercury": 20,
+            "ore": 0,
+            "sulfur": 15,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 10000
+          },
+          "requires": [
+            "dwellingLvl6"
+          ]
+        },
+        "dwellingUpLvl8": {
+          "id": 151,
+          "name": "Upg. Infernal Vortex",
+          "description": "The Infernal Vortex allows you to recruit Archfiends.",
+          "cost": {
+            "wood": 0,
+            "mercury": 25,
+            "ore": 0,
+            "sulfur": 20,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 15000
+          },
+          "requires": [
+            "dwellingLvl8"
+          ],
+          "upgrades": "dwellingLvl8"
+        }
+      }
+    }
+  },
+  "core:necropolis": {
+    "town": {
+      "creatures": [
+        [
+          "skeleton",
+          "skeletonWarrior",
+          "tumSkeletonKnight"
+        ],
+        [
+          "walkingDead",
+          "zombieLord",
+          "tumGhoul"
+        ],
+        [
+          "wight",
+          "wraith",
+          "tumSpecter"
+        ],
+        [
+          "vampire",
+          "vampireLord",
+          "tumNosferatu"
+        ],
+        [
+          "lich",
+          "powerLich",
+          "tumLichKing"
+        ],
+        [
+          "blackKnight",
+          "dreadKnight",
+          "tumDeathKnight"
+        ],
+        [
+          "boneDragon",
+          "ghostDragon",
+          "bloodDragon",
+          "redBonesDragon"
+        ],
+        [
+          "tum-era:eraCreature331",
+          "tum-era:eraCreature332"
+        ]
+      ],
+      "hallSlots": [
+        [
+          [
+            "villageHall",
+            "townHall",
+            "cityHall",
+            "capitol"
+          ],
+          [
+            "fort",
+            "citadel",
+            "castle"
+          ],
+          [
+            "tavern"
+          ],
+          [
+            "blacksmith"
+          ]
+        ],
+        [
+          [
+            "marketplace",
+            "resourceSilo"
+          ],
+          [
+            "mageGuild1",
+            "mageGuild2",
+            "mageGuild3",
+            "mageGuild4",
+            "mageGuild5"
+          ],
+          [
+            "special2"
+          ],
+          [
+            "shipyard"
+          ]
+        ],
+        [
+          [
+            "special1"
+          ],
+          [
+            "special3"
+          ],
+          [
+            "horde1",
+            "horde1Upgr",
+            "horde2"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl1",
+            "dwellingUpLvl1",
+            "dwellingUp2Lvl1"
+          ],
+          [
+            "dwellingLvl2",
+            "dwellingUpLvl2",
+            "dwellingUp2Lvl2"
+          ],
+          [
+            "dwellingLvl3",
+            "dwellingUpLvl3",
+            "dwellingUp2Lvl3"
+          ],
+          [
+            "dwellingLvl4",
+            "dwellingUpLvl4",
+            "dwellingUp2Lvl4"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl5",
+            "dwellingUpLvl5",
+            "dwellingUp2Lvl5"
+          ],
+          [
+            "dwellingLvl6",
+            "dwellingUpLvl6",
+            "dwellingUp2Lvl6"
+          ],
+          [
+            "dwellingLvl7",
+            "dwellingUpLvl7",
+            "dwellingUp2Lvl7",
+            "dwellingUp3Lvl7"
+          ],
+          [
+            "dwellingLvl8",
+            "dwellingUpLvl8"
+          ]
+        ]
+      ],
+      "buildingsIcons": "tum-era/eighth-necropolis-hall",
+      "buildings": {
+        "dwellingLvl8": {
+          "id": 150,
+          "name": "Dark Cathedral",
+          "description": "The Dark Cathedral allows you to recruit Dark Templars.",
+          "cost": {
+            "wood": 0,
+            "mercury": 15,
+            "ore": 25,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 8000
+          },
+          "requires": [
+            "dwellingLvl6"
+          ]
+        },
+        "dwellingUpLvl8": {
+          "id": 151,
+          "name": "Upg. Dark Cathedral",
+          "description": "The Dark Cathedral allows you to recruit Dark Paladins.",
+          "cost": {
+            "wood": 0,
+            "mercury": 20,
+            "ore": 30,
+            "sulfur": 0,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 12000
+          },
+          "requires": [
+            "dwellingLvl8"
+          ],
+          "upgrades": "dwellingLvl8"
+        }
+      }
+    }
+  },
+  "core:dungeon": {
+    "town": {
+      "creatures": [
+        [
+          "troglodyte",
+          "infernalTroglodyte",
+          "tumPhosphorescentTroglodyte"
+        ],
+        [
+          "harpy",
+          "harpyHag",
+          "tumHarpySanguinary"
+        ],
+        [
+          "beholder",
+          "evilEye",
+          "tumMonstrousEye"
+        ],
+        [
+          "medusa",
+          "medusaQueen",
+          "tumMedusaEmpress"
+        ],
+        [
+          "minotaur",
+          "minotaurKing",
+          "tumBlackMinotaur"
+        ],
+        [
+          "manticore",
+          "scorpicore",
+          "tumChimera"
+        ],
+        [
+          "redDragon",
+          "blackDragon",
+          "darknessDragon",
+          "chasmDragon"
+        ],
+        [
+          "tum-era:eraCreature351",
+          "tum-era:eraCreature352"
+        ]
+      ],
+      "hallSlots": [
+        [
+          [
+            "villageHall",
+            "townHall",
+            "cityHall",
+            "capitol"
+          ],
+          [
+            "fort",
+            "citadel",
+            "castle"
+          ],
+          [
+            "tavern"
+          ],
+          [
+            "blacksmith"
+          ]
+        ],
+        [
+          [
+            "marketplace",
+            "resourceSilo"
+          ],
+          [
+            "mageGuild1",
+            "mageGuild2",
+            "mageGuild3",
+            "mageGuild4",
+            "mageGuild5"
+          ],
+          [
+            "special2"
+          ],
+          [
+            "special3"
+          ]
+        ],
+        [
+          [
+            "special1"
+          ],
+          [
+            "special4"
+          ],
+          [
+            "horde1",
+            "horde1Upgr",
+            "horde2"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl1",
+            "dwellingUpLvl1",
+            "dwellingUp2Lvl1"
+          ],
+          [
+            "dwellingLvl2",
+            "dwellingUpLvl2",
+            "dwellingUp2Lvl2"
+          ],
+          [
+            "dwellingLvl3",
+            "dwellingUpLvl3",
+            "dwellingUp2Lvl3"
+          ],
+          [
+            "dwellingLvl4",
+            "dwellingUpLvl4",
+            "dwellingUp2Lvl4"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl5",
+            "dwellingUpLvl5",
+            "dwellingUp2Lvl5"
+          ],
+          [
+            "dwellingLvl6",
+            "dwellingUpLvl6",
+            "dwellingUp2Lvl6"
+          ],
+          [
+            "dwellingLvl7",
+            "dwellingUpLvl7",
+            "dwellingUp2Lvl7",
+            "dwellingUp3Lvl7"
+          ],
+          [
+            "dwellingLvl8",
+            "dwellingUpLvl8"
+          ]
+        ]
+      ],
+      "buildingsIcons": "tum-era/eighth-dungeon-hall",
+      "buildings": {
+        "dwellingLvl8": {
+          "id": 150,
+          "name": "Spider Nest",
+          "description": "The Spider Nest allows you to recruit Lady Spiders.",
+          "cost": {
+            "wood": 20,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 15,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 9000
+          },
+          "requires": [
+            "dwellingLvl6"
+          ]
+        },
+        "dwellingUpLvl8": {
+          "id": 151,
+          "name": "Upg. Spider Nest",
+          "description": "The Spider Nest allows you to recruit Priestess Spiders.",
+          "cost": {
+            "wood": 25,
+            "mercury": 0,
+            "ore": 0,
+            "sulfur": 20,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 12000
+          },
+          "requires": [
+            "dwellingLvl8"
+          ],
+          "upgrades": "dwellingLvl8"
+        }
+      }
+    }
+  },
+  "core:stronghold": {
+    "town": {
+      "creatures": [
+        [
+          "goblin",
+          "hobgoblin",
+          "tumHobgoblinOverlord"
+        ],
+        [
+          "goblinWolfRider",
+          "hobgoblinWolfRider",
+          "tumWolfRiderKiller"
+        ],
+        [
+          "orc",
+          "orcChieftain",
+          "tumOrcLeader"
+        ],
+        [
+          "ogre",
+          "ogreMage",
+          "tumElderOgre"
+        ],
+        [
+          "roc",
+          "thunderbird",
+          "tumLightningbird"
+        ],
+        [
+          "cyclop",
+          "cyclopKing",
+          "tumCyclopsEmperor"
+        ],
+        [
+          "behemoth",
+          "ancientBehemoth",
+          "ghostBehemoth",
+          "ancestralBehemoth"
+        ],
+        [
+          "tum-era:eraCreature275",
+          "tum-era:eraCreature283"
+        ]
+      ],
+      "hallSlots": [
+        [
+          [
+            "villageHall",
+            "townHall",
+            "cityHall",
+            "capitol"
+          ],
+          [
+            "fort",
+            "citadel",
+            "castle"
+          ],
+          [
+            "tavern"
+          ],
+          [
+            "blacksmith"
+          ]
+        ],
+        [
+          [
+            "marketplace",
+            "resourceSilo"
+          ],
+          [
+            "mageGuild1",
+            "mageGuild2",
+            "mageGuild3"
+          ],
+          [
+            "special4"
+          ],
+          [
+            "special1"
+          ]
+        ],
+        [
+          [
+            "special2"
+          ],
+          [
+            "special3"
+          ],
+          [
+            "horde1",
+            "horde1Upgr",
+            "horde2"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl1",
+            "dwellingUpLvl1",
+            "dwellingUp2Lvl1"
+          ],
+          [
+            "dwellingLvl2",
+            "dwellingUpLvl2",
+            "dwellingUp2Lvl2"
+          ],
+          [
+            "dwellingLvl3",
+            "dwellingUpLvl3",
+            "dwellingUp2Lvl3"
+          ],
+          [
+            "dwellingLvl4",
+            "dwellingUpLvl4",
+            "dwellingUp2Lvl4"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl5",
+            "dwellingUpLvl5",
+            "dwellingUp2Lvl5"
+          ],
+          [
+            "dwellingLvl6",
+            "dwellingUpLvl6",
+            "dwellingUp2Lvl6"
+          ],
+          [
+            "dwellingLvl7",
+            "dwellingUpLvl7",
+            "dwellingUp2Lvl7",
+            "dwellingUp3Lvl7"
+          ],
+          [
+            "dwellingLvl8",
+            "dwellingUpLvl8"
+          ]
+        ]
+      ],
+      "buildingsIcons": "tum-era/eighth-stronghold-hall",
+      "buildings": {
+        "dwellingLvl8": {
+          "id": 150,
+          "name": "Ziggurat",
+          "description": "The Ziggurat allows you to recruit Couatls.",
+          "cost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 15,
+            "sulfur": 10,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 9000
+          },
+          "requires": [
+            "dwellingLvl6"
+          ]
+        },
+        "dwellingUpLvl8": {
+          "id": 151,
+          "name": "Upg. Ziggurat",
+          "description": "The Ziggurat allows you to recruit Quetzalcoualts.",
+          "cost": {
+            "wood": 0,
+            "mercury": 0,
+            "ore": 30,
+            "sulfur": 20,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 12000
+          },
+          "requires": [
+            "dwellingLvl8"
+          ],
+          "upgrades": "dwellingLvl8"
+        }
+      }
+    }
+  },
+  "core:fortress": {
+    "town": {
+      "creatures": [
+        [
+          "gnoll",
+          "gnollMarauder",
+          "tumGnollShaman"
+        ],
+        [
+          "lizardman",
+          "lizardWarrior",
+          "tumEliteLizard"
+        ],
+        [
+          "serpentFly",
+          "fireDragonFly",
+          "tumChaoticDragonFly"
+        ],
+        [
+          "basilisk",
+          "greaterBasilisk",
+          "tumLavaBasilisk"
+        ],
+        [
+          "gorgon",
+          "mightyGorgon",
+          "tumCatopleba"
+        ],
+        [
+          "wyvern",
+          "wyvernMonarch",
+          "tumAcidWyvern"
+        ],
+        [
+          "hydra",
+          "chaosHydra",
+          "hellHydra",
+          "nightmareHydra"
+        ],
+        [
+          "tum-era:eraCreature353",
+          "tum-era:eraCreature354"
+        ]
+      ],
+      "hallSlots": [
+        [
+          [
+            "villageHall",
+            "townHall",
+            "cityHall",
+            "capitol"
+          ],
+          [
+            "fort",
+            "citadel",
+            "castle"
+          ],
+          [
+            "tavern"
+          ],
+          [
+            "blacksmith"
+          ]
+        ],
+        [
+          [
+            "marketplace",
+            "resourceSilo"
+          ],
+          [
+            "mageGuild1",
+            "mageGuild2",
+            "mageGuild3"
+          ],
+          [
+            "shipyard"
+          ]
+        ],
+        [
+          [
+            "special1"
+          ],
+          [
+            "special2",
+            "special3"
+          ],
+          [
+            "horde1",
+            "horde1Upgr",
+            "horde2"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl1",
+            "dwellingUpLvl1",
+            "dwellingUp2Lvl1"
+          ],
+          [
+            "dwellingLvl2",
+            "dwellingUpLvl2",
+            "dwellingUp2Lvl2"
+          ],
+          [
+            "dwellingLvl3",
+            "dwellingUpLvl3",
+            "dwellingUp2Lvl3"
+          ],
+          [
+            "dwellingLvl4",
+            "dwellingUpLvl4",
+            "dwellingUp2Lvl4"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl5",
+            "dwellingUpLvl5",
+            "dwellingUp2Lvl5"
+          ],
+          [
+            "dwellingLvl6",
+            "dwellingUpLvl6",
+            "dwellingUp2Lvl6"
+          ],
+          [
+            "dwellingLvl7",
+            "dwellingUpLvl7",
+            "dwellingUp2Lvl7",
+            "dwellingUp3Lvl7"
+          ],
+          [
+            "dwellingLvl8",
+            "dwellingUpLvl8"
+          ]
+        ]
+      ],
+      "buildingsIcons": "tum-era/eighth-fortress-hall",
+      "buildings": {
+        "dwellingLvl8": {
+          "id": 150,
+          "name": "Maelstrom",
+          "description": "The Maelstrom allows you to recruit Sea Serpents.",
+          "cost": {
+            "wood": 15,
+            "mercury": 0,
+            "ore": 15,
+            "sulfur": 10,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 12000
+          },
+          "requires": [
+            "dwellingLvl6"
+          ]
+        },
+        "dwellingUpLvl8": {
+          "id": 151,
+          "name": "Upg. Maelstrom",
+          "description": "The Maelstrom allows you to recruit Leviathans.",
+          "cost": {
+            "wood": 15,
+            "mercury": 0,
+            "ore": 15,
+            "sulfur": 20,
+            "crystal": 0,
+            "gems": 0,
+            "gold": 15000
+          },
+          "requires": [
+            "dwellingLvl8"
+          ],
+          "upgrades": "dwellingLvl8"
+        }
+      }
+    }
+  },
+  "core:conflux": {
+    "town": {
+      "creatures": [
+        [
+          "pixie",
+          "sprite",
+          "tumFairy"
+        ],
+        [
+          "airElemental",
+          "stormElemental",
+          "tumHurricaneElemental"
+        ],
+        [
+          "waterElemental",
+          "iceElemental",
+          "tumLifeElemental"
+        ],
+        [
+          "fireElemental",
+          "energyElemental",
+          "tumPlasmaElemental"
+        ],
+        [
+          "earthElemental",
+          "magmaElemental",
+          "tumMineralElemental"
+        ],
+        [
+          "psychicElemental",
+          "magicElemental",
+          "tumVoidElemental"
+        ],
+        [
+          "firebird",
+          "phoenix",
+          "sacredPhoenix",
+          "divinePhoenix"
+        ],
+        [
+          "tum-era:eraCreature355",
+          "tum-era:eraCreature356"
+        ]
+      ],
+      "hallSlots": [
+        [
+          [
+            "villageHall",
+            "townHall",
+            "cityHall",
+            "capitol"
+          ],
+          [
+            "fort",
+            "citadel",
+            "castle"
+          ],
+          [
+            "tavern"
+          ],
+          [
+            "blacksmith"
+          ]
+        ],
+        [
+          [
+            "marketplace",
+            "resourceSilo"
+          ],
+          [
+            "mageGuild1",
+            "mageGuild2",
+            "mageGuild3",
+            "mageGuild4",
+            "mageGuild5"
+          ],
+          [
+            "shipyard"
+          ]
+        ],
+        [
+          [
+            "special2"
+          ],
+          [
+            "special1"
+          ],
+          [
+            "horde1",
+            "horde1Upgr",
+            "horde2"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl1",
+            "dwellingUpLvl1",
+            "dwellingUp2Lvl1"
+          ],
+          [
+            "dwellingLvl2",
+            "dwellingUpLvl2",
+            "dwellingUp2Lvl2"
+          ],
+          [
+            "dwellingLvl3",
+            "dwellingUpLvl3",
+            "dwellingUp2Lvl3"
+          ],
+          [
+            "dwellingLvl4",
+            "dwellingUpLvl4",
+            "dwellingUp2Lvl4"
+          ]
+        ],
+        [
+          [
+            "dwellingLvl5",
+            "dwellingUpLvl5",
+            "dwellingUp2Lvl5"
+          ],
+          [
+            "dwellingLvl6",
+            "dwellingUpLvl6",
+            "dwellingUp2Lvl6"
+          ],
+          [
+            "dwellingLvl7",
+            "dwellingUpLvl7",
+            "dwellingUp2Lvl7",
+            "dwellingUp3Lvl7"
+          ],
+          [
+            "dwellingLvl8",
+            "dwellingUpLvl8"
+          ]
+        ]
+      ],
+      "buildingsIcons": "tum-era/eighth-conflux-hall",
+      "buildings": {
+        "dwellingLvl8": {
+          "id": 150,
+          "name": "Astral Plane",
+          "description": "The Astral Plane allows you to recruit Planeswalkers.",
+          "cost": {
+            "wood": 0,
+            "mercury": 10,
+            "ore": 0,
+            "sulfur": 10,
+            "crystal": 10,
+            "gems": 10,
+            "gold": 10000
+          },
+          "requires": [
+            "dwellingLvl6"
+          ]
+        },
+        "dwellingUpLvl8": {
+          "id": 151,
+          "name": "Upg. Astral Plane",
+          "description": "The Astral Plane allows you to recruit Elementalists.",
+          "cost": {
+            "wood": 0,
+            "mercury": 15,
+            "ore": 0,
+            "sulfur": 15,
+            "crystal": 15,
+            "gems": 15,
+            "gold": 15000
+          },
+          "requires": [
+            "dwellingLvl8"
+          ],
+          "upgrades": "dwellingLvl8"
+        }
+      }
+    }
+  }
+}

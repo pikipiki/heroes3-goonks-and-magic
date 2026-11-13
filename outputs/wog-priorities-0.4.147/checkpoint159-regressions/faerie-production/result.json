@@ -1,0 +1,96 @@
+{
+  "passed": true,
+  "report": {
+    "19": {
+      "control": {
+        "id": 19,
+        "cast": false,
+        "blockedPrimary": false,
+        "sorcery": true,
+        "protection": true,
+        "seed": 62664,
+        "sourceCount": 1,
+        "sourcePower": 5,
+        "actor": "core:fairieDragon",
+        "beforeRng": {
+          "offset": 120522,
+          "value": "313761203",
+          "index": 1016
+        },
+        "afterRng": {
+          "offset": 120444,
+          "value": "1512351369",
+          "index": 1017
+        },
+        "changes": {
+          "core:ogre": 0,
+          "core:skeleton": 0,
+          "core:cyclopKing": 0,
+          "core:fairieDragon": 0,
+          "goonk:bubu": 0
+        },
+        "originalCharges": 5,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 55,
+        "primaryHex": 94,
+        "secondaryResistance": 0,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "cast": {
+        "id": 19,
+        "cast": true,
+        "blockedPrimary": false,
+        "sorcery": true,
+        "protection": true,
+        "seed": 62664,
+        "sourceCount": 1,
+        "sourcePower": 5,
+        "actor": "core:fairieDragon",
+        "beforeRng": {
+          "offset": 120522,
+          "value": "313761203",
+          "index": 1016
+        },
+        "afterRng": {
+          "offset": 120444,
+          "value": "122843175",
+          "index": 1028
+        },
+        "changes": {
+          "core:ogre": -287,
+          "core:skeleton": -71,
+          "core:cyclopKing": -35,
+          "core:fairieDragon": -11,
+          "goonk:bubu": -143
+        },
+        "originalCharges": 5,
+        "ownedAdditionalCharges": 50,
+        "remainingCasts": 54,
+        "primaryHex": 94,
+        "secondaryResistance": 0,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "expectedResistanceDraws": 10,
+      "actualMinstdAdvances": 11,
+      "uniformRolls": [
+        81,
+        14,
+        41,
+        68,
+        100,
+        77,
+        33,
+        62,
+        96,
+        39
+      ]
+    }
+  },
+  "errors": []
+}

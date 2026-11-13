@@ -1,0 +1,208 @@
+{
+  "complete": true,
+  "active": false,
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "aa8cd2f338195ecf",
+    "wasm": "vcmiclient.3433c709e7f955c4.wasm",
+    "sha256": "3433c709e7f955c446aa81cd1fdab0d6b50255b981c4efb86b59356d6e95000f",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "ranks": {
+    "0": {
+      "passed": true,
+      "actualRank": 0,
+      "experience": 0,
+      "canonicalHealth": 4,
+      "canonicalAttack": 4,
+      "canonicalDefense": 4,
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        60,
+        0
+      ],
+      "effectiveSpeed": 7,
+      "fortuneLuck": null,
+      "profile": null
+    },
+    "5": {
+      "passed": true,
+      "actualRank": 5,
+      "experience": 180,
+      "canonicalHealth": 4,
+      "canonicalAttack": 4,
+      "canonicalDefense": 4,
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        60,
+        0
+      ],
+      "effectiveSpeed": 8,
+      "fortuneLuck": 2,
+      "profile": {
+        "fullRank10": 500,
+        "rank11Extra": 1,
+        "battlePercent": 36,
+        "experienceMultiplier": 1,
+        "upgradeMultiplier": 0.75
+      }
+    },
+    "8": {
+      "passed": true,
+      "actualRank": 8,
+      "experience": 175,
+      "canonicalHealth": 4,
+      "canonicalAttack": 4,
+      "canonicalDefense": 4,
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        60,
+        0
+      ],
+      "effectiveSpeed": 8,
+      "fortuneLuck": 2,
+      "profile": {
+        "fullRank10": 250,
+        "rank11Extra": 1,
+        "battlePercent": 70,
+        "experienceMultiplier": 1,
+        "upgradeMultiplier": 0.75
+      }
+    },
+    "10": {
+      "passed": true,
+      "actualRank": 10,
+      "experience": 100,
+      "canonicalHealth": 4,
+      "canonicalAttack": 4,
+      "canonicalDefense": 4,
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        60,
+        0
+      ],
+      "effectiveSpeed": 9,
+      "fortuneLuck": 2,
+      "profile": {
+        "fullRank10": 100,
+        "rank11Extra": 1,
+        "battlePercent": 100,
+        "experienceMultiplier": 1,
+        "upgradeMultiplier": 0.75
+      }
+    }
+  },
+  "hate": {
+    "passed": true,
+    "observations": [
+      {
+        "key": "core:gnoll",
+        "damage": 10
+      },
+      {
+        "key": "core:gremlin",
+        "damage": 15
+      },
+      {
+        "key": "core:masterGremlin",
+        "damage": 15
+      },
+      {
+        "key": "third-upgrades:tumGrandmasterGremlin",
+        "damage": 210
+      }
+    ]
+  },
+  "rawReports": [
+    {
+      "path": "work/downloads/wog-port157/native158-familiar43-d/partial.json",
+      "sha256": "db2c20423d5f18b0e048874561ed0dcb7cf5e1839758dba86005b4d6465f759c"
+    },
+    {
+      "path": "work/downloads/wog-port157/native158-familiar43-hate-d/result.json",
+      "sha256": "1da3f3aca1ceeb753e6256b1492b4a430ae32c6c33b59df5dc2d07f00dbed700"
+    },
+    {
+      "path": "work/downloads/wog-port157/native158-familiar43-channel/result.json",
+      "sha256": "c2838ffd0f8e7a9cba301f9752be5da482632fb075be1f683595112bc59d46f6"
+    },
+    {
+      "path": "work/downloads/wog-port157/native158-familiar43-compat/result.json",
+      "sha256": "7a262312e50e2bb6c4bb4dcd861003cbe859f7d14e2a462799dbce8b0c4f6a5f"
+    }
+  ],
+  "remaining": [
+    "Strictinstallation finalstep; native source43 stillinactive until explicit apply."
+  ],
+  "fixtureNotes": [
+    "Source profile scales accelerate real casualty progression; no XP injected.",
+    "heroLevelLimit1 prevents random hero levelup bonuses.",
+    "Fortune XP values1/2/3 are mastery; advanced andexpert both grant2luck.",
+    "Canonical army slot speed is base7; troopEquipment andbattleUnits give effective8/8/9.",
+    "Hate control uses matched effectiveDEF0 Gnoll, notPikeman which hadDEF1.",
+    "Owned fixedbase10 and explicit94\u2192160\u219295\u219249 path keep independent damage comparisons reachable."
+  ],
+  "timing": {
+    "channel-twoStacks": {
+      "passed": true,
+      "beforeMana": 200,
+      "afterMana": 201
+    },
+    "channel-hypnotize": {
+      "passed": true,
+      "beforeMana": 200,
+      "afterMana": 200
+    },
+    "channel-killed": {
+      "passed": true,
+      "beforeMana": 200,
+      "afterMana": 200
+    }
+  },
+  "compatibility": {
+    "familiar43-noHero": {
+      "passed": true,
+      "beforeMana": 200,
+      "afterMana": 195
+    },
+    "familiar43-mixed": {
+      "passed": true,
+      "beforeMana": 200,
+      "afterMana": 201
+    },
+    "familiar43-GoonkPre": {
+      "passed": true,
+      "beforeMana": 200,
+      "afterMana": 212
+    }
+  },
+  "flight": {
+    "passed": true,
+    "proof": "native159-familiar43-flying.json",
+    "scope": "ExactR0false/R5true inarmy/equipment/activeUnit/battleUnits; productionConflux withoutduplicateoverlay."
+  }
+}

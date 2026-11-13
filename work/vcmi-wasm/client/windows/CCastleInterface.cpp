@@ -801,7 +801,12 @@ void CCastleBuildings::addBuilding(BuildingID building)
 
 	recreate();
 
-	auto & structures = groups.at(base);
+	// A dwelling exposed through the hall/mobile recruitment UI may have no
+	// town-scene artwork. It still completes construction and client updates.
+	const auto group = groups.find(base);
+	if(group == groups.end())
+		return;
+	auto & structures = group->second;
 
 	for(auto buildingRect : buildings)
 	{

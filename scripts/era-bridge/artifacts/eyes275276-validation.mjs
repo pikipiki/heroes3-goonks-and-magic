@@ -1,0 +1,20 @@
+/** Independent source/native gates before either Eye can join production. */
+import assert from 'node:assert/strict';
+export const EMERALD_RANGE_CASES=Object.freeze(['emeraldRange273EquippedBasic','emeraldRange273EquippedAdvanced','emeraldRange275EquippedBasic','emeraldRange275EquippedAdvanced','emeraldRange275BackpackBasic','emeraldRange276EquippedBasic','emeraldRange0EquippedBasic','emeraldRangeOtherArtifactEquippedBasic']);
+export function validateEyesDaily(proof,hash){
+ assert.equal(proof.passedDailyControls,true);assert.equal(proof.report.eyesStage.definitionSha256,hash);
+ for(const id of [275,276])for(const mode of ['rank9-equipped','rank9-backpack','rank10-equipped']){
+  const c=proof.report['eye'+id+mode];assert(c,'Missing whole Eye daily control');const a=c.before.armies[0].slots,b=c.after.armies[0].slots,equipped=mode!=='rank9-backpack';assert.equal(a[0].key,'tum-era:eraCreature'+(id===275?343:344));assert.equal(a[1].key,'wake-of-gods.creatures:dracolich');assert.equal(a[0].experienceRank,mode==='rank10-equipped'?10:9);assert(a[0].experience>0&&a[1].experience>0);assert.deepEqual([c.observed.key,c.observed.count,c.observed.totalExperience],[a[0].key,a[0].count,a[0].experience]);assert.equal(c.blue.state.day,c.before.day);assert(c.red.state.day>c.blue.state.day);
+  for(let i=0;i<a.length;i++)if(a[i]){assert.equal(b[i].count,a[i].count);assert.equal(b[i].experience,a[i].experience);assert.equal(b[i].key,equipped&&i<2?(id===275?'core:fairieDragon':'core:rustDragon'):a[i].key);}
+  const banner=s=>s.troopEquipment.troops.find(t=>t.slot===1).equipped.id;assert.equal(banner(c.equippedState),banner(c.after));
+ }
+ const physical=proof.report.eye275GoonkDamagetrue;assert(physical);assert.equal(physical.loss,52);assert.equal(physical.before.battleUnits.find(u=>u.key==='goonk:paingpaing').attack,6);assert.deepEqual(physical.sourceRange,[4,4]);return true;
+}
+export function validateEmeraldRange(proof,hash){
+ assert.equal(proof.passed,true);assert.equal(proof.allControlsComplete,true);assert.equal(proof.report.eyesStage.definitionSha256,hash);assert.match(proof.report.engineMetadata.sha256,/^[a-f0-9]{64}$/);assert.notEqual(proof.report.engineMetadata.sha256,'b93b3bc6af5e3aa1088a85775a7194c8a7f3632993fcb94d134b64222897b9de');
+ for(const key of EMERALD_RANGE_CASES){const c=proof.report[key];assert(c,'Missing inverted/ordinary scope control '+key);assert.deepEqual(c.phases.map(p=>p.phase),['normal','bless','curse']);assert(c.injections.bless&&c.injections.curse,'Actual opposed hero spell casts required');assert.equal(c.injections.bless.spell,41);assert.equal(c.injections.curse.spell,42);assert.equal(c.injections.bless.before.battleUnits.find(u=>u.stackId===c.injections.bless.before.activeStack).enemy,false);assert.equal(c.injections.curse.before.battleUnits.find(u=>u.stackId===c.injections.curse.before.activeStack).enemy,true);const synthetic=key.includes('OtherArtifact'),advanced=key.includes('Advanced'),id=synthetic?0:Number(/Range(\d+)/.exec(key)[1]),backpack=key.includes('Backpack'),low=backpack?1:synthetic||id===275?3:id===273?2:1,high=!backpack&&id===276?3:1,add=advanced?1:0;
+  const peasant=c.hero.troopEquipment.troops.find(t=>t.key==='core:peasant');assert(peasant);assert.deepEqual([peasant.damageMin,peasant.damageMax],[low,high]);
+  for(const phase of c.phases){const actor=phase.before.battleUnits.find(u=>u.key==='core:peasant'),target=phase.before.battleUnits.find(u=>u.key==='core:gnoll');assert.equal(actor.count,10);assert.equal(actor.attack,1);assert.equal(target.defense,0);let raw;if(phase.phase==='normal')raw=synthetic?null:low>high?low:low===high?low:null;else if(phase.phase==='bless')raw=(synthetic?Math.max(low,high):high)+add;else raw=Math.max(1,(synthetic?Math.min(low,high):low)-add);const after=phase.after.battleUnits.find(u=>u.stackId===target.stackId),hp=u=>(u.count-1)*u.maximumHealth+u.currentHealth;assert.equal(phase.loss,hp(target)-hp(after));if(raw===null)assert(phase.loss>=10&&phase.loss<=31);else assert.equal(phase.loss,Math.floor(raw*10*1.05));}
+ }
+ return true;
+}

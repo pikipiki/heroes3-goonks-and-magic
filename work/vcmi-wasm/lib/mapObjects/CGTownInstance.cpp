@@ -10,6 +10,7 @@
 
 #include "StdInc.h"
 #include "CGTownInstance.h"
+#include "../era/EraEighthTownSaveCompatibility.h"
 
 #include "TownBuildingInstance.h"
 
@@ -1263,6 +1264,13 @@ void CGTownInstance::postDeserialize()
 		{
 			return getTown()->buildings.count(buildID) == 0;
 		});
+
+        // initObj is intentionally not repeated on load: it would rebuild
+        // stocks and other map state. The opt-in migration only opens slot7,
+        // preserving a saved Dungeon Portal reserve at its new index8.
+        era_compat::EighthTownSaveCompatibility::get().restore(creatures,
+            getFaction()->getJsonKey(),getTown()->creatures.size(),
+            townEnvisagesBuilding(BuildingSubID::PORTAL_OF_SUMMONING));
 	}
 }
 

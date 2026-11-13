@@ -52,7 +52,10 @@
     "config/reviewed-dungeon-eighth.json",
     "config/reviewed-neutral-transform-dependencies.json",
     "config/source-experience-magic-reduction.json",
-    "config/reviewed-dragonling-pair.json"
+    "config/reviewed-dragonling-pair.json",
+    "config/source-familiar43.json",
+    "config/source-imp42.json",
+    "config/source-conflux.json"
   ],
   "factions": [
     "config/necropolis.json",
@@ -72,7 +75,8 @@
     "config/rampart.json",
     "config/tower.json",
     "config/dungeon.json",
-    "config/fortress.json"
+    "config/fortress.json",
+    "config/reviewed-eighth-town-access.json"
   ],
   "artifacts": [
     "config/native-artifacts.json",
@@ -92,7 +96,8 @@
     "config/reviewed-wayfarer260-artifact.json",
     "config/reviewed-hydra-queen259-artifact.json",
     "config/reviewed-orb-chaos238-artifact.json",
-    "config/reviewed-phylactery-summons.json"
+    "config/reviewed-phylactery-summons.json",
+    "config/reviewed-eyes275-276.json"
   ],
   "objects": [
     "config/objects/dwelling20_2.json",
@@ -479,7 +484,8 @@
       "translation/reviewed-wayfarer260-artifact-french.json",
       "translation/reviewed-hydra-queen259-artifact-french.json",
       "translation/reviewed-orb-chaos238-artifact-french.json",
-      "translation/reviewed-phylactery-summons-french.json"
+      "translation/reviewed-phylactery-summons-french.json",
+      "translation/reviewed-eyes275-276-french.json"
     ],
     "name": "TUM — évolutions et expérience"
   },
@@ -487,7 +493,8 @@
     "config/skeletal-transformation.json",
     "config/necross-spells.json",
     "config/source-demonology-spells.json",
-    "config/source-dungeon-spells.json"
+    "config/source-dungeon-spells.json",
+    "config/source-conflux-spells.json"
   ],
   "skills": [
     "config/source-necromancy-skill.json"

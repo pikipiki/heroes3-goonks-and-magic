@@ -136,7 +136,8 @@ inline int statusPrimaryAccuracy(const CBattleInfoCallback & battle,const CStack
     if(spell.num==71 && (sourceId==30 || sourceId==31))return 0;
     if(spell.num==75 && target->hasBonusOfType(BonusType::UNDEAD))return 0;
     const auto * hero=battle.battleGetOwnerHero(target);
-    if(statusHasArtifact(hero,134))return 0; //44A1EE applies to level0 creature abilities too.
+    if(spell.toSpell()->getLevel()<=4 && statusHasArtifact(hero,134))return 0;
+    //44A1E8 gates134 by descriptorlevel<=4, including0. Age75 islevel5.
     StatusAttackCaster caster(actor,0,battle.battleGetOwner(actor));
     spells::BattleCast cast(&battle,&caster,spells::Mode::PASSIVE,spell.toSpell());
     cast.setSpellLevel(0);cast.setEffectPower(3);cast.setEffectDuration(3);
@@ -158,12 +159,12 @@ inline bool statusPrimaryAccepts(CGameHandler & handler,const CBattleInfoCallbac
 }
 inline void applySourceStatus(CGameHandler & handler,const CBattleInfoCallback & battle,
     const CStack * actor,const CStack * target,SpellID spell,int mastery,
-    std::optional<PlayerColor> capturedOwner=std::nullopt)
+    std::optional<PlayerColor> capturedOwner=std::nullopt,int sourcePower=3)
 {
     const auto owner=capturedOwner.value_or(actor?battle.battleGetOwner(actor):PlayerColor::NEUTRAL);
     StatusAttackCaster caster(actor,mastery,owner);
     spells::BattleCast cast(&battle,&caster,spells::Mode::PASSIVE,spell.toSpell());
-    cast.setSpellLevel(mastery);cast.setEffectPower(3);cast.setEffectDuration(3);
+    cast.setSpellLevel(mastery);cast.setEffectPower(sourcePower);cast.setEffectDuration(sourcePower);
     BattleSpellCast packet;
     packet.battleID=battle.getBattle()->getBattleID();packet.activeCast=false;
     packet.side=battle.playerToSide(owner);packet.spellID=spell;packet.tile=target->getPosition();

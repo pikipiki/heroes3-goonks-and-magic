@@ -365,7 +365,9 @@
           90
         ]
       }
-    }
+    },
+    "tum-era:eraCreature355": {},
+    "tum-era:eraCreature356": {}
   },
   "artifacts": {
     "tum-era:artifact218": {
@@ -596,6 +598,30 @@
         {
           "creature": "tum-era:eraCreature294",
           "encodedPower": 0
+        }
+      ]
+    },
+    "tum-era:artifact275": {
+      "dailyConversions": [
+        {
+          "from": "tum-era:eraCreature343",
+          "to": "core:fairieDragon"
+        },
+        {
+          "from": "wake-of-gods.creatures:dracolich",
+          "to": "core:fairieDragon"
+        }
+      ]
+    },
+    "tum-era:artifact276": {
+      "dailyConversions": [
+        {
+          "from": "tum-era:eraCreature344",
+          "to": "core:rustDragon"
+        },
+        {
+          "from": "wake-of-gods.creatures:dracolich",
+          "to": "core:rustDragon"
         }
       ]
     }

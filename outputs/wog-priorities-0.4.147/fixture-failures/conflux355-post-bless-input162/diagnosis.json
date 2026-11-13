@@ -1,0 +1,6 @@
+{
+  "fixtureFailure": true,
+  "engineRegressionClaim": false,
+  "observed": "NativeThorgrim39sheetguardpassed. RealBless spent4mana. Immediateattackcommanddidnot advance activeunit or damage target.",
+  "fix": "Wait nativeMana decrement, then animation readinesssettle before explicitmelee command; keep preattack snapshot inreport."
+}

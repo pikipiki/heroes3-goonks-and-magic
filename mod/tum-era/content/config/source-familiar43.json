@@ -1,0 +1,146 @@
+{
+  "core:familiar": {
+    "abilities": {
+      "amethyst_Hate0255": {
+        "type": "ERA_PERSONAL_HATE_DAMAGE",
+        "val": 200,
+        "subtype": "third-upgrades:tumGrandmasterGremlin"
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FLYING"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "subtype": "core:gremlin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          10,
+          20,
+          30,
+          40,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "subtype": "core:masterGremlin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          10,
+          20,
+          30,
+          40,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:fortune",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 1
+        },
+        "values": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:fortune",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 2
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:fortune",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 3
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      }
+    ]
+  }
+}

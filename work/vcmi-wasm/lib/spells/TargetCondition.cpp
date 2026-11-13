@@ -12,6 +12,7 @@
 #include "TargetCondition.h"
 #include "../era/EraBridgePolicies.h"
 #include "../era/EraHypnotizeHealth.h"
+#include "../era/EraExperienceAttackSpells.h"
 #include "../era/EraSourceConstruct.h"
 #include "../era/EraConfluxPolicies.h"
 #include "../mapObjects/CGHeroInstance.h"
@@ -293,11 +294,14 @@ protected:
 		//TODO: what with other creatures casting hypnotize, Faerie Dragons style?
         // Original5A86B6 is absolute even with Orb93. The same condition
         // must hold during the253 preflight, not only its mass resistance loop.
-        if(m->isEraArtifactMassHypnotize() && target->hasBonus(
+        const auto * sourceCaster=dynamic_cast<const era_compat::ExperienceAttackCaster *>(m->caster);
+        const bool sourceFangarm=m->getSpellIndex()==60 && sourceCaster && sourceCaster->usesSourceFangarmHypnotize();
+        const bool sourceHealth=m->isEraArtifactMassHypnotize() || sourceFangarm;
+        if(sourceHealth && target->hasBonus(
             Selector::source(BonusSource::SPELL_EFFECT,BonusSourceID(SpellID(36)))))return false;
 		// Original5A86C0..CC compares count*per-creature HP. Damage to the
         // first creature does not lower this source253 opening threshold.
-        int64_t subjectHealth = m->isEraArtifactMassHypnotize()
+        int64_t subjectHealth = sourceHealth
             ? ::era_bridge::sourceHypnotizeHealth(target->getCount(),target->getMaxHealth())
             : target->getAvailableHealth();
 		//apply 'damage' bonus for hypnotize, including hero specialty

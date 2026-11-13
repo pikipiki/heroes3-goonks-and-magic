@@ -1,6 +1,8 @@
 /* Native ERA service adapters for VCMI; GPL-2.0-or-later. */
 #pragma once
 #include "EraPrimalFaerie.h"
+#include "EraSulfideDragon.h"
+#include "EraSulfideDragonRule.h"
 #include "EraFortressCounterstrikes.h"
 #include "EraBridgeRuntime.h"
 #include "../filesystem/Filesystem.h"
@@ -134,17 +136,23 @@ public:
                 else if(operation.first == "experienceRegeneration")
                 {
                     fields(operation.second, {"chancePercent", "values"});
-                    if(creature.first != "tum-era:eraCreature267" && creature.first != "tum-era:eraCreature268" && creature.first != "tum-era:eraCreature273" && creature.first != "tum-era:eraCreature294")
+                    if(creature.first != "tum-era:eraCreature267" && creature.first != "tum-era:eraCreature268" && creature.first != "tum-era:eraCreature273" && creature.first != "tum-era:eraCreature294" && creature.first != "tum-era:eraCreature339")
                         throw std::runtime_error("ERA bridge: unaudited experience regeneration actor");
                     const bool sourceWerewolf = creature.first == "tum-era:eraCreature273";
-                    const int chance = sourceWerewolf ? 50 : 100;
+                    const bool sourceSulfide = creature.first == "tum-era:eraCreature339";
+                    if(sourceSulfide && !SulfideDragon::get().enabled(creature.first))
+                        throw std::runtime_error("ERA bridge: exact optional Sulfide339 contract required");
+                    const int chance = sourceSulfide ? era_bridge::SulfideDragonRule::regenerationChance : sourceWerewolf ? 50 : 100;
                     const int perRank = sourceWerewolf ? 4 : 9;
                     ExperienceRegenerationPolicy policy{integer(operation.second["chancePercent"], chance, chance), {}};
                     const auto & values=operation.second["values"];
                     if(!values.isVector() || values.Vector().size()!=11)
                         throw std::runtime_error("ERA bridge: eleven regeneration rank values required");
                     for(size_t rank=0;rank<11;++rank)
-                        policy.values.push_back(integer(values.Vector()[rank],static_cast<int>(rank)*perRank,static_cast<int>(rank)*perRank));
+                    {
+                        const int expected=sourceSulfide?era_bridge::SulfideDragonRule::regeneration.at(rank):static_cast<int>(rank)*perRank;
+                        policy.values.push_back(integer(values.Vector()[rank],expected,expected));
+                    }
                     experienceRegenerationPolicies.emplace(creature.first,std::move(policy));
                 }
                 else if(operation.first == "preemptiveRetaliation")

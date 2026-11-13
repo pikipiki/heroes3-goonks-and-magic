@@ -1,5 +1,6 @@
 /** Actual355 R10 earned through a casualty; independent p/a source rows. */
 import assert from 'node:assert/strict';
+import{clickNativeWorldTile}from'./native-map-coordinates.mjs';
 const actor='tum-era:eraCreature355';
 const spellRows={p21:{id:21,name:'fireball',damage:90},p23:{id:23,name:'meteorShower',damage:175},a17:{id:17,name:'lightningBolt',damage:125},a16:{id:16,name:'iceBolt',damage:110}};
 export async function runConfluxExperienceCases({boot,combat,cmd,state,wait,page,sheet,resolve,finish,hp}){
@@ -12,10 +13,10 @@ export async function runConfluxExperienceCases({boot,combat,cmd,state,wait,page
    'core:blackDragon':{speed:1,abilities:{fixtureNoMorale:{type:'NO_MORALE'},fixtureNoLuck:{type:'NO_LUCK'}}},
    'core:gnoll':{hitPoints:1000000,attack:0,defense:0,speed:1,damage:{min:1,max:1},abilities:{fixtureNoMorale:{type:'NO_MORALE'},fixtureNoLuck:{type:'NO_LUCK'},fixtureNoRetal:{type:'NO_RETALIATION'},fixtureInactive:{type:'NOT_ACTIVE'},...immunities,...(shield?{fixtureShield:{type:'FIRE_SHIELD',val:1000000}}:{})}}
   };
-  await boot({seed:84317,training:true,power:100000,spells:['core:implosion'],artifacts:{},army:[{type:actor,amount:3},{type:'core:blackDragon',amount:1}],controls});
+  await boot({seed:Number(process.env.CONFLUX_XP_SEED||84317),training:true,power:100000,spells:['core:implosion'],artifacts:{},army:[{type:actor,amount:3},{type:'core:blackDragon',amount:1}],controls});
   await combat();await cmd(14,0);await wait(()=>goonkMobileState.mode==='spellbook');await cmd(49,18);await wait(()=>goonkMobileState.spellTargeting);await cmd(14,3,(await state()).battleUnits.find(u=>u.enemy).occupied[0]);await resolve();
   const trained=await sheet();assert.equal(trained.armies[0].slots[0].experienceRank,10);assert.equal(trained.armies[0].slots[0].count,3);await cmd(63);await wait(()=>goonkMobileState.mode==='map');
-  await cmd(6);await page().waitForTimeout(150);await page().evaluate(()=>{const v=goonkMobileState.mapOverview.view;Module._vcmiMobilePointer(v.x+v.w/2+128,v.y+v.h/2,1);});await wait(()=>goonkMobileState.hasPath);await cmd(2);await wait(()=>goonkMobileState.mode==='battle');await cmd(15);
+  await cmd(6);await page().waitForTimeout(150);await clickNativeWorldTile(page(),12,11);await wait(()=>goonkMobileState.hasPath);await cmd(2);await wait(()=>goonkMobileState.mode==='battle');await cmd(15);
   const turn=async()=>{for(let pass=0;pass<200;pass++){const s=await state();if(s.canAct&&s.activeUnit?.key===actor)return s;if(s.canAct)await cmd(13,s.activeStack,s.round);await page().waitForTimeout(100);}throw Error('Original355 turn unavailable');};
   let proc=false;const trace=[];
   for(let hit=0;hit<(selected?14:1);hit++){

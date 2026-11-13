@@ -1,0 +1,31 @@
+{
+  "sourceExeSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "sourceCppSha256": "10047a24ff1736db951f163c34bcfb58ebe5c0fab972308ca98edf715f61d0cf",
+  "originalHook": {
+    "registrationLine": 13724,
+    "address": "0x441B62",
+    "function": "after_retaliation_00441B62",
+    "implementationLines": [
+      3468,
+      3524
+    ],
+    "primaryHook": "0x441C01",
+    "directWrapper": "0x7157F6"
+  },
+  "verified": [
+    "Original441B4F..55 flips CURRENT before441330 normal response. Hook441B62 precedes441B67..72 restoration.",
+    "DirectWoG_CastSpell7157F6 copies args and calls5A0140 without changing CURRENT or primary manager creature. Monsterwrapper is distinct.",
+    "Source355 CFG afterMelee15 has mastery0 (AfterActionSpellMastery=0). Caller literalpower1 is overridden at5A0145 using current primary stackcount, so count5\u2192MagicArrow60; count2 retaliator is not sourcepower.",
+    "Source before-strike and ranged-counter calls do not reach normal441B62. Nativehook is placed only in normalcounter branch.",
+    "Targetoriginalside is used for negativeMagicArrow eligibility; Hypnotizeownership does not replace originalside."
+  ],
+  "nativeValidated": true,
+  "pending": [],
+  "activation": "Countercontract validated on engine160. WholeConflux/full18townadmission is a separateparentguard; no source339/346/347 activated.",
+  "freeze": "work/downloads/wog-port160/conflux355-counter-frozen/manifest.json",
+  "limitations": [
+    "Scoped355only; sourcegenericdoubleCFGcasts346/347 remain future inactive work.",
+    "Berserk/hypnotizedfriendly attacks not yet new nativecontrol; sideABI is sourceverified."
+  ],
+  "nativeProof": "../native-conflux355-counter160.json"
+}

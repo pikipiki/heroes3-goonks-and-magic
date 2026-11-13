@@ -1,0 +1,76 @@
+{
+  "engineSha256": "3433c709e7f955c446aa81cd1fdab0d6b50255b981c4efb86b59356d6e95000f",
+  "engineRegressionClaimed": false,
+  "runs": [
+    {
+      "directory": "work/downloads/wog-port158/native-emerald-01",
+      "reason": "Fixture expected Peasantattack2/Gnolldefense1; actual1/0, same1.05 factor. Stopped before attack.",
+      "files": [
+        {
+          "path": "work/downloads/wog-port158/native-emerald-01/failure-state.json",
+          "sha256": "542616b230b8cba4177236895a75443cc7761885e169e3b7ba2307e558bcaa77",
+          "bytes": 32411
+        },
+        {
+          "path": "work/downloads/wog-port158/native-emerald-01/failure.png",
+          "sha256": "a14cf4074ed088ca7502b6d63bdba0b3d8a1a304356a8e92b91e7fbf08521435",
+          "bytes": 602517
+        },
+        {
+          "path": "work/downloads/wog-port158/native-emerald-01/console.log",
+          "sha256": "33bdcff814d5a28426daf7cc10b0b10097c7aca579e52f242f9587fb74e6e2fd",
+          "bytes": 27603
+        }
+      ]
+    },
+    {
+      "directory": "work/downloads/wog-port158/native-emerald-02",
+      "reason": "After actual Bless target dispatch, fixture read transient animation state without waitingcanAct.",
+      "files": [
+        {
+          "path": "work/downloads/wog-port158/native-emerald-02/failure-state.json",
+          "sha256": "a89845cdfe0fb29d822a90f99014b661faae3bd63e7e5a07fcc82de6696b5f48",
+          "bytes": 27145
+        },
+        {
+          "path": "work/downloads/wog-port158/native-emerald-02/failure.png",
+          "sha256": "9ba332bbf648660e8d54dce7d489f81b02a14189b0dcc34a6f3db317760772a3",
+          "bytes": 587552
+        },
+        {
+          "path": "work/downloads/wog-port158/native-emerald-02/console.log",
+          "sha256": "2456d6e046aa9737cc6164b194cb760694b45bc636bff68a63bc8c3d5cdeb00a",
+          "bytes": 27603
+        }
+      ]
+    },
+    {
+      "directory": "work/downloads/wog-port158/native-emerald-03",
+      "reason": "Normal21 andBless10 passed. Fixture mistakenly treated battlePlayerAttacks (Red perspective) as activecasting side; Curse was never requested. Round19 trace retained, no claim of engine failure.",
+      "files": [
+        {
+          "path": "work/downloads/wog-port158/native-emerald-03/failure-state.json",
+          "sha256": "b7b8c77be5da8e504da2c6596fdb912c855f4173d17d87d3b1cc6eb21ee1e4fa",
+          "bytes": 27304
+        },
+        {
+          "path": "work/downloads/wog-port158/native-emerald-03/failure.png",
+          "sha256": "4f994894ae965d1eb49da8540eaf4ad2d4ab074ebe4095d263eafbdf6b3331db",
+          "bytes": 612340
+        },
+        {
+          "path": "work/downloads/wog-port158/native-emerald-03/console.log",
+          "sha256": "61a28982b52d16e9728e1df15ee9b5b847040b0c361586e09e588300279b3f32",
+          "bytes": 27603
+        },
+        {
+          "path": "work/downloads/wog-port158/native-emerald-03/progress.json",
+          "sha256": "d7193144bd16342ce8978d545758b1ffdea8e22b2b0d0a9f5ddc8ee222084567",
+          "bytes": 257813
+        }
+      ]
+    }
+  ],
+  "bridgeEvidence": "MobileBridge.cpp1412 battlePlayerAttacks compares attackerSidePlayer to perspectivep.playerID, notcurInt. Actual currentHero usescurInt; select active stackenemy from perspectiveRed for Bluecasting.",
+  "next": "UseactiveStack.enemy, wait actual spell completioncanAct, rerun original273 case after root/Dragon browser slots."
+}

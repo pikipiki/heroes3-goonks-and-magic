@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "oldEngine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "64b4f123d9591905",
+    "wasm": "vcmiclient.3be25d9ab5515463.wasm",
+    "sha256": "3be25d9ab551546312b50497cdc3017c6308c256789203f76028d4552daa0b94",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "oldSave": {
+    "path": "work/downloads/wog-port161/native-town-save-compatibility/old-seven-tier.vsgm1",
+    "sha256": "6fdceee5bc06a119308e43eba7ac0be68b53ef26408a0d3f81b0b82bfd620228",
+    "bytes": 131061
+  },
+  "beforeSha256": "54c67a83b81b0785be2960b2329eec58d0dab4509a8d4d4d71a0f94c972b8dc9",
+  "weeklySha256": "6a06653ce6148c639c45ca257f7c2a6f0d169fec558b78d99025f63d8c99bcd3",
+  "reloadSha256": "54c67a83b81b0785be2960b2329eec58d0dab4509a8d4d4d71a0f94c972b8dc9",
+  "portalNativeConstruction": true,
+  "oldSevenReloadPassed": true,
+  "patchSha256": "ae53274e2d739928a1c97005e7050e2a08e25569b5e7e2158307de60eff9bccc"
+}

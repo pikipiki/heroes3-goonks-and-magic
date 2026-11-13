@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "nativeValidated": true,
+  "nativeControlsPassed": 6,
+  "engineSHA256": "b77e062ac1bb6a140bcc6a8029fe98d2eb32d70eb729acb8edeba8d75d827361",
+  "rawRunSHA256": "317841e72d9614860db8f476cde4e06fc5e30bde02dc7bdd0d329c3b47d6390c",
+  "source": "source-g-fire-shield.json",
+  "baseline": "native-source-g-fire-shield-before.json",
+  "cases": {
+    "g0": {
+      "passed": true,
+      "physicalInput": 52,
+      "rawShieldAmount": 10,
+      "observed": 10,
+      "expected": 10,
+      "report": "outputs/wog-priorities-0.4.147/source-g-fire-shield-native/verified-g0.json",
+      "sha256": "08ebed20d3a0aee9ed27a26d49bae1d81601c8fcc04cb103849ea76d1a1b9ccb"
+    },
+    "g50": {
+      "passed": true,
+      "physicalInput": 100,
+      "rawShieldAmount": 20,
+      "observed": 20,
+      "expected": 20,
+      "report": "outputs/wog-priorities-0.4.147/source-g-fire-shield-native/verified-g50.json",
+      "sha256": "80dc5cbd744bfbe9a5882c28ff9004f083fc7b4d8b25378807c1a93ef1e32c35"
+    },
+    "g95": {
+      "passed": true,
+      "physicalInput": 100,
+      "rawShieldAmount": 20,
+      "observed": 20,
+      "expected": 20,
+      "report": "outputs/wog-priorities-0.4.147/source-g-fire-shield-native/verified-g95.json",
+      "sha256": "6554ebc22f3230ca8fd3e9ac1c91a429d058f53e1de3fd91015417f2de123178"
+    },
+    "sourceGear": {
+      "passed": true,
+      "physicalInput": 110,
+      "rawShieldAmount": 22,
+      "observed": 22,
+      "expected": 22,
+      "report": "outputs/wog-priorities-0.4.147/source-g-fire-shield-native/verified-sourceGear.json",
+      "sha256": "d89ce67f70e5dca5f945151a6e423b327e71b2d43aeb605dec3188e6f0105b4f"
+    },
+    "ordinary": {
+      "passed": true,
+      "physicalInput": 105,
+      "rawShieldAmount": 21,
+      "observed": 24,
+      "expected": 24,
+      "report": "outputs/wog-priorities-0.4.147/source-g-fire-shield-native/verified-ordinary.json",
+      "sha256": "b285ed557740b4a6b2cdaceaf045502c8eec855ff4d7a9944999d13697d17282"
+    },
+    "ordinaryGear": {
+      "passed": true,
+      "physicalInput": 114,
+      "rawShieldAmount": 22,
+      "observed": 17,
+      "expected": 17,
+      "report": "outputs/wog-priorities-0.4.147/source-g-fire-shield-native/verified-ordinaryGear.json",
+      "sha256": "261076f0468927a082af1376d05380a4d33809ac63cdc09567ddb2eb6ecb100a"
+    }
+  },
+  "scope": "Explicit compiler-owned g% metadata bypasses normal spell correction for the original direct FireShield damage path. Ordinary unregistered Goonk and ANY equipment retain native correction. Monks are adjacent, so this is a melee reflection, not a ranged shot. Effective native terrain/XP/gear modifiers remain in the observed physical input.",
+  "limitations": [
+    "No Windows runtime execution claimed.",
+    "Declared seeds exercise deterministic paths; no statistical claim."
+  ]
+}

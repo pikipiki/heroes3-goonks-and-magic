@@ -1,0 +1,175 @@
+{
+  "passed": true,
+  "completeFamily": false,
+  "scope": "Independent original355 p21/p23/a17/a16 R10 path and ordering witnesses. Seeds are path witnesses, not an estimate or proof of the 55% probability. Three shield-a16 missed-roll trials retained separately; seed98765 yielded the positive order witness.",
+  "cases": {
+    "confluxXP-baseline": {
+      "baseline": 92,
+      "damage": [
+        92
+      ],
+      "rank": 10
+    },
+    "confluxXP-p21": {
+      "baseline": 92,
+      "damage": [
+        182
+      ],
+      "rank": 10
+    },
+    "confluxXP-p23": {
+      "baseline": 92,
+      "damage": [
+        267
+      ],
+      "rank": 10
+    },
+    "confluxXP-a17": {
+      "baseline": 92,
+      "damage": [
+        217
+      ],
+      "rank": 10
+    },
+    "confluxXP-a16": {
+      "baseline": 92,
+      "damage": [
+        92,
+        202
+      ],
+      "rank": 10
+    },
+    "confluxXP-shield-a17": {
+      "baseline": 92,
+      "damage": [
+        187
+      ],
+      "rank": 10
+    },
+    "confluxXP-shield-a16": {
+      "baseline": 92,
+      "damage": [
+        172
+      ],
+      "rank": 10
+    }
+  },
+  "runs": [
+    {
+      "path": "work/downloads/wog-port157/native-conflux-xp/partial.json",
+      "sha256": "7f5c8ff452fba574b3bd4f509cadffe3836e13b44124d83722b302e57ac98d7b",
+      "engine": "b93b3bc6af5e3aa1088a85775a7194c8a7f3632993fcb94d134b64222897b9de",
+      "requestedSeed": 84317,
+      "cases": {
+        "confluxXP-baseline": {
+          "baseline": 92,
+          "damage": [
+            92
+          ],
+          "rank": 10
+        },
+        "confluxXP-p21": {
+          "baseline": 92,
+          "damage": [
+            182
+          ],
+          "rank": 10
+        },
+        "confluxXP-p23": {
+          "baseline": 92,
+          "damage": [
+            267
+          ],
+          "rank": 10
+        },
+        "confluxXP-a17": {
+          "baseline": 92,
+          "damage": [
+            217
+          ],
+          "rank": 10
+        },
+        "confluxXP-a16": {
+          "baseline": 92,
+          "damage": [
+            92,
+            202
+          ],
+          "rank": 10
+        },
+        "confluxXP-shield-a17": {
+          "baseline": 92,
+          "damage": [
+            187
+          ],
+          "rank": 10
+        }
+      },
+      "error": "AssertionError [ERR_ASSERTION]: Real55% source row procs with its exact power3/mastery3 shield-a16\n    at runConfluxExperienceCases (file:///Users/sevenone./Documents/git/heroes-goonk/work/browser-tests/eighth-conflux-experience-cases.mjs:40:15)\n    at async file:///Users/sevenone./Documents/git/heroes-goonk/work/browser-tests/wog-conflux-native-e2e.mjs:118:134"
+    },
+    {
+      "path": "work/downloads/wog-port157/native-conflux-xp-shield16/partial.json",
+      "sha256": "c542ad065da5f3dccb7fc17b9f2bc573c8176e7d3188e1c90b0004df4118f0ce",
+      "engine": "b93b3bc6af5e3aa1088a85775a7194c8a7f3632993fcb94d134b64222897b9de",
+      "requestedSeed": 84318,
+      "cases": {
+        "confluxXP-baseline": {
+          "baseline": 92,
+          "damage": [
+            92
+          ],
+          "rank": 10
+        }
+      },
+      "error": "AssertionError [ERR_ASSERTION]: Real55% source row procs with its exact power3/mastery3 shield-a16\n    at runConfluxExperienceCases (file:///Users/sevenone./Documents/git/heroes-goonk/work/browser-tests/eighth-conflux-experience-cases.mjs:40:15)\n    at async file:///Users/sevenone./Documents/git/heroes-goonk/work/browser-tests/wog-conflux-native-e2e.mjs:118:134"
+    },
+    {
+      "path": "work/downloads/wog-port157/native-conflux-xp-shield16-seed84319/partial.json",
+      "sha256": "0b00328898b07a697afc23e9f1e9f149740bfbdbd6bea26d5875d76d3ee2ad84",
+      "engine": "b93b3bc6af5e3aa1088a85775a7194c8a7f3632993fcb94d134b64222897b9de",
+      "requestedSeed": 84319,
+      "cases": {
+        "confluxXP-baseline": {
+          "baseline": 92,
+          "damage": [
+            92
+          ],
+          "rank": 10
+        }
+      },
+      "error": "AssertionError [ERR_ASSERTION]: Real55% source row procs with its exact power3/mastery3 shield-a16\n    at runConfluxExperienceCases (file:///Users/sevenone./Documents/git/heroes-goonk/work/browser-tests/eighth-conflux-experience-cases.mjs:40:15)\n    at async file:///Users/sevenone./Documents/git/heroes-goonk/work/browser-tests/wog-conflux-native-e2e.mjs:118:134"
+    },
+    {
+      "path": "work/downloads/wog-port157/native-conflux-xp-shield16-seed98765/result.json",
+      "sha256": "d42fa1d9c838cc9db541b1f2b50b3a8f3a1c52792514be6b91badb4df40a4a80",
+      "engine": "b93b3bc6af5e3aa1088a85775a7194c8a7f3632993fcb94d134b64222897b9de",
+      "requestedSeed": 98765,
+      "cases": {
+        "confluxXP-baseline": {
+          "baseline": 92,
+          "damage": [
+            92
+          ],
+          "rank": 10
+        },
+        "confluxXP-shield-a16": {
+          "baseline": 92,
+          "damage": [
+            172
+          ],
+          "rank": 10
+        }
+      },
+      "error": null
+    }
+  ],
+  "expected": {
+    "baseline": 92,
+    "p21": 182,
+    "p23": 267,
+    "a17": 217,
+    "a16": 202,
+    "shield-a17": 187,
+    "shield-a16": 172
+  }
+}

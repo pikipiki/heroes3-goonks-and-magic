@@ -1,6 +1,10 @@
 #pragma once
 #include "EraSourceCreatureSpellPower.h"
 #include "EraSourceSpellAccuracy.h"
+#include "EraHorn266Policy.h"
+#include "EraFangarmHypnotize.h"
+#include "../entities/hero/CHero.h"
+#include "../mapObjects/CGHeroInstance.h"
 #include "../battle/Unit.h"
 #include "../CCreatureHandler.h"
 #include "../filesystem/Filesystem.h"
@@ -36,8 +40,10 @@ public:
             {
                 // XP71DB38 passes intermediate power3; Amethyst5A0145
                 // replaces it from CURRENT active creature except62/70..80.
-                if(!spell.isString() || (spell.String()!="core:sorrow" && spell.String()!="core:blind" && spell.String()!="core:berserk" && spell.String()!="core:titanBolt" && spell.String()!="core:destroyUndead" && spell.String()!="core:deathRipple" && spell.String()!="core:cure" && spell.String()!="core:fireball"))
+                if(!spell.isString() || (spell.String()!="core:sorrow" && spell.String()!="core:blind" && spell.String()!="core:berserk" && spell.String()!="core:titanBolt" && spell.String()!="core:destroyUndead" && spell.String()!="core:deathRipple" && spell.String()!="core:cure" && spell.String()!="core:fireball" && spell.String()!="core:hypnotize"))
                     throw std::runtime_error("ERA experience attack spells: unproven spell contract");
+                if(spell.String()=="core:hypnotize" && (entry.first!="tum-era:eraCreature263" || !Horn266Policy::enabled()))
+                    throw std::runtime_error("Exact source263 Hypnotize contract required");
                 if(spell.String()=="core:fireball" && entry.first!="tum-era:eraCreature294")
                     throw std::runtime_error("ERA experience attack spells: exact source294 area contract required");
                 if(!creatures[entry.first].insert(spell.String()).second)
@@ -56,6 +62,7 @@ public:
         if(mode == BonusType::SPELL_BEFORE_ATTACK && (spell == "core:sorrow" || spell == "core:titanBolt" || spell == "core:destroyUndead" || spell == "core:deathRipple" || spell == "core:cure")) return 3;
         if(mode == BonusType::SPELL_AFTER_ATTACK && spell == "core:blind") return 3;
         if(mode == BonusType::SPELL_AFTER_ATTACK && spell == "core:berserk") return 2;
+        if(mode == BonusType::SPELL_AFTER_ATTACK && creature=="tum-era:eraCreature263" && spell=="core:hypnotize")return 2;
         if(mode == BonusType::SPELL_AFTER_ATTACK && creature=="tum-era:eraCreature294" && spell=="core:fireball")return 3;
         return -1;
     }
@@ -88,10 +95,32 @@ inline int experienceAttackPower(const battle::Unit * active,int spell)
 class ExperienceAttackCaster final : public spells::AbilityCaster
 {
     PlayerColor effectiveOwner;
+    const CGHeroInstance * hypnotizeHero;
+    bool sourceFangarmHypnotize;
 public:
-    ExperienceAttackCaster(const battle::Unit * unit, PlayerColor owner, int mastery = 3)
-        : spells::AbilityCaster(unit,mastery), effectiveOwner(owner) {}
+    ExperienceAttackCaster(const battle::Unit * unit, PlayerColor owner, int mastery = 3,
+        const CGHeroInstance * thresholdHero=nullptr,bool fangarmHypnotize=false)
+        : spells::AbilityCaster(unit,mastery), effectiveOwner(owner),
+          hypnotizeHero(thresholdHero),sourceFangarmHypnotize(fangarmHypnotize) {}
     PlayerColor getCasterOwner() const override { return effectiveOwner; }
+    bool usesSourceFangarmHypnotize()const{return sourceFangarmHypnotize;}
+    int64_t getSpellBonus(const spells::Spell * spell,int64_t value,const battle::Unit * target)const override
+    {
+        if(!sourceFangarmHypnotize || spell->getIndex()!=60)
+            return spells::AbilityCaster::getSpellBonus(spell,value,target);
+        // Source5A86AF calls only4E6260 specialty correction. Sorcery and
+        // elemental damage orbs do not amplify this eligibility threshold.
+        // Existing native specialty percentages are retained for custom heroes.
+        if(!hypnotizeHero)return value;
+        if(target && hypnotizeHero->getHeroType()->getJsonKey()=="core:astral")
+            return ::era_bridge::fangarmAstralHypnotizeThreshold(
+                ::era_bridge::hornSigned32(uint32_t(value)),hypnotizeHero->level,target->creatureLevel());
+        value=hypnotizeHero->getSpecificSpellBonus(spell,value);
+        if(target && target->creatureLevel()>0)
+            value=value*(100+hypnotizeHero->valOfBonuses(BonusType::SPECIAL_SPELL_LEV,
+                BonusSubtypeID(spell->getId()))/target->creatureLevel())/100;
+        return value;
+    }
 };
 }
 VCMI_LIB_NAMESPACE_END

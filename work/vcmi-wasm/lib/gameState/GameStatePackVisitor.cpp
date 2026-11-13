@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraFamiliarChannel43.h"
 #include "../era/EraBridgePolicies.h"
 #include "../era/EraConfluxPolicies.h"
 #include "../era/EraWayfarerState.h"
@@ -1287,7 +1288,7 @@ void GameStatePackVisitor::visitBattleTriggerEffect(BattleTriggerEffect & pack)
             // Source356's post-effect announcement carries animation only.
             // Mana was already updated by the authoritative SetMana packet.
             if(pack.val<=0 || (pack.additionalInfo!=0 && pack.additionalInfo!=1)
-                || !era_compat::ConfluxPolicies::get().is356(st->creatureId().toCreature()->getJsonKey()))
+                || !era_compat::sourcePostEffectManaChannel(st->creatureId().toCreature()->getJsonKey()))
                 logNetwork->error("Unrecognized ERA mana channel announcement");
             break;
         case BonusType::MAGIC_MIRROR:

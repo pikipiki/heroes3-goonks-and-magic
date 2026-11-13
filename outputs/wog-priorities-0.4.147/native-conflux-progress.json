@@ -1,5 +1,5 @@
 {
-  "complete": false,
+  "complete": true,
   "active": false,
   "scope": "Independent validated cases only; family355/356 remains disabled until whole contract validation, including cache, channel, XP and crossfeature gates.",
   "cases": {
@@ -61090,12 +61090,53 @@
         }
       },
       "saveBytes": 120799
+    },
+    "sourceMagicReduction9": {
+      "passed": true,
+      "proof": "native-source-magic-reduction.json",
+      "migration": "source-magic-reduction-installation.json",
+      "scope": "Actual15-actor candidate and cleanedCSV; four real rank10 training controls; mixed nativeANY/Goonk and genuine WardingBanner retained."
+    },
+    "source355Experience7": {
+      "passed": true,
+      "proof": "native-conflux-experience.json",
+      "scope": "Independent p21/p23/a17/a16 and both aftercasts before lethalShield. Positive seed witnesses only; no probability-rate claim."
+    },
+    "zeroWoundDuration": {
+      "passed": true,
+      "proof": "native-source-magic-reduction.json",
+      "scope": "ActualR10 source355 zeroMagicArrow injury installsShield before nextphysicalhit; expires at injuredcount1 rather thanCURRENTenemy3."
+    },
+    "source355FirstPDeath": {
+      "passed": true,
+      "proof": "native-conflux-first-p-death.json",
+      "scope": "Firstp21 selfkills; independentp23 still executes at count0, exact100 observer damage."
+    },
+    "source352CatalystQuery": {
+      "passed": true,
+      "proof": "native158-dungeon-catalyst-query.json",
+      "regressions": "native158-dungeon-regressions.json",
+      "scope": "Actual356Catalyst newinteraction corrected and physicalOrb93 baseline retained; existing352 four controlsPASS."
+    },
+    "source158ChannelTomeReplay": {
+      "passed": true,
+      "proof": "native158-conflux-channel-tome.json",
+      "scope": "Final158 real portrait cache andthree channel controls."
+    },
+    "source43MixedCompatibility": {
+      "passed": true,
+      "proof": "native-familiar43-progress.json",
+      "scope": "Optional43+356 maxchannel and unregisteredGoonk pre-route preserved;43flight remains separateoff."
+    },
+    "source355RetaliationAfterMelee": {
+      "passed": true,
+      "proof": "native-conflux355-counter160.json",
+      "engineSHA": "3be25d9ab551546312b50497cdc3017c6308c256789203f76028d4552daa0b94",
+      "source": "eighth-evidence/conflux355-normal-retaliation-source.json",
+      "scope": "Normalretaliation127physical+Arrow60 fromCURRENTprimary5 (notretaliator2); blocked0; preemption127noArrow.3nativecontrols only, no unsupportedTownclaim."
     }
   },
   "remaining": [
-    "source g native order/protection/Sorcery/mixed controls and strict15-actor migration",
-    "355 independent XP rows and beforeShield survival edge cases",
-    "355 zero-wound and buff duration controls",
-    "Catalyst CURRENT/query-side interaction352"
+    "StrictRootre-admission finalstep; nine native towns remain a separate Rootgate."
   ]
 }

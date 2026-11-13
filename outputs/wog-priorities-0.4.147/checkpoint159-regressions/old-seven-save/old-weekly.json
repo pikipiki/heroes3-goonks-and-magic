@@ -1,0 +1,1122 @@
+{
+  "day": 8,
+  "resources": [
+    520,
+    510,
+    515,
+    510,
+    510,
+    510,
+    552555,
+    500
+  ],
+  "towns": [
+    {
+      "id": 0,
+      "faction": "goonk:goonk",
+      "stocks": [
+        {
+          "level": 0,
+          "count": 32,
+          "variants": [
+            {
+              "key": "goonk:paingpaing",
+              "id": 258,
+              "variant": 0
+            }
+          ]
+        }
+      ],
+      "armies": [
+        {
+          "id": 0,
+          "slots": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "built": [
+        5,
+        7,
+        10,
+        30
+      ],
+      "fortAreas": 7
+    },
+    {
+      "id": 3,
+      "faction": "core:castle",
+      "stocks": [
+        {
+          "level": 0,
+          "count": 26,
+          "variants": [
+            {
+              "key": "core:pikeman",
+              "id": 0,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 1,
+          "count": 17,
+          "variants": [
+            {
+              "key": "core:archer",
+              "id": 2,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "count": 14,
+          "variants": [
+            {
+              "key": "core:griffin",
+              "id": 4,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "count": 8,
+          "variants": [
+            {
+              "key": "core:swordsman",
+              "id": 6,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "count": 6,
+          "variants": [
+            {
+              "key": "core:monk",
+              "id": 8,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 5,
+          "count": 4,
+          "variants": [
+            {
+              "key": "core:cavalier",
+              "id": 10,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "count": 2,
+          "variants": [
+            {
+              "key": "core:angel",
+              "id": 12,
+              "variant": 0
+            }
+          ]
+        }
+      ],
+      "armies": [
+        {
+          "id": 3,
+          "slots": [
+            {
+              "key": "goonk:bubu",
+              "count": 2,
+              "experience": 0,
+              "rank": 0
+            },
+            {
+              "key": "core:pikeman",
+              "count": 2,
+              "experience": 0,
+              "rank": 0
+            },
+            {
+              "key": "core:archer",
+              "count": 1,
+              "experience": 0,
+              "rank": 0
+            },
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "built": [
+        0,
+        5,
+        7,
+        10,
+        16,
+        21,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "fortAreas": 7
+    },
+    {
+      "id": 4,
+      "faction": "core:rampart",
+      "stocks": [
+        {
+          "level": 0,
+          "count": 28,
+          "variants": [
+            {
+              "key": "core:centaur",
+              "id": 14,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 1,
+          "count": 16,
+          "variants": [
+            {
+              "key": "core:dwarf",
+              "id": 16,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "count": 14,
+          "variants": [
+            {
+              "key": "core:woodElf",
+              "id": 18,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "count": 10,
+          "variants": [
+            {
+              "key": "core:pegasus",
+              "id": 20,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "count": 6,
+          "variants": [
+            {
+              "key": "core:dendroidGuard",
+              "id": 22,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 5,
+          "count": 4,
+          "variants": [
+            {
+              "key": "core:unicorn",
+              "id": 24,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "count": 2,
+          "variants": [
+            {
+              "key": "core:greenDragon",
+              "id": 26,
+              "variant": 0
+            }
+          ]
+        }
+      ],
+      "armies": [
+        {
+          "id": 4,
+          "slots": [
+            {
+              "key": "goonk:bubu",
+              "count": 2,
+              "experience": 0,
+              "rank": 0
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "built": [
+        5,
+        7,
+        10,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "fortAreas": 7
+    },
+    {
+      "id": 5,
+      "faction": "core:tower",
+      "stocks": [
+        {
+          "level": 0,
+          "count": 32,
+          "variants": [
+            {
+              "key": "core:gremlin",
+              "id": 28,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 1,
+          "count": 18,
+          "variants": [
+            {
+              "key": "core:stoneGargoyle",
+              "id": 30,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "count": 12,
+          "variants": [
+            {
+              "key": "core:ironGolem",
+              "id": 32,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "count": 8,
+          "variants": [
+            {
+              "key": "core:mage",
+              "id": 34,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "count": 6,
+          "variants": [
+            {
+              "key": "core:genie",
+              "id": 36,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 5,
+          "count": 4,
+          "variants": [
+            {
+              "key": "core:naga",
+              "id": 38,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "count": 2,
+          "variants": [
+            {
+              "key": "core:giant",
+              "id": 40,
+              "variant": 0
+            }
+          ]
+        }
+      ],
+      "armies": [
+        {
+          "id": 5,
+          "slots": [
+            {
+              "key": "goonk:bubu",
+              "count": 2,
+              "experience": 0,
+              "rank": 0
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "built": [
+        0,
+        5,
+        7,
+        10,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "fortAreas": 7
+    },
+    {
+      "id": 6,
+      "faction": "core:inferno",
+      "stocks": [
+        {
+          "level": 0,
+          "count": 30,
+          "variants": [
+            {
+              "key": "core:imp",
+              "id": 42,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 1,
+          "count": 16,
+          "variants": [
+            {
+              "key": "core:gog",
+              "id": 44,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "count": 10,
+          "variants": [
+            {
+              "key": "core:hellHound",
+              "id": 46,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "count": 8,
+          "variants": [
+            {
+              "key": "core:demon",
+              "id": 48,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "count": 6,
+          "variants": [
+            {
+              "key": "core:pitFiend",
+              "id": 50,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 5,
+          "count": 4,
+          "variants": [
+            {
+              "key": "core:efreet",
+              "id": 52,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "count": 2,
+          "variants": [
+            {
+              "key": "core:devil",
+              "id": 54,
+              "variant": 0
+            }
+          ]
+        }
+      ],
+      "armies": [
+        {
+          "id": 6,
+          "slots": [
+            {
+              "key": "goonk:bubu",
+              "count": 2,
+              "experience": 0,
+              "rank": 0
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "built": [
+        0,
+        5,
+        7,
+        10,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "fortAreas": 7
+    },
+    {
+      "id": 7,
+      "faction": "core:necropolis",
+      "stocks": [
+        {
+          "level": 0,
+          "count": 24,
+          "variants": [
+            {
+              "key": "core:skeleton",
+              "id": 56,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 1,
+          "count": 16,
+          "variants": [
+            {
+              "key": "core:walkingDead",
+              "id": 58,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "count": 14,
+          "variants": [
+            {
+              "key": "core:wight",
+              "id": 60,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "count": 8,
+          "variants": [
+            {
+              "key": "core:vampire",
+              "id": 62,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "count": 6,
+          "variants": [
+            {
+              "key": "core:lich",
+              "id": 64,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 5,
+          "count": 4,
+          "variants": [
+            {
+              "key": "core:blackKnight",
+              "id": 66,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "count": 2,
+          "variants": [
+            {
+              "key": "core:boneDragon",
+              "id": 68,
+              "variant": 0
+            }
+          ]
+        }
+      ],
+      "armies": [
+        {
+          "id": 7,
+          "slots": [
+            {
+              "key": "goonk:bubu",
+              "count": 2,
+              "experience": 0,
+              "rank": 0
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "built": [
+        0,
+        5,
+        7,
+        10,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "fortAreas": 7
+    },
+    {
+      "id": 8,
+      "faction": "core:dungeon",
+      "stocks": [
+        {
+          "level": 0,
+          "count": 28,
+          "variants": [
+            {
+              "key": "core:troglodyte",
+              "id": 70,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 1,
+          "count": 16,
+          "variants": [
+            {
+              "key": "core:harpy",
+              "id": 72,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "count": 14,
+          "variants": [
+            {
+              "key": "core:beholder",
+              "id": 74,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "count": 8,
+          "variants": [
+            {
+              "key": "core:medusa",
+              "id": 76,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "count": 6,
+          "variants": [
+            {
+              "key": "core:minotaur",
+              "id": 78,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 5,
+          "count": 4,
+          "variants": [
+            {
+              "key": "core:manticore",
+              "id": 80,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "count": 2,
+          "variants": [
+            {
+              "key": "core:redDragon",
+              "id": 82,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 7,
+          "count": 4,
+          "variants": [
+            {
+              "key": "core:basilisk",
+              "id": 106,
+              "variant": 0
+            }
+          ]
+        }
+      ],
+      "armies": [
+        {
+          "id": 8,
+          "slots": [
+            {
+              "key": "goonk:bubu",
+              "count": 2,
+              "experience": 0,
+              "rank": 0
+            },
+            {
+              "key": "core:basilisk",
+              "count": 1,
+              "experience": 0,
+              "rank": 0
+            },
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "built": [
+        5,
+        7,
+        10,
+        22,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "fortAreas": 8
+    },
+    {
+      "id": 9,
+      "faction": "core:stronghold",
+      "stocks": [
+        {
+          "level": 0,
+          "count": 30,
+          "variants": [
+            {
+              "key": "core:goblin",
+              "id": 84,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 1,
+          "count": 18,
+          "variants": [
+            {
+              "key": "core:goblinWolfRider",
+              "id": 86,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "count": 14,
+          "variants": [
+            {
+              "key": "core:orc",
+              "id": 88,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "count": 8,
+          "variants": [
+            {
+              "key": "core:ogre",
+              "id": 90,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "count": 6,
+          "variants": [
+            {
+              "key": "core:roc",
+              "id": 92,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 5,
+          "count": 4,
+          "variants": [
+            {
+              "key": "core:cyclop",
+              "id": 94,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "count": 2,
+          "variants": [
+            {
+              "key": "core:behemoth",
+              "id": 96,
+              "variant": 0
+            }
+          ]
+        }
+      ],
+      "armies": [
+        {
+          "id": 9,
+          "slots": [
+            {
+              "key": "goonk:bubu",
+              "count": 2,
+              "experience": 0,
+              "rank": 0
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "built": [
+        5,
+        7,
+        10,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "fortAreas": 7
+    },
+    {
+      "id": 10,
+      "faction": "core:fortress",
+      "stocks": [
+        {
+          "level": 0,
+          "count": 24,
+          "variants": [
+            {
+              "key": "core:gnoll",
+              "id": 98,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 1,
+          "count": 18,
+          "variants": [
+            {
+              "key": "core:lizardman",
+              "id": 100,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "count": 16,
+          "variants": [
+            {
+              "key": "core:serpentFly",
+              "id": 104,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "count": 9,
+          "variants": [
+            {
+              "key": "core:basilisk",
+              "id": 106,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "count": 6,
+          "variants": [
+            {
+              "key": "core:gorgon",
+              "id": 102,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 5,
+          "count": 4,
+          "variants": [
+            {
+              "key": "core:wyvern",
+              "id": 108,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "count": 2,
+          "variants": [
+            {
+              "key": "core:hydra",
+              "id": 110,
+              "variant": 0
+            }
+          ]
+        }
+      ],
+      "armies": [
+        {
+          "id": 10,
+          "slots": [
+            {
+              "key": "goonk:bubu",
+              "count": 2,
+              "experience": 0,
+              "rank": 0
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "built": [
+        5,
+        7,
+        10,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "fortAreas": 7
+    },
+    {
+      "id": 11,
+      "faction": "core:conflux",
+      "stocks": [
+        {
+          "level": 0,
+          "count": 40,
+          "variants": [
+            {
+              "key": "core:pixie",
+              "id": 118,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 1,
+          "count": 12,
+          "variants": [
+            {
+              "key": "core:airElemental",
+              "id": 112,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "count": 12,
+          "variants": [
+            {
+              "key": "core:waterElemental",
+              "id": 115,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "count": 10,
+          "variants": [
+            {
+              "key": "core:fireElemental",
+              "id": 114,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "count": 8,
+          "variants": [
+            {
+              "key": "core:earthElemental",
+              "id": 113,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 5,
+          "count": 4,
+          "variants": [
+            {
+              "key": "core:psychicElemental",
+              "id": 120,
+              "variant": 0
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "count": 4,
+          "variants": [
+            {
+              "key": "core:firebird",
+              "id": 130,
+              "variant": 0
+            }
+          ]
+        }
+      ],
+      "armies": [
+        {
+          "id": 11,
+          "slots": [
+            {
+              "key": "goonk:bubu",
+              "count": 2,
+              "experience": 0,
+              "rank": 0
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "built": [
+        0,
+        5,
+        7,
+        10,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "fortAreas": 7
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "activationReady": false,
+  "sourceIds": {
+    "artifact": 266,
+    "creature": 263
+  },
+  "pins": {
+    "archive": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+    "game": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+    "script": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+    "stdlib": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+    "constants": "cf39435c763439482ce6a96fc7d589abd27c96779de04e719678c2ec0db82d76",
+    "cfg": "0fd84ae08694f74cc89681b44fa9d4e76861fc6b435c4300e2f0a726134fb040",
+    "sptraits": "0809ed7b2d7fc1357d96e4cd87bb5f9db6ad813b42d69dab29ab35fa3e1c11b9"
+  },
+  "fangarm": {
+    "stats": {
+      "name": {
+        "singular": "Fangarm",
+        "plural": "Fangarms"
+      },
+      "cost": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 600
+      },
+      "fightValue": 929,
+      "aiValue": 929,
+      "growth": 3,
+      "hitPoints": 50,
+      "speed": 6,
+      "attack": 12,
+      "defense": 12,
+      "damage": {
+        "min": 8,
+        "max": 12
+      },
+      "advMapAmount": {
+        "min": 8,
+        "max": 16
+      }
+    },
+    "xp": [
+      {
+        "creature": 263,
+        "code": "f",
+        "modifier": "R",
+        "values": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "comment": "Fangarm: No Retaliation R5",
+        "source": "crexpbon.txt",
+        "line": 1307
+      },
+      {
+        "creature": 263,
+        "code": "W",
+        "modifier": "+",
+        "values": [
+          0,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65
+        ],
+        "comment": "Fangarm: Magic Resist 20% R1+5%/Rank",
+        "source": "crexpbon.txt",
+        "line": 1308
+      },
+      {
+        "creature": 263,
+        "code": "S",
+        "modifier": "+",
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ],
+        "comment": "Fangarm: Speed R4/R10",
+        "source": "crexpbon.txt",
+        "line": 1309
+      },
+      {
+        "creature": 263,
+        "code": "K",
+        "modifier": "#60",
+        "values": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "comment": "Fangarm: Hypnotize on hit 3%/Rank",
+        "source": "crexpbon.txt",
+        "line": 1310
+      }
+    ],
+    "cfg": "Flags=1042\r\nLevel=4\r\nRetaliations=110\r\n",
+    "flags": {
+      "FLYING": true,
+      "MIND_IMMUNITY": true,
+      "LIVING": true
+    },
+    "retaliations": {
+      "total": 110,
+      "nativeAdditional": 109,
+      "proof": "Amethyst tables.cpp1549..1552 parses char;5048..5080 zero-extends configured byte into stack454. 110 is finite, not unlimited."
+    },
+    "hypnotize": {
+      "spell": 60,
+      "sourceCode": "K",
+      "chanceByRank": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "misleadingComment": "Source comment says3%/rank, but the data and executable use100 at every rank.",
+      "mastery": 2,
+      "thresholdFormula": {
+        "coefficient": 25,
+        "actualMasteryBase": [
+          10,
+          10,
+          20,
+          50
+        ],
+        "beforeBonus": "cached requested-side heroPower×25 + actual-mastery base; apply original hero specialty bonus"
+      },
+      "singleCastReception": "Kind1 explicitly skips generic5A05FA reception at5A05DB..DF. Spell60 jump table maps to5A138F, then direct444610 on the unique target. Only the XP primary5A8950 reception/RNG is used; no invented second cast check.",
+      "basePower": "3 passed to5A0140, then Amethyst5A0145 replaces CREATURE kind1 power by CURRENT active stack count; source263 has default ×1.",
+      "procedure": [
+        "71DC03 dispatches uppercaseK to71D939 after lowercasea",
+        "71D98D/71D9A0 reject dead caster or target before RNG",
+        "71DA37 reads the unsigned rank byte directly",
+        "71DA69 draws random1..100;71DA7B..83 accepts when draw<=rank value",
+        "71DAC7 sets mastery2 for uppercaseJ/K",
+        "71DB27 calls5A8950 eligibility;71DB4C calls5A0140 with target hex, CREATURE kind1 and power3"
+      ],
+      "receptionPower": "71DB27 calls5A8950 before the5A0145 power hook. 5A83B1 reads the requested-side hero;5A8673..8681 asks actual hero/terrain mastery,5A8689 reads that side cached battle hero power53D4. Do not use CURRENTcount or forced effect mastery2 for this eligibility threshold.",
+      "reception": "Original5A86B6 rejects existing Hypnotize36;5A86C0..CC compares signed32 count×HPmax, not available wounded health. This is not yet enabled for source263 in native TargetCondition."
+    }
+  },
+  "horn": {
+    "sourceLines": [
+      1482,
+      1640
+    ],
+    "activationGate": "tum_emerald_on",
+    "equippedGate": "Original acting-side hero exists and HE:A2/266 equipped is nonzero; backpack excluded.",
+    "physical": "tum_OnAfterAttack from stdlib hooks441996/43FAD9; attacker side from BM:I; process direct defender.",
+    "spell": "OnBattleActionEnd only when captured BG:E>NO_STACK, actionHERO_CAST orMONSTER_CAST, opposing original actor/target sides. Runs for both actor/defender side functions; AOE without primary target is excluded.",
+    "eligibility": "startCount>0,currentCount<=0,type!=263,LIVING flag set, side manager stack count<=20",
+    "healthSource": "BM:H jump table75F86E[H-A] points75F118, which reads live stack+C0 via75F123/74195D. C0 is combat info.hitPoints, not base creature MA:P and not lostHP58 or preserved baseHP6C. Poison71 dispatches444C3E and writesC0 at444CC0; Aging75 dispatches444CDE and writesC0 at444D18. Thus original B is multiplied by current maximum HP per creature, including active combat HP modifiers.",
+    "count": "signed32(startCount*targetHP) / MA:P(263), integer toward zero, then clamp between0 and floor(startCount/2). Fangarm base HP50 from source archive.",
+    "corpse": "Call tum_RemoveDeadBody(target,FALSE), then read original position. Helper removes presentation/hex body and marks bit28; it does not delete the stack record. It can reject special corpse kinds without preventing the subsequent summon attempt.",
+    "summon": "BU:S263/count/originalPosition/actingSide/-1/1; locate stack byBU:E, then set B0 and SUMMONEDbit22.",
+    "collection": "At battle end, for BOTH sides and source slots0..20 sum max(currentCount-originalB,0) for every type263; no Corne-equipped recheck.",
+    "army": "OnAfterBattleUniversal: original hero exists and HE:O>=0. Prefer first existing263 army slot, else first empty slot; if full with no263 no gain. Source comments call this winner-only, but the actual predicate is owner availability.",
+    "failedSummon": "479A30 returnsNULL at20-full slots or an occupied requested hex and never searches another hex. ReceiverBU:S discards the pointer. BU:E dispatches via760295[E-C]=2 to75FE81;715872 returns manager+1C4+112*hex, and75FEF9 reads current cell side+18/slot+19. Thus it independently resolves the current hex occupant and can mark that pre-existing occupant B0+SUMMONED; native159 avoids this capture. Future160 implements current-occupant capture and summoned/B0 flags; original hero army slots must be cleared, because463DDC resets all slots and463E39..4B excludes summoned stacks when that side has a hero. Native occupant, persistence and XP controls remain required before activation.",
+    "postbattleOrder": {
+      "eventAlias": "era.dll490023 registers30353 asOnAfterBattleUniversal; official ERA Erm.pas aliasBA53 corroborates.",
+      "callChain": "75AEB0 calls original battle4AD160,75AEBD then75ABB6,75ACC2 pushes53 and75ACC4 calls74CFA3(base30300). Necromancy runs in battle results476ED1→4E3F40 and47709E→469B00→469BA1 before the battle returns, so Horn payout follows Necromancy.",
+      "ring": "TUM source Horn1497 precedes mass262/263 andRing1930 handlers in the same script. PhysicalHook441996 precedesFireShield4419A0. Captures must survive native corpse cleanup.",
+      "primarySourceUrl": "https://github.com/ethernidee/era/blob/8c2fd47b22b1e67c980f42583a525d36fc318364/Erm.pas"
+    },
+    "ring268": "Capture original dead target identity/count/HP/position before native Ring removal can invalidate CStack position; corpse-removal helpers must not erase Horn inputs."
+  },
+  "boundedEvidence": [
+    {
+      "address": "75f118",
+      "length": 54,
+      "sha256": "f869d8d45c79cf6e3a74b651c8b99d85b215f6ca19d158762220fcc9629fa39b"
+    },
+    {
+      "address": "444c3e",
+      "length": 250,
+      "sha256": "fe3834474c28fba33719f2be6b5d37f11741a88bcbd88369822538c3bfbbbc9b"
+    },
+    {
+      "address": "71d939",
+      "length": 575,
+      "sha256": "c8306a10a4d473172263f25e81662646bd85edeb95373bd18ab64deb83cf26b2"
+    },
+    {
+      "address": "71dbd8",
+      "length": 77,
+      "sha256": "438197f55da987aed45468188fd0160f21084d04cb018938c5d013a19ec6d71b"
+    },
+    {
+      "address": "5a8673",
+      "length": 108,
+      "sha256": "c4289e297cacdb63761d80bb08fc2f73ce7c869d7328d68e7172f34d044932c0"
+    },
+    {
+      "address": "5a83a0",
+      "length": 39,
+      "sha256": "8df0bac2322b2a36b9b09f27a9b7da76e3f2fb47b43cf4c192164e9792c32db9"
+    },
+    {
+      "address": "5a8950",
+      "length": 70,
+      "sha256": "b53fcfd64489399b4a28e0d3c24ad45702b93bcdd647200e805fd4d9ca2b4d2a"
+    },
+    {
+      "address": "5a0140",
+      "length": 660,
+      "sha256": "907a55822549d9819b45240dc23d5db8f6cccbc9593767e1ab9d717d0d2c0a1d"
+    },
+    {
+      "address": "5a05db",
+      "length": 80,
+      "sha256": "96b8a47a1994ae29d4bafed05373927478a732bfeea1111e33b2d1ec426140ee"
+    },
+    {
+      "address": "5a138f",
+      "length": 76,
+      "sha256": "bb82f03715e9012b70c3e98112b88055ceea2440a1158106a2a7e79e3d35a97b"
+    },
+    {
+      "address": "75aeb0",
+      "length": 18,
+      "sha256": "d4742e4d80f2a503bd20b6838afff4de2d7bcb3e6f673ec43eef44b6089e49d7"
+    },
+    {
+      "address": "75acbc",
+      "length": 21,
+      "sha256": "daca0b820ddf741a356beea2c2cf64f63d8c52f50212b9875f7077b8043ad762"
+    },
+    {
+      "address": "74cfbd",
+      "length": 57,
+      "sha256": "6d39a53012077e2fe481bf0034d974b9f0d8a30802ed918249b17474c68caedc"
+    },
+    {
+      "address": "76018d",
+      "length": 32,
+      "sha256": "f2208c05840bb0b4817dec1ea9a7bc1b2282bd6dd826b91da6df6e337de67fb5"
+    },
+    {
+      "address": "714d22",
+      "length": 193,
+      "sha256": "a8e51c2dd6680c9198f60058e7075e78db8f36315853ab8f7db7d6aba4260330"
+    },
+    {
+      "address": "479a30",
+      "length": 258,
+      "sha256": "9a9533ffbe7ee8e6110753fe92bedc816c28c795c7e9a76b0ad6582b19c2467d"
+    }
+  ],
+  "pending": [
+    "Close exact263K60 native optin, separate hero-cache threshold from CURRENTcount effect/duration, and strict Hypnotize target reception",
+    "Resolve source absent-hero path and document any stable correction to null hero reads",
+    "Validate exact BU:E occupant capture after failed BU:S, original army slot clearing, XP exclusion and captured-Fangarm gains before claiming full Horn port",
+    "Fangarm source stats/flight/mind immunity/110counterstrikes/XP rank0+5+10",
+    "Horn melee/ranged/retaliation/targeted hero+monster casts and no-targetAOE controls",
+    "Living/dead/originalB/targetHP/count cap/body occupancy and Ring268 coexistence",
+    "Postbattle surviving gains, full/empty/existing army slot, defeat/retreat/save-load controls"
+  ]
+}

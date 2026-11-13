@@ -1,0 +1,325 @@
+{
+  "schemaVersion": 1,
+  "complete": false,
+  "sourceExecutableSHA256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "scope": "Only the15 explicitly typed source g% actors. Unregistered VCMI/Goonk targets retain native FireShield adjustment.",
+  "calls": [
+    {
+      "address": "0x441991",
+      "target": "0x4408e0",
+      "bytes": "e84aefffff"
+    },
+    {
+      "address": "0x4419a0",
+      "target": "0x4406e0",
+      "bytes": "e83bedffff"
+    },
+    {
+      "address": "0x440858",
+      "target": "0x443db0",
+      "bytes": "e853350000"
+    }
+  ],
+  "flow": "441991 finishes the physical attack;441996 loads cached reflection amount from EBP-18, passes it to4406E0;44084F reloads its original argument and440858 passes it directly to443DB0 physical damage. No normal spell correction is introduced on this path.",
+  "boundedEvidence": [
+    {
+      "address": "0x441982",
+      "length": 35,
+      "sha256": "2db896e721537a391901b43bc8e9291f78321982717b92a3f9e4ba6477653940"
+    },
+    {
+      "address": "0x4406e0",
+      "length": 381,
+      "sha256": "e3407aa9fc8574b784f23bbe01d8b2fbd4cc8ce46f04fdb48d7fee1e5d2faa65"
+    },
+    {
+      "address": "0x443db0",
+      "length": 96,
+      "sha256": "d6d41a6ac423aed956b40784ae6f419cdea3dfc162d3b4acd78fbe1e5131b2b6"
+    }
+  ],
+  "actors": [
+    {
+      "sourceId": 8,
+      "nativeId": "core:monk",
+      "rankValues": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        21,
+        24,
+        27,
+        30,
+        33
+      ],
+      "coveredByExistingDirectWrapper": false
+    },
+    {
+      "sourceId": 9,
+      "nativeId": "core:zealot",
+      "rankValues": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        21,
+        24,
+        27,
+        30,
+        33
+      ],
+      "coveredByExistingDirectWrapper": false
+    },
+    {
+      "sourceId": 32,
+      "nativeId": "core:ironGolem",
+      "rankValues": [
+        50,
+        54,
+        58,
+        62,
+        66,
+        70,
+        74,
+        78,
+        82,
+        86,
+        90
+      ],
+      "coveredByExistingDirectWrapper": false
+    },
+    {
+      "sourceId": 33,
+      "nativeId": "core:stoneGolem",
+      "rankValues": [
+        75,
+        77,
+        79,
+        81,
+        83,
+        85,
+        87,
+        89,
+        91,
+        93,
+        95
+      ],
+      "coveredByExistingDirectWrapper": false
+    },
+    {
+      "sourceId": 125,
+      "nativeId": "core:magmaElemental",
+      "rankValues": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30
+      ],
+      "coveredByExistingDirectWrapper": false
+    },
+    {
+      "sourceId": 131,
+      "nativeId": "core:phoenix",
+      "rankValues": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20
+      ],
+      "coveredByExistingDirectWrapper": false
+    },
+    {
+      "sourceId": 116,
+      "nativeId": "core:goldGolem",
+      "rankValues": [
+        85,
+        87,
+        89,
+        91,
+        93,
+        95,
+        97,
+        99,
+        100,
+        100,
+        100
+      ],
+      "coveredByExistingDirectWrapper": false
+    },
+    {
+      "sourceId": 117,
+      "nativeId": "core:diamondGolem",
+      "rankValues": [
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "coveredByExistingDirectWrapper": false
+    },
+    {
+      "sourceId": 141,
+      "nativeId": "core:mummy",
+      "rankValues": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30
+      ],
+      "coveredByExistingDirectWrapper": false
+    },
+    {
+      "sourceId": 209,
+      "nativeId": "third-upgrades:tumSteelGolem",
+      "rankValues": [
+        80,
+        80,
+        82,
+        84,
+        86,
+        88,
+        90,
+        92,
+        93,
+        94,
+        95
+      ],
+      "coveredByExistingDirectWrapper": false
+    },
+    {
+      "sourceId": 247,
+      "nativeId": "third-upgrades:tumHurricaneElemental",
+      "rankValues": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20
+      ],
+      "coveredByExistingDirectWrapper": false
+    },
+    {
+      "sourceId": 250,
+      "nativeId": "third-upgrades:tumMineralElemental",
+      "rankValues": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30
+      ],
+      "coveredByExistingDirectWrapper": false
+    },
+    {
+      "sourceId": 252,
+      "nativeId": "tum-era:divinePhoenix",
+      "rankValues": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20
+      ],
+      "coveredByExistingDirectWrapper": false
+    },
+    {
+      "sourceId": 271,
+      "nativeId": "tum-era:eraCreature271",
+      "rankValues": [
+        40,
+        45,
+        50,
+        55,
+        60,
+        65,
+        70,
+        75,
+        80,
+        85,
+        95
+      ],
+      "coveredByExistingDirectWrapper": true
+    },
+    {
+      "sourceId": 280,
+      "nativeId": "tum-era:eraCreature280",
+      "rankValues": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        90,
+        92,
+        94,
+        95,
+        99
+      ],
+      "coveredByExistingDirectWrapper": true
+    }
+  ],
+  "proposedNativeGuard": "Existing sourceMagicReduction(unit).has_value() identifies compiler-owned g% metadata including rank-zero g0; ordinary ANY equipment does not opt in.",
+  "requiredNativeControls": [
+    "R0g0 and R0g50 reflect floor(actual physical damage*20/100) against real FireShield20 despite shield-owner Sorcery15%; retain actual native-terrain stat adjustments.",
+    "Real earnedR10g95 also reflects that same raw formula.",
+    "Source g% with independent ANY30 equipment still reflects the raw amount.",
+    "Unregistered Goonk retains Sorcery15% correction, followed by ordinary ANY30 equipment when worn; calculate from observed physical input."
+  ],
+  "limitations": [
+    "This is local primary binary/source evidence, not execution of Windows ERA.",
+    "No source activation or engine fix is made by this review.",
+    "Native controls and preserved physical wrappers remain required."
+  ]
+}

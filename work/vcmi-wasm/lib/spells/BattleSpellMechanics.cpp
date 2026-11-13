@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraFamiliarChannel43.h"
 #include "../era/EraAdvancedArtifactRuntimeNative.h"
 #include "../era/EraPhysicalAbilities.h"
 #include "../era/EraSourceSpellAccuracy.h"
@@ -442,8 +443,8 @@ void BattleSpellMechanics::cast(ServerCallback * server, const Target & target)
 			{
                 // Original5A24DC flips the channel side while Hypnotize60 is
                 // active. Keep other, unregistered VCMI channel providers intact.
-                const bool sourceChannel=era_compat::ConfluxPolicies::get().is356(stack->creatureId().toCreature()->getJsonKey());
-                if(sourceChannel)continue; // Original5A24DC evaluates356 AFTER spell effects.
+                const bool sourceChannel=era_compat::sourcePostEffectManaChannel(stack->creatureId().toCreature()->getJsonKey());
+                if(sourceChannel)continue; // Original5A24DC evaluates admitted43/356 AFTER spell effects.
 				if(stack->unitOwner() == otherHero->tempOwner && stack->alive())
 					vstd::amax(manaChannel, stack->valOfBonuses(BonusType::MANA_CHANNELING));
 			}
@@ -495,13 +496,13 @@ void BattleSpellMechanics::cast(ServerCallback * server, const Target & target)
 		p.first->apply(server, this, p.second);
 
     std::optional<BattleTriggerEffect> sourceChannelVisual;
-    if(mode==Mode::HERO && otherHero && era_compat::ConfluxPolicies::get().enabled())
+    if(mode==Mode::HERO && otherHero)
     {
         int sourceChannel=0;
         const CStack * sourceProvider=nullptr;
         for(const auto * stack:battle()->battleGetAllStacks(true))
             if(stack->alive() && battle()->battleGetOwner(stack)==otherHero->tempOwner
-                && era_compat::ConfluxPolicies::get().is356(stack->creatureId().toCreature()->getJsonKey()))
+                && era_compat::sourcePostEffectManaChannel(stack->creatureId().toCreature()->getJsonKey()))
             {
                 sourceChannel=std::max(sourceChannel,stack->valOfBonuses(BonusType::MANA_CHANNELING));
                 sourceProvider=stack;

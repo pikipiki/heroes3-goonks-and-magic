@@ -16,13 +16,14 @@ namespace era_compat_server
 inline bool conflux355(const CStack * actor)
 {return actor && era_compat::ConfluxPolicies::get().is355(actor->creatureId().toCreature()->getJsonKey());}
 inline void confluxAutomaticCast(CGameHandler & handler,const CBattleInfoCallback & battle,
-    const CStack * actor,const battle::Unit * target,int spell,int power)
+    const CStack * actor,const battle::Unit * target,int spell,int power,
+    std::optional<BattleSide> forcedCurrentSide=std::nullopt)
 {
     if(!target || !target->alive())return;
     // AfterWound temporarily forces the injured PHYSICAL side. The ordinary
     // after-action hooks retain CURRENT active side, including Hypnotize.
-    auto side=actor->unitSide();
-    if(spell!=29){const auto * active=battle.battleActiveUnit();if(active){side=active->unitSide();if(active->isHypnotized())side=side==BattleSide::ATTACKER?BattleSide::DEFENDER:BattleSide::ATTACKER;}}
+    auto side=forcedCurrentSide.value_or(actor->unitSide());
+    if(!forcedCurrentSide && spell!=29){const auto * active=battle.battleActiveUnit();if(active){side=active->unitSide();if(active->isHypnotized())side=side==BattleSide::ATTACKER?BattleSide::DEFENDER:BattleSide::ATTACKER;}}
     era_compat::ConfluxSideScope context(side,1);
     spells::AbilityCaster ability(actor,0);
     era_compat::ConfluxCaster caster(&ability,nullptr,battle.sideToPlayer(side));
@@ -31,7 +32,7 @@ inline void confluxAutomaticCast(CGameHandler & handler,const CBattleInfoCallbac
     cast.setSpellLevel(0);cast.setEffectPower(power);cast.setEffectDuration(power);
     spells::Target destination;destination.emplace_back(target);
     if(spell==15 && (!SpellID(spell).toSpell()->battleMechanics(&cast)->isReceptive(target)
-        || era_compat::statusRawAccuracy(battle,target)<=0))return; //canSpellBeCast: probability>0, no draw.
+        || era_compat::statusRawAccuracy(battle,target,true,BattleSide::NONE,true)<=0))return; //canSpellBeCast: FLOATprobability>0, no draw.
     cast.cast(handler.spellcastEnvironment(),destination);
 }
 inline void confluxAfterDefend(CGameHandler & handler,const CBattleInfoCallback & battle,const CStack * actor)
@@ -48,6 +49,20 @@ inline void confluxAfterMelee(CGameHandler & handler,const CBattleInfoCallback &
     if(!era_compat::sourceSpellContextAllows(battle,target,SpellID(15).toSpell()))return;
     confluxAutomaticCast(handler,battle,actor,target,15,
         era_compat::experienceAttackPower(battle.battleActiveUnit(),15));
+}
+// Amethyst after_retaliation_00441B62 is separate from primary441C01.
+// Direct WoG_CastSpell preserves the caller's flipped CURRENT side, while
+//5A0145 still takes count/power from the unchanged primary manager stack.
+inline void confluxAfterRetaliation(CGameHandler & handler,const CBattleInfoCallback & battle,
+    const CStack * actor,const CStack * target)
+{
+    if(!conflux355(actor) || !target || !target->alive())return;
+    const auto side=era_compat::confluxActiveSide(battle);
+    //5A8616 compares the target's original side, not Hypnotize ownership.
+    if(target->unitSide()==side)return;
+    if(!era_compat::sourceSpellContextAllows(battle,target,SpellID(15).toSpell()))return;
+    confluxAutomaticCast(handler,battle,actor,target,15,
+        era_compat::experienceAttackPower(battle.battleActiveUnit(),15),side);
 }
 inline void confluxAfterWounds(CGameHandler & handler,const CPackForClient & pack)
 {

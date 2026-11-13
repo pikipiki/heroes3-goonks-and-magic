@@ -1,0 +1,26 @@
+{
+  "status": "future161-inactive",
+  "sourceId": 339,
+  "wholeCFGCandidateClosed": true,
+  "wholeActorNativeValidated": false,
+  "sourceExeSHA256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "strictStage": "work/downloads/wog-port161/sulfide-stage/stage.json",
+  "cppFreeze": "work/downloads/wog-port161/sulfide-frozen/manifest.json",
+  "verified": [
+    "Source46453E onlyprimary action6/7; target originalmanagerhex, fresh CanCastSpellAtCoord per spell. 441B62 onlynormalcounter uses targetprimaryposition.",
+    "CFGstatus Age75 thenPoison71 then3>Randint(0,100) Paralyze74. Original actoralive notchecked; targetalive prequery eachtime. Mastery1/power100/duration100;71/74/75 exempt5A0145poweroverride.",
+    "CanCastSpellAtCoord5A3D38 compares FLOATprobability>0 without randomroll. QueryignoreSide=1 bypasses5A8614 friend/enemy check. ActorPHYSICALside is queryside, directcast retainsCURRENT.",
+    "Allthree rejectSiege at5A857D beforeNature switch26..65. Age75/Paralyze74 bypassthatNature switch; Age can affect undead/nonliving, natural immunity stillapplies.",
+    "Poison71 checks ALIVE and Gargoyle30/31 at44A3E3..404 before Orb93. Ward134 onlylevel<=4; nativeAge actuallevel5 independentlyaudited.",
+    "SourceisHellHydra patches Acidprocupper100to19. Acid1..19drawalwaysconsumed, thenToxic15reject, thenmutableMinMax\u00d7livingCount/2 damage. Queued80DEF\u22123separate.",
+    "dailyResource3 means sulfur, ownerperresourceMAX acrosseligiblehero/townarmies, notcountscaled. r50 rankvalues irregular,firstactivationeachround withchance50."
+  ],
+  "noUndefinedValueExceptionAdded": true,
+  "pending": [
+    "ninja -j32 html5",
+    "All source339 nativecontrols before activation",
+    "Existing intrinsicAge224/254 unconditionalWard134 gate is a separateunresolvedaudit; not changed here",
+    "Full244 behavior/XP remains separate despite provenexistingidentity"
+  ],
+  "additionalGoonkCompatibility": "Existing native health/status compatibility remains explicit; no global creatureNature replacement."
+}

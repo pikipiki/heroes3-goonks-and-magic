@@ -4,6 +4,8 @@
 #include "../../lib/era/EraCreatureSpellImmunityRuntime.h"
 #include "../../lib/era/EraDeflectionLog.h"
 #include "../../lib/era/EraAcidAttack.h"
+#include "../../lib/era/EraSulfideDragon.h"
+#include "../../lib/era/EraSulfideDragonRule.h"
 #include "../../lib/era/EraSourceSpellAccuracy.h"
 #include "../../lib/era/EraDeflectionRuntime.h"
 #include "../../lib/filesystem/Filesystem.h"
@@ -36,10 +38,14 @@ public:
     }
     bool enabled(const CStack * attacker)const
     {
-        return attacker && creatures.count(attacker->creatureId().toCreature()->getJsonKey())!=0;
+        return attacker && (creatures.count(attacker->creatureId().toCreature()->getJsonKey())!=0
+            || era_compat::SulfideDragon::get().enabled(attacker->creatureId().toCreature()->getJsonKey()));
     }
     bool nightmare(const CStack * actor)const
     {return enabled(actor) && actor->creatureId().toCreature()->getJsonKey()=="tum-era:nightmareHydra";}
+    bool guaranteed(const CStack * actor)const
+    {return nightmare(actor) || (actor && era_compat::SulfideDragon::get().enabled(actor->creatureId().toCreature()->getJsonKey()));}
+    bool queuedAcid(const CStack * actor)const{return guaranteed(actor);}
     static const AcidAttacks & get(){static const AcidAttacks instance;return instance;}
 };
 inline void applyAcidAttack(CGameHandler & handler, const CBattleInfoCallback & battle,
@@ -50,7 +56,7 @@ inline void applyAcidAttack(CGameHandler & handler, const CBattleInfoCallback & 
     //44124C calls target443DB0 directly, whose registered B-before-L wrapper remains active.
     if(ranged || !attacker || !defender || !defender->alive() || defender->isGhost() || !AcidAttacks::get().enabled(attacker))return;
     auto & rng=handler.getRandomGenerator();
-    if(!era_bridge::AcidAttack::succeeds(rng.nextInt(1,AcidAttacks::get().nightmare(attacker)?19:100)))return;
+    if(!era_bridge::AcidAttack::succeeds(rng.nextInt(1,AcidAttacks::get().guaranteed(attacker)?era_bridge::SulfideDragonRule::acidProcUpper:100)))return;
     // Amethyst4411E5 rejects Toxic15 AFTER the proc draw and before damage RNG.
     const int sourceId=era_compat::StatusAttacks::get().id(defender->creatureId().toCreature()->getJsonKey());
     if(sourceId==335 || sourceId==336 || sourceId==339)return;

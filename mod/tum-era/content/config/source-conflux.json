@@ -1,0 +1,505 @@
+{
+  "eraCreature355": {
+    "name": {
+      "singular": "Planeswalker",
+      "plural": "Planeswalkers"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 1,
+      "gold": 3500
+    },
+    "fightValue": 5793,
+    "aiValue": 6193,
+    "growth": 1,
+    "hitPoints": 200,
+    "speed": 12,
+    "attack": 20,
+    "defense": 18,
+    "damage": {
+      "min": 20,
+      "max": 30
+    },
+    "advMapAmount": {
+      "min": 4,
+      "max": 10
+    },
+    "abilities": {
+      "sourceTeleport": {
+        "type": "FLYING",
+        "subtype": "movementTeleporting"
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "crexp_0_rank0": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 355
+        },
+        "val": 5
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "doubleWide": true,
+    "level": 7,
+    "faction": "core:conflux",
+    "upgrades": [
+      "tum-era:eraCreature356"
+    ],
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 355
+          }
+        },
+        "values": [
+          5,
+          15,
+          25,
+          35,
+          45,
+          55,
+          65,
+          75,
+          85,
+          90
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "Se téléporte. Lance une Flèche magique après une attaque au corps à corps, un Mur de feu après une défense et Bouclier de feu après une blessure.",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/355/CR355",
+      "map": "tum-era/creatures/355/AVWCR355.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/355/small",
+      "iconLarge": "tum-era/creatures/355/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/355/S355ATTK.wav",
+      "defend": "tum-era/creatures/355/S355DFND.wav",
+      "killed": "tum-era/creatures/355/S355KILL.wav",
+      "move": "tum-era/creatures/355/S355MOVE.wav",
+      "wince": "tum-era/creatures/355/S355WNCE.wav"
+    }
+  },
+  "eraCreature356": {
+    "name": {
+      "singular": "Elementalist",
+      "plural": "Elementalists"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 2,
+      "gold": 4200
+    },
+    "fightValue": 7392,
+    "aiValue": 7812,
+    "growth": 1,
+    "hitPoints": 250,
+    "speed": 15,
+    "attack": 20,
+    "defense": 20,
+    "damage": {
+      "min": 20,
+      "max": 30
+    },
+    "advMapAmount": {
+      "min": 4,
+      "max": 10
+    },
+    "abilities": {
+      "sourceTeleport": {
+        "type": "FLYING",
+        "subtype": "movementTeleporting"
+      },
+      "sourceFaeriePower": {
+        "type": "CREATURE_SPELL_POWER",
+        "val": 100
+      },
+      "sourceMagicChannel": {
+        "type": "MANA_CHANNELING",
+        "val": 20
+      },
+      "sourceFaerieCast16": {
+        "type": "SPELLCASTER",
+        "subtype": "core:iceBolt",
+        "val": 2,
+        "addInfo": 22
+      },
+      "sourceFaerieCast17": {
+        "type": "SPELLCASTER",
+        "subtype": "core:lightningBolt",
+        "val": 2,
+        "addInfo": 22
+      },
+      "sourceFaerieCast21": {
+        "type": "SPELLCASTER",
+        "subtype": "core:fireball",
+        "val": 2,
+        "addInfo": 21
+      },
+      "sourceFaerieCast15": {
+        "type": "SPELLCASTER",
+        "subtype": "core:magicArrow",
+        "val": 2,
+        "addInfo": 10
+      },
+      "sourceFaerieCast20": {
+        "type": "SPELLCASTER",
+        "subtype": "core:frostRing",
+        "val": 2,
+        "addInfo": 10
+      },
+      "sourceFaerieCast19": {
+        "type": "SPELLCASTER",
+        "subtype": "core:chainLightning",
+        "val": 2,
+        "addInfo": 5
+      },
+      "sourceFaerieCast23": {
+        "type": "SPELLCASTER",
+        "subtype": "core:meteorShower",
+        "val": 2,
+        "addInfo": 5
+      },
+      "sourceFaerieCast22": {
+        "type": "SPELLCASTER",
+        "subtype": "core:inferno",
+        "val": 2,
+        "addInfo": 5
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "crexp_0_rank0": {
+        "type": "SPELL_DAMAGE_REDUCTION",
+        "subtype": "spellSchool.any",
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": {
+          "contract": "source-experience-magic-reduction-v1",
+          "sourceCreatureId": 356
+        },
+        "val": 5
+      },
+      "sourceInitialCasts": {
+        "type": "CASTS",
+        "val": 5
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "doubleWide": true,
+    "level": 7,
+    "faction": "core:conflux",
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SPELL_DAMAGE_REDUCTION",
+          "subtype": "spellSchool.any",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-experience-magic-reduction-v1",
+            "sourceCreatureId": 356
+          }
+        },
+        "values": [
+          5,
+          15,
+          25,
+          35,
+          45,
+          55,
+          65,
+          75,
+          85,
+          90
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "Se téléporte. Magie féerique et canalisation de mana. Invoque des élémentaires au deuxième tour selon son expérience. Rend disponibles les sorts d’eau.",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/356/CR356",
+      "map": "tum-era/creatures/356/AVWCR356.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/356/small",
+      "iconLarge": "tum-era/creatures/356/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/356/S356ATTK.wav",
+      "defend": "tum-era/creatures/356/S356DFND.wav",
+      "killed": "tum-era/creatures/356/S356KILL.wav",
+      "move": "tum-era/creatures/356/S356MOVE.wav",
+      "wince": "tum-era/creatures/356/S356WNCE.wav"
+    }
+  }
+}

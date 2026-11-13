@@ -13,6 +13,7 @@
 #include "../../lib/era/EraCrystalExperience.h"
 #include "../../lib/era/EraStatusHealthBonuses.h"
 #include "BattleFlowProcessor.h"
+#include "../era/EraPrimordialStateRuntime.h"
 #include "../era/EraImposedSpells.h"
 #include "../era/EraRoundTwoDemons.h"
 #include "../era/EraDemilichSummonRuntime.h"
@@ -423,6 +424,8 @@ const CStack * BattleFlowProcessor::getNextStack(const CBattleInfoCallback & bat
 
 	const auto * next = q.front().front();
 	const auto * stack = dynamic_cast<const CStack *>(next);
+    // Original464DFD→446B50 clears initial347DEFENDING before regeneration/Fear.
+    era_compat_server::activatePrimordialDefending(*gameHandler,battle,next);
 
 	// regeneration takes place before everything else but only during first turn attempt in each round
 	// also works under blind and similar effects

@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "allControlsComplete": true,
+  "engineSHA": "077528260dcb9192dd2aa69245841bcce7a1c462d6028da8d244f37543d2aefd",
+  "scope": "355 automatic spell eligibility preserves a strictly positive source float probability below one percent; no random percentage conversion.",
+  "nativeHero": {
+    "name": "Thorgrim",
+    "level": 39,
+    "resistanceMastery": "Expert"
+  },
+  "sourceInputs": {
+    "battleDwarfResistance": 40,
+    "thorgrimExpertResistance": 59,
+    "adjacentUnicornAura": 20
+  },
+  "sourceProbability": "(float32(.60)-sourceThorgrim39Expert(.59))*float32(.80)>0; floor(prob*100)=0",
+  "observed": {
+    "physical": 31,
+    "magicArrow": 20,
+    "total": 51
+  },
+  "fixture": "Production355R0 unchanged. RealThorgrim39ExpertResistance+BattleDwarf40%+adjacentUnicorn20% aura unchanged. TargetHP/attack/DEF/speed onlycontrolled, realRed advancedBless fixes physicaldamage31.",
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/conflux355-positive-query162-result.json",
+      "sha256": "81daddbf0559600f1835465ad1cb18544e1a033379e523462db000e142032d4f"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/conflux355-positive-query162-console.log",
+      "sha256": "58d486f98172ffac20143aaa19a1f37d3bca5e33fe38405408df06b02c5b974e"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/conflux355-positive-query162-conflux355-positive-float-query.png",
+      "sha256": "c5e040f498d78eb985f89335d0f937ddb4aa8c9c8228e8fe3e8d58555a02a912"
+    }
+  ],
+  "limits": "One causal below-one-percent native witness. Ordinary integer chance callers and whole-actor admission remain governed by their separate contracts."
+}

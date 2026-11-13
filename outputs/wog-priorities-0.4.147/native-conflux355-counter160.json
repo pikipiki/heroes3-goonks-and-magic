@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "allControlsComplete": true,
+  "scope": "Source355 CFGAfterMelee15 normalretaliation correction; existingwholeConfluxproof remains separate",
+  "engineSHA": "3be25d9ab551546312b50497cdc3017c6308c256789203f76028d4552daa0b94",
+  "origin": "http://127.0.0.1:8815",
+  "controls": [
+    {
+      "case": "normal",
+      "loss": 187,
+      "expected": 187,
+      "physical": 127,
+      "arrow": 60,
+      "realAdvancedBless": true,
+      "currentPrimaryAliveCount": 5,
+      "retaliatorAliveCount": 2
+    },
+    {
+      "case": "blocked",
+      "loss": 0,
+      "expected": 0,
+      "physical": 127,
+      "arrow": 0,
+      "realAdvancedBless": true,
+      "currentPrimaryAliveCount": 5,
+      "retaliatorAliveCount": 2
+    },
+    {
+      "case": "preemptive",
+      "loss": 127,
+      "expected": 127,
+      "physical": 127,
+      "arrow": 0,
+      "realAdvancedBless": true,
+      "currentPrimaryAliveCount": 5,
+      "retaliatorAliveCount": 2
+    }
+  ],
+  "source": "eighth-evidence/conflux355-normal-retaliation-source.json",
+  "rawArtifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/conflux355-counter160-result.json",
+      "sha256": "084d931343e9994e73e045ca6cef3a04c5c13bea4feaf6b5dc0cbf61b1f739a4"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/conflux355-counter160-console.log",
+      "sha256": "91128cefd7a406112465e96c8c754045732eb3b13c53107f33a191386cd4703f"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/conflux355-retaliation-normal.png",
+      "sha256": "87f3bb7a8ab28de9a41bc10f6460009cd6db959eb30a79f766b105e121e931a2"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/conflux355-retaliation-blocked.png",
+      "sha256": "13630b19baad76725873790544bd211a6c5d01d83a834c7ec5a72bf16cdc750d"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/conflux355-retaliation-preemptive.png",
+      "sha256": "12c6f837d32bb9db5e4ebabb31ea59eed7785cb08489347ef4047dbf4a9cdac0"
+    }
+  ],
+  "pageErrors": [],
+  "consoleFatalPatterns": [],
+  "fixture": "Original355 R0, count2. Actual defendinghero advancedBless. PrimaryGnoll5 durability/stats controls. Blocked addsnativeBLOCKS_RETALIATION toGnoll, preemptive addsnativeFIRST_STRIKE to355 only. NativeWAIT preserves adjacency withoutAfterDefend. No productiondatachanged.",
+  "limitations": [
+    "Berserk/friendlyhypnotizedcounter is not a new nativefixture; CURRENT ABI proven by local originaldisassembly.",
+    "No339/346/347 activation or claim."
+  ],
+  "browserClosed": true
+}

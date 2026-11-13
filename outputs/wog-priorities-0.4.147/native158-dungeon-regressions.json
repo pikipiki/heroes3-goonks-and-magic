@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "aa8cd2f338195ecf",
+    "wasm": "vcmiclient.3433c709e7f955c4.wasm",
+    "sha256": "3433c709e7f955c446aa81cd1fdab0d6b50255b981c4efb86b59356d6e95000f",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "rawReport": "work/downloads/wog-port157/native158-dungeon-regressions/result.json",
+  "rawSha256": "f6f19fb4c05f6e2342286fa2ea0b25c50db1c73c1cbadb473d8b424d7b714a2d",
+  "controls": [
+    "engineMetadata",
+    "dungeonChain",
+    "dungeonFriend",
+    "dungeonChainRecanter",
+    "dungeonWrap32"
+  ],
+  "observations": {
+    "chain": {
+      "raw": 360,
+      "losses": [
+        360,
+        180,
+        90,
+        45
+      ]
+    },
+    "friendly": "Closer originalfriendly receives0 and preventsnextenemyhit",
+    "recanter": "Primaryphysicalhit retained, followingspell19candidatesrejected",
+    "wrap32": {
+      "sourceRaw": -1794967296,
+      "expectedHealing": 1794967296
+    }
+  },
+  "fixtureSource": "work/downloads/wog-port157/dungeon-production-stage/stage.json (publisheddefinitions hashes; production assets unchanged)"
+}

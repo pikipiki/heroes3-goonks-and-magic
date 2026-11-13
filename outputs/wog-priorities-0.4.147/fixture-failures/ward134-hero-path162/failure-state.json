@@ -1,0 +1,216 @@
+{
+  "anyHeroCanMove": true,
+  "armies": [
+    {
+      "id": 1,
+      "name": "Christian",
+      "needsLastStack": true,
+      "slots": [
+        {
+          "aiValue": 85500,
+          "attack": 80,
+          "cost": [
+            0,
+            50,
+            0,
+            0,
+            0,
+            0,
+            50000,
+            0
+          ],
+          "count": 1,
+          "damageMax": 100,
+          "damageMin": 75,
+          "defense": 70,
+          "description": "50% Magic Resist. Age. Acid breath. \nAttack twice. Fear. Fearless.",
+          "experience": 100,
+          "experiencePerUnit": 100,
+          "experienceRank": 10,
+          "fightValue": 78500,
+          "growth": 1,
+          "health": 1200,
+          "icon": "tum-era/creatures/254/large.png",
+          "id": 316,
+          "key": "tum-era:necrossDragon",
+          "name": "Necross Dragon",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": false,
+            "mindImmune": true,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": true
+          },
+          "shooter": true,
+          "shots": 10,
+          "speed": 20
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  ],
+  "audioMuted": false,
+  "autosaveAllowed": true,
+  "backpackCount": 0,
+  "cheatReady": true,
+  "cheatsAllowed": true,
+  "day": 1,
+  "equipment": [
+    {
+      "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+      "icon": 3,
+      "name": "Catapult",
+      "slot": 16
+    },
+    {
+      "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+      "icon": 0,
+      "name": "Spell Book",
+      "slot": 17
+    }
+  ],
+  "heroHasSpellbook": true,
+  "heroId": 1,
+  "heroMana": 200,
+  "heroManaLimit": 200,
+  "heroMoving": false,
+  "heroName": "Christian",
+  "heroes": [
+    {
+      "hasSpellbook": true,
+      "id": 1,
+      "index": 0,
+      "mana": 200,
+      "manaLimit": 200,
+      "movement": 1418,
+      "movementLimit": 2000,
+      "name": "Christian"
+    }
+  ],
+  "mapOverview": {
+    "height": 36,
+    "level": 0,
+    "rect": {
+      "h": 144,
+      "w": 144,
+      "x": 630,
+      "y": 26
+    },
+    "view": {
+      "h": 546,
+      "w": 594,
+      "x": 7,
+      "y": 7
+    },
+    "viewport": {
+      "h": 19,
+      "w": 20,
+      "x": 4,
+      "y": 2
+    },
+    "width": 36
+  },
+  "mapSettings": {
+    "enemyMoveTime": 150,
+    "moveTime": 150
+  },
+  "mode": "map",
+  "movement": 1418,
+  "musicVolume": 88,
+  "onlineGame": false,
+  "rect": {
+    "h": 600,
+    "w": 800,
+    "x": 0,
+    "y": 0
+  },
+  "resourceTypes": [
+    {
+      "icon": "",
+      "id": 0,
+      "key": "wood",
+      "name": "Wood",
+      "scope": "core"
+    },
+    {
+      "icon": "",
+      "id": 1,
+      "key": "mercury",
+      "name": "Mercury",
+      "scope": "core"
+    },
+    {
+      "icon": "",
+      "id": 2,
+      "key": "ore",
+      "name": "Ore",
+      "scope": "core"
+    },
+    {
+      "icon": "",
+      "id": 3,
+      "key": "sulfur",
+      "name": "Sulfur",
+      "scope": "core"
+    },
+    {
+      "icon": "",
+      "id": 4,
+      "key": "crystal",
+      "name": "Crystal",
+      "scope": "core"
+    },
+    {
+      "icon": "",
+      "id": 5,
+      "key": "gems",
+      "name": "Gems",
+      "scope": "core"
+    },
+    {
+      "icon": "",
+      "id": 6,
+      "key": "gold",
+      "name": "Gold",
+      "scope": "core"
+    },
+    {
+      "icon": "mithril/small.png",
+      "id": 7,
+      "key": "mithril",
+      "name": "Mithril",
+      "scope": "wake-of-gods.mithril"
+    }
+  ],
+  "resources": [
+    30,
+    10,
+    30,
+    10,
+    10,
+    10,
+    20000,
+    0
+  ],
+  "sessionState": 6,
+  "soundVolume": 88,
+  "towns": [
+    {
+      "id": 0,
+      "index": 0,
+      "name": "Goonkbourg"
+    }
+  ],
+  "turn": true,
+  "windowToken": 108694656,
+  "worldView": false
+}

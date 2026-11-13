@@ -22,6 +22,7 @@
 #include <vcmi/spells/Spell.h>
 
 #include "../CCreatureHandler.h"
+#include "../era/EraPrimordialState.h"
 
 #include "../bonuses/BonusParameters.h"
 #include "../serializer/JsonDeserializer.h"
@@ -707,7 +708,8 @@ bool CUnitState::canMove(int turn) const
 
 bool CUnitState::defended(int turn) const
 {
-	return !turn && defending;
+	// Source347 bit27 is a display/state flag, not native turn exhaustion.
+	return era_bridge::primordialDefended(defending,turn,era_compat::primordialInitialDefending(*this)?1:0);
 }
 
 bool CUnitState::moved(int turn) const

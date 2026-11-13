@@ -27,7 +27,7 @@
     "buildings": "Five fourth-upgrade town chains with ERA building77 costs; advanced building artwork reused",
     "abilities": "Source-scoped native policies; inherited WoG behavior is distinguished from proven ERA behavior"
   },
-  "remaining": "106 source artifacts, the complete crystal chain, extra banks, machine specialists and16 of18 eighth-faction actors are active. Conflux355/356, full eighth-town recruitment, four artifacts and remaining source-script obligations stay disabled until validation.",
+  "remaining": "108 source artifacts and all18 eighth-faction actors are active; all nine eighth-town recruitments are enabled after genuine old-save migration. Source artifacts266/278, source339/346/347 and remaining source-script obligations stay disabled until validation.",
   "vcmiCompatibilityFixes": [
     "badLuckDice denominators converted to badLuckChance weights [2,4,6] for the native 24-sided luck roll",
     "Artifact bonuses converted to named objects; scenarioBonus graphics renamed",
@@ -38,10 +38,10 @@
     "Mobile construction panel opens the native hall for all advanced upgrade tiers"
   ],
   "activeContent": {
-    "tumCreatures": 48,
-    "artifacts": 106,
+    "tumCreatures": 50,
+    "artifacts": 108,
     "mapObjects": 42,
-    "experienceProfiles": 271,
+    "experienceProfiles": 273,
     "fourthUpgradeTowns": [
       "castle",
       "rampart",
@@ -57,15 +57,15 @@
     "source35PrimitiveStatCorrections": 66,
     "source35ThirdDwellingCosts": 63,
     "intrinsicFearlessCorrections": 6,
-    "eighthFactionActors": 16,
+    "eighthFactionActors": 18,
     "eighthFactionActorsRequired": 18,
-    "eighthFactionRecruitmentEnabled": false,
+    "eighthFactionRecruitmentEnabled": true,
     "sourceMagicReductionProfiles": 15
   },
-  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.157-engine.tar.gz",
-  "engineArchiveSHA256": "d789dffff0c75c8e0a7d0bf1179da3a0782bfb2b4400451f346a4e16639c8d0d",
-  "wasmSHA256": "b93b3bc6af5e3aa1088a85775a7194c8a7f3632993fcb94d134b64222897b9de",
-  "engineAttribution": "Release0.4.157: full frozen-source Emscripten4.0.23 Linux build, ninja -j32 html5 PASS. Original source134,238,259,260,286/294 and Portal controls are attributed separately. Unvalidated optional activation files remain absent.",
+  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.159-engine.tar.gz",
+  "engineArchiveSHA256": "9cfbcf556e9a1be0884fdb41c084d0bee629eafd4865856feb4aa0efd961a7b5",
+  "wasmSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771",
+  "engineAttribution": "Release0.4.159: exact frozen source, clean Emscripten4.0.23 Linux ninja -j32 html5 PASS. Scoped spell-level, floating-query, Astral rounding and battle-terrain corrections. Native reports retain their actual engine hashes. Optional Horn266/339/346/347 documents remain absent.",
   "priorDataOnlyReview": {
     "release": "0.4.34",
     "baseCommit": "6bfa181327f9e7e97dcc8e993c55ec28c8ab6491",
@@ -75,7 +75,7 @@
   },
   "knownCheckpointLimitations": [
     "Full TUM/ERA compatibility and an arbitrary ERM interpreter are not established.",
-    "Conflux355/356 and global eighth-town recruitment remain disabled. Source artifacts266/275/276/278 remain inactive.",
+    "All nine eighth-town recruitments are active after native recruitment/growth/upgrade/save controls and genuine old-seven-stock save migration. Source artifacts266/278 and source339/346/347 remain inactive.",
     "Source combat-order and unported original creature gaps remain tracked explicitly; every native report retains its own engine hash.",
     "Atma map-initial equipment uses documented deterministic initialization; source352 undefined second injury uses stable zero, as requested.",
     "Physical devices, all campaigns and broad cross-version save compatibility are outside these bounded checks."
@@ -201,5 +201,15 @@
     "fullCompatibilityClaim": false,
     "integratedConcurrentCommit": "759d944601a39bb8ad3cc8e51136d3cb178baa71",
     "validation": "outputs/wog-priorities-0.4.147/checkpoint157-validation.json"
+  },
+  "checkpoint159": {
+    "appVersion": "0.4.159",
+    "baseCommit": "4ddafb2b9108d7847264b97bfa50cf289ebed3e4",
+    "status": "validated",
+    "engineSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771",
+    "sourceArtifactsActive": 108,
+    "fullCompatibilityClaim": false,
+    "validation": "outputs/wog-priorities-0.4.147/checkpoint159-validation.json",
+    "fullTier8Activation": true
   }
 }

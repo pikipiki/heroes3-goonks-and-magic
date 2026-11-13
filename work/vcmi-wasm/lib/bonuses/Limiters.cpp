@@ -304,13 +304,20 @@ ILimiter::EDecision TerrainLimiter::limit(const BonusLimitationContext &context)
 {
 	BonusNodeType nodeType = context.node.getNodeType();
 	std::set<BonusNodeType> allowedNodes = {BonusNodeType::STACK_BATTLE, BonusNodeType::STACK_INSTANCE, BonusNodeType::HERO, BonusNodeType::TOWN, BonusNodeType::TOWN_AND_VISITOR};
-	std::set<BonusNodeType> stackNodes = {BonusNodeType::STACK_BATTLE, BonusNodeType::STACK_INSTANCE};
 	if (!allowedNodes.contains(nodeType))
 		return ILimiter::EDecision::NOT_APPLICABLE;
 
-	ETerrainId currentTerrain;
+	TerrainId currentTerrain = TerrainId::NONE;
 
-	if (stackNodes.contains(nodeType))
+    // Summoned battle stacks have no overland CStackInstance. Reading only
+    // base would leave the terrain at NONE and incorrectly match neutral
+    // factions, whose native terrain is also NONE. Use the actual battlefield.
+    if(nodeType == BonusNodeType::STACK_BATTLE)
+    {
+        if(const auto * stack=retrieveStackBattle(&context.node); stack && stack->getBattle())
+            currentTerrain=stack->getCurrentTerrain();
+    }
+	else if (nodeType == BonusNodeType::STACK_INSTANCE)
 	{
 		if (const auto * stack = retrieveStackInstance(&context.node))
 			currentTerrain = stack->getCurrentTerrain();

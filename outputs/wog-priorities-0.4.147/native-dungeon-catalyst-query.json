@@ -1,0 +1,21 @@
+{
+  "passed": false,
+  "complete": false,
+  "activeConflux": false,
+  "engine": "b93b3bc6af5e3aa1088a85775a7194c8a7f3632993fcb94d134b64222897b9de",
+  "physicalOrbControl": {
+    "passed": true,
+    "primaryDamage": 500,
+    "otherDamage": 0,
+    "friendDamage": 0
+  },
+  "catalyst": {
+    "passed": false,
+    "expectedOtherDamage": 250,
+    "actualOtherDamage": 0,
+    "source": "5A6500/5A6582 opposite candidate queryside;44A420 null casterHero guard prevents Catalyst for friendlyRed queried from Blue with no hero"
+  },
+  "rawReport": "work/downloads/wog-port157/native-dungeon-catalyst/partial.json",
+  "rawSha256": "94b686ffd2d23f7141ac4575e16caa52260566b32a003bfb037a98d0bf315b05",
+  "error": "AssertionError [ERR_ASSERTION]: Friendly side0 querySide1 has no hero, so Catalyst cannot negate100% resistance; chain continues\n\n0 !== 250\n\n    at runDungeonCatalystCases (file:///Users/sevenone./Documents/git/heroes-goonk/work/browser-tests/eighth-dungeon-catalyst-cases.mjs:21:10)\n    at async file:///Users/sevenone./Documents/git/heroes-goonk/work/browser-tests/wog-conflux-native-e2e.mjs:119:136"
+}

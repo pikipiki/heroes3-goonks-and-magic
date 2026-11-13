@@ -9,7 +9,8 @@ import {EIGHTH_TOWNS,readSourceEighthTown,compileEighthTownAccess} from './eight
 const [projectArg,tumArg,outArg,contractsArg]=process.argv.slice(2);
 if(!projectArg||!tumArg||!outArg)throw Error('Usage: PROJECT TUM FRESH_OUTPUT [COMPLETE_ACTOR_CONTRACTS]');
 const project=path.resolve(projectArg),tum=path.resolve(tumArg),out=path.resolve(outArg);
-if(out===project||out.startsWith(project+path.sep)||fs.existsSync(out)&&fs.readdirSync(out).length)throw Error('Use fresh isolated output');
+const privateReviews=path.join(project,'work/downloads')+path.sep;
+if(out===project||(out.startsWith(project+path.sep)&&!out.startsWith(privateReviews))||fs.existsSync(out)&&fs.readdirSync(out).length)throw Error('Use fresh isolated output');
 const require=createRequire(path.join(project,'work/browser-tests/package.json')),sharp=require('sharp'),JSON5=require('json5');
 const read=file=>JSON5.parse(fs.readFileSync(file,'utf8')),sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 const script=fs.readFileSync(tum+'/Data/s/Third Upgrade Mod.erm','utf8');

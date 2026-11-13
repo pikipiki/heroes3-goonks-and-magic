@@ -1,3 +1,4 @@
+import{source244NativeIdentity}from'./creature244-identity.mjs';
 import {resolveTumNullEnterSound} from './bank-sound-policies.mjs';
 import {resolveEraBankGuardLayout} from './bank-guard-slots.mjs';
 import fs from 'node:fs';import path from 'node:path';
@@ -31,6 +32,10 @@ export function createProductionObjectResolvers({sourceRoot,projectRoot,engineRo
   const town=towns[Number(match[1])],level=Number(match[2]),eraId=Number(match[3]);if(!town)continue;
   const file=path.join(projectRoot,'mod/third-upgrades/content/config/town-screen',town,'factions.json');const data=readJsonc(file),faction=Object.values(data).find(x=>x.town?.creatures);const native=findName(faction?.town.creatures[level]?.[2]||'');if(native)set(eraId,native,`Original UN:T${match[1]}/${level}/2 ↔ native${town} town.creatures[${level}][2]`);
  }
+ // Source244 uses a named ERM constant, unlike the numerical roster loop.
+ const fortress244=Object.values(readJsonc(path.join(projectRoot,'mod/third-upgrades/content/config/town-screen/fortress/factions.json'))).find(x=>x.town?.creatures);
+ const identity244=source244NativeIdentity({erm,constants:fs.readFileSync(path.join(sourceRoot,'Data/s/1000 tum - consts.erm'),'utf8'),roster:fortress244?.town.creatures[4],definition:byNative.get('third-upgrades:tumCatopleba'),upgrades:byNative.get('core:mightyGorgon')?.upgrades});
+ set(identity244.eraId,identity244.native,identity244.evidence);
  const archive=readEraArchive(fs.readFileSync(path.join(sourceRoot,'Data/AmeCre.pac'))),tableText=archive.extract('Crtraits.txt').toString('latin1'),rows=readCreatureTable(tableText),sourceStats=readTumObjectStats(sourceRoot,tableText);
  const declaredUpgrades=new Map();
  for(const name of fs.readdirSync(path.join(sourceRoot,'Data/Creatures')).filter(x=>/^\d+\.cfg$/.test(x))){const text=fs.readFileSync(path.join(sourceRoot,'Data/Creatures',name),'utf8');const matches=[...text.matchAll(/^UpgradesTo=(-?\d+)\s*$/gm)];if(matches.length===1&&Number(matches[0][1])>=0)declaredUpgrades.set(parseInt(name),{eraId:Number(matches[0][1]),evidence:`Original Data/Creatures/${name} UpgradesTo; Amethyst tables.cpp Hill_Fort_47AA50/47AAD0_Hook uses upgtable before vanilla fallback`});}

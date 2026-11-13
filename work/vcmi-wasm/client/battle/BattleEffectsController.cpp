@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraFamiliarChannel43.h"
 #include "../../lib/era/EraBridgePolicies.h"
 #include "../../lib/era/EraAdvancedArtifactPolicies.h"
 #include "BattleEffectsController.h"
@@ -104,7 +105,7 @@ void BattleEffectsController::battleTriggerEffect(const BattleTriggerEffect & bt
         case BonusType::MANA_CHANNELING:
         {
             if(bte.val<=0 || (bte.additionalInfo!=0 && bte.additionalInfo!=1)
-                || !era_compat::ConfluxPolicies::get().is356(stack->creatureId().toCreature()->getJsonKey()))return;
+                || !era_compat::sourcePostEffectManaChannel(stack->creatureId().toCreature()->getJsonKey()))return;
             // Server evaluates source356 after effects. checkForAnimations()
             // has completed that spell, so enqueue the original SP07 pair now.
             const bool defender=bte.additionalInfo==1;

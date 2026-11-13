@@ -1,0 +1,105 @@
+{
+  "archives": [
+    {
+      "path": "Data/H3ab_bmp.lod",
+      "sha256": "3cc4256e8844b3cd0af2706431dee320848bd1630b9f6c6022f6d4c78780f347",
+      "memberSha256": "9a5c11ed07191c97a7eb4546172d9e161e1051cdb4756a3aebb25ea8be3b2a51",
+      "spells": [
+        {
+          "id": 70,
+          "name": "Stone Gaze",
+          "level": 3
+        },
+        {
+          "id": 71,
+          "name": "Poison",
+          "level": 0
+        },
+        {
+          "id": 73,
+          "name": "Disease",
+          "level": 2
+        },
+        {
+          "id": 74,
+          "name": "Paralyze",
+          "level": 4
+        },
+        {
+          "id": 75,
+          "name": "Age",
+          "level": 5
+        },
+        {
+          "id": 80,
+          "name": "Acid breath",
+          "level": 0
+        }
+      ]
+    },
+    {
+      "path": "Data/H3bitmap.lod",
+      "sha256": "774cbfa7cfed6713ec80c48f8619a258dac14260e4f85faeebb29c053950a5a8",
+      "memberSha256": "0809ed7b2d7fc1357d96e4cd87bb5f9db6ad813b42d69dab29ab35fa3e1c11b9",
+      "spells": [
+        {
+          "id": 70,
+          "name": "Stone Gaze",
+          "level": 3
+        },
+        {
+          "id": 71,
+          "name": "Poison",
+          "level": 0
+        },
+        {
+          "id": 73,
+          "name": "Disease",
+          "level": 2
+        },
+        {
+          "id": 74,
+          "name": "Paralyze",
+          "level": 4
+        },
+        {
+          "id": 75,
+          "name": "Age",
+          "level": 5
+        },
+        {
+          "id": 80,
+          "name": "Acid breath",
+          "level": 0
+        }
+      ]
+    }
+  ],
+  "nativeLoader": [
+    {
+      "path": "work/vcmi-wasm/lib/spells/CSpellHandler.cpp",
+      "sha256": "74384fd08aa880c50e6806ce07c585b71a9459405086f88525b2af30a98b5a57"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/modding/ContentTypeHandler.cpp",
+      "sha256": "c642bf13b1d8f67e3778631d3878a39a47485c7401f55294feda33d5a590a4bc"
+    },
+    {
+      "path": "work/vcmi-wasm/config/spells/ability.json",
+      "sha256": "2095adc57dbb0e1fe7fbfe75ca76f3819e782a0215443963d6d69e1be492b145"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/spells/ISpellMechanics.cpp",
+      "sha256": "63bb3827e5b7f0b5d938dc6e00ac9235e22c36a41a710a69ae876baea7df2f9c"
+    }
+  ],
+  "derivation": [
+    "loadLegacyData stores SPTRAITS column2 in originalData[index].level for all81 descriptors, including abilities.",
+    "ContentTypeHandler merges core indexed JSON onto originalData; ability.json age index75 has no level override.",
+    "CSpellHandler.loadFromJson stores merged level; CSpell.getLevel and BaseMechanics.getSpellLevel return it directly. Ability does not imply level0.",
+    "BattleCast.setSpellLevel changes mastery, not descriptor level."
+  ],
+  "conclusion": "core:age is level5 in the shipped native content; source339 context must treat Age5, Poison0, Paralyze4.",
+  "runtimeControlPending": true,
+  "openCompatibilityObligation": "Existing statusPrimaryAccuracy unconditional Ward134 block for intrinsicAge75 remains to audit separately; no published mechanic is changed by this audit."
+}

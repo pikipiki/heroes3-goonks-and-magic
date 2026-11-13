@@ -64,7 +64,11 @@ export function createTemporaryBoot(status){
    finished=true;clearInterval(monitor);clearTimeout(watchdog);
    if(bar){bar.value=100;detail.textContent='100 % · '+formatBytes(loaded)+' téléchargés';}
    readyStatus.textContent='✓ Jeu chargé — prêt à jouer';
-   setTimeout(()=>readyStatus.remove(),6000);
+   // Startup feedback must not cover the controls once play has begun.
+   const dismiss=()=>{clearTimeout(timer);globalThis.removeEventListener?.('goonk-state',playing);readyStatus.remove();};
+   const playing=event=>{if(event.detail?.mode&&!['menu','lobby'].includes(event.detail.mode))dismiss();};
+   const timer=setTimeout(dismiss,6000);
+   globalThis.addEventListener?.('goonk-state',playing);
   },
   fail(error){
    if(failed||!document.body.hasAttribute('data-goonk-boot'))return;

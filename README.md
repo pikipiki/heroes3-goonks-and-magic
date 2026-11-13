@@ -1,6 +1,6 @@
 # Heroes Goonk
 
-Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.157, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
+Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.159, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
 
 ## Jouer sur ce Mac
 
@@ -674,3 +674,16 @@ Conflux355/356, le recrutement global de la huitième famille, les quatre artefa
 La compilation vérifiée utilise Emscripten4.0.23 dans un volume Linux, sans en-têtes précompilés et avec des pools de compilation adaptés à la mémoire. La commande finale reste `ninja -j32 html5`. Le build applique le [correctif officiel Boost QVM](https://github.com/boostorg/qvm/commit/c4b9c063a076644575fe9a685c02cd4c10d24405) aux deux appels incompatibles de Boost1.86.
 
 Les dragonneaux féeriques343 et rouille344 sont activés avec leurs ressources originales. Les cinq dragonneaux341–345 évoluent au prochain tour journalier de leur propriétaire à partir du rang10 ; quantité et bannière sont conservées, puis l’expérience est remise à0. Neuf contrôles natifs vérifient aussi la garnison du héros, l’exclusion de l’armée de ville, Reborn, l’ordre des conversions d’artefacts et les sauvegardes.
+
+
+### Conflux, yeux de dragon et progression — 0.4.159
+
+Le catalogue atteint 108 artefacts source sur 110 et 50 identités de créatures ERA, avec 273 profils d’expérience. Les Yeux 275/276 conservent leurs conversions originales, leurs conditions d’équipement et leurs effets sur les dégâts, y compris Bénédiction et Malédiction. Les profils originaux de l’Imp42 et du Familier43 utilisent leurs statistiques, haine personnelle et rangs d’expérience ; le bridge expose leur vol effectif après le déblocage. Le Familier restitue le mana selon l’état réel après le sort, y compris les changements de camp et les pertes, en conservant les règles existantes des Goonks.
+
+Les acteurs Conflux355/356 sont activés après leurs contrôles de sorts, expérience, canalisation et objets associés. Les sorts du Mage après une riposte normale utilisent le camp et la quantité actifs d’origine ; ils ne sont pas ajoutés à la première riposte anticipée. La réflexion physique du Bouclier de feu contourne les réductions magiques originales `g%`, sans modifier les règles ordinaires des Goonks.
+
+Les neuf constructions et recrutements de huitième famille passent les contrôles natifs de paiement, amélioration, croissance sur deux semaines et sauvegarde. Les neuf recrutements sont activés après un contrôle de migration d’une vraie sauvegarde à sept niveaux : stocks, variantes, armées, ressources et bâtiments conservés, réserve du Portail déplacée sans changement de quantité, Goonk inchangé et rechargement idempotent. L’interface dédiée utilise des cibles tactiles d’au moins44px sur téléphone et iPad dans les deux orientations, préserve ses éléments au repos et laisse revenir les noms longs à la ligne. Le moteur évite d’animer un décor de ville inexistant ; les mises à jour de l’armée et des stocks continuent après la construction.
+
+Les quinze premiers contrôles de la Corne266/Fangarm263 passent ; leurs cas de fin de combat restent à valider. Ces contenus, l’artefact278 et les acteurs339/346/347 restent désactivés. Les adaptateurs optionnels compilés n’activent aucun contenu par eux-mêmes. Ce point conserve les corrections d’autocombat et de recrutement mobile de la version158 et ne revendique pas un port complet de WoG/ERA.
+
+Les six groupes finaux de non-régression de cette version utilisent les données installées : neuf recrutements complets, progression et bannières, accès aux machines en ville, deux cartes WoG, trois machines avec vrais tirs et soins en autocombat, puis chaîne du Dragon féerique avec protection et tirages sérialisés. Six contrôles de terrain vérifient les invocations neutres, les élémentaires et Paingpaing ; trois contrôles confirment l’arrondi d’Astral. Le correctif lit le terrain de bataille au lieu de considérer les invocations et machines comme étant sur un terrain « aucun ». Leurs bonus légitimes de terrain sont conservés. Preuves et limites : `outputs/wog-priorities-0.4.147/checkpoint159-validation.json`.

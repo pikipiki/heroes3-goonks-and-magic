@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "active": false,
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "dd7f35c10020de5c",
+    "wasm": "vcmiclient.b77e062ac1bb6a14.wasm",
+    "sha256": "b77e062ac1bb6a140bcc6a8029fe98d2eb32d70eb729acb8edeba8d75d827361",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "productionConflux": true,
+  "rawReport": "work/downloads/wog-port157/native159-familiar43-flying/result.json",
+  "rawSha256": "e5c3e38360d1badb58066b269b5121b8af27f0e8b23782df798d940dba5521c2",
+  "cases": {
+    "R0": {
+      "actualRank": 0,
+      "effectiveSpeed": 7,
+      "views": {
+        "army": false,
+        "equipment": false,
+        "activeUnit": false,
+        "battleUnits": false
+      }
+    },
+    "R5": {
+      "actualRank": 5,
+      "effectiveSpeed": 8,
+      "views": {
+        "army": true,
+        "equipment": true,
+        "activeUnit": true,
+        "battleUnits": true
+      }
+    }
+  }
+}

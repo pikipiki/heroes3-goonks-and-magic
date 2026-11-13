@@ -1,0 +1,9 @@
+{
+  "fixtureFailure": true,
+  "engineRegressionClaim": false,
+  "nativeTrainingPassed": true,
+  "experience": 100,
+  "rank": 10,
+  "failure": "combat128 selected emptytile beyondopposinghero andpathfinderwentaroundhim. Hero has no monsterzoneofcontrol.",
+  "fix": "combat32 targets Blueheroactualvisitabletile one32px tile from Red aftertraining."
+}

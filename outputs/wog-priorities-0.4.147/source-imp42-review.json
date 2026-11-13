@@ -1,0 +1,251 @@
+{
+  "activation": false,
+  "nativeValidationRequired": true,
+  "sourceId": 42,
+  "nativeId": "core:imp",
+  "sourcePins": {
+    "archive": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+    "cfg": "21ab6040d8cffec14e14f61ed83b2aa8425b29b460cd5b56523264c70b3a8e55",
+    "tables": "10047a24ff1736db951f163c34bcfb58ebe5c0fab972308ca98edf715f61d0cf"
+  },
+  "sourceStats": {
+    "name": {
+      "singular": "Imp",
+      "plural": "Imps"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 50
+    },
+    "fightValue": 50,
+    "aiValue": 50,
+    "growth": 15,
+    "hitPoints": 4,
+    "speed": 5,
+    "attack": 2,
+    "defense": 3,
+    "damage": {
+      "min": 1,
+      "max": 2
+    },
+    "advMapAmount": {
+      "min": 20,
+      "max": 50
+    }
+  },
+  "canonicalStatsVerified": true,
+  "canonicalBaseArchiveSha256": "774cbfa7cfed6713ec80c48f8619a258dac14260e4f85faeebb29c053950a5a8",
+  "cfg": "Hate0255=200",
+  "sourceRows": [
+    {
+      "creature": 42,
+      "code": "S",
+      "modifier": "+",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2
+      ],
+      "comment": "Imp: Speed R5/R10",
+      "source": "crexpbon.txt",
+      "line": 280
+    },
+    {
+      "creature": 42,
+      "code": "f",
+      "modifier": "F",
+      "values": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "comment": "Imp: Flying R5/R6/R7/R8/R9/R10",
+      "source": "crexpbon.txt",
+      "line": 281
+    },
+    {
+      "creature": 42,
+      "code": "h",
+      "modifier": "#28",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "comment": "Imp: Hatred Dmg-Gremlin (50% R10)",
+      "source": "crexpbon.txt",
+      "line": 282
+    },
+    {
+      "creature": 42,
+      "code": "h",
+      "modifier": "#29",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "comment": "Familiar: Hatred Dmg-Master Gremlin (50% R10)",
+      "source": "crexpbon.txt",
+      "line": 283
+    },
+    {
+      "creature": 42,
+      "code": "s",
+      "modifier": "#51",
+      "values": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3
+      ],
+      "comment": "Imp: Fortune R1/R5/R8  (Expert R8)",
+      "source": "crexpbon.txt",
+      "line": 284
+    }
+  ],
+  "legacyRowsRemoved": [
+    {
+      "creature": 42,
+      "code": "S",
+      "modifier": "+",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2
+      ],
+      "comment": "Imp: Speed R5/R10",
+      "source": "crexpbon.txt",
+      "line": 247
+    },
+    {
+      "creature": 42,
+      "code": "f",
+      "modifier": "F",
+      "values": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "comment": "Imp: Flying R5/R6/R7/R8/R9/R10",
+      "source": "crexpbon.txt",
+      "line": 248
+    },
+    {
+      "creature": 42,
+      "code": "h",
+      "modifier": "#28",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "comment": "Imp: Hatred Dmg-Gremlin (50% R10)",
+      "source": "crexpbon.txt",
+      "line": 249
+    },
+    {
+      "creature": 42,
+      "code": "s",
+      "modifier": "#51",
+      "values": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3
+      ],
+      "comment": "Imp: Fortune R1/R5/R8  (Expert R8)",
+      "source": "crexpbon.txt",
+      "line": 250
+    }
+  ],
+  "legacyRelative": "mod/wake-of-gods/Mods/stackExperience/Content/data/crexpbon.txt",
+  "legacyBeforeSha256": "d3ca786b6f35f0caaaf48d5ff834402ffed51c9d9b60687a82d6aa5b1799918e",
+  "legacyAfterSha256": "6a8bf919a66f80d2015066fffa2e2b3aa8e73d0c3771558d0c038f302ac7a6c6",
+  "requiredNativeControls": [
+    "canonical42 stats/R0/R5/R8/R10, flight/speed andFortune",
+    "flatPersonalHate255+200 andR10h28/h29+50%",
+    "no mana channel",
+    "latest43 andg legacy migrations preserved"
+  ],
+  "source43Predecessor": {
+    "active": true,
+    "definitionSha256": "757357223cf42a91befae0adcaf81ba87967d4eddee731ed99eb23d509a74f27",
+    "noLegacy43Rows": true
+  }
+}
