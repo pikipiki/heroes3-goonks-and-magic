@@ -1,0 +1,176 @@
+{
+  "passed": true,
+  "wholeActorNativeValidated": false,
+  "engineSHA": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771",
+  "controls": [
+    {
+      "key": "sulfideStatsR0"
+    },
+    {
+      "key": "sulfideRegenR0",
+      "expectedAmount": 0,
+      "sourceChancePercent": 50
+    },
+    {
+      "key": "sulfideStatsR4"
+    },
+    {
+      "key": "sulfideRegenR4",
+      "expectedAmount": 25,
+      "sourceChancePercent": 50
+    },
+    {
+      "key": "sulfideStatsR5"
+    },
+    {
+      "key": "sulfideRegenR5",
+      "expectedAmount": 50,
+      "sourceChancePercent": 50
+    },
+    {
+      "key": "sulfideStatsR6"
+    },
+    {
+      "key": "sulfideRegenR6",
+      "expectedAmount": 75,
+      "sourceChancePercent": 50
+    },
+    {
+      "key": "sulfideStatsR7"
+    },
+    {
+      "key": "sulfideRegenR7",
+      "expectedAmount": 125,
+      "sourceChancePercent": 50
+    },
+    {
+      "key": "sulfideStatsR8"
+    },
+    {
+      "key": "sulfideRegenR8",
+      "expectedAmount": 250,
+      "sourceChancePercent": 50
+    },
+    {
+      "key": "sulfideStatsR10"
+    },
+    {
+      "key": "sulfideRegenR10",
+      "expectedAmount": 250,
+      "sourceChancePercent": 50
+    }
+  ],
+  "actualReportKeys": [
+    "sulfideStatsR0",
+    "sulfideRegenR0",
+    "sulfideStatsR4",
+    "sulfideRegenR4",
+    "sulfideStatsR5",
+    "sulfideRegenR5",
+    "sulfideStatsR6",
+    "sulfideRegenR6",
+    "sulfideStatsR7",
+    "sulfideRegenR7",
+    "sulfideStatsR8",
+    "sulfideRegenR8",
+    "sulfideStatsR10",
+    "sulfideRegenR10"
+  ],
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-progression163-console.log",
+      "sha256": "8af25c3a6a1a38e3cdf57097398ee594820692f3b48c523b04b1de99c5abcca4"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-progression163-result.json",
+      "sha256": "39ce96fa1138ddf52bfe4a63f4965cab0702f179cf23f096797e90d88a64d6b9"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-progression163-sulfide339-regeneration-r0.png",
+      "sha256": "b95d3906d66e694362d9607b979c516e892bedde0307f8da5ea0fc9c8ac4f0b6"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-progression163-sulfide339-regeneration-r10.png",
+      "sha256": "ba002123133ccfc5b436d853d45c2926a14cf4c0c2c8c1d3f5576ca6676ed881"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-progression163-sulfide339-regeneration-r4.png",
+      "sha256": "7872b393927dac9c6716d99fac213f3ec8056548c3147b5dfb5737c9f5b57b9a"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-progression163-sulfide339-regeneration-r5.png",
+      "sha256": "cd9f1d009ab00b9440361723b8948b571839419c9cc245d330b4a466cac01896"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-progression163-sulfide339-regeneration-r6.png",
+      "sha256": "91d94ff3ccbd4cf0e8e981d6b253e3b619c0a8f3f17b55b8f73c559fc8e00795"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-progression163-sulfide339-regeneration-r7.png",
+      "sha256": "4b4363f8e90249612ce2ae98ab1c9b86a00ff44a5a84321df9346956b911f8ee"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-progression163-sulfide339-regeneration-r8.png",
+      "sha256": "3bc713c209139e7382a04fd8a302d22b03200840577af8e023230ad0acbb5f64"
+    }
+  ],
+  "harnessSources": [
+    {
+      "path": "work/browser-tests/wog-eighth-native-e2e.mjs",
+      "sha256": "4490228161de866ef274723f849d07a73b295cb9a55f14239292c2d930eac642"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-overlay.mjs",
+      "sha256": "181be10e832275296214c9262273d246a0c0c86478e06178d3868770aad53cb9"
+    },
+    {
+      "path": "work/browser-tests/eighth-intrinsic-equipment.mjs",
+      "sha256": "77c5b637b80133c6db15e3a429faa19434e51fd5f212da7efdd75d5588659339"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-biology-cases.mjs",
+      "sha256": "5eb2b9da614788cd22276a2010e2e4250b8682fb1c34c2df256e3600916c677c"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-breath-cases.mjs",
+      "sha256": "91f71130b089ca87479e317116e7762e8f2aa16c19e63f77fdf0f4d94fc84887"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-cases.mjs",
+      "sha256": "65ba13557f752894549e4f5cd8d9ee91f4298f6c2fe8013b29c954a8298e45f0"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-counter-cases.mjs",
+      "sha256": "445f65c608e03905ea2b810a85409f02a1af532d004ce6f1f302ece1277da6d3"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-daily-cases.mjs",
+      "sha256": "f1e862a2e7eea22adb259d14b97c2d6356c76a27b8a2714330ce25da58180ba6"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-duration-cases.mjs",
+      "sha256": "ceaa59258b4256c48efbcfc55c84c8416044729c4513534fcfafaef617e08176"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-hate-cases.mjs",
+      "sha256": "0862adfdb542c6c10def3b22a53c41e8a547a47756ed8909b7b8379ca9b6a60f"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-paralyze-cases.mjs",
+      "sha256": "3a9ce527179c5a1135dc248fdd7806b6e6d525bdeee487081d897ee1d2de254f"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-progression-cases.mjs",
+      "sha256": "93928ae3adba3b1b6e358c7dbdcfaa61023b73352c0f2cb05f476368f210ce14"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-siege-cases.mjs",
+      "sha256": "ed319beb3883c100b553f0a86424539bee6e2e695c382fb5abe9fc4b906b1d99"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-toxic-cases.mjs",
+      "sha256": "c493027471996c4fa36e8d8ba1cd4acc4402e726e3fa3b66231776e4c0c6761b"
+    }
+  ],
+  "limitation": "These are only the named passing native slices. Whole339 stays absent/inactive until all source CFG/XP/runtime obligations and non-regressions pass a separate strict installer."
+}

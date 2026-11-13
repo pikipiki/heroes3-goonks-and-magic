@@ -1,6 +1,6 @@
 # Heroes Goonk
 
-Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.160, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
+Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.161, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
 
 ## Jouer sur ce Mac
 
@@ -693,3 +693,9 @@ Les six groupes finaux de non-régression de cette version utilisent les donnée
 La Corne266 et le Fangarm263 sont activés après 55 contrôles natifs : invocation, maximum de points de vie courant, Hypnose avancée, spécialité d’Astral, rangs, ripostes finies, pertes et attribution après la nécromancie. Un contrôle supplémentaire sur les données installées vérifie les commandants, la victoire et le rechargement sans duplication. Le catalogue atteint 109 artefacts source sur 110, 51 identités ERA et 274 profils d’expérience.
 
 Le moteur conserve les requêtes positives de résistance inférieure à 1 % pour le mur355 et les sorts féeriques134/356. Aucun nouvel écran n’est ajouté. Les interfaces tactiles existantes sont conservées. L’artefact278, les acteurs339/346/347 et les scripts encore incomplets restent désactivés ; la compatibilité complète WoG/ERA n’est pas revendiquée. Preuves et limites : `outputs/wog-priorities-0.4.147/checkpoint160-validation.json`.
+
+### Dragon sulfureux — 0.4.161
+
+Le Dragon sulfureux339 est activé avec ses données et ressources originales : souffle, acide, réduction permanente de défense, poison, vieillissement, faible chance de paralysie, résistance Toxic15, rangs et régénération à 50 %, haine des Gorgones et apport maximal d’un soufre par jour. Les 37 contrôles natifs couvrent notamment les sept rangs utiles, la durée des statuts sur 100 tours, les ripostes, les cibles vivantes et mécaniques, les bannières et les Goonks. Un combat supplémentaire utilise les données installées sans réinjection, mesure l’acide35 et conserve les Bubu.
+
+Cette publication de données réutilise le moteur validé de la version160. Elle atteint 52 identités ERA et 275 profils d’expérience, avec 109 artefacts source. Les dragons346/347, l’artefact278 et les scripts incomplets restent désactivés. Preuves : `outputs/wog-priorities-0.4.147/checkpoint161-validation.json`.

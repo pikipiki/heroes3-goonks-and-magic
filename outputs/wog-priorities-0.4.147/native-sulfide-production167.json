@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "engineSHA": "fa15aeca15d528a5bf8e6da6f0846fcd789328bf4a14a49928800d8b6b6bc775",
+  "sourceActor": 339,
+  "definitionWrites": 0,
+  "sourceDataReinjected": false,
+  "targetStatsModified": false,
+  "goonkCountPreserved": 3,
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-production167-result.json",
+      "sha256": "3c2b91416694738435707a7d86af4a75ef14fdc1cb8d9df5605a54bc91c8a148"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-production167-console.log",
+      "sha256": "686e49b1433fd5fd7b5c158be806addbac2588dd1889289c912e380b0f21e304"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-production167-sulfide339-production.png",
+      "sha256": "a2b1ff19274113219364c6ca9132124c8cecd172c86cc55235f295e3557e5771"
+    }
+  ],
+  "harnessSources": [
+    {
+      "path": "work/browser-tests/wog-eighth-native-e2e.mjs",
+      "sha256": "e6bdd6d2c6504fc8a93b1cd999f61a476809f97145705d3a604eeee1c071c60a"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-production.mjs",
+      "sha256": "04f671c9132f951180c0183fd357e6b5e636828ad62957975abdfaff2ff50296"
+    },
+    {
+      "path": "work/browser-tests/eighth-intrinsic-equipment.mjs",
+      "sha256": "77c5b637b80133c6db15e3a429faa19434e51fd5f212da7efdd75d5588659339"
+    }
+  ],
+  "limitations": [
+    "This is a production smoke test alongside the37 prior source-specific native controls; it does not admit346/347 orEye278."
+  ],
+  "postCaptureAssertions": {
+    "physical": 175,
+    "actualAcidFromCasualties": 35,
+    "initialCount": 100,
+    "remainingCount": 65,
+    "initialUnitHealth": 6,
+    "noResidualWound": true
+  },
+  "harnessUpdatedAfterCapture": {
+    "capturedSha256": "04f671c9132f951180c0183fd357e6b5e636828ad62957975abdfaff2ff50296",
+    "capturedCopy": "outputs/wog-priorities-0.4.147/sulfide-production167-captured-harness.mjs",
+    "currentSha256": "2c135d0e4b0abb97332f3af1475c2234ac93b3aa83babe9834b8dd17a252b036",
+    "reason": "After the successful native capture, assertions were strengthened to demand exact35Acid casualties and no residual wound; the native run was not repeated. Historical SHA is retained exactly. The same stronger assertions were independently applied to the immutable raw capture and passed.",
+    "rawPostCaptureAssertions": {
+      "physical": 175,
+      "actualAcidFromCasualties": 35,
+      "initialCount": 100,
+      "remainingCount": 65,
+      "initialUnitHealth": 6,
+      "noResidualWound": true
+    }
+  }
+}

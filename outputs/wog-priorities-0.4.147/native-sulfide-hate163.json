@@ -1,0 +1,122 @@
+{
+  "passed": true,
+  "wholeActorNativeValidated": false,
+  "engineSHA": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771",
+  "controls": [
+    {
+      "key": "sulfideHatecore:gnoll",
+      "physical": 180,
+      "acid": 40,
+      "hatePercent": 0
+    },
+    {
+      "key": "sulfideHatecore:gorgon",
+      "physical": 252,
+      "acid": 40,
+      "hatePercent": 90
+    },
+    {
+      "key": "sulfideHatecore:mightyGorgon",
+      "physical": 252,
+      "acid": 40,
+      "hatePercent": 90
+    },
+    {
+      "key": "sulfideHatethird-upgrades:tumCatopleba",
+      "physical": 252,
+      "acid": 40,
+      "hatePercent": 90
+    }
+  ],
+  "actualReportKeys": [
+    "sulfideHatecore:gnoll",
+    "sulfideHatecore:gorgon",
+    "sulfideHatecore:mightyGorgon",
+    "sulfideHatethird-upgrades:tumCatopleba"
+  ],
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-hate163-console.log",
+      "sha256": "8ef834942f3380d1fda17af0452fdeb0628c1ad62af8a192f14cee82f80786d4"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-hate163-result.json",
+      "sha256": "ece696550a49037aaeaec74cbfe31d9929c1b805bf56f5eea45c1d2a1cf68058"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-hate163-sulfide339-hate-core-gnoll.png",
+      "sha256": "b0dcb595f3976df5417c77db89f0debbe2fb138cdd52849f35604a9f4fcc34c0"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-hate163-sulfide339-hate-core-gorgon.png",
+      "sha256": "7eda958f31551f8afe5c64c119d1bf8a903f5b8b2189aaf61e961a00c81519c3"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-hate163-sulfide339-hate-core-mightyGorgon.png",
+      "sha256": "12f74f3133e4bd40339799f70ebeb7e889c7381113b6a0965505438766804e55"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/sulfide-hate163-sulfide339-hate-third-upgrades-tumCatopleba.png",
+      "sha256": "2a30fbb874f0bf5eb5023b42680682aabeee55eb065cfb6c986a0859cba36c65"
+    }
+  ],
+  "harnessSources": [
+    {
+      "path": "work/browser-tests/wog-eighth-native-e2e.mjs",
+      "sha256": "4490228161de866ef274723f849d07a73b295cb9a55f14239292c2d930eac642"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-overlay.mjs",
+      "sha256": "181be10e832275296214c9262273d246a0c0c86478e06178d3868770aad53cb9"
+    },
+    {
+      "path": "work/browser-tests/eighth-intrinsic-equipment.mjs",
+      "sha256": "77c5b637b80133c6db15e3a429faa19434e51fd5f212da7efdd75d5588659339"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-biology-cases.mjs",
+      "sha256": "5eb2b9da614788cd22276a2010e2e4250b8682fb1c34c2df256e3600916c677c"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-breath-cases.mjs",
+      "sha256": "91f71130b089ca87479e317116e7762e8f2aa16c19e63f77fdf0f4d94fc84887"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-cases.mjs",
+      "sha256": "65ba13557f752894549e4f5cd8d9ee91f4298f6c2fe8013b29c954a8298e45f0"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-counter-cases.mjs",
+      "sha256": "445f65c608e03905ea2b810a85409f02a1af532d004ce6f1f302ece1277da6d3"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-daily-cases.mjs",
+      "sha256": "f1e862a2e7eea22adb259d14b97c2d6356c76a27b8a2714330ce25da58180ba6"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-duration-cases.mjs",
+      "sha256": "ceaa59258b4256c48efbcfc55c84c8416044729c4513534fcfafaef617e08176"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-hate-cases.mjs",
+      "sha256": "0862adfdb542c6c10def3b22a53c41e8a547a47756ed8909b7b8379ca9b6a60f"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-paralyze-cases.mjs",
+      "sha256": "3a9ce527179c5a1135dc248fdd7806b6e6d525bdeee487081d897ee1d2de254f"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-progression-cases.mjs",
+      "sha256": "93928ae3adba3b1b6e358c7dbdcfaa61023b73352c0f2cb05f476368f210ce14"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-siege-cases.mjs",
+      "sha256": "ed319beb3883c100b553f0a86424539bee6e2e695c382fb5abe9fc4b906b1d99"
+    },
+    {
+      "path": "work/browser-tests/eighth-sulfide-toxic-cases.mjs",
+      "sha256": "c493027471996c4fa36e8d8ba1cd4acc4402e726e3fa3b66231776e4c0c6761b"
+    }
+  ],
+  "limitation": "These are only the named passing native slices. Whole339 stays absent/inactive until all source CFG/XP/runtime obligations and non-regressions pass a separate strict installer."
+}

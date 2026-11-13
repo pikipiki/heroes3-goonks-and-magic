@@ -1,0 +1,59 @@
+{
+  "version": "0.4.161",
+  "status": "validated",
+  "fullCompatibilityClaim": false,
+  "baseCommit": "cf200c3f4bf9cd38d63736ec1554e7b4cacb8ea5",
+  "nativeCodeChanged": false,
+  "engineSHA256": "fa15aeca15d528a5bf8e6da6f0846fcd789328bf4a14a49928800d8b6b6bc775",
+  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.160-engine.tar.gz",
+  "source339Active": true,
+  "activeContent": {
+    "artifacts": 109,
+    "sourceCreatureIdentities": 52,
+    "experienceProfiles": 275,
+    "eighthTownRecruitments": 9
+  },
+  "sourceAdmission": {
+    "nativeRecords": 37,
+    "freshSourceByteEquality": true,
+    "protectedExistingModFiles": 1334,
+    "legacyExperienceCsvUnchanged": true,
+    "evidence": "outputs/wog-priorities-0.4.147/sulfide-source-installation-review.json"
+  },
+  "productionNative": {
+    "passed": true,
+    "definitionWrites": 0,
+    "sourceDataReinjected": false,
+    "targetStatsModified": false,
+    "observedAcid": 35,
+    "goonkCountPreserved": 3,
+    "evidence": "outputs/wog-priorities-0.4.147/native-sulfide-production167.json"
+  },
+  "unit": {
+    "total": 650,
+    "passed": 646,
+    "skipped": 4,
+    "failed": 0,
+    "evidence": "outputs/wog-priorities-0.4.147/checkpoint161-regressions/unit-release.log"
+  },
+  "webBuild": {
+    "passed": true,
+    "evidence": "outputs/wog-priorities-0.4.147/checkpoint161-regressions/site-verify.log"
+  },
+  "inactive": [
+    "source346",
+    "source347",
+    "artifact278",
+    "incomplete ordered experience scripts"
+  ],
+  "presentation": {
+    "newInterfaceAdded": false,
+    "existingTouchPresentationRetained": true,
+    "physicalDeviceTestingClaimed": false
+  },
+  "limits": [
+    "Existing244 identity is preserved; this release makes no full244 statistics/abilities claim.",
+    "Observed chance-dependent paths are verified; these bounded executions are not statistical probability estimates.",
+    "Full WoG/ERA compatibility and arbitrary ERM execution remain unestablished."
+  ]
+}

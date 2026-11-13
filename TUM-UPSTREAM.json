@@ -27,7 +27,7 @@
     "buildings": "Five fourth-upgrade town chains with ERA building77 costs; advanced building artwork reused",
     "abilities": "Source-scoped native policies; inherited WoG behavior is distinguished from proven ERA behavior"
   },
-  "remaining": "109 source artifacts and all18 eighth-faction actors are active; all nine eighth-town recruitments are enabled after genuine old-save migration. Source artifact278, source339/346/347 and remaining source-script obligations stay disabled until validation.",
+  "remaining": "109 source artifacts, source339 and all18 eighth-faction actors are active; all nine eighth-town recruitments are enabled after genuine old-save migration. Source artifact278, source346/347 and remaining source-script obligations stay disabled until validation.",
   "vcmiCompatibilityFixes": [
     "badLuckDice denominators converted to badLuckChance weights [2,4,6] for the native 24-sided luck roll",
     "Artifact bonuses converted to named objects; scenarioBonus graphics renamed",
@@ -38,10 +38,10 @@
     "Mobile construction panel opens the native hall for all advanced upgrade tiers"
   ],
   "activeContent": {
-    "tumCreatures": 51,
+    "tumCreatures": 52,
     "artifacts": 109,
     "mapObjects": 42,
-    "experienceProfiles": 274,
+    "experienceProfiles": 275,
     "fourthUpgradeTowns": [
       "castle",
       "rampart",
@@ -65,7 +65,7 @@
   "engineArchive": "outputs/vcmi-wasm-goonk-0.4.160-engine.tar.gz",
   "engineArchiveSHA256": "ab2c1e9a4b70e50d79e1e2d023856a2377ad253f950aa9b033fbecde1b7f88f2",
   "wasmSHA256": "fa15aeca15d528a5bf8e6da6f0846fcd789328bf4a14a49928800d8b6b6bc775",
-  "engineAttribution": "Release0.4.160: clean Emscripten4.0.23 Linux ninja -j32 html5 PASS. Whole Horn266/Fangarm263 installed after55 native controls; installed-data commander/victory/save smoke verified on the release engine. Wall355 and Faerie134/356 retain positive floating-point eligibility below1%. RemoveBonus resolves the actual battle bonus before its duration assertion. Optional339/346/347 and source ordered-XP prototypes remain inactive.",
+  "engineAttribution": "Data release0.4.161 reuses the verified0.4.160 engine/fa15. Source339 is installed after37 native records, fresh-source byte-for-byte reconstruction and installed-data combat with zero definition writes. No new native code is published by this data release. Optional346/347 and artifact278 remain inactive.",
   "priorDataOnlyReview": {
     "release": "0.4.34",
     "baseCommit": "6bfa181327f9e7e97dcc8e993c55ec28c8ab6491",
@@ -221,5 +221,16 @@
     "fullCompatibilityClaim": false,
     "validation": "outputs/wog-priorities-0.4.147/checkpoint160-validation.json",
     "horn266Active": true
+  },
+  "checkpoint161": {
+    "appVersion": "0.4.161",
+    "baseCommit": "cf200c3f4bf9cd38d63736ec1554e7b4cacb8ea5",
+    "status": "validated",
+    "engineSHA256": "fa15aeca15d528a5bf8e6da6f0846fcd789328bf4a14a49928800d8b6b6bc775",
+    "sourceArtifactsActive": 109,
+    "fullCompatibilityClaim": false,
+    "validation": "outputs/wog-priorities-0.4.147/checkpoint161-validation.json",
+    "source339Active": true,
+    "nativeCodeChanged": false
   }
 }

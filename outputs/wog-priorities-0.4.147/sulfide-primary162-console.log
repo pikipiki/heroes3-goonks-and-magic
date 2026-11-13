@@ -1,0 +1,728 @@
+log: Starting... 
+log: [1;32mStarting client of 'VCMI 1.7.3.GITDIR-NOTFOUND'
+log: [0m[1;32mCreating console and configuring logger: 0 ms
+log: [0m[1;32mThe log file will be saved to "/home/web_user/.cache/vcmi/VCMI_Client_log.txt"
+log: [0m[1;32m	Initialization: 0 ms
+log: [0m[1;32m	Data loading: 0 ms
+log: [0m[1;32m	Mod handler: 0 ms
+log: [0m[1;32m	Mod filesystems: 0 ms
+log: [0m[1;32mInitialized logging system based on settings successfully.
+log: [0m[1;32m[log level] ai => not set
+log: [0m[1;32m[log level] animation => not set
+log: [0m[1;32m[log level] bonus => not set
+log: [0m[1;32m[log level] global => trace
+log: [0m[1;32m[log level] mod => not set
+log: [0m[1;32m[log level] network => not set
+log: [0m[1;32m[log level] rng => info
+log: [0m[1;32mFound 2 render drivers
+log: [0m[1;32m	opengles2
+log: [0m[1;32m	software
+log: [0m[1;32mCreated renderer opengles2
+warning: The ScriptProcessorNode is deprecated. Use AudioWorkletNode instead. (https://bit.ly/audio-worklet)
+log: [0m[1;32mStarting network thread
+log: [0m[1;32m	Initializing content handler
+log: [0m[1;32m		Parsing mod: OK (core)
+log: [0m[1;32m		Parsing mod: OK (vcmi)
+error: Data in wake-of-gods is invalid!
+error: At /french
+error: 	 Error: Required entry name is missing
+error: At /japanese
+error: 	 Error: Required entry name is missing
+error: At /vietnamese
+error: 	 Error: Required entry name is missing
+error: 
+error: 		Parsing mod: Issues found! (wake-of-gods)
+log: [0m[1;33m[0m[1;33m[0m[1;33m[0m[1;32m		Parsing mod: OK (wake-of-gods.animatedtrees)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.artifacts)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.artifacts.bonuses icons)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.battledecorations)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.cheats)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.creatures)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.creatures.bonuses icons)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.heroes3datapatch)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.heroes3datapatch.heroes3datapatchera)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.level8units)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.level8units.bonuses icons)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.mainmenu)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.mapdecorations)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.mapobjects)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.messengersandemissaries)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.messengersandemissaries.bonuses icons)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.messengersandemissaries.vivid-battlefields)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.stackexperience)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.stackexperience.stackexperienceicons)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.vividbattlefields)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.vividbattlefields.vivid-battlefields-8th-level)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.warmachinesonmap)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_arrow)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_heroes)
+error: Data in third-upgrades is invalid!
+error: At /french
+error: 	 Error: Required entry name is missing
+error: 
+error: 		Parsing mod: Issues found! (third-upgrades)
+error: CONFIG/CREATURES/DEATHKNIGHTUP is not valid JSON!
+error: At line 93, position 21 warning: Duplicate element encountered!
+error: At line 95, position 10 warning: Duplicate element encountered!
+error: At line 96, position 9 warning: Duplicate element encountered!
+log: [0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;32m		Parsing mod: OK (third-upgrades.new-creatures)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.animatedobjects)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.commanders)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.commanders.bonuses icons)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.commanders.newstonesgraphic)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.creaturebanks)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.mapsupport)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.mapsupport.commanderssupport)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.mapsupport.warmachinesonmapsupport)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.mithril)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.stackartifacts)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_animatedtrees)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_battledecorations)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_creatures)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_heroes3datapatch)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_level8units)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_mapdecorations)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_messengersandemissaries)
+log: [0m[1;32m		Parsing mod: OK (goonk)
+log: [0m[1;32m		Parsing mod: OK (third-upgrades.wog-comp)
+error: Redundant namespace definition for divinePhoenix
+error: Redundant namespace definition for eraCreature271
+error: Redundant namespace definition for eraCreature280
+error: Redundant namespace definition for redBonesDragon
+log: [0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;32m		Parsing mod: OK (tum-era)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.mapsupport.stackartifactssupport)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_animatedobjects)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_artifacts)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_commanders)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_h3creatures)
+error: Data in wake-of-gods.woggraphicfix.wf_mapobjects is invalid!
+error: At /german
+error: 	 Error: Required entry name is missing
+error: At /japanese
+error: 	 Error: Required entry name is missing
+error: At /portuguese
+error: 	 Error: Required entry name is missing
+error: At /russian
+error: 	 Error: Required entry name is missing
+error: At /spanish
+error: 	 Error: Required entry name is missing
+error: At /turkish
+error: 	 Error: Required entry name is missing
+error: At /ukrainian
+error: 	 Error: Required entry name is missing
+error: At /vietnamese
+error: 	 Error: Required entry name is missing
+error: 
+error: 		Parsing mod: Issues found! (wake-of-gods.woggraphicfix.wf_mapobjects)
+log: [0m[1;33m[0m[1;33m[0m[1;33m[0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_stackartifacts)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_stackartifacts.warlordsbanner)
+log: [0m[1;32m	Parsing mod data
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in castle is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in conflux is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in dungeon is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in fortress is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in inferno is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in necropolis is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde1Upgr2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde2Upgr2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in rampart is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in stronghold is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde1Upgr2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in tower is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Dwelling tum-era:eraDwelling20_2 has template tum-era/objects/Crdw25 which is not valid for a random dwelling! Dwellings must not block tiles outside 2x2 range and must be visitable in bottom row. Change dwelling mask or mark dwelling as 'bannedForRandomDwelling'
+error: 		Loading mod: Issues found! (core)
+log: [0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;32m		Loading mod: OK (vcmi)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.animatedtrees)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.artifacts)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.artifacts.bonuses icons)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.battledecorations)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.cheats)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.creatures)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.creatures.bonuses icons)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.heroes3datapatch)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.heroes3datapatch.heroes3datapatchera)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.level8units)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.level8units.bonuses icons)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.mainmenu)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.mapdecorations)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.mapobjects)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.messengersandemissaries)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.messengersandemissaries.bonuses icons)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.messengersandemissaries.vivid-battlefields)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.stackexperience)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.stackexperience.stackexperienceicons)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.vividbattlefields)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.vividbattlefields.vivid-battlefields-8th-level)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.warmachinesonmap)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_arrow)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_heroes)
+log: [0m[1;32m		Loading mod: OK (third-upgrades)
+log: [0m[1;32m		Loading mod: OK (third-upgrades.new-creatures)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.animatedobjects)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.commanders)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.commanders.bonuses icons)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.commanders.newstonesgraphic)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.creaturebanks)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.mapsupport)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.mapsupport.commanderssupport)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.mapsupport.warmachinesonmapsupport)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.mithril)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.stackartifacts)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_animatedtrees)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_battledecorations)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_creatures)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_heroes3datapatch)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_level8units)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_mapdecorations)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_messengersandemissaries)
+error: Mod 'goonk': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'goonk': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'goonk': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'goonk': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'goonk': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'goonk': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'goonk': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'goonk': Town building 'dwellingUp3Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in goonk is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "" was not found
+error: 
+error: 		Loading mod: Issues found! (goonk)
+log: [0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;32m		Loading mod: OK (third-upgrades.wog-comp)
+log: [0m[1;32m		Loading mod: OK (tum-era)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.mapsupport.stackartifactssupport)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_animatedobjects)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_artifacts)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_commanders)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_h3creatures)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_mapobjects)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_stackartifacts)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_stackartifacts.warlordsbanner)
+log: [0m[1;32m	Loading mod data
+error: Bonus type ENCHANTED does not supports addInfo!
+error: Bonus type ENCHANTED does not supports addInfo!
+log: [0m[1;33m[0m[1;33m[0m[1;32m	Resolving identifiers
+log: [0m[1;32m	Handlers post-load finalization
+log: [0m[1;32m	All game content loaded
+log: [0m[1;32mInitializing VCMI_Lib: 0 ms
+log: [0m[1;32mMessage handler: 0 ms
+log: [0m[1;32mInitialization of VCMI (together): 0 ms
+log: [0m[1;32mKilling console...
+log: [0m[1;32mKilling console... done!
+warning: [.WebGL-0x12c00555000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+warning: [.WebGL-0x12c00555000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+warning: [.WebGL-0x12c00555000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+warning: [.WebGL-0x12c00555000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+log: [0m[1;32mPort 3030 will be used
+log: [0m[1;32mConnection established
+log: [0m[1;32mConnection with client 1 established. UUID: a5a1ea1e-449e-4161-9f14-d2941707a99e
+log: [0m[1;32mClient 1 player: Player 1
+log: [0m[1;32msystem says: Player 1 (pid 1 cid 1) joins the game
+log: [0m[1;32mPreparing to start new game
+log: [0m[1;32mUsing random seed: 1948535681
+log: [0m[1;32mGamestate created!
+log: [0m[1;32mOpen map file: MAPS/003-Goonks-WoG
+log: [0m[1;32mMap loaded!
+error: Cannot give starting artifact - no heroes!
+log: [0m[1;31m[0m[1;32mGamestate initialized!
+log: [0m[1;32mConnection 1 will handle 3 player: -1 0 1 
+log: [0m[1;32mPreparing environment for player neutral
+log: [0m[1;32mPreparing environment for player red
+log: [0m[1;32mPreparing environment for player blue
+log: [0m[1;32mPreparing interface for player red
+log: [0m[1;32mPlayer red will be lead by human
+log: [0m[1;32mPreparing interface for player blue
+log: [0m[1;32mPlayer blue will be lead by Nullkiller2
+log: [0m[1;32mOpening Nullkiller2
+log: [0m[1;32mOpening BattleAI
+log: [0m[1;32mSaving to Saves/Goonk-auto
+log: [0m[1;32mSaving game state
+log: [0m[1;32mSaving server state
+log: [0m[1;32mGame has been successfully saved!
+log: [0m[1;32mGame has been saved as Saves/Goonk-auto
+log: Starting... 
+log: [1;32mStarting client of 'VCMI 1.7.3.GITDIR-NOTFOUND'
+log: [0m[1;32mCreating console and configuring logger: 0 ms
+log: [0m[1;32mThe log file will be saved to "/home/web_user/.cache/vcmi/VCMI_Client_log.txt"
+log: [0m[1;32m	Initialization: 0 ms
+log: [0m[1;32m	Data loading: 0 ms
+log: [0m[1;32m	Mod handler: 0 ms
+log: [0m[1;32m	Mod filesystems: 0 ms
+log: [0m[1;32mInitialized logging system based on settings successfully.
+log: [0m[1;32m[log level] ai => not set
+log: [0m[1;32m[log level] animation => not set
+log: [0m[1;32m[log level] bonus => not set
+log: [0m[1;32m[log level] global => trace
+log: [0m[1;32m[log level] mod => not set
+log: [0m[1;32m[log level] network => not set
+log: [0m[1;32m[log level] rng => info
+log: [0m[1;32mFound 2 render drivers
+log: [0m[1;32m	opengles2
+log: [0m[1;32m	software
+log: [0m[1;32mCreated renderer opengles2
+warning: The ScriptProcessorNode is deprecated. Use AudioWorkletNode instead. (https://bit.ly/audio-worklet)
+log: [0m[1;32mStarting network thread
+log: [0m[1;32m	Initializing content handler
+log: [0m[1;32m		Parsing mod: OK (core)
+log: [0m[1;32m		Parsing mod: OK (vcmi)
+error: Data in wake-of-gods is invalid!
+error: At /french
+error: 	 Error: Required entry name is missing
+error: At /japanese
+error: 	 Error: Required entry name is missing
+error: At /vietnamese
+error: 	 Error: Required entry name is missing
+error: 
+error: 		Parsing mod: Issues found! (wake-of-gods)
+log: [0m[1;33m[0m[1;33m[0m[1;33m[0m[1;32m		Parsing mod: OK (wake-of-gods.animatedtrees)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.artifacts)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.artifacts.bonuses icons)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.battledecorations)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.cheats)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.creatures)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.creatures.bonuses icons)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.heroes3datapatch)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.heroes3datapatch.heroes3datapatchera)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.level8units)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.level8units.bonuses icons)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.mainmenu)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.mapdecorations)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.mapobjects)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.messengersandemissaries)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.messengersandemissaries.bonuses icons)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.messengersandemissaries.vivid-battlefields)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.stackexperience)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.stackexperience.stackexperienceicons)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.vividbattlefields)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.vividbattlefields.vivid-battlefields-8th-level)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.warmachinesonmap)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_arrow)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_heroes)
+error: Data in third-upgrades is invalid!
+error: At /french
+error: 	 Error: Required entry name is missing
+error: 
+error: 		Parsing mod: Issues found! (third-upgrades)
+error: CONFIG/CREATURES/DEATHKNIGHTUP is not valid JSON!
+error: At line 93, position 21 warning: Duplicate element encountered!
+error: At line 95, position 10 warning: Duplicate element encountered!
+error: At line 96, position 9 warning: Duplicate element encountered!
+log: [0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;32m		Parsing mod: OK (third-upgrades.new-creatures)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.animatedobjects)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.commanders)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.commanders.bonuses icons)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.commanders.newstonesgraphic)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.creaturebanks)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.mapsupport)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.mapsupport.commanderssupport)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.mapsupport.warmachinesonmapsupport)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.mithril)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.stackartifacts)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_animatedtrees)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_battledecorations)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_creatures)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_heroes3datapatch)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_level8units)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_mapdecorations)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_messengersandemissaries)
+log: [0m[1;32m		Parsing mod: OK (goonk)
+log: [0m[1;32m		Parsing mod: OK (third-upgrades.wog-comp)
+error: Redundant namespace definition for divinePhoenix
+error: Redundant namespace definition for eraCreature271
+error: Redundant namespace definition for eraCreature280
+error: Redundant namespace definition for redBonesDragon
+log: [0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;32m		Parsing mod: OK (tum-era)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.mapsupport.stackartifactssupport)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_animatedobjects)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_artifacts)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_commanders)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_h3creatures)
+error: Data in wake-of-gods.woggraphicfix.wf_mapobjects is invalid!
+error: At /german
+error: 	 Error: Required entry name is missing
+error: At /japanese
+error: 	 Error: Required entry name is missing
+error: At /portuguese
+error: 	 Error: Required entry name is missing
+error: At /russian
+error: 	 Error: Required entry name is missing
+error: At /spanish
+error: 	 Error: Required entry name is missing
+error: At /turkish
+error: 	 Error: Required entry name is missing
+error: At /ukrainian
+error: 	 Error: Required entry name is missing
+error: At /vietnamese
+error: 	 Error: Required entry name is missing
+error: 
+error: 		Parsing mod: Issues found! (wake-of-gods.woggraphicfix.wf_mapobjects)
+log: [0m[1;33m[0m[1;33m[0m[1;33m[0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_stackartifacts)
+log: [0m[1;32m		Parsing mod: OK (wake-of-gods.woggraphicfix.wf_stackartifacts.warlordsbanner)
+log: [0m[1;32m	Parsing mod data
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in castle is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in conflux is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in dungeon is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in fortress is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in inferno is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in necropolis is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde1Upgr2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde2Upgr2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in rampart is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in stronghold is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'third-upgrades': Town building 'horde1Upgr2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in tower is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "TAVERN.BIK" was not found
+error: 
+error: Dwelling tum-era:eraDwelling20_2 has template tum-era/objects/Crdw25 which is not valid for a random dwelling! Dwellings must not block tiles outside 2x2 range and must be visitable in bottom row. Change dwelling mask or mark dwelling as 'bannedForRandomDwelling'
+error: 		Loading mod: Issues found! (core)
+log: [0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;32m		Loading mod: OK (vcmi)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.animatedtrees)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.artifacts)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.artifacts.bonuses icons)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.battledecorations)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.cheats)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.creatures)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.creatures.bonuses icons)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.heroes3datapatch)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.heroes3datapatch.heroes3datapatchera)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.level8units)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.level8units.bonuses icons)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.mainmenu)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.mapdecorations)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.mapobjects)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.messengersandemissaries)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.messengersandemissaries.bonuses icons)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.messengersandemissaries.vivid-battlefields)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.stackexperience)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.stackexperience.stackexperienceicons)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.vividbattlefields)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.vividbattlefields.vivid-battlefields-8th-level)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.warmachinesonmap)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_arrow)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_heroes)
+log: [0m[1;32m		Loading mod: OK (third-upgrades)
+log: [0m[1;32m		Loading mod: OK (third-upgrades.new-creatures)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.animatedobjects)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.commanders)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.commanders.bonuses icons)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.commanders.newstonesgraphic)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.creaturebanks)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.mapsupport)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.mapsupport.commanderssupport)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.mapsupport.warmachinesonmapsupport)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.mithril)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.stackartifacts)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_animatedtrees)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_battledecorations)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_creatures)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_heroes3datapatch)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_level8units)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_mapdecorations)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_messengersandemissaries)
+error: Mod 'goonk': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'goonk': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'goonk': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'goonk': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'goonk': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'goonk': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'goonk': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Mod 'goonk': Town building 'dwellingUp3Lvl7' has specified 'id' field for a predefined building! Ignoring this field.
+error: Data in goonk is invalid!
+error: At /town/tavernVideo
+error: 	 Error: Video file "" was not found
+error: 
+error: 		Loading mod: Issues found! (goonk)
+log: [0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;33m[0m[1;32m		Loading mod: OK (third-upgrades.wog-comp)
+log: [0m[1;32m		Loading mod: OK (tum-era)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.mapsupport.stackartifactssupport)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_animatedobjects)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_artifacts)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_commanders)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_h3creatures)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_mapobjects)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_stackartifacts)
+log: [0m[1;32m		Loading mod: OK (wake-of-gods.woggraphicfix.wf_stackartifacts.warlordsbanner)
+log: [0m[1;32m	Loading mod data
+error: Bonus type ENCHANTED does not supports addInfo!
+error: Bonus type ENCHANTED does not supports addInfo!
+log: [0m[1;33m[0m[1;33m[0m[1;32m	Resolving identifiers
+log: [0m[1;32m	Handlers post-load finalization
+log: [0m[1;32m	All game content loaded
+log: [0m[1;32mInitializing VCMI_Lib: 0 ms
+log: [0m[1;32mMessage handler: 0 ms
+log: [0m[1;32mInitialization of VCMI (together): 0 ms
+log: [0m[1;32mKilling console...
+log: [0m[1;32mKilling console... done!
+log: [0m[1;32mPort 3030 will be used
+log: [0m[1;32mConnection established
+log: [0m[1;32mConnection with client 1 established. UUID: a0d2e4b2-8c73-4fd8-b7f3-3212e201ae12
+log: [0m[1;32mClient 1 player: Player 1
+log: [0m[1;32msystem says: Player 1 (pid 1 cid 1) joins the game
+log: [0m[1;32mPreparing to start new game
+log: [0m[1;32mUsing random seed: 52475948
+log: [0m[1;32mGamestate created!
+log: [0m[1;32mOpen map file: MAPS/003-Goonks-WoG
+log: [0m[1;32mMap loaded!
+error: Cannot give starting artifact - no heroes!
+log: [0m[1;31m[0m[1;32mGamestate initialized!
+log: [0m[1;32mConnection 1 will handle 3 player: -1 0 1 
+log: [0m[1;32mPreparing environment for player neutral
+log: [0m[1;32mPreparing environment for player red
+log: [0m[1;32mPreparing environment for player blue
+log: [0m[1;32mPreparing interface for player red
+log: [0m[1;32mPlayer red will be lead by human
+log: [0m[1;32mPreparing interface for player blue
+log: [0m[1;32mPlayer blue will be lead by Nullkiller2
+log: [0m[1;32mOpening Nullkiller2
+log: [0m[1;32mOpening BattleAI
+log: [0m[1;32mSaving to Saves/Goonk-auto
+log: [0m[1;32mSaving game state
+log: [0m[1;32mSaving server state
+log: [0m[1;32mGame has been successfully saved!
+log: [0m[1;32mGame has been saved as Saves/Goonk-auto

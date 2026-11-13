@@ -1,0 +1,301 @@
+{
+  "eraCreature339": {
+    "name": {
+      "singular": "Sulfide Dragon",
+      "plural": "Sulfide Dragons"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 30,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 35000
+    },
+    "fightValue": 37030,
+    "aiValue": 44362,
+    "growth": 1,
+    "hitPoints": 850,
+    "speed": 20,
+    "attack": 35,
+    "defense": 35,
+    "damage": {
+      "min": 70,
+      "max": 70
+    },
+    "advMapAmount": {
+      "min": 1,
+      "max": 3
+    },
+    "abilities": {
+      "sourceToxic71": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:poison",
+        "val": 0
+      },
+      "sourceToxic73": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:disease",
+        "val": 0
+      },
+      "sourceToxic74": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:paralyze",
+        "val": 0
+      },
+      "sourceToxic80": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:acidBreath",
+        "val": 0
+      },
+      "amethyst_flag_1": {
+        "type": "FLYING",
+        "val": 0
+      },
+      "amethyst_flag_3": {
+        "type": "TWO_HEX_ATTACK_BREATH",
+        "val": 0
+      },
+      "amethyst_flag_31": {
+        "type": "DRAGON_NATURE",
+        "val": 0
+      },
+      "amethystKing": {
+        "type": "KING",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "amethyst_Fearless": {
+        "type": "FEARFUL",
+        "val": 0,
+        "valueType": "INDEPENDENT_MIN"
+      },
+      "amethyst_Sktransformer": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "val": 0,
+        "subtype": "core:boneDragon"
+      }
+    },
+    "doubleWide": true,
+    "level": 7,
+    "faction": "core:neutral",
+    "shots": 0,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "subtype": "core:gorgon",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          90
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "subtype": "core:mightyGorgon",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          90
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "subtype": "third-upgrades:tumCatopleba",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          90
+        ]
+      },
+      {
+        "bonus": {
+          "type": "MIND_IMMUNITY"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "hasDoubleWeek": false,
+    "description": "",
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.6,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/339/CR339",
+      "map": "tum-era/creatures/339/AVWCR339.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/339/small",
+      "iconLarge": "tum-era/creatures/339/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/339/S339ATTK.wav",
+      "defend": "tum-era/creatures/339/S339DFND.wav",
+      "killed": "tum-era/creatures/339/S339KILL.wav",
+      "move": "tum-era/creatures/339/S339MOVE.wav",
+      "wince": "tum-era/creatures/339/S339WNCE.wav"
+    }
+  }
+}

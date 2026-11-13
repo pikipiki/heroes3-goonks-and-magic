@@ -1,0 +1,4743 @@
+{
+  "passed": true,
+  "errors": [],
+  "report": {
+    "engineMetadata": {
+      "memoryVersion": 1,
+      "runtimeVersion": "cdf8c212842b92ed",
+      "wasm": "vcmiclient.fa15aeca15d528a5.wasm",
+      "sha256": "fa15aeca15d528a5bf8e6da6f0846fcd789328bf4a14a49928800d8b6b6bc775",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216
+    },
+    "sulfideProduction": {
+      "definitionWrites": 0,
+      "sourceDataReinjected": false,
+      "targetStatsModified": false,
+      "actor": {
+        "aiValue": 44362,
+        "attack": 35,
+        "cost": [
+          0,
+          0,
+          0,
+          30,
+          0,
+          0,
+          35000,
+          0
+        ],
+        "count": 1,
+        "damageMax": 70,
+        "damageMin": 70,
+        "defense": 35,
+        "description": "",
+        "experience": 0,
+        "experiencePerUnit": 0,
+        "experienceRank": 0,
+        "fightValue": 37030,
+        "growth": 1,
+        "health": 850,
+        "icon": "tum-era/creatures/339/large",
+        "id": 298,
+        "key": "tum-era:eraCreature339",
+        "name": "Sulfide Dragon",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": true,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "shooter": false,
+        "shots": 0,
+        "speed": 20
+      },
+      "goonk": {
+        "aiValue": 700,
+        "attack": 10,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          330,
+          0
+        ],
+        "count": 3,
+        "damageMax": 12,
+        "damageMin": 8,
+        "defense": 12,
+        "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+        "experience": 0,
+        "experiencePerUnit": 0,
+        "experienceRank": 0,
+        "fightValue": 700,
+        "growth": 6,
+        "health": 50,
+        "icon": "goonk/fart-large.png",
+        "id": 248,
+        "key": "goonk:bubu",
+        "name": "Bubu",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": false,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "shooter": true,
+        "shots": 12,
+        "speed": 5
+      },
+      "normalizedEquipment": [],
+      "definitions": {
+        "manifest": {
+          "name": "TUM ERA — native adaptations",
+          "author": "VMaiko, PerryR, Archer30; Hit Landing Effects: JackSlater, Raistlin, Dalion; adaptation VCMI Heroes Goonk",
+          "version": "0.4.0",
+          "modType": "Creatures",
+          "compatibility": {
+            "min": "1.7.3"
+          },
+          "depends": [
+            "third-upgrades",
+            "wake-of-gods.level8units",
+            "wake-of-gods.mithril",
+            "wake-of-gods.creatures",
+            "wake-of-gods.messengersandemissaries",
+            "wake-of-gods.stackexperience"
+          ],
+          "creatures": [
+            "config/red-bones-dragon.json",
+            "config/divine-phoenix.json",
+            "config/dread-skipper.json",
+            "config/skeletal-outputs.json",
+            "config/cherub.json",
+            "config/skeleton-angel.json",
+            "config/antichrist.json",
+            "config/tum-fear-baseline.json",
+            "config/resource-generation.json",
+            "config/ancestral-behemoth.json",
+            "config/undead-morale-creatures.json",
+            "config/source35-stat-patches.json",
+            "config/source-fearless-six.json",
+            "config/necross-dragon.json",
+            "config/gem-dragon.json",
+            "config/nightmare-hydra.json",
+            "config/source-fear-markers.json",
+            "config/source-ghost-fear-rank5.json",
+            "config/guardian-zeus.json",
+            "config/chasm-dragon.json",
+            "config/source-level8-visuals.json",
+            "config/source-experience-defaults.json",
+            "config/reviewed-crystal-chain.json",
+            "config/complete-crystal-chain.json",
+            "config/reviewed-conversion-creatures.json",
+            "config/reviewed-templars.json",
+            "config/reviewed-golems.json",
+            "config/reviewed-spirits.json",
+            "config/complete-mithril-golem.json",
+            "config/complete-primal-faerie.json",
+            "config/reviewed-stronghold.json",
+            "config/complete-pit-master.json",
+            "config/reviewed-inferno-eighth.json",
+            "config/source-fortress.json",
+            "config/reviewed-dungeon-eighth.json",
+            "config/reviewed-neutral-transform-dependencies.json",
+            "config/source-experience-magic-reduction.json",
+            "config/reviewed-dragonling-pair.json",
+            "config/source-familiar43.json",
+            "config/source-imp42.json",
+            "config/source-conflux.json",
+            "config/reviewed-fangarm263.json",
+            "config/source-sulfide-dragon.json"
+          ],
+          "factions": [
+            "config/necropolis.json",
+            "config/conflux.json",
+            "config/inferno.json",
+            "config/castle.json",
+            "config/stronghold.json",
+            "config/third-upgrade-costs/castle.json",
+            "config/third-upgrade-costs/rampart.json",
+            "config/third-upgrade-costs/tower.json",
+            "config/third-upgrade-costs/inferno.json",
+            "config/third-upgrade-costs/necropolis.json",
+            "config/third-upgrade-costs/dungeon.json",
+            "config/third-upgrade-costs/stronghold.json",
+            "config/third-upgrade-costs/fortress.json",
+            "config/third-upgrade-costs/conflux.json",
+            "config/rampart.json",
+            "config/tower.json",
+            "config/dungeon.json",
+            "config/fortress.json",
+            "config/reviewed-eighth-town-access.json"
+          ],
+          "artifacts": [
+            "config/native-artifacts.json",
+            "config/reviewed-artifacts.json",
+            "config/source-necromancy-cloak.json",
+            "config/reviewed-opening-summons.json",
+            "config/reviewed-opponent-artifacts.json",
+            "config/reviewed-conversion-artifacts.json",
+            "config/reviewed-battle-artifacts.json",
+            "config/reviewed-utility-artifacts.json",
+            "config/reviewed-advanced-artifacts.json",
+            "config/reviewed-silence-cape.json",
+            "config/reviewed-atma-artifacts.json",
+            "config/reviewed-interference-artifacts.json",
+            "config/reviewed-mass-hypnotize253-artifact.json",
+            "config/reviewed-oblivion-artifact.json",
+            "config/reviewed-wayfarer260-artifact.json",
+            "config/reviewed-hydra-queen259-artifact.json",
+            "config/reviewed-orb-chaos238-artifact.json",
+            "config/reviewed-phylactery-summons.json",
+            "config/reviewed-eyes275-276.json",
+            "config/reviewed-horn266.json"
+          ],
+          "objects": [
+            "config/objects/dwelling20_2.json",
+            "config/objects/dwelling20_4.json",
+            "config/objects/bank33.json",
+            "config/objects/bank38.json",
+            "config/objects/bank41.json",
+            "config/objects/bank47.json",
+            "config/objects/bank52.json",
+            "config/objects/bank62.json",
+            "config/objects/bank63.json",
+            "config/objects/bank43.json",
+            "config/objects/bank44.json",
+            "config/objects/dwelling20_3.json",
+            "config/objects/dwelling17_121.json",
+            "config/objects/dwelling17_125.json",
+            "config/objects/dwelling17_127.json",
+            "config/objects/dwelling17_130.json",
+            "config/objects/dwelling17_164.json",
+            "config/objects/dwelling17_165.json",
+            "config/objects/bank53.json",
+            "config/objects/bank56.json",
+            "config/objects/bank57.json",
+            "config/objects/bank61.json",
+            "config/objects/legacyDwelling17_80.json",
+            "config/objects/legacyDwelling17_83.json",
+            "config/objects/legacyDwelling17_84.json",
+            "config/objects/legacyDwelling17_86.json",
+            "config/objects/legacyDwelling17_88.json",
+            "config/objects/bank59.json",
+            "config/objects/bank36.json",
+            "config/objects/bank39.json",
+            "config/objects/bank40.json",
+            "config/objects/bank42.json",
+            "config/objects/bank46.json",
+            "config/objects/bank54.json",
+            "config/objects/bank55.json",
+            "config/objects/bank58.json",
+            "config/objects/bank60.json",
+            "config/objects/bank49.json",
+            "config/objects/bank45.json",
+            "config/objects/bank34.json",
+            "config/objects/bank35.json",
+            "config/objects/bank50.json"
+          ],
+          "settings": {
+            "combat": {
+              "layouts": {
+                "eraBank47MixedLayout": {
+                  "tacticsAllowed": false,
+                  "obstaclesAllowed": false,
+                  "attackerCommander": 94,
+                  "defenderCommander": 8,
+                  "attackerUnits": [
+                    57,
+                    61,
+                    90,
+                    93,
+                    96,
+                    125,
+                    129
+                  ],
+                  "defenderUnits": [
+                    15,
+                    185,
+                    172,
+                    2,
+                    100,
+                    86,
+                    8
+                  ]
+                },
+                "eraBank52MixedLayout": {
+                  "tacticsAllowed": false,
+                  "obstaclesAllowed": false,
+                  "attackerCommander": 94,
+                  "defenderCommander": 8,
+                  "attackerUnits": [
+                    57,
+                    61,
+                    90,
+                    93,
+                    96,
+                    125,
+                    129
+                  ],
+                  "defenderUnits": [
+                    15,
+                    185,
+                    171,
+                    1,
+                    100,
+                    87,
+                    8
+                  ]
+                },
+                "eraBank53MixedLayout": {
+                  "tacticsAllowed": false,
+                  "obstaclesAllowed": false,
+                  "attackerCommander": 94,
+                  "defenderCommander": 8,
+                  "attackerUnits": [
+                    57,
+                    61,
+                    90,
+                    93,
+                    96,
+                    125,
+                    129
+                  ],
+                  "defenderUnits": [
+                    15,
+                    185,
+                    171,
+                    1,
+                    100,
+                    87,
+                    8
+                  ]
+                },
+                "eraBank57MixedLayout": {
+                  "tacticsAllowed": false,
+                  "obstaclesAllowed": false,
+                  "attackerCommander": 94,
+                  "defenderCommander": 8,
+                  "attackerUnits": [
+                    57,
+                    61,
+                    90,
+                    93,
+                    96,
+                    125,
+                    129
+                  ],
+                  "defenderUnits": [
+                    15,
+                    185,
+                    171,
+                    1,
+                    100,
+                    87,
+                    8
+                  ]
+                },
+                "eraBank61MixedLayout": {
+                  "tacticsAllowed": false,
+                  "obstaclesAllowed": false,
+                  "attackerCommander": 94,
+                  "defenderCommander": 8,
+                  "attackerUnits": [
+                    57,
+                    61,
+                    90,
+                    93,
+                    96,
+                    125,
+                    129
+                  ],
+                  "defenderUnits": [
+                    15,
+                    185,
+                    171,
+                    1,
+                    100,
+                    87,
+                    8
+                  ]
+                },
+                "eraBank59MixedLayout": {
+                  "tacticsAllowed": false,
+                  "obstaclesAllowed": false,
+                  "attackerCommander": 94,
+                  "defenderCommander": 8,
+                  "attackerUnits": [
+                    57,
+                    61,
+                    90,
+                    93,
+                    96,
+                    125,
+                    129
+                  ],
+                  "defenderUnits": [
+                    15,
+                    185,
+                    171,
+                    1,
+                    100,
+                    87,
+                    8
+                  ]
+                },
+                "eraBank36MixedLayout": {
+                  "tacticsAllowed": false,
+                  "obstaclesAllowed": false,
+                  "attackerCommander": 94,
+                  "defenderCommander": 8,
+                  "attackerUnits": [
+                    57,
+                    61,
+                    90,
+                    93,
+                    96,
+                    125,
+                    129
+                  ],
+                  "defenderUnits": [
+                    15,
+                    185,
+                    171,
+                    1,
+                    100,
+                    87,
+                    8
+                  ]
+                },
+                "eraBank39MixedLayout": {
+                  "tacticsAllowed": false,
+                  "obstaclesAllowed": false,
+                  "attackerCommander": 94,
+                  "defenderCommander": 8,
+                  "attackerUnits": [
+                    57,
+                    61,
+                    90,
+                    93,
+                    96,
+                    125,
+                    129
+                  ],
+                  "defenderUnits": [
+                    15,
+                    185,
+                    171,
+                    1,
+                    100,
+                    87,
+                    8
+                  ]
+                },
+                "eraBank54MixedLayout": {
+                  "tacticsAllowed": false,
+                  "obstaclesAllowed": false,
+                  "attackerCommander": 94,
+                  "defenderCommander": 8,
+                  "attackerUnits": [
+                    57,
+                    61,
+                    90,
+                    93,
+                    96,
+                    125,
+                    129
+                  ],
+                  "defenderUnits": [
+                    15,
+                    185,
+                    171,
+                    1,
+                    100,
+                    87,
+                    8
+                  ]
+                },
+                "eraBank58MixedLayout": {
+                  "tacticsAllowed": false,
+                  "obstaclesAllowed": false,
+                  "attackerCommander": 94,
+                  "defenderCommander": 8,
+                  "attackerUnits": [
+                    57,
+                    61,
+                    90,
+                    93,
+                    96,
+                    125,
+                    129
+                  ],
+                  "defenderUnits": [
+                    15,
+                    185,
+                    171,
+                    1,
+                    100,
+                    87,
+                    8
+                  ]
+                },
+                "eraBank60MixedLayout": {
+                  "tacticsAllowed": false,
+                  "obstaclesAllowed": false,
+                  "attackerCommander": 94,
+                  "defenderCommander": 8,
+                  "attackerUnits": [
+                    57,
+                    61,
+                    90,
+                    93,
+                    96,
+                    125,
+                    129
+                  ],
+                  "defenderUnits": [
+                    15,
+                    185,
+                    171,
+                    1,
+                    100,
+                    87,
+                    8
+                  ]
+                },
+                "eraBank49MixedLayout": {
+                  "tacticsAllowed": false,
+                  "obstaclesAllowed": false,
+                  "attackerCommander": 94,
+                  "defenderCommander": 8,
+                  "attackerUnits": [
+                    57,
+                    61,
+                    90,
+                    93,
+                    96,
+                    125,
+                    129
+                  ],
+                  "defenderUnits": [
+                    15,
+                    185,
+                    171,
+                    1,
+                    100,
+                    87,
+                    8
+                  ]
+                },
+                "eraBank50MixedLayout": {
+                  "tacticsAllowed": false,
+                  "obstaclesAllowed": false,
+                  "attackerCommander": 94,
+                  "defenderCommander": 8,
+                  "attackerUnits": [
+                    57,
+                    61,
+                    90,
+                    93,
+                    96,
+                    125,
+                    129
+                  ],
+                  "defenderUnits": [
+                    15,
+                    185,
+                    171,
+                    1,
+                    100,
+                    87,
+                    8
+                  ]
+                }
+              }
+            }
+          },
+          "translations": [
+            "translation/tum-era-ui-english.json"
+          ],
+          "french": {
+            "translations": [
+              "translation/tum-era-ui-french.json",
+              "translation/reviewed-artifacts-french.json",
+              "translation/source-necromancy-french.json",
+              "translation/reviewed-opening-artifacts-french.json",
+              "translation/reviewed-banks-french.json",
+              "translation/reviewed-conversion-artifacts-french.json",
+              "translation/reviewed-battle-artifacts-french.json",
+              "translation/reviewed-utility-artifacts-french.json",
+              "translation/reviewed-creatures-french.json",
+              "translation/reviewed-advanced-artifacts-french.json",
+              "translation/reviewed-silence-cape-french.json",
+              "translation/reviewed-atma-artifacts-french.json",
+              "translation/reviewed-interference-artifacts-french.json",
+              "translation/reviewed-mass-hypnotize253-artifact-french.json",
+              "translation/reviewed-oblivion-artifact-french.json",
+              "translation/reviewed-wayfarer260-artifact-french.json",
+              "translation/reviewed-hydra-queen259-artifact-french.json",
+              "translation/reviewed-orb-chaos238-artifact-french.json",
+              "translation/reviewed-phylactery-summons-french.json",
+              "translation/reviewed-eyes275-276-french.json",
+              "translation/source-horn266-french.json",
+              "translation/reviewed-sulfide-dragon-french.json"
+            ],
+            "name": "TUM — évolutions et expérience"
+          },
+          "spells": [
+            "config/skeletal-transformation.json",
+            "config/necross-spells.json",
+            "config/source-demonology-spells.json",
+            "config/source-dungeon-spells.json",
+            "config/source-conflux-spells.json",
+            "config/reviewed-horn266-spells.json"
+          ],
+          "skills": [
+            "config/source-necromancy-skill.json"
+          ]
+        },
+        "feature": {
+          "schemaVersion": 1,
+          "creature": "tum-era:eraCreature339"
+        },
+        "definition": {
+          "eraCreature339": {
+            "name": {
+              "singular": "Sulfide Dragon",
+              "plural": "Sulfide Dragons"
+            },
+            "cost": {
+              "wood": 0,
+              "mercury": 0,
+              "ore": 0,
+              "sulfur": 30,
+              "crystal": 0,
+              "gems": 0,
+              "gold": 35000
+            },
+            "fightValue": 37030,
+            "aiValue": 44362,
+            "growth": 1,
+            "hitPoints": 850,
+            "speed": 20,
+            "attack": 35,
+            "defense": 35,
+            "damage": {
+              "min": 70,
+              "max": 70
+            },
+            "advMapAmount": {
+              "min": 1,
+              "max": 3
+            },
+            "abilities": {
+              "sourceToxic71": {
+                "type": "SPELL_IMMUNITY",
+                "subtype": "core:poison",
+                "val": 0
+              },
+              "sourceToxic73": {
+                "type": "SPELL_IMMUNITY",
+                "subtype": "core:disease",
+                "val": 0
+              },
+              "sourceToxic74": {
+                "type": "SPELL_IMMUNITY",
+                "subtype": "core:paralyze",
+                "val": 0
+              },
+              "sourceToxic80": {
+                "type": "SPELL_IMMUNITY",
+                "subtype": "core:acidBreath",
+                "val": 0
+              },
+              "amethyst_flag_1": {
+                "type": "FLYING",
+                "val": 0
+              },
+              "amethyst_flag_3": {
+                "type": "TWO_HEX_ATTACK_BREATH",
+                "val": 0
+              },
+              "amethyst_flag_31": {
+                "type": "DRAGON_NATURE",
+                "val": 0
+              },
+              "amethystKing": {
+                "type": "KING",
+                "val": 0
+              },
+              "amethystBiology": {
+                "type": "LIVING"
+              },
+              "amethyst_Fearless": {
+                "type": "FEARFUL",
+                "val": 0,
+                "valueType": "INDEPENDENT_MIN"
+              },
+              "amethyst_Sktransformer": {
+                "type": "SKELETON_TRANSFORMER_TARGET",
+                "val": 0,
+                "subtype": "core:boneDragon"
+              }
+            },
+            "doubleWide": true,
+            "level": 7,
+            "faction": "core:neutral",
+            "shots": 0,
+            "stackExperience": [
+              {
+                "bonus": {
+                  "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+                  "valueType": "ADDITIVE_VALUE",
+                  "hidden": true
+                },
+                "values": [
+                  5,
+                  10,
+                  15,
+                  20,
+                  25,
+                  30,
+                  35,
+                  40,
+                  45,
+                  50
+                ]
+              },
+              {
+                "bonus": {
+                  "type": "PRIMARY_SKILL",
+                  "subtype": "primarySkill.attack",
+                  "valueType": "ADDITIVE_VALUE"
+                },
+                "values": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ]
+              },
+              {
+                "bonus": {
+                  "type": "PRIMARY_SKILL",
+                  "subtype": "primarySkill.defence",
+                  "valueType": "ADDITIVE_VALUE"
+                },
+                "values": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ]
+              },
+              {
+                "bonus": {
+                  "type": "CREATURE_DAMAGE",
+                  "subtype": "creatureDamageMax",
+                  "valueType": "ADDITIVE_VALUE"
+                },
+                "values": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ]
+              },
+              {
+                "bonus": {
+                  "type": "CREATURE_DAMAGE",
+                  "subtype": "creatureDamageMin",
+                  "valueType": "ADDITIVE_VALUE"
+                },
+                "values": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ]
+              },
+              {
+                "bonus": {
+                  "type": "STACKS_SPEED",
+                  "valueType": "ADDITIVE_VALUE"
+                },
+                "values": [
+                  0,
+                  0,
+                  0,
+                  1,
+                  1,
+                  2,
+                  2,
+                  2,
+                  2,
+                  3
+                ]
+              },
+              {
+                "bonus": {
+                  "type": "HATE",
+                  "subtype": "core:gorgon",
+                  "valueType": "ADDITIVE_VALUE"
+                },
+                "values": [
+                  0,
+                  0,
+                  20,
+                  30,
+                  40,
+                  50,
+                  60,
+                  70,
+                  80,
+                  90
+                ]
+              },
+              {
+                "bonus": {
+                  "type": "HATE",
+                  "subtype": "core:mightyGorgon",
+                  "valueType": "ADDITIVE_VALUE"
+                },
+                "values": [
+                  0,
+                  0,
+                  20,
+                  30,
+                  40,
+                  50,
+                  60,
+                  70,
+                  80,
+                  90
+                ]
+              },
+              {
+                "bonus": {
+                  "type": "HATE",
+                  "subtype": "third-upgrades:tumCatopleba",
+                  "valueType": "ADDITIVE_VALUE"
+                },
+                "values": [
+                  0,
+                  0,
+                  20,
+                  30,
+                  40,
+                  50,
+                  60,
+                  70,
+                  80,
+                  90
+                ]
+              },
+              {
+                "bonus": {
+                  "type": "MIND_IMMUNITY"
+                },
+                "values": [
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  true,
+                  true,
+                  true
+                ]
+              }
+            ],
+            "hasDoubleWeek": false,
+            "description": "",
+            "graphics": {
+              "timeBetweenFidgets": 1,
+              "animationTime": {
+                "walk": 0.6,
+                "attack": 1,
+                "idle": 10
+              },
+              "animation": "tum-era/creatures/339/CR339",
+              "map": "tum-era/creatures/339/AVWCR339.def",
+              "mapMask": [
+                "VV",
+                "VA"
+              ],
+              "iconSmall": "tum-era/creatures/339/small",
+              "iconLarge": "tum-era/creatures/339/large"
+            },
+            "sound": {
+              "attack": "tum-era/creatures/339/S339ATTK.wav",
+              "defend": "tum-era/creatures/339/S339DFND.wav",
+              "killed": "tum-era/creatures/339/S339KILL.wav",
+              "move": "tum-era/creatures/339/S339MOVE.wav",
+              "wince": "tum-era/creatures/339/S339WNCE.wav"
+            }
+          }
+        },
+        "experience": {
+          "experienceMultiplier": 1,
+          "upgradeMultiplier": 0.75,
+          "fullRank10": 147000,
+          "battlePercent": 20,
+          "rank11Extra": 14700
+        }
+      },
+      "before": {
+        "activeStack": 0,
+        "activeUnit": {
+          "aiValue": 44362,
+          "attack": 35,
+          "canShoot": false,
+          "commander": false,
+          "controlled": true,
+          "cost": [
+            0,
+            0,
+            0,
+            30,
+            0,
+            0,
+            35000,
+            0
+          ],
+          "count": 1,
+          "damageMax": 70,
+          "damageMin": 70,
+          "defense": 35,
+          "description": "",
+          "fightValue": 37030,
+          "growth": 1,
+          "health": 850,
+          "icon": "tum-era/creatures/339/large",
+          "id": 298,
+          "key": "tum-era:eraCreature339",
+          "name": "Sulfide Dragon",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 20
+        },
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 44362,
+                "attack": 35,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  30,
+                  0,
+                  0,
+                  35000,
+                  0
+                ],
+                "count": 1,
+                "damageMax": 70,
+                "damageMin": 70,
+                "defense": 35,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 37030,
+                "growth": 1,
+                "health": 850,
+                "icon": "tum-era/creatures/339/large",
+                "id": 298,
+                "key": "tum-era:eraCreature339",
+                "name": "Sulfide Dragon",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 20
+              },
+              {
+                "aiValue": 700,
+                "attack": 10,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  330,
+                  0
+                ],
+                "count": 3,
+                "damageMax": 12,
+                "damageMin": 8,
+                "defense": 12,
+                "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 700,
+                "growth": 6,
+                "health": 50,
+                "icon": "goonk/fart-large.png",
+                "id": 248,
+                "key": "goonk:bubu",
+                "name": "Bubu",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": true,
+                "shots": 12,
+                "speed": 5
+              },
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autoCombat": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "battleCamera": {
+          "active": false,
+          "kind": "",
+          "label": "",
+          "sequence": 0
+        },
+        "battleCells": [
+          {
+            "actionLabel": "Move",
+            "hex": 1,
+            "kind": 0,
+            "reachable": false,
+            "x": 102,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 2,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 3,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 4,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 5,
+            "kind": 0,
+            "reachable": true,
+            "x": 278,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 6,
+            "kind": 0,
+            "reachable": true,
+            "x": 322,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 7,
+            "kind": 0,
+            "reachable": true,
+            "x": 366,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 8,
+            "kind": 0,
+            "reachable": true,
+            "x": 410,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 9,
+            "kind": 0,
+            "reachable": true,
+            "x": 454,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 10,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 11,
+            "kind": 0,
+            "reachable": true,
+            "x": 542,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 12,
+            "kind": 0,
+            "reachable": true,
+            "x": 586,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 13,
+            "kind": 0,
+            "reachable": true,
+            "x": 630,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 14,
+            "kind": 0,
+            "reachable": true,
+            "x": 674,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 15,
+            "kind": 0,
+            "reachable": true,
+            "x": 718,
+            "y": 112
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 18,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 19,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 20,
+            "kind": 0,
+            "reachable": true,
+            "x": 168,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 21,
+            "kind": 0,
+            "reachable": true,
+            "x": 212,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 22,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 23,
+            "kind": 0,
+            "reachable": true,
+            "x": 300,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 24,
+            "kind": 0,
+            "reachable": true,
+            "x": 344,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 25,
+            "kind": 0,
+            "reachable": true,
+            "x": 388,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 26,
+            "kind": 0,
+            "reachable": true,
+            "x": 432,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 27,
+            "kind": 0,
+            "reachable": true,
+            "x": 476,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 28,
+            "kind": 0,
+            "reachable": true,
+            "x": 520,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 29,
+            "kind": 0,
+            "reachable": true,
+            "x": 564,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 30,
+            "kind": 0,
+            "reachable": true,
+            "x": 608,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 31,
+            "kind": 0,
+            "reachable": true,
+            "x": 652,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 32,
+            "kind": 0,
+            "reachable": true,
+            "x": 696,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 35,
+            "kind": 1,
+            "reachable": false,
+            "x": 102,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 36,
+            "kind": 1,
+            "reachable": true,
+            "x": 146,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 37,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 38,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 39,
+            "kind": 0,
+            "reachable": true,
+            "x": 278,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 40,
+            "kind": 0,
+            "reachable": true,
+            "x": 322,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 41,
+            "kind": 0,
+            "reachable": true,
+            "x": 366,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 42,
+            "kind": 0,
+            "reachable": true,
+            "x": 410,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 43,
+            "kind": 0,
+            "reachable": true,
+            "x": 454,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 44,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 45,
+            "kind": 0,
+            "reachable": true,
+            "x": 542,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 46,
+            "kind": 0,
+            "reachable": true,
+            "x": 586,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 47,
+            "kind": 0,
+            "reachable": true,
+            "x": 630,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 48,
+            "kind": 0,
+            "reachable": true,
+            "x": 674,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 49,
+            "kind": 0,
+            "reachable": true,
+            "x": 718,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 52,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 53,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 54,
+            "kind": 0,
+            "reachable": true,
+            "x": 168,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 55,
+            "kind": 0,
+            "reachable": true,
+            "x": 212,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 56,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 57,
+            "kind": 0,
+            "reachable": true,
+            "x": 300,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 58,
+            "kind": 0,
+            "reachable": true,
+            "x": 344,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 59,
+            "kind": 0,
+            "reachable": true,
+            "x": 388,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 60,
+            "kind": 0,
+            "reachable": true,
+            "x": 432,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 61,
+            "kind": 0,
+            "reachable": true,
+            "x": 476,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 62,
+            "kind": 0,
+            "reachable": true,
+            "x": 520,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 63,
+            "kind": 0,
+            "reachable": true,
+            "x": 564,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 64,
+            "kind": 0,
+            "reachable": true,
+            "x": 608,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 65,
+            "kind": 0,
+            "reachable": true,
+            "x": 652,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 66,
+            "kind": 0,
+            "reachable": true,
+            "x": 696,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 69,
+            "kind": 0,
+            "reachable": false,
+            "x": 102,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 70,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 71,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 72,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 73,
+            "kind": 0,
+            "reachable": true,
+            "x": 278,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 74,
+            "kind": 0,
+            "reachable": true,
+            "x": 322,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 75,
+            "kind": 0,
+            "reachable": true,
+            "x": 366,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 76,
+            "kind": 0,
+            "reachable": true,
+            "x": 410,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 77,
+            "kind": 0,
+            "reachable": true,
+            "x": 454,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 78,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 79,
+            "kind": 0,
+            "reachable": true,
+            "x": 542,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 80,
+            "kind": 0,
+            "reachable": true,
+            "x": 586,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 81,
+            "kind": 0,
+            "reachable": true,
+            "x": 630,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 82,
+            "kind": 0,
+            "reachable": true,
+            "x": 674,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 83,
+            "kind": 0,
+            "reachable": true,
+            "x": 718,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 86,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 87,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 88,
+            "kind": 1,
+            "reachable": false,
+            "x": 168,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 89,
+            "kind": 0,
+            "reachable": false,
+            "x": 212,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 90,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 91,
+            "kind": 2,
+            "reachable": false,
+            "x": 300,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 92,
+            "kind": 2,
+            "reachable": false,
+            "x": 344,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 93,
+            "kind": 2,
+            "reachable": false,
+            "x": 388,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 94,
+            "kind": 2,
+            "reachable": false,
+            "x": 432,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 95,
+            "kind": 0,
+            "reachable": false,
+            "x": 476,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 96,
+            "kind": 0,
+            "reachable": true,
+            "x": 520,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 97,
+            "kind": 0,
+            "reachable": true,
+            "x": 564,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 98,
+            "kind": 0,
+            "reachable": true,
+            "x": 608,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 99,
+            "kind": 0,
+            "reachable": true,
+            "x": 652,
+            "y": 322
+          },
+          {
+            "actionLabel": "Attack",
+            "hex": 100,
+            "kind": 1,
+            "reachable": false,
+            "x": 696,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 103,
+            "kind": 0,
+            "reachable": false,
+            "x": 102,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 104,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 105,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 106,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 107,
+            "kind": 0,
+            "reachable": true,
+            "x": 278,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 108,
+            "kind": 2,
+            "reachable": false,
+            "x": 322,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 109,
+            "kind": 2,
+            "reachable": false,
+            "x": 366,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 110,
+            "kind": 2,
+            "reachable": false,
+            "x": 410,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 111,
+            "kind": 2,
+            "reachable": false,
+            "x": 454,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 112,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 113,
+            "kind": 0,
+            "reachable": true,
+            "x": 542,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 114,
+            "kind": 2,
+            "reachable": false,
+            "x": 586,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 115,
+            "kind": 2,
+            "reachable": false,
+            "x": 630,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 116,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 117,
+            "kind": 0,
+            "reachable": true,
+            "x": 718,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 120,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 121,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 122,
+            "kind": 0,
+            "reachable": true,
+            "x": 168,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 123,
+            "kind": 0,
+            "reachable": true,
+            "x": 212,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 124,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 125,
+            "kind": 0,
+            "reachable": true,
+            "x": 300,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 126,
+            "kind": 0,
+            "reachable": true,
+            "x": 344,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 127,
+            "kind": 0,
+            "reachable": true,
+            "x": 388,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 128,
+            "kind": 0,
+            "reachable": true,
+            "x": 432,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 129,
+            "kind": 0,
+            "reachable": true,
+            "x": 476,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 130,
+            "kind": 0,
+            "reachable": true,
+            "x": 520,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 131,
+            "kind": 0,
+            "reachable": true,
+            "x": 564,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 132,
+            "kind": 0,
+            "reachable": true,
+            "x": 608,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 133,
+            "kind": 0,
+            "reachable": true,
+            "x": 652,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 134,
+            "kind": 0,
+            "reachable": true,
+            "x": 696,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 137,
+            "kind": 1,
+            "reachable": false,
+            "x": 102,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 138,
+            "kind": 0,
+            "reachable": false,
+            "x": 146,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 139,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 140,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 141,
+            "kind": 2,
+            "reachable": false,
+            "x": 278,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 142,
+            "kind": 2,
+            "reachable": false,
+            "x": 322,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 143,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 144,
+            "kind": 0,
+            "reachable": true,
+            "x": 410,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 145,
+            "kind": 0,
+            "reachable": true,
+            "x": 454,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 146,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 147,
+            "kind": 0,
+            "reachable": true,
+            "x": 542,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 148,
+            "kind": 0,
+            "reachable": true,
+            "x": 586,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 149,
+            "kind": 0,
+            "reachable": true,
+            "x": 630,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 150,
+            "kind": 0,
+            "reachable": true,
+            "x": 674,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 151,
+            "kind": 0,
+            "reachable": true,
+            "x": 718,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 154,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 155,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 156,
+            "kind": 0,
+            "reachable": true,
+            "x": 168,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 157,
+            "kind": 0,
+            "reachable": true,
+            "x": 212,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 158,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 159,
+            "kind": 0,
+            "reachable": true,
+            "x": 300,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 160,
+            "kind": 0,
+            "reachable": true,
+            "x": 344,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 161,
+            "kind": 0,
+            "reachable": true,
+            "x": 388,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 162,
+            "kind": 0,
+            "reachable": true,
+            "x": 432,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 163,
+            "kind": 0,
+            "reachable": true,
+            "x": 476,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 164,
+            "kind": 0,
+            "reachable": true,
+            "x": 520,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 165,
+            "kind": 0,
+            "reachable": true,
+            "x": 564,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 166,
+            "kind": 0,
+            "reachable": true,
+            "x": 608,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 167,
+            "kind": 0,
+            "reachable": true,
+            "x": 652,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 168,
+            "kind": 0,
+            "reachable": true,
+            "x": 696,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 171,
+            "kind": 0,
+            "reachable": false,
+            "x": 102,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 172,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 173,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 174,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 175,
+            "kind": 0,
+            "reachable": true,
+            "x": 278,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 176,
+            "kind": 0,
+            "reachable": true,
+            "x": 322,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 177,
+            "kind": 0,
+            "reachable": true,
+            "x": 366,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 178,
+            "kind": 0,
+            "reachable": true,
+            "x": 410,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 179,
+            "kind": 0,
+            "reachable": true,
+            "x": 454,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 180,
+            "kind": 0,
+            "reachable": true,
+            "x": 498,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 181,
+            "kind": 0,
+            "reachable": true,
+            "x": 542,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 182,
+            "kind": 0,
+            "reachable": true,
+            "x": 586,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 183,
+            "kind": 0,
+            "reachable": true,
+            "x": 630,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 184,
+            "kind": 0,
+            "reachable": true,
+            "x": 674,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 185,
+            "kind": 0,
+            "reachable": true,
+            "x": 718,
+            "y": 532
+          }
+        ],
+        "battlePlayerAttacks": true,
+        "battleUnits": [
+          {
+            "aiValue": 56,
+            "armySlot": 0,
+            "attack": 3,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              50,
+              0
+            ],
+            "count": 100,
+            "currentHealth": 6,
+            "damageMax": 3,
+            "damageMin": 2,
+            "defense": 5,
+            "description": "",
+            "enemy": true,
+            "eraSlot": 0,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 70,
+            "growth": 12,
+            "health": 6,
+            "icon": "",
+            "id": 98,
+            "key": "core:gnoll",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 6,
+            "morale": 0,
+            "name": "Gnoll",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              100
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 0,
+            "speed": 4,
+            "stackId": 2,
+            "x": 696,
+            "y": 322
+          },
+          {
+            "aiValue": 156,
+            "armySlot": -2,
+            "attack": 6,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              140,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 40,
+            "damageMax": 12,
+            "damageMin": 6,
+            "defense": 6,
+            "description": "",
+            "enemy": false,
+            "eraSlot": 2,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 1,
+            "fightValue": 130,
+            "growth": 9,
+            "health": 40,
+            "icon": "commanders/CPrL174n",
+            "id": 240,
+            "key": "wake-of-gods.commanders:paladin1",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 40,
+            "morale": 0,
+            "name": "Paladin",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              88
+            ],
+            "remainingCasts": 1,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 24,
+            "speed": 5,
+            "stackId": 3,
+            "x": 168,
+            "y": 322
+          },
+          {
+            "aiValue": 44362,
+            "armySlot": 0,
+            "attack": 35,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              30,
+              0,
+              0,
+              35000,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 850,
+            "damageMax": 70,
+            "damageMin": 70,
+            "defense": 35,
+            "description": "",
+            "enemy": false,
+            "eraSlot": 0,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 37030,
+            "growth": 1,
+            "health": 850,
+            "icon": "tum-era/creatures/339/large",
+            "id": 298,
+            "key": "tum-era:eraCreature339",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 850,
+            "morale": 0,
+            "name": "Sulfide Dragon",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              36,
+              35
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 0,
+            "speed": 20,
+            "stackId": 0,
+            "x": 146,
+            "y": 196
+          },
+          {
+            "aiValue": 700,
+            "armySlot": 1,
+            "attack": 11,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              330,
+              0
+            ],
+            "count": 3,
+            "currentHealth": 50,
+            "damageMax": 12,
+            "damageMin": 8,
+            "defense": 13,
+            "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+            "enemy": false,
+            "eraSlot": 1,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 700,
+            "growth": 6,
+            "health": 50,
+            "icon": "goonk/fart-large.png",
+            "id": 248,
+            "key": "goonk:bubu",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 50,
+            "morale": 0,
+            "name": "Bubu",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              137
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "remainingShots": 12,
+            "shooter": true,
+            "shots": 12,
+            "speed": 6,
+            "stackId": 1,
+            "x": 102,
+            "y": 448
+          }
+        ],
+        "canAct": true,
+        "canAutoCombat": true,
+        "canEndTactics": false,
+        "canQueueAutoCombat": false,
+        "canRetreat": true,
+        "canUseMagic": true,
+        "canWait": true,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "creatureCanCast": false,
+        "creatureSpellTargeting": false,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "focus": {
+          "x": 146,
+          "y": 196
+        },
+        "heroCanCast": true,
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 200,
+        "heroManaLimit": 200,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroSpellCastLimitReached": false,
+        "heroSpellPower": {
+          "effective": 1,
+          "interference": false,
+          "original": 1
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 1430,
+            "movementLimit": 1700,
+            "name": "Christian"
+          }
+        ],
+        "manualControl": true,
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "battle",
+        "movement": 1430,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          26,
+          10,
+          26,
+          11,
+          10,
+          10,
+          20000,
+          0
+        ],
+        "round": 1,
+        "sessionState": 6,
+        "soundVolume": 88,
+        "spellTargeting": false,
+        "tacticsMode": false,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true,
+        "windowToken": 112954256
+      },
+      "after": {
+        "activeStack": 1,
+        "activeUnit": {
+          "aiValue": 700,
+          "attack": 10,
+          "canShoot": true,
+          "commander": false,
+          "controlled": true,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            330,
+            0
+          ],
+          "count": 3,
+          "damageMax": 12,
+          "damageMin": 8,
+          "defense": 12,
+          "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+          "fightValue": 700,
+          "growth": 6,
+          "health": 50,
+          "icon": "goonk/fart-large.png",
+          "id": 248,
+          "key": "goonk:bubu",
+          "name": "Bubu",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "remainingShots": 12,
+          "shooter": true,
+          "shots": 12,
+          "speed": 5
+        },
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 44362,
+                "attack": 35,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  30,
+                  0,
+                  0,
+                  35000,
+                  0
+                ],
+                "count": 1,
+                "damageMax": 70,
+                "damageMin": 70,
+                "defense": 35,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 37030,
+                "growth": 1,
+                "health": 850,
+                "icon": "tum-era/creatures/339/large",
+                "id": 298,
+                "key": "tum-era:eraCreature339",
+                "name": "Sulfide Dragon",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 20
+              },
+              {
+                "aiValue": 700,
+                "attack": 10,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  330,
+                  0
+                ],
+                "count": 3,
+                "damageMax": 12,
+                "damageMin": 8,
+                "defense": 12,
+                "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 700,
+                "growth": 6,
+                "health": 50,
+                "icon": "goonk/fart-large.png",
+                "id": 248,
+                "key": "goonk:bubu",
+                "name": "Bubu",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": true,
+                "shots": 12,
+                "speed": 5
+              },
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autoCombat": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "battleCamera": {
+          "active": false,
+          "actor": {
+            "cells": [
+              {
+                "x": 652,
+                "y": 322
+              },
+              {
+                "x": 608,
+                "y": 322
+              }
+            ],
+            "name": "Sulfide Dragon",
+            "stackId": 0,
+            "x": 652,
+            "y": 322
+          },
+          "destination": {
+            "x": 696,
+            "y": 322
+          },
+          "kind": "spell",
+          "label": "Poison",
+          "sequence": 7,
+          "targets": [
+            {
+              "cells": [
+                {
+                  "x": 696,
+                  "y": 322
+                }
+              ],
+              "name": "Gnoll",
+              "stackId": 2,
+              "x": 696,
+              "y": 322
+            }
+          ]
+        },
+        "battleCells": [
+          {
+            "actionLabel": "",
+            "hex": 1,
+            "kind": 0,
+            "reachable": false,
+            "x": 102,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 2,
+            "kind": 0,
+            "reachable": false,
+            "x": 146,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 3,
+            "kind": 0,
+            "reachable": false,
+            "x": 190,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 4,
+            "kind": 0,
+            "reachable": false,
+            "x": 234,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 5,
+            "kind": 0,
+            "reachable": false,
+            "x": 278,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 6,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 7,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 8,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 9,
+            "kind": 0,
+            "reachable": false,
+            "x": 454,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 10,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 11,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 12,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 13,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 14,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 15,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 18,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 19,
+            "kind": 0,
+            "reachable": false,
+            "x": 124,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 20,
+            "kind": 0,
+            "reachable": false,
+            "x": 168,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 21,
+            "kind": 0,
+            "reachable": false,
+            "x": 212,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 22,
+            "kind": 0,
+            "reachable": false,
+            "x": 256,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 23,
+            "kind": 0,
+            "reachable": false,
+            "x": 300,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 24,
+            "kind": 0,
+            "reachable": false,
+            "x": 344,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 25,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 26,
+            "kind": 0,
+            "reachable": false,
+            "x": 432,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 27,
+            "kind": 0,
+            "reachable": false,
+            "x": 476,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 28,
+            "kind": 0,
+            "reachable": false,
+            "x": 520,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 29,
+            "kind": 0,
+            "reachable": false,
+            "x": 564,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 30,
+            "kind": 0,
+            "reachable": false,
+            "x": 608,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 31,
+            "kind": 0,
+            "reachable": false,
+            "x": 652,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 32,
+            "kind": 0,
+            "reachable": false,
+            "x": 696,
+            "y": 154
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 35,
+            "kind": 0,
+            "reachable": true,
+            "x": 102,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 36,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 37,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 38,
+            "kind": 0,
+            "reachable": false,
+            "x": 234,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 39,
+            "kind": 0,
+            "reachable": false,
+            "x": 278,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 40,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 41,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 42,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 43,
+            "kind": 0,
+            "reachable": false,
+            "x": 454,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 44,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 45,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 46,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 47,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 48,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 49,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 52,
+            "kind": 0,
+            "reachable": true,
+            "x": 80,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 53,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 54,
+            "kind": 0,
+            "reachable": true,
+            "x": 168,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 55,
+            "kind": 0,
+            "reachable": true,
+            "x": 212,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 56,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 57,
+            "kind": 0,
+            "reachable": false,
+            "x": 300,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 58,
+            "kind": 0,
+            "reachable": false,
+            "x": 344,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 59,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 60,
+            "kind": 0,
+            "reachable": false,
+            "x": 432,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 61,
+            "kind": 0,
+            "reachable": false,
+            "x": 476,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 62,
+            "kind": 0,
+            "reachable": false,
+            "x": 520,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 63,
+            "kind": 0,
+            "reachable": false,
+            "x": 564,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 64,
+            "kind": 0,
+            "reachable": false,
+            "x": 608,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 65,
+            "kind": 0,
+            "reachable": false,
+            "x": 652,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 66,
+            "kind": 0,
+            "reachable": false,
+            "x": 696,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 69,
+            "kind": 0,
+            "reachable": true,
+            "x": 102,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 70,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 71,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 72,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 73,
+            "kind": 0,
+            "reachable": true,
+            "x": 278,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 74,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 75,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 76,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 77,
+            "kind": 0,
+            "reachable": false,
+            "x": 454,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 78,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 79,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 80,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 81,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 82,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 83,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 86,
+            "kind": 0,
+            "reachable": true,
+            "x": 80,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 87,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 88,
+            "kind": 1,
+            "reachable": false,
+            "x": 168,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 89,
+            "kind": 0,
+            "reachable": true,
+            "x": 212,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 90,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 91,
+            "kind": 2,
+            "reachable": false,
+            "x": 300,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 92,
+            "kind": 2,
+            "reachable": false,
+            "x": 344,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 93,
+            "kind": 2,
+            "reachable": false,
+            "x": 388,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 94,
+            "kind": 2,
+            "reachable": false,
+            "x": 432,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 95,
+            "kind": 0,
+            "reachable": false,
+            "x": 476,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 96,
+            "kind": 0,
+            "reachable": false,
+            "x": 520,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 97,
+            "kind": 0,
+            "reachable": false,
+            "x": 564,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 98,
+            "kind": 1,
+            "reachable": false,
+            "x": 608,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 99,
+            "kind": 1,
+            "reachable": false,
+            "x": 652,
+            "y": 322
+          },
+          {
+            "actionLabel": "Shoot",
+            "hex": 100,
+            "kind": 1,
+            "reachable": false,
+            "x": 696,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 103,
+            "kind": 0,
+            "reachable": true,
+            "x": 102,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 104,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 105,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 106,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 107,
+            "kind": 0,
+            "reachable": true,
+            "x": 278,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 108,
+            "kind": 2,
+            "reachable": false,
+            "x": 322,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 109,
+            "kind": 2,
+            "reachable": false,
+            "x": 366,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 110,
+            "kind": 2,
+            "reachable": false,
+            "x": 410,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 111,
+            "kind": 2,
+            "reachable": false,
+            "x": 454,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 112,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 113,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 114,
+            "kind": 2,
+            "reachable": false,
+            "x": 586,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 115,
+            "kind": 2,
+            "reachable": false,
+            "x": 630,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 116,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 117,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 120,
+            "kind": 0,
+            "reachable": true,
+            "x": 80,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 121,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 122,
+            "kind": 0,
+            "reachable": true,
+            "x": 168,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 123,
+            "kind": 0,
+            "reachable": true,
+            "x": 212,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 124,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 125,
+            "kind": 0,
+            "reachable": true,
+            "x": 300,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 126,
+            "kind": 0,
+            "reachable": true,
+            "x": 344,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 127,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 128,
+            "kind": 0,
+            "reachable": false,
+            "x": 432,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 129,
+            "kind": 0,
+            "reachable": false,
+            "x": 476,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 130,
+            "kind": 0,
+            "reachable": false,
+            "x": 520,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 131,
+            "kind": 0,
+            "reachable": false,
+            "x": 564,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 132,
+            "kind": 0,
+            "reachable": false,
+            "x": 608,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 133,
+            "kind": 0,
+            "reachable": false,
+            "x": 652,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 134,
+            "kind": 0,
+            "reachable": false,
+            "x": 696,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 137,
+            "kind": 1,
+            "reachable": true,
+            "x": 102,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 138,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 139,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 140,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 141,
+            "kind": 2,
+            "reachable": false,
+            "x": 278,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 142,
+            "kind": 2,
+            "reachable": false,
+            "x": 322,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 143,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 144,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 145,
+            "kind": 0,
+            "reachable": false,
+            "x": 454,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 146,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 147,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 148,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 149,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 150,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 151,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 154,
+            "kind": 0,
+            "reachable": true,
+            "x": 80,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 155,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 156,
+            "kind": 0,
+            "reachable": true,
+            "x": 168,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 157,
+            "kind": 0,
+            "reachable": true,
+            "x": 212,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 158,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 159,
+            "kind": 0,
+            "reachable": true,
+            "x": 300,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 160,
+            "kind": 0,
+            "reachable": true,
+            "x": 344,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 161,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 162,
+            "kind": 0,
+            "reachable": false,
+            "x": 432,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 163,
+            "kind": 0,
+            "reachable": false,
+            "x": 476,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 164,
+            "kind": 0,
+            "reachable": false,
+            "x": 520,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 165,
+            "kind": 0,
+            "reachable": false,
+            "x": 564,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 166,
+            "kind": 0,
+            "reachable": false,
+            "x": 608,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 167,
+            "kind": 0,
+            "reachable": false,
+            "x": 652,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 168,
+            "kind": 0,
+            "reachable": false,
+            "x": 696,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 171,
+            "kind": 0,
+            "reachable": true,
+            "x": 102,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 172,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 173,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 174,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 175,
+            "kind": 0,
+            "reachable": true,
+            "x": 278,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 176,
+            "kind": 0,
+            "reachable": true,
+            "x": 322,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 177,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 178,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 179,
+            "kind": 0,
+            "reachable": false,
+            "x": 454,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 180,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 181,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 182,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 183,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 184,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 185,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 532
+          }
+        ],
+        "battlePlayerAttacks": true,
+        "battleUnits": [
+          {
+            "aiValue": 56,
+            "armySlot": 0,
+            "attack": 3,
+            "canMeleeAt": false,
+            "canShootAt": true,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              50,
+              0
+            ],
+            "count": 65,
+            "currentHealth": 3,
+            "damageMax": 3,
+            "damageMin": 2,
+            "defense": 2,
+            "description": "",
+            "enemy": true,
+            "eraSlot": 0,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 70,
+            "growth": 12,
+            "health": 6,
+            "icon": "",
+            "id": 98,
+            "key": "core:gnoll",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 3,
+            "morale": 0,
+            "name": "Gnoll",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              100
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 0,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 0,
+            "speed": 4,
+            "stackId": 2,
+            "x": 696,
+            "y": 322
+          },
+          {
+            "aiValue": 156,
+            "armySlot": -2,
+            "attack": 6,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              140,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 40,
+            "damageMax": 12,
+            "damageMin": 6,
+            "defense": 6,
+            "description": "",
+            "enemy": false,
+            "eraSlot": 2,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 1,
+            "fightValue": 130,
+            "growth": 9,
+            "health": 40,
+            "icon": "commanders/CPrL174n",
+            "id": 240,
+            "key": "wake-of-gods.commanders:paladin1",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 40,
+            "morale": 0,
+            "name": "Paladin",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              88
+            ],
+            "remainingCasts": 1,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 24,
+            "speed": 5,
+            "stackId": 3,
+            "x": 168,
+            "y": 322
+          },
+          {
+            "aiValue": 44362,
+            "armySlot": 0,
+            "attack": 35,
+            "canMeleeAt": false,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              30,
+              0,
+              0,
+              35000,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 806,
+            "damageMax": 70,
+            "damageMin": 70,
+            "defense": 35,
+            "description": "",
+            "enemy": false,
+            "eraSlot": 0,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 37030,
+            "growth": 1,
+            "health": 850,
+            "icon": "tum-era/creatures/339/large",
+            "id": 298,
+            "key": "tum-era:eraCreature339",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 850,
+            "morale": 0,
+            "name": "Sulfide Dragon",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              99,
+              98
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 0,
+            "speed": 20,
+            "stackId": 0,
+            "x": 652,
+            "y": 322
+          },
+          {
+            "aiValue": 700,
+            "armySlot": 1,
+            "attack": 11,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              330,
+              0
+            ],
+            "count": 3,
+            "currentHealth": 50,
+            "damageMax": 12,
+            "damageMin": 8,
+            "defense": 13,
+            "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+            "enemy": false,
+            "eraSlot": 1,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 700,
+            "growth": 6,
+            "health": 50,
+            "icon": "goonk/fart-large.png",
+            "id": 248,
+            "key": "goonk:bubu",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 50,
+            "morale": 0,
+            "name": "Bubu",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              137
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "remainingShots": 12,
+            "shooter": true,
+            "shots": 12,
+            "speed": 6,
+            "stackId": 1,
+            "x": 102,
+            "y": 448
+          }
+        ],
+        "canAct": true,
+        "canAutoCombat": true,
+        "canEndTactics": false,
+        "canQueueAutoCombat": false,
+        "canRetreat": true,
+        "canUseMagic": true,
+        "canWait": true,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "creatureCanCast": false,
+        "creatureSpellTargeting": false,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "focus": {
+          "x": 102,
+          "y": 448
+        },
+        "heroCanCast": true,
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 200,
+        "heroManaLimit": 200,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroSpellCastLimitReached": false,
+        "heroSpellPower": {
+          "effective": 1,
+          "interference": false,
+          "original": 1
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 1430,
+            "movementLimit": 1700,
+            "name": "Christian"
+          }
+        ],
+        "manualControl": true,
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "battle",
+        "movement": 1430,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          26,
+          10,
+          26,
+          11,
+          10,
+          10,
+          20000,
+          0
+        ],
+        "round": 1,
+        "sessionState": 6,
+        "soundVolume": 88,
+        "spellTargeting": false,
+        "tacticsMode": false,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true,
+        "windowToken": 112954256
+      },
+      "physical": 175,
+      "acid": 35
+    }
+  }
+}
