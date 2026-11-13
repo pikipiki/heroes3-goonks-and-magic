@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraSourceDefendState.h"
 #include "../era/EraStatusHealth.h"
 #include "../era/EraBattleSlots.h"
 #include <tuple>
@@ -957,6 +958,8 @@ void BattleInfo::removeUnitBonus(uint32_t id, const std::vector<Bonus> & bonus)
 	{
 		auto selector = [one](const Bonus * b)
 		{
+            const auto sourceDefend=era_compat::sourceDefendRemovalIdentity(one,*b);
+            if(sourceDefend && !*sourceDefend)return false;
 			//compare everything but turnsRemain, limiter and propagator
 			return one.duration == b->duration
 			&& one.type == b->type

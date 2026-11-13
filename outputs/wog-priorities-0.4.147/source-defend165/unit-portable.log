@@ -1,0 +1,3325 @@
+TAP version 13
+# Subtest: Centering on an owned castle never waits for a game-state mutation
+ok 1 - Centering on an owned castle never waits for a game-state mutation
+  ---
+  duration_ms: 0.431959
+  ...
+# Subtest: Spell page and school changes acknowledge their own loading buttons
+ok 2 - Spell page and school changes acknowledge their own loading buttons
+  ---
+  duration_ms: 0.236208
+  ...
+# Subtest: A free recruitment is acknowledged by the changed army even if resources stay equal
+ok 3 - A free recruitment is acknowledged by the changed army even if resources stay equal
+  ---
+  duration_ms: 0.112917
+  ...
+# Subtest: Opening Build from the castle clears the building spinner on the town-hall acknowledgement
+ok 4 - Opening Build from the castle clears the building spinner on the town-hall acknowledgement
+  ---
+  duration_ms: 0.127167
+  ...
+# Subtest: Paid offers use native affordability and one-off visit rules, without editing the ERA bridge
+ok 5 - Paid offers use native affordability and one-off visit rules, without editing the ERA bridge
+  ---
+  duration_ms: 0.591292
+  ...
+# Subtest: Every cache alternative consumes the same cache, and mana cannot overflow
+ok 6 - Every cache alternative consumes the same cache, and mana cannot overflow
+  ---
+  duration_ms: 0.104917
+  ...
+# Subtest: New map footprints are collision-free, preserve original objects and form symmetric duel pairs
+ok 7 - New map footprints are collision-free, preserve original objects and form symmetric duel pairs
+  ---
+  duration_ms: 123.369125
+  ...
+# Subtest: Bulk replacement returns displaced creatures, including a full destination
+ok 8 - Bulk replacement returns displaced creatures, including a full destination
+  ---
+  duration_ms: 0.659583
+  ...
+# Subtest: A hero retains one creature only when the destination has no replacement units
+ok 9 - A hero retains one creature only when the destination has no replacement units
+  ---
+  duration_ms: 0.076083
+  ...
+# Subtest: Bulk controls cannot transfer to the same army or to an absent hero
+ok 10 - Bulk controls cannot transfer to the same army or to an absent hero
+  ---
+  duration_ms: 0.052708
+  ...
+# Subtest: A cold install verifies chunks; a warm launch makes zero asset requests
+ok 11 - A cold install verifies chunks; a warm launch makes zero asset requests
+  ---
+  duration_ms: 16.155917
+  ...
+# Subtest: An unchanged warm cache is not flushed, but obsolete files are still removed
+ok 12 - An unchanged warm cache is not flushed, but obsolete files are still removed
+  ---
+  duration_ms: 0.799542
+  ...
+# Subtest: Changed versions update only changed files
+ok 13 - Changed versions update only changed files
+  ---
+  duration_ms: 1.182583
+  ...
+# Subtest: Corrupt and interrupted downloads never validate an incomplete file
+ok 14 - Corrupt and interrupted downloads never validate an incomplete file
+  ---
+  duration_ms: 0.948084
+  ...
+# Subtest: A server without range support downloads a large file once
+ok 15 - A server without range support downloads a large file once
+  ---
+  duration_ms: 0.275041
+  ...
+# Subtest: Manifest paths cannot overwrite saves or escape the game root
+ok 16 - Manifest paths cannot overwrite saves or escape the game root
+  ---
+  duration_ms: 0.170375
+  ...
+# Subtest: Transferred OPFS buffers retain accurate download accounting
+ok 17 - Transferred OPFS buffers retain accurate download accounting
+  ---
+  duration_ms: 0.568958
+  ...
+# Subtest: Separate chunk URLs reassemble the original file without Range requests
+ok 18 - Separate chunk URLs reassemble the original file without Range requests
+  ---
+  duration_ms: 0.315292
+  ...
+# Subtest: Downloads overlap with a bounded queue and report streamed per-file progress
+ok 19 - Downloads overlap with a bounded queue and report streamed per-file progress
+  ---
+  duration_ms: 29.024208
+  ...
+# Subtest: A failed concurrent install preserves completed files without validating interrupted ones
+ok 20 - A failed concurrent install preserves completed files without validating interrupted ones
+  ---
+  duration_ms: 11.413875
+  ...
+# Subtest: Small files share a streamed request, retain individual URLs, and round-trip verified bytes
+ok 21 - Small files share a streamed request, retain individual URLs, and round-trip verified bytes
+  ---
+  duration_ms: 27.520417
+  ...
+# Subtest: A changed file is validated independently when its pack contains cached neighbours
+ok 22 - A changed file is validated independently when its pack contains cached neighbours
+  ---
+  duration_ms: 1.427834
+  ...
+# Subtest: Resume SDL context after suspended
+ok 23 - Resume SDL context after suspended
+  ---
+  duration_ms: 0.503167
+  ...
+# Subtest: Resume SDL context after interrupted
+ok 24 - Resume SDL context after interrupted
+  ---
+  duration_ms: 0.15375
+  ...
+# Subtest: A pending autoplay promise does not prevent recovery on a new gesture
+ok 25 - A pending autoplay promise does not prevent recovery on a new gesture
+  ---
+  duration_ms: 0.726334
+  ...
+# Subtest: Keep the mute choice during background recovery and an in-flight resume
+ok 26 - Keep the mute choice during background recovery and an in-flight resume
+  ---
+  duration_ms: 0.114417
+  ...
+# Subtest: Handle unavailable, closed and rejected contexts without crashing the game
+ok 27 - Handle unavailable, closed and rejected contexts without crashing the game
+  ---
+  duration_ms: 0.169417
+  ...
+# Subtest: A running context still configures the physical output route before reporting ready
+ok 28 - A running context still configures the physical output route before reporting ready
+  ---
+  duration_ms: 0.311959
+  ...
+# Subtest: Mute never changes the output session; unavailable platform routing cannot block resume
+ok 29 - Mute never changes the output session; unavailable platform routing cannot block resume
+  ---
+  duration_ms: 0.1285
+  ...
+# Subtest: iOS playback routing is feature-detected and does not throw on unsupported platforms
+ok 30 - iOS playback routing is feature-detected and does not throw on unsupported platforms
+  ---
+  duration_ms: 0.065375
+  ...
+# Subtest: Explicit recovery replaces a stalled SDL processor but retains its mixer and context
+ok 31 - Explicit recovery replaces a stalled SDL processor but retains its mixer and context
+  ---
+  duration_ms: 0.307292
+  ...
+# Subtest: A speculative spell deadline discards incomplete state, restores callers and stays local to its AI thread
+ok 32 - A speculative spell deadline discards incomplete state, restores callers and stays local to its AI thread
+  ---
+  duration_ms: 1203.19125
+  ...
+# Subtest: Autosave waits for an allowed engine state, prevents overlapping writes, and confirms persistence only
+ok 33 - Autosave waits for an allowed engine state, prevents overlapping writes, and confirms persistence only
+  ---
+  duration_ms: 0.628917
+  ...
+# Subtest: Combat defers periodic writes and checkpoints immediately on returning to the map
+ok 34 - Combat defers periodic writes and checkpoints immediately on returning to the map
+  ---
+  duration_ms: 0.105584
+  ...
+# Subtest: The online checkpoint waits for its own save to be persisted
+ok 35 - The online checkpoint waits for its own save to be persisted
+  ---
+  duration_ms: 0.066166
+  ...
+# Subtest: Bundled files round-trip from separate verified chunks, preserving paths and sizes
+ok 36 - Bundled files round-trip from separate verified chunks, preserving paths and sizes
+  ---
+  duration_ms: 12.007667
+  ...
+# Subtest: Malformed bundled paths cannot write outside the data root
+ok 37 - Malformed bundled paths cannot write outside the data root
+  ---
+  duration_ms: 0.68675
+  ...
+# Subtest: Contextual confirmation uses authoritative native action and spell names
+ok 38 - Contextual confirmation uses authoritative native action and spell names
+  ---
+  duration_ms: 0.623709
+  ...
+# Subtest: Illegal, missing and unselected cells cannot issue contextual orders
+ok 39 - Illegal, missing and unselected cells cannot issue contextual orders
+  ---
+  duration_ms: 0.098958
+  ...
+# Subtest: An unavailable allied spell keeps its name while confirmation stays disabled
+ok 40 - An unavailable allied spell keeps its name while confirmation stays disabled
+  ---
+  duration_ms: 0.063041
+  ...
+# Subtest: Hero and multi-stage creature spells keep the native target legality and selected name
+ok 41 - Hero and multi-stage creature spells keep the native target legality and selected name
+  ---
+  duration_ms: 0.059042
+  ...
+# Subtest: A single press survives a native transition and retries the same desired state until acknowledged
+ok 42 - A single press survives a native transition and retries the same desired state until acknowledged
+  ---
+  duration_ms: 0.740333
+  ...
+# Subtest: Stopping autocombat is also idempotent and survives temporarily unavailable controls
+ok 43 - Stopping autocombat is also idempotent and survives temporarily unavailable controls
+  ---
+  duration_ms: 0.105541
+  ...
+# Subtest: A stuck request times out, releases the button and never retries in another window or battle
+ok 44 - A stuck request times out, releases the button and never retries in another window or battle
+  ---
+  duration_ms: 0.149208
+  ...
+# Subtest: An intro tap queues autocombat until the first playable stack
+ok 45 - An intro tap queues autocombat until the first playable stack
+  ---
+  duration_ms: 0.16475
+  ...
+# Subtest: The camera follows native animated coordinates, including enemy moves
+ok 46 - The camera follows native animated coordinates, including enemy moves
+  ---
+  duration_ms: 1.346209
+  ...
+# Subtest: Ranged attacks focus on the target hit, and allied spell targets retain their identity
+ok 47 - Ranged attacks focus on the target hit, and allied spell targets retain their identity
+  ---
+  duration_ms: 0.195583
+  ...
+# Subtest: Melee attacks frame both adjacent combatants
+ok 48 - Melee attacks frame both adjacent combatants
+  ---
+  duration_ms: 0.086792
+  ...
+# Subtest: Area spells frame every affected unit and preserve native framebuffer geometry
+ok 49 - Area spells frame every affected unit and preserve native framebuffer geometry
+  ---
+  duration_ms: 0.280209
+  ...
+# Subtest: Manual exploration survives repeated snapshots; return and the next native action resume following
+ok 50 - Manual exploration survives repeated snapshots; return and the next native action resume following
+  ---
+  duration_ms: 0.147042
+  ...
+# Subtest: Confirmation releases exploration, previews the native path, and cannot retain an expired turn
+ok 51 - Confirmation releases exploration, previews the native path, and cannot retain an expired turn
+  ---
+  duration_ms: 0.560875
+  ...
+# Subtest: A distant shot focuses on the hit target in close-up
+ok 52 - A distant shot focuses on the hit target in close-up
+  ---
+  duration_ms: 0.191625
+  ...
+# Subtest: Creature spells focus on the hit target, including self casts
+ok 53 - Creature spells focus on the hit target, including self casts
+  ---
+  duration_ms: 0.168209
+  ...
+# Subtest: Portrait detail keeps 44px native hexes, preserves aspect and reaches both armies
+ok 54 - Portrait detail keeps 44px native hexes, preserves aspect and reaches both armies
+  ---
+  duration_ms: 0.853667
+  ...
+# Subtest: Strategic view retains all rows and both edges; letterbox taps do not target the game
+ok 55 - Strategic view retains all rows and both edges; letterbox taps do not target the game
+  ---
+  duration_ms: 0.253917
+  ...
+# Subtest: Small overview taps resolve nearby troop bodies to the closest row without changing native coordinates
+ok 56 - Small overview taps resolve nearby troop bodies to the closest row without changing native coordinates
+  ---
+  duration_ms: 0.087875
+  ...
+# Subtest: Portrait camera split reserves a follow pane on phones and wide iPads in the normal field view
+ok 57 - Portrait camera split reserves a follow pane on phones and wide iPads in the normal field view
+  ---
+  duration_ms: 0.115459
+  ...
+# Subtest: Native sprite bounds protect large bodies and corpses, including the final position of a moving stack
+ok 58 - Native sprite bounds protect large bodies and corpses, including the final position of a moving stack
+  ---
+  duration_ms: 0.54225
+  ...
+# Subtest: No tactical grid is painted during movement, attacks, autoplay, or before native bounds are ready
+ok 59 - No tactical grid is painted during movement, attacks, autoplay, or before native bounds are ready
+  ---
+  duration_ms: 0.1465
+  ...
+# Subtest: Initial placement exposes the actor and native legal destinations without a chosen square
+ok 60 - Initial placement exposes the actor and native legal destinations without a chosen square
+  ---
+  duration_ms: 1.15175
+  ...
+# Subtest: First combat turn and a new stack of the same creature get their own guidance
+ok 61 - First combat turn and a new stack of the same creature get their own guidance
+  ---
+  duration_ms: 0.122959
+  ...
+# Subtest: No movement is advertised for enemy turns, animations, or pending placement validation
+ok 62 - No movement is advertised for enemy turns, animations, or pending placement validation
+  ---
+  duration_ms: 0.143625
+  ...
+# Subtest: A hypnotized enemy stack shows its native movement range while locally controlled
+ok 63 - A hypnotized enemy stack shows its native movement range while locally controlled
+  ---
+  duration_ms: 0.158416
+  ...
+# Subtest: Guidance paints legal gates and only a cyan ring for the active creature
+ok 64 - Guidance paints legal gates and only a cyan ring for the active creature
+  ---
+  duration_ms: 0.393167
+  ...
+# Subtest: Shot guidance follows native legality and disappears outside manual attack selection
+ok 65 - Shot guidance follows native legality and disappears outside manual attack selection
+  ---
+  duration_ms: 0.357917
+  ...
+# Subtest: Spell markers classify native legal targets separately from ranged attacks
+ok 66 - Spell markers classify native legal targets separately from ranged attacks
+  ---
+  duration_ms: 0.464459
+  ...
+# Subtest: Melee targets identify reachable enemies for monsters that can travel across the battlefield
+ok 67 - Melee targets identify reachable enemies for monsters that can travel across the battlefield
+  ---
+  duration_ms: 0.541833
+  ...
+# Subtest: Beneficial targets highlight allied troops when active unit can heal or cast beneficial magic
+ok 68 - Beneficial targets highlight allied troops when active unit can heal or cast beneficial magic
+  ---
+  duration_ms: 0.797208
+  ...
+# Subtest: paintMeleeTargets renders crossed sword icons on reachable enemy positions with a red circle
+ok 69 - paintMeleeTargets renders crossed sword icons on reachable enemy positions with a red circle
+  ---
+  duration_ms: 0.583916
+  ...
+# Subtest: Battle destination feedback connects the endpoints without intermediate steps
+ok 70 - Battle destination feedback connects the endpoints without intermediate steps
+  ---
+  duration_ms: 1.289333
+  ...
+# Subtest: Beneficial markers follow native legality, including self healing
+ok 71 - Beneficial markers follow native legality, including self healing
+  ---
+  duration_ms: 0.279292
+  ...
+# Subtest: Tactics permits placement and ending the phase, never casting, waiting or defending
+ok 72 - Tactics permits placement and ending the phase, never casting, waiting or defending
+  ---
+  duration_ms: 0.347917
+  ...
+# Subtest: An end-of-placement acknowledgement does not enable combat actions before round one
+ok 73 - An end-of-placement acknowledgement does not enable combat actions before round one
+  ---
+  duration_ms: 0.056042
+  ...
+# Subtest: Combat magic follows the native permission and remains disabled during animations
+ok 74 - Combat magic follows the native permission and remains disabled during animations
+  ---
+  duration_ms: 0.056417
+  ...
+# Subtest: Team autocombat remains available while no creature accepts orders
+ok 75 - Team autocombat remains available while no creature accepts orders
+  ---
+  duration_ms: 0.654834
+  ...
+# Subtest: Team controls respect native retreat and autocombat permissions
+ok 76 - Team controls respect native retreat and autocombat permissions
+  ---
+  duration_ms: 0.380125
+  ...
+# Subtest: Autocombat owns creature orders even if a native actor is still published during handoff
+ok 77 - Autocombat owns creature orders even if a native actor is still published during handoff
+  ---
+  duration_ms: 0.055583
+  ...
+# Subtest: Manual casting stays locked until AI ownership is released, even after the auto flag clears
+ok 78 - Manual casting stays locked until AI ownership is released, even after the auto flag clears
+  ---
+  duration_ms: 0.053042
+  ...
+# Subtest: battle view persists as an explicit default and invalid stored values fall back to classic
+ok 79 - battle view persists as an explicit default and invalid stored values fall back to classic
+  ---
+  duration_ms: 0.330708
+  ...
+# Subtest: visible target reticle selects an enemy hidden behind a larger ally
+ok 80 - visible target reticle selects an enemy hidden behind a larger ally
+  ---
+  duration_ms: 0.124542
+  ...
+# Subtest: catapult targets include only wall sections with a native legal attack
+ok 81 - catapult targets include only wall sections with a native legal attack
+  ---
+  duration_ms: 0.531458
+  ...
+# Subtest: destroyed wall sections leave breaches in the portrait fortification
+ok 82 - destroyed wall sections leave breaches in the portrait fortification
+  ---
+  duration_ms: 0.250833
+  ...
+# Subtest: portrait battle keeps the full checkerboard visible and reverses touch coordinates
+ok 83 - portrait battle keeps the full checkerboard visible and reverses touch coordinates
+  ---
+  duration_ms: 0.651417
+  ...
+# Subtest: Native movement positions interpolate smoothly and never overshoot
+ok 84 - Native movement positions interpolate smoothly and never overshoot
+  ---
+  duration_ms: 0.364792
+  ...
+# Subtest: vertical field uses spare lower grass while reserving the final stack counter
+ok 85 - vertical field uses spare lower grass while reserving the final stack counter
+  ---
+  duration_ms: 0.071959
+  ...
+# Subtest: Keep the loader until a native window and two presentation frames, without replaying startup
+ok 86 - Keep the loader until a native window and two presentation frames, without replaying startup
+  ---
+  duration_ms: 0.382375
+  ...
+# Subtest: Entry styles and boot visibility exist in HTML before any external resource loads
+ok 87 - Entry styles and boot visibility exist in HTML before any external resource loads
+  ---
+  duration_ms: 1
+  ...
+# Subtest: Browser focus events defer a contended worker lock, then resume in order with a frame budget
+ok 88 - Browser focus events defer a contended worker lock, then resume in order with a frame budget
+  ---
+  duration_ms: 1142.66275
+  ...
+# Subtest: Cheats respect game options, turns and selected targets
+ok 89 - Cheats respect game options, turns and selected targets
+  ---
+  duration_ms: 0.338417
+  ...
+# Subtest: A future commander ability becomes ready only when both native prerequisites are met
+ok 90 - A future commander ability becomes ready only when both native prerequisites are met
+  ---
+  duration_ms: 0.315292
+  ...
+# Subtest: Transient connection and server failures retry within a bound; permanent errors do not
+ok 91 - Transient connection and server failures retry within a bound; permanent errors do not
+  ---
+  duration_ms: 10.991542
+  ...
+# Subtest: eighth access appears only with both real dwelling definitions and follows current unlocked form
+ok 92 - eighth access appears only with both real dwelling definitions and follows current unlocked form
+  ---
+  duration_ms: 0.416125
+  ...
+# Subtest: eighth dwelling uses the complete city viewport and its own terrace
+ok 93 - eighth dwelling uses the complete city viewport and its own terrace
+  ---
+  duration_ms: 14.800542
+  ...
+# Subtest: unbuilt eighth projects never appear as completed city structures
+ok 94 - unbuilt eighth projects never appear as completed city structures
+  ---
+  duration_ms: 0.269166
+  ...
+# Subtest: original reviewed hall frames remain unaltered for provenance
+ok 95 - original reviewed hall frames remain unaltered for provenance
+  ---
+  duration_ms: 6.286375
+  ...
+# Subtest: every classical faction has a real illustration shared by city and construction cards
+ok 96 - every classical faction has a real illustration shared by city and construction cards
+  ---
+  duration_ms: 1.494375
+  ...
+# Subtest: Goonk keeps its own real structures and hides unbuilt projects
+ok 97 - Goonk keeps its own real structures and hides unbuilt projects
+  ---
+  duration_ms: 0.437333
+  ...
+# Subtest: Engine package retries a failed cold request and validates the complete bytes
+ok 98 - Engine package retries a failed cold request and validates the complete bytes
+  ---
+  duration_ms: 10.920292
+  ...
+# Subtest: A stalled package is aborted, retried, and reported instead of leaving the loader hanging
+ok 99 - A stalled package is aborted, retried, and reported instead of leaving the loader hanging
+  ---
+  duration_ms: 23.167375
+  ...
+# Subtest: A truncated successful HTTP response is retried and never installed
+ok 100 - A truncated successful HTTP response is retried and never installed
+  ---
+  duration_ms: 1.076334
+  ...
+# Subtest: Source advanced services bind original identities and exact whole operations
+ok 101 - Source advanced services bind original identities and exact whole operations
+  ---
+  duration_ms: 0.473959
+  ...
+# Subtest: five unresolved artifact actors require exact original CFG and remain review-only
+ok 102 - five unresolved artifact actors require exact original CFG and remain review-only # SKIP
+  ---
+  duration_ms: 0.275917
+  ...
+# Subtest: native SND basename+WAV directory grammar and bounds preserve bytes exactly
+ok 103 - native SND basename+WAV directory grammar and bounds preserve bytes exactly
+  ---
+  duration_ms: 1.052667
+  ...
+# Subtest: eight original active-bank WAV assets are namespaced and match original source bytes
+ok 104 - eight original active-bank WAV assets are namespaced and match original source bytes # SKIP
+  ---
+  duration_ms: 0.050042
+  ...
+# Subtest: cfg parser preserves source/line and rejects duplicate definitions instead of choosing a winner
+ok 105 - cfg parser preserves source/line and rejects duplicate definitions instead of choosing a winner
+  ---
+  duration_ms: 0.982417
+  ...
+# Subtest: malformed syntax, nonfinite numbers, partial numbers and out-of-range values fail with locations
+ok 106 - malformed syntax, nonfinite numbers, partial numbers and out-of-range values fail with locations
+  ---
+  duration_ms: 1.261875
+  ...
+# Subtest: unconditional regeneration emits a native bonus and provenance for both source keys
+ok 107 - unconditional regeneration emits a native bonus and provenance for both source keys
+  ---
+  duration_ms: 0.573917
+  ...
+# Subtest: probabilistic and incomplete regeneration cannot silently turn into unconditional healing
+ok 108 - probabilistic and incomplete regeneration cannot silently turn into unconditional healing
+  ---
+  duration_ms: 0.1265
+  ...
+# Subtest: ERA faction and hated creature references require explicit resolvers
+ok 109 - ERA faction and hated creature references require explicit resolvers
+  ---
+  duration_ms: 0.422791
+  ...
+# Subtest: undocumented flags, spell effect enums, aliases and rebirth semantics are rejected
+ok 110 - undocumented flags, spell effect enums, aliases and rebirth semantics are rejected
+  ---
+  duration_ms: 0.27125
+  ...
+# Subtest: an evidence contract can emit a specific native mapping and records its proof
+ok 111 - an evidence contract can emit a specific native mapping and records its proof
+  ---
+  duration_ms: 0.234583
+  ...
+# Subtest: the cfg224 age adapter reports unresolved ERA hook semantics instead of claiming parity
+ok 112 - the cfg224 age adapter reports unresolved ERA hook semantics instead of claiming parity
+  ---
+  duration_ms: 0.099792
+  ...
+# Subtest: unnamed, evidence-free, overlapping, unclaimed and no-op adapters cannot bypass the gate
+ok 113 - unnamed, evidence-free, overlapping, unclaimed and no-op adapters cannot bypass the gate
+  ---
+  duration_ms: 0.445417
+  ...
+# Subtest: parsed input is revalidated so callers cannot erase a numeric diagnostic
+ok 114 - parsed input is revalidated so callers cannot erase a numeric diagnostic
+  ---
+  duration_ms: 0.78675
+  ...
+# Subtest: adapters cannot emit non-JSON values or asynchronously mutate a compiled definition
+ok 115 - adapters cannot emit non-JSON values or asynchronously mutate a compiled definition
+  ---
+  duration_ms: 1.009708
+  ...
+# Subtest: Original CRANIM timing and missile geometry survive translation without shifting IDs
+ok 116 - Original CRANIM timing and missile geometry survive translation without shifting IDs
+  ---
+  duration_ms: 1.374125
+  ...
+# Subtest: Portrait DEF decoder rejects unsafe dimensions, missing frames and truncated input
+ok 117 - Portrait DEF decoder rejects unsafe dimensions, missing frames and truncated input
+  ---
+  duration_ms: 0.417541
+  ...
+# Subtest: creature portraits skip two reserved frames and verify independent source frame identity
+ok 118 - creature portraits skip two reserved frames and verify independent source frame identity
+  ---
+  duration_ms: 1.272792
+  ...
+# Subtest: traits preserve blank-cost rows, malformed multiline descriptions do not shift ids
+ok 119 - traits preserve blank-cost rows, malformed multiline descriptions do not shift ids
+  ---
+  duration_ms: 1.073
+  ...
+# Subtest: JSONC parser preserves quoted comment-looking strings and nested trailing commas
+ok 120 - JSONC parser preserves quoted comment-looking strings and nested trailing commas
+  ---
+  duration_ms: 0.190375
+  ...
+# Subtest: bounded DEF extraction keeps ordinary dark palette colors and valid source dimensions
+ok 121 - bounded DEF extraction keeps ordinary dark palette colors and valid source dimensions
+  ---
+  duration_ms: 3.675625
+  ...
+# Subtest: a missing source DEF/MSK excludes entire artifact with zero partially emitted files
+ok 122 - a missing source DEF/MSK excludes entire artifact with zero partially emitted files
+  ---
+  duration_ms: 3.843708
+  ...
+# Subtest: legacy event TSV suffix is removed without touching narrative quotation marks
+ok 123 - legacy event TSV suffix is removed without touching narrative quotation marks
+  ---
+  duration_ms: 0.320792
+  ...
+# Subtest: description closing quote is removed only with independent source-wrapper evidence
+ok 124 - description closing quote is removed only with independent source-wrapper evidence
+  ---
+  duration_ms: 0.118875
+  ...
+# Subtest: schema/link checks catch malformed bonus subtype, namespace, combination and missing assets
+ok 125 - schema/link checks catch malformed bonus subtype, namespace, combination and missing assets
+  ---
+  duration_ms: 0.760208
+  ...
+# Subtest: unavailable mandatory source data fails before producing apparent successful empty imports
+ok 126 - unavailable mandatory source data fails before producing apparent successful empty imports
+  ---
+  duration_ms: 0.154625
+  ...
+# Subtest: signed stats use correct native subtype and damage min/max separate
+ok 127 - signed stats use correct native subtype and damage min/max separate
+  ---
+  duration_ms: 0.95775
+  ...
+# Subtest: opening spell explicitly preserves expert/50 turn native semantics
+ok 128 - opening spell explicitly preserves expert/50 turn native semantics
+  ---
+  duration_ms: 0.587167
+  ...
+# Subtest: unknown/malformed/duplicate input and missing ids cannot emit partial patch
+ok 129 - unknown/malformed/duplicate input and missing ids cannot emit partial patch
+  ---
+  duration_ms: 0.162625
+  ...
+# Subtest: Emerald first-match semantics retain warnings and do not invent second lightning spell/immunity
+ok 130 - Emerald first-match semantics retain warnings and do not invent second lightning spell/immunity
+  ---
+  duration_ms: 0.091
+  ...
+# Subtest: spell set boundaries preserve original 70 records and single-spell precedence
+ok 131 - spell set boundaries preserve original 70 records and single-spell precedence
+  ---
+  duration_ms: 0.144458
+  ...
+# Subtest: daily conversions are never emitted as optional paid SPECIAL_UPGRADE
+ok 132 - daily conversions are never emitted as optional paid SPECIAL_UPGRADE
+  ---
+  duration_ms: 0.16825
+  ...
+# Subtest: combination 278 exactly matches source excluding 275, no guessed faerie eye
+ok 133 - combination 278 exactly matches source excluding 275, no guessed faerie eye
+  ---
+  duration_ms: 0.136083
+  ...
+# Subtest: special artifact cannot emit an apparently complete artifact while event hook unbound
+ok 134 - special artifact cannot emit an apparently complete artifact while event hook unbound
+  ---
+  duration_ms: 0.0775
+  ...
+# Subtest: summon fixed, scaled, zero powers and chains match integer ERA arithmetic
+ok 135 - summon fixed, scaled, zero powers and chains match integer ERA arithmetic
+  ---
+  duration_ms: 0.225125
+  ...
+# Subtest: Horn counts, eligibility, surviving gain and army capacity
+ok 136 - Horn counts, eligibility, surviving gain and army capacity
+  ---
+  duration_ms: 0.340042
+  ...
+# Subtest: equalizer unwinds only stored adjustment and permits later stat changes
+ok 137 - equalizer unwinds only stored adjustment and permits later stat changes
+  ---
+  duration_ms: 0.138958
+  ...
+# Subtest: mass casting skips primary/dead/ineligible stacks and clamps integer 30% power
+ok 138 - mass casting skips primary/dead/ineligible stacks and clamps integer 30% power
+  ---
+  duration_ms: 0.262084
+  ...
+# Subtest: lightning rod keeps artifact immunities while suppressing natural resistance
+ok 139 - lightning rod keeps artifact immunities while suppressing natural resistance
+  ---
+  duration_ms: 0.074
+  ...
+# Subtest: source script arithmetic and source bugs are not silently improved
+ok 140 - source script arithmetic and source bugs are not silently improved
+  ---
+  duration_ms: 0.168459
+  ...
+# Subtest: full generator resolves caller assets and rejects incomplete metadata/collisions
+ok 141 - full generator resolves caller assets and rejects incomplete metadata/collisions
+  ---
+  duration_ms: 0.302792
+  ...
+# Subtest: power-sensitive offensive openings and Hypnotize fail closed pending explicit adapter
+ok 142 - power-sensitive offensive openings and Hypnotize fail closed pending explicit adapter
+  ---
+  duration_ms: 0.090125
+  ...
+# Subtest: native-vcmi AI policy retains signed gameplay bonuses and explicit source-vector provenance
+ok 143 - native-vcmi AI policy retains signed gameplay bonuses and explicit source-vector provenance
+  ---
+  duration_ms: 0.288875
+  ...
+# Subtest: audited global source openings use fixed power50; targeted openings remain blocked
+ok 144 - audited global source openings use fixed power50; targeted openings remain blocked
+  ---
+  duration_ms: 0.100125
+  ...
+# Subtest: Emerald cfg source indices are explicit even when text keys are out of order
+ok 145 - Emerald cfg source indices are explicit even when text keys are out of order
+  ---
+  duration_ms: 0.115625
+  ...
+# Subtest: Emerald leaf damage counts equipped copies while parent and unrelated artifacts retain native policy
+ok 146 - Emerald leaf damage counts equipped copies while parent and unrelated artifacts retain native policy
+  ---
+  duration_ms: 0.095958
+  ...
+# Subtest: extra rewards fail closed by default; unknown mode is rejected
+ok 147 - extra rewards fail closed by default; unknown mode is rejected
+  ---
+  duration_ms: 3.058791
+  ...
+# Subtest: bank49 preserves every source state and adds original negative morale for next battle
+ok 148 - bank49 preserves every source state and adds original negative morale for next battle
+  ---
+  duration_ms: 0.674166
+  ...
+# Subtest: bank50 keeps all50/100/150/200points and explicit constructor999cap; never substitutes ordinary mana-limit clipping
+ok 149 - bank50 keeps all50/100/150/200points and explicit constructor999cap; never substitutes ordinary mana-limit clipping
+  ---
+  duration_ms: 0.206458
+  ...
+# Subtest: source parser clamps morale reward and spell point award, keeps zero explicit without fabricated bonus
+ok 150 - source parser clamps morale reward and spell point award, keeps zero explicit without fabricated bonus
+  ---
+  duration_ms: 0.71475
+  ...
+# Subtest: bank34 originalfourthstate remainder is25percent; no invented Enchanter upgrade
+ok 151 - bank34 originalfourthstate remainder is25percent; no invented Enchanter upgrade
+  ---
+  duration_ms: 0.280875
+  ...
+# Subtest: actual registered source imports49 while34/50 retain unresolved creature blockers
+ok 152 - actual registered source imports49 while34/50 retain unresolved creature blockers # SKIP
+  ---
+  duration_ms: 0.038791
+  ...
+# Subtest: native mana helper handles exact999boundary, above-cap balances and unsigned-source negative balance
+ok 153 - native mana helper handles exact999boundary, above-cap balances and unsigned-source negative balance
+  ---
+  duration_ms: 779.177584
+  ...
+# Subtest: source-specific null enter inherits native ROGUE instead of emitting a mute or guessed sound
+ok 154 - source-specific null enter inherits native ROGUE instead of emitting a mute or guessed sound
+  ---
+  duration_ms: 2.096417
+  ...
+# Subtest: source sparse slots fail closed until explicit native adapter is requested
+ok 155 - source sparse slots fail closed until explicit native adapter is requested
+  ---
+  duration_ms: 0.737667
+  ...
+# Subtest: sparse army slots remain separate from dense H3 combat formation ordinals
+ok 156 - sparse army slots remain separate from dense H3 combat formation ordinals
+  ---
+  duration_ms: 0.456708
+  ...
+# Subtest: actual source batch retains every original state/reward and rejects unregistered pending actors
+ok 157 - actual source batch retains every original state/reward and rejects unregistered pending actors # SKIP
+  ---
+  duration_ms: 0.037875
+  ...
+# Subtest: complete original custom layouts use all14explicit coordinates without a guessed invalid-cell fallback
+ok 158 - complete original custom layouts use all14explicit coordinates without a guessed invalid-cell fallback
+  ---
+  duration_ms: 0.1115
+  ...
+# Subtest: six original guardian stacks are retained separately, zero slots ignored, resources and artifact class translated
+ok 159 - six original guardian stacks are retained separately, zero slots ignored, resources and artifact class translated
+  ---
+  duration_ms: 1.562125
+  ...
+# Subtest: weighted states use one shared native dice with exact disjoint bounds
+ok 160 - weighted states use one shared native dice with exact disjoint bounds
+  ---
+  duration_ms: 2.263584
+  ...
+# Subtest: all seven resource indices map in ERA order and unsupported nonzero extra resources fail
+ok 161 - all seven resource indices map in ERA order and unsupported nonzero extra resources fail
+  ---
+  duration_ms: 0.35825
+  ...
+# Subtest: specific artifacts and creature rewards must resolve before any bank can be emitted
+ok 162 - specific artifacts and creature rewards must resolve before any bank can be emitted
+  ---
+  duration_ms: 0.248125
+  ...
+# Subtest: unknown semantics, upgrade effects and no-op upgrade assumptions fail closed
+ok 163 - unknown semantics, upgrade effects and no-op upgrade assumptions fail closed
+  ---
+  duration_ms: 0.607375
+  ...
+# Subtest: native masks and layout are explicit requirements, never guessed from ERA template strings
+ok 164 - native masks and layout are explicit requirements, never guessed from ERA template strings
+  ---
+  duration_ms: 1.076917
+  ...
+# Subtest: malformed slots, missing guardians, missing rewards and nonfinite quantities reject the whole object
+ok 165 - malformed slots, missing guardians, missing rewards and nonfinite quantities reject the whole object
+  ---
+  duration_ms: 0.952709
+  ...
+# Subtest: raw whole-document input preserves JSON pointer, line and column provenance
+ok 166 - raw whole-document input preserves JSON pointer, line and column provenance
+  ---
+  duration_ms: 0.809
+  ...
+# Subtest: provided native RMG policy is explicit and unknown policy fields still reject
+ok 167 - provided native RMG policy is explicit and unknown policy fields still reject
+  ---
+  duration_ms: 0.346458
+  ...
+# Subtest: The CLI preserves existing services and leaves the complete policy unchanged when a conflicting source is rejected
+ok 168 - The CLI preserves existing services and leaves the complete policy unchanged when a conflicting source is rejected
+  ---
+  duration_ms: 118.909292
+  ...
+# Subtest: flags reconstruct geometry, attack and slayer traits without retaining inherited abilities
+ok 169 - flags reconstruct geometry, attack and slayer traits without retaining inherited abilities
+  ---
+  duration_ms: 1.998834
+  ...
+# Subtest: cfgPersonalHate is flat damage; XP HATE percentage is a separate contract
+ok 170 - cfgPersonalHate is flat damage; XP HATE percentage is a separate contract
+  ---
+  duration_ms: 1.313542
+  ...
+# Subtest: unknown, duplicate, malformed and invalid enum input all fail
+ok 171 - unknown, duplicate, malformed and invalid enum input all fail
+  ---
+  duration_ms: 0.421417
+  ...
+# Subtest: ambiguous inherited flag state cannot be compiled
+ok 172 - ambiguous inherited flag state cannot be compiled
+  ---
+  duration_ms: 0.211083
+  ...
+# Subtest: imposed enchant duration prevents false native ENCHANTED equivalence
+ok 173 - imposed enchant duration prevents false native ENCHANTED equivalence
+  ---
+  duration_ms: 0.877583
+  ...
+# Subtest: runtime obligation cannot masquerade as executable support
+ok 174 - runtime obligation cannot masquerade as executable support
+  ---
+  duration_ms: 0.487917
+  ...
+# Subtest: exact regeneration chance, max aggregation and fractional rebirth are retained
+ok 175 - exact regeneration chance, max aggregation and fractional rebirth are retained
+  ---
+  duration_ms: 0.415
+  ...
+# Subtest: native resistance enums are distinct from elemental creature selectors
+ok 176 - native resistance enums are distinct from elemental creature selectors
+  ---
+  duration_ms: 0.38275
+  ...
+# Subtest: daily resource generation is max per resource, tax scales per individual
+ok 177 - daily resource generation is max per resource, tax scales per individual
+  ---
+  duration_ms: 0.743
+  ...
+# Subtest: all nine fourth upgrades and complete numeric corpus are accounted for
+ok 178 - all nine fourth upgrades and complete numeric corpus are accounted for
+  ---
+  duration_ms: 7.417542
+  ...
+# Subtest: same creature pair keeps cfg flat200 separate from source XP h fifty-to-two-hundred percent
+ok 179 - same creature pair keeps cfg flat200 separate from source XP h fifty-to-two-hundred percent
+  ---
+  duration_ms: 1.873125
+  ...
+# Subtest: strict table parser validates all eleven ranks and tolerates legacy field whitespace
+ok 180 - strict table parser validates all eleven ranks and tolerates legacy field whitespace
+  ---
+  duration_ms: 0.69575
+  ...
+# Subtest: unknown codes, unsupported modifiers, unresolved identifiers never yield partial definitions
+ok 181 - unknown codes, unsupported modifiers, unresolved identifiers never yield partial definitions
+  ---
+  duration_ms: 1.725667
+  ...
+# Subtest: installed global/tier parity is mandatory and matching defaults are never duplicated
+ok 182 - installed global/tier parity is mandatory and matching defaults are never duplicated
+  ---
+  duration_ms: 0.70925
+  ...
+# Subtest: source R0 preattack100 is explicit intrinsic, not lost as a rank baseline or imported as chance20
+ok 183 - source R0 preattack100 is explicit intrinsic, not lost as a rank baseline or imported as chance20
+  ---
+  duration_ms: 0.165291
+  ...
+# Subtest: numeric rank values are cumulative additions above intrinsic R0; native loader supplies differences
+ok 184 - numeric rank values are cumulative additions above intrinsic R0; native loader supplies differences
+  ---
+  duration_ms: 0.141958
+  ...
+# Subtest: toggle encoding uses first actual1, treats2 as off, rejects later disable
+ok 185 - toggle encoding uses first actual1, treats2 as off, rejects later disable
+  ---
+  duration_ms: 0.129084
+  ...
+# Subtest: independent-max enchantment1->2->3->6 keeps absolute levels via boolean thresholds
+ok 186 - independent-max enchantment1->2->3->6 keeps absolute levels via boolean thresholds
+  ---
+  duration_ms: 0.152458
+  ...
+# Subtest: real scoped source compilation closes287 and252 with29matching installed defaults
+ok 187 - real scoped source compilation closes287 and252 with29matching installed defaults
+  ---
+  duration_ms: 1.152875
+  ...
+# Subtest: source binary school immunities distinguish hostile upper-case from full lower-case school immunity
+ok 188 - source binary school immunities distinguish hostile upper-case from full lower-case school immunity
+  ---
+  duration_ms: 0.952833
+  ...
+# Subtest: source Dispel P switches off after R8, hostile p begins R9 and requires explicit native bindings
+ok 189 - source Dispel P switches off after R8, hostile p begins R9 and requires explicit native bindings
+  ---
+  duration_ms: 0.646333
+  ...
+# Subtest: attack spell codes beyond the proven p50 service fail closed instead of inventing mastery or target rules
+ok 190 - attack spell codes beyond the proven p50 service fail closed instead of inventing mastery or target rules
+  ---
+  duration_ms: 0.375208
+  ...
+# Subtest: Source unicorn experience aura grants twenty percent without summing repeated auras
+ok 191 - Source unicorn experience aura grants twenty percent without summing repeated auras
+  ---
+  duration_ms: 0.0705
+  ...
+# Subtest: harmful spell-level immunity requires the audited adapter, preserves rank3 and never becomes general immunity
+ok 192 - harmful spell-level immunity requires the audited adapter, preserves rank3 and never becomes general immunity
+  ---
+  duration_ms: 0.232666
+  ...
+# Subtest: c75 requires exact Red224 source row and adapter, never shares the Poison or c78 contract
+ok 193 - c75 requires exact Red224 source row and adapter, never shares the Poison or c78 contract
+  ---
+  duration_ms: 0.201291
+  ...
+# Subtest: Original ERM upgrade and town assignment compile into definitions executed by native VCMI
+ok 194 - Original ERM upgrade and town assignment compile into definitions executed by native VCMI
+  ---
+  duration_ms: 0.971709
+  ...
+# Subtest: Unsupported events, conditions and memory hooks fail at their source line
+ok 195 - Unsupported events, conditions and memory hooks fail at their source line
+  ---
+  duration_ms: 0.220416
+  ...
+# Subtest: Unresolved IDs, sparse variant lists and cycles cannot enter a native mod
+ok 196 - Unresolved IDs, sparse variant lists and cycles cannot enter a native mod
+  ---
+  duration_ms: 0.165667
+  ...
+# Subtest: A second command after a semicolon cannot disappear as a comment
+ok 197 - A second command after a semicolon cannot disappear as a comment
+  ---
+  duration_ms: 0.052
+  ...
+# Subtest: Sparse or unresolved baseline rosters cannot be copied into a native town
+ok 198 - Sparse or unresolved baseline rosters cannot be copied into a native town
+  ---
+  duration_ms: 0.127292
+  ...
+# Subtest: existing subtype merges by unqualified key while maps retain native WoG identity
+ok 199 - existing subtype merges by unqualified key while maps retain native WoG identity
+  ---
+  duration_ms: 0.641333
+  ...
+# Subtest: qualified nested keys and unresolved actors fail closed
+ok 200 - qualified nested keys and unresolved actors fail closed
+  ---
+  duration_ms: 0.310625
+  ...
+# Subtest: fixture template includes inherited native entrance directions and selected original graphics
+ok 201 - fixture template includes inherited native entrance directions and selected original graphics
+  ---
+  duration_ms: 0.676375
+  ...
+# Subtest: optional original archives reproduce only complete installed stock WoG patches
+ok 202 - optional original archives reproduce only complete installed stock WoG patches # SKIP
+  ---
+  duration_ms: 0.166292
+  ...
+# Subtest: Portable ERA runtime uses exact probability boundaries, raw resurrection HP and authoritative event deltas
+ok 203 - Portable ERA runtime uses exact probability boundaries, raw resurrection HP and authoritative event deltas
+  ---
+  duration_ms: 10311.675708
+  ...
+# Subtest: H3 bit0 is native bottom-right; MSK crops preserved original cells
+ok 204 - H3 bit0 is native bottom-right; MSK crops preserved original cells
+  ---
+  duration_ms: 1.000625
+  ...
+# Subtest: all 677 original templates compile, have assets dimensions and retain IDs
+ok 205 - all 677 original templates compile, have assets dimensions and retain IDs
+  ---
+  duration_ms: 2.445916
+  ...
+# Subtest: rejects unsupported or malformed masks and MSK
+ok 206 - rejects unsupported or malformed masks and MSK
+  ---
+  duration_ms: 0.256083
+  ...
+# Subtest: original dwelling roster uses subtype row, explicit creature and guards mapping
+ok 207 - original dwelling roster uses subtype row, explicit creature and guards mapping
+  ---
+  duration_ms: 0.876541
+  ...
+# Subtest: dwelling table reader rejects shifted row content
+ok 208 - dwelling table reader rejects shifted row content
+  ---
+  duration_ms: 0.23
+  ...
+# Subtest: all original replacement parameter slots enumerated, exceptional triggers and collision retained
+ok 209 - all original replacement parameter slots enumerated, exceptional triggers and collision retained
+  ---
+  duration_ms: 2.006375
+  ...
+# Subtest: replacer interpreter consumes RNG on wrong subtypes, checks bounds after draw, and applies slots sequentially
+ok 210 - replacer interpreter consumes RNG on wrong subtypes, checks bounds after draw, and applies slots sequentially
+  ---
+  duration_ms: 1.637958
+  ...
+# Subtest: probability85/76 fixtures remain unmodified until executable semantics are verified
+ok 211 - probability85/76 fixtures remain unmodified until executable semantics are verified
+  ---
+  duration_ms: 0.501458
+  ...
+# Subtest: template catalog emits native merge patches only with explicit object identities
+ok 212 - template catalog emits native merge patches only with explicit object identities
+  ---
+  duration_ms: 3.481834
+  ...
+# Subtest: verified ERA dwelling guards independently check each slot level and growth
+ok 213 - verified ERA dwelling guards independently check each slot level and growth
+  ---
+  duration_ms: 0.461458
+  ...
+# Subtest: ERA bank remainder mode uses first three chances, never normalizes fourth
+ok 214 - ERA bank remainder mode uses first three chances, never normalizes fourth
+  ---
+  duration_ms: 10.176541
+  ...
+# Subtest: real original importer produces full native dwelling/asset bundles and rejects unresolved banks atomically
+ok 215 - real original importer produces full native dwelling/asset bundles and rejects unresolved banks atomically # SKIP
+  ---
+  duration_ms: 0.148
+  ...
+# Subtest: real archived growth+source cfg levels compile66 new dwellings without synthetic statistics
+ok 216 - real archived growth+source cfg levels compile66 new dwellings without synthetic statistics # SKIP
+  ---
+  duration_ms: 0.05425
+  ...
+# Subtest: verified ERA upgrade mode targets only source slot0, clamps100 and rejects multiple native choices
+ok 217 - verified ERA upgrade mode targets only source slot0, clamps100 and rejects multiple native choices
+  ---
+  duration_ms: 1.605459
+  ...
+# Subtest: original ERA single spell bitmasks compile exact catalog candidates, not unrelated mod spells
+ok 218 - original ERA single spell bitmasks compile exact catalog candidates, not unrelated mod spells
+  ---
+  duration_ms: 0.731167
+  ...
+# Subtest: native bank layout preserves decimal07 and original fallback for out-of-board cells
+ok 219 - native bank layout preserves decimal07 and original fallback for out-of-board cells
+  ---
+  duration_ms: 0.26925
+  ...
+# Subtest: advanced real importer uses native Mithril dependency, original spell candidates and exact castle layouts
+ok 220 - advanced real importer uses native Mithril dependency, original spell candidates and exact castle layouts # SKIP
+  ---
+  duration_ms: 0.027458
+  ...
+# Subtest: production source mappings compile actual installed core/WoG/WotC creatures without fixture IDs
+ok 221 - production source mappings compile actual installed core/WoG/WotC creatures without fixture IDs # SKIP
+  ---
+  duration_ms: 0.027416
+  ...
+# Subtest: customDef native hook policy binds each original state to original verified assets
+ok 222 - customDef native hook policy binds each original state to original verified assets
+  ---
+  duration_ms: 0.1355
+  ...
+# Subtest: compiled bank rewards preserve native map preset state instead of selecting every state
+ok 223 - compiled bank rewards preserve native map preset state instead of selecting every state
+  ---
+  duration_ms: 0.28775
+  ...
+# Subtest: customDef bank compiler emits runtime policy only when native hook mode is explicit
+ok 224 - customDef bank compiler emits runtime policy only when native hook mode is explicit
+  ---
+  duration_ms: 0.274917
+  ...
+# Subtest: production bank upgrades use original MA:U or indexed vanilla fallback with exactly matching native upgrade
+ok 225 - production bank upgrades use original MA:U or indexed vanilla fallback with exactly matching native upgrade # SKIP
+  ---
+  duration_ms: 0.02125
+  ...
+# Subtest: production namespace prevents sprite collisions and source value/density enable real native bank RMG
+ok 226 - production namespace prevents sprite collisions and source value/density enable real native bank RMG # SKIP
+  ---
+  duration_ms: 0.02025
+  ...
+# Subtest: only the two verified multi-creature dwellings opt in to native neutral RMG
+ok 227 - only the two verified multi-creature dwellings opt in to native neutral RMG # SKIP
+  ---
+  duration_ms: 0.016375
+  ...
+# Subtest: ERA zero-probability states remain available to explicit legacy map presets
+ok 228 - ERA zero-probability states remain available to explicit legacy map presets
+  ---
+  duration_ms: 0.152292
+  ...
+# Subtest: PAC bridge preserves bytes and rejects traversal, duplicates and invalid bounds
+ok 229 - PAC bridge preserves bytes and rejects traversal, duplicates and invalid bounds
+  ---
+  duration_ms: 0.973458
+  ...
+# Subtest: Malformed multiline descriptions do not shift ERA creature identities
+ok 230 - Malformed multiline descriptions do not shift ERA creature identities
+  ---
+  duration_ms: 0.283583
+  ...
+# Subtest: An invalid dormant creature row retains its ERA ID but cannot emit native stats
+ok 231 - An invalid dormant creature row retains its ERA ID but cannot emit native stats
+  ---
+  duration_ms: 0.201
+  ...
+# Subtest: fourth Castle upgrade retains full tier chain, third prerequisite, hall access and exact source resource order
+ok 232 - fourth Castle upgrade retains full tier chain, third prerequisite, hall access and exact source resource order
+  ---
+  duration_ms: 0.793834
+  ...
+# Subtest: Necropolis original77 cost preserves mercury30 and gold20000
+ok 233 - Necropolis original77 cost preserves mercury30 and gold20000
+  ---
+  duration_ms: 0.242875
+  ...
+# Subtest: A 50% ERA regeneration service emits a real native runtime policy without substituting average healing
+ok 234 - A 50% ERA regeneration service emits a real native runtime policy without substituting average healing
+  ---
+  duration_ms: 0.975917
+  ...
+# Subtest: Native service bridge rejects incomplete, duplicated, unsafe or out-of-range inputs
+ok 235 - Native service bridge rejects incomplete, duplicated, unsafe or out-of-range inputs
+  ---
+  duration_ms: 0.321958
+  ...
+# Subtest: Combining service policies preserves other creatures and rejects conflicts or unknown operations
+ok 236 - Combining service policies preserves other creatures and rejects conflicts or unknown operations
+  ---
+  duration_ms: 0.829542
+  ...
+# Subtest: Rebirth and melee rage policies merge with regeneration without erasing services
+ok 237 - Rebirth and melee rage policies merge with regeneration without erasing services
+  ---
+  duration_ms: 0.256375
+  ...
+# Subtest: Imposed spells use only verified persistent enchantments, and retain mastery zero
+ok 238 - Imposed spells use only verified persistent enchantments, and retain mastery zero
+  ---
+  duration_ms: 0.366084
+  ...
+# Subtest: Artifact conversions preserve pair order and reject malformed or conflicting policies
+ok 239 - Artifact conversions preserve pair order and reject malformed or conflicting policies
+  ---
+  duration_ms: 0.30425
+  ...
+# Subtest: daily resources retain original resource IDs, maxima and per-creature tax; missing fields keep original zero defaults
+ok 240 - daily resources retain original resource IDs, maxima and per-creature tax; missing fields keep original zero defaults
+  ---
+  duration_ms: 0.791417
+  ...
+# Subtest: source post-hit selector is exclusive and strict; artifact mimic admits only its verified contract
+ok 241 - source post-hit selector is exclusive and strict; artifact mimic admits only its verified contract
+  ---
+  duration_ms: 0.227333
+  ...
+# Subtest: Physical deflection retains the signed source modifier and all eleven rank values
+ok 242 - Physical deflection retains the signed source modifier and all eleven rank values
+  ---
+  duration_ms: 0.363666
+  ...
+# Subtest: Defense reduction adapter accepts only its audited ninety-five percent contract
+ok 243 - Defense reduction adapter accepts only its audited ninety-five percent contract
+  ---
+  duration_ms: 0.335542
+  ...
+# Subtest: source vampire adapter admits only the audited Red Bones Dragon and an empty contract
+ok 244 - source vampire adapter admits only the audited Red Bones Dragon and an empty contract
+  ---
+  duration_ms: 0.209292
+  ...
+# Subtest: whole Conflux CFG refuses invented charges/selectors/biology and partial opt-ins
+ok 245 - whole Conflux CFG refuses invented charges/selectors/biology and partial opt-ins
+  ---
+  duration_ms: 2.270958
+  ...
+# Subtest: Conflux compiler opt-in leaves other actors unresolved and preserves separate cache identity
+ok 246 - Conflux compiler opt-in leaves other actors unresolved and preserves separate cache identity
+  ---
+  duration_ms: 1.533041
+  ...
+# Subtest: source summon double-width offset and percentage rounding keep original narrow217 unchanged
+ok 247 - source summon double-width offset and percentage rounding keep original narrow217 unchanged
+  ---
+  duration_ms: 705.649375
+  ...
+# Subtest: Conflux XP requires the exact six rows, preserving independent cast/summon order without native duplication
+ok 248 - Conflux XP requires the exact six rows, preserving independent cast/summon order without native duplication
+  ---
+  duration_ms: 7.076459
+  ...
+# Subtest: source355 wall trigger remains a private clone; native Firewall and hero bonuses keep their own path
+ok 249 - source355 wall trigger remains a private clone; native Firewall and hero bonuses keep their own path
+  ---
+  duration_ms: 0.161625
+  ...
+# Subtest: Tome cache reset list matches independently reconstructed original spellflags, including combo136 only
+ok 250 - Tome cache reset list matches independently reconstructed original spellflags, including combo136 only
+  ---
+  duration_ms: 0.407458
+  ...
+# Subtest: all level resistance selectors remain obligations, never level-only immunity shortcuts
+ok 251 - all level resistance selectors remain obligations, never level-only immunity shortcuts
+  ---
+  duration_ms: 1.294375
+  ...
+# Subtest: ALIVE absent cannot silently create a native living Gargoyle
+ok 252 - ALIVE absent cannot silently create a native living Gargoyle
+  ---
+  duration_ms: 0.322041
+  ...
+# Subtest: deferred source HATE keeps exact rank percentages without creating an unported target
+ok 253 - deferred source HATE keeps exact rank percentages without creating an unported target
+  ---
+  duration_ms: 8.567666
+  ...
+# Subtest: whole Stronghold opt-in rejects unsupported actors, fields and inferred unupgraded immunity
+ok 254 - whole Stronghold opt-in rejects unsupported actors, fields and inferred unupgraded immunity
+  ---
+  duration_ms: 0.621167
+  ...
+# Subtest: source creature immunity distinguishes damage origins, primary targets and post-action cleansing
+ok 255 - source creature immunity distinguishes damage origins, primary targets and post-action cleansing
+  ---
+  duration_ms: 704.360292
+  ...
+# Subtest: retained source distinguishes Quetzalcoatl from its unupgraded Stronghold creature
+ok 256 - retained source distinguishes Quetzalcoatl from its unupgraded Stronghold creature
+  ---
+  duration_ms: 0.605917
+  ...
+# Subtest: named source244 binds existing nativekey without claiming wholeactor parity
+ok 257 - named source244 binds existing nativekey without claiming wholeactor parity
+  ---
+  duration_ms: 0.366333
+  ...
+# Subtest: same displayname cannot substitute a different roster/constant/resource identity
+ok 258 - same displayname cannot substitute a different roster/constant/resource identity
+  ---
+  duration_ms: 0.164042
+  ...
+# Subtest: XP defense fails closed without an explicit native adapter and never silently uses the legacy formula
+ok 259 - XP defense fails closed without an explicit native adapter and never silently uses the legacy formula
+  ---
+  duration_ms: 2.042958
+  ...
+# Subtest: audited XP b emits dedicated rational defense reduction and rejects unqualified actors or duplicate rows
+ok 260 - audited XP b emits dedicated rational defense reduction and rejects unqualified actors or duplicate rows
+  ---
+  duration_ms: 0.716083
+  ...
+# Subtest: source ff grants zero fear ceiling at exact enabled ranks, including boolean2 off
+ok 261 - source ff grants zero fear ceiling at exact enabled ranks, including boolean2 off
+  ---
+  duration_ms: 1.218583
+  ...
+# Subtest: source ff intrinsic rank zero retains the same absolute immunity contract
+ok 262 - source ff intrinsic rank zero retains the same absolute immunity contract
+  ---
+  duration_ms: 0.133125
+  ...
+# Subtest: Crystal XP regeneration and full block require exact source actors, rows and explicit contracts
+ok 263 - Crystal XP regeneration and full block require exact source actors, rows and explicit contracts
+  ---
+  duration_ms: 3.900875
+  ...
+# Subtest: Crystal native policy rejects altered chance/rank tables and unreviewed actors
+ok 264 - Crystal native policy rejects altered chance/rank tables and unreviewed actors
+  ---
+  duration_ms: 0.579041
+  ...
+# Subtest: Native source chance boundaries heal only living first-creature damage and full block never partly reduces damage
+ok 265 - Native source chance boundaries heal only living first-creature damage and full block never partly reduces damage
+  ---
+  duration_ms: 654.647417
+  ...
+# Subtest: Five source stages retain paid upgrade chain, source Ruby stats and maximum daily crystal income
+ok 266 - Five source stages retain paid upgrade chain, source Ruby stats and maximum daily crystal income
+  ---
+  duration_ms: 6.701833
+  ...
+# Subtest: Source full-block animation85 uses the original WoG DEF without an invented audio replacement
+ok 267 - Source full-block animation85 uses the original WoG DEF without an invented audio replacement
+  ---
+  duration_ms: 3.518
+  ...
+# Subtest: Emerald and Sapphire reuse exact optional-provider melee Burst43 source assignments
+ok 268 - Emerald and Sapphire reuse exact optional-provider melee Burst43 source assignments
+  ---
+  duration_ms: 1.663833
+  ...
+# Subtest: CFG DeathBlow requires explicit actor/profile/CRT operation binding, not a permissive callback
+ok 269 - CFG DeathBlow requires explicit actor/profile/CRT operation binding, not a permissive callback
+  ---
+  duration_ms: 1.553833
+  ...
+# Subtest: XP DeathBlow preserves exact319 R0/R10 and361ranks, and returns required runtime enrollment
+ok 270 - XP DeathBlow preserves exact319 R0/R10 and361ranks, and returns required runtime enrollment
+  ---
+  duration_ms: 3.088541
+  ...
+# Subtest: source mode2 preserves target49/217 and one50HP-per-current-creature cast, without claiming XP closure
+ok 271 - source mode2 preserves target49/217 and one50HP-per-current-creature cast, without claiming XP closure # SKIP
+  ---
+  duration_ms: 0.599
+  ...
+# Subtest: original Eye275 retains both daily pairs and exact damage endpoint
+ok 272 - original Eye275 retains both daily pairs and exact damage endpoint
+  ---
+  duration_ms: 1.434958
+  ...
+# Subtest: original Eye276 retains both daily pairs and exact damage endpoint
+ok 273 - original Eye276 retains both daily pairs and exact damage endpoint
+  ---
+  duration_ms: 0.896292
+  ...
+# Subtest: actual shipped Eye CFGs match both complete reviewed source texts
+ok 274 - actual shipped Eye CFGs match both complete reviewed source texts # SKIP
+  ---
+  duration_ms: 0.093958
+  ...
+# Subtest: all actual native evolution controls pass; missing controls fail closed
+ok 275 - all actual native evolution controls pass; missing controls fail closed
+  ---
+  duration_ms: 20.830417
+  ...
+# Subtest: owner reset, town evolution, lost banner and changed Emerald order are rejected
+ok 276 - owner reset, town evolution, lost banner and changed Emerald order are rejected
+  ---
+  duration_ms: 9.109125
+  ...
+# Subtest: production registration must be explicit for every source actor
+ok 277 - production registration must be explicit for every source actor
+  ---
+  duration_ms: 0.25175
+  ...
+# Subtest: daily evolution requires all five actual contracts and explicit Reborn mode
+ok 278 - daily evolution requires all five actual contracts and explicit Reborn mode
+  ---
+  duration_ms: 1.557458
+  ...
+# Subtest: native source rank boundary, exact pairs and Reborn suppression under UBSan
+ok 279 - native source rank boundary, exact pairs and Reborn suppression under UBSan
+  ---
+  duration_ms: 616.669625
+  ...
+# Subtest: source Slow selector preserves c54 chance, exclusions, Orb and draw order
+ok 280 - source Slow selector preserves c54 chance, exclusions, Orb and draw order
+  ---
+  duration_ms: 606.275583
+  ...
+# Subtest: source chain uses ordered accuracy, truncated pixel distance, halving and friendly termination
+ok 281 - source chain uses ordered accuracy, truncated pixel distance, halving and friendly termination
+  ---
+  duration_ms: 441.758167
+  ...
+# Subtest: Dungeon opt-in binds scoped CFG and guards altered original fields
+ok 282 - Dungeon opt-in binds scoped CFG and guards altered original fields
+  ---
+  duration_ms: 28.153791
+  ...
+# Subtest: original DEF crop geometry is bounded and participates in pixel nearest selection
+ok 283 - original DEF crop geometry is bounded and participates in pixel nearest selection
+  ---
+  duration_ms: 419.202875
+  ...
+# Subtest: source eighth recruitment uses town variants and native150/151 without altering the seven existing tiers
+ok 284 - source eighth recruitment uses town variants and native150/151 without altering the seven existing tiers
+  ---
+  duration_ms: 1.953208
+  ...
+# Subtest: atomic source option rejects incomplete actors, missing original icons and ambiguous rosters
+ok 285 - atomic source option rejects incomplete actors, missing original icons and ambiguous rosters
+  ---
+  duration_ms: 1.178792
+  ...
+# Subtest: source inanimate nature keeps morale and mental flags independent and preserves the prior contract
+ok 286 - source inanimate nature keeps morale and mental flags independent and preserves the prior contract
+  ---
+  duration_ms: 4.691292
+  ...
+# Subtest: real original town rosters preserve the Fortress354 recruitment upgrade despite353 CFG self-upgrade
+ok 287 - real original town rosters preserve the Fortress354 recruitment upgrade despite353 CFG self-upgrade # SKIP
+  ---
+  duration_ms: 0.050667
+  ...
+# Subtest: old seven-tier stocks preserve all amounts/alternatives and the independent Dungeon Portal, once only
+ok 288 - old seven-tier stocks preserve all amounts/alternatives and the independent Dungeon Portal, once only
+  ---
+  duration_ms: 588.104208
+  ...
+# Subtest: source inverted ranges keep LOW, Bless HIGH, Curse LOW-minus-expert; UBSan
+ok 289 - source inverted ranges keep LOW, Bless HIGH, Curse LOW-minus-expert; UBSan
+  ---
+  duration_ms: 579.773208
+  ...
+# Subtest: all six source Eyes have the exact independently added endpoints
+ok 290 - all six source Eyes have the exact independently added endpoints # SKIP
+  ---
+  duration_ms: 0.177209
+  ...
+# Subtest: only source g rows carry explicit metadata, including an observable rank-zero g0
+ok 291 - only source g rows carry explicit metadata, including an observable rank-zero g0
+  ---
+  duration_ms: 1.936125
+  ...
+# Subtest: source F32 store and integer truncation precede protection, with defined saturation at Win32 overflow
+ok 292 - source F32 store and integer truncation precede protection, with defined saturation at Win32 overflow
+  ---
+  duration_ms: 530.823792
+  ...
+# Subtest: six actual daily pair/banners/owner controls and physical Goonk52 satisfy activation prerequisite
+ok 293 - six actual daily pair/banners/owner controls and physical Goonk52 satisfy activation prerequisite
+  ---
+  duration_ms: 1.376417
+  ...
+# Subtest: incomplete pairs, lost XP/banner and missing owner isolation cannot pass
+ok 294 - incomplete pairs, lost XP/banner and missing owner isolation cannot pass
+  ---
+  duration_ms: 7.646542
+  ...
+# Subtest: historical b93 daily proof cannot substitute for full future158 range validation
+ok 295 - historical b93 daily proof cannot substitute for full future158 range validation
+  ---
+  duration_ms: 1.485917
+  ...
+# Subtest: eight actual158 source/scope cases pass independent activation validation
+ok 296 - eight actual158 source/scope cases pass independent activation validation
+  ---
+  duration_ms: 0.401167
+  ...
+# Subtest: pre-correction swapped Bless, changed ordinary scope and invented caster are rejected
+ok 297 - pre-correction swapped Bless, changed ordinary scope and invented caster are rejected
+  ---
+  duration_ms: 32.63875
+  ...
+# Subtest: source343 needs exact whole CFG, with separate random exclusion and no258 absorption or debuff immunities
+ok 298 - source343 needs exact whole CFG, with separate random exclusion and no258 absorption or debuff immunities
+  ---
+  duration_ms: 1.903584
+  ...
+# Subtest: installed original343 CFG matches reviewed whole contract
+ok 299 - installed original343 CFG matches reviewed whole contract # SKIP
+  ---
+  duration_ms: 0.04975
+  ...
+# Subtest: BloodDragon threshold is inclusive and leaves other profile fields intact
+ok 300 - BloodDragon threshold is inclusive and leaves other profile fields intact
+  ---
+  duration_ms: 0.480125
+  ...
+# Subtest: final inited hook supersedes supreme dragon exception
+ok 301 - final inited hook supersedes supreme dragon exception
+  ---
+  duration_ms: 0.063833
+  ...
+# Subtest: dragonling exceptions apply below FightValue threshold
+ok 302 - dragonling exceptions apply below FightValue threshold
+  ---
+  duration_ms: 0.042542
+  ...
+# Subtest: M500 applies source-exact binary32 500/1000 to all three explicit IDs
+ok 303 - M500 applies source-exact binary32 500/1000 to all three explicit IDs
+  ---
+  duration_ms: 0.053667
+  ...
+# Subtest: all optional pre-hook FightValue multipliers stay below the boundary
+ok 304 - all optional pre-hook FightValue multipliers stay below the boundary
+  ---
+  duration_ms: 0.366875
+  ...
+# Subtest: whole353/354 source contract keeps distinct inanimate nature, fear and two counters without generic unblock
+ok 305 - whole353/354 source contract keeps distinct inanimate nature, fear and two counters without generic unblock
+  ---
+  duration_ms: 1.714042
+  ...
+# Subtest: queued poison accepts only exact own353/354 rank laws; R10Leviathan95 differs from Serpent50
+ok 306 - queued poison accepts only exact own353/354 rank laws; R10Leviathan95 differs from Serpent50
+  ---
+  duration_ms: 0.808083
+  ...
+# Subtest: generic source71 query stays Boolean per original army and never aliases its naval parent136
+ok 307 - generic source71 query stays Boolean per original army and never aliases its naval parent136
+  ---
+  duration_ms: 436.77
+  ...
+# Subtest: Golem original partial physical block keeps the fixed50%strength separate from rank chance
+ok 308 - Golem original partial physical block keeps the fixed50%strength separate from rank chance
+  ---
+  duration_ms: 1.784208
+  ...
+# Subtest: source Golem nature retains its explicit mind/morale flags without introducing a broad native category
+ok 309 - source Golem nature retains its explicit mind/morale flags without introducing a broad native category
+  ---
+  duration_ms: 0.711958
+  ...
+# Subtest: real original Dragon Golem preemptive strike is specific to280
+ok 310 - real original Dragon Golem preemptive strike is specific to280 # SKIP
+  ---
+  duration_ms: 0.038542
+  ...
+# Subtest: 212 extracted stats, assets and XP rows
+ok 311 - 212 extracted stats, assets and XP rows # SKIP
+  ---
+  duration_ms: 0.348292
+  ...
+# Subtest: p57 strict contract requires source profile and exact212 row
+ok 312 - p57 strict contract requires source profile and exact212 row
+  ---
+  duration_ms: 1.245
+  ...
+# Subtest: Fangarm behavior follows data100 at every rank, not obsolete3% comment
+ok 313 - Fangarm behavior follows data100 at every rank, not obsolete3% comment
+  ---
+  duration_ms: 0.66225
+  ...
+# Subtest: Horn count obeys original stack cap, living/body gates, signed32 product and side limit
+ok 314 - Horn count obeys original stack cap, living/body gates, signed32 product and side limit
+  ---
+  duration_ms: 0.167833
+  ...
+# Subtest: Postbattle gain counts every Fangarm positive delta, and chooses existing stack before an empty slot
+ok 315 - Postbattle gain counts every Fangarm positive delta, and chooses existing stack before an empty slot
+  ---
+  duration_ms: 0.096083
+  ...
+# Subtest: 259 remains unbound until the initialized-stack gate is explicitly supplied
+ok 316 - 259 remains unbound until the initialized-stack gate is explicitly supplied
+  ---
+  duration_ms: 0.960917
+  ...
+# Subtest: source ranged resistance truncates float32 input before the downstream partial block
+ok 317 - source ranged resistance truncates float32 input before the downstream partial block
+  ---
+  duration_ms: 0.585125
+  ...
+# Subtest: original Inferno contracts remain incomplete until native arithmetic and demon summoning are validated
+ok 318 - original Inferno contracts remain incomplete until native arithmetic and demon summoning are validated # SKIP
+  ---
+  duration_ms: 0.191833
+  ...
+# Subtest: native fixed source30 arithmetic matches signed-int source probes without accepting other actors
+ok 319 - native fixed source30 arithmetic matches signed-int source probes without accepting other actors
+  ---
+  duration_ms: 189.214209
+  ...
+# Subtest: Only original269/27010percent and27125percent cached battle contracts are accepted
+ok 320 - Only original269/27010percent and27125percent cached battle contracts are accepted
+  ---
+  duration_ms: 0.717625
+  ...
+# Subtest: Only artifact253 may bind source mass Hypnotize with explicit50 duration
+ok 321 - Only artifact253 may bind source mass Hypnotize with explicit50 duration
+  ---
+  duration_ms: 1.3035
+  ...
+# Subtest: Mithril construct membership requires exact reviewed actor and retains independent source biology
+ok 322 - Mithril construct membership requires exact reviewed actor and retains independent source biology
+  ---
+  duration_ms: 2.878667
+  ...
+# Subtest: Repair selects friendly constructs with whole-creature losses, including corpses; injury alone is insufficient
+ok 323 - Repair selects friendly constructs with whole-creature losses, including corpses; injury alone is insufficient
+  ---
+  duration_ms: 323.46
+  ...
+# Subtest: explicit living/undead/nonliving categories preserve source mind and morale constraints
+ok 324 - explicit living/undead/nonliving categories preserve source mind and morale constraints
+  ---
+  duration_ms: 1.74975
+  ...
+# Subtest: strict default and unknown optin cannot silently admit flags
+ok 325 - strict default and unknown optin cannot silently admit flags
+  ---
+  duration_ms: 0.280458
+  ...
+# Subtest: nonliving without mind or without noMorale stays an obligation
+ok 326 - nonliving without mind or without noMorale stays an obligation
+  ---
+  duration_ms: 0.364333
+  ...
+# Subtest: contradictory ALIVE plus UNDEAD is rejected explicitly
+ok 327 - contradictory ALIVE plus UNDEAD is rejected explicitly
+  ---
+  duration_ms: 0.262834
+  ...
+# Subtest: native biology does not discharge siege or other residual flag behavior
+ok 328 - native biology does not discharge siege or other residual flag behavior
+  ---
+  duration_ms: 0.455917
+  ...
+# Subtest: review candidates preserve exact source shots and all final Archer profiles; assets match hashes
+ok 329 - review candidates preserve exact source shots and all final Archer profiles; assets match hashes # SKIP
+  ---
+  duration_ms: 0.272583
+  ...
+# Subtest: fixedpoint removes transitive partial chains but keeps complete cycles atomically
+ok 330 - fixedpoint removes transitive partial chains but keeps complete cycles atomically
+  ---
+  duration_ms: 0.828
+  ...
+# Subtest: registered targets discharge dependencies without duplicated identity
+ok 331 - registered targets discharge dependencies without duplicated identity
+  ---
+  duration_ms: 0.208042
+  ...
+# Subtest: changed source pin aborts rather than importing altered data
+ok 332 - changed source pin aborts rather than importing altered data
+  ---
+  duration_ms: 0.060792
+  ...
+# Subtest: source native flags distinguish living,undead,and nonliving without inferred mind/morale
+ok 333 - source native flags distinguish living,undead,and nonliving without inferred mind/morale
+  ---
+  duration_ms: 8.954334
+  ...
+# Subtest: exact source flyer/shooter and retaliation masks are retained
+ok 334 - exact source flyer/shooter and retaliation masks are retained
+  ---
+  duration_ms: 0.068042
+  ...
+# Subtest: symbolic/numeric depth-zero upgrade assignments override cfg and earlier values
+ok 335 - symbolic/numeric depth-zero upgrade assignments override cfg and earlier values
+  ---
+  duration_ms: 0.646917
+  ...
+# Subtest: unresolved aliases and missing function boundaries stay explicit
+ok 336 - unresolved aliases and missing function boundaries stay explicit
+  ---
+  duration_ms: 0.240166
+  ...
+# Subtest: doubleattack XP cannot duplicate an intrinsic flag even after sentinel2
+ok 337 - doubleattack XP cannot duplicate an intrinsic flag even after sentinel2
+  ---
+  duration_ms: 0.415042
+  ...
+# Subtest: XP cannot clear immutable native mind/flying/nature flags
+ok 338 - XP cannot clear immutable native mind/flying/nature flags
+  ---
+  duration_ms: 0.077333
+  ...
+# Subtest: new monotonic flags with no conflicting intrinsic source state remain representable
+ok 339 - new monotonic flags with no conflicting intrinsic source state remain representable
+  ---
+  duration_ms: 0.246458
+  ...
+# Subtest: neutral dependencies admit only exact proven CFG and source rows
+ok 340 - neutral dependencies admit only exact proven CFG and source rows
+  ---
+  duration_ms: 2.660709
+  ...
+# Subtest: Demilich periodic summons follow original float32, rank-zero and round2+4n
+ok 341 - Demilich periodic summons follow original float32, rank-zero and round2+4n
+  ---
+  duration_ms: 370.262458
+  ...
+# Subtest: source FIRE flag uses native tagged fire-school identity, never legacy numeric subtype
+ok 342 - source FIRE flag uses native tagged fire-school identity, never legacy numeric subtype
+  ---
+  duration_ms: 14.605041
+  ...
+# Subtest: An incomplete native review cannot activate or partially write the Ring
+ok 343 - An incomplete native review cannot activate or partially write the Ring
+  ---
+  duration_ms: 64.465584
+  ...
+# Subtest: Installed Ring uses the complete tested definition and the pinned original assets
+ok 344 - Installed Ring uses the complete tested definition and the pinned original assets
+  ---
+  duration_ms: 2.973459
+  ...
+# Subtest: Emerald ordering uses equipment then explicit cfg index and rejects ambiguous input
+ok 345 - Emerald ordering uses equipment then explicit cfg index and rejects ambiguous input
+  ---
+  duration_ms: 599.592875
+  ...
+# Subtest: Opening summons require an explicit native binding and preserve source order/power
+ok 346 - Opening summons require an explicit native binding and preserve source order/power
+  ---
+  duration_ms: 1.416583
+  ...
+# Subtest: Artifact runtime merges summoning and conversion services without accepting unknown keys
+ok 347 - Artifact runtime merges summoning and conversion services without accepting unknown keys
+  ---
+  duration_ms: 0.629875
+  ...
+# Subtest: Named source artifact services cannot be reassigned or silently weakened
+ok 348 - Named source artifact services cannot be reassigned or silently weakened
+  ---
+  duration_ms: 0.264042
+  ...
+# Subtest: Mine opening has a separate fixed50 expert binding without enabling targeted Hypnotize
+ok 349 - Mine opening has a separate fixed50 expert binding without enabling targeted Hypnotize
+  ---
+  duration_ms: 0.151625
+  ...
+# Subtest: 238 keeps all four source protections and requires its separate MR0 binding
+ok 350 - 238 keeps all four source protections and requires its separate MR0 binding
+  ---
+  duration_ms: 1.376958
+  ...
+# Subtest: Original134 requires all eight genuine paired native casting controls, including chain RNG and five-times-count power
+ok 351 - Original134 requires all eight genuine paired native casting controls, including chain RNG and five-times-count power
+  ---
+  duration_ms: 4.233334
+  ...
+# Subtest: Original157 retains the existing identity and Defense2, removes only the alternate damage bonus
+ok 352 - Original157 retains the existing identity and Defense2, removes only the alternate damage bonus
+  ---
+  duration_ms: 2.124959
+  ...
+# Subtest: sourcefloat>0 differs from integerrollchance for realDwarf/Thorgrim39/Unicorn inputs
+ok 353 - sourcefloat>0 differs from integerrollchance for realDwarf/Thorgrim39/Unicorn inputs
+  ---
+  duration_ms: 346.223292
+  ...
+# Subtest: Primal source CFG closes only as a whole actor258 contract with exact weighted pool and finite debuff list
+ok 354 - Primal source CFG closes only as a whole actor258 contract with exact weighted pool and finite debuff list
+  ---
+  duration_ms: 2.159792
+  ...
+# Subtest: Primal B= requires exact own row and a distinct contract; old crystal contract never silently admits258
+ok 355 - Primal B= requires exact own row and a distinct contract; old crystal contract never silently admits258
+  ---
+  duration_ms: 5.144334
+  ...
+# Subtest: Quarter signed spell damage matches original arithmetic shifts without signed overflow
+ok 356 - Quarter signed spell damage matches original arithmetic shifts without signed overflow
+  ---
+  duration_ms: 206.564916
+  ...
+# Subtest: 347 original slot counters preserve morale, action gates and slot reuse
+ok 357 - 347 original slot counters preserve morale, action gates and slot reuse
+  ---
+  duration_ms: 452.380584
+  ...
+# Subtest: 346 source shield uses weaker spell override and REAL4 input before truncation
+ok 358 - 346 source shield uses weaker spell override and REAL4 input before truncation
+  ---
+  duration_ms: 350.297375
+  ...
+# Subtest: whole346 rejects unreviewed CFG/XP and composes source own/default rows once
+ok 359 - whole346 rejects unreviewed CFG/XP and composes source own/default rows once # SKIP
+  ---
+  duration_ms: 0.282
+  ...
+# Subtest: whole347 rejects unreviewed CFG/XP and composes source own/default rows once
+ok 360 - whole347 rejects unreviewed CFG/XP and composes source own/default rows once # SKIP
+  ---
+  duration_ms: 0.090083
+  ...
+# Subtest: 347 typed initialDEFENDING state is value-neutral and does not change turn exhaustion
+ok 361 - 347 typed initialDEFENDING state is value-neutral and does not change turn exhaustion
+  ---
+  duration_ms: 435.741208
+  ...
+# Subtest: import CLI rejects missing arguments before accessing data
+ok 362 - import CLI rejects missing arguments before accessing data
+  ---
+  duration_ms: 163.732542
+  ...
+# Subtest: review imports cannot write inside the source project
+ok 363 - review imports cannot write inside the source project # SKIP
+  ---
+  duration_ms: 0.06
+  ...
+# Subtest: Gem207 exact source stats, all ten XP rows, signed L200 and quarantine
+ok 364 - Gem207 exact source stats, all ten XP rows, signed L200 and quarantine # SKIP
+  ---
+  duration_ms: 0.041083
+  ...
+# Subtest: Chasm231 all seven XP source rows include exact queued c78 contract
+ok 365 - Chasm231 all seven XP source rows include exact queued c78 contract # SKIP
+  ---
+  duration_ms: 0.033333
+  ...
+# Subtest: portraits and original building77 icons preserve source RGBA and ID+2
+ok 366 - portraits and original building77 icons preserve source RGBA and ID+2 # SKIP
+  ---
+  duration_ms: 0.096667
+  ...
+# Subtest: all eighteen WAV files equal original SND bytes
+ok 367 - all eighteen WAV files equal original SND bytes # SKIP
+  ---
+  duration_ms: 0.03
+  ...
+# Subtest: all reviewed creature definitions validate against native schema
+ok 368 - all reviewed creature definitions validate against native schema # SKIP
+  ---
+  duration_ms: 0.080084
+  ...
+# Subtest: Nightmare245 accounts for all nine source XP rows without inventing immunity or default attacks
+ok 369 - Nightmare245 accounts for all nine source XP rows without inventing immunity or default attacks # SKIP
+  ---
+  duration_ms: 0.028625
+  ...
+# Subtest: Explicit source option guards compile all nine roster removals without changing the baseline
+ok 370 - Explicit source option guards compile all nine roster removals without changing the baseline
+  ---
+  duration_ms: 0.710625
+  ...
+# Subtest: Disabled eighth-roster branch never activates unresolved source actors
+ok 371 - Disabled eighth-roster branch never activates unresolved source actors
+  ---
+  duration_ms: 0.428541
+  ...
+# Subtest: Conditional compiler rejects unknown events, options, memory writes and incomplete town sets
+ok 372 - Conditional compiler rejects unknown events, options, memory writes and incomplete town sets
+  ---
+  duration_ms: 0.111209
+  ...
+# Subtest: source Pit Master round2 count rounding and ordered forward positions retain parity/edge rules
+ok 373 - source Pit Master round2 count rounding and ordered forward positions retain parity/edge rules
+  ---
+  duration_ms: 337.0935
+  ...
+# Subtest: source u217 operation is admitted only for exact ranks, canonical identity and explicit contract
+ok 374 - source u217 operation is admitted only for exact ranks, canonical identity and explicit contract
+  ---
+  duration_ms: 1.299125
+  ...
+# Subtest: Rust Dragonling maps only source queued80, independently of acid damage ATT_DISRUPT
+ok 375 - Rust Dragonling maps only source queued80, independently of acid damage ATT_DISRUPT
+  ---
+  duration_ms: 1.425917
+  ...
+# Subtest: original344 CFG matches exact source contract
+ok 376 - original344 CFG matches exact source contract # SKIP
+  ---
+  duration_ms: 0.122084
+  ...
+# Subtest: Seminarium keeps four coherent source waves and original fourth-state fallback
+ok 377 - Seminarium keeps four coherent source waves and original fourth-state fallback
+  ---
+  duration_ms: 1.296375
+  ...
+# Subtest: Source267 preserves its22 exact spell immunities, not a bilateral level cap
+ok 378 - Source267 preserves its22 exact spell immunities, not a bilateral level cap
+  ---
+  duration_ms: 1.514833
+  ...
+# Subtest: source specialty levels bind Azure/commanders independently of native levels and preserve unknown Goonks
+ok 379 - source specialty levels bind Azure/commanders independently of native levels and preserve unknown Goonks
+  ---
+  duration_ms: 331.914916
+  ...
+# Subtest: bounded catalog records every observed initialization and excludes unobserved source levels
+ok 380 - bounded catalog records every observed initialization and excludes unobserved source levels
+  ---
+  duration_ms: 1.059542
+  ...
+# Subtest: Amethyst current-manager creature power supersedes intermediate3 with exact kind/exception/CFG rules
+ok 381 - Amethyst current-manager creature power supersedes intermediate3 with exact kind/exception/CFG rules
+  ---
+  duration_ms: 198.580292
+  ...
+# Subtest: source DEFEND stores signed/truncated/max1 4DC, remains fixed through later buff changes, tactics/siege zero
+ok 382 - source DEFEND stores signed/truncated/max1 4DC, remains fixed through later buff changes, tactics/siege zero
+  ---
+  duration_ms: 334.825708
+  ...
+# Subtest: fresh defaults retain common health and exact ERA tier, not a guessed native-level inverse
+ok 383 - fresh defaults retain common health and exact ERA tier, not a guessed native-level inverse
+  ---
+  duration_ms: 2.75025
+  ...
+# Subtest: existing definitions, unknown tiers/contracts and changed installed defaults fail closed
+ok 384 - existing definitions, unknown tiers/contracts and changed installed defaults fail closed
+  ---
+  duration_ms: 0.368167
+  ...
+# Subtest: own numeric rows replace defaults by type, including an explicit zero-health row
+ok 385 - own numeric rows replace defaults by type, including an explicit zero-health row
+  ---
+  duration_ms: 0.461292
+  ...
+# Subtest: health fallback remains an explicit obligation until the native rounding adapter is selected
+ok 386 - health fallback remains an explicit obligation until the native rounding adapter is selected
+  ---
+  duration_ms: 0.162916
+  ...
+# Subtest: own H replaces common H and must use the source rounding type exactly once
+ok 387 - own H replaces common H and must use the source rounding type exactly once
+  ---
+  duration_ms: 0.281583
+  ...
+# Subtest: 37 reviewed rows are complete, source-pinned and remain disabled
+ok 388 - 37 reviewed rows are complete, source-pinned and remain disabled
+  ---
+  duration_ms: 2.295458
+  ...
+# Subtest: changed source chance, line, identity, duplicate or archive cannot enter ledger
+ok 389 - changed source chance, line, identity, duplicate or archive cannot enter ledger
+  ---
+  duration_ms: 0.726875
+  ...
+# Subtest: separate code phases, mastery and source power exceptions
+ok 390 - separate code phases, mastery and source power exceptions
+  ---
+  duration_ms: 0.109583
+  ...
+# Subtest: original14-slot group order preserves duplicates, never sorts by spell ID
+ok 391 - original14-slot group order preserves duplicates, never sorts by spell ID
+  ---
+  duration_ms: 0.419917
+  ...
+# Subtest: activation, false slot provenance, semantic and missing row tampering rejected
+ok 392 - activation, false slot provenance, semantic and missing row tampering rejected
+  ---
+  duration_ms: 4.372791
+  ...
+# Subtest: migration is proposal-only, preserves source owners, excludes innate and non-exact copies
+ok 393 - migration is proposal-only, preserves source owners, excludes innate and non-exact copies
+  ---
+  duration_ms: 4.994125
+  ...
+# Subtest: 66 admitted identities form nine seven-stack groups plus finalthree
+ok 394 - 66 admitted identities form nine seven-stack groups plus finalthree
+  ---
+  duration_ms: 1.18925
+  ...
+# Subtest: held or duplicate source identities cannot enter fixture
+ok 395 - held or duplicate source identities cannot enter fixture
+  ---
+  duration_ms: 5.942792
+  ...
+# Subtest: compares all visible primitives, resourceorder and additionalcosts
+ok 396 - compares all visible primitives, resourceorder and additionalcosts
+  ---
+  duration_ms: 0.254416
+  ...
+# Subtest: held baseline batches8 separately and never marks a stat patch
+ok 397 - held baseline batches8 separately and never marks a stat patch
+  ---
+  duration_ms: 0.81025
+  ...
+# Subtest: required snapshot rejects missing four fields; explicit legacy reports them unobserved
+ok 398 - required snapshot rejects missing four fields; explicit legacy reports them unobserved
+  ---
+  duration_ms: 0.189416
+  ...
+# Subtest: extended four fields compare exactsource values, including zero shots
+ok 399 - extended four fields compare exactsource values, including zero shots
+  ---
+  duration_ms: 0.147667
+  ...
+# Subtest: emits only changed primitive fields and retains source zero/one level evidence
+ok 400 - emits only changed primitive fields and retains source zero/one level evidence
+  ---
+  duration_ms: 0.663125
+  ...
+# Subtest: holds all intrinsic stat modifiers and semantic tier mismatches
+ok 401 - holds all intrinsic stat modifiers and semantic tier mismatches
+  ---
+  duration_ms: 0.099542
+  ...
+# Subtest: refuses unknown fields, malformed numbers and duplicate identities
+ok 402 - refuses unknown fields, malformed numbers and duplicate identities
+  ---
+  duration_ms: 0.645625
+  ...
+# Subtest: unchanged identities produce no patch and false differences fail
+ok 403 - unchanged identities produce no patch and false differences fail
+  ---
+  duration_ms: 0.086959
+  ...
+# Subtest: review dataset contains disabled stat-only overlay with held cases excluded
+ok 404 - review dataset contains disabled stat-only overlay with held cases excluded # SKIP
+  ---
+  duration_ms: 0.04225
+  ...
+# Subtest: spell catalogues keep the source0..69 boundary despite multiline prose
+ok 405 - spell catalogues keep the source0..69 boundary despite multiline prose
+  ---
+  duration_ms: 1.125375
+  ...
+# Subtest: missing descriptor or reordered source identity cannot produce a shifted catalogue
+ok 406 - missing descriptor or reordered source identity cannot produce a shifted catalogue
+  ---
+  duration_ms: 1.097541
+  ...
+# Subtest: the shipped original table retains the correct level catalogue and creature-spell boundary
+ok 407 - the shipped original table retains the correct level catalogue and creature-spell boundary
+  ---
+  duration_ms: 1.738125
+  ...
+# Subtest: Spring Spirit preserves dormant source fields instead of inventing Hypnotize/Shield casts
+ok 408 - Spring Spirit preserves dormant source fields instead of inventing Hypnotize/Shield casts
+  ---
+  duration_ms: 1.214833
+  ...
+# Subtest: Spring Spirit XP retains massCure37 and fixed25% partialdeflection with separate rank strengths
+ok 409 - Spring Spirit XP retains massCure37 and fixed25% partialdeflection with separate rank strengths
+  ---
+  duration_ms: 0.910917
+  ...
+# Subtest: native source radius1 retains pixel distance boundary rather than graph adjacency
+ok 410 - native source radius1 retains pixel distance boundary rather than graph adjacency
+  ---
+  duration_ms: 192.344875
+  ...
+# Subtest: original350 file matches the reviewed shipped service contract
+ok 411 - original350 file matches the reviewed shipped service contract # SKIP
+  ---
+  duration_ms: 0.090375
+  ...
+# Subtest: Stored primary adjustments bind only original264/265 exact contracts
+ok 412 - Stored primary adjustments bind only original264/265 exact contracts
+  ---
+  duration_ms: 0.577125
+  ...
+# Subtest: source339 toxic list, guaranteed Acid19 and3/101 paralysis use exact independent predicates
+ok 413 - source339 toxic list, guaranteed Acid19 and3/101 paralysis use exact independent predicates
+  ---
+  duration_ms: 319.4775
+  ...
+# Subtest: whole339 compiler consumes only exact CFG and leaves Age outside Toxic15
+ok 414 - whole339 compiler consumes only exact CFG and leaves Age outside Toxic15
+  ---
+  duration_ms: 1.82075
+  ...
+# Subtest: 339 XP irregular r50 requires explicit scoped contract and rejects changed ranks
+ok 415 - 339 XP irregular r50 requires explicit scoped contract and rejects changed ranks
+  ---
+  duration_ms: 2.733042
+  ...
+# Subtest: original four Templars preserve current-count power and advanced casting
+ok 416 - original four Templars preserve current-count power and advanced casting
+  ---
+  duration_ms: 1.93375
+  ...
+# Subtest: positive source morale is a lower bound, not maximum morale or an additivebonus
+ok 417 - positive source morale is a lower bound, not maximum morale or an additivebonus
+  ---
+  duration_ms: 0.482541
+  ...
+# Subtest: new source beforeattack damage spells require exact actor, spell, ranks and opt-in
+ok 418 - new source beforeattack damage spells require exact actor, spell, ranks and opt-in
+  ---
+  duration_ms: 1.181666
+  ...
+# Subtest: real original caster files retain the reviewed modes
+ok 419 - real original caster files retain the reviewed modes # SKIP
+  ---
+  duration_ms: 0.041125
+  ...
+# Subtest: Werewolf source regeneration and deflection keep chance separate from rank strength
+ok 420 - Werewolf source regeneration and deflection keep chance separate from rank strength
+  ---
+  duration_ms: 0.905708
+  ...
+# Subtest: all63 source costs preserve original vector order and only emit cost replacements
+ok 421 - all63 source costs preserve original vector order and only emit cost replacements
+  ---
+  duration_ms: 2.478209
+  ...
+# Subtest: full zero dictionary removes stale resource components after recursive JSON merge
+ok 422 - full zero dictionary removes stale resource components after recursive JSON merge
+  ---
+  duration_ms: 0.168375
+  ...
+# Subtest: parser rejects duplicate and commented or noncanonical substrings interpreted by original strstr
+ok 423 - parser rejects duplicate and commented or noncanonical substrings interpreted by original strstr
+  ---
+  duration_ms: 0.207833
+  ...
+# Subtest: parser rejects truncated or eighth-resource records rather than guessing plugin defaults
+ok 424 - parser rejects truncated or eighth-resource records rather than guessing plugin defaults
+  ---
+  duration_ms: 0.068833
+  ...
+# Subtest: parser enforces exact nonnegative signed32-bit integer costs
+ok 425 - parser enforces exact nonnegative signed32-bit integer costs
+  ---
+  duration_ms: 0.245667
+  ...
+# Subtest: source/native IDs and town identities cannot be confused with other upgrade tiers
+ok 426 - source/native IDs and town identities cannot be confused with other upgrade tiers
+  ---
+  duration_ms: 0.659042
+  ...
+# Subtest: whole-town preparation is atomic, reproducible and does not register or modify project files
+ok 427 - whole-town preparation is atomic, reproducible and does not register or modify project files
+  ---
+  duration_ms: 16.448792
+  ...
+# Subtest: optional current original sources compile all63 against registered production factions
+ok 428 - optional current original sources compile all63 against registered production factions # SKIP
+  ---
+  duration_ms: 0.049375
+  ...
+# Subtest: nine portable maps leave all63 target upgrades unbuilt and fund purchases through a normal map event
+ok 429 - nine portable maps leave all63 target upgrades unbuilt and fund purchases through a normal map event
+  ---
+  duration_ms: 305.465083
+  ...
+# Subtest: native purchase order respects a blocked lower tier and never retries a completed target
+ok 430 - native purchase order respects a blocked lower tier and never retries a completed target
+  ---
+  duration_ms: 3.545625
+  ...
+# Subtest: Original260 binds only the complete human/AI split, not a generic inherited movement aura
+ok 431 - Original260 binds only the complete human/AI split, not a generic inherited movement aura
+  ---
+  duration_ms: 1.024833
+  ...
+# Subtest: Every audited town evolution uses its own high-resolution portrait
+ok 432 - Every audited town evolution uses its own high-resolution portrait
+  ---
+  duration_ms: 23.223083
+  ...
+# Subtest: The calendar follows native seven-day weeks and four-week months at every boundary
+ok 433 - The calendar follows native seven-day weeks and four-week months at every boundary
+  ---
+  duration_ms: 0.608417
+  ...
+# Subtest: No game date is invented for menus or incomplete snapshots
+ok 434 - No game date is invented for menus or incomplete snapshots
+  ---
+  duration_ms: 0.070875
+  ...
+# Subtest: Startup batches cached assets while saves, settings and failed entries use the normal reader
+ok 435 - Startup batches cached assets while saves, settings and failed entries use the normal reader
+  ---
+  duration_ms: 1.040959
+  ...
+# Subtest: Storage accounts separately for game files, saves and settings
+ok 436 - Storage accounts separately for game files, saves and settings
+  ---
+  duration_ms: 22.804292
+  ...
+# Subtest: Cleanup removes only game data and preserves saves, preferences and unrelated data byte-for-byte
+ok 437 - Cleanup removes only game data and preserves saves, preferences and unrelated data byte-for-byte
+  ---
+  duration_ms: 0.324416
+  ...
+# Subtest: A failed deletion is flushed, invalidates the cache index, and never deletes a save
+ok 438 - A failed deletion is flushed, invalidates the cache index, and never deletes a save
+  ---
+  duration_ms: 0.2605
+  ...
+# Subtest: Cleanup refuses to mutate files while another game tab holds the lock
+ok 439 - Cleanup refuses to mutate files while another game tab holds the lock
+  ---
+  duration_ms: 0.168709
+  ...
+# Subtest: Cached page return reacquires the storage lock and preserves a live game
+ok 440 - Cached page return reacquires the storage lock and preserves a live game
+  ---
+  duration_ms: 0.195083
+  ...
+# Subtest: A storage cleanup while the page was cached requires a safe reload
+ok 441 - A storage cleanup while the page was cached requires a safe reload
+  ---
+  duration_ms: 0.230917
+  ...
+# Subtest: Offline cleanup removes only this app’s registration and release caches
+ok 442 - Offline cleanup removes only this app’s registration and release caches
+  ---
+  duration_ms: 0.243292
+  ...
+# Subtest: Low browser quota and Android/Safari storage errors switch cleanly to temporary mode without rejecting warm installs
+ok 443 - Low browser quota and Android/Safari storage errors switch cleanly to temporary mode without rejecting warm installs
+  ---
+  duration_ms: 0.530917
+  ...
+# Subtest: Storage failure flag remembers quota or write failure and bypasses repeated downloads until cleared
+ok 444 - Storage failure flag remembers quota or write failure and bypasses repeated downloads until cleared
+  ---
+  duration_ms: 0.173166
+  ...
+# Subtest: Mobile devices require larger quota headroom and reject missing quota on cold install
+ok 445 - Mobile devices require larger quota headroom and reject missing quota on cold install
+  ---
+  duration_ms: 0.239
+  ...
+# Subtest: Anatomy policy explicitly covers original, royal and final forms in every visual state
+ok 446 - Anatomy policy explicitly covers original, royal and final forms in every visual state
+  ---
+  duration_ms: 1.362167
+  ...
+# Subtest: All 22 active injury and death states use grade-owned whole bodies instead of legacy blended poses
+ok 447 - All 22 active injury and death states use grade-owned whole bodies instead of legacy blended poses
+  ---
+  duration_ms: 13.373958
+  ...
+# Subtest: Every original and upgraded form has its own clean map sprite and costume
+ok 448 - Every original and upgraded form has its own clean map sprite and costume
+  ---
+  duration_ms: 3.1545
+  ...
+# Subtest: Creature backgrounds preserve the original 100-pixel-wide preview geometry at both scales
+ok 449 - Creature backgrounds preserve the original 100-pixel-wide preview geometry at both scales
+  ---
+  duration_ms: 2.406791
+  ...
+# Subtest: All Goonks have distinct walking and attack poses, animated idle frames and bounded native frames
+ok 450 - All Goonks have distinct walking and attack poses, animated idle frames and bounded native frames
+  ---
+  duration_ms: 97.800083
+  ...
+# Subtest: Every Goonk evolution has a distinct HD portrait from a transparent source sheet
+ok 451 - Every Goonk evolution has a distinct HD portrait from a transparent source sheet
+  ---
+  duration_ms: 3.864625
+  ...
+# Subtest: Twenty-one Goonks keep walk, rest, fidget, turn and attack states separate like native creatures
+ok 452 - Twenty-one Goonks keep walk, rest, fidget, turn and attack states separate like native creatures
+  ---
+  duration_ms: 4.621959
+  ...
+# Subtest: Rock throwing follows the actual 17-frame Cyclops windup and release, not its melee cycle
+ok 453 - Rock throwing follows the actual 17-frame Cyclops windup and release, not its melee cycle
+  ---
+  duration_ms: 0.250917
+  ...
+# Subtest: Projectile emission stays on the release pose in every shooter family
+ok 454 - Projectile emission stays on the release pose in every shooter family
+  ---
+  duration_ms: 0.928625
+  ...
+# Subtest: Native-style animation timing changes no tactical movement stat
+ok 455 - Native-style animation timing changes no tactical movement stat
+  ---
+  duration_ms: 0.244667
+  ...
+# Subtest: Each Bobope form retains its mouth offset and visible ray when motion is rebuilt
+ok 456 - Each Bobope form retains its mouth offset and visible ray when motion is rebuilt
+  ---
+  duration_ms: 0.232667
+  ...
+# Subtest: Emerald upgrades are paid, family-scoped, inherited by evolutions and bounded across towers
+ok 457 - Emerald upgrades are paid, family-scoped, inherited by evolutions and bounded across towers
+  ---
+  duration_ms: 0.955167
+  ...
+# Subtest: Troop banners use the single native creature slot; original WoG bonuses are not redefined
+ok 458 - Troop banners use the single native creature slot; original WoG bonuses are not redefined
+  ---
+  duration_ms: 0.836292
+  ...
+# Subtest: Each family specialist targets its family and the new support heroes have distinct native roles
+ok 459 - Each family specialist targets its family and the new support heroes have distinct native roles
+  ---
+  duration_ms: 0.567875
+  ...
+# Subtest: Progression map placements are symmetric, collision free and idempotent
+ok 460 - Progression map placements are symmetric, collision free and idempotent
+  ---
+  duration_ms: 45.465583
+  ...
+# Subtest: Every Goonk and evolution uses its own attack effect for melee and shooting
+ok 461 - Every Goonk and evolution uses its own attack effect for melee and shooting
+  ---
+  duration_ms: 0.399625
+  ...
+# Subtest: Generated effects are short, non-silent mono PCM WAVs supported by the engine
+ok 462 - Generated effects are short, non-silent mono PCM WAVs supported by the engine
+  ---
+  duration_ms: 8.95425
+  ...
+# Subtest: Goonks is a real XL duel with exactly one human and one AI and selectable factions
+ok 463 - Goonks is a real XL duel with exactly one human and one AI and selectable factions
+  ---
+  duration_ms: 0.6085
+  ...
+# Subtest: Both kingdoms receive identical mines, resources and paired guards
+ok 464 - Both kingdoms receive identical mines, resources and paired guards
+  ---
+  duration_ms: 0.749125
+  ...
+# Subtest: Towns, mines and treasure have a connected approach from the human starting kingdom
+ok 465 - Towns, mines and treasure have a connected approach from the human starting kingdom
+  ---
+  duration_ms: 17.816375
+  ...
+# Subtest: Mana displays zero, its limit and overcharged values without confusing movement points
+ok 466 - Mana displays zero, its limit and overcharged values without confusing movement points
+  ---
+  duration_ms: 0.33875
+  ...
+# Subtest: Each hero shows its own mana and movement, including the selected-hero fallback
+ok 467 - Each hero shows its own mana and movement, including the selected-hero fallback
+  ---
+  duration_ms: 8.564709
+  ...
+# Subtest: Only the selected hero is marked when two heroes have the same display name
+ok 468 - Only the selected hero is marked when two heroes have the same display name
+  ---
+  duration_ms: 0.256334
+  ...
+# Subtest: The no-spellbook badge is independent of mana and hero selection
+ok 469 - The no-spellbook badge is independent of mana and hero selection
+  ---
+  duration_ms: 1.009459
+  ...
+# Subtest: Archived path definitions remain available for old saves, without default activation
+ok 470 - Archived path definitions remain available for old saves, without default activation
+  ---
+  duration_ms: 1.331959
+  ...
+# Subtest: Bundled new-game maps and their generator no longer include paths or their dependency
+ok 471 - Bundled new-game maps and their generator no longer include paths or their dependency
+  ---
+  duration_ms: 38.412083
+  ...
+# Subtest: Public map normalization preserves mainHero references and is idempotent without changing source maps
+ok 472 - Public map normalization preserves mainHero references and is idempotent without changing source maps
+  ---
+  duration_ms: 56.957083
+  ...
+# Subtest: Equipment opens after a complete presentation frame, using the latest snapshot
+ok 473 - Equipment opens after a complete presentation frame, using the latest snapshot
+  ---
+  duration_ms: 2.106208
+  ...
+# Subtest: Leaving or cancelling during entry cannot reopen a stale hero window
+ok 474 - Leaving or cancelling during entry cannot reopen a stale hero window
+  ---
+  duration_ms: 0.151625
+  ...
+# Subtest: Updates within the current view and the main menu apply immediately
+ok 475 - Updates within the current view and the main menu apply immediately
+  ---
+  duration_ms: 0.065583
+  ...
+# Subtest: Freeze before the native book renders, ignore stale snapshots, then present mobile directly
+ok 476 - Freeze before the native book renders, ignore stale snapshots, then present mobile directly
+  ---
+  duration_ms: 0.151709
+  ...
+# Subtest: Every adapted window waits for its fresh native presentation
+ok 477 - Every adapted window waits for its fresh native presentation
+  ---
+  duration_ms: 0.148416
+  ...
+# Subtest: A rejected window command releases the previous view and later input still works
+ok 478 - A rejected window command releases the previous view and later input still works
+  ---
+  duration_ms: 0.060333
+  ...
+# Subtest: Book and equipment entry/exit commands protect presentation but normal battle actions do not
+ok 479 - Book and equipment entry/exit commands protect presentation but normal battle actions do not
+  ---
+  duration_ms: 0.108375
+  ...
+# Subtest: A town retains the previous view until its artwork is decoded; cancellation stays authoritative
+ok 480 - A town retains the previous view until its artwork is decoded; cancellation stays authoritative
+  ---
+  duration_ms: 0.070084
+  ...
+# Subtest: A mobile town hall request opens its sheet without waiting for a different native window
+ok 481 - A mobile town hall request opens its sheet without waiting for a different native window
+  ---
+  duration_ms: 0.208625
+  ...
+# Subtest: A slow town decode cannot stall the frame transition indefinitely
+ok 482 - A slow town decode cannot stall the frame transition indefinitely
+  ---
+  duration_ms: 0.267333
+  ...
+# Subtest: a dedicated match request survives a cold start with the same creation ID
+ok 483 - a dedicated match request survives a cold start with the same creation ID
+  ---
+  duration_ms: 11.112084
+  ...
+# Subtest: a dedicated match request returns an application error without retrying
+ok 484 - a dedicated match request returns an application error without retrying
+  ---
+  duration_ms: 0.184458
+  ...
+# Subtest: English battle labels cover title-case and uppercase screen tags
+ok 485 - English battle labels cover title-case and uppercase screen tags
+  ---
+  duration_ms: 0.52975
+  ...
+# Subtest: Live health stats translate short PV labels without rewriting words or identifiers
+ok 486 - Live health stats translate short PV labels without rewriting words or identifiers
+  ---
+  duration_ms: 2.34075
+  ...
+# Subtest: Dynamic feedback and hero instructions translate while preserving names and amounts
+ok 487 - Dynamic feedback and hero instructions translate while preserving names and amounts
+  ---
+  duration_ms: 1.089542
+  ...
+# Subtest: Contextual actions and owned war machines translate in both directions
+ok 488 - Contextual actions and owned war machines translate in both directions
+  ---
+  duration_ms: 0.706
+  ...
+# Subtest: Random and unaligned archive reads are byte exact across blocks and EOF
+ok 489 - Random and unaligned archive reads are byte exact across blocks and EOF
+  ---
+  duration_ms: 0.731166
+  ...
+# Subtest: LRU reuses hot blocks, evicts cold blocks, and never caches the whole archive
+ok 490 - LRU reuses hot blocks, evicts cold blocks, and never caches the whole archive
+  ---
+  duration_ms: 0.186416
+  ...
+# Subtest: Two files never share cached blocks and each final partial block has its real length
+ok 491 - Two files never share cached blocks and each final partial block has its real length
+  ---
+  duration_ms: 0.066333
+  ...
+# Subtest: Prefetched file arrayBuffer satisfies reads with zero synchronous block reads
+ok 492 - Prefetched file arrayBuffer satisfies reads with zero synchronous block reads
+  ---
+  duration_ms: 0.59575
+  ...
+# Subtest: A tap targets the native minimap, including the final pixel, never the adventure scene
+ok 493 - A tap targets the native minimap, including the final pixel, never the adventure scene
+  ---
+  duration_ms: 0.604583
+  ...
+# Subtest: Rectangular worlds keep their aspect ratio and ignore taps in the letterbox
+ok 494 - Rectangular worlds keep their aspect ratio and ignore taps in the letterbox
+  ---
+  duration_ms: 0.075875
+  ...
+# Subtest: The gold frame tracks the cropped mobile camera and is clipped at world borders
+ok 495 - The gold frame tracks the cropped mobile camera and is clipped at world borders
+  ---
+  duration_ms: 0.187834
+  ...
+# Subtest: Retina rendering copies the native fogged map using logical engine coordinates
+ok 496 - Retina rendering copies the native fogged map using logical engine coordinates
+  ---
+  duration_ms: 0.152625
+  ...
+# Subtest: Independent minimap pixels survive an unrelated native framebuffer and do not cross map levels
+ok 497 - Independent minimap pixels survive an unrelated native framebuffer and do not cross map levels
+  ---
+  duration_ms: 0.092875
+  ...
+# Subtest: Movement preferences apply to both camps and stale acknowledgements cannot overwrite a newer choice
+ok 498 - Movement preferences apply to both camps and stale acknowledgements cannot overwrite a newer choice
+  ---
+  duration_ms: 0.663875
+  ...
+# Subtest: Invalid saved settings are ignored and native instant speed stays available
+ok 499 - Invalid saved settings are ignored and native instant speed stays available
+  ---
+  duration_ms: 0.122417
+  ...
+# Subtest: A stalled opening becomes a recoverable error instead of a looping loader
+ok 500 - A stalled opening becomes a recoverable error instead of a looping loader
+  ---
+  duration_ms: 0.385708
+  ...
+# Subtest: Native connection and late menu snapshots keep a single pending launch
+ok 501 - Native connection and late menu snapshots keep a single pending launch
+  ---
+  duration_ms: 0.067041
+  ...
+# Subtest: Native error dialogs are shown and stop the loading indicator
+ok 502 - Native error dialogs are shown and stop the loading indicator
+  ---
+  duration_ms: 0.046083
+  ...
+# Subtest: Explicit retries start fresh without losing hosting path or user preferences
+ok 503 - Explicit retries start fresh without losing hosting path or user preferences
+  ---
+  duration_ms: 0.248292
+  ...
+# Subtest: A reconnect opened by session recovery also has a bounded wait
+ok 504 - A reconnect opened by session recovery also has a bounded wait
+  ---
+  duration_ms: 0.669458
+  ...
+# Subtest: full original catalog and exact15 bank spell candidates; parser preserves quoted multiline fields
+ok 505 - full original catalog and exact15 bank spell candidates; parser preserves quoted multiline fields
+  ---
+  duration_ms: 0.94275
+  ...
+# Subtest: installed43/44 retain all source rewards, per-slot guards, native RMG and original namespaced art
+ok 506 - installed43/44 retain all source rewards, per-slot guards, native RMG and original namespaced art
+  ---
+  duration_ms: 1.26275
+  ...
+# Subtest: 44 clamps320 to100 and upgrades exactly the first Zealot stack; Mithril dependency explicit
+ok 507 - 44 clamps320 to100 and upgrades exactly the first Zealot stack; Mithril dependency explicit
+  ---
+  duration_ms: 0.333167
+  ...
+# Subtest: optional original source retains the reviewed filters and source identity
+ok 508 - optional original source retains the reviewed filters and source identity
+  ---
+  duration_ms: 0.0775
+  ...
+# Subtest: seven-resource baseline, labels, icons and rounding stay unchanged
+ok 509 - seven-resource baseline, labels, icons and rounding stay unchanged
+  ---
+  duration_ms: 8.760667
+  ...
+# Subtest: Mithril amounts and recruitment/building costs use registered metadata
+ok 510 - Mithril amounts and recruitment/building costs use registered metadata
+  ---
+  duration_ms: 0.092708
+  ...
+# Subtest: non-contiguous engine IDs still align amounts and costs by the native registry order
+ok 511 - non-contiguous engine IDs still align amounts and costs by the native registry order
+  ---
+  duration_ms: 0.101458
+  ...
+# Subtest: Mithril icon uses actual owning-mod manifest URL, not another mods matching filename
+ok 512 - Mithril icon uses actual owning-mod manifest URL, not another mods matching filename
+  ---
+  duration_ms: 0.392333
+  ...
+# Subtest: unknown extra resources remain visible as named counts and costs instead of undefined
+ok 513 - unknown extra resources remain visible as named counts and costs instead of undefined
+  ---
+  duration_ms: 0.119417
+  ...
+# Subtest: Portrait spell images preserve target offsets at every board cell and tiled effects cover the field
+ok 514 - Portrait spell images preserve target offsets at every board cell and tiled effects cover the field
+  ---
+  duration_ms: 348.437958
+  ...
+# Subtest: Scene coordinates stay invertible and clamped at 390x650
+ok 515 - Scene coordinates stay invertible and clamped at 390x650
+  ---
+  duration_ms: 0.573583
+  ...
+# Subtest: Scene coordinates stay invertible and clamped at 750x280
+ok 516 - Scene coordinates stay invertible and clamped at 750x280
+  ---
+  duration_ms: 0.597167
+  ...
+# Subtest: Scene coordinates stay invertible and clamped at 360x520
+ok 517 - Scene coordinates stay invertible and clamped at 360x520
+  ---
+  duration_ms: 0.122459
+  ...
+# Subtest: Scene coordinates stay invertible and clamped at 1024x620
+ok 518 - Scene coordinates stay invertible and clamped at 1024x620
+  ---
+  duration_ms: 0.053416
+  ...
+# Subtest: Recruitment respects stock, gold and special resource limits
+ok 519 - Recruitment respects stock, gold and special resource limits
+  ---
+  duration_ms: 0.085083
+  ...
+# Subtest: Construction explains exhausted daily allowance and missing resources
+ok 520 - Construction explains exhausted daily allowance and missing resources
+  ---
+  duration_ms: 0.147959
+  ...
+# Subtest: Battle framing includes the top queue and bottom edge without cropping in either orientation
+ok 521 - Battle framing includes the top queue and bottom edge without cropping in either orientation
+  ---
+  duration_ms: 1.493958
+  ...
+# Subtest: Town panorama fills the scene, keeps taps invertible and reaches both ends without stretching
+ok 522 - Town panorama fills the scene, keeps taps invertible and reaches both ends without stretching
+  ---
+  duration_ms: 0.154875
+  ...
+# Subtest: Mobile map nav buttons sit on a single line and town actions have valid icons
+ok 523 - Mobile map nav buttons sit on a single line and town actions have valid icons
+  ---
+  duration_ms: 7.588333
+  ...
+# Subtest: A held touch activates once, not twice when its compatibility click follows
+ok 524 - A held touch activates once, not twice when its compatibility click follows
+  ---
+  duration_ms: 0.561292
+  ...
+# Subtest: Drags and canceled touches do not turn into a view toggle
+ok 525 - Drags and canceled touches do not turn into a view toggle
+  ---
+  duration_ms: 0.228625
+  ...
+# Subtest: A delayed touch click without a completed pointer pair never activates a control
+ok 526 - A delayed touch click without a completed pointer pair never activates a control
+  ---
+  duration_ms: 0.116
+  ...
+# Subtest: Only the mobile engine canvas preserves WebGL frames, before the first context is created
+ok 527 - Only the mobile engine canvas preserves WebGL frames, before the first context is created
+  ---
+  duration_ms: 0.677958
+  ...
+# Subtest: Rotation surfaces settle once while drawing coordinates remain correct
+ok 528 - Rotation surfaces settle once while drawing coordinates remain correct
+  ---
+  duration_ms: 0.296
+  ...
+# Subtest: Large touch displays keep a bounded canvas pixel budget
+ok 529 - Large touch displays keep a bounded canvas pixel budget
+  ---
+  duration_ms: 2.571
+  ...
+# Subtest: Mobile framebuffer preservation is configured even before the translated UI finishes loading
+ok 530 - Mobile framebuffer preservation is configured even before the translated UI finishes loading
+  ---
+  duration_ms: 0.124875
+  ...
+# Subtest: Android stays in the touch layout even when the viewport and pointer query look like desktop
+ok 531 - Android stays in the touch layout even when the viewport and pointer query look like desktop
+  ---
+  duration_ms: 0.133416
+  ...
+# Subtest: Rotation events settle once and late duplicates leave new gestures alone
+ok 532 - Rotation events settle once and late duplicates leave new gestures alone
+  ---
+  duration_ms: 1.998916
+  ...
+# Subtest: Map pan preserves the combined distance and discards old-orientation commands
+ok 533 - Map pan preserves the combined distance and discards old-orientation commands
+  ---
+  duration_ms: 0.251916
+  ...
+# Subtest: Slow zoomed map drags retain their distance across frames
+ok 534 - Slow zoomed map drags retain their distance across frames
+  ---
+  duration_ms: 3.170625
+  ...
+# Subtest: Cancelling a map gesture also discards subpixel remainders
+ok 535 - Cancelling a map gesture also discards subpixel remainders
+  ---
+  duration_ms: 0.090541
+  ...
+# Subtest: Document anchor keeps mobile buttons in client coordinates after iOS Home Screen rotation
+ok 536 - Document anchor keeps mobile buttons in client coordinates after iOS Home Screen rotation
+  ---
+  duration_ms: 1.923041
+  ...
+# Subtest: Mobile document anchor works without visualViewport in desktop browsers
+ok 537 - Mobile document anchor works without visualViewport in desktop browsers
+  ---
+  duration_ms: 0.154917
+  ...
+# Subtest: Android rotation shrinks the app even while overflow keeps innerWidth at the old size
+ok 538 - Android rotation shrinks the app even while overflow keeps innerWidth at the old size
+  ---
+  duration_ms: 0.2195
+  ...
+# Subtest: Screen lock while hidden preserves active geometry and wake restores viewport
+ok 539 - Screen lock while hidden preserves active geometry and wake restores viewport
+  ---
+  duration_ms: 0.235084
+  ...
+# Subtest: Wake with stale inverted viewport dimensions is corrected by active orientation media query
+ok 540 - Wake with stale inverted viewport dimensions is corrected by active orientation media query
+  ---
+  duration_ms: 0.209042
+  ...
+# Subtest: Delayed viewport resize after orientationchange settles to new landscape size
+ok 541 - Delayed viewport resize after orientationchange settles to new landscape size
+  ---
+  duration_ms: 151.39075
+  ...
+# Subtest: Safari toolbar height uses the visible viewport rather than the taller layout viewport
+ok 542 - Safari toolbar height uses the visible viewport rather than the taller layout viewport
+  ---
+  duration_ms: 0.319917
+  ...
+# Subtest: Physical orientation wins over stale Safari media and layout sizes after wake
+ok 543 - Physical orientation wins over stale Safari media and layout sizes after wake
+  ---
+  duration_ms: 0.155709
+  ...
+# Subtest: Wake repairs a viewport that settles after the first 800ms without a resize event
+ok 544 - Wake repairs a viewport that settles after the first 800ms without a resize event
+  ---
+  duration_ms: 1604.835417
+  ...
+# Subtest: Aligned current viewport bounds reject stale post-rotation height and scroll offsets
+ok 545 - Aligned current viewport bounds reject stale post-rotation height and scroll offsets
+  ---
+  duration_ms: 0.208958
+  ...
+# Subtest: Chrome rotation recovers a stale smaller visual height and document height from dynamic viewport
+ok 546 - Chrome rotation recovers a stale smaller visual height and document height from dynamic viewport
+  ---
+  duration_ms: 0.151625
+  ...
+# Subtest: iPhone Chrome auto-scale after rotation cannot retain the portrait half-width
+ok 547 - iPhone Chrome auto-scale after rotation cannot retain the portrait half-width
+  ---
+  duration_ms: 0.080958
+  ...
+# Subtest: CSS viewport follows both rotations even when physical orientation and pinch scale lag
+ok 548 - CSS viewport follows both rotations even when physical orientation and pinch scale lag
+  ---
+  duration_ms: 0.078208
+  ...
+# Subtest: Native combat preserves the framebuffer aspect, enlarges portrait sprites and reaches both armies
+ok 549 - Native combat preserves the framebuffer aspect, enlarges portrait sprites and reaches both armies
+  ---
+  duration_ms: 1.412583
+  ...
+# Subtest: Mobile battle defaults preserve audio and unrelated settings and keep desktop settings intact
+ok 550 - Mobile battle defaults preserve audio and unrelated settings and keep desktop settings intact
+  ---
+  duration_ms: 0.660292
+  ...
+# Subtest: Opening without an active stack centers a friendly creature, not the empty field
+ok 551 - Opening without an active stack centers a friendly creature, not the empty field
+  ---
+  duration_ms: 0.218917
+  ...
+# Subtest: The transparent grid follows native hex centers and never paints opaque tiles
+ok 552 - The transparent grid follows native hex centers and never paints opaque tiles
+  ---
+  duration_ms: 0.22
+  ...
+# Subtest: Mobile landscape battle controls move menu, stats and actions to the right sidebar
+ok 553 - Mobile landscape battle controls move menu, stats and actions to the right sidebar
+  ---
+  duration_ms: 7.81025
+  ...
+# Subtest: Tavern cancel stays reachable after portrait/landscape changes and zoom
+ok 554 - Tavern cancel stays reachable after portrait/landscape changes and zoom
+  ---
+  duration_ms: 0.551292
+  ...
+# Subtest: An old cancel cannot affect a town, battle or another dialog
+ok 555 - An old cancel cannot affect a town, battle or another dialog
+  ---
+  duration_ms: 0.075792
+  ...
+# Subtest: The mobile name input keeps native typing before game keyboard handlers
+ok 556 - The mobile name input keeps native typing before game keyboard handlers
+  ---
+  duration_ms: 0.625083
+  ...
+# Subtest: Concurrent indexed PNG decodes retain independent palettes and release their buffers
+ok 557 - Concurrent indexed PNG decodes retain independent palettes and release their buffers
+  ---
+  duration_ms: 765.76075
+  ...
+# Subtest: Evolution gallery retains locked forms and does not multiply shared family stock
+ok 558 - Evolution gallery retains locked forms and does not multiply shared family stock
+  ---
+  duration_ms: 0.369292
+  ...
+# Subtest: Recruitment maximum accounts for all resources, stock, free units and unavailable dwellings
+ok 559 - Recruitment maximum accounts for all resources, stock, free units and unavailable dwellings
+  ---
+  duration_ms: 0.123458
+  ...
+# Subtest: Goonk families have distinct forms, legal native dwelling chain, translations and owned sprite sets
+ok 560 - Goonk families have distinct forms, legal native dwelling chain, translations and owned sprite sets
+  ---
+  duration_ms: 3.053666
+  ...
+# Subtest: The Solar Crucible unlocks the distinct fourth tier-seven form
+ok 561 - The Solar Crucible unlocks the distinct fourth tier-seven form
+  ---
+  duration_ms: 0.598
+  ...
+# Subtest: Available stock is distinct from affordable recruits and explains the exact missing gold
+ok 562 - Available stock is distinct from affordable recruits and explains the exact missing gold
+  ---
+  duration_ms: 0.877875
+  ...
+# Subtest: A funded recruitment shows the selected total without claiming funds are missing
+ok 563 - A funded recruitment shows the selected total without claiming funds are missing
+  ---
+  duration_ms: 0.073625
+  ...
+# Subtest: Special-resource shortages and an empty stock have distinct explanations
+ok 564 - Special-resource shortages and an empty stock have distinct explanations
+  ---
+  duration_ms: 0.141042
+  ...
+# Subtest: Recruitment supports additional native resources such as mithril
+ok 565 - Recruitment supports additional native resources such as mithril
+  ---
+  duration_ms: 0.1515
+  ...
+# Subtest: Resources use compact French thousands without rounding the available budget upward
+ok 566 - Resources use compact French thousands without rounding the available budget upward
+  ---
+  duration_ms: 8.283875
+  ...
+# Subtest: The seven original resource icons follow engine resource indices
+ok 567 - The seven original resource icons follow engine resource indices
+  ---
+  duration_ms: 2.434958
+  ...
+# Subtest: Resource numbers follow the selected language
+ok 568 - Resource numbers follow the selected language
+  ---
+  duration_ms: 0.275458
+  ...
+# Subtest: matches the exact engine under root and subpath hosting
+ok 569 - matches the exact engine under root and subpath hosting
+  ---
+  duration_ms: 0.401334
+  ...
+# Subtest: cached game with a different engine refuses new data
+ok 570 - cached game with a different engine refuses new data
+  ---
+  duration_ms: 0.174792
+  ...
+# Subtest: missing or inconsistent engine metadata cannot silently use old data
+ok 571 - missing or inconsistent engine metadata cannot silently use old data
+  ---
+  duration_ms: 0.085416
+  ...
+# Subtest: Save bursts coalesce; writes during a flush trigger exactly one follow-up
+ok 572 - Save bursts coalesce; writes during a flush trigger exactly one follow-up
+  ---
+  duration_ms: 0.717291
+  ...
+# Subtest: A failed flush rejects its callers and does not block subsequent saves
+ok 573 - A failed flush rejects its callers and does not block subsequent saves
+  ---
+  duration_ms: 0.2435
+  ...
+# Subtest: Local saves write only the requested file and flush the existing OPFS mount
+ok 574 - Local saves write only the requested file and flush the existing OPFS mount
+  ---
+  duration_ms: 0.629917
+  ...
+# Subtest: Manual saves keep the full-sync compatibility path
+ok 575 - Manual saves keep the full-sync compatibility path
+  ---
+  duration_ms: 0.068125
+  ...
+# Subtest: Temporary storage keeps saves in memory without scanning or syncing OPFS
+ok 576 - Temporary storage keeps saves in memory without scanning or syncing OPFS
+  ---
+  duration_ms: 0.050666
+  ...
+# Subtest: The mobile catalogue restores a legacy Russian title shown as Latin-1
+ok 577 - The mobile catalogue restores a legacy Russian title shown as Latin-1
+  ---
+  duration_ms: 0.441917
+  ...
+# Subtest: Correctly encoded titles keep their original spelling
+ok 578 - Correctly encoded titles keep their original spelling
+  ---
+  duration_ms: 0.094916
+  ...
+# Subtest: The mobile scenario picker omits the three Goonk maps without matching other titles
+ok 579 - The mobile scenario picker omits the three Goonk maps without matching other titles
+  ---
+  duration_ms: 0.437
+  ...
+# Subtest: Autosaves show their scenario and preserve the filename for identification
+ok 580 - Autosaves show their scenario and preserve the filename for identification
+  ---
+  duration_ms: 0.0565
+  ...
+# Subtest: Only the exact application scripts are whitelisted; injected inline scripts are excluded
+ok 581 - Only the exact application scripts are whitelisted; injected inline scripts are excluded
+  ---
+  duration_ms: 1.56925
+  ...
+# Subtest: External application scripts carry matching SRI hashes and only explicit asset paths are authorized
+ok 582 - External application scripts carry matching SRI hashes and only explicit asset paths are authorized
+  ---
+  duration_ms: 0.278208
+  ...
+# Subtest: Boot resumes the most recent compatible save once, only after selection acknowledgement
+ok 583 - Boot resumes the most recent compatible save once, only after selection acknowledgement
+  ---
+  duration_ms: 0.959458
+  ...
+# Subtest: No saved game, already running game, and a deliberate lobby never trigger resume
+ok 584 - No saved game, already running game, and a deliberate lobby never trigger resume
+  ---
+  duration_ms: 0.129542
+  ...
+# Subtest: Cancel, absent/corrupt saves and timeout do not loop or double-start
+ok 585 - Cancel, absent/corrupt saves and timeout do not loop or double-start
+  ---
+  duration_ms: 0.18225
+  ...
+# Subtest: Local save listing sorts timestamps, filters non-saves and empty files and tolerates missing storage
+ok 586 - Local save listing sorts timestamps, filters non-saves and empty files and tolerates missing storage
+  ---
+  duration_ms: 0.442125
+  ...
+# Subtest: Choosing another game during preview closes the save screen and waits for the main menu
+ok 587 - Choosing another game during preview closes the save screen and waits for the main menu
+  ---
+  duration_ms: 0.174292
+  ...
+# Subtest: An early cancellation closes a late opening without selecting or starting a save
+ok 588 - An early cancellation closes a late opening without selecting or starting a save
+  ---
+  duration_ms: 0.05825
+  ...
+# Subtest: The fallback boot bypasses recovery and opens the main menu
+ok 589 - The fallback boot bypasses recovery and opens the main menu
+  ---
+  duration_ms: 0.097209
+  ...
+# Subtest: Native loading stops offering cancellation until it completes or times out
+ok 590 - Native loading stops offering cancellation until it completes or times out
+  ---
+  duration_ms: 0.054958
+  ...
+# Subtest: A deliberate new game skips automatic recovery without deleting saved games
+ok 591 - A deliberate new game skips automatic recovery without deleting saved games
+  ---
+  duration_ms: 0.24475
+  ...
+# Subtest: Custom hotseat settings wait for lobby acknowledgement before being exposed
+ok 592 - Custom hotseat settings wait for lobby acknowledgement before being exposed
+  ---
+  duration_ms: 0.267166
+  ...
+# Subtest: A campaign retry opens campaigns once instead of restoring a saved game
+ok 593 - A campaign retry opens campaigns once instead of restoring a saved game
+  ---
+  duration_ms: 0.091917
+  ...
+# Subtest: Boot recovery leaves the latest online checkpoint for a multiplayer room
+ok 594 - Boot recovery leaves the latest online checkpoint for a multiplayer room
+  ---
+  duration_ms: 0.039542
+  ...
+# Subtest: A hosted match link leaves the menu available even when a local save exists
+ok 595 - A hosted match link leaves the menu available even when a local save exists
+  ---
+  duration_ms: 0.03625
+  ...
+# Subtest: Source-correct lower forms override only graphics through independent resource paths
+ok 596 - Source-correct lower forms override only graphics through independent resource paths
+  ---
+  duration_ms: 6.618083
+  ...
+# Subtest: Final evolutions have distinct combat sprites from their preceding forms, even with WoG Graphics Fix active
+ok 597 - Final evolutions have distinct combat sprites from their preceding forms, even with WoG Graphics Fix active
+  ---
+  duration_ms: 41.163167
+  ...
+# Subtest: all66patch entries contain only source-exact numeric primitive fields
+ok 598 - all66patch entries contain only source-exact numeric primitive fields
+  ---
+  duration_ms: 0.837125
+  ...
+# Subtest: all63original third-upgrade costs replace all7resources without graph changes
+ok 599 - all63original third-upgrade costs replace all7resources without graph changes
+  ---
+  duration_ms: 4.839792
+  ...
+# Subtest: only six existing WotC classes receive proven core fear immunity
+ok 600 - only six existing WotC classes receive proven core fear immunity
+  ---
+  duration_ms: 0.111583
+  ...
+# Subtest: All original spell icons are available without a per-icon network request
+ok 601 - All original spell icons are available without a per-icon network request
+  ---
+  duration_ms: 14.588041
+  ...
+# Subtest: Unknown mod spell icons retain the existing external fallback
+ok 602 - Unknown mod spell icons retain the existing external fallback
+  ---
+  duration_ms: 0.126458
+  ...
+# Subtest: Every mobile school tab matches the IDs published by the compiled native engine
+ok 603 - Every mobile school tab matches the IDs published by the compiled native engine
+  ---
+  duration_ms: 0.983375
+  ...
+# Subtest: Spell targeting permits target selection and cancellation despite a temporarily absent creature actor
+ok 604 - Spell targeting permits target selection and cancellation despite a temporarily absent creature actor
+  ---
+  duration_ms: 0.379
+  ...
+# Subtest: Cancel only sends native cancellation, with no spell, creature order or mana mutation
+ok 605 - Cancel only sends native cancellation, with no spell, creature order or mana mutation
+  ---
+  duration_ms: 0.386458
+  ...
+# Subtest: Autocombat waits for native cancellation and permission, then starts exactly once
+ok 606 - Autocombat waits for native cancellation and permission, then starts exactly once
+  ---
+  duration_ms: 0.242208
+  ...
+# Subtest: Wait and defend cannot become spell actions while cancellation is pending
+ok 607 - Wait and defend cannot become spell actions while cancellation is pending
+  ---
+  duration_ms: 0.363167
+  ...
+# Subtest: Deferred creature orders never affect another creature or another round
+ok 608 - Deferred creature orders never affect another creature or another round
+  ---
+  duration_ms: 0.1785
+  ...
+# Subtest: Unacknowledged cancellations time out without activating autocombat
+ok 609 - Unacknowledged cancellations time out without activating autocombat
+  ---
+  duration_ms: 0.215042
+  ...
+# Subtest: Spell confirmation rejects the selected hex when the native engine marks it invalid
+ok 610 - Spell confirmation rejects the selected hex when the native engine marks it invalid
+  ---
+  duration_ms: 0.136375
+  ...
+# Subtest: Temporary reads resolve packed and split files across offsets and EOF
+ok 611 - Temporary reads resolve packed and split files across offsets and EOF
+  ---
+  duration_ms: 0.97275
+  ...
+# Subtest: Temporary transport evicts old payloads and skips caching oversized ones
+ok 612 - Temporary transport evicts old payloads and skips caching oversized ones
+  ---
+  duration_ms: 0.220834
+  ...
+# Subtest: Temporary reads reject truncated transports and gaps
+ok 613 - Temporary reads reject truncated transports and gaps
+  ---
+  duration_ms: 0.179625
+  ...
+# Subtest: Sparse archive reads request aligned blocks and reuse overlapping reads
+ok 614 - Sparse archive reads request aligned blocks and reuse overlapping reads
+  ---
+  duration_ms: 0.127917
+  ...
+# Subtest: An archive host that ignores Range only transfers the full source once
+ok 615 - An archive host that ignores Range only transfers the full source once
+  ---
+  duration_ms: 0.066042
+  ...
+# Subtest: Temporary loading progress counts transferred bytes once and never reports completion early
+ok 616 - Temporary loading progress counts transferred bytes once and never reports completion early
+  ---
+  duration_ms: 3.639083
+  ...
+# Subtest: Startup prefetch downloads each planned block once, concurrently, and later reads stay local
+ok 617 - Startup prefetch downloads each planned block once, concurrently, and later reads stay local
+  ---
+  duration_ms: 13.64175
+  ...
+# Subtest: Overlapping prefetches share whole-pack Range fallbacks and keep an exact cache budget
+ok 618 - Overlapping prefetches share whole-pack Range fallbacks and keep an exact cache budget
+  ---
+  duration_ms: 7.008
+  ...
+# Subtest: Background prefetch cannot evict demand-loaded blocks while its download is in flight
+ok 619 - Background prefetch cannot evict demand-loaded blocks while its download is in flight
+  ---
+  duration_ms: 0.431167
+  ...
+# Subtest: Speculative whole-archive Range fallback preserves hot data and its memory reserve
+ok 620 - Speculative whole-archive Range fallback preserves hot data and its memory reserve
+  ---
+  duration_ms: 0.321708
+  ...
+# Subtest: Canvas pointers use current CSS rectangle, including scaled or shifted content
+ok 621 - Canvas pointers use current CSS rectangle, including scaled or shifted content
+  ---
+  duration_ms: 0.610208
+  ...
+# Subtest: A gesture started before a round trip through landscape stays invalid
+ok 622 - A gesture started before a round trip through landscape stays invalid
+  ---
+  duration_ms: 0.166416
+  ...
+# Subtest: Duplicate viewport notifications do not invalidate a fresh tap
+ok 623 - Duplicate viewport notifications do not invalidate a fresh tap
+  ---
+  duration_ms: 0.311333
+  ...
+# Subtest: Touch compatibility clicks with zero detail stay distinct from keyboard activation
+ok 624 - Touch compatibility clicks with zero detail stay distinct from keyboard activation
+  ---
+  duration_ms: 0.521625
+  ...
+# Subtest: Portrait shows only actual built buildings and selects one highest upgrade per site
+ok 625 - Portrait shows only actual built buildings and selects one highest upgrade per site
+  ---
+  duration_ms: 1.052084
+  ...
+# Subtest: Every building and touch target fits short and tall portrait viewports
+ok 626 - Every building and touch target fits short and tall portrait viewports
+  ---
+  duration_ms: 1.474541
+  ...
+# Subtest: Goonk faction detection and its missing level-five fallback stay compatible
+ok 627 - Goonk faction detection and its missing level-five fallback stay compatible
+  ---
+  duration_ms: 0.126125
+  ...
+# Subtest: All nine original factions have portrait layouts with complete in-bounds native buildings
+ok 628 - All nine original factions have portrait layouts with complete in-bounds native buildings
+  ---
+  duration_ms: 10.718042
+  ...
+# Subtest: A third-upgrade dwelling replaces its earlier stages in the same portrait family
+ok 629 - A third-upgrade dwelling replaces its earlier stages in the same portrait family
+  ---
+  duration_ms: 0.19475
+  ...
+# Subtest: Goonk final sanctuary keeps the highest dwelling click target and existing coloured building art
+ok 630 - Goonk final sanctuary keeps the highest dwelling click target and existing coloured building art
+  ---
+  duration_ms: 0.093083
+  ...
+# Subtest: All nine final evolutions have source costs, a real chain and a visible hall icon
+ok 631 - All nine final evolutions have source costs, a real chain and a visible hall icon
+  ---
+  duration_ms: 27.695125
+  ...
+# Subtest: Town stabilization preserves the existing artifacts, objects and source identities alongside reviewed additions
+ok 632 - Town stabilization preserves the existing artifacts, objects and source identities alongside reviewed additions
+  ---
+  duration_ms: 0.982541
+  ...
+# Subtest: Every fresh town dependency has exactly one final health experience row
+ok 633 - Every fresh town dependency has exactly one final health experience row
+  ---
+  duration_ms: 3.023
+  ...
+# Subtest: pre-main fixture settings preserve Mithril, forward native call and never touch saves
+ok 634 - pre-main fixture settings preserve Mithril, forward native call and never touch saves
+  ---
+  duration_ms: 1.582167
+  ...
+# Subtest: optional candidate conversion uses native scoped arrays, otherwise original data untouched
+ok 635 - optional candidate conversion uses native scoped arrays, otherwise original data untouched
+  ---
+  duration_ms: 0.972917
+  ...
+# Subtest: Sorrow fixture preserves original ability while patching only controlled army/targets
+ok 636 - Sorrow fixture preserves original ability while patching only controlled army/targets
+  ---
+  duration_ms: 0.983417
+  ...
+# Subtest: portable CLI has no ERA dependency and explicit preview/candidate controls
+ok 637 - portable CLI has no ERA dependency and explicit preview/candidate controls
+  ---
+  duration_ms: 0.532542
+  ...
+# Subtest: reassigning the same module cannot stack wrappers or recurse
+ok 638 - reassigning the same module cannot stack wrappers or recurse
+  ---
+  duration_ms: 0.821875
+  ...
+# Subtest: a module with an existing callMain is forwarded after fixture configuration
+ok 639 - a module with an existing callMain is forwarded after fixture configuration
+  ---
+  duration_ms: 0.435
+  ...
+# Subtest: unknown case selectors fail instead of silently running zero or partial coverage
+ok 640 - unknown case selectors fail instead of silently running zero or partial coverage
+  ---
+  duration_ms: 0.221
+  ...
+# Subtest: preview provenance includes the separate hashed data loader and native runtime
+ok 641 - preview provenance includes the separate hashed data loader and native runtime
+  ---
+  duration_ms: 5.569416
+  ...
+# Subtest: source-preview provenance requires explicit mode and recognizes unhashed source runtime references
+ok 642 - source-preview provenance requires explicit mode and recognizes unhashed source runtime references
+  ---
+  duration_ms: 0.406167
+  ...
+# Subtest: native diagnostics capture exact missing-identifier warnings and source uses canonical spellBook
+ok 643 - native diagnostics capture exact missing-identifier warnings and source uses canonical spellBook
+  ---
+  duration_ms: 1.729666
+  ...
+# Subtest: exact native guardian matching checks original slots, identities and singleton upgrades
+ok 644 - exact native guardian matching checks original slots, identities and singleton upgrades
+  ---
+  duration_ms: 1.09125
+  ...
+# Subtest: neutral dwelling fixtures omit owner and let native default NEUTRAL apply
+ok 645 - neutral dwelling fixtures omit owner and let native default NEUTRAL apply
+  ---
+  duration_ms: 34.078875
+  ...
+# Subtest: world army slots stay separate from dense H3 combat ordinals
+ok 646 - world army slots stay separate from dense H3 combat ordinals
+  ---
+  duration_ms: 0.2325
+  ...
+# Subtest: native log continuations retain WARN severity while structured ERROR remains blocking
+ok 647 - native log continuations retain WARN severity while structured ERROR remains blocking
+  ---
+  duration_ms: 0.226625
+  ...
+# Subtest: every active TUM object template names a registered native terrain
+ok 648 - every active TUM object template names a registered native terrain
+  ---
+  duration_ms: 7.045292
+  ...
+# Subtest: TUM uses the VCMI port and its existing WoG level-eight dependency
+ok 649 - TUM uses the VCMI port and its existing WoG level-eight dependency
+  ---
+  duration_ms: 1.283417
+  ...
+# Subtest: Red Bones Dragon has the original ERA stats, a real upgrade chain and a fourth Necropolis dwelling
+ok 650 - Red Bones Dragon has the original ERA stats, a real upgrade chain and a fourth Necropolis dwelling
+  ---
+  duration_ms: 0.235459
+  ...
+# Subtest: The original dragon DEF files include frames and both extracted portraits are PNGs
+ok 651 - The original dragon DEF files include frames and both extracted portraits are PNGs
+  ---
+  duration_ms: 3.028542
+  ...
+# Subtest: Online turns notify once in the background after consent
+ok 652 - Online turns notify once in the background after consent
+  ---
+  duration_ms: 0.497417
+  ...
+# Subtest: A turn push shows a notification without an open game and opens the correct hosting path
+ok 653 - A turn push shows a notification without an open game and opens the correct hosting path
+  ---
+  duration_ms: 1.80275
+  ...
+# Subtest: A release versions its top-level scripts and each nested static or dynamic module
+ok 654 - A release versions its top-level scripts and each nested static or dynamic module
+  ---
+  duration_ms: 0.455042
+  ...
+# Subtest: JavaScript-only releases invalidate worker/module cache keys even when WASM is unchanged
+ok 655 - JavaScript-only releases invalidate worker/module cache keys even when WASM is unchanged
+  ---
+  duration_ms: 5.300708
+  ...
+# Subtest: ABI check distinguishes actual compiled versions instead of accepting any matching export
+ok 656 - ABI check distinguishes actual compiled versions instead of accepting any matching export
+  ---
+  duration_ms: 2.801333
+  ...
+# Subtest: All client modules in web/ parse without syntax errors
+ok 657 - All client modules in web/ parse without syntax errors
+  ---
+  duration_ms: 3503.852542
+  ...
+# Subtest: Published solo and online adventures retain objectives and give both kingdoms all fourteen accessible banks
+ok 658 - Published solo and online adventures retain objectives and give both kingdoms all fourteen accessible banks
+  ---
+  duration_ms: 274.902458
+  ...
+# Subtest: Reviewed artifacts retain source slots, fixed opening power and precise level spell sets
+ok 659 - Reviewed artifacts retain source slots, fixed opening power and precise level spell sets
+  ---
+  duration_ms: 1.85125
+  ...
+# Subtest: New source banks have whole source rewards, original guardian slots and source assets
+ok 660 - New source banks have whole source rewards, original guardian slots and source assets
+  ---
+  duration_ms: 0.6865
+  ...
+# Subtest: Crystal source chain preserves Topaz and Amethyst and completes Ruby, Emerald and Sapphire
+ok 661 - Crystal source chain preserves Topaz and Amethyst and completes Ruby, Emerald and Sapphire
+  ---
+  duration_ms: 0.246583
+  ...
+# Subtest: Necromancy uses the exact six source identities through native skill and cloak thresholds
+ok 662 - Necromancy uses the exact six source identities through native skill and cloak thresholds
+  ---
+  duration_ms: 0.478041
+  ...
+# Subtest: Native specialist arithmetic follows source thresholds, rounding and health order
+ok 663 - Native specialist arithmetic follows source thresholds, rounding and health order
+  ---
+  duration_ms: 292.374667
+  ...
+1..663
+# tests 663
+# suites 0
+# pass 628
+# fail 0
+# cancelled 0
+# skipped 35
+# todo 0
+# duration_ms 10591.97825

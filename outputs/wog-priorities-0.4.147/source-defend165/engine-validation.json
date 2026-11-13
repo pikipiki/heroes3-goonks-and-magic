@@ -1,0 +1,20 @@
+{
+  "engineSHA256": "a2ce538a0adb6cc12a9e6cc87507b5302f976442e31c0c3a11994cdc3f532775",
+  "ninjaExitCode": 0,
+  "ninjaSteps": 152,
+  "sourceManifest": "production-source/manifest.json",
+  "experimentalWeakness45AndDispelHooksIncluded": false,
+  "diagnosticFieldsIncluded": false,
+  "verifiedAbsentStrings": [
+    "GOONK_PRIVATE",
+    "HORN_PRIVATE",
+    "era-bridge-source241-private",
+    "source-xp-defend-state-private",
+    "owned-xp-fixture-only",
+    "Source45 requires one canonical",
+    "private179SpellEffects"
+  ],
+  "dataActivationPending": false,
+  "archive": "outputs/vcmi-wasm-goonk-0.4.165-engine.tar.gz",
+  "archiveSHA256": "d22517e9d60ca30fb43ca6134a27765a8d1e32b9cb2290bbd0c75d1f87f0f1e1"
+}

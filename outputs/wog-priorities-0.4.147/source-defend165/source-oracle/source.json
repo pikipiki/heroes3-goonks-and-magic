@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "activation": false,
+  "nativeValidated": false,
+  "sourceExecutableSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "nativeFiles": [
+    {
+      "file": "work/vcmi-wasm/config/spells/timed.json",
+      "sha256": "c51b961a93bcdc060da10d5d410bc43052b847549d6e4a5b1c8b792cf07f6285"
+    },
+    {
+      "file": "work/vcmi-wasm/config/spells/other.json",
+      "sha256": "9f94bf76671009fc583e6dbc1e33f1b19bf7e45b931ec2ced466b74199184bc9"
+    },
+    {
+      "file": "work/vcmi-wasm/config/spells/offensive.json",
+      "sha256": "8d01546d0c47a44985daa66d4c7daf1f4d05dd3b524c5e460536b641cfb68969"
+    },
+    {
+      "file": "work/vcmi-wasm/config/spells/ability.json",
+      "sha256": "2095adc57dbb0e1fe7fbfe75ca76f3819e782a0215443963d6d69e1be492b145"
+    }
+  ],
+  "mappings": [
+    {
+      "sourceId": 27,
+      "key": "core:shield",
+      "timed": true
+    },
+    {
+      "sourceId": 28,
+      "key": "core:airShield",
+      "timed": true
+    },
+    {
+      "sourceId": 29,
+      "key": "core:fireShield",
+      "timed": true
+    },
+    {
+      "sourceId": 30,
+      "key": "core:protectAir",
+      "timed": true
+    },
+    {
+      "sourceId": 31,
+      "key": "core:protectFire",
+      "timed": true
+    },
+    {
+      "sourceId": 32,
+      "key": "core:protectWater",
+      "timed": true
+    },
+    {
+      "sourceId": 33,
+      "key": "core:protectEarth",
+      "timed": true
+    },
+    {
+      "sourceId": 34,
+      "key": "core:antiMagic",
+      "timed": true
+    },
+    {
+      "sourceId": 36,
+      "key": "core:magicMirror",
+      "timed": true
+    },
+    {
+      "sourceId": 37,
+      "key": "core:cure",
+      "timed": false
+    },
+    {
+      "sourceId": 38,
+      "key": "core:resurrection",
+      "timed": false
+    },
+    {
+      "sourceId": 39,
+      "key": "core:animateDead",
+      "timed": false
+    },
+    {
+      "sourceId": 40,
+      "key": "core:sacrifice",
+      "timed": false
+    },
+    {
+      "sourceId": 41,
+      "key": "core:bless",
+      "timed": true
+    },
+    {
+      "sourceId": 43,
+      "key": "core:bloodlust",
+      "timed": true
+    },
+    {
+      "sourceId": 44,
+      "key": "core:precision",
+      "timed": true
+    },
+    {
+      "sourceId": 46,
+      "key": "core:stoneSkin",
+      "timed": true
+    },
+    {
+      "sourceId": 48,
+      "key": "core:prayer",
+      "timed": true
+    },
+    {
+      "sourceId": 49,
+      "key": "core:mirth",
+      "timed": true
+    },
+    {
+      "sourceId": 51,
+      "key": "core:fortune",
+      "timed": true
+    },
+    {
+      "sourceId": 53,
+      "key": "core:haste",
+      "timed": true
+    },
+    {
+      "sourceId": 55,
+      "key": "core:slayer",
+      "timed": true
+    },
+    {
+      "sourceId": 56,
+      "key": "core:frenzy",
+      "timed": true
+    },
+    {
+      "sourceId": 58,
+      "key": "core:counterstrike",
+      "timed": true
+    },
+    {
+      "sourceId": 63,
+      "key": "core:teleport",
+      "timed": false
+    },
+    {
+      "sourceId": 65,
+      "key": "core:clone",
+      "timed": false
+    }
+  ],
+  "proven": {
+    "formula": "47907A reads storedCC;47908E/97 wrap32(CC*20), signed magic division100 rounds towardzero47909A..AF, max1 at4790B1..C1; stored4DC4790CB;4791F9 adds toCC.",
+    "zero": "4788B3 initializesEDI=0; tactics/SIEGE branch47905A/65 jumps4791F3 and stores0. AlreadyDONE/DEFENDING47903C skips new delta.",
+    "lifecycle": "446B50 first activation flag4F0 guards repeated activation.446B94..AD subtracts4DC and clearsbit27 BEFORE tactics/regen/Fear. Round446E40 resets perround activation flag but does not removeDEFENDING27; delta must persist through round boundary until next activation.",
+    "clone": "OriginalClone5A202B calls5A6F80; it creates via479A30→43D5D0→43D450→43D2E0.43D313..330 zeros81slots.5A71BB writes lifetime+2C separately and does not castTimed65. NativeClone.cpp NONE/SPELL_EFFECT65 stores that separate lifetime and must be preserved, not mapped to source slot65.",
+    "stoneSkin": "RemoveSpell46 maps4443B3: CC-=stored470, not a generic duration-only reset.",
+    "prayer": "RemoveSpell48 maps4443DF: C8/CC-=stored478; C4 also subtracts unless siege.",
+    "haste": "RemoveSpell53 maps44441E: C4-=stored4CC unless siege; GetSpeed4489F4 readsC4 then optionalSlow.",
+    "frenzy": "RemoveSpell56 defaults4444E1 duration-only cleanup. GetAttack442221 tests duration56 and adds F32 defense*multiplier; GetDefense4422BD returns0 while56. Therefore snapshot4DC must enter defense operand of Frenzy ATK but must not make displayedFrenzyDEF nonzero.",
+    "counterstrike": "RemoveSpell58 defaults4444E1 and does not change currentcounter+454. Native totalCache preserves capacity afterDispel, but noRetaliation returns0 before caching; isolated new method caches capacity without changing used counters."
+  },
+  "privateImplementation": {
+    "newBattleEnrollment": "Explicit inactive private policy plus participant60/241/261. Enrollment onlyonBattleStarted; no oldsave inference. All targets includingGoonks participate; custom spells outside26 originalpositive IDs preserved.",
+    "snapshot": "Existing BonusParameters with rawCC/delta/tactics/siege/compat/createdRound, ADDITIVE bonus; getDefense reconstructs other native bonuses without this marker then adds exactsnapshot once, preventing existingGoonkDEF% from scaling4DC.",
+    "compatibilityException": "DEFENSIVE_STANCE is a native-only extension absentoriginalfield: preserve its existing native displayedDelta at capture, document compatibilitymode1; ordinary canonical source uses exactformula.",
+    "activation": "Permanent delta/flag removed only next-round activation before regen/Fear. Native booldefending still resets normally for queue. Same-round morale selection does not clear snapshot.",
+    "off": "No active engine orBAP files changed; copies169 only. W45generic cast interception and full native validation remain required."
+  },
+  "codeEvidence": [
+    {
+      "file": "clone-dispatch.asm",
+      "start": "0x5a202b",
+      "end": "0x5a203c",
+      "sha256": "20c2290e2849f9b436e1d723d27d8a578041df256ac3559c6da3bbc112769eae"
+    },
+    {
+      "file": "clone-initializer-call.asm",
+      "start": "0x479ae2",
+      "end": "0x479b12",
+      "sha256": "58a01298ecfa288855127cf7abe6a61a59ad0a14493e6a45ad67a4f448a22c03"
+    },
+    {
+      "file": "clone-initializer-reset-chain.asm",
+      "start": "0x43d450",
+      "end": "0x43d45d",
+      "sha256": "021faa66783d5c1d6f5207c778ccdaec9eed56e25535a340b0ea8b6c39cc82f5"
+    },
+    {
+      "file": "clone-zero81slots.asm",
+      "start": "0x43d313",
+      "end": "0x43d332",
+      "sha256": "8a9161eedaf6dd443123d5d0e16294de5a9dc8cc9d06ae02c7f81c349a938b27"
+    },
+    {
+      "file": "clone-private-lifetime.asm",
+      "start": "0x5a7140",
+      "end": "0x5a71ca",
+      "sha256": "6b10a104f78923113aef846aeacc39909543d11f4da740b53b2b367f8f44f357"
+    },
+    {
+      "file": "activation-initialization.asm",
+      "start": "0x4788a7",
+      "end": "0x4788e7",
+      "sha256": "e45a4f99b2ae552d3a29f5d563a59e89557be4cf407467fb28217b531f1b77fa"
+    },
+    {
+      "file": "defend-calculation.asm",
+      "start": "0x479036",
+      "end": "0x4790d1",
+      "sha256": "1e1b2288e947b061d9278f3e226c285649485e92c67520ffd647511ba96d90d0"
+    },
+    {
+      "file": "defend-zero-and-add.asm",
+      "start": "0x4791f3",
+      "end": "0x47920d",
+      "sha256": "ffb057382ddcf554d70bf348509f06f00926ac8cdff4bd97dbf5efb0b4c58d4a"
+    },
+    {
+      "file": "activation-clears-before-regen.asm",
+      "start": "0x446b50",
+      "end": "0x446bd0",
+      "sha256": "fa24ad315764bf158ad704f39dda38e06c3550dbb298826ad325c584f110810e"
+    },
+    {
+      "file": "round-retains-defending-bit.asm",
+      "start": "0x446e40",
+      "end": "0x446ee0",
+      "sha256": "1b324f6cb2a7919e067e0d2889edde4ef8618f9f7f8d0d0e487b41cf26d77b9d"
+    },
+    {
+      "file": "remove-positive-effects.asm",
+      "start": "0x444230",
+      "end": "0x4444e1",
+      "sha256": "fd06535fb0e1827f0e242cecd5bb0b14c5bbfa2b4d02c12c867df1c1de523174"
+    },
+    {
+      "file": "attack-frenzy-consumer.asm",
+      "start": "0x442130",
+      "end": "0x442269",
+      "sha256": "2abc6132b2169c9605f86175bd2e7e2562abbee06503eca4f9c68737e82ba58d"
+    },
+    {
+      "file": "defense-frenzy-consumer.asm",
+      "start": "0x4422b0",
+      "end": "0x4422d8",
+      "sha256": "f5fa6e8a5762c151fb4deebcd13c07f57df3ad54acdbe6aca71f14f3f8191675"
+    },
+    {
+      "file": "speed-consumer.asm",
+      "start": "0x4489f0",
+      "end": "0x448a3a",
+      "sha256": "205a9ee163c7bd3a44a5c90c06ae30c1ad83f1ac4351030f208872c453ed4d2a"
+    }
+  ]
+}

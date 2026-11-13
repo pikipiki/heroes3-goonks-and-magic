@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraSourceDefendRuntime.h"
 #include "../era/EraInterferenceRuntime.h"
 #include "../era/EraOblivionRuntime.h"
 #include "../../lib/era/EraCrystalExperience.h"
@@ -160,6 +161,7 @@ void BattleFlowProcessor::tryPlaceMoats(const CBattleInfoCallback & battle)
 
 void BattleFlowProcessor::onBattleStarted(const CBattleInfoCallback & battle)
 {
+    era_compat_server::enrollSourceDefendNewBattle(*gameHandler,battle);
     for(const auto side:{BattleSide::ATTACKER,BattleSide::DEFENDER})
         if(const auto * hero=battle.battleGetFightingHero(side))appendEraConfluxTome(*gameHandler,*hero);
     setupEraOblivion(*gameHandler,battle);
@@ -428,6 +430,7 @@ const CStack * BattleFlowProcessor::getNextStack(const CBattleInfoCallback & bat
 	const auto * stack = dynamic_cast<const CStack *>(next);
     // Original464DFD→446B50 clears initial347DEFENDING before regeneration/Fear.
     era_compat_server::activatePrimordialDefending(*gameHandler,battle,next);
+    era_compat_server::activateSourceXpDefending(*gameHandler,battle,next);
 
 	// regeneration takes place before everything else but only during first turn attempt in each round
 	// also works under blind and similar effects

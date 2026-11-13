@@ -1,0 +1,174 @@
+{
+  "version": "0.4.165",
+  "status": "native-validated",
+  "fullCompatibilityClaim": false,
+  "mechanic": "Source DEFEND: snapshot original4DC before native StartAction, retain amount through spell removal, clear on first next-round activation",
+  "engine": {
+    "engineSHA256": "a2ce538a0adb6cc12a9e6cc87507b5302f976442e31c0c3a11994cdc3f532775",
+    "ninjaExitCode": 0,
+    "ninjaSteps": 152,
+    "sourceManifest": "production-source/manifest.json",
+    "experimentalWeakness45AndDispelHooksIncluded": false,
+    "diagnosticFieldsIncluded": false,
+    "verifiedAbsentStrings": [
+      "GOONK_PRIVATE",
+      "HORN_PRIVATE",
+      "era-bridge-source241-private",
+      "source-xp-defend-state-private",
+      "owned-xp-fixture-only",
+      "Source45 requires one canonical",
+      "private179SpellEffects"
+    ],
+    "dataActivationPending": false,
+    "archive": "outputs/vcmi-wasm-goonk-0.4.165-engine.tar.gz",
+    "archiveSHA256": "d22517e9d60ca30fb43ca6134a27765a8d1e32b9cb2290bbd0c75d1f87f0f1e1"
+  },
+  "activation": {
+    "resource": "mod/tum-era/content/config/era-bridge-source-defend.json",
+    "actors": [
+      "third-upgrades:tumChaoticDragonFly"
+    ],
+    "scope": "All units in new battles containing source241; owned serialized enrollment remains authoritative",
+    "source241WholeActorAdmitted": false,
+    "sourceXp45AndDirect78ReplacementActivated": false,
+    "legacyNative241DefinitionUnchanged": true
+  },
+  "nativePublicAdapter": {
+    "candidateCases": 6,
+    "actualInstalledPolicyCases": 3,
+    "policyVerifiedWithoutReplacement": true,
+    "goonkStance": "Real Bubu creature with native DEFENSIVE_STANCE5 fixture ability; no claim of a banner equip test",
+    "ice347With241": true,
+    "old161SaveSevenTroopsXPBannersNineTowns": true,
+    "noBinarySavePublished": true
+  },
+  "privateXpProgress": {
+    "engineSHA256": "87d382ad387a4a97dd1558288d5c63188aa91af72d50af1bc84c855778b4e93d",
+    "canonicalPositiveSpells": 20,
+    "sphere92Sides": 2,
+    "nativeCustomSpellSurvivingAndLethalReflection": 2,
+    "specialistCases": 6,
+    "commanderScope": "Commander creature in ordinary army stack validates creature-key level lookup; no hero-attached Commander claim",
+    "unregisteredBattle": 1,
+    "activation": false,
+    "diagnosticProjection": "Private read-only SPELL_EFFECT projection; excluded from production binary and published source files"
+  },
+  "remaining": [
+    "37 ordered experience rows and six prerequisite providers remain incomplete",
+    "Source241 whole XP/default/provenance and finite100retaliations reconciliation",
+    "Generic45 additional provider/refresh/clone, CURRENT/hypnotize and custom extension controls before source241 admission"
+  ],
+  "evidence": {
+    "native-positive-first.json.gz": {
+      "sha256": "85945b556a013ab23ab395a8bd68433580983f283fb7abe63365c0b4f7181f68",
+      "uncompressedSHA256": "7e8f981ba25531e7c34206626a15640c6f5e58cc9268ad28591da4328fff8679",
+      "uncompressedBytes": 1293769
+    },
+    "native-positive-rest.json.gz": {
+      "sha256": "46bb0d35160767cc52184d28b64ebd9c2c17d74d94ea9a7596f30c41943aa6f6",
+      "uncompressedSHA256": "5aa4421e16475ba44f84d150be9e29b1283c1dfe2e11016a9ae0e73b6c9291cc",
+      "uncompressedBytes": 3882310
+    },
+    "native-sphere-actor.json.gz": {
+      "sha256": "de41104a60f6c8e03fe973fff5f2376c52fc56b9a542280ab3ae109aff198dfc",
+      "uncompressedSHA256": "d0d0c29e287fe5f170324ec99b6c59e97cb1d389d2948a18c97e3d5fa3f1d575",
+      "uncompressedBytes": 262102
+    },
+    "native-sphere-target.json.gz": {
+      "sha256": "49634d6e872637bc44031c55a8d0f8412ba2f8eb304705b45f8e822e1a7121a6",
+      "uncompressedSHA256": "843173f162184372248188d432d6192aff6f24b6d5e24e3ffb17a20ee8567019",
+      "uncompressedBytes": 261763
+    },
+    "native-custom-late.json.gz": {
+      "sha256": "13efc50fdaf85936300bb7dca7393141e886a45f2380d96df9eb8189b31c63bd",
+      "uncompressedSHA256": "e1f5bf55e6431f5b0312cd7aa3bb458e6c2b5132fcb25d8df3253148b9348272",
+      "uncompressedBytes": 600716
+    },
+    "native-unregistered-private.json.gz": {
+      "sha256": "76496720cffff28029ce70ef7cdfb12ec887c779c541f01c0a1a5448bc244a02",
+      "uncompressedSHA256": "edc026f8b1dd2368b91e4868d6857ecd7f8569602c53c2863891a0c85ac1b2ae",
+      "uncompressedBytes": 369915
+    },
+    "native-specialists-rest.json.gz": {
+      "sha256": "924f2cf73bdc6b23432fcb1d9215e3ea71fcf78ca87bda9bca4a6805cf44bae0",
+      "uncompressedSHA256": "7011d7e5117e42ffbb00b662e09c0620268103c77215fbb613944cdb631f4700",
+      "uncompressedBytes": 858606
+    },
+    "native-specialists-first-two.json.gz": {
+      "sha256": "85c00a73441badcbf1de0a44c152905238248f728ee4111980d2e643748571ac",
+      "uncompressedSHA256": "c5d6a45eb033f91b14fabb6250602eab5ba155c93caf8b32f757e14a93808b0f",
+      "uncompressedBytes": 431209
+    },
+    "native-defend-valid.json.gz": {
+      "sha256": "536f75a5a97f1ba162f81c94b5c9060310e280260fe5528d21f7b8ae4dc7641b",
+      "uncompressedSHA256": "55506d4a2d6f7530f89d0b923cb97a7045e8701cd6f109bf2b6b5988bec74d4a",
+      "uncompressedBytes": 1622809
+    },
+    "native-final-defend.json.gz": {
+      "sha256": "cbbe13c13412d7d9a4f8a862f075cd7e3ba7d5608924d1846ef0a72773fd4de7",
+      "uncompressedSHA256": "1e4472c7c36bee01856aaed2f5901fac9ccfcb2a315d69b2d738bd3053cd5f73",
+      "uncompressedBytes": 811388
+    },
+    "native-old161.json.gz": {
+      "sha256": "7e355d8c553a35549be0b5a246cd96e458025fa2091114d4f598cd6b9574f7c8",
+      "uncompressedSHA256": "2ad57bdbc4c2e6a3e68e8ae6288ea8ce1d8890b4f88a56840aeba6608a4888c4",
+      "uncompressedBytes": 40711
+    },
+    "native-ice347-final.json.gz": {
+      "sha256": "c4392158b2fbbf43884f3f438eb9fce2975fbbdd4638daa37800749cbde431d4",
+      "uncompressedSHA256": "d9b81786e92e06de7f9cd0fec3404923a47d9059df981193b40ebc5a02c6a191",
+      "uncompressedBytes": 112172
+    }
+  },
+  "unitTests": {
+    "isolatedPublishedIndex": true,
+    "tests": 663,
+    "pass": 649,
+    "fail": 0,
+    "skipped": 14,
+    "optionalExternalReviewCasesSkipped": 14,
+    "sourceArchiveProvided": true,
+    "baseGameFixtureLinkedReadOnly": true,
+    "SPTRAITS_SHA256": "0809ed7b2d7fc1357d96e4cd87bb5f9db6ad813b42d69dab29ab35fa3e1c11b9"
+  },
+  "nativeExtensionRule": "DEFENSIVE_STANCE keeps the native delta captured during Defend, instead of discarding the extension or rescaling the source snapshot later.",
+  "compiledSourceMatchesPublishedIndex": true,
+  "compiledSourceFiles": 36,
+  "evidenceFiles": {
+    "source-defend165/build-production.log": "054f26e3535c076b9cb0d74018ead058f6fde328239136854440846634fc44b4",
+    "source-defend165/compiled-source.json": "44652f271a8fc44f6ec05fc69d06d00ab86d158f1947370cabcb50ac62160336",
+    "source-defend165/engine-validation.json": "25c0569f49fff2d8b744616c4219919baa5a2eaa7ea8d1a5974830cdd5912e43",
+    "source-defend165/native-custom-late.json.gz": "13efc50fdaf85936300bb7dca7393141e886a45f2380d96df9eb8189b31c63bd",
+    "source-defend165/native-defend-valid.json.gz": "536f75a5a97f1ba162f81c94b5c9060310e280260fe5528d21f7b8ae4dc7641b",
+    "source-defend165/native-final-defend.json.gz": "cbbe13c13412d7d9a4f8a862f075cd7e3ba7d5608924d1846ef0a72773fd4de7",
+    "source-defend165/native-ice347-final.json.gz": "c4392158b2fbbf43884f3f438eb9fce2975fbbdd4638daa37800749cbde431d4",
+    "source-defend165/native-old161.json.gz": "7e355d8c553a35549be0b5a246cd96e458025fa2091114d4f598cd6b9574f7c8",
+    "source-defend165/native-positive-first.json.gz": "85945b556a013ab23ab395a8bd68433580983f283fb7abe63365c0b4f7181f68",
+    "source-defend165/native-positive-rest.json.gz": "46bb0d35160767cc52184d28b64ebd9c2c17d74d94ea9a7596f30c41943aa6f6",
+    "source-defend165/native-specialists-first-two.json.gz": "85c00a73441badcbf1de0a44c152905238248f728ee4111980d2e643748571ac",
+    "source-defend165/native-specialists-rest.json.gz": "924f2cf73bdc6b23432fcb1d9215e3ea71fcf78ca87bda9bca4a6805cf44bae0",
+    "source-defend165/native-sphere-actor.json.gz": "de41104a60f6c8e03fe973fff5f2376c52fc56b9a542280ab3ae109aff198dfc",
+    "source-defend165/native-sphere-target.json.gz": "49634d6e872637bc44031c55a8d0f8412ba2f8eb304705b45f8e822e1a7121a6",
+    "source-defend165/native-unregistered-private.json.gz": "76496720cffff28029ce70ef7cdfb12ec887c779c541f01c0a1a5448bc244a02",
+    "source-defend165/private-action-frame-tests.log": "ab0c1ac2c48144e1d7b5bd8fac5491104e9c1a832639b432bc4a90631503b5fc",
+    "source-defend165/private-engine-validation.json": "9a012c3437b306bdadd4e84604f65a38c7d7de8840f8a041c30139068b01d049",
+    "source-defend165/source-oracle/activation-clears-before-regen.asm": "fa24ad315764bf158ad704f39dda38e06c3550dbb298826ad325c584f110810e",
+    "source-defend165/source-oracle/activation-initialization.asm": "e45a4f99b2ae552d3a29f5d563a59e89557be4cf407467fb28217b531f1b77fa",
+    "source-defend165/source-oracle/attack-frenzy-consumer.asm": "2abc6132b2169c9605f86175bd2e7e2562abbee06503eca4f9c68737e82ba58d",
+    "source-defend165/source-oracle/clone-dispatch.asm": "20c2290e2849f9b436e1d723d27d8a578041df256ac3559c6da3bbc112769eae",
+    "source-defend165/source-oracle/clone-initializer-call.asm": "58a01298ecfa288855127cf7abe6a61a59ad0a14493e6a45ad67a4f448a22c03",
+    "source-defend165/source-oracle/clone-initializer-reset-chain.asm": "021faa66783d5c1d6f5207c778ccdaec9eed56e25535a340b0ea8b6c39cc82f5",
+    "source-defend165/source-oracle/clone-private-lifetime.asm": "6b10a104f78923113aef846aeacc39909543d11f4da740b53b2b367f8f44f357",
+    "source-defend165/source-oracle/clone-zero81slots.asm": "8a9161eedaf6dd443123d5d0e16294de5a9dc8cc9d06ae02c7f81c349a938b27",
+    "source-defend165/source-oracle/defend-calculation.asm": "1e1b2288e947b061d9278f3e226c285649485e92c67520ffd647511ba96d90d0",
+    "source-defend165/source-oracle/defend-zero-and-add.asm": "ffb057382ddcf554d70bf348509f06f00926ac8cdff4bd97dbf5efb0b4c58d4a",
+    "source-defend165/source-oracle/defense-frenzy-consumer.asm": "f5fa6e8a5762c151fb4deebcd13c07f57df3ad54acdbe6aca71f14f3f8191675",
+    "source-defend165/source-oracle/remove-positive-effects.asm": "fd06535fb0e1827f0e242cecd5bb0b14c5bbfa2b4d02c12c867df1c1de523174",
+    "source-defend165/source-oracle/round-retains-defending-bit.asm": "1b324f6cb2a7919e067e0d2889edde4ef8618f9f7f8d0d0e487b41cf26d77b9d",
+    "source-defend165/source-oracle/source.json": "ca53df658651a1318883ec242b2e472508f9b6d6ecf6417cc9710e41ac534010",
+    "source-defend165/source-oracle/speed-consumer.asm": "205a9ee163c7bd3a44a5c90c06ae30c1ad83f1ac4351030f208872c453ed4d2a",
+    "source-defend165/unit-defend.log": "1f50f1eff983094bc923b75dd0f9be82b2bbfc4bf993dc77cbd9de732c3ee9b6",
+    "source-defend165/unit-portable.log": "39fcbb7ae98878bfbf8a4478043d6a7abb3f3e205a0180e8652ccf04c5417dd8",
+    "source-defend165/unit-release.log": "a276a2e7fde0ccd5fc6d3e78e57baea964775f70a513752f65f1f174f37ffaea"
+  }
+}

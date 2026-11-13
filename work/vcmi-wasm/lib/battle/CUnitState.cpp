@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraSourceDefendState.h"
 
 #include "CUnitState.h"
 #include "../era/EraStatusHealth.h"
@@ -713,7 +714,7 @@ bool CUnitState::canMove(int turn) const
 bool CUnitState::defended(int turn) const
 {
 	// Source347 bit27 is a display/state flag, not native turn exhaustion.
-	return era_bridge::primordialDefended(defending,turn,era_compat::primordialInitialDefending(*this)?1:0);
+	return era_bridge::primordialDefended(era_compat::sourceDefendDisplayed(*this,defending),turn,era_compat::primordialInitialDefending(*this)?1:0);
 }
 
 bool CUnitState::moved(int turn) const
@@ -803,6 +804,7 @@ int CUnitState::getAttack(bool ranged) const
 			bonusCache.getBonusValue(UnitBonusValuesProxy::DEFENCE_RANGED):
 			bonusCache.getBonusValue(UnitBonusValuesProxy::DEFENCE_MELEE);
 
+        defence=era_compat::sourceDefendDefense(*this,ranged,defence);
 		int frenzyBonus = frenzy * defence / 100;
 		attack += frenzyBonus;
 	}
@@ -824,6 +826,7 @@ int CUnitState::getDefense(bool ranged) const
 		int defence = ranged ?
 						  bonusCache.getBonusValue(UnitBonusValuesProxy::DEFENCE_RANGED):
 						  bonusCache.getBonusValue(UnitBonusValuesProxy::DEFENCE_MELEE);
+        defence=era_compat::sourceDefendDefense(*this,ranged,defence);
         // Opt-in marker is emitted only by the source80 service. Vanilla
         // units and other mods retain native nonnegative defense. A source
         // DEFEND2+1 -> acid0 -> expiry(-1) must feed ATT-DEF as4422B0 does.

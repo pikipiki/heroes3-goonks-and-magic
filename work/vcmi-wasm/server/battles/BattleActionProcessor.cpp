@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraSourceDefendRuntime.h"
 #include "../../lib/era/EraExperienceMagicReductionNative.h"
 #include "../../lib/era/EraOrbChaos238Runtime.h"
 #include "../era/EraConfluxRuntime.h"
@@ -237,6 +238,11 @@ bool BattleActionProcessor::doDefendAction(const CBattleInfoCallback & battle, c
 	buffer.push_back(bonus2);
 	buffer.push_back(tagBonus);
 
+    if(era_compat_server::prepareSourceXpDefend(battle,*stack,difference,buffer))
+    {
+        if(!buffer.empty())sse.toAdd.emplace_back(ba.stackNumber,buffer);
+    }
+    else
 	sse.toUpdate.emplace_back(ba.stackNumber, buffer);
 	gameHandler->sendAndApply(sse);
 
@@ -862,6 +868,10 @@ bool BattleActionProcessor::makeBattleActionImpl(const CBattleInfoCallback & bat
 			return false;
 		}
 	}
+
+    // Original bit27 precedes native StartAction's current DEFEND flag.
+    const auto * sourceDefender=ba.actionType==EActionType::DEFEND&&stack&&era_compat_server::sourceDefendBattleEnrolled(battle)?stack:nullptr;
+    era_bridge::SourceDefendActionScope sourceDefendAction(sourceDefender,sourceDefender&&sourceDefender->defended(0));
 
 	// for these events client does not expects StartAction/EndAction wrapper
 	if (!ba.isBattleEndAction())
