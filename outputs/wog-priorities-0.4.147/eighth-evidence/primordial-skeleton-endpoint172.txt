@@ -1,0 +1,36 @@
+bool CGameHandler::transformInUndead(const IMarket *market, const CGHeroInstance * hero, SlotID slot)
+{
+	const CArmedInstance *army = nullptr;
+	if (hero)
+		army = hero;
+	else
+		army = dynamic_cast<const CGTownInstance *>(market);
+
+	if (!army)
+		COMPLAIN_RET("Incorrect call to transform in undead!");
+	if (!army->hasStackAtSlot(slot))
+		COMPLAIN_RET("Army doesn't have any creature in that slot!");
+
+
+	const CStackInstance &s = army->getStack(slot);
+
+	//resulting creature - bone dragons or skeletons
+	CreatureID resCreature = CreatureID::SKELETON;
+
+    // Source Amethyst tables13264..13269 redirects the original town
+    // transformer lookups5664B5/5668A0/566D7C/566F3F/566FA7/566FD4
+    // to the same skeltrans table used by Spell2mode14 battle raising.
+    const auto * sourceTransformation = era_compat::SkeletonTransformations::get().find(s.getCreatureID().toCreature()->getJsonKey());
+    if(sourceTransformation)
+        resCreature = CreatureID(sourceTransformation->target);
+    else
+    {
+        auto customTargetBonus = s.getBonusesOfType(BonusType::SKELETON_TRANSFORMER_TARGET);
+        if(!customTargetBonus->empty())
+            resCreature = customTargetBonus->front()->subtype.as<CreatureID>();
+    }
+
+	changeStackType(StackLocation(army->id, slot), resCreature.toCreature());
+	return true;
+}
+

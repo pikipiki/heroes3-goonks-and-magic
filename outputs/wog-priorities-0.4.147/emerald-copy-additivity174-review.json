@@ -1,0 +1,94 @@
+{
+  "activation": false,
+  "RootCppChanged": false,
+  "RootDataChanged": false,
+  "engineSHA256": "75a488c285ff499277c96a954652833c2e62bb41ffb2b33a073bc537165c3bf0",
+  "baselineMismatchConfirmed": {
+    "zero": [
+      2,
+      4
+    ],
+    "one": [
+      3,
+      4
+    ],
+    "two": [
+      3,
+      4
+    ],
+    "expectedTwo": [
+      4,
+      4
+    ]
+  },
+  "privateSixBonusFiveLeafControlsPassed": [
+    "Green0/1/2/3,sac,freshsave/reload",
+    "Azure0/1/2/3,sac,freshsave/reload",
+    "Parent278alone,extraGreenmovedfromsac,sacparent,freshsave/reload",
+    "UnmodifiedPaingpaingbase2..4",
+    "True battle1Green endpoints3..4 equalMap",
+    "True battle3Green endpoints5..4 equalMap",
+    "Actual hit45 =10units*sourceLOW5*realATK6vsDEF10factor0.9,luck0"
+  ],
+  "parent278DefinitionUnchanged": true,
+  "sourceCompilerScope273to277": true,
+  "pending": [
+    "Confirmed separate map-init bug: authoredparent9+Green10 crashes without anyoverlay, parent9+Green18 starts; callbacklessMapresolverfix is owned byDragon175.",
+    "Rootreview/application required; no Rootdata/CPP changed by this agent"
+  ],
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/emerald-copy-additivity174/baseline162-result.json",
+      "sha256": "f7ddba6ae1170022271753b08112e811d98533808fc145f2e8b148ba6015fb74"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/emerald-copy-additivity174/baseline162-console.log",
+      "sha256": "0b4f2201d8abb52f3168c2af42dfd8493863486ca65a0fddc5ea0ac097305cd3"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/emerald-copy-additivity174/baseline162-two-green.png",
+      "sha256": "28eb7a8b715ab718addda780a47ac95f08eaba480aec30b7383b42815bb4d5a6"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/emerald-copy-additivity174/private-always-green-azure.json",
+      "sha256": "a6d5b8454c8332e11b4c6ef39766a72f3c672b761fc6750b19cc772b1d90b1f3"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/emerald-copy-additivity174/private-always-parent.json",
+      "sha256": "133f39feb924b5a3ebc8ce7d86711d5f00831dedc6726ed9a06a39374ac031a2"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/emerald-copy-additivity174/private-always-combat.json",
+      "sha256": "1ab05fdafbd84dd60d9e7411dc52808e174fcaef7c1bb70c763f36d6c3ad696e"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/emerald-copy-additivity174/private-always-combat-console.log",
+      "sha256": "427ef3268b4468e067c00cd6590e8aed719b63ccdb5a87343ad3f147330c6e96"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/emerald-copy-additivity174/private-always-parent-console.log",
+      "sha256": "f884d922d8a0bbb729d8e1ce94ef68868ab70b8dd5f0e7ed302edae38bfbe8e1"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/emerald-copy-additivity174/parent-map-baseline162.json",
+      "sha256": "dfcd605c70d1c70c832e6a1dddf4610776768c82cb4a8f394a41cbc5dbb78093"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/emerald-copy-additivity174/parent-map-stack162.txt",
+      "sha256": "ca3cbe741f5f3f1d4780cc9b9213b7d706d3f965c4e4df1b17a3ad9411337cce"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/emerald-copy-additivity174/parent-map10-failure.png",
+      "sha256": "45a0feb08d6c0611b1a431aade419a91dd6144d15416272b91a6f7f77604adbb"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/emerald-copy-additivity174/leaf-additivity174.patch",
+      "sha256": "388102a4549601cf93136cf2c3ceac4285fb09e16d22fc573e78f7a9aaffb563"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/emerald-copy-additivity174/parent-map10-native-tail.log",
+      "sha256": "45ccd19069db06ff9a183d0272e56d01f00b1f0d7ab1175ed76e2eed8c7e86b3",
+      "completePrivateLogSHA256": "b6547e4c899508702a3b966ff580ce3ee9fd80593e7752a6ed4fd0687ce1e7fe"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "activation": false,
+  "nativeValidated": false,
+  "engineSHA256": "c7fbc8361af818d4ce80e0ba5c8634b4cc70c7b41e13d3b115c5a8aa0ce637ba",
+  "results": {
+    "fixtureBootstrap": "v2failed JSON.parse Commander JSONC position2758/line101; corrected only browser fixture by serializing Node parseJsonc result",
+    "AzureChristianL7H35": "PASS v4; realOrb93,targetAzure,herolevel7,effectiveSP1",
+    "AzureAstralL7H37": "FAIL expectedtrue observedfalse v5; valid baseline before consumer fix",
+    "PikeAstralL7H43": "PASS v6; Astral helper baseline remains working"
+  },
+  "rootCause": "Root confirmed consumer EraExperienceAttackSpells.h was copied to source gel directory but missing its actual build manifest; only new SourceCreatureLevels.h was transferred. Engine170 therefore did not contain proposed263consumer fix. Do not attribute this failure to the proposed resolver.",
+  "manifestEvidence": {
+    "file": "outputs/wog-priorities-0.4.147/source263-beforefix170/build-source-manifest170.json",
+    "sha256": "5c125d96974075cbb746cec5ee90ace2cb14ef1204fc4b35b21dfd134a111a84",
+    "containsLevelCatalog": true,
+    "containsConsumerHeader": false
+  },
+  "files": [
+    {
+      "file": "outputs/wog-priorities-0.4.147/source263-beforefix170/v2-result.json",
+      "sha256": "86b2cb3997fca9c6125897c3c64517a05105f1d49ea880e22bf6926a2184423b"
+    },
+    {
+      "file": "outputs/wog-priorities-0.4.147/source263-beforefix170/v2-console.json",
+      "sha256": "5f477960140ff0d30fd1197bd4e1cf71eb123f2b537fcecefb2569fe2c43900d"
+    },
+    {
+      "file": "outputs/wog-priorities-0.4.147/source263-beforefix170/v2-failure.png",
+      "sha256": "c3dd56eac399be4c3812efeff905d2dd126ef8fb3ed589d8af9a02d87111b51b"
+    },
+    {
+      "file": "outputs/wog-priorities-0.4.147/source263-beforefix170/v4-result.json",
+      "sha256": "e7811ff9909051e01c889add4038128a008ec86f6caebb26cbc3fdbfd0513fac"
+    },
+    {
+      "file": "outputs/wog-priorities-0.4.147/source263-beforefix170/v4-console.json",
+      "sha256": "8542cf99da6f9f5286b4f554ef8f9be8767e3385e6864310b8db30f0e04986ef"
+    },
+    {
+      "file": "outputs/wog-priorities-0.4.147/source263-beforefix170/v4-Azure-Christian-L7-H35.png",
+      "sha256": "16c0f30e5e6a7b9c76a713910e6fda2ce9064114cda6d06b61a20fb4db991ec6"
+    },
+    {
+      "file": "outputs/wog-priorities-0.4.147/source263-beforefix170/v5-result.json",
+      "sha256": "e77a7138bb1b32f6af7462876fad00b773a4ef103c2e1c278b427950d2c0c7bf"
+    },
+    {
+      "file": "outputs/wog-priorities-0.4.147/source263-beforefix170/v5-console.json",
+      "sha256": "5359ae554eeca77466276151b5edfe0c3c608cc62fccb2b83e9aa3e147d1ab1a"
+    },
+    {
+      "file": "outputs/wog-priorities-0.4.147/source263-beforefix170/v5-failure.png",
+      "sha256": "629b4e27ccc7618cbf55cca40272927b272c7466651cfb57f838f24e5700d8c8"
+    },
+    {
+      "file": "outputs/wog-priorities-0.4.147/source263-beforefix170/v6-result.json",
+      "sha256": "3c03bf2624a570e9fc56925b38bed21f505d5ce65f533c9e595becfabf048560"
+    },
+    {
+      "file": "outputs/wog-priorities-0.4.147/source263-beforefix170/v6-console.json",
+      "sha256": "1a362828f1a05773dca2368934b5bd49e0611eff3de5fff8dddbbf883bf957fb"
+    },
+    {
+      "file": "outputs/wog-priorities-0.4.147/source263-beforefix170/v6-Pike-Astral-L7-H43.png",
+      "sha256": "647ae3a43bfa39892fc2223568647f0598499636856fcb8d2c6a71219a87f09b"
+    }
+  ],
+  "next": "Run all10 witnesses on separately compiled172 engine with actual consumer manifest entry; no native admission based on these results"
+}

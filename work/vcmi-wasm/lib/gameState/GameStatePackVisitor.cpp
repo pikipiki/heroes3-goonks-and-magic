@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraEye278Native.h"
 #include "../era/EraFamiliarChannel43.h"
 #include "../era/EraBridgePolicies.h"
 #include "../era/EraConfluxPolicies.h"
@@ -1001,6 +1002,16 @@ void GameStatePackVisitor::visitAssembledArtifact(AssembledArtifact & pack)
 		return art->getId() == builtArt->getId();
 	}));
 
+    if(era_compat::eye278Type(builtArt))
+    {
+        const auto plan=era_compat::planEye278Assembly(*artSet,builtArt,pack.al.slot);
+        if(!plan)throw std::runtime_error("Invalid source278 assembly packet");
+        auto * parent=gs.getMap().createArtifactComponent(pack.artId);
+        for(const auto slot:plan->consumed)gs.getMap().removeArtifactInstance(*artSet,slot);
+        for(const auto part:plan->parts)parent->addPart(part,ArtifactPosition::PRE_FIRST);
+        pack.al.slot=plan->target;gs.getMap().putArtifactInstance(*artSet,parent->getId(),pack.al.slot);
+        return;
+    }
 	auto * combinedArt = gs.getMap().createArtifactComponent(pack.artId);
 
 	// Find slots for all involved artifacts
@@ -1065,6 +1076,20 @@ void GameStatePackVisitor::visitDisassembledArtifact(DisassembledArtifact & pack
 	auto disassembledArt = gs.getArtInstance(disassembledArtID);
 	assert(disassembledArt);
 
+    if(era_compat::eye278Type(disassembledArt->getType()))
+    {
+        if(!era_compat::eye278IsMisc(pack.al.slot))throw std::runtime_error("Source278 equipped disassembly required");
+        const auto ordered=era_compat::eye278Parts(*disassembledArt);
+        gs.getMap().removeArtifactInstance(*hero,pack.al.slot);
+        for(const auto part:ordered)
+        {
+            // Direct-ID278 has no part bonus edges to detach; instances/slots remain genuine.
+            auto slot=std::find_if(era_compat::eye278Misc.begin(),era_compat::eye278Misc.end(),[&](int pos){return hero->isPositionFree(ArtifactPosition(pos));});
+            if(slot==era_compat::eye278Misc.end())throw std::runtime_error("Source278 disassembly capacity mismatch");
+            gs.getMap().putArtifactInstance(*hero,part->getId(),ArtifactPosition(*slot));
+        }
+        gs.getMap().eraseArtifactInstance(disassembledArt->getId());return;
+    }
 	const auto parts = disassembledArt->getPartsInfo();
 	gs.getMap().removeArtifactInstance(*hero, pack.al.slot);
 	for(auto & part : parts)

@@ -1,0 +1,160 @@
+TAP version 13
+# Subtest: Exact opted-in278 uses its original two bonuses and rejects old compensation
+ok 1 - Exact opted-in278 uses its original two bonuses and rejects old compensation
+  ---
+  duration_ms: 1.207541
+  ...
+# Subtest: Changed signs, totals, recipe, count or percent type cannot broaden admission
+ok 2 - Changed signs, totals, recipe, count or percent type cannot broaden admission
+  ---
+  duration_ms: 0.146917
+  ...
+# Subtest: Previous two-bonus278 and ordinary275 preserve their original admission
+ok 3 - Previous two-bonus278 and ordinary275 preserve their original admission
+  ---
+  duration_ms: 0.62975
+  ...
+# Subtest: signed stats use correct native subtype and damage min/max separate
+ok 4 - signed stats use correct native subtype and damage min/max separate
+  ---
+  duration_ms: 1.350083
+  ...
+# Subtest: opening spell explicitly preserves expert/50 turn native semantics
+ok 5 - opening spell explicitly preserves expert/50 turn native semantics
+  ---
+  duration_ms: 0.876292
+  ...
+# Subtest: unknown/malformed/duplicate input and missing ids cannot emit partial patch
+ok 6 - unknown/malformed/duplicate input and missing ids cannot emit partial patch
+  ---
+  duration_ms: 0.192583
+  ...
+# Subtest: Emerald first-match semantics retain warnings and do not invent second lightning spell/immunity
+ok 7 - Emerald first-match semantics retain warnings and do not invent second lightning spell/immunity
+  ---
+  duration_ms: 0.110917
+  ...
+# Subtest: spell set boundaries preserve original 70 records and single-spell precedence
+ok 8 - spell set boundaries preserve original 70 records and single-spell precedence
+  ---
+  duration_ms: 0.168833
+  ...
+# Subtest: daily conversions are never emitted as optional paid SPECIAL_UPGRADE
+ok 9 - daily conversions are never emitted as optional paid SPECIAL_UPGRADE
+  ---
+  duration_ms: 0.829833
+  ...
+# Subtest: combination 278 exactly matches source excluding 275, no guessed faerie eye
+ok 10 - combination 278 exactly matches source excluding 275, no guessed faerie eye
+  ---
+  duration_ms: 0.238125
+  ...
+# Subtest: special artifact cannot emit an apparently complete artifact while event hook unbound
+ok 11 - special artifact cannot emit an apparently complete artifact while event hook unbound
+  ---
+  duration_ms: 0.096417
+  ...
+# Subtest: summon fixed, scaled, zero powers and chains match integer ERA arithmetic
+ok 12 - summon fixed, scaled, zero powers and chains match integer ERA arithmetic
+  ---
+  duration_ms: 0.246542
+  ...
+# Subtest: Horn counts, eligibility, surviving gain and army capacity
+ok 13 - Horn counts, eligibility, surviving gain and army capacity
+  ---
+  duration_ms: 0.901459
+  ...
+# Subtest: equalizer unwinds only stored adjustment and permits later stat changes
+ok 14 - equalizer unwinds only stored adjustment and permits later stat changes
+  ---
+  duration_ms: 0.422208
+  ...
+# Subtest: mass casting skips primary/dead/ineligible stacks and clamps integer 30% power
+ok 15 - mass casting skips primary/dead/ineligible stacks and clamps integer 30% power
+  ---
+  duration_ms: 0.809667
+  ...
+# Subtest: lightning rod keeps artifact immunities while suppressing natural resistance
+ok 16 - lightning rod keeps artifact immunities while suppressing natural resistance
+  ---
+  duration_ms: 0.06775
+  ...
+# Subtest: source script arithmetic and source bugs are not silently improved
+ok 17 - source script arithmetic and source bugs are not silently improved
+  ---
+  duration_ms: 0.154333
+  ...
+# Subtest: full generator resolves caller assets and rejects incomplete metadata/collisions
+ok 18 - full generator resolves caller assets and rejects incomplete metadata/collisions
+  ---
+  duration_ms: 0.2815
+  ...
+# Subtest: power-sensitive offensive openings and Hypnotize fail closed pending explicit adapter
+ok 19 - power-sensitive offensive openings and Hypnotize fail closed pending explicit adapter
+  ---
+  duration_ms: 0.081666
+  ...
+# Subtest: native-vcmi AI policy retains signed gameplay bonuses and explicit source-vector provenance
+ok 20 - native-vcmi AI policy retains signed gameplay bonuses and explicit source-vector provenance
+  ---
+  duration_ms: 0.316416
+  ...
+# Subtest: audited global source openings use fixed power50; targeted openings remain blocked
+ok 21 - audited global source openings use fixed power50; targeted openings remain blocked
+  ---
+  duration_ms: 0.102583
+  ...
+# Subtest: Emerald cfg source indices are explicit even when text keys are out of order
+ok 22 - Emerald cfg source indices are explicit even when text keys are out of order
+  ---
+  duration_ms: 0.168834
+  ...
+# Subtest: Emerald leaf damage counts equipped copies while parent and unrelated artifacts retain native policy
+ok 23 - Emerald leaf damage counts equipped copies while parent and unrelated artifacts retain native policy
+  ---
+  duration_ms: 0.130334
+  ...
+# Subtest: original Eye275 retains both daily pairs and exact damage endpoint
+ok 24 - original Eye275 retains both daily pairs and exact damage endpoint
+  ---
+  duration_ms: 2.145292
+  ...
+# Subtest: original Eye276 retains both daily pairs and exact damage endpoint
+ok 25 - original Eye276 retains both daily pairs and exact damage endpoint
+  ---
+  duration_ms: 1.729083
+  ...
+# Subtest: actual shipped Eye CFGs match both complete reviewed source texts
+ok 26 - actual shipped Eye CFGs match both complete reviewed source texts
+  ---
+  duration_ms: 1.078958
+  ...
+# Subtest: source inverted ranges keep LOW, Bless HIGH, Curse LOW-minus-expert; UBSan
+ok 27 - source inverted ranges keep LOW, Bless HIGH, Curse LOW-minus-expert; UBSan
+  ---
+  duration_ms: 1118.839083
+  ...
+# Subtest: all six source Eyes have the exact independently added endpoints
+ok 28 - all six source Eyes have the exact independently added endpoints
+  ---
+  duration_ms: 1.35875
+  ...
+# Subtest: whole346 rejects unreviewed CFG/XP and composes source own/default rows once
+ok 29 - whole346 rejects unreviewed CFG/XP and composes source own/default rows once
+  ---
+  duration_ms: 9.323833
+  ...
+# Subtest: whole347 rejects unreviewed CFG/XP and composes source own/default rows once
+ok 30 - whole347 rejects unreviewed CFG/XP and composes source own/default rows once
+  ---
+  duration_ms: 5.655375
+  ...
+1..30
+# tests 30
+# suites 0
+# pass 30
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1199.274416

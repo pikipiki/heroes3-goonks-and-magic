@@ -13,6 +13,7 @@
 
 #include "CArtifact.h"
 #include "ArtifactUtils.h"
+#include "../../era/EraEye278Native.h"
 
 #include "../../constants/StringConstants.h"
 #include "../../gameState/CGameState.h"
@@ -131,6 +132,12 @@ bool CArtifactSet::hasArt(const ArtifactID & aid, bool onlyWorn, bool searchComb
 
 CArtifactSet::ArtPlacementMap CArtifactSet::putArtifact(const ArtifactPosition & slot, const CArtifactInstance * art)
 {
+    // Reflow only source278 reservations, never generic locks. Fitting queries only mutate their copy.
+    if(era_compat::eye278LockOwner(*this,slot)
+       && !era_compat::reflowEye278(*this,slot,dynamic_cast<CArtifactFittingSet*>(this)==nullptr))
+    {
+        throw std::runtime_error("Source278 MISC quota exhausted");
+    }
 	ArtPlacementMap resArtPlacement;
 	const auto putToSlot = [this](const ArtifactPosition & targetSlot, const CArtifactInstance * targetArt, bool locked)
 	{
@@ -152,6 +159,19 @@ CArtifactSet::ArtPlacementMap CArtifactSet::putArtifact(const ArtifactPosition &
 	};
 
 	putToSlot(slot, art, false);
+    if(era_compat::eye278Type(art->getType()) && ArtifactUtils::isSlotEquipment(slot))
+    {
+        const auto parts=era_compat::eye278Parts(*art);
+        resArtPlacement.emplace(parts[0],ArtifactPosition::PRE_FIRST);
+        for(size_t i=1;i<parts.size();++i)
+        {
+            auto found=std::find_if(era_compat::eye278Misc.begin(),era_compat::eye278Misc.end(),[&](int target){return isPositionFree(ArtifactPosition(target));});
+            if(found==era_compat::eye278Misc.end())throw std::runtime_error("Source278 missing reserved MISC capacity");
+            putToSlot(ArtifactPosition(*found),parts[i],true);resArtPlacement.emplace(parts[i],ArtifactPosition(*found));
+        }
+        return resArtPlacement;
+    }
+
 	if(art->getType()->isCombined() && ArtifactUtils::isSlotEquipment(slot))
 	{
 		const CArtifactInstance * mainPart = nullptr;
@@ -400,8 +420,27 @@ void CArtifactSet::serializeJsonSlot(JsonSerializeFormat & handler, const Artifa
 		{
 			auto * artifact = map->createArtifact(artifactID.toEnum());
 
-			if(artifact->getType()->canBePutAt(this, slot))
-			{
+            // The map owns these instances already, while its live game
+            // callback is not available until readObjects has completed.
+            const era_compat::Eye278ArtifactResolver resolver = [map](ArtifactInstanceID id)
+            { return map->getArtifactInstance(id); };
+            const era_compat::Eye278ArtifactResolverScope resolveEye278(resolver);
+            const bool sourceReservation=era_compat::eye278LockOwner(*this,slot)!=nullptr;
+            bool allowed=false;
+            if(sourceReservation)
+            {
+                // Validate against a fitting copy first. A full quota is an
+                // ordinary invalid placement; never fall through to a callback.
+                CArtifactFittingSet fitting(*this);
+                allowed=era_compat::reflowEye278(fitting,slot,false)
+                    && artifact->getType()->canBePutAt(&fitting,slot);
+            }
+            else
+                allowed=artifact->getType()->canBePutAt(this,slot);
+            if(allowed)
+            {
+                if(sourceReservation && !era_compat::reflowEye278(*this,slot,true))
+                    throw std::runtime_error("Source278 map reservation changed after validation");
 				auto artsMap = putArtifact(slot, artifact);
 				artifact->addPlacementMap(artsMap);
 			}

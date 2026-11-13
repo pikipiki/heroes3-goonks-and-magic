@@ -1,0 +1,43 @@
+{
+  "sourceExeSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "sourceCfgSha256": "7cb4fae3d2dfad75a685b07996383ec433e0a63efcc362dfe9a8ca699d06a6c3",
+  "pluginSourceSha256": "10047a24ff1736db951f163c34bcfb58ebe5c0fab972308ca98edf715f61d0cf",
+  "nativeValidated": false,
+  "active": false,
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial346-firewall-select167.asm",
+      "sha256": "0d7bf752256442792a3e9c93f8d458882a53eb0b1f1f482015b2b092d262324b",
+      "start": "0x75ca39",
+      "end": "0x75cb1b"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial346-firewall-flush167.asm",
+      "sha256": "71a5f1befb364c9bb2740ecef451608d4a53089b03035dec2e5e46b77e6a6b2c",
+      "start": "0x468c99",
+      "end": "0x468d12"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial346-firewall-dispatch167.asm",
+      "sha256": "32bf8e122393e0cded7612854b3e7d923373aee98147a6918882512213e013e2",
+      "start": "0x5a0b31",
+      "end": "0x5a0c1e"
+    }
+  ],
+  "verified": [
+    "Amethyst Firewall_byte replaces original195 equality at75CA39 with exact nonzero FireWall_Table entry;346CFG hasFirewall=1.",
+    "75CA42 requires action6;75CA4F gets the original primary target;75CA66 sets its EC queued spell to13. No chance/receptivity draw at this selector.",
+    "75CACF..75CAFB subsequently runs XP c selector71D7A9 and replaces EC only when result != -1. This is distinct from XP p directcasting.",
+    "468C99 scans original side/army slots; target numberAlive>0 at468CCB; direct kind1/mastery0/power3 call5A0140, then clears marker.5A0145 changes non-exempt spell13 power toCURRENT primary stack profile;346 is5*count+60.",
+    "5A0B31 uses original FireWall13 placement; power10 coefficient, base10 at mastery0/1,20at2,50at3; size2at0/1 and3at2/3, lifespan2. No target-immunity query at placement.",
+    "Wall trigger59FFE0 positive FLOAT eligibility, no integer resistance draw; stored-side hero correction happens at5A008F, not while computing placement power. Existing native source355 wall services provide this shared behavior."
+  ],
+  "dependencies": [
+    "This small candidate shares the already admitted sourceConfluxFireWallTrigger and its Conflux policy. Strict346 admission must require that registered source wall service; no standalone/native-trigger fallback is valid."
+  ],
+  "limits": [
+    "No assertion of whole346/347 closure or native validation from this source-only candidate.",
+    "Queued marker replacement by a future XP c profile must retain source single-marker semantics.346 currently has only p21/a13.",
+    "Actual queue/counter/current-power/geometry/overlap/lifetime native controls remain pending."
+  ]
+}

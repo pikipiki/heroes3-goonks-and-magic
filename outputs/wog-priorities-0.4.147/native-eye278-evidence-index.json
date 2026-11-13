@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "artifactSourceId": 278,
+  "scope": "Durable raw results, bounded consoles, nine PNGs, consolidated assertions and validated harness/source-producer snapshot. No local save data.",
+  "files": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/native-eye278-evidence/eye278-native169-selected9/result.json",
+      "sha256": "54edaa4222c161713f7602e1dcbe885ba3af105c33f605fd79fb8c9aa18a414f",
+      "role": "raw-native-result"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native-eye278-evidence/eye278-native169-selected9/console.json",
+      "sha256": "2959c31327026a3f10af87ddfc07f33a437079420a91f68a4485e59df0faee22",
+      "role": "bounded-native-console"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native-eye278-evidence/eye278-native169-remaining/result.json",
+      "sha256": "c108b9083492decc9711723c6f14b79d47abb497cde5e32f59a51d472a38fc32",
+      "role": "raw-native-result"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native-eye278-evidence/eye278-native169-remaining/console.json",
+      "sha256": "0cfe7aa5aebf36dd5333e72aae983f191aebbf979f956fd7924da51030b105b9",
+      "role": "bounded-native-console"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native-eye278-evidence/eye278-native169-duplicate12/result.json",
+      "sha256": "809f42610b446b90b7e100df1fbd9922fe18dc0e8f55dff581fefbd3036e348d",
+      "role": "raw-native-result"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native-eye278-evidence/eye278-native169-duplicate12/console.json",
+      "sha256": "b37c57d22f067a1973a7d777adb7edd6309945f6655788ec2c71bcf1d13b2573",
+      "role": "bounded-native-console"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native-eye278-evidence/eye278-daily170-rank0-r3/result.json",
+      "sha256": "43d38416a52e512959e35ee6e1658cc32ec55f3b4537f221e5408d2a04f9332e",
+      "role": "raw-native-result"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native-eye278-evidence/eye278-daily170-rank0-r3/console.log",
+      "sha256": "d2a046854f6d9e4b6cf506f6970fecef4ff79bc4ee3e4cff5306f6b23e2a3e22",
+      "role": "bounded-native-console"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native-eye278-evidence/eye278-daily170-owner-xp-r2/result.json",
+      "sha256": "d71783c5df5761d74b34f954cac5289e61bc4a58d96cc16dd90d277cdd590fa6",
+      "role": "raw-native-result"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native-eye278-evidence/eye278-daily170-owner-xp-r2/console.log",
+      "sha256": "12e92909bd4f59859b6e640b8b195a0f890f2b3a923afb17696cd05867ff0a73",
+      "role": "bounded-native-console"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native169-eye278-inventory/assembly-1024x768.png",
+      "sha256": "49ec13ff067aa69d8703acd50a0415b51112f2163cdf35434d8c78f8a5f95167",
+      "role": "native-screenshot"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native169-eye278-inventory/assembly-320x568.png",
+      "sha256": "039544253a9291b127be1a30ebbc54b638432b6cab1069399dd3a6b0165cc866",
+      "role": "native-screenshot"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native169-eye278-inventory/assembly-568x320.png",
+      "sha256": "67897bf4e051ad451640be40a87db9b38bb577b1b9708ae5d85f6ecedbf35b3e",
+      "role": "native-screenshot"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native169-eye278-inventory/assembly-768x1024.png",
+      "sha256": "9628f1739e7766b6ca4095f94b4c91bd1b2588b563df341b816143ec0a65b807",
+      "role": "native-screenshot"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native169-eye278-inventory/mobile-1024x768.png",
+      "sha256": "9cec1184ce91746840cb625f3895bc059e2c2c37ca1cb6acc573e67484e27854",
+      "role": "native-screenshot"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native169-eye278-inventory/mobile-320x568.png",
+      "sha256": "e5d97c0ca249132730578fb75da7bd37bfc3717de2f6e5c518cd58d98ec2a206",
+      "role": "native-screenshot"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native169-eye278-inventory/mobile-568x320.png",
+      "sha256": "964ab22cb6a7d81f6c08ab5614901628c54ac5fe723c3ac4a519e61cb3521088",
+      "role": "native-screenshot"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native169-eye278-inventory/mobile-768x1024.png",
+      "sha256": "85548ec1a70cf85808822b83ffe273ee2ef21002ce7c6a964a5f80da2c66dcfc",
+      "role": "native-screenshot"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native169-eye278-inventory/selected9.png",
+      "sha256": "2858a172f82b1bfc119aaaacf67383c8b7eb9ae11583859fee2d7145e55fae60",
+      "role": "native-screenshot"
+    },
+    {
+      "path": "work/browser-tests/wog-eye278-native-e2e.mjs",
+      "sha256": "f3ad7111a7dda7a04de98a774e00f2e893b14ef7e631b91f0ec9a5b457aa743b",
+      "role": "validated-harness-or-source-producer"
+    },
+    {
+      "path": "work/browser-tests/eye278-overlay.mjs",
+      "sha256": "ab9b292fc30612e6bbfc22866ab2c290e80af5a3439fd787b07183c27cc14d28",
+      "role": "validated-harness-or-source-producer"
+    },
+    {
+      "path": "work/browser-tests/wog-eye278-daily-native-e2e.mjs",
+      "sha256": "cc6d265f28581259dcd145f678fe9c1c682a1d09728fe48c29db5e0e339a1d8a",
+      "role": "validated-harness-or-source-producer"
+    },
+    {
+      "path": "work/browser-tests/eye278-daily-cases.mjs",
+      "sha256": "2e74f1107aaa75ffd7729ade1bc2147089f6bc4473efbdf73efc709abe68f5c9",
+      "role": "validated-harness-or-source-producer"
+    },
+    {
+      "path": "work/browser-tests/primordial-whole-overlay.mjs",
+      "sha256": "2e11a3d462762da4ba32dbb477f28e1ea20b917795371401723594cfca4b09aa",
+      "role": "validated-harness-or-source-producer"
+    },
+    {
+      "path": "work/browser-tests/eighth-owned-files.mjs",
+      "sha256": "c88005b4af83b34e8acf464b7e72298b534c26ae69a4436a5ff145fbc9b9d241",
+      "role": "validated-harness-or-source-producer"
+    },
+    {
+      "path": "work/browser-tests/silent-audio.mjs",
+      "sha256": "5504e016d1c33115dedfac98e3c825941df9f63b6ef38d782c675590d1c21a75",
+      "role": "validated-harness-or-source-producer"
+    },
+    {
+      "path": "scripts/era-bridge/artifacts/stage-eye278.mjs",
+      "sha256": "a1d82f82bce03a0ad64ed2847b4b10abe76b644dabdcc5a85b4d9fdf4a5a8c6a",
+      "role": "validated-harness-or-source-producer"
+    },
+    {
+      "path": "scripts/era-bridge/artifacts/eye278-source-pins.json",
+      "sha256": "3d3febc7c2b6e90a4124b3d8634ec70ffe3ef88a3e0846bea14205b1286bf6c9",
+      "role": "validated-harness-or-source-producer"
+    },
+    {
+      "path": "scripts/era-bridge/artifacts/eye278-contract.mjs",
+      "sha256": "fd7a9407af3c6dd82f3cdb91595f1effd841925537cc77709d47feafd20084ed",
+      "role": "validated-harness-or-source-producer"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native169-eye278-inventory.json",
+      "sha256": "fb7098aafa90ac82316bc7f61327b621bf4e1b6db9fe809b8fb006ddfc8bd8f4",
+      "role": "consolidated-native-proof"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native170-eye278-daily.json",
+      "sha256": "78c91fd9055a3f526a0ef20cf2627f6bba8a3b93c339e602eb01bf4f82660597",
+      "role": "consolidated-native-proof"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native-eye278-evidence/source-cfg/273.cfg",
+      "sha256": "96fc4d138b31a3dd7047f4b4f435c52de7e11cb3a8e45848b617e92d1392f4c5",
+      "role": "pinned-original-source-cfg"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native-eye278-evidence/source-cfg/274.cfg",
+      "sha256": "d8f010beca62134487050decf0586fec9596e3256f92bba0827238cf4a7e7216",
+      "role": "pinned-original-source-cfg"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native-eye278-evidence/source-cfg/276.cfg",
+      "sha256": "dc04f0b7edd92c84c3b209914d91f7ca2132dee3591ad454d395add15e461aa2",
+      "role": "pinned-original-source-cfg"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native-eye278-evidence/source-cfg/277.cfg",
+      "sha256": "83ef75673d87662a9ffaeb6d1f1023f4d61007f4bff7264619971702d8e19dbd",
+      "role": "pinned-original-source-cfg"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native-eye278-evidence/source-cfg/278.cfg",
+      "sha256": "581c59600b01b41b6e672364f2fb2df2dee8f4e53c287e9c0c505c0b712287d1",
+      "role": "pinned-original-source-cfg"
+    }
+  ]
+}

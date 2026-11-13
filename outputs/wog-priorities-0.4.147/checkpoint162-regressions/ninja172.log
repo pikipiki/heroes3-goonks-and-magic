@@ -1,0 +1,265 @@
+[1/75] cd /work/vcmi-wasm/emscripten && /usr/bin/cmake -DGIT_SHA1="" -P /work/vcmi-wasm/cmake_modules/Version.cmake
+-- -- -- Start of Git information
+-- GIT_SHA1: GITDIR-NOTFOUND
+-- -- -- End of Git information
+[2/74] Building CXX object AI/StupidAI/CMakeFiles/StupidAI.dir/StupidAI.cpp.o
+[3/74] Building CXX object server/CMakeFiles/vcmiservercommon.dir/ServerSpellCastEnvironment.cpp.o
+[4/74] Building CXX object server/CMakeFiles/vcmiservercommon.dir/battles/BattleResultProcessor.cpp.o
+In file included from /work/vcmi-wasm/server/battles/BattleResultProcessor.cpp:11:
+In file included from /work/vcmi-wasm/server/battles/../era/EraConfluxTomeRuntime.h:10:
+/work/vcmi-wasm/server/battles/../era/../../lib/entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+/work/vcmi-wasm/server/battles/BattleResultProcessor.cpp:647:2: warning: misleading indentation; statement is not part of the previous 'for' [-Wmisleading-indentation]
+  647 |         if(loserHero)
+      |         ^
+/work/vcmi-wasm/server/battles/BattleResultProcessor.cpp:643:5: note: previous statement is here
+  643 |     for(const auto * hero:{attackerHero,defenderHero})
+      |     ^
+2 warnings generated.
+[5/74] Building CXX object server/CMakeFiles/vcmiservercommon.dir/battles/BattleFlowProcessor.cpp.o
+In file included from /work/vcmi-wasm/server/battles/BattleFlowProcessor.cpp:11:
+In file included from /work/vcmi-wasm/server/battles/../era/EraInterferenceRuntime.h:7:
+/work/vcmi-wasm/server/battles/../era/../../lib/entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+1 warning generated.
+[6/74] Building CXX object AI/BattleAI/CMakeFiles/BattleAI.dir/AttackPossibility.cpp.o
+[7/74] Building CXX object server/CMakeFiles/vcmiservercommon.dir/battles/BattleActionProcessor.cpp.o
+In file included from /work/vcmi-wasm/server/battles/BattleActionProcessor.cpp:19:
+In file included from /work/vcmi-wasm/server/battles/../era/EraFaerieChainRuntime.h:4:
+In file included from /work/vcmi-wasm/server/battles/../era/EraDungeonChainTargets.h:4:
+In file included from /work/vcmi-wasm/server/battles/../era/../../lib/era/EraAdvancedArtifactRuntimeNative.h:9:
+/work/vcmi-wasm/server/battles/../era/../../lib/era/../entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+/work/vcmi-wasm/server/battles/BattleActionProcessor.cpp:921:2: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  921 |         return result;
+      |         ^
+/work/vcmi-wasm/server/battles/BattleActionProcessor.cpp:918:5: note: previous statement is here
+  918 |     if(result && ba.actionType==EActionType::DEFEND)
+      |     ^
+2 warnings generated.
+[8/74] Building CXX object AI/BattleAI/CMakeFiles/BattleAI.dir/BattleAI.cpp.o
+[9/74] Building CXX object AI/BattleAI/CMakeFiles/BattleAI.dir/PotentialTargets.cpp.o
+[10/74] Building CXX object AI/BattleAI/CMakeFiles/BattleAI.dir/BattleEvaluator.cpp.o
+[11/74] Building CXX object server/CMakeFiles/vcmiservercommon.dir/CGameHandler.cpp.o
+In file included from /work/vcmi-wasm/server/CGameHandler.cpp:11:
+In file included from /work/vcmi-wasm/server/../lib/era/EraEye278Native.h:5:
+/work/vcmi-wasm/server/../lib/era/../entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+1 warning generated.
+[12/74] Building CXX object AI/EmptyAI/CMakeFiles/EmptyAI.dir/CEmptyAI.cpp.o
+[13/74] Building CXX object AI/BattleAI/CMakeFiles/BattleAI.dir/StackWithBonuses.cpp.o
+[14/74] Building CXX object AI/BattleAI/CMakeFiles/BattleAI.dir/BattleExchangeVariant.cpp.o
+[15/74] Building CXX object lib/CMakeFiles/vcmi.dir/battle/BattleAttackInfo.cpp.o
+[16/74] Building CXX object lib/CMakeFiles/vcmi.dir/entities/artifact/CArtifactSet.cpp.o
+In file included from /work/vcmi-wasm/lib/entities/artifact/CArtifactSet.cpp:14:
+/work/vcmi-wasm/lib/entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+1 warning generated.
+[17/74] Building CXX object lib/CMakeFiles/vcmi.dir/battle/CPlayerBattleCallback.cpp.o
+[18/74] Building CXX object lib/CMakeFiles/vcmi.dir/battle/CBattleInfoEssentials.cpp.o
+[19/74] Building CXX object lib/CMakeFiles/vcmi.dir/battle/BattleInfo.cpp.o
+In file included from /work/vcmi-wasm/lib/battle/BattleInfo.cpp:25:
+/work/vcmi-wasm/lib/battle/../entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+/work/vcmi-wasm/lib/battle/BattleInfo.cpp:108:2: warning: misleading indentation; statement is not part of the previous 'for' [-Wmisleading-indentation]
+  108 |         exportBonuses();
+      |         ^
+/work/vcmi-wasm/lib/battle/BattleInfo.cpp:105:5: note: previous statement is here
+  105 |     for(auto * stack:ordered)
+      |     ^
+2 warnings generated.
+[20/74] Building CXX object lib/CMakeFiles/vcmi.dir/battle/CBattleInfoCallback.cpp.o
+[21/74] Building CXX object lib/CMakeFiles/vcmi.dir/battle/CUnitState.cpp.o
+/work/vcmi-wasm/lib/battle/CUnitState.cpp:475:2: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  475 |         return valOfBonuses(BonusType::CREATURE_SPELL_POWER) * getCount() / 100;
+      |         ^
+/work/vcmi-wasm/lib/battle/CUnitState.cpp:473:5: note: previous statement is here
+  473 |     if(era_compat::PrimalFaerie::get().enabled(creatureId().toCreature()->getJsonKey()))
+      |     ^
+1 warning generated.
+[22/74] Building CXX object lib/CMakeFiles/vcmi.dir/battle/DamageCalculator.cpp.o
+In file included from /work/vcmi-wasm/lib/battle/DamageCalculator.cpp:14:
+In file included from /work/vcmi-wasm/lib/battle/../era/EraEmeraldDamageRange.h:4:
+In file included from /work/vcmi-wasm/lib/battle/../era/EraEye278Native.h:5:
+/work/vcmi-wasm/lib/battle/../era/../entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+/work/vcmi-wasm/lib/battle/DamageCalculator.cpp:215:2: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  215 |         return getTargetDefenseBase() + getTargetDefenseIgnored();
+      |         ^
+/work/vcmi-wasm/lib/battle/DamageCalculator.cpp:213:5: note: previous statement is here
+  213 |     if(sourceExperienceReduction > 0)
+      |     ^
+2 warnings generated.
+[23/74] Building CXX object lib/CMakeFiles/vcmi.dir/bonuses/Updaters.cpp.o
+[24/74] Building CXX object lib/CMakeFiles/vcmi.dir/bonuses/Limiters.cpp.o
+[25/74] Building CXX object lib/CMakeFiles/vcmi.dir/entities/artifact/CArtifact.cpp.o
+In file included from /work/vcmi-wasm/lib/entities/artifact/CArtifact.cpp:12:
+/work/vcmi-wasm/lib/entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+1 warning generated.
+[26/74] Building CXX object lib/CMakeFiles/vcmi.dir/callback/CCallback.cpp.o
+[27/74] Building CXX object lib/CMakeFiles/vcmi.dir/callback/CDynLibHandler.cpp.o
+[28/74] Building CXX object lib/CMakeFiles/vcmi.dir/entities/artifact/CArtifactInstance.cpp.o
+In file included from /work/vcmi-wasm/lib/entities/artifact/CArtifactInstance.cpp:14:
+/work/vcmi-wasm/lib/entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+1 warning generated.
+[29/74] Building CXX object lib/CMakeFiles/vcmi.dir/serializer/CTypeList.cpp.o
+In file included from /work/vcmi-wasm/lib/serializer/CTypeList.cpp:13:
+In file included from /work/vcmi-wasm/lib/serializer/RegisterTypes.h:21:
+/work/vcmi-wasm/lib/serializer/../entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+1 warning generated.
+[30/74] Building CXX object lib/CMakeFiles/vcmi.dir/mapObjects/CGHeroInstance.cpp.o
+In file included from /work/vcmi-wasm/lib/mapObjects/CGHeroInstance.cpp:12:
+In file included from /work/vcmi-wasm/lib/mapObjects/../era/EraGooseReflectionRuntime.h:5:
+/work/vcmi-wasm/lib/mapObjects/../era/../entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+1 warning generated.
+[31/74] Building CXX object lib/CMakeFiles/vcmi.dir/gameState/GameStatePackVisitor.cpp.o
+In file included from /work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp:11:
+In file included from /work/vcmi-wasm/lib/gameState/../era/EraEye278Native.h:5:
+/work/vcmi-wasm/lib/gameState/../era/../entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+/work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp:518:2: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  518 |         if((pack.result == TryMoveHero::SUCCESS || pack.result == TryMoveHero::BLOCKING_VISIT || pack.result == TryMoveHero::EMBARK || pack.result == TryMoveHero::DISEMBARK) && pack.start != pack.end)
+      |         ^
+/work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp:515:5: note: previous statement is here
+  515 |     if(pack.result==TryMoveHero::EMBARK || pack.result==TryMoveHero::DISEMBARK)
+      |     ^
+2 warnings generated.
+[32/74] Building CXX object lib/CMakeFiles/vcmi.dir/spells/BattleSpellMechanics.cpp.o
+In file included from /work/vcmi-wasm/lib/spells/BattleSpellMechanics.cpp:12:
+In file included from /work/vcmi-wasm/lib/spells/../era/EraAdvancedArtifactRuntimeNative.h:9:
+/work/vcmi-wasm/lib/spells/../era/../entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+1 warning generated.
+[33/74] Building CXX object lib/CMakeFiles/vcmi.dir/spells/CSpellHandler.cpp.o
+[34/74] Building CXX object lib/CMakeFiles/vcmi.dir/spells/ISpellMechanics.cpp.o
+[35/74] Building CXX object lib/CMakeFiles/vcmi.dir/spells/ObstacleCasterProxy.cpp.o
+[36/74] Building CXX object lib/CMakeFiles/vcmi.dir/spells/effects/Clone.cpp.o
+[37/74] Building CXX object lib/CMakeFiles/vcmi.dir/spells/TargetCondition.cpp.o
+[38/74] Building CXX object lib/CMakeFiles/vcmi.dir/spells/effects/DemonSummon.cpp.o
+[39/74] Building CXX object lib/CMakeFiles/vcmi.dir/serializer/SerializerReflection.cpp.o
+In file included from /work/vcmi-wasm/lib/serializer/SerializerReflection.cpp:16:
+In file included from /work/vcmi-wasm/lib/serializer/RegisterTypes.h:21:
+/work/vcmi-wasm/lib/serializer/../entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+1 warning generated.
+[40/74] Building CXX object lib/CMakeFiles/vcmi.dir/spells/effects/Dispel.cpp.o
+[41/74] Building CXX object lib/CMakeFiles/vcmi.dir/spells/effects/Damage.cpp.o
+In file included from /work/vcmi-wasm/lib/spells/effects/Damage.cpp:25:
+In file included from /work/vcmi-wasm/lib/spells/effects/../../era/EraAdvancedArtifactRuntimeNative.h:9:
+/work/vcmi-wasm/lib/spells/effects/../../era/../entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+/work/vcmi-wasm/lib/spells/effects/Damage.cpp:146:74: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  146 |                         [&](int strength,int chance){if(!describe)return;auto message=eraDeflectionLog(m->battle()->getBattle()->getBattleID(),strength,chance);server->apply(message);});
+      |                                                                          ^
+/work/vcmi-wasm/lib/spells/effects/Damage.cpp:144:17: note: previous statement is here
+  144 |                 else
+      |                 ^
+/work/vcmi-wasm/lib/spells/effects/Damage.cpp:197:2: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  197 |         if(!blm.lines.empty())
+      |         ^
+/work/vcmi-wasm/lib/spells/effects/Damage.cpp:194:5: note: previous statement is here
+  194 |     if(!clearedStatuses.toRemove.empty())
+      |     ^
+3 warnings generated.
+[42/74] Building CXX object lib/CMakeFiles/vcmi.dir/spells/effects/Heal.cpp.o
+[43/74] Building CXX object lib/CMakeFiles/vcmi.dir/spells/effects/Obstacle.cpp.o
+[44/74] Building CXX object server/CMakeFiles/vcmiservercommon.dir/TurnTimerHandler.cpp.o
+[45/74] Building CXX object lib/CMakeFiles/vcmi.dir/spells/effects/Timed.cpp.o
+[46/74] Building CXX object server/CMakeFiles/vcmiservercommon.dir/NetPacksServer.cpp.o
+In file included from /work/vcmi-wasm/server/NetPacksServer.cpp:21:
+In file included from /work/vcmi-wasm/server/era/EraAtmaRuntime.h:6:
+/work/vcmi-wasm/server/era/../../lib/entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+1 warning generated.
+[47/74] Building CXX object lib/CMakeFiles/vcmi.dir/CStack.cpp.o
+In file included from /work/vcmi-wasm/lib/CStack.cpp:11:
+In file included from /work/vcmi-wasm/lib/era/EraGooseReflectionRuntime.h:5:
+/work/vcmi-wasm/lib/era/../entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+1 warning generated.
+[48/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/adventureMap/TurnTimerWidget.cpp.o
+[49/74] Linking CXX static library bin/libvcmi.a
+[50/74] Linking CXX static library bin/AI/libEmptyAI.a
+[51/74] Linking CXX static library bin/AI/libBattleAI.a
+[52/74] Linking CXX static library bin/AI/libStupidAI.a
+[53/74] Linking CXX static library bin/libvcmiservercommon.a
+[54/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/battle/BattleAnimationClasses.cpp.o
+/work/vcmi-wasm/client/battle/BattleAnimationClasses.cpp:946:2: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  946 |         auto first = animation->getImage(0, 0, true);
+      |         ^
+/work/vcmi-wasm/client/battle/BattleAnimationClasses.cpp:944:5: note: previous statement is here
+  944 |     if(effectFlags & MIRROR_HORIZONTAL)
+      |     ^
+1 warning generated.
+[55/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/battle/BattleActionsController.cpp.o
+[56/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/battle/BattleFieldController.cpp.o
+[57/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/battle/BattleEffectsController.cpp.o
+[58/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/battle/BattleInterface.cpp.o
+[59/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/MobileBridge.cpp.o
+In file included from /work/vcmi-wasm/client/MobileBridge.cpp:3:
+In file included from /work/vcmi-wasm/client/../lib/era/EraEye278Native.h:5:
+/work/vcmi-wasm/client/../lib/era/../entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+/work/vcmi-wasm/client/MobileBridge.cpp:1799:596: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+ 1799 |  auto options=std::make_shared<CMapGenOptions>();options->setWidth(c);options->setHeight(c);options->setLevels(d?2:1);options->setHumanOrCpuPlayerCount(b);options->setCompOnlyPlayerCount(a-b);options->setTeamCount(0);options->setCompOnlyTeamCount(0);for(int i=0;i<b;i++)options->setPlayerTypeForStandardPlayer(PlayerColor(i),EPlayerType::HUMAN);if(e>=0&&GAME->server().getPlayerInfo(PlayerColor(0)).allowedFactions.count(FactionID(e)))options->setStartingTownForPlayer(PlayerColor(0),FactionID(e));lobby->tabRand->setMapGenOptions(options);lobby->tabRand->updateMapInfoByHost();lastPublished=0;}return;}
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^
+/work/vcmi-wasm/client/MobileBridge.cpp:1798:17: note: previous statement is here
+ 1798 |  if(action==48){if(auto lobby=ENGINE->windows().topWindow<CLobbyScreen>())if(lobby->tabRand&&GAME->server().getState()==EClientState::LOBBY&&a>=2&&a<=8&&b>=1&&b<=a&&(c==36||c==72||c==108||c==144)){
+      |                 ^
+2 warnings generated.
+[60/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/battle/BattleProjectileController.cpp.o
+[61/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/battle/BattleSiegeController.cpp.o
+[62/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/battle/BattleResultWindow.cpp.o
+[63/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/battle/StackInfoBasicPanel.cpp.o
+[64/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/battle/BattleStacksController.cpp.o
+[65/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/battle/StackQueue.cpp.o
+[66/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/battle/BattleWindow.cpp.o
+In file included from /work/vcmi-wasm/client/battle/BattleWindow.cpp:52:
+In file included from /work/vcmi-wasm/client/battle/../../lib/entities/artifact/CArtHandler.h:12:
+/work/vcmi-wasm/client/battle/../../lib/entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+1 warning generated.
+[67/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/widgets/CArtifactsOfHeroBase.cpp.o
+In file included from /work/vcmi-wasm/client/widgets/CArtifactsOfHeroBase.cpp:11:
+In file included from /work/vcmi-wasm/client/widgets/../../lib/era/EraEye278Native.h:5:
+/work/vcmi-wasm/client/widgets/../../lib/era/../entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+1 warning generated.
+[68/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/ArtifactsUIController.cpp.o
+In file included from /work/vcmi-wasm/client/ArtifactsUIController.cpp:12:
+In file included from /work/vcmi-wasm/client/../lib/era/EraEye278Native.h:5:
+/work/vcmi-wasm/client/../lib/era/../entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+1 warning generated.
+[69/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/windows/CCreatureWindow.cpp.o
+[70/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/NetPacksClient.cpp.o
+[71/74] Building CXX object client/CMakeFiles/vcmiclientcommon.dir/CPlayerInterface.cpp.o
+[72/74] Linking CXX static library bin/libvcmiclientcommon.a
+[73/74] Linking CXX executable bin/vcmiclient.js
+em++: warning: -pthread + ALLOW_MEMORY_GROWTH may run non-wasm code slowly, see https://github.com/WebAssembly/design/issues/1271 [-Wpthreads-mem-growth]
+[74/74] cd /work/vcmi-wasm/emscripten && rm -rf html5 && mkdir html5 && cp bin/vcmiclient.js html5/vcmiclient.js && cp bin/vcmiclient.js.symbols html5/vcmiclient.js.symbols && cp bin/vcmiclient.wasm html5/vcmiclient.wasm && cp /work/vcmi-wasm/lib/html5/index.html html5/game.html && cp /work/vcmi-wasm/lib/html5/mini-lz4.js html5/mini-lz4.js && cp /work/vcmi-wasm/lib/html5/opfs-worker.js html5/opfs-worker.js && cp /work/vcmi-wasm/lib/html5/dialogs.js html5/dialogs.js && cp /work/vcmi-wasm/lib/html5/dosvcmi.png html5/ && python3 /emsdk/upstream/emscripten/tools/file_packager.py html5/vcmiclient.data --no-node --from-emcc --preload /work/vcmi-wasm/config@config --preload /work/vcmi-wasm/Mods@Mods --js-output="html5/vcmiclient.data.js"

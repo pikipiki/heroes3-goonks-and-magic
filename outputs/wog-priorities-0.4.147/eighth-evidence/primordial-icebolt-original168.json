@@ -1,0 +1,19 @@
+{
+  "archive": "work/game-data/homm3eng/home/web_user/.local/share/vcmi/Data/H3bitmap.lod",
+  "archiveSHA256": "774cbfa7cfed6713ec80c48f8619a258dac14260e4f85faeebb29c053950a5a8",
+  "entry": "sptraits.txt",
+  "entrySHA256": "0809ed7b2d7fc1357d96e4cd87bb5f9db6ad813b42d69dab29ab35fa3e1c11b9",
+  "rows": [
+    "Ice Bolt\tIce Bolt\t2\t \tx\t \t \t8\t6\t6\t6\t20\t10\t10\t20\t50\t50\t50\t6\t0\t6\t6\t4\t50\t25\t20\t20\t20\t20\t\"{Ice Bolt}",
+    "\"\t\"{Basic Ice Bolt}",
+    "\"\t\"{Advanced Ice Bolt}",
+    "Damage inflicted is 10 points more than Basic Ice Bolt.",
+    "\"\t\"{Expert Ice Bolt}",
+    "Damage inflicted is 40 points more than Basic Ice Bolt."
+  ],
+  "powerCoefficient": 20,
+  "mastery2FlatPower": 20,
+  "expectedAtCurrentCount1": 2020,
+  "loader": "work/vcmi-wasm/lib/spells/CSpellHandler.cpp:648 reads coefficient then none/basic/advanced/expert powers",
+  "fixtureFailureExplained": "v1 assumed MagicArrow-like10x+30; original IceBolt row is20x+20 at advanced. No engine/data change."
+}

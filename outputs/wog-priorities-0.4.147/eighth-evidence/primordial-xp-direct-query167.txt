@@ -1,0 +1,7 @@
+bool canSpellBeCast(int spell_id, /* int side , */ h3::H3CombatMonster* targetMon /* , char a5, char a6, int noHero */) {
+	int ecx = (*(int*)0x699420); char a5 = 0; char a6 = 1; int noHero = 1;
+	int side = ((h3::H3CombatManager*)ecx)->currentActiveSide;
+	double ret = THISCALL_7(double, 0x005A83A0,ecx,spell_id,side, targetMon,a5,a6,noHero);
+	return(ret > 0.0);
+}
+

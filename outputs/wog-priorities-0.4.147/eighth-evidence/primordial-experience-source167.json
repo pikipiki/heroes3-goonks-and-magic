@@ -1,0 +1,82 @@
+{
+  "sourceExeSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "nativeValidated": false,
+  "active": false,
+  "actors": [
+    346,
+    347
+  ],
+  "rows": {
+    "346": {
+      "before": 21,
+      "after": 13
+    },
+    "347": {
+      "before": 16,
+      "after": 20
+    }
+  },
+  "rankChances": [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+  ],
+  "mastery": 3,
+  "kind": 1,
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial-xp-loop167.asm",
+      "sha256": "7012faac7e124803581ab5049d9dc81d7fdc36639e3fdeb7e6c2d037064ccd22",
+      "start": "0x71d939",
+      "end": "0x71db79"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial-xp-primary-query167.asm",
+      "sha256": "6eba3da1983ec10a857e56e6483e90c2d73f8ee50e204fe65ebd6fc6a02382b9",
+      "start": "0x5a8950",
+      "end": "0x5a8997"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial-xp-context167.asm",
+      "sha256": "51e4c5ae8b838de736d7a760056ceb415bd7d684e36553ce72d03d0131c596da",
+      "start": "0x5a83a0",
+      "end": "0x5a8448"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial-xp-target167.asm",
+      "sha256": "a7ba3853d03ee301fb804d358128e69ac7597c4bb765b8853d92c6aa84fac1be",
+      "start": "0x5a8550",
+      "end": "0x5a866f"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial-xp-accuracy167.asm",
+      "sha256": "1848663496360ea38d206213815cf4b4d912bc8395be4668a21f9da0f11c412a",
+      "start": "0x5a88a2",
+      "end": "0x5a88fe"
+    }
+  ],
+  "verified": [
+    "71D939 entry checks attacker and target alive once, then loops matching source rows. Each actor here has exactly one p row and one a row, not deduplicated with innate event spells.",
+    "71DA42..54 skips chance below1.0 before ability draw;71DA69..83 consumes1..100 even at100chance.",
+    "71DB13..2C invokes5A8950 for EACH accepted row, including spell13.5A8950 always multiplies accuracy by100, truncates through617F94, and draws1..100 at5A8986; immunity/zeroaccuracy still consumes this second draw.",
+    "71DA8A..AE obtains querySide from actor physical side, inverts for Hypnotize.5A8950 pushes ignoreSide1 at5A895E, so no friendly/enemy ownership test is imposed by5A8614.",
+    "Spell13 does not hit the26..65 specialtarget jumptable at5A8655; it proceeds to44A1A0 normal immunity/resistance, after ordinary cursed/Recanter/antimagic gates. FireWall XP targeting is not unconditional placement.",
+    "71DB38..51 calls5A0140 withkind1/mastery3/power3. Amethyst5A0145 overrides power from CURRENT primary stack:3465*n+60,34710*n+90, even on retaliation.",
+    "ConfluxCaster corrects current-side hero damage only for19..23; IceBolt16 has no hero damage correction. FireWall13 stores computed power; hero correction is deferred until a later wall trigger.",
+    "AfterXP executes before FireShield; later intrinsic AfterMelee lines and queued13 are independent. Area20/21 has its additional per-victim integer draws; the13 placement branch has none."
+  ],
+  "pending": [
+    "Native R0 skip/noRNG and R10/R4 ordered exact outcome witnesses, including1%fractional primary query",
+    "Wall13 primary immunity/Orb/recanter/cursed behavior versus queued13 bypass",
+    "Retaliation CURRENT power/querySide independent controls",
+    "After13expert3hexes/damagebase50 versus queued13basic2hexes/base10/overlap/lifetime"
+  ]
+}

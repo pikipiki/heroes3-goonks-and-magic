@@ -1,0 +1,45 @@
+{
+  "status": "source-and-pure-helper-only-inactive",
+  "nativeValidated": false,
+  "wholeActor346Validated": false,
+  "binary": {
+    "path": "../era-project-eng/h3era.exe",
+    "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+  },
+  "source": {
+    "path": "../h3era-plugins/Amethyst2/amethyst/tables.cpp",
+    "sha256": "10047a24ff1736db951f163c34bcfb58ebe5c0fab972308ca98edf715f61d0cf"
+  },
+  "disassembly": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial346-shield-reflection165.asm",
+      "sha256": "b507bf00af0f1e4fc0aa99e18ad52c5c3e119f45b7f00b2450e30f724f6615ac",
+      "start": 4335040,
+      "stop": 4335200
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial346-shield-coefficient165.asm",
+      "sha256": "1ba6f07b545f30d59c07ac9fba0a93d8870ed0707211df9663ffc4ec8c51f620",
+      "start": 4468304,
+      "stop": 4468341
+    }
+  ],
+  "verified": [
+    "442E50 checks active spell29 atstack+20C BEFORE intrinsic fallback. Active coefficient is loaded REAL4 fromstack+4A0. Therefore spell20% overrides intrinsic30%, without addition or max.",
+    "Amethyst GetFireShield7826..7843 selects fire_shield_table[creature] when >0.01 and patches REAL4 load442E67. CFG346 Fireshield0.3 loads this table; jump registered13411.",
+    "422607..617 selects signed minimum of the two input DWORDs.42261E FILD loads it,422620 FSTPS rounds it to REAL4,422623 FMUL multiplies coefficient by that REAL4,422626 ftol truncates result.",
+    "42264B subsequently calls5A7BF0 with spell29, reflectorhero, attackerhero and attacker. This primitive deliberately stops BEFORE that correction and does not replace existing verified B/L/resistance/sorcery ordering.",
+    "Defined large input16777219 rounds to16777220 at REAL4 stage and reflects5033166 with intrinsic float0.3, versus5033165 from integer30percent. Neither is an undefined-value correction."
+  ],
+  "helper": {
+    "path": "work/vcmi-wasm/lib/era/EraPrimordialShieldRule.h",
+    "sha256": "ef2bff5ef8fde3bf0cc6fe8a52cfde2dad95529e8098a81d085399366506045d",
+    "test": "node --test tests/era-primordial-shield.test.mjs",
+    "runtimeIncluded": false
+  },
+  "pending": [
+    "Scoped346 BAP replacement preserving original live-spell override, existing magic correction and post-hit ordering; no generic sum of FIRE_SHIELD bonuses.",
+    "Source physical damage/available-health parameters and exact relevant caller branches, including nonpositive damage, must match the parent verified shield pipeline before connecting helper.",
+    "Native intrinsic30%, weaker20% activeSpell29 override, target fire-immunity, pre-hit health cap, direct doubleAfterDefend29 and source-float boundary controls."
+  ]
+}

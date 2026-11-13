@@ -3,6 +3,7 @@
 #include "EraSourceSpellAccuracy.h"
 #include "EraHorn266Policy.h"
 #include "EraFangarmHypnotize.h"
+#include "EraSourceCreatureLevels.h"
 #include "../entities/hero/CHero.h"
 #include "../mapObjects/CGHeroInstance.h"
 #include "../battle/Unit.h"
@@ -113,8 +114,21 @@ public:
         // Existing native specialty percentages are retained for custom heroes.
         if(!hypnotizeHero)return value;
         if(target && hypnotizeHero->getHeroType()->getJsonKey()=="core:astral")
+        {
+            // Original4E62FD divides by initialized source level+1. Native
+            // Azure.level10 and Commander.level0 are not source equivalents.
+            // Unknown/custom Goonk targets retain their native tier adaptation.
+            const auto & key=target->creatureId().toCreature()->getJsonKey();
+            const auto tier=::era_bridge::sourceSpecialtyTargetTier(key,target->creatureLevel());
+            if(!tier)
+            {
+                if(::era_bridge::sourceCreatureIdForLevel(key))
+                    throw std::runtime_error("Source263 target has no proven combat level");
+                return value; // Existing custom native tier0 guard.
+            }
             return ::era_bridge::fangarmAstralHypnotizeThreshold(
-                ::era_bridge::hornSigned32(uint32_t(value)),hypnotizeHero->level,target->creatureLevel());
+                ::era_bridge::hornSigned32(uint32_t(value)),hypnotizeHero->level,*tier);
+        }
         value=hypnotizeHero->getSpecificSpellBonus(spell,value);
         if(target && target->creatureLevel()>0)
             value=value*(100+hypnotizeHero->valOfBonuses(BonusType::SPECIAL_SPELL_LEV,

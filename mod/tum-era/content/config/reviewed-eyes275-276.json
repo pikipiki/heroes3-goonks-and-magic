@@ -26,7 +26,8 @@
       "DamageMin": {
         "type": "CREATURE_DAMAGE",
         "val": 2,
-        "subtype": "creatureDamageMin"
+        "subtype": "creatureDamageMin",
+        "stacking": "ALWAYS"
       }
     }
   },
@@ -57,7 +58,8 @@
       "DamageMax": {
         "type": "CREATURE_DAMAGE",
         "val": 2,
-        "subtype": "creatureDamageMax"
+        "subtype": "creatureDamageMax",
+        "stacking": "ALWAYS"
       }
     }
   }

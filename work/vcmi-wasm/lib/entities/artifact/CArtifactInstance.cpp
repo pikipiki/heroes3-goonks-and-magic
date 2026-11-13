@@ -13,6 +13,7 @@
 
 #include "CArtifact.h"
 #include "CArtifactSet.h"
+#include "../../era/EraEye278Native.h"
 
 #include "../../callback/IGameInfoCallback.h"
 #include "../../gameState/CGameState.h"
@@ -47,7 +48,7 @@ void CCombinedArtifactInstance::addPart(const CArtifactInstance * art, const Art
 		}));
 	assert(art->getParentNodes().size() == 1  &&  art->getParentNodes().front() == art->getType());
 	partsInfo.emplace_back(art, slot);
-	artInst->attachToSource(*art);
+	if(era_compat::inheritEye278Part(*artInst,*art))artInst->attachToSource(*art);
 }
 
 bool CCombinedArtifactInstance::isPart(const CArtifactInstance * supposedPart) const
@@ -202,6 +203,7 @@ void CArtifactInstance::setId(ArtifactInstanceID id)
 
 bool CArtifactInstance::canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot, bool assumeDestRemoved) const
 {
+	if(era_compat::canMoveIntoEye278(*artSet,slot,*this))return true;
 	return getType()->canBePutAt(artSet, slot, assumeDestRemoved);
 }
 
@@ -220,7 +222,7 @@ void CArtifactInstance::attachToBonusSystem(CGameState & gs)
 	for(PartInfo & part : partsInfo)
 	{
 		part = PartInfo(gs.getArtInstance(part.getArtifactID()), part.slot);
-		attachToSource(*gs.getArtInstance(part.getArtifactID()));
+		if(era_compat::inheritEye278Part(*this,*part.getArtifact()))attachToSource(*part.getArtifact());
 	}
 }
 

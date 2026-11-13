@@ -9,6 +9,7 @@
  */
  
 #include "StdInc.h"
+#include "../lib/era/EraEye278Native.h"
 #include "ArtifactsUIController.h"
 #include "CPlayerInterface.h"
 
@@ -58,6 +59,7 @@ bool ArtifactsUIController::askToAssemble(const CGHeroInstance * hero, const Art
 	if(numOfArtsAskAssembleSession != 0)
 		numOfArtsAskAssembleSession--;
 	auto assemblyPossibilities = ArtifactUtils::assemblyPossibilities(hero, art->getTypeId(), onlyEquipped);
+    assemblyPossibilities.erase(std::remove_if(assemblyPossibilities.begin(),assemblyPossibilities.end(),[&](const CArtifact *type){return era_compat::eye278Type(type)&&!era_compat::planEye278Assembly(*hero,type,slot);}),assemblyPossibilities.end());
 	if(!assemblyPossibilities.empty())
 	{
 		auto askThread = new std::thread([this, hero, slot, assemblyPossibilities, checkIgnored]() -> void
@@ -106,6 +108,10 @@ bool ArtifactsUIController::askToDisassemble(const CGHeroInstance * hero, const 
 
 	if(hero->tempOwner != GAME->interface()->playerID)
 		return false;
+
+    // Emerald hook4D9DA0 returns0 after its dialog; source278 cannot uncombine through GUI.
+    // Touch adaptation: keep ordinary info instead of offering a confirmation with no effect.
+    if(!era_compat::eye278GuiUncombineAllowed(art->getType()))return false;
 
 	if(art->hasParts())
 	{

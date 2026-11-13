@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "engineSHA256": "375373eb4c2cd02af48a838e49854829ac1410dbbb7002f215405be3f25a2f91",
+  "controls": {
+    "fire346": {
+      "intrinsic30": 89,
+      "liveBasic20OverridesIntrinsic": 59,
+      "realDefendTwoCasts": 89,
+      "preHitHealth1500CapsLethalReflection": 450,
+      "physicalNonlethalObserved": 299
+    },
+    "ice347": {
+      "realDefendFrostRingCasts": 2,
+      "totalDamage": 2120,
+      "chargesUnchanged": 10,
+      "defendEndsTurn": true
+    }
+  },
+  "scope": "Whole original R0 actors. Enemy Gnoll durability/damage/inactivity/morale/retaliation fixtures isolate each branch. Gear normalized through actual hero UI. No original source actor immunity/stat overrides. Does not close later-round347 slot lifecycle.",
+  "fixtureHistory": "The first liveShield harness tapped while hero animation was still pending. The accepted run waits for actual spell sequence>=2, inactive camera and native canUseMagic readiness. No engine change between failing and accepted169 runs.",
+  "assets": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-shields169-console.log",
+      "sha256": "3ab3c0c3afcd697c868fc72780345413e390c77599f026407872ba2999a9c9fa"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-shields169-primordial-shield-defendTwice30.png",
+      "sha256": "0afb3b25c919009c7b06277a057ee88fc250bca6cc155c031d5d2e2a2859100b"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-shields169-primordial-shield-intrinsic30.png",
+      "sha256": "91f7c7347fac6d3e923f92fe5c8f82fb7b192b45d9ab9719b652da9828153f54"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-shields169-primordial-shield-liveBasic20.png",
+      "sha256": "ee05f86be99d84e45de47a5de20d72cc7571adc611e7807297d04b393a28244c"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-shields169-primordial-shield-preHitHealthCap.png",
+      "sha256": "8532bb17b8f497ca462cef8e1aca624b5dfd59d07f29cb1ab200d52d85b3198b"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-shields169-result.json",
+      "sha256": "1ae9634bbb6871b0c591019f2913afbb4817d40b053b8c5c98c4adcf904d3407"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-defend169-console.log",
+      "sha256": "35a97afb6b0c5167ceddcd803be9170dd1175041958295092587a9824a865bb1"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-defend169-primordial347-defend-double-frost.png",
+      "sha256": "b8813b7bb6534047279649ab7696cbfddba5d7237a5d1d613627a837d359b837"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-defend169-result.json",
+      "sha256": "4ee6bb582fbcc5bd4cbf2669fc06ca118e47c3de5edd67988f4c7d7280a13bac"
+    }
+  ],
+  "harness": [
+    {
+      "path": "work/browser-tests/wog-primordial-shields-native-e2e.mjs",
+      "sha256": "9ec34c687dd85f97bc93ff2d76b69173a6b7f375abc404759a88dfd9ade55a3b"
+    },
+    {
+      "path": "work/browser-tests/primordial-shield-cases.mjs",
+      "sha256": "794a7111c01b17caa24c985a3759449cd790407b4cea75197af37ac3e53241e5"
+    },
+    {
+      "path": "work/browser-tests/wog-primordial-defend-native-e2e.mjs",
+      "sha256": "b12ffd402b9f238d2d246b55c158c7da0ddc297981797e1497563e0069e23e97"
+    },
+    {
+      "path": "work/browser-tests/primordial-whole-overlay.mjs",
+      "sha256": "2e11a3d462762da4ba32dbb477f28e1ea20b917795371401723594cfca4b09aa"
+    }
+  ]
+}

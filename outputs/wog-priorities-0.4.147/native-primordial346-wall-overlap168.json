@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "wholeActorNativeValidated": false,
+  "engineSHA": "0b73db715514ec64a493abf02865040bece4c445276b2ed1ff7178ebf1194325",
+  "sourceActor": 346,
+  "sourceRank": 10,
+  "sourceXPChance": 100,
+  "chanceModified": false,
+  "sourcePower": 65,
+  "queuedMastery": 0,
+  "xpAfterMastery": 3,
+  "damageByHex": [
+    {
+      "hex": 71,
+      "round": 1,
+      "damage": 660
+    },
+    {
+      "hex": 54,
+      "round": 2,
+      "damage": 700
+    },
+    {
+      "hex": 71,
+      "round": 3,
+      "damage": 0
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-wall-overlap168-console.log",
+      "sha256": "c54e0bd4ea4e10ffe223b2d175087800191406fe39fcf878b32fab9441deee40"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-wall-overlap168-primordial346-wall-mastery-overlap-lifetime.png",
+      "sha256": "41cd962216617e86756a5fda2d84a2dc2be56b619ee7936584e52560d4ed5203"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-wall-overlap168-result.json",
+      "sha256": "9a36d5323606809199f153df8505ec785aa95acf4803a25fbc12824a8d8edc31"
+    }
+  ],
+  "harnessSources": [
+    {
+      "path": "work/browser-tests/wog-primordial-wall-native-e2e.mjs",
+      "sha256": "d68bd840bf2e6661e58975c778c3c504a67c34c8c24160293cd3fa8869ef0f12"
+    },
+    {
+      "path": "work/browser-tests/primordial-wall-cases.mjs",
+      "sha256": "014bc589a8fa5909db8599cad4112b3d19cd9db5aa6fadbed1364e8019a9c50d"
+    },
+    {
+      "path": "work/browser-tests/primordial-whole-overlay.mjs",
+      "sha256": "2e11a3d462762da4ba32dbb477f28e1ea20b917795371401723594cfca4b09aa"
+    }
+  ],
+  "limits": [
+    "Gnoll fear-only neutralization is an explicit causal control for manual motion; no magic immunity/resistance modified.",
+    "Other346/347 behaviors are separate obligations; this closes only wall selection/mastery/overlap/lifetime paths."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "engineSHA256": "7990b14715801e042c3fa78c705b0dd871e261b905cd364b6d0e4f1a638fd1ca",
+  "cases": [
+    "Azure-Astral-L7-H37",
+    "Azure-Astral-L7-H38"
+  ],
+  "definitionWrites": 0,
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/source263-final162-Azure-Astral-L7-H37.png",
+      "sha256": "c34689876596405dbb0f83657b6f1f4ce556416421615031b59704f4ecf6eb6a"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/source263-final162-result.json",
+      "sha256": "f0a51c3af36d1dd7aa4d9c074779cef156f0db6698a8b840f65c2012a028ba87"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/source263-final162-console.json",
+      "sha256": "48e1cdeaf5b03acdf5bbfdce03ff25f77f1a5a7b14077ec6969f242ec98b9556"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/source263-final162-live.ndjson",
+      "sha256": "828014d5db5d8d07aa2b1ff7f34252198d816eccaaec5d7729394a782369cdbb"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/source263-final162-Azure-Astral-L7-H38.png",
+      "sha256": "99b941eccddfcdeeaa5676a85e34cbc8fa5df36d0aa4b2a9b4dad442344d152b"
+    }
+  ],
+  "scope": "Final177 binary confirms the critical source7-vs-native10 denominator boundary. Independent172 report retains all10 original, native Goonk and nonAstral controls."
+}

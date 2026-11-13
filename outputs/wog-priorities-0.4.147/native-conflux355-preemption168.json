@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "engineSHA": "0b73db715514ec64a493abf02865040bece4c445276b2ed1ff7178ebf1194325",
+  "sourceChancePerRow": 55,
+  "chancesModified": false,
+  "sourceActor355Modified": false,
+  "actualTarget": "tum-era:eraCreature280",
+  "targetControls": {
+    "hitPoints": 1,
+    "speed": 1,
+    "damageMin": 1000000,
+    "damageMax": 1000000
+  },
+  "targetPreemptivePolicyModified": false,
+  "observedTrials": 1,
+  "positiveTrials": [
+    0
+  ],
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/conflux355-preemption168-conflux355-xp-before-first-strike.png",
+      "sha256": "33bc34c6585e3f5287978af0c49901da6ed01bef441c57fcadda6b65cda1c635"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/conflux355-preemption168-console.log",
+      "sha256": "6e57449159fea235edecfad8f4fdf50ed55526e24cbf3d46c5bc97a9586866a0"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/conflux355-preemption168-preemptive-trials.json",
+      "sha256": "e248be36264e274e6147af4ba3c342b9b271c20be1094010a36b645e08e23b97"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/conflux355-preemption168-result.json",
+      "sha256": "6a33ccf908307a39006dd0cf2a02ef1aacee2e1cbb55607d5bf3a152331f401f"
+    }
+  ],
+  "harnessSources": [
+    {
+      "path": "work/browser-tests/wog-conflux355-preemptive-native-e2e.mjs",
+      "sha256": "729cf5558eaf15e7231a714186ab679f7c7c4693331b2ba7dbbd3a73fd1bc96f"
+    },
+    {
+      "path": "work/browser-tests/conflux355-preemptive-controls.mjs",
+      "sha256": "2a3bb9b9b217fc4e5cb8b26bb61ba5e979eaa03ea683a0005bb648e9fd981d5d"
+    },
+    {
+      "path": "work/browser-tests/conflux355-preemptive-cases.mjs",
+      "sha256": "cba598b6029b9c9130e3301cfe2db082ec7a71d009ccb6f7042ea048af57324e"
+    }
+  ],
+  "sourceProof": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial-xp-callers-source167.json",
+  "limits": [
+    "Actual execution-path witness at unchanged55% chances, not probability distribution proof.",
+    "Relies on the previously independently validated source280 preemptive-retaliation policy; this test does not replace all source280 controls.",
+    "The first native trial was positive; no negative/failed-proc path was observed in this capture.",
+    "Whole346/347 andEye278 remain separate incomplete admissions."
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "passed": true,
+  "engineSHA": "0b73db715514ec64a493abf02865040bece4c445276b2ed1ff7178ebf1194325",
+  "actualActiveDamage": 690,
+  "sourceActivePower": 65,
+  "sourceActiveMastery": 2,
+  "sourceActiveCharges": [
+    10,
+    9
+  ],
+  "originalSpellTraits": {
+    "archive": "work/game-data/homm3eng/home/web_user/.local/share/vcmi/Data/H3bitmap.lod",
+    "archiveSha256": "774cbfa7cfed6713ec80c48f8619a258dac14260e4f85faeebb29c053950a5a8",
+    "entry": "sptraits.txt",
+    "entrySha256": "0809ed7b2d7fc1357d96e4cd87bb5f9db6ad813b42d69dab29ab35fa3e1c11b9",
+    "rows": [
+      "Ice Bolt\tIce Bolt\t2\t \tx\t \t \t8\t6\t6\t6\t20\t10\t10\t20\t50\t50\t50\t6\t0\t6\t6\t4\t50\t25\t20\t20\t20\t20\t\"{Ice Bolt}",
+      "Frost Ring\tFrost Ring\t3\t \tx\t \t \t12\t9\t9\t9\t10\t15\t15\t30\t60\t16\t16\t16\t0\t12\t12\t12\t4\t12\t12\t12\t12\t12\t\"{Frost Ring}",
+      "Fireball\tFireball\t3\t \t \tx\t \t15\t12\t12\t12\t10\t15\t15\t30\t60\t8\t8\t8\t50\t12\t16\t12\t2\t12\t15\t15\t15\t15\t\"{Fireball}",
+      "Inferno\tInferno\t4\t \t \tx\t \t16\t12\t12\t12\t10\t20\t20\t40\t80\t5\t5\t5\t10\t5\t5\t0\t0\t10\t20\t20\t20\t20\t\"{Inferno}"
+    ],
+    "parsed": {
+      "Ice Bolt": {
+        "coefficient": 20,
+        "none": 10,
+        "basic": 10,
+        "advanced": 20,
+        "expert": 50
+      },
+      "Frost Ring": {
+        "coefficient": 10,
+        "none": 15,
+        "basic": 15,
+        "advanced": 30,
+        "expert": 60
+      },
+      "Fireball": {
+        "coefficient": 10,
+        "none": 15,
+        "basic": 15,
+        "advanced": 30,
+        "expert": 60
+      },
+      "Inferno": {
+        "coefficient": 10,
+        "none": 20,
+        "basic": 20,
+        "advanced": 40,
+        "expert": 80
+      }
+    }
+  },
+  "meleeCompoundInference": {
+    "actualPrimaryLoss": 2832,
+    "sourceBeforeFireball": 710,
+    "sourceEachDirectInferno": 730,
+    "configuredPhysicalFactor": 5,
+    "physicalRange": [
+      600,
+      700
+    ],
+    "uniqueInfernoCountCandidates": [
+      {
+        "n": 2,
+        "physical": 662
+      }
+    ],
+    "scope": "Post-capture arithmetic inference from immutable raw loss, pinned SPTRAITS and unchanged existing engine attackcap4. Not a direct native per-spell packet count; source header itself has exactlytwo orderedInferno calls."
+  },
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-wall-guards168-result.json",
+      "sha256": "c7204fe288ca0d5aa6ef6d44497fc408c839dfa4af3fd0f823ea6ea9338c1fd1"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-wall-overlap168-result.json",
+      "sha256": "9a36d5323606809199f153df8505ec785aa95acf4803a25fbc12824a8d8edc31"
+    }
+  ],
+  "limits": [
+    "Shared source and exact observed aggregate support the twoInferno path; no fictitious per-cast instrumentation or new native run claimed.",
+    "This is supplementary to full profiles, defenses, wall and347kernel native proofs."
+  ]
+}

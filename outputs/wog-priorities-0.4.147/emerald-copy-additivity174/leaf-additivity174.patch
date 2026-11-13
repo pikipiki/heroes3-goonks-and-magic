@@ -1,0 +1,73 @@
+--- a/scripts/era-bridge/artifacts/artifacts.mjs
++++ b/scripts/era-bridge/artifacts/artifacts.mjs
+@@ -72,7 +72,8 @@
+     const {key,value}=entry;
+     if(PRIMARY[key])add(key,'PRIMARY_SKILL',value,{subtype:PRIMARY[key]});
+     else if(SIMPLE[key])add(key,SIMPLE[key],value);
+-    else if(key==='DamageMin'||key==='DamageMax')add(key,'CREATURE_DAMAGE',value,{subtype:key==='DamageMin'?'creatureDamageMin':'creatureDamageMax'});
++    // Emerald sums actual worn copies. Preserve each leaf instance's shared type-bonus path.
++    else if(key==='DamageMin'||key==='DamageMax')add(key,'CREATURE_DAMAGE',value,{subtype:key==='DamageMin'?'creatureDamageMin':'creatureDamageMax',...(id>=273&&id<=277?{stacking:'ALWAYS'}:{})});
+     else if(key==='Immunities')for(const spell of new Set(value)) {
+       const subtype=resolve(resolveSpell,'spell',spell,entry,diagnostics);
+       if(subtype)add(`immunity${spell}`,'SPELL_IMMUNITY',undefined,{subtype});
+--- a/mod/tum-era/content/config/reviewed-conversion-artifacts.json
++++ b/mod/tum-era/content/config/reviewed-conversion-artifacts.json
+@@ -56,7 +56,8 @@
+       "DamageMin": {
+         "type": "CREATURE_DAMAGE",
+         "val": 1,
+-        "subtype": "creatureDamageMin"
++        "subtype": "creatureDamageMin",
++        "stacking": "ALWAYS"
+       }
+     }
+   },
+@@ -87,7 +88,8 @@
+       "DamageMax": {
+         "type": "CREATURE_DAMAGE",
+         "val": 1,
+-        "subtype": "creatureDamageMax"
++        "subtype": "creatureDamageMax",
++        "stacking": "ALWAYS"
+       }
+     }
+   },
+@@ -118,12 +120,14 @@
+       "DamageMax": {
+         "type": "CREATURE_DAMAGE",
+         "val": 2,
+-        "subtype": "creatureDamageMax"
++        "subtype": "creatureDamageMax",
++        "stacking": "ALWAYS"
+       },
+       "DamageMin": {
+         "type": "CREATURE_DAMAGE",
+         "val": 2,
+-        "subtype": "creatureDamageMin"
++        "subtype": "creatureDamageMin",
++        "stacking": "ALWAYS"
+       }
+     }
+   }
+--- a/mod/tum-era/content/config/reviewed-eyes275-276.json
++++ b/mod/tum-era/content/config/reviewed-eyes275-276.json
+@@ -26,7 +26,8 @@
+       "DamageMin": {
+         "type": "CREATURE_DAMAGE",
+         "val": 2,
+-        "subtype": "creatureDamageMin"
++        "subtype": "creatureDamageMin",
++        "stacking": "ALWAYS"
+       }
+     }
+   },
+@@ -57,7 +58,8 @@
+       "DamageMax": {
+         "type": "CREATURE_DAMAGE",
+         "val": 2,
+-        "subtype": "creatureDamageMax"
++        "subtype": "creatureDamageMax",
++        "stacking": "ALWAYS"
+       }
+     }
+   }

@@ -1,0 +1,11 @@
+RuntimeError: null function or function signature mismatch
+    at http://127.0.0.1:8820/vcmiclient.75a488c285ff4992.wasm:wasm-function[526]:0x228e4
+    at http://127.0.0.1:8820/vcmiclient.75a488c285ff4992.wasm:wasm-function[3679]:0x998e7
+    at http://127.0.0.1:8820/vcmiclient.75a488c285ff4992.wasm:wasm-function[8654]:0x189d36
+    at http://127.0.0.1:8820/vcmiclient.75a488c285ff4992.wasm:wasm-function[18140]:0x3d8e46
+    at http://127.0.0.1:8820/vcmiclient.75a488c285ff4992.wasm:wasm-function[1594]:0x44d5c
+    at http://127.0.0.1:8820/vcmiclient.75a488c285ff4992.wasm:wasm-function[37553]:0x74e5d0
+    at http://127.0.0.1:8820/vcmiclient.75a488c285ff4992.wasm:wasm-function[7089]:0x1490b7
+    at http://127.0.0.1:8820/vcmiclient.75a488c285ff4992.wasm:wasm-function[36747]:0x6f6327
+    at http://127.0.0.1:8820/vcmiclient.75a488c285ff4992.wasm:wasm-function[36748]:0x6f6588
+    at http://127.0.0.1:8820/vcmiclient.75a488c285ff4992.wasm:wasm-function[36749]:0x6f66d9

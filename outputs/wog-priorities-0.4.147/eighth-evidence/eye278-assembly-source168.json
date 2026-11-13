@@ -1,0 +1,177 @@
+{
+  "status": "future168-source-only-inactive",
+  "artifact278Active": false,
+  "nativeGuiAssemblyValidated": false,
+  "sources": [
+    {
+      "path": "../h3era-plugins/Emerald3/emerald/ArtifactCombos.cpp",
+      "sha256": "6a6c312be8d590f7e5495f0072a2465d637c40486b597d021d4a06f6b0719899"
+    },
+    {
+      "path": "../h3era-plugins/Emerald3/emerald/emerald.cpp",
+      "sha256": "5e7a9eeb0b09ba3ed619d24752b399ad1893bbb0db39e0919e8c318e96c11a37"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp",
+      "sha256": "517289fc8f317f9948ec11bc2053696c997b541dc9bee89cfd6b8cee764a95bd"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/entities/artifact/CArtifactSet.cpp",
+      "sha256": "1e9772b202647fc6662b09f5a0ed2e7f6676e859a27f4ae16e0fed6a1320cb0b"
+    }
+  ],
+  "components": [
+    {
+      "id": 273,
+      "source": {
+        "path": "../Third-Upgrade-Mod-Full/Data/artifacts/273.cfg",
+        "sha256": "96fc4d138b31a3dd7047f4b4f435c52de7e11cb3a8e45848b617e92d1392f4c5",
+        "fields": [
+          "DamageMin=1",
+          "UpgradeFrom=341",
+          "UpgradeTo=26",
+          "UpgradeFrom2=68",
+          "UpgradeTo2=26",
+          "UpgradeFrom3=69",
+          "UpgradeTo3=26"
+        ]
+      },
+      "native": {
+        "slot": [
+          "MISC5",
+          "MISC4",
+          "MISC3",
+          "MISC2",
+          "MISC1"
+        ],
+        "bonuses": {
+          "DamageMin": {
+            "type": "CREATURE_DAMAGE",
+            "val": 1,
+            "subtype": "creatureDamageMin"
+          }
+        },
+        "sha256": "9ad1fa27c73e5fd8c11dfea58beadc98b559253b4dc71f45b0a0509a30c44d06"
+      }
+    },
+    {
+      "id": 274,
+      "source": {
+        "path": "../Third-Upgrade-Mod-Full/Data/artifacts/274.cfg",
+        "sha256": "d8f010beca62134487050decf0586fec9596e3256f92bba0827238cf4a7e7216",
+        "fields": [
+          "DamageMax=1",
+          "UpgradeFrom=342",
+          "UpgradeTo=82",
+          "UpgradeFrom2=68",
+          "UpgradeTo2=82",
+          "UpgradeFrom3=69",
+          "UpgradeTo3=82"
+        ]
+      },
+      "native": {
+        "slot": [
+          "MISC5",
+          "MISC4",
+          "MISC3",
+          "MISC2",
+          "MISC1"
+        ],
+        "bonuses": {
+          "DamageMax": {
+            "type": "CREATURE_DAMAGE",
+            "val": 1,
+            "subtype": "creatureDamageMax"
+          }
+        },
+        "sha256": "4a00da1d97b62eeffd74a7f3a24364a4624ef1e7cbe61820dbc68d82425ac075"
+      }
+    },
+    {
+      "id": 276,
+      "source": {
+        "path": "../Third-Upgrade-Mod-Full/Data/artifacts/276.cfg",
+        "sha256": "dc04f0b7edd92c84c3b209914d91f7ca2132dee3591ad454d395add15e461aa2",
+        "fields": [
+          "DamageMax=2",
+          "UpgradeFrom=344",
+          "UpgradeTo=135",
+          "UpgradeFrom2=196",
+          "UpgradeTo2=135"
+        ]
+      },
+      "native": {
+        "slot": [
+          "MISC5",
+          "MISC4",
+          "MISC3",
+          "MISC2",
+          "MISC1"
+        ],
+        "bonuses": {
+          "DamageMax": {
+            "type": "CREATURE_DAMAGE",
+            "val": 2,
+            "subtype": "creatureDamageMax"
+          }
+        },
+        "sha256": "68345fca67beea89d322da093833ad29be3f46483cfb512c30246b81193b873a"
+      }
+    },
+    {
+      "id": 277,
+      "source": {
+        "path": "../Third-Upgrade-Mod-Full/Data/artifacts/277.cfg",
+        "sha256": "83ef75673d87662a9ffaeb6d1f1023f4d61007f4bff7264619971702d8e19dbd",
+        "fields": [
+          "DamageMax=2",
+          "DamageMin=2",
+          "UpgradeFrom=345",
+          "UpgradeTo=132",
+          "UpgradeFrom2=196",
+          "UpgradeTo2=132"
+        ]
+      },
+      "native": {
+        "slot": [
+          "MISC5",
+          "MISC4",
+          "MISC3",
+          "MISC2",
+          "MISC1"
+        ],
+        "bonuses": {
+          "DamageMax": {
+            "type": "CREATURE_DAMAGE",
+            "val": 2,
+            "subtype": "creatureDamageMax"
+          },
+          "DamageMin": {
+            "type": "CREATURE_DAMAGE",
+            "val": 2,
+            "subtype": "creatureDamageMin"
+          }
+        },
+        "sha256": "14fd9a4e60bb304b7b088c8d2500571e7f2ffdc85bd63cf564a276dc63c82df9"
+      }
+    }
+  ],
+  "uncombine": {
+    "path": "outputs/wog-priorities-0.4.147/eighth-evidence/eye278-source-uncombine168.asm",
+    "sha256": "93ebb53732052e9ccaf5a6f0ba1525363bfe72053943903c0019925f83d03348",
+    "binarySHA": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+  },
+  "verified": [
+    "Original4DC2E0 reads parent comboID and calls RemoveArtFromHero4E2E40. It then scans constituent IDs ascending, constructs each{id,-1}, and calls AddArtToHero4E2C70 withslot-1. Original equipment positions are NOT saved/restored by this routine.",
+    "Emerald ArtifactCombos263..269 patches4DC310 bitset stride/size. Active dwords_0x160_to_3C0 list includes4DC319+2, while emerald.cpp631 writes4DC358=NEW_ARTS_AMOUNT. random.cpp371 is COMMENTED and is deliberately not evidence.",
+    "Removing parent decrements the same category reservation counters added while equipping it. Empty component ID fields therefore do not imply extra available equipment slots.",
+    "Native visitDisassembledArtifact instead restores remembered equipment part.slot, mainpart replacing the parent position. This is an actual placement-order difference needing a scoped278 decision, not proof that native extra locked slots are wrong.",
+    "For these four native component definitions the explicit bonus lists contain only custom Emerald damage endpoints. Their source CFG fields contain endpoint bonuses and daily upgrade pairs; no other custom bonus field. Original ordinary hero primary-stat inheritance is handled separately by AddArtToHero4E2D62..7D and must not be removed globally."
+  ],
+  "obligations": [
+    "Keep source reversible combination: irreversible consuming recipe would be incorrect.",
+    "Audit equivalence of source category reservations and native locked MISC slots with actual GUI assembly/disassembly; test source ascending-ID/first-available placement, including separately equipped duplicate components.",
+    "Retain noncustom inherited primary-stat/spell effects when applying any parent-specific custom-damage compensation.",
+    "Validate all component definitions and actual aggregate+5/+5; then equipped/backpack, save/load, banner/XP and daily conversions. All346/347/339 family prerequisites remain separately gated."
+  ]
+}

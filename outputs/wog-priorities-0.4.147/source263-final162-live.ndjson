@@ -1,0 +1,740 @@
+{"at":"2026-11-13T10:26:37.969Z","kind":"console","value":"log: Starting... "}
+{"at":"2026-11-13T10:26:37.972Z","kind":"console","value":"log: \u001b[1;32mStarting client of 'VCMI 1.7.3.GITDIR-NOTFOUND'"}
+{"at":"2026-11-13T10:26:37.972Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mCreating console and configuring logger: 0 ms"}
+{"at":"2026-11-13T10:26:37.973Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mThe log file will be saved to \"/home/web_user/.cache/vcmi/VCMI_Client_log.txt\""}
+{"at":"2026-11-13T10:26:38.078Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tInitialization: 0 ms"}
+{"at":"2026-11-13T10:26:38.293Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tData loading: 0 ms"}
+{"at":"2026-11-13T10:26:38.331Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tMod handler: 0 ms"}
+{"at":"2026-11-13T10:26:38.424Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tMod filesystems: 0 ms"}
+{"at":"2026-11-13T10:26:38.425Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mInitialized logging system based on settings successfully."}
+{"at":"2026-11-13T10:26:38.425Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m[log level] ai => not set"}
+{"at":"2026-11-13T10:26:38.425Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m[log level] animation => not set"}
+{"at":"2026-11-13T10:26:38.426Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m[log level] bonus => not set"}
+{"at":"2026-11-13T10:26:38.426Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m[log level] global => trace"}
+{"at":"2026-11-13T10:26:38.426Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m[log level] mod => not set"}
+{"at":"2026-11-13T10:26:38.426Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m[log level] network => not set"}
+{"at":"2026-11-13T10:26:38.426Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m[log level] rng => info"}
+{"at":"2026-11-13T10:26:38.430Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mFound 2 render drivers"}
+{"at":"2026-11-13T10:26:38.431Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\topengles2"}
+{"at":"2026-11-13T10:26:38.431Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tsoftware"}
+{"at":"2026-11-13T10:26:38.458Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mCreated renderer opengles2"}
+{"at":"2026-11-13T10:26:38.583Z","kind":"console","value":"warning: The ScriptProcessorNode is deprecated. Use AudioWorkletNode instead. (https://bit.ly/audio-worklet)"}
+{"at":"2026-11-13T10:26:38.596Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mStarting network thread"}
+{"at":"2026-11-13T10:26:38.600Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tInitializing content handler"}
+{"at":"2026-11-13T10:26:38.678Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (core)"}
+{"at":"2026-11-13T10:26:38.685Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (vcmi)"}
+{"at":"2026-11-13T10:26:38.685Z","kind":"console","value":"error: Data in wake-of-gods is invalid!"}
+{"at":"2026-11-13T10:26:38.685Z","kind":"console","value":"error: At /french"}
+{"at":"2026-11-13T10:26:38.685Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:38.685Z","kind":"console","value":"error: At /japanese"}
+{"at":"2026-11-13T10:26:38.685Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:38.686Z","kind":"console","value":"error: At /vietnamese"}
+{"at":"2026-11-13T10:26:38.686Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:38.686Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:38.686Z","kind":"console","value":"error: \t\tParsing mod: Issues found! (wake-of-gods)"}
+{"at":"2026-11-13T10:26:38.686Z","kind":"console","value":"log: \u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.animatedtrees)"}
+{"at":"2026-11-13T10:26:38.686Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.artifacts)"}
+{"at":"2026-11-13T10:26:38.687Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.artifacts.bonuses icons)"}
+{"at":"2026-11-13T10:26:38.687Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.battledecorations)"}
+{"at":"2026-11-13T10:26:38.687Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.cheats)"}
+{"at":"2026-11-13T10:26:38.687Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.creatures)"}
+{"at":"2026-11-13T10:26:38.688Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.creatures.bonuses icons)"}
+{"at":"2026-11-13T10:26:38.688Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.heroes3datapatch)"}
+{"at":"2026-11-13T10:26:38.688Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.heroes3datapatch.heroes3datapatchera)"}
+{"at":"2026-11-13T10:26:38.689Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.level8units)"}
+{"at":"2026-11-13T10:26:38.689Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.level8units.bonuses icons)"}
+{"at":"2026-11-13T10:26:38.690Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.mainmenu)"}
+{"at":"2026-11-13T10:26:38.691Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.mapdecorations)"}
+{"at":"2026-11-13T10:26:38.693Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.mapobjects)"}
+{"at":"2026-11-13T10:26:38.693Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.messengersandemissaries)"}
+{"at":"2026-11-13T10:26:38.694Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.messengersandemissaries.bonuses icons)"}
+{"at":"2026-11-13T10:26:38.694Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.messengersandemissaries.vivid-battlefields)"}
+{"at":"2026-11-13T10:26:38.700Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.stackexperience)"}
+{"at":"2026-11-13T10:26:38.700Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.stackexperience.stackexperienceicons)"}
+{"at":"2026-11-13T10:26:38.701Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.vividbattlefields)"}
+{"at":"2026-11-13T10:26:38.701Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.vividbattlefields.vivid-battlefields-8th-level)"}
+{"at":"2026-11-13T10:26:38.701Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.warmachinesonmap)"}
+{"at":"2026-11-13T10:26:38.701Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix)"}
+{"at":"2026-11-13T10:26:38.701Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_arrow)"}
+{"at":"2026-11-13T10:26:38.701Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_heroes)"}
+{"at":"2026-11-13T10:26:38.701Z","kind":"console","value":"error: Data in third-upgrades is invalid!"}
+{"at":"2026-11-13T10:26:38.701Z","kind":"console","value":"error: At /french"}
+{"at":"2026-11-13T10:26:38.701Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:38.701Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:38.706Z","kind":"console","value":"error: \t\tParsing mod: Issues found! (third-upgrades)"}
+{"at":"2026-11-13T10:26:38.706Z","kind":"console","value":"error: CONFIG/CREATURES/DEATHKNIGHTUP is not valid JSON!"}
+{"at":"2026-11-13T10:26:38.706Z","kind":"console","value":"error: At line 93, position 21 warning: Duplicate element encountered!"}
+{"at":"2026-11-13T10:26:38.706Z","kind":"console","value":"error: At line 95, position 10 warning: Duplicate element encountered!"}
+{"at":"2026-11-13T10:26:38.707Z","kind":"console","value":"error: At line 96, position 9 warning: Duplicate element encountered!"}
+{"at":"2026-11-13T10:26:38.707Z","kind":"console","value":"log: \u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;32m\t\tParsing mod: OK (third-upgrades.new-creatures)"}
+{"at":"2026-11-13T10:26:38.707Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.animatedobjects)"}
+{"at":"2026-11-13T10:26:38.708Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.commanders)"}
+{"at":"2026-11-13T10:26:38.708Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.commanders.bonuses icons)"}
+{"at":"2026-11-13T10:26:38.708Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.commanders.newstonesgraphic)"}
+{"at":"2026-11-13T10:26:38.708Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.creaturebanks)"}
+{"at":"2026-11-13T10:26:38.708Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.mapsupport)"}
+{"at":"2026-11-13T10:26:38.709Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.mapsupport.commanderssupport)"}
+{"at":"2026-11-13T10:26:38.709Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.mapsupport.warmachinesonmapsupport)"}
+{"at":"2026-11-13T10:26:38.709Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.mithril)"}
+{"at":"2026-11-13T10:26:38.710Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.stackartifacts)"}
+{"at":"2026-11-13T10:26:38.711Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_animatedtrees)"}
+{"at":"2026-11-13T10:26:38.711Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_battledecorations)"}
+{"at":"2026-11-13T10:26:38.711Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_creatures)"}
+{"at":"2026-11-13T10:26:38.711Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_heroes3datapatch)"}
+{"at":"2026-11-13T10:26:38.711Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_level8units)"}
+{"at":"2026-11-13T10:26:38.711Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_mapdecorations)"}
+{"at":"2026-11-13T10:26:38.711Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_messengersandemissaries)"}
+{"at":"2026-11-13T10:26:38.712Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (goonk)"}
+{"at":"2026-11-13T10:26:38.712Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (third-upgrades.wog-comp)"}
+{"at":"2026-11-13T10:26:38.719Z","kind":"console","value":"error: Redundant namespace definition for divinePhoenix"}
+{"at":"2026-11-13T10:26:38.719Z","kind":"console","value":"error: Redundant namespace definition for eraCreature263"}
+{"at":"2026-11-13T10:26:38.719Z","kind":"console","value":"error: Redundant namespace definition for eraCreature271"}
+{"at":"2026-11-13T10:26:38.719Z","kind":"console","value":"error: Redundant namespace definition for eraCreature280"}
+{"at":"2026-11-13T10:26:38.719Z","kind":"console","value":"error: Redundant namespace definition for redBonesDragon"}
+{"at":"2026-11-13T10:26:38.722Z","kind":"console","value":"log: \u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;32m\t\tParsing mod: OK (tum-era)"}
+{"at":"2026-11-13T10:26:38.722Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.mapsupport.stackartifactssupport)"}
+{"at":"2026-11-13T10:26:38.722Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_animatedobjects)"}
+{"at":"2026-11-13T10:26:38.722Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_artifacts)"}
+{"at":"2026-11-13T10:26:38.723Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_commanders)"}
+{"at":"2026-11-13T10:26:38.723Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_h3creatures)"}
+{"at":"2026-11-13T10:26:38.723Z","kind":"console","value":"error: Data in wake-of-gods.woggraphicfix.wf_mapobjects is invalid!"}
+{"at":"2026-11-13T10:26:38.723Z","kind":"console","value":"error: At /german"}
+{"at":"2026-11-13T10:26:38.723Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:38.723Z","kind":"console","value":"error: At /japanese"}
+{"at":"2026-11-13T10:26:38.723Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:38.723Z","kind":"console","value":"error: At /portuguese"}
+{"at":"2026-11-13T10:26:38.723Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:38.723Z","kind":"console","value":"error: At /russian"}
+{"at":"2026-11-13T10:26:38.723Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:38.724Z","kind":"console","value":"error: At /spanish"}
+{"at":"2026-11-13T10:26:38.724Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:38.724Z","kind":"console","value":"error: At /turkish"}
+{"at":"2026-11-13T10:26:38.724Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:38.724Z","kind":"console","value":"error: At /ukrainian"}
+{"at":"2026-11-13T10:26:38.724Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:38.724Z","kind":"console","value":"error: At /vietnamese"}
+{"at":"2026-11-13T10:26:38.724Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:38.724Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:38.727Z","kind":"console","value":"error: \t\tParsing mod: Issues found! (wake-of-gods.woggraphicfix.wf_mapobjects)"}
+{"at":"2026-11-13T10:26:38.727Z","kind":"console","value":"log: \u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_stackartifacts)"}
+{"at":"2026-11-13T10:26:38.727Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_stackartifacts.warlordsbanner)"}
+{"at":"2026-11-13T10:26:38.727Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tParsing mod data"}
+{"at":"2026-11-13T10:26:38.794Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.795Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.795Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.795Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.795Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.795Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.795Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.795Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.795Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.795Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.795Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.796Z","kind":"console","value":"error: Data in castle is invalid!"}
+{"at":"2026-11-13T10:26:38.796Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:38.796Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:38.796Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:38.799Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.799Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.799Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.799Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.799Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.799Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.799Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.799Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.799Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.800Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.800Z","kind":"console","value":"error: Data in conflux is invalid!"}
+{"at":"2026-11-13T10:26:38.800Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:38.800Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:38.801Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:38.802Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.802Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.802Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.802Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.803Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.803Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.803Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.803Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.803Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.803Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.803Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.804Z","kind":"console","value":"error: Data in dungeon is invalid!"}
+{"at":"2026-11-13T10:26:38.804Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:38.804Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:38.804Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:38.805Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.805Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.805Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.805Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.805Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.806Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.806Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.806Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.806Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.806Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.806Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.806Z","kind":"console","value":"error: Data in fortress is invalid!"}
+{"at":"2026-11-13T10:26:38.806Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:38.807Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:38.807Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:38.808Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.808Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.808Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.808Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.808Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.808Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.809Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.809Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.809Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.809Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.809Z","kind":"console","value":"error: Data in inferno is invalid!"}
+{"at":"2026-11-13T10:26:38.809Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:38.809Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:38.810Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:38.811Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.811Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.811Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.811Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.811Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.811Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.811Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.812Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.812Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.812Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.812Z","kind":"console","value":"error: Data in necropolis is invalid!"}
+{"at":"2026-11-13T10:26:38.812Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:38.812Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:38.812Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:38.814Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.814Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.815Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.815Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.815Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.815Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.815Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.815Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.815Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.815Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.815Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde1Upgr2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.815Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde2Upgr2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.815Z","kind":"console","value":"error: Data in rampart is invalid!"}
+{"at":"2026-11-13T10:26:38.815Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:38.816Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:38.816Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:38.817Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.817Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.817Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.818Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.818Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.818Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.818Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.818Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.818Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.818Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.818Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.818Z","kind":"console","value":"error: Data in stronghold is invalid!"}
+{"at":"2026-11-13T10:26:38.818Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:38.819Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:38.819Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:38.820Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.820Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.820Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.820Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.820Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.820Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.820Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.820Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.820Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.820Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.821Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde1Upgr2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.821Z","kind":"console","value":"error: Data in tower is invalid!"}
+{"at":"2026-11-13T10:26:38.821Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:38.821Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:38.821Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:38.845Z","kind":"console","value":"error: Dwelling tum-era:eraDwelling20_2 has template tum-era/objects/Crdw25 which is not valid for a random dwelling! Dwellings must not block tiles outside 2x2 range and must be visitable in bottom row. Change dwelling mask or mark dwelling as 'bannedForRandomDwelling'"}
+{"at":"2026-11-13T10:26:38.883Z","kind":"console","value":"error: \t\tLoading mod: Issues found! (core)"}
+{"at":"2026-11-13T10:26:38.895Z","kind":"console","value":"log: \u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b"}
+{"at":"2026-11-13T10:26:38.895Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods)"}
+{"at":"2026-11-13T10:26:38.895Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.animatedtrees)"}
+{"at":"2026-11-13T10:26:38.899Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.artifacts)"}
+{"at":"2026-11-13T10:26:38.899Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.artifacts.bonuses icons)"}
+{"at":"2026-11-13T10:26:38.899Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.battledecorations)"}
+{"at":"2026-11-13T10:26:38.899Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.cheats)"}
+{"at":"2026-11-13T10:26:38.904Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.creatures)"}
+{"at":"2026-11-13T10:26:38.904Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.creatures.bonuses icons)"}
+{"at":"2026-11-13T10:26:38.904Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.heroes3datapatch)"}
+{"at":"2026-11-13T10:26:38.904Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.heroes3datapatch.heroes3datapatchera)"}
+{"at":"2026-11-13T10:26:38.908Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.level8units)"}
+{"at":"2026-11-13T10:26:38.909Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.level8units.bonuses icons)"}
+{"at":"2026-11-13T10:26:38.909Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.mainmenu)"}
+{"at":"2026-11-13T10:26:38.912Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.mapdecorations)"}
+{"at":"2026-11-13T10:26:38.915Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.mapobjects)"}
+{"at":"2026-11-13T10:26:38.918Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.messengersandemissaries)"}
+{"at":"2026-11-13T10:26:38.918Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.messengersandemissaries.bonuses icons)"}
+{"at":"2026-11-13T10:26:38.918Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.messengersandemissaries.vivid-battlefields)"}
+{"at":"2026-11-13T10:26:38.918Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.stackexperience)"}
+{"at":"2026-11-13T10:26:38.918Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.stackexperience.stackexperienceicons)"}
+{"at":"2026-11-13T10:26:38.918Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.vividbattlefields)"}
+{"at":"2026-11-13T10:26:38.918Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.vividbattlefields.vivid-battlefields-8th-level)"}
+{"at":"2026-11-13T10:26:38.918Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.warmachinesonmap)"}
+{"at":"2026-11-13T10:26:38.918Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix)"}
+{"at":"2026-11-13T10:26:38.918Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_arrow)"}
+{"at":"2026-11-13T10:26:38.919Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_heroes)"}
+{"at":"2026-11-13T10:26:38.930Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (third-upgrades)"}
+{"at":"2026-11-13T10:26:38.930Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (third-upgrades.new-creatures)"}
+{"at":"2026-11-13T10:26:38.930Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.animatedobjects)"}
+{"at":"2026-11-13T10:26:38.932Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.commanders)"}
+{"at":"2026-11-13T10:26:38.932Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.commanders.bonuses icons)"}
+{"at":"2026-11-13T10:26:38.932Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.commanders.newstonesgraphic)"}
+{"at":"2026-11-13T10:26:38.932Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.creaturebanks)"}
+{"at":"2026-11-13T10:26:38.933Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.mapsupport)"}
+{"at":"2026-11-13T10:26:38.933Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.mapsupport.commanderssupport)"}
+{"at":"2026-11-13T10:26:38.933Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.mapsupport.warmachinesonmapsupport)"}
+{"at":"2026-11-13T10:26:38.933Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.mithril)"}
+{"at":"2026-11-13T10:26:38.933Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.stackartifacts)"}
+{"at":"2026-11-13T10:26:38.933Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_animatedtrees)"}
+{"at":"2026-11-13T10:26:38.933Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_battledecorations)"}
+{"at":"2026-11-13T10:26:38.933Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_creatures)"}
+{"at":"2026-11-13T10:26:38.934Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_heroes3datapatch)"}
+{"at":"2026-11-13T10:26:38.934Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_level8units)"}
+{"at":"2026-11-13T10:26:38.934Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_mapdecorations)"}
+{"at":"2026-11-13T10:26:38.934Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_messengersandemissaries)"}
+{"at":"2026-11-13T10:26:38.936Z","kind":"console","value":"error: Mod 'goonk': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.936Z","kind":"console","value":"error: Mod 'goonk': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.936Z","kind":"console","value":"error: Mod 'goonk': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.937Z","kind":"console","value":"error: Mod 'goonk': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.937Z","kind":"console","value":"error: Mod 'goonk': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.937Z","kind":"console","value":"error: Mod 'goonk': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.937Z","kind":"console","value":"error: Mod 'goonk': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.937Z","kind":"console","value":"error: Mod 'goonk': Town building 'dwellingUp3Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:38.938Z","kind":"console","value":"error: Data in goonk is invalid!"}
+{"at":"2026-11-13T10:26:38.938Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:38.938Z","kind":"console","value":"error: \t Error: Video file \"\" was not found"}
+{"at":"2026-11-13T10:26:38.938Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:38.942Z","kind":"console","value":"error: \t\tLoading mod: Issues found! (goonk)"}
+{"at":"2026-11-13T10:26:38.942Z","kind":"console","value":"log: \u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;32m\t\tLoading mod: OK (third-upgrades.wog-comp)"}
+{"at":"2026-11-13T10:26:38.971Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (tum-era)"}
+{"at":"2026-11-13T10:26:38.971Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.mapsupport.stackartifactssupport)"}
+{"at":"2026-11-13T10:26:38.971Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_animatedobjects)"}
+{"at":"2026-11-13T10:26:38.971Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_artifacts)"}
+{"at":"2026-11-13T10:26:38.971Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_commanders)"}
+{"at":"2026-11-13T10:26:38.971Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_h3creatures)"}
+{"at":"2026-11-13T10:26:38.977Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_mapobjects)"}
+{"at":"2026-11-13T10:26:38.977Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_stackartifacts)"}
+{"at":"2026-11-13T10:26:38.977Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_stackartifacts.warlordsbanner)"}
+{"at":"2026-11-13T10:26:38.979Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tLoading mod data"}
+{"at":"2026-11-13T10:26:38.998Z","kind":"console","value":"error: Bonus type ENCHANTED does not supports addInfo!"}
+{"at":"2026-11-13T10:26:39.002Z","kind":"console","value":"error: Bonus type ENCHANTED does not supports addInfo!"}
+{"at":"2026-11-13T10:26:39.038Z","kind":"console","value":"log: \u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;32m\tResolving identifiers"}
+{"at":"2026-11-13T10:26:39.050Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tHandlers post-load finalization"}
+{"at":"2026-11-13T10:26:39.050Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tAll game content loaded"}
+{"at":"2026-11-13T10:26:39.056Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mInitializing VCMI_Lib: 0 ms"}
+{"at":"2026-11-13T10:26:39.072Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mMessage handler: 0 ms"}
+{"at":"2026-11-13T10:26:39.075Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mInitialization of VCMI (together): 0 ms"}
+{"at":"2026-11-13T10:26:39.090Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mKilling console..."}
+{"at":"2026-11-13T10:26:39.090Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mKilling console... done!"}
+{"at":"2026-11-13T10:26:39.104Z","kind":"console","value":"warning: [.WebGL-0x12c00567600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"}
+{"at":"2026-11-13T10:26:39.111Z","kind":"console","value":"warning: [.WebGL-0x12c00567600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"}
+{"at":"2026-11-13T10:26:39.178Z","kind":"console","value":"warning: [.WebGL-0x12c00567600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"}
+{"at":"2026-11-13T10:26:39.182Z","kind":"console","value":"warning: [.WebGL-0x12c00567600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"}
+{"at":"2026-11-13T10:26:40.120Z","kind":"menu-ready","value":"Azure-Astral-L7-H37"}
+{"at":"2026-11-13T10:26:40.299Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mPort 3030 will be used"}
+{"at":"2026-11-13T10:26:40.301Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mConnection established"}
+{"at":"2026-11-13T10:26:40.303Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mConnection with client 1 established. UUID: a1e8f642-e483-4586-80c6-fe77f938a3a2"}
+{"at":"2026-11-13T10:26:40.303Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mClient 1 player: Player 1"}
+{"at":"2026-11-13T10:26:40.303Z","kind":"console","value":"log: \u001b[0m\u001b[1;32msystem says: Player 1 (pid 1 cid 1) joins the game"}
+{"at":"2026-11-13T10:26:40.719Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mPreparing to start new game"}
+{"at":"2026-11-13T10:26:40.720Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mUsing random seed: 1114409413"}
+{"at":"2026-11-13T10:26:40.720Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mGamestate created!"}
+{"at":"2026-11-13T10:26:40.720Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mOpen map file: MAPS/001-Goonks"}
+{"at":"2026-11-13T10:26:40.747Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mMap loaded!"}
+{"at":"2026-11-13T10:26:40.769Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mGamestate initialized!"}
+{"at":"2026-11-13T10:26:40.782Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mConnection 1 will handle 3 player: -1 0 1 "}
+{"at":"2026-11-13T10:26:40.786Z","kind":"console","value":"error: Failed to find artifact that matches requested parameters!"}
+{"at":"2026-11-13T10:26:40.786Z","kind":"console","value":"error: Failed to find artifact that matches requested parameters!"}
+{"at":"2026-11-13T10:26:40.787Z","kind":"console","value":"error: Failed to find artifact that matches requested parameters!"}
+{"at":"2026-11-13T10:26:40.787Z","kind":"console","value":"error: Failed to find artifact that matches requested parameters!"}
+{"at":"2026-11-13T10:26:40.792Z","kind":"console","value":"log: \u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;32mPreparing environment for player neutral"}
+{"at":"2026-11-13T10:26:40.792Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mPreparing environment for player red"}
+{"at":"2026-11-13T10:26:40.793Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mPreparing environment for player blue"}
+{"at":"2026-11-13T10:26:40.793Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mPreparing interface for player red"}
+{"at":"2026-11-13T10:26:40.793Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mPlayer red will be lead by human"}
+{"at":"2026-11-13T10:26:40.830Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mPreparing interface for player blue"}
+{"at":"2026-11-13T10:26:40.830Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mPlayer blue will be lead by Nullkiller2"}
+{"at":"2026-11-13T10:26:40.830Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mOpening Nullkiller2"}
+{"at":"2026-11-13T10:26:40.837Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mOpening BattleAI"}
+{"at":"2026-11-13T10:26:40.888Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mSaving to Saves/Goonk-auto"}
+{"at":"2026-11-13T10:26:40.889Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mSaving game state"}
+{"at":"2026-11-13T10:26:40.892Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mSaving server state"}
+{"at":"2026-11-13T10:26:40.893Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mGame has been successfully saved!"}
+{"at":"2026-11-13T10:26:40.903Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mGame has been saved as Saves/Goonk-auto"}
+{"at":"2026-11-13T10:26:41.618Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mOpening BattleAI"}
+{"at":"2026-11-13T10:26:48.916Z","kind":"console","value":"log: Starting... "}
+{"at":"2026-11-13T10:26:48.919Z","kind":"console","value":"log: \u001b[1;32mStarting client of 'VCMI 1.7.3.GITDIR-NOTFOUND'"}
+{"at":"2026-11-13T10:26:48.919Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mCreating console and configuring logger: 0 ms"}
+{"at":"2026-11-13T10:26:48.919Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mThe log file will be saved to \"/home/web_user/.cache/vcmi/VCMI_Client_log.txt\""}
+{"at":"2026-11-13T10:26:49.028Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tInitialization: 0 ms"}
+{"at":"2026-11-13T10:26:49.243Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tData loading: 0 ms"}
+{"at":"2026-11-13T10:26:49.277Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tMod handler: 0 ms"}
+{"at":"2026-11-13T10:26:49.365Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tMod filesystems: 0 ms"}
+{"at":"2026-11-13T10:26:49.366Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mInitialized logging system based on settings successfully."}
+{"at":"2026-11-13T10:26:49.366Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m[log level] ai => not set"}
+{"at":"2026-11-13T10:26:49.366Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m[log level] animation => not set"}
+{"at":"2026-11-13T10:26:49.366Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m[log level] bonus => not set"}
+{"at":"2026-11-13T10:26:49.366Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m[log level] global => trace"}
+{"at":"2026-11-13T10:26:49.366Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m[log level] mod => not set"}
+{"at":"2026-11-13T10:26:49.366Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m[log level] network => not set"}
+{"at":"2026-11-13T10:26:49.367Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m[log level] rng => info"}
+{"at":"2026-11-13T10:26:49.369Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mFound 2 render drivers"}
+{"at":"2026-11-13T10:26:49.369Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\topengles2"}
+{"at":"2026-11-13T10:26:49.370Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tsoftware"}
+{"at":"2026-11-13T10:26:49.382Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mCreated renderer opengles2"}
+{"at":"2026-11-13T10:26:49.395Z","kind":"console","value":"warning: The ScriptProcessorNode is deprecated. Use AudioWorkletNode instead. (https://bit.ly/audio-worklet)"}
+{"at":"2026-11-13T10:26:49.406Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mStarting network thread"}
+{"at":"2026-11-13T10:26:49.408Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tInitializing content handler"}
+{"at":"2026-11-13T10:26:49.484Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (core)"}
+{"at":"2026-11-13T10:26:49.490Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (vcmi)"}
+{"at":"2026-11-13T10:26:49.491Z","kind":"console","value":"error: Data in wake-of-gods is invalid!"}
+{"at":"2026-11-13T10:26:49.491Z","kind":"console","value":"error: At /french"}
+{"at":"2026-11-13T10:26:49.491Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:49.491Z","kind":"console","value":"error: At /japanese"}
+{"at":"2026-11-13T10:26:49.491Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:49.491Z","kind":"console","value":"error: At /vietnamese"}
+{"at":"2026-11-13T10:26:49.491Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:49.491Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:49.492Z","kind":"console","value":"error: \t\tParsing mod: Issues found! (wake-of-gods)"}
+{"at":"2026-11-13T10:26:49.492Z","kind":"console","value":"log: \u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.animatedtrees)"}
+{"at":"2026-11-13T10:26:49.492Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.artifacts)"}
+{"at":"2026-11-13T10:26:49.492Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.artifacts.bonuses icons)"}
+{"at":"2026-11-13T10:26:49.492Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.battledecorations)"}
+{"at":"2026-11-13T10:26:49.492Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.cheats)"}
+{"at":"2026-11-13T10:26:49.493Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.creatures)"}
+{"at":"2026-11-13T10:26:49.493Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.creatures.bonuses icons)"}
+{"at":"2026-11-13T10:26:49.493Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.heroes3datapatch)"}
+{"at":"2026-11-13T10:26:49.493Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.heroes3datapatch.heroes3datapatchera)"}
+{"at":"2026-11-13T10:26:49.494Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.level8units)"}
+{"at":"2026-11-13T10:26:49.495Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.level8units.bonuses icons)"}
+{"at":"2026-11-13T10:26:49.495Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.mainmenu)"}
+{"at":"2026-11-13T10:26:49.497Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.mapdecorations)"}
+{"at":"2026-11-13T10:26:49.498Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.mapobjects)"}
+{"at":"2026-11-13T10:26:49.499Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.messengersandemissaries)"}
+{"at":"2026-11-13T10:26:49.499Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.messengersandemissaries.bonuses icons)"}
+{"at":"2026-11-13T10:26:49.499Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.messengersandemissaries.vivid-battlefields)"}
+{"at":"2026-11-13T10:26:49.505Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.stackexperience)"}
+{"at":"2026-11-13T10:26:49.505Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.stackexperience.stackexperienceicons)"}
+{"at":"2026-11-13T10:26:49.505Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.vividbattlefields)"}
+{"at":"2026-11-13T10:26:49.505Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.vividbattlefields.vivid-battlefields-8th-level)"}
+{"at":"2026-11-13T10:26:49.505Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.warmachinesonmap)"}
+{"at":"2026-11-13T10:26:49.506Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix)"}
+{"at":"2026-11-13T10:26:49.506Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_arrow)"}
+{"at":"2026-11-13T10:26:49.506Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_heroes)"}
+{"at":"2026-11-13T10:26:49.506Z","kind":"console","value":"error: Data in third-upgrades is invalid!"}
+{"at":"2026-11-13T10:26:49.506Z","kind":"console","value":"error: At /french"}
+{"at":"2026-11-13T10:26:49.506Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:49.506Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:49.511Z","kind":"console","value":"error: \t\tParsing mod: Issues found! (third-upgrades)"}
+{"at":"2026-11-13T10:26:49.511Z","kind":"console","value":"error: CONFIG/CREATURES/DEATHKNIGHTUP is not valid JSON!"}
+{"at":"2026-11-13T10:26:49.511Z","kind":"console","value":"error: At line 93, position 21 warning: Duplicate element encountered!"}
+{"at":"2026-11-13T10:26:49.511Z","kind":"console","value":"error: At line 95, position 10 warning: Duplicate element encountered!"}
+{"at":"2026-11-13T10:26:49.511Z","kind":"console","value":"error: At line 96, position 9 warning: Duplicate element encountered!"}
+{"at":"2026-11-13T10:26:49.511Z","kind":"console","value":"log: \u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;32m\t\tParsing mod: OK (third-upgrades.new-creatures)"}
+{"at":"2026-11-13T10:26:49.511Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.animatedobjects)"}
+{"at":"2026-11-13T10:26:49.512Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.commanders)"}
+{"at":"2026-11-13T10:26:49.512Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.commanders.bonuses icons)"}
+{"at":"2026-11-13T10:26:49.512Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.commanders.newstonesgraphic)"}
+{"at":"2026-11-13T10:26:49.513Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.creaturebanks)"}
+{"at":"2026-11-13T10:26:49.513Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.mapsupport)"}
+{"at":"2026-11-13T10:26:49.513Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.mapsupport.commanderssupport)"}
+{"at":"2026-11-13T10:26:49.513Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.mapsupport.warmachinesonmapsupport)"}
+{"at":"2026-11-13T10:26:49.514Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.mithril)"}
+{"at":"2026-11-13T10:26:49.514Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.stackartifacts)"}
+{"at":"2026-11-13T10:26:49.514Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_animatedtrees)"}
+{"at":"2026-11-13T10:26:49.514Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_battledecorations)"}
+{"at":"2026-11-13T10:26:49.514Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_creatures)"}
+{"at":"2026-11-13T10:26:49.515Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_heroes3datapatch)"}
+{"at":"2026-11-13T10:26:49.515Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_level8units)"}
+{"at":"2026-11-13T10:26:49.515Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_mapdecorations)"}
+{"at":"2026-11-13T10:26:49.515Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_messengersandemissaries)"}
+{"at":"2026-11-13T10:26:49.516Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (goonk)"}
+{"at":"2026-11-13T10:26:49.517Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (third-upgrades.wog-comp)"}
+{"at":"2026-11-13T10:26:49.523Z","kind":"console","value":"error: Redundant namespace definition for divinePhoenix"}
+{"at":"2026-11-13T10:26:49.523Z","kind":"console","value":"error: Redundant namespace definition for eraCreature263"}
+{"at":"2026-11-13T10:26:49.523Z","kind":"console","value":"error: Redundant namespace definition for eraCreature271"}
+{"at":"2026-11-13T10:26:49.523Z","kind":"console","value":"error: Redundant namespace definition for eraCreature280"}
+{"at":"2026-11-13T10:26:49.523Z","kind":"console","value":"error: Redundant namespace definition for redBonesDragon"}
+{"at":"2026-11-13T10:26:49.527Z","kind":"console","value":"log: \u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;32m\t\tParsing mod: OK (tum-era)"}
+{"at":"2026-11-13T10:26:49.527Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.mapsupport.stackartifactssupport)"}
+{"at":"2026-11-13T10:26:49.527Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_animatedobjects)"}
+{"at":"2026-11-13T10:26:49.527Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_artifacts)"}
+{"at":"2026-11-13T10:26:49.527Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_commanders)"}
+{"at":"2026-11-13T10:26:49.527Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_h3creatures)"}
+{"at":"2026-11-13T10:26:49.527Z","kind":"console","value":"error: Data in wake-of-gods.woggraphicfix.wf_mapobjects is invalid!"}
+{"at":"2026-11-13T10:26:49.528Z","kind":"console","value":"error: At /german"}
+{"at":"2026-11-13T10:26:49.528Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:49.528Z","kind":"console","value":"error: At /japanese"}
+{"at":"2026-11-13T10:26:49.528Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:49.528Z","kind":"console","value":"error: At /portuguese"}
+{"at":"2026-11-13T10:26:49.528Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:49.528Z","kind":"console","value":"error: At /russian"}
+{"at":"2026-11-13T10:26:49.528Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:49.528Z","kind":"console","value":"error: At /spanish"}
+{"at":"2026-11-13T10:26:49.528Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:49.528Z","kind":"console","value":"error: At /turkish"}
+{"at":"2026-11-13T10:26:49.528Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:49.528Z","kind":"console","value":"error: At /ukrainian"}
+{"at":"2026-11-13T10:26:49.528Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:49.528Z","kind":"console","value":"error: At /vietnamese"}
+{"at":"2026-11-13T10:26:49.528Z","kind":"console","value":"error: \t Error: Required entry name is missing"}
+{"at":"2026-11-13T10:26:49.529Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:49.531Z","kind":"console","value":"error: \t\tParsing mod: Issues found! (wake-of-gods.woggraphicfix.wf_mapobjects)"}
+{"at":"2026-11-13T10:26:49.531Z","kind":"console","value":"log: \u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_stackartifacts)"}
+{"at":"2026-11-13T10:26:49.532Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tParsing mod: OK (wake-of-gods.woggraphicfix.wf_stackartifacts.warlordsbanner)"}
+{"at":"2026-11-13T10:26:49.532Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tParsing mod data"}
+{"at":"2026-11-13T10:26:49.597Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.598Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.598Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.598Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.598Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.598Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.598Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.598Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.598Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.598Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.598Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.599Z","kind":"console","value":"error: Data in castle is invalid!"}
+{"at":"2026-11-13T10:26:49.599Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:49.599Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:49.599Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:49.602Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.602Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.602Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.602Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.602Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.602Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.602Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.602Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.602Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.602Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.603Z","kind":"console","value":"error: Data in conflux is invalid!"}
+{"at":"2026-11-13T10:26:49.603Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:49.603Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:49.603Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:49.605Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.605Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.605Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.605Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.605Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.605Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.605Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.605Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.605Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.605Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.605Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.606Z","kind":"console","value":"error: Data in dungeon is invalid!"}
+{"at":"2026-11-13T10:26:49.606Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:49.606Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:49.606Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:49.607Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.607Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.608Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.608Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.608Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.608Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.608Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.608Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.608Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.608Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.608Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.609Z","kind":"console","value":"error: Data in fortress is invalid!"}
+{"at":"2026-11-13T10:26:49.609Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:49.609Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:49.609Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:49.610Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.610Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.611Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.611Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.611Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.611Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.611Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.611Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.611Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.611Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.611Z","kind":"console","value":"error: Data in inferno is invalid!"}
+{"at":"2026-11-13T10:26:49.611Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:49.612Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:49.612Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:49.613Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.613Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.613Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.613Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.613Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.613Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.613Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.613Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.613Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.614Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.614Z","kind":"console","value":"error: Data in necropolis is invalid!"}
+{"at":"2026-11-13T10:26:49.614Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:49.614Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:49.614Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:49.616Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.616Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.616Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.616Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.616Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.616Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.616Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.616Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.617Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.617Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.617Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde1Upgr2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.617Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde2Upgr2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.617Z","kind":"console","value":"error: Data in rampart is invalid!"}
+{"at":"2026-11-13T10:26:49.617Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:49.617Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:49.617Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:49.619Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.619Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.619Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.620Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.620Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.620Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.620Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.620Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.620Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.620Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.620Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.620Z","kind":"console","value":"error: Data in stronghold is invalid!"}
+{"at":"2026-11-13T10:26:49.620Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:49.620Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:49.620Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:49.622Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.622Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.622Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.622Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.622Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.622Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.622Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.622Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.623Z","kind":"console","value":"error: Mod 'tum-era': Town building 'dwellingUpLvl8' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.623Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'extraCapitol' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.623Z","kind":"console","value":"error: Mod 'third-upgrades': Town building 'horde1Upgr2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.623Z","kind":"console","value":"error: Data in tower is invalid!"}
+{"at":"2026-11-13T10:26:49.623Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:49.623Z","kind":"console","value":"error: \t Error: Video file \"TAVERN.BIK\" was not found"}
+{"at":"2026-11-13T10:26:49.623Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:49.646Z","kind":"console","value":"error: Dwelling tum-era:eraDwelling20_2 has template tum-era/objects/Crdw25 which is not valid for a random dwelling! Dwellings must not block tiles outside 2x2 range and must be visitable in bottom row. Change dwelling mask or mark dwelling as 'bannedForRandomDwelling'"}
+{"at":"2026-11-13T10:26:49.684Z","kind":"console","value":"error: \t\tLoading mod: Issues found! (core)"}
+{"at":"2026-11-13T10:26:49.696Z","kind":"console","value":"log: \u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b"}
+{"at":"2026-11-13T10:26:49.696Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods)"}
+{"at":"2026-11-13T10:26:49.696Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.animatedtrees)"}
+{"at":"2026-11-13T10:26:49.700Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.artifacts)"}
+{"at":"2026-11-13T10:26:49.700Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.artifacts.bonuses icons)"}
+{"at":"2026-11-13T10:26:49.700Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.battledecorations)"}
+{"at":"2026-11-13T10:26:49.700Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.cheats)"}
+{"at":"2026-11-13T10:26:49.704Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.creatures)"}
+{"at":"2026-11-13T10:26:49.705Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.creatures.bonuses icons)"}
+{"at":"2026-11-13T10:26:49.705Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.heroes3datapatch)"}
+{"at":"2026-11-13T10:26:49.705Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.heroes3datapatch.heroes3datapatchera)"}
+{"at":"2026-11-13T10:26:49.709Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.level8units)"}
+{"at":"2026-11-13T10:26:49.709Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.level8units.bonuses icons)"}
+{"at":"2026-11-13T10:26:49.709Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.mainmenu)"}
+{"at":"2026-11-13T10:26:49.712Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.mapdecorations)"}
+{"at":"2026-11-13T10:26:49.716Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.mapobjects)"}
+{"at":"2026-11-13T10:26:49.718Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.messengersandemissaries)"}
+{"at":"2026-11-13T10:26:49.718Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.messengersandemissaries.bonuses icons)"}
+{"at":"2026-11-13T10:26:49.719Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.messengersandemissaries.vivid-battlefields)"}
+{"at":"2026-11-13T10:26:49.719Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.stackexperience)"}
+{"at":"2026-11-13T10:26:49.719Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.stackexperience.stackexperienceicons)"}
+{"at":"2026-11-13T10:26:49.719Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.vividbattlefields)"}
+{"at":"2026-11-13T10:26:49.719Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.vividbattlefields.vivid-battlefields-8th-level)"}
+{"at":"2026-11-13T10:26:49.719Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.warmachinesonmap)"}
+{"at":"2026-11-13T10:26:49.719Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix)"}
+{"at":"2026-11-13T10:26:49.719Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_arrow)"}
+{"at":"2026-11-13T10:26:49.719Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_heroes)"}
+{"at":"2026-11-13T10:26:49.730Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (third-upgrades)"}
+{"at":"2026-11-13T10:26:49.731Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (third-upgrades.new-creatures)"}
+{"at":"2026-11-13T10:26:49.731Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.animatedobjects)"}
+{"at":"2026-11-13T10:26:49.733Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.commanders)"}
+{"at":"2026-11-13T10:26:49.733Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.commanders.bonuses icons)"}
+{"at":"2026-11-13T10:26:49.733Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.commanders.newstonesgraphic)"}
+{"at":"2026-11-13T10:26:49.733Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.creaturebanks)"}
+{"at":"2026-11-13T10:26:49.733Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.mapsupport)"}
+{"at":"2026-11-13T10:26:49.733Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.mapsupport.commanderssupport)"}
+{"at":"2026-11-13T10:26:49.733Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.mapsupport.warmachinesonmapsupport)"}
+{"at":"2026-11-13T10:26:49.733Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.mithril)"}
+{"at":"2026-11-13T10:26:49.734Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.stackartifacts)"}
+{"at":"2026-11-13T10:26:49.734Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_animatedtrees)"}
+{"at":"2026-11-13T10:26:49.734Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_battledecorations)"}
+{"at":"2026-11-13T10:26:49.734Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_creatures)"}
+{"at":"2026-11-13T10:26:49.734Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_heroes3datapatch)"}
+{"at":"2026-11-13T10:26:49.734Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_level8units)"}
+{"at":"2026-11-13T10:26:49.734Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_mapdecorations)"}
+{"at":"2026-11-13T10:26:49.734Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_messengersandemissaries)"}
+{"at":"2026-11-13T10:26:49.737Z","kind":"console","value":"error: Mod 'goonk': Town building 'dwellingUp2Lvl1' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.737Z","kind":"console","value":"error: Mod 'goonk': Town building 'dwellingUp2Lvl2' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.737Z","kind":"console","value":"error: Mod 'goonk': Town building 'dwellingUp2Lvl3' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.737Z","kind":"console","value":"error: Mod 'goonk': Town building 'dwellingUp2Lvl4' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.737Z","kind":"console","value":"error: Mod 'goonk': Town building 'dwellingUp2Lvl5' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.737Z","kind":"console","value":"error: Mod 'goonk': Town building 'dwellingUp2Lvl6' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.737Z","kind":"console","value":"error: Mod 'goonk': Town building 'dwellingUp2Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.737Z","kind":"console","value":"error: Mod 'goonk': Town building 'dwellingUp3Lvl7' has specified 'id' field for a predefined building! Ignoring this field."}
+{"at":"2026-11-13T10:26:49.738Z","kind":"console","value":"error: Data in goonk is invalid!"}
+{"at":"2026-11-13T10:26:49.738Z","kind":"console","value":"error: At /town/tavernVideo"}
+{"at":"2026-11-13T10:26:49.738Z","kind":"console","value":"error: \t Error: Video file \"\" was not found"}
+{"at":"2026-11-13T10:26:49.738Z","kind":"console","value":"error: "}
+{"at":"2026-11-13T10:26:49.742Z","kind":"console","value":"error: \t\tLoading mod: Issues found! (goonk)"}
+{"at":"2026-11-13T10:26:49.742Z","kind":"console","value":"log: \u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;32m\t\tLoading mod: OK (third-upgrades.wog-comp)"}
+{"at":"2026-11-13T10:26:49.770Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (tum-era)"}
+{"at":"2026-11-13T10:26:49.770Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.mapsupport.stackartifactssupport)"}
+{"at":"2026-11-13T10:26:49.770Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_animatedobjects)"}
+{"at":"2026-11-13T10:26:49.770Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_artifacts)"}
+{"at":"2026-11-13T10:26:49.770Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_commanders)"}
+{"at":"2026-11-13T10:26:49.770Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_h3creatures)"}
+{"at":"2026-11-13T10:26:49.776Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_mapobjects)"}
+{"at":"2026-11-13T10:26:49.776Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_stackartifacts)"}
+{"at":"2026-11-13T10:26:49.776Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\t\tLoading mod: OK (wake-of-gods.woggraphicfix.wf_stackartifacts.warlordsbanner)"}
+{"at":"2026-11-13T10:26:49.778Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tLoading mod data"}
+{"at":"2026-11-13T10:26:49.797Z","kind":"console","value":"error: Bonus type ENCHANTED does not supports addInfo!"}
+{"at":"2026-11-13T10:26:49.801Z","kind":"console","value":"error: Bonus type ENCHANTED does not supports addInfo!"}
+{"at":"2026-11-13T10:26:49.836Z","kind":"console","value":"log: \u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;32m\tResolving identifiers"}
+{"at":"2026-11-13T10:26:49.848Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tHandlers post-load finalization"}
+{"at":"2026-11-13T10:26:49.848Z","kind":"console","value":"log: \u001b[0m\u001b[1;32m\tAll game content loaded"}
+{"at":"2026-11-13T10:26:49.853Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mInitializing VCMI_Lib: 0 ms"}
+{"at":"2026-11-13T10:26:49.870Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mMessage handler: 0 ms"}
+{"at":"2026-11-13T10:26:49.871Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mInitialization of VCMI (together): 0 ms"}
+{"at":"2026-11-13T10:26:49.885Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mKilling console..."}
+{"at":"2026-11-13T10:26:49.886Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mKilling console... done!"}
+{"at":"2026-11-13T10:26:50.913Z","kind":"menu-ready","value":"Azure-Astral-L7-H38"}
+{"at":"2026-11-13T10:26:51.098Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mPort 3030 will be used"}
+{"at":"2026-11-13T10:26:51.101Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mConnection established"}
+{"at":"2026-11-13T10:26:51.102Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mConnection with client 1 established. UUID: 82a5a0ae-e9e7-4a4d-b65c-6b6f82b7f7a6"}
+{"at":"2026-11-13T10:26:51.102Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mClient 1 player: Player 1"}
+{"at":"2026-11-13T10:26:51.103Z","kind":"console","value":"log: \u001b[0m\u001b[1;32msystem says: Player 1 (pid 1 cid 1) joins the game"}
+{"at":"2026-11-13T10:26:51.519Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mPreparing to start new game"}
+{"at":"2026-11-13T10:26:51.519Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mUsing random seed: 1344832184"}
+{"at":"2026-11-13T10:26:51.519Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mGamestate created!"}
+{"at":"2026-11-13T10:26:51.520Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mOpen map file: MAPS/001-Goonks"}
+{"at":"2026-11-13T10:26:51.548Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mMap loaded!"}
+{"at":"2026-11-13T10:26:51.571Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mGamestate initialized!"}
+{"at":"2026-11-13T10:26:51.575Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mConnection 1 will handle 3 player: -1 0 1 "}
+{"at":"2026-11-13T10:26:51.578Z","kind":"console","value":"error: Failed to find artifact that matches requested parameters!"}
+{"at":"2026-11-13T10:26:51.578Z","kind":"console","value":"error: Failed to find artifact that matches requested parameters!"}
+{"at":"2026-11-13T10:26:51.579Z","kind":"console","value":"error: Failed to find artifact that matches requested parameters!"}
+{"at":"2026-11-13T10:26:51.579Z","kind":"console","value":"error: Failed to find artifact that matches requested parameters!"}
+{"at":"2026-11-13T10:26:51.584Z","kind":"console","value":"log: \u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;32mPreparing environment for player neutral"}
+{"at":"2026-11-13T10:26:51.584Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mPreparing environment for player red"}
+{"at":"2026-11-13T10:26:51.584Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mPreparing environment for player blue"}
+{"at":"2026-11-13T10:26:51.584Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mPreparing interface for player red"}
+{"at":"2026-11-13T10:26:51.585Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mPlayer red will be lead by human"}
+{"at":"2026-11-13T10:26:51.621Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mPreparing interface for player blue"}
+{"at":"2026-11-13T10:26:51.621Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mPlayer blue will be lead by Nullkiller2"}
+{"at":"2026-11-13T10:26:51.622Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mOpening Nullkiller2"}
+{"at":"2026-11-13T10:26:51.629Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mOpening BattleAI"}
+{"at":"2026-11-13T10:26:51.672Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mSaving to Saves/Goonk-auto"}
+{"at":"2026-11-13T10:26:51.673Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mSaving game state"}
+{"at":"2026-11-13T10:26:51.676Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mSaving server state"}
+{"at":"2026-11-13T10:26:51.677Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mGame has been successfully saved!"}
+{"at":"2026-11-13T10:26:51.682Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mGame has been saved as Saves/Goonk-auto"}
+{"at":"2026-11-13T10:26:52.402Z","kind":"console","value":"log: \u001b[0m\u001b[1;32mOpening BattleAI"}

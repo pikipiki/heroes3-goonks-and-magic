@@ -1,0 +1,67 @@
+{
+  "engineSHA256": "e255a46ada1696548066577915b7490ae26b5c7050062943b838086b51c64ebc",
+  "RootChangedByThisAgent": false,
+  "passedControls": [
+    "CombinedElixir10/11/12/18Each2saveReloads",
+    "ElixirAlreadyWorn10to11ReflowAndSave",
+    "OtherRingsOccupiedElixirRejectedInventoryPreserved",
+    "NativeArmorOfDamnedOnGoonkHeroWithActualAssaultBannerAndSave",
+    "MapParent278PlusElixir10AndSave",
+    "MapParent278PlusElixirAndRejectedSecondExtraAndSave",
+    "SourceMapRegressionNone/Green10/QuotaFullEachSave"
+  ],
+  "negativeQuota": {
+    "passed": false,
+    "observed": "StatueOfLegion incorrectly allowed11/12/18 with source278 using4MISC. Test stops before equip. Fix is queued177; do not claim complete combined quota from176."
+  },
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/native176-eye278-combined/four-destinations-result.json",
+      "sha256": "bc2b3142f6b712166cf7a4ec24317eab11363e54321e801baa50672e2275a103"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native176-eye278-combined/four-destinations-console.log",
+      "sha256": "05f0d768d1442c6051d4ae1cc3a581919358410c9e1600e54dff91b8f632aff2"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native176-eye278-combined/worn-ringfull-result.json",
+      "sha256": "11fe7367135d2c893bc099d3a6da0ab714bed41d4a3e9dd3c24f2a97be478445"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native176-eye278-combined/worn-ringfull-console.log",
+      "sha256": "feaec4b30ab451fa56da5387a8db08c767d810418a45a10745ae979ef8712d44"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native176-eye278-combined/ordinary-map-result.json",
+      "sha256": "2ed6985b762e516a3c44a049979f306c4d048335b1a37c63704be5ca00542b57"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native176-eye278-combined/ordinary-map-console.log",
+      "sha256": "eea7c890557af6ffd7a33bbfd2618f43e810f51004b92ba4ece64ef972cb8345"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native176-eye278-combined/map-subset-result.json",
+      "sha256": "41deb8f0a56281ef3e65df8262f916e9015b46ffa67077b283593b87238394f6"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native176-eye278-combined/map-subset-console.log",
+      "sha256": "17226292dd1fdace87d674c90b6ceafb62273b105ad3d375bf84223b7fe23920"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native176-eye278-combined/statue-negative-failure-state.json",
+      "sha256": "32db8ed999e981c00db28f5bc468ffe4ba28287072ef775f45aa9229146d8c17"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native176-eye278-combined/source176/lib/era/EraEye278Native.h",
+      "sha256": "aa1063956174aa304cf0486fd39d069b7904d48f4c6b7b2b15803be0897f49f1"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native176-eye278-combined/source176/lib/entities/artifact/CArtifactSet.cpp",
+      "sha256": "8a4964be3e1a563b664e474251111dd5e73c16c00b4b11cbb4e9d16ba3450273"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native176-eye278-combined/source176/lib/entities/artifact/CArtifact.cpp",
+      "sha256": "3ff94481e6fbd2e2ed09db9dcda84ca73a54331a8ce6c130af9c7ffc66e1361f"
+    }
+  ]
+}

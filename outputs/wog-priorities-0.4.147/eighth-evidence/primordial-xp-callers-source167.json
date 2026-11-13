@@ -1,0 +1,79 @@
+{
+  "active": false,
+  "nativeValidated": false,
+  "sourceExeSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial-xp-action-before167.asm",
+      "sha256": "0d7bf752256442792a3e9c93f8d458882a53eb0b1f1f482015b2b092d262324b",
+      "start": "0x75ca39",
+      "end": "0x75cb1b"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial-xp-action-dispatch167.asm",
+      "sha256": "1a9b0a62966a011e67b0089578d9a5e24e909322051a3e29a33f27463a91f9cc",
+      "start": "0x75d327",
+      "end": "0x75d36d"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial-xp-phase-wrappers167.asm",
+      "sha256": "656b42e37de16844b0ed77fc3f064fb21815c6cd2b792e2296bda15cdb01e9c4",
+      "start": "0x71db7f",
+      "end": "0x71dc31"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial-xp-hit-after167.asm",
+      "sha256": "f5c77525c6027fe132dbec002a88de8de6772f0c86109fa8050c6e8dbb509c7c",
+      "start": "0x756dbb",
+      "end": "0x756e7a"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial-xp-hit-call167.asm",
+      "sha256": "0202dc8fb642d0e2a112764a5bbd8966e680e67a66844818b15e744b709ee411",
+      "start": "0x441982",
+      "end": "0x4419a5"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial-xp-retaliation-call167.asm",
+      "sha256": "c9e841a887dde6ba36c62acbff43cf57d01e81c67074c3b2c02a43d3d76eb6d2",
+      "start": "0x441ade",
+      "end": "0x441b85"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial-xp-direct-query167.txt",
+      "sha256": "91f9f38ccf4e334caff4556f60a4f9ed3119e54ebbf028f5be124dc662b80c6a"
+    }
+  ],
+  "originalCalls": {
+    "cSelector": [
+      "0x75cae1"
+    ],
+    "beforePJJ": [
+      "0x75cb09"
+    ],
+    "afterAKk": [
+      "0x756e65"
+    ],
+    "actionBefore": [
+      "0x75d333"
+    ],
+    "everyMeleeHit": [
+      "0x441991"
+    ]
+  },
+  "verified": [
+    "71D7A9 is XP c selector (ASCIIc at71D846), not the p wrapper.75CAE1 may replace the queued marker.75CB09 then calls71DB7F, whose calls71D939 are p/J/j in that order.",
+    "75D333 calls the action-before75C695 BEFORE75D35C dispatch4786B0.75CA76 accepts only original primary action6/7.Thus p executes ONCE per primary action, before movement/preemptive retaliation, never for normal retaliation or additional hit within this action. A morale extra action is a new action and runs its own p once.",
+    "Native makeAttack first&&!counter gives the correct count but is TOO LATE against preemptive retaliation.346/347 future p hook belongs in accepted action beforeMovement after queued marker selection; shoot7 needs the corresponding once-before-attack hook.",
+    "Original441991 is a call4408E0 from strike441330. Shipped patch triple7890B0/B4/B8 =441991/4408E0/756DBB replaces it.756E65 runs71DBD8 a/K/k after the old4408E0 handler, BEFORE subsequent FireShield. Thus a runs for primary, normal retaliation and each additional hit whenever entry attacker+target survive.",
+    "Normal retaliation441B5D directly calls strike441330, temporarily flippedCURRENT; it never re-enters the action-before4786B0 wrapper. Double strikes reuse strike441330 within the same primary action, also without another before group.",
+    "XP71DB1A/1C pass1,1 to5A8950.5A895A..696A forwards (arg5,constant1,arg4,target,side,spell) to5A83A0. Therefore +14ignoreSide=1 from caller.5A860B/14 jumps past BOTH side restrictions5A8616..8655, regardless of SPTRAITS target sign. This includes XPp16 on a Berserk friendly target.",
+    "XP querySide comes from actor physical side, inverted forHypnotize at71DA8A..AE. CURRENT side still drives power/areaHero independently. No new ownership condition belongs in the XPheader.",
+    "Direct AfterMelee347IceBolt16 is deliberately different: canSpellBeCast passes a5=0,a6=1,noHero=1 and CURRENT side to5A83A0; it does NOT ignore the source negative-spell target-side restriction and tests FLOAT>0 with no query RNG. Areas20/21 permit friendly primary (source type0)."
+  ],
+  "requiredNativeControls": [
+    "Real Berserk friendly primary347p16 must be eligible in XP but directAfterMeleeIceBolt16 must not fire atsameCURRENTside.",
+    "346347 source p happens before a real firstStrike and once only under doubleattack; after a fires per surviving strike including normalcounter.",
+    "XPp kill of primary target before movement must follow original dispatch lifecycle; no blanket native continuation assumption."
+  ]
+}

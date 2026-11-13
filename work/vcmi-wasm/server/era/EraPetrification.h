@@ -2,6 +2,7 @@
 #pragma once
 #include "../CGameHandler.h"
 #include "EraStatusAttacks.h"
+#include "EraPrimordialCastRuntime.h"
 #include "EraCDispelRuntime.h"
 #include "EraCSlowRuntime.h"
 #include "../../lib/CStack.h"
@@ -40,7 +41,7 @@ class EraPetrificationSequence
     }
 public:
     void beforeAction(CGameHandler & handler,const CBattleInfoCallback & battle,
-        const CStack * actor,const CStack * target)
+        const CStack * actor,const CStack * target,bool meleeAction=true)
     {
         if((era_compat_server::StatusAttacks::get().enabled(actor)
             || era_compat_server::StatusAttacks::get().queuedPoison(actor))
@@ -66,6 +67,14 @@ public:
             && era_compat_server::selectSourceCDispel(handler,battle,actor,target))
         {
             pending.markSpell(target->unitId(),actor->unitId(),78);
+            statusOwners[target->unitId()]=battle.battleGetOwner(actor);
+        }
+        // Original75CA39..75CA76 runs after the ordinary intrinsic selector.
+        // It writes13 before movement/first strike, only for action6. Later
+        // successful queued selectors replace the same per-target marker.
+        if(meleeAction && target && era_compat_server::primordialActorSource(actor)==346)
+        {
+            pending.markSpell(target->unitId(),actor->unitId(),13);
             statusOwners[target->unitId()]=battle.battleGetOwner(actor);
         }
     }
@@ -153,6 +162,22 @@ public:
                 continue;
             const auto * attacker = battle.battleGetStackByID(*source,false);
             const auto queuedSpell=SpellID(pending.spell(target->unitId()));
+            if(queuedSpell.num==13 && statusOwners.count(target->unitId()))
+            {
+                //468CD8 directkind1 power3 is overridden at5A0145 by the
+                //CURRENT primary manager stack (346:5*count+60), mastery0.
+                //No new target-immunity/accuracy check is made at the flush.
+                const auto side=era_compat::confluxActiveSide(battle);
+                era_compat::ConfluxSideScope context(side,1);
+                spells::AbilityCaster ability(attacker,0);
+                era_compat::ConfluxCaster caster(&ability,nullptr,battle.sideToPlayer(side));
+                spells::BattleCast cast(&battle,&caster,spells::Mode::PASSIVE,SpellID(13).toSpell());
+                const int power=era_compat::experienceAttackPower(battle.battleActiveUnit(),13);
+                cast.setSpellLevel(0);cast.setEffectPower(power);cast.setEffectDuration(power);
+                spells::Target destination;destination.emplace_back(target);
+                cast.cast(handler.spellcastEnvironment(),destination);
+                continue;
+            }
             if(queuedSpell.num==54 && statusOwners.count(target->unitId()))
             {
                 era_compat_server::applySourceCSlow(handler,battle,attacker,target,statusOwners.at(target->unitId()));

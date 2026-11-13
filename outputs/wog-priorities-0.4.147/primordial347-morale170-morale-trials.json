@@ -1,0 +1,59 @@
+[
+  {
+    "round": 1,
+    "actions": [
+      {
+        "round": 1,
+        "position": 87,
+        "morale": 3,
+        "canWait": true,
+        "remainingCasts": 10
+      },
+      {
+        "round": 1,
+        "position": 70,
+        "morale": 3,
+        "canWait": true,
+        "remainingCasts": 10
+      }
+    ]
+  },
+  {
+    "round": 2,
+    "actions": [
+      {
+        "round": 2,
+        "position": 87,
+        "morale": 3,
+        "canWait": true,
+        "remainingCasts": 10
+      },
+      {
+        "round": 2,
+        "position": 70,
+        "morale": 3,
+        "canWait": true,
+        "remainingCasts": 10
+      },
+      {
+        "round": 2,
+        "position": 87,
+        "morale": 3,
+        "canWait": true,
+        "remainingCasts": 10
+      }
+    ]
+  },
+  {
+    "round": 3,
+    "actions": [
+      {
+        "round": 3,
+        "position": 70,
+        "morale": 3,
+        "canWait": true,
+        "remainingCasts": 10
+      }
+    ]
+  }
+]

@@ -57,7 +57,8 @@
     "config/source-imp42.json",
     "config/source-conflux.json",
     "config/reviewed-fangarm263.json",
-    "config/source-sulfide-dragon.json"
+    "config/source-sulfide-dragon.json",
+    "config/source-primordial-dragons.json"
   ],
   "factions": [
     "config/necropolis.json",
@@ -100,7 +101,8 @@
     "config/reviewed-orb-chaos238-artifact.json",
     "config/reviewed-phylactery-summons.json",
     "config/reviewed-eyes275-276.json",
-    "config/reviewed-horn266.json"
+    "config/reviewed-horn266.json",
+    "config/reviewed-eye278-artifact.json"
   ],
   "objects": [
     "config/objects/dwelling20_2.json",
@@ -490,7 +492,9 @@
       "translation/reviewed-phylactery-summons-french.json",
       "translation/reviewed-eyes275-276-french.json",
       "translation/source-horn266-french.json",
-      "translation/reviewed-sulfide-dragon-french.json"
+      "translation/reviewed-sulfide-dragon-french.json",
+      "translation/reviewed-primordial-dragons-french.json",
+      "translation/eye278-french.json"
     ],
     "name": "TUM — évolutions et expérience"
   },

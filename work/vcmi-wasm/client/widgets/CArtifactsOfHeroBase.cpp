@@ -8,6 +8,9 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraEye278Native.h"
+#include "../windows/CWindowWithArtifacts.h"
+#include "../gui/WindowHandler.h"
 #include "CArtifactsOfHeroBase.h"
 
 #include "../GameEngine.h"
@@ -106,8 +109,12 @@ void CArtifactsOfHeroBase::clickPressedArtPlace(CComponentHolder & artPlace, con
 {
 	if(auto ownedPlace = getArtPlace(cursorPosition))
 	{
-		if(ownedPlace->isLocked())
-			return;
+        if(ownedPlace->isLocked())
+        {
+            const auto window=ENGINE->windows().topWindow<CWindowWithArtifacts>();
+            const auto incoming=window?window->getPickedArtifact():nullptr;
+            if(!incoming || !curHero || !era_compat::canMoveIntoEye278(*curHero,ownedPlace->slot,*incoming))return;
+        }
 
 		if(clickPressedCallback)
 			clickPressedCallback(*ownedPlace, cursorPosition);
@@ -270,6 +277,13 @@ void CArtifactsOfHeroBase::setSlotData(ArtPlacePtr artPlace, const ArtifactPosit
 	if(auto slotInfo = curHero->getSlot(slot))
 	{
 		const auto curArt = slotInfo->getArt();
+        // Source278 reservations are a category quota: with capacity for one extra item,
+        // every physically empty source MISC cell is a valid destination. Internal children stay hidden.
+        if(era_compat::eye278Spare(*curHero,slot).has_value())
+        {
+            artPlace->lockSlot(false);artPlace->setArtifact(ArtifactID(ArtifactID::NONE));return;
+        }
+
 
 		artPlace->lockSlot(slotInfo->locked);
 		artPlace->setArtifact(curArt->getTypeId(), curArt->getScrollSpellID());

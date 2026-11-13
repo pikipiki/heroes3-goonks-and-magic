@@ -72,7 +72,8 @@ export function compileArtifact({id,text='',source=`${id}.cfg`,resolveSpell,reso
     const {key,value}=entry;
     if(PRIMARY[key])add(key,'PRIMARY_SKILL',value,{subtype:PRIMARY[key]});
     else if(SIMPLE[key])add(key,SIMPLE[key],value);
-    else if(key==='DamageMin'||key==='DamageMax')add(key,'CREATURE_DAMAGE',value,{subtype:key==='DamageMin'?'creatureDamageMin':'creatureDamageMax'});
+    // Emerald sums actual worn copies. Preserve each leaf instance's shared type-bonus path.
+    else if(key==='DamageMin'||key==='DamageMax')add(key,'CREATURE_DAMAGE',value,{subtype:key==='DamageMin'?'creatureDamageMin':'creatureDamageMax',...(id>=273&&id<=277?{stacking:'ALWAYS'}:{})});
     else if(key==='Immunities')for(const spell of new Set(value)) {
       const subtype=resolve(resolveSpell,'spell',spell,entry,diagnostics);
       if(subtype)add(`immunity${spell}`,'SPELL_IMMUNITY',undefined,{subtype});

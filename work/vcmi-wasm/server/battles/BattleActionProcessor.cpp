@@ -11,6 +11,9 @@
 #include "../../lib/era/EraExperienceMagicReductionNative.h"
 #include "../../lib/era/EraOrbChaos238Runtime.h"
 #include "../era/EraConfluxRuntime.h"
+#include "../era/EraPrimordialCastRuntime.h"
+#include "../era/EraPrimordialExperience.h"
+#include "../../lib/era/EraPrimordialShieldRule.h"
 #include "../era/EraSulfideStatusRuntime.h"
 #include "../era/EraConfluxExperience.h"
 #include "../era/EraFaerieChainRuntime.h"
@@ -250,6 +253,7 @@ bool BattleActionProcessor::doDefendAction(const CBattleInfoCallback & battle, c
 	gameHandler->sendAndApply(message);
 
     era_compat_server::primalFaerieAfterDefend(*gameHandler,battle,stack);
+    era_compat_server::primordialAfterDefend(*gameHandler,battle,stack);
 	processBattleEventTriggers(battle, CombatEventType::DEFEND, stack, nullptr);
 	return true;
 }
@@ -287,6 +291,10 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
     const auto beforeMovement = [&]()
     {
         petrification.beforeAction(*gameHandler,battle,stack,destinationStack);
+        // Original75CAE1 c selector precedes75CB09 p/J/j; these primary
+        // action records run once BEFORE movement and preemptive strikes.
+        era_compat_server::confluxExperienceCasts(*gameHandler,battle,stack,destinationStack,false);
+        era_compat_server::primordialExperienceCasts(*gameHandler,battle,stack,destinationStack,false);
     // Apply once per accepted melee action, before movement, first strike or retaliation.
     // Extra attacks within this action share the resulting authoritative stats.
     if(era_compat::Policies::get().meleeRage(stack->creatureId().toCreature()->getJsonKey()))
@@ -428,10 +436,12 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
             // before441B67 restores CURRENT. Preemptive strikes never reach it.
             era_compat_server::applySulfideStatuses(*gameHandler,battle,destinationStack,stack->getPosition());
             era_compat_server::confluxAfterRetaliation(*gameHandler,battle,destinationStack,stack);
+            era_compat_server::primordialAfterMelee(*gameHandler,battle,destinationStack,stack);
 		}
 	}
 
     era_compat_server::confluxAfterMelee(*gameHandler,battle,stack,destinationStack);
+    era_compat_server::primordialAfterMelee(*gameHandler,battle,stack,destinationStack);
 
     // Original468C99 consumes queued per-target spells after all strikes.
     petrification.flush(*gameHandler, battle);
@@ -497,7 +507,9 @@ bool BattleActionProcessor::doShootAction(const CBattleInfoCallback & battle, co
 	}
 
     EraPetrificationSequence petrification;
-    petrification.beforeAction(*gameHandler,battle,stack,destinationStack);
+    petrification.beforeAction(*gameHandler,battle,stack,destinationStack,false);
+    era_compat_server::confluxExperienceCasts(*gameHandler,battle,stack,destinationStack,false);
+    era_compat_server::primordialExperienceCasts(*gameHandler,battle,stack,destinationStack,false);
 	bool firstStrike = false;
 	if(!emptyTileAreaAttack)
 	{
@@ -616,12 +628,13 @@ bool BattleActionProcessor::doUnitSpellAction(const CBattleInfoCallback & battle
 
 	const CSpell * spell = SpellID(spellID).toSpell();
     const bool sourceFaerie=era_compat::sourceFaeriePoolActor(stack);
+    const bool sourcePrimordial=era_compat::PrimordialPolicies::get().owns(stack->unitType()->getJsonKey());
     auto sourceSide=stack->unitSide();
     if(stack->isHypnotized())sourceSide=sourceSide==BattleSide::ATTACKER?BattleSide::DEFENDER:BattleSide::ATTACKER;
     era_compat::ConfluxCaster sourceCaster(stack,battle.battleGetFightingHero(sourceSide),battle.sideToPlayer(sourceSide));
     std::optional<era_compat::ConfluxSideScope> sourceContext;
-    if(sourceFaerie)sourceContext.emplace(sourceSide,1);
-	spells::BattleCast parameters(&battle, sourceFaerie?static_cast<const spells::Caster *>(&sourceCaster):stack, spells::Mode::CREATURE_ACTIVE, spell);
+    if(sourceFaerie || sourcePrimordial)sourceContext.emplace(sourceSide,1);
+	spells::BattleCast parameters(&battle, (sourceFaerie || sourcePrimordial)?static_cast<const spells::Caster *>(&sourceCaster):stack, spells::Mode::CREATURE_ACTIVE, spell);
 	int32_t spellLvl = 0;
 	if(spellcaster)
 		vstd::amax(spellLvl, spellcaster->val);
@@ -1389,6 +1402,7 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
     {
         attackCasting(battle,ranged,BonusType::SPELL_AFTER_ATTACK,attacker,defender,AttackCastFilter::SourceOnly);
         era_compat_server::confluxExperienceCasts(*gameHandler,battle,attacker,defender,true);
+        era_compat_server::primordialExperienceCasts(*gameHandler,battle,attacker,defender,true);
         era_compat_server::applySourceKPoison(*gameHandler,battle,attacker,defender);
     }
 
@@ -1659,7 +1673,7 @@ std::set<SpellID> BattleActionProcessor::getSpellsForAttackCasting(const TConstB
 void BattleActionProcessor::handleAttackBeforeCasting(const CBattleInfoCallback & battle, bool ranged, const CStack * attacker, const CStack * defender)
 {
 	attackCasting(battle, ranged, BonusType::SPELL_BEFORE_ATTACK, attacker, defender); //no death stare / acid breath needed?
-    era_compat_server::confluxExperienceCasts(*gameHandler,battle,attacker,defender,false);
+
 	processBattleEventTriggers(battle, CombatEventType::BEFORE_ATTACK, attacker, defender);
 	processBattleEventTriggers(battle, CombatEventType::BEFORE_ATTACKED, defender, attacker);
 }
@@ -1973,7 +1987,21 @@ void BattleActionProcessor::applyBattleEffects(const CBattleInfoCallback & battl
 	{
 		//TODO: use damage with bonus but without penalties
 		auto fireShieldDamage = (std::min<int64_t>(def->getAvailableHealth(), era_compat::Policies::get().physicalDeflection(def->creatureId().toCreature()->getJsonKey()).has_value() ? rawDamageBeforeDeflection : bsa.damageAmount) * def->valOfBonuses(BonusType::FIRE_SHIELD)) / 100;
-		fireShield.emplace_back(def, fireShieldDamage);
+		// Source346: a live spell29 overrides the intrinsic REAL4 .3,
+        // even when that spell is weaker. Do not sum native shield bonuses.
+        if(def->unitType()->getJsonKey()=="tum-era:eraCreature346"
+            && era_compat::PrimordialPolicies::get().owns(def->unitType()->getJsonKey()))
+        {
+            const auto live=def->getBonus(Selector::type()(BonusType::FIRE_SHIELD)
+                .And(Selector::source(BonusSource::SPELL_EFFECT,BonusSourceID(SpellID(29)))));
+            const std::optional<float> coefficient=live
+                ?std::optional<float>(static_cast<float>(live->val)/100.0f):std::nullopt;
+            const auto physical=era_compat::Policies::get().physicalDeflection(
+                def->unitType()->getJsonKey()).has_value()?rawDamageBeforeDeflection:bsa.damageAmount;
+            fireShieldDamage=era_bridge::primordialShieldRaw(
+                static_cast<int32_t>(def->getAvailableHealth()),static_cast<int32_t>(physical),coefficient);
+        }
+        fireShield.emplace_back(def, fireShieldDamage);
 	}
 }
 

@@ -1,0 +1,109 @@
+{
+  "status": "source-audit-inactive",
+  "artifact278Active": false,
+  "nativeAssemblyValidated": false,
+  "sources": [
+    {
+      "path": "../h3era-plugins/Emerald3/emerald/ArtifactCombos.cpp",
+      "sha256": "6a6c312be8d590f7e5495f0072a2465d637c40486b597d021d4a06f6b0719899"
+    },
+    {
+      "path": "../h3era-plugins/Emerald3/emerald/events.cpp",
+      "sha256": "ca03103263c86448fe6ca85eb11ed272b434b81090e7918be3c28566d783fadf"
+    },
+    {
+      "path": "../h3era-plugins/Emerald3/emerald/properties.cpp",
+      "sha256": "7f4666dfc1575f0f2541591651e79d626141ee4cdf7a4d00e3d2af56489e83e9"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/entities/artifact/CArtifactInstance.cpp",
+      "sha256": "c5af60f3ce1d034d490d1e2d00f28d889877a0ece3020198935d1df441319c58"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/entities/artifact/CArtifactSet.h",
+      "sha256": "1d2b5eba177fcb25d785a07fcd70c192862791d8a9f54fbd0078a554a6b21199"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/entities/artifact/CArtifactSet.cpp",
+      "sha256": "1e9772b202647fc6662b09f5a0ed2e7f6676e859a27f4ae16e0fed6a1320cb0b"
+    },
+    {
+      "path": "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp",
+      "sha256": "7050906a5a0d64c1539d72e236743e12cd1b1afcac37e5a76a13719d13be08ba"
+    }
+  ],
+  "originalAssembly": {
+    "path": "outputs/wog-priorities-0.4.147/eighth-evidence/eye278-source-assembly165.txt",
+    "sha256": "d0719291dff34618caea5d8c75a762eb9edd506810144fea2b2be28eaa54e662"
+  },
+  "originalRemove": {
+    "path": "outputs/wog-priorities-0.4.147/eighth-evidence/eye278-source-remove-equipped165.asm",
+    "sha256": "843f4c8e0d9028c56a46cd7ef33e0a150e6871e0a6482f0a4a4543f576b1cbae",
+    "binarySHA": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+  },
+  "slotEvidence": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/eye278-source-add-reservations165.asm",
+      "sha256": "fbaf16fcf6b8f7ef4e475a36a466486c7149471e0a6573f71c52a6a4af3ddb95",
+      "start": 5123184,
+      "stop": 5123648
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/eye278-source-equip-capacity165.asm",
+      "sha256": "f50ef59fcded14c24ff8fec58dd48c76f26eb52d00269b53953d21db63db6d04",
+      "start": 5121984,
+      "stop": 5122320
+    }
+  ],
+  "verified": [
+    "Emerald ArtifactCombos.cpp1188..1269 replaces4DC1A0 through Hook_BuildComboArtIfHasAllParts registration1449. It removes every required equipped ID using RemoveArtFromHero4E2E40, then equips the parent ID through AddArtToHero4E2C70. The original component IDs no longer occupy their former equipped slots.",
+    "4E2F5A..4E2F67 writes DWORD-1 into both removed equipped ID and custom-data fields at hero+12D+8*slot /+131+8*slot.",
+    "Emerald events.cpp59..68 computes custom DamageLow/High by scanning only the19 IArt IDs. properties.cpp66..73 returns the per-ID configured custom value, with no constituent recursion.",
+    "Native CArtifactSet.getArt defaults excludeLocked=true; putArtifact leaves genuine constituent instances in locked slots. Daily conversion loops calling getArt(slot) therefore see only unlocked parent ID, preserving source daily conversion selection.",
+    "Native CCombinedArtifactInstance.addPart attaches every constituent instance as a bonus source of the parent, then CGHeroInstance.putArtifact attaches the parent. Consequently ordinary inherited component bonuses are retained; custom EmeraldDamage also needs a separately scoped source278 composition contract.",
+    "Source AddArtToHero4E2C70 also iterates the combo bitset and increments hero+1C5 category reservations for component slots, except one primary match (4E2D9F..4E2DC1). CanEquip4E27C0 reads these counters at4E2878..2886 and checks category capacity. Component ID removal alone does NOT establish free equipment slots; native locked constituent slots may encode the same reservation."
+  ],
+  "damageContract": {
+    "parent": {
+      "id": 278,
+      "min": 5,
+      "max": 5
+    },
+    "parts": [
+      {
+        "id": 273,
+        "min": 1,
+        "max": 0
+      },
+      {
+        "id": 274,
+        "min": 0,
+        "max": 1
+      },
+      {
+        "id": 276,
+        "min": 0,
+        "max": 2
+      },
+      {
+        "id": 277,
+        "min": 2,
+        "max": 2
+      }
+    ],
+    "expectedSourceParentOnly": {
+      "min": 5,
+      "max": 5
+    },
+    "unadjustedNativeInherited": {
+      "min": 8,
+      "max": 10
+    }
+  },
+  "pending": [
+    "Keep component standard artifact inheritance, but neutralize only their custom DamageMin/Max contribution inside this exact278 combo; do not globally suppress separately equipped component copies.",
+    "A parent-specific additive compensation is one possible implementation, requiring strict source component bonus validation and Emerald endpoint opt-in support. No compensation is installed by this audit.",
+    "Audit Emerald custom assembly and disassembly category reservations/other innate component bonuses before selecting a native combo or consuming recipe. Do not infer extra available slots from the removed ID fields.",
+    "Real GUI assembly/disassembly, parent equipped/backpack, duplicate separate component, save/load, banner/XP daily conversions and all five target family prerequisites must pass before278 activation."
+  ]
+}

@@ -390,6 +390,12 @@
           250
         ]
       }
+    },
+    "tum-era:eraCreature346": {
+      "allSpellImmunity": {}
+    },
+    "tum-era:eraCreature347": {
+      "allSpellImmunity": {}
     }
   },
   "artifacts": {
@@ -645,6 +651,30 @@
         {
           "from": "wake-of-gods.creatures:dracolich",
           "to": "core:rustDragon"
+        }
+      ]
+    },
+    "tum-era:artifact278": {
+      "dailyConversions": [
+        {
+          "from": "tum-era:eraCreature341",
+          "to": "tum-era:eraCreature346"
+        },
+        {
+          "from": "tum-era:eraCreature342",
+          "to": "tum-era:eraCreature346"
+        },
+        {
+          "from": "tum-era:eraCreature343",
+          "to": "tum-era:eraCreature258"
+        },
+        {
+          "from": "tum-era:eraCreature344",
+          "to": "tum-era:eraCreature339"
+        },
+        {
+          "from": "tum-era:eraCreature345",
+          "to": "tum-era:eraCreature347"
         }
       ]
     }

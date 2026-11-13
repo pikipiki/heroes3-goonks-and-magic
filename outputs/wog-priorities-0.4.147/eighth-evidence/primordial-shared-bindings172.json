@@ -1,0 +1,82 @@
+{
+  "active": false,
+  "nativeActorSpecificWitnessesInvented": false,
+  "sourceIds": [
+    346,
+    347
+  ],
+  "fear": {
+    "reuse": "Byte-identical generic runtime from admitted native fear producer/rank activation",
+    "activation": {
+      "path": "outputs/native-evidence/source-fear-producer-ranks/activation-report.json",
+      "sha256": "6e35349f63aea725c19c034f8e0704c456ccd21e93ee04fa5b76991203332b90",
+      "nativeEngine": "d0e65ec6857b5100f9aeb4e6e74ee012a6fe9f6cc16ad76386bff79c4a7cad9c"
+    },
+    "helpers": [
+      {
+        "path": "work/vcmi-wasm/server/era/EraSourceFear.h",
+        "sha256": "2d0fd6dcb766ac83b919562077cb6624ac5b84cd64ce5fd818ee905260dd87ee"
+      },
+      {
+        "path": "work/vcmi-wasm/lib/era/EraSourceFearSemantics.h",
+        "sha256": "b38bfd91cafd6addc5d00234539e4a288166ae646961b65ec7467ebd71063c1e"
+      },
+      {
+        "path": "work/vcmi-wasm/lib/era/EraSourceFearPolicies.h",
+        "sha256": "19a0e2448b7cf8614ff30814f70de5c4b315ad9c0f84fb250c5c7832917a5ea0"
+      }
+    ],
+    "definitionABI": "Same canonicalFEARFUL10 BATTLE_WIDE OPPOSITE_SIDE aura andsameFEARFUL0 INDEPENDENT_MIN fearless target marker; onlysourceId/unique marker string differ, andgenericpolicyresolves those fromJSON."
+  },
+  "skeleton": {
+    "sourceTargetId": 254,
+    "nativeTarget": "tum-era:necrossDragon",
+    "registrySha256": "444441ebde72125b9028568cc5ff01a81b06a9cef2f02788a02001fa33603569",
+    "endpoint": {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial-skeleton-endpoint172.txt",
+      "sha256": "15a9392aca36ed778d105adddf3282c261f4b46c4a55826c375b21b412f345d7"
+    },
+    "source": "Amethyst redirects six town-transformer lookups toskeltrans table. Nativegeneric endpoint reads the registered source target bycreaturekey, then existingchangeStackType; it has no source346/347 branch.",
+    "scope": "Source+exact identity/data+existing generic endpoint reuse; no claim of a new actor-specific transformer native run."
+  },
+  "linearRanks": {
+    "sourceAll11ValuesPinned": true,
+    "nativeEndpoints": [
+      0,
+      10
+    ],
+    "health": {
+      "346": [
+        1500,
+        1650,
+        1800,
+        1950,
+        2100,
+        2250,
+        2400,
+        2550,
+        2700,
+        2850,
+        3000
+      ],
+      "347": [
+        2500,
+        2750,
+        3000,
+        3250,
+        3500,
+        3750,
+        4000,
+        4250,
+        4500,
+        4750,
+        5000
+      ]
+    },
+    "other": "OwnA/D/m/M +2r, noownspeedrow; all5defaults suppressed byownrow type. Every intermediate value lies between nativeR0/R10 without attack/HP cap crossings. Half-up health rounding cannot cross an integer midpoint at these magnitudes; no giant extraR4/R5matrix needed."
+  },
+  "limits": [
+    "These are documented generic ABI/source reuse, not new per-actor native fear/transformer witnesses.",
+    "NofullERA39/script-engine parity claim. Other named primordial native proofs remain mandatory."
+  ]
+}

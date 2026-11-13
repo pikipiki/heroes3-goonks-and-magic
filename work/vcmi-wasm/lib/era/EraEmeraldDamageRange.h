@@ -1,6 +1,7 @@
 /* Source endpoint arithmetic for verified Emerald Eyes only; no new bonus. */
 #pragma once
 #include "EraEmeraldDamageRangeRule.h"
+#include "EraEye278Native.h"
 #include "../GameLibrary.h"
 #include "../battle/Unit.h"
 #include "../entities/artifact/CArtifact.h"
@@ -31,6 +32,12 @@ public:
             const auto found=LIBRARY->identifiers()->getIdentifier(ModScope::scopeGame(),"artifact",expected.key,true);
             if(!found)continue;
             const ArtifactID id(*found);
+            // The two original parent endpoint bonuses are admitted only for the
+            // exact enabled278 direct-ID recipe; no hidden part bonus edges are present.
+            if(eye278Type(id.toArtifact()))
+            {
+                validateEye278(id.toArtifact());identities.push_back(id);continue;
+            }
             int64_t low=0,high=0;int count=0;bool exact=true;
             for(const auto & bonus:id.toArtifact()->getExportedBonusList())
             {

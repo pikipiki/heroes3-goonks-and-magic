@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "wholeActorNativeValidated": false,
+  "engineSHA": "c7fbc8361af818d4ce80e0ba5c8634b4cc70c7b41e13d3b115c5a8aa0ce637ba",
+  "sourceActor": 347,
+  "sourceRank": 0,
+  "newClone": {
+    "nativeStackId": 5,
+    "physicalSlot": 3,
+    "round1Actions": 1
+  },
+  "replacementClone": {
+    "nativeStackId": 6,
+    "physicalSlot": 3,
+    "round2Actions": 2
+  },
+  "cacheMutatedByFixture": false,
+  "realSpells": {
+    "clone": 65,
+    "killOldClone": 15,
+    "orbArtifact": 93
+  },
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-clone170-console.log",
+      "sha256": "2c0b5ef25a90c287457ae42055e7152bc6e8156a10329a4104e5743a178827bb"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-clone170-primordial347-clone-slot-residue.png",
+      "sha256": "b4e0315a7ecdc953dc5721623bb9ebdaac58784bbe733050f4c173f6f914c259"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-clone170-result.json",
+      "sha256": "63322c0a42ea645edadb24c2405de4223ddb807c1a85dffaa23a1415fce0ac24"
+    }
+  ],
+  "harnessSources": [
+    {
+      "path": "work/browser-tests/wog-primordial-clone-native-e2e.mjs",
+      "sha256": "7baf03ca25d4bd4ad94adfa7d89875fbe60322b8ad11d3adb8abd27671c4604d"
+    },
+    {
+      "path": "work/browser-tests/primordial-clone-cases.mjs",
+      "sha256": "6a52c090af21b7461d216aa2ccf0b8ea6f97589938ae7a77b84bdf079e3b7dc6"
+    },
+    {
+      "path": "work/browser-tests/primordial-whole-overlay.mjs",
+      "sha256": "2e11a3d462762da4ba32dbb477f28e1ea20b917795371401723594cfca4b09aa"
+    }
+  ],
+  "limits": [
+    "This proves native new-slot seeding and physical-slot residue across real removal/reallocation; no direct counter/XP/nativeID injection.",
+    "Battle save/load is not exposed by current mobilecommand7 (map only), so no fictitious in-battle save claim. Typed cache codec is independently unit-tested; map-save/battle-restart controls remain distinct.",
+    "Whole347 admission still requires the combined independent native controls and strict source fresh-stage review."
+  ]
+}

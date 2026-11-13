@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "wholeActorsValidated": false,
+  "engineSHA256": "0b73db715514ec64a493abf02865040bece4c445276b2ed1ff7178ebf1194325",
+  "controls": [
+    "Original347 R0 active IceBolt power100 and original SPTRAITS coefficient20/advanced20 =>2020 damage",
+    "Two actual active casts in same round, source slot counter and native charges10\u21929\u21928",
+    "Zero actual morale, then nextGoonkBubu active; no extra-turn/morale bonus fabricated"
+  ],
+  "assets": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial-active-casts168-result.json",
+      "sha256": "699422bdb020fb2fb0e164bad7b2271fdf8ddb7ac5ddd27cad2fafea1c4764db"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial-active-casts168-console.log",
+      "sha256": "186e730a734689c1f383f3a6d065467865fada6e3fa835d290af22bf6c843068"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-active-two-casts168.png",
+      "sha256": "330f1ed0d7a0684872bb319ad26a34d99a8190b9f33afe3543cb02f393a1f258"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial-icebolt-original168.json",
+      "sha256": "bf40299f2c86d4c06b76dd13ecb209fa5029d4334633931fb101309dd9fa7ea9"
+    }
+  ],
+  "limits": [
+    "Only this active-cast/slot-counter interaction is validated here;346, other347events, save/overlap and278 remain gated."
+  ]
+}

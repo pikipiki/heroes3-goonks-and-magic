@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "wholeActorNativeValidated": false,
+  "engineSHA": "0b73db715514ec64a493abf02865040bece4c445276b2ed1ff7178ebf1194325",
+  "sourceActor": 346,
+  "sourceRank": 10,
+  "sourceXPChance": 100,
+  "chanceModified": false,
+  "primaryManager": "core:gnoll count1",
+  "counterActor": "tum-era:eraCreature346 count1",
+  "sourcePower": 1,
+  "sourceAfterMastery": 3,
+  "sourceRawWallDamage": 60,
+  "nativeCurrentHeroSorceryPercent": 15,
+  "actualEntryDamage": 69,
+  "incorrectCounterActorPower": 65,
+  "incorrectCounterActorDamageWithSorcery": 805,
+  "damageTrace": [
+    {
+      "hex": 71,
+      "round": 2,
+      "damage": 69
+    },
+    {
+      "hex": 54,
+      "round": 3,
+      "damage": 0
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-wall-retaliation168-console.log",
+      "sha256": "fbe7df70117a5a2cc9a58ab3f7ca34516d73e38713eb3cbb454c9b538ae7251d"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-wall-retaliation168-primordial346-wall-retaliation-current.png",
+      "sha256": "9d45493f530d5af6870139d6d67c949e19bede000f00e554606cb47220f0e161"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-wall-retaliation168-result.json",
+      "sha256": "f122b0b4104922d2f8acb980762f7705f20f8cc0784c91e69b6bda73f19a70d9"
+    }
+  ],
+  "harnessSources": [
+    {
+      "path": "work/browser-tests/wog-primordial-wall-retaliation-native-e2e.mjs",
+      "sha256": "adf1dad542caddc8a580774c0e0bf9d1b73d8972f754d327a53db11319d6322d"
+    },
+    {
+      "path": "work/browser-tests/primordial-wall-retaliation-cases.mjs",
+      "sha256": "7f194e58f76dc3a931ffb53aa947239a7371e1f7162ac72a0d3b4f8888742378"
+    },
+    {
+      "path": "work/browser-tests/primordial-whole-overlay.mjs",
+      "sha256": "2e11a3d462762da4ba32dbb477f28e1ea20b917795371401723594cfca4b09aa"
+    }
+  ],
+  "limits": [
+    "Canonical sourceSorcery15% hero skill, no spellpower/RNG bonus fabricated. Gnoll durability and fear-only neutralization support manual motion.",
+    "This closes XPaftercounter CURRENT and absence of queued13 on counter; source346whole admission requires other independent controls."
+  ],
+  "incorrectQueuedBasicRawDamage": 20,
+  "queueScopeClarification": "Original queued flush occurs at primary action end after counter CURRENT has been restored. A hypothetical erroneous basic queue would therefore use the Blue primary side (noSorcery) and raw20, unlike the actual counter XPwall stored under flipped Red side, raw60→69. No erroneous path was executed."
+}

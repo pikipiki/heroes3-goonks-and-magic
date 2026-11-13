@@ -1,0 +1,51 @@
+{
+  "ready": true,
+  "applied": true,
+  "dependencyReasons": [],
+  "preservedModFileCount": 8978,
+  "preservedModBaselineSHA256": "bdc473f2733b97f2f943df2864f04d8baa6e9ec8ee67b4e657779b6e46f5d428",
+  "durableEvidenceIndexSHA256": "0c96fa677e9d74ddc054d54f572244dad3aef1048f4db64dbaaf2b1d17d1f1ab",
+  "sourceContract": "source-eye278-direct-ids-v2",
+  "verifiedFiles": [
+    {
+      "file": "content/Data/tum-era/artifacts/278/icon.png",
+      "sha256": "9e30277bb4aca5dbf8bf5f803d595ae5357812a3ad6f6d4a5b329a30f644de83"
+    },
+    {
+      "file": "content/Data/tum-era/artifacts/278/scenario.png",
+      "sha256": "1dcaffbfd41477119402871237904fa0682cc42681181b0895575700f51a17a9"
+    },
+    {
+      "file": "content/Sprites/tum-era/artifacts/278/map.def",
+      "sha256": "1cf3721d9b50a99247cad0e805b6f9fcb89bde14d9868a1fedfec92711313af3"
+    },
+    {
+      "file": "content/Sprites/tum-era/artifacts/278/map.msk",
+      "sha256": "bdf29b71b5e86aa0c6a980c268f02735832f3be2ae51310561529556d2d23d32"
+    },
+    {
+      "file": "content/config/eye278.candidate.json",
+      "sha256": "2637d338c1ebdfac8e64e12dfe45131db890114d8bd5c071ef39c72e028cc2ea"
+    },
+    {
+      "file": "content/translation/eye278-french.json",
+      "sha256": "b29d4b26924a0e50b8d1474597b30b5f1c0d37d5cbb1eee6428bac6f5d0a05d1"
+    },
+    {
+      "file": "era-eye278-composition.candidate.json",
+      "sha256": "57c8d8a8a613077f1e58c8583ec235930f38c9078ad8112532d0008626a01da7"
+    },
+    {
+      "file": "artifact278-daily-adapter.candidate.json",
+      "sha256": "c4b5bbd64d2d69facdd33337934699dcdb053ba6ff811a9fa01bd0d8d1027c14"
+    },
+    {
+      "file": "artifact278-direct-ids.patch.json",
+      "sha256": "26d2f4d3c224f0f63d3b6d530d21606ae59f0fa6f96f25a4000bde51ee650406"
+    }
+  ],
+  "missingSourceCreatureDependencies": [],
+  "nativeInventoryProof": "native169-eye278-inventory.json",
+  "nativeDailyProof": "native170-eye278-daily.json",
+  "unrelatedAndLegacyBytesPreserved": true
+}

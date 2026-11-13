@@ -1,0 +1,48 @@
+{
+  "basePublicCommit": "99abe31bc2596e76b27e87ec9c1a8fbd1fe8b1db",
+  "basePublicEngineSHA256": "fa15aeca15d528a5bf8e6da6f0846fcd789328bf4a14a49928800d8b6b6bc775",
+  "publicSourceChanged": false,
+  "activeDataChanged": false,
+  "nativeValidated": false,
+  "files": {
+    "server/battles/BattleActionProcessor.cpp": "a4e96297814310cedf72c8f0ded8486dcb6477127632bb7ec9860a6ff33ab511",
+    "server/battles/BattleFlowProcessor.cpp": "60e43c1a3ea5ee54ef98c538d8ab56ba65d46597af39f79f220169a67f8b4e62",
+    "server/era/EraPrimordialTurnRuntime.h": "02c2ea11af84e02fbfdd35f0dd4a9c3d03e203d5c7c99b5bf06521c8e0fd1df3",
+    "server/era/EraPrimordialCastRuntime.h": "fa6a7078ff09b0d5a8f60c0432a35dc84fd1503844018b35b94d97c60682c05e",
+    "server/era/EraPrimordialMovesStateRuntime.h": "40e7ac0994615d7306279326975eabcc23028afef7bf32937ab7031d581af88b",
+    "lib/era/EraPrimordialMovesState.h": "9d9a3587c74795cc4d4680d209ae345e980ff7a6d0c23c7476bca50c891c078c",
+    "lib/era/EraPrimordialMovesRule.h": "c040c51378480e1b9024d0f3ca0367329e5456e2d77907ca81ccf0a65b2bf1b2",
+    "lib/era/EraPrimordialShieldRule.h": "ef2bff5ef8fde3bf0cc6fe8a52cfde2dad95529e8098a81d085399366506045d",
+    "lib/battle/CUnitState.cpp": "858172094eb20d84aedd83013228ca496f718ef31f224546a80d9c3efbe50944",
+    "server/era/EraPetrification.h": "51dc18b203241260554d9f3cc5e1f625e7c92385717178601248df3f1f3ed346",
+    "lib/spells/effects/Obstacle.cpp": "b2c896427234436bfc4844c2add7a1e37e14f07f84ca215fde5d73b7952ed1c3",
+    "server/era/EraPrimordialExperience.h": "e160ca6e5d40006c4274dfcb0743892eb14efbdd88cc67a493ab76f72691a9f0",
+    "client/ArtifactsUIController.cpp": "a51afffe987c3334027c3c0bfa74e9f0dbbde8364542ace5d50cb676389512c8",
+    "client/MobileBridge.cpp": "f5ef6ac21b94455c7d53efa8624c6e1263c417c658f69d55c1277a4f65dcfa57",
+    "client/widgets/CArtifactsOfHeroBase.cpp": "af90aa14eb800b473a2692fa0390acf63d167c2c0576a312523d7637fb56464c",
+    "lib/entities/artifact/CArtifact.cpp": "5543644da8560e8bd42c7f6c60cf93dad2e18965d4d12acaf525c810e27ab7a0",
+    "lib/entities/artifact/CArtifactInstance.cpp": "e3c8296c04a8bf8771a41cb2abdcb57b93f8cf23cafcc5b9b60e9143fd6126da",
+    "lib/entities/artifact/CArtifactSet.cpp": "b3a5a650954ac04207588871678249df890b90a26901a7ef634b2f4e442a2a66",
+    "lib/era/EraEmeraldDamageRange.h": "ad317584bad64067bd5d7782c3490dd2e960ad5b1cc8a4e93f5f2c455fa5c5a4",
+    "lib/era/EraEye278Native.h": "284097ad79d18771198bd631f0c6ced3570f321eade2556bcfe5381c0aefaa1b",
+    "lib/gameState/GameStatePackVisitor.cpp": "ed7e41f5f6d7b409c44bfa141510b8b8d10305b5edf569efb93c11b1d2f354bb",
+    "server/CGameHandler.cpp": "5a7d8f5a7b5a0a6218906520c41817ad4c612ca17428bbe3266cff9daeb591d8",
+    "lib/era/EraSourceCreatureLevels.h": "bc043086acece6023b9f7124749eeadb11af6be0b43c16d301d62ee4dbab121e"
+  },
+  "changes": [
+    "Optional346347 direct casts, initial state, finite slot extra actions, active power and intrinsic float shield",
+    "Optional346 queued wall and exact four p/a records",
+    "Move355 original p records before movement/preemption; unrelated native/Goonk before-attack stays unchanged",
+    "Optional278 exact composition, slot quota/reflow, GUI cancellation, direct-ID parent bonuses with no part graph inheritance",
+    "Source278 parent direct5/5 with genuine parts but no bonus inheritance; copied standalone Eye contributes independently; rebuild graph identically after load",
+    "Source263 Astral uses verified source level+1 only for registered original targets; custom Goonks keep native tier",
+    "Mobile action buttons wait for opening/ongoing animations, matching native command admission; tactics placement preserved",
+    "Source347 and opted-in slot residue preserve original WAIT bit after additional actions and positive morale"
+  ],
+  "pending": [
+    "Full engine compile and native regression controls"
+  ],
+  "basePrivateEngineSHA256": "0b73db715514ec64a493abf02865040bece4c445276b2ed1ff7178ebf1194325",
+  "temporaryDiagnosticCodeIncluded": false,
+  "experimentalWeakness241HooksIncluded": false
+}

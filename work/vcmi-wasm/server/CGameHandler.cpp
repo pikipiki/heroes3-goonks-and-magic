@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../lib/era/EraEye278Native.h"
 #include "../lib/era/EraSkeletonTransformations.h"
 #include "../lib/era/EraExperienceProgression.h"
 #include "../lib/era/EraExperienceDistribution.h"
@@ -2711,7 +2712,8 @@ bool CGameHandler::moveArtifact(const PlayerColor & player, const ArtifactLocati
 	const auto * srcSlotInfo = srcArtSet->getSlot(src.slot);
 	const auto * dstSlotInfo = dstArtSet->getSlot(dstSlot);
 
-	if((srcSlotInfo && srcSlotInfo->locked) || (dstSlotInfo && dstSlotInfo->locked))
+	if((srcSlotInfo && srcSlotInfo->locked) || (dstSlotInfo && dstSlotInfo->locked
+        && !era_compat::canMoveIntoEye278(*dstArtSet,dstSlot,*srcArtifact)))
 		COMPLAIN_RET("Cannot move artifact locks.");
 
 	if(isDstSlotBackpack && srcArtifact->getType()->isBig())
@@ -3064,6 +3066,8 @@ bool CGameHandler::assembleArtifacts(ObjectInstanceID heroID, ArtifactPosition a
 	if(assemble)
 	{
 		const CArtifact * combinedArt = assembleTo.toArtifact();
+        if(era_compat::eye278Type(combinedArt) && !era_compat::planEye278Assembly(*hero,combinedArt,artifactSlot))
+            COMPLAIN_RET("Source278 requires the exact four equipped source parts and available MISC quota");
 		if(!combinedArt->isCombined())
 			COMPLAIN_RET("assembleArtifacts: Artifact being attempted to assemble is not a combined artifacts!");
 		if(!vstd::contains(ArtifactUtils::assemblyPossibilities(hero, destArtifact->getTypeId()), combinedArt))
@@ -3086,6 +3090,8 @@ bool CGameHandler::assembleArtifacts(ObjectInstanceID heroID, ArtifactPosition a
 	}
 	else
 	{
+		if(!era_compat::eye278GuiUncombineAllowed(destArtifact->getType()))
+            COMPLAIN_RET("Source278 cannot be disassembled through the source GUI contract");
 		if(!destArtifact->isCombined())
 			COMPLAIN_RET("assembleArtifacts: Artifact being attempted to disassemble is not a combined artifact!");
 

@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "wholeActorNativeValidated": false,
+  "engineSHA": "c7fbc8361af818d4ce80e0ba5c8634b4cc70c7b41e13d3b115c5a8aa0ce637ba",
+  "case": "primordial347WaitDefend",
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-wait-defend170-partial-result.json",
+      "sha256": "8bb0c0cc0a2df3d961ad6b560dee91ec46c1db977e9653dbca7b33cc151fccc4"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-wait-defend170-console.log",
+      "sha256": "fc7c58524c81ad0d76e3a5fb148c9e098cb58b54e53b232ec59f368f2825e898"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-wait-defend170-primordial347-wait-defend.png",
+      "sha256": "ae97417b93979dc279403286a4ee3b6409842639a87dbac4bf87862d47501e78"
+    }
+  ],
+  "harnessSources": [
+    {
+      "path": "work/browser-tests/wog-primordial-turn-native-e2e.mjs",
+      "sha256": "efbf481ccc396631ceac5cdc43cd3af7cc415148efcfe818cb4065137b81430b"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-wait-defend170-reconstructed-harness.mjs",
+      "sha256": "4a3066e2744ddd95c74dc66428af23780cfc7a50df9de08b3e03d361aa78a2cb",
+      "retainedCopy": "outputs/wog-priorities-0.4.147/primordial347-wait-defend170-reconstructed-harness.mjs",
+      "reconstruction": "Reversed the two known subsequent changes (morale bound32→96 and per-round trial logging) from tool history. No at-capture modulehash was emitted; this is transparently reconstructed, not an independently pinned historic file.",
+      "originalPath": "work/browser-tests/primordial-turn-cases.mjs"
+    },
+    {
+      "path": "work/browser-tests/primordial-whole-overlay.mjs",
+      "sha256": "2e11a3d462762da4ba32dbb477f28e1ea20b917795371401723594cfca4b09aa"
+    }
+  ],
+  "observation": {
+    "round1WaitThenWalks": 2,
+    "round2Defends": 1,
+    "round3Walks": 2,
+    "morale": 0
+  },
+  "provenance": "Completed named slice and its closed-page capture retained from partial-result before a later independent morale witness did not match in32rounds; no overall suite success claimed.",
+  "limits": [
+    "Source WAIT preservation is independently audited; UIcanWait history alone cannot prove transient waiting flag.",
+    "Whole347 remains gated by clone/residue/other source behavior controls."
+  ]
+}

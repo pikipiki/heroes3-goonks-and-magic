@@ -1,0 +1,3524 @@
+{
+  "schemaVersion": 1,
+  "activation": false,
+  "nativeValidated": false,
+  "sourceExecutableSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "bounds": {
+    "SoD": [
+      0,
+      149
+    ],
+    "WoG": [
+      150,
+      196
+    ],
+    "newExplicitCfg": [
+      197,
+      362
+    ],
+    "cfgOverrides": 178,
+    "disabledNegativeLevelIds": [
+      122,
+      124,
+      126,
+      128
+    ],
+    "observedCombatLevels": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "unobservedSourceIds": "reject; never read beyond initialized tables"
+  },
+  "sourceLevelExamples": {
+    "azure132": 6,
+    "commanders174to191": 6
+  },
+  "levels": [
+    {
+      "sourceId": 0,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "0.cfg",
+        "sha256": "658016b60cc4a159cf301bff932f09f2a9d357de6bf2f02717df7b8986d821cc"
+      }
+    },
+    {
+      "sourceId": 1,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670430"
+      }
+    },
+    {
+      "sourceId": 2,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6704a4"
+      }
+    },
+    {
+      "sourceId": 3,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670518"
+      }
+    },
+    {
+      "sourceId": 4,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x67058c"
+      }
+    },
+    {
+      "sourceId": 5,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670600"
+      }
+    },
+    {
+      "sourceId": 6,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "6.cfg",
+        "sha256": "cf37f67180ce26dfe2e784ea42ee5335208f629a43c0b0dd4d2a2fe5032ba92c"
+      }
+    },
+    {
+      "sourceId": 7,
+      "level": 3,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6706e8"
+      }
+    },
+    {
+      "sourceId": 8,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x67075c"
+      }
+    },
+    {
+      "sourceId": 9,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6707d0"
+      }
+    },
+    {
+      "sourceId": 10,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670844"
+      }
+    },
+    {
+      "sourceId": 11,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6708b8"
+      }
+    },
+    {
+      "sourceId": 12,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x67092c"
+      }
+    },
+    {
+      "sourceId": 13,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6709a0"
+      }
+    },
+    {
+      "sourceId": 14,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670a14"
+      }
+    },
+    {
+      "sourceId": 15,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670a88"
+      }
+    },
+    {
+      "sourceId": 16,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670afc"
+      }
+    },
+    {
+      "sourceId": 17,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670b70"
+      }
+    },
+    {
+      "sourceId": 18,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670be4"
+      }
+    },
+    {
+      "sourceId": 19,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670c58"
+      }
+    },
+    {
+      "sourceId": 20,
+      "level": 3,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670ccc"
+      }
+    },
+    {
+      "sourceId": 21,
+      "level": 3,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670d40"
+      }
+    },
+    {
+      "sourceId": 22,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670db4"
+      }
+    },
+    {
+      "sourceId": 23,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670e28"
+      }
+    },
+    {
+      "sourceId": 24,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670e9c"
+      }
+    },
+    {
+      "sourceId": 25,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670f10"
+      }
+    },
+    {
+      "sourceId": 26,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670f84"
+      }
+    },
+    {
+      "sourceId": 27,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x670ff8"
+      }
+    },
+    {
+      "sourceId": 28,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x67106c"
+      }
+    },
+    {
+      "sourceId": 29,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6710e0"
+      }
+    },
+    {
+      "sourceId": 30,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671154"
+      }
+    },
+    {
+      "sourceId": 31,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6711c8"
+      }
+    },
+    {
+      "sourceId": 32,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x67123c"
+      }
+    },
+    {
+      "sourceId": 33,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6712b0"
+      }
+    },
+    {
+      "sourceId": 34,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "34.cfg",
+        "sha256": "ae6df5babc615568cf2136282b3fe083a5a0484c1121c25a03994ba0aefe0a15"
+      }
+    },
+    {
+      "sourceId": 35,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "35.cfg",
+        "sha256": "ae6df5babc615568cf2136282b3fe083a5a0484c1121c25a03994ba0aefe0a15"
+      }
+    },
+    {
+      "sourceId": 36,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x67140c"
+      }
+    },
+    {
+      "sourceId": 37,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671480"
+      }
+    },
+    {
+      "sourceId": 38,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6714f4"
+      }
+    },
+    {
+      "sourceId": 39,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671568"
+      }
+    },
+    {
+      "sourceId": 40,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6715dc"
+      }
+    },
+    {
+      "sourceId": 41,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671650"
+      }
+    },
+    {
+      "sourceId": 42,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6716c4"
+      }
+    },
+    {
+      "sourceId": 43,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671738"
+      }
+    },
+    {
+      "sourceId": 44,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6717ac"
+      }
+    },
+    {
+      "sourceId": 45,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671820"
+      }
+    },
+    {
+      "sourceId": 46,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671894"
+      }
+    },
+    {
+      "sourceId": 47,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671908"
+      }
+    },
+    {
+      "sourceId": 48,
+      "level": 3,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x67197c"
+      }
+    },
+    {
+      "sourceId": 49,
+      "level": 3,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6719f0"
+      }
+    },
+    {
+      "sourceId": 50,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671a64"
+      }
+    },
+    {
+      "sourceId": 51,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671ad8"
+      }
+    },
+    {
+      "sourceId": 52,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671b4c"
+      }
+    },
+    {
+      "sourceId": 53,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671bc0"
+      }
+    },
+    {
+      "sourceId": 54,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671c34"
+      }
+    },
+    {
+      "sourceId": 55,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671ca8"
+      }
+    },
+    {
+      "sourceId": 56,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671d1c"
+      }
+    },
+    {
+      "sourceId": 57,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671d90"
+      }
+    },
+    {
+      "sourceId": 58,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671e04"
+      }
+    },
+    {
+      "sourceId": 59,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671e78"
+      }
+    },
+    {
+      "sourceId": 60,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671eec"
+      }
+    },
+    {
+      "sourceId": 61,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671f60"
+      }
+    },
+    {
+      "sourceId": 62,
+      "level": 3,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x671fd4"
+      }
+    },
+    {
+      "sourceId": 63,
+      "level": 3,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672048"
+      }
+    },
+    {
+      "sourceId": 64,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6720bc"
+      }
+    },
+    {
+      "sourceId": 65,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672130"
+      }
+    },
+    {
+      "sourceId": 66,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6721a4"
+      }
+    },
+    {
+      "sourceId": 67,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672218"
+      }
+    },
+    {
+      "sourceId": 68,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x67228c"
+      }
+    },
+    {
+      "sourceId": 69,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672300"
+      }
+    },
+    {
+      "sourceId": 70,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672374"
+      }
+    },
+    {
+      "sourceId": 71,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6723e8"
+      }
+    },
+    {
+      "sourceId": 72,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x67245c"
+      }
+    },
+    {
+      "sourceId": 73,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6724d0"
+      }
+    },
+    {
+      "sourceId": 74,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672544"
+      }
+    },
+    {
+      "sourceId": 75,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6725b8"
+      }
+    },
+    {
+      "sourceId": 76,
+      "level": 3,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x67262c"
+      }
+    },
+    {
+      "sourceId": 77,
+      "level": 3,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6726a0"
+      }
+    },
+    {
+      "sourceId": 78,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672714"
+      }
+    },
+    {
+      "sourceId": 79,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672788"
+      }
+    },
+    {
+      "sourceId": 80,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6727fc"
+      }
+    },
+    {
+      "sourceId": 81,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672870"
+      }
+    },
+    {
+      "sourceId": 82,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6728e4"
+      }
+    },
+    {
+      "sourceId": 83,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672958"
+      }
+    },
+    {
+      "sourceId": 84,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6729cc"
+      }
+    },
+    {
+      "sourceId": 85,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672a40"
+      }
+    },
+    {
+      "sourceId": 86,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672ab4"
+      }
+    },
+    {
+      "sourceId": 87,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672b28"
+      }
+    },
+    {
+      "sourceId": 88,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672b9c"
+      }
+    },
+    {
+      "sourceId": 89,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672c10"
+      }
+    },
+    {
+      "sourceId": 90,
+      "level": 3,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672c84"
+      }
+    },
+    {
+      "sourceId": 91,
+      "level": 3,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672cf8"
+      }
+    },
+    {
+      "sourceId": 92,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672d6c"
+      }
+    },
+    {
+      "sourceId": 93,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672de0"
+      }
+    },
+    {
+      "sourceId": 94,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672e54"
+      }
+    },
+    {
+      "sourceId": 95,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672ec8"
+      }
+    },
+    {
+      "sourceId": 96,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672f3c"
+      }
+    },
+    {
+      "sourceId": 97,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x672fb0"
+      }
+    },
+    {
+      "sourceId": 98,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673024"
+      }
+    },
+    {
+      "sourceId": 99,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673098"
+      }
+    },
+    {
+      "sourceId": 100,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x67310c"
+      }
+    },
+    {
+      "sourceId": 101,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673180"
+      }
+    },
+    {
+      "sourceId": 102,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6731f4"
+      }
+    },
+    {
+      "sourceId": 103,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673268"
+      }
+    },
+    {
+      "sourceId": 104,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6732dc"
+      }
+    },
+    {
+      "sourceId": 105,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673350"
+      }
+    },
+    {
+      "sourceId": 106,
+      "level": 3,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6733c4"
+      }
+    },
+    {
+      "sourceId": 107,
+      "level": 3,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673438"
+      }
+    },
+    {
+      "sourceId": 108,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6734ac"
+      }
+    },
+    {
+      "sourceId": 109,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673520"
+      }
+    },
+    {
+      "sourceId": 110,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673594"
+      }
+    },
+    {
+      "sourceId": 111,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673608"
+      }
+    },
+    {
+      "sourceId": 112,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x67367c"
+      }
+    },
+    {
+      "sourceId": 113,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6736f0"
+      }
+    },
+    {
+      "sourceId": 114,
+      "level": 3,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673764"
+      }
+    },
+    {
+      "sourceId": 115,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6737d8"
+      }
+    },
+    {
+      "sourceId": 116,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x67384c"
+      }
+    },
+    {
+      "sourceId": 117,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6738c0"
+      }
+    },
+    {
+      "sourceId": 118,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673934"
+      }
+    },
+    {
+      "sourceId": 119,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6739a8"
+      }
+    },
+    {
+      "sourceId": 120,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673a1c"
+      }
+    },
+    {
+      "sourceId": 121,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673a90"
+      }
+    },
+    {
+      "sourceId": 122,
+      "level": -1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673b04"
+      }
+    },
+    {
+      "sourceId": 123,
+      "level": 3,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673b78"
+      }
+    },
+    {
+      "sourceId": 124,
+      "level": -1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673bec"
+      }
+    },
+    {
+      "sourceId": 125,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673c60"
+      }
+    },
+    {
+      "sourceId": 126,
+      "level": -1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673cd4"
+      }
+    },
+    {
+      "sourceId": 127,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673d48"
+      }
+    },
+    {
+      "sourceId": 128,
+      "level": -1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673dbc"
+      }
+    },
+    {
+      "sourceId": 129,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673e30"
+      }
+    },
+    {
+      "sourceId": 130,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673ea4"
+      }
+    },
+    {
+      "sourceId": 131,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673f18"
+      }
+    },
+    {
+      "sourceId": 132,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x673f8c"
+      }
+    },
+    {
+      "sourceId": 133,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "133.cfg",
+        "sha256": "33a191ba69a2bd7803e1102b9079f23ed7cb52266c65799008b5e5154b9ff84a"
+      }
+    },
+    {
+      "sourceId": 134,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x674074"
+      }
+    },
+    {
+      "sourceId": 135,
+      "level": 6,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6740e8"
+      }
+    },
+    {
+      "sourceId": 136,
+      "level": 5,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x67415c"
+      }
+    },
+    {
+      "sourceId": 137,
+      "level": 3,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6741d0"
+      }
+    },
+    {
+      "sourceId": 138,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "138.cfg",
+        "sha256": "e69b070918150306b88565590b3c41aee8b1ca95766bf32ae5813a62f6760f66"
+      }
+    },
+    {
+      "sourceId": 139,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6742b8"
+      }
+    },
+    {
+      "sourceId": 140,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x67432c"
+      }
+    },
+    {
+      "sourceId": 141,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "141.cfg",
+        "sha256": "1ee0cca8ae2ef83f5ec9c6197c6d46accc26afac42a74f4bc08503602dca1f27"
+      }
+    },
+    {
+      "sourceId": 142,
+      "level": 2,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x674414"
+      }
+    },
+    {
+      "sourceId": 143,
+      "level": 1,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x674488"
+      }
+    },
+    {
+      "sourceId": 144,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6744fc"
+      }
+    },
+    {
+      "sourceId": 145,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x674570"
+      }
+    },
+    {
+      "sourceId": 146,
+      "level": 4,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6745e4"
+      }
+    },
+    {
+      "sourceId": 147,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x674658"
+      }
+    },
+    {
+      "sourceId": 148,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x6746cc"
+      }
+    },
+    {
+      "sourceId": 149,
+      "level": 0,
+      "evidence": {
+        "kind": "SoD150",
+        "address": "0x674740"
+      }
+    },
+    {
+      "sourceId": 150,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x787624"
+      }
+    },
+    {
+      "sourceId": 151,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "151.cfg",
+        "sha256": "a4afba7909f8d2046823870a5a6b04cba1208a88b2063bb770fa862cc0ec8acf"
+      }
+    },
+    {
+      "sourceId": 152,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x78770c"
+      }
+    },
+    {
+      "sourceId": 153,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x787780"
+      }
+    },
+    {
+      "sourceId": 154,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x7877f4"
+      }
+    },
+    {
+      "sourceId": 155,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "155.cfg",
+        "sha256": "2e67df34022f08a9bd09cfc95d891f7103276451f71c423f263abc2348892e55"
+      }
+    },
+    {
+      "sourceId": 156,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x7878dc"
+      }
+    },
+    {
+      "sourceId": 157,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x787950"
+      }
+    },
+    {
+      "sourceId": 158,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x7879c4"
+      }
+    },
+    {
+      "sourceId": 159,
+      "level": 2,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x787a38"
+      }
+    },
+    {
+      "sourceId": 160,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x787aac"
+      }
+    },
+    {
+      "sourceId": 161,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x787b20"
+      }
+    },
+    {
+      "sourceId": 162,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x787b94"
+      }
+    },
+    {
+      "sourceId": 163,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x787c08"
+      }
+    },
+    {
+      "sourceId": 164,
+      "level": 5,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x787c7c"
+      }
+    },
+    {
+      "sourceId": 165,
+      "level": 5,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x787cf0"
+      }
+    },
+    {
+      "sourceId": 166,
+      "level": 5,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x787d64"
+      }
+    },
+    {
+      "sourceId": 167,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "167.cfg",
+        "sha256": "181a211e8bd6a57006739194ba2044699e958900391c49e1f79b3f61c6d25586"
+      }
+    },
+    {
+      "sourceId": 168,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x787e4c"
+      }
+    },
+    {
+      "sourceId": 169,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "169.cfg",
+        "sha256": "8592308a5d65e56ec14dd5e6f74fb133f26d597e575bf2f98f11b48f3f1b7959"
+      }
+    },
+    {
+      "sourceId": 170,
+      "level": 4,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x787f34"
+      }
+    },
+    {
+      "sourceId": 171,
+      "level": 4,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x787fa8"
+      }
+    },
+    {
+      "sourceId": 172,
+      "level": 5,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x78801c"
+      }
+    },
+    {
+      "sourceId": 173,
+      "level": 2,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x788090"
+      }
+    },
+    {
+      "sourceId": 174,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x788104"
+      }
+    },
+    {
+      "sourceId": 175,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x788178"
+      }
+    },
+    {
+      "sourceId": 176,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x7881ec"
+      }
+    },
+    {
+      "sourceId": 177,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x788260"
+      }
+    },
+    {
+      "sourceId": 178,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x7882d4"
+      }
+    },
+    {
+      "sourceId": 179,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x788348"
+      }
+    },
+    {
+      "sourceId": 180,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x7883bc"
+      }
+    },
+    {
+      "sourceId": 181,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x788430"
+      }
+    },
+    {
+      "sourceId": 182,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x7884a4"
+      }
+    },
+    {
+      "sourceId": 183,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x788518"
+      }
+    },
+    {
+      "sourceId": 184,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x78858c"
+      }
+    },
+    {
+      "sourceId": 185,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x788600"
+      }
+    },
+    {
+      "sourceId": 186,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x788674"
+      }
+    },
+    {
+      "sourceId": 187,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x7886e8"
+      }
+    },
+    {
+      "sourceId": 188,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x78875c"
+      }
+    },
+    {
+      "sourceId": 189,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x7887d0"
+      }
+    },
+    {
+      "sourceId": 190,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x788844"
+      }
+    },
+    {
+      "sourceId": 191,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x7888b8"
+      }
+    },
+    {
+      "sourceId": 192,
+      "level": 2,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x78892c"
+      }
+    },
+    {
+      "sourceId": 193,
+      "level": 5,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x7889a0"
+      }
+    },
+    {
+      "sourceId": 194,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "194.cfg",
+        "sha256": "6ed20ccd69d38515d06c9ab5035ef2a3c3bc245454fa12dce7c2bed33a748e47"
+      }
+    },
+    {
+      "sourceId": 195,
+      "level": 5,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x788a88"
+      }
+    },
+    {
+      "sourceId": 196,
+      "level": 6,
+      "evidence": {
+        "kind": "WoG47Copy77",
+        "address": "0x788afc"
+      }
+    },
+    {
+      "sourceId": 197,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "197.cfg",
+        "sha256": "ee9bceb219201d135189500b70fb0fb3f65cb42c330e400ec33c2d394d5bd42e"
+      }
+    },
+    {
+      "sourceId": 198,
+      "level": 1,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "198.cfg",
+        "sha256": "7a662c784806ebacf2572d891993d7b616582a49292623154fd9983421c8a52e"
+      }
+    },
+    {
+      "sourceId": 199,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "199.cfg",
+        "sha256": "42ec14986f3ba44d974d310000fd920514cc5d730beeb8c920701334e13234f3"
+      }
+    },
+    {
+      "sourceId": 200,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "200.cfg",
+        "sha256": "535d23028567ac0f812d106548cce9c341b198846c83682c2e449dbc5df6436b"
+      }
+    },
+    {
+      "sourceId": 201,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "201.cfg",
+        "sha256": "1302bd871bd6072b3f508bbb1e6f4e40875e2f5c6412a31737dffaa0223f4002"
+      }
+    },
+    {
+      "sourceId": 202,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "202.cfg",
+        "sha256": "2ff1079a4abd56afff242e0498dbe14cd053d36d3e3cab2f9f7f52c5bcb7cbc0"
+      }
+    },
+    {
+      "sourceId": 203,
+      "level": 1,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "203.cfg",
+        "sha256": "1e979a518196566312ef7759740e5b4b0c15fb799f25f3df404c1198f1d73271"
+      }
+    },
+    {
+      "sourceId": 204,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "204.cfg",
+        "sha256": "e2d16e5908f8bc8ee0d46c659d9f0e779f0497be7c2a51bf7b05db28b28d0909"
+      }
+    },
+    {
+      "sourceId": 205,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "205.cfg",
+        "sha256": "2614fcddf3a6a8b1156df2c3acb3f8f2bfcad92330b1087be6a24164e284bdb1"
+      }
+    },
+    {
+      "sourceId": 206,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "206.cfg",
+        "sha256": "7a39a49cf4e15dd044608b7dafb15f6c3d1e9080b85cf6b34b0633aedf123d9f"
+      }
+    },
+    {
+      "sourceId": 207,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "207.cfg",
+        "sha256": "70a35805d9814ae73d96b3db021d3cec74c557ffa89ec778905c403bae6969b5"
+      }
+    },
+    {
+      "sourceId": 208,
+      "level": 1,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "208.cfg",
+        "sha256": "007a8c315525fee3b07fbe6a668f8720155bc0e1ec053043107cfd90c0afa122"
+      }
+    },
+    {
+      "sourceId": 209,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "209.cfg",
+        "sha256": "de510020d30b7eedcf437dc05637b52f85d2b7a2029b9c51a0bd48af19fec527"
+      }
+    },
+    {
+      "sourceId": 210,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "210.cfg",
+        "sha256": "551b87a7e44695fd47b1e258ceab9eaa26bcd73ea058743a1d6430d66466fca2"
+      }
+    },
+    {
+      "sourceId": 211,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "211.cfg",
+        "sha256": "f8263e9ef60c611bd803171bb34d1692118e896ab669932287f5da4e8cc01e95"
+      }
+    },
+    {
+      "sourceId": 212,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "212.cfg",
+        "sha256": "08c4c666b40c3a73ad46a34757014404301744da7868c0b0a990fa95adf3b06b"
+      }
+    },
+    {
+      "sourceId": 213,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "213.cfg",
+        "sha256": "4cdb0fb0073a817d12230698de80689414e9bbd5430a32abfd60aa3aeb3f0c36"
+      }
+    },
+    {
+      "sourceId": 214,
+      "level": 1,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "214.cfg",
+        "sha256": "e31eff88e0542185f6944aa9192de59e7be6f1916ed231d1687f0b2f7f6aba7b"
+      }
+    },
+    {
+      "sourceId": 215,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "215.cfg",
+        "sha256": "10bb6ece5c9e377013fd6977d56635c78c8ca8e6a3eb79ffc62434379a2f54ba"
+      }
+    },
+    {
+      "sourceId": 216,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "216.cfg",
+        "sha256": "6a2d3ead097661c9cb9572775c8f8d57b6cff11899fef9633600826f48915853"
+      }
+    },
+    {
+      "sourceId": 217,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "217.cfg",
+        "sha256": "71cf322d895d7b8d9a1b732f3ed48a9198247949b0149f9a0ac386c20e9513a0"
+      }
+    },
+    {
+      "sourceId": 218,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "218.cfg",
+        "sha256": "c7f80d61d115d8b65682ce4ecb0e0901f260b3ba660306ef19cee13e0b0276e8"
+      }
+    },
+    {
+      "sourceId": 219,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "219.cfg",
+        "sha256": "3c0f19991921b87128a196ab25c8474522293e0319680cfb1a24a149ee699dfb"
+      }
+    },
+    {
+      "sourceId": 220,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "220.cfg",
+        "sha256": "f7c671220436ecf980ada79818c3060e4869156af972e782acf5a2c5226e0a58"
+      }
+    },
+    {
+      "sourceId": 221,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "221.cfg",
+        "sha256": "34c7330d1d8cc8cb1c9b96d332b93d3ea1a8bec7dfe26d354881a15e591b4b6f"
+      }
+    },
+    {
+      "sourceId": 222,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "222.cfg",
+        "sha256": "07a85c63549ec6591899e462d3e8fc60bd766ba16d26b6a790d46356f08674f5"
+      }
+    },
+    {
+      "sourceId": 223,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "223.cfg",
+        "sha256": "97c15e45dc51096303329500aa694ff390f5c0175587a73d34672cb07fabee9a"
+      }
+    },
+    {
+      "sourceId": 224,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "224.cfg",
+        "sha256": "b8f35d68bbf809dd5a479e0ab2e21b77d693243cc7b1d8bc5caceeea8e7eac15"
+      }
+    },
+    {
+      "sourceId": 225,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "225.cfg",
+        "sha256": "5a333b69455aff7fb43b3835a1197e39cce863386d7dd6077c2806830f457edf"
+      }
+    },
+    {
+      "sourceId": 226,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "226.cfg",
+        "sha256": "0273aaa54949eb1ce2ab5842114ce9307111c8c4cb9d34e5e03f81a67df9a0ac"
+      }
+    },
+    {
+      "sourceId": 227,
+      "level": 1,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "227.cfg",
+        "sha256": "2012ad12b40b112bbfb9aef0fcdedde1716255b44e224a8cfdeac651e0025495"
+      }
+    },
+    {
+      "sourceId": 228,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "228.cfg",
+        "sha256": "19550ef695c4562237eb89e2dce12c8fb47b1b314ad773effea202eb7baeeca0"
+      }
+    },
+    {
+      "sourceId": 229,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "229.cfg",
+        "sha256": "3b558344bbb59383957b9030f325fcb8c1aa399a115f22641f742a822a360195"
+      }
+    },
+    {
+      "sourceId": 230,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "230.cfg",
+        "sha256": "f58c67c3e5906243fef4a2749c7e771d9763e4abbc609736028980804527cf0d"
+      }
+    },
+    {
+      "sourceId": 231,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "231.cfg",
+        "sha256": "f15e6842e65e9e8b737e98ef5a604448df1d72fa77b964208fc86e674e3d8404"
+      }
+    },
+    {
+      "sourceId": 232,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "232.cfg",
+        "sha256": "fd58644c0239909d86173948fae362361dcae228555c21af4458f1c7f5c8018d"
+      }
+    },
+    {
+      "sourceId": 233,
+      "level": 1,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "233.cfg",
+        "sha256": "25114e74d95ac9fcf1c065c22da14a2a342120fec1c0686ca17a165fa1f6e1f1"
+      }
+    },
+    {
+      "sourceId": 234,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "234.cfg",
+        "sha256": "7171c8f1ca8c13019b3705da85bdb9cc3b989967301f754687f8ec8f12785617"
+      }
+    },
+    {
+      "sourceId": 235,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "235.cfg",
+        "sha256": "c27afd753439c88a9f0eb5f394d2789c2ef054c3b44037d3a2df841105357635"
+      }
+    },
+    {
+      "sourceId": 236,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "236.cfg",
+        "sha256": "77ed2e0dfcbfc931754817c738c783f9d5675c395cd4e4669130f087e55d2ccf"
+      }
+    },
+    {
+      "sourceId": 237,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "237.cfg",
+        "sha256": "cfdacf407e03a677974c22ce4bb8883f109629b0967155851ac2121284cb615f"
+      }
+    },
+    {
+      "sourceId": 238,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "238.cfg",
+        "sha256": "0db79b96986427424a14c7c1fe831af752b71c5954190599c9c91dcf57c2bb72"
+      }
+    },
+    {
+      "sourceId": 239,
+      "level": 1,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "239.cfg",
+        "sha256": "dfd3beb08159653cc055690429965864b490271f64c8f46e441ee6d06acc65ad"
+      }
+    },
+    {
+      "sourceId": 240,
+      "level": 1,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "240.cfg",
+        "sha256": "63e232acd68d0fcadf003a6aa41a7412ef3ae3d1164a90daf99584875ec92cc3"
+      }
+    },
+    {
+      "sourceId": 241,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "241.cfg",
+        "sha256": "ab226e710fbb57235d99801a08867c372c3557d3dd0e0bb94ba2ca8b7899b9f8"
+      }
+    },
+    {
+      "sourceId": 242,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "242.cfg",
+        "sha256": "16108aebdf4ab80cc2cd0efff2427d1b8d621a5d4735e210dc3070b9f82f9ed2"
+      }
+    },
+    {
+      "sourceId": 243,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "243.cfg",
+        "sha256": "c4bccb51706411ec3f4f90e4e2a021f450039dd3e7642b281fb7eb57a6fb5500"
+      }
+    },
+    {
+      "sourceId": 244,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "244.cfg",
+        "sha256": "124f53efb7faf50c9985814c159d8b421156096fe51428512fca45d1b9a2394e"
+      }
+    },
+    {
+      "sourceId": 245,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "245.cfg",
+        "sha256": "c83872d49681517d2198b04085e016d6236b0d6b475a1751f1563d75b6d67cd5"
+      }
+    },
+    {
+      "sourceId": 246,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "246.cfg",
+        "sha256": "1ba099f1772b782a18049de8b444d971e75217ce5bf8fc16bb4e3129869cf7cc"
+      }
+    },
+    {
+      "sourceId": 247,
+      "level": 1,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "247.cfg",
+        "sha256": "8cc7e04906de62c0e73c1336e037c4f99c29e355cd763a3156596e86d60aa562"
+      }
+    },
+    {
+      "sourceId": 248,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "248.cfg",
+        "sha256": "a8560bff9a65290ebf4ca67a354de6072b4a1c52ec963c84f7a5b6296df61265"
+      }
+    },
+    {
+      "sourceId": 249,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "249.cfg",
+        "sha256": "f855fb299d47e337089fa098d8d765d17d5c30230d5bafa9fafe9a156d31c7bc"
+      }
+    },
+    {
+      "sourceId": 250,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "250.cfg",
+        "sha256": "dd0c20bbd18ea917d6e4ef086ea266b9da156d713edc60b5405b773e172ae514"
+      }
+    },
+    {
+      "sourceId": 251,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "251.cfg",
+        "sha256": "2162a5a71236d4a082e234c9b539e24434cddc85c1a8d9ac007ed5abe973a339"
+      }
+    },
+    {
+      "sourceId": 252,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "252.cfg",
+        "sha256": "32ed227421f851d17f023390cdeca79a528360a57437504a5023f2194334aaa1"
+      }
+    },
+    {
+      "sourceId": 253,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "253.cfg",
+        "sha256": "4828047d3164475face89ca4f42492b225723382756353fd150ee565d8dab721"
+      }
+    },
+    {
+      "sourceId": 254,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "254.cfg",
+        "sha256": "6df13080048eefbc76d87d91311a9b99726970ef97d2df92d325d3a4500e90ae"
+      }
+    },
+    {
+      "sourceId": 255,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "255.cfg",
+        "sha256": "594823f57a3e926a7f8857ef5bc7963a82642f01a6f00073096ba9a522072848"
+      }
+    },
+    {
+      "sourceId": 256,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "256.cfg",
+        "sha256": "c2a9a60bc028594b56c9855e13277675862e94ec9dbaf93ee1b02433411f89a3"
+      }
+    },
+    {
+      "sourceId": 257,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "257.cfg",
+        "sha256": "64cd9033de21f7f1a8f24ae0b93db612fc2c442d4ff3a0e8e4a12e6006edd119"
+      }
+    },
+    {
+      "sourceId": 258,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "258.cfg",
+        "sha256": "ef95bbd9f84e9ac3a113546371475fc2248ece77fec3e581494ae6dc20e6a92b"
+      }
+    },
+    {
+      "sourceId": 259,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "259.cfg",
+        "sha256": "b07d549ca28fde42af0f55847b436bc3fb87ef2837639a75482f41968b4ffb32"
+      }
+    },
+    {
+      "sourceId": 260,
+      "level": 1,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "260.cfg",
+        "sha256": "17b74a475c479bf2991cb9d9883fe0d7245a5f348d7cee7ae4379a956df8aece"
+      }
+    },
+    {
+      "sourceId": 261,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "261.cfg",
+        "sha256": "ec286c17333568765009dc60de175c4fb5c312b073c7187a42916f7a4ccc1529"
+      }
+    },
+    {
+      "sourceId": 262,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "262.cfg",
+        "sha256": "9efefb0eae56d5ccd1ebe74c08f808024eafe1e5ffb7d945b231b2582dacd9a4"
+      }
+    },
+    {
+      "sourceId": 263,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "263.cfg",
+        "sha256": "0fd84ae08694f74cc89681b44fa9d4e76861fc6b435c4300e2f0a726134fb040"
+      }
+    },
+    {
+      "sourceId": 264,
+      "level": 1,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "264.cfg",
+        "sha256": "dcba58ecc7e5e016266bff967f6f2acff90e4c6e9bb50a1a63bb765d22fa4a7a"
+      }
+    },
+    {
+      "sourceId": 265,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "265.cfg",
+        "sha256": "8fa13301d58e95d9fe7284003b49b8904a38fd5f06ced4864038f6f048f13791"
+      }
+    },
+    {
+      "sourceId": 266,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "266.cfg",
+        "sha256": "dca12715c942e939d42ffac843731575aaa3cfc7c0e4a78a7937d1e16e6a6ac4"
+      }
+    },
+    {
+      "sourceId": 267,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "267.cfg",
+        "sha256": "600c416cf7107872c381dd2044ec3f16d86508cd06c9cb7719ecf519696e36e8"
+      }
+    },
+    {
+      "sourceId": 268,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "268.cfg",
+        "sha256": "03d1e3acf8defdea84b9db174be230d00a9217f663926740d8e8e361ec77dc10"
+      }
+    },
+    {
+      "sourceId": 269,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "269.cfg",
+        "sha256": "7bf85f0b8264e888f69336377f8a245a0d1d5d7b335b16f5fe9a36e9215ac2eb"
+      }
+    },
+    {
+      "sourceId": 270,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "270.cfg",
+        "sha256": "dcec09e66feb24b1adfc172313aa83adb610856a75ef4563d86ec78afeb0adce"
+      }
+    },
+    {
+      "sourceId": 271,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "271.cfg",
+        "sha256": "84922a1ed2abc73fc99c8d773e0800ee0c987eaa5868b32c80594de06d644d21"
+      }
+    },
+    {
+      "sourceId": 272,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "272.cfg",
+        "sha256": "6237277d459c6e459de6537139aad65a72ccb313dcdf5ac1a3e689cef90ee0de"
+      }
+    },
+    {
+      "sourceId": 273,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "273.cfg",
+        "sha256": "58e3144924b098b9de50b2bd545cb6c112a826f69dd30cfc6d72daa28af6e711"
+      }
+    },
+    {
+      "sourceId": 274,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "274.cfg",
+        "sha256": "9fa5b37c22a99a1cd0b5a6a2e97f7b2786898a01e692069b817ba822e2f9e35c"
+      }
+    },
+    {
+      "sourceId": 275,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "275.cfg",
+        "sha256": "3e18a903d5a5693d82b4aa4493c79ffcea6d6e7d8856ebeb92cf9493307c5a80"
+      }
+    },
+    {
+      "sourceId": 276,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "276.cfg",
+        "sha256": "0302b2373795c352428d4697f4047d0e2bfd4d7645ec8bc00a58fbcf508e4016"
+      }
+    },
+    {
+      "sourceId": 277,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "277.cfg",
+        "sha256": "f33fb8e8151da817bc4a844f19f58ed0f292fd582b7e3e6572831238f2378cfb"
+      }
+    },
+    {
+      "sourceId": 278,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "278.cfg",
+        "sha256": "2808ab24dab3970828c6b25e7b0b579c78e6500ab22e942a867de233390918bb"
+      }
+    },
+    {
+      "sourceId": 279,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "279.cfg",
+        "sha256": "cc7155d21d8436f9f6c98af26615b3e82b379e66531226424bbc24220e700077"
+      }
+    },
+    {
+      "sourceId": 280,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "280.cfg",
+        "sha256": "5d82651cd3bf8ff6b280329fea9ddd77dc637fe9e294cc1486effc28aeec04e1"
+      }
+    },
+    {
+      "sourceId": 281,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "281.cfg",
+        "sha256": "fe23b540b870b3873d869c42e07d8aa4ba50ec73d1023ec978523d502b5fe871"
+      }
+    },
+    {
+      "sourceId": 282,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "282.cfg",
+        "sha256": "741ed683bcc4adb69b92393c787e67f25dac7443734e169dcff7e642aae45c94"
+      }
+    },
+    {
+      "sourceId": 283,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "283.cfg",
+        "sha256": "5e7d525a3d01ba5a894cde3b20df77551da5a42677fefe9bab0fa43882ef375a"
+      }
+    },
+    {
+      "sourceId": 284,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "284.cfg",
+        "sha256": "ed20a8851002373fafd03391b2828ea48875faf98e4c98cbe42c27ce7b6ab199"
+      }
+    },
+    {
+      "sourceId": 285,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "285.cfg",
+        "sha256": "2939c40aef905f36fce9dec513e1234efa7db4c02ce970473ee492ba5fdda00f"
+      }
+    },
+    {
+      "sourceId": 286,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "286.cfg",
+        "sha256": "b871ef9e2358bf65dc92097953f861e3bbe0d0786ce39bd33af81e414b8f1497"
+      }
+    },
+    {
+      "sourceId": 287,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "287.cfg",
+        "sha256": "4b45e871d3ea0f955124384728abbc7137b6985c1153b8e68c341b47e1af5e72"
+      }
+    },
+    {
+      "sourceId": 288,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "288.cfg",
+        "sha256": "d5c848fdd04b31bb1aa6cf74b487c90bf9d6533a0cf28f758cc82c3893c34ab6"
+      }
+    },
+    {
+      "sourceId": 289,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "289.cfg",
+        "sha256": "b4a3b4d7d5c5923f21c891767a1784cda0504b8d081e427d24c11a0f179a2f58"
+      }
+    },
+    {
+      "sourceId": 290,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "290.cfg",
+        "sha256": "93b074c0135029601e2a84f9654376b2e35d02fb5475fd48dd5fc47441309d8d"
+      }
+    },
+    {
+      "sourceId": 291,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "291.cfg",
+        "sha256": "3b6178b5e7780b628aca4d29023286817ea8ac930f6991c7a17cb89e064ca4ca"
+      }
+    },
+    {
+      "sourceId": 292,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "292.cfg",
+        "sha256": "e3fabe8b22ee2db68d9260cb2a148512a9fc7552a95991ca9f789fe38900621b"
+      }
+    },
+    {
+      "sourceId": 293,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "293.cfg",
+        "sha256": "3de5065a15870e9899d8ad1df4bf13cc0c272a2cc296cc93f24d6ad61c70e2c2"
+      }
+    },
+    {
+      "sourceId": 294,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "294.cfg",
+        "sha256": "5ea0091186307f0dcf71697860d0c6af6ff05840b100f06f7290186950503f11"
+      }
+    },
+    {
+      "sourceId": 295,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "295.cfg",
+        "sha256": "c364786daa732585f5eaec4a7356ebb6c735ac6c9763d0dccd060081df38c0ff"
+      }
+    },
+    {
+      "sourceId": 296,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "296.cfg",
+        "sha256": "14862b2a2d0615a6250ec451c22125c9eb3ac1741be2dd06670daa1ad949a648"
+      }
+    },
+    {
+      "sourceId": 297,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "297.cfg",
+        "sha256": "892a4269cc9a21a368b95791f3f6ce75726300c3417e91b357cded3920c41614"
+      }
+    },
+    {
+      "sourceId": 298,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "298.cfg",
+        "sha256": "258ba86938bb3f83fe5a6a6656bd9fc1eaacafad199018a09df0cc952343496c"
+      }
+    },
+    {
+      "sourceId": 299,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "299.cfg",
+        "sha256": "2cc2b99726fa2c3f8a4f7e5c253719ee4246fe0cada0265df334fda67d959577"
+      }
+    },
+    {
+      "sourceId": 300,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "300.cfg",
+        "sha256": "72b050d47d73e87ff31b7cca6c6a796f45fae56915ca5fc3ddc0a1861a8e25f8"
+      }
+    },
+    {
+      "sourceId": 301,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "301.cfg",
+        "sha256": "b38646f8c6de8c35bb26a0a80b01f8a48e0378b0b6c000c445a83ae361add8b4"
+      }
+    },
+    {
+      "sourceId": 302,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "302.cfg",
+        "sha256": "1d597b29f52143db9874df5923db67cbdb6f6f8113b33cdf88f80ab10edd68c7"
+      }
+    },
+    {
+      "sourceId": 303,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "303.cfg",
+        "sha256": "e979145d61d6c95909d97696fc36b99f5e758bc7ac9eda8103bab0b9b6fe76d9"
+      }
+    },
+    {
+      "sourceId": 304,
+      "level": 1,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "304.cfg",
+        "sha256": "d5c98e8ccb3dbeddd3efc8fb6d86e8df31d856131f6f7fb078e25ecc9cc476ee"
+      }
+    },
+    {
+      "sourceId": 305,
+      "level": 1,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "305.cfg",
+        "sha256": "9bbc459d5b40ec5cf360ab6e7a75920b68510f5791f7f9cdf2661c1a42e4286c"
+      }
+    },
+    {
+      "sourceId": 306,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "306.cfg",
+        "sha256": "b67dee9d6ee1357a45a8919e5b5eaf2fedc7cb54037bd97bc6d6abe28f80ec0d"
+      }
+    },
+    {
+      "sourceId": 307,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "307.cfg",
+        "sha256": "1dba8fbe0b6ed06b00037ebc8c19c5b686dd17b9501f43083c4840dd24d4b50e"
+      }
+    },
+    {
+      "sourceId": 308,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "308.cfg",
+        "sha256": "4a62be7e1bff2447a93fd6f6b133cd381b9865b56c28267d60063ed059ff15ac"
+      }
+    },
+    {
+      "sourceId": 309,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "309.cfg",
+        "sha256": "12834a664943a1d1c1dc4284cad7e43040d66efb8be58a562ea935b115cd0c05"
+      }
+    },
+    {
+      "sourceId": 310,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "310.cfg",
+        "sha256": "7bb9f790c99bca78d4a459fe1adab7e33d5371848ef14f5351c827714ff0a606"
+      }
+    },
+    {
+      "sourceId": 311,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "311.cfg",
+        "sha256": "87fb620a9d3137b68fc207678d973d524152aa01ebfd9098368d4d84aef7b4b5"
+      }
+    },
+    {
+      "sourceId": 312,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "312.cfg",
+        "sha256": "37608ddafcb7381518e4256bc313583561fd5d83569982e0f6e85da6c0d6d2c3"
+      }
+    },
+    {
+      "sourceId": 313,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "313.cfg",
+        "sha256": "041c88fd2c632f5cc3fa31de191e2c77ed0f3b8d3138f80710d1a18b9da68bcb"
+      }
+    },
+    {
+      "sourceId": 314,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "314.cfg",
+        "sha256": "199b2f94de5cde0ba76d0d746c49d9747dccfa3b63af9329a6c112b5ffa9567f"
+      }
+    },
+    {
+      "sourceId": 315,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "315.cfg",
+        "sha256": "c8420cede618e6b63660bcaddfa669e2d4ce789ceed9c5cde50fe503902c4f70"
+      }
+    },
+    {
+      "sourceId": 316,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "316.cfg",
+        "sha256": "3372befcb214065e055de27714ceeff996a2a2baa0f2a2a0e772b81408496c4a"
+      }
+    },
+    {
+      "sourceId": 317,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "317.cfg",
+        "sha256": "cb2318398607042cde6cd1b5a1c5a73b5ea67de60f672d6bf08e51a477e5d95d"
+      }
+    },
+    {
+      "sourceId": 318,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "318.cfg",
+        "sha256": "3aeefb81395c9c9ee5d613125365ae1e191aae6bd109a02c1854813f926a73a2"
+      }
+    },
+    {
+      "sourceId": 319,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "319.cfg",
+        "sha256": "e9969628055de6c23d289abc5a62d0881ea70eea75c2ad194c5fe712b6b53aac"
+      }
+    },
+    {
+      "sourceId": 320,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "320.cfg",
+        "sha256": "3a93dd42d660a5a69122a7b96c1a0de002cc9825c26aa79296456898c9c718d1"
+      }
+    },
+    {
+      "sourceId": 321,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "321.cfg",
+        "sha256": "18278f20e976adb87421b034c214a2ce226962fbb0bd17d973ed162b35c8b4c8"
+      }
+    },
+    {
+      "sourceId": 322,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "322.cfg",
+        "sha256": "40535bedc2a7f637b9a0d546f27665c964154c60ee2ea781b1c61849db62dce0"
+      }
+    },
+    {
+      "sourceId": 323,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "323.cfg",
+        "sha256": "e199a830aff43342dcf5fd759e6dad4c2876d091528a6cee1b3d209fb0ba61a3"
+      }
+    },
+    {
+      "sourceId": 324,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "324.cfg",
+        "sha256": "8e08876336e2e634b35943c0d708ac9cde454475399d868bd70fdba6f5739158"
+      }
+    },
+    {
+      "sourceId": 325,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "325.cfg",
+        "sha256": "fc91bd04544c81b4bf3fa93de169b437c17ee525ddc4ef78baf9eede8eca84e3"
+      }
+    },
+    {
+      "sourceId": 326,
+      "level": 1,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "326.cfg",
+        "sha256": "d99cfa4861386f48e065c58097453076c789f211b8773fd26f82ba06872ed51a"
+      }
+    },
+    {
+      "sourceId": 327,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "327.cfg",
+        "sha256": "0e947b5b2ecdb423dca5890b4c7a11e413b299f9b6b7f9e5452df1304d16004c"
+      }
+    },
+    {
+      "sourceId": 328,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "328.cfg",
+        "sha256": "b7178fdaeaed50e7168fba73d98a97bfb0b78689c13ff6a804b770460f20c53b"
+      }
+    },
+    {
+      "sourceId": 329,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "329.cfg",
+        "sha256": "f07c29cf813dbb2d02d8b446ca06d79ae6ef904a48d9811edc480f326f084bc8"
+      }
+    },
+    {
+      "sourceId": 330,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "330.cfg",
+        "sha256": "a9f9ab79fd741f1199951f8463a5b58c2f0c99dfdb6257f619fecc627fb6bda3"
+      }
+    },
+    {
+      "sourceId": 331,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "331.cfg",
+        "sha256": "df903f8e18d3dae9645cc85b06242761c18376dad1e14eb19bb1c49d54afcbd0"
+      }
+    },
+    {
+      "sourceId": 332,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "332.cfg",
+        "sha256": "11787e692de1a33db8869129a248d2ad3b596ff898de3a36341db27786bba185"
+      }
+    },
+    {
+      "sourceId": 333,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "333.cfg",
+        "sha256": "aa47a5a7174c6a2151790a0ead0eeec0e3181d7b1c016d59d5a23e897c000d5d"
+      }
+    },
+    {
+      "sourceId": 334,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "334.cfg",
+        "sha256": "4620d118021426197aba3710b72d129ffae4e56ecbaafd8bb33129264dd02f9a"
+      }
+    },
+    {
+      "sourceId": 335,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "335.cfg",
+        "sha256": "ea08cc4f77e7cb2f04076f4d3fe0cc49ed72960e72fb4d349a48e5b1b65ab7f6"
+      }
+    },
+    {
+      "sourceId": 336,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "336.cfg",
+        "sha256": "23028b1fca3e5dc6d6e77163fd63626e6e02113822fe5c9b27936ee97a511866"
+      }
+    },
+    {
+      "sourceId": 337,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "337.cfg",
+        "sha256": "9a24ae905875a781c61676f58b510b4e66f4c548d26fc852346cc8bcdd91b3bb"
+      }
+    },
+    {
+      "sourceId": 338,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "338.cfg",
+        "sha256": "d7c49a738ca38927e0c9547a3f161418bd897f66099ecee351dbd502a39d86f6"
+      }
+    },
+    {
+      "sourceId": 339,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "339.cfg",
+        "sha256": "58e1ae42ebe9a30283a8ca05467766c48adc99dc7646edf3096ef510989cbdf8"
+      }
+    },
+    {
+      "sourceId": 340,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "340.cfg",
+        "sha256": "abf804d92b00031766c26d839bdb4eac10278f26ff0022fd8552465c9d09c1c9"
+      }
+    },
+    {
+      "sourceId": 341,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "341.cfg",
+        "sha256": "33ed5849cc37b9bbfa4fb7a2f2d3454b88d3cb3bd013b34fbeb0d943d66e53d1"
+      }
+    },
+    {
+      "sourceId": 342,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "342.cfg",
+        "sha256": "33ed5849cc37b9bbfa4fb7a2f2d3454b88d3cb3bd013b34fbeb0d943d66e53d1"
+      }
+    },
+    {
+      "sourceId": 343,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "343.cfg",
+        "sha256": "ffedd25a57c4348b6839f6b137e0889927844dfdc3f4f7b333b23d82a75ce9d6"
+      }
+    },
+    {
+      "sourceId": 344,
+      "level": 4,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "344.cfg",
+        "sha256": "e71d3b8bfb8eb641a660822b13676c87cf0303ffccca371693dcd5a51470bfca"
+      }
+    },
+    {
+      "sourceId": 345,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "345.cfg",
+        "sha256": "8cc70f2b00ee7fd3144973b054e47c4fe90e5a8003ce3fb3edb79dc3e068b84c"
+      }
+    },
+    {
+      "sourceId": 346,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "346.cfg",
+        "sha256": "7cb4fae3d2dfad75a685b07996383ec433e0a63efcc362dfe9a8ca699d06a6c3"
+      }
+    },
+    {
+      "sourceId": 347,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "347.cfg",
+        "sha256": "e909b74a0d140ebfbd56272259beed1b3befaec3d574786ad6cfd7dd45d41ea8"
+      }
+    },
+    {
+      "sourceId": 348,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "348.cfg",
+        "sha256": "3cdb922c4204c00b37332f9f36c4ffe81fed69212b566e8f19b1ba649f02a54a"
+      }
+    },
+    {
+      "sourceId": 349,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "349.cfg",
+        "sha256": "d1e58e40e0af2d41f2bd3c8621e08e319290a6c414d18a22eb969b24f6ff371b"
+      }
+    },
+    {
+      "sourceId": 350,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "350.cfg",
+        "sha256": "cf70a7bb72e715c1956638506bf48d0e5269db0cd2c443bb161453dd86553b89"
+      }
+    },
+    {
+      "sourceId": 351,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "351.cfg",
+        "sha256": "1a71c6109beb259cb8bc9531272e83c1d73b444b70bf1d82949f2d8987f61f8e"
+      }
+    },
+    {
+      "sourceId": 352,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "352.cfg",
+        "sha256": "4d672e369bdc7b105f82d8eee5889fb2d2dbbe47340869f0c71c04c324642620"
+      }
+    },
+    {
+      "sourceId": 353,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "353.cfg",
+        "sha256": "794924702c19b0ebea6b82758ed1f7caf04423dc0eead0ef1fce5723d6f2058e"
+      }
+    },
+    {
+      "sourceId": 354,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "354.cfg",
+        "sha256": "61db6be6ee109687dd5511030be7ced7fdac9c65b91ad3768c9595a4c782525d"
+      }
+    },
+    {
+      "sourceId": 355,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "355.cfg",
+        "sha256": "968fab902ab5637c8de5405b305a096ec6327cd46086e10f844248e71b1ae992"
+      }
+    },
+    {
+      "sourceId": 356,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "356.cfg",
+        "sha256": "572ea219a2218f2d6b9f892b9a8e8d8b7a2d197af8bfd4a888a0492cc56f6714"
+      }
+    },
+    {
+      "sourceId": 357,
+      "level": 5,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "357.cfg",
+        "sha256": "5cc6d61bff4c66bd485f8becd792520eaefc86c51d982406bb09cbc5825b5ef8"
+      }
+    },
+    {
+      "sourceId": 358,
+      "level": 1,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "358.cfg",
+        "sha256": "d88f227fc0a0e4b7635230e8d00abb45f3d97f78efa75c90e31a90cd452d2c2d"
+      }
+    },
+    {
+      "sourceId": 359,
+      "level": 0,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "359.cfg",
+        "sha256": "d015b40c585f1b801dcfd0ee9cd34188a0a5449bc3c7e898bd7253ee1bf9b89e"
+      }
+    },
+    {
+      "sourceId": 360,
+      "level": 2,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "360.cfg",
+        "sha256": "f9a22079bf45d93e543daeb171ba829053418ab10790528c10883866b02e3531"
+      }
+    },
+    {
+      "sourceId": 361,
+      "level": 3,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "361.cfg",
+        "sha256": "b4f1682d55a1b2a12c8d324ece784af86b26423a43dd263631ab7874d145e3e3"
+      }
+    },
+    {
+      "sourceId": 362,
+      "level": 6,
+      "evidence": {
+        "kind": "AmethystFirstParseInt",
+        "file": "362.cfg",
+        "sha256": "13ac70c3eb08199c95b353f98b558050a437c1cca0cd69ce615923bbb2c97679"
+      }
+    }
+  ],
+  "bindings": {
+    "core:pikeman": 0,
+    "core:halberdier": 1,
+    "core:archer": 2,
+    "core:marksman": 3,
+    "core:griffin": 4,
+    "core:royalGriffin": 5,
+    "core:swordsman": 6,
+    "core:crusader": 7,
+    "core:monk": 8,
+    "core:zealot": 9,
+    "core:cavalier": 10,
+    "core:champion": 11,
+    "core:angel": 12,
+    "core:archangel": 13,
+    "core:centaur": 14,
+    "core:centaurCaptain": 15,
+    "core:dwarf": 16,
+    "core:battleDwarf": 17,
+    "core:woodElf": 18,
+    "core:grandElf": 19,
+    "core:pegasus": 20,
+    "core:silverPegasus": 21,
+    "core:dendroidGuard": 22,
+    "core:dendroidSoldier": 23,
+    "core:unicorn": 24,
+    "core:warUnicorn": 25,
+    "core:greenDragon": 26,
+    "core:goldDragon": 27,
+    "core:gremlin": 28,
+    "core:masterGremlin": 29,
+    "core:stoneGargoyle": 30,
+    "core:obsidianGargoyle": 31,
+    "core:ironGolem": 32,
+    "core:stoneGolem": 33,
+    "core:mage": 34,
+    "core:archMage": 35,
+    "core:genie": 36,
+    "core:masterGenie": 37,
+    "core:naga": 38,
+    "core:nagaQueen": 39,
+    "core:giant": 40,
+    "core:titan": 41,
+    "core:imp": 42,
+    "core:familiar": 43,
+    "core:gog": 44,
+    "core:magog": 45,
+    "core:hellHound": 46,
+    "core:cerberus": 47,
+    "core:demon": 48,
+    "core:hornedDemon": 49,
+    "core:pitFiend": 50,
+    "core:pitLord": 51,
+    "core:efreet": 52,
+    "core:efreetSultan": 53,
+    "core:devil": 54,
+    "core:archDevil": 55,
+    "core:skeleton": 56,
+    "core:skeletonWarrior": 57,
+    "core:walkingDead": 58,
+    "core:zombieLord": 59,
+    "core:wight": 60,
+    "core:wraith": 61,
+    "core:vampire": 62,
+    "core:vampireLord": 63,
+    "core:lich": 64,
+    "core:powerLich": 65,
+    "core:blackKnight": 66,
+    "core:dreadKnight": 67,
+    "core:boneDragon": 68,
+    "core:ghostDragon": 69,
+    "core:troglodyte": 70,
+    "core:infernalTroglodyte": 71,
+    "core:harpy": 72,
+    "core:harpyHag": 73,
+    "core:beholder": 74,
+    "core:evilEye": 75,
+    "core:medusa": 76,
+    "core:medusaQueen": 77,
+    "core:minotaur": 78,
+    "core:minotaurKing": 79,
+    "core:manticore": 80,
+    "core:scorpicore": 81,
+    "core:redDragon": 82,
+    "core:blackDragon": 83,
+    "core:goblin": 84,
+    "core:hobgoblin": 85,
+    "core:goblinWolfRider": 86,
+    "core:hobgoblinWolfRider": 87,
+    "core:orc": 88,
+    "core:orcChieftain": 89,
+    "core:ogre": 90,
+    "core:ogreMage": 91,
+    "core:roc": 92,
+    "core:thunderbird": 93,
+    "core:cyclop": 94,
+    "core:cyclopKing": 95,
+    "core:behemoth": 96,
+    "core:ancientBehemoth": 97,
+    "core:gnoll": 98,
+    "core:gnollMarauder": 99,
+    "core:lizardman": 100,
+    "core:lizardWarrior": 101,
+    "core:gorgon": 102,
+    "core:mightyGorgon": 103,
+    "core:serpentFly": 104,
+    "core:fireDragonFly": 105,
+    "core:basilisk": 106,
+    "core:greaterBasilisk": 107,
+    "core:wyvern": 108,
+    "core:wyvernMonarch": 109,
+    "core:hydra": 110,
+    "core:chaosHydra": 111,
+    "core:airElemental": 112,
+    "core:earthElemental": 113,
+    "core:fireElemental": 114,
+    "core:waterElemental": 115,
+    "core:goldGolem": 116,
+    "core:diamondGolem": 117,
+    "core:pixie": 118,
+    "core:sprite": 119,
+    "core:psychicElemental": 120,
+    "core:magicElemental": 121,
+    "core:unused122": 122,
+    "core:iceElemental": 123,
+    "core:unused124": 124,
+    "core:magmaElemental": 125,
+    "core:unused126": 126,
+    "core:stormElemental": 127,
+    "core:unused128": 128,
+    "core:energyElemental": 129,
+    "core:firebird": 130,
+    "core:phoenix": 131,
+    "core:azureDragon": 132,
+    "core:crystalDragon": 133,
+    "core:fairieDragon": 134,
+    "core:rustDragon": 135,
+    "core:enchanter": 136,
+    "core:sharpshooter": 137,
+    "core:halfling": 138,
+    "core:peasant": 139,
+    "core:boar": 140,
+    "core:mummy": 141,
+    "core:nomad": 142,
+    "core:rogue": 143,
+    "core:troll": 144,
+    "core:catapult": 145,
+    "core:ballista": 146,
+    "core:firstAidTent": 147,
+    "core:ammoCart": 148,
+    "core:arrowTower": 149,
+    "wake-of-gods.level8units:supremeArchangel": 150,
+    "wake-of-gods.level8units:diamondDragon": 151,
+    "wake-of-gods.level8units:lordOfThunder": 152,
+    "wake-of-gods.level8units:hellBaron": 153,
+    "wake-of-gods.level8units:bloodDragon": 154,
+    "wake-of-gods.level8units:darknessDragon": 155,
+    "wake-of-gods.level8units:ghostBehemoth": 156,
+    "wake-of-gods.level8units:hellHydra": 157,
+    "wake-of-gods.level8units:sacredPhoenix": 158,
+    "wake-of-gods.creatures:ghost": 159,
+    "wake-of-gods.messengersandemissaries:emissaryOfWar": 160,
+    "wake-of-gods.messengersandemissaries:emissaryOfPeace": 161,
+    "wake-of-gods.messengersandemissaries:emissaryOfMana": 162,
+    "wake-of-gods.messengersandemissaries:emissaryOfLore": 163,
+    "wake-of-gods.messengersandemissaries:fireMessenger": 164,
+    "wake-of-gods.messengersandemissaries:earthMessenger": 165,
+    "wake-of-gods.messengersandemissaries:airMessenger": 166,
+    "wake-of-gods.messengersandemissaries:waterMessenger": 167,
+    "wake-of-gods.creatures:gorynych": 168,
+    "wake-of-gods.creatures:warZealot": 169,
+    "wake-of-gods.creatures:arcticSharpshooter": 170,
+    "wake-of-gods.creatures:lavaSharpshooter": 171,
+    "wake-of-gods.creatures:nightmare": 172,
+    "wake-of-gods.creatures:santaGremlin": 173,
+    "wake-of-gods.creatures:sylvanCentaur": 192,
+    "wake-of-gods.creatures:wogSorceress": 193,
+    "wake-of-gods.creatures:werewolf": 194,
+    "wake-of-gods.creatures:hellSteed": 195,
+    "wake-of-gods.creatures:dracolich": 196,
+    "third-upgrades:tumRoyalHalberdier": 197,
+    "third-upgrades:tumCrossbowman": 198,
+    "third-upgrades:tumCeasarGriffin": 199,
+    "third-upgrades:tumHolyChampion": 201,
+    "tum-era:cherub": 202,
+    "third-upgrades:tumBerserkerDwarf": 203,
+    "third-upgrades:tumGoldenPegasus": 204,
+    "third-upgrades:tumElderDendroid": 205,
+    "third-upgrades:tumLegendaryUnicorn": 206,
+    "third-upgrades:tumMarbleGargoyle": 208,
+    "third-upgrades:tumSteelGolem": 209,
+    "third-upgrades:tumArcaneGenie": 210,
+    "third-upgrades:tumNagaEmpress": 211,
+    "third-upgrades:tumVermin": 213,
+    "third-upgrades:tumWingedMagog": 214,
+    "third-upgrades:tumAstralCerberus": 215,
+    "third-upgrades:tumSharpHornedDemon": 216,
+    "third-upgrades:tumPitMaster": 217,
+    "third-upgrades:tumEfreetRajah": 218,
+    "tum-era:antichrist": 219,
+    "third-upgrades:tumSkeletonKnight": 220,
+    "third-upgrades:tumNosferatu": 221,
+    "third-upgrades:tumLichKing": 222,
+    "third-upgrades:tumDeathKnight": 223,
+    "tum-era:redBonesDragon": 224,
+    "third-upgrades:tumPhosphorescentTroglodyte": 225,
+    "third-upgrades:tumMonstrousEye": 226,
+    "third-upgrades:tumHarpySanguinary": 227,
+    "third-upgrades:tumMedusaEmpress": 228,
+    "third-upgrades:tumBlackMinotaur": 229,
+    "third-upgrades:tumChimera": 230,
+    "third-upgrades:tumHobgoblinOverlord": 232,
+    "third-upgrades:tumWolfRiderKiller": 233,
+    "third-upgrades:tumOrcLeader": 234,
+    "third-upgrades:tumElderOgre": 235,
+    "third-upgrades:tumLightningbird": 236,
+    "third-upgrades:tumCyclopsEmperor": 237,
+    "tum-era:ancestralBehemoth": 238,
+    "third-upgrades:tumEliteLizard": 240,
+    "third-upgrades:tumChaoticDragonFly": 241,
+    "third-upgrades:tumLavaBasilisk": 242,
+    "third-upgrades:tumFairy": 246,
+    "third-upgrades:tumHurricaneElemental": 247,
+    "third-upgrades:tumLifeElemental": 248,
+    "third-upgrades:tumPlasmaElemental": 249,
+    "third-upgrades:tumMineralElemental": 250,
+    "third-upgrades:tumVoidElemental": 251,
+    "tum-era:divinePhoenix": 252,
+    "third-upgrades:tumGrandmasterGremlin": 255,
+    "third-upgrades:tumSharpshooterElf": 256,
+    "third-upgrades:tumSupremeArchMage": 257,
+    "third-upgrades:tumSpecter": 261,
+    "tum-era:eraCreature287": 287,
+    "third-upgrades:tumInquisitor": 291,
+    "third-upgrades:tumCentaurGeneral": 293,
+    "tum-era:eraCreature295": 295,
+    "tum-era:eraCreature297": 297,
+    "tum-era:eraCreature299": 299,
+    "third-upgrades:tumHighPriest": 320,
+    "third-upgrades:tumGnollShaman": 321,
+    "third-upgrades:tumGhoul": 329,
+    "tum-era:eraCreature357": 357,
+    "tum-era:eraCreature359": 359,
+    "tum-era:eraCreature361": 361,
+    "tum-era:necrossDragon": 254,
+    "tum-era:gemDragon": 207,
+    "tum-era:nightmareHydra": 245,
+    "tum-era:guardianOfZeus": 212,
+    "tum-era:chasmDragon": 231,
+    "tum-era:eraCreature265": 265,
+    "tum-era:eraCreature266": 266,
+    "tum-era:eraCreature267": 267,
+    "tum-era:eraCreature268": 268,
+    "tum-era:eraCreature318": 318,
+    "tum-era:eraCreature341": 341,
+    "tum-era:eraCreature342": 342,
+    "tum-era:eraCreature345": 345,
+    "tum-era:eraCreature269": 269,
+    "tum-era:eraCreature273": 273,
+    "tum-era:eraCreature278": 278,
+    "tum-era:eraCreature331": 331,
+    "tum-era:eraCreature332": 332,
+    "tum-era:eraCreature271": 271,
+    "tum-era:eraCreature280": 280,
+    "tum-era:eraCreature349": 349,
+    "tum-era:eraCreature350": 350,
+    "tum-era:eraCreature324": 324,
+    "tum-era:eraCreature258": 258,
+    "tum-era:eraCreature275": 275,
+    "tum-era:eraCreature283": 283,
+    "tum-era:eraCreature337": 337,
+    "tum-era:eraCreature338": 338,
+    "tum-era:eraCreature353": 353,
+    "tum-era:eraCreature354": 354,
+    "tum-era:eraCreature351": 351,
+    "tum-era:eraCreature352": 352,
+    "tum-era:eraCreature286": 286,
+    "tum-era:eraCreature294": 294,
+    "tum-era:eraCreature343": 343,
+    "tum-era:eraCreature344": 344,
+    "tum-era:eraCreature355": 355,
+    "tum-era:eraCreature356": 356,
+    "tum-era:eraCreature263": 263,
+    "tum-era:eraCreature339": 339,
+    "wake-of-gods.commanders:paladin1": 174,
+    "wake-of-gods.commanders:hierophant1": 175,
+    "wake-of-gods.commanders:templeGuardian1": 176,
+    "wake-of-gods.commanders:succubus1": 177,
+    "wake-of-gods.commanders:soulEater1": 178,
+    "wake-of-gods.commanders:brute1": 179,
+    "wake-of-gods.commanders:ogreLeader1": 180,
+    "wake-of-gods.commanders:shaman1": 181,
+    "wake-of-gods.commanders:astralSpirit1": 182
+  },
+  "bindingEvidence": {
+    "registrySha256": "de1c9c2e0b1cbd4ff5f3e62fcabab455b729b1b20d76c9cbbb9bd5c61e59d8a4",
+    "commanders": [
+      {
+        "nativeKey": "wake-of-gods.commanders:paladin1",
+        "sourceId": 174,
+        "file": "mod/wake-of-gods/Mods/commanders/content/config/commanders/paladin.json",
+        "sha256": "4219874aeed6adbae884b133d7314dd5fa4e821d161e8ac77074b379d6ead10f"
+      },
+      {
+        "nativeKey": "wake-of-gods.commanders:hierophant1",
+        "sourceId": 175,
+        "file": "mod/wake-of-gods/Mods/commanders/content/config/commanders/hierophant.json",
+        "sha256": "1150c1d1770e7599e3ae07a2edffe148c4981b3883ad44bdb575470e8ab7f979"
+      },
+      {
+        "nativeKey": "wake-of-gods.commanders:templeGuardian1",
+        "sourceId": 176,
+        "file": "mod/wake-of-gods/Mods/commanders/content/config/commanders/templeGuardian.json",
+        "sha256": "c9f9a634e19457c261154a67615f9183a0a7d01790bfad3dc7ea232495d1ce2d"
+      },
+      {
+        "nativeKey": "wake-of-gods.commanders:succubus1",
+        "sourceId": 177,
+        "file": "mod/wake-of-gods/Mods/commanders/content/config/commanders/succubus.json",
+        "sha256": "9925c2d3d6e2a3e1f10b4bc59af2cabaa064ee7a5c4a692866b4a49c8a384ecc"
+      },
+      {
+        "nativeKey": "wake-of-gods.commanders:soulEater1",
+        "sourceId": 178,
+        "file": "mod/wake-of-gods/Mods/commanders/content/config/commanders/soulEater.json",
+        "sha256": "a7603bc0f24e816ba809d11b6a9e9f0b86afd57503ad759b29468b2d76ce1949"
+      },
+      {
+        "nativeKey": "wake-of-gods.commanders:brute1",
+        "sourceId": 179,
+        "file": "mod/wake-of-gods/Mods/commanders/content/config/commanders/brute.json",
+        "sha256": "5b4d038cb97488ef208a9df1b45d3041657d3a315b7b4743daf81edbae435cc7"
+      },
+      {
+        "nativeKey": "wake-of-gods.commanders:ogreLeader1",
+        "sourceId": 180,
+        "file": "mod/wake-of-gods/Mods/commanders/content/config/commanders/ogreLeader.json",
+        "sha256": "b528bd2115fcdba73fa19baf64eae96b0d1fdea5aa1a4ca7face33dc811afb6d"
+      },
+      {
+        "nativeKey": "wake-of-gods.commanders:shaman1",
+        "sourceId": 181,
+        "file": "mod/wake-of-gods/Mods/commanders/content/config/commanders/shaman.json",
+        "sha256": "27338d0a42336b313ba32289b2de6089540b8717ef8a295e0f1c4945fd9ad061"
+      },
+      {
+        "nativeKey": "wake-of-gods.commanders:astralSpirit1",
+        "sourceId": 182,
+        "file": "mod/wake-of-gods/Mods/commanders/content/config/commanders/astralSpirit.json",
+        "sha256": "21718af2c18d3a6ed6126e1fe35e1a5416c7093373a251389c014b83004266de"
+      }
+    ]
+  },
+  "weaknessSpecialty": {
+    "dispatch": "4E6358[45-13]=2 ->4E633C[2]=4E62A8",
+    "tableAddress": "0x63eaa8",
+    "values": [
+      3,
+      3,
+      2,
+      2,
+      1,
+      1,
+      0,
+      4
+    ],
+    "entry7": "0x63eac4 is explicitly consumed by sibling branch4E62B9; defined adjacent DWORD4, not a guessed extension",
+    "reachableInitialLevels": "0..6;7 is an explicit bounded documented compatibility entry; no other out-of-range read",
+    "kind1": "5A0173..17B sets heroNULL, so no specialty in XP kind1",
+    "heroes": [
+      {
+        "key": "core:olema",
+        "index": 59,
+        "sourceRecordAddress": "0x678d58",
+        "sourceKind": 3,
+        "sourceSpell": 45,
+        "nativeFile": "inferno.json",
+        "nativeSha256": "9492abe0328d9c654883087ad988ddd197295d3f256f978520013df5771ccaf8"
+      },
+      {
+        "key": "core:mirlanda",
+        "index": 120,
+        "sourceRecordAddress": "0x6796e0",
+        "sourceKind": 3,
+        "sourceSpell": 45,
+        "nativeFile": "fortress.json",
+        "nativeSha256": "9d6587908329c8ddc16498a1e89cb74ae390b28673fc5f936eeb3e8e3df4d68c"
+      }
+    ]
+  },
+  "astral263": {
+    "source": "4E62FD..4E6333 divides signed heroLevel by source zeroBasedLevel+1",
+    "azureExample": "hero7/raw100: source denominator7 ->103; old native Azure level10 ->100",
+    "unknownNativeKeys": "preserve native target level adaptation; never assign a source level to a Goonk"
+  },
+  "limits": [
+    "Only supplied initial source, WoG initialization and TUM CFG corpus; external ERM MA:L mutations are outside this optional static binding",
+    "No runtime activation or native validation of proposed resolver"
+  ]
+}

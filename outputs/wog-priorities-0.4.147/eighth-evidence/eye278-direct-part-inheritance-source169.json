@@ -1,0 +1,102 @@
+{
+  "status": "source-proof-and-runtime-strict-contract; native169-pending",
+  "scope": "Only exact273/274/276/277 parts inside enabled278; no other combo or Goonk inheritance changed",
+  "parts": [
+    {
+      "id": 273,
+      "cfgSHA256": "96fc4d138b31a3dd7047f4b4f435c52de7e11cb3a8e45848b617e92d1392f4c5",
+      "keys": [
+        "DamageMin",
+        "UpgradeFrom",
+        "UpgradeTo",
+        "UpgradeFrom2",
+        "UpgradeTo2",
+        "UpgradeFrom3",
+        "UpgradeTo3"
+      ],
+      "otherSourceEffects": []
+    },
+    {
+      "id": 274,
+      "cfgSHA256": "d8f010beca62134487050decf0586fec9596e3256f92bba0827238cf4a7e7216",
+      "keys": [
+        "DamageMax",
+        "UpgradeFrom",
+        "UpgradeTo",
+        "UpgradeFrom2",
+        "UpgradeTo2",
+        "UpgradeFrom3",
+        "UpgradeTo3"
+      ],
+      "otherSourceEffects": []
+    },
+    {
+      "id": 276,
+      "cfgSHA256": "dc04f0b7edd92c84c3b209914d91f7ca2132dee3591ad454d395add15e461aa2",
+      "keys": [
+        "DamageMax",
+        "UpgradeFrom",
+        "UpgradeTo",
+        "UpgradeFrom2",
+        "UpgradeTo2"
+      ],
+      "otherSourceEffects": []
+    },
+    {
+      "id": 277,
+      "cfgSHA256": "83ef75673d87662a9ffaeb6d1f1023f4d61007f4bff7264619971702d8e19dbd",
+      "keys": [
+        "DamageMax",
+        "DamageMin",
+        "UpgradeFrom",
+        "UpgradeTo",
+        "UpgradeFrom2",
+        "UpgradeTo2"
+      ],
+      "otherSourceEffects": []
+    }
+  ],
+  "nativeDefinitions": "Each source part is checked to have only its exact CREATURE_DAMAGE endpoint bonuses, no other exported bonus, no charges/growing state; native instances must have no independent exported bonus. Modified definitions/instances reject this opt-in.",
+  "primaryStats": "config.cpp215..218 only reads Attack/Defence/Knowledge/Spellpower if present; all absent from these pinnedCFGs. The extended ART_BONUS array is static; only OLD_ARTS_AMOUNT171 rows are copied from original, while273..277 are new rows. AddArtToHero ordinary primary contribution for these source definitions is zero.",
+  "customDamage": "events.cpp59..68 scans only actual IArt[0..18] IDs, with no constituent recursion; assembled278 contributes5/5 alone. Extra worn273 separately contributes1/0.",
+  "daily": "events.cpp303..308 scans direct equipped IDs; only278 daily policy runs while parts are assembled. Native getArt(excludeLocked=true) preserves this.",
+  "presenceDistinction": {
+    "OldHasArtifact": "duplicate.cpp475 direct19IDscan used by the combination construction service",
+    "HasArtifactH3": "Original4D9460 first scans19IDs then follows combonum\u2192parent recursively at4D9492..94AF; explicit structural combo-part lookup remains valid and is not globally suppressed.",
+    "bonusPresence": "Hidden child bonuses are absent, so source273 CREATURE_DAMAGE bonus query is false unless an actual separate273 is worn. No BonusType::HAS_ARTIFACT exists in this native tree."
+  },
+  "lifecycleGuards": [
+    "CCombinedArtifactInstance.addPart retains partInfo, skips attachToSource only for exact enabled278",
+    "CArtifactInstance.attachToBonusSystem resolves saved part refs, then applies same skip on reload",
+    "Parent own type edge is retained; normal init and other combinations unchanged",
+    "Trusted source278 low-level disassembly no longer detaches nonexistent part bonus edges"
+  ],
+  "sourceInputs": [
+    {
+      "path": "../h3era-plugins/Emerald3/emerald/events.cpp",
+      "sha256": "ca03103263c86448fe6ca85eb11ed272b434b81090e7918be3c28566d783fadf"
+    },
+    {
+      "path": "../h3era-plugins/Emerald3/emerald/config.cpp",
+      "sha256": "5e35ad4b1a217b9844ad2f3e5571225007e5a6b8ec777efbe1f3c5768a9c58af"
+    },
+    {
+      "path": "../h3era-plugins/Emerald3/emerald/duplicate.cpp",
+      "sha256": "1549618290d5f1923eda07119fbd931d2ba2e3f6c907315bf1a2c3c140194391"
+    },
+    {
+      "path": "../h3era-plugins/Emerald3/emerald/ArtifactCombos.cpp",
+      "sha256": "6a6c312be8d590f7e5495f0072a2465d637c40486b597d021d4a06f6b0719899"
+    },
+    {
+      "path": "../h3era-plugins/Emerald3/emerald/emerald.cpp",
+      "sha256": "5e7a9eeb0b09ba3ed619d24752b399ad1893bbb0db39e0919e8c318e96c11a37"
+    },
+    {
+      "path": "../h3era-plugins/Emerald3/emerald/MyTypes.h",
+      "sha256": "c50c86a0746bf26564406dd58bd0770408cbf6d5f3887fc92558956a102384dd"
+    }
+  ],
+  "oldCompensationRejected": "Schema2/source-eye278-direct-ids-v2; parent requires exactly two5/5 bonuses, old4-bonus definition and v1policy fail validation",
+  "nativeBaselineFailure": "../eye278-native168-selected9-r2/result.json: actual worn parent9+Green10 gives7/9 instead8/9 under pointer-deduplicating old graph."
+}

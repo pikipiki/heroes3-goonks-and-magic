@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "wholeActorNativeValidated": false,
+  "engineSHA": "c7fbc8361af818d4ce80e0ba5c8634b4cc70c7b41e13d3b115c5a8aa0ce637ba",
+  "case": "primordial347NaturalMorale",
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-morale170-result.json",
+      "sha256": "9208dc3959868aa7c110b3a8da17dbc3f8512f4b55d86b0d8fa6be3a267ccab2"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-morale170-console.log",
+      "sha256": "8f2f49c797caee360d5ad99c70943ba58a7e67318d5f62766958d6b93a972c85"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-morale170-primordial347-morale.png",
+      "sha256": "f859e121feed817a7020d07b0cfc735d4d9f91e1289fe1d4f071014c3863930f"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-morale170-morale-trials.json",
+      "sha256": "ed4ac5cbf73aa9264362f2b4dffff5b797042a22ba1c308ef8b3502a478cac80"
+    }
+  ],
+  "harnessSources": [
+    {
+      "path": "work/browser-tests/wog-primordial-turn-native-e2e.mjs",
+      "sha256": "efbf481ccc396631ceac5cdc43cd3af7cc415148efcfe818cb4065137b81430b"
+    },
+    {
+      "path": "work/browser-tests/primordial-turn-cases.mjs",
+      "sha256": "ea7dedef2b50433ec4a86c6bf41e6e57d4f28bc840fa86160e4f34b4ac18c2ac"
+    },
+    {
+      "path": "work/browser-tests/primordial-whole-overlay.mjs",
+      "sha256": "2e11a3d462762da4ba32dbb477f28e1ea20b917795371401723594cfca4b09aa"
+    }
+  ],
+  "observation": {
+    "morale": 3,
+    "actualActions": [
+      2,
+      3,
+      1
+    ],
+    "moraleBonusFabricated": false,
+    "heroLeadership": "real expert"
+  },
+  "provenance": "Independent successful whole process. The raw provisional Trials.passed=false is an intermediate collection flag; authoritative final named case passedtrue and actualrounds[2,3,1].",
+  "limits": [
+    "Source WAIT preservation is independently audited; UIcanWait history alone cannot prove transient waiting flag.",
+    "Whole347 remains gated by clone/residue/other source behavior controls."
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "passed": true,
+  "engineSHA256": "7990b14715801e042c3fa78c705b0dd871e261b905cd364b6d0e4f1a638fd1ca",
+  "noDefinitionOverlay": true,
+  "RootChangedByThisAgent": false,
+  "combinedControls": [
+    "target10",
+    "target11",
+    "target12",
+    "target18",
+    "ringfull",
+    "miscfull",
+    "ordinary",
+    "mapcombined",
+    "mapcombinedfull"
+  ],
+  "negativeStatueQuotaResolved": true,
+  "ringReservationsAndTypedNativeCapacityPreserved": true,
+  "genuineH3ComboAndGoonkBannerPreserved": true,
+  "mapCombinedAndQuotaFullSourceLayoutsSaveReloadPassed": true,
+  "old161SaveCompatibility": {
+    "passed": true,
+    "syntheticSaveOnly": true,
+    "privateSaveBytesNeverCopied": true,
+    "saveSHA256": "343b69f8267ea698e64057ee2cfcdfdaa97c796ce8ffabde76a4828cb758ce87",
+    "numericTypeIds": {
+      "old": [
+        305,
+        310,
+        298,
+        258,
+        248,
+        245,
+        83
+      ],
+      "new": [
+        307,
+        312,
+        298,
+        258,
+        248,
+        245,
+        83
+      ]
+    },
+    "bannerTypeIds": {
+      "old": [
+        177,
+        177,
+        177,
+        177,
+        177,
+        177,
+        177
+      ],
+      "new": [
+        177,
+        177,
+        177,
+        177,
+        177,
+        177,
+        177
+      ]
+    },
+    "sevenKeysCountsRealXPAndRanksPreserved": true,
+    "nineTown8sAndStocksResourcesBuildingsPreserved": true
+  },
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/native177-eye278-final/combined-result.json",
+      "sha256": "48e680f354212995a3043fd8f37722f5dc99dcbe701ecfeb1a657799024ab347"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native177-eye278-final/combined-console.log",
+      "sha256": "c6d03e6b5e3b23769e0b8a8e6c8dabc0e3ea8b0238ba5b909acc0d852567486d"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native177-eye278-final/old161-new177-result.json",
+      "sha256": "bbb4be75f7b1f52ea73db6a8a64f1b00d4d797e4c6feb0fe6823557ab298883f"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native177-eye278-final/old161-new177-console.log",
+      "sha256": "598b9dd9b3d764dff6ee51c00bb840fb7b4b60cdf720333000e529dadcea0dbb"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native177-eye278-final/source177/lib/era/EraEye278Native.h",
+      "sha256": "2d0d278c4342edfdf12d0a7a26c78724ef6e91f66cfac6ae2b22d12849105aa0"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native177-eye278-final/source177/lib/entities/artifact/CArtifact.cpp",
+      "sha256": "5e52684dca8648367e2886a1ce79ea1ea7621d8b0e5ddfd22be2a42b2b21ca55"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native177-eye278-final/source177/lib/entities/artifact/CArtifactSet.cpp",
+      "sha256": "8a4964be3e1a563b664e474251111dd5e73c16c00b4b11cbb4e9d16ba3450273"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native177-eye278-final/source177-manifest.json",
+      "sha256": "2e286d7173280d78777d8cc08f908e704f2e8d2eb5c8eb735d8e49a3d19a84a9"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native177-eye278-final/source177-whole-recipe-test-result.json",
+      "sha256": "74a15a2659021ea0c31bb286bc47503a3c84bb3d7e8bb6c681ee1b075e1191c1"
+    },
+    {
+      "path": "work/browser-tests/wog-eye278-combined-extra-native-e2e.mjs",
+      "sha256": "ab56c017c939d20fb7815dbe5c58dd09c9ee9202638d2fa44229f1d02f68534d"
+    },
+    {
+      "path": "work/browser-tests/eye278-combined-extra-cases.mjs",
+      "sha256": "bb4f43dba7835a6b9fc456e21f6965fc9cc2f97ff11f930e5fdb048bee6ed69d"
+    },
+    {
+      "path": "work/browser-tests/wog-registry-save-compatibility-native-e2e.mjs",
+      "sha256": "8dfff5ecf6f9b51c07ce34f8e76c37f85e338b2746ee30240a4cfedb31181c5c"
+    },
+    {
+      "path": "work/browser-tests/registry-save-compatibility-cases.mjs",
+      "sha256": "820661230be9888b21b5c869418f20c3c30ba740fae1125a69bf2d37cab33ed1"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "passed": false,
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "63caf4f9c1295bde",
+    "wasm": "vcmiclient.c7fbc8361af818d4.wasm",
+    "sha256": "c7fbc8361af818d4ce80e0ba5c8634b4cc70c7b41e13d3b115c5a8aa0ce637ba",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "report": {},
+  "error": "page.waitForFunction: Timeout 240000ms exceeded.\n    at wait (/Users/sevenone./Documents/git/heroes-goonk/work/browser-tests/wog-fangarm263-level-native-e2e.mjs:6:29)\n    at boot (/Users/sevenone./Documents/git/heroes-goonk/work/browser-tests/wog-fangarm263-level-native-e2e.mjs:30:1034)\n    at async file:///Users/sevenone./Documents/git/heroes-goonk/work/browser-tests/wog-fangarm263-level-native-e2e.mjs:46:3",
+  "state": null,
+  "errors": []
+}

@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "actualText": [
+    "CArtifact::canBePutAt whole function including native constituents loop",
+    "Eye278 resolver/reflow/depth classes"
+  ],
+  "ubsan": true,
+  "cases": [
+    "Elixir accepted10/11/12/18",
+    "five-MISC Statue rejected10/11/12/18",
+    "ringfull rejection",
+    "fullMISC rejection",
+    "parts see physical free slots only",
+    "scope restored on exception",
+    "queries leave inventory and actual placements unchanged"
+  ],
+  "nativeValidated": false,
+  "before176Control": {
+    "expectedFailure": true,
+    "observed": "176 actual CArtifact::canBePutAt fails assertion !statue.canBePutAt(set,target); reproduces five-MISC overadmission",
+    "command": "node work/downloads/wog-port177/map278-before-control.mjs"
+  }
+}

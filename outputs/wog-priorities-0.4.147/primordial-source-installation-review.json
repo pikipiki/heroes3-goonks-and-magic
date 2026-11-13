@@ -1,0 +1,178 @@
+{
+  "readyForInstallation": true,
+  "active": true,
+  "nativeValidated": true,
+  "sourceIds": [
+    346,
+    347
+  ],
+  "contract": "source-primordial-dragons-v1",
+  "sourcePins": {
+    "archive": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+    "sound": "1da1264707a6dd7da79490bed64798a7bd6cf7cba12581e5b93549f0c29bbc32",
+    "experienceRows": "ff8a0f976d787f45da8e1252b7136cb911848aa435a7fb6db68df1f52bfdab31",
+    "experienceProfiles": "d4c3e9ba8814529e87c3a649da525dd4700f5f913d1895af89f8f75977bf973d"
+  },
+  "definitionSha256": "2b5b000fa51934cb5b6f7787632ad991c00e696eb9634434cd1c625d656900e3",
+  "proofHashes": {
+    "native-primordial-full-profiles168.json": "b75f0093fd87cb4ae01b624247fd0ccae4479f2689d37007769d2f18888d7dc8",
+    "native-primordial-active-casts168.json": "f7f9043760dd4d773165da4cd1f2d4eac469cd1b3120a5e64c9afe6551f559c7",
+    "native-primordial-defenses169.json": "75c4d9e32b7192e39f4e4577ac1d677c591e3af81b032a98f7c496e5cfae1555",
+    "native-primordial346-wall-overlap168.json": "4247a3396252ef21d4f0ff6c03af1de8ea6ddb8c89d1e4bf69d287cc595ffff3",
+    "native-primordial346-wall-guards168.json": "194eaa20489be1917f21e31ea08744b8b50a0209be23f45490e9469d0f14e1f5",
+    "native-primordial346-wall-retaliation168.json": "2527519109242c8415ddc43e0f57100139634d1dbea897cb877f52844e472565",
+    "native-primordial347-wait-defend170.json": "58a366ffe1f3d21a1a61685343eeca51dede47547f166c5b99a357c9e5d9c47c",
+    "native-primordial347-morale170.json": "b6d70b5dd9f0ccebe7d379ca3d5c4bd0eba9c8bcc3274b1b1c0a3ecd6719f550",
+    "native-primordial347-clone170.json": "459a34536b9330689036742653beaddede6f549cd39c426357d048f45cc4e51d",
+    "native-primordial347-melee172.json": "e6f189856dda4b64dc88b5ecfe2b54e6469ec8155ee3134b0f0e0e6b701cc045",
+    "native-primordial347-save172.json": "7099581b72610b61b42b6d674dca291fcae15a078a6cfae4d0b76635ec0d8b1f",
+    "native-primordial346-spell-components172.json": "8bf34d73d8f2002aa328712856a22e66a6d00aa3a3d6ada21ea7ecce509c42da",
+    "eighth-evidence/primordial-shared-bindings172.json": "58386debd807fd51b852bdb5587bb766f9a616e60e7399a385b1704f4b92c212",
+    "eighth-evidence/primordial-xp-callers-source167.json": "b043a21527053de9fbc67258044f7f66336114842980cbd918c431d0361a7197",
+    "eighth-evidence/primordial-experience-source167.json": "86c047036a64f49d1f011e9abfceb2c4406dfd714bf604c4e17e8cc45f842f6f",
+    "eighth-evidence/primordial346-firewall-source167.json": "aa2bd91048b4cacc4a5c83c5ce0e8ca063b13531e25a7d750eb69fc7f4d0bbc8",
+    "eighth-evidence/primordial347-wait-source170.json": "71ff0c40724e250dcc38c07027316a9a4e703e1e125dee25bdbd370b5667be0b",
+    "eighth-evidence/primordial347-moves-source165.json": "22884cc0b01af59384f6c0d58ee24a6dc7bed7de94d4d79bce2fdb3115866a10",
+    "eighth-evidence/primordial346-shield-source165.json": "00bab0c1f02e53fbc7a7045d503137e0ca1407774bef61c136a8bc74dc6c80b0"
+  },
+  "pendingNativeProofs": [],
+  "plannedFiles": [],
+  "installedFiles": [
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/346/CR346.def",
+      "sha256": "452e10e7054cdc6761899a7d18ae02b120fb0233ecac9b95a00ee1fea8d796da"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/346/AVWCR346.def",
+      "sha256": "6e8832b771b724f300de765f1e4c53206a30f55c18d7a8a9bad02a98dfeffa79"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/346/AVWCR346.msk",
+      "sha256": "94ba3e9f3307dc30931de13a4e164e3b091e9389a53230862fe29bd11b1bc40c"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/346/small.png",
+      "sha256": "827523b2a87afa490af84300f63cdc98e038dddfac2fbc46e8005129f201e1b6"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/346/large.png",
+      "sha256": "f4384b09b319745e34d6f08d03854080f6427720b6e33a7f6ed1bfbf5a2c1f92"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/346/S346ATTK.wav",
+      "sha256": "2fd5b29fa64ea981d45db2606936e6e233fb45e3c0912056c49f40afb1db0b11"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/346/S346DFND.wav",
+      "sha256": "19c161e564c6ea3d41fb06b22715164bb78f1147697e8d91c12cb215fa5d3258"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/346/S346KILL.wav",
+      "sha256": "2e787ef58399ba217a9e33fb9779412769181201f1fb5362ea629fc1dc5e4154"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/346/S346MOVE.wav",
+      "sha256": "d86a8d0437629547d9ad59b34b343fec081d9ff68c746c78a6bcb56162c6eb96"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/346/S346WNCE.wav",
+      "sha256": "19c161e564c6ea3d41fb06b22715164bb78f1147697e8d91c12cb215fa5d3258"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/347/CR347.def",
+      "sha256": "4da3423c5c8fff8a9261d61a9887106073c5e0e075b750c3b13ae9eff0e5310b"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/347/AVWCR347.def",
+      "sha256": "0a1f6c5b46402535bcac06e84a2f81658da72f131528eef1ea04702fabee08b8"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/347/AVWCR347.msk",
+      "sha256": "94ba3e9f3307dc30931de13a4e164e3b091e9389a53230862fe29bd11b1bc40c"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/347/small.png",
+      "sha256": "08a20dcc3d683aab1e88dafa471b5455cab36d110ef9f1742abd0080d96f0d27"
+    },
+    {
+      "path": "mod/tum-era/content/Sprites/tum-era/creatures/347/large.png",
+      "sha256": "05543e100b7da314ae992326adb40cc6a7a13aa4e6406b30c70a7173d6ed481e"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/347/S347ATTK.wav",
+      "sha256": "2fd5b29fa64ea981d45db2606936e6e233fb45e3c0912056c49f40afb1db0b11"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/347/S347DFND.wav",
+      "sha256": "19c161e564c6ea3d41fb06b22715164bb78f1147697e8d91c12cb215fa5d3258"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/347/S347KILL.wav",
+      "sha256": "2e787ef58399ba217a9e33fb9779412769181201f1fb5362ea629fc1dc5e4154"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/347/S347MOVE.wav",
+      "sha256": "d86a8d0437629547d9ad59b34b343fec081d9ff68c746c78a6bcb56162c6eb96"
+    },
+    {
+      "path": "mod/tum-era/content/Sounds/tum-era/creatures/347/S347WNCE.wav",
+      "sha256": "19c161e564c6ea3d41fb06b22715164bb78f1147697e8d91c12cb215fa5d3258"
+    },
+    {
+      "path": "mod/tum-era/content/config/source-primordial-dragons.json",
+      "sha256": "2b5b000fa51934cb5b6f7787632ad991c00e696eb9634434cd1c625d656900e3"
+    },
+    {
+      "path": "mod/tum-era/content/config/era-bridge-primordial.json",
+      "sha256": "53b0b5196800419c747ecd1a759a20ea05936edc66e2534eef5c89b8bfd08dc5"
+    },
+    {
+      "path": "mod/tum-era/content/config/era-bridge-experience.json",
+      "sha256": "9f8c11e1b9342b8e3b0aa3ea4912d12a0d44b5e5d994b7256bd4a67490de0021"
+    },
+    {
+      "path": "mod/tum-era/content/config/era-bridge-runtime.json",
+      "sha256": "abfddf43ab3ab623e011356f36ec1b9db9d57a8ed804d3d71a479bbe3e219721"
+    },
+    {
+      "path": "mod/tum-era/content/config/era-bridge-skeleton-transformations.json",
+      "sha256": "219401b79e67a7624deb6ef64e3204bb6d4481a42b2b33e612938735eb7c7bad"
+    },
+    {
+      "path": "mod/tum-era/content/config/era-bridge-fear.json",
+      "sha256": "b6e109852ed684786cdd9c88866af16c05466324e7cba6e137c5a5f2b37d034a"
+    },
+    {
+      "path": "mod/tum-era/content/config/era-bridge-status-attacks.json",
+      "sha256": "67b89ea5b214c09362b4aa43a93fa7a8bdecf495687fae111b7af7eb9d8a7419"
+    },
+    {
+      "path": "mod/tum-era/era-identities.json",
+      "sha256": "2f72489f0ce892739ab1187e508e01c4ce311052e99fcf048db3dfbabdd0852e"
+    },
+    {
+      "path": "mod/tum-era/content/translation/reviewed-primordial-dragons-french.json",
+      "sha256": "9d062883c3bfa23b1405f474c3755411e47c9f227896c5465083efc0d915ff07"
+    },
+    {
+      "path": "mod/tum-era/mod.json",
+      "sha256": "7731a8218a7f7cdc313efd90893310b1a6942e4904e5f886496cbe4d40003655"
+    }
+  ],
+  "protectedExistingFiles": 1353,
+  "legacy": {
+    "path": "mod/wake-of-gods/Mods/stackExperience/Content/data/crexpbon.txt",
+    "sha256": "6a8bf919a66f80d2015066fffa2e2b3aa8e73d0c3771558d0c038f302ac7a6c6",
+    "modified": false
+  },
+  "genericReuse": {
+    "fear": "Byte-identical admitted generic helper+same ABI/markers; no new per-actor native witness fabricated",
+    "skeleton": "Pinned source254 identity+exact generic endpoint; no new per-actor transformer run fabricated",
+    "linearRanks": "All11sourcevalues pinned plusR0/R10native endpoints; no midpoint/cap crossings"
+  },
+  "scopeLimits": [
+    "No fullERA39/script-engine parity claim.",
+    "Native mobile save validation is on-map; no claim of an unavailable mobile in-battle save control.",
+    "Onlysource346/347admission; source278 must pass its own later strict gate."
+  ]
+}

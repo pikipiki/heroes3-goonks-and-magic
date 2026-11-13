@@ -27,7 +27,7 @@
     "buildings": "Five fourth-upgrade town chains with ERA building77 costs; advanced building artwork reused",
     "abilities": "Source-scoped native policies; inherited WoG behavior is distinguished from proven ERA behavior"
   },
-  "remaining": "109 source artifacts, source339 and all18 eighth-faction actors are active; all nine eighth-town recruitments are enabled after genuine old-save migration. Source artifact278, source346/347 and remaining source-script obligations stay disabled until validation.",
+  "remaining": "110 source artifacts,54 source identities and all18 eighth-faction actors are active, with all nine T8town recruitments. Ordered XP source migration (37 rows plus six prerequisite p providers) remains incomplete; inherited bridge/native behavior is preserved until validated replacement.",
   "vcmiCompatibilityFixes": [
     "badLuckDice denominators converted to badLuckChance weights [2,4,6] for the native 24-sided luck roll",
     "Artifact bonuses converted to named objects; scenarioBonus graphics renamed",
@@ -38,10 +38,10 @@
     "Mobile construction panel opens the native hall for all advanced upgrade tiers"
   ],
   "activeContent": {
-    "tumCreatures": 52,
-    "artifacts": 109,
+    "tumCreatures": 54,
+    "artifacts": 110,
     "mapObjects": 42,
-    "experienceProfiles": 275,
+    "experienceProfiles": 277,
     "fourthUpgradeTowns": [
       "castle",
       "rampart",
@@ -62,10 +62,10 @@
     "eighthFactionRecruitmentEnabled": true,
     "sourceMagicReductionProfiles": 15
   },
-  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.160-engine.tar.gz",
-  "engineArchiveSHA256": "ab2c1e9a4b70e50d79e1e2d023856a2377ad253f950aa9b033fbecde1b7f88f2",
-  "wasmSHA256": "fa15aeca15d528a5bf8e6da6f0846fcd789328bf4a14a49928800d8b6b6bc775",
-  "engineAttribution": "Data release0.4.161 reuses the verified0.4.160 engine/fa15. Source339 is installed after37 native records, fresh-source byte-for-byte reconstruction and installed-data combat with zero definition writes. No new native code is published by this data release. Optional346/347 and artifact278 remain inactive.",
+  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.162-engine.tar.gz",
+  "engineArchiveSHA256": "3979608c2a525bb78cc2eb1c014f84499976780412e84101906f03c7c5b5110a",
+  "wasmSHA256": "7990b14715801e042c3fa78c705b0dd871e261b905cd364b6d0e4f1a638fd1ca",
+  "engineAttribution": "Release0.4.162 includes admitted346/347, source278 direct-ID composition, callback-safe initial map placement, complete native validation of combined extra slots, leaf Eye copy additivity, source355 before-movement XP timing and source-level263 Astral correction.24 frozen source files; final ninja html5 PASS15targets after full74-target rebuild. Experimental241/45 hooks are absent. Every native report retains its exact engine hash.",
   "priorDataOnlyReview": {
     "release": "0.4.34",
     "baseCommit": "6bfa181327f9e7e97dcc8e993c55ec28c8ab6491",
@@ -74,11 +74,11 @@
     "attribution": "Historical prior review only. Native startup is rerun on this release engine; source numerical/cost/fear evidence keeps original hashes."
   },
   "knownCheckpointLimitations": [
-    "Full TUM/ERA compatibility and an arbitrary ERM interpreter are not established.",
-    "All nine eighth-town recruitments are active after native recruitment/growth/upgrade/save controls and genuine old-seven-stock save migration. Source artifacts266/278 and source339/346/347 remain inactive.",
-    "Source combat-order and unported original creature gaps remain tracked explicitly; every native report retains its own engine hash.",
+    "Full TUM/ERA compatibility and arbitrary ERM execution are not established.",
+    "All110 source artifacts,54 source identities and nine eighth-town recruitments are active; their scoped admission proofs remain separate from global ERA parity.",
+    "Ordered source XP migration still needs37 rows and six prerequisite p providers; legacy/native bridge behavior remains until faithful replacements are validated.",
     "Atma map-initial equipment uses documented deterministic initialization; source352 undefined second injury uses stable zero, as requested.",
-    "Physical devices, all campaigns and broad cross-version save compatibility are outside these bounded checks."
+    "Native161to162 save compatibility is verified for seven trained/banner-equipped troops and nineT8towns. Physical devices, all campaigns and arbitrary older saves are outside these bounded checks."
   ],
   "fullTum35Compatibility": false,
   "stabilizationRelease": {
@@ -232,5 +232,16 @@
     "validation": "outputs/wog-priorities-0.4.147/checkpoint161-validation.json",
     "source339Active": true,
     "nativeCodeChanged": false
+  },
+  "checkpoint162": {
+    "appVersion": "0.4.162",
+    "baseCommit": "99abe31bc2596e76b27e87ec9c1a8fbd1fe8b1db",
+    "status": "validated",
+    "engineSHA256": "7990b14715801e042c3fa78c705b0dd871e261b905cd364b6d0e4f1a638fd1ca",
+    "sourceArtifactsActive": 110,
+    "source346347Active": true,
+    "artifact278Active": true,
+    "fullCompatibilityClaim": false,
+    "validation": "outputs/wog-priorities-0.4.147/checkpoint162-validation.json"
   }
 }

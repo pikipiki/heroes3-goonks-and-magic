@@ -1,0 +1,80 @@
+char __stdcall BuildComboArtIfHasAllParts_4DC1A0(HiHook* h, HERO* Hero, int combo_index, int slot_index)
+{
+	DWORD required_artifacts_bitset[combo_artifact_bitfield_dwords_count]; 
+	memcpy(required_artifacts_bitset, new_CArtSetup[combo_index].ArtNums, sizeof(required_artifacts_bitset));
+	if(1){
+		int bitset_length = combo_artifact_bitfield_dwords_count - 1;
+		auto bitset_position = &required_artifacts_bitset[combo_artifact_bitfield_dwords_count - 1];
+		do
+		{
+			if (*bitset_position)
+			{
+				for (int i = 0; i < 32; ++i) {
+					if ((*bitset_position) & (1ll << i)) {
+						int id = (bitset_length << 5) + i;
+						if (!OldHasArtifact(Hero, id))
+							return 0;
+					}
+				}
+			}
+
+			--bitset_length;
+			--bitset_position;
+		} while (bitset_length >= 0);
+	}
+	
+	if (slot_index != -1)
+	{
+		int art_id = Hero->IArt[slot_index][0];
+		if (art_id >= combo_artifact_bitfield_dwords_count*32)
+			Exception_InvalidBitsetPosition_004346A0();
+		required_artifacts_bitset[art_id >> 5] &= ~(1 << (art_id & 0x1F));
+		RemoveArtFromHero(Hero, slot_index);
+	}
+	int num_art_slots = 19;
+	DWORD* current_art = (DWORD*) &Hero->FreeAddSlots;
+EmptySlot:
+	int bitset_length = combo_artifact_bitfield_dwords_count - 1;
+	auto bitset_position = &required_artifacts_bitset[combo_artifact_bitfield_dwords_count-1];
+
+	do
+	{
+		if (*bitset_position)
+		{
+			-- --current_art;
+			auto _art_id_ = *current_art;
+			--num_art_slots;
+			auto curr_art = current_art;
+			if (_art_id_ != -1)
+			{
+				if (_art_id_ >= combo_artifact_bitfield_dwords_count * 32)
+				{
+					Exception_InvalidBitsetPosition_004346A0();
+					current_art = curr_art;
+				}
+				if (((1 << (_art_id_ & 0x1F)) & required_artifacts_bitset[_art_id_ >> 5]) != 0)
+				{
+					auto art_id_ = *current_art;
+					if (*current_art >= combo_artifact_bitfield_dwords_count * 32)
+						Exception_InvalidBitsetPosition_004346A0();
+					required_artifacts_bitset[art_id_ >> 5] &= ~(1 << (art_id_ & 0x1F));
+					RemoveArtFromHero(Hero, num_art_slots);
+					current_art = curr_art;
+				}
+			}
+			goto EmptySlot;
+		}
+		--bitset_length;
+		--bitset_position;
+	} while (bitset_length >= 0);
+
+	DWORD artifact[2];
+	artifact[0] = new_CArtSetup[combo_index].Index;
+	artifact[1] = -1;
+	auto ret = AddArtToHero(Hero, (int*) artifact, -1);
+
+	if (1 && !OldHasArtifact(Hero, *artifact))
+		THISCALL_3(char,0x004E3200,Hero, (int*)artifact,-1);
+	return ret;
+}
+

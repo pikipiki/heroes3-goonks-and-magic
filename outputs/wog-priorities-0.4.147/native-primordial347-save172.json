@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "wholeActorNativeValidated": false,
+  "engineSHA": "75a488c285ff499277c96a954652833c2e62bb41ffb2b33a073bc537165c3bf0",
+  "noOrbCloneTarget": false,
+  "positiveCloneWithOrbCounterpart": "native-primordial347-clone170.json",
+  "savedBytes": 125580,
+  "saveSha256": "d755afbb3f3a3e145fbf9d9097f0bf33e49b645d8de1eccfa7a7f98cb03f8ef8",
+  "saveBytesPublished": false,
+  "experiencePreserved": true,
+  "sourceRank": 10,
+  "experience": 100,
+  "newBattleWalks": 2,
+  "goonkCountPreserved": 3,
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-save172-console.log",
+      "sha256": "9b57dfe3340045c1e9e95e618099197042330fd4761a4a5e9068e33c2a7dc899"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-save172-primordial347-immunity-xp-save.png",
+      "sha256": "0c070a3237f9a36995fbb7c0b2210e09d22da3c019ec29022bfce419f62a8d61"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-save172-result.json",
+      "sha256": "dfc391f6d1babccbe345406a38b624aa8c5649ae0f8b87cae12129ca63b6b629"
+    }
+  ],
+  "harnessSources": [
+    {
+      "path": "work/browser-tests/wog-primordial347-save-native-e2e.mjs",
+      "sha256": "25484d5fc6669d8bf3b045f17ffa185699b7d7c329867fd027f918e248c7462b"
+    },
+    {
+      "path": "work/browser-tests/primordial347-save-flow-cases.mjs",
+      "sha256": "3ffcb196716fcf4ca1817dd89abc92cc7603a91900e63159a713a3f306989c92"
+    },
+    {
+      "path": "work/browser-tests/primordial-whole-overlay.mjs",
+      "sha256": "2e11a3d462762da4ba32dbb477f28e1ea20b917795371401723594cfca4b09aa"
+    }
+  ],
+  "limits": [
+    "Actual save/load is on map after real training victory. No unsupported in-battle save claimed.",
+    "Private progression scale100 retained acrossload; original all11XPbonuses unchanged, canonical profile independentlyasserted in fullprofiles.",
+    "Shared generic fear/skeleton endpoints are pinned bysource/data/ABI, not fabricated per-actor native runs."
+  ]
+}

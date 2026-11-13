@@ -1,0 +1,45 @@
+{
+  "engineSHA256": "aa0c07f60f9ceddbfe67be5b9d015bc3e6d50fd4b1fc85577d258cce45458b65",
+  "RootChangedByThisAgent": false,
+  "mapMatrix": {
+    "passed": true,
+    "cases": [
+      "none",
+      "10",
+      "11",
+      "12",
+      "18",
+      "full"
+    ],
+    "freshSaveReloadEveryCase": true,
+    "positionsBonusesPreserved": true,
+    "quotaFullRejectedSecondWithoutCrash": true
+  },
+  "combinedExtra": {
+    "witnessPassed": true,
+    "sourceCategoryParity": false,
+    "sourceGapConfirmed": "One native combinedElixir goes to physicalspare18 but logicalreserved10/11/12 are disabled and existing nativecommand also refuses10; native ringconstituent slots available. No blanketclaimall destinations."
+  },
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/native175-eye278-map-and-combined/map-matrix-result.json",
+      "sha256": "e396f5406ce1553ddc5500c5808665bf1e34f86aada3b9bbf6731a29d236e816"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native175-eye278-map-and-combined/map-matrix-console.log",
+      "sha256": "27d26bf4a63b1194aa483363f7f91a7f830cb99e2250953fe8ac2aa400c39fab"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native175-eye278-map-and-combined/combined-extra-result.json",
+      "sha256": "fac41ed8c0f62935e97d4097c8c2bde8fec82c03f17ad711136158108c4cd46f"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native175-eye278-map-and-combined/combined-extra-console.log",
+      "sha256": "8c3c865441faa2cfd90db2b9fbdea9a1f2b62b0f31c9af8fb6f9f36b49a7659e"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/native175-eye278-map-and-combined/combined-extra.png",
+      "sha256": "740c05b89484f03111d3bfabd9836ceef4c7e15bd130820848f401577cb99d09"
+    }
+  ]
+}

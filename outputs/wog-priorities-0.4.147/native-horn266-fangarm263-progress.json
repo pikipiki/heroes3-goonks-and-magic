@@ -96,26 +96,10 @@
   ],
   "open": [
     {
-      "case": "Fangarm finite110 and rank5 no enemy retaliation",
-      "status": "not-yet-proved-by-native-boundary",
-      "observation": "Native reports initial remainingRetaliations110. This alone proves neither exhaustion at110/111 nor source rank5 f/R effect. Source configured110 finite is separately established by direct unsigned byte-load disassembly."
-    },
-    {
-      "case": "BU:E failed summon occupant capture and original army restoration",
-      "status": "not-tested-native160",
-      "implementation": "Clean160 includes faithful current-occupant capture and hero original-slot erasure. Eight persistence fixtures prepared, not run yet."
-    },
-    {
-      "case": "Horn survivor gains, first existing/free/full slots, Necromancy before payout and map save/load",
-      "status": "not-tested-native160"
-    },
-    {
-      "case": "Horn nonprimary/global AOE, enemy ownership, source352 exclusion, targeted creature casts, casualty XP and defeat/retreat",
-      "status": "not-tested-native160"
-    },
-    {
-      "case": "Fangarm R0/R10 XP, rank5 attack, max-HP winding and controlled-counter CURRENT duration",
-      "status": "partly-unvalidated-native"
+      "case": "Round110/111 exhaustion in real play",
+      "status": "not-observed-in-game",
+      "blocking": false,
+      "reason": "Finite source CFG110→ADDITIONAL_RETALIATION109 with no UNLIMITED, actual counter110→109 observed; engine CRetaliations/CAmmo finite arithmetic verified. ADDITIONAL_ATTACK loop retaliates only i==0, so artificial111-hit fixture rejected."
     }
   ],
   "excludedFixtures": [
@@ -147,6 +131,65 @@
       "scope": "Three strict coreAstral/source263 K60 health boundaries",
       "source": "outputs/wog-priorities-0.4.147/native163-fangarm263-astral.json",
       "engineSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771"
+    },
+    {
+      "scope": "Eight survivor, army-slot, Necromancy, failed-summon capture and XP-reset cases",
+      "source": "outputs/wog-priorities-0.4.147/native163-horn266-persistence.json",
+      "engineSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771"
+    },
+    {
+      "scope": "Four current maximum HP controls including real Age and Poison",
+      "source": "outputs/wog-priorities-0.4.147/native163-horn266-current-health.json",
+      "engineSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771"
+    },
+    {
+      "scope": "Four real XP rank controls including actual rank5 retaliation prevention",
+      "source": "outputs/wog-priorities-0.4.147/native163-fangarm263-experience.json",
+      "engineSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771"
+    },
+    {
+      "scope": "Actual finite counter110→109, requested hero threshold and CURRENT attacker duration5",
+      "source": "outputs/wog-priorities-0.4.147/native163-fangarm263-counter-current.json",
+      "engineSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771"
+    },
+    {
+      "scope": "Eight genuine ranged, creature-cast, occupied/empty/global AOE, secondary melee and352 exclusion controls",
+      "source": "outputs/wog-priorities-0.4.147/native163-horn266-events.json",
+      "engineSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771"
+    },
+    {
+      "scope": "Defeat and retreat produce no persistent Fangarm gain",
+      "source": "outputs/wog-priorities-0.4.147/native163-horn266-loss.json",
+      "engineSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771"
+    },
+    {
+      "scope": "Native save and fresh-context native reload preserve two gained Fangarms without duplication",
+      "source": "outputs/wog-priorities-0.4.147/native163-horn266-save.json",
+      "engineSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771"
+    },
+    {
+      "scope": "Two enemy-Horn/no-Horn causal battles: original Pikeman4 slain by genuine enemy retaliation, two temporary Fangarms killed, identical winner XP2000001500",
+      "source": "outputs/wog-priorities-0.4.147/native163-horn266-casualty-xp.json",
+      "engineSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771"
+    },
+    {
+      "scope": "Production commanders enabled without module override; two native Paladins on distinct cells; Horn2 summon, victory, payout, native save/fresh reload and preserved commander dialog",
+      "source": "outputs/wog-priorities-0.4.147/native163-horn266-commanders.json",
+      "engineSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771"
+    }
+  ],
+  "latestEngineSHA256": "75a488c285ff499277c96a954652833c2e62bb41ffb2b33a073bc537165c3bf0",
+  "nativeControlsRetained": 65,
+  "staticFinalAudit": {
+    "cloneBase": "horn266-clone-base-source.json; source spell65 initial BM:B=N matches native baseAmount=info.count; no clone gameplay changes",
+    "installPreflight": "horn266-install-preflight.json; all candidate files byte-equal fresh pinned TUM regeneration, all file hashes recorded; identity263 absent-or-same binding validated; production unchanged"
+  },
+  "sourceScopeStatus": "Horn266/Fangarm263 active since0.4.160.0.4.162 corrects Astral source-level denominator with10 native controls.",
+  "finalAdditionalCases": [
+    {
+      "scope": "Ten real263 Astral source/native level boundaries, including Azure, Pike, Goonk and nonAstral baseline",
+      "source": "outputs/wog-priorities-0.4.147/native-source263-level172.json",
+      "engineSHA256": "75a488c285ff499277c96a954652833c2e62bb41ffb2b33a073bc537165c3bf0"
     }
   ]
 }

@@ -15,6 +15,7 @@
 #include "../ISpellMechanics.h"
 #include "../ProxyCaster.h"
 #include "../../era/EraConfluxPolicies.h"
+#include "../../era/EraPrimordialPolicies.h"
 
 #include "../../battle/IBattleState.h"
 #include "../../battle/CBattleInfoCallback.h"
@@ -299,7 +300,9 @@ void Obstacle::placeObstacles(ServerCallback * server, const Mechanics * m, cons
         if(m->getSpellIndex()==13 && era_compat::ConfluxPolicies::get().enabled())
         {
             const auto * actor=m->battle()->battleGetStackByID(m->caster->getCasterUnitId(),false);
-            if(actor && era_compat::ConfluxPolicies::get().is355(actor->creatureId().toCreature()->getJsonKey()))
+            if(actor && (era_compat::ConfluxPolicies::get().is355(actor->creatureId().toCreature()->getJsonKey())
+                || (era_compat::PrimordialPolicies::get().owns(actor->creatureId().toCreature()->getJsonKey())
+                    && actor->creatureId().toCreature()->getJsonKey()=="tum-era:eraCreature346")))
                 obstacle.trigger=SpellID(SpellID::decode("tum-era:sourceConfluxFireWallTrigger"));
         }
 		obstacle.trap = trap;

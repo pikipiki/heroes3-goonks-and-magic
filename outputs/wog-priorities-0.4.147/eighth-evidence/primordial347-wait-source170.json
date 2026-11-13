@@ -1,0 +1,40 @@
+{
+  "active": false,
+  "nativeValidated": false,
+  "sourceExeSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "artifact": {
+    "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial347-wait-morale170.asm",
+    "sha256": "79886221ccd52b639cdf551f5ca2d2afdf75d036a22fcc4d2ff83c62cf06757f"
+  },
+  "sources": [
+    {
+      "path": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp",
+      "sha256": "b8d847b0906dcb61c0b5c8b071eac7a2b5ac808fe48a31dc07dae65b4146e759"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/battle/CUnitState.cpp",
+      "sha256": "067a6ff4fb1011114622c27cb1ad0daf25d0657e8c31c54a1f6dd9e844796915"
+    },
+    {
+      "path": "work/downloads/wog-port168/source/server/era/EraPrimordialTurnRuntime.h",
+      "sha256": "27f2e5626d5f5bf5dba11c07bf671d38a18c6e64cf458671a4fc9c3d82c47b3e"
+    },
+    {
+      "path": "work/downloads/wog-port170/primordial-wait/server/era/EraPrimordialTurnRuntime.h",
+      "sha256": "02c2ea11af84e02fbfdd35f0dd4a9c3d03e203d5c7c99b5bf06521c8e0fd1df3"
+    }
+  ],
+  "verified": [
+    "Source4645C0..5D2 naturalmorale success clearsDONE26 and setsHAD_MORALE24 with maskFBFFFFFF; WAIT25 persists. AmethystF2FFFFFF additional-action mask also preservesWAIT25.",
+    "464545..577 gates tactics/defending/HAD_MORALE/alive only; WAIT is not an entry veto. Original347 may receive an extra or naturalmorale action after waiting.",
+    "NativeStartAction clears transientwaiting forwalk/attack/creaturespell, while persistentwaitedThisTurn stays true. NativeafterGetsTurn(MORALE) does not restorewaiting. Prior347 additionalgrant also did not restoreit.",
+    "NativeCUnitState::battleQueuePhase reads waiting, whereas MobileBridgecanWait reads waitedThisTurn. Merely assertingcanWaitfalse afterWait cannot detect this state split.",
+    "NativeBFPgetNextStack regeneration gate and bad-morale activation also inspectwaiting. Losingit can run an extra normal-turn regeneration ornegative-morale attempt aftera waitedaction.",
+    "Scopedfix restoreswaiting fromwaitedThisTurn only on granted additionalaction orgrantednaturalpositiveMorale. No restorationonspentactionwithoutgrant, noformat/enum changes, noordinarynativeactorchange. Wait/Defend originalactions stillskip347moraleprocedure anddo notspendcounter."
+  ],
+  "pending": [
+    "Native Wait/Defend and natural3actions then1next-round controls oncompiled170",
+    "ExactWAITstate/negative-morale regression witness ifobservable throughlegitimatepublicAPI",
+    "Clone physicalslot0seed/residue andsave/load ifsupported"
+  ]
+}

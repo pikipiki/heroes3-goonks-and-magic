@@ -1,0 +1,53 @@
+{
+  "status": "source-and-pure-helper-only-inactive",
+  "nativeValidated": false,
+  "wholeActor347Validated": false,
+  "binary": {
+    "path": "../era-project-eng/h3era.exe",
+    "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+  },
+  "sources": [
+    {
+      "path": "../h3era-plugins/Amethyst2/amethyst/tables.cpp",
+      "sha256": "10047a24ff1736db951f163c34bcfb58ebe5c0fab972308ca98edf715f61d0cf"
+    },
+    {
+      "path": "../h3era-plugins/Amethyst2/amethyst/dllmain.cpp",
+      "sha256": "9a24dd110f9ca7414526add8a9a03ddcc151f70973d41ea8289012ebe8a0c5dd"
+    }
+  ],
+  "disassembly": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial347-morale-entry165.asm",
+      "sha256": "311bcf2a14cb422833938d24cf07ba2e7fd27a0bf8e575c4175aa3de93dcecb7",
+      "start": 4605184,
+      "stop": 4605728
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial347-action-dispatch165.asm",
+      "sha256": "c19bc54b99d07b60700fc4176fb14673e15f9e664b0486b799b1ab82fbe9f5a0",
+      "start": 4688208,
+      "stop": 4691216
+    }
+  ],
+  "verified": [
+    "dllmain.cpp339 resets all42 BYTE counters at OnBeforeBattleUniversal.350..363 seeds counter1 for occupied MovesTwice slots only when v997==0; type>=0, no alive test. Registrations1333..1334.",
+    "tables.cpp3380..3400 hooks4645BA: natural morale success bypasses additional_moves. On failure, nonzero physical-side*21+slot counter clears flags byF2FFFFFF and decrements; zero counter rearms1 only when current type/per-slot MovesTwice is enabled.",
+    "464500 entry returns for tactics, DEFENDING bit27, HAD_MORALE bit24 or zero alive count. It does not guard on WAIT bit25, canMove or a positive morale value. The original draw remains1..24 even for zero/negative morale.",
+    "Action dispatcher calls464500 for original action2 walk,6 melee,7 shoot,9 catapult,10 creature spell. Hero spell1,Defend3,retreat4,surrender5,Wait8,first aid11 andnothing12 do not enter this procedure.",
+    "A new347 mid-battle begins with the zero physical-slot counter unless that slot has residue. Its first failed-morale action rearms1 without granting another action. A non347 replacement can spend a previously occupied347 slot counter.",
+    "F2FFFFFF clears bits24,26,27 and preserves WAIT25. Source state must not be represented by a native generic two-attacks/two-turns bonus."
+  ],
+  "helper": {
+    "path": "work/vcmi-wasm/lib/era/EraPrimordialMovesRule.h",
+    "sha256": "c040c51378480e1b9024d0f3ca0367329e5456e2d77907ca81ccf0a65b2bf1b2",
+    "test": "node --test tests/era-primordial-moves.test.mjs",
+    "runtimeIncluded": false
+  },
+  "pending": [
+    "Battle-bonus typed42-byte cache and save/load shuffle validation; preserve physical sourceMassSlot and slot residue instead of native stackID.",
+    "Optional runtime source morale1..24 integration and exact action gates; no change to ordinary unrelated native morale.",
+    "Native initial347, two actions, successful morale ordering, Defend/Wait/Skip, midbattle invocation, slotreuse and savedbattle controls.",
+    "Additional Rush mutable-counter scripts remain outside this actor347 contract; do not claim the unrestricted legacy script engine is ported."
+  ]
+}

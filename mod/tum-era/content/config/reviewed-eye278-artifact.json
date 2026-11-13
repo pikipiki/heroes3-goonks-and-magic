@@ -1,0 +1,44 @@
+{
+  "artifact278": {
+    "type": [
+      "HERO"
+    ],
+    "class": "SPECIAL",
+    "value": 120000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Prismatic Eye of the God Dragon",
+      "description": "{Prismatic Eye of the God Dragon}\n\nThis omnipotent artifact increases the minimum and maximum damage by +5 and allows Red and Green Dragonlings to be upgraded to Fire Dragon, Azure Dragonling to Ice Dragon, Faerie Dragonling and Rust Dragonling in their third upgrade form the next day.\n\nOnce assembled, this artifact cannot be disassembled.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/278/icon.png",
+      "map": "tum-era/artifacts/278/map.def",
+      "scenarioBonus": "tum-era/artifacts/278/scenario.png"
+    },
+    "bonuses": {
+      "DamageMax": {
+        "type": "CREATURE_DAMAGE",
+        "val": 5,
+        "subtype": "creatureDamageMax"
+      },
+      "DamageMin": {
+        "type": "CREATURE_DAMAGE",
+        "val": 5,
+        "subtype": "creatureDamageMin"
+      }
+    },
+    "components": [
+      "tum-era:artifact273",
+      "tum-era:artifact274",
+      "tum-era:artifact276",
+      "tum-era:artifact277"
+    ]
+  }
+}

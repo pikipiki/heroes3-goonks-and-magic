@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "phase": 176,
+  "active": false,
+  "rootSourceModified": false,
+  "base": "175 map278 resolver +Root CArtifact.cpp",
+  "files": [
+    {
+      "path": "lib/era/EraEye278Native.h",
+      "sha256": "aa1063956174aa304cf0486fd39d069b7904d48f4c6b7b2b15803be0897f49f1"
+    },
+    {
+      "path": "lib/entities/artifact/CArtifactSet.cpp",
+      "sha256": "8a4964be3e1a563b664e474251111dd5e73c16c00b4b11cbb4e9d16ba3450273"
+    },
+    {
+      "path": "lib/entities/artifact/CArtifact.cpp",
+      "sha256": "3ff94481e6fbd2e2ed09db9dcda84ca73a54331a8ce6c130af9c7ffc66e1361f"
+    }
+  ],
+  "scope": "Native whole-recipe validation after source278 reservation reflow on fitting copies, no extra capacity or global loot-order change.",
+  "nativeValidated": false,
+  "requiredNative": [
+    "Elixir ring+ring+MISC destinations10/11/12/18 with278",
+    "actual map-authored combo with278",
+    "reject ringsfull and combination needing2extraMISC",
+    "quota full rejection",
+    "source278 existing assembly/equipment/save regressions"
+  ]
+}

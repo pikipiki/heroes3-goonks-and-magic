@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "engineSHA256": "7990b14715801e042c3fa78c705b0dd871e261b905cd364b6d0e4f1a638fd1ca",
+  "nativeCases": 6,
+  "verifiedInstalledFilesPerCase": 29,
+  "definitionWrites": 0,
+  "canonicalExperienceProfilesReplaced": false,
+  "sourceDataReinjected": false,
+  "controls": [
+    "346 intrinsic shield30",
+    "346 real hero weaker shield20 override",
+    "346 Defend two passive shields",
+    "346 pre-hit health cap1500 on lethal strike",
+    "347 two active IceBolt casts10to8charges",
+    "347 Defend double FrostRing2120 without charge debit"
+  ],
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial-production162-ice-production-active.png",
+      "sha256": "0c66e76e2a040d944de9032a1e04fa0c872ed5353b9577832c57f40d59264cad"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial-production162-primordial-shield-liveBasic20.png",
+      "sha256": "dbc68f70fd4f593c708a4b50c1dc4198ea47119e0282e35536723fd6e565c0f1"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial-production162-result.json",
+      "sha256": "5a08ca1a7e47f8a992c248bf20587c6ac8bccb65fd1b22c1e242da68ad4108f8"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial-production162-console.log",
+      "sha256": "6a4c42b2991cfca5ac910d6ce234b3bd82beee179506b986a0cf4edd53bb6594"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial-production162-primordial-shield-intrinsic30.png",
+      "sha256": "74723625d5db010c8ade161152df2e4f51f7614b1a7683701e5247d3cda3c88e"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial-production162-primordial-shield-preHitHealthCap.png",
+      "sha256": "489b1ee53ca5e29a20662ec65d637d45ad46e07b9c3ce85956c629bcfc3f0c97"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial-production162-primordial-shield-defendTwice30.png",
+      "sha256": "39545b7b87d2fe1c21d02f652c308f64164b538eb61a58aa8731b2d7ee2b0c2c"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial-production162-ice-production-defend.png",
+      "sha256": "56413525079ab2e24f016da79f61ca25d6a33c9fd6fa4a14cb6af4109b3a3fbf"
+    }
+  ],
+  "harness": [
+    {
+      "path": "work/browser-tests/wog-primordial-production-native-e2e.mjs",
+      "sha256": "c410532b1e845bf7cca577f72fef1f94132befec220f502e12a23322aa26968c"
+    },
+    {
+      "path": "work/browser-tests/primordial-production-controls.mjs",
+      "sha256": "3cea64095794fdb0ad6d2b08afeed8c219da4442efe66db24be158a3b5a836af"
+    },
+    {
+      "path": "work/browser-tests/primordial-production-cases.mjs",
+      "sha256": "a295cabac9ca0a474e1c6134ba244d4f069df93f28daef140ff0420e5bc6ec41"
+    },
+    {
+      "path": "work/browser-tests/primordial-shield-cases.mjs",
+      "sha256": "794a7111c01b17caa24c985a3759449cd790407b4cea75197af37ac3e53241e5"
+    }
+  ],
+  "scope": "Actual installed source346347 definition,feature,identity,canonical XP and original assets are byte-checked before callMain. Only enemy/layout fixture and real gear normalization; no source actor or profile reinjection."
+}

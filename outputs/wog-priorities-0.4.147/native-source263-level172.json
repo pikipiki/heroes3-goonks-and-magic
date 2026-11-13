@@ -1,0 +1,244 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "nativeValidated": true,
+  "activation": false,
+  "scope": "Only existing source263/Astral eligibility specialty sourceTargetLevel+1 resolver. Does not admit generic45 or orderedXP37.",
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "c1635deb60e82d9e",
+    "wasm": "vcmiclient.75a488c285ff4992.wasm",
+    "sha256": "75a488c285ff499277c96a954652833c2e62bb41ffb2b33a073bc537165c3bf0",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "sourceExecutableSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "cases": [
+    {
+      "name": "Azure-Astral-L7-H37",
+      "target": "core:azureDragon",
+      "targetMaximumHealth": 37,
+      "hero": "core:astral",
+      "heroLevel": 7,
+      "heroEffectivePower": 1,
+      "expectedControlled": true,
+      "observedControlled": true,
+      "passed": true,
+      "productionAudit": true
+    },
+    {
+      "name": "Azure-Astral-L8-H37",
+      "target": "core:azureDragon",
+      "targetMaximumHealth": 37,
+      "hero": "core:astral",
+      "heroLevel": 8,
+      "heroEffectivePower": 1,
+      "expectedControlled": true,
+      "observedControlled": true,
+      "passed": true,
+      "productionAudit": true
+    },
+    {
+      "name": "Azure-Astral-L9-H37",
+      "target": "core:azureDragon",
+      "targetMaximumHealth": 37,
+      "hero": "core:astral",
+      "heroLevel": 9,
+      "heroEffectivePower": 1,
+      "expectedControlled": true,
+      "observedControlled": true,
+      "passed": true,
+      "productionAudit": true
+    },
+    {
+      "name": "Azure-Astral-L7-H38",
+      "target": "core:azureDragon",
+      "targetMaximumHealth": 38,
+      "hero": "core:astral",
+      "heroLevel": 7,
+      "heroEffectivePower": 1,
+      "expectedControlled": false,
+      "observedControlled": false,
+      "passed": true,
+      "productionAudit": true
+    },
+    {
+      "name": "Pike-Astral-L7-H43",
+      "target": "core:pikeman",
+      "targetMaximumHealth": 43,
+      "hero": "core:astral",
+      "heroLevel": 7,
+      "heroEffectivePower": 1,
+      "expectedControlled": true,
+      "observedControlled": true,
+      "passed": true,
+      "productionAudit": true
+    },
+    {
+      "name": "Pike-Astral-L7-H44",
+      "target": "core:pikeman",
+      "targetMaximumHealth": 44,
+      "hero": "core:astral",
+      "heroLevel": 7,
+      "heroEffectivePower": 1,
+      "expectedControlled": false,
+      "observedControlled": false,
+      "passed": true,
+      "productionAudit": true
+    },
+    {
+      "name": "Goonk-Astral-L7-H43",
+      "target": "goonk:paingpaing",
+      "targetMaximumHealth": 43,
+      "hero": "core:astral",
+      "heroLevel": 7,
+      "heroEffectivePower": 1,
+      "expectedControlled": true,
+      "observedControlled": true,
+      "passed": true,
+      "productionAudit": true
+    },
+    {
+      "name": "Goonk-Astral-L7-H44",
+      "target": "goonk:paingpaing",
+      "targetMaximumHealth": 44,
+      "hero": "core:astral",
+      "heroLevel": 7,
+      "heroEffectivePower": 1,
+      "expectedControlled": false,
+      "observedControlled": false,
+      "passed": true,
+      "productionAudit": true
+    },
+    {
+      "name": "Azure-Christian-L7-H35",
+      "target": "core:azureDragon",
+      "targetMaximumHealth": 35,
+      "hero": "core:christian",
+      "heroLevel": 7,
+      "heroEffectivePower": 1,
+      "expectedControlled": true,
+      "observedControlled": true,
+      "passed": true,
+      "productionAudit": true
+    },
+    {
+      "name": "Azure-Christian-L7-H36",
+      "target": "core:azureDragon",
+      "targetMaximumHealth": 36,
+      "hero": "core:christian",
+      "heroLevel": 7,
+      "heroEffectivePower": 1,
+      "expectedControlled": false,
+      "observedControlled": false,
+      "passed": true,
+      "productionAudit": true
+    }
+  ],
+  "summary": {
+    "passed": 10,
+    "failed": 0,
+    "pageErrors": 0,
+    "nativeFatalOrWasmErrors": 0
+  },
+  "controlledFixtureChanges": [
+    "TargetHP set to exact threshold boundaries",
+    "Attack/defense/speed/damage stabilized to permit an actual physical hit",
+    "Fearlessness prevents unrelated Azure fear from skipping actor",
+    "Original Orb93 worn to bypass Azure natural level3 immunity; its original ability remains installed",
+    "No target identity, creature level, source IDs or specialty bonus definitions changed"
+  ],
+  "evidence": {
+    "beforeFix": "outputs/wog-priorities-0.4.147/source263-beforefix170/result.json",
+    "levels": "outputs/wog-priorities-0.4.147/source-creature-levels/source.json",
+    "rawAndScreenshots": [
+      {
+        "file": "outputs/wog-priorities-0.4.147/source263-level172/Azure-Astral-L7-H37.png",
+        "sha256": "62eb35744eec0a8889befcd7fdd9d941c549435ed59dbe656ef3744a22c0f2dc"
+      },
+      {
+        "file": "outputs/wog-priorities-0.4.147/source263-level172/Azure-Astral-L7-H38.png",
+        "sha256": "d999041180b1b7dbf8950aa4ee0c0a0ba69112f1ab4ac3c20e998027b25cdd22"
+      },
+      {
+        "file": "outputs/wog-priorities-0.4.147/source263-level172/Azure-Astral-L8-H37.png",
+        "sha256": "bd32c7774383ab71d1177a4f2e6ae2b48b5d28c8a34ef1b2972c6a7c557d3ece"
+      },
+      {
+        "file": "outputs/wog-priorities-0.4.147/source263-level172/Azure-Astral-L9-H37.png",
+        "sha256": "5a380067583167d7039de6a8a4b8136079e3231680f7a73fdc4b0ea01846348d"
+      },
+      {
+        "file": "outputs/wog-priorities-0.4.147/source263-level172/Azure-Christian-L7-H35.png",
+        "sha256": "3105f86c353941e55761e193a56f58eb200a0688db8d941b2ae4c63617abbb22"
+      },
+      {
+        "file": "outputs/wog-priorities-0.4.147/source263-level172/Azure-Christian-L7-H36.png",
+        "sha256": "cd4ce94e566a2f2eef89535a42164483436cf362d944f3fc1d99cf26a665ba22"
+      },
+      {
+        "file": "outputs/wog-priorities-0.4.147/source263-level172/Goonk-Astral-L7-H43.png",
+        "sha256": "9b3e505e40bb771f4b84a26de21f5513ad4491ea1f3c47959216bd33073161c0"
+      },
+      {
+        "file": "outputs/wog-priorities-0.4.147/source263-level172/Goonk-Astral-L7-H44.png",
+        "sha256": "89ed934592feb1c839e24e90d42389e8211012f8621e6d78580fc4fbc3569296"
+      },
+      {
+        "file": "outputs/wog-priorities-0.4.147/source263-level172/Pike-Astral-L7-H43.png",
+        "sha256": "91f3cdb4a740d1b4f430d3d3b023a7b3ef82dd0d0b794fe93b5b387a6e36f918"
+      },
+      {
+        "file": "outputs/wog-priorities-0.4.147/source263-level172/Pike-Astral-L7-H44.png",
+        "sha256": "f069854bde4c67f572e92d0cb063d8b76692ddd56758a30326e89b86a8acf5bd"
+      },
+      {
+        "file": "outputs/wog-priorities-0.4.147/source263-level172/console.json",
+        "sha256": "ea898650d8259b43461200cab16ec70fb43983f2b59285f65fa1081084975065"
+      },
+      {
+        "file": "outputs/wog-priorities-0.4.147/source263-level172/live.ndjson",
+        "sha256": "c33c1c6b7e5bb000de8ea650e197dfd8409acdac5e179125b7c48bcb06087658"
+      },
+      {
+        "file": "outputs/wog-priorities-0.4.147/source263-level172/result.json",
+        "sha256": "efad4be743258b529f6d854baf7c53ea67cadb7287f9a58ede675ac1d45a7dc3"
+      }
+    ],
+    "code": [
+      {
+        "file": "work/browser-tests/wog-fangarm263-level-native-e2e.mjs",
+        "sha256": "312e1208d0deb27f625856150ec61a6302b9bad5925688e0440dcdb28744bbb2"
+      },
+      {
+        "file": "work/browser-tests/fangarm-level-cases.mjs",
+        "sha256": "f376dde36b86707310a9a9cc0775674949332b26f4f4885299c60f408d341a4c"
+      },
+      {
+        "file": "work/browser-tests/horn266-overlay.mjs",
+        "sha256": "f80289bf37f239f2bff27ad113517648e76ca359aea99c9eedce9cd2a9138152"
+      },
+      {
+        "file": "scripts/era-bridge/creatures/native/EraSourceCreatureLevels.h",
+        "sha256": "bc043086acece6023b9f7124749eeadb11af6be0b43c16d301d62ee4dbab121e"
+      },
+      {
+        "file": "scripts/era-bridge/creatures/review-source-creature-levels.mjs",
+        "sha256": "375ae190ffd049201113b1f12fdfbe285840a254631e0ad476978baacb7907c9"
+      },
+      {
+        "file": "work/downloads/wog-port172/production-source/lib/era/EraExperienceAttackSpells.h",
+        "sha256": "037feaba0c7089c25a9315d321402f90bd8dcd66c4202f10192036d20ea1a69e"
+      }
+    ]
+  },
+  "result": "Azure Astral L7/H37 changed from false on170 withoutconsumer to true on172. H38 remains false. Astral L8/L9 H37 true. Pike/Goonk H43true/H44false and Christian AzureH35true/H36false preserve controls.",
+  "limits": [
+    "These are source263-specific eligibility/control witnesses, not a validation of all ordinary hero Hypnotize paths",
+    "Resolver uses the pinned initial source/TUM CFG catalog; arbitrary external ERM runtime MA:L mutations are not represented",
+    "No production config, policy, engine source, commit or deployment performed by this agent"
+  ]
+}

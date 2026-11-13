@@ -1,0 +1,5318 @@
+{
+  "passed": true,
+  "engineSHA256": "375373eb4c2cd02af48a838e49854829ac1410dbbb7002f215405be3f25a2f91",
+  "report": {
+    "selected9": {
+      "authored": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 84,
+                "attack": 5,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  70,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 4,
+                "damageMin": 2,
+                "defense": 5,
+                "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 84,
+                "growth": 16,
+                "health": 12,
+                "icon": "goonk/pink-large.png",
+                "id": 258,
+                "key": "goonk:paingpaing",
+                "name": "Paingpaing",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 5
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 2,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Eye of the Rust Dragon}\n\nThis powerful dragon eye increases the maximum damage by +2 and allows Rust Dragonling to be upgraded to Rust Dragon and become Dracolich into Rust Dragon the next day.",
+            "icon": 299,
+            "name": "Eye of the Rust Dragon",
+            "slot": 10
+          },
+          {
+            "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+            "icon": 297,
+            "name": "Eye of the Red Dragon",
+            "slot": 11
+          },
+          {
+            "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+            "icon": 296,
+            "name": "Eye of the Green Dragon",
+            "slot": 12
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 10,
+        "heroManaLimit": 10,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+              "icon": 296,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Green Dragon",
+              "slot": 19
+            },
+            {
+              "allowed": false,
+              "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+              "icon": 297,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Red Dragon",
+              "slot": 20
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 21
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "className": "Knight",
+          "commanderIcon": 9,
+          "experience": 0,
+          "experienceIcon": 4,
+          "id": 1,
+          "level": 1,
+          "luck": {
+            "icon": 8,
+            "value": 0
+          },
+          "mana": 10,
+          "manaIcon": 5,
+          "manaLimit": 10,
+          "morale": {
+            "icon": 7,
+            "value": 1
+          },
+          "name": "Christian",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "skills": [],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "description": "{Eye of the Rust Dragon}\n\nThis powerful dragon eye increases the maximum damage by +2 and allows Rust Dragonling to be upgraded to Rust Dragon and become Dracolich into Rust Dragon the next day.",
+              "icon": 299,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Rust Dragon",
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+              "icon": 297,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Red Dragon",
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+              "icon": 296,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Green Dragon",
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "locked": false,
+              "movable": false,
+              "name": "Spell Book",
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Increases the Attack and Defense skill of any Ballista for each level attained after 4th level.",
+            "icon": 6,
+            "name": "Ballista",
+            "sourceProgression": {
+              "attackDefense": 1,
+              "damage": 0,
+              "family": "Ballista",
+              "healthPercent": 10,
+              "warMachines": true
+            }
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1630,
+            "movementLimit": 1630,
+            "name": "Christian"
+          },
+          {
+            "hasSpellbook": false,
+            "id": 3,
+            "index": 1,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1560,
+            "movementLimit": 1560,
+            "name": "Orrin"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1630,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20900,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 1,
+          "heroName": "Christian",
+          "troops": [
+            {
+              "aiValue": 84,
+              "attack": 5,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                70,
+                0
+              ],
+              "count": 10,
+              "damageMax": 7,
+              "damageMin": 3,
+              "defense": 5,
+              "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+              "fightValue": 84,
+              "growth": 16,
+              "health": 12,
+              "icon": "goonk/pink-large.png",
+              "id": 258,
+              "key": "goonk:paingpaing",
+              "magicDamageReduction": 0,
+              "name": "Paingpaing",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 5
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 75626344
+      },
+      "gearCleanup": {
+        "before": {
+          "anyHeroCanMove": true,
+          "armies": [
+            {
+              "id": 1,
+              "name": "Christian",
+              "needsLastStack": true,
+              "slots": [
+                {
+                  "aiValue": 84,
+                  "attack": 5,
+                  "cost": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    70,
+                    0
+                  ],
+                  "count": 10,
+                  "damageMax": 4,
+                  "damageMin": 2,
+                  "defense": 5,
+                  "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                  "experience": 0,
+                  "experiencePerUnit": 0,
+                  "experienceRank": 0,
+                  "fightValue": 84,
+                  "growth": 16,
+                  "health": 12,
+                  "icon": "goonk/pink-large.png",
+                  "id": 258,
+                  "key": "goonk:paingpaing",
+                  "name": "Paingpaing",
+                  "nativeFlags": {
+                    "attacksAllAdjacent": false,
+                    "blocksRetaliation": false,
+                    "chargeImmune": false,
+                    "flying": false,
+                    "living": true,
+                    "mindImmune": false,
+                    "noMorale": false,
+                    "nonLiving": false,
+                    "undead": false
+                  },
+                  "shooter": false,
+                  "shots": 0,
+                  "speed": 5
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ],
+          "audioMuted": false,
+          "autosaveAllowed": false,
+          "backpackCount": 2,
+          "cheatReady": false,
+          "cheatsAllowed": true,
+          "day": 1,
+          "equipment": [
+            {
+              "description": "{Eye of the Rust Dragon}\n\nThis powerful dragon eye increases the maximum damage by +2 and allows Rust Dragonling to be upgraded to Rust Dragon and become Dracolich into Rust Dragon the next day.",
+              "icon": 299,
+              "name": "Eye of the Rust Dragon",
+              "slot": 10
+            },
+            {
+              "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+              "icon": 297,
+              "name": "Eye of the Red Dragon",
+              "slot": 11
+            },
+            {
+              "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+              "icon": 296,
+              "name": "Eye of the Green Dragon",
+              "slot": 12
+            },
+            {
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "name": "Spell Book",
+              "slot": 17
+            }
+          ],
+          "heroHasSpellbook": true,
+          "heroId": 1,
+          "heroMana": 10,
+          "heroManaLimit": 10,
+          "heroMoving": false,
+          "heroName": "Christian",
+          "heroWindow": {
+            "backpack": [
+              {
+                "allowed": false,
+                "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+                "icon": 296,
+                "locked": false,
+                "movable": true,
+                "name": "Eye of the Green Dragon",
+                "slot": 19
+              },
+              {
+                "allowed": false,
+                "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+                "icon": 297,
+                "locked": false,
+                "movable": true,
+                "name": "Eye of the Red Dragon",
+                "slot": 20
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 21
+              }
+            ],
+            "canRebalanceSourceArtifacts": false,
+            "className": "Knight",
+            "commanderIcon": 9,
+            "experience": 0,
+            "experienceIcon": 4,
+            "id": 1,
+            "level": 1,
+            "luck": {
+              "icon": 8,
+              "value": 0
+            },
+            "mana": 10,
+            "manaIcon": 5,
+            "manaLimit": 10,
+            "morale": {
+              "icon": 7,
+              "value": 1
+            },
+            "name": "Christian",
+            "owned": true,
+            "portrait": {
+              "h": 64,
+              "w": 58,
+              "x": 83,
+              "y": 26
+            },
+            "primaryIcons": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "primarySkills": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "skills": [],
+            "slots": [
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 0
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 1
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 2
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 3
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 4
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 5
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 6
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 7
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 8
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 9
+              },
+              {
+                "allowed": false,
+                "description": "{Eye of the Rust Dragon}\n\nThis powerful dragon eye increases the maximum damage by +2 and allows Rust Dragonling to be upgraded to Rust Dragon and become Dracolich into Rust Dragon the next day.",
+                "icon": 299,
+                "locked": false,
+                "movable": true,
+                "name": "Eye of the Rust Dragon",
+                "slot": 10
+              },
+              {
+                "allowed": false,
+                "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+                "icon": 297,
+                "locked": false,
+                "movable": true,
+                "name": "Eye of the Red Dragon",
+                "slot": 11
+              },
+              {
+                "allowed": false,
+                "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+                "icon": 296,
+                "locked": false,
+                "movable": true,
+                "name": "Eye of the Green Dragon",
+                "slot": 12
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 13
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 14
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 15
+              },
+              {
+                "allowed": false,
+                "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+                "icon": 3,
+                "locked": false,
+                "movable": false,
+                "name": "Catapult",
+                "slot": 16
+              },
+              {
+                "allowed": false,
+                "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+                "icon": 0,
+                "locked": false,
+                "movable": false,
+                "name": "Spell Book",
+                "slot": 17
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 18
+              }
+            ],
+            "specialty": {
+              "description": "Increases the Attack and Defense skill of any Ballista for each level attained after 4th level.",
+              "icon": 6,
+              "name": "Ballista",
+              "sourceProgression": {
+                "attackDefense": 1,
+                "damage": 0,
+                "family": "Ballista",
+                "healthPercent": 10,
+                "warMachines": true
+              }
+            }
+          },
+          "heroes": [
+            {
+              "hasSpellbook": true,
+              "id": 1,
+              "index": 0,
+              "mana": 10,
+              "manaLimit": 10,
+              "movement": 1630,
+              "movementLimit": 1630,
+              "name": "Christian"
+            },
+            {
+              "hasSpellbook": false,
+              "id": 3,
+              "index": 1,
+              "mana": 10,
+              "manaLimit": 10,
+              "movement": 1560,
+              "movementLimit": 1560,
+              "name": "Orrin"
+            }
+          ],
+          "mapSettings": {
+            "enemyMoveTime": 150,
+            "moveTime": 150
+          },
+          "mode": "hero",
+          "movement": 1630,
+          "musicVolume": 88,
+          "onlineGame": false,
+          "rect": {
+            "h": 586,
+            "w": 672,
+            "x": 64,
+            "y": 7
+          },
+          "resourceTypes": [
+            {
+              "icon": "",
+              "id": 0,
+              "key": "wood",
+              "name": "Wood",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 1,
+              "key": "mercury",
+              "name": "Mercury",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 2,
+              "key": "ore",
+              "name": "Ore",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 3,
+              "key": "sulfur",
+              "name": "Sulfur",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 4,
+              "key": "crystal",
+              "name": "Crystal",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 5,
+              "key": "gems",
+              "name": "Gems",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 6,
+              "key": "gold",
+              "name": "Gold",
+              "scope": "core"
+            },
+            {
+              "icon": "mithril/small.png",
+              "id": 7,
+              "key": "mithril",
+              "name": "Mithril",
+              "scope": "wake-of-gods.mithril"
+            }
+          ],
+          "resources": [
+            20,
+            10,
+            20,
+            10,
+            10,
+            10,
+            20900,
+            0
+          ],
+          "sessionState": 6,
+          "soundVolume": 88,
+          "towns": [
+            {
+              "id": 0,
+              "index": 0,
+              "name": "Goonkbourg"
+            }
+          ],
+          "troopEquipment": {
+            "canAct": true,
+            "heroId": 1,
+            "heroName": "Christian",
+            "troops": [
+              {
+                "aiValue": 84,
+                "attack": 5,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  70,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 7,
+                "damageMin": 3,
+                "defense": 5,
+                "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                "fightValue": 84,
+                "growth": 16,
+                "health": 12,
+                "icon": "goonk/pink-large.png",
+                "id": 258,
+                "key": "goonk:paingpaing",
+                "magicDamageReduction": 0,
+                "name": "Paingpaing",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "physicalDamageBonus": 0,
+                "rangedDamageBonus": 0,
+                "shooter": false,
+                "shots": 0,
+                "slot": 0,
+                "speed": 5
+              }
+            ]
+          },
+          "turn": true,
+          "windowToken": 75626344
+        },
+        "moved": [],
+        "after": {
+          "anyHeroCanMove": true,
+          "armies": [
+            {
+              "id": 1,
+              "name": "Christian",
+              "needsLastStack": true,
+              "slots": [
+                {
+                  "aiValue": 84,
+                  "attack": 5,
+                  "cost": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    70,
+                    0
+                  ],
+                  "count": 10,
+                  "damageMax": 4,
+                  "damageMin": 2,
+                  "defense": 5,
+                  "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                  "experience": 0,
+                  "experiencePerUnit": 0,
+                  "experienceRank": 0,
+                  "fightValue": 84,
+                  "growth": 16,
+                  "health": 12,
+                  "icon": "goonk/pink-large.png",
+                  "id": 258,
+                  "key": "goonk:paingpaing",
+                  "name": "Paingpaing",
+                  "nativeFlags": {
+                    "attacksAllAdjacent": false,
+                    "blocksRetaliation": false,
+                    "chargeImmune": false,
+                    "flying": false,
+                    "living": true,
+                    "mindImmune": false,
+                    "noMorale": false,
+                    "nonLiving": false,
+                    "undead": false
+                  },
+                  "shooter": false,
+                  "shots": 0,
+                  "speed": 5
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ],
+          "audioMuted": false,
+          "autosaveAllowed": false,
+          "backpackCount": 2,
+          "cheatReady": false,
+          "cheatsAllowed": true,
+          "day": 1,
+          "equipment": [
+            {
+              "description": "{Eye of the Rust Dragon}\n\nThis powerful dragon eye increases the maximum damage by +2 and allows Rust Dragonling to be upgraded to Rust Dragon and become Dracolich into Rust Dragon the next day.",
+              "icon": 299,
+              "name": "Eye of the Rust Dragon",
+              "slot": 10
+            },
+            {
+              "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+              "icon": 297,
+              "name": "Eye of the Red Dragon",
+              "slot": 11
+            },
+            {
+              "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+              "icon": 296,
+              "name": "Eye of the Green Dragon",
+              "slot": 12
+            },
+            {
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "name": "Spell Book",
+              "slot": 17
+            }
+          ],
+          "heroHasSpellbook": true,
+          "heroId": 1,
+          "heroMana": 10,
+          "heroManaLimit": 10,
+          "heroMoving": false,
+          "heroName": "Christian",
+          "heroWindow": {
+            "backpack": [
+              {
+                "allowed": false,
+                "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+                "icon": 296,
+                "locked": false,
+                "movable": true,
+                "name": "Eye of the Green Dragon",
+                "slot": 19
+              },
+              {
+                "allowed": false,
+                "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+                "icon": 297,
+                "locked": false,
+                "movable": true,
+                "name": "Eye of the Red Dragon",
+                "slot": 20
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 21
+              }
+            ],
+            "canRebalanceSourceArtifacts": false,
+            "className": "Knight",
+            "commanderIcon": 9,
+            "experience": 0,
+            "experienceIcon": 4,
+            "id": 1,
+            "level": 1,
+            "luck": {
+              "icon": 8,
+              "value": 0
+            },
+            "mana": 10,
+            "manaIcon": 5,
+            "manaLimit": 10,
+            "morale": {
+              "icon": 7,
+              "value": 1
+            },
+            "name": "Christian",
+            "owned": true,
+            "portrait": {
+              "h": 64,
+              "w": 58,
+              "x": 83,
+              "y": 26
+            },
+            "primaryIcons": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "primarySkills": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "skills": [],
+            "slots": [
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 0
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 1
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 2
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 3
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 4
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 5
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 6
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 7
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 8
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 9
+              },
+              {
+                "allowed": false,
+                "description": "{Eye of the Rust Dragon}\n\nThis powerful dragon eye increases the maximum damage by +2 and allows Rust Dragonling to be upgraded to Rust Dragon and become Dracolich into Rust Dragon the next day.",
+                "icon": 299,
+                "locked": false,
+                "movable": true,
+                "name": "Eye of the Rust Dragon",
+                "slot": 10
+              },
+              {
+                "allowed": false,
+                "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+                "icon": 297,
+                "locked": false,
+                "movable": true,
+                "name": "Eye of the Red Dragon",
+                "slot": 11
+              },
+              {
+                "allowed": false,
+                "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+                "icon": 296,
+                "locked": false,
+                "movable": true,
+                "name": "Eye of the Green Dragon",
+                "slot": 12
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 13
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 14
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 15
+              },
+              {
+                "allowed": false,
+                "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+                "icon": 3,
+                "locked": false,
+                "movable": false,
+                "name": "Catapult",
+                "slot": 16
+              },
+              {
+                "allowed": false,
+                "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+                "icon": 0,
+                "locked": false,
+                "movable": false,
+                "name": "Spell Book",
+                "slot": 17
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 18
+              }
+            ],
+            "specialty": {
+              "description": "Increases the Attack and Defense skill of any Ballista for each level attained after 4th level.",
+              "icon": 6,
+              "name": "Ballista",
+              "sourceProgression": {
+                "attackDefense": 1,
+                "damage": 0,
+                "family": "Ballista",
+                "healthPercent": 10,
+                "warMachines": true
+              }
+            }
+          },
+          "heroes": [
+            {
+              "hasSpellbook": true,
+              "id": 1,
+              "index": 0,
+              "mana": 10,
+              "manaLimit": 10,
+              "movement": 1630,
+              "movementLimit": 1630,
+              "name": "Christian"
+            },
+            {
+              "hasSpellbook": false,
+              "id": 3,
+              "index": 1,
+              "mana": 10,
+              "manaLimit": 10,
+              "movement": 1560,
+              "movementLimit": 1560,
+              "name": "Orrin"
+            }
+          ],
+          "mapSettings": {
+            "enemyMoveTime": 150,
+            "moveTime": 150
+          },
+          "mode": "hero",
+          "movement": 1630,
+          "musicVolume": 88,
+          "onlineGame": false,
+          "rect": {
+            "h": 586,
+            "w": 672,
+            "x": 64,
+            "y": 7
+          },
+          "resourceTypes": [
+            {
+              "icon": "",
+              "id": 0,
+              "key": "wood",
+              "name": "Wood",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 1,
+              "key": "mercury",
+              "name": "Mercury",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 2,
+              "key": "ore",
+              "name": "Ore",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 3,
+              "key": "sulfur",
+              "name": "Sulfur",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 4,
+              "key": "crystal",
+              "name": "Crystal",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 5,
+              "key": "gems",
+              "name": "Gems",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 6,
+              "key": "gold",
+              "name": "Gold",
+              "scope": "core"
+            },
+            {
+              "icon": "mithril/small.png",
+              "id": 7,
+              "key": "mithril",
+              "name": "Mithril",
+              "scope": "wake-of-gods.mithril"
+            }
+          ],
+          "resources": [
+            20,
+            10,
+            20,
+            10,
+            10,
+            10,
+            20900,
+            0
+          ],
+          "sessionState": 6,
+          "soundVolume": 88,
+          "towns": [
+            {
+              "id": 0,
+              "index": 0,
+              "name": "Goonkbourg"
+            }
+          ],
+          "troopEquipment": {
+            "canAct": true,
+            "heroId": 1,
+            "heroName": "Christian",
+            "troops": [
+              {
+                "aiValue": 84,
+                "attack": 5,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  70,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 7,
+                "damageMin": 3,
+                "defense": 5,
+                "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                "fightValue": 84,
+                "growth": 16,
+                "health": 12,
+                "icon": "goonk/pink-large.png",
+                "id": 258,
+                "key": "goonk:paingpaing",
+                "magicDamageReduction": 0,
+                "name": "Paingpaing",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "physicalDamageBonus": 0,
+                "rangedDamageBonus": 0,
+                "shooter": false,
+                "shots": 0,
+                "slot": 0,
+                "speed": 5
+              }
+            ]
+          },
+          "turn": true,
+          "windowToken": 75626344
+        },
+        "keptRecipeSlots": [
+          10,
+          11,
+          12
+        ],
+        "keptFixed": [
+          {
+            "allowed": false,
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "locked": false,
+            "movable": false,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "allowed": false,
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "locked": false,
+            "movable": false,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ]
+      },
+      "before": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 84,
+                "attack": 5,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  70,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 4,
+                "damageMin": 2,
+                "defense": 5,
+                "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 84,
+                "growth": 16,
+                "health": 12,
+                "icon": "goonk/pink-large.png",
+                "id": 258,
+                "key": "goonk:paingpaing",
+                "name": "Paingpaing",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 5
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 2,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Eye of the Rust Dragon}\n\nThis powerful dragon eye increases the maximum damage by +2 and allows Rust Dragonling to be upgraded to Rust Dragon and become Dracolich into Rust Dragon the next day.",
+            "icon": 299,
+            "name": "Eye of the Rust Dragon",
+            "slot": 10
+          },
+          {
+            "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+            "icon": 297,
+            "name": "Eye of the Red Dragon",
+            "slot": 11
+          },
+          {
+            "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+            "icon": 296,
+            "name": "Eye of the Green Dragon",
+            "slot": 12
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 10,
+        "heroManaLimit": 10,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+              "icon": 296,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Green Dragon",
+              "slot": 19
+            },
+            {
+              "allowed": false,
+              "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+              "icon": 297,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Red Dragon",
+              "slot": 20
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 21
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "className": "Knight",
+          "commanderIcon": 9,
+          "experience": 0,
+          "experienceIcon": 4,
+          "id": 1,
+          "level": 1,
+          "luck": {
+            "icon": 8,
+            "value": 0
+          },
+          "mana": 10,
+          "manaIcon": 5,
+          "manaLimit": 10,
+          "morale": {
+            "icon": 7,
+            "value": 1
+          },
+          "name": "Christian",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "skills": [],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "description": "{Eye of the Rust Dragon}\n\nThis powerful dragon eye increases the maximum damage by +2 and allows Rust Dragonling to be upgraded to Rust Dragon and become Dracolich into Rust Dragon the next day.",
+              "icon": 299,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Rust Dragon",
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+              "icon": 297,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Red Dragon",
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+              "icon": 296,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Green Dragon",
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "locked": false,
+              "movable": false,
+              "name": "Spell Book",
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Increases the Attack and Defense skill of any Ballista for each level attained after 4th level.",
+            "icon": 6,
+            "name": "Ballista",
+            "sourceProgression": {
+              "attackDefense": 1,
+              "damage": 0,
+              "family": "Ballista",
+              "healthPercent": 10,
+              "warMachines": true
+            }
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1630,
+            "movementLimit": 1630,
+            "name": "Christian"
+          },
+          {
+            "hasSpellbook": false,
+            "id": 3,
+            "index": 1,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1560,
+            "movementLimit": 1560,
+            "name": "Orrin"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1630,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20900,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 1,
+          "heroName": "Christian",
+          "troops": [
+            {
+              "aiValue": 84,
+              "attack": 5,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                70,
+                0
+              ],
+              "count": 10,
+              "damageMax": 7,
+              "damageMin": 3,
+              "defense": 5,
+              "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+              "fightValue": 84,
+              "growth": 16,
+              "health": 12,
+              "icon": "goonk/pink-large.png",
+              "id": 258,
+              "key": "goonk:paingpaing",
+              "magicDamageReduction": 0,
+              "name": "Paingpaing",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 5
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 75626344
+      },
+      "built": {
+        "confirmation": {
+          "anyHeroCanMove": true,
+          "armies": [
+            {
+              "id": 1,
+              "name": "Christian",
+              "needsLastStack": true,
+              "slots": [
+                {
+                  "aiValue": 84,
+                  "attack": 5,
+                  "cost": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    70,
+                    0
+                  ],
+                  "count": 10,
+                  "damageMax": 4,
+                  "damageMin": 2,
+                  "defense": 5,
+                  "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                  "experience": 0,
+                  "experiencePerUnit": 0,
+                  "experienceRank": 0,
+                  "fightValue": 84,
+                  "growth": 16,
+                  "health": 12,
+                  "icon": "goonk/pink-large.png",
+                  "id": 258,
+                  "key": "goonk:paingpaing",
+                  "name": "Paingpaing",
+                  "nativeFlags": {
+                    "attacksAllAdjacent": false,
+                    "blocksRetaliation": false,
+                    "chargeImmune": false,
+                    "flying": false,
+                    "living": true,
+                    "mindImmune": false,
+                    "noMorale": false,
+                    "nonLiving": false,
+                    "undead": false
+                  },
+                  "shooter": false,
+                  "shots": 0,
+                  "speed": 5
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ],
+          "audioMuted": false,
+          "autosaveAllowed": false,
+          "backpackCount": 2,
+          "cheatReady": false,
+          "cheatsAllowed": true,
+          "day": 1,
+          "dialogKind": "",
+          "dialogPresentation": {
+            "cancel": true,
+            "choices": [
+              {
+                "description": "{Prismatic Eye of the God Dragon}\n\nThis omnipotent artifact increases the minimum and maximum damage by +5 and allows Red and Green Dragonlings to be upgraded to Fire Dragon, Azure Dragonling to Ice Dragon, Faerie Dragonling and Rust Dragonling in their third upgrade form the next day.\n\nOnce assembled, this artifact cannot be disassembled.",
+                "label": "Prismatic Eye of the God Dragon",
+                "rect": {
+                  "h": 44,
+                  "w": 44,
+                  "x": 378,
+                  "y": 331
+                }
+              }
+            ],
+            "lines": [
+              "{Prismatic Eye of the God Dragon}\n\nThis omnipotent artifact increases the minimum and maximum damage by +5 and allows Red and Green Dragonlings to be upgraded to Fire Dragon, Azure Dragonling to Ice Dragon, Faerie Dragonling and Rust Dragonling in their third upgrade form the next day.\n\nOnce assembled, this artifact cannot be disassembled.\n\nYou possess all of the components needed to assemble the Prismatic Eye of the God Dragon.  Do you wish to assemble this artifact?"
+            ],
+            "queryId": -1,
+            "title": "Game message",
+            "visitedObject": "Orrin the Knight"
+          },
+          "dialogTitle": "Game message",
+          "equipment": [
+            {
+              "description": "{Eye of the Azure Dragon}\n\nThis powerful dragon eye increases the minimum and maximum damage by +2 and allows Azure Dragonling to be upgraded to Azure Dragon and become Dracolich into Azure Dragon the next day.",
+              "icon": 300,
+              "name": "Eye of the Azure Dragon",
+              "slot": 9
+            },
+            {
+              "description": "{Eye of the Rust Dragon}\n\nThis powerful dragon eye increases the maximum damage by +2 and allows Rust Dragonling to be upgraded to Rust Dragon and become Dracolich into Rust Dragon the next day.",
+              "icon": 299,
+              "name": "Eye of the Rust Dragon",
+              "slot": 10
+            },
+            {
+              "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+              "icon": 297,
+              "name": "Eye of the Red Dragon",
+              "slot": 11
+            },
+            {
+              "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+              "icon": 296,
+              "name": "Eye of the Green Dragon",
+              "slot": 12
+            },
+            {
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "name": "Spell Book",
+              "slot": 17
+            }
+          ],
+          "heroHasSpellbook": true,
+          "heroId": 1,
+          "heroMana": 10,
+          "heroManaLimit": 10,
+          "heroMoving": false,
+          "heroName": "Christian",
+          "heroes": [
+            {
+              "hasSpellbook": true,
+              "id": 1,
+              "index": 0,
+              "mana": 10,
+              "manaLimit": 10,
+              "movement": 1530,
+              "movementLimit": 1630,
+              "name": "Christian"
+            },
+            {
+              "hasSpellbook": false,
+              "id": 3,
+              "index": 1,
+              "mana": 10,
+              "manaLimit": 10,
+              "movement": 1560,
+              "movementLimit": 1560,
+              "name": "Orrin"
+            }
+          ],
+          "mapSettings": {
+            "enemyMoveTime": 150,
+            "moveTime": 150
+          },
+          "mode": "dialog",
+          "movement": 1530,
+          "musicVolume": 88,
+          "onlineGame": false,
+          "rect": {
+            "h": 426,
+            "w": 612,
+            "x": 94,
+            "y": 87
+          },
+          "resourceTypes": [
+            {
+              "icon": "",
+              "id": 0,
+              "key": "wood",
+              "name": "Wood",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 1,
+              "key": "mercury",
+              "name": "Mercury",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 2,
+              "key": "ore",
+              "name": "Ore",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 3,
+              "key": "sulfur",
+              "name": "Sulfur",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 4,
+              "key": "crystal",
+              "name": "Crystal",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 5,
+              "key": "gems",
+              "name": "Gems",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 6,
+              "key": "gold",
+              "name": "Gold",
+              "scope": "core"
+            },
+            {
+              "icon": "mithril/small.png",
+              "id": 7,
+              "key": "mithril",
+              "name": "Mithril",
+              "scope": "wake-of-gods.mithril"
+            }
+          ],
+          "resources": [
+            20,
+            10,
+            20,
+            10,
+            10,
+            10,
+            20900,
+            0
+          ],
+          "sessionState": 6,
+          "soundVolume": 88,
+          "towns": [
+            {
+              "id": 0,
+              "index": 0,
+              "name": "Goonkbourg"
+            }
+          ],
+          "turn": true,
+          "windowToken": 126059708
+        },
+        "confirmationFormats": [
+          {
+            "width": 320,
+            "height": 568,
+            "box": {
+              "x": 18,
+              "y": 501.796875,
+              "width": 138,
+              "height": 48
+            }
+          },
+          {
+            "width": 568,
+            "height": 320,
+            "box": {
+              "x": 311,
+              "y": 203,
+              "width": 244,
+              "height": 48
+            }
+          },
+          {
+            "width": 768,
+            "height": 1024,
+            "box": {
+              "x": 18,
+              "y": 792.25,
+              "width": 362,
+              "height": 48
+            }
+          },
+          {
+            "width": 1024,
+            "height": 768,
+            "box": {
+              "x": 705.046875,
+              "y": 698,
+              "width": 144.46875,
+              "height": 48
+            }
+          }
+        ],
+        "after": {
+          "anyHeroCanMove": true,
+          "armies": [
+            {
+              "id": 1,
+              "name": "Christian",
+              "needsLastStack": true,
+              "slots": [
+                {
+                  "aiValue": 84,
+                  "attack": 5,
+                  "cost": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    70,
+                    0
+                  ],
+                  "count": 10,
+                  "damageMax": 4,
+                  "damageMin": 2,
+                  "defense": 5,
+                  "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                  "experience": 0,
+                  "experiencePerUnit": 0,
+                  "experienceRank": 0,
+                  "fightValue": 84,
+                  "growth": 16,
+                  "health": 12,
+                  "icon": "goonk/pink-large.png",
+                  "id": 258,
+                  "key": "goonk:paingpaing",
+                  "name": "Paingpaing",
+                  "nativeFlags": {
+                    "attacksAllAdjacent": false,
+                    "blocksRetaliation": false,
+                    "chargeImmune": false,
+                    "flying": false,
+                    "living": true,
+                    "mindImmune": false,
+                    "noMorale": false,
+                    "nonLiving": false,
+                    "undead": false
+                  },
+                  "shooter": false,
+                  "shots": 0,
+                  "speed": 5
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ],
+          "audioMuted": false,
+          "autosaveAllowed": false,
+          "backpackCount": 2,
+          "cheatReady": false,
+          "cheatsAllowed": true,
+          "day": 1,
+          "equipment": [
+            {
+              "description": "{Prismatic Eye of the God Dragon}\n\nThis omnipotent artifact increases the minimum and maximum damage by +5 and allows Red and Green Dragonlings to be upgraded to Fire Dragon, Azure Dragonling to Ice Dragon, Faerie Dragonling and Rust Dragonling in their third upgrade form the next day.\n\nOnce assembled, this artifact cannot be disassembled.",
+              "icon": 301,
+              "name": "Prismatic Eye of the God Dragon",
+              "slot": 9
+            },
+            {
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "name": "Spell Book",
+              "slot": 17
+            }
+          ],
+          "heroHasSpellbook": true,
+          "heroId": 1,
+          "heroMana": 10,
+          "heroManaLimit": 10,
+          "heroMoving": false,
+          "heroName": "Christian",
+          "heroWindow": {
+            "backpack": [
+              {
+                "allowed": false,
+                "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+                "icon": 296,
+                "locked": false,
+                "movable": true,
+                "name": "Eye of the Green Dragon",
+                "slot": 19
+              },
+              {
+                "allowed": false,
+                "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+                "icon": 297,
+                "locked": false,
+                "movable": true,
+                "name": "Eye of the Red Dragon",
+                "slot": 20
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 21
+              }
+            ],
+            "canRebalanceSourceArtifacts": false,
+            "className": "Knight",
+            "commanderIcon": 9,
+            "experience": 0,
+            "experienceIcon": 4,
+            "id": 1,
+            "level": 1,
+            "luck": {
+              "icon": 8,
+              "value": 0
+            },
+            "mana": 10,
+            "manaIcon": 5,
+            "manaLimit": 10,
+            "morale": {
+              "icon": 7,
+              "value": 1
+            },
+            "name": "Christian",
+            "owned": true,
+            "portrait": {
+              "h": 64,
+              "w": 58,
+              "x": 83,
+              "y": 26
+            },
+            "primaryIcons": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "primarySkills": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "skills": [],
+            "slots": [
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 0
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 1
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 2
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 3
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 4
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 5
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 6
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 7
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 8
+              },
+              {
+                "allowed": false,
+                "description": "{Prismatic Eye of the God Dragon}\n\nThis omnipotent artifact increases the minimum and maximum damage by +5 and allows Red and Green Dragonlings to be upgraded to Fire Dragon, Azure Dragonling to Ice Dragon, Faerie Dragonling and Rust Dragonling in their third upgrade form the next day.\n\nOnce assembled, this artifact cannot be disassembled.",
+                "icon": 301,
+                "locked": false,
+                "movable": true,
+                "name": "Prismatic Eye of the God Dragon",
+                "slot": 9
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 10
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 11
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 12
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 13
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 14
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 15
+              },
+              {
+                "allowed": false,
+                "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+                "icon": 3,
+                "locked": false,
+                "movable": false,
+                "name": "Catapult",
+                "slot": 16
+              },
+              {
+                "allowed": false,
+                "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+                "icon": 0,
+                "locked": false,
+                "movable": false,
+                "name": "Spell Book",
+                "slot": 17
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 18
+              }
+            ],
+            "specialty": {
+              "description": "Increases the Attack and Defense skill of any Ballista for each level attained after 4th level.",
+              "icon": 6,
+              "name": "Ballista",
+              "sourceProgression": {
+                "attackDefense": 1,
+                "damage": 0,
+                "family": "Ballista",
+                "healthPercent": 10,
+                "warMachines": true
+              }
+            }
+          },
+          "heroes": [
+            {
+              "hasSpellbook": true,
+              "id": 1,
+              "index": 0,
+              "mana": 10,
+              "manaLimit": 10,
+              "movement": 1530,
+              "movementLimit": 1630,
+              "name": "Christian"
+            },
+            {
+              "hasSpellbook": false,
+              "id": 3,
+              "index": 1,
+              "mana": 10,
+              "manaLimit": 10,
+              "movement": 1560,
+              "movementLimit": 1560,
+              "name": "Orrin"
+            }
+          ],
+          "mapSettings": {
+            "enemyMoveTime": 150,
+            "moveTime": 150
+          },
+          "mode": "hero",
+          "movement": 1530,
+          "musicVolume": 88,
+          "onlineGame": false,
+          "rect": {
+            "h": 586,
+            "w": 672,
+            "x": 64,
+            "y": 7
+          },
+          "resourceTypes": [
+            {
+              "icon": "",
+              "id": 0,
+              "key": "wood",
+              "name": "Wood",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 1,
+              "key": "mercury",
+              "name": "Mercury",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 2,
+              "key": "ore",
+              "name": "Ore",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 3,
+              "key": "sulfur",
+              "name": "Sulfur",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 4,
+              "key": "crystal",
+              "name": "Crystal",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 5,
+              "key": "gems",
+              "name": "Gems",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 6,
+              "key": "gold",
+              "name": "Gold",
+              "scope": "core"
+            },
+            {
+              "icon": "mithril/small.png",
+              "id": 7,
+              "key": "mithril",
+              "name": "Mithril",
+              "scope": "wake-of-gods.mithril"
+            }
+          ],
+          "resources": [
+            20,
+            10,
+            20,
+            10,
+            10,
+            10,
+            20900,
+            0
+          ],
+          "sessionState": 6,
+          "soundVolume": 88,
+          "towns": [
+            {
+              "id": 0,
+              "index": 0,
+              "name": "Goonkbourg"
+            }
+          ],
+          "troopEquipment": {
+            "canAct": true,
+            "heroId": 1,
+            "heroName": "Christian",
+            "troops": [
+              {
+                "aiValue": 84,
+                "attack": 5,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  70,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 9,
+                "damageMin": 7,
+                "defense": 5,
+                "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                "fightValue": 84,
+                "growth": 16,
+                "health": 12,
+                "icon": "goonk/pink-large.png",
+                "id": 258,
+                "key": "goonk:paingpaing",
+                "magicDamageReduction": 0,
+                "name": "Paingpaing",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "physicalDamageBonus": 0,
+                "rangedDamageBonus": 0,
+                "shooter": false,
+                "shots": 0,
+                "slot": 0,
+                "speed": 5
+              }
+            ]
+          },
+          "turn": true,
+          "windowToken": 126846184
+        }
+      },
+      "extra": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 84,
+                "attack": 5,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  70,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 4,
+                "damageMin": 2,
+                "defense": 5,
+                "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 84,
+                "growth": 16,
+                "health": 12,
+                "icon": "goonk/pink-large.png",
+                "id": 258,
+                "key": "goonk:paingpaing",
+                "name": "Paingpaing",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 5
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 1,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Prismatic Eye of the God Dragon}\n\nThis omnipotent artifact increases the minimum and maximum damage by +5 and allows Red and Green Dragonlings to be upgraded to Fire Dragon, Azure Dragonling to Ice Dragon, Faerie Dragonling and Rust Dragonling in their third upgrade form the next day.\n\nOnce assembled, this artifact cannot be disassembled.",
+            "icon": 301,
+            "name": "Prismatic Eye of the God Dragon",
+            "slot": 9
+          },
+          {
+            "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+            "icon": 296,
+            "name": "Eye of the Green Dragon",
+            "slot": 10
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 10,
+        "heroManaLimit": 10,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+              "icon": 297,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Red Dragon",
+              "slot": 19
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 20
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "className": "Knight",
+          "commanderIcon": 9,
+          "experience": 0,
+          "experienceIcon": 4,
+          "id": 1,
+          "level": 1,
+          "luck": {
+            "icon": 8,
+            "value": 0
+          },
+          "mana": 10,
+          "manaIcon": 5,
+          "manaLimit": 10,
+          "morale": {
+            "icon": 7,
+            "value": 1
+          },
+          "name": "Christian",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "skills": [],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "description": "{Prismatic Eye of the God Dragon}\n\nThis omnipotent artifact increases the minimum and maximum damage by +5 and allows Red and Green Dragonlings to be upgraded to Fire Dragon, Azure Dragonling to Ice Dragon, Faerie Dragonling and Rust Dragonling in their third upgrade form the next day.\n\nOnce assembled, this artifact cannot be disassembled.",
+              "icon": 301,
+              "locked": false,
+              "movable": true,
+              "name": "Prismatic Eye of the God Dragon",
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+              "icon": 296,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Green Dragon",
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "locked": true,
+              "movable": false,
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": true,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "locked": false,
+              "movable": false,
+              "name": "Spell Book",
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": true,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Increases the Attack and Defense skill of any Ballista for each level attained after 4th level.",
+            "icon": 6,
+            "name": "Ballista",
+            "sourceProgression": {
+              "attackDefense": 1,
+              "damage": 0,
+              "family": "Ballista",
+              "healthPercent": 10,
+              "warMachines": true
+            }
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1530,
+            "movementLimit": 1630,
+            "name": "Christian"
+          },
+          {
+            "hasSpellbook": false,
+            "id": 3,
+            "index": 1,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1560,
+            "movementLimit": 1560,
+            "name": "Orrin"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1530,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20900,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 1,
+          "heroName": "Christian",
+          "troops": [
+            {
+              "aiValue": 84,
+              "attack": 5,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                70,
+                0
+              ],
+              "count": 10,
+              "damageMax": 9,
+              "damageMin": 8,
+              "defense": 5,
+              "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+              "fightValue": 84,
+              "growth": 16,
+              "health": 12,
+              "icon": "goonk/pink-large.png",
+              "id": 258,
+              "key": "goonk:paingpaing",
+              "magicDamageReduction": 0,
+              "name": "Paingpaing",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 5
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 126846184
+      },
+      "reflowed": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 84,
+                "attack": 5,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  70,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 4,
+                "damageMin": 2,
+                "defense": 5,
+                "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 84,
+                "growth": 16,
+                "health": 12,
+                "icon": "goonk/pink-large.png",
+                "id": 258,
+                "key": "goonk:paingpaing",
+                "name": "Paingpaing",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 5
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 1,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Prismatic Eye of the God Dragon}\n\nThis omnipotent artifact increases the minimum and maximum damage by +5 and allows Red and Green Dragonlings to be upgraded to Fire Dragon, Azure Dragonling to Ice Dragon, Faerie Dragonling and Rust Dragonling in their third upgrade form the next day.\n\nOnce assembled, this artifact cannot be disassembled.",
+            "icon": 301,
+            "name": "Prismatic Eye of the God Dragon",
+            "slot": 9
+          },
+          {
+            "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+            "icon": 296,
+            "name": "Eye of the Green Dragon",
+            "slot": 11
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 10,
+        "heroManaLimit": 10,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+              "icon": 297,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Red Dragon",
+              "slot": 19
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 20
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "className": "Knight",
+          "commanderIcon": 9,
+          "experience": 0,
+          "experienceIcon": 4,
+          "id": 1,
+          "level": 1,
+          "luck": {
+            "icon": 8,
+            "value": 0
+          },
+          "mana": 10,
+          "manaIcon": 5,
+          "manaLimit": 10,
+          "morale": {
+            "icon": 7,
+            "value": 1
+          },
+          "name": "Christian",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "skills": [],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "description": "{Prismatic Eye of the God Dragon}\n\nThis omnipotent artifact increases the minimum and maximum damage by +5 and allows Red and Green Dragonlings to be upgraded to Fire Dragon, Azure Dragonling to Ice Dragon, Faerie Dragonling and Rust Dragonling in their third upgrade form the next day.\n\nOnce assembled, this artifact cannot be disassembled.",
+              "icon": 301,
+              "locked": false,
+              "movable": true,
+              "name": "Prismatic Eye of the God Dragon",
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": true,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+              "icon": 296,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Green Dragon",
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": true,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "locked": false,
+              "movable": false,
+              "name": "Spell Book",
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": true,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Increases the Attack and Defense skill of any Ballista for each level attained after 4th level.",
+            "icon": 6,
+            "name": "Ballista",
+            "sourceProgression": {
+              "attackDefense": 1,
+              "damage": 0,
+              "family": "Ballista",
+              "healthPercent": 10,
+              "warMachines": true
+            }
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1530,
+            "movementLimit": 1630,
+            "name": "Christian"
+          },
+          {
+            "hasSpellbook": false,
+            "id": 3,
+            "index": 1,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1560,
+            "movementLimit": 1560,
+            "name": "Orrin"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1530,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20900,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 1,
+          "heroName": "Christian",
+          "troops": [
+            {
+              "aiValue": 84,
+              "attack": 5,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                70,
+                0
+              ],
+              "count": 10,
+              "damageMax": 9,
+              "damageMin": 8,
+              "defense": 5,
+              "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+              "fightValue": 84,
+              "growth": 16,
+              "health": 12,
+              "icon": "goonk/pink-large.png",
+              "id": 258,
+              "key": "goonk:paingpaing",
+              "magicDamageReduction": 0,
+              "name": "Paingpaing",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 5
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 126846184
+      },
+      "backpack": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 84,
+                "attack": 5,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  70,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 4,
+                "damageMin": 2,
+                "defense": 5,
+                "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 84,
+                "growth": 16,
+                "health": 12,
+                "icon": "goonk/pink-large.png",
+                "id": 258,
+                "key": "goonk:paingpaing",
+                "name": "Paingpaing",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 5
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 2,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+            "icon": 296,
+            "name": "Eye of the Green Dragon",
+            "slot": 11
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 10,
+        "heroManaLimit": 10,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+              "icon": 297,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Red Dragon",
+              "slot": 19
+            },
+            {
+              "allowed": false,
+              "description": "{Prismatic Eye of the God Dragon}\n\nThis omnipotent artifact increases the minimum and maximum damage by +5 and allows Red and Green Dragonlings to be upgraded to Fire Dragon, Azure Dragonling to Ice Dragon, Faerie Dragonling and Rust Dragonling in their third upgrade form the next day.\n\nOnce assembled, this artifact cannot be disassembled.",
+              "icon": 301,
+              "locked": false,
+              "movable": true,
+              "name": "Prismatic Eye of the God Dragon",
+              "slot": 20
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 21
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "className": "Knight",
+          "commanderIcon": 9,
+          "experience": 0,
+          "experienceIcon": 4,
+          "id": 1,
+          "level": 1,
+          "luck": {
+            "icon": 8,
+            "value": 0
+          },
+          "mana": 10,
+          "manaIcon": 5,
+          "manaLimit": 10,
+          "morale": {
+            "icon": 7,
+            "value": 1
+          },
+          "name": "Christian",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "skills": [],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+              "icon": 296,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Green Dragon",
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "locked": false,
+              "movable": false,
+              "name": "Spell Book",
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Increases the Attack and Defense skill of any Ballista for each level attained after 4th level.",
+            "icon": 6,
+            "name": "Ballista",
+            "sourceProgression": {
+              "attackDefense": 1,
+              "damage": 0,
+              "family": "Ballista",
+              "healthPercent": 10,
+              "warMachines": true
+            }
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1530,
+            "movementLimit": 1630,
+            "name": "Christian"
+          },
+          {
+            "hasSpellbook": false,
+            "id": 3,
+            "index": 1,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1560,
+            "movementLimit": 1560,
+            "name": "Orrin"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1530,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20900,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 1,
+          "heroName": "Christian",
+          "troops": [
+            {
+              "aiValue": 84,
+              "attack": 5,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                70,
+                0
+              ],
+              "count": 10,
+              "damageMax": 4,
+              "damageMin": 3,
+              "defense": 5,
+              "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+              "fightValue": 84,
+              "growth": 16,
+              "health": 12,
+              "icon": "goonk/pink-large.png",
+              "id": 258,
+              "key": "goonk:paingpaing",
+              "magicDamageReduction": 0,
+              "name": "Paingpaing",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 5
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 126846184
+      },
+      "equipped": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 84,
+                "attack": 5,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  70,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 4,
+                "damageMin": 2,
+                "defense": 5,
+                "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 84,
+                "growth": 16,
+                "health": 12,
+                "icon": "goonk/pink-large.png",
+                "id": 258,
+                "key": "goonk:paingpaing",
+                "name": "Paingpaing",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 5
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 1,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Prismatic Eye of the God Dragon}\n\nThis omnipotent artifact increases the minimum and maximum damage by +5 and allows Red and Green Dragonlings to be upgraded to Fire Dragon, Azure Dragonling to Ice Dragon, Faerie Dragonling and Rust Dragonling in their third upgrade form the next day.\n\nOnce assembled, this artifact cannot be disassembled.",
+            "icon": 301,
+            "name": "Prismatic Eye of the God Dragon",
+            "slot": 9
+          },
+          {
+            "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+            "icon": 296,
+            "name": "Eye of the Green Dragon",
+            "slot": 11
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 10,
+        "heroManaLimit": 10,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+              "icon": 297,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Red Dragon",
+              "slot": 19
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 20
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "className": "Knight",
+          "commanderIcon": 9,
+          "experience": 0,
+          "experienceIcon": 4,
+          "id": 1,
+          "level": 1,
+          "luck": {
+            "icon": 8,
+            "value": 0
+          },
+          "mana": 10,
+          "manaIcon": 5,
+          "manaLimit": 10,
+          "morale": {
+            "icon": 7,
+            "value": 1
+          },
+          "name": "Christian",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "skills": [],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "description": "{Prismatic Eye of the God Dragon}\n\nThis omnipotent artifact increases the minimum and maximum damage by +5 and allows Red and Green Dragonlings to be upgraded to Fire Dragon, Azure Dragonling to Ice Dragon, Faerie Dragonling and Rust Dragonling in their third upgrade form the next day.\n\nOnce assembled, this artifact cannot be disassembled.",
+              "icon": 301,
+              "locked": false,
+              "movable": true,
+              "name": "Prismatic Eye of the God Dragon",
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": true,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+              "icon": 296,
+              "locked": false,
+              "movable": true,
+              "name": "Eye of the Green Dragon",
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": true,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "locked": false,
+              "movable": false,
+              "name": "Spell Book",
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": true,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Increases the Attack and Defense skill of any Ballista for each level attained after 4th level.",
+            "icon": 6,
+            "name": "Ballista",
+            "sourceProgression": {
+              "attackDefense": 1,
+              "damage": 0,
+              "family": "Ballista",
+              "healthPercent": 10,
+              "warMachines": true
+            }
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1530,
+            "movementLimit": 1630,
+            "name": "Christian"
+          },
+          {
+            "hasSpellbook": false,
+            "id": 3,
+            "index": 1,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1560,
+            "movementLimit": 1560,
+            "name": "Orrin"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1530,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20900,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 1,
+          "heroName": "Christian",
+          "troops": [
+            {
+              "aiValue": 84,
+              "attack": 5,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                70,
+                0
+              ],
+              "count": 10,
+              "damageMax": 9,
+              "damageMin": 8,
+              "defense": 5,
+              "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+              "fightValue": 84,
+              "growth": 16,
+              "health": 12,
+              "icon": "goonk/pink-large.png",
+              "id": 258,
+              "key": "goonk:paingpaing",
+              "magicDamageReduction": 0,
+              "name": "Paingpaing",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 5
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 126846184
+      },
+      "popup": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 84,
+                "attack": 5,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  70,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 4,
+                "damageMin": 2,
+                "defense": 5,
+                "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 84,
+                "growth": 16,
+                "health": 12,
+                "icon": "goonk/pink-large.png",
+                "id": 258,
+                "key": "goonk:paingpaing",
+                "name": "Paingpaing",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 5
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 1,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "day": 1,
+        "dialogKind": "",
+        "equipment": [
+          {
+            "description": "{Prismatic Eye of the God Dragon}\n\nThis omnipotent artifact increases the minimum and maximum damage by +5 and allows Red and Green Dragonlings to be upgraded to Fire Dragon, Azure Dragonling to Ice Dragon, Faerie Dragonling and Rust Dragonling in their third upgrade form the next day.\n\nOnce assembled, this artifact cannot be disassembled.",
+            "icon": 301,
+            "name": "Prismatic Eye of the God Dragon",
+            "slot": 9
+          },
+          {
+            "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+            "icon": 296,
+            "name": "Eye of the Green Dragon",
+            "slot": 11
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 10,
+        "heroManaLimit": 10,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1530,
+            "movementLimit": 1630,
+            "name": "Christian"
+          },
+          {
+            "hasSpellbook": false,
+            "id": 3,
+            "index": 1,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1560,
+            "movementLimit": 1560,
+            "name": "Orrin"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "dialog",
+        "movement": 1530,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "rect": {
+          "h": 0,
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20900,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true,
+        "windowToken": 126524844
+      },
+      "formats": [
+        {
+          "width": 320,
+          "height": 568,
+          "box": {
+            "x": 162,
+            "y": 326,
+            "width": 49.328125,
+            "height": 44
+          },
+          "stability": {
+            "same": true,
+            "removed": 0,
+            "replayedActualNativeSnapshot": 30
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "box": {
+            "x": 163,
+            "y": 32,
+            "width": 50.328125,
+            "height": 69.5
+          },
+          "stability": {
+            "same": true,
+            "removed": 0,
+            "replayedActualNativeSnapshot": 30
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "box": {
+            "x": 6,
+            "y": 750,
+            "width": 147.1875,
+            "height": 60
+          },
+          "stability": {
+            "same": true,
+            "removed": 0,
+            "replayedActualNativeSnapshot": 30
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "box": {
+            "x": 393.421875,
+            "y": 19,
+            "width": 107.203125,
+            "height": 184
+          },
+          "stability": {
+            "same": true,
+            "removed": 0,
+            "replayedActualNativeSnapshot": 30
+          }
+        }
+      ],
+      "saved": {
+        "bytes": 118282,
+        "sheet": {
+          "anyHeroCanMove": true,
+          "armies": [
+            {
+              "id": 1,
+              "name": "Christian",
+              "needsLastStack": true,
+              "slots": [
+                {
+                  "aiValue": 84,
+                  "attack": 5,
+                  "cost": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    70,
+                    0
+                  ],
+                  "count": 10,
+                  "damageMax": 4,
+                  "damageMin": 2,
+                  "defense": 5,
+                  "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                  "experience": 0,
+                  "experiencePerUnit": 0,
+                  "experienceRank": 0,
+                  "fightValue": 84,
+                  "growth": 16,
+                  "health": 12,
+                  "icon": "goonk/pink-large.png",
+                  "id": 258,
+                  "key": "goonk:paingpaing",
+                  "name": "Paingpaing",
+                  "nativeFlags": {
+                    "attacksAllAdjacent": false,
+                    "blocksRetaliation": false,
+                    "chargeImmune": false,
+                    "flying": false,
+                    "living": true,
+                    "mindImmune": false,
+                    "noMorale": false,
+                    "nonLiving": false,
+                    "undead": false
+                  },
+                  "shooter": false,
+                  "shots": 0,
+                  "speed": 5
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ],
+          "audioMuted": false,
+          "autosaveAllowed": false,
+          "backpackCount": 1,
+          "cheatReady": false,
+          "cheatsAllowed": true,
+          "day": 1,
+          "equipment": [
+            {
+              "description": "{Prismatic Eye of the God Dragon}\n\nThis omnipotent artifact increases the minimum and maximum damage by +5 and allows Red and Green Dragonlings to be upgraded to Fire Dragon, Azure Dragonling to Ice Dragon, Faerie Dragonling and Rust Dragonling in their third upgrade form the next day.\n\nOnce assembled, this artifact cannot be disassembled.",
+              "icon": 301,
+              "name": "Prismatic Eye of the God Dragon",
+              "slot": 9
+            },
+            {
+              "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+              "icon": 296,
+              "name": "Eye of the Green Dragon",
+              "slot": 11
+            },
+            {
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "name": "Spell Book",
+              "slot": 17
+            }
+          ],
+          "heroHasSpellbook": true,
+          "heroId": 1,
+          "heroMana": 10,
+          "heroManaLimit": 10,
+          "heroMoving": false,
+          "heroName": "Christian",
+          "heroWindow": {
+            "backpack": [
+              {
+                "allowed": false,
+                "description": "{Eye of the Red Dragon}\n\nThis powerful dragon eye increases the maximum damage by +1 and allows Red Dragonling to be upgraded to Red Dragon and become Bone Dragon and Ghost Dragon into Red Dragon the next day.",
+                "icon": 297,
+                "locked": false,
+                "movable": true,
+                "name": "Eye of the Red Dragon",
+                "slot": 19
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 20
+              }
+            ],
+            "canRebalanceSourceArtifacts": false,
+            "className": "Knight",
+            "commanderIcon": 9,
+            "experience": 0,
+            "experienceIcon": 4,
+            "id": 1,
+            "level": 1,
+            "luck": {
+              "icon": 8,
+              "value": 0
+            },
+            "mana": 10,
+            "manaIcon": 5,
+            "manaLimit": 10,
+            "morale": {
+              "icon": 7,
+              "value": 1
+            },
+            "name": "Christian",
+            "owned": true,
+            "portrait": {
+              "h": 64,
+              "w": 58,
+              "x": 83,
+              "y": 26
+            },
+            "primaryIcons": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "primarySkills": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "skills": [],
+            "slots": [
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 0
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 1
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 2
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 3
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 4
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 5
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 6
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 7
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 8
+              },
+              {
+                "allowed": false,
+                "description": "{Prismatic Eye of the God Dragon}\n\nThis omnipotent artifact increases the minimum and maximum damage by +5 and allows Red and Green Dragonlings to be upgraded to Fire Dragon, Azure Dragonling to Ice Dragon, Faerie Dragonling and Rust Dragonling in their third upgrade form the next day.\n\nOnce assembled, this artifact cannot be disassembled.",
+                "icon": 301,
+                "locked": false,
+                "movable": true,
+                "name": "Prismatic Eye of the God Dragon",
+                "slot": 9
+              },
+              {
+                "allowed": false,
+                "locked": true,
+                "movable": false,
+                "slot": 10
+              },
+              {
+                "allowed": false,
+                "description": "{Eye of the Green Dragon}\n\nThis powerful dragon eye increases the minimum damage by +1 and allows Green Dragonling to be upgraded to Green Dragon and become Bone Dragon and Ghost Dragon into Green Dragon the next day.",
+                "icon": 296,
+                "locked": false,
+                "movable": true,
+                "name": "Eye of the Green Dragon",
+                "slot": 11
+              },
+              {
+                "allowed": false,
+                "locked": true,
+                "movable": false,
+                "slot": 12
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 13
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 14
+              },
+              {
+                "allowed": false,
+                "locked": false,
+                "movable": false,
+                "slot": 15
+              },
+              {
+                "allowed": false,
+                "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+                "icon": 3,
+                "locked": false,
+                "movable": false,
+                "name": "Catapult",
+                "slot": 16
+              },
+              {
+                "allowed": false,
+                "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+                "icon": 0,
+                "locked": false,
+                "movable": false,
+                "name": "Spell Book",
+                "slot": 17
+              },
+              {
+                "allowed": false,
+                "locked": true,
+                "movable": false,
+                "slot": 18
+              }
+            ],
+            "specialty": {
+              "description": "Increases the Attack and Defense skill of any Ballista for each level attained after 4th level.",
+              "icon": 6,
+              "name": "Ballista",
+              "sourceProgression": {
+                "attackDefense": 1,
+                "damage": 0,
+                "family": "Ballista",
+                "healthPercent": 10,
+                "warMachines": true
+              }
+            }
+          },
+          "heroes": [
+            {
+              "hasSpellbook": true,
+              "id": 1,
+              "index": 0,
+              "mana": 10,
+              "manaLimit": 10,
+              "movement": 1530,
+              "movementLimit": 1630,
+              "name": "Christian"
+            },
+            {
+              "hasSpellbook": false,
+              "id": 3,
+              "index": 1,
+              "mana": 10,
+              "manaLimit": 10,
+              "movement": 1560,
+              "movementLimit": 1560,
+              "name": "Orrin"
+            }
+          ],
+          "mapSettings": {
+            "enemyMoveTime": 150,
+            "moveTime": 150
+          },
+          "mode": "hero",
+          "movement": 1530,
+          "musicVolume": 88,
+          "onlineGame": false,
+          "rect": {
+            "h": 586,
+            "w": 672,
+            "x": 64,
+            "y": 7
+          },
+          "resourceTypes": [
+            {
+              "icon": "",
+              "id": 0,
+              "key": "wood",
+              "name": "Wood",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 1,
+              "key": "mercury",
+              "name": "Mercury",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 2,
+              "key": "ore",
+              "name": "Ore",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 3,
+              "key": "sulfur",
+              "name": "Sulfur",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 4,
+              "key": "crystal",
+              "name": "Crystal",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 5,
+              "key": "gems",
+              "name": "Gems",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 6,
+              "key": "gold",
+              "name": "Gold",
+              "scope": "core"
+            },
+            {
+              "icon": "mithril/small.png",
+              "id": 7,
+              "key": "mithril",
+              "name": "Mithril",
+              "scope": "wake-of-gods.mithril"
+            }
+          ],
+          "resources": [
+            20,
+            10,
+            20,
+            10,
+            10,
+            10,
+            20900,
+            0
+          ],
+          "sessionState": 6,
+          "soundVolume": 88,
+          "towns": [
+            {
+              "id": 0,
+              "index": 0,
+              "name": "Goonkbourg"
+            }
+          ],
+          "troopEquipment": {
+            "canAct": true,
+            "heroId": 1,
+            "heroName": "Christian",
+            "troops": [
+              {
+                "aiValue": 84,
+                "attack": 5,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  70,
+                  0
+                ],
+                "count": 10,
+                "damageMax": 9,
+                "damageMin": 8,
+                "defense": 5,
+                "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                "fightValue": 84,
+                "growth": 16,
+                "health": 12,
+                "icon": "goonk/pink-large.png",
+                "id": 258,
+                "key": "goonk:paingpaing",
+                "magicDamageReduction": 0,
+                "name": "Paingpaing",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "physicalDamageBonus": 0,
+                "rangedDamageBonus": 0,
+                "shooter": false,
+                "shots": 0,
+                "slot": 0,
+                "speed": 5
+              }
+            ]
+          },
+          "turn": true,
+          "windowToken": 71554920
+        }
+      },
+      "fixtureScope": {
+        "candidateOnly": true,
+        "sourcePartsUnchanged": true,
+        "dailyPolicyIncluded": false,
+        "commandersModified": false
+      }
+    }
+  },
+  "dailyValidated": false
+}

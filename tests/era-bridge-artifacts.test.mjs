@@ -91,3 +91,10 @@ test('audited global source openings use fixed power50; targeted openings remain
 });
 
 test('Emerald cfg source indices are explicit even when text keys are out of order',()=>{const r=compileArtifact({id:99,text:'Autospell9=43\nAutospell=53\nAutospell2=29',...resolvers});assert(r.ok);assert.deepEqual(r.patch.bonuses.Autospell9.addInfo,[3,8]);assert.deepEqual(r.patch.bonuses.Autospell.addInfo,[3,0]);assert.deepEqual(r.patch.bonuses.Autospell2.addInfo,[3,1]);});
+
+test('Emerald leaf damage counts equipped copies while parent and unrelated artifacts retain native policy',()=>{
+ for(const id of[99,272,273,274,275,276,277,278,279]){
+  const c=compileArtifact({id,text:'DamageMin=1\nDamageMax=2',...resolvers,includeSpecials:false,includeCombination:false});assert(c.ok);
+  for(const b of Object.values(c.patch.bonuses))assert.equal(b.stacking,id>=273&&id<=277?'ALWAYS':undefined);
+ }
+});

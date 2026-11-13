@@ -1,0 +1,108 @@
+{
+  "version": "0.4.162",
+  "status": "validated",
+  "fullCompatibilityClaim": false,
+  "baseCommit": "99abe31bc2596e76b27e87ec9c1a8fbd1fe8b1db",
+  "engineSHA256": "7990b14715801e042c3fa78c705b0dd871e261b905cd364b6d0e4f1a638fd1ca",
+  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.162-engine.tar.gz",
+  "engineArchiveSHA256": "3979608c2a525bb78cc2eb1c014f84499976780412e84101906f03c7c5b5110a",
+  "compiledSourceFiles": 24,
+  "experimental24145HooksIncluded": false,
+  "activeContent": {
+    "artifacts": 110,
+    "sourceCreatureIdentities": 54,
+    "experienceProfiles": 277,
+    "eighthTownRecruitments": 9
+  },
+  "primordialAdmission": {
+    "sourceIds": [
+      346,
+      347
+    ],
+    "freshSourceByteEquality": true,
+    "nativeProofs": 19,
+    "protectedExistingFiles": 1353,
+    "legacyCsvUnchanged": true,
+    "evidence": "primordial-source-installation-review.json",
+    "genericReuse": {
+      "fear": "Byte-identical admitted generic helper+same ABI/markers; no new per-actor native witness fabricated",
+      "skeleton": "Pinned source254 identity+exact generic endpoint; no new per-actor transformer run fabricated",
+      "linearRanks": "All11sourcevalues pinned plusR0/R10native endpoints; no midpoint/cap crossings"
+    }
+  },
+  "eye278Admission": {
+    "freshSourceByteEquality": true,
+    "existingModBytesPreserved": true,
+    "evidence": "eye278-install-preflight.json",
+    "originalInventoryProof": "native169-eye278-inventory.json",
+    "originalDailyProof": "native170-eye278-daily.json",
+    "finalMapRecipeAndQuotaProof": "native177-eye278-final-review.json"
+  },
+  "nativeFinalProduction": {
+    "passed": true,
+    "cases": 6,
+    "verifiedFilesPerCase": 29,
+    "sourceDefinitionsReinjected": false,
+    "evidence": "native-primordial-production162.json"
+  },
+  "nativeSaveCompatibility": {
+    "passed": true,
+    "oldVersion": "0.4.161",
+    "oldEngineSHA256": "fa15aeca15d528a5bf8e6da6f0846fcd789328bf4a14a49928800d8b6b6bc775",
+    "sevenTrainedTroopsAndBanners": true,
+    "nineTownsStocksBuildingsResources": true,
+    "oldSaveBytesPublished": false,
+    "renumberedCreatureIdsPreserved": true,
+    "evidence": "native177-eye278-final-review.json"
+  },
+  "eyeCopies": {
+    "sourceLeafIds": [
+      273,
+      274,
+      275,
+      276,
+      277
+    ],
+    "parent278DefinitionUnchanged": true,
+    "mapBattleBackpackAndNativeReload": true,
+    "evidence": "emerald-copy-additivity174-review.json"
+  },
+  "astral": {
+    "sourceLevelBoundaries": 10,
+    "native172Evidence": "native-source263-level172.json",
+    "later176CriticalControls": 5,
+    "allReportsKeepTheirOwnEngineSHA": true,
+    "final177CriticalControls": 2,
+    "finalEvidence": "native-source263-final162.json"
+  },
+  "unit": {
+    "total": 660,
+    "passed": 656,
+    "skipped": 4,
+    "failed": 0,
+    "evidence": "checkpoint162-regressions/unit-release.log"
+  },
+  "extraDataContracts": {
+    "passed": 30,
+    "failed": 0,
+    "evidence": "checkpoint162-regressions/data-contracts.log"
+  },
+  "webBuild": {
+    "passed": true,
+    "evidence": "checkpoint162-regressions/site-verify.log"
+  },
+  "inactive": [
+    "Faithful ordered source XP replacement:37 rows plus six prerequisite p providers. Existing legacy/native behavior is preserved."
+  ],
+  "presentation": {
+    "phoneAndIPadFourFormats": true,
+    "unchangedSnapshotsRemoveZeroNodes": true,
+    "physicalDevicesClaimed": false
+  },
+  "limits": [
+    "Source Fear and skeleton254 reuse previously verified generic services with exact definitions and bindings; no invented per-actor native witness.",
+    "Native save compatibility is bounded to synthetic161to162 army/town scenario, not every historical save/campaign.",
+    "Source probability branches are execution witnesses, not statistical rate estimates.",
+    "Full WoG/ERA parity and arbitrary Windows ERM/memory hooks are not claimed."
+  ]
+}

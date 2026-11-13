@@ -1,0 +1,141 @@
+{
+  "passed": true,
+  "wholeActorNativeValidated": false,
+  "engineSHA": "0b73db715514ec64a493abf02865040bece4c445276b2ed1ff7178ebf1194325",
+  "controls": [
+    {
+      "key": "primordial346WallGuardactive",
+      "mode": "active",
+      "sourceRank": 0,
+      "sourceChanceModified": false,
+      "initialCount": 1,
+      "remainingCount": 1,
+      "remainingCasts": 9,
+      "damages": [
+        0,
+        0
+      ],
+      "rounds": [
+        1,
+        2
+      ],
+      "shooter": false,
+      "shots": 0
+    },
+    {
+      "key": "primordial346WallGuardcounter",
+      "mode": "counter",
+      "sourceRank": 0,
+      "sourceChanceModified": false,
+      "initialCount": 1,
+      "remainingCount": 1,
+      "remainingCasts": 10,
+      "damages": [
+        0,
+        0
+      ],
+      "rounds": [
+        2,
+        3
+      ],
+      "shooter": false,
+      "shots": 0
+    },
+    {
+      "key": "primordial346WallGuarddead",
+      "mode": "dead",
+      "sourceRank": 0,
+      "sourceChanceModified": false,
+      "initialCount": 1,
+      "remainingCount": 1,
+      "remainingCasts": 10,
+      "damages": [
+        0,
+        0
+      ],
+      "rounds": [
+        1,
+        2
+      ],
+      "shooter": false,
+      "shots": 0
+    },
+    {
+      "key": "primordial346WallGuardcurrent",
+      "mode": "current",
+      "sourceRank": 0,
+      "sourceChanceModified": false,
+      "initialCount": 2,
+      "remainingCount": 1,
+      "remainingCasts": 10,
+      "damages": [
+        132,
+        0,
+        0
+      ],
+      "rounds": [
+        1,
+        2,
+        3
+      ],
+      "shooter": false,
+      "shots": 0
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-wall-guards168-console.log",
+      "sha256": "5d1c065c9978131cc93e70fd925418f7cc535879cd0e251fa372f6c325189667"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-wall-guards168-primordial346-wall-guard-active.png",
+      "sha256": "3d4227bcb9616b0f20d2ed80af068cb9db8cfb98aa3318e5013dcc28e773eb76"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-wall-guards168-primordial346-wall-guard-counter.png",
+      "sha256": "a4e0492a4230e94ebbed55ab3f65def63f23fef6a7a4d1d98a9fae19918084e1"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-wall-guards168-primordial346-wall-guard-current.png",
+      "sha256": "41e43dfbb11efd0d0e16a6088047756115c65685eaa07d78b05071c6644de1a1"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-wall-guards168-primordial346-wall-guard-dead.png",
+      "sha256": "aec46ee5d128d1881bc23e427b028fe46178059cecdf7ffe91a46dd481122925"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial346-wall-guards168-result.json",
+      "sha256": "c7204fe288ca0d5aa6ef6d44497fc408c839dfa4af3fd0f823ea6ea9338c1fd1"
+    }
+  ],
+  "harnessSources": [
+    {
+      "path": "work/browser-tests/wog-primordial-wall-guards-native-e2e.mjs",
+      "sha256": "db44d7cfc034ebe7911c12da6337da5eb343fb504996104c4e463343573b0bfc"
+    },
+    {
+      "path": "work/browser-tests/primordial-wall-guard-cases.mjs",
+      "sha256": "9052edea5092e756247c1fb715e6f9e83ef590c530ad7d00f9e05d281cc06886"
+    },
+    {
+      "path": "work/browser-tests/primordial-whole-overlay.mjs",
+      "sha256": "2e11a3d462762da4ba32dbb477f28e1ea20b917795371401723594cfca4b09aa"
+    }
+  ],
+  "currentPowerWitness": {
+    "initialCount": 2,
+    "afterRealSource280PreemptionCount": 1,
+    "sourceRemainingPower": 65,
+    "sourceWallRaw": 660,
+    "targetSourceGolemDamageReductionPercent": 80,
+    "actualEntryDamage": 132,
+    "incorrectInitialCountPower": 70,
+    "incorrectInitialCountDamage": 142
+  },
+  "action7Scope": "No legal source346 shooting action: originalFlags0x8000409B lacksSHOOTER, shots0, XPnoO. Four native snapshots independently confirm shooterfalse/shots0. Source action6 gate+compiled rangedfalse call are proven statically; no synthetic shooter presented as an original behavior.",
+  "limits": [
+    "Target durability/physical/speed controls only; explicit Gnoll fear-only neutralization ensures manual motion and does not alter magic resistance/immunity.",
+    "R0counter tests original intrinsic retal, not R10XPafter13, which independently creates its own expertwall.",
+    "These close wall guards/current-count path only; whole346347 remain gated on all other controls."
+  ]
+}

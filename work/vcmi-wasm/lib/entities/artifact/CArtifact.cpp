@@ -13,6 +13,7 @@
 
 #include "ArtifactUtils.h"
 #include "CArtifactFittingSet.h"
+#include "../../era/EraEye278Native.h"
 
 #include "../../bonuses/Limiters.h"
 #include "../../texts/CGeneralTextHandler.h"
@@ -178,6 +179,15 @@ bool CArtifact::isTradable() const
 
 bool CArtifact::canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot, bool assumeDestRemoved) const
 {
+    // Source278 reservations are movable, but are not free capacity. Reflow
+    // only a fitting copy, then validate this whole artifact by the unchanged
+    // native path with a genuinely free destination (including all parts).
+    if(era_compat::eye278NativeRecipeValidationDepth==0 && era_compat::eye278LockOwner(*artSet,slot))
+    {
+        CArtifactFittingSet fitting(*artSet);
+        if(!era_compat::reflowEye278(fitting,slot,false))return false;
+        return canBePutAt(&fitting,slot,assumeDestRemoved);
+    }
 	auto simpleArtCanBePutAt = [this](const CArtifactSet * artSet, ArtifactPosition slot, bool assumeDestRemoved) -> bool
 	{
 		if(artSet->bearerType() == ArtBearer::HERO && ArtifactUtils::isSlotBackpack(slot))
@@ -207,6 +217,8 @@ bool CArtifact::canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot, b
 			if(assumeDestRemoved)
 				fittingSet.removeArtifact(slot);
 
+            {
+                const era_compat::Eye278NativeRecipeValidationScope physicalRecipeSlots;
 			for(const auto art : constituents)
 			{
 				auto possibleSlot = ArtifactUtils::getArtAnyPosition(&fittingSet, art->getId());
@@ -221,6 +233,7 @@ bool CArtifact::canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot, b
 					return false;
 				}
 			}
+            }
 			return true;
 		}
 		else

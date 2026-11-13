@@ -1,0 +1,477 @@
+{
+  "eraCreature346": {
+    "name": {
+      "singular": "Fire Dragon",
+      "plural": "Fire Dragons"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 100000
+    },
+    "fightValue": 300000,
+    "aiValue": 200000,
+    "growth": 1,
+    "hitPoints": 1500,
+    "speed": 25,
+    "attack": 100,
+    "defense": 90,
+    "damage": {
+      "min": 100,
+      "max": 120
+    },
+    "advMapAmount": {
+      "min": 0,
+      "max": 0
+    },
+    "abilities": {
+      "amethyst_flag_1": {
+        "type": "FLYING",
+        "val": 0
+      },
+      "amethyst_flag_3": {
+        "type": "TWO_HEX_ATTACK_BREATH",
+        "val": 0
+      },
+      "amethyst_flag_14": {
+        "type": "SPELL_SCHOOL_IMMUNITY",
+        "val": 0,
+        "subtype": "spellSchool.fire"
+      },
+      "amethyst_flag_31": {
+        "type": "DRAGON_NATURE",
+        "val": 0
+      },
+      "amethystKing": {
+        "type": "KING",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "amethyst_Fearless": {
+        "type": "FEARFUL",
+        "val": 0,
+        "valueType": "INDEPENDENT_MIN"
+      },
+      "crexp_5_rank0": {
+        "type": "ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY",
+        "val": 5,
+        "valueType": "INDEPENDENT_MAX"
+      },
+      "sourceFear": {
+        "type": "FEARFUL",
+        "val": 10,
+        "valueType": "INDEPENDENT_MAX",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE",
+          [
+            "noneOf",
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NO_MORALE"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "UNDEAD"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NON_LIVING"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "MECHANICAL"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "SIEGE_WEAPON"
+            }
+          ]
+        ],
+        "stacking": "eraSourceFear:346:v1"
+      },
+      "sourceActiveCaster": {
+        "type": "SPELLCASTER",
+        "subtype": "core:inferno",
+        "val": 2
+      },
+      "sourceActiveSpellPower": {
+        "type": "CREATURE_SPELL_POWER",
+        "val": 100
+      },
+      "sourceInitialCasts": {
+        "type": "CASTS",
+        "val": 10
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "tum-era:necrossDragon"
+      },
+      "sourceIntrinsicShield": {
+        "type": "FIRE_SHIELD",
+        "val": 30
+      }
+    },
+    "doubleWide": true,
+    "level": 7,
+    "special": true,
+    "faction": "core:neutral",
+    "hasDoubleWeek": false,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          90,
+          100
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20
+        ]
+      }
+    ],
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1.5,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/346/CR346.def",
+      "map": "tum-era/creatures/346/AVWCR346.def",
+      "iconSmall": "tum-era/creatures/346/small.png",
+      "iconLarge": "tum-era/creatures/346/large.png"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/346/S346ATTK.wav",
+      "defend": "tum-era/creatures/346/S346DFND.wav",
+      "killed": "tum-era/creatures/346/S346KILL.wav",
+      "move": "tum-era/creatures/346/S346MOVE.wav",
+      "wince": "tum-era/creatures/346/S346WNCE.wav"
+    }
+  },
+  "eraCreature347": {
+    "name": {
+      "singular": "Ice Dragon",
+      "plural": "Ice Dragons"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 200000
+    },
+    "fightValue": 350000,
+    "aiValue": 250000,
+    "growth": 1,
+    "hitPoints": 2500,
+    "speed": 25,
+    "attack": 120,
+    "defense": 100,
+    "damage": {
+      "min": 150,
+      "max": 150
+    },
+    "advMapAmount": {
+      "min": 0,
+      "max": 0
+    },
+    "abilities": {
+      "amethyst_flag_1": {
+        "type": "FLYING",
+        "val": 0
+      },
+      "amethyst_flag_3": {
+        "type": "TWO_HEX_ATTACK_BREATH",
+        "val": 0
+      },
+      "amethyst_flag_31": {
+        "type": "DRAGON_NATURE",
+        "val": 0
+      },
+      "amethystKing": {
+        "type": "KING",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "amethyst_Fearless": {
+        "type": "FEARFUL",
+        "val": 0,
+        "valueType": "INDEPENDENT_MIN"
+      },
+      "crexp_5_rank0": {
+        "type": "ERA_NEGATIVE_SPELL_LEVEL_IMMUNITY",
+        "val": 5,
+        "valueType": "INDEPENDENT_MAX"
+      },
+      "sourceFear": {
+        "type": "FEARFUL",
+        "val": 10,
+        "valueType": "INDEPENDENT_MAX",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE",
+          [
+            "noneOf",
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NO_MORALE"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "UNDEAD"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NON_LIVING"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "MECHANICAL"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "SIEGE_WEAPON"
+            }
+          ]
+        ],
+        "stacking": "eraSourceFear:347:v1"
+      },
+      "sourceActiveCaster": {
+        "type": "SPELLCASTER",
+        "subtype": "core:iceBolt",
+        "val": 2
+      },
+      "sourceActiveSpellPower": {
+        "type": "CREATURE_SPELL_POWER",
+        "val": 100
+      },
+      "sourceInitialCasts": {
+        "type": "CASTS",
+        "val": 10
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "tum-era:necrossDragon"
+      }
+    },
+    "doubleWide": true,
+    "level": 7,
+    "special": true,
+    "faction": "core:neutral",
+    "hasDoubleWeek": false,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          90,
+          100
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20
+        ]
+      }
+    ],
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 1.5,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/347/CR347.def",
+      "map": "tum-era/creatures/347/AVWCR347.def",
+      "iconSmall": "tum-era/creatures/347/small.png",
+      "iconLarge": "tum-era/creatures/347/large.png"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/347/S347ATTK.wav",
+      "defend": "tum-era/creatures/347/S347DFND.wav",
+      "killed": "tum-era/creatures/347/S347KILL.wav",
+      "move": "tum-era/creatures/347/S347MOVE.wav",
+      "wince": "tum-era/creatures/347/S347WNCE.wav"
+    }
+  }
+}

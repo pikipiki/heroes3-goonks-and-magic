@@ -14,6 +14,7 @@
 #include "../../lib/era/EraStatusHealthBonuses.h"
 #include "BattleFlowProcessor.h"
 #include "../era/EraPrimordialStateRuntime.h"
+#include "../era/EraPrimordialTurnRuntime.h"
 #include "../era/EraImposedSpells.h"
 #include "../era/EraRoundTwoDemons.h"
 #include "../era/EraDemilichSummonRuntime.h"
@@ -387,6 +388,7 @@ void BattleFlowProcessor::startNextRound(const CBattleInfoCallback & battle, boo
 	bnr.battleID = battle.getBattle()->getBattleID();
 	logGlobal->debug("Next round starts");
 	gameHandler->sendAndApply(bnr);
+    if(isFirstRound)era_compat_server::initializePrimordialMoves(*gameHandler,battle,0);
 
 	// operate on copy - removing obstacles will invalidate iterator on 'battle' container
 	auto obstacles = battle.battleGetAllObstacles();
@@ -964,7 +966,9 @@ void BattleFlowProcessor::onActionMade(const CBattleInfoCallback & battle, const
 		assert(activeStack != nullptr);
 		assert(actedStack != nullptr);
 
-		if (rollGoodMorale(battle, actedStack))
+		const auto primordialTurn=era_compat_server::primordialAfterAction(
+            *gameHandler,battle,actedStack,ba.actionType);
+        if (primordialTurn.has_value()?*primordialTurn:rollGoodMorale(battle, actedStack))
 		{
 			// Good morale - same stack makes 2nd turn
 			setActiveStack(battle, actedStack, BattleUnitTurnReason::MORALE);

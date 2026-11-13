@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "wholeActorsNativeValidated": false,
+  "sourceIds": [
+    346,
+    347
+  ],
+  "engineSHA": "0b73db715514ec64a493abf02865040bece4c445276b2ed1ff7178ebf1194325",
+  "cases": [
+    "primordialFullProfile346R0",
+    "primordialFullProfile346R10",
+    "primordialFullProfile347R0",
+    "primordialFullProfile347R10"
+  ],
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial-full-profiles168-console.log",
+      "sha256": "4ff528a5f915aef2db32058a567f65691af08c1ce7fe12301ff267d6e915700d"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial-full-profiles168-primordial-346-full-profile-r0.png",
+      "sha256": "ff777270d1897b90f79fa470c3895b5f8722bc48601604f1e1c0ae4bccb4f030"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial-full-profiles168-primordial-346-full-profile-r10.png",
+      "sha256": "0537dbebdd3ac5b6995ea4d984d4b62a434eed846f2993c128cbf7f46ba557b8"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial-full-profiles168-primordial-347-full-profile-r0.png",
+      "sha256": "2c6889d01c1cb4cab24b8463af18a95828167fb177a0177a005b8eae54556a64"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial-full-profiles168-primordial-347-full-profile-r10.png",
+      "sha256": "62b9c42c39c65d7b7c76ad8aab192c37c3085f87eeca881b6c4de50281c75788"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial-full-profiles168-result.json",
+      "sha256": "a79d11a9d162c7ba9e3be35ffe55746db046b13b94402bb6246c6c95f9f97109"
+    }
+  ],
+  "harnessSources": [
+    {
+      "path": "work/browser-tests/wog-primordial-profiles-native-e2e.mjs",
+      "sha256": "1754672ab4066086019e173b0d62f5d0c99f9e7d1751e51f0df2040e91deb4f8"
+    },
+    {
+      "path": "work/browser-tests/primordial-whole-overlay.mjs",
+      "sha256": "2e11a3d462762da4ba32dbb477f28e1ea20b917795371401723594cfca4b09aa"
+    },
+    {
+      "path": "work/browser-tests/primordial-full-profile-cases.mjs",
+      "sha256": "efc0a308047cbeb25b2d18c626158e321bf6133bd1a65634df4be89866d6a1c8"
+    },
+    {
+      "path": "work/browser-tests/eighth-intrinsic-equipment.mjs",
+      "sha256": "77c5b637b80133c6db15e3a429faa19434e51fd5f212da7efdd75d5588659339"
+    }
+  ],
+  "stage": {
+    "path": "work/downloads/wog-port167/primordial-whole-stage-v2/stage.json",
+    "sha256": "af935aaf577e737004d2d209c7b1d7e4c381ea6799a088c077785f350fac5471"
+  },
+  "limits": [
+    "R10 is earned by a real kill using private progression scale100/100/1; the original canonical .5/.75/147000/20/14700 profile is separately read and asserted before scaling. No XP/stat/chance bonus modified.",
+    "Only full CFG/XP static stat/default/profile/charge controls close here. Spell/RNG/Fear/shield/wall/cache/save/native evolution controls remain separate obligations."
+  ]
+}

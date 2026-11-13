@@ -464,6 +464,10 @@ int32_t CUnitState::getEffectLevel(const spells::Spell * spell) const
 
 int32_t CUnitState::getEffectPower(const spells::Spell * spell) const
 {
+    const auto & sourceKey=creatureId().toCreature()->getJsonKey();
+    if(era_compat::PrimordialPolicies::get().owns(sourceKey))
+        return ::era_bridge::SourceCreatureSpellPower::forSource(
+            sourceKey=="tum-era:eraCreature346"?346:347).apply(getCount());
     if(era_compat::DragonlingFaerie::get().enabled(creatureId().toCreature()->getJsonKey()))
         return ::era_bridge::SourceCreatureSpellPower::forSource(343).apply(getCount());
     if(era_compat::PrimalFaerie::get().enabled(creatureId().toCreature()->getJsonKey()))

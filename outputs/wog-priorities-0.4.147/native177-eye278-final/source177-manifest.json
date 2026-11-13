@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "phase": 177,
+  "active": false,
+  "rootSourceModified": false,
+  "base": "176 whole validation; CArtifactSet.cpp unchanged176",
+  "files": [
+    {
+      "path": "lib/era/EraEye278Native.h",
+      "sha256": "2d0d278c4342edfdf12d0a7a26c78724ef6e91f66cfac6ae2b22d12849105aa0"
+    },
+    {
+      "path": "lib/entities/artifact/CArtifact.cpp",
+      "sha256": "5e52684dca8648367e2886a1ce79ea1ea7621d8b0e5ddfd22be2a42b2b21ca55"
+    }
+  ],
+  "scope": "TLS recipe-depth guard only during native constituents validation, disallows virtual reflow by individual parts; external fitting queries keep reflow",
+  "nativeValidated": false
+}

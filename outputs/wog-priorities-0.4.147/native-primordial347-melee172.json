@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "wholeActorNativeValidated": false,
+  "engineSHA": "75a488c285ff499277c96a954652833c2e62bb41ffb2b33a073bc537165c3bf0",
+  "sourceActor": 347,
+  "sourceRank": 10,
+  "sourceChancePerRow": 100,
+  "chancesModified": false,
+  "physical": 510,
+  "primary": {
+    "power": 100,
+    "xpIceBolt16": 2050,
+    "directIceBolt16": 2050,
+    "primaryDamage": 4610,
+    "observerTwoFrostRings": 2438
+  },
+  "counter": {
+    "power": 1,
+    "noBeforeXP": true,
+    "directIceBolt16": 70,
+    "primaryDamage": 580,
+    "observerTwoFrostRings": 160
+  },
+  "heroSorceryPercent": 15,
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-melee172-console.log",
+      "sha256": "83d99e6c37ea631cdbde699dfc1962ab2e963294d7e2a706f1b11d4c77c720ba"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-melee172-primordial347-melee-counter.png",
+      "sha256": "c6133ed9214a48086a6ce7ced79a3ea98db4231594b8d4aadf98f403b0a6e9d8"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-melee172-primordial347-melee-primary.png",
+      "sha256": "65bce6cfbf11dca913173f4115f487830e314772a7d368804800b26bdc399a28"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/primordial347-melee172-result.json",
+      "sha256": "d6d59b5694dce7f63d1a9064b44a2c0aa676d0d0c950b63eace6b48931a82c12"
+    }
+  ],
+  "harnessSources": [
+    {
+      "path": "work/browser-tests/wog-primordial347-melee-native-e2e.mjs",
+      "sha256": "b1b2f3a6d8bd9e7c803cd69013634bc9a8def6b9f5db0a0b55d18e1af8fbb2ad"
+    },
+    {
+      "path": "work/browser-tests/primordial347-melee-cases.mjs",
+      "sha256": "91cfbc9da8887f0ca2a7e61b2c8c5eeeaf1fb6f39521da155b7461fbcfe7c145"
+    },
+    {
+      "path": "work/browser-tests/primordial-whole-overlay.mjs",
+      "sha256": "2e11a3d462762da4ba32dbb477f28e1ea20b917795371401723594cfca4b09aa"
+    }
+  ],
+  "sourceIceBoltFlatExpert": 50,
+  "sourceFlatEvidence": {
+    "path": "outputs/wog-priorities-0.4.147/eighth-evidence/primordial-icebolt-original168.json",
+    "sha256": "ce5d3765843248351809963b11dbc10acba538f0a22b99a661dbf0f243a1e49e"
+  },
+  "limits": [
+    "Target Gnoll/Pike durability/physical/speed and fear-only controls; no magic immunity/resistance changed.",
+    "Real RedExpertSorcery15%, Blue0; primary singleIceBolt ignores hero correction while areas useCURRENT hero.",
+    "Friendly/Berserk I16XP ownership bypass is independently source-proven; no synthetic forcedfriendly actor fixture presented as a natural original347 event."
+  ]
+}
