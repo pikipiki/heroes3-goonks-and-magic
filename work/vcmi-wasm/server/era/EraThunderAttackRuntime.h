@@ -70,8 +70,10 @@ inline void applySourceThunder(CGameHandler & handler,const CBattleInfoCallback 
     hit.stackAttacked=target->unitId();hit.attackerID=actor->unitId();
     hit.flags|=BattleStackAttacked::SPELL_EFFECT;hit.spellID=SpellID(17);
     //441048 belongs to the source thirteen-callsite B-before-L wrapper hook list.
-    hit.damageAmount=applySourcePhysicalWrapper(handler,battle,target,adjusted);
+    bool sourceEntered=false;
+    hit.damageAmount=applySourcePhysicalWrapper(handler,battle,target,adjusted,&sourceEntered);
     target->prepareAttacked(hit,rng);
+    if(sourceEntered&&era_compat::sourceXpBattleAdmitted(battle))hit.newState.data["eraSourceXpDamageEntered"].Bool()=true;
     StacksInjured packet;packet.battleID=battle.getBattle()->getBattleID();packet.stacks.push_back(hit);
     handler.sendAndApply(packet);
 }

@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../lib/era/EraSourceXpGeometryState.h"
 #include "ServerSpellCastEnvironment.h"
 #include "era/EraRebirth.h"
 
@@ -72,6 +73,29 @@ void ServerSpellCastEnvironment::apply(StacksInjured & pack)
 
 void ServerSpellCastEnvironment::apply(BattleObstaclesChanged & pack)
 {
+    if(const auto * battle=gh->gameState().getBattle(pack.battleID))
+        if(auto cache=era_compat::xpGeometryState(*battle))
+        {
+            for(auto & change:pack.changes)
+            {
+                if(change.operation==BattleChanges::EOperation::ADD)
+                {
+                    SpellCreatedObstacle obstacle;obstacle.fromInfo(change);
+                    if(obstacle.ID==10||obstacle.ID==11)
+                    {
+                        obstacle.nativeVisible=false;
+                        obstacle.revealed=battle->battleHasNativeStack(obstacle.casterSide==BattleSide::ATTACKER?BattleSide::DEFENDER:BattleSide::ATTACKER);
+                        obstacle.toInfo(change);
+                    }
+                    era_compat::xpGeometryCreated(*cache,obstacle);
+                }
+                else if(change.operation==BattleChanges::EOperation::REMOVE)
+                    for(const auto & obstacle:battle->battleGetAllObstacles())
+                        if(obstacle->uniqueID==change.id)era_compat::xpGeometryRemoved(*cache,*obstacle);
+            }
+            era_compat::writeXpGeometryState(*battle,*cache,[&](auto & packet){gh->sendAndApply(packet);});
+        }
+
 	gh->sendAndApply(pack);
 }
 

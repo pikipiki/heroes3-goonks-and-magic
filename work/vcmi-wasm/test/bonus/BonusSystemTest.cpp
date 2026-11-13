@@ -20,6 +20,31 @@ namespace test
 
 using namespace ::testing;
 
+TEST(BonusSystemRemovalTest, exportedListReferenceKeepsIdentityAfterErase)
+{
+    CBonusSystemNode node{BonusNodeType::BATTLE_WIDE};
+    for(int value : {2, 3, 5})
+    {
+        auto bonus = std::make_shared<Bonus>();
+        bonus->type = BonusType::MORALE;
+        bonus->val = value;
+        node.addNewBonus(bonus);
+    }
+    ASSERT_EQ(node.valOfBonuses(BonusType::MORALE), 10);
+    // RemoveBonus packets pass precisely this reference into the exported
+    // vector. Erasing its middle element must not remove the following bonus
+    // from the applied list or leave the retired bonus in the cache.
+    node.removeBonus(node.getExportedBonusList()[1]);
+    ASSERT_EQ(node.getExportedBonusList().size(), 2);
+    EXPECT_EQ(node.getExportedBonusList()[0]->val, 2);
+    EXPECT_EQ(node.getExportedBonusList()[1]->val, 5);
+    EXPECT_EQ(node.valOfBonuses(BonusType::MORALE), 7);
+    node.removeBonus(node.getExportedBonusList()[1]);
+    EXPECT_EQ(node.valOfBonuses(BonusType::MORALE), 2);
+    node.removeBonus(node.getExportedBonusList()[0]);
+    EXPECT_EQ(node.valOfBonuses(BonusType::MORALE), 0);
+}
+
 class TestBonusSystemNode : public CBonusSystemNode
 {
 public:

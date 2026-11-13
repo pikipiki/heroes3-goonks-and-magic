@@ -1164,18 +1164,18 @@
       "upgradeMultiplier": 0.75
     },
     "wake-of-gods.messengersandemissaries:fireMessenger": {
-      "fullRank10": 87500,
-      "rank11Extra": 26250,
-      "battlePercent": 30,
       "experienceMultiplier": 1,
-      "upgradeMultiplier": 0.75
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 105000,
+      "battlePercent": 25,
+      "rank11Extra": 21000
     },
     "wake-of-gods.messengersandemissaries:earthMessenger": {
-      "fullRank10": 87500,
-      "rank11Extra": 26250,
-      "battlePercent": 30,
       "experienceMultiplier": 1,
-      "upgradeMultiplier": 0.75
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 105000,
+      "battlePercent": 25,
+      "rank11Extra": 21000
     },
     "wake-of-gods.messengersandemissaries:airMessenger": {
       "fullRank10": 87500,

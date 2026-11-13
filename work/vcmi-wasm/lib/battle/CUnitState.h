@@ -78,6 +78,8 @@ public:
 
 	bool isLimited() const override;
 	int32_t total() const override;
+	// Source444230 clears58 without changing current counters, even while disabled.
+	void preserveCapacityBeforeSourceDispel() const;
 	void reset() override;
 
 	void serializeJson(JsonSerializeFormat & handler) override;

@@ -13,6 +13,8 @@
 #include "../../era/EraExperienceMagicReductionNative.h"
 #include "../../era/EraOrbChaos238Runtime.h"
 #include "../../era/EraConfluxCaster.h"
+#include "../../era/EraSourceXpAdmission.h"
+#include "../../era/EraXpTimed184State.h"
 
 #include "Damage.h"
 #include "Registry.h"
@@ -109,6 +111,7 @@ void Damage::apply(ServerCallback * server, const Mechanics * m, const EffectTar
 		{
 			BattleStackAttacked bsa;
 			bsa.damageAmount = damageForTarget(targetIndex, m, unit);
+            bool sourceDamageBlocked=false;
             const auto rodDamage=eraLightningRodSupplement(m,unit);
             if(rodDamage>0)
             {
@@ -131,6 +134,7 @@ void Damage::apply(ServerCallback * server, const Mechanics * m, const EffectTar
                 if(applyEraCrystalPhysicalBlock(defender,*server->getRNG()))
                 {
                     bsa.damageAmount=0;
+                    sourceDamageBlocked=true;
                     BattleTriggerEffect blocked;blocked.battleID=stacksInjured.battleID;
                     blocked.stackID=unit->unitId();blocked.effect=BonusType::GENERAL_DAMAGE_REDUCTION;
                     blocked.val=100;blocked.additionalInfo=85;server->apply(blocked);
@@ -149,6 +153,8 @@ void Damage::apply(ServerCallback * server, const Mechanics * m, const EffectTar
 			bsa.attackerID = -1;
 			auto newState = unit->acquireState();
 			CStack::prepareAttacked(bsa, *server->getRNG(), newState);
+            if(!sourceDamageBlocked&&era_compat::sourceXpBattleAdmitted(*m->battle()))
+                bsa.newState.data["eraSourceXpDamageEntered"].Bool()=true;
             if(bsa.damageAmount < 0 && era_compat::Policies::get().spellDamageInversion(
                 unit->creatureId().toCreature()->getJsonKey()))
             {
@@ -156,8 +162,10 @@ void Damage::apply(ServerCallback * server, const Mechanics * m, const EffectTar
                 // when signed damage is negative. A positive healthDelta would
                 // otherwise bypass native UntilBeingAttacked removal.
                 std::vector<Bonus> removed;
-                for(const auto & bonus : *unit->getBonuses(Selector::sourceTypeSel(BonusSource::SPELL_EFFECT)))
+                const auto sourceBonusList165=unit->getBonuses(Selector::sourceTypeSel(BonusSource::SPELL_EFFECT));
+                for(const auto & bonus : *sourceBonusList165)
                 {
+                    if(era_compat::sourceTimedOwnedTag(bonus->stacking))continue;
                     const auto source = bonus->sid.as<SpellID>();
                     if(source == SpellID(SpellID::BLIND) || source == SpellID(SpellID::STONE_GAZE)
                         || source == SpellID(SpellID::PARALYZE))

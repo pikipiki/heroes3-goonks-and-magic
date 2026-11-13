@@ -1,0 +1,263 @@
+{
+  "activation": false,
+  "apply": false,
+  "sourceCohortSha256": "b9f63e3d4b56e546587a5efdd3a55eafc1da15316ef558c5a825cf0f797dd8ad",
+  "records": [
+    {
+      "sourceId": 164,
+      "nativeId": "wake-of-gods.messengersandemissaries:fireMessenger",
+      "file": "mod/wake-of-gods/Mods/messengersAndEmissaries/content/config/creatures/stackExperience/messengers.json",
+      "fileSha256": "3f2487fd3c0cc37d623f70dba50969a41bab600b18f93ff48244f527ed9c6f3b",
+      "jsonKey": "fireMessenger",
+      "index": 6,
+      "expectedRow": {
+        "bonus": {
+          "type": "SPELL_AFTER_ATTACK",
+          "subtype": "fireShield",
+          "addInfo": [
+            1,
+            2
+          ]
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      "memberSha256": "df329f5c20d54a2d7c76c3e9d1c00a6e7a970126249f137edb0b9afb7c1ab9df",
+      "replacementSourceRows": [
+        {
+          "key": "164:p:66",
+          "sourceLine": 763,
+          "cacheSlot": 7,
+          "chances": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ]
+        },
+        {
+          "key": "164:k:13",
+          "sourceLine": 762,
+          "cacheSlot": 6,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        }
+      ],
+      "reason": "Native XPFireShield29 approximates sourcekFireWall13; no a29/p29 survives sourcecache.",
+      "ownership": "explicit-whole-source-XP-carrier-replacement",
+      "interpretation": "Correct a documented VCMI approximation of originalXP, not removal of an independent native ability. No abilities/Goonk member is owned.",
+      "nativeValidationPending": true
+    },
+    {
+      "sourceId": 261,
+      "nativeId": "third-upgrades:tumSpecter",
+      "file": "mod/third-upgrades/content/config/creatures/necropolis/lvl3Upg2.json",
+      "fileSha256": "9b6d3a0d16c00b1df2c00e9549a9940f41cb1f0340800e1f338f8126449f3b5d",
+      "jsonKey": "tumSpecter",
+      "index": 1,
+      "expectedRow": {
+        "bonus": {
+          "type": "SPELL_AFTER_ATTACK",
+          "subtype": "spell.sorrow",
+          "addInfo": [
+            2,
+            2
+          ]
+        },
+        "values": [
+          0,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      "memberSha256": "9ff7f1fd863f54f86eef75f582d775b068aeda8eb5addb53cbb748314a1097b2",
+      "replacementSourceRows": [
+        {
+          "key": "261:p:52",
+          "sourceLine": 1302,
+          "cacheSlot": 8,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "key": "261:J:45",
+          "sourceLine": 1299,
+          "cacheSlot": 5,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        }
+      ],
+      "reason": "Native afterSorrow50 is a mistranslation; source casts are beforepMisfortune52 thenJWeakness45, no sourceafter50.",
+      "ownership": "explicit-whole-source-XP-carrier-replacement",
+      "interpretation": "Correct a documented VCMI approximation of originalXP, not removal of an independent native ability. No abilities/Goonk member is owned.",
+      "nativeValidationPending": true
+    },
+    {
+      "sourceId": 228,
+      "nativeId": "third-upgrades:tumMedusaEmpress",
+      "file": "mod/third-upgrades/content/config/creatures/dungeon/lvl4Upg2.json",
+      "fileSha256": "08a23e9ba1397aa8fbd93121eae91d0d0c81574386169b08d9d694c5e855d975",
+      "jsonKey": "tumMedusaEmpress",
+      "index": 1,
+      "expectedRow": {
+        "bonus": {
+          "type": "SPELL_AFTER_ATTACK",
+          "subtype": "spell.stoneGaze",
+          "addInfo": [
+            0,
+            1
+          ]
+        },
+        "values": [
+          0,
+          0,
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          15
+        ]
+      },
+      "memberSha256": "65ce77b43c8454df4d52c02753d6b8a971bbbebe05e4efd2b5e62aa713f705c2",
+      "replacementSourceRows": [
+        {
+          "key": "228:a:70",
+          "sourceLine": 1123,
+          "cacheSlot": 6,
+          "chances": [
+            0,
+            0,
+            0,
+            5,
+            5,
+            10,
+            10,
+            15,
+            20,
+            25,
+            30
+          ]
+        }
+      ],
+      "reason": "Same sourcea70 but wrong chance vector; source5%perrank must own exactlyone proc.",
+      "ownership": "explicit-whole-source-XP-carrier-replacement",
+      "interpretation": "Correct a documented VCMI approximation of originalXP, not removal of an independent native ability. No abilities/Goonk member is owned.",
+      "nativeValidationPending": true
+    },
+    {
+      "sourceId": 236,
+      "nativeId": "third-upgrades:tumLightningbird",
+      "file": "mod/third-upgrades/content/config/creatures/stronghold/lvl5Upg2.json",
+      "fileSha256": "40d6b15321781ee3484126e5fdd38ce6f17b7c54cc73b2dd7763d0bc8b8808e4",
+      "jsonKey": "tumLightningbird",
+      "index": 0,
+      "expectedRow": {
+        "bonus": {
+          "type": "SPELL_AFTER_ATTACK",
+          "subtype": "spell.thunderbolt",
+          "addInfo": [
+            1,
+            2
+          ]
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          10,
+          20,
+          30,
+          40,
+          50
+        ]
+      },
+      "memberSha256": "e26ec959c925c7f1364bf28298a82d7d5ecfca3fcbe9098c1d7f1f9de3a5de40",
+      "replacementSourceRows": [
+        {
+          "key": "236:a:19",
+          "sourceLine": 1161,
+          "cacheSlot": 6,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        }
+      ],
+      "reason": "Native XPThunderbolt77 differs from sourceaChainLightning19; no sourceaThunderbolt row survives.",
+      "ownership": "explicit-whole-source-XP-carrier-replacement",
+      "interpretation": "Correct a documented VCMI approximation of originalXP, not removal of an independent native ability. No abilities/Goonk member is owned.",
+      "nativeValidationPending": true
+    }
+  ]
+}

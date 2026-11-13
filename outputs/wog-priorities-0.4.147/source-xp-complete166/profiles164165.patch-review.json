@@ -1,0 +1,69 @@
+{
+  "activation": false,
+  "nativeValidated": false,
+  "beforeSha256": "9f8c11e1b9342b8e3b0aa3ea4912d12a0d44b5e5d994b7256bd4a67490de0021",
+  "changes": [
+    {
+      "nativeId": "wake-of-gods.messengersandemissaries:fireMessenger",
+      "sourceId": 164,
+      "expected": {
+        "fullRank10": 87500,
+        "rank11Extra": 26250,
+        "battlePercent": 30,
+        "experienceMultiplier": 1,
+        "upgradeMultiplier": 0.75
+      },
+      "value": {
+        "experienceMultiplier": 1,
+        "upgradeMultiplier": 0.75,
+        "fullRank10": 105000,
+        "battlePercent": 25,
+        "rank11Extra": 21000
+      },
+      "sourceProofSha256": "5fbd7fc13a5e3c4e6ea8f42e590ddc10aa55820a76347baa21bd6bfd6356dd4a",
+      "sourceFallbackOriginal": {
+        "contract": "source-original-level-plus-one-tier-v1",
+        "sourceLevel": 5,
+        "profileTier": -6,
+        "levelEvidence": {
+          "kind": "WoGExtensionInitializationCopy77",
+          "address": "0x787c7c"
+        },
+        "crexpmodSha256": "d4c3e9ba8814529e87c3a649da525dd4700f5f913d1895af89f8f75977bf973d",
+        "nativeRankProgressionValidationPending": true
+      }
+    },
+    {
+      "nativeId": "wake-of-gods.messengersandemissaries:earthMessenger",
+      "sourceId": 165,
+      "expected": {
+        "fullRank10": 87500,
+        "rank11Extra": 26250,
+        "battlePercent": 30,
+        "experienceMultiplier": 1,
+        "upgradeMultiplier": 0.75
+      },
+      "value": {
+        "experienceMultiplier": 1,
+        "upgradeMultiplier": 0.75,
+        "fullRank10": 105000,
+        "battlePercent": 25,
+        "rank11Extra": 21000
+      },
+      "sourceProofSha256": "37f36c39cfd527b46eef313b87666c4d02d033f0c6f383f3228324681242036f",
+      "sourceFallbackOriginal": {
+        "contract": "source-original-level-plus-one-tier-v1",
+        "sourceLevel": 5,
+        "profileTier": -6,
+        "levelEvidence": {
+          "kind": "WoGExtensionInitializationCopy77",
+          "address": "0x787cf0"
+        },
+        "crexpmodSha256": "d4c3e9ba8814529e87c3a649da525dd4700f5f913d1895af89f8f75977bf973d",
+        "nativeRankProgressionValidationPending": true
+      }
+    }
+  ],
+  "allOtherProfilesPreserved": true,
+  "goonkPreserved": true
+}

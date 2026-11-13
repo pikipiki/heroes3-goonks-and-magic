@@ -8,7 +8,10 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraWeakness45State.h"
+#include "../era/EraXpTimed184Lifecycle.h"
 #include "../era/EraSourceDefendState.h"
+#include "../era/EraDragonFly241State.h"
 #include "../era/EraStatusHealth.h"
 #include "../era/EraBattleSlots.h"
 #include <tuple>
@@ -697,6 +700,8 @@ void BattleInfo::nextRound()
         const bool sourceHealth=era_compat::sourceStatusUsesProfile(*s);
         const int oldMaximum=s->getMaxHealth();
         // Original446EDA expires statuses first, then446F11 advances poison.
+        era_compat::sourceWeakness45AdvanceLocal(*s,tacticDistance>0);
+        era_compat::advanceXpTimed184Local(*s,tacticDistance>0);
         s->reduceBonusDurations(Bonus::NTurns);
         if(sourceHealth && s->alive())
         {
@@ -808,6 +813,11 @@ void BattleInfo::setUnitState(uint32_t id, const JsonNode & data, int64_t health
 
 	//applying changes
 	changedStack->load(data);
+    // Same injury packet on server/client; the transient flag is deliberately
+    // not part of CUnitState serialization. Full sourceB block never sets it.
+    if(healthDelta<0 || (data["eraSourceXpDamageEntered"].isBool()&&data["eraSourceXpDamageEntered"].Bool()))
+        era_compat::wakeXpTimed184Local(*changedStack);
+    if(killed)era_compat::clearXpTimed184OnDeath(*changedStack);
 
 
 	if(healthDelta < 0)
@@ -824,6 +834,7 @@ void BattleInfo::setUnitState(uint32_t id, const JsonNode & data, int64_t health
 
 	if(killed)
 	{
+        era_compat::sourceWeakness45ClearOnDeathLocal(*changedStack);
 		if(changedStack->cloneID >= 0)
 		{
 			//remove clone as well
@@ -954,12 +965,19 @@ void BattleInfo::removeUnitBonus(uint32_t id, const std::vector<Bonus> & bonus)
 
     const bool oldProfile=era_compat::sourceStatusUsesProfile(*sta);
     const int oldMaximum=sta->getMaxHealth();
+    era_compat::dragonFly241BeforeRemoval(*sta,bonus);
 	for(const Bonus & one : bonus)
 	{
 		auto selector = [one](const Bonus * b)
 		{
             const auto sourceDefend=era_compat::sourceDefendRemovalIdentity(one,*b);
             if(sourceDefend && !*sourceDefend)return false;
+            const auto source45=era_compat::sourceWeakness45RemovalIdentity(one,*b);
+            if(source45 && !*source45)return false;
+            const auto source241=era_compat::dragonFly241RemovalIdentity(one,*b);
+            if(source241 && !*source241)return false;
+            const auto sourceTimed=era_compat::xpTimed184RemovalIdentity(one,*b);
+            if(sourceTimed && !*sourceTimed)return false;
 			//compare everything but turnsRemain, limiter and propagator
 			return one.duration == b->duration
 			&& one.type == b->type
@@ -983,7 +1001,14 @@ uint32_t BattleInfo::nextUnitId() const
 
 void BattleInfo::addOrUpdateUnitBonus(CStack * sta, const Bonus & value, bool forceAdd)
 {
-	if(forceAdd || !sta->hasBonus(Selector::source(BonusSource::SPELL_EFFECT, value.sid).And(Selector::typeSubtypeValueType(value.type, value.subtype, value.valType))))
+    const auto source184UpdateCompatible=[&value](const Bonus*b)
+    {
+        if(era_compat::sourceTimedOwnedTag(value.stacking)||era_compat::sourceTimedOwnedTag(b->stacking)
+            ||era_bridge::weakness45OwnedTag(value.stacking)||era_bridge::weakness45OwnedTag(b->stacking))
+            return value.stacking==b->stacking;
+        return true;
+    };
+	if(forceAdd || !sta->hasBonus(Selector::source(BonusSource::SPELL_EFFECT, value.sid).And(Selector::typeSubtypeValueType(value.type, value.subtype, value.valType)).And(source184UpdateCompatible)))
 	{
 		//no such effect or cumulative - add new
 		logBonus->trace("%s receives a new bonus: %s", sta->nodeName(), value.Description(nullptr));
@@ -995,7 +1020,7 @@ void BattleInfo::addOrUpdateUnitBonus(CStack * sta, const Bonus & value, bool fo
 
 		for(const auto & stackBonus : sta->getExportedBonusList()) //TODO: optimize
 		{
-			if(stackBonus->source == value.source && stackBonus->sid == value.sid && stackBonus->type == value.type && stackBonus->subtype == value.subtype && stackBonus->valType == value.valType)
+			if(stackBonus->source == value.source && stackBonus->sid == value.sid && stackBonus->type == value.type && stackBonus->subtype == value.subtype && stackBonus->valType == value.valType && source184UpdateCompatible(stackBonus.get()))
 			{
 				stackBonus->turnsRemain = std::max(stackBonus->turnsRemain, value.turnsRemain);
                 if(value.type==BonusType::POISON && value.val==50

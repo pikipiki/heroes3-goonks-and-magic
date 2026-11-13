@@ -324,14 +324,17 @@ void CBonusSystemNode::accumulateBonus(const std::shared_ptr<Bonus>& b)
 
 void CBonusSystemNode::removeBonus(const std::shared_ptr<Bonus>& b)
 {
-	exportedBonuses -= b;
-	if(b->propagator)
+	// Callers may pass an element of exportedBonuses by reference. Erasing it
+	// shifts the vector, so retain the same bonus through both removals.
+	const auto removed = b;
+	exportedBonuses -= removed;
+	if(removed->propagator)
 	{
-		unpropagateBonus(b);
+		unpropagateBonus(removed);
 	}
 	else
 	{
-		bonuses -= b;
+		bonuses -= removed;
 		nodeHasChanged();
 	}
 }

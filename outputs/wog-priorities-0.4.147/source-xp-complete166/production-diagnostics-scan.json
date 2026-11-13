@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "privateDiagnosticsAbsent": true,
+  "forbiddenTokens": [
+    "private184",
+    "private179",
+    "EraPrivate184Trace",
+    "goonk_xp184_private",
+    "GOONK_PRIVATE"
+  ],
+  "files": {
+    "dosvcmi.png": "472ae168f2b622ca6c01f1740a90b3bac545b45923cd57bc141f88d6f8cb3a42",
+    "vcmiclient.js.symbols": "f3a82e330ca56ea323151049c9f049e6213480cd94204f02540c55f66c322d52",
+    "vcmiclient.data": "7527fc4e8be150749acf3c6a21f5eb86d9fa0354988eea5fa2505ecb866c7229",
+    "vcmiclient.js": "3f3763507858fe9eecb65d3d7e02058ba66d055fc26b6ef1f54cfb463e39f958",
+    "mini-lz4.js": "1efee24544e11330a986718249326e2ea5c3f4ee77e0496d6ca71646061393c6",
+    "dialogs.js": "8e01abeec7194acfdef0eedeaed67bab7bccc1cf9df22a1fa0a77306d03586d6",
+    "game.html": "9f9d689629f40e19b3e35ca625232f0c204eacda7f2dad02063094b5503a0425",
+    "vcmiclient.data.js": "d416e1bd2fc20187248ea4e7c31514c85b3e3bdf42215ed750e74e61055aa010",
+    "vcmiclient.wasm": "872f8f6104d40b66b8aa8a293766ff4e60ada0a6a7b801ccfa953c00a15437ef",
+    "opfs-worker.js": "e65c86be545c0c1ae06912c9536a9779e91fb7412de6143045bccd280c90dff7"
+  }
+}

@@ -224,6 +224,9 @@ void BattleInterface::stackRemoved(uint32_t stackID)
 void BattleInterface::stackActivated(const CStack *stack)
 {
 	stacksController->stackActivated(stack);
+    // Round-start and obstacle spells may run after EndAction. Activation
+    // waits for their animations, so the mobile camera can return control here.
+    mobileCamera.active=false;
 }
 
 void BattleInterface::stackMoved(const CStack *stack, const BattleHexArray & destHex, int distance, bool teleport)

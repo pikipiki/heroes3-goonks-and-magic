@@ -169,7 +169,6 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 25	M	+	0	0	2	2	4	4	4	6	7	9	9	War Unicorn: Max. Damage R2/R4/R7/R8/R9
 25	m	+	0	1	2	4	4	4	4	6	6	7	7	War Unicorn: Min. Damage R1/R2/R3/R7/R9
 25	S	+	0	0	0	0	1	1	1	1	1	1	2	War Unicorn: Speed R4/R10
-25	a	#62	0	0	5	5	10	10	15	15	20	25	30	War Unicorn: Blind bonus R2/R4/R6/R8/R9/R10
 25	f	f	0	0	0	0	0	0	1	1	1	1	1	War Unicorn: Fearless R6
 26	A	+	0	1	2	2	4	5	5	7	7	7	9	Green Dragon: Attack R1/R2/R4/R5/R7/R10
 26	D	+	0	2	2	4	4	7	7	9	9	11	11	Green Dragon: Defense R1/R3/R5/R7/R9
@@ -192,11 +191,9 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 27	w	0	0	0	0	0	0	0	0	1	1	1	1	Gold Dragon: No Immunity to Beneficial Spells R7
 28	S	+	0	0	0	0	1	1	1	1	1	1	1	Gremlin: Speed R4
 28	h	#42	0	1	2	3	4	5	5	5	5	5	5	Gremlin: Hatred Dmg-Imp (50% R10)
-28	J	#11	0	5	10	15	20	25	30	35	40	45	50	Gremlin: Landmine pre-attack 5%/Rank
 29	S	+	0	0	0	0	1	1	1	1	1	1	1	Master Gremlin: Speed R4
 29	h	#43	0	1	2	3	4	5	5	5	5	5	5	Master Gremlin: Hatred Dmg-Familiar (50% R10)
 29	O	+	0	1	2	3	4	5	6	7	8	9	10	Master Gremlin: +1 Shot/Rank
-29	J	#11	0	5	10	15	20	25	30	35	40	45	50	Master Gremlin: Landmine pre-attack 5%/Rank
 30	S	+	0	0	0	0	1	1	1	1	1	1	2	Stone Gargoyle: Speed R4/R10
 30	s	#46	0	0	0	1	1	2	2	2	2	5	5	"Stone Gargoyle: Stone Skin R3/R5, Mass R9"
 30	w	E	0	0	0	0	0	0	0	1	1	1	1	Stone Gargoyle: Immune to Hostile Earth Spells R7
@@ -261,7 +258,6 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 47	s	#31	0	0	0	1	1	1	1	1	2	2	2	Cerberus: Protection from Fire R3=30% R8=50%
 47	R	+	0	0	0	0	0	1	1	1	2	2	2	Cerberus: Retaliate Twice R8/R9/R10
 47	h	#5	0	0	0	0	0	0	1	2	3	4	5	Cerberus: Hatred Dmg-Royal Griffin (50% R10)
-47	a	#73	0	5	10	15	20	25	30	35	40	45	50	Cerberus: Disease post-attack 5%/Rank
 47	f	f	0	0	0	0	0	0	0	0	1	1	1	Cerberus: Fearless R8
 48	S	+	0	0	0	0	1	1	1	1	1	1	1	Demon: Speed R4
 48	s	#31	0	1	1	1	1	1	1	2	2	2	2	Demon: Protection from Fire R1=30% R7=50%
@@ -324,13 +320,11 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 57	w	P	0	0	0	0	0	0	0	1	1	0	0	Skeleton Warrior: Immune to all Regular Dispels R7-R8
 57	w	p	0	0	0	0	0	0	0	0	0	1	1	Skeleton Warrior: Immune to Hostile Dispels R9
 58	S	+	0	0	0	0	1	1	1	1	1	1	1	Walking Dead: Speed R4
-58	K	#54	0	5	10	15	20	25	30	35	40	45	50	Walking Dead: Advanced Slow after attack 5%/Rank
 58	w	1	0	0	0	0	0	1	1	1	1	1	1	Walking Dead: Immune to Hostile L1 Spells R5
 59	S	+	0	0	0	0	1	1	1	1	1	1	1	Zombie: Speed R4
 59	c	#73	0	8	16	24	32	40	48	56	64	72	80	Zombie: Disease +8%/Rank
 59	w	1	0	0	0	0	0	1	1	1	1	1	1	Zombie: Immune to Hostile L1 Spells R5
 60	S	+	0	0	0	0	1	1	1	1	1	1	1	Wight: Speed R4
-60	J	#45	0	5	10	15	20	25	30	35	40	45	50	Wight: Advanced Weakness pre-attack 5%/Rank
 60	W	+	0	6	12	18	24	30	36	42	48	54	60	Wight: 6% Magic Resistance/Rank
 61	S	+	0	0	0	0	1	1	1	1	1	1	2	Wraith: Speed R4/R10
 61	p	#52	0	5	10	15	20	25	30	35	40	45	50	Wraith: Mass Misfortune pre-attack 5%/Rank
@@ -340,7 +334,6 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 62	f	D	2	2	2	2	2	2	2	2	2	1	1	Vampire: Double Strike R9
 63	S	+	0	0	0	0	1	1	1	1	1	1	2	Vampire Lord: Speed R4/R10
 63	b	=	0	5	10	15	20	25	30	35	40	45	50	Vampire Lord: Reduce Target's Defense 5%/Rank
-63	a	#60	0	2	4	6	8	10	12	14	16	18	20	Vampire Lord: Hypnotize 2%/Rank
 64	S	+	0	0	0	0	1	1	1	1	1	1	2	Lich: Speed R4/R10
 64	p	#24	0	5	10	15	20	25	30	35	40	45	50	Lich: Death Ripple pre-attack 5%/Rank
 64	w	1	0	0	0	0	0	1	1	1	1	1	1	Lich: Immune to L1 Spells R5
@@ -352,7 +345,6 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 65	w	2	0	0	0	0	0	0	0	0	0	1	1	Power Lich: Immune to L2 Spells R9
 65	h	#35	0	1	2	3	4	5	6	7	8	9	10	Power Lich: Hatred Dmg-Arch Mage
 66	S	+	0	0	0	0	1	1	1	1	1	1	2	Black Knight: Speed R4/R10
-66	a	#78	0	10	20	30	40	50	60	70	80	90	100	Black Knight: Dispel Beneficial Spells 10%/Rank
 66	f	R	2	2	2	2	2	2	2	1	1	1	1	Black Knight: No Retaliation R7
 66	h	#10	0	1	2	3	4	5	6	7	8	9	10	Black Knight: Hatred Dmg-Cavalier
 67	S	+	0	0	0	0	1	1	1	1	1	1	2	Dread Knight: Speed R4/R10
@@ -393,7 +385,6 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 75	S	+	0	0	0	0	1	1	1	1	1	1	2	Evil Eye: Speed R4/R10
 75	w	m	0	0	0	0	0	0	0	1	1	1	1	Evil Eye: Immune to Hostile Mind Spells R7
 76	S	+	0	0	0	0	1	1	1	1	1	1	1	Medusa: Speed R4
-76	a	#70	0	0	0	5	5	10	10	15	20	25	30	Medusa: Petrify bonus R3/R5/R7/R8/R9/R10
 76	O	+	0	1	1	1	2	2	2	3	3	3	4	"Medusa: Extra Shots +1/Three Ranks, +1 R10"
 77	S	+	0	0	0	0	1	1	1	1	1	1	2	Medusa Queen: Speed R4/R10
 77	i	+	0	0	0	0	0	0	0	1	1	1	1	Medusa Queen: No Range Penalty R7
@@ -408,7 +399,6 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 80	R	+	0	0	0	0	0	1	1	1	1	1	2	Manticore: Extra Retaliations R5/R10
 80	c	#71	0	5	10	15	20	25	30	35	40	45	50	Manticore: Poison 5%/Rank
 81	S	+	0	0	0	0	1	1	2	2	2	2	3	Scorpicore: Speed R4/R6/R10
-81	a	#74	0	0	0	0	0	5	5	10	10	15	20	Scorpicore: Paralyze bonus R5/R7/R9/R10
 81	c	#80	0	5	10	15	20	25	30	35	40	45	50	Scorpicore: Acid Breath 5%/Rank
 82	S	+	0	0	0	0	1	1	2	2	2	2	3	Red Dragon: Speed R4/R6/R10
 82	h	#40	5	7	9	11	13	15	17	19	21	23	25	Red Dragon: Hatred Dmg-Giant +20%/Rank
@@ -452,10 +442,8 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 91	p	#43	0	0	0	4	7	10	13	16	19	22	25	Ogre Magi: Mass Bloodlust pre-attack 3%/Rank R3
 91	e	=	0	0	0	4	8	12	16	20	24	28	35	Ogre Magi: Double Damage Death Blow (35% at R10)
 92	r	#100	0	9	18	27	36	45	54	63	72	81	90	Roc: Regeneration 9HP/Rank
-92	a	#17	0	5	10	15	20	25	30	35	40	45	50	Roc: Lightning Bolt 5%/Rank
 92	S	+	0	0	0	0	1	1	1	1	1	1	2	Roc: Speed R4/R10
 93	r	#100	0	9	18	27	36	45	54	63	72	81	90	Thunderbird: Regeneration 9HP/Rank
-93	a	#17	0	5	10	15	20	25	30	35	40	45	50	Thunderbird: Lightning Bolt 5%/Rank
 93	S	+	0	0	0	0	1	1	2	2	2	2	3	Thunderbird: Speed R4/R6/R10
 94	S	+	0	0	0	0	1	1	1	1	1	1	2	Cyclops: Speed R4/R10
 94	o	=	0	0	0	0	0	1	1	1	1	1	1	Cyclops: No Obstacle Penalty R5
@@ -502,9 +490,7 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 105	f	A	2	2	2	2	2	2	2	1	1	1	1	Dragon Fly: Attack All Adjacent R7
 105	R	+	0	0	0	0	0	1	1	2	2	3	4	Dragon Fly: Extra Retals R5/R7/R9/R10
 106	S	+	0	0	0	0	1	1	1	1	1	1	1	Basilisk: Speed R4
-106	a	#70	0	3	6	9	12	15	18	21	24	27	30	Basilisk: Petrification +3%/Rank
 107	S	+	0	0	0	0	1	1	1	1	1	1	2	Greater Basilisk: Speed R4/R10
-107	a	#70	0	3	6	9	12	15	18	21	24	27	30	Greater Basilisk: Petrification +3%/Rank
 102	S	+	0	0	0	0	1	1	1	1	1	1	1	Gorgon: Speed R4
 102	f	D	2	2	2	2	2	2	2	1	1	1	1	Gorgon: Double Strike R7
 102	F	=	0	0	0	0	0	1	1	1	1	1	1	Gorgon: Fear R5
@@ -635,7 +621,6 @@ Mon	B	Mod	R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	Comments
 140	f	c	0	0	0	1	1	1	1	1	1	1	1	Boar: Champion Charge R3
 140	c	#73	0	5	10	15	20	25	30	35	40	45	50	Boar: Disease 5%/Rank
 141	S	+	0	0	0	0	1	1	1	1	1	1	1	Mummy: Speed R4
-141	a	#42	0	2	4	6	8	10	12	14	16	18	20	Mummy: Mass Curse post-attack 2%/Rank
 142	S	+	0	0	0	0	1	1	1	1	1	1	2	Nomad: Speed R4/R10
 142	f	b	0	0	0	1	1	1	1	1	1	1	1	Nomad: Strike & Return R3
 142	f	c	0	0	0	0	0	0	0	1	1	1	1	Nomad: Champion Charge R7

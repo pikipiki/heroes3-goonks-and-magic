@@ -902,6 +902,11 @@ JsonNode CSpellWindow::mobileSnapshot()
   row["level"].Integer()=spell->getLevel();
   row["cost"].Integer()=myInt->cb->getSpellCost(spell,myHero);
   row["enabled"].Bool()=row["cost"].Integer()<=myHero->mana;
+  if(row["enabled"].Bool()&&myInt->battleInt&&spell->isCombat())
+  {
+   spells::detail::ProblemImpl problem;
+   row["enabled"].Bool()=spell->canBeCast(problem,myInt->battleInt->getBattle().get(),spells::Mode::HERO,myHero);
+  }
   if(spell->isCombat())
   {
    const CSpell::TargetInfo target(spell,area->schoolLevel,spells::Mode::HERO);

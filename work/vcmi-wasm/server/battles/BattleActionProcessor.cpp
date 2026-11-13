@@ -8,6 +8,11 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraDragonFly241AdmissionRuntime.h"
+#include "../era/EraSourceExperienceRuntime.h"
+#include "../era/EraSourceXpNativeRuntime.h"
+#include "../../lib/era/EraSourceXpRetaliationFrame.h"
+#include "../era/EraSourceXpDispel78LegacyLate.h"
 #include "../era/EraSourceDefendRuntime.h"
 #include "../../lib/era/EraExperienceMagicReductionNative.h"
 #include "../../lib/era/EraOrbChaos238Runtime.h"
@@ -299,6 +304,7 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
         petrification.beforeAction(*gameHandler,battle,stack,destinationStack);
         // Original75CAE1 c selector precedes75CB09 p/J/j; these primary
         // action records run once BEFORE movement and preemptive strikes.
+        era_compat_server::runSourceExperience(*gameHandler,battle,stack,destinationStack,era_bridge::SourceXpPhase::Before);
         era_compat_server::confluxExperienceCasts(*gameHandler,battle,stack,destinationStack,false);
         era_compat_server::primordialExperienceCasts(*gameHandler,battle,stack,destinationStack,false);
     // Apply once per accepted melee action, before movement, first strike or retaliation.
@@ -377,7 +383,9 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
 	const bool sourcePreemptive = era_compat::Policies::get().preemptiveRetaliation(destinationStack->creatureId().toCreature()->getJsonKey());
 	const bool firstStrike = (sourcePreemptive || destinationStack->hasBonus(firstStrikeSelector)) && !destinationStack->hasBonusOfType(BonusType::NOT_ACTIVE);
 
-	const bool retaliation = destinationStack->ableToRetaliate();
+    const bool xpRetaliation=era_compat::sourceXpBattleAdmitted(battle);
+    std::optional<era_bridge::xp184::AttackFrame> xpIncomingStatus;
+    const bool retaliation = destinationStack->ableToRetaliate();
     const auto & sourceCounters = era_compat::FortressCounterstrikes::get();
     const auto defenderKey = destinationStack->creatureId().toCreature()->getJsonKey();
 	bool ferocityApplied = false;
@@ -394,6 +402,7 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
 		//move can cause death, eg. by walking into the moat, first strike can cause death or paralysis/petrification
 		if(stack->alive() && !stack->hasBonusOfType(BonusType::NOT_ACTIVE) && destinationStack->alive())
 		{
+            if(xpRetaliation)xpIncomingStatus=era_compat_server::captureXpTimedAttackFrame(*destinationStack,false);
 			makeAttack(battle, stack, destinationStack, (i ? 0 : movementResult.distance), destinationTile, i==0, false, false, &petrification);//no distance travelled on second attack
 
 			if(!ferocityApplied && stack->hasBonusOfType(BonusType::FEROCITY))
@@ -416,13 +425,18 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
                 || era_compat::OriginalRetaliationShield::get().equipped(battle,*destinationStack))
 			&& !stack->isInvincible()
 			&& (i == 0 && (!firstStrike || sourcePreemptive))
-			&& retaliation && destinationStack->ableToRetaliate())
+            && retaliation && destinationStack->ableToRetaliate()
+            && (!xpIncomingStatus||era_bridge::xp184::normalRetaliationAllowed(*xpIncomingStatus,
+                destinationStack->alive(),destinationStack->counterAttacks.available(),
+                era_compat::readXpTimed184(*destinationStack,70).state.active(),false,true)))
 		{
             //441B4F..55 flips CURRENT side for the normal441330 counter,
             //441B67..72 restores it. Before_strike's earlier call does NOT.
             const auto sourceCurrent=era_compat::confluxActiveSide(battle);
             const auto counterSide=sourceCurrent==BattleSide::ATTACKER?BattleSide::DEFENDER:BattleSide::ATTACKER;
             era_compat::ConfluxCurrentSideScope sourceCounterSide(counterSide);
+            std::optional<era_bridge::SourceXpRetaliationScope> xpCounterDamage;
+            if(xpIncomingStatus)xpCounterDamage.emplace(destinationStack->unitId(),era_bridge::xp184::retaliationPercent(*xpIncomingStatus));
             const bool twice = sourceCounters.twice(defenderKey);
             // DLL10018030 injects the second441330 before original441B7E
             // decrements the counter ONCE. Both hits retain counter semantics.
@@ -454,6 +468,8 @@ bool BattleActionProcessor::doAttackAction(const CBattleInfoCallback & battle, c
 
     // Source445780 calls469020 only after retaliation and double strikes.
     applyEraRebirth(*gameHandler, battle);
+
+    era_compat_server::finishSourceXpPrimaryAttack(*gameHandler,battle,stack);
 
     // ERA sub478230 sets DONE after the complete melee/retaliation sequence,
     // before the return movement. StartAction.movedThisRound is too early.
@@ -514,7 +530,8 @@ bool BattleActionProcessor::doShootAction(const CBattleInfoCallback & battle, co
 
     EraPetrificationSequence petrification;
     petrification.beforeAction(*gameHandler,battle,stack,destinationStack,false);
-    era_compat_server::confluxExperienceCasts(*gameHandler,battle,stack,destinationStack,false);
+    era_compat_server::runSourceExperience(*gameHandler,battle,stack,destinationStack,era_bridge::SourceXpPhase::Before);
+        era_compat_server::confluxExperienceCasts(*gameHandler,battle,stack,destinationStack,false);
     era_compat_server::primordialExperienceCasts(*gameHandler,battle,stack,destinationStack,false);
 	bool firstStrike = false;
 	if(!emptyTileAreaAttack)
@@ -558,6 +575,7 @@ bool BattleActionProcessor::doShootAction(const CBattleInfoCallback & battle, co
 	}
 
     petrification.flush(*gameHandler,battle);
+    era_compat_server::finishSourceXpPrimaryAttack(*gameHandler,battle,stack);
     // Same46453E service accepts primary action7, never ranged retaliation.
     era_compat_server::applySulfideStatuses(*gameHandler,battle,stack,destination);
 	return true;
@@ -828,6 +846,8 @@ bool BattleActionProcessor::dispatchBattleAction(const CBattleInfoCallback & bat
 
 bool BattleActionProcessor::makeBattleActionImpl(const CBattleInfoCallback & battle, const BattleAction &ba)
 {
+    auto sourceNativeAccess=era_compat_server::sourceXpNativeAccess(battle);
+    era_compat::XpTimed184NativeAccessScope sourceNativeScope(sourceNativeAccess);
 	era_compat::OrbChaosActionScope sourceAction(ba.actionType==EActionType::HERO_SPELL);
 	logGlobal->trace("Making action: %s", ba.toString());
 	const CStack * stack = battle.battleGetStackByID(ba.stackNumber);
@@ -869,7 +889,7 @@ bool BattleActionProcessor::makeBattleActionImpl(const CBattleInfoCallback & bat
 		}
 	}
 
-    // Original bit27 precedes native StartAction's current DEFEND flag.
+    // Capture source bit27 before native StartAction marks THIS DEFEND.
     const auto * sourceDefender=ba.actionType==EActionType::DEFEND&&stack&&era_compat_server::sourceDefendBattleEnrolled(battle)?stack:nullptr;
     era_bridge::SourceDefendActionScope sourceDefendAction(sourceDefender,sourceDefender&&sourceDefender->defended(0));
 
@@ -1406,11 +1426,19 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
     era_compat_server::applySourceThunder(*gameHandler,battle,ranged,attacker,defender);
     era_compat_server::applyAcidAttack(*gameHandler, battle, ranged, attacker, defender);
 
+    std::optional<era_compat_server::DragonFly241AttackFrame> source241Frame;
+    if(defender)
+    {
+        const auto source241=era_compat_server::source241AfterPhysical(*gameHandler,battle,attacker,defender);
+        if(source241.handled)source241Frame.emplace(attacker,defender);
+    }
+
     // Source756DBB calls71DBD8 immediately after4408E0, before the caller's
     //4419A0 FireShield. Keep ordinary VCMI after-attack casts at their old point.
     if(defender)
     {
         attackCasting(battle,ranged,BonusType::SPELL_AFTER_ATTACK,attacker,defender,AttackCastFilter::SourceOnly);
+        era_compat_server::runSourceExperience(*gameHandler,battle,attacker,defender,era_bridge::SourceXpPhase::After);
         era_compat_server::confluxExperienceCasts(*gameHandler,battle,attacker,defender,true);
         era_compat_server::primordialExperienceCasts(*gameHandler,battle,attacker,defender,true);
         era_compat_server::applySourceKPoison(*gameHandler,battle,attacker,defender);
@@ -1441,7 +1469,9 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
                 || sourcePolicy.spellDamageInversion(targetKey)
                 || sourcePolicy.physicalDeflection(targetKey).has_value()
                 || sourcePolicy.physicalBlock(targetKey).has_value()
-                || era_compat::ConfluxPolicies::get().owns(targetKey);
+                || era_compat::ConfluxPolicies::get().owns(targetKey)
+                || era_compat_server::DragonFly241AttackFrame::handles(attacker,defender)
+                || (era_compat::sourceXpBattleAdmitted(battle)&&era_compat::SourceXpAdmissionPolicy::get().ownsActor(targetKey));
             if(!sourceDirect)
             {
                 if(actorOwner)
@@ -1461,9 +1491,11 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
 			bsa.flags |= BattleStackAttacked::FIRE_SHIELD;
 			bsa.stackAttacked = attacker->unitId(); //invert
 			bsa.attackerID = defender->unitId();
-			bsa.damageAmount = era_compat_server::applySourcePhysicalWrapper(*gameHandler,battle,attacker,totalDamage);
+			bool sourceShieldEntered=false;
+            bsa.damageAmount = era_compat_server::applySourcePhysicalWrapper(*gameHandler,battle,attacker,totalDamage,&sourceShieldEntered);
             totalDamage = bsa.damageAmount;
 			attacker->prepareAttacked(bsa, gameHandler->getRandomGenerator());
+            if(sourceShieldEntered&&era_compat::sourceXpBattleAdmitted(battle))bsa.newState.data["eraSourceXpDamageEntered"].Bool()=true;
 
 			StacksInjured pack;
 			pack.battleID = battle.getBattle()->getBattleID();
@@ -1494,10 +1526,20 @@ void BattleActionProcessor::attackCasting(const CBattleInfoCallback & battle, bo
 	ObjectInstanceID ownerArmy = battle.getBattle()->getSideArmy(attacker->unitSide())->id;
     const bool sourceEntryAlive=attacker->alive() && defender->alive();
 
-	if(attacker->hasBonusOfType(attackMode))
-	{
-		TConstBonusListPtr spells = attacker->getBonuses(Selector::type()(attackMode));
+    const auto late66Row=std::find_if(era_bridge::sourceXpAdmissionRows.begin(),era_bridge::sourceXpAdmissionRows.end(),[](const auto &r){return r.sourceId==66;});
+    const auto * late66Actor=dynamic_cast<const CStack *>(attacker);
+    const bool late66=!ranged&&attackMode==BonusType::SPELL_AFTER_ATTACK&&filter==AttackCastFilter::NativeOnly
+        &&late66Actor&&attacker->creatureId().toCreature()->getJsonKey()==late66Row->nativeId
+        &&era_compat::sourceXpBattleAdmitted(battle)&&era_compat::SourceXpAdmissionPolicy::get().owns(*late66Row)
+        &&era_compat_server::sourceXpModuleEnabled(*gameHandler);
+    if(attacker->hasBonusOfType(attackMode)||late66)
+    {
+        TConstBonusListPtr spells = attacker->getBonuses(Selector::type()(attackMode));
+        const bool split241=attackMode==BonusType::SPELL_AFTER_ATTACK&&filter!=AttackCastFilter::SourceOnly
+            &&era_compat_server::DragonFly241AttackFrame::handles(attacker,defender);
+        if(split241)spells=era_compat_server::source241WithoutOwnedNativeDispel(spells,attacker,defender);
 		std::set<SpellID> spellsToCast = getSpellsForAttackCasting(spells, defender);
+        if(split241||late66)spellsToCast.insert(SpellID(78)); // native custom-only lane at78, not merged with banners.
 
         std::vector<SpellID> orderedSpells(spellsToCast.begin(), spellsToCast.end());
         // Original71DBD8 executes a before K (then k), independent of SpellID.
@@ -1513,6 +1555,11 @@ void BattleActionProcessor::attackCasting(const CBattleInfoCallback & battle, bo
             std::stable_sort(orderedSpells.begin(), orderedSpells.end(), [&](SpellID lhs, SpellID rhs) { return priority(lhs) < priority(rhs); });
 		for(SpellID spellID : orderedSpells)
 		{
+            if(late66&&spellID==SpellID(78))
+                era_compat_server::castXpDispel78LegacyLate(*gameHandler,battle,late66Actor,defender,*late66Row,
+                    late66Actor->base?late66Actor->base->getExpRank():0,true,ranged);
+            if(split241&&spellID==SpellID(78)&&era_compat_server::DragonFly241AttackFrame::consumeLate(attacker,defender))
+                era_compat_server::castSourceDragonFly241CustomLate(*gameHandler,battle,dynamic_cast<const CStack *>(attacker),defender,true);
             // STONE selector5 is queued by the melee sequence service, including
             // counterstrikes; never cast an inherited immediate copy.
             const int sourceMastery = sourceContracts.mastery(creatureKey, spellID.toSpell()->getJsonKey(), attackMode);
@@ -1534,6 +1581,8 @@ void BattleActionProcessor::attackCasting(const CBattleInfoCallback & battle, bo
 			}
 			int32_t spellLevel = 0;
 			TConstBonusListPtr spellsByType = attacker->getBonuses(Selector::typeSubtype(attackMode, BonusSubtypeID(spellID)));
+            if(split241)spellsByType=era_compat_server::source241WithoutOwnedNativeDispel(spellsByType,attacker,defender);
+            if((split241||late66)&&spellsByType->empty())continue;
 			for(const auto & sf : *spellsByType)
 			{
 				int meleeRanged = -1;
@@ -1546,7 +1595,7 @@ void BattleActionProcessor::attackCasting(const CBattleInfoCallback & battle, bo
 				if (meleeRanged == -1 || meleeRanged == 0 || (meleeRanged == 1 && ranged) || (meleeRanged == 2 && !ranged))
 					castMe = true;
 			}
-			int chance = attacker->valOfBonuses(Selector::typeSubtype(attackMode, BonusSubtypeID(spellID)));
+            int chance=split241?spellsByType->totalValue():attacker->valOfBonuses(Selector::typeSubtype(attackMode,BonusSubtypeID(spellID)));
 			vstd::amin(chance, 100);
 
 			const CSpell * spell = SpellID(spellID).toSpell();
@@ -1621,6 +1670,9 @@ void BattleActionProcessor::attackCasting(const CBattleInfoCallback & battle, bo
 			//casting
 			if(castMe)
 			{
+                const bool originalProvider=sourceExperienceCast||std::all_of(spellsByType->begin(),spellsByType->end(),[&](const auto & b)
+                    {return b->source==BonusSource::CREATURE_ABILITY&&b->sid==BonusSourceID(attacker->creatureId());});
+                era_compat_server::SourceXpNativeProviderScope originalScope(originalProvider);
 				parameters.cast(gameHandler->spellcastEnvironment(), target);
 			}
 		}
@@ -1949,6 +2001,8 @@ void BattleActionProcessor::applyBattleEffects(const CBattleInfoCallback & battl
             bsa.damageAmount = applyEraDeflection(def, gameHandler->getRandomGenerator(), bsa.damageAmount, [&](int strength,int chance){auto message=eraDeflectionLog(battle.getBattle()->getBattleID(),strength,chance);gameHandler->sendAndApply(message);});
         }
 		CStack::prepareAttacked(bsa, gameHandler->getRandomGenerator(), bai.defender->acquireState()); //calculate casualties
+        if(!sourcePhysicalBlocked&&era_compat::sourceXpBattleAdmitted(battle))
+            bsa.newState.data["eraSourceXpDamageEntered"].Bool()=true;
 	}
 
 	//life drain handling

@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "activated": true,
+  "release": "0.4.166",
+  "contractsSha256": "f6cb460046452fab0154aeeae530f2df5e8b95cb953091ab58d604c2c3047bc2",
+  "migrationSha256": "c28da1e68f040fd5249484d14ef5c594c80902fdaafdc4b4e692847764dc5987",
+  "policySha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+  "patchSha256": "dfd70853b498c6097bcea7360be35f60be4d2b65604eaa0d79e0123d1cf9f723",
+  "changes": [
+    {
+      "file": "mod/wake-of-gods/Mods/stackExperience/Content/data/crexpbon.txt",
+      "beforeSha256": "6a8bf919a66f80d2015066fffa2e2b3aa8e73d0c3771558d0c038f302ac7a6c6",
+      "afterSha256": "8e983267ac196bcde5492d64d908d4aa940f9b3b01cbef1e9e5bfbe2d710c129"
+    },
+    {
+      "file": "mod/third-upgrades/content/config/creatures/rampart/lvl6Upg2.json",
+      "beforeSha256": "88c9ec40695d82b513e06e6d34c13678724ee4ee094ac15db267d37b44e58a7c",
+      "afterSha256": "588d2661e9f8f5d4076c1b39c972f69e29b2f904531a58796a62d3828882eeb6"
+    },
+    {
+      "file": "mod/third-upgrades/content/config/creatures/necropolis/lvl3Upg2.json",
+      "beforeSha256": "9b6d3a0d16c00b1df2c00e9549a9940f41cb1f0340800e1f338f8126449f3b5d",
+      "afterSha256": "76672447a57ac2ba75300d99bf299d56b1b510932ee461a0362d1cdcc1b203fd"
+    },
+    {
+      "file": "mod/third-upgrades/content/config/creatures/dungeon/lvl4Upg2.json",
+      "beforeSha256": "08a23e9ba1397aa8fbd93121eae91d0d0c81574386169b08d9d694c5e855d975",
+      "afterSha256": "fcd237ef0ffc55b76445412e7784634b82ea38ba8c36313fec63a431396f8edc"
+    },
+    {
+      "file": "mod/third-upgrades/content/config/creatures/stronghold/lvl5Upg2.json",
+      "beforeSha256": "40d6b15321781ee3484126e5fdd38ce6f17b7c54cc73b2dd7763d0bc8b8808e4",
+      "afterSha256": "49198aea9cb7f2848166cd7510e05db3a9899e9bedc001572f6c711edf4253d5"
+    },
+    {
+      "file": "mod/third-upgrades/content/config/creatures/fortress/lvl4Upg2.json",
+      "beforeSha256": "35c2349881d6e79f9b8a819e125d755ecd8a2aa12f198484abae3c24149bcfb5",
+      "afterSha256": "95466eb787d0905c3615e40728a4eb8712e0535c9c0e7bc157068e71f57c3ef0"
+    },
+    {
+      "file": "mod/wake-of-gods/Mods/messengersAndEmissaries/Mods/Bonuses icons/content/config/stack-xp.json",
+      "beforeSha256": "ed97c004e47dce219e4cfc1238b22f438272cc7447e9637050d71ed10bb94125",
+      "afterSha256": "460d50bccc4df9d143149e673a2d7383dd40e4d91a5d483f0bf3c82f1f218b0a"
+    },
+    {
+      "file": "mod/wake-of-gods/Mods/messengersAndEmissaries/content/config/creatures/stackExperience/messengers.json",
+      "beforeSha256": "3f2487fd3c0cc37d623f70dba50969a41bab600b18f93ff48244f527ed9c6f3b",
+      "afterSha256": "566c3fe3684b472304ab82238d08f91c291adeb784cb60e80e7556cdb7a596ef"
+    },
+    {
+      "file": "mod/wake-of-gods/Mods/stackExperience/Content/config/rampartCreaturesStackExp.json",
+      "beforeSha256": "78ce85468e5ee96bcf58576a1b9ac04b4686101efcce61daa940209cea85a26b",
+      "afterSha256": "6fed40c934d2e6ebb9c6dba36a15b042f2b034ff48d27e50f7311b281ac4f245"
+    },
+    {
+      "file": "mod/wake-of-gods/Mods/stackExperience/Content/config/towerCreaturesStackExp.json",
+      "beforeSha256": "e85d13f46dd8cb40012f09d2d58061dc1f0457c34a3dba1c31d600a170c44600",
+      "afterSha256": "0ec28804f4ba572127f4b2ad45783e9d44111f88f65b3c665c600d1cb1886c21"
+    },
+    {
+      "file": "mod/wake-of-gods/Mods/stackExperience/Content/config/necropolisCreaturesStackExp.json",
+      "beforeSha256": "9d5f6a832bd57c3ee2e18b2f425ab2939f5cb0b2d2ff23577a3fab2cbec636ba",
+      "afterSha256": "e086dd5b6ffcb5b456bdf0b3544242731ed7785431fcdb74048d29be6b8e143f"
+    },
+    {
+      "file": "mod/wake-of-gods/Mods/stackExperience/Content/config/infernoCreaturesStackExp.json",
+      "beforeSha256": "66522d6d95157a1f1d4e2b3e8c9b71bd65d57f386bd9ef4bcf0d250153c46030",
+      "afterSha256": "ae35d52c3b4717999a60ce4e6fd6e4718d7a8d2cfcb8f7eac884640691cd1972"
+    },
+    {
+      "file": "mod/wake-of-gods/Mods/stackExperience/Content/config/dungeonCreaturesStackExp.json",
+      "beforeSha256": "7d4298dc5f99df26f488eb38556bdabd6f72b7a418e5b52fc9c1be6010dbdc5b",
+      "afterSha256": "bc2a9c7ac8ed482c68b5f3faada78993dad0da57c98d3a15b5d054c360547e54"
+    },
+    {
+      "file": "mod/wake-of-gods/Mods/stackExperience/Content/config/strongholdCreaturesStackExp.json",
+      "beforeSha256": "506430d708abf50587c694c3d186b1c52b7f9fc6c39035786aaedaa09a4f7893",
+      "afterSha256": "c65f52dbeb189cca521cb34ed630bd532e44eafa325d6427552e412b93f149d2"
+    },
+    {
+      "file": "mod/wake-of-gods/Mods/stackExperience/Content/config/fortressCreaturesStackExp.json",
+      "beforeSha256": "adba0a7fdc480e1a9858b491cf3736d3f2c1f6c7d9937aba8052a58f51a90d02",
+      "afterSha256": "894f542c01f1bfdcfcef6d8395f482952b0944cf1f82b9e5d2abb7bfee89b323"
+    },
+    {
+      "file": "mod/wake-of-gods/Mods/stackExperience/Content/config/neutralCreaturesStackExp.json",
+      "beforeSha256": "b8374dc415a38680359c52770b84d1ab29e9071492e9c4463b87b73de22954dd",
+      "afterSha256": "8fc37ab011e6fc7bc69877600d3b0090e861f112c646a93d8d638ad496c4ccfd"
+    },
+    {
+      "file": "mod/wake-of-gods/Mods/stackExperience/Content/config/wogCreaturesStackExp.json",
+      "beforeSha256": "d2e1e4394d3246bfdca8e99f4b2566df45d40e0812c70a339fabcb6355f00920",
+      "afterSha256": "70edbb2f7dd809453c09d9b5ee589d8d673cdbc2c8bb036d6ce4c8bdd057d509"
+    },
+    {
+      "file": "mod/tum-era/content/config/era-bridge-experience.json",
+      "beforeSha256": "9f8c11e1b9342b8e3b0aa3ea4912d12a0d44b5e5d994b7256bd4a67490de0021",
+      "afterSha256": "54cc9bbfef90a855528422d2d05112ad6f03d76eefce69d0f757f4a482d5627f"
+    }
+  ],
+  "goonkConfigUnchanged": true,
+  "goonkConfigSha256": "8c301da072f373cf7502eab42b75fa952cfc096bbd04b9b56d7ef64fde1dbc35",
+  "nativeScenarios": 60
+}

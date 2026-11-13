@@ -1,0 +1,1282 @@
+{
+  "schemaVersion": 1,
+  "contract": "source-xp-admission43-v1",
+  "archiveSha256": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+  "executableSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "pluginSha256": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+  "cohortSha256": "b9f63e3d4b56e546587a5efdd3a55eafc1da15316ef558c5a825cf0f797dd8ad",
+  "enabled": true,
+  "mode": "validated-all43",
+  "nativeValidated": true,
+  "rows": [
+    {
+      "sourceId": 25,
+      "nativeId": "core:warUnicorn",
+      "sourceLine": 187,
+      "sourceOrdinal": 5,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 62,
+      "chances": [
+        0,
+        0,
+        5,
+        5,
+        10,
+        10,
+        15,
+        15,
+        20,
+        25,
+        30
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 28,
+      "nativeId": "core:gremlin",
+      "sourceLine": 218,
+      "sourceOrdinal": 3,
+      "cacheSlot": 8,
+      "code": "J",
+      "spell": 11,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 29,
+      "nativeId": "core:masterGremlin",
+      "sourceLine": 223,
+      "sourceOrdinal": 4,
+      "cacheSlot": 9,
+      "code": "J",
+      "spell": 11,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 47,
+      "nativeId": "core:cerberus",
+      "sourceLine": 308,
+      "sourceOrdinal": 5,
+      "cacheSlot": 10,
+      "code": "a",
+      "spell": 73,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 58,
+      "nativeId": "core:walkingDead",
+      "sourceLine": 379,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "K",
+      "spell": 54,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 60,
+      "nativeId": "core:wight",
+      "sourceLine": 385,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "J",
+      "spell": 45,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 63,
+      "nativeId": "core:vampireLord",
+      "sourceLine": 394,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "a",
+      "spell": 60,
+      "chances": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 66,
+      "nativeId": "core:blackKnight",
+      "sourceLine": 408,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 78,
+      "chances": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        100
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 76,
+      "nativeId": "core:medusa",
+      "sourceLine": 458,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 70,
+      "chances": [
+        0,
+        0,
+        0,
+        5,
+        5,
+        10,
+        10,
+        15,
+        20,
+        25,
+        30
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 81,
+      "nativeId": "core:scorpicore",
+      "sourceLine": 473,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 74,
+      "chances": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        5,
+        10,
+        10,
+        15,
+        20
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 92,
+      "nativeId": "core:roc",
+      "sourceLine": 520,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 17,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 93,
+      "nativeId": "core:thunderbird",
+      "sourceLine": 523,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 17,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 106,
+      "nativeId": "core:basilisk",
+      "sourceLine": 575,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 70,
+      "chances": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 107,
+      "nativeId": "core:greaterBasilisk",
+      "sourceLine": 577,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 70,
+      "chances": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 141,
+      "nativeId": "core:mummy",
+      "sourceLine": 724,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 42,
+      "chances": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 164,
+      "nativeId": "wake-of-gods.messengersandemissaries:fireMessenger",
+      "sourceLine": 763,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "p",
+      "spell": 66,
+      "chances": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 164,
+      "nativeId": "wake-of-gods.messengersandemissaries:fireMessenger",
+      "sourceLine": 762,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "k",
+      "spell": 13,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 165,
+      "nativeId": "wake-of-gods.messengersandemissaries:earthMessenger",
+      "sourceLine": 766,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "p",
+      "spell": 67,
+      "chances": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 165,
+      "nativeId": "wake-of-gods.messengersandemissaries:earthMessenger",
+      "sourceLine": 765,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 10,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 167,
+      "nativeId": "wake-of-gods.messengersandemissaries:waterMessenger",
+      "sourceLine": 772,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "p",
+      "spell": 68,
+      "chances": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 167,
+      "nativeId": "wake-of-gods.messengersandemissaries:waterMessenger",
+      "sourceLine": 771,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 16,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 195,
+      "nativeId": "wake-of-gods.creatures:hellSteed",
+      "sourceLine": 812,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "a",
+      "spell": 21,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 196,
+      "nativeId": "wake-of-gods.creatures:dracolich",
+      "sourceLine": 936,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "k",
+      "spell": 71,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 206,
+      "nativeId": "third-upgrades:tumLegendaryUnicorn",
+      "sourceLine": 999,
+      "sourceOrdinal": 6,
+      "cacheSlot": 7,
+      "code": "p",
+      "spell": 37,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 206,
+      "nativeId": "third-upgrades:tumLegendaryUnicorn",
+      "sourceLine": 998,
+      "sourceOrdinal": 5,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 62,
+      "chances": [
+        0,
+        0,
+        5,
+        5,
+        10,
+        10,
+        15,
+        15,
+        20,
+        25,
+        30
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 214,
+      "nativeId": "third-upgrades:tumWingedMagog",
+      "sourceLine": 1047,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "p",
+      "spell": 21,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 214,
+      "nativeId": "third-upgrades:tumWingedMagog",
+      "sourceLine": 1048,
+      "sourceOrdinal": 3,
+      "cacheSlot": 8,
+      "code": "a",
+      "spell": 22,
+      "chances": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 215,
+      "nativeId": "third-upgrades:tumAstralCerberus",
+      "sourceLine": 1055,
+      "sourceOrdinal": 6,
+      "cacheSlot": 11,
+      "code": "a",
+      "spell": 73,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 221,
+      "nativeId": "third-upgrades:tumNosferatu",
+      "sourceLine": 1087,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "a",
+      "spell": 60,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 223,
+      "nativeId": "third-upgrades:tumDeathKnight",
+      "sourceLine": 1097,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 78,
+      "chances": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        100
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 228,
+      "nativeId": "third-upgrades:tumMedusaEmpress",
+      "sourceLine": 1123,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 70,
+      "chances": [
+        0,
+        0,
+        0,
+        5,
+        5,
+        10,
+        10,
+        15,
+        20,
+        25,
+        30
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 230,
+      "nativeId": "third-upgrades:tumChimera",
+      "sourceLine": 1134,
+      "sourceOrdinal": 3,
+      "cacheSlot": 8,
+      "code": "a",
+      "spell": 74,
+      "chances": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        5,
+        10,
+        10,
+        15,
+        20
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 231,
+      "nativeId": "tum-era:chasmDragon",
+      "sourceLine": 1142,
+      "sourceOrdinal": 6,
+      "cacheSlot": 11,
+      "code": "a",
+      "spell": 62,
+      "chances": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "executionOwner": "existingSourceService"
+    },
+    {
+      "sourceId": 231,
+      "nativeId": "tum-era:chasmDragon",
+      "sourceLine": 1141,
+      "sourceOrdinal": 5,
+      "cacheSlot": 10,
+      "code": "K",
+      "spell": 59,
+      "chances": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30
+      ],
+      "executionOwner": "existingSourceService"
+    },
+    {
+      "sourceId": 236,
+      "nativeId": "third-upgrades:tumLightningbird",
+      "sourceLine": 1161,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 19,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 241,
+      "nativeId": "third-upgrades:tumChaoticDragonFly",
+      "sourceLine": 1186,
+      "sourceOrdinal": 5,
+      "cacheSlot": 7,
+      "code": "k",
+      "spell": 45,
+      "chances": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 242,
+      "nativeId": "third-upgrades:tumLavaBasilisk",
+      "sourceLine": 1189,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 70,
+      "chances": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 251,
+      "nativeId": "third-upgrades:tumVoidElemental",
+      "sourceLine": 1238,
+      "sourceOrdinal": 1,
+      "cacheSlot": 6,
+      "code": "a",
+      "spell": 60,
+      "chances": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 254,
+      "nativeId": "tum-era:necrossDragon",
+      "sourceLine": 1260,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "k",
+      "spell": 71,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "existingSourceService"
+    },
+    {
+      "sourceId": 255,
+      "nativeId": "third-upgrades:tumGrandmasterGremlin",
+      "sourceLine": 1269,
+      "sourceOrdinal": 5,
+      "cacheSlot": 10,
+      "code": "J",
+      "spell": 11,
+      "chances": [
+        0,
+        5,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 261,
+      "nativeId": "third-upgrades:tumSpecter",
+      "sourceLine": 1302,
+      "sourceOrdinal": 3,
+      "cacheSlot": 8,
+      "code": "p",
+      "spell": 52,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 261,
+      "nativeId": "third-upgrades:tumSpecter",
+      "sourceLine": 1299,
+      "sourceOrdinal": 0,
+      "cacheSlot": 5,
+      "code": "J",
+      "spell": 45,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    },
+    {
+      "sourceId": 321,
+      "nativeId": "third-upgrades:tumGnollShaman",
+      "sourceLine": 1653,
+      "sourceOrdinal": 4,
+      "cacheSlot": 9,
+      "code": "a",
+      "spell": 42,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "executionOwner": "candidateLedger"
+    }
+  ],
+  "admittedRows": [
+    "25:a:62",
+    "28:J:11",
+    "29:J:11",
+    "47:a:73",
+    "58:K:54",
+    "60:J:45",
+    "63:a:60",
+    "66:a:78",
+    "76:a:70",
+    "81:a:74",
+    "92:a:17",
+    "93:a:17",
+    "106:a:70",
+    "107:a:70",
+    "141:a:42",
+    "164:p:66",
+    "164:k:13",
+    "165:p:67",
+    "165:a:10",
+    "167:p:68",
+    "167:a:16",
+    "195:a:21",
+    "196:k:71",
+    "206:p:37",
+    "206:a:62",
+    "214:p:21",
+    "214:a:22",
+    "215:a:73",
+    "221:a:60",
+    "223:a:78",
+    "228:a:70",
+    "230:a:74",
+    "236:a:19",
+    "241:k:45",
+    "242:a:70",
+    "251:a:60",
+    "255:J:11",
+    "261:p:52",
+    "261:J:45",
+    "321:a:42"
+  ],
+  "validation": {
+    "contractsSha256": "f6cb460046452fab0154aeeae530f2df5e8b95cb953091ab58d604c2c3047bc2",
+    "migrationSha256": "c28da1e68f040fd5249484d14ef5c594c80902fdaafdc4b4e692847764dc5987",
+    "wholeActors": [
+      {
+        "sourceId": 25,
+        "nativeValidated": true,
+        "proofSha256": "5a31392770cfd3fa2e74a53d478614f3ead2c32282205fd1412ff92a493a0e1e"
+      },
+      {
+        "sourceId": 28,
+        "nativeValidated": true,
+        "proofSha256": "55330a575402f7cbcaf1af56fdc36767a41a75f82a67a936dea27ed32b9e80f7"
+      },
+      {
+        "sourceId": 29,
+        "nativeValidated": true,
+        "proofSha256": "f234033f4b0a590f9a0ff432e940592a000b3c3cd46cba5bf03955bbccdaebda"
+      },
+      {
+        "sourceId": 47,
+        "nativeValidated": true,
+        "proofSha256": "c64ea6a3cd34bb14fdeeace75a385d6b80de4910e41b7362bea125619eaa1e65"
+      },
+      {
+        "sourceId": 58,
+        "nativeValidated": true,
+        "proofSha256": "e85e384a5778d371a96655f201f15298a32e1d15359daa3f1cb345168346f933"
+      },
+      {
+        "sourceId": 60,
+        "nativeValidated": true,
+        "proofSha256": "ef9ab5d87e094c0a46f6c1c71ff85f4dc80ab9e5a2be680a9866623238bc8eb1"
+      },
+      {
+        "sourceId": 63,
+        "nativeValidated": true,
+        "proofSha256": "d9efa82859484b4cae2401259c9cd5ea994f399d598a2bf27c6616371cc7d984"
+      },
+      {
+        "sourceId": 66,
+        "nativeValidated": true,
+        "proofSha256": "071e4c63005c7b2b420c44d5055604a88e81a16370e1c226608757c72ef49f96"
+      },
+      {
+        "sourceId": 76,
+        "nativeValidated": true,
+        "proofSha256": "54edc022843159a333af3d6c9c32e299cb1987f0a5d4b12dabff98e617a20d67"
+      },
+      {
+        "sourceId": 81,
+        "nativeValidated": true,
+        "proofSha256": "578ea6f760a4e6f9bdede423c5afcc56378b41f99d74ee10cf0b239578b2a4af"
+      },
+      {
+        "sourceId": 92,
+        "nativeValidated": true,
+        "proofSha256": "3cf03109702ef6b3e2a6083841c33a39743ea64d5cb56ad823b661f4a417eeb2"
+      },
+      {
+        "sourceId": 93,
+        "nativeValidated": true,
+        "proofSha256": "51a034524859df5046f46bd4cfa0cc5f0bea2a0b535f0b4f4bfe54f3b0bd517e"
+      },
+      {
+        "sourceId": 106,
+        "nativeValidated": true,
+        "proofSha256": "6275861e31c278d24cca53085963d1caba32ac2f647687254e596e6dea8b6744"
+      },
+      {
+        "sourceId": 107,
+        "nativeValidated": true,
+        "proofSha256": "4b75e225573f5145ec12c8ec67e16296da55fe2f8a0e4c2df803e8a7b833265a"
+      },
+      {
+        "sourceId": 141,
+        "nativeValidated": true,
+        "proofSha256": "edcc5fb61b3fed776dfe5a3ff8c85e0312e52ed2bd96c3fa4968ef2749546ee6"
+      },
+      {
+        "sourceId": 164,
+        "nativeValidated": true,
+        "proofSha256": "fcfd1f4afb47b5427f106395a41ce486f460308e55584f55111ed1235cf27808"
+      },
+      {
+        "sourceId": 165,
+        "nativeValidated": true,
+        "proofSha256": "96bf1f439301d85b9fd4ede1682fdf85cd0833b4640a5a8d5bd7637b3005d8f4"
+      },
+      {
+        "sourceId": 167,
+        "nativeValidated": true,
+        "proofSha256": "c1fc1d4cf19d0739ebad73d7d0db7895afe4fe1ecd91d9e16e63358713f3a21f"
+      },
+      {
+        "sourceId": 195,
+        "nativeValidated": true,
+        "proofSha256": "b06da3057cce0260c9c4c970b9afd932b6bc06ef208c04b30244705e7d0fc822"
+      },
+      {
+        "sourceId": 196,
+        "nativeValidated": true,
+        "proofSha256": "75892e6be43487d735fc63439830048040fb328d8e336ee4a0131338614f758c"
+      },
+      {
+        "sourceId": 206,
+        "nativeValidated": true,
+        "proofSha256": "e132182ea3590e5c85bccfae8ce88fbae67cef2fb97e0d6b2709eb78478e5aef"
+      },
+      {
+        "sourceId": 214,
+        "nativeValidated": true,
+        "proofSha256": "c1010513db720708c983aad5330426bdb42addf036632bfe49f1c766a2e7272c"
+      },
+      {
+        "sourceId": 215,
+        "nativeValidated": true,
+        "proofSha256": "ff2e78cc397c08ae94a19854a6433738ff28e1a09288c3c06ec4d36d4b859f28"
+      },
+      {
+        "sourceId": 221,
+        "nativeValidated": true,
+        "proofSha256": "9706b87fa84f95f7fb3c8d2dc633fca5540146b8a79bc01d03ff466d2fdcf146"
+      },
+      {
+        "sourceId": 223,
+        "nativeValidated": true,
+        "proofSha256": "ae012b9bec6898f5bf95093fad4433d41ee3a403f16943003a6be189878749fa"
+      },
+      {
+        "sourceId": 228,
+        "nativeValidated": true,
+        "proofSha256": "3ed4d50ed6d9eedb532241731c055f1af664058b3775f548d4271872bf3afc6a"
+      },
+      {
+        "sourceId": 230,
+        "nativeValidated": true,
+        "proofSha256": "2d67332e0743d373072f76d939e649cca130496b84ea86b6c7a0e0ec24d80d55"
+      },
+      {
+        "sourceId": 231,
+        "nativeValidated": true,
+        "proofSha256": "dc5dc75fc2f84d12c246d76549c762165942ad7ec775518bec15d53bfca8fdfd"
+      },
+      {
+        "sourceId": 236,
+        "nativeValidated": true,
+        "proofSha256": "05a1f3d02c6c90c2ed501884795b5de2c9e16d0b49bd6c6a17cfc8697f99833d"
+      },
+      {
+        "sourceId": 241,
+        "nativeValidated": true,
+        "proofSha256": "2e048f4c95f863c965a204292e0bc76747cb11737c6c7b502d95325e7fd0bc7f"
+      },
+      {
+        "sourceId": 242,
+        "nativeValidated": true,
+        "proofSha256": "479785fe44ea586615a8f8028c68bed822fe05330ee645191c20d4ae2f8165c5"
+      },
+      {
+        "sourceId": 251,
+        "nativeValidated": true,
+        "proofSha256": "c70cee3e4d1d2e49cb4a027f4af8e4f2f829440e38abaf6c9588c5522601762c"
+      },
+      {
+        "sourceId": 254,
+        "nativeValidated": true,
+        "proofSha256": "e6e34ee6f5bb0f18734d8df94c5cc8a968290fde893d5da9367ef8f762ccf6cb"
+      },
+      {
+        "sourceId": 255,
+        "nativeValidated": true,
+        "proofSha256": "652449ce821acea2608b7a0e536cab3a101aeee869e5e808b47f9a3d1dc43870"
+      },
+      {
+        "sourceId": 261,
+        "nativeValidated": true,
+        "proofSha256": "30a422915b227c96de547257b47ae5e094a22a0f197eef8729c810dad8c63b7b"
+      },
+      {
+        "sourceId": 321,
+        "nativeValidated": true,
+        "proofSha256": "b3cba96a8feea2f4e7fd3d0730a5eb68f641b6082459373f74d8bbd216833e07"
+      }
+    ],
+    "innateOwnership": [
+      {
+        "sourceId": 25,
+        "nativeValidated": true,
+        "proofSha256": "13807903042413022e7000ada5a2d7580861c9980c07be0502f80075659371c1"
+      },
+      {
+        "sourceId": 76,
+        "nativeValidated": true,
+        "proofSha256": "80a1d869470ddd623526f7b29088c233446fa99abc31237be5e1bb0a260f50c7"
+      },
+      {
+        "sourceId": 81,
+        "nativeValidated": true,
+        "proofSha256": "97a3bbb213e3ea1dad4f4d098e442657c819a39f48a1d7248e32e48ab7500eb6"
+      },
+      {
+        "sourceId": 106,
+        "nativeValidated": true,
+        "proofSha256": "fbd63aa6a5c66f849dc174d2b258f116db278f606467578c96ebcd28b6d7c3c6"
+      },
+      {
+        "sourceId": 107,
+        "nativeValidated": true,
+        "proofSha256": "38949d814c0bd68d557ba3a36f35e7ec752de1ff0e1f893f8c610178f47e4041"
+      },
+      {
+        "sourceId": 141,
+        "nativeValidated": true,
+        "proofSha256": "79cc7cfcd4c9274e9d5e025e39e6d21f430c1502150e07b9c570bff055d9b05c"
+      },
+      {
+        "sourceId": 206,
+        "nativeValidated": true,
+        "proofSha256": "b0fb220696ec1a95d346835f4bddd71f3e9af09ea0bef000729cf31f1af17494"
+      },
+      {
+        "sourceId": 228,
+        "nativeValidated": true,
+        "proofSha256": "330d504c766b3b05f70e16ac2ffe1eb0cd47356c1e9657489be6a1a8587c4e7f"
+      },
+      {
+        "sourceId": 241,
+        "nativeValidated": true,
+        "proofSha256": "d4a44e698fc726bd340913ae59e726b8781e914e4bc79f912cf8afec09942a33"
+      },
+      {
+        "sourceId": 242,
+        "nativeValidated": true,
+        "proofSha256": "0f35edadea1124cf26a0c3a801b8127c55a763c3b6c55d96a066d7f65082ee05"
+      }
+    ]
+  }
+}

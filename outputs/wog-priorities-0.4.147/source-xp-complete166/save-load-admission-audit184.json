@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "readOnlyAudit": true,
+  "supportedOldAdventureSavesUseCurrentCreatureDefinitions": true,
+  "supportedMidbattleSave": false,
+  "admissionViaDefend": false,
+  "conclusion": "Supported adventure saves retain stack quantities/XP/equipment and resolve creature IDs through current library definitions. New battles enroll via explicit XP admission. Battle queries reject saving and currentBattles are absent from CGameState serialization; no supported old-midbattle restoration path is claimed. Direct forced low-level serialization is not a supported UI save and does not preserve battles.",
+  "evidence": [
+    {
+      "path": "work/vcmi-wasm/lib/gameState/CGameState.h",
+      "sha256": "1e1c734a3f158450fadfb4382d26e542f77997a70ac4ed59bba4f71d32db0253",
+      "startLine": 178,
+      "endLine": 213,
+      "finding": "Save contains map, players and global effects; currentBattles intentionally absent.",
+      "excerpt": "\ttemplate <typename Handler> void serialize(Handler &h)\n\t{\n\t\th & scenarioOps;\n\t\th & initialOpts;\n\t\th & actingPlayers;\n\t\th & day;\n\t\th & map;\n\t\tif (!h.hasFeature(Handler::Version::NO_RAW_POINTERS_IN_SERIALIZER))\n\t\t\tsaveCompatibilityRegisterMissingArtifacts();\n\t\th & players;\n\t\th & teams;\n\t\tif (h.hasFeature(Handler::Version::NO_RAW_POINTERS_IN_SERIALIZER))\n\t\t\th & *heroesPool;\n\t\telse\n\t\t\th & heroesPool;\n\t\th & globalEffects;\n\t\th & currentRumor;\n\t\th & campaign;\n\t\tif (!h.hasFeature(Handler::Version::RANDOMIZATION_REWORK))\n\t\t{\n\t\t\tstd::map<ArtifactID, int> allocatedArtifactsUnused;\n\t\t\th & allocatedArtifactsUnused;\n\t\t}\n\t\tif (!h.hasFeature(Handler::Version::SERVER_STATISTICS))\n\t\t{\n\t\t\tStatisticDataSet statistic;\n\t\t\th & statistic;\n\t\t}\n\n\t\tif(!h.saving && h.loadingGamestate)\n\t\t\trestoreBonusSystemTree();\n\t}\n\nprivate:\n\t// ----- initialization -----\n\tvoid initNewGame(const IMapService * mapService, vstd::RNG & randomGenerator, bool allowSavingRandomMap, Load::ProgressAccumulator & progressTracking);"
+    },
+    {
+      "path": "work/vcmi-wasm/server/queries/BattleQueries.cpp",
+      "sha256": "27c93c64401eabe9b7c8e430bda55698096d74bfac589c5b0eaccf534873e06a",
+      "startLine": 51,
+      "endLine": 61,
+      "finding": "Battle query blocks SaveGame; only MakeAction/GamePause accepted.",
+      "excerpt": "bool CBattleQuery::blocksPack(const CPackForServer * pack) const\n{\n\tif(dynamic_cast<const MakeAction*>(pack) != nullptr)\n\t\treturn false;\n\n\tif(dynamic_cast<const GamePause*>(pack) != nullptr)\n\t\treturn false;\n\n\treturn true;\n}\n"
+    },
+    {
+      "path": "work/vcmi-wasm/server/CGameHandler.cpp",
+      "sha256": "5a7d8f5a7b5a0a6218906520c41817ad4c612ca17428bbe3266cff9daeb591d8",
+      "startLine": 4280,
+      "endLine": 4304,
+      "finding": "Browser checkpoint bypass requires no ongoing battle.",
+      "excerpt": "bool CGameHandler::isBlockedByQueries(const CPackForServer *pack, PlayerColor player)\n{\n#ifdef VCMI_HTML5_BUILD\n // A quiet browser checkpoint may run while the owned-town UI is open.\n // Ongoing battles remain excluded: their query state is not serialized.\n if(const auto save=dynamic_cast<const SaveGame *>(pack))\n  if((save->fname==\"Saves/Goonk-auto\"||save->fname==\"Saves/Goonk-online-auto\")&&!save->notifySuccess&&!gameState().getBattle(player))return false;\n#endif\n\n\tif (dynamic_cast<const PlayerMessage *>(pack) != nullptr)\n\t\treturn false;\n\n\tif (dynamic_cast<const SaveLocalState *>(pack) != nullptr)\n\t\treturn false;\n\n\tauto query = queries->topQuery(player);\n\tif (query && query->blocksPack(pack))\n\t{\n\t\tcomplain(boost::str(boost::format(\n\t\t\t\"\\r\\n| Player \\\"%s\\\" has to answer queries before attempting any further actions.\\r\\n| Top Query: \\\"%s\\\"\\r\\n\")\n\t\t\t% boost::to_upper_copy<std::string>(player.toString())\n\t\t\t% query->toString()\n\t\t));\n\t\treturn true;\n\t}"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/mapObjects/army/CStackBasicDescriptor.h",
+      "sha256": "f2a9ed0f1451defce1c7212aefa0077c557219dc181f1da77dced747d42ed46f",
+      "startLine": 45,
+      "endLine": 60,
+      "finding": "Load deserializes CreatureID and invokes virtual setType(creatureID.toCreature()).",
+      "excerpt": "\tvoid serialize(Handler & h)\n\t{\n\t\tif(h.saving)\n\t\t{\n\t\t\th & typeID;\n\t\t}\n\t\telse\n\t\t{\n\t\t\tCreatureID creatureID;\n\t\t\th & creatureID;\n\t\t\tif(creatureID != CreatureID::NONE)\n\t\t\t\tsetType(creatureID.toCreature());\n\t\t}\n\n\t\th & count;\n\t}"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/mapObjects/army/CStackInstance.cpp",
+      "sha256": "2ffb86a6d91744f1cecab9946923afb5bfd7821a8d0201f306cbcf416b4da09f",
+      "startLine": 217,
+      "endLine": 237,
+      "finding": "Virtual stack setType attaches to current library creature source.",
+      "excerpt": "void CStackInstance::setType(const CCreature * c, bool preserveExperience)\n{\n\tif(getCreature())\n\t{\n\t\tdetachFromSource(*getCreature());\n        if(!preserveExperience && LIBRARY->engineSettings()->getBoolean(EGameSettings::MODULE_STACK_EXPERIENCE))\n        {\n            const auto * oldEra = era_compat::ExperienceProgressions::get().find(getCreature()->getJsonKey());\n            const auto * newEra = c ? era_compat::ExperienceProgressions::get().find(c->getJsonKey()) : nullptr;\n            if(const auto * era = oldEra ? oldEra : newEra)\n                totalExperience = era->total(era->retainOnUpgrade(getAverageExperience()), getCount());\n            else\n                totalExperience = totalExperience * LIBRARY->creh->expAfterUpgrade / 100;\n        }\n\t}\n\n\tCStackBasicDescriptor::setType(c);\n\n\tif(getCreature())\n\t\tattachToSource(*getCreature());\n}"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/mapObjects/army/CStackInstance.h",
+      "sha256": "eb017284b6b7f08c9e93012a0d0428fb84aeb89d71df62b3a2e8aef56d6587bf",
+      "startLine": 68,
+      "endLine": 94,
+      "finding": "Stack saves own bonuses/count/XP/artifacts; not a full CCreature definition.",
+      "excerpt": "\tvoid serialize(Handler & h)\n\t{\n\t\th & static_cast<CBonusSystemNode &>(*this);\n\t\th & static_cast<CStackBasicDescriptor &>(*this);\n\t\th & static_cast<CArtifactSet &>(*this);\n\n\t\tif(h.hasFeature(Handler::Version::STACK_INSTANCE_ARMY_FIX))\n\t\t{\n\t\t\t// no-op\n\t\t}\n\t\tif(h.hasFeature(Handler::Version::NO_RAW_POINTERS_IN_SERIALIZER))\n\t\t{\n\t\t\tObjectInstanceID dummyID;\n\t\t\th & dummyID;\n\t\t}\n\t\telse\n\t\t{\n\t\t\tstd::shared_ptr<CGObjectInstance> army;\n\t\t\th & army;\n\t\t}\n\n\t\th & totalExperience;\n\t\tif(!h.hasFeature(Handler::Version::STACK_INSTANCE_EXPERIENCE_FIX))\n\t\t{\n\t\t\ttotalExperience *= getCount();\n\t\t}\n\t}"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/gameState/CGameState.cpp",
+      "sha256": "55efa7a42fc282dd00444fbaf94028d584c513bda230e45e00caa0b2303afb85",
+      "startLine": 1543,
+      "endLine": 1556,
+      "finding": "Load rebuilds bonus tree and artifact parents.",
+      "excerpt": "{\n\theroesPool->setGameState(this);\n\n\tbuildGlobalTeamPlayerTree();\n\tfor(auto & armed : map->getObjects<CGObjectInstance>())\n\t\tarmed->restoreBonusSystem(*this);\n\n\tfor(auto & art : map->getArtifacts())\n\t\tart->attachToBonusSystem(*this);\n\n\tfor(auto & heroID : map->getHeroesInPool())\n\t\tmap->tryGetFromHeroPool(heroID)->artDeserializationFix(*this, map->tryGetFromHeroPool(heroID));\n\n\tif (campaign)"
+    }
+  ]
+}

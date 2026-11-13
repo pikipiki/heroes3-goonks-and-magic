@@ -1301,29 +1301,8 @@
 					1,
 					1
 				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "stoneGaze",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					3,
-					6,
-					9,
-					12,
-					15,
-					18,
-					21,
-					24,
-					27,
-					30
-				]
 			}
+			
 		]
 	},
 
@@ -1435,29 +1414,8 @@
 					1,
 					2
 				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "stoneGaze",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					3,
-					6,
-					9,
-					12,
-					15,
-					18,
-					21,
-					24,
-					27,
-					30
-				]
 			}
+			
 		]
 	},
 

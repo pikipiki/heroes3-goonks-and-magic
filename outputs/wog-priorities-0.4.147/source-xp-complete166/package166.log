@@ -1,0 +1,19 @@
+
+> heroes-goonk@0.4.166 package:web
+> npm run prepare:web && npm run build:web && npm run verify:web && node scripts/package-site.mjs
+
+
+> heroes-goonk@0.4.166 prepare:web
+> node scripts/prepare-web.mjs
+
+
+> heroes-goonk@0.4.166 build:web
+> node scripts/build-site.mjs
+
+Site statique créé dans dist — données Heroes III et mods hébergés.
+
+> heroes-goonk@0.4.166 verify:web
+> node scripts/verify-site.mjs
+
+Site vérifié : moteur, données originales Heroes III, mods et cartes hébergés.
+Archive prête à déployer : /Users/sevenone./Documents/git/heroes-goonk/outputs/heroes-goonk-netlify-pages.zip

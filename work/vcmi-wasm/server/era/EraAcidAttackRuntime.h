@@ -71,8 +71,10 @@ inline void applyAcidAttack(CGameHandler & handler, const CBattleInfoCallback & 
     hit.attackerID=attacker->unitId();
     hit.flags|=BattleStackAttacked::SPELL_EFFECT;
     hit.spellID=SpellID(SpellID::ACID_BREATH_DAMAGE);
-    hit.damageAmount=applySourcePhysicalWrapper(handler,battle,defender,raw);
+    bool sourceEntered=false;
+    hit.damageAmount=applySourcePhysicalWrapper(handler,battle,defender,raw,&sourceEntered);
     defender->prepareAttacked(hit,rng);
+    if(sourceEntered&&era_compat::sourceXpBattleAdmitted(battle))hit.newState.data["eraSourceXpDamageEntered"].Bool()=true;
     StacksInjured packet;
     packet.battleID=battle.getBattle()->getBattleID();
     packet.stacks.push_back(hit);

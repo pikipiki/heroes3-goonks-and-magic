@@ -1039,28 +1039,7 @@
 					1
 				]
 			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "stoneGaze",
-					"addInfo" : [
-						3,
-						0
-					]
-				},
-				"values" : [
-					0,
-					0,
-					5,
-					5,
-					10,
-					10,
-					15,
-					20,
-					25,
-					30
-				]
-			},
+			
 			{
 				"bonus" : {
 					"type" : "SHOTS",
@@ -1786,28 +1765,7 @@
 					3
 				]
 			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "paralyze",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					0,
-					0,
-					0,
-					0,
-					5,
-					5,
-					10,
-					10,
-					15,
-					20
-				]
-			},
+			
 			{
 				"bonus" : {
 					"type" : "SPELL_AFTER_ATTACK",

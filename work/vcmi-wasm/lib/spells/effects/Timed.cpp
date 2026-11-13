@@ -8,8 +8,10 @@
  *
  */
 #include "StdInc.h"
+#include "../../era/EraXpTimed184Hooks.h"
 
 #include "Timed.h"
+#include "../../era/EraWeakness45Generic.h"
 #include "Registry.h"
 #include "../ISpellMechanics.h"
 
@@ -209,6 +211,14 @@ void Timed::apply(ServerCallback * server, const Mechanics * m, const EffectTarg
 				b.val = fixedValueBonus->parameters->toNumber();
 			}
 		}
+
+        const bool nativeOriginalPeculiar=peculiarBonus && peculiarBonus->parameters
+            && peculiarBonus->parameters->toNumber()==0 && casterHero
+            && (casterHero->getHeroType()->getJsonKey()=="core:mirlanda"
+                ||casterHero->getHeroType()->getJsonKey()=="core:olema");
+        if(era_compat::applySourceWeakness45Generic(server,m,affected,buffer,duration,
+            nativeOriginalPeculiar,fixedValueBonus && fixedValueBonus->parameters) && buffer.empty())continue;
+        if(era_compat::applyNativeXpTimed184(server,m,*affected,buffer,duration))continue;
 
 		if(cumulative)
 			sse.toAdd.emplace_back(affected->unitId(), buffer);

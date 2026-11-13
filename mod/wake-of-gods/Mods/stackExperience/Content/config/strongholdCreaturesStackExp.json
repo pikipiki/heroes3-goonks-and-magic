@@ -1346,28 +1346,7 @@
 					2
 				]
 			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "thunderbolt",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					5,
-					10,
-					15,
-					20,
-					25,
-					30,
-					35,
-					40,
-					45,
-					50
-				]
-			},
+			
 			{
 				"bonus" : {
 					"type" : "HP_REGENERATION"
@@ -1497,28 +1476,7 @@
 					3
 				]
 			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "thunderbolt",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					5,
-					10,
-					15,
-					20,
-					25,
-					30,
-					35,
-					40,
-					45,
-					50
-				]
-			},
+			
 			{
 				"bonus" : {
 					"type" : "HP_REGENERATION"

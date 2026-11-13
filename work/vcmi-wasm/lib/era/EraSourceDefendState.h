@@ -1,6 +1,7 @@
 /* Optional typed4DC snapshot. Missing source enrollment leaves native unchanged. */
 #pragma once
 #include "EraSourceDefendRule.h"
+#include "EraXpTimed184State.h"
 #include "../battle/Unit.h"
 #include "../bonuses/BonusList.h"
 #include "../bonuses/BonusParameters.h"
@@ -25,7 +26,8 @@ inline std::optional<bool> sourceDefendRemovalIdentity(const Bonus & request,con
 inline std::optional<std::vector<int32_t>> sourceDefendState(const battle::Unit & unit)
 {
  std::optional<std::vector<int32_t>> result;
- for(const auto & bonus:*unit.getBonuses(Selector::typeSubtype(BonusType::PRIMARY_SKILL,BonusSubtypeID(PrimarySkill::DEFENSE))))
+ const auto sourceBonusList29=unit.getBonuses(Selector::typeSubtype(BonusType::PRIMARY_SKILL,BonusSubtypeID(PrimarySkill::DEFENSE)));
+ for(const auto & bonus:*sourceBonusList29)
  {
      if(bonus->stacking!=sourceDefendTag)continue;
      if(result||!bonus->parameters||bonus->source!=BonusSource::OTHER||bonus->duration!=BonusDuration::PERMANENT
@@ -43,14 +45,14 @@ inline std::optional<std::vector<int32_t>> sourceDefendState(const battle::Unit 
 }
 inline int sourceDefendDefense(const battle::Unit & unit,bool ranged,int nativeCached)
 {
- const auto state=sourceDefendState(unit);if(!state)return nativeCached;
+ const auto state=sourceDefendState(unit);if(!state&&!sourceTimedStatActive(unit))return nativeCached;
  // Add stored4DC AFTER all other native bonuses, so Goonk DEF% cannot rescale
  // the snapshot itself. All unrelated bonus arithmetic remains native.
  const auto range=Selector::effectRange()(BonusLimitEffect::NO_LIMIT)
      .Or(Selector::effectRange()(ranged?BonusLimitEffect::ONLY_DISTANCE_FIGHT:BonusLimitEffect::ONLY_MELEE_FIGHT));
  const auto others=Selector::typeSubtype(BonusType::PRIMARY_SKILL,BonusSubtypeID(PrimarySkill::DEFENSE))
-     .And(range).And([](const Bonus * b){return b->stacking!=sourceDefendTag;});
- return era_bridge::sourceDefendAdd(era_bridge::sourceDefendSigned(static_cast<uint32_t>(unit.valOfBonuses(others))),(*state)[3]);
+     .And(range).And([](const Bonus * b){return b->stacking!=sourceDefendTag&&!xpTimed184StatProjection(b);});
+ return era_bridge::sourceDefendAdd(xpTimed184DefenseAfterNative(era_bridge::sourceDefendSigned(static_cast<uint32_t>(unit.valOfBonuses(others))),unit),state?(*state)[3]:0);
 }
 inline bool sourceDefendDisplayed(const battle::Unit & unit,bool nativeDefending)
 {

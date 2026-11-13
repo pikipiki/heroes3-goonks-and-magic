@@ -1,0 +1,1691 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "nativeValidated": true,
+  "cohortSha256": "b9f63e3d4b56e546587a5efdd3a55eafc1da15316ef558c5a825cf0f797dd8ad",
+  "privateEngineSha256": "c98d4f7e2715ac346d13483da17bf5a678ae11e3fa3d5966cf5e0bdc4e926055",
+  "source241DefinitionSha256": "635fb1d9d0ad50a343fdede05d670ff446fd1b3a849b88178ad82bcba798c51a",
+  "sourceBindings43Verified": true,
+  "nativeScenarios": 60,
+  "rows": [
+    {
+      "key": "25:a:62",
+      "passed": true,
+      "evidenceSha256": "33441ac9a195a7efb6e3d9fca68dc3a87ad88b4ea59238e91bcd6b58c9723c39",
+      "evidence": {
+        "source": {
+          "sourceId": 25,
+          "nativeId": "core:warUnicorn",
+          "sourceLine": 187,
+          "sourceOrdinal": 5,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 62,
+          "chances": [
+            0,
+            0,
+            5,
+            5,
+            10,
+            10,
+            15,
+            15,
+            20,
+            25,
+            30
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "25-a62-counter",
+            "sha256": "c2b4838e8dff47c1bdf9491d7c9d7fffa28f93ff021fd04d9826e4fb64f89db0"
+          }
+        ],
+        "actorProofSha256": "5a31392770cfd3fa2e74a53d478614f3ead2c32282205fd1412ff92a493a0e1e"
+      }
+    },
+    {
+      "key": "28:J:11",
+      "passed": true,
+      "evidenceSha256": "a312d1a13281a97a1e009bf8e6883f182da259ba682669d461625737d66539a2",
+      "evidence": {
+        "source": {
+          "sourceId": 28,
+          "nativeId": "core:gremlin",
+          "sourceLine": 218,
+          "sourceOrdinal": 3,
+          "cacheSlot": 8,
+          "code": "J",
+          "spell": 11,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "28-J11-mine-proc",
+            "sha256": "69c9026d7f3cf0fa9770b19833cab79610e3f350f67efad03a20c4b864768925"
+          }
+        ],
+        "actorProofSha256": "55330a575402f7cbcaf1af56fdc36767a41a75f82a67a936dea27ed32b9e80f7"
+      }
+    },
+    {
+      "key": "29:J:11",
+      "passed": true,
+      "evidenceSha256": "72ef1c94586b7e9049132d8c798f53f40a2fc98fb4c2adbd1aefc03431ed6221",
+      "evidence": {
+        "source": {
+          "sourceId": 29,
+          "nativeId": "core:masterGremlin",
+          "sourceLine": 223,
+          "sourceOrdinal": 4,
+          "cacheSlot": 9,
+          "code": "J",
+          "spell": 11,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "29-J11-mine-proc",
+            "sha256": "2e16e3ebae1cb6ce37edd6a64d5a6a6d4a09b4e01c7dccade1055a60e61eec1d"
+          }
+        ],
+        "actorProofSha256": "f234033f4b0a590f9a0ff432e940592a000b3c3cd46cba5bf03955bbccdaebda"
+      }
+    },
+    {
+      "key": "47:a:73",
+      "passed": true,
+      "evidenceSha256": "82029d97fd91b4f6771fe60b2a5e4d8c40a3f3100e891136723f3f7939a1d14b",
+      "evidence": {
+        "source": {
+          "sourceId": 47,
+          "nativeId": "core:cerberus",
+          "sourceLine": 308,
+          "sourceOrdinal": 5,
+          "cacheSlot": 10,
+          "code": "a",
+          "spell": 73,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "47-a73-plain",
+            "sha256": "08b6e24bf72be69212dc26eb2591f23a94cd464f5905305736a29bb7cac96825"
+          },
+          {
+            "name": "47-a73-defend",
+            "sha256": "d67ab823dcd8f68b72a16fee38b79db960730734bd6ff7d5f993a5eca9665688"
+          },
+          {
+            "name": "47-a73-real-Cure",
+            "sha256": "5802e2d0e958f4b9d8e8badf39c1b04fe4510f2cfea9efacf1d1045c564d8c65"
+          },
+          {
+            "name": "47-a73-real-Dispel",
+            "sha256": "64372b763560e31a5c42fb7e0fe7551b8a428f02fee7db50cf85101dc5536617"
+          }
+        ],
+        "actorProofSha256": "c64ea6a3cd34bb14fdeeace75a385d6b80de4910e41b7362bea125619eaa1e65"
+      }
+    },
+    {
+      "key": "58:K:54",
+      "passed": true,
+      "evidenceSha256": "9335cd00ab25cdc5a712ae7718d7b26fc70011739db4de377fea27c0c499ada9",
+      "evidence": {
+        "source": {
+          "sourceId": 58,
+          "nativeId": "core:walkingDead",
+          "sourceLine": 379,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "K",
+          "spell": 54,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "58-K54-haste",
+            "sha256": "cfec994f98678f9bd1effb643c135598d4b52305209f7f2277af0ba04845d758"
+          },
+          {
+            "name": "58-K54-floor1",
+            "sha256": "1c52ce35d36505cb94f91c7c71b7fd6723f77cdcd95a7a692aed37b150d22936"
+          },
+          {
+            "name": "58-K54-mixed-bubuRoyal",
+            "sha256": "caba4f3bce95fbba44369e3007f6072b8afcb944034ef6ce8c783e73818b4b2c"
+          },
+          {
+            "name": "58-K54-mixed-bubuExalted",
+            "sha256": "f9c070c6b0bac81d6f1f323fe3544b588008a6806c243e2159adc8a0a5521f61"
+          }
+        ],
+        "actorProofSha256": "e85e384a5778d371a96655f201f15298a32e1d15359daa3f1cb345168346f933"
+      }
+    },
+    {
+      "key": "60:J:45",
+      "passed": true,
+      "evidenceSha256": "a37b1a653dbf4832f55b2da160a3a651ce609dfeded977f09b4e40060dc1e2e4",
+      "evidence": {
+        "source": {
+          "sourceId": 60,
+          "nativeId": "core:wight",
+          "sourceLine": 385,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "J",
+          "spell": 45,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "60-J45",
+            "sha256": "88b5ef4b78855a7a20ad6ef9239ab1a813883be33cf10ab1e698ee8bd49d055c"
+          }
+        ],
+        "actorProofSha256": "ef9ab5d87e094c0a46f6c1c71ff85f4dc80ab9e5a2be680a9866623238bc8eb1"
+      }
+    },
+    {
+      "key": "63:a:60",
+      "passed": true,
+      "evidenceSha256": "8e5fc464a7c9614d4120b07b9acff1788d16271c12f39dd0df835857dbd7baa8",
+      "evidence": {
+        "source": {
+          "sourceId": 63,
+          "nativeId": "core:vampireLord",
+          "sourceLine": 394,
+          "sourceOrdinal": 2,
+          "cacheSlot": 7,
+          "code": "a",
+          "spell": 60,
+          "chances": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "63-a60",
+            "sha256": "28910fdc82c0d9fd60cc676793107bb788124b534cb7e0f30c0a8f0cc6918bf4"
+          }
+        ],
+        "actorProofSha256": "d9efa82859484b4cae2401259c9cd5ea994f399d598a2bf27c6616371cc7d984"
+      }
+    },
+    {
+      "key": "66:a:78",
+      "passed": true,
+      "evidenceSha256": "6f0b1581aad093bd3041abb5c0685f221f2eb2adcb2a1faf3181b3d5e0be72ad",
+      "evidence": {
+        "source": {
+          "sourceId": 66,
+          "nativeId": "core:blackKnight",
+          "sourceLine": 408,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 78,
+          "chances": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            100
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "66-a78",
+            "sha256": "b18eb0ff7870e80cb94a3a777890e7661f706260f0bd93cd16853af26f12e298"
+          }
+        ],
+        "actorProofSha256": "071e4c63005c7b2b420c44d5055604a88e81a16370e1c226608757c72ef49f96"
+      }
+    },
+    {
+      "key": "76:a:70",
+      "passed": true,
+      "evidenceSha256": "526ff2b6b8930bf87d6c8f012f213ea21db3bbe1a40322592059d819ada55bde",
+      "evidence": {
+        "source": {
+          "sourceId": 76,
+          "nativeId": "core:medusa",
+          "sourceLine": 458,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 70,
+          "chances": [
+            0,
+            0,
+            0,
+            5,
+            5,
+            10,
+            10,
+            15,
+            20,
+            25,
+            30
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "76-a70-counter",
+            "sha256": "c98ac4c65ef48b8e6a1b47cde0ce7c028cf4f4aeab30888195f1018c46bffd38"
+          }
+        ],
+        "actorProofSha256": "54edc022843159a333af3d6c9c32e299cb1987f0a5d4b12dabff98e617a20d67"
+      }
+    },
+    {
+      "key": "81:a:74",
+      "passed": true,
+      "evidenceSha256": "3a6ef521483c5f27aebad41ea3688c87fb6f2ebf65f183d625f7f4b8fd8193e3",
+      "evidence": {
+        "source": {
+          "sourceId": 81,
+          "nativeId": "core:scorpicore",
+          "sourceLine": 473,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 74,
+          "chances": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            5,
+            5,
+            10,
+            10,
+            15,
+            20
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "81-a74-counter",
+            "sha256": "717da97ccd18d94f9eb33f3cac4c7fd423f79550c40104d882da3dc33dd17183"
+          }
+        ],
+        "actorProofSha256": "578ea6f760a4e6f9bdede423c5afcc56378b41f99d74ee10cf0b239578b2a4af"
+      }
+    },
+    {
+      "key": "92:a:17",
+      "passed": true,
+      "evidenceSha256": "8d06ce7635605f376c5b7e102828c8e58f31084677073b38e637426a3a78f9ae",
+      "evidence": {
+        "source": {
+          "sourceId": 92,
+          "nativeId": "core:roc",
+          "sourceLine": 520,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 17,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "92-a17-single-nohero",
+            "sha256": "08527c933721b7c2c59ea08c3b1637d1d9b15cc6880d4ccec60985257471d0b2"
+          },
+          {
+            "name": "92-a17-single-sorcery",
+            "sha256": "80a85b8f868a5e602eba533cbe4e4d75e43f000d8c298f4bec98574862462b8e"
+          }
+        ],
+        "actorProofSha256": "3cf03109702ef6b3e2a6083841c33a39743ea64d5cb56ad823b661f4a417eeb2"
+      }
+    },
+    {
+      "key": "93:a:17",
+      "passed": true,
+      "evidenceSha256": "5199348d940f563ed22b3cd501ec1534a96780131e082b868dd838f11ee6bcce",
+      "evidence": {
+        "source": {
+          "sourceId": 93,
+          "nativeId": "core:thunderbird",
+          "sourceLine": 523,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 17,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "93-a17-with-native-thunder",
+            "sha256": "e339e91144e52c7885de801331979a89afffa63559f29fdc1df0157c8cde67a2"
+          }
+        ],
+        "actorProofSha256": "51a034524859df5046f46bd4cfa0cc5f0bea2a0b535f0b4f4bfe54f3b0bd517e"
+      }
+    },
+    {
+      "key": "106:a:70",
+      "passed": true,
+      "evidenceSha256": "91777498438556c8424a1cb793415aaa57c187b97c1962a291fd527e3ce30c96",
+      "evidence": {
+        "source": {
+          "sourceId": 106,
+          "nativeId": "core:basilisk",
+          "sourceLine": 575,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 70,
+          "chances": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "106-a70-counter",
+            "sha256": "242591016720f9bb2c9e404389807f3bfb21196632042f881d03e85c183186d9"
+          }
+        ],
+        "actorProofSha256": "6275861e31c278d24cca53085963d1caba32ac2f647687254e596e6dea8b6744"
+      }
+    },
+    {
+      "key": "107:a:70",
+      "passed": true,
+      "evidenceSha256": "8a9214a8bbb46ae692f18c8c396aa85df737bd85ed043319f7c0d8c00375806c",
+      "evidence": {
+        "source": {
+          "sourceId": 107,
+          "nativeId": "core:greaterBasilisk",
+          "sourceLine": 577,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 70,
+          "chances": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "107-a70-counter",
+            "sha256": "13faf4cd77dab4af6e61cbc1cfc942649569c32ea5c71c8da378020b43db267c"
+          }
+        ],
+        "actorProofSha256": "4b75e225573f5145ec12c8ec67e16296da55fe2f8a0e4c2df803e8a7b833265a"
+      }
+    },
+    {
+      "key": "141:a:42",
+      "passed": true,
+      "evidenceSha256": "4069572e9a8e49231f566fda7bb53b66812fda0dce4a75e08fb2bbee6dffbee8",
+      "evidence": {
+        "source": {
+          "sourceId": 141,
+          "nativeId": "core:mummy",
+          "sourceLine": 724,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 42,
+          "chances": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "141-a42",
+            "sha256": "a8b8b21b575736950ce0ce7e8f46e9c30a59d8e5e66df8bd9cf62fd6e7519c9a"
+          }
+        ],
+        "actorProofSha256": "edcc5fb61b3fed776dfe5a3ff8c85e0312e52ed2bd96c3fa4968ef2749546ee6"
+      }
+    },
+    {
+      "key": "164:p:66",
+      "passed": true,
+      "evidenceSha256": "ae19d5cfc674be8d51751cbf15b400004cbc956cd5e1bc0260242560ba8908bf",
+      "evidence": {
+        "source": {
+          "sourceId": 164,
+          "nativeId": "wake-of-gods.messengersandemissaries:fireMessenger",
+          "sourceLine": 763,
+          "sourceOrdinal": 2,
+          "cacheSlot": 7,
+          "code": "p",
+          "spell": 66,
+          "chances": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "164-p66-repeated-slots-exclusive",
+            "sha256": "7147ed9f699a3c615422580c0bbec21cc35bc8613b44ee87c16358c3664976a2"
+          },
+          {
+            "name": "164-p66-ring197",
+            "sha256": "e97edd0a4e1b8ae8a7525d17036b0e5039d1a66c0cb371870de51c958b08cbcf"
+          }
+        ],
+        "actorProofSha256": "fcfd1f4afb47b5427f106395a41ce486f460308e55584f55111ed1235cf27808"
+      }
+    },
+    {
+      "key": "164:k:13",
+      "passed": true,
+      "evidenceSha256": "606ce8ca42ae36323d8716241f216e29c9f3a01f4a75e50689df0956157e6f58",
+      "evidence": {
+        "source": {
+          "sourceId": 164,
+          "nativeId": "wake-of-gods.messengersandemissaries:fireMessenger",
+          "sourceLine": 762,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "k",
+          "spell": 13,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "164-k13-wall-entry-expiry",
+            "sha256": "b7e70ec0ed7ab2ca8e763cbf8e4b89d96934e83e75da1ff55e6ed7e81aad5ff7"
+          }
+        ],
+        "actorProofSha256": "fcfd1f4afb47b5427f106395a41ce486f460308e55584f55111ed1235cf27808"
+      }
+    },
+    {
+      "key": "165:p:67",
+      "passed": true,
+      "evidenceSha256": "0a4962e45b8ac52eb5ac2bb62f673f5fba1243a99eb8972da3cd1bff9723f14b",
+      "evidence": {
+        "source": {
+          "sourceId": 165,
+          "nativeId": "wake-of-gods.messengersandemissaries:earthMessenger",
+          "sourceLine": 766,
+          "sourceOrdinal": 2,
+          "cacheSlot": 7,
+          "code": "p",
+          "spell": 67,
+          "chances": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "165-p67-repeated-slots",
+            "sha256": "883013279c7597bd8346294d77b265af2f5520e439d38885cf31aa2b9930541f"
+          }
+        ],
+        "actorProofSha256": "96bf1f439301d85b9fd4ede1682fdf85cd0833b4640a5a8d5bd7637b3005d8f4"
+      }
+    },
+    {
+      "key": "165:a:10",
+      "passed": true,
+      "evidenceSha256": "bfb10a6f8693d816ce6824cfa8d8b6deafc5fcbc5d323dd707c080d73dc31bd5",
+      "evidence": {
+        "source": {
+          "sourceId": 165,
+          "nativeId": "wake-of-gods.messengersandemissaries:earthMessenger",
+          "sourceLine": 765,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 10,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "165-a10-quicksand-stop",
+            "sha256": "338e06590362788dcfbd49fcb709dce5b7bc9cc2e5e78a75637c856f001da1e2"
+          }
+        ],
+        "actorProofSha256": "96bf1f439301d85b9fd4ede1682fdf85cd0833b4640a5a8d5bd7637b3005d8f4"
+      }
+    },
+    {
+      "key": "167:p:68",
+      "passed": true,
+      "evidenceSha256": "e07a301804012b5437e0fd47902aca1c661b57b94e878384584604f0a57d6687",
+      "evidence": {
+        "source": {
+          "sourceId": 167,
+          "nativeId": "wake-of-gods.messengersandemissaries:waterMessenger",
+          "sourceLine": 772,
+          "sourceOrdinal": 2,
+          "cacheSlot": 7,
+          "code": "p",
+          "spell": 68,
+          "chances": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "167-p68-wide-repeated-slots",
+            "sha256": "308817c3c66e53ba92d29da114da2ba60081c09523107891f65fcbc10f87dc30"
+          }
+        ],
+        "actorProofSha256": "c1fc1d4cf19d0739ebad73d7d0db7895afe4fe1ecd91d9e16e63358713f3a21f"
+      }
+    },
+    {
+      "key": "167:a:16",
+      "passed": true,
+      "evidenceSha256": "c6f581fa5887456b02c6f52bc46c5df31f3a4416cc56f549f321ef58cc02956a",
+      "evidence": {
+        "source": {
+          "sourceId": 167,
+          "nativeId": "wake-of-gods.messengersandemissaries:waterMessenger",
+          "sourceLine": 771,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 16,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "167-a16-single-nohero",
+            "sha256": "c55ff6b0ae8e9c6c0c7f62120eb9fd635d665f0203b7139fe5f7159567b3339b"
+          },
+          {
+            "name": "167-a16-single-sorcery",
+            "sha256": "9cd9d74e5bb31e415cf0213d2494f080218befa8a4d3e3f929bd7c82b06f8950"
+          }
+        ],
+        "actorProofSha256": "c1fc1d4cf19d0739ebad73d7d0db7895afe4fe1ecd91d9e16e63358713f3a21f"
+      }
+    },
+    {
+      "key": "195:a:21",
+      "passed": true,
+      "evidenceSha256": "f03b471c7fcbd18f4c8c0dd5b49e9c7c42b368eeb2bafae135a135fd24e07498",
+      "evidence": {
+        "source": {
+          "sourceId": 195,
+          "nativeId": "wake-of-gods.creatures:hellSteed",
+          "sourceLine": 812,
+          "sourceOrdinal": 2,
+          "cacheSlot": 7,
+          "code": "a",
+          "spell": 21,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "195-a21-area-nohero",
+            "sha256": "2e8563d76b531faf7cf0f8ea9ca4a1d21ca02542741018440646d4dc60971444"
+          },
+          {
+            "name": "195-a21-area-currenthero",
+            "sha256": "a49407ee102fab403029970db3efe6c86eadb58625ff0db6bdd26b852a98e2dc"
+          }
+        ],
+        "actorProofSha256": "b06da3057cce0260c9c4c970b9afd932b6bc06ef208c04b30244705e7d0fc822"
+      }
+    },
+    {
+      "key": "196:k:71",
+      "passed": true,
+      "evidenceSha256": "87ef4f9486a18d8ffc707303cf76463e9e2ab2426cf69d9c7bee6e9abf0d9456",
+      "evidence": {
+        "source": {
+          "sourceId": 196,
+          "nativeId": "wake-of-gods.creatures:dracolich",
+          "sourceLine": 936,
+          "sourceOrdinal": 2,
+          "cacheSlot": 7,
+          "code": "k",
+          "spell": 71,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "196-k71-poison-Cure",
+            "sha256": "695a01eae0bd2397895a6a240aa535f2cf4e0784c079423956762ad2374ec535"
+          }
+        ],
+        "actorProofSha256": "75892e6be43487d735fc63439830048040fb328d8e336ee4a0131338614f758c"
+      }
+    },
+    {
+      "key": "206:p:37",
+      "passed": true,
+      "evidenceSha256": "d8a4c3f9af1015cfceec315ef49d8a0f9cb374a6bb8f1922b8923bbffba5ad0b",
+      "evidence": {
+        "source": {
+          "sourceId": 206,
+          "nativeId": "third-upgrades:tumLegendaryUnicorn",
+          "sourceLine": 999,
+          "sourceOrdinal": 6,
+          "cacheSlot": 7,
+          "code": "p",
+          "spell": 37,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "206-p37-friendly",
+            "sha256": "c5ce3304dfa2c291d93362b7f76b1e5f1d5fa9ec61c4a0bb24e6a38a84d31c4c"
+          }
+        ],
+        "actorProofSha256": "e132182ea3590e5c85bccfae8ce88fbae67cef2fb97e0d6b2709eb78478e5aef"
+      }
+    },
+    {
+      "key": "206:a:62",
+      "passed": true,
+      "evidenceSha256": "97d920c2a9a00262cb51fc5dd44ef418e1605416079c1b74fb2099ebf50b231f",
+      "evidence": {
+        "source": {
+          "sourceId": 206,
+          "nativeId": "third-upgrades:tumLegendaryUnicorn",
+          "sourceLine": 998,
+          "sourceOrdinal": 5,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 62,
+          "chances": [
+            0,
+            0,
+            5,
+            5,
+            10,
+            10,
+            15,
+            15,
+            20,
+            25,
+            30
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "206-a62-counter",
+            "sha256": "942c4565e28d24e850a4573b1f0f8089704decafd13cdc669d3a131ca860ecf1"
+          }
+        ],
+        "actorProofSha256": "e132182ea3590e5c85bccfae8ce88fbae67cef2fb97e0d6b2709eb78478e5aef"
+      }
+    },
+    {
+      "key": "214:p:21",
+      "passed": true,
+      "evidenceSha256": "ae5223e3998dd7a6292b9d3c4ae6a032ffda3f2940e417bdca3834e136647e46",
+      "evidence": {
+        "source": {
+          "sourceId": 214,
+          "nativeId": "third-upgrades:tumWingedMagog",
+          "sourceLine": 1047,
+          "sourceOrdinal": 2,
+          "cacheSlot": 7,
+          "code": "p",
+          "spell": 21,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "214-p21-a22-currenthero",
+            "sha256": "0b118b67591a1ed8eb51f22b1ebb71c0328d2d2905ff98e7a68e9d251d22aff4"
+          }
+        ],
+        "actorProofSha256": "c1010513db720708c983aad5330426bdb42addf036632bfe49f1c766a2e7272c"
+      }
+    },
+    {
+      "key": "214:a:22",
+      "passed": true,
+      "evidenceSha256": "136a54ee34a58d84b38a276b5f27b4eb4b7c966a3046be0d4ab1d380b678e0a4",
+      "evidence": {
+        "source": {
+          "sourceId": 214,
+          "nativeId": "third-upgrades:tumWingedMagog",
+          "sourceLine": 1048,
+          "sourceOrdinal": 3,
+          "cacheSlot": 8,
+          "code": "a",
+          "spell": 22,
+          "chances": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "214-p21-a22-currenthero",
+            "sha256": "0b118b67591a1ed8eb51f22b1ebb71c0328d2d2905ff98e7a68e9d251d22aff4"
+          },
+          {
+            "name": "214-a22-counter-currenthero",
+            "sha256": "2f2a50778bd1cc2e24d15733bd410d3fd58c6f054db862c004b1a38a16be9f20"
+          }
+        ],
+        "actorProofSha256": "c1010513db720708c983aad5330426bdb42addf036632bfe49f1c766a2e7272c"
+      }
+    },
+    {
+      "key": "215:a:73",
+      "passed": true,
+      "evidenceSha256": "54a817fbcca2947e45a433fb566fc111300d59c55b39f82726352847aa38e501",
+      "evidence": {
+        "source": {
+          "sourceId": 215,
+          "nativeId": "third-upgrades:tumAstralCerberus",
+          "sourceLine": 1055,
+          "sourceOrdinal": 6,
+          "cacheSlot": 11,
+          "code": "a",
+          "spell": 73,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "215-a73-plain",
+            "sha256": "da85c8a1e15726b8e84dd9beda96cbd529773725da21a8da3849c478639f8ee7"
+          },
+          {
+            "name": "215-a73-defend",
+            "sha256": "7d54822de8200cc437f797592f1bb2402fdb76955621a8437f61101787668762"
+          },
+          {
+            "name": "215-a73-real-Cure",
+            "sha256": "20b8f739796b7df43b0624c892de3075b96cdca49ffbe0186d88d6265c776089"
+          },
+          {
+            "name": "215-a73-real-Dispel",
+            "sha256": "e03c4b057df7f4318464527e8f85c2ebc5438cb6a1d61fb6129c2f578894bfe3"
+          }
+        ],
+        "actorProofSha256": "ff2e78cc397c08ae94a19854a6433738ff28e1a09288c3c06ec4d36d4b859f28"
+      }
+    },
+    {
+      "key": "221:a:60",
+      "passed": true,
+      "evidenceSha256": "a72c6c94a013f289884a6236ddf1d421daa4a3b6694b9a96dd4a40a47afb427a",
+      "evidence": {
+        "source": {
+          "sourceId": 221,
+          "nativeId": "third-upgrades:tumNosferatu",
+          "sourceLine": 1087,
+          "sourceOrdinal": 2,
+          "cacheSlot": 7,
+          "code": "a",
+          "spell": 60,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "221-a60",
+            "sha256": "49b86f4247878279315c513b092b025a00d37ec23efb459998d9a75a3902b957"
+          }
+        ],
+        "actorProofSha256": "9706b87fa84f95f7fb3c8d2dc633fca5540146b8a79bc01d03ff466d2fdcf146"
+      }
+    },
+    {
+      "key": "223:a:78",
+      "passed": true,
+      "evidenceSha256": "a74612f553c6d3cfa42e8678d853a7c5b86ab02146e0265880599db6c2ccc98c",
+      "evidence": {
+        "source": {
+          "sourceId": 223,
+          "nativeId": "third-upgrades:tumDeathKnight",
+          "sourceLine": 1097,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 78,
+          "chances": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            100
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "223-a78",
+            "sha256": "07c3b9ee48aaa934d768e18dfd43c5e1830d9d0136afaf9b9eb66c0dee87868c"
+          }
+        ],
+        "actorProofSha256": "ae012b9bec6898f5bf95093fad4433d41ee3a403f16943003a6be189878749fa"
+      }
+    },
+    {
+      "key": "228:a:70",
+      "passed": true,
+      "evidenceSha256": "33b0561876c1f5a8c2a209fd919b41a3d8d42d86170aaeb44babe94e781acfd5",
+      "evidence": {
+        "source": {
+          "sourceId": 228,
+          "nativeId": "third-upgrades:tumMedusaEmpress",
+          "sourceLine": 1123,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 70,
+          "chances": [
+            0,
+            0,
+            0,
+            5,
+            5,
+            10,
+            10,
+            15,
+            20,
+            25,
+            30
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "228-a70-counter",
+            "sha256": "0c7d9cd3f1bb2e3ef7080d7cec73e2b470ddfbd6b6723f3f5a26f370df84150e"
+          }
+        ],
+        "actorProofSha256": "3ed4d50ed6d9eedb532241731c055f1af664058b3775f548d4271872bf3afc6a"
+      }
+    },
+    {
+      "key": "230:a:74",
+      "passed": true,
+      "evidenceSha256": "789e36af0802f3068e47e5f8421afe986b4cbb586ad6bdf962420bb810fe1e56",
+      "evidence": {
+        "source": {
+          "sourceId": 230,
+          "nativeId": "third-upgrades:tumChimera",
+          "sourceLine": 1134,
+          "sourceOrdinal": 3,
+          "cacheSlot": 8,
+          "code": "a",
+          "spell": 74,
+          "chances": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            5,
+            5,
+            10,
+            10,
+            15,
+            20
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "230-a74-counter",
+            "sha256": "78f5e0a8fe5af76b3bdd07e7d0ef4b310f39ba633436ce9e507cc6762b4124bb"
+          }
+        ],
+        "actorProofSha256": "2d67332e0743d373072f76d939e649cca130496b84ea86b6c7a0e0ec24d80d55"
+      }
+    },
+    {
+      "key": "231:a:62",
+      "passed": true,
+      "evidenceSha256": "c6ffb657fe976b9446bc4e75a9b540b25406e05f2a06792c299ab7c7cfcd3ae2",
+      "evidence": {
+        "source": {
+          "sourceId": 231,
+          "nativeId": "tum-era:chasmDragon",
+          "sourceLine": 1142,
+          "sourceOrdinal": 6,
+          "cacheSlot": 11,
+          "code": "a",
+          "spell": 62,
+          "chances": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          "executionOwner": "existingSourceService"
+        },
+        "nativeCases": [
+          {
+            "name": "231-existing-blind-berserk",
+            "sha256": "4fbc2da160220638c0e9206bd9e888e8293b36e30e539c0d3f8aa1fade2b73f1"
+          }
+        ],
+        "actorProofSha256": "dc5dc75fc2f84d12c246d76549c762165942ad7ec775518bec15d53bfca8fdfd"
+      }
+    },
+    {
+      "key": "231:K:59",
+      "passed": true,
+      "evidenceSha256": "881696ce675d86e51b5ad9d9530f55b6168268af71e6f97df254a27b7659f6f7",
+      "evidence": {
+        "source": {
+          "sourceId": 231,
+          "nativeId": "tum-era:chasmDragon",
+          "sourceLine": 1141,
+          "sourceOrdinal": 5,
+          "cacheSlot": 10,
+          "code": "K",
+          "spell": 59,
+          "chances": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ],
+          "executionOwner": "existingSourceService"
+        },
+        "nativeCases": [
+          {
+            "name": "231-existing-blind-berserk",
+            "sha256": "4fbc2da160220638c0e9206bd9e888e8293b36e30e539c0d3f8aa1fade2b73f1"
+          }
+        ],
+        "actorProofSha256": "dc5dc75fc2f84d12c246d76549c762165942ad7ec775518bec15d53bfca8fdfd"
+      }
+    },
+    {
+      "key": "236:a:19",
+      "passed": true,
+      "evidenceSha256": "5def9434692d103bee4085a880586645a67c816d0a243e555c7b09327d5ecedc",
+      "evidence": {
+        "source": {
+          "sourceId": 236,
+          "nativeId": "third-upgrades:tumLightningbird",
+          "sourceLine": 1161,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 19,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "236-a19-chain-friendtie-charges",
+            "sha256": "226de3588162bba1a8e046ae0c4828b6779e091e5b53134bd05285199b736434"
+          }
+        ],
+        "actorProofSha256": "05a1f3d02c6c90c2ed501884795b5de2c9e16d0b49bd6c6a17cfc8697f99833d"
+      }
+    },
+    {
+      "key": "241:k:45",
+      "passed": true,
+      "evidenceSha256": "33e54ac6dfcefe3d4f646d8bdbe6398a2bda0fd01cd06cd6c87f184e8bbfbfd6",
+      "evidence": {
+        "source": {
+          "sourceId": 241,
+          "nativeId": "third-upgrades:tumChaoticDragonFly",
+          "sourceLine": 1186,
+          "sourceOrdinal": 5,
+          "cacheSlot": 7,
+          "code": "k",
+          "spell": 45,
+          "chances": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "241-R0",
+            "sha256": "c8df0bc964a393515e3149077195daf69b3454d0eec162204f8720f757edac09"
+          },
+          {
+            "name": "241-R4",
+            "sha256": "ac2c1b07be8cf8a6cbefe1eb3a3c70c4ff78975d0554c59ab1c72155902b05fc"
+          },
+          {
+            "name": "241-R7",
+            "sha256": "3c148754d120e477254176b53c31771160a80d19277e44730c9366cac673193e"
+          },
+          {
+            "name": "241-R10",
+            "sha256": "f910c52f12cc357566e5f1706ba56f637e86101428e8453a93e1ace364f92d4e"
+          }
+        ],
+        "actorProofSha256": "2e048f4c95f863c965a204292e0bc76747cb11737c6c7b502d95325e7fd0bc7f"
+      }
+    },
+    {
+      "key": "242:a:70",
+      "passed": true,
+      "evidenceSha256": "c21fe3099c93c8d4f06e586ed225a2c0aa37e60f37cd3a28206d961ecbddfe6f",
+      "evidence": {
+        "source": {
+          "sourceId": 242,
+          "nativeId": "third-upgrades:tumLavaBasilisk",
+          "sourceLine": 1189,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 70,
+          "chances": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24,
+            27,
+            30
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "242-a70-counter",
+            "sha256": "45c6b91c49c8cc21607e11aaaf131ed1e1ed9219f00b1e72ba2dfc17d65be88c"
+          }
+        ],
+        "actorProofSha256": "479785fe44ea586615a8f8028c68bed822fe05330ee645191c20d4ae2f8165c5"
+      }
+    },
+    {
+      "key": "251:a:60",
+      "passed": true,
+      "evidenceSha256": "6f28bad2bcec185123a1600e68ecaf7692c07b8f31df9c8c5e86016bee12ff05",
+      "evidence": {
+        "source": {
+          "sourceId": 251,
+          "nativeId": "third-upgrades:tumVoidElemental",
+          "sourceLine": 1238,
+          "sourceOrdinal": 1,
+          "cacheSlot": 6,
+          "code": "a",
+          "spell": 60,
+          "chances": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "251-a60",
+            "sha256": "e0a83e234ad84f54e63a44f661ca1413eaa6349a282707ef5f5c0a755feaf963"
+          }
+        ],
+        "actorProofSha256": "c70cee3e4d1d2e49cb4a027f4af8e4f2f829440e38abaf6c9588c5522601762c"
+      }
+    },
+    {
+      "key": "254:k:71",
+      "passed": true,
+      "evidenceSha256": "f3d2b5a4c1855efe1befdc16fe16246518530ef4fb9deb154856b6137ea8d902",
+      "evidence": {
+        "source": {
+          "sourceId": 254,
+          "nativeId": "tum-era:necrossDragon",
+          "sourceLine": 1260,
+          "sourceOrdinal": 2,
+          "cacheSlot": 7,
+          "code": "k",
+          "spell": 71,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "existingSourceService"
+        },
+        "nativeCases": [
+          {
+            "name": "254-existing-poison-Cure",
+            "sha256": "7b5858f84702b044874fe4c6deee35eeb105f58aee09d8c6356088a501a192f9"
+          }
+        ],
+        "actorProofSha256": "e6e34ee6f5bb0f18734d8df94c5cc8a968290fde893d5da9367ef8f762ccf6cb"
+      }
+    },
+    {
+      "key": "255:J:11",
+      "passed": true,
+      "evidenceSha256": "be23d543eb3f06718e8fa9feed75a9cf331e11cc94b7139a9176681a4c71a7cc",
+      "evidence": {
+        "source": {
+          "sourceId": 255,
+          "nativeId": "third-upgrades:tumGrandmasterGremlin",
+          "sourceLine": 1269,
+          "sourceOrdinal": 5,
+          "cacheSlot": 10,
+          "code": "J",
+          "spell": 11,
+          "chances": [
+            0,
+            5,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "255-J11-mine-entry",
+            "sha256": "6fdbd76eba7d89447c70ae9fb78c48e24c5f5745d481c8edf2300789a0b10a80"
+          }
+        ],
+        "actorProofSha256": "652449ce821acea2608b7a0e536cab3a101aeee869e5e808b47f9a3d1dc43870"
+      }
+    },
+    {
+      "key": "261:p:52",
+      "passed": true,
+      "evidenceSha256": "210e9a490d314d97f3c8748607f7f44909a21f6d9fd3f31dd9cba5abad183057",
+      "evidence": {
+        "source": {
+          "sourceId": 261,
+          "nativeId": "third-upgrades:tumSpecter",
+          "sourceLine": 1302,
+          "sourceOrdinal": 3,
+          "cacheSlot": 8,
+          "code": "p",
+          "spell": 52,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "261-p52-J45",
+            "sha256": "49a845813c3ef8ff5e6e8d66ee06610fd90580fa147cc4d7597334361f97572f"
+          }
+        ],
+        "actorProofSha256": "30a422915b227c96de547257b47ae5e094a22a0f197eef8729c810dad8c63b7b"
+      }
+    },
+    {
+      "key": "261:J:45",
+      "passed": true,
+      "evidenceSha256": "9790fa252552c78d2b616251ea4b65b301f070dbc4c71ca94503dc0f13802aff",
+      "evidence": {
+        "source": {
+          "sourceId": 261,
+          "nativeId": "third-upgrades:tumSpecter",
+          "sourceLine": 1299,
+          "sourceOrdinal": 0,
+          "cacheSlot": 5,
+          "code": "J",
+          "spell": 45,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "261-p52-J45",
+            "sha256": "49a845813c3ef8ff5e6e8d66ee06610fd90580fa147cc4d7597334361f97572f"
+          }
+        ],
+        "actorProofSha256": "30a422915b227c96de547257b47ae5e094a22a0f197eef8729c810dad8c63b7b"
+      }
+    },
+    {
+      "key": "321:a:42",
+      "passed": true,
+      "evidenceSha256": "88833fbd898e7bc3e092cff3e9dee99fc6e36d0c9a61c66de38e4192560e3275",
+      "evidence": {
+        "source": {
+          "sourceId": 321,
+          "nativeId": "third-upgrades:tumGnollShaman",
+          "sourceLine": 1653,
+          "sourceOrdinal": 4,
+          "cacheSlot": 9,
+          "code": "a",
+          "spell": 42,
+          "chances": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "executionOwner": "candidateLedger"
+        },
+        "nativeCases": [
+          {
+            "name": "321-a42",
+            "sha256": "4fb0923d7500dec9876deca895d492af42068a3ba46ecbc60a963a2b8ab77ba6"
+          }
+        ],
+        "actorProofSha256": "b3cba96a8feea2f4e7fd3d0730a5eb68f641b6082459373f74d8bbd216833e07"
+      }
+    }
+  ],
+  "scope": "40 newly admitted providers;3 existing owners independently witnessed in a mixed enrolled battle.36 identities/R0 fields compared with the unmodified data; canonical164/165 profiles progressed by10 real victories.",
+  "exceptions": [
+    {
+      "domain": "Signed32 wrapped summon count <=0",
+      "behavior": "Original slot/latest bookkeeping and random draws retained; omit the invalid nonpositive unit rather than create an immortal occupying record.",
+      "definedOriginalBehavior": true
+    },
+    {
+      "domain": "Signed32 wrapped Cure amount <0",
+      "behavior": "Rejected before any mutation; no ordinary supplied positive-count witness asserted."
+    },
+    {
+      "domain": "Slow animation tempo",
+      "behavior": "Mechanics use original F32 speed/floor1 and clocks; visual tempo follows VCMI/Goonk settings."
+    },
+    {
+      "domain": "Arbitrary external ERM globals",
+      "behavior": "Admission covers the pinned43 source XP rows; not an arbitrary ERM interpreter."
+    }
+  ]
+}

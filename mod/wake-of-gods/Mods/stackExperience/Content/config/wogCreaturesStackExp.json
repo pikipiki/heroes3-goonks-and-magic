@@ -307,30 +307,8 @@
 					18,
 					20
 				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "poison",
-					"icon" : "bonuses/poison.png",
-					"addInfo" : [
-						1,
-						0
-					]
-				},
-				"values" : [
-					5,
-					10,
-					15,
-					20,
-					25,
-					30,
-					35,
-					40,
-					45,
-					50
-				]
 			}
+			
 		]
 	},
 
@@ -793,30 +771,8 @@
 					true,
 					true
 				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "fireball",
-					"icon" : "bonuses/fireballattack.png",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					5,
-					10,
-					15,
-					20,
-					25,
-					30,
-					35,
-					40,
-					45,
-					50
-				]
 			}
+			
 		]
 	},
 

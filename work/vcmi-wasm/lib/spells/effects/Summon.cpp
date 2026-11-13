@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../../era/EraSourceXpElementalState.h"
 
 #include "Summon.h"
 #include "../../era/EraElementalRing.h"
@@ -53,6 +54,19 @@ bool Summon::applicable(Problem & problem, const Mechanics * m) const
 		return m->adaptGenericProblem(problem);
 	}
 
+    if(exclusive && !era_compat::sourceAllowsDifferentElementals(*m->battle(),m->casterSide))
+    {
+        if(const auto state=era_compat::xpElementalState(*m->battle()))
+        {
+            const int latest=(*state)[m->casterSide==BattleSide::ATTACKER?0:1];
+            if(latest==-1||latest==creature.getNum())return true;
+            MetaString text;text.appendLocalString(EMetaText::GENERAL_TXT,538);
+            if(const auto * hero=dynamic_cast<const CGHeroInstance *>(m->caster))
+            {text.replaceRawString(hero->getNameTranslated());text.replaceNamePlural(CreatureID(latest));
+             text.replaceLocalString(EMetaText::GENERAL_TXT,hero->gender==EHeroGender::FEMALE?540:539);}
+            problem.add(std::move(text),Problem::NORMAL);return false;
+        }
+    }
 	if(exclusive && !era_compat::sourceAllowsDifferentElementals(*m->battle(),m->casterSide))
 	{
 		//check if there are summoned creatures of other type
@@ -123,6 +137,10 @@ int32_t Summon::summonedCreatureAmount(const Mechanics * m) const
 
 void Summon::apply(ServerCallback * server, const Mechanics * m, const EffectTarget & target) const
 {
+    if(era_compat::xpElementalState(*m->battle()) && m->getSpellIndex()>=66 && m->getSpellIndex()<=69)
+    {
+        era_compat::recordXpElemental(*m->battle(),m->casterSide,creature.getNum(),[&](auto & p){server->apply(p);});
+    }
 	BattleUnitsChanged pack;
 	pack.battleID = m->battle()->getBattle()->getBattleID();
 

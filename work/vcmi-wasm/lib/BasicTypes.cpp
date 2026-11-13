@@ -10,6 +10,7 @@
 
 #include "StdInc.h"
 #include "era/EraExperienceHealth.h"
+#include "era/EraSourceXpOwnHealth.h"
 
 #include "GameLibrary.h"
 #include "GameConstants.h"
@@ -144,7 +145,7 @@ ui32 ACreature::getMaxHealth() const
 	auto value = getBonusBearer()->valOfBonuses(BonusType::STACK_HEALTH);
 	if(getBonusBearer()->hasBonusOfType(BonusType::ERA_EXPERIENCE_HEALTH_PERCENT))
 		value = era_bridge::sourceExperienceHealth(value, getBonusBearer()->valOfBonuses(BonusType::ERA_EXPERIENCE_HEALTH_PERCENT));
-	return std::max(1, value); //never 0
+	return std::max(1, era_compat::sourceXpOwnHealth(*getBonusBearer(),value)); //never 0
 }
 
 ui32 ACreature::getMovementRange() const

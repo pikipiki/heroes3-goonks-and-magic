@@ -1,0 +1,365 @@
+{
+  "third-upgrades:tumChaoticDragonFly": {
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 367
+    },
+    "fightValue": 325,
+    "aiValue": 405,
+    "growth": 8,
+    "hitPoints": 25,
+    "speed": 14,
+    "attack": 9,
+    "defense": 11,
+    "damage": {
+      "min": 2,
+      "max": 5
+    },
+    "advMapAmount": {
+      "min": 10,
+      "max": 15
+    },
+    "level": 3,
+    "faction": "core:fortress",
+    "abilities": {
+      "castWeakness": null,
+      "unlimitedRetaliation": null,
+      "sourceRetaliations100": {
+        "type": "ADDITIONAL_RETALIATION",
+        "val": 99
+      },
+      "sourceOriginalStatusHealth": {
+        "type": "ERA_SOURCE_STATUS_HEALTH",
+        "val": 50
+      }
+    },
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ATTACKS_ALL_ADJACENT"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NONE",
+          "val": 1,
+          "valueType": "ADDITIVE_VALUE",
+          "stacking": "eraSourceXpOwnHealth:241:v1",
+          "hidden": true
+        },
+        "values": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NONE",
+          "val": 2,
+          "valueType": "ADDITIVE_VALUE",
+          "stacking": "eraSourceXpOwnHealth:241:v1",
+          "hidden": true
+        },
+        "values": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NONE",
+          "val": 4,
+          "valueType": "ADDITIVE_VALUE",
+          "stacking": "eraSourceXpOwnHealth:241:v1",
+          "hidden": true
+        },
+        "values": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NONE",
+          "val": 5,
+          "valueType": "ADDITIVE_VALUE",
+          "stacking": "eraSourceXpOwnHealth:241:v1",
+          "hidden": true
+        },
+        "values": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NONE",
+          "val": 7,
+          "valueType": "ADDITIVE_VALUE",
+          "stacking": "eraSourceXpOwnHealth:241:v1",
+          "hidden": true
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NONE",
+          "val": 8,
+          "valueType": "ADDITIVE_VALUE",
+          "stacking": "eraSourceXpOwnHealth:241:v1",
+          "hidden": true
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NONE",
+          "val": 10,
+          "valueType": "ADDITIVE_VALUE",
+          "stacking": "eraSourceXpOwnHealth:241:v1",
+          "hidden": true
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NONE",
+          "val": 11,
+          "valueType": "ADDITIVE_VALUE",
+          "stacking": "eraSourceXpOwnHealth:241:v1",
+          "hidden": true
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NONE",
+          "val": 13,
+          "valueType": "ADDITIVE_VALUE",
+          "stacking": "eraSourceXpOwnHealth:241:v1",
+          "hidden": true
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NONE",
+          "val": 14,
+          "valueType": "ADDITIVE_VALUE",
+          "stacking": "eraSourceXpOwnHealth:241:v1",
+          "hidden": true
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ]
+      }
+    ]
+  }
+}

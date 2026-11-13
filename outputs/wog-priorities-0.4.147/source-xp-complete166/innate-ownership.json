@@ -1,0 +1,3106 @@
+{
+  "passed": true,
+  "actors": [
+    {
+      "sourceId": 25,
+      "nativeValidated": true,
+      "proofSha256": "13807903042413022e7000ada5a2d7580861c9980c07be0502f80075659371c1",
+      "evidence": {
+        "sourceId": 25,
+        "nativeValidated": true,
+        "rows": [
+          {
+            "key": "25:a:62",
+            "evidenceSha256": "33441ac9a195a7efb6e3d9fca68dc3a87ad88b4ea59238e91bcd6b58c9723c39"
+          }
+        ],
+        "manifestProviders": {
+          "sourceId": 25,
+          "nativeId": "core:warUnicorn",
+          "manifestLayers": [
+            {
+              "file": "mod/third-upgrades/content/config/creatures/rampart/rampart.json",
+              "sha256": "580a74c4461020f51e5298a803f4d91636274dc707d39c25c101cdfd1f200660",
+              "manifest": "mod/third-upgrades/mod.json",
+              "manifestSha256": "2f4a829d0a93236def69f752b0f10c085098fbfcbe9b5755a8faf7351f5f4037",
+              "entry": "config/creatures/rampart/rampart",
+              "scope": "third-upgrades",
+              "keepDisabled": false,
+              "jsonKey": "core:warUnicorn",
+              "nativeId": "core:warUnicorn",
+              "sourceId": 25,
+              "definitionSha256": "d21926a99e46026753bab9225acc9edba696efe349280ef098aa7ae62f717c80",
+              "abilities": {},
+              "stackExperience": [],
+              "retainedStackExperience": []
+            },
+            {
+              "file": "mod/wake-of-gods/Mods/stackExperience/Content/config/rampartCreaturesStackExp.json",
+              "sha256": "78ce85468e5ee96bcf58576a1b9ac04b4686101efcce61daa940209cea85a26b",
+              "manifest": "mod/wake-of-gods/Mods/stackExperience/mod.json",
+              "manifestSha256": "5de81eef3f95632f9a8cef2c74c36a7d64a7fd0edeaa11b1f6476a738c6c86a8",
+              "entry": "config/rampartCreaturesStackExp.json",
+              "scope": "wake-of-gods.stackexperience",
+              "keepDisabled": false,
+              "jsonKey": "core:warUnicorn",
+              "nativeId": "core:warUnicorn",
+              "sourceId": 25,
+              "definitionSha256": "ae0b6690b7177e5fbe250792ed35c03c837c600c53f93a5c455bc0e0db227c16",
+              "abilities": {},
+              "stackExperience": [
+                {
+                  "bonus": {
+                    "type": "PRIMARY_SKILL",
+                    "subtype": "attack"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    2,
+                    2,
+                    4,
+                    7,
+                    7,
+                    9,
+                    10,
+                    11
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "PRIMARY_SKILL",
+                    "subtype": "defence"
+                  },
+                  "values": [
+                    1,
+                    1,
+                    3,
+                    3,
+                    5,
+                    5,
+                    5,
+                    6,
+                    6,
+                    8
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMax"
+                  },
+                  "values": [
+                    0,
+                    2,
+                    2,
+                    4,
+                    4,
+                    4,
+                    6,
+                    7,
+                    9,
+                    9
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMin"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    4,
+                    4,
+                    4,
+                    4,
+                    6,
+                    6,
+                    7,
+                    7
+                  ]
+                },
+                {
+                  "bonus": {
+                    "valueType": "PERCENT_TO_BASE",
+                    "type": "STACK_HEALTH"
+                  },
+                  "values": [
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    2
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "SPELL_BEFORE_ATTACK",
+                    "subtype": "blind",
+                    "icon": "bonuses/blindattack.png",
+                    "addInfo": [
+                      3,
+                      2
+                    ]
+                  },
+                  "values": [
+                    0,
+                    5,
+                    5,
+                    10,
+                    10,
+                    15,
+                    15,
+                    20,
+                    25,
+                    30
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "FEARFUL",
+                    "valueType": "INDEPENDENT_MIN",
+                    "val": 0
+                  },
+                  "values": [
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true,
+                    true,
+                    true,
+                    true,
+                    true
+                  ]
+                }
+              ],
+              "retainedStackExperience": [
+                {
+                  "bonus": {
+                    "type": "PRIMARY_SKILL",
+                    "subtype": "attack"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    2,
+                    2,
+                    4,
+                    7,
+                    7,
+                    9,
+                    10,
+                    11
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "PRIMARY_SKILL",
+                    "subtype": "defence"
+                  },
+                  "values": [
+                    1,
+                    1,
+                    3,
+                    3,
+                    5,
+                    5,
+                    5,
+                    6,
+                    6,
+                    8
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMax"
+                  },
+                  "values": [
+                    0,
+                    2,
+                    2,
+                    4,
+                    4,
+                    4,
+                    6,
+                    7,
+                    9,
+                    9
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMin"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    4,
+                    4,
+                    4,
+                    4,
+                    6,
+                    6,
+                    7,
+                    7
+                  ]
+                },
+                {
+                  "bonus": {
+                    "valueType": "PERCENT_TO_BASE",
+                    "type": "STACK_HEALTH"
+                  },
+                  "values": [
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    2
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "FEARFUL",
+                    "valueType": "INDEPENDENT_MIN",
+                    "val": 0
+                  },
+                  "values": [
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true,
+                    true,
+                    true,
+                    true,
+                    true
+                  ]
+                }
+              ]
+            }
+          ],
+          "baseDefinitionSha256": "750bcc565b3af76a6c26bd0e3d77219120917c315f50632e0819d9450f0f9193",
+          "abilities": {
+            "blinds": {
+              "type": "SPELL_AFTER_ATTACK",
+              "subtype": "spell.blind",
+              "val": 20,
+              "addInfo": [
+                3,
+                0
+              ]
+            },
+            "spellResistAura": {
+              "type": "SPELL_RESISTANCE_AURA",
+              "val": 20
+            }
+          },
+          "abilitiesSha256": "a64e594ae4ff999f2722439b3d72f34369abcda7a16dd89923f09cc2a74bcfa8",
+          "retainedNativeXpRows": [],
+          "wholeActorMeaning": "Preserve baseline definition and every nonowned provider; migrate only43 source casting contracts and verified casting copies. This is not a blanket CFG stat rewrite.",
+          "preserveUnmatchedNativeCasting": true,
+          "wholeNativeEvidencePending": true
+        },
+        "source241DefinitionSha256": null
+      }
+    },
+    {
+      "sourceId": 76,
+      "nativeValidated": true,
+      "proofSha256": "80a1d869470ddd623526f7b29088c233446fa99abc31237be5e1bb0a260f50c7",
+      "evidence": {
+        "sourceId": 76,
+        "nativeValidated": true,
+        "rows": [
+          {
+            "key": "76:a:70",
+            "evidenceSha256": "526ff2b6b8930bf87d6c8f012f213ea21db3bbe1a40322592059d819ada55bde"
+          }
+        ],
+        "manifestProviders": {
+          "sourceId": 76,
+          "nativeId": "core:medusa",
+          "manifestLayers": [
+            {
+              "file": "mod/wake-of-gods/Mods/stackExperience/Content/config/dungeonCreaturesStackExp.json",
+              "sha256": "7d4298dc5f99df26f488eb38556bdabd6f72b7a418e5b52fc9c1be6010dbdc5b",
+              "manifest": "mod/wake-of-gods/Mods/stackExperience/mod.json",
+              "manifestSha256": "5de81eef3f95632f9a8cef2c74c36a7d64a7fd0edeaa11b1f6476a738c6c86a8",
+              "entry": "config/dungeonCreaturesStackExp.json",
+              "scope": "wake-of-gods.stackexperience",
+              "keepDisabled": false,
+              "jsonKey": "core:medusa",
+              "nativeId": "core:medusa",
+              "sourceId": 76,
+              "definitionSha256": "6bc130d7a4273c69ff92e884a3dc3440017dad8479139471651dd7482805737e",
+              "abilities": {},
+              "stackExperience": [
+                {
+                  "bonus": {
+                    "type": "PRIMARY_SKILL",
+                    "subtype": "attack"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "PRIMARY_SKILL",
+                    "subtype": "defence"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    4,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMax"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    5
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMin"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    4
+                  ]
+                },
+                {
+                  "bonus": {
+                    "valueType": "PERCENT_TO_BASE",
+                    "type": "STACK_HEALTH"
+                  },
+                  "values": [
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "SPELL_AFTER_ATTACK",
+                    "subtype": "stoneGaze",
+                    "addInfo": [
+                      3,
+                      0
+                    ]
+                  },
+                  "values": [
+                    0,
+                    0,
+                    5,
+                    5,
+                    10,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "SHOTS",
+                    "valueType": "BASE_NUMBER"
+                  },
+                  "values": [
+                    1,
+                    1,
+                    1,
+                    2,
+                    2,
+                    2,
+                    3,
+                    3,
+                    3,
+                    4
+                  ]
+                }
+              ],
+              "retainedStackExperience": [
+                {
+                  "bonus": {
+                    "type": "PRIMARY_SKILL",
+                    "subtype": "attack"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "PRIMARY_SKILL",
+                    "subtype": "defence"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    4,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMax"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    5
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMin"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    4
+                  ]
+                },
+                {
+                  "bonus": {
+                    "valueType": "PERCENT_TO_BASE",
+                    "type": "STACK_HEALTH"
+                  },
+                  "values": [
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "SHOTS",
+                    "valueType": "BASE_NUMBER"
+                  },
+                  "values": [
+                    1,
+                    1,
+                    1,
+                    2,
+                    2,
+                    2,
+                    3,
+                    3,
+                    3,
+                    4
+                  ]
+                }
+              ]
+            }
+          ],
+          "baseDefinitionSha256": "0fc116afa38a5c905cc05702a178b9d758b4dc7cf37ad195d39c9b94df3453e0",
+          "abilities": {
+            "shooter": {
+              "type": "SHOOTER"
+            },
+            "noMeleePenalty": {
+              "type": "NO_MELEE_PENALTY"
+            },
+            "petrification": {
+              "type": "SPELL_AFTER_ATTACK",
+              "subtype": "spell.stoneGaze",
+              "val": 20,
+              "addInfo": [
+                0,
+                2
+              ]
+            }
+          },
+          "abilitiesSha256": "38e792a51256f9583a842d8af78c6337e2fea6d7f2b29e27faa94a1e561a6c76",
+          "retainedNativeXpRows": [],
+          "wholeActorMeaning": "Preserve baseline definition and every nonowned provider; migrate only43 source casting contracts and verified casting copies. This is not a blanket CFG stat rewrite.",
+          "preserveUnmatchedNativeCasting": true,
+          "wholeNativeEvidencePending": true
+        },
+        "source241DefinitionSha256": null
+      }
+    },
+    {
+      "sourceId": 81,
+      "nativeValidated": true,
+      "proofSha256": "97a3bbb213e3ea1dad4f4d098e442657c819a39f48a1d7248e32e48ab7500eb6",
+      "evidence": {
+        "sourceId": 81,
+        "nativeValidated": true,
+        "rows": [
+          {
+            "key": "81:a:74",
+            "evidenceSha256": "3a6ef521483c5f27aebad41ea3688c87fb6f2ebf65f183d625f7f4b8fd8193e3"
+          }
+        ],
+        "manifestProviders": {
+          "sourceId": 81,
+          "nativeId": "core:scorpicore",
+          "manifestLayers": [
+            {
+              "file": "mod/third-upgrades/content/config/creatures/dungeon/dungeon.json",
+              "sha256": "1dc691af32862d9d5d44fa1814d5286693b2585b6a7d58c78e1775fa0fa2d501",
+              "manifest": "mod/third-upgrades/mod.json",
+              "manifestSha256": "2f4a829d0a93236def69f752b0f10c085098fbfcbe9b5755a8faf7351f5f4037",
+              "entry": "config/creatures/dungeon/dungeon.json",
+              "scope": "third-upgrades",
+              "keepDisabled": false,
+              "jsonKey": "core:scorpicore",
+              "nativeId": "core:scorpicore",
+              "sourceId": 81,
+              "definitionSha256": "1455ae9840a2ec63c9c9e8518cb8e7c60a8f922f37a2b2eb7fc372e22da5a63f",
+              "abilities": {},
+              "stackExperience": [],
+              "retainedStackExperience": []
+            },
+            {
+              "file": "mod/wake-of-gods/Mods/stackExperience/Content/config/dungeonCreaturesStackExp.json",
+              "sha256": "7d4298dc5f99df26f488eb38556bdabd6f72b7a418e5b52fc9c1be6010dbdc5b",
+              "manifest": "mod/wake-of-gods/Mods/stackExperience/mod.json",
+              "manifestSha256": "5de81eef3f95632f9a8cef2c74c36a7d64a7fd0edeaa11b1f6476a738c6c86a8",
+              "entry": "config/dungeonCreaturesStackExp.json",
+              "scope": "wake-of-gods.stackexperience",
+              "keepDisabled": false,
+              "jsonKey": "core:scorpicore",
+              "nativeId": "core:scorpicore",
+              "sourceId": 81,
+              "definitionSha256": "b80bfd8b2bda3e232b3a69936e415ac7a4c9b450ec165da340745d282b16b951",
+              "abilities": {},
+              "stackExperience": [
+                {
+                  "bonus": {
+                    "type": "PRIMARY_SKILL",
+                    "subtype": "attack"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "PRIMARY_SKILL",
+                    "subtype": "defence"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMax"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    8,
+                    9
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMin"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    5,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "bonus": {
+                    "valueType": "PERCENT_TO_BASE",
+                    "type": "STACK_HEALTH"
+                  },
+                  "values": [
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    2,
+                    2,
+                    3
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "SPELL_AFTER_ATTACK",
+                    "subtype": "paralyze",
+                    "addInfo": [
+                      3,
+                      2
+                    ]
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    5,
+                    5,
+                    10,
+                    10,
+                    15,
+                    20
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "SPELL_AFTER_ATTACK",
+                    "subtype": "acidBreath",
+                    "icon": "bonuses/acidattack.png",
+                    "addInfo": [
+                      1,
+                      2
+                    ]
+                  },
+                  "values": [
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "SPELL_AFTER_ATTACK",
+                    "subtype": "acidBreathDamage",
+                    "icon": "bonuses/acidattack.png",
+                    "addInfo": [
+                      1,
+                      2
+                    ]
+                  },
+                  "values": [
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50
+                  ]
+                }
+              ],
+              "retainedStackExperience": [
+                {
+                  "bonus": {
+                    "type": "PRIMARY_SKILL",
+                    "subtype": "attack"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "PRIMARY_SKILL",
+                    "subtype": "defence"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMax"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    8,
+                    9
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMin"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    5,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "bonus": {
+                    "valueType": "PERCENT_TO_BASE",
+                    "type": "STACK_HEALTH"
+                  },
+                  "values": [
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    2,
+                    2,
+                    3
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "SPELL_AFTER_ATTACK",
+                    "subtype": "acidBreath",
+                    "icon": "bonuses/acidattack.png",
+                    "addInfo": [
+                      1,
+                      2
+                    ]
+                  },
+                  "values": [
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "SPELL_AFTER_ATTACK",
+                    "subtype": "acidBreathDamage",
+                    "icon": "bonuses/acidattack.png",
+                    "addInfo": [
+                      1,
+                      2
+                    ]
+                  },
+                  "values": [
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50
+                  ]
+                }
+              ]
+            }
+          ],
+          "baseDefinitionSha256": "599a5201dfdd732f27034a52a21861afea72c84a6bfa888e09cc156d1c2286ca",
+          "abilities": {
+            "canFly": {
+              "type": "FLYING"
+            },
+            "paralize": {
+              "type": "SPELL_AFTER_ATTACK",
+              "subtype": "spell.paralyze",
+              "val": 20
+            }
+          },
+          "abilitiesSha256": "203873a9eaf23b818f0ccef21626814ef08189bf05e1b46ea22208a541fa8b45",
+          "retainedNativeXpRows": [],
+          "wholeActorMeaning": "Preserve baseline definition and every nonowned provider; migrate only43 source casting contracts and verified casting copies. This is not a blanket CFG stat rewrite.",
+          "preserveUnmatchedNativeCasting": true,
+          "wholeNativeEvidencePending": true
+        },
+        "source241DefinitionSha256": null
+      }
+    },
+    {
+      "sourceId": 106,
+      "nativeValidated": true,
+      "proofSha256": "fbd63aa6a5c66f849dc174d2b258f116db278f606467578c96ebcd28b6d7c3c6",
+      "evidence": {
+        "sourceId": 106,
+        "nativeValidated": true,
+        "rows": [
+          {
+            "key": "106:a:70",
+            "evidenceSha256": "91777498438556c8424a1cb793415aaa57c187b97c1962a291fd527e3ce30c96"
+          }
+        ],
+        "manifestProviders": {
+          "sourceId": 106,
+          "nativeId": "core:basilisk",
+          "manifestLayers": [
+            {
+              "file": "mod/wake-of-gods/Mods/stackExperience/Content/config/fortressCreaturesStackExp.json",
+              "sha256": "adba0a7fdc480e1a9858b491cf3736d3f2c1f6c7d9937aba8052a58f51a90d02",
+              "manifest": "mod/wake-of-gods/Mods/stackExperience/mod.json",
+              "manifestSha256": "5de81eef3f95632f9a8cef2c74c36a7d64a7fd0edeaa11b1f6476a738c6c86a8",
+              "entry": "config/fortressCreaturesStackExp.json",
+              "scope": "wake-of-gods.stackexperience",
+              "keepDisabled": false,
+              "jsonKey": "core:basilisk",
+              "nativeId": "core:basilisk",
+              "sourceId": 106,
+              "definitionSha256": "36e44c79cae1dc5c193223c0ff863ba9a0f1d18c065b73e959cbc319064c3672",
+              "abilities": {},
+              "stackExperience": [
+                {
+                  "bonus": {
+                    "subtype": "attack",
+                    "type": "PRIMARY_SKILL"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "bonus": {
+                    "subtype": "defence",
+                    "type": "PRIMARY_SKILL"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    4,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMax"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    5
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMin"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    4
+                  ]
+                },
+                {
+                  "bonus": {
+                    "valueType": "PERCENT_TO_BASE",
+                    "type": "STACK_HEALTH"
+                  },
+                  "values": [
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "SPELL_AFTER_ATTACK",
+                    "subtype": "stoneGaze",
+                    "addInfo": [
+                      3,
+                      2
+                    ]
+                  },
+                  "values": [
+                    3,
+                    6,
+                    9,
+                    12,
+                    15,
+                    18,
+                    21,
+                    24,
+                    27,
+                    30
+                  ]
+                }
+              ],
+              "retainedStackExperience": [
+                {
+                  "bonus": {
+                    "subtype": "attack",
+                    "type": "PRIMARY_SKILL"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "bonus": {
+                    "subtype": "defence",
+                    "type": "PRIMARY_SKILL"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    4,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMax"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    5
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMin"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    4
+                  ]
+                },
+                {
+                  "bonus": {
+                    "valueType": "PERCENT_TO_BASE",
+                    "type": "STACK_HEALTH"
+                  },
+                  "values": [
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ]
+                }
+              ]
+            }
+          ],
+          "baseDefinitionSha256": "0a688f318c0af08f95a25d49d9f21e07f48c304082bfab3da66383c6e29fa2fc",
+          "abilities": {
+            "petrify": {
+              "type": "SPELL_AFTER_ATTACK",
+              "subtype": "spell.stoneGaze",
+              "val": 20
+            }
+          },
+          "abilitiesSha256": "b45dd73e37f223442d391913f9ec3ab9917d2bd9c054abc59bd12912c771203a",
+          "retainedNativeXpRows": [],
+          "wholeActorMeaning": "Preserve baseline definition and every nonowned provider; migrate only43 source casting contracts and verified casting copies. This is not a blanket CFG stat rewrite.",
+          "preserveUnmatchedNativeCasting": true,
+          "wholeNativeEvidencePending": true
+        },
+        "source241DefinitionSha256": null
+      }
+    },
+    {
+      "sourceId": 107,
+      "nativeValidated": true,
+      "proofSha256": "38949d814c0bd68d557ba3a36f35e7ec752de1ff0e1f893f8c610178f47e4041",
+      "evidence": {
+        "sourceId": 107,
+        "nativeValidated": true,
+        "rows": [
+          {
+            "key": "107:a:70",
+            "evidenceSha256": "8a9214a8bbb46ae692f18c8c396aa85df737bd85ed043319f7c0d8c00375806c"
+          }
+        ],
+        "manifestProviders": {
+          "sourceId": 107,
+          "nativeId": "core:greaterBasilisk",
+          "manifestLayers": [
+            {
+              "file": "mod/third-upgrades/content/config/creatures/fortress/fortress.json",
+              "sha256": "2b44d394f2cf3eb289640c7f7b114a2c11223979e7075aade755f51331e2f89b",
+              "manifest": "mod/third-upgrades/mod.json",
+              "manifestSha256": "2f4a829d0a93236def69f752b0f10c085098fbfcbe9b5755a8faf7351f5f4037",
+              "entry": "config/creatures/fortress/fortress.json",
+              "scope": "third-upgrades",
+              "keepDisabled": false,
+              "jsonKey": "core:greaterBasilisk",
+              "nativeId": "core:greaterBasilisk",
+              "sourceId": 107,
+              "definitionSha256": "2f794a507bfa7c3abd14345fde6fc376ef10525206ed8ee9c664588e0ada3aec",
+              "abilities": {},
+              "stackExperience": [],
+              "retainedStackExperience": []
+            },
+            {
+              "file": "mod/wake-of-gods/Mods/stackExperience/Content/config/fortressCreaturesStackExp.json",
+              "sha256": "adba0a7fdc480e1a9858b491cf3736d3f2c1f6c7d9937aba8052a58f51a90d02",
+              "manifest": "mod/wake-of-gods/Mods/stackExperience/mod.json",
+              "manifestSha256": "5de81eef3f95632f9a8cef2c74c36a7d64a7fd0edeaa11b1f6476a738c6c86a8",
+              "entry": "config/fortressCreaturesStackExp.json",
+              "scope": "wake-of-gods.stackexperience",
+              "keepDisabled": false,
+              "jsonKey": "core:greaterBasilisk",
+              "nativeId": "core:greaterBasilisk",
+              "sourceId": 107,
+              "definitionSha256": "1ff848bbae570bf6bb4935b17d7ba293b6a96493675e4296ec8fa6c97ad54d05",
+              "abilities": {},
+              "stackExperience": [
+                {
+                  "bonus": {
+                    "subtype": "attack",
+                    "type": "PRIMARY_SKILL"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "bonus": {
+                    "subtype": "defence",
+                    "type": "PRIMARY_SKILL"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    4,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMax"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    5
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMin"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    4
+                  ]
+                },
+                {
+                  "bonus": {
+                    "valueType": "PERCENT_TO_BASE",
+                    "type": "STACK_HEALTH"
+                  },
+                  "values": [
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    2
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "SPELL_AFTER_ATTACK",
+                    "subtype": "stoneGaze",
+                    "addInfo": [
+                      3,
+                      2
+                    ]
+                  },
+                  "values": [
+                    3,
+                    6,
+                    9,
+                    12,
+                    15,
+                    18,
+                    21,
+                    24,
+                    27,
+                    30
+                  ]
+                }
+              ],
+              "retainedStackExperience": [
+                {
+                  "bonus": {
+                    "subtype": "attack",
+                    "type": "PRIMARY_SKILL"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "bonus": {
+                    "subtype": "defence",
+                    "type": "PRIMARY_SKILL"
+                  },
+                  "values": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    4,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMax"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    5
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMin"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    4
+                  ]
+                },
+                {
+                  "bonus": {
+                    "valueType": "PERCENT_TO_BASE",
+                    "type": "STACK_HEALTH"
+                  },
+                  "values": [
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    2
+                  ]
+                }
+              ]
+            }
+          ],
+          "baseDefinitionSha256": "e6200c6f091644ad3271665ec7d222e4fc3a26627a402deb71c0638fe474a1ca",
+          "abilities": {
+            "petrify": {
+              "type": "SPELL_AFTER_ATTACK",
+              "subtype": "spell.stoneGaze",
+              "val": 20
+            }
+          },
+          "abilitiesSha256": "b45dd73e37f223442d391913f9ec3ab9917d2bd9c054abc59bd12912c771203a",
+          "retainedNativeXpRows": [],
+          "wholeActorMeaning": "Preserve baseline definition and every nonowned provider; migrate only43 source casting contracts and verified casting copies. This is not a blanket CFG stat rewrite.",
+          "preserveUnmatchedNativeCasting": true,
+          "wholeNativeEvidencePending": true
+        },
+        "source241DefinitionSha256": null
+      }
+    },
+    {
+      "sourceId": 141,
+      "nativeValidated": true,
+      "proofSha256": "79cc7cfcd4c9274e9d5e025e39e6d21f430c1502150e07b9c570bff055d9b05c",
+      "evidence": {
+        "sourceId": 141,
+        "nativeValidated": true,
+        "rows": [
+          {
+            "key": "141:a:42",
+            "evidenceSha256": "4069572e9a8e49231f566fda7bb53b66812fda0dce4a75e08fb2bbee6dffbee8"
+          }
+        ],
+        "manifestProviders": {
+          "sourceId": 141,
+          "nativeId": "core:mummy",
+          "manifestLayers": [
+            {
+              "file": "mod/tum-era/content/config/source-experience-magic-reduction.json",
+              "sha256": "09d82283745cf1ff53ae6dd05f57f2f044e05fb481dffdd09b8a0557c0e8d65e",
+              "manifest": "mod/tum-era/mod.json",
+              "manifestSha256": "d63d00bba454d918bb3c632f672104f5a5cc4cb96e8a2b2143aab5668eefcdb7",
+              "entry": "config/source-experience-magic-reduction.json",
+              "scope": "tum-era",
+              "keepDisabled": false,
+              "jsonKey": "core:mummy",
+              "nativeId": "core:mummy",
+              "sourceId": 141,
+              "definitionSha256": "2f890dd6f07e6f6ad588c1d14b551e231815369fcae3e868171b40e1455c3eaf",
+              "abilities": {
+                "sourceExperienceMagicReductionRank0": {
+                  "type": "SPELL_DAMAGE_REDUCTION",
+                  "subtype": "spellSchool.any",
+                  "valueType": "ADDITIVE_VALUE",
+                  "addInfo": {
+                    "contract": "source-experience-magic-reduction-v1",
+                    "sourceCreatureId": 141
+                  },
+                  "val": 0
+                }
+              },
+              "stackExperience": [
+                {
+                  "bonus": {
+                    "type": "SPELL_DAMAGE_REDUCTION",
+                    "subtype": "spellSchool.any",
+                    "valueType": "ADDITIVE_VALUE",
+                    "addInfo": {
+                      "contract": "source-experience-magic-reduction-v1",
+                      "sourceCreatureId": 141
+                    }
+                  },
+                  "values": [
+                    3,
+                    6,
+                    9,
+                    12,
+                    15,
+                    18,
+                    21,
+                    24,
+                    27,
+                    30
+                  ]
+                }
+              ],
+              "retainedStackExperience": [
+                {
+                  "bonus": {
+                    "type": "SPELL_DAMAGE_REDUCTION",
+                    "subtype": "spellSchool.any",
+                    "valueType": "ADDITIVE_VALUE",
+                    "addInfo": {
+                      "contract": "source-experience-magic-reduction-v1",
+                      "sourceCreatureId": 141
+                    }
+                  },
+                  "values": [
+                    3,
+                    6,
+                    9,
+                    12,
+                    15,
+                    18,
+                    21,
+                    24,
+                    27,
+                    30
+                  ]
+                }
+              ]
+            },
+            {
+              "file": "mod/wake-of-gods/Mods/stackExperience/Content/config/neutralCreaturesStackExp.json",
+              "sha256": "b8374dc415a38680359c52770b84d1ab29e9071492e9c4463b87b73de22954dd",
+              "manifest": "mod/wake-of-gods/Mods/stackExperience/mod.json",
+              "manifestSha256": "5de81eef3f95632f9a8cef2c74c36a7d64a7fd0edeaa11b1f6476a738c6c86a8",
+              "entry": "config/neutralCreaturesStackExp.json",
+              "scope": "wake-of-gods.stackexperience",
+              "keepDisabled": false,
+              "jsonKey": "core:mummy",
+              "nativeId": "core:mummy",
+              "sourceId": 141,
+              "definitionSha256": "7098ccc66ed57afc25903d2795fb915d41bcdf28ec6ab1f163e71fe36e5e00a8",
+              "abilities": {},
+              "stackExperience": [
+                {
+                  "bonus": {
+                    "type": "PRIMARY_SKILL",
+                    "subtype": "attack"
+                  },
+                  "values": [
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    5,
+                    5
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "PRIMARY_SKILL",
+                    "subtype": "defence"
+                  },
+                  "values": [
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    5,
+                    5
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMax"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    5
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMin"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    5
+                  ]
+                },
+                {
+                  "bonus": {
+                    "valueType": "PERCENT_TO_BASE",
+                    "type": "STACK_HEALTH"
+                  },
+                  "values": [
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "MAGIC_RESISTANCE"
+                  },
+                  "values": [
+                    3,
+                    6,
+                    9,
+                    12,
+                    15,
+                    18,
+                    21,
+                    24,
+                    27,
+                    30
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "SPELL_AFTER_ATTACK",
+                    "subtype": "curse",
+                    "addInfo": [
+                      3,
+                      2
+                    ]
+                  },
+                  "values": [
+                    2,
+                    4,
+                    6,
+                    8,
+                    10,
+                    12,
+                    14,
+                    16,
+                    18,
+                    20
+                  ]
+                }
+              ],
+              "retainedStackExperience": [
+                {
+                  "bonus": {
+                    "type": "PRIMARY_SKILL",
+                    "subtype": "attack"
+                  },
+                  "values": [
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    5,
+                    5
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "PRIMARY_SKILL",
+                    "subtype": "defence"
+                  },
+                  "values": [
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    5,
+                    5
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMax"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    5
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "CREATURE_DAMAGE",
+                    "subtype": "creatureDamageMin"
+                  },
+                  "values": [
+                    0,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    5
+                  ]
+                },
+                {
+                  "bonus": {
+                    "valueType": "PERCENT_TO_BASE",
+                    "type": "STACK_HEALTH"
+                  },
+                  "values": [
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "MAGIC_RESISTANCE"
+                  },
+                  "values": [
+                    3,
+                    6,
+                    9,
+                    12,
+                    15,
+                    18,
+                    21,
+                    24,
+                    27,
+                    30
+                  ]
+                }
+              ]
+            }
+          ],
+          "baseDefinitionSha256": "7a99d3edc9c9ce3513099015acdb3f4b166945668785418f879aa1727646817b",
+          "abilities": {
+            "undead": {
+              "type": "UNDEAD"
+            },
+            "castCurse": {
+              "type": "SPELL_AFTER_ATTACK",
+              "subtype": "spell.curse",
+              "val": 50
+            },
+            "sourceExperienceMagicReductionRank0": {
+              "type": "SPELL_DAMAGE_REDUCTION",
+              "subtype": "spellSchool.any",
+              "valueType": "ADDITIVE_VALUE",
+              "addInfo": {
+                "contract": "source-experience-magic-reduction-v1",
+                "sourceCreatureId": 141
+              },
+              "val": 0
+            }
+          },
+          "abilitiesSha256": "e538ce1fec8b928b5f0b8161562136a937bb14da3f19ca783c5a5d450ce5f313",
+          "retainedNativeXpRows": [
+            {
+              "row": {
+                "bonus": {
+                  "type": "SPELL_DAMAGE_REDUCTION",
+                  "subtype": "spellSchool.any",
+                  "valueType": "ADDITIVE_VALUE",
+                  "addInfo": {
+                    "contract": "source-experience-magic-reduction-v1",
+                    "sourceCreatureId": 141
+                  }
+                },
+                "values": [
+                  3,
+                  6,
+                  9,
+                  12,
+                  15,
+                  18,
+                  21,
+                  24,
+                  27,
+                  30
+                ]
+              },
+              "sha256": "53000829d6a9b1a971b399b9b0794b7f22e30b44136c960b57b3c4f20388f6ef"
+            }
+          ],
+          "wholeActorMeaning": "Preserve baseline definition and every nonowned provider; migrate only43 source casting contracts and verified casting copies. This is not a blanket CFG stat rewrite.",
+          "preserveUnmatchedNativeCasting": true,
+          "wholeNativeEvidencePending": true
+        },
+        "source241DefinitionSha256": null
+      }
+    },
+    {
+      "sourceId": 206,
+      "nativeValidated": true,
+      "proofSha256": "b0fb220696ec1a95d346835f4bddd71f3e9af09ea0bef000729cf31f1af17494",
+      "evidence": {
+        "sourceId": 206,
+        "nativeValidated": true,
+        "rows": [
+          {
+            "key": "206:p:37",
+            "evidenceSha256": "d8a4c3f9af1015cfceec315ef49d8a0f9cb374a6bb8f1922b8923bbffba5ad0b"
+          },
+          {
+            "key": "206:a:62",
+            "evidenceSha256": "97d920c2a9a00262cb51fc5dd44ef418e1605416079c1b74fb2099ebf50b231f"
+          }
+        ],
+        "manifestProviders": {
+          "sourceId": 206,
+          "nativeId": "third-upgrades:tumLegendaryUnicorn",
+          "manifestLayers": [
+            {
+              "file": "mod/third-upgrades/content/config/creatures/rampart/lvl6Upg2.json",
+              "sha256": "88c9ec40695d82b513e06e6d34c13678724ee4ee094ac15db267d37b44e58a7c",
+              "manifest": "mod/third-upgrades/mod.json",
+              "manifestSha256": "2f4a829d0a93236def69f752b0f10c085098fbfcbe9b5755a8faf7351f5f4037",
+              "entry": "config/creatures/rampart/lvl6Upg2",
+              "scope": "third-upgrades",
+              "keepDisabled": false,
+              "jsonKey": "tumLegendaryUnicorn",
+              "nativeId": "third-upgrades:tumLegendaryUnicorn",
+              "sourceId": 206,
+              "definitionSha256": "1e32015b0cf69ce8c05d230c70c0ec7483aa37d363b6f387e66a1dfa6d1a2aa0",
+              "abilities": {
+                "spellResistAura": {
+                  "type": "SPELL_RESISTANCE_AURA",
+                  "val": 40
+                },
+                "spellAfterBlind": {
+                  "type": "SPELL_AFTER_ATTACK",
+                  "subtype": "spell.blind",
+                  "val": 20
+                },
+                "unlimitedRetaliations": {
+                  "type": "UNLIMITED_RETALIATIONS"
+                },
+                "ufearless": {
+                  "type": "FEARLESS"
+                }
+              },
+              "stackExperience": [
+                {
+                  "bonus": {
+                    "type": "FEARLESS"
+                  },
+                  "values": [
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true,
+                    true,
+                    true,
+                    true,
+                    true
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "SPELL_AFTER_ATTACK",
+                    "subtype": "spell.blind"
+                  },
+                  "values": [
+                    0,
+                    5,
+                    5,
+                    10,
+                    10,
+                    15,
+                    15,
+                    20,
+                    25,
+                    30
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "SPELL_IMMUNITY",
+                    "subtype": "spell.blind"
+                  },
+                  "values": [
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true,
+                    true,
+                    true
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    2
+                  ]
+                }
+              ],
+              "retainedStackExperience": [
+                {
+                  "bonus": {
+                    "type": "FEARLESS"
+                  },
+                  "values": [
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true,
+                    true,
+                    true,
+                    true,
+                    true
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "SPELL_IMMUNITY",
+                    "subtype": "spell.blind"
+                  },
+                  "values": [
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true,
+                    true,
+                    true
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    2
+                  ]
+                }
+              ]
+            },
+            {
+              "file": "mod/tum-era/content/config/source35-stat-patches.json",
+              "sha256": "a7f64e771d1bff6296ebc35da78ace83cad14f3d3a49276227845851c5279ffd",
+              "manifest": "mod/tum-era/mod.json",
+              "manifestSha256": "d63d00bba454d918bb3c632f672104f5a5cc4cb96e8a2b2143aab5668eefcdb7",
+              "entry": "config/source35-stat-patches.json",
+              "scope": "tum-era",
+              "keepDisabled": false,
+              "jsonKey": "third-upgrades:tumLegendaryUnicorn",
+              "nativeId": "third-upgrades:tumLegendaryUnicorn",
+              "sourceId": 206,
+              "definitionSha256": "64a22bf3921608a80311d21e634a63eaa6c4469b25cdfb60f6eff358e03b4667",
+              "abilities": {},
+              "stackExperience": [],
+              "retainedStackExperience": []
+            },
+            {
+              "file": "mod/tum-era/content/config/source-fearless-six.json",
+              "sha256": "4113d5768660b1f00932237b998bf9deef06b7206ee055d5fd4a4359877cccac",
+              "manifest": "mod/tum-era/mod.json",
+              "manifestSha256": "d63d00bba454d918bb3c632f672104f5a5cc4cb96e8a2b2143aab5668eefcdb7",
+              "entry": "config/source-fearless-six.json",
+              "scope": "tum-era",
+              "keepDisabled": false,
+              "jsonKey": "third-upgrades:tumLegendaryUnicorn",
+              "nativeId": "third-upgrades:tumLegendaryUnicorn",
+              "sourceId": 206,
+              "definitionSha256": "cb17d56a0e916fe7d80d9412701893e5b74abdba2e820203acbb4703643395af",
+              "abilities": {
+                "eraSourceFearless": {
+                  "type": "FEARFUL",
+                  "val": 0,
+                  "valueType": "INDEPENDENT_MIN"
+                }
+              },
+              "stackExperience": [],
+              "retainedStackExperience": []
+            }
+          ],
+          "baseDefinitionSha256": "eaf90d2d567b74991984d8e72f54d1d7a05fe01987442d12cfc8f96f05ee30d9",
+          "abilities": {
+            "spellResistAura": {
+              "type": "SPELL_RESISTANCE_AURA",
+              "val": 40
+            },
+            "spellAfterBlind": {
+              "type": "SPELL_AFTER_ATTACK",
+              "subtype": "spell.blind",
+              "val": 20
+            },
+            "unlimitedRetaliations": {
+              "type": "UNLIMITED_RETALIATIONS"
+            },
+            "ufearless": {
+              "type": "FEARLESS"
+            },
+            "eraSourceFearless": {
+              "type": "FEARFUL",
+              "val": 0,
+              "valueType": "INDEPENDENT_MIN"
+            }
+          },
+          "abilitiesSha256": "dac45915106f3be9143aae62a4ea0a82f039fea54b69231ecab400cf865a6ce7",
+          "retainedNativeXpRows": [
+            {
+              "row": {
+                "bonus": {
+                  "type": "FEARLESS"
+                },
+                "values": [
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true
+                ]
+              },
+              "sha256": "6d1cfc7323149e04edd475bfe3b15ecd4c1530e513cdb6c6e9d1b656165e035b"
+            },
+            {
+              "row": {
+                "bonus": {
+                  "type": "SPELL_IMMUNITY",
+                  "subtype": "spell.blind"
+                },
+                "values": [
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  true,
+                  true,
+                  true
+                ]
+              },
+              "sha256": "5b1af199a0051e3e410825c0b43d0e0079f4c584e1a97271bec964617c44c3a3"
+            },
+            {
+              "row": {
+                "bonus": {
+                  "type": "STACKS_SPEED"
+                },
+                "values": [
+                  0,
+                  0,
+                  0,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  2
+                ]
+              },
+              "sha256": "2fda7563a3f0aec763fda01fc092ae43e84e107e4b2482f3a8d030f388893e1e"
+            }
+          ],
+          "wholeActorMeaning": "Preserve baseline definition and every nonowned provider; migrate only43 source casting contracts and verified casting copies. This is not a blanket CFG stat rewrite.",
+          "preserveUnmatchedNativeCasting": true,
+          "wholeNativeEvidencePending": true
+        },
+        "source241DefinitionSha256": null
+      }
+    },
+    {
+      "sourceId": 228,
+      "nativeValidated": true,
+      "proofSha256": "330d504c766b3b05f70e16ac2ffe1eb0cd47356c1e9657489be6a1a8587c4e7f",
+      "evidence": {
+        "sourceId": 228,
+        "nativeValidated": true,
+        "rows": [
+          {
+            "key": "228:a:70",
+            "evidenceSha256": "33b0561876c1f5a8c2a209fd919b41a3d8d42d86170aaeb44babe94e781acfd5"
+          }
+        ],
+        "manifestProviders": {
+          "sourceId": 228,
+          "nativeId": "third-upgrades:tumMedusaEmpress",
+          "manifestLayers": [
+            {
+              "file": "mod/third-upgrades/content/config/creatures/dungeon/lvl4Upg2.json",
+              "sha256": "08a23e9ba1397aa8fbd93121eae91d0d0c81574386169b08d9d694c5e855d975",
+              "manifest": "mod/third-upgrades/mod.json",
+              "manifestSha256": "2f4a829d0a93236def69f752b0f10c085098fbfcbe9b5755a8faf7351f5f4037",
+              "entry": "config/creatures/dungeon/lvl4Upg2",
+              "scope": "third-upgrades",
+              "keepDisabled": false,
+              "jsonKey": "tumMedusaEmpress",
+              "nativeId": "third-upgrades:tumMedusaEmpress",
+              "sourceId": 228,
+              "definitionSha256": "efcf8108f7f91425af8fe6b61f8f42a7cd1e798f61ad47ac818c4f263ad43a16",
+              "abilities": {
+                "canShoot": {
+                  "type": "SHOOTER"
+                },
+                "petrification": {
+                  "type": "SPELL_AFTER_ATTACK",
+                  "subtype": "spell.stoneGaze",
+                  "val": 20,
+                  "addInfo": [
+                    0,
+                    1
+                  ]
+                },
+                "noPenalty": {
+                  "type": "NO_MELEE_PENALTY"
+                },
+                "extraAttack": {
+                  "type": "ADDITIONAL_ATTACK",
+                  "val": 1
+                }
+              },
+              "stackExperience": [
+                {
+                  "bonus": {
+                    "type": "SHOTS"
+                  },
+                  "values": [
+                    1,
+                    1,
+                    1,
+                    2,
+                    2,
+                    2,
+                    3,
+                    3,
+                    3,
+                    4
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "SPELL_AFTER_ATTACK",
+                    "subtype": "spell.stoneGaze",
+                    "addInfo": [
+                      0,
+                      1
+                    ]
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    2,
+                    4,
+                    6,
+                    8,
+                    10,
+                    12,
+                    15
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    2
+                  ]
+                }
+              ],
+              "retainedStackExperience": [
+                {
+                  "bonus": {
+                    "type": "SHOTS"
+                  },
+                  "values": [
+                    1,
+                    1,
+                    1,
+                    2,
+                    2,
+                    2,
+                    3,
+                    3,
+                    3,
+                    4
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    2
+                  ]
+                }
+              ]
+            },
+            {
+              "file": "mod/tum-era/content/config/source35-stat-patches.json",
+              "sha256": "a7f64e771d1bff6296ebc35da78ace83cad14f3d3a49276227845851c5279ffd",
+              "manifest": "mod/tum-era/mod.json",
+              "manifestSha256": "d63d00bba454d918bb3c632f672104f5a5cc4cb96e8a2b2143aab5668eefcdb7",
+              "entry": "config/source35-stat-patches.json",
+              "scope": "tum-era",
+              "keepDisabled": false,
+              "jsonKey": "third-upgrades:tumMedusaEmpress",
+              "nativeId": "third-upgrades:tumMedusaEmpress",
+              "sourceId": 228,
+              "definitionSha256": "a40aa784a18c4c59c52c42b1b759b945451bab1fe2439aeeffa4cff812f64127",
+              "abilities": {},
+              "stackExperience": [],
+              "retainedStackExperience": []
+            }
+          ],
+          "baseDefinitionSha256": "553a25db07bc1af7fe1c6c94728e3d586c06fd3342a16376a39bd9387b419f28",
+          "abilities": {
+            "canShoot": {
+              "type": "SHOOTER"
+            },
+            "petrification": {
+              "type": "SPELL_AFTER_ATTACK",
+              "subtype": "spell.stoneGaze",
+              "val": 20,
+              "addInfo": [
+                0,
+                1
+              ]
+            },
+            "noPenalty": {
+              "type": "NO_MELEE_PENALTY"
+            },
+            "extraAttack": {
+              "type": "ADDITIONAL_ATTACK",
+              "val": 1
+            }
+          },
+          "abilitiesSha256": "08c3e5e719322221317c2e14fedaea01cdf6fecb51112cb864513f492117cb16",
+          "retainedNativeXpRows": [
+            {
+              "row": {
+                "bonus": {
+                  "type": "SHOTS"
+                },
+                "values": [
+                  1,
+                  1,
+                  1,
+                  2,
+                  2,
+                  2,
+                  3,
+                  3,
+                  3,
+                  4
+                ]
+              },
+              "sha256": "86ebe3bf02bfc9ef317da583b994abcdbf45fdc19ce968c8c7fbc318e81c2295"
+            },
+            {
+              "row": {
+                "bonus": {
+                  "type": "STACKS_SPEED"
+                },
+                "values": [
+                  0,
+                  0,
+                  0,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  2
+                ]
+              },
+              "sha256": "2fda7563a3f0aec763fda01fc092ae43e84e107e4b2482f3a8d030f388893e1e"
+            }
+          ],
+          "wholeActorMeaning": "Preserve baseline definition and every nonowned provider; migrate only43 source casting contracts and verified casting copies. This is not a blanket CFG stat rewrite.",
+          "preserveUnmatchedNativeCasting": true,
+          "wholeNativeEvidencePending": true
+        },
+        "source241DefinitionSha256": null
+      }
+    },
+    {
+      "sourceId": 241,
+      "nativeValidated": true,
+      "proofSha256": "d4a44e698fc726bd340913ae59e726b8781e914e4bc79f912cf8afec09942a33",
+      "evidence": {
+        "sourceId": 241,
+        "nativeValidated": true,
+        "rows": [
+          {
+            "key": "241:k:45",
+            "evidenceSha256": "33e54ac6dfcefe3d4f646d8bdbe6398a2bda0fd01cd06cd6c87f184e8bbfbfd6"
+          }
+        ],
+        "manifestProviders": {
+          "sourceId": 241,
+          "nativeId": "third-upgrades:tumChaoticDragonFly",
+          "manifestLayers": [
+            {
+              "file": "mod/third-upgrades/content/config/creatures/fortress/lvl3Upg2.json",
+              "sha256": "5e76c7d4a0ada33a5ef8cabde10d1ae932c59be0079045d37671ca163eecaa9b",
+              "manifest": "mod/third-upgrades/mod.json",
+              "manifestSha256": "2f4a829d0a93236def69f752b0f10c085098fbfcbe9b5755a8faf7351f5f4037",
+              "entry": "config/creatures/fortress/lvl3Upg2",
+              "scope": "third-upgrades",
+              "keepDisabled": false,
+              "jsonKey": "tumChaoticDragonFly",
+              "nativeId": "third-upgrades:tumChaoticDragonFly",
+              "sourceId": 241,
+              "definitionSha256": "6fbd14a2ae8fb3448c55e548475185ccdf0a7149419d3eb7777ce94b112d2562",
+              "abilities": {
+                "canFly": {
+                  "type": "FLYING"
+                },
+                "dispellHelpful": {
+                  "type": "SPELL_AFTER_ATTACK",
+                  "subtype": "spell.dispelHelpful",
+                  "val": 100,
+                  "addInfo": [
+                    1,
+                    0
+                  ]
+                },
+                "castWeakness": {
+                  "type": "SPELL_AFTER_ATTACK",
+                  "subtype": "spell.weakness",
+                  "val": 100,
+                  "addInfo": [
+                    1,
+                    0
+                  ]
+                },
+                "unlimitedRetaliation": {
+                  "type": "UNLIMITED_RETALIATIONS"
+                },
+                "strikeAndReturn": {
+                  "type": "RETURN_AFTER_STRIKE"
+                }
+              },
+              "stackExperience": [
+                {
+                  "bonus": {
+                    "type": "BLOCKS_RETALIATION"
+                  },
+                  "values": [
+                    false,
+                    false,
+                    false,
+                    true,
+                    true,
+                    true,
+                    true,
+                    true,
+                    true,
+                    true
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    5
+                  ]
+                }
+              ],
+              "retainedStackExperience": [
+                {
+                  "bonus": {
+                    "type": "BLOCKS_RETALIATION"
+                  },
+                  "values": [
+                    false,
+                    false,
+                    false,
+                    true,
+                    true,
+                    true,
+                    true,
+                    true,
+                    true,
+                    true
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    2,
+                    3,
+                    3,
+                    4,
+                    4,
+                    5
+                  ]
+                }
+              ]
+            },
+            {
+              "file": "mod/tum-era/content/config/source35-stat-patches.json",
+              "sha256": "a7f64e771d1bff6296ebc35da78ace83cad14f3d3a49276227845851c5279ffd",
+              "manifest": "mod/tum-era/mod.json",
+              "manifestSha256": "d63d00bba454d918bb3c632f672104f5a5cc4cb96e8a2b2143aab5668eefcdb7",
+              "entry": "config/source35-stat-patches.json",
+              "scope": "tum-era",
+              "keepDisabled": false,
+              "jsonKey": "third-upgrades:tumChaoticDragonFly",
+              "nativeId": "third-upgrades:tumChaoticDragonFly",
+              "sourceId": 241,
+              "definitionSha256": "a6b5d57d6936fc5b831b428d91f7bac5d2f916eaa7263e1d7d1a044887311e69",
+              "abilities": {},
+              "stackExperience": [],
+              "retainedStackExperience": []
+            }
+          ],
+          "baseDefinitionSha256": "812a7845f4b5de792a544c6d751a1d4e4ffc0404dc980543758044c48ab861f7",
+          "abilities": {
+            "canFly": {
+              "type": "FLYING"
+            },
+            "dispellHelpful": {
+              "type": "SPELL_AFTER_ATTACK",
+              "subtype": "spell.dispelHelpful",
+              "val": 100,
+              "addInfo": [
+                1,
+                0
+              ]
+            },
+            "castWeakness": {
+              "type": "SPELL_AFTER_ATTACK",
+              "subtype": "spell.weakness",
+              "val": 100,
+              "addInfo": [
+                1,
+                0
+              ]
+            },
+            "unlimitedRetaliation": {
+              "type": "UNLIMITED_RETALIATIONS"
+            },
+            "strikeAndReturn": {
+              "type": "RETURN_AFTER_STRIKE"
+            }
+          },
+          "abilitiesSha256": "aac2f82f67fae132eb30eba66ef97dbfaa567f68206e4fe9137c90145a2e0968",
+          "retainedNativeXpRows": [
+            {
+              "row": {
+                "bonus": {
+                  "type": "BLOCKS_RETALIATION"
+                },
+                "values": [
+                  false,
+                  false,
+                  false,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true
+                ]
+              },
+              "sha256": "84bbc55cb8fb1dc103819cb31392e1bdb22bf5e679a86734aebf420a5268abb0"
+            },
+            {
+              "row": {
+                "bonus": {
+                  "type": "STACKS_SPEED"
+                },
+                "values": [
+                  0,
+                  0,
+                  0,
+                  1,
+                  2,
+                  3,
+                  3,
+                  4,
+                  4,
+                  5
+                ]
+              },
+              "sha256": "42d47bc705d3968d3b4c19d207d2181fa384a063e8c59918aa042ca4f2a644c8"
+            }
+          ],
+          "wholeActorMeaning": "Root separately compiles source241 static/default/own-XP/finite100 and exact ownedcastWeakness retirement; no general actor wipe",
+          "preserveUnmatchedNativeCasting": true,
+          "wholeNativeEvidencePending": true
+        },
+        "source241DefinitionSha256": "635fb1d9d0ad50a343fdede05d670ff446fd1b3a849b88178ad82bcba798c51a"
+      }
+    },
+    {
+      "sourceId": 242,
+      "nativeValidated": true,
+      "proofSha256": "0f35edadea1124cf26a0c3a801b8127c55a763c3b6c55d96a066d7f65082ee05",
+      "evidence": {
+        "sourceId": 242,
+        "nativeValidated": true,
+        "rows": [
+          {
+            "key": "242:a:70",
+            "evidenceSha256": "c21fe3099c93c8d4f06e586ed225a2c0aa37e60f37cd3a28206d961ecbddfe6f"
+          }
+        ],
+        "manifestProviders": {
+          "sourceId": 242,
+          "nativeId": "third-upgrades:tumLavaBasilisk",
+          "manifestLayers": [
+            {
+              "file": "mod/third-upgrades/content/config/creatures/fortress/lvl4Upg2.json",
+              "sha256": "35c2349881d6e79f9b8a819e125d755ecd8a2aa12f198484abae3c24149bcfb5",
+              "manifest": "mod/third-upgrades/mod.json",
+              "manifestSha256": "2f4a829d0a93236def69f752b0f10c085098fbfcbe9b5755a8faf7351f5f4037",
+              "entry": "config/creatures/fortress/lvl4Upg2",
+              "scope": "third-upgrades",
+              "keepDisabled": false,
+              "jsonKey": "tumLavaBasilisk",
+              "nativeId": "third-upgrades:tumLavaBasilisk",
+              "sourceId": 242,
+              "definitionSha256": "dfeb10c5022a477406a08190d98cc2c4503ce94b89b68dcbafdde623546e8203",
+              "abilities": {
+                "petrify": {
+                  "type": "SPELL_AFTER_ATTACK",
+                  "subtype": "spell.stoneGaze",
+                  "val": 20,
+                  "addInfo": [
+                    0,
+                    2
+                  ]
+                },
+                "fireShield": {
+                  "type": "FIRE_SHIELD",
+                  "val": 20
+                },
+                "fireImm": {
+                  "type": "SPELL_SCHOOL_IMMUNITY",
+                  "subtype": "fire"
+                },
+                "fireBall": {
+                  "type": "SPELL_LIKE_ATTACK",
+                  "subtype": "spell.fireball"
+                },
+                "castsCurse": {
+                  "type": "SPELLCASTER",
+                  "subtype": "spell.fireWall",
+                  "val": 1
+                },
+                "castsCount": {
+                  "type": "CASTS",
+                  "val": 1
+                },
+                "castLength": {
+                  "type": "CREATURE_ENCHANT_POWER",
+                  "val": 50
+                }
+              },
+              "stackExperience": [
+                {
+                  "bonus": {
+                    "type": "SPELL_AFTER_ATTACK",
+                    "subtype": "stoneGaze",
+                    "addInfo": [
+                      0,
+                      2
+                    ]
+                  },
+                  "values": [
+                    3,
+                    6,
+                    9,
+                    12,
+                    15,
+                    18,
+                    21,
+                    24,
+                    27,
+                    30
+                  ]
+                },
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    2
+                  ]
+                }
+              ],
+              "retainedStackExperience": [
+                {
+                  "bonus": {
+                    "type": "STACKS_SPEED"
+                  },
+                  "values": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    2
+                  ]
+                }
+              ]
+            },
+            {
+              "file": "mod/tum-era/content/config/source35-stat-patches.json",
+              "sha256": "a7f64e771d1bff6296ebc35da78ace83cad14f3d3a49276227845851c5279ffd",
+              "manifest": "mod/tum-era/mod.json",
+              "manifestSha256": "d63d00bba454d918bb3c632f672104f5a5cc4cb96e8a2b2143aab5668eefcdb7",
+              "entry": "config/source35-stat-patches.json",
+              "scope": "tum-era",
+              "keepDisabled": false,
+              "jsonKey": "third-upgrades:tumLavaBasilisk",
+              "nativeId": "third-upgrades:tumLavaBasilisk",
+              "sourceId": 242,
+              "definitionSha256": "0e61d26159236df10b9b9b0287bbbf64b43f40edd610ebfa02b5b816b149f3a9",
+              "abilities": {},
+              "stackExperience": [],
+              "retainedStackExperience": []
+            }
+          ],
+          "baseDefinitionSha256": "1a685036fbb25fffd36e1cf20cc04ac1c9062685b6e7e1689d891f65a600ce51",
+          "abilities": {
+            "petrify": {
+              "type": "SPELL_AFTER_ATTACK",
+              "subtype": "spell.stoneGaze",
+              "val": 20,
+              "addInfo": [
+                0,
+                2
+              ]
+            },
+            "fireShield": {
+              "type": "FIRE_SHIELD",
+              "val": 20
+            },
+            "fireImm": {
+              "type": "SPELL_SCHOOL_IMMUNITY",
+              "subtype": "fire"
+            },
+            "fireBall": {
+              "type": "SPELL_LIKE_ATTACK",
+              "subtype": "spell.fireball"
+            },
+            "castsCurse": {
+              "type": "SPELLCASTER",
+              "subtype": "spell.fireWall",
+              "val": 1
+            },
+            "castsCount": {
+              "type": "CASTS",
+              "val": 1
+            },
+            "castLength": {
+              "type": "CREATURE_ENCHANT_POWER",
+              "val": 50
+            }
+          },
+          "abilitiesSha256": "f1cef608ac0094d95bff0d3a942ab8255478737085033e824f6811b70d89e5c3",
+          "retainedNativeXpRows": [
+            {
+              "row": {
+                "bonus": {
+                  "type": "STACKS_SPEED"
+                },
+                "values": [
+                  0,
+                  0,
+                  0,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  2
+                ]
+              },
+              "sha256": "2fda7563a3f0aec763fda01fc092ae43e84e107e4b2482f3a8d030f388893e1e"
+            }
+          ],
+          "wholeActorMeaning": "Preserve baseline definition and every nonowned provider; migrate only43 source casting contracts and verified casting copies. This is not a blanket CFG stat rewrite.",
+          "preserveUnmatchedNativeCasting": true,
+          "wholeNativeEvidencePending": true
+        },
+        "source241DefinitionSha256": null
+      }
+    }
+  ]
+}

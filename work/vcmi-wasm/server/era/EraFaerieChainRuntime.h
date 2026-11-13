@@ -31,7 +31,7 @@ inline bool faerieChainAccuracy(CGameHandler & handler,const CBattleInfoCallback
     return handler.getRandomGenerator().nextInt(1,100)<=accuracy;
 }
 inline bool applyFaerieNormalChain(CGameHandler & handler,const CBattleInfoCallback & battle,
-    const CStack * actor,const CStack * primary,spells::BattleCast & original,BattleSide side)
+    const CStack * actor,const CStack * primary,spells::BattleCast & original,BattleSide side,bool spendActiveCharge=true)
 {
     if(!primary || !primary->alive())return false;
     const auto * spell=SpellID(19).toSpell();
@@ -40,9 +40,11 @@ inline bool applyFaerieNormalChain(CGameHandler & handler,const CBattleInfoCallb
     const int hops=initial->getEffectLevel()>=2?5:4; //Original642284={4,4,5,5}.
     const CStack * current=primary;uint32_t previous=actor->unitId();
     std::vector<uint32_t> visited;
+    std::set<int> xpVisitedSlots;
     for(int hop=0;hop<hops&&current;++hop)
     {
         const auto position=dungeonSourceCandidate(current);
+        const int xpPhysicalSlot=int(current->unitSide())*20+current->sourceMassSlot();
         BattleSpellCast animation;animation.battleID=battle.getBattle()->getBattleID();
         animation.side=side;animation.spellID=SpellID(19);animation.tile=current->getPosition();
         animation.casterStack=previous;animation.castByHero=false;animation.activeCast=hop==0;
@@ -53,12 +55,26 @@ inline bool applyFaerieNormalChain(CGameHandler & handler,const CBattleInfoCallb
         //rerolls, retaining normal source19 magic protection/hero corrections.
         cast.applyEffects(handler.spellcastEnvironment(),target,false,true);
         visited.push_back(current->unitId());previous=current->unitId();
+        if(!spendActiveCharge)xpVisitedSlots.insert(xpPhysicalSlot);
         auto candidates=dungeonSourceCandidates(battle);
+        if(!spendActiveCharge)
+        {
+            candidates.clear();
+            //5A6500 scans initialized physical records, including DEAD/SUMMON
+            //ghosts until source-slot reuse. battleGetAllStacks(false) EXCLUDES
+            //ghosts and cannot represent this XP service's mandatory zero draws.
+            for(const auto * record:battle.battleGetStacksIf([](const CStack *){return true;}))
+            {
+                if(record->sourceMassSlot()<0||xpVisitedSlots.count(int(record->unitSide())*20+record->sourceMassSlot()))continue;
+                if(record->getPosition().isValid())candidates.push_back(dungeonSourceCandidate(record));
+                else candidates.push_back({record->unitId(),record->unitSide()==BattleSide::DEFENDER?1:0,0,0});
+            }
+        }
         candidates.erase(std::remove_if(candidates.begin(),candidates.end(),[&](const auto & candidate)
             {return battle.battleGetStackByID(candidate.id,false)->sourceMassSlot()<0;}),candidates.end());
         //Original candidate loop also rolls dead/removed records before distance.
         //Retain native records with invalid position for their mandatory zero draw.
-        for(const auto * unit:battle.battleGetAllStacks(false))
+        if(spendActiveCharge)for(const auto * unit:battle.battleGetAllStacks(false))
             if(unit->sourceMassSlot()>=0 && !unit->getPosition().isValid())
                 candidates.push_back({unit->unitId(),unit->unitSide()==BattleSide::DEFENDER?1:0,0,0});
         std::stable_sort(candidates.begin(),candidates.end(),[&](const auto & a,const auto & b)
@@ -72,7 +88,16 @@ inline bool applyFaerieNormalChain(CGameHandler & handler,const CBattleInfoCallb
         raw/=2; //Normal19 halves toward zero, unlike Shot4's signed SAR.
         //Selection/RNG runs after hit5 too, before the source loop limit test.
     }
-    actor->spendMana(handler.spellcastEnvironment(),1);
+    //XP p/J/j/a/K/k enters5A0140 directly and does not consume active charges.
+    if(spendActiveCharge)actor->spendMana(handler.spellcastEnvironment(),1);
     return true;
 }
+//Inactive candidate174: primary1..100 query and sourceCURRENT/kind1 scopes
+//must be established by the ordered XP sink before calling this interface.
+inline bool applySourceXpNormalChain(CGameHandler & handler,const CBattleInfoCallback & battle,
+    const CStack * actor,const CStack * primary,spells::BattleCast & cast,BattleSide currentSide)
+{
+    return applyFaerieNormalChain(handler,battle,actor,primary,cast,currentSide,false);
+}
+
 }

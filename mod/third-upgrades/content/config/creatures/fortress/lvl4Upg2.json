@@ -95,15 +95,7 @@
 		},
 		"stackExperience" :
 		[
-			{
-				"bonus" :
-				{	
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "stoneGaze",
-					"addInfo" : [0, 2]
-				},
-				"values" : [3, 6, 9, 12, 15, 18, 21, 24, 27, 30]
-			},
+			
 			{
 				"bonus" :
 				{

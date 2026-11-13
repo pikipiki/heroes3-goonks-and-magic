@@ -442,29 +442,7 @@
 					1
 				]
 			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "slow",
-					"icon" : "bonuses/slowattack.png",
-					"addInfo" : [
-						2,
-						0
-					]
-				},
-				"values" : [
-					5,
-					10,
-					15,
-					20,
-					25,
-					30,
-					35,
-					40,
-					45,
-					50
-				]
-			},
+			
 			{
 				"bonus" : {
 					"type" : "LEVEL_SPELL_IMMUNITY"
@@ -747,29 +725,7 @@
 					1
 				]
 			},
-			{
-				"bonus" : {
-					"type" : "SPELL_BEFORE_ATTACK",
-					"subtype" : "weakness",
-					"icon" : "bonuses/weaknessattack.png",
-					"addInfo" : [
-						2,
-						2
-					]
-				},
-				"values" : [
-					5,
-					10,
-					15,
-					20,
-					25,
-					30,
-					35,
-					40,
-					45,
-					50
-				]
-			},
+			
 			{
 				"bonus" : {
 					"type" : "MAGIC_RESISTANCE"
@@ -1198,29 +1154,7 @@
 					2
 				]
 			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "hypnotize",
-					"icon" : "bonuses/hipnotizeattack.png",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					2,
-					4,
-					6,
-					8,
-					10,
-					12,
-					14,
-					16,
-					18,
-					20
-				]
-			},
+			
 			{
 				"bonus" : {
 					"type" : "ENEMY_DEFENCE_REDUCTION",
@@ -1693,29 +1627,7 @@
 					2
 				]
 			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "dispelHelpful",
-					"icon" : "bonuses/dispelattack.png",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					10,
-					20,
-					30,
-					40,
-					50,
-					60,
-					70,
-					80,
-					90,
-					100
-				]
-			},
+			
 			{
 				"bonus" : {
 					"type" : "HATE",

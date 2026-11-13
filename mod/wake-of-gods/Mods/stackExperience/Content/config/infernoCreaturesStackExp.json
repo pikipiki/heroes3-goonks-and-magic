@@ -1039,30 +1039,8 @@
 					40,
 					50
 				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "disease",
-					"icon" : "bonuses/diseaseattack.png",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					5,
-					10,
-					15,
-					20,
-					25,
-					30,
-					35,
-					40,
-					45,
-					50
-				]
 			}
+			
 		]
 	},
 

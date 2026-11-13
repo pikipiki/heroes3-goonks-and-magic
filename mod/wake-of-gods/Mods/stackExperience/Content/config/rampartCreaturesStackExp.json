@@ -1802,29 +1802,7 @@
 					2
 				]
 			},
-			{
-				"bonus" : {
-					"type" : "SPELL_BEFORE_ATTACK",
-					"subtype" : "blind",
-					"icon" : "bonuses/blindattack.png",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					0,
-					5,
-					5,
-					10,
-					10,
-					15,
-					15,
-					20,
-					25,
-					30
-				]
-			},
+			
 			{
 				"bonus" : {
 					"type" : "FEARFUL", //old fearless

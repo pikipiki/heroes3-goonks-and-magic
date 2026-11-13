@@ -9,6 +9,7 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraSourceXpObstacle.h"
 #include "ObstacleCasterProxy.h"
 #include "../era/EraConfluxPolicies.h"
 #include "CSpellHandler.h"
@@ -36,6 +37,8 @@ int32_t ObstacleCasterProxy::getEffectLevel(const Spell * spell) const
 
 int64_t ObstacleCasterProxy::getSpellBonus(const Spell * spell, int64_t base, const battle::Unit * affectedStack) const
 {
+    const int xpOriginal=obs.trigger.hasValue()?era_compat::xpObstacleOriginal(obs.trigger.toSpell()):-1;
+    if(xpOriginal>=0)return actualCaster?actualCaster->getSpellBonus(SpellID(xpOriginal).toSpell(),base,affectedStack):base;
     const auto * sourceSpell=era_compat::ConfluxPolicies::get().enabled()
         && spell->getJsonKey()=="tum-era:sourceConfluxFireWallTrigger"?SpellID(13).toSpell():spell;
     //5A008F uses stored-side hero with the ORIGINAL13, not the trigger's
@@ -58,6 +61,7 @@ int32_t ObstacleCasterProxy::getEnchantPower(const Spell * spell) const
 
 int64_t ObstacleCasterProxy::getEffectValue(const Spell * spell) const
 {
+    if(obs.trigger.hasValue() && era_compat::xpObstacleOriginal(obs.trigger.toSpell())>=0)return obs.minimalDamage;
 	if(actualCaster)
 		return std::max(static_cast<int64_t>(obs.minimalDamage), actualCaster->getEffectValue(spell));
 	else

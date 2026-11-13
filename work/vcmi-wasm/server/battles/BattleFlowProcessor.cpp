@@ -8,7 +8,11 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraSourceXpGeometryState.h"
 #include "../era/EraSourceDefendRuntime.h"
+#include "../era/EraSourceXpAdmissionRuntime.h"
+#include "../era/EraSourceXpNativeRuntime.h"
+#include "../era/EraSourceXpGeometryDamage.h"
 #include "../era/EraInterferenceRuntime.h"
 #include "../era/EraOblivionRuntime.h"
 #include "../../lib/era/EraCrystalExperience.h"
@@ -161,7 +165,15 @@ void BattleFlowProcessor::tryPlaceMoats(const CBattleInfoCallback & battle)
 
 void BattleFlowProcessor::onBattleStarted(const CBattleInfoCallback & battle)
 {
+    era_compat_server::initializeSourceXpAdmission(*gameHandler,battle);
     era_compat_server::enrollSourceDefendNewBattle(*gameHandler,battle);
+    auto sourceNativeAccess=era_compat_server::sourceXpNativeAccess(battle);
+    era_compat::XpTimed184NativeAccessScope sourceNativeScope(sourceNativeAccess);
+    if(era_compat::sourceXpBattleAdmitted(battle))
+    {
+        era_compat_server::initializeXpGeometryState(*gameHandler,battle);
+        era_compat_server::initializeXpElementalBookkeeping(*gameHandler,battle);
+    }
     for(const auto side:{BattleSide::ATTACKER,BattleSide::DEFENDER})
         if(const auto * hero=battle.battleGetFightingHero(side))appendEraConfluxTome(*gameHandler,*hero);
     setupEraOblivion(*gameHandler,battle);
@@ -275,6 +287,8 @@ int emeraldAutocastIndex(const Bonus & bonus)
 
 void BattleFlowProcessor::castOpeningSpells(const CBattleInfoCallback & battle)
 {
+    auto sourceNativeAccess=era_compat_server::sourceXpNativeAccess(battle);
+    era_compat::XpTimed184NativeAccessScope sourceNativeScope(sourceNativeAccess);
 	for(auto i : {BattleSide::ATTACKER, BattleSide::DEFENDER})
 	{
 		const auto * h = battle.battleGetFightingHero(i);
@@ -386,6 +400,8 @@ void BattleFlowProcessor::onTacticsEnded(const CBattleInfoCallback & battle)
 
 void BattleFlowProcessor::startNextRound(const CBattleInfoCallback & battle, bool isFirstRound)
 {
+    auto sourceNativeAccess=era_compat_server::sourceXpNativeAccess(battle);
+    era_compat::XpTimed184NativeAccessScope sourceNativeScope(sourceNativeAccess);
 	BattleNextRound bnr;
 	bnr.battleID = battle.getBattle()->getBattleID();
 	logGlobal->debug("Next round starts");
@@ -1022,6 +1038,8 @@ bool BattleFlowProcessor::makeAutomaticAction(const CBattleInfoCallback & battle
 
 void BattleFlowProcessor::stackEnchantedTrigger(const CBattleInfoCallback & battle, const CStack * st)
 {
+    auto sourceNativeAccess=era_compat_server::sourceXpNativeAccess(battle);
+    era_compat::XpTimed184NativeAccessScope sourceNativeScope(sourceNativeAccess);
 	auto bl = *(st->getBonusesOfType(BonusType::ENCHANTED));
     std::set<SpellID> castSpells;
 	for(const auto & b : bl)
@@ -1060,6 +1078,7 @@ void BattleFlowProcessor::stackEnchantedTrigger(const CBattleInfoCallback & batt
 
 void BattleFlowProcessor::removeObstacle(const CBattleInfoCallback & battle, const CObstacleInstance & obstacle)
 {
+    era_compat::noteXpGeometryRemoved(battle,obstacle,[&](auto & packet){gameHandler->sendAndApply(packet);});
 	BattleObstaclesChanged obsRem;
 	obsRem.battleID = battle.getBattle()->getBattleID();
 	obsRem.changes.emplace_back(obstacle.uniqueID, ObstacleChanges::EOperation::REMOVE);

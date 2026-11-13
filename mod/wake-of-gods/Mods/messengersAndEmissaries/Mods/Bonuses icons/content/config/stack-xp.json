@@ -493,53 +493,9 @@
 					1,
 					1
 				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "quicksand",
-					"icon" : "bonuses/quicksandattack.png",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					5,
-					10,
-					15,
-					20,
-					25,
-					30,
-					35,
-					40,
-					45,
-					50
-				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_BEFORE_ATTACK",
-					"subtype" : "earthElemental",
-					"icon" : "bonuses/summonwithattack_earth.png",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					2,
-					4,
-					6,
-					8,
-					10,
-					12,
-					14,
-					16,
-					18,
-					20
-				]
 			}
+			
+			
 		]
 	},
 
@@ -651,53 +607,9 @@
 					1,
 					1
 				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "fireShield",
-					"icon" : "bonuses/fireshield.png",
-					"addInfo" : [
-						1,
-						2
-					]
-				},
-				"values" : [
-					5,
-					10,
-					15,
-					20,
-					25,
-					30,
-					35,
-					40,
-					45,
-					50
-				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_BEFORE_ATTACK",
-					"subtype" : "fireElemental",
-					"icon" : "bonuses/summonwithattack_fire.png",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					2,
-					4,
-					6,
-					8,
-					10,
-					12,
-					14,
-					16,
-					18,
-					20
-				]
 			}
+			
+			
 		]
 	},
 
@@ -791,53 +703,9 @@
 					1,
 					1
 				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "iceBolt",
-					"icon" : "bonuses/iceboltattack.png",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					5,
-					10,
-					15,
-					20,
-					25,
-					30,
-					35,
-					40,
-					45,
-					50
-				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_BEFORE_ATTACK",
-					"subtype" : "waterElemental",
-					"icon" : "bonuses/summonwithattack_water.png",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					2,
-					4,
-					6,
-					8,
-					10,
-					12,
-					14,
-					16,
-					18,
-					20
-				]
 			}
+			
+			
 		]
 	}
 }

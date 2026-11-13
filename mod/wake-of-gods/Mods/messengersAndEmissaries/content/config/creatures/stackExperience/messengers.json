@@ -227,51 +227,9 @@
 					1,
 					1
 				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "quicksand",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					5,
-					10,
-					15,
-					20,
-					25,
-					30,
-					35,
-					40,
-					45,
-					50
-				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_BEFORE_ATTACK",
-					"subtype" : "earthElemental",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					2,
-					4,
-					6,
-					8,
-					10,
-					12,
-					14,
-					16,
-					18,
-					20
-				]
 			}
+			
+			
 		]
 	},
 
@@ -383,51 +341,9 @@
 					1,
 					1
 				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "fireShield",
-					"addInfo" : [
-						1,
-						2
-					]
-				},
-				"values" : [
-					5,
-					10,
-					15,
-					20,
-					25,
-					30,
-					35,
-					40,
-					45,
-					50
-				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_BEFORE_ATTACK",
-					"subtype" : "fireElemental",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					2,
-					4,
-					6,
-					8,
-					10,
-					12,
-					14,
-					16,
-					18,
-					20
-				]
 			}
+			
+			
 		]
 	},
 
@@ -521,51 +437,9 @@
 					1,
 					1
 				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "iceBolt",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					5,
-					10,
-					15,
-					20,
-					25,
-					30,
-					35,
-					40,
-					45,
-					50
-				]
-			},
-			{
-				"bonus" : {
-					"type" : "SPELL_BEFORE_ATTACK",
-					"subtype" : "waterElemental",
-					"addInfo" : [
-						3,
-						2
-					]
-				},
-				"values" : [
-					2,
-					4,
-					6,
-					8,
-					10,
-					12,
-					14,
-					16,
-					18,
-					20
-				]
 			}
+			
+			
 		]
 	}
 }

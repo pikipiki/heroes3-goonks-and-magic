@@ -8,6 +8,9 @@
  *
  */
 #include "StdInc.h"
+#include "../../era/EraDragonFly241DispelScope.h"
+#include "../../era/EraWeakness45State.h"
+#include "../../era/EraXpTimed184Hooks.h"
 
 #include "Dispel.h"
 #include "../../era/EraSourceRankRange.h"
@@ -57,8 +60,27 @@ void Dispel::apply(ServerCallback * server, const Mechanics * m, const EffectTar
 			std::vector<Bonus> buffer;
 			auto bl = getBonuses(m, unit);
 
-			for(const auto& item : *bl)
-				buffer.emplace_back(*item);
+			std::set<int> typedHandled;
+            for(const auto& item : *bl)
+            {
+                if(era_compat::sourceTimedOwnedTag(item->stacking))
+                {
+                    const int id=item->sid.as<SpellID>().getNum();
+                    if(typedHandled.insert(id).second)era_compat::consumeNativeXpTimed184Dispel(server,*m,*unit,id,positive,negative,neutral);
+                    continue;
+                }
+                buffer.emplace_back(*item);
+            }
+            // Only a successfully selected source45 UI effect triggers its
+            // lifecycle. Native Dispel immunity/selection has already run.
+            if(std::any_of(bl->begin(),bl->end(),[](const auto & b){return b->stacking==era_compat::weakness45VisibleTag;}))
+            {
+                if(const auto source=era_compat::sourceWeakness45RemovalPacket(sse.battleID,unit))
+                {
+                    sse.toRemove.insert(sse.toRemove.end(),source->toRemove.begin(),source->toRemove.end());
+                    sse.toAdd.insert(sse.toAdd.end(),source->toAdd.begin(),source->toAdd.end());
+                }
+            }
 
 			if(!buffer.empty())
 				sse.toRemove.emplace_back(unit->unitId(), buffer);
@@ -94,10 +116,12 @@ std::shared_ptr<const BonusList> Dispel::getBonuses(const Mechanics * m, const b
 		if(::era_bridge::sourceDispelImmune(immunity->val, m->ownerMatches(unit, true), unit->isHypnotized(), m->getSpellIndex()))
 			return std::make_shared<BonusList>();
 
-	auto sel = [this, m](const Bonus * bonus)
+	auto sel = [this, m, unit](const Bonus * bonus)
 	{
 		if(bonus->source == BonusSource::SPELL_EFFECT)
 		{
+            if(era_compat::DragonFly241DispelCustomScope::applies(m->getSpellIndex(),m->caster,unit)
+                &&!era_compat::dragonFly241CustomPositiveSpell(bonus->sid.as<SpellID>().num))return false;
 			const Spell * sourceSpell = bonus->sid.as<SpellID>().toEntity(m->spells());
 			if(!sourceSpell)
 				return false;//error

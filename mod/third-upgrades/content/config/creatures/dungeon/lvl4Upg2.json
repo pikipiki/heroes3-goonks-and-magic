@@ -101,15 +101,7 @@
 				},
 				"values" : [1, 1, 1, 2, 2, 2, 3, 3, 3, 4]
 			},
-			{
-				"bonus" :
-				{
-					"type" : "SPELL_AFTER_ATTACK",
-					"subtype" : "spell.stoneGaze",
-					"addInfo" : [0, 1]
-				},
-				"values" : [0, 0, 0, 2, 4, 6, 8, 10, 12, 15]
-			},
+			
 			{
 				"bonus" :
 				{

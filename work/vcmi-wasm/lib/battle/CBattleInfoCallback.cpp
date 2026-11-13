@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraSourceXpGeometryTriggers.h"
 #include "../era/EraBridgePolicies.h"
 #include "../era/EraConfluxPolicies.h"
 #include "../era/EraSourceSplashRange.h"
@@ -762,9 +763,9 @@ bool CBattleInfoCallback::battleCanAttackHex(const BattleHexArray & availableHex
 	{
 		for (const auto & obstacle : battleGetAllObstacles())
 		{
-			if (obstacle->getStoppingTile().contains(fromHex))
+			if (obstacle->getStoppingTile().contains(fromHex) && era_compat::xpGeometryActive(*this,*obstacle,fromHex))
 				return false;
-			if (attacker->doubleWide() && obstacle->getStoppingTile().contains(attacker->occupiedHex(fromHex)))
+			if (attacker->doubleWide() && obstacle->getStoppingTile().contains(attacker->occupiedHex(fromHex)) && era_compat::xpGeometryActive(*this,*obstacle,attacker->occupiedHex(fromHex)))
 				return false;
 		}
 		const battle::Unit * defender = battleGetUnitByPos(position, false); //Do not allow to target corpses when standing on them (a WALK_AND_SPELLCAST action)
@@ -1092,10 +1093,13 @@ bool CBattleInfoCallback::handleObstacleTriggersForUnit(SpellCastEnvironment & s
 {
 	if(!unit.alive())
 		return false;
-	bool movementStopped = false;
+    std::set<int> xpHandled;
+    bool movementStopped=era_compat::xpGeometryTriggers(spellEnv,*this,unit,passed,xpHandled);
+    if(!unit.alive())return false;
 	const auto affectedObstacles=getAllAffectedObstaclesByStack(&unit, passed);
 	for(auto & obstacle : affectedObstacles)
 	{
+        if(xpHandled.count(obstacle->uniqueID))continue;
 		//helper info
 		const SpellCreatedObstacle * spellObstacle = dynamic_cast<const SpellCreatedObstacle *>(obstacle.get());
 
@@ -1218,7 +1222,7 @@ AccessibilityInfo CBattleInfoCallback::getAccessibility() const
 	for(const auto &obst : battleGetAllObstacles())
 	{
 		for(const auto & hex : obst->getBlockedTiles())
-			ret[hex.toInt()] = EAccessibility::OBSTACLE;
+			if(era_compat::xpGeometryActive(*this,*obst,hex))ret[hex.toInt()] = EAccessibility::OBSTACLE;
 	}
 
 	//walls
@@ -1245,6 +1249,13 @@ AccessibilityInfo CBattleInfoCallback::getAccessibility() const
 		}
 	}
 
+    if(const auto cache=era_compat::xpGeometryState(*this))
+    {
+        for(int h=0;h<187;++h)
+            if(h%17!=0 && h%17!=16 && (cache->flags[h]&64) && !(cache->flags[h]&2)
+                && (ret[h]==EAccessibility::UNAVAILABLE || ret[h]==EAccessibility::DESTRUCTIBLE_WALL))
+                ret[h]=EAccessibility::ACCESSIBLE; //466710 cleared the underlying square flags too.
+    }
 	return ret;
 }
 
@@ -1361,11 +1372,12 @@ BattleHexArray CBattleInfoCallback::getStoppers(BattleSide whichSidePerspective)
 
 	for(auto &oi : battleGetAllObstacles(whichSidePerspective))
 	{
-		if(!battleIsObstacleVisibleForSide(*oi, whichSidePerspective))
+		if(!era_compat::xpGeometryVisible(*this,*oi,whichSidePerspective))
 			continue;
 
 		for(const auto & hex : oi->getStoppingTile())
 		{
+            if(!era_compat::xpGeometryActive(*this,*oi,hex))continue;
 			if(hex == BattleHex::GATE_BRIDGE && oi->obstacleType == CObstacleInstance::MOAT)
 			{
 				if(battleGetGateState() == EGateState::OPENED || battleGetGateState() == EGateState::DESTROYED)

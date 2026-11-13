@@ -1,6 +1,7 @@
 /* Source DEFEND snapshot, admitted for armies containing source241. */
 #pragma once
 #include "../../lib/era/EraSourceDefendState.h"
+#include "../../lib/era/EraSourceXpAdmission.h"
 #include "../../lib/era/EraSourceDefendActionFrame.h"
 #include <array>
 #include "../../lib/CStack.h"
@@ -43,7 +44,9 @@ inline bool sourceDefendBattleEnrolled(const CBattleInfoCallback & battle)
  // NEW enrollment depends on the optional source policy.
  bool found=false;
  for(const auto * stack:battle.battleGetAllStacks())
-     for(const auto & b:*stack->getBonuses(Selector::typeSubtype(BonusType::PRIMARY_SKILL,BonusSubtypeID(PrimarySkill::DEFENSE))))
+ {
+     const auto bonuses=stack->getBonuses(Selector::typeSubtype(BonusType::PRIMARY_SKILL,BonusSubtypeID(PrimarySkill::DEFENSE)));
+     for(const auto & b:*bonuses)
          if(b->stacking==era_compat::sourceDefendEnrollmentTag)
          {
              if(!b->parameters||b->parameters->toVector()!=std::vector<int32_t>{era_compat::sourceDefendSignature,1}
@@ -51,13 +54,14 @@ inline bool sourceDefendBattleEnrolled(const CBattleInfoCallback & battle)
                  throw std::runtime_error("Malformed source DEFEND enrollment");
              found=true;
          }
+ }
  return found;
 }
 // Called ONLY by onBattleStarted, never on save deserialization/startNextRound.
 inline void enrollSourceDefendNewBattle(CGameHandler & handler,const CBattleInfoCallback & battle)
 {
- if(!SourceDefendPolicy::get().enabled())return;
- bool participant=false;for(const auto * stack:battle.battleGetAllStacks())
+ if(!SourceDefendPolicy::get().enabled()&&!era_compat::sourceXpBattleAdmitted(battle))return;
+ bool participant=era_compat::sourceXpBattleAdmitted(battle);for(const auto * stack:battle.battleGetAllStacks())
  {
      const auto & key=stack->creatureId().toCreature()->getJsonKey();
      participant|=key=="third-upgrades:tumChaoticDragonFly";
@@ -78,8 +82,9 @@ inline bool prepareSourceXpDefend(const CBattleInfoCallback & battle,const CStac
  if(!sourceDefendBattleEnrolled(battle))return false;
  const auto base=Selector::typeSubtype(BonusType::PRIMARY_SKILL,BonusSubtypeID(PrimarySkill::DEFENSE))
      .And(Selector::effectRange()(BonusLimitEffect::NO_LIMIT))
-     .And([](const Bonus * b){return b->stacking!=era_compat::sourceDefendTag;});
- const int raw=era_bridge::sourceDefendSigned(static_cast<uint32_t>(stack.valOfBonuses(base)));
+     .And([](const Bonus * b){return b->stacking!=era_compat::sourceDefendTag&&!era_compat::xpTimed184StatProjection(b);});
+ const auto prior=era_compat::sourceDefendState(stack);
+ const int raw=era_bridge::sourceDefendAdd(era_compat::xpTimed184DefenseAfterNative(era_bridge::sourceDefendSigned(static_cast<uint32_t>(stack.valOfBonuses(base))),stack),prior?(*prior)[3]:0);
  const bool tactics=battle.battleTacticDist()!=0,siege=stack.hasBonusOfType(BonusType::SIEGE_WEAPON);
  // Native StartAction has already set stack.defending for THIS action.
  // Source47903C tests the flag that existed before the action instead.
@@ -93,7 +98,7 @@ inline bool prepareSourceXpDefend(const CBattleInfoCallback & battle,const CStac
  const bool nativeExtension=stack.valOfBonuses(BonusType::DEFENSIVE_STANCE)!=0&&!tactics&&!siege;
  if(nativeExtension)
  {
-     BonusList native=*stack.getBonuses(Selector::typeSubtype(BonusType::PRIMARY_SKILL,BonusSubtypeID(PrimarySkill::DEFENSE)));
+     BonusList native=*stack.getBonuses(Selector::typeSubtype(BonusType::PRIMARY_SKILL,BonusSubtypeID(PrimarySkill::DEFENSE)).And([](const Bonus * b){return b->stacking!=era_compat::sourceDefendTag&&!era_compat::xpTimed184StatProjection(b);}));
      const int before=native.totalValue();
      Bonus percent;percent.type=BonusType::PRIMARY_SKILL;percent.subtype=BonusSubtypeID(PrimarySkill::DEFENSE);percent.val=20;percent.valType=BonusValueType::PERCENT_TO_ALL;
      Bonus stance=percent;stance.valType=BonusValueType::ADDITIVE_VALUE;stance.val=stack.valOfBonuses(BonusType::DEFENSIVE_STANCE);
@@ -116,7 +121,8 @@ inline void activateSourceXpDefending(CGameHandler & handler,const CBattleInfoCa
  if(!unit||!sourceDefendBattleEnrolled(battle))return;
  const auto state=era_compat::sourceDefendState(*unit);if(!state||!era_bridge::sourceDefendActivationClears((*state)[7],battle.battleGetRound()))return;
  std::vector<Bonus> removed;
- for(const auto & bonus:*unit->getBonuses(Selector::type()(BonusType::PRIMARY_SKILL).Or(Selector::type()(BonusType::UNIT_DEFENDING))))
+ const auto bonuses=unit->getBonuses(Selector::type()(BonusType::PRIMARY_SKILL).Or(Selector::type()(BonusType::UNIT_DEFENDING)));
+ for(const auto & bonus:*bonuses)
      if(bonus->stacking==era_compat::sourceDefendTag||bonus->stacking==era_compat::sourceDefendFlagTag)removed.push_back(*bonus);
  if(!removed.empty())
  {

@@ -1,0 +1,1944 @@
+{
+  "schemaVersion": 1,
+  "creatures": {
+    "tum-era:divinePhoenix": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:eraCreature287": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:eraCreature295": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:eraCreature297": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:eraCreature299": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:eraCreature359": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:eraCreature361": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:cherub": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:eraCreature357": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.level8units:bloodDragon": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:antichrist": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:pikeman": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:halberdier": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:archer": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:marksman": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:griffin": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:royalGriffin": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:swordsman": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:crusader": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:monk": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:zealot": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:cavalier": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:champion": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:angel": {
+      "fullRank10": 122500,
+      "rank11Extra": 12250,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:archangel": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:centaur": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:centaurCaptain": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:dwarf": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:battleDwarf": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:woodElf": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:grandElf": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:pegasus": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:silverPegasus": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:dendroidGuard": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:dendroidSoldier": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:unicorn": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:warUnicorn": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:greenDragon": {
+      "fullRank10": 122500,
+      "rank11Extra": 12250,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:goldDragon": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:gremlin": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:masterGremlin": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:stoneGargoyle": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:obsidianGargoyle": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:ironGolem": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:stoneGolem": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:mage": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:archMage": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:genie": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:masterGenie": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:naga": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:nagaQueen": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:giant": {
+      "fullRank10": 122500,
+      "rank11Extra": 12250,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:titan": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:imp": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:familiar": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:gog": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:magog": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:hellHound": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:cerberus": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:demon": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:hornedDemon": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:pitFiend": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:pitLord": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:efreet": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:efreetSultan": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:devil": {
+      "fullRank10": 122500,
+      "rank11Extra": 12250,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:archDevil": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:skeleton": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 0.5,
+      "upgradeMultiplier": 0.75
+    },
+    "core:skeletonWarrior": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 0.5,
+      "upgradeMultiplier": 0.75
+    },
+    "core:walkingDead": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:zombieLord": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:wight": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:wraith": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:vampire": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:vampireLord": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:lich": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:powerLich": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:blackKnight": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:dreadKnight": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:boneDragon": {
+      "fullRank10": 122500,
+      "rank11Extra": 12250,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:ghostDragon": {
+      "fullRank10": 122500,
+      "rank11Extra": 12250,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:troglodyte": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:infernalTroglodyte": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:harpy": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:harpyHag": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:beholder": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:evilEye": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:medusa": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:medusaQueen": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:minotaur": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:minotaurKing": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:manticore": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:scorpicore": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:redDragon": {
+      "fullRank10": 122500,
+      "rank11Extra": 12250,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:blackDragon": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:goblin": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:hobgoblin": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:goblinWolfRider": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:hobgoblinWolfRider": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:orc": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:orcChieftain": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:ogre": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:ogreMage": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:roc": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:thunderbird": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:cyclop": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:cyclopKing": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:behemoth": {
+      "fullRank10": 122500,
+      "rank11Extra": 12250,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:ancientBehemoth": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:gnoll": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:gnollMarauder": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:lizardman": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:lizardWarrior": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:gorgon": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:mightyGorgon": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:serpentFly": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:fireDragonFly": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:basilisk": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:greaterBasilisk": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:wyvern": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:wyvernMonarch": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:hydra": {
+      "fullRank10": 122500,
+      "rank11Extra": 12250,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:chaosHydra": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:airElemental": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:earthElemental": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:fireElemental": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:waterElemental": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:goldGolem": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:diamondGolem": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:pixie": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:sprite": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:psychicElemental": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:magicElemental": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:iceElemental": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:magmaElemental": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:stormElemental": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:energyElemental": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:firebird": {
+      "fullRank10": 122500,
+      "rank11Extra": 12250,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:phoenix": {
+      "fullRank10": 122500,
+      "rank11Extra": 12250,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:azureDragon": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:crystalDragon": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:fairieDragon": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:rustDragon": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:enchanter": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:sharpshooter": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:halfling": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:peasant": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:boar": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:mummy": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:nomad": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:rogue": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:troll": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "core:ballista": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.level8units:supremeArchangel": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.level8units:diamondDragon": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.level8units:lordOfThunder": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.level8units:hellBaron": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.level8units:darknessDragon": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.level8units:ghostBehemoth": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.level8units:hellHydra": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.level8units:sacredPhoenix": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.creatures:ghost": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.messengersandemissaries:emissaryOfWar": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.messengersandemissaries:emissaryOfPeace": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.messengersandemissaries:emissaryOfMana": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.messengersandemissaries:emissaryOfLore": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.messengersandemissaries:fireMessenger": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 105000,
+      "battlePercent": 25,
+      "rank11Extra": 21000
+    },
+    "wake-of-gods.messengersandemissaries:earthMessenger": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 105000,
+      "battlePercent": 25,
+      "rank11Extra": 21000
+    },
+    "wake-of-gods.messengersandemissaries:airMessenger": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.messengersandemissaries:waterMessenger": {
+      "fullRank10": 122500,
+      "rank11Extra": 12250,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.creatures:gorynych": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.creatures:warZealot": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.creatures:arcticSharpshooter": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.creatures:lavaSharpshooter": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.creatures:nightmare": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.creatures:santaGremlin": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.creatures:sylvanCentaur": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.creatures:wogSorceress": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.creatures:werewolf": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.creatures:hellSteed": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "wake-of-gods.creatures:dracolich": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumRoyalHalberdier": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumCrossbowman": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumCeasarGriffin": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumHolyChampion": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumBerserkerDwarf": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumGoldenPegasus": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumElderDendroid": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumLegendaryUnicorn": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumMarbleGargoyle": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumSteelGolem": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumArcaneGenie": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumNagaEmpress": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumVermin": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumWingedMagog": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumAstralCerberus": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumSharpHornedDemon": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumPitMaster": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumEfreetRajah": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumSkeletonKnight": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 0.5,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumNosferatu": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumLichKing": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumDeathKnight": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumPhosphorescentTroglodyte": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumMonstrousEye": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumHarpySanguinary": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumMedusaEmpress": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumBlackMinotaur": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumChimera": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumHobgoblinOverlord": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumWolfRiderKiller": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumOrcLeader": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumElderOgre": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumLightningbird": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumCyclopsEmperor": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumEliteLizard": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumChaoticDragonFly": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumLavaBasilisk": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumFairy": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumHurricaneElemental": {
+      "fullRank10": 35000,
+      "rank11Extra": 21000,
+      "battlePercent": 45,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumLifeElemental": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumPlasmaElemental": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumMineralElemental": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumVoidElemental": {
+      "fullRank10": 105000,
+      "rank11Extra": 21000,
+      "battlePercent": 25,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumGrandmasterGremlin": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumSharpshooterElf": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumSupremeArchMage": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumSpecter": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumInquisitor": {
+      "fullRank10": 70000,
+      "rank11Extra": 28000,
+      "battlePercent": 35,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumCentaurGeneral": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumHighPriest": {
+      "fullRank10": 87500,
+      "rank11Extra": 26250,
+      "battlePercent": 30,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumGnollShaman": {
+      "fullRank10": 17500,
+      "rank11Extra": 12250,
+      "battlePercent": 50,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "third-upgrades:tumGhoul": {
+      "fullRank10": 52500,
+      "rank11Extra": 26250,
+      "battlePercent": 40,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:ancestralBehemoth": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:necrossDragon": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:gemDragon": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:redBonesDragon": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:nightmareHydra": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:guardianOfZeus": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:chasmDragon": {
+      "fullRank10": 147000,
+      "rank11Extra": 14700,
+      "battlePercent": 20,
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75
+    },
+    "tum-era:eraCreature265": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature266": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature267": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature268": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature318": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 105000,
+      "battlePercent": 25,
+      "rank11Extra": 21000
+    },
+    "tum-era:eraCreature341": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 122500,
+      "battlePercent": 20,
+      "rank11Extra": 12250
+    },
+    "tum-era:eraCreature342": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 122500,
+      "battlePercent": 20,
+      "rank11Extra": 12250
+    },
+    "tum-era:eraCreature345": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature269": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 122500,
+      "battlePercent": 20,
+      "rank11Extra": 12250
+    },
+    "tum-era:eraCreature273": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 70000,
+      "battlePercent": 35,
+      "rank11Extra": 28000
+    },
+    "tum-era:eraCreature278": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature331": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 122500,
+      "battlePercent": 20,
+      "rank11Extra": 12250
+    },
+    "tum-era:eraCreature332": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature271": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 122500,
+      "battlePercent": 20,
+      "rank11Extra": 12250
+    },
+    "tum-era:eraCreature280": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 122500,
+      "battlePercent": 20,
+      "rank11Extra": 12250
+    },
+    "tum-era:eraCreature349": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 122500,
+      "battlePercent": 20,
+      "rank11Extra": 12250
+    },
+    "tum-era:eraCreature350": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature324": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 105000,
+      "battlePercent": 25,
+      "rank11Extra": 21000
+    },
+    "tum-era:eraCreature258": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature275": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 105000,
+      "battlePercent": 25,
+      "rank11Extra": 21000
+    },
+    "tum-era:eraCreature283": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 25,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature337": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 122500,
+      "battlePercent": 20,
+      "rank11Extra": 12250
+    },
+    "tum-era:eraCreature338": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature353": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 122500,
+      "battlePercent": 20,
+      "rank11Extra": 12250
+    },
+    "tum-era:eraCreature354": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature351": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 122500,
+      "battlePercent": 20,
+      "rank11Extra": 12250
+    },
+    "tum-era:eraCreature352": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 122500,
+      "battlePercent": 20,
+      "rank11Extra": 12250
+    },
+    "tum-era:eraCreature286": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 105000,
+      "battlePercent": 25,
+      "rank11Extra": 21000
+    },
+    "tum-era:eraCreature294": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 87500,
+      "battlePercent": 30,
+      "rank11Extra": 26250
+    },
+    "tum-era:eraCreature343": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature344": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature355": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature356": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature263": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 87500,
+      "battlePercent": 30,
+      "rank11Extra": 26250
+    },
+    "tum-era:eraCreature339": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature346": {
+      "experienceMultiplier": 0.5,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "tum-era:eraCreature347": {
+      "experienceMultiplier": 0.5,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    }
+  }
+}

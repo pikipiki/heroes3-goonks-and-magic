@@ -1,0 +1,304 @@
+{
+  "activation": false,
+  "nativeValidated": false,
+  "sourceId": 241,
+  "sourceCfgSHA256": "ab226e710fbb57235d99801a08867c372c3557d3dd0e0bb94ba2ca8b7899b9f8",
+  "sourceArchiveSHA256": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+  "nativeDefinitionSHA256": "5e76c7d4a0ada33a5ef8cabde10d1ae932c59be0079045d37671ca163eecaa9b",
+  "proxy": {
+    "activation": false,
+    "patch": {
+      "third-upgrades:tumChaoticDragonFly": {
+        "abilities": {
+          "castWeakness": null
+        }
+      }
+    },
+    "preservedOtherAbilities": [
+      "canFly",
+      "dispellHelpful",
+      "unlimitedRetaliation",
+      "strikeAndReturn"
+    ],
+    "otherAbilitiesSha256": "0fdc48377411df1db0b73d0c634debf052cc7a8cde675b0425e309f411bd5cc0"
+  },
+  "profile": {
+    "fullRank10": 52500,
+    "rank11Extra": 26250,
+    "battlePercent": 40,
+    "experienceMultiplier": 1,
+    "upgradeMultiplier": 0.75
+  },
+  "sourceRows": [
+    {
+      "creature": 241,
+      "code": "H",
+      "modifier": "+",
+      "values": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        7,
+        8,
+        10,
+        11,
+        13,
+        14
+      ],
+      "comment": "Chaotic Dragon Fly: Health",
+      "source": "crexpbon.txt",
+      "line": 1181
+    },
+    {
+      "creature": 241,
+      "code": "A",
+      "modifier": "+",
+      "values": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "comment": "Chaotic Dragon Fly: Attack R1",
+      "source": "crexpbon.txt",
+      "line": 1182
+    },
+    {
+      "creature": 241,
+      "code": "D",
+      "modifier": "+",
+      "values": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "comment": "Chaotic Dragon Fly: Defense R1",
+      "source": "crexpbon.txt",
+      "line": 1183
+    },
+    {
+      "creature": 241,
+      "code": "S",
+      "modifier": "+",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3,
+        3,
+        4,
+        4,
+        5
+      ],
+      "comment": "Chaotic Dragon Fly: Speed R4/R5/R6/R8/R10",
+      "source": "crexpbon.txt",
+      "line": 1184
+    },
+    {
+      "creature": 241,
+      "code": "f",
+      "modifier": "A",
+      "values": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "comment": "Chaotic Dragon Fly: Attack All Adjacent R7",
+      "source": "crexpbon.txt",
+      "line": 1185
+    },
+    {
+      "creature": 241,
+      "code": "k",
+      "modifier": "#45",
+      "values": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "comment": "Chaotic Dragon Fly: Weakness 5%/Rank",
+      "source": "crexpbon.txt",
+      "line": 1186
+    },
+    {
+      "creature": 241,
+      "code": "c",
+      "modifier": "#47",
+      "values": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "comment": "Chaotic Dragon Fly: Disrupting Ray 5%/Rank",
+      "source": "crexpbon.txt",
+      "line": 1187
+    }
+  ],
+  "defaults": [
+    {
+      "source": "crexpbon.txt",
+      "line": 13,
+      "sourceCreature": -3,
+      "code": "M",
+      "modifier": "+",
+      "values": [
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        5
+      ]
+    },
+    {
+      "source": "crexpbon.txt",
+      "line": 14,
+      "sourceCreature": -3,
+      "code": "m",
+      "modifier": "+",
+      "values": [
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        5
+      ]
+    }
+  ],
+  "retiredOwnDefaults": [
+    {
+      "source": "crexpbon.txt",
+      "line": 2,
+      "sourceCreature": -8,
+      "code": "H",
+      "modifier": "%",
+      "values": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ]
+    },
+    {
+      "source": "crexpbon.txt",
+      "line": 11,
+      "sourceCreature": -3,
+      "code": "A",
+      "modifier": "+",
+      "values": [
+        0,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        5,
+        5
+      ]
+    },
+    {
+      "source": "crexpbon.txt",
+      "line": 12,
+      "sourceCreature": -3,
+      "code": "D",
+      "modifier": "+",
+      "values": [
+        0,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        5,
+        5
+      ]
+    }
+  ],
+  "healthTag": "eraSourceXpOwnHealth:241:v1",
+  "healthOrdering": "native pre-XP HP, then exact source additive H+, then existing specialist/status rules",
+  "nativeOtherAbilitiesPreserved": [
+    "canFly",
+    "dispellHelpful",
+    "strikeAndReturn"
+  ],
+  "retiredFiniteCounterProxy": "unlimitedRetaliation→100 total",
+  "requiredRuntimeOwners": {
+    "k45": "strict source XP admission43 independent of DEFEND",
+    "c47": "existing exact source status service"
+  },
+  "graphicsAndSound": "Preserve existing native assets and localized names",
+  "freshCarrierProof": "Both exact native JSON XP rows wholly retired; source defaults/own rows are complete and disjoint",
+  "pending": [
+    "Native R0/R4/R7/R10/profile stats, finite100/counter58/rank7 adjacent attacks",
+    "Real health-percent native extension and expiry/poison order",
+    "Nonduplicatedk45/c47, native source owner preservation and save reload"
+  ]
+}

@@ -8,6 +8,10 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraWeakness45Generic.h"
+#include "../era/EraWeakness45State.h"
+#include "../era/EraSourceXpObstacle.h"
+#include "../era/EraXpTimed184Hooks.h"
 #include "../era/EraFamiliarChannel43.h"
 #include "../era/EraAdvancedArtifactRuntimeNative.h"
 #include "../era/EraPhysicalAbilities.h"
@@ -329,6 +333,8 @@ bool BattleSpellMechanics::canBeCastAt(const Target & target, Problem & problem)
 	if(!canBeCast(problem))
 		return false;
 
+    if(const int original=era_compat::xpObstacleOriginal(getSpell());original>=0)
+        return !target.empty() && era_compat::xpObstacleTargetAllowed(*battle(),caster,casterSide,target.front().unitValue,original);
     if(era_compat::ConfluxPolicies::get().enabled()
         && getSpell()->getJsonKey()=="tum-era:sourceConfluxFireWallTrigger")
         return !target.empty() && sourceConfluxWallTargetAllowed(target.front().unitValue);
@@ -580,6 +586,10 @@ void BattleSpellMechanics::beforeCast(BattleSpellCast & sc, vstd::RNG & rng, con
                 if(rng.nextInt(1,100)>accuracy)resistantUnitIds.insert(unit->unitId());
             }
         }
+        else if(era_compat::xpObstacleOriginal(getSpell())>=0)
+        {
+            //59FE50/59FFE0: accepted positive FLOAT query, no resistance draw.
+        }
         else if(era_compat::ConfluxPolicies::get().enabled()
             && getSpell()->getJsonKey()=="tum-era:sourceConfluxFireWallTrigger")
         {
@@ -803,8 +813,18 @@ void BattleSpellMechanics::doRemoveEffects(ServerCallback * server, const battle
 		std::vector<Bonus> buffer;
 		auto bl = unit->getBonuses(selector);
 
-		for(const auto & item : *bl)
-			buffer.emplace_back(*item);
+		std::set<int> typedHandled;
+        for(const auto & item : *bl)
+        {
+            if(era_compat::sourceTimedOwnedTag(item->stacking))
+            {
+                const int id=item->sid.as<SpellID>().getNum();
+                if(typedHandled.insert(id).second)era_compat::consumeNativeXpTimed184Counter(server,*this,*unit,id);
+                continue;
+            }
+            if(era_compat::sourceWeakness45GenericCounterPreserved(*this,unit,*item))continue;
+            buffer.emplace_back(*item);
+        }
 
 		if(!buffer.empty())
 			sse.toRemove.emplace_back(unit->unitId(), buffer);
@@ -816,6 +836,7 @@ void BattleSpellMechanics::doRemoveEffects(ServerCallback * server, const battle
 
 bool BattleSpellMechanics::counteringSelector(const Bonus * bonus) const
 {
+    if(era_compat::preserveSourceWeakness45Counter(getSpellIndex(),*bonus))return false;
 	if(bonus->source != BonusSource::SPELL_EFFECT)
 		return false;
 

@@ -9,6 +9,7 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraSourceXpRetaliationFrame.h"
 #include "../era/EraBridgePolicies.h"
 #include "../era/EraDefenseReduction.h"
 #include "../era/EraEmeraldDamageRange.h"
@@ -459,6 +460,8 @@ double DamageCalculator::getDefenseUnluckyFactor() const
 
 double DamageCalculator::getDefenseBlindParalysisFactor() const
 {
+    if(era_bridge::sourceXpRetaliationValue&&era_bridge::sourceXpRetaliationValue->actor==info.attacker->unitId())
+        return 1.0-era_bridge::sourceXpRetaliationValue->percentage/100.0;
 	double multAttackReduction = battleBonusValue(info.attacker, Selector::type()(BonusType::GENERAL_ATTACK_REDUCTION)) / 100.0;
 	return multAttackReduction;
 }

@@ -108,29 +108,7 @@
 					1
 				]
 			},
-			{
-				"bonus" : {
-					"type" : "SPELL_BEFORE_ATTACK",
-					"subtype" : "landMine",
-					"icon" : "bonuses/landmineattack.png",
-					"addInfo" : [
-						2,
-						0
-					]
-				},
-				"values" : [
-					5,
-					10,
-					15,
-					20,
-					25,
-					30,
-					35,
-					40,
-					45,
-					50
-				]
-			},
+			
 			{
 				"bonus" : {
 					"type" : "HATE",
@@ -262,29 +240,7 @@
 					1
 				]
 			},
-			{
-				"bonus" : {
-					"type" : "SPELL_BEFORE_ATTACK",
-					"subtype" : "landMine",
-					"icon" : "bonuses/landmineattack.png",
-					"addInfo" : [
-						2,
-						0
-					]
-				},
-				"values" : [
-					5,
-					10,
-					15,
-					20,
-					25,
-					30,
-					35,
-					40,
-					45,
-					50
-				]
-			},
+			
 			{
 				"bonus" : {
 					"type" : "HATE",

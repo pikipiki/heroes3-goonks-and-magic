@@ -8,6 +8,9 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraWeakness45State.h"
+#include "../era/EraSourceXpOwnHealth.h"
+#include "../era/EraXpTimed184Lifecycle.h"
 #include "../era/EraSourceDefendState.h"
 
 #include "CUnitState.h"
@@ -146,6 +149,11 @@ int32_t CRetaliations::total() const
 	int32_t val = 1 + totalProxy.getValue();
 	vstd::amax(totalCache, val);
 	return totalCache;
+}
+
+void CRetaliations::preserveCapacityBeforeSourceDispel() const
+{
+	vstd::amax(totalCache, era_bridge::weakness45Add(1,totalProxy.getValue()));
 }
 
 void CRetaliations::reset()
@@ -612,8 +620,9 @@ uint32_t CUnitState::getMaxHealth() const
 {
     const auto applyExperience = [this](int value)
     {
-        const int experienced=hasBonusOfType(BonusType::ERA_EXPERIENCE_HEALTH_PERCENT)
+        int experienced=hasBonusOfType(BonusType::ERA_EXPERIENCE_HEALTH_PERCENT)
             ? ::era_bridge::sourceExperienceHealth(value,valOfBonuses(BonusType::ERA_EXPERIENCE_HEALTH_PERCENT)) : value;
+        experienced=era_compat::sourceXpOwnHealth(*this,experienced);
         const int percentage=valOfBonuses(BonusType::ERA_SPECIALIST_HEALTH_PERCENT);
         return ::era_bridge::sourceSpecialistHealth(experienced,percentage);
     };
@@ -621,7 +630,8 @@ uint32_t CUnitState::getMaxHealth() const
         return std::max(1,applyExperience(bonusCache.getBonusValue(UnitBonusValuesProxy::STACK_HEALTH)));
     BonusList baseline;
     int poison=0;bool age=false;
-    for(const auto & bonus:*getBonuses(Selector::type()(BonusType::STACK_HEALTH)))
+    const auto sourceBonusList633=getBonuses(Selector::type()(BonusType::STACK_HEALTH));
+    for(const auto & bonus:*sourceBonusList633)
     {
         if(bonus->source==BonusSource::SPELL_EFFECT && bonus->sid.as<SpellID>()==SpellID::POISON)
             poison=std::max(poison,-bonus->val);
@@ -646,6 +656,7 @@ void CUnitState::setPosition(const BattleHex & hex)
 
 int32_t CUnitState::getInitiative(int turn) const
 {
+    if(const auto source=era_compat::sourceXpTimed184Initiative(*this,turn))return *source;
 	return stackSpeedPerTurn.getValue(turn);
 }
 
@@ -654,6 +665,7 @@ ui32 CUnitState::getMovementRange(int turn) const
 	if (immobilizedPerTurn.getValue(0) != 0)
 		return 0;
 
+    if(const auto source=era_compat::sourceXpTimed184Initiative(*this,0))return *source;
 	return stackSpeedPerTurn.getValue(0);
 }
 
@@ -797,6 +809,9 @@ int CUnitState::getAttack(bool ranged) const
 		bonusCache.getBonusValue(UnitBonusValuesProxy::ATTACK_RANGED):
 		bonusCache.getBonusValue(UnitBonusValuesProxy::ATTACK_MELEE);
 
+    const auto sourceAttack=era_compat::sourceWeakness45Attack(*this,ranged);
+    if(sourceAttack)attack=*sourceAttack;
+
 	int frenzy = bonusCache.getBonusValue(UnitBonusValuesProxy::IN_FRENZY);
 	if(frenzy != 0)
 	{
@@ -809,7 +824,7 @@ int CUnitState::getAttack(bool ranged) const
 		attack += frenzyBonus;
 	}
 
-	vstd::amax(attack, 0);
+    if(!sourceAttack)vstd::amax(attack,0); // source442130 returns signed C8 after later buff removal.
 	return attack;
 }
 
@@ -830,7 +845,7 @@ int CUnitState::getDefense(bool ranged) const
         // Opt-in marker is emitted only by the source80 service. Vanilla
         // units and other mods retain native nonnegative defense. A source
         // DEFEND2+1 -> acid0 -> expiry(-1) must feed ATT-DEF as4422B0 does.
-        if(!hasBonusOfType(BonusType::ERA_SOURCE_ACID_DEFENSE))
+        if(!hasBonusOfType(BonusType::ERA_SOURCE_ACID_DEFENSE)&&!era_compat::sourceTimedStatActive(*this))
             vstd::amax(defence, 0);
 		return defence;
 	}

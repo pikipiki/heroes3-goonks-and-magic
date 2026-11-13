@@ -1,0 +1,106 @@
+{
+  "sourceXpFireWallTrigger": {
+    "targetType": "CREATURE",
+    "type": "combat",
+    "name": "",
+    "school": {
+      "air": false,
+      "earth": false,
+      "fire": true,
+      "water": false
+    },
+    "level": 2,
+    "power": 0,
+    "gainChance": {},
+    "levels": {
+      "base": {
+        "power": 0,
+        "range": "0",
+        "description": "",
+        "cost": 0,
+        "battleEffects": {
+          "directDamage": {
+            "type": "core:damage"
+          }
+        },
+        "targetModifier": {
+          "smart": false
+        }
+      },
+      "none": {
+        "power": 0
+      },
+      "basic": {
+        "power": 0
+      },
+      "advanced": {
+        "power": 0
+      },
+      "expert": {
+        "power": 0
+      }
+    },
+    "flags": {
+      "damage": true,
+      "negative": true,
+      "special": true
+    },
+    "targetCondition": {}
+  },
+  "sourceXpLandMineTrigger": {
+    "targetType": "CREATURE",
+    "type": "combat",
+    "name": "",
+    "school": {
+      "air": false,
+      "earth": false,
+      "fire": true,
+      "water": false
+    },
+    "level": 3,
+    "power": 0,
+    "gainChance": {},
+    "levels": {
+      "base": {
+        "power": 0,
+        "range": "0",
+        "description": "",
+        "cost": 0,
+        "battleEffects": {
+          "directDamage": {
+            "type": "core:damage"
+          }
+        },
+        "targetModifier": {
+          "smart": false
+        }
+      },
+      "none": {
+        "power": 0
+      },
+      "basic": {
+        "power": 0
+      },
+      "advanced": {
+        "power": 0
+      },
+      "expert": {
+        "power": 0
+      }
+    },
+    "flags": {
+      "damage": true,
+      "negative": true,
+      "special": true
+    },
+    "targetCondition": {},
+    "animation": {
+      "hit": [
+        "C09SPF3"
+      ]
+    },
+    "sounds": {
+      "cast": "LANDKILL"
+    }
+  }
+}

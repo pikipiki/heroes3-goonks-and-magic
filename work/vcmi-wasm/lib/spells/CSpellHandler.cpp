@@ -9,6 +9,7 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraSourceXpObstacle.h"
 #include "../era/EraPrimalFaerie.h"
 #include "../era/EraBridgePolicies.h"
 #include "../era/EraExperienceMagicReductionNative.h"
@@ -377,10 +378,15 @@ void CSpell::getEffects(std::vector<Bonus> & lst, const int level, const bool cu
 
 int64_t CSpell::adjustRawDamage(const spells::Caster * caster, const battle::Unit * affectedCreature, int64_t rawDamage) const
 {
+    if(const int original=era_compat::xpObstacleOriginal(this);original>=0)
+    {
+        era_compat::XpObstacleDamageScope scope;
+        return SpellID(original).toSpell()->adjustRawDamage(caster,affectedCreature,rawDamage);
+    }
 	auto ret = rawDamage;
     const auto sourceG=isMagical()?era_compat::sourceMagicReduction(affectedCreature):std::nullopt;
     const bool orbChaos=era_compat::eraOrbChaosRawDamageActive(caster,this,affectedCreature);
-    const bool sourceCaster=dynamic_cast<const era_compat::ConfluxCaster *>(caster)!=nullptr;
+    const bool sourceCaster=dynamic_cast<const era_compat::ConfluxCaster *>(caster)!=nullptr || era_compat::xpObstacleDamageCorrection;
     if(affectedCreature && (sourceG || orbChaos || sourceCaster))
     {
         // Source5A7C26 applies caster bonuses before MR0, innate44B180,
