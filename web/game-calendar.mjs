@@ -33,7 +33,7 @@ export function createGameCalendar(root){
   const shortLabel=english?'Recruits':'Recrues',shortDays=english?`${days}d`:`${days} j`;
   if(cueLabel.textContent!==shortLabel)cueLabel.textContent=shortLabel;
   if(cueDays.textContent!==shortDays)cueDays.textContent=shortDays;
-  if(date.textContent!==label)date.textContent=label;if(next.textContent!==remaining)next.textContent=remaining;
+  const compact=english?`${value.weekday}D ${value.week}W ${value.month}M`:`${value.weekday}J ${value.week}S ${value.month}M`;if(date.textContent!==compact)date.textContent=compact;if(next.textContent!==remaining)next.textContent=remaining;
   if(state.mode==='map'){
    const shortDate=english?`Day ${value.weekday} · W${value.week} · M${value.month}`:`Jour ${value.weekday} · S${value.week} · M${value.month}`;
    if(compactDate.textContent!==shortDate)compactDate.textContent=shortDate;

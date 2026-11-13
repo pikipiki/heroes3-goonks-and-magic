@@ -716,7 +716,7 @@ void CCreaturePic::drawMobilePreview(Canvas & to)
 {
 	const Point origin = pos.topLeft();
 	moveBy(-origin);
-	try { show(to); }
+	try { bg->showAll(to); anim->showMobilePreview(to, Rect(0, 0, pos.w, pos.h)); amount->showAll(to); }
 	catch(...) { moveBy(origin); throw; }
 	moveBy(origin);
 }

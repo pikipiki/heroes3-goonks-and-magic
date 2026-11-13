@@ -147,7 +147,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
     <h3>${selectedUnit?esc(selectedUnit.name+' × '+selectedUnit.count):(fr?'Gestion des troupes':'Manage army')}</h3>
     <p class="hero-artifact-description">${selectedUnit?(selectedUnit.count>1?(fr?'Touche un emplacement libre pour déplacer, ou coche « Scinder » pour séparer les troupes.':'Tap another slot to move, or check « Split » to split the army.'):(fr?'Touche un autre emplacement pour déplacer ou fusionner.':'Tap another slot to move or merge.')):(fr?'Touche une troupe pour la réorganiser, la scinder ou voir sa fiche.':'Tap a unit stack to manage, split or view details.')}</p>
     <div class="hero-army-dock-tools">
-     ${state.troopEquipment?`<button type="button" data-hero-troop-equipment>${fr?'Équipement des troupes':'Troop equipment'}</button>`:''}
+     ${state.troopEquipment?`<button type="button" data-hero-troop-equipment title="${fr?'Équiper une troupe avec un objet du sac':'Equip a troop with an item from your backpack'}">${fr?'Objets de troupe':'Troop items'}</button>`:''}
      <label class="hero-army-split-toggle">
       <input type="checkbox" id="hero-army-split" ${splitActive?'checked':''} ${!selectedUnit||selectedUnit.count<2||!state.turn?'disabled':''}>
       <span>${fr?'Scinder':'Split'}</span>

@@ -485,6 +485,45 @@ CCreatureAnim::CCreatureAnim(int x, int y, const AnimationPath & name, ui8 flags
 	yOffset = 0;
 }
 
+void CCreatureAnim::showMobilePreview(Canvas & to, const Rect & target)
+{
+	if(!mobilePreviewBounds)
+	{
+		Rect bounds(xOffset, yOffset, pos.w, pos.h);
+		// These are exactly the groups used by loopPreview and its move transitions.
+		for(const size_t previewGroup : {0u, 2u, 3u, 4u, 12u, 14u, 15u, 16u, 18u, 20u, 21u})
+			for(size_t i = 0; i < anim->size(previewGroup); ++i)
+				if(const auto image = anim->getImage(i, previewGroup, false))
+				{
+					const auto content = image->contentRect();
+					if(content.w > 0 && content.h > 0)
+						bounds = bounds.include(content);
+				}
+		mobilePreviewBounds = bounds;
+	}
+	const Rect & bounds = *mobilePreviewBounds;
+	if(bounds.x == xOffset && bounds.y == yOffset && bounds.w == pos.w && bounds.h == pos.h)
+	{
+		show(to);
+		return;
+	}
+	const auto image = anim->getImage(frame, group, false);
+	if(!image || bounds.w <= 0 || bounds.h <= 0)
+		return;
+	if(!mobilePreviewCanvas)
+	{
+		mobilePreviewCanvas = std::make_shared<Canvas>(bounds.dimensions(), CanvasScalingPolicy::IGNORE);
+		mobilePreviewCanvas->applyTransparency(true);
+	}
+	mobilePreviewCanvas->drawColor(Rect(Point(0, 0), bounds.dimensions()), Colors::TRANSPARENCY);
+	image->setAlpha(alpha);
+	image->setOverlayColor(Colors::TRANSPARENCY);
+	mobilePreviewCanvas->draw(image, Point(0, 0), bounds);
+	const double scale = std::min({1.0, std::max(1, target.w - 4) / double(bounds.w), std::max(1, target.h - 4) / double(bounds.h)});
+	const Point size(std::max(1, int(bounds.w * scale)), std::max(1, int(bounds.h * scale)));
+	to.drawScaled(*mobilePreviewCanvas, target.topLeft() + Point((target.w - size.x) / 2, (target.h - size.y) / 2), size);
+}
+
 void CCreatureAnim::loopPreview(bool warMachine)
 {
 	std::vector<ECreatureAnimType> available;

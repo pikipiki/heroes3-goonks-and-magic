@@ -33,6 +33,11 @@ try{for(const [kind,engine]of Object.entries({chromium,webkit})){
  };
  for(const size of [{width:390,height:844},{width:768,height:1024},{width:1024,height:1366}]){
   await p.setViewportSize(size);await check();
+  // Reproduce the reported normal portrait -> landscape transition directly.
+  await p.setViewportSize({width:size.height,height:size.width});await p.waitForTimeout(250);
+  const geometry=await p.evaluate(()=>{const play=document.querySelector('.mobile-play').getBoundingClientRect(),scene=document.querySelector('#mobile-scene').getBoundingClientRect();return{top:scene.top-play.top,left:scene.left-play.left,w:scene.width,pw:play.width,h:scene.height,ph:play.height};});
+  assert(Math.abs(geometry.top)<2&&Math.abs(geometry.left)<2&&Math.abs(geometry.w-geometry.pw)<2&&Math.abs(geometry.h-geometry.ph)<2,'Landscape canvas fills field after normal portrait rotation '+JSON.stringify(geometry));
+  await p.setViewportSize(size);await check();
   await p.locator('[data-ui=battle-view]').tap();await p.waitForTimeout(150);assert.equal(await p.locator('#mobile-app').getAttribute('data-battle-layout'),'native');await p.locator('.close-tag').waitFor({state:'hidden'});
   assert.equal(await p.locator('#mobile-app').getAttribute('data-vertical-battle'),'true');
   const hit=await p.evaluate(async()=>{const {verticalBattleGeometry}=await import('/web/battle-vertical.mjs');const c=document.querySelector('#mobile-scene'),g=verticalBattleGeometry(c.clientWidth,c.clientHeight),u=goonkMobileState.battleUnits[1],p=g.project(u);return{x:p.x+18*g.scale,y:p.y-8*g.scale};});

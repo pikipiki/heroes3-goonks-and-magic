@@ -1,4 +1,3 @@
-import{creaturePortrait}from'./creature-portraits.mjs';
 import {paintBuildingOutline} from './image-outline.mjs';
 import{plainGameText}from'./game-text.mjs';
 import{buildingSizes}from'./town-building-sizes.mjs';
@@ -29,11 +28,11 @@ export function isGoonkTown(state){return state.townFaction==='goonk:goonk'||(st
 export function townPortraitBuildings(width,height,buildings=[]){const result=[];for(const [site,variants,x,y,maxW,maxH]of TOWN_SITES){const building=[...variants].reverse().map(key=>buildings.find(b=>b.built&&localKey(b)===key)).find(Boolean);if(!building)continue;const key=localKey(building),artKey=buildingSizes[key]?key:buildingSizes[key.replace(/Up[23]/,'Up')]?key.replace(/Up[23]/,'Up'):key==='mageGuild5'?'mageGuild4':key,[sw,sh]=buildingSizes[artKey]||[90,100],scale=Math.min(width*maxW/sw,height*(height<480&&site==='dwelling4'?.13:maxH)/sh),w=sw*scale,h=sh*scale,left=Math.max(0,Math.min(width-w,width*x-w/2)),top=Math.max(0,Math.min(height-h,height*y-h)),hitW=Math.max(44,w),hitH=Math.max(44,h);result.push({...building,key,artKey,site,x:left,y:top,w,h,hit:{x:Math.max(0,Math.min(width-hitW,left+w/2-hitW/2)),y:Math.max(0,Math.min(height-hitH,top+h/2-hitH/2)),w:hitW,h:hitH}});}return result;}
 export function portraitTownFaction(state){if(isGoonkTown(state))return 'goonk';const key=String(state.townFaction||'').split(':').at(-1);return townBuildingArt[key]?key:null;}
 export const supportsTownPortrait=state=>!!portraitTownFaction(state);
-const buildingSprite=(faction,key)=>new URL('./town/'+faction+'/structures/'+key+'.webp',import.meta.url).href;
+const buildingSprite=(faction,key)=>new URL(/^dwelling(?:Up)?Lvl8$/.test(key)?'./town/eighth/'+faction+'-'+(key==='dwellingUpLvl8'?'89':'88')+'.png':'./town/'+faction+'/structures/'+key+'.webp',import.meta.url).href;
 export function townBuildingCardImage(state,building,asset){
  const key=localKey(building),faction=portraitTownFaction(state);
  if(faction==='goonk')return asset('goonk/card-'+key+'.png')||asset('goonk/structure-'+key+'.png');
- if(townBuildingArt[faction]?.[key])return buildingSprite(faction,key);
+ if(townBuildingArt[faction]?.[key]||/^dwelling(?:Up)?Lvl8$/.test(key))return buildingSprite(faction,key);
  return '';
 }
 export function eighthTownRecruitment(state){
@@ -44,18 +43,18 @@ export function eighthTownRecruitment(state){
  if(!unit||!Number.isInteger(unit.id))return null;
  return {base,upgrade,unit,built:!!(base.built||upgrade.built),level:7};
 }
-export function eighthTownViewport(width,height){const side=width>height&&height<480,strip=side?Math.min(188,Math.max(144,width*.23)):72;return {x:0,y:side?0:strip,width:side?width-strip:width,height:side?height:height-strip,badgeWidth:side?strip-16:Math.min(190,width-130)};}
+export function eighthTownViewport(width,height){return {x:0,y:0,width,height,badgeWidth:0};}
 export function factionPortraitBuildings(width,height,buildings,faction,{minimumRowHeight=0}={}){
  if(faction==='goonk')return townPortraitBuildings(width,height,buildings);
- const catalog=townBuildingArt[faction]||{},byId=new Map(buildings.map(b=>[b.id,b])),groups=new Map();
+ const catalog={...townBuildingArt[faction]};if(buildings.some(b=>localKey(b)==='dwellingLvl8')){catalog.dwellingLvl8={width:150,height:70};catalog.dwellingUpLvl8={width:150,height:70};}const byId=new Map(buildings.map(b=>[b.id,b])),groups=new Map();
  const base=b=>byId.get(b.baseId)||b;
  const depth=b=>{let n=0;const seen=new Set();while(b&&b.upgradeId>=0&&!seen.has(b.id)){seen.add(b.id);b=byId.get(b.upgradeId);n++;}return n;};
  for(const b of buildings){const key=localKey(base(b));if(!groups.has(key))groups.set(key,[]);groups.get(key).push(b);}
- const order=['fort','mageGuild1','grail','villageHall','marketplace','blacksmith',...Array.from({length:7},(_,i)=>'dwellingLvl'+(i+1))];
+ const order=['fort','mageGuild1','grail','villageHall','marketplace','blacksmith',...Array.from({length:8},(_,i)=>'dwellingLvl'+(i+1))];
  const families=[...groups.keys()].filter(key=>groups.get(key).some(b=>catalog[localKey(b)])).sort((a,b)=>{const x=order.indexOf(a),y=order.indexOf(b);return(x<0?100:x)-(y<0?100:y)||a.localeCompare(b);});
  const topHeight=Math.min(height*.25,Math.max(60,height*.21)),maxRows=minimumRowHeight?Math.max(1,Math.floor((height-topHeight-8)/minimumRowHeight)):Infinity,columns=Math.max(4,Math.ceil((families.length-3)/maxRows)),rows=Math.max(1,Math.ceil((families.length-3)/columns)),rowHeight=(height-topHeight-8)/rows,result=[];
  for(let i=0;i<families.length;i++){
-  const records=groups.get(families[i]),building=records.filter(b=>b.built&&(!families[i].startsWith('dwelling')||localKey(b).startsWith('dwelling'))).sort((a,b)=>depth(b)-depth(a)||b.id-a.id)[0];if(!building)continue;
+  const records=groups.get(families[i]),building=records.filter(b=>(b.built||families[i]==='dwellingLvl8')&&(!families[i].startsWith('dwelling')||localKey(b).startsWith('dwelling'))).sort((a,b)=>families[i]==='dwellingLvl8'?(Number(b.built)-Number(a.built)||(a.built?depth(b)-depth(a):depth(a)-depth(b))||a.id-b.id):(depth(b)-depth(a)||b.id-a.id))[0];if(!building)continue;
   const key=localKey(building),fallbacks=[key,...records.sort((a,b)=>depth(b)-depth(a)).map(localKey),key.replace('Up2','Up'),key.replace(/Up2|Up/g,'')],artKey=fallbacks.find(k=>catalog[k]);if(!artKey)continue;
   const meta=catalog[artKey],cell=i<3?{x:[width*.25,width*.01,width*.77][i],y:4,w:i===0?width*.5:width*.22,h:topHeight-5}:{x:(i-3)%columns*width/columns+3,y:topHeight+Math.floor((i-3)/columns)*rowHeight,w:width/columns-6,h:rowHeight-3};
   // Keep an entire native sprite within its own terrace and touch cell.
@@ -67,10 +66,10 @@ export function factionPortraitBuildings(width,height,buildings,faction,{minimum
 export function createTownPortrait({root,scene,asset,command,getState,openBuildings}){
  const overlay=document.createElement('section');overlay.className='town-portrait-buildings';overlay.setAttribute('aria-label','Bâtiments de la ville');overlay.hidden=true;root.querySelector('.mobile-play').append(overlay);
  const images=new Map(),buttons=new Map(),decoded=new WeakSet(),failed=new WeakSet();let hovered=null,signature='',activeFaction=null,newBuilding=null,eighthButton=null,eighthSignature='';
- const updateEighth=(state,width,height)=>{const model=eighthTownRecruitment(state);if(!model){eighthButton?.remove();eighthSignature='';return;}const view=eighthTownViewport(width,height);if(!eighthButton){eighthButton=document.createElement('button');eighthButton.className='town-eighth-access';eighthButton.dataset.townEighth='true';eighthButton.addEventListener('click',event=>{const latest=eighthTownRecruitment(getState());if(!latest||latest.built||!openBuildings)return;event.stopPropagation();void openBuildings(latest.base.id,latest.unit.name,latest.unit.id);});}
-  if(!eighthButton.isConnected)overlay.append(eighthButton);const next=JSON.stringify([model.unit.id,model.unit.name,model.built,model.unit.count,state.turn,view.badgeWidth]);if(eighthSignature===next)return;eighthSignature=next;
-  if(eighthButton.dataset.unit!==String(model.unit.id)){eighthButton.innerHTML=creaturePortrait(model.unit)+'<span class="town-eighth-copy"><strong></strong><span></span></span>';eighthButton.dataset.unit=model.unit.id;}
-  const label=model.built?'Recruter · VIII':'Bâtir · VIII',strong=eighthButton.querySelector('strong'),name=eighthButton.querySelector('.town-eighth-copy>span'),plainName=plainGameText(model.unit.name);if(strong.textContent!==label)strong.textContent=label;if(name.textContent!==plainName)name.textContent=plainName;eighthButton.setAttribute('aria-label',label+' · '+plainName);eighthButton.disabled=!state.turn;eighthButton.style.width=Math.max(112,view.badgeWidth)+'px';
+ const updateEighth=(state,width,height,placement)=>{const model=eighthTownRecruitment(state);if(!model||!placement){eighthButton?.remove();eighthSignature='';return;}const view=eighthTownViewport(width,height);if(!eighthButton){eighthButton=document.createElement('button');eighthButton.className='town-eighth-access';eighthButton.dataset.townEighth='true';eighthButton.addEventListener('click',event=>{const latest=eighthTownRecruitment(getState());if(!latest||latest.built||!openBuildings)return;event.stopPropagation();void openBuildings(latest.base.id,latest.unit.name,latest.unit.id);});}
+  if(!eighthButton.isConnected)overlay.append(eighthButton);const next=JSON.stringify([model.unit.id,model.unit.name,model.built,model.unit.count,state.turn,placement.hit]);if(eighthSignature===next)return;eighthSignature=next;
+  if(eighthButton.dataset.unit!==String(model.unit.id)){eighthButton.innerHTML='<span class="town-eighth-copy"><strong></strong><span></span></span>';eighthButton.dataset.unit=model.unit.id;}
+  const label=model.built?'Recruter · VIII':'Bâtir · VIII',strong=eighthButton.querySelector('strong'),name=eighthButton.querySelector('.town-eighth-copy>span'),plainName=plainGameText(model.unit.name);const buildingName=plainGameText((model.upgrade.built?model.upgrade:model.base).name)||plainName;if(strong.textContent!==buildingName)strong.textContent=buildingName;const caption=label+' · '+plainName;if(name.textContent!==caption)name.textContent=caption;eighthButton.setAttribute('aria-label',label+' · '+plainName);eighthButton.disabled=!state.turn;Object.assign(eighthButton.style,{left:placement.hit.x+'px',top:placement.hit.y+'px',width:placement.hit.w+'px',height:placement.hit.h+'px'});
   if(model.built){eighthButton.dataset.recruitLevel='7';delete eighthButton.dataset.ui;}else{delete eighthButton.dataset.recruitLevel;eighthButton.dataset.ui='build';}
  };
  const image=url=>{if(!url)return null;if(!images.has(url)){const img=new Image();img.addEventListener('error',()=>failed.add(img),{once:true});img.addEventListener('load',()=>{if(img.decode)img.decode().then(()=>decoded.add(img),()=>failed.add(img));else decoded.add(img);},{once:true});img.src=url;images.set(url,img);}return images.get(url);};
@@ -103,11 +102,11 @@ export function createTownPortrait({root,scene,asset,command,getState,openBuildi
    for(const {b,picture,outline}of artwork){if(!ready(picture))continue;ctx.drawImage(picture,b.x,b.y,b.w,b.h);if(newBuilding===b.id){paintBuildingOutline(ctx,picture,b.x,b.y,b.w,b.h);}if(hovered===b.id){if(ready(outline))ctx.drawImage(outline,b.x,b.y,b.w,b.h);else{ctx.save();ctx.shadowColor='#ffe78a';ctx.shadowBlur=8;ctx.drawImage(picture,b.x,b.y,b.w,b.h);ctx.restore();}}}
    const next=JSON.stringify([faction,width,height,buildings.map(b=>[b.id,b.name])]);
    if(signature!==next){signature=next;const active=new Set(buildings.map(b=>b.id));for(const [id,button]of buttons)if(!active.has(id)){button.remove();buttons.delete(id);if(hovered===id)hovered=null;}
-    for(const b of buildings){let button=buttons.get(b.id);if(!button){button=document.createElement('button');button.className='town-building-hit';button.dataset.townBuilding=b.id;const label=document.createElement('span');label.className='town-building-name';button.append(label);button.addEventListener('pointerenter',()=>hovered=b.id);button.addEventListener('pointerleave',()=>hovered=null);button.addEventListener('focus',()=>hovered=b.id);button.addEventListener('blur',()=>hovered=null);button.addEventListener('click',event=>{event.stopPropagation();const current=getState();if(current.mode==='town'&&current.buildings?.some(record=>record.id===b.id&&record.built)){hovered=b.id;command(39,b.id);}});buttons.set(b.id,button);overlay.append(button);}
+    for(const b of buildings.filter(b=>!/^dwelling(?:Up)?Lvl8$/.test(b.key))){let button=buttons.get(b.id);if(!button){button=document.createElement('button');button.className='town-building-hit';button.dataset.townBuilding=b.id;const label=document.createElement('span');label.className='town-building-name';button.append(label);button.addEventListener('pointerenter',()=>hovered=b.id);button.addEventListener('pointerleave',()=>hovered=null);button.addEventListener('focus',()=>hovered=b.id);button.addEventListener('blur',()=>hovered=null);button.addEventListener('click',event=>{event.stopPropagation();const current=getState();if(current.mode==='town'&&current.buildings?.some(record=>record.id===b.id&&record.built)){hovered=b.id;command(39,b.id);}});buttons.set(b.id,button);overlay.append(button);}
      const name=plainGameText(b.name),isGrail=faction==='goonk'&&b.site==='grail';button.setAttribute('aria-label',name);button.toggleAttribute('data-town-grail',isGrail);const nameLabel=button.querySelector('span'),labelWidth=isGrail?64:Math.min(180,Math.max(70,name.length*6.5+16));if(nameLabel.textContent!==(isGrail?'Graal':name))nameLabel.textContent=isGrail?'Graal':name;nameLabel.style.width=labelWidth+'px';nameLabel.style.left=(Math.max(6,Math.min(width-labelWidth-6,b.hit.x+b.hit.w/2-labelWidth/2))-b.hit.x)+'px';Object.assign(button.style,{left:b.hit.x+'px',top:b.hit.y+'px',width:b.hit.w+'px',height:b.hit.h+'px'});
     }
    }
-   updateEighth(state,width,height);
+   updateEighth(state,width,height,buildings.find(b=>/^dwelling(?:Up)?Lvl8$/.test(b.key)));
    return true;
   }
  };

@@ -1,0 +1,101 @@
+/* Fit each pane to the visible game surface, including browser toolbars. */
+#mobile-app .hero-equipment-page[data-inventory=army] .hero-equipment-grid{box-sizing:border-box;overflow-y:auto;overflow-x:hidden;touch-action:pan-y;min-height:0}
+#mobile-app .hero-army-panel{height:auto;min-height:100%;box-sizing:border-box}
+#mobile-app .hero-army-slot{touch-action:pan-y}
+#mobile-app .army-back{display:none}
+#mobile-app :is([data-recruit-all],[data-ui=confirm-recruit-all]){border:4px ridge #ffe18a!important;border-image:none!important;background:linear-gradient(#74521e,#35220c)!important;color:#fff0b7!important;box-sizing:border-box}
+#mobile-app .commander-summary{display:grid;grid-template-columns:minmax(70px,.85fr) minmax(0,1fr);gap:6px 10px;align-items:start;min-width:0}
+#mobile-app .commander-summary .commander-preview{grid-column:1;grid-row:1/3;float:none!important;width:100%!important;height:150px!important;margin:0!important;min-width:0;max-width:100%;object-fit:contain}
+#mobile-app .commander-summary h3{grid-column:2;min-width:0;margin:0;overflow-wrap:anywhere;font-size:17px;line-height:1.2}
+#mobile-app .commander-summary .commander-facts{grid-column:2;grid-template-columns:repeat(2,minmax(0,1fr));margin:0;gap:4px;min-width:0}
+#mobile-app .commander-facts>div{min-width:0;box-sizing:border-box}
+#mobile-app .commander-facts dd{font-size:15px;line-height:20px;overflow-wrap:anywhere}
+#mobile-app .commander-facts dt{font-size:14px;line-height:18px}
+#mobile-app .dialog-presentation>header h2{min-width:0;overflow-wrap:anywhere}
+#mobile-app [data-commander-tree]{flex:0 1 auto;white-space:normal;overflow-wrap:anywhere;box-sizing:border-box}
+#mobile-app .mobile-resources .mobile-resource[data-resource=gold]{min-width:4.5ch!important}
+#mobile-app .mobile-resources{grid-template-columns:repeat(6,minmax(0,1fr)) minmax(4.5ch,1.5fr) minmax(0,1fr)!important}
+#mobile-app .hall-total{flex-wrap:wrap;min-width:0;overflow:visible!important}
+#mobile-app .hall-total .creature-price{flex:none;white-space:nowrap}
+@container goonk-viewport (orientation:landscape){
+ /* A former portrait follow-camera row must never position the native scene. */
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle]>.mobile-play{display:block!important;position:relative;grid-template-rows:none!important;overflow:hidden!important}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle] #mobile-scene{position:absolute!important;inset:0!important;grid-area:auto!important;display:block;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;margin:0!important;aspect-ratio:auto!important}
+ html.goonk-mobile #mobile-app[data-mode=battle] :is(.battle-strategic-view,.battle-view-tag){display:none!important}
+ #mobile-app .hero-equipment-page[data-inventory=army] .hero-army-slots{grid-auto-rows:minmax(170px,auto);align-content:start}
+ html.goonk-mobile #mobile-app[data-sheet=army] .army-transfer-tools{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+ html.goonk-mobile #mobile-app[data-sheet=army] .army-transfer-tools>button{grid-column:auto!important;width:100%;min-width:0;margin:0}
+ html.goonk-mobile #mobile-app[data-sheet=army] .army-back{display:block!important}
+ #mobile-app .dialog-presentation:not([data-tree=true])>header{flex-wrap:wrap;padding:5px!important;gap:4px!important}
+ #mobile-app .dialog-presentation:not([data-tree=true])>header h2{font-size:18px;flex:1 1 80px}
+ #mobile-app [data-commander-tree]{font-size:11px;min-height:44px;max-width:100%}
+ #mobile-app .commander-summary{grid-template-columns:minmax(56px,.75fr) minmax(0,1fr);gap:4px}
+ #mobile-app .commander-summary .commander-preview{height:130px!important}
+ #mobile-app .commander-summary h3{font-size:14px}
+ #mobile-app .commander-facts dd{font-size:13px;line-height:17px}
+ /* Keep the minimap square; put the recruitment shortcut beside it. */
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=map]{grid-template-columns:minmax(0,1fr) minmax(90px,calc(var(--control-rail) - 112px)) 112px!important;grid-template-rows:auto minmax(0,1fr) auto!important}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=map]>.mobile-top{grid-column:2/4!important;grid-row:1!important;position:static!important;grid-template-columns:44px minmax(0,1fr)!important;grid-template-rows:44px!important}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=map]>.mobile-top .mobile-calendar{position:absolute!important;right:4px!important;top:52px!important;width:104px!important;min-height:0!important;grid-area:auto!important;gap:3px!important;padding:2px!important}
+ html.goonk-mobile #mobile-app[data-mode=map] .mobile-calendar>span:first-child{font-size:11px!important;line-height:14px}
+ html.goonk-mobile #mobile-app[data-mode=map] .calendar-recruit-cue{font-size:11px;gap:3px;padding:3px}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=map] #mobile-overview:not([hidden]){grid-column:2!important;grid-row:2!important;width:100%!important;height:100%!important;max-width:100%!important;min-height:0!important;aspect-ratio:1;justify-self:center;object-fit:contain}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav{grid-column:2/4!important;grid-row:3!important}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=map]>.mobile-play{grid-column:1!important;grid-row:1/-1!important}
+ /* Recruitment: full art on the left, one scrolling control pane on the right. */
+ html.goonk-mobile #mobile-app[data-mode=recruit] .creature-presentation:not([hidden]){display:grid!important;grid-template-columns:minmax(0,1fr) var(--control-rail)!important;grid-template-rows:auto minmax(0,1fr) auto!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .creature-view-head{grid-column:2!important;grid-row:1!important;grid-template-columns:minmax(0,1fr) 44px!important;padding:4px!important;gap:4px!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .creature-view-head h2{grid-column:1;grid-row:1;font-size:16px}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .creature-view-head [data-presentation-close]{grid-column:2;grid-row:1;min-width:44px!important;width:44px!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .creature-view-head [data-ui=creature-info]{grid-column:1;grid-row:2;min-height:32px!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .featured-creature{display:contents!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .creature-stage{grid-column:1!important;grid-row:1/-1!important;position:relative!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .creature-details{grid-column:2!important;grid-row:2!important;min-height:0;overflow:auto!important;padding:4px!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .recruit-controls{grid-column:2!important;grid-row:3!important;min-height:0;max-height:55cqh;overflow:auto!important;overscroll-behavior:contain;touch-action:pan-y;padding:4px!important}
+ #mobile-app .recruit-variants{display:grid;grid-template-columns:repeat(var(--variant-count),minmax(0,1fr))}
+ #mobile-app .recruit-variants button{min-width:0;font-size:12px;overflow-wrap:anywhere;padding:4px}
+}
+/* Landscape menus use a compact rail, preserving the list's full height. */
+@media(orientation:landscape) and (max-height:600px){
+ html.goonk-mobile #game-menu[data-page=cheats][open]{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(170px,25%);grid-template-rows:auto minmax(0,1fr) auto;gap:4px;padding:8px!important;box-sizing:border-box}
+ html.goonk-mobile #game-menu[data-page=cheats]>header{grid-column:2;grid-row:1;padding:4px!important;gap:4px}
+ html.goonk-mobile #game-menu[data-page=cheats]>header h2{font-size:18px}
+ html.goonk-mobile #game-menu[data-page=cheats]>.autosave-status{grid-column:2;grid-row:2;margin:0!important;padding:8px!important;overflow:auto;align-self:start;font-size:12px;line-height:1.4}
+ html.goonk-mobile #game-menu[data-page=cheats]>.game-menu-status{grid-column:2;grid-row:3;padding:4px!important;font-size:12px;overflow-wrap:anywhere}
+ html.goonk-mobile #game-menu[data-page=cheats]>.game-menu-body{grid-column:1;grid-row:1/-1;max-height:none!important;height:100%;box-sizing:border-box;padding:6px!important;align-content:start}
+}
+/* A real eighth dwelling occupies a city terrace, never a reserved text strip. */
+#mobile-app .town-eighth-access{right:auto!important;bottom:auto!important;min-width:0!important;min-height:44px!important;padding:0!important;border:1px solid #d6b36a!important;border-radius:0;background:linear-gradient(transparent 30%,#21170de8)!important;box-shadow:none;align-items:flex-end;justify-content:center;text-align:center}
+#mobile-app .town-eighth-copy{padding:2px;max-width:100%}
+#mobile-app .town-eighth-copy strong{font-size:11px;line-height:13px}
+#mobile-app .town-eighth-copy>span{font-size:9px;line-height:11px}
+/* Descendants cannot re-enable touch scrolling beneath a touch-action:none ancestor. */
+#mobile-app>.mobile-play:has(:is(.hero-equipment-page,.creature-presentation):not([hidden])){touch-action:pan-y}
+#mobile-app :is(.hero-army-slot,.hall-form,.recruit-variants button){touch-action:pan-y!important}
+html.goonk-mobile #mobile-app .mobile-resources{grid-template-columns:repeat(6,minmax(0,1fr)) minmax(42px,1.8fr) minmax(0,1fr)!important}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-app .mobile-resources .resource-quantity{font-size:10px!important;line-height:14px!important}
+}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .dialog-presentation:not([data-tree=true])>header h2{font-size:15px;overflow-wrap:normal;word-break:normal;flex:0 1 auto}
+ #mobile-app .dialog-presentation:not([data-tree=true]) [data-commander-tree]{font-size:10px;flex:1 1 80px;max-width:60%;padding:3px}
+}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-app[data-mode=recruit] .recruit-controls{display:block!important}
+}
+#mobile-app .recruitment-sidebar{display:contents}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-top{display:none!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .recruitment-sidebar{display:flex!important;flex-direction:column;grid-column:2;grid-row:1/-1;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y;min-width:0;min-height:0;padding:4px;box-sizing:border-box;gap:6px;background:#281a10}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .recruitment-sidebar>*{flex:none!important;max-height:none!important;position:static!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .creature-details{overflow:visible!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .recruit-controls{overflow:visible!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .mobile-recruit-amount{margin:0!important}
+}
+#mobile-app .commander-speed{display:inline-block;margin-left:6px;font-size:12px;line-height:18px;font-weight:normal;white-space:nowrap;color:#e5cf9c}
+@container goonk-viewport (orientation:portrait){
+ #mobile-app[data-mode=recruit] .creature-view-head{order:-1;grid-template-columns:minmax(0,1fr) 44px!important}
+ #mobile-app[data-mode=recruit] .creature-view-head h2{grid-column:1;grid-row:1}
+ #mobile-app[data-mode=recruit] .creature-view-head [data-presentation-close]{grid-column:2;grid-row:1;width:44px!important}
+ #mobile-app[data-mode=recruit] .creature-view-head [data-ui=creature-info]{grid-column:1/-1;grid-row:2;min-height:32px!important}
+}

@@ -5,3 +5,5 @@
 Ne pas inclure de code de diagnostic temporaire dans les versions publiées. Le propriétaire a explicitement demandé d’intégrer les données du jeu pour ce déploiement de test. Elles sont versionnées dans `game-data/` par morceaux vérifiés ; ne jamais ajouter les sauvegardes, paramètres locaux ou identifiants.
 
 Pour les changements du moteur, suivre également `work/vcmi-wasm/AGENTS.md` et vérifier la compilation WebAssembly avec `ninja -j32 html5`.
+
+Pour les écrans mobiles et iPad en paysage, privilégier une colonne de commandes à droite (titre et fermeture inclus) lorsqu'un en-tête réduit trop la hauteur du contenu. Garder une seule sortie visible par action ; permettre le défilement vertical des panneaux dont le contenu ne tient pas, sans désactiver ce geste sur un ancêtre.

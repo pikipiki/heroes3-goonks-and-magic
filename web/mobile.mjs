@@ -171,7 +171,7 @@ function mount(){
  const onlineLogin=createOnlineLogin(root,command);
  const onlineLobby=createOnlineLobby(root,command);
  const reviewStyle=document.createElement('link');reviewStyle.rel='stylesheet';reviewStyle.href=new URL('./mobile-review.css',import.meta.url).href;document.head.append(reviewStyle);
- const refinementStyle=document.createElement('link');refinementStyle.rel='stylesheet';refinementStyle.href=new URL('./mobile-refinement.css',import.meta.url).href;document.head.append(refinementStyle);const followupStyle=document.createElement('link');followupStyle.rel='stylesheet';followupStyle.href=new URL('./mobile-followup.css',import.meta.url).href;document.head.append(followupStyle);
+ const refinementStyle=document.createElement('link');refinementStyle.rel='stylesheet';refinementStyle.href=new URL('./mobile-refinement.css',import.meta.url).href;document.head.append(refinementStyle);const followupStyle=document.createElement('link');followupStyle.rel='stylesheet';followupStyle.href=new URL('./mobile-followup.css',import.meta.url).href;document.head.append(followupStyle);const compactStyle=document.createElement('link');compactStyle.rel='stylesheet';compactStyle.href=new URL('./mobile-compact.css',import.meta.url).href;document.head.append(compactStyle);
  const turnLimits=[0,1,2,3,5,10];
  function controls(){
   const m=state.mode,cap=battleCapabilities(effectiveBattle()),target=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),blocked=!state.spellTargeting&&target?.enemy&&target.canShootAt===false&&target.canMeleeAt===false;let items;
@@ -382,7 +382,7 @@ function mount(){
 
   if(kind==='equipment'){if(state.mode==='map'&&state.heroName){closeSheet();command(55);}else notify('Select a hero on the map first.');return;}
   if(kind==='army'){if(!refresh)openSheet(kind,'Organiser les armées');armySelection=null;armySignature=JSON.stringify(state.armies||[]);
-   renderArmyPanel({body,armies:state.armies||[],portrait,showVisitorPlaceholder:state.mode==='town'||Number.isInteger(state.armyTownId),readOnly:!state.turn,onTransferAll:(from,to)=>{command(58,from,to);armyPending=true;sheet.setAttribute('aria-busy','true');clearTimeout(armyTimer);armyTimer=setTimeout(()=>{if(sheetKind==='army'&&armyPending){refreshArmy();notify('Aucun changement confirmé. Vérifie les emplacements disponibles.');}},8000);},onInfo:(army,slot)=>{if(!heroTransition.pending)command(41,army,slot);}, onMessage:notify,onMove:({fromArmy,fromSlot,toArmy,toSlot,amount})=>{
+   renderArmyPanel({body,onBack:closeSheet,armies:state.armies||[],portrait,showVisitorPlaceholder:state.mode==='town'||Number.isInteger(state.armyTownId),readOnly:!state.turn,onTransferAll:(from,to)=>{command(58,from,to);armyPending=true;sheet.setAttribute('aria-busy','true');clearTimeout(armyTimer);armyTimer=setTimeout(()=>{if(sheetKind==='army'&&armyPending){refreshArmy();notify('Aucun changement confirmé. Vérifie les emplacements disponibles.');}},8000);},onInfo:(army,slot)=>{if(!heroTransition.pending)command(41,army,slot);}, onMessage:notify,onMove:({fromArmy,fromSlot,toArmy,toSlot,amount})=>{
     command(amount?11:10,fromArmy,fromSlot,toArmy,toSlot,amount);armyFocus={army:String(toArmy),slot:String(toSlot)};armyPending=true;sheet.setAttribute('aria-busy','true');clearTimeout(armyTimer);
     armyTimer=setTimeout(()=>{if(sheetKind==='army'&&armyPending){refreshArmy();notify('Aucun changement confirmé. Vérifie la destination et réessaie.');}},8000);
    }});

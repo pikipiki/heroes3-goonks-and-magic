@@ -216,6 +216,8 @@ public:
 class CCreatureAnim: public CShowableAnim
 {
 private:
+	std::optional<Rect> mobilePreviewBounds;
+	std::shared_ptr<Canvas> mobilePreviewCanvas;
 	//queue of animations waiting to be displayed
 	std::queue<ECreatureAnimType> queue;
 
@@ -230,6 +232,8 @@ public:
 	void addLast(ECreatureAnimType newType);
 
 	void startPreview(bool warMachine);
+	// Fit all preview poses into a mobile portrait without changing native clipping.
+	void showMobilePreview(Canvas & to, const Rect & target);
 
 	//clear queue and set animation to this sequence
 	void clearAndSet(ECreatureAnimType type);

@@ -20,7 +20,7 @@ with zipfile.ZipFile('maps/000-Goonk.vmap') as src,zipfile.ZipFile(out,'w',zipfi
   if name=='objects.json':
    o=json.loads(data);o=[a for a in o if not a['instanceName'].startswith('goonkAdventure') and a['instanceName'] not in ['trainingGuard','trainingOgre']]
    for a in o:
-    if a['instanceName']=='goonkHero':a['options'].update({'type':'core:christian','secondarySkills':{'core:wisdom':'basic'},'artifacts':{'mach1':'core:ballista','mach2':'core:ammoCart','mach3':'core:firstAidTent'}})
+    if a['instanceName']=='goonkHero':a['options'].update({'type':os.environ.get('COMMANDER_HERO_TYPE','core:christian'),'secondarySkills':{'core:wisdom':'basic'},'artifacts':{'mach1':'core:ballista','mach2':'core:ammoCart','mach3':'core:firstAidTent'}})
    if os.environ.get('PROJECT')=='1':
     for a in o:
      if a['instanceName']=='goonkHero':a['options']['army']=[{'type':'core:ancientBehemoth','amount':2}]
