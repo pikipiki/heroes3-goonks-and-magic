@@ -21,7 +21,7 @@ with zipfile.ZipFile('maps/000-Goonk.vmap') as src,zipfile.ZipFile(out,'w',zipfi
    for o in objects:
     if o.get('instanceName')=='goonkTown':
      o['subtype']='core:castle';o['template']['animation']='AVCCAST0.DEF';o['options']['name']='Castellatus';o['options']['buildings']={'allOf':['core:villageHall','core:tavern','core:fort','core:dwellingLvl1','core:blacksmith']}
-    if o.get('instanceName')=='goonkHero':o['x']=8;o['y']=9;o['options'].update({'type':'core:zydar','primarySkills':{'attack':0,'defence':100,'spellpower':1,'knowledge':10},'spellBook':['core:lightningBolt'],'artifacts':{'spellbook':'core:spellBook'},'army':[{'type':'goonk:'+name,'amount':1000} for name in ['paingpaingExalted','picpiqueExalted','zinzeclairExalted','bubuExalted','glouglouExalted','bobopeExalted','maillemailleSolar']]})
+    if o.get('instanceName')=='goonkHero':o['x']=8;o['y']=9;o['options'].update({'type':'core:zydar','primarySkills':{'attack':0,'defence':100,'spellpower':1,'knowledge':10},'spellBook':['core:lightningBolt'],'artifacts':{'spellbook':'core:spellBook'},'army':[{'type':'goonk:'+name,'amount':10000 if name=='bubuExalted' else 1000} for name in ['paingpaingExalted','picpiqueExalted','zinzeclairExalted','bubuExalted','glouglouExalted','bobopeExalted','maillemailleSolar']]})
     if o.get('instanceName')=='trainingGuard':o['x']=12;o['y']=9;o['subtype']='core:titan';o['options']['amount']=10000
    data=json.dumps(objects).encode()
   dst.writestr(name,data)

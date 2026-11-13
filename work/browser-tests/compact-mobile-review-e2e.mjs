@@ -51,11 +51,12 @@ for(const [kind,engine] of Object.entries({chromium,webkit})){
   const source=town['core:'+faction].town.buildings;
   const buildings=Object.keys(townBuildingArt[faction]).filter(key=>!key.includes('Up')&&!['citadel','castle','townHall','cityHall','capitol'].includes(key)).map((key,id)=>({id,key:'core:'+key,name:key,built:true,baseId:id,upgradeId:-1}));
   buildings.push(...Object.entries(source).map(([key,b])=>({...b,key:'tum-era:'+key,built:true,baseId:150,upgradeId:b.id===151?150:-1})));
+  await send({mode:'town',townFaction:'core:'+faction,buildings:buildings.map(b=>b.id>=150?{...b,built:false}:b),recruits:[]});await p.waitForTimeout(350);assert.equal(await p.locator('[data-town-eighth],[data-town-building="150"],[data-town-building="151"]').count(),0,'Unbuilt eighth dwelling has no floating city label');
   await send({mode:'town',townFaction:'core:'+faction,buildings,recruits:[{...unit,level:7,variant:1,name:source.dwellingUpLvl8.name}]});
-  await p.waitForTimeout(500);const tile=p.locator('[data-town-eighth]');await hit('[data-town-eighth]');
-  assert.equal(await tile.locator('strong').textContent(),source.dwellingUpLvl8.name);
+  await p.waitForTimeout(500);const selector=faction==='necropolis'?'[data-town-building="151"]':'[data-town-eighth]',tile=p.locator(selector);await hit(selector);
+  if(faction!=='necropolis')assert.equal(await tile.locator('strong').textContent(),source.dwellingUpLvl8.name);
   await tile.tap();assert((await p.evaluate(()=>calls)).some(c=>c[0]===30&&c[1]===7),'Original eighth dwelling opens recruitment');await p.waitForTimeout(2100);
-  if(faction==='fortress')await p.screenshot({path:path.join(out,kind+'-maelstrom.png')});
+  if(faction==='fortress'||faction==='necropolis')await p.screenshot({path:path.join(out,kind+'-'+faction+'-eighth.png')});
  }
  assert.deepEqual(errors,[]);console.log('PASS',kind,'troop scrolling, commander fit, compact calendar, readable gold, minimap, selected troop details and landscape Back');
  }finally{await browser.close();}

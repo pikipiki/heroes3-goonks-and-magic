@@ -8,6 +8,11 @@ test('eighth dwelling uses the complete city viewport and its own terrace',()=>{
  }
 });
 
-test('the original eighth hall art is available and the base project stays visible before construction',()=>{for(const faction of Object.keys(townBuildingArt)){const b=factionPortraitBuildings(640,280,[{...base,baseId:150,upgradeId:-1},{...upgrade,baseId:150,upgradeId:150}],faction);assert.equal(b.length,1);assert.equal(b[0].id,150);assert.equal(b[0].site,'dwellingLvl8');}});
+test('unbuilt eighth projects never appear as completed city structures',()=>{for(const faction of Object.keys(townBuildingArt)){
+ const records=[{...base,baseId:150,upgradeId:-1},{...upgrade,baseId:150,upgradeId:150}];
+ assert.deepEqual(factionPortraitBuildings(640,280,records,faction),[]);
+ records[0].built=true;assert.equal(factionPortraitBuildings(640,280,records,faction)[0].id,150);
+ records[1].built=true;assert.equal(factionPortraitBuildings(640,280,records,faction)[0].id,151);
+}});
 
 test('eighth building artwork reuses the original reviewed hall images without alteration',()=>{for(const faction of Object.keys(townBuildingArt))for(const frame of [88,89])assert.deepEqual(fs.readFileSync(new URL(`../web/town/eighth/${faction}-${frame}.png`,import.meta.url)),fs.readFileSync(new URL(`../mod/tum-era/content/Sprites/tum-era/eighth-${faction}-${frame}.png`,import.meta.url)));});

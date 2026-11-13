@@ -6,7 +6,10 @@ import {battleGuidance} from './battle-guidance.mjs';
 // Project the native board while retaining native legality and upright artwork.
 export function verticalBattleGeometry(width,height){
  const scale=Math.min((width-8)/492,(height-12)/800);
- const left=(width-492*scale)/2,top=(height-800*scale)/2;
+ const left=(width-492*scale)/2,centeredTop=(height-800*scale)/2;
+ // Use the lower grass margin, reserving room for the last stack's counter.
+ const spare=height-8-(centeredTop+(800-58)*scale+22);
+ const top=centeredTop+Math.max(0,Math.min(32,spare));
  return {scale,left,top,project:({x,y})=>({x:left+(y-66)*scale,y:top+(800-x)*scale}),unproject:({x,y})=>({x:800-(y-top)/scale,y:66+(x-left)/scale})};
 }
 // Interpolate native animation positions, never game state or target coordinates.
@@ -74,7 +77,7 @@ export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas
   ctx.drawImage(atlas,(index%8)*128+8,Math.floor(index/8)*128+8,112,112,x-size/2,y-size/2,size,size);
   if(unit){
    if(unit.stackId===state.activeStack){ctx.beginPath();ctx.ellipse(p.x,p.y,24*scale,7.5*scale,0,0,Math.PI*2);ctx.fillStyle='#00f0ff55';ctx.fill();ctx.strokeStyle='#000';ctx.lineWidth=6;ctx.stroke();ctx.strokeStyle='#00f0ff';ctx.lineWidth=3.5;ctx.stroke();ctx.strokeStyle='#fff';ctx.lineWidth=1;ctx.stroke();}
-   const label=String(unit.count??unit.amount??1),bw=Math.max(20,label.length*7+8),by=p.y+9;ctx.fillStyle=unit.enemy?'#671b26':'#3b2675';ctx.fillRect(p.x-bw/2,by,bw,13);ctx.strokeStyle='#ebd993';ctx.lineWidth=.8;ctx.strokeRect(p.x-bw/2,by,bw,13);ctx.font='bold 11px Georgia';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#fff4cd';ctx.fillText(label,p.x,by+6.5);
+
   }
  }
  if(planes.effects)plane(planes.effects);
@@ -85,6 +88,12 @@ export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas
  const marker=(unit,kind,color)=>{const p=project(unit),r=Math.max(7,10*scale),x=p.x+18*scale,y=p.y-8*scale;geometry.markers.push({unit,x,y,r:Math.max(14,r+4)});ctx.save();ctx.beginPath();ctx.arc(x,y,r+2,0,Math.PI*2);ctx.fillStyle='#101418e8';ctx.fill();ctx.strokeStyle=color;ctx.lineWidth=2;ctx.stroke();ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();if(kind==='heal'){ctx.moveTo(x-r*.6,y);ctx.lineTo(x+r*.6,y);ctx.moveTo(x,y-r*.6);ctx.lineTo(x,y+r*.6);}else if(kind==='shot'){ctx.arc(x,y,r*.45,0,Math.PI*2);ctx.moveTo(x-r,y);ctx.lineTo(x+r,y);ctx.moveTo(x,y-r);ctx.lineTo(x,y+r);}else{ctx.moveTo(x-r*.5,y+r*.5);ctx.lineTo(x+r*.5,y-r*.5);ctx.moveTo(x-r*.5,y-r*.5);ctx.lineTo(x+r*.5,y+r*.5);}ctx.stroke();ctx.restore();};
  for(const unit of guidance.shotTargets)marker(unit,'shot','#b2f5ff');for(const unit of guidance.meleeTargets)marker(unit,'melee','#ff6969');for(const unit of guidance.beneficialTargets)marker(unit,'heal','#b5f07a');for(const unit of guidance.spellTargets)marker(unit,unit.enemy?'shot':'heal','#b3a1ff');
  paintSiegeTargets(ctx,state,project);
+ // Counters are the final overlay: sprites and spell effects cannot cover them.
+ for(const {b,p} of records){const unit=units.get(b.stackId);if(!unit)continue;
+  const label=String(unit.count??unit.amount??1),bw=Math.max(20,label.length*7+8),by=Math.max(2,Math.min(height-16,p.y+9));
+  const bx=Math.max(1,Math.min(width-bw-1,p.x-bw/2));
+  ctx.fillStyle=unit.enemy?'#671b26':'#3b2675';ctx.fillRect(bx,by,bw,13);ctx.strokeStyle='#ebd993';ctx.lineWidth=.8;ctx.strokeRect(bx,by,bw,13);ctx.font='bold 11px Georgia';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#fff4cd';ctx.fillText(label,bx+bw/2,by+6.5);
+ }
  geometry.pick=point=>pickVerticalUnit(point,geometry.units,geometry.markers);
  ctx.restore();return geometry;
 }

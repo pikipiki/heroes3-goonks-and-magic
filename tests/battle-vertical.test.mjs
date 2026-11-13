@@ -13,3 +13,12 @@ test('portrait battle keeps the full checkerboard visible and reverses touch coo
  }
 });
 test('Native movement positions interpolate smoothly and never overshoot',async()=>{const {animatedBattlePosition}=await import('../web/battle-vertical.mjs');assert.deepEqual(animatedBattlePosition({x:0,y:10},{x:100,y:50},25,50),{x:50,y:30});assert.deepEqual(animatedBattlePosition({x:0,y:10},{x:100,y:50},90,50),{x:100,y:50});assert.deepEqual(animatedBattlePosition({x:0,y:10},{x:100,y:50},-1,50),{x:0,y:10});});
+
+test('vertical field uses spare lower grass while reserving the final stack counter',()=>{
+ for(const[w,h]of[[320,420],[390,590],[768,900],[390,850]]){
+  const g=verticalBattleGeometry(w,h),centered=(h-800*g.scale)/2;
+  assert(g.top>=centered);assert(g.top-centered<=32);
+  const last=g.project({x:58,y:300});assert(last.y+22<=h-7);
+  assert(g.top>centered,'Board extends further down');
+ }
+});
