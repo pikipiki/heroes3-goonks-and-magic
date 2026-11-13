@@ -50,14 +50,21 @@ for(const [kind,engine] of Object.entries({chromium,webkit})){
  for(const faction of Object.keys(townBuildingArt)){
   const source=town['core:'+faction].town.buildings;
   const buildings=Object.keys(townBuildingArt[faction]).filter(key=>!key.includes('Up')&&!['citadel','castle','townHall','cityHall','capitol'].includes(key)).map((key,id)=>({id,key:'core:'+key,name:key,built:true,baseId:id,upgradeId:-1}));
-  buildings.push(...Object.entries(source).map(([key,b])=>({...b,key:'tum-era:'+key,built:true,baseId:150,upgradeId:b.id===151?150:-1})));
-  await send({mode:'town',townFaction:'core:'+faction,buildings:buildings.map(b=>b.id>=150?{...b,built:false}:b),recruits:[]});await p.waitForTimeout(350);assert.equal(await p.locator('[data-town-eighth],[data-town-building="150"],[data-town-building="151"]').count(),0,'Unbuilt eighth dwelling has no floating city label');
-  await send({mode:'town',townFaction:'core:'+faction,buildings,recruits:[{...unit,level:7,variant:1,name:source.dwellingUpLvl8.name}]});
-  await p.waitForTimeout(500);const selector=faction==='necropolis'?'[data-town-building="151"]':'[data-town-eighth]',tile=p.locator(selector);await hit(selector);
-  if(faction!=='necropolis')assert.equal(await tile.locator('strong').textContent(),source.dwellingUpLvl8.name);
-  await tile.tap();assert((await p.evaluate(()=>calls)).some(c=>c[0]===30&&c[1]===7),'Original eighth dwelling opens recruitment');await p.waitForTimeout(2100);
-  if(faction==='fortress'||faction==='necropolis')await p.screenshot({path:path.join(out,kind+'-'+faction+'-eighth.png')});
+  buildings.push(...Object.entries(source).map(([key,b])=>({...b,key:'tum-era:'+key,built:true,baseId:150,upgradeId:b.id===151?150:-1,unlocksCreature:{...unit,level:7}})));
+  for(const viewport of[{width:390,height:740},{width:740,height:300},{width:1024,height:768}]){
+   await p.setViewportSize(viewport);
+   await send({mode:'town',townFaction:'core:'+faction,buildings:buildings.map(b=>b.id>=150?{...b,built:false}:b),recruits:[]});await p.waitForTimeout(350);assert.equal(await p.locator('[data-town-eighth]:visible,[data-town-building="150"]:visible,[data-town-building="151"]:visible').count(),0,faction+' '+JSON.stringify(viewport)+' hides unbuilt dwellings');
+   for(const improved of[false,true]){
+    const id=improved?151:150,key=improved?'dwellingUpLvl8':'dwellingLvl8';
+    await send({mode:'town',townFaction:'core:'+faction,buildings:buildings.map(b=>b.id===151?{...b,built:improved}:b),recruits:[{...unit,level:7,variant:improved?1:0,name:source[key].name}]});
+    const selector='[data-town-building="'+id+'"]',tile=p.locator(selector);await tile.waitFor({state:'visible'});await hit(selector);
+    assert.equal(await p.locator('[data-town-building="150"],[data-town-building="151"]').count(),1,'Only the current built form is visible');assert.equal(await p.locator('[data-town-eighth]').count(),0,'No floating banner remains');assert.equal(await tile.getAttribute('aria-label'),source[key].name);
+    const art=await p.evaluate(async({faction,key})=>{const {townBuildingCardImage}=await import('/web/town-portrait.mjs');const src=townBuildingCardImage({townFaction:'core:'+faction},{key},()=>null),image=new Image();image.src=src;await image.decode();const c=document.createElement('canvas');c.width=image.width;c.height=image.height;const ctx=c.getContext('2d');ctx.drawImage(image,0,0);const d=ctx.getImageData(0,0,c.width,c.height).data;let opaque=0,clear=0;for(let i=3;i<d.length;i+=4){if(d[i]>200)opaque++;if(d[i]===0)clear++;}return{src,w:c.width,h:c.height,opaque,clear};},{faction,key:'tum-era:'+key});assert(art.opaque>500&&art.clear>500,'The building contains real visible art and transparency');assert(art.w<=256&&art.h<=256,'Mobile artwork remains small');
+    if(viewport.width===740){await p.evaluate(()=>calls.length=0);await tile.tap();assert((await p.evaluate(()=>calls)).some(c=>c[0]===30&&c[1]===7),'Built dwelling opens native eighth recruitment');await p.waitForTimeout(2100);}
+    await p.locator('#game-menu-toggle').focus();await p.screenshot({path:path.join(out,kind+'-'+faction+'-'+(improved?'improved':'base')+'-'+viewport.width+'.png')});
+   }
+  }
  }
- assert.deepEqual(errors,[]);console.log('PASS',kind,'troop scrolling, commander fit, compact calendar, readable gold, minimap, selected troop details and landscape Back');
+ assert.deepEqual(errors,[]);console.log('PASS',kind,'troop scrolling, commander fit, compact calendar, readable gold, minimap, selected troop details, landscape Back and all nine factions’ eighth dwellings (unbuilt/base/improved)');
  }finally{await browser.close();}
 }

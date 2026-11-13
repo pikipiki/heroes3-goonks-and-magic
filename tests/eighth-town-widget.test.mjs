@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import test from'node:test';import assert from'node:assert/strict';import{eighthTownRecruitment,eighthTownViewport,factionPortraitBuildings}from'../web/town-portrait.mjs';import{townBuildingArt}from'../web/town/building-art.mjs';
+import test from'node:test';import assert from'node:assert/strict';import{eighthTownRecruitment,eighthTownViewport,factionPortraitBuildings,townBuildingCardImage,townPortraitBuildings}from'../web/town-portrait.mjs';import{townBuildingArt}from'../web/town/building-art.mjs';
 const base={id:150,key:'tum-era:dwellingLvl8',built:false,unlocksCreature:{id:269,name:'Light Templar'}},upgrade={id:151,key:'tum-era:dwellingUpLvl8',built:false,unlocksCreature:{id:278,name:'Light Paladin'}};
 test('eighth access appears only with both real dwelling definitions and follows current unlocked form',()=>{assert.equal(eighthTownRecruitment({mode:'town',buildings:[base]}),null);assert.equal(eighthTownRecruitment({mode:'map',buildings:[base,upgrade]}),null);const s={mode:'town',buildings:[base,upgrade]};assert.equal(eighthTownRecruitment(s).unit.id,269);assert.equal(eighthTownRecruitment(s).built,false);s.buildings=[{...base,built:true},upgrade];s.recruits=[{id:269,level:7,variant:0,count:3}];assert.equal(eighthTownRecruitment(s).unit.id,269);assert.equal(eighthTownRecruitment(s).built,true);s.recruits.push({id:278,level:7,variant:1,count:3});assert.equal(eighthTownRecruitment(s).unit.id,278);});
 test('eighth dwelling uses the complete city viewport and its own terrace',()=>{
@@ -15,4 +15,25 @@ test('unbuilt eighth projects never appear as completed city structures',()=>{fo
  records[1].built=true;assert.equal(factionPortraitBuildings(640,280,records,faction)[0].id,151);
 }});
 
-test('eighth building artwork reuses the original reviewed hall images without alteration',()=>{for(const faction of Object.keys(townBuildingArt))for(const frame of [88,89])assert.deepEqual(fs.readFileSync(new URL(`../web/town/eighth/${faction}-${frame}.png`,import.meta.url)),fs.readFileSync(new URL(`../mod/tum-era/content/Sprites/tum-era/eighth-${faction}-${frame}.png`,import.meta.url)));});
+test('original reviewed hall frames remain unaltered for provenance',()=>{for(const faction of Object.keys(townBuildingArt))for(const frame of [88,89])assert.deepEqual(fs.readFileSync(new URL(`../web/town/eighth/${faction}-${frame}.png`,import.meta.url)),fs.readFileSync(new URL(`../mod/tum-era/content/Sprites/tum-era/eighth-${faction}-${frame}.png`,import.meta.url)));});
+
+
+test('every classical faction has a real illustration shared by city and construction cards',async()=>{
+ const {eighthTownArt}=await import('../web/town/eighth/building-art.mjs');
+ assert.deepEqual(Object.keys(eighthTownArt).sort(),Object.keys(townBuildingArt).sort());
+ for(const[faction,art]of Object.entries(eighthTownArt)){
+  assert(art.width>=128&&art.height>=128);assert(art.width<=256&&art.height<=256);
+  for(const building of[base,upgrade]){
+   const url=townBuildingCardImage({townFaction:'core:'+faction},building,()=>null);
+   assert(url.endsWith('/town/eighth/'+art.file));assert(fs.statSync(new URL(url)).size>0);
+   const records=[{...base,built:true,baseId:150,upgradeId:-1},{...upgrade,built:building.id===151,baseId:150,upgradeId:150}];
+   const drawn=factionPortraitBuildings(390,550,records,faction);assert.equal(drawn.length,1);assert.equal(drawn[0].id,building.id);assert.equal(drawn[0].artKey,building.key.split(':').at(-1));
+  }
+ }
+});
+test('Goonk keeps its own real structures and hides unbuilt projects',()=>{
+ const building={id:1,key:'goonk:dwellingLvl1',built:false};
+ assert.deepEqual(townPortraitBuildings(390,550,[building]),[]);
+ assert.equal(townPortraitBuildings(390,550,[{...building,built:true}]).length,1);
+ const asset=path=>'asset:'+path;assert.equal(townBuildingCardImage({townFaction:'goonk:goonk'},building,asset),'asset:goonk/card-dwellingLvl1.png');
+});

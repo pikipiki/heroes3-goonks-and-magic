@@ -64,11 +64,6 @@
  html.goonk-mobile #game-menu[data-page=cheats]>.game-menu-status{grid-column:2;grid-row:3;padding:4px!important;font-size:12px;overflow-wrap:anywhere}
  html.goonk-mobile #game-menu[data-page=cheats]>.game-menu-body{grid-column:1;grid-row:1/-1;max-height:none!important;height:100%;box-sizing:border-box;padding:6px!important;align-content:start}
 }
-/* A real eighth dwelling occupies a city terrace, never a reserved text strip. */
-#mobile-app .town-eighth-access{right:auto!important;bottom:auto!important;min-width:0!important;min-height:44px!important;padding:0!important;border:1px solid #d6b36a!important;border-radius:0;background:linear-gradient(transparent 30%,#21170de8)!important;box-shadow:none;align-items:flex-end;justify-content:center;text-align:center}
-#mobile-app .town-eighth-copy{padding:2px;max-width:100%}
-#mobile-app .town-eighth-copy strong{font-size:11px;line-height:13px}
-#mobile-app .town-eighth-copy>span{font-size:9px;line-height:11px}
 /* Descendants cannot re-enable touch scrolling beneath a touch-action:none ancestor. */
 #mobile-app>.mobile-play:has(:is(.hero-equipment-page,.creature-presentation):not([hidden])){touch-action:pan-y}
 #mobile-app :is(.hero-army-slot,.hall-form,.recruit-variants button){touch-action:pan-y!important}
