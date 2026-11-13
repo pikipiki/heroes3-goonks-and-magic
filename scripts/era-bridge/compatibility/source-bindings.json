@@ -1,0 +1,1110 @@
+{
+  "schemaVersion": 1,
+  "events": [
+    {
+      "id": "orb-chaos238:1157",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1157,
+      "codeSha256": "b16ae086e0d87926560c107be7845289e893c65a5dd0dc96f892d9df976d0877",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        238
+      ],
+      "scope": "Multiplicateur et ordre des dégâts de l’Orbe du Chaos.",
+      "implementation": [
+        "work/vcmi-wasm/lib/era/EraOrbChaos238Runtime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-orb-chaos238.json",
+        "tests/era-orb-chaos238.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "hydra259:1373",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1373,
+      "codeSha256": "8aef76517934480fb22b24ae0d51298a465db9f3812745556967f55a89470252",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        259
+      ],
+      "scope": "Attaque adjacente et exclusions du Casque de la reine hydre.",
+      "implementation": [
+        "work/vcmi-wasm/lib/era/EraHydraQueen259Runtime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-hydra-queen259.json",
+        "tests/era-hydra-queen259.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "wayfarer260:1403",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1403,
+      "codeSha256": "b4d80c4c8054232a7e7c7b668fa026a0d838510083e9410903ea43f6dffb84c3",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        260
+      ],
+      "scope": "Déplacement humain et attribution quotidienne IA ; contexte bateau conservé.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraWayfarerRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-wayfarer260.json",
+        "tests/era-wayfarer260.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "wayfarer260:1419",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1419,
+      "codeSha256": "84d7984f58aab43e5990374ce97817483cfa0e003ab58abc1116308156806e6a",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        260
+      ],
+      "scope": "Déplacement humain et attribution quotidienne IA ; contexte bateau conservé.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraWayfarerRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-wayfarer260.json",
+        "tests/era-wayfarer260.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "elemental197:1435",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1435,
+      "codeSha256": "fb3f97881eb1f5edf923b1dc9e4782ca24736248d0715d1846ff197852a324db",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        197
+      ],
+      "scope": "Restrictions d’invocation élémentaire selon le porteur. Les écritures Windows ne sont pas exécutées.",
+      "implementation": [
+        "work/vcmi-wasm/lib/era/EraElementalRing.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-utility-artifacts.json",
+        "tests/era-advanced-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "elemental197:1441",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1441,
+      "codeSha256": "4d2e0b27f33b22d3fd7667c64bc0cb56c8e45ae165526ed7691f3807549eab66",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        197
+      ],
+      "scope": "Restrictions d’invocation élémentaire selon le porteur. Les écritures Windows ne sont pas exécutées.",
+      "implementation": [
+        "work/vcmi-wasm/lib/era/EraElementalRing.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-utility-artifacts.json",
+        "tests/era-advanced-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "elemental197:1446",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1446,
+      "codeSha256": "f7d47fb450df9e18d455fb9232c1d7427e15092e7f1f76d27e7e8943faca1ec6",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        197
+      ],
+      "scope": "Restrictions d’invocation élémentaire selon le porteur. Les écritures Windows ne sont pas exécutées.",
+      "implementation": [
+        "work/vcmi-wasm/lib/era/EraElementalRing.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-utility-artifacts.json",
+        "tests/era-advanced-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "elemental197:1462",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1462,
+      "codeSha256": "126453edae614f68caf85bd8929ddf92a40a17ea0f64d66c760438bb504584fb",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        197
+      ],
+      "scope": "Restrictions d’invocation élémentaire selon le porteur. Les écritures Windows ne sont pas exécutées.",
+      "implementation": [
+        "work/vcmi-wasm/lib/era/EraElementalRing.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-utility-artifacts.json",
+        "tests/era-advanced-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "elemental197:1472",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1472,
+      "codeSha256": "b99e9b95469b1e7a4107760ea9b3c21b83fa4bf95de8c592c9fe2f455097e7bd",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        197
+      ],
+      "scope": "Restrictions d’invocation élémentaire selon le porteur. Les écritures Windows ne sont pas exécutées.",
+      "implementation": [
+        "work/vcmi-wasm/lib/era/EraElementalRing.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-utility-artifacts.json",
+        "tests/era-advanced-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "horn266:1488",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1488,
+      "codeSha256": "c9e64ec20628e23d4e28fcd328ea1b5fc30b73a3b4c766e4c72e9150621e8c21",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        266
+      ],
+      "scope": "Invocation et attribution de Fangarms, camps, pertes et fin de combat.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraHorn266Runtime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native163-horn266-events.json",
+        "tests/era-horn266-source.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "horn266:1497",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1497,
+      "codeSha256": "d61022fed7a3b8e8e7aedf8f5d5226f60e2362976742c26f7c1d4adc693bacc9",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        266
+      ],
+      "scope": "Invocation et attribution de Fangarms, camps, pertes et fin de combat.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraHorn266Runtime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native163-horn266-events.json",
+        "tests/era-horn266-source.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "horn266:1513",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1513,
+      "codeSha256": "64a6a5825da8a6b1a824c1e11a7e1af643663041b9fe52dcefd93c131f6e11e4",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        266
+      ],
+      "scope": "Invocation et attribution de Fangarms, camps, pertes et fin de combat.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraHorn266Runtime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native163-horn266-events.json",
+        "tests/era-horn266-source.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "horn266:1552",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1552,
+      "codeSha256": "b0a3d5d6d68b13859b34ffe3675653fd97438f9d587d19d2a73318d5edf3e5a8",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        266
+      ],
+      "scope": "Invocation et attribution de Fangarms, camps, pertes et fin de combat.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraHorn266Runtime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native163-horn266-events.json",
+        "tests/era-horn266-source.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "horn266:1564",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1564,
+      "codeSha256": "017a6c630262ce0b739e2aec5fae3b0b6d03e1c178b06cffaf8b107942e985ff",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        266
+      ],
+      "scope": "Invocation et attribution de Fangarms, camps, pertes et fin de combat.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraHorn266Runtime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native163-horn266-events.json",
+        "tests/era-horn266-source.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "horn266:1573",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1573,
+      "codeSha256": "cb4873d995ea0ad2d91a584b9e3dc94caf9f7125edd3efe6cc7d9a7bd79f43ea",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        266
+      ],
+      "scope": "Invocation et attribution de Fangarms, camps, pertes et fin de combat.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraHorn266Runtime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native163-horn266-events.json",
+        "tests/era-horn266-source.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "horn266:1590",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1590,
+      "codeSha256": "504793fd79293dc3d309537f0b62a3dcdb02849040b84f8d0a8eab95bf6ae73f",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        266
+      ],
+      "scope": "Invocation et attribution de Fangarms, camps, pertes et fin de combat.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraHorn266Runtime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native163-horn266-events.json",
+        "tests/era-horn266-source.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "horn266:1594",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1594,
+      "codeSha256": "556ea24fdbcb2f81ef4ad40dabbc5b26530d1500fe09f46e55d3ff58ee8862d0",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        266
+      ],
+      "scope": "Invocation et attribution de Fangarms, camps, pertes et fin de combat.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraHorn266Runtime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native163-horn266-events.json",
+        "tests/era-horn266-source.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "horn266:1612",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1612,
+      "codeSha256": "fa76a81ced7731a96e38314aeba69e47caeaeb460a92952478804294622f25b7",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        266
+      ],
+      "scope": "Invocation et attribution de Fangarms, camps, pertes et fin de combat.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraHorn266Runtime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native163-horn266-events.json",
+        "tests/era-horn266-source.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "exchange261:1650",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1650,
+      "codeSha256": "f9ed3c3e66713ee2982a0e01302a89da7f9f9d1aed1636c832f1ae08456ecef0",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        261
+      ],
+      "scope": "Échange des caractéristiques de combat ; intégration et durée de l’événement à rapprocher.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraExchangeCloakRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-battle-artifacts.json",
+        "tests/era-stateful-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "exchange261:1677",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1677,
+      "codeSha256": "54a6942d3399681b36ddf1a538608258c5a2b6afbeb992e1fb54b15e6bd79e2b",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        261
+      ],
+      "scope": "Échange des caractéristiques de combat ; intégration et durée de l’événement à rapprocher.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraExchangeCloakRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-battle-artifacts.json",
+        "tests/era-stateful-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "exchange261:1683",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1683,
+      "codeSha256": "319ae18f5c2de58ef4530d54a27f8ffb086decc506eee9460e231f7cafb74d20",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        261
+      ],
+      "scope": "Échange des caractéristiques de combat ; intégration et durée de l’événement à rapprocher.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraExchangeCloakRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-battle-artifacts.json",
+        "tests/era-stateful-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "atma264265:1694",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1694,
+      "codeSha256": "52e4c73fd2a23d054022e75ca0ff60d18c8189b18956eb193efbf7f6aaccd982",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        264,
+        265
+      ],
+      "scope": "Équipement, retrait et état persistant Atma ; substitution mobile aux clics Windows.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraAtmaRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-atma.json",
+        "tests/era-stateful-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "atma264265:1699",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1699,
+      "codeSha256": "0a4f02463ab69348f86d707cc669ef88ecb96a9e925020d3a9d7adbe882906bf",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        264,
+        265
+      ],
+      "scope": "Équipement, retrait et état persistant Atma ; substitution mobile aux clics Windows.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraAtmaRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-atma.json",
+        "tests/era-stateful-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "atma264265:1704",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1704,
+      "codeSha256": "747af0c8a04af865e0b287c4f1297b0b5e2971dd437e9c6f827e9fdc34a8c7c1",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        264,
+        265
+      ],
+      "scope": "Équipement, retrait et état persistant Atma ; substitution mobile aux clics Windows.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraAtmaRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-atma.json",
+        "tests/era-stateful-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "atma264265:1711",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1711,
+      "codeSha256": "20fab003914fac6d23849ad860b06432d97a2b436a06e6fc34973ee133b6e9bc",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        264,
+        265
+      ],
+      "scope": "Équipement, retrait et état persistant Atma ; substitution mobile aux clics Windows.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraAtmaRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-atma.json",
+        "tests/era-stateful-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "atma264265:1722",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1722,
+      "codeSha256": "7ec9a89992b46adfcb63ab0f1ca740e2b27a7023e57d9148a0c913090f9d5788",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        264,
+        265
+      ],
+      "scope": "Équipement, retrait et état persistant Atma ; substitution mobile aux clics Windows.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraAtmaRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-atma.json",
+        "tests/era-stateful-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "atma264265:1726",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1726,
+      "codeSha256": "a60dd10ff7d78475e4e4e1ae879725b757ca4a73879e747293315738d37a1e93",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        264,
+        265
+      ],
+      "scope": "Équipement, retrait et état persistant Atma ; substitution mobile aux clics Windows.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraAtmaRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-atma.json",
+        "tests/era-stateful-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "atma264265:1731",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1731,
+      "codeSha256": "1e5ff7e596ac0c6e83e2a2e2b27e02a5e517a8d2324042096d6a98859b12b638",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        264,
+        265
+      ],
+      "scope": "Équipement, retrait et état persistant Atma ; substitution mobile aux clics Windows.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraAtmaRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-atma.json",
+        "tests/era-stateful-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "atma264265:1739",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1739,
+      "codeSha256": "a760129ee0eddede4b66263c7e320620813d1d5a2290f69c727676a732b3d49b",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        264,
+        265
+      ],
+      "scope": "Équipement, retrait et état persistant Atma ; substitution mobile aux clics Windows.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraAtmaRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-atma.json",
+        "tests/era-stateful-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "atma264265:1748",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1748,
+      "codeSha256": "7dfaf2a3c264888fe0fd809722b3556039455606096f3fbe96317097f062b965",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        264,
+        265
+      ],
+      "scope": "Équipement, retrait et état persistant Atma ; substitution mobile aux clics Windows.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraAtmaRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-atma.json",
+        "tests/era-stateful-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "lightning220:1764",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1764,
+      "codeSha256": "55e4693aec211549b76ccae49304c19c0d7202ac44e0cf27ad28160bf046fc69",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        220
+      ],
+      "scope": "Immunité et éclair supplémentaire du Bâton de foudre.",
+      "implementation": [
+        "work/vcmi-wasm/lib/era/EraAdvancedArtifactRuntimeNative.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-lightning-rod.json",
+        "tests/era-advanced-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "lightning220:1775",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1775,
+      "codeSha256": "046d7d813eb9b0d592d3482eb4bc76af3d5069c21512136607dd53ca73dac897",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        220
+      ],
+      "scope": "Immunité et éclair supplémentaire du Bâton de foudre.",
+      "implementation": [
+        "work/vcmi-wasm/lib/era/EraAdvancedArtifactRuntimeNative.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-lightning-rod.json",
+        "tests/era-advanced-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "lightning220:1811",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1811,
+      "codeSha256": "3c95260740dd3233c4157657f366ce5e9d75d5d53094fe6d29acbbfa58ddc0dd",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        220
+      ],
+      "scope": "Immunité et éclair supplémentaire du Bâton de foudre.",
+      "implementation": [
+        "work/vcmi-wasm/lib/era/EraAdvancedArtifactRuntimeNative.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-lightning-rod.json",
+        "tests/era-advanced-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "lightning220:1830",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1830,
+      "codeSha256": "e10851cc7297ab75bfae0a2db174c963eddbf41ee9b0608c2c54131652f5fa54",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        220
+      ],
+      "scope": "Immunité et éclair supplémentaire du Bâton de foudre.",
+      "implementation": [
+        "work/vcmi-wasm/lib/era/EraAdvancedArtifactRuntimeNative.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-lightning-rod.json",
+        "tests/era-advanced-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "lightning220:1842",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1842,
+      "codeSha256": "f63ded2d2f292ea6adc09c4e8a975dcc0e1492f9962077ebf4e2282ac408e883",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        220
+      ],
+      "scope": "Immunité et éclair supplémentaire du Bâton de foudre.",
+      "implementation": [
+        "work/vcmi-wasm/lib/era/EraAdvancedArtifactRuntimeNative.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-lightning-rod.json",
+        "tests/era-advanced-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "mass-spells262263:1851",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1851,
+      "codeSha256": "5009073d4968a3d0cadc64155b49047916d10a5132f5404df70115c61cfe4d70",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        262,
+        263
+      ],
+      "scope": "Amplification des sorts ciblés ; l’événement source et les états natifs doivent rester distingués.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraArtifactMassSpellsRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-battle-artifacts.json",
+        "tests/era-stateful-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "mass-spells262263:1864",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1864,
+      "codeSha256": "58a4006e0b36639cb79df88b5579b27b3a05febabf45e62515f28046ceebe7e9",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        262,
+        263
+      ],
+      "scope": "Amplification des sorts ciblés ; l’événement source et les états natifs doivent rester distingués.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraArtifactMassSpellsRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-battle-artifacts.json",
+        "tests/era-stateful-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "oblivion268:1929",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1929,
+      "codeSha256": "b71a6fdec20b8fda464ffd9547fb76751d452bab94bd19777109e02b9da83008",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        268
+      ],
+      "scope": "Anneau d’oubli : sorts de retour à la vie, cadavres et nécromancie.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraOblivionRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-oblivion.json",
+        "tests/era-oblivion-artifact.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "oblivion268:1941",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1941,
+      "codeSha256": "270e6c02eadb8821401cd8f1dc62dd1f83cce2ef11adab46a2197b0cecd8cb8f",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        268
+      ],
+      "scope": "Anneau d’oubli : sorts de retour à la vie, cadavres et nécromancie.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraOblivionRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-oblivion.json",
+        "tests/era-oblivion-artifact.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "oblivion268:1950",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1950,
+      "codeSha256": "a57de04991f008b31173d1cf8c3950ab30f155d78ce5bb949308bd47fcb40c3a",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        268
+      ],
+      "scope": "Anneau d’oubli : sorts de retour à la vie, cadavres et nécromancie.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraOblivionRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-oblivion.json",
+        "tests/era-oblivion-artifact.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "oblivion268:1956",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1956,
+      "codeSha256": "9c833d3bf30b58f86506d905b320f555de75d7f182a9568b4ba1676713088eab",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        268
+      ],
+      "scope": "Anneau d’oubli : sorts de retour à la vie, cadavres et nécromancie.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraOblivionRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-oblivion.json",
+        "tests/era-oblivion-artifact.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "oblivion268:1976",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1976,
+      "codeSha256": "9dc12e14e635501cfc5a42d8f237d8ece91bc7a0ece187bbad2445888afdf67d",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        268
+      ],
+      "scope": "Anneau d’oubli : sorts de retour à la vie, cadavres et nécromancie.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraOblivionRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-oblivion.json",
+        "tests/era-oblivion-artifact.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "oblivion268:1984",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1984,
+      "codeSha256": "880640e5ac43ae94abd9308f89945f8f783293cd843a303ee44a09f088fab53e",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        268
+      ],
+      "scope": "Anneau d’oubli : sorts de retour à la vie, cadavres et nécromancie.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraOblivionRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-oblivion.json",
+        "tests/era-oblivion-artifact.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "interference269271:1996",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1996,
+      "codeSha256": "cf49da250b4da9a3fc5c61bf9efcec19e000ce471b7f7a2da64cf03345ce8907",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        269,
+        270,
+        271
+      ],
+      "scope": "Puissance effective de combat et présentation ; aucun hook de fenêtre Windows.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraInterferenceRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-interference.json",
+        "tests/era-interference-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "interference269271:2028",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 2028,
+      "codeSha256": "75534ef529126b07482f2fa6473f084a2efdbe77477f61ffc2bba8b3eaf0dfb1",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [
+        269,
+        270,
+        271
+      ],
+      "scope": "Puissance effective de combat et présentation ; aucun hook de fenêtre Windows.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraInterferenceRuntime.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-interference.json",
+        "tests/era-interference-artifacts.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "roster-options:2243",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 2243,
+      "codeSha256": "6e1b0aefe87434e60e17b46579b2c3e3732e060a495d643720278cf9c55d8048",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [],
+      "scope": "Compilation stricte des quatre blocs de roster ; aucune interface globale d’options ERA n’est attestée.",
+      "implementation": [
+        "scripts/era-bridge/erm-options.mjs"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/checkpoint162-validation.json",
+        "tests/era-roster-options.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "roster-options:2258",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 2258,
+      "codeSha256": "d9d6c77ce38856fcac190ec202465597f6644b184fad892784e21286df952489",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [],
+      "scope": "Compilation stricte des quatre blocs de roster ; aucune interface globale d’options ERA n’est attestée.",
+      "implementation": [
+        "scripts/era-bridge/erm-options.mjs"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/checkpoint162-validation.json",
+        "tests/era-roster-options.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "roster-options:2272",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 2272,
+      "codeSha256": "7a013b563a9df4aaff8e856854f73449682262605b955057e2938a95fca1773a",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [],
+      "scope": "Compilation stricte des quatre blocs de roster ; aucune interface globale d’options ERA n’est attestée.",
+      "implementation": [
+        "scripts/era-bridge/erm-options.mjs"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/checkpoint162-validation.json",
+        "tests/era-roster-options.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    },
+    {
+      "id": "roster-options:2287",
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 2287,
+      "codeSha256": "e1e17ad0555e472e2580841c910caceecf48688bd152b94f0e75f7cded862e4a",
+      "status": "partial",
+      "wholeEventReviewed": false,
+      "artifacts": [],
+      "scope": "Compilation stricte des quatre blocs de roster ; aucune interface globale d’options ERA n’est attestée.",
+      "implementation": [
+        "scripts/era-bridge/erm-options.mjs"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/checkpoint162-validation.json",
+        "tests/era-roster-options.test.mjs"
+      ],
+      "validationScope": "Preuves historiques du comportement nommé ; couverture complète de cet événement non attestée."
+    }
+  ],
+  "mechanisms": [
+    {
+      "id": "xp43",
+      "name": "Sorts d’expérience",
+      "status": "validated-source-contract",
+      "scope": "43 lignes / 36 acteurs, 40 nouveaux propriétaires et 3 services préservés.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraSourceExperienceRuntime.h",
+        "mod/tum-era/content/config/era-bridge-source-xp-admission-v1.json"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/checkpoint166-validation.json",
+        "outputs/wog-priorities-0.4.147/source-xp-complete166/contracts.json"
+      ]
+    },
+    {
+      "id": "artifacts110",
+      "name": "Artefacts source",
+      "status": "availability-only",
+      "scope": "110 identités actives ; les preuves de comportement restent propres à chaque mécanisme.",
+      "implementation": [
+        "mod/tum-era/mod.json"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/checkpoint162-validation.json"
+      ]
+    },
+    {
+      "id": "town8",
+      "name": "Neuf recrutements de huitième famille",
+      "status": "historical-native-contract",
+      "scope": "18 acteurs et neuf villes ; validation historique, pas validation globale des options ERA.",
+      "implementation": [
+        "mod/tum-era/mod.json",
+        "scripts/era-bridge/roster8/eighth-town-access.mjs"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/eighth-reviewed-actor-contracts.json",
+        "outputs/wog-priorities-0.4.147/checkpoint159-validation.json"
+      ]
+    },
+    {
+      "id": "crystal-chain",
+      "name": "Chaîne Topaze → Saphir",
+      "status": "historical-native-contract",
+      "scope": "Évolutions, paiement et effets propres aux cinq étapes.",
+      "implementation": [
+        "mod/tum-era/content/config/complete-crystal-chain.json"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/checkpoint157-validation.json"
+      ]
+    },
+    {
+      "id": "machine-specialists",
+      "name": "Spécialistes des machines",
+      "status": "historical-native-contract",
+      "scope": "Preuves existantes des spécialistes ; inventaire ERM événementiel encore à rapprocher.",
+      "implementation": [
+        "work/vcmi-wasm/lib/era/EraSpecialistStats.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/native-machine-specialists.json"
+      ]
+    }
+  ],
+  "dwellingParser": "scripts/era-bridge/objects/objects.mjs",
+  "backlog": [
+    {
+      "priority": 1,
+      "id": "semantic-binding",
+      "title": "Rapprocher les événements et règles sans preuve exacte",
+      "scope": "Événements, propriétés CFG, statistiques et lignes XP hors 43 ; enrichir les liens sans déclarer les contenus absents.",
+      "acceptance": "Une preuve et un périmètre explicites par règle, ou une lacune identifiée avec contre-exemple."
+    },
+    {
+      "priority": 2,
+      "id": "day-one-replacement",
+      "title": "Remplacements d’objets au premier jour",
+      "scope": "Compilateur et interpréteur hors moteur disponibles ; pas d’admission d’un hook de production dans cet inventaire.",
+      "acceptance": "Ordre source, RNG, collisions d’identifiants, objets créés, options et sauvegarde vérifiés dans le moteur."
+    },
+    {
+      "priority": 3,
+      "id": "mysterious-cave",
+      "title": "Événements de Mysterious Cave",
+      "scope": "Quêtes, fonctions, choix, semaines et interactions héros/ville sans liaison native recensée ici.",
+      "acceptance": "Rapprocher chaque bloc, puis tester les branches et l’état persistant."
+    },
+    {
+      "priority": 4,
+      "id": "ecosystem-hooks",
+      "title": "Interopérabilité Reborn, ERA Scripts et Advanced Classes",
+      "scope": "Références ES_*, AC_*, tum_reborn et conditions de dépendances dans les scripts Archer/TUM.",
+      "acceptance": "Définir les packs de référence, importer leurs sources et valider chaque condition utile."
+    },
+    {
+      "priority": 5,
+      "id": "options-ui",
+      "title": "Options de WoGification et dialogues",
+      "scope": "Le compilateur de roster couvre quatre blocs ; les autres options et interactions ne sont pas globalement validées.",
+      "acceptance": "Combinaisons supportées, interface tactile, persistance et effets sur les cartes vérifiés."
+    },
+    {
+      "priority": 6,
+      "id": "original-maps",
+      "title": "Cartes et campagnes originales WoG",
+      "scope": "Sous-mod Maps déclaré keepDisabled ; les cartes Goonk de démonstration ne prouvent pas la compatibilité des scénarios originaux.",
+      "acceptance": "Inventorier scripts/dépendances puis terminer les scénarios de référence jusqu’à leurs conditions de victoire."
+    },
+    {
+      "priority": 7,
+      "id": "era-platform",
+      "title": "Étendre la référence à une distribution ERA figée",
+      "scope": "Le dépôt source fourni est TUM3.5, pas tous les packs WoG/ERA et leurs plugins Windows.",
+      "acceptance": "Manifeste versionné des packs, options, scripts, plugins et cartes ; remplacement natif des comportements requis."
+    }
+  ]
+}

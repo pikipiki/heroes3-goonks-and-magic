@@ -1,6 +1,6 @@
 # Heroes Goonk
 
-Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.161, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
+Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.166, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
 
 ## Jouer sur ce Mac
 
@@ -91,6 +91,8 @@ Le serveur peut produire un point de reprise à chaque début de tour humain ave
 
 WoG **9.1.82**, branche officielle `vcmi-1.7`, est inclus dans `mod/wake-of-gods/`. La 9.1.83 vise VCMI 1.8 et ne convient pas au moteur 1.7.3 actuel. La provenance exacte figure dans `WOG-UPSTREAM.json`.
 Le dossier voisin `Third-Upgrade-Mod-Full` contient un mod ERA, incompatible avec ce moteur. Le port WoG pour VCMI apporte ses créatures, commandants, artefacts et autres sous-mods compatibles ; il ne remplace pas intégralement le moteur Windows ERA ni tous ses scripts ERM. Les sous-mods déclarés désactivés par défaut restent désactivés.
+
+L’[inventaire de compatibilité actuel](docs/era-compatibility.md) remplace les anciens bilans pour connaître les éléments recensés et leurs preuves. Il distingue l’activation, les adaptations partielles, les programmes hors moteur et les règles dont la correspondance reste à vérifier. Les 109 scripts TUM, leurs 484 déclencheurs, les propriétés CFG, les lignes d’expérience et les objets source sont détaillés dans un JSON et un CSV reproductibles. Régénération : `npm run audit:compatibility` ; contrôle : `npm run audit:compatibility -- --check`.
 
 ## Sources et compilation
 

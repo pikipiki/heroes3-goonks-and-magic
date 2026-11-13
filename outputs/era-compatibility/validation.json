@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "scope": "Compatibility inventory only; no gameplay, UI, admission or engine changes",
+  "baselineRelease": "0.4.166",
+  "fullEraCompatibility": false,
+  "tests": {
+    "total": 688,
+    "passed": 674,
+    "skipped": 14,
+    "failed": 0,
+    "sourceFixtures": "Supplied TUM source and original SPTRAITS available"
+  },
+  "targetedInventoryTests": {
+    "passed": 7,
+    "failed": 0
+  },
+  "deterministicSourceRegeneration": true,
+  "wasmCheck": {
+    "command": "ninja -j32 html5",
+    "passed": true,
+    "engineSourceChanged": false
+  },
+  "publicWebPackageAndVerify": true,
+  "evidenceFileReferencesTracked": true,
+  "reportSha256": "53029ce43aefa96ac1c489f631046896dfeb27c0a26ae719814ff540bbc97724",
+  "csvSha256": "a098c4e5a8f0e0e86baf6f1b4cdbc5f20ee81ee17437016f4029e0f8abaa77c9",
+  "humanReportSha256": "2bc361cf1fef6b13d3d5251dbc1bf0dd1a35a1b7e4893006d6ee93fcb6f9a839"
+}

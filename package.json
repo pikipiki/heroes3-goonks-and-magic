@@ -11,6 +11,7 @@
     "verify:web": "node scripts/verify-site.mjs",
     "package:web": "npm run prepare:web && npm run build:web && npm run verify:web && node scripts/package-site.mjs",
     "pack:game-data": "node scripts/pack-game-data.mjs",
-    "audit:era": "node scripts/era-bridge/cli.mjs audit ../Third-Upgrade-Mod-Full outputs/era-bridge-audit.json"
+    "audit:era": "node scripts/era-bridge/cli.mjs audit ../Third-Upgrade-Mod-Full outputs/era-bridge-audit.json",
+    "audit:compatibility": "node scripts/era-bridge/compatibility/build.mjs"
   }
 }
