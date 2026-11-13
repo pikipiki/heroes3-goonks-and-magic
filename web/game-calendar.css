@@ -39,3 +39,9 @@
 #mobile-app .weekly-creatures ul{list-style:none;padding:0;margin:0;font-size:13px;overflow-wrap:anywhere}
 #mobile-app .weekly-locked,#mobile-app .weekly-note,#mobile-app .weekly-date{font-size:13px;color:var(--muted);font-weight:normal}
 #mobile-app .weekly-town select{padding:4px 8px;font:inherit;color:var(--ink);background:#1c150c;border:2px inset var(--line);color-scheme:dark}
+
+/* Keep the game date directly below the weekly recruitment shortcut on the map. */
+html.goonk-mobile #mobile-app[data-mode=map]>.mobile-top .mobile-calendar{
+ flex-direction:column;align-items:flex-end!important;gap:2px;
+}
+html.goonk-mobile #mobile-app[data-mode=map] .mobile-calendar>span:first-child{order:1;text-align:right}

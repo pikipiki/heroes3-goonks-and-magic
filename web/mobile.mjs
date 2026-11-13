@@ -82,8 +82,10 @@ function mount(){
   if(centerButton){
    const fr=getLanguage()==='fr';
    const isWorldView=state.mode==='map'&&state.worldView;
-   centerButton.textContent=isWorldView?(fr?'🗺️ Vue normale':'🗺️ Normal view'):(fr?'◎ Héros':'◎ Hero');
-   centerButton.setAttribute('aria-label',isWorldView?(fr?'Quitter la vue aérienne et revenir au héros':'Exit aerial view and return to hero'):(fr?'Recentrer sur le héros':'Center on hero'));
+   const text=isWorldView?(fr?'🗺️ Vue normale':'🗺️ Normal view'):(fr?'◎ Héros':'◎ Hero');
+   const description=isWorldView?(fr?'Quitter la vue aérienne et revenir au héros':'Exit aerial view and return to hero'):(fr?'Recentrer sur le héros':'Center on hero');
+   if(centerButton.textContent!==text)centerButton.textContent=text;
+   if(centerButton.getAttribute('aria-label')!==description)centerButton.setAttribute('aria-label',description);
    centerButton.classList.toggle('map-view-air-active',Boolean(isWorldView));
   }
  }
@@ -140,7 +142,7 @@ function mount(){
  const director=createBattleDirector(),cameraMotion=matchMedia('(prefers-reduced-motion: reduce)');let battleDetailScale=1,battleSession=false;
  let portraitVertical=false,verticalCommand=false,verticalGeometry=null;
  const verticalActive=()=>state.mode==='battle'&&root.clientWidth<root.clientHeight&&portraitVertical;
- const syncVertical=()=>{const active=verticalActive();if(active!==verticalCommand){verticalCommand=active;window.Module?._vcmiMobileCommand?.(95,active?1:0,0);}root.dataset.verticalBattle=String(active);if(!active)verticalGeometry=null;};
+ const syncVertical=()=>{const active=verticalActive();if(active!==verticalCommand){verticalCommand=active;window.Module?._vcmiMobileCommand?.(95,active?1:0,0);}if(root.dataset.verticalBattle!==String(active))root.dataset.verticalBattle=String(active);if(!active)verticalGeometry=null;};
  const dualBattle=createBattleDualView({root,scene,getState:effectiveBattle,getView:()=>verticalActive()?'vertical':battleView,onFocus:(point,unit)=>{
   if(sheetKind)return;
   const target=unit?{x:unit.x,y:unit.y}:point;
@@ -411,7 +413,7 @@ function mount(){
   }
   const isCommander=shown?.commander===true;
   const displayName=shown?(isCommander?`👑 ${shown.name||(fr?'Commandant':'Commander')}`:shown.name):'';
-  panel.querySelector('.battle-turn').textContent=state.autoCombat?(fr?'Autocombat':'Auto combat'):cap.tactics?(shown?(fr?'À placer · ':'To place · ')+displayName:(fr?'Placement des troupes':'Placing army')):displayName||(fr?'Préparation du combat':'Combat preparation');
+  panel.querySelector('.battle-turn').textContent=state.autoCombat?(fr?'Autocombat':'Auto combat'):cap.tactics?(shown?(fr?'À placer · ':'To place · ')+displayName:(fr?'Placement des troupes':'Placing army')):displayName||((state.round??0)>0?(fr?'Combat en cours':'Battle in progress'):(fr?'Préparation du combat':'Combat preparation'));
   const statsContainer=panel.querySelector('.battle-unit-stats');
   if(statsContainer){
    if(shown&&atk!==undefined&&def!==undefined&&!state.autoCombat){
@@ -428,7 +430,7 @@ function mount(){
   if(guidance.spellTargets.some(u=>u.enemy))spellSides.push('◇ Ennemis');
   const spellHint=(state.selectedSpell||'Spell')+' · '+(spellSides.length?spellSides.join(' · '):
    (state.battleCells||[]).every(c=>c.spellTarget===false)?'No valid target.':'Choose a valid target, then confirm.');
-  panel.querySelector('.battle-selection').textContent=siegeTargets(state).length?(getLanguage()==='fr'?'Choisis une section de rempart marquée en rouge, puis confirme le tir.':'Choose a red wall target, then confirm the catapult shot.'):pendingAuto===true&&!state.autoCombat?'Autocombat dès que ta troupe peut jouer.':spellRecovery.pending?'Cancelling spell…':state.spellTargeting?spellHint :state.autoCombat?'L’ordinateur joue pour ton équipe. Arrête l’auto en haut pour reprendre la main.':state.manualControl===false?'Returning to manual control…':cap.tactics?(cap.endTactics?range+'Touche une case dorée, puis « Placer ». La troupe reste sélectionnée.':'Placement en cours de validation ou de préparation…'):!cap.combatReady?'Tour '+(state.round??1)+' · Animation ou tour adverse…':target?.enemy?(guidance.shotTargets.includes(target)?'Tir sans déplacement. Confirme pour tirer.':state.activeUnit?.shooter?'Melee attack · Target cannot be shot from here.':'Melee attack · Confirm to strike.'):selectedPoint&&battleMove?'Déplacement préparé · Confirme pour marcher.':shotHint+meleeHint+healHint+'Tour '+(state.round??1)+' · '+range+'Choisis une case dorée ou une cible.'+(state.heroSpellCastLimitReached?' Hero magic returns next round.':'');
+  panel.querySelector('.battle-selection').textContent=siegeTargets(state).length?(getLanguage()==='fr'?'Choisis une section de rempart marquée en rouge, puis confirme le tir.':'Choose a red wall target, then confirm the catapult shot.'):pendingAuto===true&&!state.autoCombat?'Autocombat dès que ta troupe peut jouer.':spellRecovery.pending?'Cancelling spell…':state.spellTargeting?spellHint :state.autoCombat?'L’ordinateur joue pour ton équipe. Arrête l’auto en haut pour reprendre la main.':state.manualControl===false?(fr?'Autocombat arrêté · Attente de ton prochain tour…':'Autocombat stopped · Waiting for your next turn…'):cap.tactics?(cap.endTactics?range+'Touche une case dorée, puis « Placer ». La troupe reste sélectionnée.':'Placement en cours de validation ou de préparation…'):!cap.combatReady?'Tour '+(state.round??1)+' · Animation ou tour adverse…':target?.enemy?(guidance.shotTargets.includes(target)?'Tir sans déplacement. Confirme pour tirer.':state.activeUnit?.shooter?'Melee attack · Target cannot be shot from here.':'Melee attack · Confirm to strike.'):selectedPoint&&battleMove?'Déplacement préparé · Confirme pour marcher.':shotHint+meleeHint+healHint+'Tour '+(state.round??1)+' · '+range+'Choisis une case dorée ou une cible.'+(state.heroSpellCastLimitReached?' Hero magic returns next round.':'');
   const hasCreatureSpell=!state.tacticsMode&&cap.combatReady&&(state.creatureCanCast===true||state.creatureSpellTargeting===true||(guidance.beneficialTargets&&guidance.beneficialTargets.length>0)||state.activeUnit?.canHealOrBuff===true);
   const isCreatureTargeting=state.creatureSpellTargeting===true;
   const isHeroTargeting=state.spellTargeting===true&&!isCreatureTargeting;

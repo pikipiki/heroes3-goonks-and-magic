@@ -73,7 +73,7 @@
 #mobile-app .hall-actions{align-self:end;height:48px}
 #mobile-app .hall-form canvas{height:64px}
 
-/* Fit two families in portrait when there is room. Give illustrations a taller minimum on short portrait screens. */
+/* Each evolution family fills the roster viewport; scroll to the next tier. */
 #mobile-app .hall-families{display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:max(var(--hall-row-height,220px),210px);align-content:start;box-sizing:border-box}
 #mobile-app .hall-family{min-height:0;display:grid;grid-template-rows:20px minmax(0,1fr)}
 #mobile-app .hall-forms{min-height:0;align-items:stretch}
@@ -160,4 +160,8 @@
  #mobile-app .hall-actions{grid-row:4}
  #mobile-app .hall-unlock-preview{grid-row:3;padding-block:2px}
  #mobile-app .hall-unlock-preview img{width:35px;height:35px}
+}
+
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .hall-detail{overflow-y:auto;overflow-x:hidden;touch-action:pan-y;scrollbar-gutter:stable}
 }

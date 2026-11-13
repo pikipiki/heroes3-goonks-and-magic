@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "SpellSearchBudget.h"
 #include "PotentialTargets.h"
 #include "../../lib/CStack.h"//todo: remove
 #include "../../lib/mapObjects/CGTownInstance.h"
@@ -35,6 +36,7 @@ PotentialTargets::PotentialTargets(
 
 	for(auto defender : aliveUnits)
 	{
+		battleai::SpellSearchBudget::check();
 		if(!isBerserk && !state->battleMatchOwner(attackerInfo, defender))
 			continue;
 
@@ -68,6 +70,7 @@ PotentialTargets::PotentialTargets(
 		{
 			for(const BattleHex & hex : avHexes)
 			{
+				battleai::SpellSearchBudget::check();
 				if(!CStack::isMeleeAttackPossible(attackerInfo, defender, hex))
 					continue;
 

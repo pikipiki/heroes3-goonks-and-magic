@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "SpellSearchBudget.h"
 #include "BattleExchangeVariant.h"
 #include "BattleEvaluator.h"
 #include "../../lib/CStack.h"
@@ -485,6 +486,7 @@ battle::Units BattleExchangeEvaluator::getAdjacentUnits(const battle::Unit * blo
 
 	while(!queue.empty())
 	{
+		battleai::SpellSearchBudget::check();
 		auto stack = queue.front();
 
 		queue.pop();
@@ -710,6 +712,7 @@ BattleScore BattleExchangeEvaluator::calculateExchange(
 
 	for(int exchangeTurn = 0; exchangeTurn < simulationTurnsCount; exchangeTurn++)
 	{
+		battleai::SpellSearchBudget::check();
 		bool isMovingTurm = exchangeTurn < turn;
 		int queueTurn = exchangeTurn >= exchangeUnits.units.size()
 			? exchangeUnits.units.size() - 1
@@ -717,6 +720,7 @@ BattleScore BattleExchangeEvaluator::calculateExchange(
 
 		for(auto activeUnit : exchangeUnits.units.at(queueTurn))
 		{
+			battleai::SpellSearchBudget::check();
 			bool isOur = exchangeBattle->battleMatchOwner(ap.attack.attacker, activeUnit, true);
 			battle::Units & attackerQueue = isOur ? ourStacks : enemyStacks;
 			battle::Units & oppositeQueue = isOur ? enemyStacks : ourStacks;

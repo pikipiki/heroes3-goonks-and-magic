@@ -274,7 +274,7 @@ html.goonk-mobile #mobile-app [data-hero-close]{width:44px!important;min-width:4
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-stats>*{min-width:0;overflow-wrap:anywhere;font-size:12px}
 }
 @container goonk-viewport (orientation:landscape){
- html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-detail{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:minmax(0,1fr) 18px 44px 44px!important;align-content:stretch!important;overflow:hidden!important;gap:3px!important;padding:4px 8px!important;box-sizing:border-box}
+ html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-detail{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:minmax(64px,auto) minmax(18px,auto) 44px 44px!important;align-content:start!important;overflow-y:auto!important;overflow-x:hidden!important;gap:3px!important;padding:4px 8px!important;box-sizing:border-box}
  html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-feature{grid-row:1!important;min-height:0!important;overflow:auto!important}
  html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-stock{grid-column:1!important;grid-row:2!important;min-height:0!important;overflow:auto!important}
  html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-total{grid-column:2!important;grid-row:2!important;min-height:0!important;overflow:auto!important;font-size:11px}

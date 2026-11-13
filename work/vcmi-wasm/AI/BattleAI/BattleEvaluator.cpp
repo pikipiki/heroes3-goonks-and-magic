@@ -8,6 +8,8 @@
  *
  */
 #include "StdInc.h"
+#include <chrono>
+#include "SpellSearchBudget.h"
 #include "BattleEvaluator.h"
 #include "BattleExchangeVariant.h"
 
@@ -527,8 +529,10 @@ bool BattleEvaluator::canCastSpell()
 	return cb->getBattle(battleID)->battleCanCastSpell(hero, spells::Mode::HERO) == ESpellCastProblem::OK;
 }
 
-bool BattleEvaluator::attemptCastingSpell(const CStack * activeStack)
+bool BattleEvaluator::attemptCastingSpell(const CStack * activeStack, unsigned timeBudgetMs)
 {
+	const auto started = std::chrono::steady_clock::now();
+	const auto outOfTime = [&]() { return timeBudgetMs && std::chrono::steady_clock::now() - started >= std::chrono::milliseconds(timeBudgetMs); };
 	auto hero = cb->getBattle(battleID)->battleGetMyHero();
 	if(!hero)
 		return false;
@@ -538,8 +542,14 @@ bool BattleEvaluator::attemptCastingSpell(const CStack * activeStack)
 	std::vector<const CSpell*> possibleSpells;
 
 	for (auto const & s : LIBRARY->spellh->objects)
-		if (s->canBeCast(cb->getBattle(battleID).get(), spells::Mode::HERO, hero))
+	{
+		if(!possibleSpells.empty() && outOfTime())
+			break;
+		// Adventure spells and creature-only abilities were discarded below.
+		// Avoid their expensive legality checks before building the same list.
+		if(spellType(s.get()) == SpellTypes::BATTLE && s->canBeCast(cb->getBattle(battleID).get(), spells::Mode::HERO, hero))
 			possibleSpells.push_back(s.get());
+	}
 
 	LOGFL("I can cast %d spells.", possibleSpells.size());
 
@@ -571,12 +581,16 @@ bool BattleEvaluator::attemptCastingSpell(const CStack * activeStack)
 	std::vector<PossibleSpellcast> possibleCasts;
 	for(auto spell : possibleSpells)
 	{
+		if(!possibleCasts.empty() && outOfTime())
+			break;
 		spells::BattleCast temp(cb->getBattle(battleID).get(), hero, spells::Mode::HERO, spell);
 
 		const bool FAST = true;
 
 		for(auto & target : temp.findPotentialTargets(FAST))
 		{
+			if(!possibleCasts.empty() && outOfTime())
+				break;
 			if(spell->isPositive() && !target.empty() && target.front().unitValue)
 			{
 				auto targetUnit = target.front().unitValue;
@@ -718,6 +732,10 @@ bool BattleEvaluator::attemptCastingSpell(const CStack * activeStack)
 
 	cb->getBattle(battleID)->battleGetTurnOrder(turnOrder, amount, 2); //no more than 1 turn after current, each unit at least once
 
+	// This preflight only skips unnecessary spells when victory is certain;
+	// its values are not part of candidate scoring. Spend bounded searches
+	// on actual candidates instead of simulating every friendly turn first.
+	if(!timeBudgetMs)
 	{
 		bool enemyHadTurn = false;
 
@@ -739,15 +757,21 @@ bool BattleEvaluator::attemptCastingSpell(const CStack * activeStack)
 
 	CStopWatch timer;
 
-#if BATTLE_TRACE_LEVEL >= 1
-	vcmi::blocked_range<size_t> r(0, possibleCasts.size());
-#else
-	vcmi::parallel_for(vcmi::blocked_range<size_t>(0, possibleCasts.size()), [&](const vcmi::blocked_range<size_t> & r)
+	auto evaluateRange = [&](const vcmi::blocked_range<size_t> & r)
 		{
-#endif
+			battleai::SpellSearchBudget budget(timeBudgetMs
+				? battleai::SpellSearchBudget::Deadline(started + std::chrono::milliseconds(timeBudgetMs))
+				: std::nullopt);
 			for(auto i = r.begin(); i != r.end(); i++)
 			{
+				// Only completed native scores participate. Cancellation unwinds
+				// the local hypothetical battle before any real order is emitted.
+				if(outOfTime())
+					break;
 				auto & ps = possibleCasts[i];
+				try
+				{
+				battleai::SpellSearchBudget::check();
 
 #if BATTLE_TRACE_LEVEL >= 1
 				if(ps.dest.empty())
@@ -908,9 +932,22 @@ bool BattleEvaluator::attemptCastingSpell(const CStack * activeStack)
 #if BATTLE_TRACE_LEVEL >= 1
 				logAi->trace("Total score for %s: %2f (action: %2f, friedly damage: %2f, hostile damage: %2f)", ps.spell->getJsonKey(), ps.value, stackActionScore, damageToFriendliesScore, damageToHostilesScore);
 #endif
+				}
+				catch(const battleai::SpellSearchExpired &)
+				{
+					break;
+				}
 			}
-#if BATTLE_TRACE_LEVEL == 0
-		});
+		};
+#if BATTLE_TRACE_LEVEL >= 1
+	evaluateRange(vcmi::blocked_range<size_t>(0, possibleCasts.size()));
+#else
+	// The deadline is local to this speculative search. Unlimited searches
+	// retain native parallel evaluation; bounded searches cooperate on one thread.
+	if(timeBudgetMs)
+		evaluateRange(vcmi::blocked_range<size_t>(0, possibleCasts.size()));
+	else
+		vcmi::parallel_for(vcmi::blocked_range<size_t>(0, possibleCasts.size()), evaluateRange);
 #endif
 
 	LOGFL("Evaluation took %d ms", timer.getDiff());

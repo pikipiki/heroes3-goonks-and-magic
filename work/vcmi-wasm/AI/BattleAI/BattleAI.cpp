@@ -166,7 +166,7 @@ void CBattleAI::activeStack(const BattleID & battleID, const CStack * stack )
 
 	if(autobattlePreferences.enableSpellsUsage && evaluator.canCastSpell() && cb->getBattle(battleID)->battleCastSpells(side) == 0)
 	{
-		auto spelCasted = evaluator.attemptCastingSpell(stack);
+		auto spelCasted = evaluator.attemptCastingSpell(stack, autobattlePreferences.spellEvaluationTimeBudgetMs);
 
 		if(spelCasted)
 			return;

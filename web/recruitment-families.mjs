@@ -9,7 +9,7 @@ const stableText=(node,value)=>{if(node.textContent!==value)node.textContent=val
 const rankName=n=>['I','II','III','IV','V','VI'][n]||String(n+1);
 export function createRecruitmentHall({panel,command,prices,stats,buildingArt,openBuildings}){
  const unlockBuilding=unit=>(state.buildings||[]).find(building=>building.id===unit.requiredBuildingId);
- const resizeRows=()=>{const list=panel.querySelector('.hall-families');if(!list)return;const style=getComputedStyle(list),rows=matchMedia('(orientation:landscape)').matches?1:2,space=list.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);const height=Math.max(rows===2?132:148,Math.floor((space-(rows-1)*8)/rows))+'px';if(list.style.getPropertyValue('--hall-row-height')!==height)list.style.setProperty('--hall-row-height',height);};
+ const resizeRows=()=>{const list=panel.querySelector('.hall-families');if(!list)return;const style=getComputedStyle(list),space=list.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);const height=Math.max(132,Math.floor(space))+'px';if(list.style.getPropertyValue('--hall-row-height')!==height)list.style.setProperty('--hall-row-height',height);};
  const rowObserver=new ResizeObserver(resizeRows);
  let lastTap=null;
  let state={},families=[],selectedId=null,amount=1,signature='',pending=null,savedScroll=null,previewTimer=null;

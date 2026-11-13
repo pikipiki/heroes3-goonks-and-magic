@@ -1907,6 +1907,9 @@ void CPlayerInterface::prepareAutoFightingAI(const BattleID &bid, const CCreatur
 
 	AutocombatPreferences autocombatPreferences = AutocombatPreferences();
 	autocombatPreferences.enableSpellsUsage = settings["battle"]["enableAutocombatSpells"].Bool();
+#ifdef __EMSCRIPTEN__
+	autocombatPreferences.spellEvaluationTimeBudgetMs = 750;
+#endif
 
 	autofightingAI->initBattleInterface(env, cb, autocombatPreferences);
 	autofightingAI->battleStart(bid, army1, army2, tile, hero1, hero2, side, false);

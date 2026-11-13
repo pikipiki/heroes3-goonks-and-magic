@@ -49,7 +49,7 @@ class DLL_EXPORT BattleEvaluator
 
 public:
 	BattleAction selectStackAction(const CStack * stack);
-	bool attemptCastingSpell(const CStack * stack);
+	bool attemptCastingSpell(const CStack * stack, unsigned timeBudgetMs = 0);
 	bool canCastSpell();
 	std::optional<PossibleSpellcast> findBestCreatureSpell(const CStack * stack);
 	BattleAction goTowardsNearest(const CStack * stack, const BattleHexArray & hexes, const PotentialTargets & targets);

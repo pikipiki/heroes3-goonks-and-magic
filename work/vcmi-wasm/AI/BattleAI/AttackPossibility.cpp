@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "SpellSearchBudget.h"
 #include "AttackPossibility.h"
 #include "../../lib/CStack.h" // TODO: remove
                               // Eventually only IBattleInfoCallback and battle::Unit should be used, 
@@ -26,6 +27,7 @@ uint64_t averageDmg(const DamageRange & range)
 
 void DamageCache::cacheDamage(const battle::Unit * attacker, const battle::Unit * defender, std::shared_ptr<CBattleInfoCallback> hb)
 {
+	battleai::SpellSearchBudget::check();
 	auto damage = averageDmg(hb->battleEstimateDamage(attacker, defender, 0).damage);
 
 	damageCache[attacker->unitId()][defender->unitId()] = static_cast<float>(damage) / attacker->getCount();

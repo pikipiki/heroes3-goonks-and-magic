@@ -61,7 +61,7 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
   const playHeight=playEl?.clientHeight||Math.max(0,(root.clientHeight||(typeof window!=='undefined'?window.innerHeight:0)||700)-240);
   const view=getView(),split=portraitBattleSplit(root.clientWidth||390,playHeight);
   const next=getState().mode==='battle'&&isPortrait&&view==='whole'&&!!split;
-  if(next)root.style.setProperty('--battle-overview-height',split.overview+'px');
+  if(next&&root.style.getPropertyValue('--battle-overview-height')!==split.overview+'px')root.style.setProperty('--battle-overview-height',split.overview+'px');
   if(root.dataset.battleDualMode)delete root.dataset.battleDualMode;
   if(next!==active||root.dataset.battleLayout!==(next?'dual':'native')){
    active=next;press=null;root.dataset.battleLayout=active?'dual':'native';

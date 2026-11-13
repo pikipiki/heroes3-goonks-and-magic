@@ -14,8 +14,31 @@ export function animatedBattlePosition(previous,next,elapsed,duration=50){
  const t=Math.max(0,Math.min(1,elapsed/duration));
  return {x:previous.x+(next.x-previous.x)*t,y:previous.y+(next.y-previous.y)*t};
 }
-let previousBounds=null,poses=new Map(),lastTime=0;
-export function resetVerticalBattle(){previousBounds=null;poses.clear();lastTime=0;}
+let previousBounds=null,poses=new Map(),lastTime=0,gridLayer=null,gridCells=null,gridUnits=null,gridSignature='';
+export function resetVerticalBattle(){previousBounds=null;poses.clear();lastTime=0;gridLayer=null;gridCells=null;gridUnits=null;}
+// Hex geometry is static between native legality/occupancy updates. Reuse its
+// transparent raster at the exact backing resolution; sprites and effects stay live.
+function paintVerticalGrid(ctx,width,height,state,geometry,cellPath){
+ const cells=state.battleCells||[],units=state.battleUnits||[];
+ const occupied=new Set(units.flatMap(u=>u.occupied||[]));
+ const draw=(target,path)=>{for(const cell of cells){path(target,cell);const reachable=cell.reachable&&!occupied.has(cell.hex);target.fillStyle=reachable?'#f7d77430':'#00000008';target.fill();target.strokeStyle=reachable?'#ffe082':'#e6d89975';target.lineWidth=reachable?1.5:.7;target.stroke();}};
+ const doc=ctx.canvas?.ownerDocument;
+ if(!doc){draw(ctx,(target,cell)=>cellPath(cell));return;}
+ if(cells!==gridCells||units!==gridUnits){
+  const signature=JSON.stringify([cells.map(c=>[c.hex,c.x,c.y,!!c.reachable]),[...occupied].sort((a,b)=>a-b)]);
+  gridSignature=signature;
+  gridCells=cells;gridUnits=units;
+ }
+ const density=ctx.getTransform(),w=Math.max(1,Math.round(width*density.a)),h=Math.max(1,Math.round(height*density.d));
+ const key=[width,height,w,h].join(':');
+ if(!gridLayer||gridLayer.key!==key||gridLayer.signature!==gridSignature){
+  const canvas=gridLayer?.canvas||doc.createElement('canvas');if(canvas.width!==w)canvas.width=w;if(canvas.height!==h)canvas.height=h;
+  const target=canvas.getContext('2d');target.setTransform(density.a,0,0,density.d,0,0);target.clearRect(0,0,width,height);
+  draw(target,(target,cell)=>{target.beginPath();for(const [i,[dx,dy]]of BATTLE_HEX_VERTICES.entries()){const p=geometry.project({x:cell.x+dx,y:cell.y+dy});i?target.lineTo(p.x,p.y):target.moveTo(p.x,p.y);}target.closePath();});
+  gridLayer={canvas,key,signature:gridSignature};
+ }
+ ctx.drawImage(gridLayer.canvas,0,0,width,height);
+}
 export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas,ids,bounds,tracking){
  if(!planes?.ground||!atlas||!ids||!bounds?.length)return null;
  const now=performance.now();
@@ -37,8 +60,7 @@ export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas
  paintVerticalFortifications(ctx,state,project,scale,siege,pieces);
 
  const cellPath=cell=>{ctx.beginPath();for(const [index,[dx,dy]] of BATTLE_HEX_VERTICES.entries()){const p=project({x:cell.x+dx,y:cell.y+dy});index?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);}ctx.closePath();};
- const occupied=new Set((state.battleUnits||[]).flatMap(u=>u.occupied||[]));
- for(const cell of state.battleCells||[]){cellPath(cell);const reachable=cell.reachable&&!occupied.has(cell.hex);ctx.fillStyle=reachable?'#f7d77430':'#00000008';ctx.fill();ctx.strokeStyle=reachable?'#ffe082':'#e6d89975';ctx.lineWidth=reachable?1.5:.7;ctx.stroke();}
+ paintVerticalGrid(ctx,width,height,state,geometry,cellPath);
  const active=(state.battleUnits||[]).find(u=>u.stackId===state.activeStack),target=(state.battleUnits||[]).find(u=>selected&&Math.hypot(u.x-selected.x,u.y-selected.y)<18);
  const targetColor=target?.enemy?'#ff5757':target?'#b4a3ff':'#00f0ff';
 

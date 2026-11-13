@@ -29,6 +29,7 @@ try{for(const [kind,engine]of Object.entries({chromium,webkit})){
   const a=await p.locator('#battle-strategic-scene').boundingBox(),b=await p.locator('#mobile-scene').boundingBox();
   assert(a.height>100);assert(b.height>=139,JSON.stringify({a,b,style:await p.locator('.mobile-play').evaluate(e=>({height:e.clientHeight,rows:getComputedStyle(e).gridTemplateRows,display:getComputedStyle(e).display})),vertical:await p.locator('#mobile-app').getAttribute('data-vertical-battle')}));assert(Math.abs(a.y+a.height-b.y)<4);assert(b.y+b.height<= (await p.locator('.mobile-play').boundingBox()).y+(await p.locator('.mobile-play').boundingBox()).height+2);
   await p.locator('.action-tag').waitFor({state:'visible'});await p.locator('.close-tag').waitFor({state:'visible'});
+  const writes=await p.evaluate(async()=>{let count=0;const observer=new MutationObserver(records=>count+=records.length);observer.observe(document.querySelector('.map-center'),{childList:true,subtree:true,characterData:true});await new Promise(r=>setTimeout(r,150));observer.disconnect();return count;});assert.equal(writes,0,'Combat frames do not rewrite a hidden map button and force layout');
  };
  for(const size of [{width:390,height:844},{width:768,height:1024},{width:1024,height:1366}]){
   await p.setViewportSize(size);await check();
