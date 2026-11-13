@@ -1,0 +1,235 @@
+TAP version 13
+# Subtest: eighth access appears only with both real dwelling definitions and follows current unlocked form
+ok 1 - eighth access appears only with both real dwelling definitions and follows current unlocked form
+  ---
+  duration_ms: 0.407916
+  ...
+# Subtest: eighth dwelling uses the complete city viewport and its own terrace
+ok 2 - eighth dwelling uses the complete city viewport and its own terrace
+  ---
+  duration_ms: 10.78375
+  ...
+# Subtest: unbuilt eighth projects never appear as completed city structures
+ok 3 - unbuilt eighth projects never appear as completed city structures
+  ---
+  duration_ms: 0.31275
+  ...
+# Subtest: original reviewed hall frames remain unaltered for provenance
+ok 4 - original reviewed hall frames remain unaltered for provenance
+  ---
+  duration_ms: 6.067083
+  ...
+# Subtest: every classical faction has a real illustration shared by city and construction cards
+ok 5 - every classical faction has a real illustration shared by city and construction cards
+  ---
+  duration_ms: 1.422958
+  ...
+# Subtest: Goonk keeps its own real structures and hides unbuilt projects
+ok 6 - Goonk keeps its own real structures and hides unbuilt projects
+  ---
+  duration_ms: 0.2705
+  ...
+# Subtest: source specialty levels bind Azure/commanders independently of native levels and preserve unknown Goonks
+ok 7 - source specialty levels bind Azure/commanders independently of native levels and preserve unknown Goonks
+  ---
+  duration_ms: 454.304584
+  ...
+# Subtest: bounded catalog records every observed initialization and excludes unobserved source levels
+ok 8 - bounded catalog records every observed initialization and excludes unobserved source levels
+  ---
+  duration_ms: 0.932416
+  ...
+# Subtest: Scene coordinates stay invertible and clamped at 390x650
+ok 9 - Scene coordinates stay invertible and clamped at 390x650
+  ---
+  duration_ms: 0.561917
+  ...
+# Subtest: Scene coordinates stay invertible and clamped at 750x280
+ok 10 - Scene coordinates stay invertible and clamped at 750x280
+  ---
+  duration_ms: 0.065375
+  ...
+# Subtest: Scene coordinates stay invertible and clamped at 360x520
+ok 11 - Scene coordinates stay invertible and clamped at 360x520
+  ---
+  duration_ms: 0.445666
+  ...
+# Subtest: Scene coordinates stay invertible and clamped at 1024x620
+ok 12 - Scene coordinates stay invertible and clamped at 1024x620
+  ---
+  duration_ms: 0.039833
+  ...
+# Subtest: Recruitment respects stock, gold and special resource limits
+ok 13 - Recruitment respects stock, gold and special resource limits
+  ---
+  duration_ms: 0.072958
+  ...
+# Subtest: Construction explains exhausted daily allowance and missing resources
+ok 14 - Construction explains exhausted daily allowance and missing resources
+  ---
+  duration_ms: 0.082417
+  ...
+# Subtest: Battle framing includes the top queue and bottom edge without cropping in either orientation
+ok 15 - Battle framing includes the top queue and bottom edge without cropping in either orientation
+  ---
+  duration_ms: 1.251458
+  ...
+# Subtest: Town panorama fills the scene, keeps taps invertible and reaches both ends without stretching
+ok 16 - Town panorama fills the scene, keeps taps invertible and reaches both ends without stretching
+  ---
+  duration_ms: 0.176417
+  ...
+# Subtest: Mobile map nav buttons sit on a single line and town actions have valid icons
+ok 17 - Mobile map nav buttons sit on a single line and town actions have valid icons
+  ---
+  duration_ms: 5.193458
+  ...
+# Subtest: Only the mobile engine canvas preserves WebGL frames, before the first context is created
+ok 18 - Only the mobile engine canvas preserves WebGL frames, before the first context is created
+  ---
+  duration_ms: 0.627292
+  ...
+# Subtest: Rotation surfaces settle once while drawing coordinates remain correct
+ok 19 - Rotation surfaces settle once while drawing coordinates remain correct
+  ---
+  duration_ms: 0.301166
+  ...
+# Subtest: Large touch displays keep a bounded canvas pixel budget
+ok 20 - Large touch displays keep a bounded canvas pixel budget
+  ---
+  duration_ms: 0.7125
+  ...
+# Subtest: Mobile framebuffer preservation is configured even before the translated UI finishes loading
+ok 21 - Mobile framebuffer preservation is configured even before the translated UI finishes loading
+  ---
+  duration_ms: 0.113042
+  ...
+# Subtest: Android stays in the touch layout even when the viewport and pointer query look like desktop
+ok 22 - Android stays in the touch layout even when the viewport and pointer query look like desktop
+  ---
+  duration_ms: 0.126791
+  ...
+# Subtest: Rotation events settle once and late duplicates leave new gestures alone
+ok 23 - Rotation events settle once and late duplicates leave new gestures alone
+  ---
+  duration_ms: 1.02375
+  ...
+# Subtest: Map pan preserves the combined distance and discards old-orientation commands
+ok 24 - Map pan preserves the combined distance and discards old-orientation commands
+  ---
+  duration_ms: 0.247292
+  ...
+# Subtest: Slow zoomed map drags retain their distance across frames
+ok 25 - Slow zoomed map drags retain their distance across frames
+  ---
+  duration_ms: 2.998167
+  ...
+# Subtest: Cancelling a map gesture also discards subpixel remainders
+ok 26 - Cancelling a map gesture also discards subpixel remainders
+  ---
+  duration_ms: 0.088916
+  ...
+# Subtest: Document anchor keeps mobile buttons in client coordinates after iOS Home Screen rotation
+ok 27 - Document anchor keeps mobile buttons in client coordinates after iOS Home Screen rotation
+  ---
+  duration_ms: 1.2115
+  ...
+# Subtest: Mobile document anchor works without visualViewport in desktop browsers
+ok 28 - Mobile document anchor works without visualViewport in desktop browsers
+  ---
+  duration_ms: 0.121208
+  ...
+# Subtest: Android rotation shrinks the app even while overflow keeps innerWidth at the old size
+ok 29 - Android rotation shrinks the app even while overflow keeps innerWidth at the old size
+  ---
+  duration_ms: 0.196333
+  ...
+# Subtest: Screen lock while hidden preserves active geometry and wake restores viewport
+ok 30 - Screen lock while hidden preserves active geometry and wake restores viewport
+  ---
+  duration_ms: 0.241041
+  ...
+# Subtest: Wake with stale inverted viewport dimensions is corrected by active orientation media query
+ok 31 - Wake with stale inverted viewport dimensions is corrected by active orientation media query
+  ---
+  duration_ms: 0.221916
+  ...
+# Subtest: Delayed viewport resize after orientationchange settles to new landscape size
+ok 32 - Delayed viewport resize after orientationchange settles to new landscape size
+  ---
+  duration_ms: 151.579708
+  ...
+# Subtest: Safari toolbar height uses the visible viewport rather than the taller layout viewport
+ok 33 - Safari toolbar height uses the visible viewport rather than the taller layout viewport
+  ---
+  duration_ms: 0.149667
+  ...
+# Subtest: Physical orientation wins over stale Safari media and layout sizes after wake
+ok 34 - Physical orientation wins over stale Safari media and layout sizes after wake
+  ---
+  duration_ms: 0.08925
+  ...
+# Subtest: Wake repairs a viewport that settles after the first 800ms without a resize event
+ok 35 - Wake repairs a viewport that settles after the first 800ms without a resize event
+  ---
+  duration_ms: 1603.709458
+  ...
+# Subtest: Aligned current viewport bounds reject stale post-rotation height and scroll offsets
+ok 36 - Aligned current viewport bounds reject stale post-rotation height and scroll offsets
+  ---
+  duration_ms: 0.239375
+  ...
+# Subtest: Chrome rotation recovers a stale smaller visual height and document height from dynamic viewport
+ok 37 - Chrome rotation recovers a stale smaller visual height and document height from dynamic viewport
+  ---
+  duration_ms: 0.169875
+  ...
+# Subtest: iPhone Chrome auto-scale after rotation cannot retain the portrait half-width
+ok 38 - iPhone Chrome auto-scale after rotation cannot retain the portrait half-width
+  ---
+  duration_ms: 0.084125
+  ...
+# Subtest: CSS viewport follows both rotations even when physical orientation and pinch scale lag
+ok 39 - CSS viewport follows both rotations even when physical orientation and pinch scale lag
+  ---
+  duration_ms: 0.082417
+  ...
+# Subtest: Portrait shows only actual built buildings and selects one highest upgrade per site
+ok 40 - Portrait shows only actual built buildings and selects one highest upgrade per site
+  ---
+  duration_ms: 0.750209
+  ...
+# Subtest: Every building and touch target fits short and tall portrait viewports
+ok 41 - Every building and touch target fits short and tall portrait viewports
+  ---
+  duration_ms: 1.191708
+  ...
+# Subtest: Goonk faction detection and its missing level-five fallback stay compatible
+ok 42 - Goonk faction detection and its missing level-five fallback stay compatible
+  ---
+  duration_ms: 0.138625
+  ...
+# Subtest: All nine original factions have portrait layouts with complete in-bounds native buildings
+ok 43 - All nine original factions have portrait layouts with complete in-bounds native buildings
+  ---
+  duration_ms: 8.515167
+  ...
+# Subtest: A third-upgrade dwelling replaces its earlier stages in the same portrait family
+ok 44 - A third-upgrade dwelling replaces its earlier stages in the same portrait family
+  ---
+  duration_ms: 0.253416
+  ...
+# Subtest: Goonk final sanctuary keeps the highest dwelling click target and existing coloured building art
+ok 45 - Goonk final sanctuary keeps the highest dwelling click target and existing coloured building art
+  ---
+  duration_ms: 0.089166
+  ...
+1..45
+# tests 45
+# suites 0
+# pass 45
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1820.434375

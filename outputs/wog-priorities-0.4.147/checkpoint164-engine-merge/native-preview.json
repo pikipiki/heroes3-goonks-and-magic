@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "327efcd8c70c99eb",
+    "wasm": "vcmiclient.2496582844f3cf85.wasm",
+    "sha256": "2496582844f3cf85ddaeb342d3d4ba6fedfacdb2ed2af7d6514e3e3b58b50636",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "animatedFrames": 6,
+  "formats": [
+    {
+      "size": {
+        "width": 320,
+        "height": 568
+      },
+      "rect": {
+        "x": 10,
+        "y": 141,
+        "width": 145,
+        "height": 145
+      },
+      "unchangedReplays": 30,
+      "removedElements": 0
+    },
+    {
+      "size": {
+        "width": 568,
+        "height": 320
+      },
+      "rect": {
+        "x": 8,
+        "y": 60,
+        "width": 182.796875,
+        "height": 252
+      },
+      "unchangedReplays": 30,
+      "removedElements": 0
+    },
+    {
+      "size": {
+        "width": 768,
+        "height": 1024
+      },
+      "rect": {
+        "x": 114.5,
+        "y": 149,
+        "width": 160,
+        "height": 160
+      },
+      "unchangedReplays": 30,
+      "removedElements": 0
+    },
+    {
+      "size": {
+        "width": 1024,
+        "height": 768
+      },
+      "rect": {
+        "x": 19.1875,
+        "y": 60,
+        "width": 320,
+        "height": 700
+      },
+      "unchangedReplays": 30,
+      "removedElements": 0
+    }
+  ]
+}

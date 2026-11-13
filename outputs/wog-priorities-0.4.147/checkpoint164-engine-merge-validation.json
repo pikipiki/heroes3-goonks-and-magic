@@ -1,0 +1,90 @@
+{
+  "engineSHA256": "2496582844f3cf85ddaeb342d3d4ba6fedfacdb2ed2af7d6514e3e3b58b50636",
+  "archive": "outputs/vcmi-wasm-goonk-0.4.163-engine.tar.gz",
+  "archiveSHA256": "2f4f512c5586ed07f0bb5651cd4b6b54a3395267043785c2b839819749f437c1",
+  "sourceManifestSHA256": "0cd2c21b2e1d5b1e484de6a2bf1cc535f34b53e471ca016f7b32b525c1f57513",
+  "ninjaExitCode": 0,
+  "ninjaSteps": 95,
+  "mergedMobileCommit": "b18e4de56da53ddfb44fd9c37226b14700ee3ecf",
+  "webCommit": "2f41025cdc595efdfc9ba3f258e29ebe89a68322",
+  "version": "0.4.164",
+  "status": "validated",
+  "fullCompatibilityClaim": false,
+  "change": "Merge the three already-published mobile preview corrections into the validated WoG production engine. No data activation or private XP hooks.",
+  "compiledSourceFiles": 27,
+  "activeContent": {
+    "artifacts": 110,
+    "sourceCreatureIdentities": 54,
+    "experienceProfiles": 277,
+    "eighthTownRecruitments": 9
+  },
+  "tests": {
+    "unit": {
+      "passed": 45,
+      "failed": 0
+    },
+    "nativeEye278": {
+      "passed": 4,
+      "cases": [
+        "Elixir-extra10-save-reload",
+        "reject-5-MISC-Statue",
+        "ordinary-H3-armor-Goonk-banner-save-reload",
+        "map-pre-equipped-Elixir-save-reload"
+      ],
+      "webCommit": "2f41025c"
+    },
+    "old161Save": {
+      "passed": true,
+      "webCommit": "f521853e",
+      "sevenTroopsXPAndBanners": true,
+      "nineTownsStocksBuildingsResources": true,
+      "saveBytesPublished": false
+    },
+    "source263": {
+      "passed": 2,
+      "definitionReinjection": false,
+      "cases": [
+        "Azure-Astral-L7-H37",
+        "Azure-Astral-L7-H38"
+      ]
+    },
+    "nativePreview": {
+      "passed": true,
+      "sizes": [
+        "320x568",
+        "568x320",
+        "768x1024",
+        "1024x768"
+      ],
+      "distinctAnimatedFrames": 6,
+      "identicalReplaysPerSize": 30,
+      "removedElements": 0
+    },
+    "compactUI": {
+      "engines": [
+        "Chromium",
+        "WebKit"
+      ],
+      "passed": true,
+      "nineFactionsUnbuiltBaseImproved": true,
+      "webCommit": "f521853e"
+    }
+  },
+  "experimental24145HooksIncluded": false,
+  "remaining": "37 ordered experience rows plus six prerequisite spell providers remain incomplete and inactive; see checkpoint162-validation.json.",
+  "evidence": {
+    "checkpoint164-engine-merge/build-production.log": "9517808032e9cde80104355f33af728dcbb385c381d3042f95b420194a053a99",
+    "checkpoint164-engine-merge/compact-ui.log": "eb7b89b23f6b1b2985267d08ee31edd5f23a8e156d3f9a77801cd622bddd667a",
+    "checkpoint164-engine-merge/compiled-source.json": "127e6f77f3360b242487757bf2123c1933707090dd6fbdc4296dbecb7701144b",
+    "checkpoint164-engine-merge/engine-validation.json": "303bac0611d0a8b07bd77a44415270771dd6700430381080fefb7105211791e2",
+    "checkpoint164-engine-merge/native-eye278.json": "a14b111a27d1915566dc91fcfde7bbf25aed2d257614c1a219a97e158bedf40c",
+    "checkpoint164-engine-merge/native-old161.json": "86c6bd9f01f8e7fff52c9c187927889341b41335c2a5d0cd36af1aace8f96795",
+    "checkpoint164-engine-merge/native-preview.json": "ab84a3aa3b6f03fb89402a269e1ca3d3ea3e5c6dc0578f723173cffd35ee84fa",
+    "checkpoint164-engine-merge/native-source263.json": "b4306fe5af062591388ec4ed1400d35e7af313592c1701943082a540ee464faf",
+    "checkpoint164-engine-merge/preview-1024x768.png": "0f1b65eb3caee6d1e7fe83a0520739a2ec58d8989ea2a37d76970aab098228ec",
+    "checkpoint164-engine-merge/preview-320x568.png": "f9e32f89518e5171c9de391ddef67c8fb188ce9245c06cdb724cd65c9b9690b9",
+    "checkpoint164-engine-merge/preview-568x320.png": "a77f4b4c01d0f7ff23b6a3cc7e476ec57d31f6a40b0f105ed49ed2754d61eba0",
+    "checkpoint164-engine-merge/preview-768x1024.png": "db59c83858050fb4a00926a37fbcee99562d820af135e73ee73fa10100e305ea",
+    "checkpoint164-engine-merge/unit-tests.log": "0ef442c8ad981ca82db26d0c1038c7f836d4e17866b43c504e0d2d2b783402db"
+  }
+}
