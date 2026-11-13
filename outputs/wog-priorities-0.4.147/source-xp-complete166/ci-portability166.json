@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "initialWorkflow": 43526245537,
+  "initialFailure": "GCC -Wmisleading-indentation on two adjacent test loops; no production code failure",
+  "fix": "Separate explicit braced test loops",
+  "linuxGccStrictUbsanPassed": true,
+  "localTargetedTests": {
+    "passed": 2,
+    "failed": 0
+  },
+  "wasmRecheck": "ninja -j32 html5 passed; no engine code change",
+  "testSourceSha256": "05097762b13a6cb4c03a5c2a5e03b36a4a1492c36b175f8c5bfd8f40eee2566e"
+}

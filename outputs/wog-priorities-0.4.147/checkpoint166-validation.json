@@ -88,7 +88,8 @@
     "source241-definition.json": "dfd70853b498c6097bcea7360be35f60be4d2b65604eaa0d79e0123d1cf9f723",
     "source241-source-review.json": "3823a7727b81425bd270b114681cca61ed4ec4ec3c73e837dbae5a1a8613109b",
     "unit-release166.log": "afc9103b0bebab4ed9570bcb997b1faf15bfc9bc2fad4e79c7ea20ef0e618a4c",
-    "whole-source-xp-replacements184.json": "104590e9025d17e87388392e04bfbcf0cff7414b60c1c4c8dd9f1a37cbea4074"
+    "whole-source-xp-replacements184.json": "104590e9025d17e87388392e04bfbcf0cff7414b60c1c4c8dd9f1a37cbea4074",
+    "ci-portability166.json": "120faa2c39852a0c8211c21195a9ea38409d8b6ae5979e2aba99a4a17ae7cd54"
   },
   "exceptions": [
     "Signed32 summon count<=0 after overflow: bookkeeping/RNG preserved, invalid stack omitted",

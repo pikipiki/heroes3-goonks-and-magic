@@ -24,7 +24,14 @@ int main(){
  AttackFrame remembered{true,false,false,0};assert(!normalRetaliationAllowed(remembered,true,1,false,false,false));
  remembered.blindRetaliationPercent=50;assert(normalRetaliationAllowed(remembered,true,1,false,false,false)&&retaliationPercent(remembered)==50);remembered.rememberedParalyze=true;assert(retaliationPercent(remembered)==25);
  assert(!normalRetaliationAllowed(freshBlind,true,1,true,false,false));assert(!normalRetaliationAllowed(freshBlind,true,0,false,false,true));assert(!normalRetaliationAllowed(freshBlind,true,1,false,true,false));assert(normalRetaliationAllowed(freshBlind,true,1,false,true,true));
- for(int spell:{42,49,50,51,52,54})assert(mass(spell,3)&&!mass(spell,2));for(int spell:{62,70,73,74})assert(!mass(spell,3));
+ for(int spell:{42,49,50,51,52,54})
+ {
+  assert(mass(spell,3)&&!mass(spell,2));
+ }
+ for(int spell:{62,70,73,74})
+ {
+  assert(!mass(spell,3));
+ }
  assert(originalMutualCounterIgnored(49,50)&&originalMutualCounterIgnored(50,49)&&originalMutualCounterIgnored(51,52)&&originalMutualCounterIgnored(52,51)&&!originalMutualCounterIgnored(41,42));
  assert(cureOrder.size()==14&&cureOrder[0]==42&&cureOrder[1]==45&&cureOrder[12]==74&&cureOrder[13]==75);assert(positive.spell==73);assert(add(INT_MAX,1)==INT_MIN&&sub(INT_MIN,1)==INT_MAX);
  bool rejected=false;try{cast({},45,3,3,1,1,false);}catch(...){rejected=true;}assert(rejected);
