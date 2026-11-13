@@ -1,0 +1,11 @@
+{
+  "basePublishedCommit": "334d9bc9afdb5843a77d2893fa55a1d24e167073",
+  "engineSHA256": "fa15aeca15d528a5bf8e6da6f0846fcd789328bf4a14a49928800d8b6b6bc775",
+  "buildCommand": "cd emscripten && ninja -j32 html5",
+  "files": {
+    "work/vcmi-wasm/lib/spells/BattleSpellMechanics.cpp": "3d16d22e48b6866c784f2c617992508c30fce1303338ae22572595d79adbef01",
+    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "b8d847b0906dcb61c0b5c8b071eac7a2b5ac808fe48a31dc07dae65b4146e759"
+  },
+  "unusedPrivatePrototypeHeadersNotLinked": true,
+  "diagnosticCodeAbsent": true
+}

@@ -1,0 +1,71 @@
+{
+  "version": "0.4.160",
+  "status": "validated",
+  "fullCompatibilityClaim": false,
+  "baseCommit": "334d9bc9afdb5843a77d2893fa55a1d24e167073",
+  "engineSHA256": "fa15aeca15d528a5bf8e6da6f0846fcd789328bf4a14a49928800d8b6b6bc775",
+  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.160-engine.tar.gz",
+  "engineArchiveSHA256": "ab2c1e9a4b70e50d79e1e2d023856a2377ad253f950aa9b033fbecde1b7f88f2",
+  "activeContent": {
+    "artifacts": 109,
+    "sourceCreatureIdentities": 51,
+    "experienceProfiles": 274,
+    "allNineEighthTownRecruitments": true,
+    "horn266Fangarm263": true
+  },
+  "build": {
+    "command": "ninja -j32 html5",
+    "passed": true,
+    "evidence": "outputs/wog-priorities-0.4.147/checkpoint160-regressions/wasm-build.log",
+    "source": "outputs/wog-priorities-0.4.147/checkpoint160-regressions/compiled-source.json"
+  },
+  "unit": {
+    "total": 650,
+    "passed": 646,
+    "skipped": 4,
+    "failed": 0,
+    "evidence": "outputs/wog-priorities-0.4.147/checkpoint160-regressions/unit-release.log",
+    "scope": "Exact release159 test suite plus release160 town-dependency assertion; original TUM source archives available. Uncommitted future XP prototypes excluded."
+  },
+  "native": {
+    "hornSourceAdmission": {
+      "controls": 55,
+      "installerProofGate": "scripts/era-bridge/horn266/install-reviewed.mjs",
+      "earlierEngineHashesRetained": true
+    },
+    "hornInstalledData": {
+      "passed": true,
+      "definitionWrites": 0,
+      "evidence": "outputs/wog-priorities-0.4.147/checkpoint160-regressions/horn-production/result.json",
+      "commanders": true,
+      "victoryPayoutSaveReload": true
+    },
+    "positiveFloatingQueries": {
+      "passed": true,
+      "controls": 3,
+      "evidence": "outputs/wog-priorities-0.4.147/native-positive-queries165.json"
+    }
+  },
+  "presentation": {
+    "newScreenAdded": false,
+    "existingTouchPresentationRetained": true,
+    "physicalDeviceTestingClaimed": false
+  },
+  "inactive": [
+    "artifact278",
+    "source339",
+    "source346",
+    "source347",
+    "incomplete ordered experience scripts"
+  ],
+  "limitations": [
+    "Full WoG/ERA compatibility and arbitrary ERM execution are not established.",
+    "Source55 Horn controls retain their actual older compiled engine hashes; the installed-data smoke and three float controls use this release engine.",
+    "No claim of all campaigns, physical devices or arbitrary cross-version saves."
+  ],
+  "webBuild": {
+    "passed": true,
+    "runtimeVersion": "cdf8c212842b92ed",
+    "verification": "outputs/wog-priorities-0.4.147/checkpoint160-regressions/site-verify.log"
+  }
+}

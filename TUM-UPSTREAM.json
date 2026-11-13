@@ -27,7 +27,7 @@
     "buildings": "Five fourth-upgrade town chains with ERA building77 costs; advanced building artwork reused",
     "abilities": "Source-scoped native policies; inherited WoG behavior is distinguished from proven ERA behavior"
   },
-  "remaining": "108 source artifacts and all18 eighth-faction actors are active; all nine eighth-town recruitments are enabled after genuine old-save migration. Source artifacts266/278, source339/346/347 and remaining source-script obligations stay disabled until validation.",
+  "remaining": "109 source artifacts and all18 eighth-faction actors are active; all nine eighth-town recruitments are enabled after genuine old-save migration. Source artifact278, source339/346/347 and remaining source-script obligations stay disabled until validation.",
   "vcmiCompatibilityFixes": [
     "badLuckDice denominators converted to badLuckChance weights [2,4,6] for the native 24-sided luck roll",
     "Artifact bonuses converted to named objects; scenarioBonus graphics renamed",
@@ -38,10 +38,10 @@
     "Mobile construction panel opens the native hall for all advanced upgrade tiers"
   ],
   "activeContent": {
-    "tumCreatures": 50,
-    "artifacts": 108,
+    "tumCreatures": 51,
+    "artifacts": 109,
     "mapObjects": 42,
-    "experienceProfiles": 273,
+    "experienceProfiles": 274,
     "fourthUpgradeTowns": [
       "castle",
       "rampart",
@@ -62,10 +62,10 @@
     "eighthFactionRecruitmentEnabled": true,
     "sourceMagicReductionProfiles": 15
   },
-  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.159-engine.tar.gz",
-  "engineArchiveSHA256": "9cfbcf556e9a1be0884fdb41c084d0bee629eafd4865856feb4aa0efd961a7b5",
-  "wasmSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771",
-  "engineAttribution": "Release0.4.159: exact frozen source, clean Emscripten4.0.23 Linux ninja -j32 html5 PASS. Scoped spell-level, floating-query, Astral rounding and battle-terrain corrections. Native reports retain their actual engine hashes. Optional Horn266/339/346/347 documents remain absent.",
+  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.160-engine.tar.gz",
+  "engineArchiveSHA256": "ab2c1e9a4b70e50d79e1e2d023856a2377ad253f950aa9b033fbecde1b7f88f2",
+  "wasmSHA256": "fa15aeca15d528a5bf8e6da6f0846fcd789328bf4a14a49928800d8b6b6bc775",
+  "engineAttribution": "Release0.4.160: clean Emscripten4.0.23 Linux ninja -j32 html5 PASS. Whole Horn266/Fangarm263 installed after55 native controls; installed-data commander/victory/save smoke verified on the release engine. Wall355 and Faerie134/356 retain positive floating-point eligibility below1%. RemoveBonus resolves the actual battle bonus before its duration assertion. Optional339/346/347 and source ordered-XP prototypes remain inactive.",
   "priorDataOnlyReview": {
     "release": "0.4.34",
     "baseCommit": "6bfa181327f9e7e97dcc8e993c55ec28c8ab6491",
@@ -211,5 +211,15 @@
     "fullCompatibilityClaim": false,
     "validation": "outputs/wog-priorities-0.4.147/checkpoint159-validation.json",
     "fullTier8Activation": true
+  },
+  "checkpoint160": {
+    "appVersion": "0.4.160",
+    "baseCommit": "334d9bc9afdb5843a77d2893fa55a1d24e167073",
+    "status": "validated",
+    "engineSHA256": "fa15aeca15d528a5bf8e6da6f0846fcd789328bf4a14a49928800d8b6b6bc775",
+    "sourceArtifactsActive": 109,
+    "fullCompatibilityClaim": false,
+    "validation": "outputs/wog-priorities-0.4.147/checkpoint160-validation.json",
+    "horn266Active": true
   }
 }

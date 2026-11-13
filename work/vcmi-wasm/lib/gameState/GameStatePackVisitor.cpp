@@ -359,7 +359,6 @@ void GameStatePackVisitor::visitRemoveBonus(RemoveBonus & pack)
 			node = gs.getPlayerState(pack.whoID.as<PlayerColor>());
 			break;
 		case GiveBonus::ETarget::BATTLE:
-			assert(Bonus::OneBattle(&pack.bonus));
 			node = dynamic_cast<CBonusSystemNode*>(gs.getBattle(pack.whoID.as<BattleID>()));
 			break;
 	}
@@ -371,6 +370,10 @@ void GameStatePackVisitor::visitRemoveBonus(RemoveBonus & pack)
 		if(b->source == pack.source && b->sid == pack.id)
 		{
 			pack.bonus = *b; //backup bonus (to show to interfaces later)
+			// RemoveBonus serializes source/id, not its local backup bonus.
+			// Validate the resolved battle bonus, not a fresh PERMANENT default.
+			if(pack.who == GiveBonus::ETarget::BATTLE)
+				assert(Bonus::OneBattle(&pack.bonus));
 			node->removeBonus(b);
 			break;
 		}

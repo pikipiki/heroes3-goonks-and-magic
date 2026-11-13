@@ -29,7 +29,11 @@ test('Town stabilization preserves the existing artifacts, objects and source id
 test('Every fresh town dependency has exactly one final health experience row',()=>{
  assert(manifest.creatures.includes('config/source-experience-defaults.json'));
  const merged=Object.assign({},...manifest.creatures.map(f=>read(root+'content/'+f)));
- for(const key of Object.values(read(root+'era-identities.json').creatures)){
+ const identities=read(root+'era-identities.json').creatures;
+ // This invariant belongs to the reviewed town dependencies. Other source
+ // actors can have their own experience tables without a health progression.
+ for(const id of baseline.freshCreatureSourceIds){
+  const key=identities[id];assert(key,'Registered town dependency: '+id);
   const name=key.split(':')[1],creature=merged[name];assert(creature,key+' must be registered');
   assert.equal(creature.stackExperience.filter(r=>r.bonus.type==='ERA_EXPERIENCE_HEALTH_PERCENT').length,1,key);
  }

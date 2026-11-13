@@ -1,0 +1,105 @@
+{
+  "passed": true,
+  "productionChanged": true,
+  "sourceRoot": "/Users/sevenone./Documents/git/Third-Upgrade-Mod-Full",
+  "files": [
+    {
+      "path": "content/Data/tum-era/artifacts/266/icon.png",
+      "sha256": "9598b3bc47c9644b4688f6503ec02b45159ec93a50478fb5c9d849b517c3f66e"
+    },
+    {
+      "path": "content/Data/tum-era/artifacts/266/scenario.png",
+      "sha256": "d46d6b2acbd31ba1b020effe29b4cc07ac730b28ade26832558587a0a9d439fe"
+    },
+    {
+      "path": "content/Data/tum-era/creatures/263/large.png",
+      "sha256": "00d0edc97bcac3757d7e7f0c45540b1e83d26eff2c63f0ecd2b9c87de2e1b54f"
+    },
+    {
+      "path": "content/Data/tum-era/creatures/263/small.png",
+      "sha256": "a7bb4fdd842af097c4aa7d38663f4bd0542b97c5d6658b698c5c859feb72638a"
+    },
+    {
+      "path": "content/Sounds/tum-era/creatures/263/S263ATTK.wav",
+      "sha256": "4724912423833ae71dce16d52971fa6643352def4632c0526a296a4a71a80a70"
+    },
+    {
+      "path": "content/Sounds/tum-era/creatures/263/S263DFND.wav",
+      "sha256": "91e9529e47217de7cb72c1fc0435524b42925967ea56307ee86e1b6bac5735a6"
+    },
+    {
+      "path": "content/Sounds/tum-era/creatures/263/S263KILL.wav",
+      "sha256": "ee65d5f1b1248fac147fdd7fc7375e977d0ae9162c2002669bd68f48ff8bc8ae"
+    },
+    {
+      "path": "content/Sounds/tum-era/creatures/263/S263MOVE.wav",
+      "sha256": "838f8eb81f2891258ed03605c615c65a9f31b94d99fb9c4be28b9cdcd74b246c"
+    },
+    {
+      "path": "content/Sounds/tum-era/creatures/263/S263WNCE.wav",
+      "sha256": "26422cce6b0f90d7bb3ce5f685fc9de968ba240ebb6939f5cab59ede62367a2d"
+    },
+    {
+      "path": "content/Sounds/tum-era/horn266/FNGRSUMM.wav",
+      "sha256": "68d8689cb8ee35a33b5b4a4117261d5bb6a970ce40eba7b49caed0b7300add53"
+    },
+    {
+      "path": "content/Sprites/tum-era/artifacts/266/map.def",
+      "sha256": "fe4e1d1cc762d4fc4b4ead3d1189e56c5e11f249d9142efd458fc7c5bb90e646"
+    },
+    {
+      "path": "content/Sprites/tum-era/artifacts/266/map.msk",
+      "sha256": "bdf29b71b5e86aa0c6a980c268f02735832f3be2ae51310561529556d2d23d32"
+    },
+    {
+      "path": "content/Sprites/tum-era/creatures/263/battle.def",
+      "sha256": "47ec82cd9b93da4cc59bbc7faafabd1981a59febb5fe6e3f97dce168c6030402"
+    },
+    {
+      "path": "content/Sprites/tum-era/creatures/263/map.def",
+      "sha256": "29f4c20096d4148296b05db5c3b00178982b4ee0db2c5e3fe7b7fb4bfbe9f116"
+    },
+    {
+      "path": "content/Sprites/tum-era/creatures/263/map.msk",
+      "sha256": "d6e0004c2c8f25245ec98c9dd2dde7758acd4e262cefa1eee4e5a963da162523"
+    },
+    {
+      "path": "content/config/source-fangarm263.candidate.json",
+      "sha256": "6b44a62eef341afb21b51e4a39416872fa3cb0d25947a3523d777b20241c3813"
+    },
+    {
+      "path": "content/config/source-horn266-spells.candidate.json",
+      "sha256": "3c0d864adc7be4f6ab82b54b02ac5ea0e3f39b1099751ac92eaec77aeb872504"
+    },
+    {
+      "path": "content/config/source-horn266.candidate.json",
+      "sha256": "939073e89bacda3e2090cbd893faa125700926724aa393d552dd63cab27a92ce"
+    },
+    {
+      "path": "content/translation/source-horn266-french.json",
+      "sha256": "0a2b45dbd1a7c914c231007da9b20d6e4e4bb85708b0421c1072151c00aa343e"
+    },
+    {
+      "path": "native-contract.candidate.json",
+      "sha256": "f0b79bb6ecd63ccf071fef9b981ed64e6975cae3c63cec91fcd61bda2e7147cb"
+    },
+    {
+      "path": "patches/era-bridge-experience-attack-spells.json",
+      "sha256": "30c3623f203f2c655f12b82411bf3a4e6af8600d796fe344bc77c2a744d29597"
+    },
+    {
+      "path": "patches/era-bridge-experience.json",
+      "sha256": "3d96846b09c422ff29ece6443d1fcf0f538bc4cd9bcacf12ac2bb69bf01df0bc"
+    },
+    {
+      "path": "patches/era-bridge-status-attacks.json",
+      "sha256": "312d5f38869d66c93304a5773b1cf1341b9037c73d552f0ef39936890e56b101"
+    },
+    {
+      "path": "stage.json",
+      "sha256": "440bd5f35a9958a9f5f3c1a0f30374d285cbd54369fb375bc3bd32de7b81c7d7"
+    }
+  ],
+  "identity263": "tum-era:eraCreature263",
+  "engineSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771"
+}

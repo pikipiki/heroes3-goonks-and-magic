@@ -1,0 +1,24 @@
+{
+  "sourceHornFangarmSummon": {
+    "type": "ability",
+    "targetType": "NO_TARGET",
+    "name": "Fangarms",
+    "school": {},
+    "level": 0,
+    "power": 0,
+    "defaultGainChance": 0,
+    "gainChance": {},
+    "animation": {},
+    "sounds": {
+      "cast": "tum-era/horn266/FNGRSUMM.wav"
+    },
+    "flags": {
+      "indifferent": true
+    },
+    "levels": {
+      "base": {
+        "range": "0"
+      }
+    }
+  }
+}

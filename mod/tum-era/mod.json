@@ -55,7 +55,8 @@
     "config/reviewed-dragonling-pair.json",
     "config/source-familiar43.json",
     "config/source-imp42.json",
-    "config/source-conflux.json"
+    "config/source-conflux.json",
+    "config/reviewed-fangarm263.json"
   ],
   "factions": [
     "config/necropolis.json",
@@ -97,7 +98,8 @@
     "config/reviewed-hydra-queen259-artifact.json",
     "config/reviewed-orb-chaos238-artifact.json",
     "config/reviewed-phylactery-summons.json",
-    "config/reviewed-eyes275-276.json"
+    "config/reviewed-eyes275-276.json",
+    "config/reviewed-horn266.json"
   ],
   "objects": [
     "config/objects/dwelling20_2.json",
@@ -485,7 +487,8 @@
       "translation/reviewed-hydra-queen259-artifact-french.json",
       "translation/reviewed-orb-chaos238-artifact-french.json",
       "translation/reviewed-phylactery-summons-french.json",
-      "translation/reviewed-eyes275-276-french.json"
+      "translation/reviewed-eyes275-276-french.json",
+      "translation/source-horn266-french.json"
     ],
     "name": "TUM — évolutions et expérience"
   },
@@ -494,7 +497,8 @@
     "config/necross-spells.json",
     "config/source-demonology-spells.json",
     "config/source-dungeon-spells.json",
-    "config/source-conflux-spells.json"
+    "config/source-conflux-spells.json",
+    "config/reviewed-horn266-spells.json"
   ],
   "skills": [
     "config/source-necromancy-skill.json"

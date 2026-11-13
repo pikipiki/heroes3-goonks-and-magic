@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "allControlsComplete": true,
+  "engineSHA": "fa15aeca15d528a5bf8e6da6f0846fcd789328bf4a14a49928800d8b6b6bc775",
+  "controls": [
+    {
+      "key": "positiveWall355",
+      "loss": 20,
+      "scope": "Native source355 Defend wall and real BattleDwarf movement onto it"
+    },
+    {
+      "key": "positiveFaerie134",
+      "sourceId": 134,
+      "legalPrimary": true,
+      "chargeDebit": 1,
+      "selectedSpell": "Chain Lightning",
+      "observedPrimaryLoss": 250
+    },
+    {
+      "key": "positiveFaerie356",
+      "sourceId": 356,
+      "legalPrimary": true,
+      "chargeDebit": 1,
+      "selectedSpell": "Inferno",
+      "observedPrimaryLoss": 0
+    }
+  ],
+  "canonicalResistance": {
+    "hero": "core:thorgrim",
+    "actualLevel": 39,
+    "skill": "Expert Resistance",
+    "nativeBattleDwarfIntrinsicPercent": 40,
+    "heroPercent": 59,
+    "adjacentUnicornAuraPercent": 20,
+    "nativeDisplayedDwarfPercent": 99,
+    "sourceFloatingSuccess": "about0.8%, positive; integer percentage remains0"
+  },
+  "scope": "Primary/wall eligibility only. Source134/356 pools and base actors unchanged; no integer lottery or RNG bound changed.356 is a real Blue-human garrison without hero so Catalyst hero precondition is legitimately absent.",
+  "artifacts": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/positive-queries165-console.log",
+      "sha256": "b6a3409c8842e28af36c7206cfcf005b44ef8f535067710cb9ae7c1f185f5d4c"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/positive-queries165-positive-query-faerie-134.png",
+      "sha256": "b2b8abd8ac7f016cadd0bb759c3008759de3c69e535bc7b7779352da7b5dacbe"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/positive-queries165-positive-query-faerie-356.png",
+      "sha256": "9aa6deab7cd417e5f65c40c7e8cd0cd0e34c0a5c5c3c06ab859bb8ebb94d641e"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/positive-queries165-positive-query355-wall-native.png",
+      "sha256": "ad75aec23f9a90eabf8af669da4dd9ffdafcfd1eb9e23e176005fd5d60e8982c"
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/positive-queries165-result.json",
+      "sha256": "bffdb3ac7d6c6207792f5cd3ccd8fa8102ffac79ccdffd94feac91e9364ea797"
+    }
+  ],
+  "harnessSources": [
+    {
+      "path": "work/browser-tests/eighth-positive-queries165-cases.mjs",
+      "sha256": "fc6f3148d555d2059d93a697ff2f606b37ffa98111804f9a56df34cb7f6e1303"
+    },
+    {
+      "path": "work/browser-tests/eighth-positive355-controls.mjs",
+      "sha256": "e74ba9cccf6d8f671275038270f421680f07a7fe85b07dc98ca6727f843ecea3"
+    },
+    {
+      "path": "work/browser-tests/eighth-intrinsic-equipment.mjs",
+      "sha256": "77c5b637b80133c6db15e3a429faa19434e51fd5f212da7efdd75d5588659339"
+    },
+    {
+      "path": "work/browser-tests/wog-eighth-native-e2e.mjs",
+      "sha256": "4490228161de866ef274723f849d07a73b295cb9a55f14239292c2d930eac642"
+    }
+  ],
+  "sourceAudit": "eighth-evidence/accuracy-callers-source165.json",
+  "fixtureHistory": "First356 attempt stopped one map tile before the garrison. Offset64 fixed the fixture; v2 all3 passed. No native code was changed after enginefa15."
+}

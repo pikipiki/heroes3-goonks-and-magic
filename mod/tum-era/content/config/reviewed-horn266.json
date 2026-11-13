@@ -1,0 +1,27 @@
+{
+  "artifact266": {
+    "type": [
+      "HERO"
+    ],
+    "class": "SPECIAL",
+    "value": 50000,
+    "slot": [
+      "MISC5",
+      "MISC4",
+      "MISC3",
+      "MISC2",
+      "MISC1"
+    ],
+    "text": {
+      "name": "Horn of the Abyss",
+      "description": "{Horn of the Abyss}\n\nAfter a primary living stack is slain, summons Fangarms on its hex. Their number depends on the slain stack’s original creature count and current maximum health per creature, capped at half that original count.\n\nSurviving Fangarms join an existing Fangarm troop or a free army slot after the battle. Slaying Fangarms does not trigger the Horn.",
+      "event": ""
+    },
+    "graphics": {
+      "image": "tum-era/artifacts/266/icon.png",
+      "map": "tum-era/artifacts/266/map.def",
+      "scenarioBonus": "tum-era/artifacts/266/scenario.png"
+    },
+    "bonuses": {}
+  }
+}

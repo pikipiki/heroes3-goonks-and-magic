@@ -1,0 +1,74 @@
+{
+  "passed": true,
+  "sourceSHA256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "spell65": {
+    "dispatch": "5A0649 subtracts10 from spellID;5A2B48[65-10]→5A2AB0→5A202B;5A2032 calls5A6F80.",
+    "initialCount": "5A714D reads original.currentCount(+4C);5A715F calls479A30(type,currentCount,hex,flags0x800000).479AF4 forwards count to43D5D0→43D450.43D466 writes+4C=N;43D569 loadsN and43D5B4 stores+60=N.",
+    "erm": "BM:B pointer-table entryB→75F081;75F08C addresses combatStack+60.",
+    "afterAdd": "5A7164..5A7382 sets SUMMONED0x400000, clone links and duration; does not clear+60. Stats initialization43D710..43DB70 does not write+60.",
+    "result": "B=N, not0. Native BattleInfo.addUnit baseAmount=info.count and Clone.apply info.count=clonedStack.getCount preserve this initial contract."
+  },
+  "tumAudit": {
+    "script": "Third Upgrade Mod.erm has no clone-specific B0 rewrite. Its explicit B0 is Horn successful/failed-occupant capture at1545.",
+    "plugins": "No hook at5A714D/5A715F/43D466/43D5B4 in supplied h3era-plugins. Amethyst clone-specific5A03AD changes target eligibility only. Polymorph43D450 is a caller, not a clone constructor replacement."
+  },
+  "scope": "Initial clone source B only. No generic clone normalization or Goonk rule changed. Corpse retention and event eligibility are separate existing Horn/Ring contracts.",
+  "evidence": [
+    {
+      "address": "5a0649",
+      "hex": "8d42f6"
+    },
+    {
+      "address": "5a0657",
+      "hex": "8a88482b5a00"
+    },
+    {
+      "address": "5a065d",
+      "hex": "ff248db02a5a00"
+    },
+    {
+      "address": "5a2032",
+      "hex": "e8494f0000"
+    },
+    {
+      "address": "5a714d",
+      "hex": "8b534c"
+    },
+    {
+      "address": "5a715f",
+      "hex": "e8cc28edff"
+    },
+    {
+      "address": "479af4",
+      "hex": "8b4510"
+    },
+    {
+      "address": "479b06",
+      "hex": "e8c53afcff"
+    },
+    {
+      "address": "43d5f0",
+      "hex": "e85bfeffff"
+    },
+    {
+      "address": "43d460",
+      "hex": "8b4d0c"
+    },
+    {
+      "address": "43d466",
+      "hex": "894b4c"
+    },
+    {
+      "address": "43d569",
+      "hex": "8b534c"
+    },
+    {
+      "address": "43d5b4",
+      "hex": "895360"
+    },
+    {
+      "address": "75f08c",
+      "hex": "83c260"
+    }
+  ]
+}

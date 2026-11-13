@@ -52,7 +52,8 @@
     "source343/344 plus source341-345 daily rank10 evolution, zero experience and preserved banners",
     "source275/276 Eyes, canonical Imp42/Familiar43 with effective XP flight",
     "source355/356 Conflux spells, current-side counter spells, channel and original experience",
-    "source g% Fire Shield direct physical reflection"
+    "source g% Fire Shield direct physical reflection",
+    "source Horn266/Fangarm263 summons, post-necromancy payout and advanced Hypnotize"
   ],
   "compiledAdaptersAwaitingCreatureActivation": [
     "Horn266/Fangarm263",
@@ -126,10 +127,10 @@
     "74 registered creature definitions have candidate base-stat differences from source3.5; inventory is not a runtime equivalence claim"
   ],
   "activeContent": {
-    "tumCreatures": 50,
-    "artifacts": 108,
+    "tumCreatures": 51,
+    "artifacts": 109,
     "mapObjects": 42,
-    "experienceProfiles": 273,
+    "experienceProfiles": 274,
     "fourthUpgradeTowns": [
       "castle",
       "rampart",
@@ -270,13 +271,13 @@
     },
     "attribution": "Historical bridge-2 build record only; not the data-only release engine."
   },
-  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.159-engine.tar.gz",
-  "engineArchiveSHA256": "9cfbcf556e9a1be0884fdb41c084d0bee629eafd4865856feb4aa0efd961a7b5",
-  "wasmSHA256": "98ea5b1c193cd61a89542db9a3916d4192694e269b120f87557c167c196a3771",
-  "engineAttribution": "Release0.4.159: exact frozen source, clean Emscripten4.0.23 Linux ninja -j32 html5 PASS. Scoped spell-level, floating-query, Astral rounding and battle-terrain corrections. Native reports retain their actual engine hashes. Optional Horn266/339/346/347 documents remain absent.",
+  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.160-engine.tar.gz",
+  "engineArchiveSHA256": "ab2c1e9a4b70e50d79e1e2d023856a2377ad253f950aa9b033fbecde1b7f88f2",
+  "wasmSHA256": "fa15aeca15d528a5bf8e6da6f0846fcd789328bf4a14a49928800d8b6b6bc775",
+  "engineAttribution": "Release0.4.160: clean Emscripten4.0.23 Linux ninja -j32 html5 PASS. Whole Horn266/Fangarm263 installed after55 native controls; installed-data commander/victory/save smoke verified on the release engine. Wall355 and Faerie134/356 retain positive floating-point eligibility below1%. RemoveBonus resolves the actual battle bonus before its duration assertion. Optional339/346/347 and source ordered-XP prototypes remain inactive.",
   "knownCheckpointLimitations": [
     "Full TUM/ERA compatibility and an arbitrary ERM interpreter are not established.",
-    "All nine eighth-town recruitments are active after native recruitment/growth/upgrade/save controls and genuine old-seven-stock save migration. Source artifacts266/278 and source339/346/347 remain inactive.",
+    "All nine eighth-town recruitments are active after native recruitment/growth/upgrade/save controls and genuine old-seven-stock save migration. Source artifact278 and source339/346/347 remain inactive.",
     "Source combat-order and unported original creature gaps remain tracked explicitly; every native report retains its own engine hash.",
     "Atma map-initial equipment uses documented deterministic initialization; source352 undefined second injury uses stable zero, as requested.",
     "Physical devices, all campaigns and broad cross-version save compatibility are outside these bounded checks."
@@ -418,5 +419,15 @@
     "fullCompatibilityClaim": false,
     "validation": "outputs/wog-priorities-0.4.147/checkpoint159-validation.json",
     "fullTier8Activation": true
+  },
+  "checkpoint160": {
+    "appVersion": "0.4.160",
+    "baseCommit": "334d9bc9afdb5843a77d2893fa55a1d24e167073",
+    "status": "validated",
+    "engineSHA256": "fa15aeca15d528a5bf8e6da6f0846fcd789328bf4a14a49928800d8b6b6bc775",
+    "sourceArtifactsActive": 109,
+    "fullCompatibilityClaim": false,
+    "validation": "outputs/wog-priorities-0.4.147/checkpoint160-validation.json",
+    "horn266Active": true
   }
 }

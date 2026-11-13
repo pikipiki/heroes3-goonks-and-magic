@@ -1,0 +1,29 @@
+[1/7] cd /work/vcmi-wasm/emscripten && /usr/bin/cmake -DGIT_SHA1="" -P /work/vcmi-wasm/cmake_modules/Version.cmake
+-- -- -- Start of Git information
+-- GIT_SHA1: GITDIR-NOTFOUND
+-- -- -- End of Git information
+[2/6] Building CXX object lib/CMakeFiles/vcmi.dir/spells/BattleSpellMechanics.cpp.o
+In file included from /work/vcmi-wasm/lib/spells/BattleSpellMechanics.cpp:12:
+In file included from /work/vcmi-wasm/lib/spells/../era/EraAdvancedArtifactRuntimeNative.h:9:
+/work/vcmi-wasm/lib/spells/../era/../entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+1 warning generated.
+[3/6] Building CXX object lib/CMakeFiles/vcmi.dir/gameState/GameStatePackVisitor.cpp.o
+In file included from /work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp:14:
+In file included from /work/vcmi-wasm/lib/gameState/../era/EraWayfarerState.h:3:
+In file included from /work/vcmi-wasm/lib/gameState/../era/EraWayfarerArtifact.h:9:
+/work/vcmi-wasm/lib/gameState/../era/../entities/artifact/CArtifact.h:140:15: warning: virtual method 'canBePutAt' is inside a 'final' class and can never be overridden [-Wunnecessary-virtual-specifier]
+  140 |         virtual bool canBePutAt(const CArtifactSet * artSet, ArtifactPosition slot = ArtifactPosition::FIRST_AVAILABLE, bool assumeDestRemoved = false) const;
+      |                      ^
+/work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp:517:2: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  517 |         if((pack.result == TryMoveHero::SUCCESS || pack.result == TryMoveHero::BLOCKING_VISIT || pack.result == TryMoveHero::EMBARK || pack.result == TryMoveHero::DISEMBARK) && pack.start != pack.end)
+      |         ^
+/work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp:514:5: note: previous statement is here
+  514 |     if(pack.result==TryMoveHero::EMBARK || pack.result==TryMoveHero::DISEMBARK)
+      |     ^
+2 warnings generated.
+[4/6] Linking CXX static library bin/libvcmi.a
+[5/6] Linking CXX executable bin/vcmiclient.js
+em++: warning: -pthread + ALLOW_MEMORY_GROWTH may run non-wasm code slowly, see https://github.com/WebAssembly/design/issues/1271 [-Wpthreads-mem-growth]
+[6/6] cd /work/vcmi-wasm/emscripten && rm -rf html5 && mkdir html5 && cp bin/vcmiclient.js html5/vcmiclient.js && cp bin/vcmiclient.js.symbols html5/vcmiclient.js.symbols && cp bin/vcmiclient.wasm html5/vcmiclient.wasm && cp /work/vcmi-wasm/lib/html5/index.html html5/game.html && cp /work/vcmi-wasm/lib/html5/mini-lz4.js html5/mini-lz4.js && cp /work/vcmi-wasm/lib/html5/opfs-worker.js html5/opfs-worker.js && cp /work/vcmi-wasm/lib/html5/dialogs.js html5/dialogs.js && cp /work/vcmi-wasm/lib/html5/dosvcmi.png html5/ && python3 /emsdk/upstream/emscripten/tools/file_packager.py html5/vcmiclient.data --no-node --from-emcc --preload /work/vcmi-wasm/config@config --preload /work/vcmi-wasm/Mods@Mods --js-output="html5/vcmiclient.data.js"

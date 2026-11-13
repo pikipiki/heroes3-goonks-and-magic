@@ -1,0 +1,24 @@
+{
+  "status": "source-and-native-code-parity; first actual counter observed",
+  "source": "CFG263 Retaliations=110; Amethyst zero-extends source byte and adds Counterstrike spell bonus",
+  "candidate": [
+    {
+      "path": "work/downloads/horn266-source-stage163/content/config/source-fangarm263.candidate.json",
+      "sha256": "6b44a62eef341afb21b51e4a39416872fa3cb0d25947a3523d777b20241c3813",
+      "additionalRetaliation109": true,
+      "unlimitedPresent": false
+    }
+  ],
+  "native": {
+    "CAmmo": "available=total-used; canUse returns available-amount>=0 for limited counters; use adds actual spent amount and caps overuse; reset sets used0",
+    "CRetaliations": "total=1+ADDITIONAL_RETALIATION=110; unlimited only if UNLIMITED_RETALIATIONS exists (absent); totalCache preserves dispelled Counterstrike during current round; reset clears totalCache",
+    "path": "work/vcmi-wasm/lib/battle/CUnitState.cpp",
+    "sha256": "067a6ff4fb1011114622c27cb1ad0daf25d0657e8c31c54a1f6dd9e844796915"
+  },
+  "nativeObservation": {
+    "proof": "outputs/wog-priorities-0.4.147/native163-fangarm263-counter-current.json",
+    "before": 110,
+    "after": 109
+  },
+  "notClaimed": "No actual 111-attack exhaustion game performed; ADDITIONAL_ATTACK cannot supply it because ordinary retaliation gate includes i==0. No private gameplay exception introduced."
+}

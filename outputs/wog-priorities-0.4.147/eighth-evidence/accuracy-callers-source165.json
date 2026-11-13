@@ -1,0 +1,188 @@
+{
+  "status": "source-audit-future165-native-controls-pending",
+  "activeDataChanged": false,
+  "binarySHA": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "callerCount": 15,
+  "floatEligibilityCount": 5,
+  "integerLotteryCount": 10,
+  "calls": [
+    {
+      "path": "work/vcmi-wasm/server/battles/BattleActionProcessor.cpp",
+      "line": 1587,
+      "semantics": "integer",
+      "explanation": "XP primary5A8950 mandatory1..100 draw",
+      "excerpt": "const int accuracy = primaryReceptive ? era_compat_server::statusRawAccuracy(battle, defender) : 0;"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraFaerieChainRuntime.h",
+      "line": 29,
+      "semantics": "integer",
+      "explanation": "NormalChain19 next-victim5A6500 mandatory1..100 draw",
+      "excerpt": "else if(condition.isReceptive(mechanics.get(),target))accuracy=era_compat::statusRawAccuracy(battle,target,true,querySide);"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraConfluxExperience.h",
+      "line": 35,
+      "semantics": "integer",
+      "explanation": "Independent XP source355 line primary1..100 draw",
+      "excerpt": "const int accuracy=receptive?era_compat::statusRawAccuracy(battle,target):0;"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraConfluxRuntime.h",
+      "line": 35,
+      "semantics": "float",
+      "explanation": "Automatic355 canSpellBeCast eligibility only; no resistance draw",
+      "excerpt": "|| era_compat::statusRawAccuracy(battle,target,true,BattleSide::NONE,true)<=0))return; //canSpellBeCast: FLOATprobability>0, no draw."
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraPrimordialCastRuntime.h",
+      "line": 53,
+      "semantics": "float",
+      "explanation": "Optional direct AfterMelee canSpellBeCast eligibility; future actor admission absent",
+      "excerpt": "||era_compat::statusRawAccuracy(battle,target,true,BattleSide::NONE,true)<=0)return;"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraCDispelRuntime.h",
+      "line": 55,
+      "semantics": "integer",
+      "explanation": "Queued c78 target resistance mandatory1..100 draw",
+      "excerpt": "const int threshold=receptive?statusRawAccuracy(battle,primary):0;"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraDungeonChainTargets.h",
+      "line": 71,
+      "semantics": "integer",
+      "explanation": "ChainShot4 source5A6582..65A5 mandatory1..100 draw",
+      "excerpt": "else if(condition.isReceptive(spell->battleMechanics(&cast).get(),target))accuracy=statusRawAccuracy(battle,target);"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraSulfideStatusRuntime.h",
+      "line": 38,
+      "semantics": "float",
+      "explanation": "CFG CanCastSpellAtCoord5A3CD0 positive float only",
+      "excerpt": "return statusRawAccuracy(battle,target,true,actor->unitSide(),true)>0;"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraStatusAttacks.h",
+      "line": 151,
+      "semantics": "integer",
+      "explanation": "Primary native source intrinsic status threshold, consumed by statusPrimaryAccepts",
+      "excerpt": "return statusRawAccuracy(battle,target);"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraThunderAttackRuntime.h",
+      "line": 61,
+      "semantics": "integer",
+      "explanation": "Intrinsic ATT_THUNDER5A8950 mandatory1..100 draw",
+      "excerpt": "const int accuracy=receptive?era_compat::statusRawAccuracy(battle,target):0;"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/spells/BattleSpellMechanics.cpp",
+      "line": 263,
+      "semantics": "float",
+      "explanation": "Wall+Faerie primary eligibility float; source AoE, mass XP and ordinary native resistance loops stay integer",
+      "excerpt": "&& era_compat::statusRawAccuracy(*battle(),target,true,casterSide,true)>0;"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/spells/BattleSpellMechanics.cpp",
+      "line": 278,
+      "semantics": "float",
+      "explanation": "Wall+Faerie primary eligibility float; source AoE, mass XP and ordinary native resistance loops stay integer",
+      "excerpt": "&& era_compat::statusRawAccuracy(*battle(),target,true,BattleSide::NONE,true)>0;"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/spells/BattleSpellMechanics.cpp",
+      "line": 579,
+      "semantics": "integer",
+      "explanation": "Wall+Faerie primary eligibility float; source AoE, mass XP and ordinary native resistance loops stay integer",
+      "excerpt": "?era_compat::statusRawAccuracy(*battle(),unit,true):0;"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/spells/BattleSpellMechanics.cpp",
+      "line": 639,
+      "semantics": "integer",
+      "explanation": "Wall+Faerie primary eligibility float; source AoE, mass XP and ordinary native resistance loops stay integer",
+      "excerpt": "const int accuracy=(sourceOwnerAllowed && sourceMirrorAllowed && era_compat::sourceSpellContextAllows(*battle(),unit,getSpell()) && isReceptive(unit))?era_compat::statusRawAccuracy(*battle(),unit):0;"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/spells/BattleSpellMechanics.cpp",
+      "line": 650,
+      "semantics": "integer",
+      "explanation": "Wall+Faerie primary eligibility float; source AoE, mass XP and ordinary native resistance loops stay integer",
+      "excerpt": "const int prob=rod?*rod:catalyst?100-era_compat::statusRawAccuracy(*battle(),unit,true):std::min(unit->magicResistance(),100);"
+    }
+  ],
+  "files": [
+    {
+      "path": "work/vcmi-wasm/server/battles/BattleActionProcessor.cpp",
+      "sha256": "b1f766fe272c7d677923718f781ae495cf77ab6f4e75d27e13627269e397b243"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraFaerieChainRuntime.h",
+      "sha256": "bf034e99122bd738a7fd5fb1e546a65074fcda12b2da23adaf8a805f086de49d"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraConfluxExperience.h",
+      "sha256": "81713cb10ba890fc0c0e95fd5b333455c30419ad96c13996d440bd8cf5c3679c"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraConfluxRuntime.h",
+      "sha256": "f3768a47d8fc388f7a66b4810cb361095cb0cd2c925a89ae5266f67c569fc243"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraStatusAttacks.h",
+      "sha256": "a57b47422bb2b506dd0ec18cdc0e7d15ffc21c2dcd5abfc2737ac9b96fc4363d"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraThunderAttackRuntime.h",
+      "sha256": "2011c5a7a355debc5e6a6e6e2978520efb005264073718c0198482cfb92b9ec1"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraDungeonChainTargets.h",
+      "sha256": "095547d2339f591adbe788526853d66e0630ba89fc1361478da20d9c525a2d1e"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraPrimordialCastRuntime.h",
+      "sha256": "fa6a7078ff09b0d5a8f60c0432a35dc84fd1503844018b35b94d97c60682c05e"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraSulfideStatusRuntime.h",
+      "sha256": "8fcbb65dfbe0c8050823a0dfaccb83256beaf01071bd060bade3a951fad21878"
+    },
+    {
+      "path": "work/vcmi-wasm/server/era/EraCDispelRuntime.h",
+      "sha256": "fccf55a0daf54f43e22df490411c62fef46304488f2eac197f150ccbff4aa27c"
+    },
+    {
+      "path": "work/vcmi-wasm/lib/spells/BattleSpellMechanics.cpp",
+      "sha256": "3d16d22e48b6866c784f2c617992508c30fce1303338ae22572595d79adbef01"
+    }
+  ],
+  "asm": [
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/accuracy-wall-float165.asm",
+      "sha256": "558c4ad1f9b99306b60e94cadf5c5bdd0f61eac7d720ff0070ab33c859efe555",
+      "start": 5898208,
+      "stop": 5898336
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/accuracy-coord-float165.asm",
+      "sha256": "557e6eb9b153f19b74d5f3d46aadfaf1f145e456df4c7b4f3d262627c865c26e",
+      "start": 5913808,
+      "stop": 5913928
+    },
+    {
+      "path": "outputs/wog-priorities-0.4.147/eighth-evidence/accuracy-faerie-float165.asm",
+      "sha256": "defbea0559ead56bacb757793c4e1063bf6106ec69479c4396e29d946178e4ab",
+      "start": 5914512,
+      "stop": 5914568
+    }
+  ],
+  "conclusion": "Only source eligibility calls opt into positive float. No integer threshold, roll bound, RNG call count or ordinary native probability has been changed by this audit.",
+  "futureNativeTests": [
+    "CASES=positiveQueries165 POSITIVE_QUERY_CASE=wall CONFLUX_PRODUCTION=1",
+    "CASES=positiveQueries165 POSITIVE_QUERY_CASE=134 CONFLUX_PRODUCTION=1",
+    "CASES=positiveQueries165 POSITIVE_QUERY_CASE=356 CONFLUX_PRODUCTION=1"
+  ],
+  "fixtureNotes": "RealThorgrim39Expert +BattleDwarf40 +adjacentUnicorn20 produces about0.8%.356 must defend a real human garrison without hero, because its sourceCatalyst legitimately negates natural resistance when its caster-side hero exists."
+}

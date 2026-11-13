@@ -1,6 +1,6 @@
 # Heroes Goonk
 
-Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.159, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
+Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.160, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
 
 ## Jouer sur ce Mac
 
@@ -687,3 +687,9 @@ Les neuf constructions et recrutements de huitième famille passent les contrôl
 Les quinze premiers contrôles de la Corne266/Fangarm263 passent ; leurs cas de fin de combat restent à valider. Ces contenus, l’artefact278 et les acteurs339/346/347 restent désactivés. Les adaptateurs optionnels compilés n’activent aucun contenu par eux-mêmes. Ce point conserve les corrections d’autocombat et de recrutement mobile de la version158 et ne revendique pas un port complet de WoG/ERA.
 
 Les six groupes finaux de non-régression de cette version utilisent les données installées : neuf recrutements complets, progression et bannières, accès aux machines en ville, deux cartes WoG, trois machines avec vrais tirs et soins en autocombat, puis chaîne du Dragon féerique avec protection et tirages sérialisés. Six contrôles de terrain vérifient les invocations neutres, les élémentaires et Paingpaing ; trois contrôles confirment l’arrondi d’Astral. Le correctif lit le terrain de bataille au lieu de considérer les invocations et machines comme étant sur un terrain « aucun ». Leurs bonus légitimes de terrain sont conservés. Preuves et limites : `outputs/wog-priorities-0.4.147/checkpoint159-validation.json`.
+
+### Corne des Abysses — 0.4.160
+
+La Corne266 et le Fangarm263 sont activés après 55 contrôles natifs : invocation, maximum de points de vie courant, Hypnose avancée, spécialité d’Astral, rangs, ripostes finies, pertes et attribution après la nécromancie. Un contrôle supplémentaire sur les données installées vérifie les commandants, la victoire et le rechargement sans duplication. Le catalogue atteint 109 artefacts source sur 110, 51 identités ERA et 274 profils d’expérience.
+
+Le moteur conserve les requêtes positives de résistance inférieure à 1 % pour le mur355 et les sorts féeriques134/356. Aucun nouvel écran n’est ajouté. Les interfaces tactiles existantes sont conservées. L’artefact278, les acteurs339/346/347 et les scripts encore incomplets restent désactivés ; la compatibilité complète WoG/ERA n’est pas revendiquée. Preuves et limites : `outputs/wog-priorities-0.4.147/checkpoint160-validation.json`.

@@ -260,7 +260,7 @@ bool BattleSpellMechanics::sourceConfluxWallTargetAllowed(const battle::Unit * t
     //59FFE0 queries the stored wall side, while Catalyst still reads CURRENT.
     era_compat::ConfluxResistanceScope querySide(true,casterSide);
     return condition.isReceptive(mechanics.get(),target)
-        && era_compat::statusRawAccuracy(*battle(),target,true,casterSide)>0;
+        && era_compat::statusRawAccuracy(*battle(),target,true,casterSide,true)>0;
 }
 
 bool BattleSpellMechanics::sourceFaeriePrimaryAllowed(const CStack * actor,const battle::Unit * target) const
@@ -275,7 +275,7 @@ bool BattleSpellMechanics::sourceFaeriePrimaryAllowed(const CStack * actor,const
     if(!era_compat::sourceSpellContextAllows(*battle(),target,getSpell()))return false;
     if(const auto rod=era_compat::sourceLightningResistance(*battle(),getSpellIndex(),side,*target))return *rod<100;
     return isReceptive(target)
-        && era_compat::statusRawAccuracy(*battle(),target)>0;
+        && era_compat::statusRawAccuracy(*battle(),target,true,BattleSide::NONE,true)>0;
 }
 
 bool BattleSpellMechanics::canCastAtTarget(const battle::Unit * target) const

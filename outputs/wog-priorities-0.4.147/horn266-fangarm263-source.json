@@ -191,6 +191,7 @@
     "activationGate": "tum_emerald_on",
     "equippedGate": "Original acting-side hero exists and HE:A2/266 equipped is nonzero; backpack excluded.",
     "physical": "tum_OnAfterAttack from stdlib hooks441996/43FAD9; attacker side from BM:I; process direct defender.",
+    "sourcePrimary": "BG:E table75CD8F[E-A]→75CCB4 reads manager.actionDestinationHex(+44), resolves715872 hex cell and returns current side*21+slot. This is generic, so an occupied area center has a primary; an empty center or no target does not.",
     "spell": "OnBattleActionEnd only when captured BG:E>NO_STACK, actionHERO_CAST orMONSTER_CAST, opposing original actor/target sides. Runs for both actor/defender side functions; AOE without primary target is excluded.",
     "eligibility": "startCount>0,currentCount<=0,type!=263,LIVING flag set, side manager stack count<=20",
     "healthSource": "BM:H jump table75F86E[H-A] points75F118, which reads live stack+C0 via75F123/74195D. C0 is combat info.hitPoints, not base creature MA:P and not lostHP58 or preserved baseHP6C. Poison71 dispatches444C3E and writesC0 at444CC0; Aging75 dispatches444CDE and writesC0 at444D18. Thus original B is multiplied by current maximum HP per creature, including active combat HP modifiers.",
@@ -290,7 +291,8 @@
       "sha256": "9a9533ffbe7ee8e6110753fe92bedc816c28c795c7e9a76b0ad6582b19c2467d"
     }
   ],
-  "pending": [
+  "nativeValidationEvidence": "native-horn266-fangarm263-progress.json",
+  "nativeValidationChecklist": [
     "Close exact263K60 native optin, separate hero-cache threshold from CURRENTcount effect/duration, and strict Hypnotize target reception",
     "Resolve source absent-hero path and document any stable correction to null hero reads",
     "Validate exact BU:E occupant capture after failed BU:S, original army slot clearing, XP exclusion and captured-Fangarm gains before claiming full Horn port",
