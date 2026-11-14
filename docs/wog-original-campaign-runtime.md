@@ -97,3 +97,13 @@ Les 78 images et quatre petits fichiers AVI de `main4.wog` sont importés sans m
 Les 78 bitmaps se décodent dans Chromium et WebKit. Sept formats couvrent les petits téléphones et iPad, portrait et paysage, avec commandes à droite en paysage, panoramique tactile réel, clavier isolé et fermeture sans réponse de quête. Le dialogue original de choix du portrait de zc1 est exécuté par le moteur : ses quatre images sont chargées, agrandies, puis la réponse reprend la VM.
 
 Les AVI sont conservés comme ressources ; leur lecture via IF:B reste à porter. La référence `21a.bmp` n’existe dans aucun des huit lots de la distribution examinée ; aucune illustration de remplacement n’est inventée. Les campagnes originales restent désactivées.
+
+## Visites et accès des objets en 0.4.175
+
+L’hôte dormant de Cave sait maintenant distribuer les visites des objets ordinaires aux déclencheurs `OB` par coordonnées, par type/sous-type et par type. Les blocs sont réunis dans leur ordre source, sans doublon. Leur continuation conserve cet ordre après un dialogue ou une sauvegarde. Les visites natives effectuées avant le premier rappel d’interface restent possibles ; elles ne doivent pas empêcher l’initialisation de la VM.
+
+`OB:S/R` désactive ou réactive les effets standards pour tous les joueurs. `OB:D/E` règle l’accès d’une couleur. Le masque est conservé dans l’état répliqué et sauvegardé de la carte ; les déclencheurs continuent à s’exécuter lorsque l’effet standard est désactivé. Les sélecteurs indirects `OB998` utilisent les trois variables consécutives de coordonnées. `OB:T/U` admettent la lecture/comparaison du type et du sous-type ; leurs mutations restent refusées. Le contrat est rapproché de la documentation [OB](https://h3era.github.io/ERM-Help/Rec/OB.htm).
+
+Un test privé utilise les vrais vampires de Cave en 7/27/0, avec un héros déplacé au voisinage et des blocs de contrôle. L’ordre type → coordonnées → sous-type donne `123`. La visite se suspend après `OB:S`, une vraie sauvegarde est créée, puis rechargée. La reprise termine le script et conserve la désactivation : aucun effet standard du monstre ne se produit. Après retrait et nouveau passage, le compteur donne `123123`, `OB:R` réactive l’interaction et le récit natif des vampires apparaît. Ce test valide l’hôte et sa persistance ; il ne représente pas une quête originale.
+
+Les visites `OB` des événements locaux qui utilisent déjà `LE`, les hints `OB:H`, le contrôle interne `OB:C`, les mutations de type/sous-type et les deux formes à deux sélecteurs présentes dans les sources restent à traiter. Les onze scénarios ne sont toujours pas admis par cet hôte. Aucune campagne originale n’est activée à cette étape.

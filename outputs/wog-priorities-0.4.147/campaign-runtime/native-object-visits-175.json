@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.175",
+  "engineSha256": "151f78d08ac1c996a077948eac6e665591974ad8adaa467eb3e15992637666dc",
+  "originalCampaignsEnabled": false,
+  "scope": "Native object-visit host and persistence controls on actual Cave vampires; no original quest, scenario victory or campaign completion claimed.",
+  "controls": {
+    "sourceMap": "Cave of Gerfrex.h3m",
+    "originalMapSha256": "3d7dbf2835db47991ee9dad4f7cdef3dde93f98086670594bf21668d2c033c50",
+    "heroRelocatedTo": [
+      7,
+      28,
+      0
+    ],
+    "realMonsterAt": [
+      7,
+      27,
+      0
+    ],
+    "privateProgramReplacement": true,
+    "fixtureSha256": "5c58c7c384357e4eedb84eb135f00dde03e4aa5e569235eb36a2283932e1330d"
+  },
+  "nativeChecks": {
+    "newGame": true,
+    "pendingSaveReload": true,
+    "sourceOrderOnFirstVisit": 123,
+    "sourceOrderOnSecondVisit": 123123,
+    "obSBlocksStandardEffectButNotScript": true,
+    "obRRestoresStandardMonsterMessage": true,
+    "loadedPendingMaskPersists": true,
+    "standardMonsterMessage": "The legions of vicious bloodsuckers snarl and hiss at you, baring their sharp white fangs and blood-stained lips. Their leader wears a distinctive red and black cowl and bellows, \"We shall destroy you and take over this land! Our master, Zarachodar will RULE!\"",
+    "battleOrOriginalVictoryValidated": false
+  },
+  "regressions": {
+    "oldLeverSaveAndFollowingDays": true,
+    "oldPartialArmyRewardSave": true,
+    "productionMaps003And004SaveReloadRolesTurnsAndPositiveBattleRound": true
+  },
+  "checks": {
+    "ninjaHtml5": true,
+    "unitTests": {
+      "total": 759,
+      "passed": 725,
+      "skipped": 34,
+      "failed": 0
+    },
+    "nativeExecutorASanUBSan": true,
+    "siteBuildAndVerification": true,
+    "temporaryDiagnosticStringsAbsentFromPublishedWasm": true,
+    "nativeRegressionsRepeatedAfterDiagnosticRemoval": true
+  },
+  "limitations": [
+    "Only the dormant Cave program is admitted by the host.",
+    "OB on local-event objects still needs coordination with LE.",
+    "OB:H, OB:C, type/subtype mutations and the two-selector receiver forms remain unimplemented.",
+    "OB:D/E masks are covered by pure production-function tests for all eight colors; the native map control exercises S/R.",
+    "Original full quests, original win conditions and ERM campaign carryover remain unvalidated."
+  ]
+}

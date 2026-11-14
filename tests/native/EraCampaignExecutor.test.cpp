@@ -1,4 +1,5 @@
 #include "../../work/vcmi-wasm/lib/era/EraCampaignExecutor.h"
+#include "../../work/vcmi-wasm/lib/era/EraCampaignObjectAccess.h"
 #include <cassert>
 #include <climits>
 #include <vector>
@@ -90,4 +91,19 @@ int main()
  be.dispatch("LE",{1,2,0});assert(be.run()&&bs.v[1]==1);
  bool rejected=false;auto corrupt=restored;corrupt.programSha256="another-map";try{Executor bad(dialog,corrupt,context,host);}catch(const std::runtime_error&){rejected=true;}assert(rejected);
  Program zero=loop;zero.sha256="zero-loop";zero.blocks[0].commands[0].selectors[3]=num(0);State zs;Executor ze(zero,zs,context,host);ze.dispatch("LE");rejected=false;try{ze.run();}catch(const std::runtime_error&){rejected=true;}assert(rejected);
+ // Coordinate, type/subtype and type triggers share source order and execute once.
+ Program visits;visits.sha256="object-visits";
+ visits.blocks={block("OB",{num(63)},{cmd("VR",{var('v',9)},"*",{num(10)}),cmd("VR",{var('v',9)},"+",{num(1)})}),
+  block("OB",{num(7),num(8),num(0)},{cmd("VR",{var('v',9)},"*",{num(10)}),cmd("VR",{var('v',9)},"+",{num(2)}),cmd("IF",{},"Prompt")}),
+  block("OB",{num(63),num(4)},{cmd("VR",{var('v',9)},"*",{num(10)}),cmd("VR",{var('v',9)},"+",{num(3)})})};
+ State vs;Executor ve(visits,vs,context,host);assert(!ve.dispatchAny("OB",{{1,2,0},{52,4},{52}})&&vs.continuations.empty());
+ assert(ve.dispatchAny("OB",{{7,8,0},{63,4},{63},{7,8,0}}));assert(!ve.run()&&vs.v[9]==12);
+ auto visitResume=vs;Executor vr(visits,visitResume,context,host);assert(vr.run()&&visitResume.v[9]==123);
+ using namespace era_campaign_object_access;
+ auto mask=change(255,'S');for(int player=0;player<8;++player)assert(!allows(mask,player));
+ mask=change(mask,'E',3);for(int player=0;player<8;++player)assert(allows(mask,player)==(player==3));
+ mask=change(mask,'R');for(int player=0;player<8;++player)assert(allows(mask,player));
+ mask=change(mask,'D',3);assert(!allows(mask,3)&&allows(mask,2));assert(!allows(mask,-1)&&!allows(mask,8));
+ rejected=false;try{change(mask,'D',8);}catch(const std::runtime_error &){rejected=true;}assert(rejected);
+
 }

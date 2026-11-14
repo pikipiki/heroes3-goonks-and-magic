@@ -11,6 +11,7 @@
 #include "../../lib/era/EraCampaignJson.h"
 #include "../../lib/era/EraCampaignDialogs.h"
 #include "../../lib/era/EraCampaignPictures.h"
+#include "../../lib/era/EraCampaignObjectAccess.h"
 #include "../../lib/era/EraSourceCreatureLevels.h"
 #include "../../lib/GameLibrary.h"
 #include "../../lib/CPlayerState.h"
@@ -115,8 +116,10 @@ struct SourceCampaignProcessor::Impl final:Host
  }
  const CGObjectInstance * object(const Command & c,MapObjectID type=MapObjectID())const
  {
-  require(c.selectors.size()==3,"object needs three coordinates");
-  const int3 pos(number(c.selectors[0]),number(c.selectors[1]),number(c.selectors[2]));
+  require(c.selectors.size()==3||(c.receiver=="OB"&&c.selectors.size()==1),"object needs three coordinates or an OB coordinate variable");
+  int3 pos;
+  if(c.selectors.size()==1){const int index=number(c.selectors[0]);require(index>=1&&index<=9998,"invalid OB coordinate variable");pos=int3(lookup(vm.v,index),lookup(vm.v,index+1),lookup(vm.v,index+2));}
+  else pos=int3(number(c.selectors[0]),number(c.selectors[1]),number(c.selectors[2]));
   const auto & map=gh.gameState().getMap();if(!map.isInTheMap(pos))return nullptr;
   for(const auto id:map.getTile(pos).visitableObjects)
   {
@@ -124,6 +127,21 @@ struct SourceCampaignProcessor::Impl final:Host
    if(obj&&(!type.hasValue()||obj->ID==type)&&obj->ID!=Obj::HERO)return obj;
   }
   return nullptr;
+ }
+ std::uint8_t objectMask(ObjectInstanceID id)const
+ {
+  const auto & node=state["objectAccess"][std::to_string(id.getNum())];if(node.isNull())return 255;
+  const int mask=era_campaign_json::integer(node);require(mask>=0&&mask<=255,"invalid saved object access mask");return mask;
+ }
+ bool allowsObject(const CGObjectInstance * obj,const CGHeroInstance * h)const
+ {return era_campaign_object_access::allows(objectMask(obj->id),h->getOwner().getNum());}
+ bool consumeEmptyMonster(const CGObjectInstance * obj,const CGHeroInstance * h)
+ {
+  const auto * monster=dynamic_cast<const CGCreature *>(obj);if(!monster||monster->getStackCount(SlotID(0))!=0)return false;
+  InfoWindow message;message.player=h->getOwner();message.text=monster->message;gh.showInfoDialog(&message);
+  gh.giveResources(h->getOwner(),monster->resources);
+  if(monster->gainedArtifact!=ArtifactID::NONE)gh.giveHeroNewArtifact(h,monster->gainedArtifact,ArtifactPosition::FIRST_AVAILABLE);
+  gh.removeObject(monster,h->getOwner());return true;
  }
  JsonNode mutation(const std::string & kind,ObjectInstanceID id)const
  {JsonNode change;change["kind"].String()=kind;change["object"].Integer()=id.getNum();return change;}
@@ -195,7 +213,7 @@ struct SourceCampaignProcessor::Impl final:Host
     const auto * h=gh.gameState().getHero(completedHero);
     // The event still grants its reward after a scripted teleport. The
     // mountain passage, for example, grants morale before moving the hero.
-    if(obj&&h)obj->onHeroVisit(gh,h);
+    if(obj&&h&&allowsObject(obj,h)&&!consumeEmptyMonster(obj,h))obj->onHeroVisit(gh,h);
    }
   }
   catch(...){executing=false;throw;}
@@ -290,20 +308,27 @@ struct SourceCampaignProcessor::Impl final:Host
  bool visit(const CGObjectInstance * obj,const CGHeroInstance * h)
  {
   bind();if(!active)return false;
-  if(const auto * monster=dynamic_cast<const CGCreature *>(obj);monster&&monster->getStackCount(SlotID(0))==0)
+  // Town/hero placement can visit an object before the source initializer is
+  // started by the first adventure-ready callback. Preserve that native visit.
+  if(!vm.initialized&&!vm.initializing)return false;
+  require(vm.initialized,"object visit before source initialization completes");
+  if(!vm.continuations.empty())
   {
-   InfoWindow message;message.player=h->getOwner();message.text=monster->message;gh.showInfoDialog(&message);
-   gh.giveResources(h->getOwner(),monster->resources);
-   if(monster->gainedArtifact!=ArtifactID::NONE)gh.giveHeroNewArtifact(h,monster->gainedArtifact,ArtifactPosition::FIRST_AVAILABLE);
-   gh.removeObject(monster,h->getOwner());return true;
+   // Guard contact and movement onto the guarded tile may both report the
+   // same visit before the blocking dialog has been answered.
+   require(heroId==h->id&&objectId==obj->id,"another object visited while a script is suspended");return true;
   }
-  if(obj->ID!=Obj::EVENT)return false;
+  heroId=h->id;objectId=obj->id;player=h->getOwner();updateContext();
+  const auto pos=obj->visitablePos();vm.v[998]=pos.x;vm.v[999]=pos.y;vm.v[1000]=pos.z;
+  if(obj->ID!=Obj::EVENT)
+  {
+   Executor executor(program,vm,context,*this);
+   if(executor.dispatchAny("OB",{{pos.x,pos.y,pos.z},{obj->ID.getNum(),obj->subID.getNum()},{obj->ID.getNum()}})){run();return true;}
+   const bool handled=!allowsObject(obj,h)||consumeEmptyMonster(obj,h);heroId=ObjectInstanceID::NONE;objectId=ObjectInstanceID::NONE;return handled;
+  }
   const auto * local=dynamic_cast<const CGEvent *>(obj);
   const bool human=gh.gameInfo().getPlayerState(h->getOwner())->isHuman();
   if(!local||!local->availableFor.count(h->getOwner())||(human?!local->humanActivate:!local->computerActivate))return false;
-  require(vm.initialized&&vm.continuations.empty(),"local event while another script is suspended");
-  heroId=h->id;objectId=obj->id;player=h->getOwner();updateContext();
-  const auto pos=obj->visitablePos();vm.v[998]=pos.x;vm.v[999]=pos.y;vm.v[1000]=pos.z;
   Executor executor(program,vm,context,*this);executor.dispatch("LE",{pos.x,pos.y,pos.z});run();return true;
  }
 };
@@ -400,7 +425,14 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
  }
  if(c.receiver=="OB")
  {
-  arity(op,1);require(op.code=="T","unsupported Cave object operation");const auto * obj=object(c);value(obj?obj->ID.getNum():-1,args[0]);require(query(op),"object type mutation not admitted");return Step::Continue;
+  arity(op,1);const auto * obj=object(c);
+  if(op.code=="S"||op.code=="R"||op.code=="D"||op.code=="E")
+  {
+   require(obj!=nullptr,"object access target missing");
+   const bool all=op.code=="S"||op.code=="R";require(all?args[0].kind==Kind::Default:args[0].access==Access::Read,"unsupported object access argument");
+   state["objectAccess"][std::to_string(obj->id.getNum())].Integer()=era_campaign_object_access::change(objectMask(obj->id),op.code[0],all?0:number(args[0]));persist();return Step::Continue;
+  }
+  require(op.code=="T"||op.code=="U","unsupported source object operation");value(obj?(op.code=="T"?obj->ID.getNum():obj->subID.getNum()):-1,args[0]);require(query(op),"object type mutation not admitted");return Step::Continue;
  }
  if(c.receiver=="MO")
  {
