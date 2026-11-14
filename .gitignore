@@ -1,6 +1,10 @@
 # Local dependencies and working runtime data
 **/node_modules/
 work/game-data/
+work/security-audit/
+dist-heroes-starcraft/
+.netlify/
+experiments/crossover/public/starcraft/data/
 work/chrome-test-profile/
 work/idle-capture/
 work/vcmi-wasm/emscripten/

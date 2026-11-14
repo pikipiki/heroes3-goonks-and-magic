@@ -1,0 +1,49 @@
+{
+  "archives": [
+    {
+      "name": "stardat.mpq",
+      "source": "http://download.blizzard.com/pub/starcraft/StarEdit/StarEdit.zip",
+      "sha256": "8845fd871b4f8f242cc5c2b6f6b8b319d86bbbd02bc836356b51f81b5ba8203f"
+    },
+    {
+      "name": "broodat.mpq",
+      "source": "http://download.blizzard.com/pub/starcraft/StarEdit/StarEdit.zip",
+      "sha256": "c6d810981e24b947b36d531ab047e143fec0284a581fdaad6fc431e1e75e21df"
+    },
+    {
+      "name": "patch_rt.mpq",
+      "source": "http://download.blizzard.com/pub/starcraft/StarEdit/StarEdit.zip",
+      "sha256": "a063f069f1abe202b142b08a9dab878eba8ba033bf13a818024a72631c4452be"
+    }
+  ],
+  "retrieved": "2026-11-14",
+  "officialAnnouncement": "https://us.forums.blizzard.com/en/starcraft/t/public-staredit-download/457",
+  "transport": "HTTP URL published by Blizzard and supplied by owner. HTTPS rejected: hostname certificate mismatch. TLS validation was not bypassed. HTTP is not cryptographically authenticated.",
+  "archiveSha256": "2306b3a82a1c2be7afc2ab2f917d44398ba50462bc47b4af25bc4952b2e17bfa",
+  "scmjs": "All previous downloads deleted; these archives fetched directly from download.blizzard.com.",
+  "execution": "Only three MPQs packaged; StarEdit.exe and DLLs never executed or published.",
+  "antivirus": {
+    "engine": "ClamAV 1.5.4",
+    "daily": 28183,
+    "infected": 0,
+    "scope": "Complete downloaded ZIP and three extracted MPQs. Additional member scan recorded separately.",
+    "limits": "No absolute guarantee; MPQ nested extraction partial due unsupported sound compression and missing names in listfiles."
+  },
+  "memberExtraction": [
+    {
+      "archive": "stardat.mpq",
+      "listedMembersExtracted": 42,
+      "failures": 0
+    },
+    {
+      "archive": "broodat.mpq",
+      "listedMembersExtracted": 698,
+      "failures": 208
+    },
+    {
+      "archive": "patch_rt.mpq",
+      "listedMembersExtracted": 63,
+      "failures": 0
+    }
+  ]
+}

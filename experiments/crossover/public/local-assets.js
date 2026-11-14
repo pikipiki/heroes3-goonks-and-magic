@@ -1,7 +1,65 @@
-/** Player-owned MPQs stay in this browser. No network or server upload. */
+/** Audited MPQs download from this site and stay in this browser. No upload. */
 export const ARCHIVES = ['stardat.mpq', 'broodat.mpq', 'patch_rt.mpq'];
-const DB_NAME = 'heroes-starcraft-local-assets';
+// Never reuse the previous scmJS-era browser cache.
+const DB_NAME = 'heroes-starcraft-audited-assets-v2';
 const MAX_BYTES = 256 * 1024 * 1024;
+const MANIFEST_URL = new URL('./starcraft/data/manifest.json', import.meta.url);
+let manifestPromise;
+export function hostedManifest() {
+    return manifestPromise ??= (async () => {
+        const response = await fetch(MANIFEST_URL, { cache: 'no-cache' });
+        if (response.status === 404)
+            return null; // Source-only development checkout.
+        if (!response.ok)
+            throw Error('Manifeste StarCraft indisponible.');
+        const body = await response.json();
+        if (body.version !== 1 || !Array.isArray(body.archives) || body.archives.length !== 3)
+            throw Error('Manifeste StarCraft invalide.');
+        const rows = body.archives;
+        for (const [i, row] of rows.entries()) {
+            if (row.name !== ARCHIVES[i] || !Number.isSafeInteger(row.size) || row.size < 32 || row.size > MAX_BYTES || !/^[a-f0-9]{64}$/.test(row.sha256) || !Array.isArray(row.chunks) || !row.chunks.length)
+                throw Error('Archive publiée invalide.');
+            let size = 0;
+            for (const chunk of row.chunks) {
+                if (!/^chunks\/[a-f0-9]{64}\.bin$/.test(chunk.url) || !/^[a-f0-9]{64}$/.test(chunk.sha256) || !Number.isSafeInteger(chunk.size) || chunk.size < 1 || chunk.size > 4 * 1024 * 1024)
+                    throw Error('Morceau publié invalide.');
+                size += chunk.size;
+            }
+            if (size !== row.size)
+                throw Error('Taille publiée incohérente.');
+        }
+        return rows;
+    })();
+}
+export async function downloadArchives(progress) {
+    const manifest = await hostedManifest();
+    if (!manifest)
+        return;
+    const cached = await readArchives();
+    const files = [];
+    for (const [i, row] of manifest.entries()) {
+        if (cached[i])
+            continue;
+        const bytes = new Uint8Array(row.size);
+        let offset = 0;
+        for (const chunk of row.chunks) {
+            progress('Téléchargement de ' + row.name + ' : ' + Math.round(offset / row.size * 100) + ' %');
+            const response = await fetch(new URL(chunk.url, MANIFEST_URL), { credentials: 'omit' });
+            if (!response.ok)
+                throw Error('Téléchargement interrompu : ' + row.name + '. Recharge pour réessayer.');
+            const part = await response.arrayBuffer();
+            if (part.byteLength !== chunk.size || await digest(part) !== chunk.sha256)
+                throw Error('Morceau altéré : ' + row.name);
+            bytes.set(new Uint8Array(part), offset);
+            offset += part.byteLength;
+        }
+        if (await digest(bytes.buffer) !== row.sha256)
+            throw Error('Archive téléchargée altérée : ' + row.name);
+        files.push(new File([bytes], row.name));
+    }
+    if (files.length)
+        await importArchives(files);
+}
 export function archiveName(name) {
     const normalized = name.toLowerCase();
     if (!ARCHIVES.includes(normalized))
@@ -29,6 +87,8 @@ async function digest(bytes) {
     return [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))].map(v => v.toString(16).padStart(2, '0')).join('');
 }
 function openDatabase() {
+    // App-owned legacy database only; do not touch Heroes saves or other browser data.
+    indexedDB.deleteDatabase('heroes-starcraft-local-assets');
     return new Promise((resolve, reject) => {
         const request = indexedDB.open(DB_NAME, 1);
         request.onupgradeneeded = () => request.result.createObjectStore('archives', { keyPath: 'name' });
@@ -45,12 +105,17 @@ export async function importArchives(files) {
         throw Error('Archive sélectionnée deux fois.');
     // Validate every file before opening a write transaction; rejected imports preserve old data.
     const records = [];
+    const manifest = await hostedManifest();
     for (const [i, file] of files.entries()) {
         if (file.size < 32 || file.size > MAX_BYTES)
             throw Error('Taille MPQ invalide : ' + file.name);
         const bytes = await file.arrayBuffer();
         validateArchive(new Uint8Array(bytes));
-        records.push({ name: names[i], bytes, sha256: await digest(bytes) });
+        const sha256 = await digest(bytes);
+        const expected = manifest?.find(row => row.name === names[i]);
+        if (expected && (expected.size !== bytes.byteLength || expected.sha256 !== sha256))
+            throw Error('Ce fichier ne correspond pas à la source vérifiée : ' + names[i]);
+        records.push({ name: names[i], bytes, sha256 });
     }
     const db = await openDatabase();
     try {
@@ -68,6 +133,7 @@ export async function importArchives(files) {
     }
 }
 export async function readArchives() {
+    const manifest = await hostedManifest();
     const db = await openDatabase();
     try {
         const records = await new Promise((resolve, reject) => {
@@ -85,7 +151,12 @@ export async function readArchives() {
             const row = records[i];
             if (!row)
                 return null;
-            if (row.name !== name || !(row.bytes instanceof ArrayBuffer) || await digest(row.bytes) !== row.sha256)
+            if (!(row.bytes instanceof ArrayBuffer))
+                throw Error('Stockage MPQ invalide : ' + name);
+            const expected = manifest?.[i];
+            if (expected && (row.sha256 !== expected.sha256 || row.bytes.byteLength !== expected.size))
+                return null;
+            if (row.name !== name || await digest(row.bytes) !== row.sha256)
                 throw Error('Archive altérée : ' + name + '. Réimporte ce fichier.');
             const bytes = new Uint8Array(row.bytes);
             validateArchive(bytes);
@@ -100,7 +171,7 @@ export async function loadArchives() {
     const rows = await readArchives();
     const missing = ARCHIVES.filter((_, i) => !rows[i]);
     if (missing.length)
-        throw Error('Importe les archives manquantes : ' + missing.join(', '));
+        throw Error('Données manquantes : ' + missing.join(', ') + '. Recharge pour télécharger les archives vérifiées.');
     return rows;
 }
 export async function installArchiveImport() {
@@ -116,6 +187,11 @@ export async function installArchiveImport() {
     }
     start.disabled = custom.disabled = true;
     try {
+        if (await hostedManifest()) {
+            input.hidden = true;
+            document.querySelector('label[for="archive-files"]').textContent = 'Données StarCraft vérifiées — téléchargement automatique';
+            await downloadArchives(text => { status.textContent = text; });
+        }
         await refresh();
     }
     catch (e) {

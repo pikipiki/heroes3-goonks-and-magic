@@ -33,7 +33,7 @@ try{
   const sc=page.frames().find(frame=>frame.url().includes('/starcraft/index.html'));
   const heroes=page.frames().find(frame=>frame.url().includes('/game.html'));
   assert(sc&&heroes);
-  await sc.locator('#archive-files').setInputFiles(files);
+  if(!process.env.STARCRAFT_AUTO_DOWNLOAD)await sc.locator('#archive-files').setInputFiles(files);
   await sc.waitForFunction(()=>!document.querySelector('#start-game').disabled,null,{timeout:60000});
   await page.locator('#starcraft-frame').scrollIntoViewIfNeeded();
   await sc.locator('#start-game').click();

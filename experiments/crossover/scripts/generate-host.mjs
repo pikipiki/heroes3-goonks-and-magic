@@ -17,6 +17,9 @@ replace('if (DEV) window.__bw = { x, memory, lockstep, link };   // dev-only deb
 replace('if (DEV) window.__bw = null;','crossoverApi.close();');
 replace("if (location.hash.startsWith('#i=')) {",'if (false) { // P2P not enabled in this milestone.');
 replace("if (/(\\?|&)relay\\b/.test(location.search)) {",'if (false) { // Relay not enabled in this milestone.');
+const multiplayerStart=js.indexOf('// --- multiplayer: 1v1');
+if(multiplayerStart<0)throw Error('Multiplayer section changed');
+js=js.slice(0,multiplayerStart)+`const resolveRace = (r) => (r === -1 ? [0, 1, 2][(Math.random() * 3) | 0] : r);\nmapSelect.add(new Option(MAPS[0].name, MAPS[0].file));\n`;
 // Do not retry a trapped engine in the same renderer; keep import available, offer a clean restart.
 js=js.replaceAll("boot(session).catch((e) => { setMsg('Error: ' + e.message); console.error(e); });", "runLocalGame(session);");
 js=js.replaceAll("boot(session).catch((err) => { setMsg('Error: ' + err.message); console.error(err); });", "runLocalGame(session);");
@@ -32,14 +35,20 @@ js=js.replace(/\/\/ Responsibilities:[\s\S]*?(?=\/\/ Build id)/, '// Local adapt
 js=`import {loadArchives, installArchiveImport} from '../local-assets.js';\nimport {installNativeBridge} from '../native-bridge.js';\n`+js+`\ninstallArchiveImport();\n`;
 if(js.includes('https://archive.org')||js.includes('https://raw.githubusercontent.com'))throw Error('Unexpected remote data source');
 fs.mkdirSync(root+'public/starcraft/maps',{recursive:true});
+const data=fileURLToPath(new URL('../../../game-data/starcraft/',import.meta.url));
+fs.rmSync(root+'public/starcraft/data',{recursive:true,force:true});
+if(fs.existsSync(data+'manifest.json'))fs.cpSync(data,root+'public/starcraft/data',{recursive:true});
 fs.writeFileSync(root+'public/starcraft/openbw.js',js.replace(/[ \t]+$/gm,''));
-fs.copyFileSync(root+'vendor/openbw/web/net.js',root+'public/starcraft/net.js');
+const net=fs.readFileSync(root+'vendor/openbw/web/net.js','utf8');
+const lockstep=net.indexOf('export class Lockstep');
+if(lockstep<0)throw Error('Lockstep section changed');
+fs.writeFileSync(root+'public/starcraft/net.js','// Solo command scheduling; no WebRTC, STUN or relay transport.\nconst EMPTY = new Uint8Array(0);\nconst BOT_LATENCY = 3;\n'+net.slice(lockstep));
 for(const name of ['Weave_v1.scx'])fs.copyFileSync(root+'vendor/openbw/web/maps/'+name,root+'public/starcraft/maps/'+name);
 fs.writeFileSync(root+'public/starcraft/maps/ATTRIBUTION.md',fs.readFileSync(root+'vendor/openbw/web/maps/ATTRIBUTION.md','utf8').split('\nThe Blizzard')[0]+'\nOnly Weave is configured in this crossover build. No remote map downloads.\n');
 let html=fs.readFileSync(root+'vendor/openbw/web/index.html','utf8');
 html=html.replace(/<link rel="icon"[^>]+>/,'');
 html=html.replace('<title>OpenBW Web</title>',`<title>StarCraft — Heroes Goonk</title>\n<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; object-src 'none'; base-uri 'self'">`);
-html=html.replace('</style>',`#mp,#spectate-row{display:none!important}#archive-import{margin:16px 0;padding:16px;border:1px solid #475569;border-radius:8px;text-align:left}#archive-import input{display:block;margin-top:12px;max-width:100%;min-height:44px}#archive-status{font-size:13px;color:#cbd5e1}button:disabled{opacity:.5;cursor:default}\n</style>`);
+html=html.replace('</style>',`#mp,#spectate-row{display:none!important}#archive-import{margin:16px 0;padding:16px;border:1px solid #475569;border-radius:8px;text-align:left}#archive-files[hidden]{display:none}#archive-import input{display:block;margin-top:12px;max-width:100%;min-height:44px}#archive-status{font-size:13px;color:#cbd5e1}button:disabled{opacity:.5;cursor:default}\n</style>`);
 html=html.replace('<div id="controls"',`<section id="archive-import"><label for="archive-files">Importer tes archives StarCraft : StarDat.mpq, BrooDat.mpq, Patch_rt.mpq</label><input id="archive-files" type="file" accept=".mpq" multiple><button id="reload-engine" hidden>Recharger le moteur</button><p id="archive-status" role="status">Vérification du stockage local…</p><p class="hint">Fichiers conservés dans ce navigateur, sans envoi au serveur. Mode bac à sable, sans adversaire IA pour cette étape.</p><a href="../index.html">Retour au crossover</a></section>\n<div id="controls"`);
 html=html.replace('First run downloads ~90&nbsp;MB of game data.','Import your own game archives before starting.');
 html=html.replace(/<div class="hint">Or <a href="https:\/\/retroonline[^\n]+/,'');

@@ -5,7 +5,7 @@
       "name": "Both native engines running; actual Heroes menu event reaches native OpenBW log; native state returns to bridge",
       "sample": {
         "frame": 25,
-        "checksum": 3645573434,
+        "checksum": 3151022330,
         "outcome": 0,
         "cohort": {
           "initial": 5,
@@ -20,11 +20,11 @@
       "name": "Native SCV production completes, queue empties and exactly 50 minerals are spent",
       "before": {
         "workers": 4,
-        "frame": 35,
+        "frame": 34,
         "minerals": 50
       },
       "queued": {
-        "frame": 38,
+        "frame": 37,
         "minerals": 0
       },
       "completed": {
@@ -37,15 +37,15 @@
       "target": {
         "world": {
           "x": 1200,
-          "y": 1928
+          "y": 328
         },
         "screen": {
           "x": 558,
-          "y": 598
+          "y": 328
         },
         "camera": {
           "x": 642,
-          "y": 1330,
+          "y": 0,
           "width": 1116,
           "height": 718
         }
@@ -53,17 +53,17 @@
       "before": {
         "id": 3664,
         "type": "SCV",
-        "owner": 2,
+        "owner": 0,
         "x": 1104,
-        "y": 1864,
-        "order": 3
+        "y": 264,
+        "order": 2
       },
       "after": {
         "id": 3664,
         "type": "SCV",
-        "owner": 2,
+        "owner": 0,
         "x": 1121,
-        "y": 1880,
+        "y": 280,
         "order": 6
       }
     },
@@ -76,7 +76,7 @@
         "workers": 4,
         "sample": {
           "frame": 457,
-          "checksum": 1641892728,
+          "checksum": 174973496,
           "outcome": 0,
           "cohort": {
             "initial": 5,
@@ -111,11 +111,11 @@
           },
           {
             "id": 471,
-            "name": "Clancy",
+            "name": "Sonic Keeper",
             "needsLastStack": true,
             "slots": [
               {
-                "aiValue": 100,
+                "aiValue": 84,
                 "attack": 5,
                 "cost": [
                   0,
@@ -127,21 +127,21 @@
                   70,
                   0
                 ],
-                "count": 17,
-                "damageMax": 3,
+                "count": 16,
+                "damageMax": 4,
                 "damageMin": 2,
-                "defense": 3,
-                "description": "",
+                "defense": 5,
+                "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
                 "experience": 0,
                 "experiencePerUnit": 0,
                 "experienceRank": 0,
-                "fightValue": 100,
-                "growth": 14,
-                "health": 8,
-                "icon": "",
-                "id": 14,
-                "key": "core:centaur",
-                "name": "Centaur",
+                "fightValue": 84,
+                "growth": 16,
+                "health": 12,
+                "icon": "goonk/pink-large.png",
+                "id": 258,
+                "key": "goonk:paingpaing",
+                "name": "Paingpaing",
                 "nativeFlags": {
                   "attacksAllAdjacent": false,
                   "blocksRetaliation": false,
@@ -154,10 +154,52 @@
                   "undead": false
                 },
                 "shooter": false,
-                "shots": 12,
+                "shots": 0,
+                "speed": 5
+              },
+              {
+                "aiValue": 378,
+                "attack": 9,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  220,
+                  0
+                ],
+                "count": 3,
+                "damageMax": 9,
+                "damageMin": 6,
+                "defense": 7,
+                "description": "Fires lightning arrows, triggering a magical explosion on the target and nearby units. Watch out for nearby allies.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 378,
+                "growth": 8,
+                "health": 30,
+                "icon": "goonk/archer-large.png",
+                "id": 264,
+                "key": "goonk:zinzeclair",
+                "name": "Sonic",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": true,
+                "shots": 16,
                 "speed": 6
               },
-              null,
               null,
               null,
               null,
@@ -171,12 +213,12 @@
     },
     {
       "name": "VCMI serializes an actual local save while the StarCraft simulation continues",
-      "bytes": 533262
+      "bytes": 534367
     },
     {
       "name": "Native replay serialization produces bytes (not a save/resume test)",
-      "length": 23279,
-      "frame": 522
+      "length": 23274,
+      "frame": 516
     }
   ],
   "passed": true
