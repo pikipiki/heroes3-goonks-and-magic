@@ -73,3 +73,38 @@ int main(){
   execFileSync(binary);
  } finally {fs.rmSync(dir,{recursive:true,force:true});}
 });
+
+test('all eleven original campaign answer predicates compare text contents and case',()=>{
+ const cases=[];
+ for(let id=1;id<=4;id++)for(const scenario of compileNativeCampaign(`mod/wake-of-gods/Mods/maps/content/maps/zc${id}.vcmp`).scenarios){
+  const commands=[...scenario.program.initializers,...scenario.program.blocks.flatMap(b=>b.commands)];
+  for(const entry of [...scenario.program.blocks,...commands])for(const group of entry.conditions||[])for(const predicate of group.any){
+   if(predicate.right?.space!=='z'&&predicate.left?.space!=='z')continue;
+   const alias=predicate.left.kind==='macro'?commands.find(c=>c.receiver==='MC'&&c.operations.some(o=>o.code==='S'&&o.args[0]?.name===predicate.left.name)):null;
+   if(predicate.left.kind==='macro')assert(alias,'Original macro binding exists');
+   const left=alias?.selectors[0]||predicate.left,right=predicate.right;
+   assert.equal(left.space,'z');assert.equal(right.space,'z');
+   const expected=commands.find(c=>c.receiver==='VR'&&c.selectors[0]?.space==='z'&&c.selectors[0].index?.number===right.index.number&&c.operations[0]?.code==='S'&&c.operations[0].args[0]?.kind==='string')?.operations[0].args[0].text||'Diplomacy';
+   const choice=cmdForPredicate(predicate,cases.length);
+   cases.push({choice,left,right,alias:predicate.left.kind==='macro'?{name:predicate.left.name,operand:left}:null,expected,equal:predicate.comparison==='='});
+  }
+ }
+ function cmdForPredicate(predicate,index){return{receiver:'VR',selectors:[{kind:'variable',access:'read',space:'v',index:{kind:'number',access:'read',number:9990}}],conditions:[{any:[predicate]}],operations:[{code:'+',args:[{kind:'number',access:'read',number:1}]}]};}
+ assert.equal(cases.length,11);
+ const source=`#include ${quote(path.resolve('work/vcmi-wasm/lib/era/EraCampaignExecutor.h'))}
+#include <cassert>
+#include <cctype>
+using namespace era_campaign;
+struct NoHost:Host{Step execute(const Command&,const Operation&,State&,const Context&)override{throw std::runtime_error("Unexpected host call");}int32_t random(int32_t,bool)override{return 0;}};
+int main(){Context context;NoHost host;
+${cases.map((c,i)=>`{
+ Program p;p.sha256="original-text-predicate-${i}";p.blocks={${block({receiver:'LE',selectors:[],conditions:[],commands:[c.choice]})}};
+ State s;${c.alias?`s.macros[${quote(c.alias.name)}]=${operand(c.alias.operand)};`:''}
+ s.z[${c.right.index.number}]=${quote(c.expected)};s.z[${c.left.index.number}]=${quote(c.expected.toUpperCase())};
+ Executor vm(p,s,context,host);vm.dispatch("LE");assert(vm.run()&&s.v[9990]==${c.equal?1:0});
+ s.v[9990]=0;s.z[${c.left.index.number}]="A different answer";vm.dispatch("LE");assert(vm.run()&&s.v[9990]==${c.equal?0:1});
+}`).join('\n')}
+}`;
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'goonk-campaign-answers-'));
+ try{const cpp=path.join(dir,'test.cpp'),binary=path.join(dir,'test');fs.writeFileSync(cpp,source);execFileSync(process.env.CXX||'c++',['-std=c++17','-Wall','-Wextra','-Werror','-pedantic','-fsanitize=address,undefined',cpp,'-o',binary]);execFileSync(binary);}finally{fs.rmSync(dir,{recursive:true,force:true});}
+});

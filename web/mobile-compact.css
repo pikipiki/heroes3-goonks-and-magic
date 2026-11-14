@@ -133,3 +133,22 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle] .battle-stat-pi
  #mobile-app .dialog-presentation[data-kind=source-campaign] .dialog-copy{grid-column:1;grid-row:1/-1;align-self:stretch;font-size:clamp(15px,2vw,20px)}
  #mobile-app .dialog-presentation[data-kind=source-campaign] footer{grid-column:2;grid-row:3}
 }
+
+#mobile-app .campaign-dialog-form{display:grid;gap:16px;min-width:0;touch-action:pan-y}
+#mobile-app .campaign-dialog-form>label{display:grid;gap:8px;min-width:0}
+#mobile-app .campaign-dialog-form input[type=text]{box-sizing:border-box;min-height:48px;width:100%;min-width:0;font:inherit;font-size:16px;padding:10px;color:#fff0c5;background:#160e08;border:2px ridge #d3ad5e;border-radius:6px;touch-action:manipulation}
+#mobile-app .campaign-dialog-form fieldset{margin:0;padding:10px;min-width:0;border:2px ridge #907039;display:grid;gap:8px}
+#mobile-app .campaign-dialog-form fieldset label{display:flex;align-items:center;gap:12px;min-height:48px;padding:8px;box-sizing:border-box;touch-action:pan-y;background:#3b2818;border:1px solid #886438;border-radius:6px}
+#mobile-app .campaign-dialog-form fieldset input{flex:0 0 24px;width:24px;height:24px;accent-color:#f9d897;touch-action:pan-y}
+#mobile-app .campaign-dialog-form fieldset span{min-width:0;overflow-wrap:anywhere}
+#mobile-app .campaign-dialog-form strong,#mobile-app .campaign-dialog-form small{display:block;line-height:1.4}
+#mobile-app .campaign-dialog-pictures{display:flex;flex-wrap:wrap;gap:12px}
+#mobile-app .campaign-dialog-pictures figure{margin:0;flex:0 1 96px}
+#mobile-app .campaign-dialog-pictures canvas{max-width:100%;height:auto}
+#mobile-app .dialog-presentation[data-waiting] .campaign-dialog-form input:disabled{opacity:1;color:inherit}
+
+#mobile-app .campaign-dialog-form[data-kind=pictures] fieldset{grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr))}
+#mobile-app .campaign-dialog-form[data-kind=pictures] fieldset label{display:grid;grid-template-columns:24px minmax(0,1fr);align-items:center}
+#mobile-app .campaign-dialog-form[data-kind=pictures] fieldset label>input{grid-column:1;grid-row:1/3}
+#mobile-app .campaign-dialog-form[data-kind=pictures] fieldset label>span{grid-column:2;grid-row:1}
+#mobile-app .campaign-dialog-form[data-kind=pictures] fieldset label>canvas{grid-column:2;grid-row:2;max-width:100%;height:auto}

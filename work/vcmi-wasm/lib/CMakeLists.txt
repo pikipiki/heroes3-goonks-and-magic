@@ -668,6 +668,7 @@ set(lib_MAIN_HEADERS
 	networkPacks/PacksForServer.h
 	networkPacks/SetRewardableConfiguration.h
     networkPacks/SourceCampaignChange.h
+	networkPacks/SourceCampaignReply.h
 	networkPacks/SetStackEffect.h
 	networkPacks/SaveLocalState.h
 	networkPacks/StackLocation.h

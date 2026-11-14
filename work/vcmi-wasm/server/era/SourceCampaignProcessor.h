@@ -2,6 +2,7 @@
 #pragma once
 #include "../../lib/constants/EntityIdentifiers.h"
 #include <memory>
+#include <string>
 class CGameHandler;
 VCMI_LIB_NAMESPACE_BEGIN
 class CGObjectInstance;
@@ -17,6 +18,8 @@ public:
  explicit SourceCampaignProcessor(CGameHandler & handler);
  ~SourceCampaignProcessor();
  void onReady(PlayerColor player);
+ bool reply(QueryID query,int selection,const std::string & text,PlayerColor player);
+ bool draft(QueryID query,int selection,const std::string & text,PlayerColor player);
  bool visit(const CGObjectInstance * object,const CGHeroInstance * hero);
  bool timedEvent(const CMapEvent & event,PlayerColor player);
  MetaString eventMessage(const CMapEvent & event) const;

@@ -175,13 +175,46 @@ inline bool readFlag(std::int32_t flag,const State&state,const Context&context)
 {return context.builtinFlag&&flag>=996&&flag<=1000?context.builtinFlag(flag):lookup(state.flags,flag);}
 inline void writeFlag(std::int32_t flag,State&state,bool value)
 {if(flag<1||flag>=996)throw std::runtime_error("Cannot overwrite source system flags");state.flags[flag]=value;}
+inline std::string readText(const Operand&input,const State&state,const Context&context);
+inline bool textOperand(const Operand & input,const State & state)
+{
+ const auto & operand=resolveMacro(input,state);
+ return operand.kind==Kind::String||(operand.kind==Kind::Variable&&operand.space=='z');
+}
+inline std::string comparisonText(std::string value)
+{
+ // WoG's StrCmpExt compares case-insensitive words. Runs of space, CR,
+ // LF and TAB separate words; other bytes remain significant.
+ std::string result;bool separator=false;
+ for(auto c:value)
+ {
+  if(c==' '||c=='\t'||c=='\r'||c=='\n'){separator=!result.empty();continue;}
+  if(separator){result+=' ';separator=false;}
+  const auto byte=static_cast<unsigned char>(c);
+  result+=byte>='A'&&byte<='Z'?static_cast<char>(byte-'A'+'a'):c;
+ }
+ return result;
+}
+inline bool acceptsPredicate(const Predicate & predicate,const State & state,const Context & context)
+{
+ if(predicate.isFlag)return readFlag(predicate.flag,state,context)==predicate.expected;
+ const bool leftText=textOperand(predicate.left,state),rightText=textOperand(predicate.right,state);
+ if(leftText||rightText)
+ {
+  if(!leftText||!rightText)throw std::runtime_error("Mixed text/numeric campaign comparison");
+  if(predicate.comparison!="="&&predicate.comparison!="<>")throw std::runtime_error("Unsupported campaign text comparison");
+  const bool equal=comparisonText(readText(predicate.left,state,context))==comparisonText(readText(predicate.right,state,context));
+  return predicate.comparison=="="?equal:!equal;
+ }
+ return compare(readNumber(predicate.left,state,context),predicate.comparison,readNumber(predicate.right,state,context));
+}
 inline bool accepts(const Conditions&conditions,const State&state,const Context&context)
 {
  for(const auto&group:conditions)
  {
   bool any=false;
   for(const auto&p:group)
-   if(p.isFlag?readFlag(p.flag,state,context)==p.expected:compare(readNumber(p.left,state,context),p.comparison,readNumber(p.right,state,context))){any=true;break;}
+   if(acceptsPredicate(p,state,context)){any=true;break;}
   if(!any)return false;
  }
  return true;
@@ -201,10 +234,11 @@ inline void writeNumber(const Operand&input,State&state,const Context&context,st
  default:throw std::runtime_error("Non-numeric campaign destination");
  }
 }
+inline std::string formatText(const std::string & text,const State & state,const Context & context);
 inline std::string readText(const Operand&input,const State&state,const Context&context)
 {
  const auto&operand=resolveMacro(input,state);
- if(operand.kind==Kind::String)return operand.text;
+ if(operand.kind==Kind::String)return formatText(operand.text,state,context);
  if(operand.kind==Kind::Variable&&operand.space=='z'&&operand.index)return lookup(state.z,readNumber(*operand.index,state,context));
  throw std::runtime_error("Non-text campaign operand");
 }
@@ -214,4 +248,40 @@ inline void writeText(const Operand&input,State&state,const Context&context,std:
  if(operand.kind!=Kind::Variable||operand.space!='z'||!operand.index)throw std::runtime_error("Non-text campaign destination");
  state.z[readNumber(*operand.index,state,context)]=std::move(value);
 }
+inline std::string formatText(const std::string & text,const State & state,const Context & context)
+{
+ std::string result;
+ const auto append=[&](const Operand & operand)
+ {
+  const auto & value=resolveMacro(operand,state);
+  // Substituted values are data, including a literal-valued alias in an old
+  // save. Never recursively interpret their percent markers as new syntax.
+  if(value.kind==Kind::String)result+=value.text;
+  else result+=textOperand(value,state)?readText(value,state,context):std::to_string(readNumber(value,state,context));
+ };
+ for(std::size_t pos=0;pos<text.size();)
+ {
+  if(text[pos]!='%'||pos+1==text.size()){result+=text[pos++];continue;}
+  const auto start=pos++;const char code=text[pos++];
+  if(code=='%'){result+='%';continue;}
+  if(code=='$')
+  {
+   const auto end=text.find('$',pos);if(end==std::string::npos){result+=text.substr(start);break;}
+   Operand macro;macro.kind=Kind::Macro;macro.name=text.substr(pos,end-pos);append(macro);pos=end+1;continue;
+  }
+  if(code=='V'&&pos<text.size()&&text[pos]>='f'&&text[pos]<='t')
+  {Operand fast;fast.kind=Kind::Fast;fast.name=text[pos++];append(fast);continue;}
+  if(code!='F'&&code!='V'&&code!='W'&&code!='X'&&code!='Y'&&code!='Z'){result+=text.substr(start,pos-start);continue;}
+  bool negative=false;if(pos<text.size()&&text[pos]=='-'){negative=true;++pos;}
+  std::int64_t index=0;const auto digits=pos;
+  while(pos<text.size()&&text[pos]>='0'&&text[pos]<='9')
+  {index=index*10+(text[pos++]-'0');if(index>INT32_MAX)throw std::runtime_error("Campaign text variable index overflow");}
+  if(pos==digits){result+=text.substr(start,pos-start);continue;}
+  if(negative)index=-index;
+  if(code=='F'){result+=readFlag(static_cast<std::int32_t>(index),state,context)?'1':'0';continue;}
+  Operand variable;variable.kind=Kind::Variable;variable.space=static_cast<char>(code-'A'+'a');variable.index=std::make_shared<Operand>();variable.index->kind=Kind::Number;variable.index->number=static_cast<std::int32_t>(index);append(variable);
+ }
+ return result;
+}
+
 }

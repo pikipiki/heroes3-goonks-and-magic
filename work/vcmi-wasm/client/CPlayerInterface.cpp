@@ -66,6 +66,7 @@
 #include "windows/CTutorialWindow.h"
 #include "windows/GUIClasses.h"
 #include "windows/InfoWindows.h"
+#include "windows/CSourceCampaignDialog.h"
 #include "windows/settings/SettingsMainWindow.h"
 
 #include "../lib/callback/CDynLibHandler.h"
@@ -1089,6 +1090,15 @@ void CPlayerInterface::showBlockingDialog(const std::string &text, const std::ve
 
 	movementController->requestMovementAbort();
 	ENGINE->sound().playSound(static_cast<soundBase::soundID>(soundID));
+
+ const auto & script=static_cast<const IGameInfoCallback &>(*cb).gameState().getMap().sourceCampaignState;
+ const auto & pending=script["pending"];const auto & kind=pending["kind"].String();
+ if(script["player"].isNumber()&&script["player"].Integer()==playerID.getNum()
+    &&pending["contract"].String()=="source-campaign-dialog-v1"&&pending["text"].String()==text
+    &&(kind=="extended"||kind=="checklist"||kind=="pictures"))
+ {
+  showingDialog->setBusy();ENGINE->windows().createAndPushWindow<CSourceCampaignDialog>(askID,pending);return;
+ }
 
 	if (!selection && cancel) //simple yes/no dialog
 	{

@@ -60,6 +60,7 @@
 #include "windows/CCastleInterface.h"
 #include "windows/GUIClasses.h"
 #include "windows/InfoWindows.h"
+#include "windows/CSourceCampaignDialog.h"
 #include "widgets/Buttons.h"
 #include "windows/CHeroWindow.h"
 #include "windows/CExchangeWindow.h"
@@ -1135,6 +1136,12 @@ void publishMobileState(){
         for(size_t i=0;i<rewards.size();++i){const auto description=object->configuration.info.at(rewards[i]).description.toString();if(!description.empty()){choices[i]["label"].String()=description;choices[i]["description"].String()=description;}}
       }
    presentation["queryId"].Integer()=info->ID.getNum();
+   if(const auto scripted=std::dynamic_pointer_cast<CSourceCampaignDialog>(info))
+   {
+    presentation["scriptDialog"]=scripted->presentation();
+    presentation["lines"].Vector()={JsonNode(scripted->model["text"].String())};
+    presentation["choices"].Vector().clear();
+   }
    if(p&&p->cb&&mobileVisitedID!=ObjectInstanceID::NONE)
     if(const auto object=dynamic_cast<const CRewardableObject*>(p->cb->getObj(mobileVisitedID)))
      if(info->text&&info->text->label&&info->text->label->getText()==object->configuration.onSelect.toString())
@@ -1611,6 +1618,24 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiOnlineRoomAction(int action, const char
  });
 }
 
+extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCampaignDraft(int query,int selection,const char * input)
+{
+ if(!ENGINE||!input)return;const std::string answer(input);if(answer.size()>2048)return;
+ ENGINE->dispatchMainThread([query,selection,answer](){
+  if(!GAME||!GAME->interface())return;
+  if(const auto window=ENGINE->windows().topWindow<CSourceCampaignDialog>();window&&window->ID.getNum()==query)window->draft(selection,answer);
+ });
+}
+extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCampaignReply(int query,int selection,const char * input)
+{
+ if(!ENGINE||!input)return;const std::string answer(input);if(answer.size()>2048)return;
+ ENGINE->dispatchMainThread([query,selection,answer](){
+  if(!GAME||!GAME->interface())return;
+  if(const auto window=ENGINE->windows().topWindow<CSourceCampaignDialog>();window&&window->ID.getNum()==query)
+   window->submit(selection,answer);
+  lastPublished=0;
+ });
+}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,int c,int d,int e){if(!ENGINE)return;ENGINE->dispatchMainThread([action,a,b,c,d,e](){
  if(action==109)
  {

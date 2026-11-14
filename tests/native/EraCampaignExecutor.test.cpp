@@ -52,6 +52,29 @@ int main()
  Program text;text.sha256="text";text.blocks={block("LE",{}, {cmd("FU",{num(7)},"P",{var('z',200)})}),
   block("FU",{num(7)},{cmd("VR",{var('v',1)},"S",{var('x',1)})})};
  State ts;ts.z[200]="Quest text";Executor te(text,ts,context,host);te.dispatch("LE");assert(te.run()&&ts.v[1]==200&&ts.z[200]=="Quest text");
+ // Campaign password conditions compare contents, never z-cell numbers.
+ State answers;answers.z[313]="\tDiplomacy\n";answers.z[314]="DIPLOMACY";
+ Predicate answer;answer.left=var('z',313);answer.right=var('z',314);answer.comparison="=";
+ assert(accepts({{answer}},answers,context));answers.z[314]="Wisdom";assert(!accepts({{answer}},answers,context));
+ answer.comparison="<>";assert(accepts({{answer}},answers,context));
+ Operand alias;alias.kind=Kind::Macro;alias.name="skname";answers.macros["skname"]=var('z',313);answer.left=alias;
+ answers.z[314]="diplomacy";assert(!accepts({{answer}},answers,context));
+ answer.comparison="=";assert(accepts({{answer}},answers,context));
+ answers.z[313]="Strong Hold";answers.z[314]="StrongHold";assert(!accepts({{answer}},answers,context));
+ answers.z[313]=" Rust  Dragons\r\nnot\tCrust Dragons ";answers.z[314]="rust dragons not crust dragons";assert(accepts({{answer}},answers,context));
+ answers.z[313]="Rust\fDragons";answers.z[314]="Rust Dragons";assert(!accepts({{answer}},answers,context));
+ // Literal text expands at execution, including original MC aliases. The
+ // contents copied from a z-cell are not recursively treated as new code.
+ State messages;messages.v[25]=247;messages.z[100]="Clancy";messages.z[2]="literal %V25";
+ messages.fast['j']=750;messages.frames[0].x[2]=8;messages.frames[0].y[3]=9;messages.selectedHero=106;messages.w[106][10]=12;
+ messages.macros["hname"]=var('z',100);messages.macros["price"]=var('v',25);messages.flags[4]=true;
+ assert(formatText("%$hname$ %V25 %Vj %W10 %X2 %Y3 %F4 %%",messages,context)=="Clancy 247 750 12 8 9 1 %");
+ assert(formatText("%Z2!",messages,context)=="literal %V25!");
+ Operand savedLiteral;savedLiteral.kind=Kind::String;savedLiteral.text="%$literal$";messages.macros["literal"]=savedLiteral;assert(formatText("%$literal$",messages,context)=="%$literal$");
+ assert(formatText("%Z100? 100% of %unknown",messages,context)=="Clancy? 100% of %unknown");
+ Program interpolation;interpolation.sha256="literal-text-snapshot";Operand literal;literal.kind=Kind::String;literal.text="%V25";
+ interpolation.blocks={block("LE",{}, {cmd("VR",{var('z',3)},"S",{literal}),cmd("VR",{var('v',25)},"S",{num(999)}),cmd("VR",{var('z',4)},"S",{var('z',3)})})};
+ Executor literalVm(interpolation,messages,context,host);literalVm.dispatch("LE");assert(literalVm.run()&&messages.z[3]=="247"&&messages.z[4]=="247");
  // IF:W-1 selects the source hero of the event for persistent w variables.
  Program hero;hero.sha256="hero-vars";hero.blocks={block("LE",{}, {cmd("IF",{},"W",{num(-1)}),cmd("VR",{var('w',55)},"S",{num(10)})})};
  State hs;Context hc;hc.currentHero=106;Executor he(hero,hs,hc,host);he.dispatch("LE");assert(he.run()&&hs.w[106][55]==10);

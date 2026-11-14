@@ -14,6 +14,7 @@
 #include "SaveLocalState.h"
 #include "SetRewardableConfiguration.h"
 #include "SourceCampaignChange.h"
+#include "SourceCampaignReply.h"
 #include "PacksForLobby.h"
 #include "SetStackEffect.h"
 #include "NetPackVisitor.h"
@@ -108,6 +109,11 @@ void DaysWithoutTown::visitTyped(ICPackVisitor & visitor)
 void EntitiesChanged::visitTyped(ICPackVisitor & visitor)
 {
 	visitor.visitEntitiesChanged(*this);
+}
+
+void SourceCampaignReply::visitTyped(ICPackVisitor & visitor)
+{
+ visitor.visitSourceCampaignReply(*this);
 }
 
 void SourceCampaignChange::visitTyped(ICPackVisitor & visitor)

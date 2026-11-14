@@ -1,6 +1,8 @@
 #include "Global.h"
 #include "era/EraCampaignJson.h"
 #include "era/EraCampaignRuntime.h"
+#include "era/EraCampaignDialogs.h"
+#include "era/EraCampaignPictures.h"
 #include <limits>
 using namespace era_campaign;
 using namespace era_campaign_json;
@@ -64,4 +66,37 @@ int main()
  rejects([&]{era_campaign_runtime::execute(ast,broken,context,host,invocation);});
  invocation.kind=era_campaign_runtime::InvocationKind::Dispatch;
  rejects([&]{era_campaign_runtime::execute(ast,JsonNode(),context,host,invocation);});
+ // The actual engine JsonNode holds extended dialog definitions and replies.
+ State dialogue;Context dc;JsonNode definitions;era_campaign_dialogs::Dialogs dialogs(definitions,dialogue,dc);
+ const auto n=[](int value){Operand result;result.kind=Kind::Number;result.number=value;return result;};
+ dialogue.z[243]="Name the secret";dialogue.z[244]="Your answer";
+ Operation define;define.code="D";define.args.resize(16);define.args[0]=n(14);define.args[1]=n(243);define.args[2]=n(244);
+ assert(dialogs.execute(define).isNull());auto prompt=dialogs.execute({"E",{n(500),n(14)}});
+ assert(prompt["text"].String()=="Name the secret"&&prompt["inputLabel"].String()=="Your answer");
+ // A save/reload keeps the whole prompt, independently of a live UI widget.
+ const JsonNode promptCopy(prompt);dialogs.reply(promptCopy,0,"Wake of Gods");assert(dialogue.z[1]=="Wake of Gods"&&dialogue.v[500]==0);
+ rejects([&]{dialogs.reply(promptCopy,1,"Wrong default");});
+ dialogs.reply(promptCopy,-1,"ignored");assert(dialogue.v[500]==-1);
+ dialogue.z[245]="Answer %V500";define.args[12]=n(245);dialogs.execute(define);
+ dialogs.execute({"F",{n(14),n(0),n(0),n(0),n(0),n(0)}});assert(!dialogs.execute({"E",{n(500),n(14)}})["canCancel"].Bool());
+ dialogs.execute(define);auto redefined=dialogs.execute({"E",{n(500),n(14)}});
+ assert(redefined["canCancel"].Bool()&&redefined["choices"].Vector()[0]["hint"].String()=="Answer -1");
+ dialogue.z[121]="Choose a skill";dialogue.z[122]="Attack";dialogue.z[123]="Defense";dialogue.z[124]="Power";
+ auto radio=dialogs.execute({"G",{n(1),n(122),n(0),n(121),n(122),n(123),n(124)}});
+ dialogs.reply(radio,4,"");assert(dialogue.v[122]==4);rejects([&]{dialogs.reply(radio,3,"");});rejects([&]{dialogs.reply(radio,8,"");});
+ auto checklist=dialogs.execute({"G",{n(0),n(265),n(0),n(121),n(122),n(123),n(124)}});
+ dialogs.reply(checklist,5,"");assert(dialogue.v[265]==5);rejects([&]{dialogs.reply(checklist,16,"");});
+ Operand question;question.kind=Kind::String;question.text="Take %V265?";
+ auto pictures=dialogs.execute({"Q",{n(2),n(6),n(2000),n(21),n(95),n(7),question}});
+ assert(pictures["pictures"].Vector().size()==2&&pictures["text"].String()=="Take 5?");
+ dialogs.reply(pictures,0,"");assert(!dialogue.flags[2]);dialogs.reply(pictures,1,"");assert(dialogue.flags[2]);
+ rejects([&]{dialogs.reply(pictures,2,"");});
+
+ const auto creatureId=[](int source){return CreatureID(source+1000);};
+ const auto packed=era_campaign_pictures::component(21,5*65536+6,creatureId);assert(packed->subType.as<CreatureID>().getNum()==1006&&packed->value==5);
+ const auto skill=era_campaign_pictures::component(20,15,creatureId);assert(skill->subType.as<SecondarySkill>().getNum()==4&&skill->value==1);
+ const auto daily=era_campaign_pictures::component(6,-200,creatureId);assert(daily->type==ComponentType::RESOURCE_PER_DAY&&daily->value==200);
+ const auto loss=era_campaign_pictures::component(36,-100200,creatureId);assert(loss->type==ComponentType::RESOURCE&&loss->value==-200);
+ assert(!era_campaign_pictures::component(-1,-1,creatureId));
+
 }

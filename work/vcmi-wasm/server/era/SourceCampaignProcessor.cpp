@@ -7,6 +7,8 @@
 #include "../queries/VisitQueries.h"
 #include "../../lib/era/EraCampaignExecutor.h"
 #include "../../lib/era/EraCampaignJson.h"
+#include "../../lib/era/EraCampaignDialogs.h"
+#include "../../lib/era/EraCampaignPictures.h"
 #include "../../lib/era/EraSourceCreatureLevels.h"
 #include "../../lib/GameLibrary.h"
 #include "../../lib/CPlayerState.h"
@@ -174,11 +176,21 @@ struct SourceCampaignProcessor::Impl final:Host
   if(shown)return;
   auto dialog=std::make_shared<CGenericQuery>(&gh,player,[this](std::optional<int32_t> answer)
   {
-   shown.reset();const auto flag=pending["flag"].Integer();if(flag)writeFlag(flag,vm,answer.value_or(0)!=0);
+   shown.reset();
+   if(pending["contract"].String()=="source-campaign-dialog-v1")
+   {era_campaign_dialogs::Dialogs dialogs(state["dialogs"],vm,context);dialogs.reply(pending,answer.value_or(-1),pending["replyText"].String());}
+   else {const auto flag=pending["flag"].Integer();if(flag)writeFlag(flag,vm,answer.value_or(0)!=0);}
    pending=JsonNode();run();
   });
   shown=dialog->queryID;gh.queries->addQuery(dialog);
-  BlockingDialog packet(pending["flag"].Integer()!=0,false);packet.queryID=dialog->queryID;packet.player=player;packet.text.appendRawString(pending["text"].String());gh.sendAndApply(packet);
+  BlockingDialog packet(pending["flag"].Integer()!=0,false);packet.queryID=dialog->queryID;packet.player=player;packet.text.appendRawString(pending["text"].String());
+  const auto kind=pending["kind"].String();
+  if(kind=="message"||kind=="question")for(const auto & picture:pending["pictures"].Vector())
+  {
+   const auto data=era_campaign_pictures::component(picture["type"].Integer(),picture["subtype"].Integer(),[this](int source){return creature(source);});
+   if(data)packet.components.push_back(*data);
+  }
+  gh.sendAndApply(packet);
  }
  void onReady(PlayerColor who)
  {
@@ -220,12 +232,17 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
  comparison.reset();
  if(c.receiver=="IF")
  {
-  require(op.code=="M"||op.code=="Q","unsupported Cave dialog "+op.code);
-  arity(op,op.code=="M"?1:2);
-  const int flag=op.code=="Q"?number(args[0]):0;
-  const auto & text=args.back();const std::string message=text.kind==Kind::String||text.space=='z'?readText(text,vm,context):lookup(vm.z,number(text));
-  if(!gh.gameInfo().getPlayerState(player)->isHuman()){if(flag)writeFlag(flag,vm,false);return Step::Continue;}
-  pending["flag"].Integer()=flag;pending["text"].String()=message;return Step::Suspend;
+  era_campaign_dialogs::Dialogs dialogs(state["dialogs"],vm,context);
+  auto prompt=dialogs.execute(op);if(prompt.isNull())return Step::Continue;
+  if(!gh.gameInfo().getPlayerState(player)->isHuman())
+  {
+   const auto kind=prompt["kind"].String();
+   if(kind=="message")dialogs.reply(prompt,1,"");
+   else if(kind=="question")dialogs.reply(prompt,0,"");
+   else throw std::runtime_error("Original campaign: interactive AI dialog is not admitted");
+   return Step::Continue;
+  }
+  pending=std::move(prompt);return Step::Suspend;
  }
  if(c.receiver=="HE")
  {
@@ -390,6 +407,31 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
 SourceCampaignProcessor::SourceCampaignProcessor(CGameHandler & game):impl(std::make_unique<Impl>(game)){}
 SourceCampaignProcessor::~SourceCampaignProcessor()=default;
 void SourceCampaignProcessor::onReady(PlayerColor player){impl->onReady(player);}
+bool SourceCampaignProcessor::draft(QueryID query,int selection,const std::string & text,PlayerColor player)
+{
+ impl->bind();
+ if(!impl->active||!impl->shown||*impl->shown!=query||player!=impl->player||!impl->pending.isStruct())return false;
+ const auto top=impl->gh.queries->topQuery(player);if(!top||top->queryID!=query)return false;
+ const auto kind=impl->pending["kind"].String();if(kind!="extended"&&kind!="checklist"&&kind!="pictures")return false;
+ try{State checked=impl->vm;JsonNode definitions=impl->state["dialogs"];era_campaign_dialogs::Dialogs dialogs(definitions,checked,impl->context);dialogs.reply(impl->pending,selection,text);}
+ catch(const std::runtime_error &){return false;}
+ impl->pending["draft"]["selection"].Integer()=selection;impl->pending["draft"]["text"].String()=text;impl->persist();return true;
+}
+bool SourceCampaignProcessor::reply(QueryID query,int selection,const std::string & text,PlayerColor player)
+{
+ impl->bind();
+ if(!impl->active||!impl->shown||*impl->shown!=query||player!=impl->player||!impl->pending.isStruct())return false;
+ const auto top=impl->gh.queries->topQuery(player);if(!top||top->queryID!=query)return false;
+ // Validate on a copy; a malformed packet must not change the suspended VM.
+ try
+ {
+  State checked=impl->vm;JsonNode definitions=impl->state["dialogs"];
+  era_campaign_dialogs::Dialogs dialogs(definitions,checked,impl->context);dialogs.reply(impl->pending,selection,text);
+ }
+ catch(const std::runtime_error &){return false;}
+ impl->pending["replyText"].String()=text;
+ return impl->gh.queryReply(query,selection,player);
+}
 bool SourceCampaignProcessor::visit(const CGObjectInstance * object,const CGHeroInstance * hero){return impl->visit(object,hero);}
 bool SourceCampaignProcessor::timedEvent(const CMapEvent & event,PlayerColor player)
 {

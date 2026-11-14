@@ -11,6 +11,7 @@
 #include "ServerNetPackVisitors.h"
 
 #include "CGameHandler.h"
+#include "era/SourceCampaignProcessor.h"
 #include "IGameServer.h"
 #include "battles/BattleProcessor.h"
 #include "processors/HeroPoolProcessor.h"
@@ -445,6 +446,12 @@ void ApplyGhNetPackVisitor::visitBuildBoat(BuildBoat & pack)
 		gh.throwAndComplain(connection, "Can't build boat at enemy shipyard");
 
 	result = gh.buildBoat(pack.objid, pack.player);
+}
+
+void ApplyGhNetPackVisitor::visitSourceCampaignReply(SourceCampaignReply & pack)
+{
+ gh.throwIfWrongPlayer(connection,&pack);
+ result=pack.submit?gh.sourceCampaigns->reply(pack.qid,pack.reply.value_or(-1),pack.text,pack.player):gh.sourceCampaigns->draft(pack.qid,pack.reply.value_or(-1),pack.text,pack.player);
 }
 
 void ApplyGhNetPackVisitor::visitQueryReply(QueryReply & pack)

@@ -1,3 +1,4 @@
+import {campaignDialogDraft,renderCampaignDialogForm,sendCampaignDialogReply,sendCampaignDialogDraft} from './campaign-dialog-form.mjs';
 import {plainGameText} from './game-text.mjs';
 import {renderCommanderTree} from './commander-tree.mjs';
 import {getLanguage} from './i18n.mjs';
@@ -5,15 +6,21 @@ import {createProgressionChoices} from './progression-choices.mjs';
 const text=value=>plainGameText(value||'');
 // Keep all decisions native. The DOM is a responsive presentation of the live
 // components and sends clicks to their current logical coordinates.
-export function createDialogPresentation({root,command,pointer,refresh=()=>{}}){
+export function createDialogPresentation({root,command,pointer,refresh=()=>{},scriptReply=sendCampaignDialogReply,scriptDraft=sendCampaignDialogDraft}){
  const progression=createProgressionChoices({root,command});
  const panel=document.createElement('section');panel.className='dialog-presentation';panel.hidden=true;panel.setAttribute('aria-labelledby','dialog-presentation-title');root.append(panel);
- let state,key,dirty=false,icons=[],classic=false,inspect=0,lastMode='',captureAfter=0,hasSnapshot=false,snapshotGeometry='',treeOpen=false,treeFilter=null,replyingTo=null,campaignExit=null;
- function holdCampaign(){panel.dataset.waiting='true';for(const button of panel.querySelectorAll('button'))button.disabled=true;}
+ let state,key,dirty=false,icons=[],classic=false,inspect=0,lastMode='',captureAfter=0,hasSnapshot=false,snapshotGeometry='',treeOpen=false,treeFilter=null,replyingTo=null,campaignExit=null,campaignDraft=null;
+ function holdCampaign(){panel.dataset.waiting='true';for(const button of panel.querySelectorAll('button,input'))button.disabled=true;}
  window.addEventListener('goonk-language',()=>{key=undefined;if(state)update(state);});
  panel.addEventListener('click',event=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
   if(state?.dialogKind==='source-campaign'&&(button.hasAttribute('data-dialog-confirm')||button.hasAttribute('data-dialog-cancel'))){replyingTo=state.dialogPresentation.queryId;holdCampaign();}
+  if(state?.dialogPresentation?.scriptDialog&&(button.hasAttribute('data-dialog-confirm')||button.hasAttribute('data-dialog-cancel'))){
+   const model=state.dialogPresentation.scriptDialog;
+   const selection=button.hasAttribute('data-dialog-cancel')?(model.kind==='extended'?-1:0):campaignDraft.selection;
+   if(!scriptReply({queryId:model.queryId,selection,text:campaignDraft.text})){replyingTo=null;delete panel.dataset.waiting;for(const control of panel.querySelectorAll('button,input'))control.disabled=false;}
+   return;
+  }
   if(button.hasAttribute('data-commander-tree')){treeOpen=!treeOpen;key=undefined;update(state);}
   else if(button.hasAttribute('data-dialog-classic')){classic=true;update(state);refresh();}
   else if(button.dataset.dialogInfo!==undefined){inspect=Number(button.dataset.dialogInfo);key=undefined;update(state);}
@@ -32,12 +39,12 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{}}){
   // to the server. A transient adventure frame must not flash behind a quest.
   if(state?.dialogKind==='source-campaign'&&next.campaignPending&&
      (next.mode!=='dialog'||(replyingTo!==null&&next.dialogPresentation?.queryId===replyingTo))){holdCampaign();return;}
-  replyingTo=null;if(panel.dataset.waiting){delete panel.dataset.waiting;for(const button of panel.querySelectorAll('button'))button.disabled=false;}
+  replyingTo=null;if(panel.dataset.waiting){delete panel.dataset.waiting;for(const button of panel.querySelectorAll('button,input'))button.disabled=false;}
   if(progression.update(next)){state=next;panel.hidden=true;key=undefined;icons=[];root.setAttribute('data-dialog-presentation','');return;}
   if(!['commander','commander-level-up'].includes(next.dialogKind)){treeOpen=false;treeFilter=null;}
   state=next;if(next.mode!==lastMode||next.dialogKind!=='commander'){classic=false;inspect=0;}lastMode=next.mode;const data=next.mode==='dialog'&&!classic&&next.dialogPresentation;
   panel.hidden=!data;root.toggleAttribute('data-dialog-presentation',!!data);
-  if(!data){key=undefined;icons=[];hasSnapshot=false;return;}
+  if(!data){key=undefined;icons=[];hasSnapshot=false;campaignDraft=null;return;}
   const nextKey=JSON.stringify(data);if(nextKey===key)return;key=nextKey;
   const scroll=panel.querySelector('.commander-tree')?.scrollTop||0;
   const previous=panel.querySelector('[data-dialog-choice]:focus')?.dataset.dialogChoice;
@@ -61,9 +68,13 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{}}){
    const label=document.createElement('strong');label.textContent=text(choice.label)||'Reward';item.append(icon,label);
    choices.append(item);icons.push({canvas:icon,rect:choice.rect});
   }
-  const actions=document.createElement('footer'),confirm=document.createElement('button');confirm.type='button';confirm.className='primary';confirm.dataset.dialogConfirm='';confirm.textContent=next.dialogKind==='commander'?'← Back':next.dialogKind==='commander-level-up'?'✓ Confirm skill':'✓ Confirm';actions.append(confirm);
+  if(data.scriptDialog){
+   if(campaignDraft?.queryId!==data.scriptDialog.queryId)campaignDraft=campaignDialogDraft(data.scriptDialog);
+   content.append(renderCampaignDialogForm(data.scriptDialog,campaignDraft,{icons,onDraft:scriptDraft,confirm:()=>panel.querySelector('[data-dialog-confirm]')?.click()}));
+  }else campaignDraft=null;
+  const actions=document.createElement('footer'),confirm=document.createElement('button');confirm.type='button';confirm.className='primary';confirm.dataset.dialogConfirm='';confirm.textContent=next.dialogKind==='source-campaign'?(getLanguage()==='fr'?(data.scriptDialog?'✓ Valider':data.cancel?'✓ Oui':'✓ Continuer'):(data.scriptDialog?'✓ Confirm':data.cancel?'✓ Yes':'✓ Continue')):next.dialogKind==='commander'?'← Back':next.dialogKind==='commander-level-up'?'✓ Confirm skill':'✓ Confirm';actions.append(confirm);
   if(next.dialogKind==='commander'){const classicButton=document.createElement('button');classicButton.type='button';classicButton.dataset.dialogClassic='';classicButton.textContent='Classic view';actions.append(classicButton);}
-  if(data.cancel&&next.dialogKind!=='commander'){const cancel=document.createElement('button');cancel.type='button';cancel.dataset.dialogCancel='';cancel.textContent='← Back';actions.append(cancel);}
+  if((data.scriptDialog?data.scriptDialog.canCancel:data.cancel)&&next.dialogKind!=='commander'){const cancel=document.createElement('button');cancel.type='button';cancel.dataset.dialogCancel='';cancel.textContent=next.dialogKind==='source-campaign'?(getLanguage()==='fr'?(data.scriptDialog?'← Annuler':'← Non'):(data.scriptDialog?'← Cancel':'← No')):'← Back';actions.append(cancel);}
   panel.append(header,content,choices,actions);
   if(treeOpen&&data.commanderTree){const pending=(data.choices||[]).find(c=>c.selected);if(next.dialogKind==='commander-level-up'&&pending){confirm.textContent='✓ '+text(pending.label);}const tree=renderCommanderTree(data.commanderTree,data.choices||[],{filter:treeFilter,onFilter:id=>{treeFilter=id;key=undefined;update(state);},onSelect:id=>command(96,id)});content.hidden=true;choices.hidden=true;panel.insertBefore(tree,actions);tree.scrollTop=scroll;}
   dirty=true;captureAfter=performance.now()+80;panel.setAttribute('aria-busy','true');

@@ -15,6 +15,7 @@
 #include "../mapObjects/CGTownInstance.h"
 #include "../mapping/CMap.h"
 #include "../networkPacks/PacksForServer.h"
+#include "../networkPacks/SourceCampaignReply.h"
 #include "../networkPacks/SaveLocalState.h"
 #include "../era/EraConfluxPolicies.h"
 #include "../mapObjects/army/CStackInstance.h"
@@ -45,6 +46,14 @@ void CCallback::moveHero(const CGHeroInstance *h, const std::vector<int3> & path
 int CCallback::selectionMade(int selection, QueryID queryID)
 {
 	return sendQueryReply(selection, queryID);
+}
+
+int CCallback::sourceCampaignReply(QueryID queryID,int selection,const std::string & text,bool submit)
+{
+ ASSERT_IF_CALLED_WITH_PLAYER
+ if(queryID.getNum()<0||text.size()>2048||text.find('\0')!=std::string::npos)return -1;
+ SourceCampaignReply pack;pack.qid=queryID;pack.reply=selection;pack.player=*getPlayerID();pack.text=text;pack.submit=submit;
+ return sendRequest(pack);
 }
 
 int CCallback::sendQueryReply(std::optional<int32_t> reply, QueryID queryID)

@@ -16,6 +16,7 @@
 #include "SaveLocalState.h"
 #include "SetRewardableConfiguration.h"
 #include "SourceCampaignChange.h"
+#include "SourceCampaignReply.h"
 #include "SetStackEffect.h"
 
 VCMI_LIB_NAMESPACE_BEGIN
@@ -158,6 +159,7 @@ public:
 	virtual void visitHireHero(HireHero & pack) {}
 	virtual void visitBuildBoat(BuildBoat & pack) {}
 	virtual void visitQueryReply(QueryReply & pack) {}
+	virtual void visitSourceCampaignReply(SourceCampaignReply & pack) {}
 	virtual void visitMakeAction(MakeAction & pack) {}
 	virtual void visitDigWithHero(DigWithHero & pack) {}
 	virtual void visitCastAdvSpell(CastAdvSpell & pack) {}

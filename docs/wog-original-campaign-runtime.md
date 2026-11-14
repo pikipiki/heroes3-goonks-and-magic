@@ -1,6 +1,6 @@
 # Port natif des campagnes originales : état réel
 
-Le port complet de la priorité 6 n’est pas terminé. Les quatre campagnes, leurs onze scénarios et Cave of Gerfrex restent désactivés. La version 0.4.170 ajoute un premier raccordement natif à Cave, vérifié sur les parcours décrits ci-dessous. Elle ne constitue pas le port intégral des campagnes.
+Le port complet de la priorité 6 n’est pas terminé. Les quatre campagnes, leurs onze scénarios et Cave of Gerfrex restent désactivés. La version 0.4.170 ajoute un premier raccordement natif à Cave ; la 0.4.171 ajoute les formulaires natifs avec saisie et choix multiples. Ces étapes ne constituent pas le port intégral des campagnes.
 
 ## Ce qui est implémenté
 
@@ -41,11 +41,21 @@ Deux contrats anciens restent explicitement limités aux sources de Cave : `LE:Z
 
 Ces parcours Cave utilisent un registre activé uniquement dans le navigateur de test, une position de départ du héros déplacée vers la quête examinée et les commandes natives de révélation/déplacement. Ils ne forcent aucun drapeau de quête ni récompense. Ce sont des validations de branches réelles, pas une partie complète de la carte originale. Les archives source ne sont pas réécrites. Les contrôles et limites sont détaillés dans [le relevé 170](../outputs/wog-priorities-0.4.147/campaign-runtime/native-host-170.json). Aucune sauvegarde, préférence locale ou instrumentation temporaire n’est livrée.
 
+## Formulaires natifs en 0.4.171
+
+Les commandes `IF:D/E/F/G`, ainsi que les modes de `IF:Q` utilisés par les scénarios pour choisir entre deux illustrations, passent désormais par une requête native. Le nouveau paquet 271 transporte l’identifiant de la requête, la sélection, le texte et la distinction entre brouillon et validation. Le serveur vérifie le joueur, la requête active et les valeurs permises avant toute mutation. Un brouillon met à jour l’état sauvegardé sans appliquer la réponse aux variables de quête. Le chargement recrée une nouvelle requête et retrouve la saisie ou les cases cochées.
+
+Le client fournit une fenêtre native et un formulaire tactile. Le champ conserve son contenu et son focus pendant les mises à jour ; le clavier ne déclenche pas les raccourcis SDL. Les boutons restent accessibles sur petit écran, en portrait et paysage, avec défilement vertical et protection contre la double validation. Le formulaire ne remonte pas pendant la réplication d’un brouillon. Les images de composants du moteur peuvent servir de choix tactiles ; les fichiers multimédias externes des campagnes ne sont pas encore tous raccordés.
+
+Les comparaisons textuelles portent sur le contenu des cellules z et des alias. Elles ignorent la casse ASCII et normalisent les séparateurs espace, tabulation, CR et LF, en conservant les frontières des mots. La référence primaire `StrCmpExt` de WoG 3.59 alpha est [common.cpp](https://github.com/GrayFace/wog/blob/04331ca2bf9e895703c0cf5854a14a754f671bc6/T1/common.cpp). Le port rend symétrique la comparaison de deux textes vides après normalisation ; l’original possède un cas asymétrique pour une chaîne vide comparée à des espaces. Aucune des onze conditions textuelles recensées ne dépend de cette exception. Les substitutions de variables dans les littéraux sont évaluées au moment de leur exécution ; la valeur copiée d’une cellule n’est pas reparsée récursivement. La définition d’un dialogue restaure ses indices, textes d’aide et annulation par défaut, conformément au répartiteur `IF:D` de [erm.cpp](https://github.com/GrayFace/wog/blob/04331ca2bf9e895703c0cf5854a14a754f671bc6/T1/erm.cpp). Ces références de source 3.59 ne valent pas preuve de tous les comportements du binaire ERA fourni.
+
+Les tests natifs injectent uniquement les instructions de dialogue sélectionnées des scénarios dans un emplacement privé de Cave. Pour l’énigme des dragons de rouille, les commandes HE de récompense et de combat sont explicitement retirées de cette fixture. Un succès ou un échec du mot de passe prouve donc la branche de dialogue, pas l’attribution des dragons ni leur combat. Les scénarios originaux ne sont pas activés par ces essais. Le [relevé 171](../outputs/wog-priorities-0.4.147/campaign-runtime/native-dialogs-171.json) distingue ces contrôles des parcours Cave 170. Le moteur vérifié a l’empreinte `4ce3806279cadf0c58e7bc5d328977fd4a526a191eafeb9e5203bb46991494ea`. Les 751 tests donnent 717 réussites, 34 ignorés et aucun échec ; le vrai codec passe sous ASan/UBSan. La sauvegarde de la question du levier en 170 reprend avec ses effets aux jours 2 et 3. Les deux cartes Goonk publiées passent sauvegarde, rechargement, rôles et tours réels ; un combat de la carte 003 atteint un premier tour positif. Aucune victoire de combat supplémentaire n’est revendiquée.
+
 ## Ce qui empêche encore l’activation
 
 1. Les autres branches de Cave et son parcours complet jusqu’à une victoire native.
 2. Les adaptations natives des commandes d’aventure, de combat et de minuterie des onze scénarios des campagnes, et leur raccordement aux événements du jeu.
-3. Les dialogues complets de ces scénarios, dont saisie de texte et choix multiples, avec persistance et réplication des réponses et mutations réelles.
+3. Le raccordement des formulaires aux quêtes complètes, aux médias externes et aux récompenses/combats de ces scénarios. Les formulaires avec saisie et choix multiples sont implémentés, mais leur validation isolée ne couvre pas ces parcours.
 4. La correction vérifiée du graphe d’accès de zc1, les transferts entre scénarios, puis les parcours de quêtes, combats, sauvegardes et victoires sur les cartes originales.
 
 Les fichiers incomplets des adaptations précédentes restent conservés dans le répertoire de travail indiqué par le [relevé précédent](../outputs/wog-priorities-0.4.147/campaigns169/README.md). Ils ne sont pas utilisés par ce raccordement. La compilation d’un script et la sérialisation de la VM ne constituent pas une preuve que sa quête ou sa campagne fonctionne dans le jeu.

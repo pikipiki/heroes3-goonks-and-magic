@@ -44,6 +44,7 @@ public:
 	void moveHero(const CGHeroInstance *h, const int3 & destination, bool transit) override;
 	bool teleportHero(const CGHeroInstance *who, const CGTownInstance *where);
 	int selectionMade(int selection, QueryID queryID) override;
+ int sourceCampaignReply(QueryID queryID,int selection,const std::string & text,bool submit=true);
 	int sendQueryReply(std::optional<int32_t> reply, QueryID queryID) override;
 	int swapCreatures(const CArmedInstance *s1, const CArmedInstance *s2, SlotID p1, SlotID p2) override;
 	int mergeOrSwapStacks(const CArmedInstance *s1, const CArmedInstance *s2, SlotID p1, SlotID p2) override; //first goes to the second
