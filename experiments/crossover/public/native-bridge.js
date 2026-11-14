@@ -4,7 +4,7 @@ export function setupNativeBattle(x, memory, plan) {
     validateBattlePlan(plan);
     if (!x.openbw_crossover_setup)
         throw Error('Passerelle native de combat absente.');
-    const rows = new Int32Array(plan.stacks.flatMap(row => [row.id, row.side, row.unit, row.count]));
+    const rows = new Int32Array(plan.stacks.flatMap(row => [row.id, row.side, row.unit, row.count, row.heroes ? 1 : 0, row.health || 40, row.damageMin ?? 6, row.damageMax ?? 6, row.defense ?? 0, row.speed || 5, row.shooter ? 1 : 0, row.attack ?? 0]));
     const pointer = x.openbw_in_ptr(rows.byteLength);
     new Uint8Array(memory.buffer, pointer, rows.byteLength).set(new Uint8Array(rows.buffer));
     if (x.openbw_crossover_setup(plan.battleId, plan.stacks.length) !== 1)
@@ -57,6 +57,16 @@ export function installNativeBridge(x, memory, target = window) {
         return state;
     };
     const api = {
+        layer() {
+            if (closed || !x.openbw_crossover_layer)
+                throw Error('Rendu partagé indisponible.');
+            const pointer = x.openbw_crossover_layer();
+            if (!pointer)
+                throw Error('Bataille non initialisée.');
+            return { pixels: new Uint8ClampedArray(memory.buffer, pointer, 800 * 500 * 4).slice(), x: x.openbw_crossover_camera_x(), y: x.openbw_crossover_camera_y(), width: 800, height: 500 };
+        },
+        order(stack, px, py, attack) { if (closed || !x.openbw_crossover_order)
+            throw Error('Ordre indisponible.'); x.openbw_crossover_order(stack, Math.round(px), Math.round(py), attack ? 1 : 0); },
         start() { if (closed)
             throw Error('Moteur StarCraft fermé.'); },
         battle() {

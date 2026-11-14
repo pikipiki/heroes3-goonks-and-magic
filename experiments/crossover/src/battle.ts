@@ -1,8 +1,8 @@
-export type HeroesStack = {id: number; side: number; count: number; name: string; creature: string; shooter: boolean; health: number};
-export type BattlePlan = {version: 1; battleId: number; stacks: (HeroesStack & {unit: number})[]};
+export type HeroesStack = {id: number; side: number; count: number; name: string; creature: string; shooter: boolean; health: number; damageMin?:number;damageMax?:number;defense?:number;attack?:number;speed?:number};
+export type BattlePlan = {version: 1; battleId: number; stacks: (HeroesStack & {unit: number; heroes?:boolean})[]};
 export type BattleState = {battleId: number; frame: number; finished: boolean; groups: {id: number; side: number; initial: number; survivors: number}[]};
 export function battlePlan(value: {battleId: number; stacks: HeroesStack[]}): BattlePlan {
- const plan: BattlePlan = {version:1,battleId:value.battleId,stacks:value.stacks.map(row=>({...row,unit:row.shooter?0:row.health>=35?32:37}))};
+ const plan: BattlePlan = {version:1,battleId:value.battleId,stacks:value.stacks.map(row=>({...row,heroes:!row.creature.startsWith("heroes-starcraft:"),unit:row.creature==="heroes-starcraft:zergling"?37:row.creature.startsWith("heroes-starcraft:")?0:row.shooter?0:37}))};
  validateBattlePlan(plan);return plan;
 }
 export function validateBattlePlan(value: BattlePlan): void {
@@ -10,6 +10,7 @@ export function validateBattlePlan(value: BattlePlan): void {
  const ids=new Set<number>(),totals=[0,0];
  for(const row of value.stacks){
   if(!Number.isSafeInteger(row.id)||row.id<0||ids.has(row.id)||![0,1].includes(row.side)||!Number.isSafeInteger(row.count)||row.count<1||row.count>128||![0,32,37].includes(row.unit))throw Error('Troupe Heroes invalide.');
+  if(row.heroes && (!Number.isSafeInteger(row.health)||row.health<1||row.health>10000))throw Error('Points de vie Heroes invalides.');
   ids.add(row.id);totals[row.side]+=row.count;
  }
  if(totals.some(total=>total<1||total>128))throw Error('Ce test accepte de 1 à 128 créatures par armée.');

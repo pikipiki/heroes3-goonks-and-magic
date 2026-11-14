@@ -1,0 +1,1 @@
+Marine artwork is rendered from the Blizzard StarEdit archives explicitly requested by the project owner, using the pinned OpenBW engine. See experiments/crossover/SECURITY-REVIEW.md. The catalogue/adventure image is a static native sprite; live battles use animated OpenBW rendering. This experimental creature is excluded from random armies.

@@ -5,7 +5,7 @@
       "name": "Both native engines running; actual Heroes menu event reaches native OpenBW log; native state returns to bridge",
       "sample": {
         "frame": 25,
-        "checksum": 22380666,
+        "checksum": 2069241626,
         "outcome": 0,
         "cohort": {
           "initial": 5,
@@ -20,11 +20,11 @@
       "name": "Native SCV production completes, queue empties and exactly 50 minerals are spent",
       "before": {
         "workers": 4,
-        "frame": 35,
+        "frame": 36,
         "minerals": 50
       },
       "queued": {
-        "frame": 38,
+        "frame": 40,
         "minerals": 0
       },
       "completed": {
@@ -36,16 +36,16 @@
       "name": "Real Move command changes native worker position through engine pathfinding",
       "target": {
         "world": {
-          "x": 400,
-          "y": 1128
+          "x": 1936,
+          "y": 1160
         },
         "screen": {
-          "x": 400,
+          "x": 1004,
           "y": 359
         },
         "camera": {
-          "x": 0,
-          "y": 769,
+          "x": 932,
+          "y": 801,
           "width": 1116,
           "height": 718
         }
@@ -53,17 +53,17 @@
       "before": {
         "id": 3664,
         "type": "SCV",
-        "owner": 3,
-        "x": 304,
-        "y": 1064,
+        "owner": 1,
+        "x": 1840,
+        "y": 1096,
         "order": 2
       },
       "after": {
         "id": 3664,
         "type": "SCV",
-        "owner": 3,
-        "x": 321,
-        "y": 1080,
+        "owner": 1,
+        "x": 1857,
+        "y": 1112,
         "order": 6
       }
     },
@@ -76,7 +76,7 @@
         "workers": 4,
         "sample": {
           "frame": 462,
-          "checksum": 532191965,
+          "checksum": 1794049308,
           "outcome": 0,
           "cohort": {
             "initial": 5,
@@ -111,7 +111,7 @@
           },
           {
             "id": 471,
-            "name": "Solmyr",
+            "name": "Daremyth",
             "needsLastStack": true,
             "slots": [
               {
@@ -127,7 +127,7 @@
                   30,
                   0
                 ],
-                "count": 36,
+                "count": 40,
                 "damageMax": 2,
                 "damageMin": 1,
                 "defense": 3,
@@ -170,7 +170,7 @@
                   130,
                   0
                 ],
-                "count": 5,
+                "count": 3,
                 "damageMax": 3,
                 "damageMin": 2,
                 "defense": 6,
@@ -200,49 +200,7 @@
                 "shots": 0,
                 "speed": 6
               },
-              {
-                "aiValue": 250,
-                "attack": 7,
-                "cost": [
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  150,
-                  0
-                ],
-                "count": 2,
-                "damageMax": 5,
-                "damageMin": 4,
-                "defense": 10,
-                "description": "",
-                "experience": 0,
-                "experiencePerUnit": 0,
-                "experienceRank": 0,
-                "fightValue": 339,
-                "growth": 6,
-                "health": 30,
-                "icon": "",
-                "id": 32,
-                "key": "core:ironGolem",
-                "name": "Stone Golem",
-                "nativeFlags": {
-                  "attacksAllAdjacent": false,
-                  "blocksRetaliation": false,
-                  "chargeImmune": false,
-                  "flying": false,
-                  "living": false,
-                  "mindImmune": false,
-                  "noMorale": false,
-                  "nonLiving": true,
-                  "undead": false
-                },
-                "shooter": false,
-                "shots": 0,
-                "speed": 3
-              },
+              null,
               null,
               null,
               null,
@@ -255,12 +213,12 @@
     },
     {
       "name": "VCMI serializes an actual local save while the StarCraft simulation continues",
-      "bytes": 442369
+      "bytes": 532481
     },
     {
       "name": "Native replay serialization produces bytes (not a save/resume test)",
-      "length": 23278,
-      "frame": 518
+      "length": 23275,
+      "frame": 524
     }
   ],
   "passed": true

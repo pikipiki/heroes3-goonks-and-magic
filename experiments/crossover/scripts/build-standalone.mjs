@@ -15,6 +15,12 @@ for(const file of ['game.html','storage.html']){
  const filename=output+'/'+file;fs.writeFileSync(filename,fs.readFileSync(filename,'utf8').replace(/http-equiv="Content-Security-Policy" content="[^"]+"/,`http-equiv="Content-Security-Policy" content="${policy}"`));
 }
 fs.writeFileSync(output+'/_headers',`/*\n  Cross-Origin-Opener-Policy: same-origin\n  Cross-Origin-Embedder-Policy: require-corp\n  Content-Security-Policy: ${policy}\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n/starcraft/data/manifest.json\n  Cache-Control: no-cache\n/starcraft/data/chunks/*\n  Cache-Control: public, max-age=31536000, immutable\n`);
+fs.copyFileSync(output+'/index.html',output+'/laboratoire.html');
+let heroesPage=fs.readFileSync(output+'/game.html','utf8');
+heroesPage=heroesPage.replace('</body>','<script type="module" src="./adventure-entry.js"></script></body>');
+fs.writeFileSync(output+'/game.html',heroesPage);
+fs.writeFileSync(output+'/heroes-entry.js',"location.replace(new URL('./game.html?mobile=1&skip-autoresume=1',location.href));\n");
+fs.writeFileSync(output+'/index.html','<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Heroes Goonk</title><script type="module" src="./heroes-entry.js"></script></head><body>Chargement de Heroes Goonk…</body></html>');
 fs.writeFileSync(output+'/robots.txt','User-agent: *\nDisallow: /\n');
 fs.writeFileSync(output+'/netlify.toml','[build]\n  publish = "."\n');
 console.log('Separate publish directory: '+output);

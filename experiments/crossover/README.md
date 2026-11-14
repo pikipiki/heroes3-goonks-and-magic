@@ -2,18 +2,20 @@
 
 Branche : `codex/heroes-starcraft-crossover`. Checkout indépendant : `/Users/sevenone./.codex/worktrees/heroes-starcraft/heroes-goonk`. Les modifications du jeu Heroes existant restent séparées de ce laboratoire.
 
-Le lanceur permet maintenant de jouer une véritable bataille Heroes dans OpenBW : l’armée VCMI initialise les unités StarCraft, le combat se déroule en temps réel, puis ses survivants sont appliqués par le serveur VCMI. Les moteurs C++ restent les moteurs réels, compilés en WebAssembly.
+Le site expérimental ouvre directement **Heroes Goonk**. Le bouton **Démo : Heroes × StarCraft**, présent dans Heroes, lance une vraie bataille entre archers/piquiers Heroes et Marines StarCraft, sur un champ de bataille Heroes unique. Aucun écran ni menu StarCraft n’est montré dans ce parcours.
 
-## Jouer au crossover
+## Jouer à la démo intégrée
 
-1. Choisir **Nouvelle partie de test StarCraft**. Le scénario Heroes « Crossover - duel StarCraft » démarre automatiquement.
-2. Sélectionner le garde immédiatement à droite de Christian, puis utiliser la commande de déplacement Heroes pour l’attaquer.
-3. Les deux armées apparaissent dans StarCraft. Attendre le chargement initial des données, puis appuyer sur **Commencer le combat**. Ce bouton lance aussi un ordre d’attaque à toute l’armée ; le contrôle natif StarCraft reste disponible.
-4. À la fin, confirmer le bilan Heroes pour continuer l’aventure avec les survivants. La sauvegarde Heroes après ce retour conserve ces pertes.
+1. Dans Heroes, appuyer sur **Démo : Heroes × StarCraft**. La carte et l’attaque sont préparées automatiquement. Depuis une aventure en cours, le jeu attend d’abord sa sauvegarde dédiée **Avant-demo-StarCraft** ; celle-ci se recharge par le menu Heroes.
+2. Attendre le téléchargement initial des données, puis appuyer sur **Commencer le combat**.
+3. Toucher une troupe pour sélectionner son groupe, puis le terrain pour le déplacer ou un ennemi pour attaquer. **Toute l’armée** sélectionne toutes les troupes ; **Attaquer avec l’armée** donne un ordre d’attaque général.
+4. Confirmer le bilan Heroes pour poursuivre l’aventure avec les survivants. La sauvegarde après ce retour conserve les pertes.
 
-« Reprendre le combat Heroes » annule la délégation et reprend la bataille native sans appliquer les pertes RTS partielles. « Choisir une aventure Heroes » permet d’activer le même mode sur une autre carte compatible.
+La démo contient 12 archers, 6 piquiers et le commandant Heroes, face à 3 Marines. Les troupes Heroes restent des troupes Heroes ; les Marines ont une véritable définition `heroes-starcraft:marine` dans le catalogue VCMI. Ils ne sont pas des gardes renommés. Le sprite de catalogue est extrait du rendu natif OpenBW ; le combat utilise ses sprites animés natifs. Les animations et le décor Heroes sont fournis par VCMI.
 
-Le test automatique complet vérifie l’attaque Heroes, les effectifs exacts dans OpenBW, le retour des pertes, la sauvegarde/relecture native et l’annulation. Voir [VALIDATION.md](./VALIDATION.md).
+« Reprendre le combat classique » annule la délégation et reprend la bataille VCMI avec les effectifs initiaux. Les sauvegardes restent locales. Les sauvegardes de la version précédente peuvent exiger son ancien catalogue de mods ; elles ne sont pas supprimées.
+
+Les deux jeux indépendants et l’ancien laboratoire restent accessibles sous `laboratoire.html`. Voir [VALIDATION.md](./VALIDATION.md) pour les vérifications réellement exécutées.
 
 ## Essayer le bundle déjà construit
 
@@ -84,7 +86,9 @@ Ce dernier exige les vrais fichiers et ne les remplace jamais. Il vérifie les f
 
 Le mode d’observation indépendant conserve son signal de préparation et son suivi de cohorte. Le mode aventure utilise une API native distincte : le serveur VCMI suspend la bataille, conserve les armées initiales, vérifie l’identité du combat et chaque quantité de survivants, puis applique le résultat une seule fois par son traitement normal de fin de bataille. Les résultats incomplets, effectifs augmentés, doublons et identifiants inconnus sont refusés.
 
-Le mapping provisoire conserve une unité par créature : tireurs → Marines ; mêlée avec au moins 35 PV → Firebats ; autre mêlée → Zerglings. Les commandants et machines de guerre présents sont aussi représentés. Les caractéristiques de combat sont celles de StarCraft ; sorts, bonus de héros et améliorations Heroes ne sont pas transposés. L’adversaire reçoit des ordres AttackMove natifs périodiques, sans IA économique avancée.
+Pour le temps réel, OpenBW reçoit des définitions privées par troupe Heroes : PV VCMI exacts, dégâts moyens de l’intervalle VCMI, armure égale à défense/4 (division entière), délai d’attaque borné entre 12 et 48 frames selon 160/vitesse. Ses types StarCraft originaux restent inchangés. Le moteur réutilise les comportements de déplacement/tir/mêlée StarCraft ; cette adaptation n’est pas une conservation exacte des règles de combat au tour par tour. Les sorts, morale/chance, bonus conditionnels, munitions Heroes et améliorations ne sont pas transposés. L’équilibrage reste expérimental. L’adversaire reçoit des ordres AttackMove natifs périodiques, sans IA économique avancée.
+
+Le compositeur `shared-field.ts` affiche les positions et PV natifs, les animations DEF Heroes et une couche transparente de sprites OpenBW. Il ne calcule aucun dégât ni résultat. Les commandes de sélection/déplacement/attaque passent dans le flux de commandes C++ existant. Une iframe technique invisible héberge OpenBW ; seule la vue de combat Heroes est présentée au joueur.
 
 Ce prototype accepte au plus 32 groupes et 128 unités par camp, avec un seul joueur humain attaquant un adversaire non humain. Les sièges, invocations et batailles incompatibles conservent le combat Heroes. La reprise d’une bataille RTS interrompue et son replay ne sont pas pris en charge : reprendre Heroes ou recharger une sauvegarde antérieure. Les Workers, WebRTC et une validation physique sur iPhone/iPad restent à réaliser.
 
@@ -112,7 +116,7 @@ Après compilation des sources VCMI avec `ninja -j32 html5`, utiliser l’archiv
 
 ```sh
 GOONK_ENGINE_ARCHIVE=outputs/vcmi-wasm-heroes-starcraft-engine.tar.gz npm run prepare:web
-GOONK_TEST_ORIGIN=http://127.0.0.1:8779 npm run build:web
+GOONK_CROSSOVER=1 GOONK_TEST_ORIGIN=http://127.0.0.1:8779 npm run build:web
 npm run verify:web
 npm run build --prefix experiments/crossover
 node experiments/crossover/package.mjs

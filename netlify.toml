@@ -16,6 +16,7 @@ GOONK_PUSH_PUBLIC_KEY = "BMD5-Kd8GqFEHRPyDR3f-jj2TVgqRSgKtajdx6mXk_W50cn6-HlKpQA
   publish = "dist-heroes-starcraft"
 [context."codex/heroes-starcraft-crossover".environment]
   GOONK_ENGINE_ARCHIVE = "outputs/vcmi-wasm-heroes-starcraft-engine.tar.gz"
+  GOONK_CROSSOVER = "1"
   GOONK_LOBBY_RELAY = ""
   GOONK_HOSTED_POOL_ENDPOINT = ""
   GOONK_HOSTED_ENDPOINT = ""

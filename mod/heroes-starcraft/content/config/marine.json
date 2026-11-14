@@ -1,0 +1,48 @@
+{
+  "marine": {
+    "name": {
+      "singular": "Marine",
+      "plural": "Marines"
+    },
+    "faction": "neutral",
+    "level": 3,
+    "cost": {
+      "gold": 500
+    },
+    "speed": 6,
+    "hitPoints": 40,
+    "attack": 6,
+    "defense": 0,
+    "shots": 32,
+    "damage": {
+      "min": 6,
+      "max": 6
+    },
+    "fightValue": 250,
+    "aiValue": 250,
+    "advMapAmount": {
+      "min": 6,
+      "max": 6
+    },
+    "growth": 0,
+    "hasDoubleWeek": false,
+    "excludeFromRandomization": true,
+    "abilities": {
+      "shooting": {
+        "type": "SHOOTER"
+      }
+    },
+    "graphics": {
+      "animation": "crossover/marine",
+      "map": "crossover/marine-map",
+      "iconSmall": "crossover/marine.png",
+      "iconLarge": "crossover/marine.png",
+      "timeBetweenFidgets": 10,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      }
+    }
+  }
+}
