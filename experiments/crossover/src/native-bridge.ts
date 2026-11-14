@@ -7,6 +7,8 @@ export type NativeSample = {frame: number; checksum: number; outcome: number; co
 export type HeroesObservation = {version: 1; session: string; sequence: number; mode: string};
 export type NativeBridge = {
   sample(): NativeSample;
+  frame?():number;
+  tickDuration?():number;
   census(): NativeCensus;
   receiveHeroes(observation: HeroesObservation): NativeSample;
   close(): void;
@@ -89,6 +91,7 @@ export function installNativeBridge(x: NativeExports, memory: WebAssembly.Memory
     return state;
   };
   const api: NativeBridge = {
+    frame(){if(closed)throw Error('Moteur StarCraft fermé.');return x.openbw_frame();},
     stop(stack){if(closed||!x.openbw_crossover_stop)throw Error('Arrêt indisponible.');x.openbw_crossover_stop(stack);},
     target(stack,id){if(closed||!x.openbw_crossover_target||!Number.isSafeInteger(id)||id<1||id>65535)throw Error('Cible indisponible.');x.openbw_crossover_target(stack,id);},
     camera(){if(closed||!x.openbw_crossover_camera_x||!x.openbw_crossover_camera_y)throw Error('Caméra indisponible.');return {x:x.openbw_crossover_camera_x(),y:x.openbw_crossover_camera_y()};},

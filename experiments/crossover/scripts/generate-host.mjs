@@ -18,7 +18,7 @@ replace('if (DEV) window.__bw = null;','crossoverApi.close();');
 replace("  hb('boot:engine-ready');", "  if(session.crossover)setupNativeBattle(x,memory,session.crossover);\n  hb('boot:engine-ready');");
 replace('slots: slots.map((s) => s.slot),','slots: session.crossover ? [mySlot] : slots.map((s) => s.slot),');
 replace('let paused = false, waiting = false, stepMs = 42;', 'let paused = !!session.crossover, waiting = false, stepMs = 42;');
-replace('  pauseBtn.onclick = () => {', '  crossoverApi.start = () => { paused=false;stepClock=performance.now();applyPause();x.openbw_set_paused?.(0); };\n  pauseBtn.onclick = () => {');
+replace('  pauseBtn.onclick = () => {', '  crossoverApi.tickDuration = () => stepMs; crossoverApi.start = () => { paused=false;stepClock=performance.now();applyPause();x.openbw_set_paused?.(0); };\n  pauseBtn.onclick = () => {');
 replace('  pauseBtn.onclick = () => {', `  crossoverApi.enableAudio=()=>{ensureAudio();return audioCtx?audioCtx.resume():Promise.reject(Error('Audio indisponible.'));};
   crossoverApi.setMuted=value=>{muted=!!value;try{localStorage.setItem('openbw-muted',muted?'1':'0');}catch{}applyMute();};
   crossoverApi.audioState=()=>({state:audioCtx?.state||'inactive',muted});
@@ -41,6 +41,12 @@ js += `\nlet localBootStarted = false;\nasync function runLocalGame(session) {\n
 // The hidden host verifies local data, warms the map and compiles WASM before battle.
 replace('const assets = await loadAssets(session.mapFile || MAP_LOCAL);', 'const assets = session.crossover ? (await prepareCrossover()).assets : await loadAssets(session.mapFile || MAP_LOCAL);');
 replace('try {\n    ({ instance } = await WebAssembly.instantiateStreaming(wasmReq(), imports));', 'try {\n    if(session.crossover) instance=await WebAssembly.instantiate((await prepareCrossover()).module,imports);\n    else ({ instance } = await WebAssembly.instantiateStreaming(wasmReq(), imports));');
+// The shared field is the visible renderer. Keep native UI/audio updates once
+// per simulation tick, without copying its hidden framebuffer or HUD at 60 Hz.
+replace('  function frame() {\n    x.openbw_render(performance.now());', `  let renderedCrossoverFrame=-1;
+  function frame() {
+    if(session.crossover){const current=x.openbw_frame();if(current!==renderedCrossoverFrame){x.openbw_render(performance.now());renderedCrossoverFrame=current;}requestAnimationFrame(frame);return;}
+    x.openbw_render(performance.now());`);
 const debugStart=js.indexOf('  // Debug (?debug in the URL)'),debugEnd=js.indexOf('  // Chat (Enter to open)',debugStart);
 if(debugStart<0||debugEnd<0)throw Error('Upstream debug section changed');
 js=js.slice(0,debugStart)+js.slice(debugEnd);

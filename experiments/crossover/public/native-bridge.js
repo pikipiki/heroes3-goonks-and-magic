@@ -57,6 +57,8 @@ export function installNativeBridge(x, memory, target = window) {
         return state;
     };
     const api = {
+        frame() { if (closed)
+            throw Error('Moteur StarCraft fermé.'); return x.openbw_frame(); },
         stop(stack) { if (closed || !x.openbw_crossover_stop)
             throw Error('Arrêt indisponible.'); x.openbw_crossover_stop(stack); },
         target(stack, id) { if (closed || !x.openbw_crossover_target || !Number.isSafeInteger(id) || id < 1 || id > 65535)

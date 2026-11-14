@@ -1089,7 +1089,7 @@ async function boot(session) {
     pauseBtn.title = paused ? 'Resume' : 'Pause';
     updateBanner();
   };
-  crossoverApi.start = () => { paused=false;stepClock=performance.now();applyPause();x.openbw_set_paused?.(0); };
+  crossoverApi.tickDuration = () => stepMs; crossoverApi.start = () => { paused=false;stepClock=performance.now();applyPause();x.openbw_set_paused?.(0); };
   crossoverApi.enableAudio=()=>{ensureAudio();return audioCtx?audioCtx.resume():Promise.reject(Error('Audio indisponible.'));};
   crossoverApi.setMuted=value=>{muted=!!value;try{localStorage.setItem('openbw-muted',muted?'1':'0');}catch{}applyMute();};
   crossoverApi.audioState=()=>({state:audioCtx?.state||'inactive',muted});
@@ -1442,7 +1442,9 @@ async function boot(session) {
     curCanvas.style.display = 'block';
   };
 
+  let renderedCrossoverFrame=-1;
   function frame() {
+    if(session.crossover){const current=x.openbw_frame();if(current!==renderedCrossoverFrame){x.openbw_render(performance.now());renderedCrossoverFrame=current;}requestAnimationFrame(frame);return;}
     x.openbw_render(performance.now());
     const w = x.openbw_framebuffer_width(), h = x.openbw_framebuffer_height(), ptr = x.openbw_framebuffer();
     if (w && h && ptr) {

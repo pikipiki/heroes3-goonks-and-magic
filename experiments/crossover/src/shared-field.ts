@@ -1,3 +1,4 @@
+import {RenderClock,SimulationTimeline,interpolatedPosition,attackCycle,heroAnimation,type AttackCycle} from './animation.js';
 import type {BattlePlan} from './battle.js';
 import type {NativeBridge,NativeUnit} from './native-bridge.js';
 type Art={battleId:number;canvas:HTMLCanvasElement;rows:{id:number;row:number}[]};
@@ -15,56 +16,87 @@ export function battleView(units:NativeUnit[],camera:{x:number;y:number}):{zoom:
 // Both engines supply their original art. All positions/HP/orders come from
 // OpenBW; this compositor never advances combat or invents an outcome.
 export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge,plan:BattlePlan):()=>void {
- const source=win as VisualWindow,context=canvas.getContext('2d')!,sprite=win.document.createElement('canvas');sprite.width=sprite.height=96;
+ const source=win as VisualWindow,context=canvas.getContext('2d')!;
  canvas.width=800;canvas.height=500;canvas.setAttribute('aria-label','Champ de bataille Heroes III : unités Heroes et StarCraft en temps réel');
- const sc=sprite.getContext('2d')!,previous=new Map<number,{x:number;y:number;moving:boolean;hp:number}>();let request=0,closed=false,last=0,selected:number|undefined,attackMode=false,units:NativeUnit[]=[],view:ReturnType<typeof battleView>|undefined;
- let marker:{x:number;y:number;target?:number;attack:boolean;at:number}|undefined;const hits=new Map<number,number>();
+ const clock=new RenderClock(),timeline=new SimulationTimeline(),oldUnits=new Map<number,NativeUnit>(),cycles=new Map<number,AttackCycle>(),hits=new Map<number,number>();
+ type SpritePair={before:HTMLCanvasElement;after:HTMLCanvasElement};
+ const sprites=new Map<number,SpritePair>(),positions=new Map<number,{x:number;y:number}>();
+ const makeSprite=():HTMLCanvasElement=>{const image=win.document.createElement('canvas');image.width=image.height=96;return image;};
+ const heroBlend=win.document.createElement('canvas');heroBlend.width=heroBlend.height=128;const heroContext=heroBlend.getContext('2d')!;
+ const marineBlend=makeSprite(),marineContext=marineBlend.getContext('2d')!;
+ let request=0,closed=false,selected:number|undefined,attackMode=false,units:NativeUnit[]=[],nativeFrame=-1,view:ReturnType<typeof battleView>|undefined;
+ let camera={x:0,y:0},marker:{x:number;y:number;target?:number;attack:boolean;at:number}|undefined;
  const draw=(now:number):void=>{
-  if(closed)return;request=win.requestAnimationFrame(draw);if(now-last<50)return;last=now;
-  const snapshot=api.census(),camera=api.camera();units=snapshot.units.filter(u=>u.stackId!==undefined&&u.stackId>=0);
-  if(!view&&units.length)view=battleView(units,camera);
-  const background=source.goonkCrossoverBackground?.battleId===plan.battleId?source.goonkCrossoverBackground.canvas:source.goonkBattlePlanes?.background;canvas.dataset.background=background?"heroes":"loading";
-  context.setTransform(1,0,0,1,0,0);context.imageSmoothingEnabled=true;
+  if(closed)return;request=win.requestAnimationFrame(draw);if(!clock.due(now))return;
+  // Census and expensive sprite extraction happen only on a new native tick.
+  // Paused units can receive orders without advancing; they stay at their real
+  // positions until simulation resumes.
+  if(!api.frame||api.frame()!==nativeFrame){
+   const snapshot=api.census();
+   if(snapshot.frame!==nativeFrame){
+    oldUnits.clear();for(const unit of units)oldUnits.set(unit.id,unit);
+    nativeFrame=snapshot.frame;timeline.receive(nativeFrame,now,api.tickDuration?.()||42);
+    units=snapshot.units.filter(unit=>unit.stackId!==undefined&&unit.stackId>=0);camera=api.camera();
+    if(!view&&units.length)view=battleView(units,camera);
+    const alive=new Set(units.map(unit=>unit.id));
+    for(const id of sprites.keys())if(!alive.has(id))sprites.delete(id);
+    for(const unit of units){
+     const old=oldUnits.get(unit.id),cycle=attackCycle(old,unit,nativeFrame,cycles.get(unit.id));if(cycle)cycles.set(unit.id,cycle);
+     if(old&&unit.hp<old.hp)hits.set(unit.id,now+220);
+     if(!unit.heroes){
+      let pair=sprites.get(unit.id);
+      if(!pair){pair={before:makeSprite(),after:makeSprite()};sprites.set(unit.id,pair);}
+      else [pair.before,pair.after]=[pair.after,pair.before];
+      pair.after.getContext('2d')!.putImageData(new ImageData(new Uint8ClampedArray(api.sprite(unit.id)),96,96),0,0);
+      if(!old)pair.before.getContext('2d')!.drawImage(pair.after,0,0);
+     }
+    }
+   }
+  }
+  const {amount,frame:visualFrame}=timeline.sample(now);
+  positions.clear();for(const unit of units)positions.set(unit.id,interpolatedPosition(oldUnits.get(unit.id),unit,amount));
+  const background=source.goonkCrossoverBackground?.battleId===plan.battleId?source.goonkCrossoverBackground.canvas:source.goonkBattlePlanes?.background;canvas.dataset.background=background?'heroes':'loading';
+  context.setTransform(1,0,0,1,0,0);context.globalAlpha=1;context.imageSmoothingEnabled=true;
   context.fillStyle='#40512e';context.fillRect(0,0,800,500);if(background)context.drawImage(background,0,0,800,500);
   const transform=view||{zoom:1,x:0,y:0};context.setTransform(transform.zoom,0,0,transform.zoom,transform.x,transform.y);context.imageSmoothingEnabled=false;
   const art=source.goonkCrossoverArt;
-  for(const u of [...units].sort((a,b)=>a.y-b.y)){
-   const x=u.x-camera.x,y=u.y-camera.y,old=previous.get(u.id),moving=!!old&&(old.x!==u.x||old.y!==u.y);
-   const chosen=u.owner===0&&selected!==undefined&&(selected<0||selected===u.stackId);
-   context.strokeStyle=u.owner===0?'#8de6ff':'#ff8066';context.lineWidth=2;
+  for(const unit of [...units].sort((a,b)=>positions.get(a.id)!.y-positions.get(b.id)!.y)){
+   const point=positions.get(unit.id)!,x=point.x-camera.x,y=point.y-camera.y,old=oldUnits.get(unit.id),moving=!!old&&(old.x!==unit.x||old.y!==unit.y);
+   const chosen=unit.owner===0&&selected!==undefined&&(selected<0||selected===unit.stackId);
+   context.strokeStyle=unit.owner===0?'#8de6ff':'#ff8066';context.lineWidth=2;
    if(chosen){context.beginPath();context.ellipse(x,y+5,23,8,0,0,Math.PI*2);context.stroke();}
-   if(u.heroes&&art?.battleId===plan.battleId){
-    const row=art.rows.find(row=>row.id===u.stackId);
+   if(unit.heroes&&art?.battleId===plan.battleId){
+    const row=art.rows.find(row=>row.id===unit.stackId);
     if(row){
-     const pose=moving?1:(u.cooldown||0)>0?2:0,frame=Math.floor(snapshot.frame/3)%8;
-     context.save();context.translate(x,y+5);if(units.some(enemy=>enemy.owner!==u.owner&&enemy.x<u.x))context.scale(-1,1);
-     context.drawImage(art.canvas,frame*128,(row.row+pose)*128,128,128,-56,-112,112,112);context.restore();
+     const animation=heroAnimation(visualFrame,moving,unit.cooldown||0,cycles.get(unit.id));
+     context.save();context.translate(x,y+5);if(units.some(enemy=>enemy.owner!==unit.owner&&enemy.x<unit.x))context.scale(-1,1);
+     heroContext.clearRect(0,0,128,128);heroContext.globalAlpha=1-animation.mix;heroContext.drawImage(art.canvas,animation.frame*128,(row.row+animation.pose)*128,128,128,0,0,128,128);
+     heroContext.globalCompositeOperation='lighter';heroContext.globalAlpha=animation.mix;heroContext.drawImage(art.canvas,animation.next*128,(row.row+animation.pose)*128,128,128,0,0,128,128);heroContext.globalCompositeOperation='source-over';
+     context.drawImage(heroBlend,-56,-112,112,112);context.restore();
     }
-   }else if(!u.heroes){
-    // Render one isolated native sprite: enlarging a shared bitmap would also
-    // copy and overlap its neighbours. Feet remain on the real unit position.
-    sc.putImageData(new ImageData(new Uint8ClampedArray(api.sprite(u.id)),96,96),0,0);
+   }else if(!unit.heroes){
+    const pair=sprites.get(unit.id)!;
     context.imageSmoothingEnabled=true;context.imageSmoothingQuality='high';
-    context.drawImage(sprite,x-120,y+5-200,240,240);context.imageSmoothingEnabled=false;
+    marineContext.clearRect(0,0,96,96);marineContext.globalAlpha=1-amount;marineContext.drawImage(pair.before,0,0);
+    marineContext.globalCompositeOperation='lighter';marineContext.globalAlpha=amount;marineContext.drawImage(pair.after,0,0);marineContext.globalCompositeOperation='source-over';
+    context.drawImage(marineBlend,x-120,y+5-200,240,240);context.imageSmoothingEnabled=false;
    }
-   if(old&&u.hp<old.hp)hits.set(u.id,now+220);
-   if((hits.get(u.id)||0)>now){context.strokeStyle='#fff0be';context.lineWidth=4;context.beginPath();context.ellipse(x,y-42,28,45,0,0,Math.PI*2);context.stroke();}
-   previous.set(u.id,{x:u.x,y:u.y,moving,hp:u.hp});
-   const width=22,barY=y-(u.heroes?96:76),hp=Math.max(0,Math.min(1,u.hp/(u.maxHp||u.hp)));
-   context.fillStyle='#121009';context.fillRect(x-width/2-1,barY-1,width+2,8);context.fillStyle=u.owner===0?'#88e460':'#ff7665';context.fillRect(x-width/2,barY,width*hp,6);
+   if((hits.get(unit.id)||0)>now){context.strokeStyle='#fff0be';context.lineWidth=4;context.beginPath();context.ellipse(x,y-42,28,45,0,0,Math.PI*2);context.stroke();}
+   const width=22,barY=y-(unit.heroes?96:76),hp=Math.max(0,Math.min(1,unit.hp/(unit.maxHp||unit.hp)));
+   context.fillStyle='#121009';context.fillRect(x-width/2-1,barY-1,width+2,8);context.fillStyle=unit.owner===0?'#88e460':'#ff7665';context.fillRect(x-width/2,barY,width*hp,6);
   }
   if(marker&&now-marker.at<1000){
-   const target=units.find(unit=>unit.id===marker!.target),mx=target?target.x-camera.x:marker.x,my=target?target.y-camera.y-30:marker.y;
+   const target=marker.target===undefined?undefined:positions.get(marker.target),mx=target?target.x-camera.x:marker.x,my=target?target.y-camera.y-30:marker.y;
    const age=(now-marker.at)/1000,r=14+Math.sin(age*Math.PI*4)*4;context.globalAlpha=1-age*.7;context.strokeStyle=marker.attack?'#ff735f':'#9feeab';context.lineWidth=3;context.beginPath();context.arc(mx,my,r,0,Math.PI*2);context.moveTo(mx-r-8,my);context.lineTo(mx-5,my);context.moveTo(mx+5,my);context.lineTo(mx+r+8,my);context.moveTo(mx,my-r-8);context.lineTo(mx,my-5);context.moveTo(mx,my+5);context.lineTo(mx,my+r+8);context.stroke();context.globalAlpha=1;
   }
   context.setTransform(1,0,0,1,0,0);
-  canvas.dataset.heroesUnits=String(units.filter(u=>u.heroes).length);canvas.dataset.starcraftUnits=String(units.filter(u=>!u.heroes).length);canvas.dataset.frame=String(snapshot.frame);
+  canvas.dataset.heroesUnits=String(units.filter(unit=>unit.heroes).length);canvas.dataset.starcraftUnits=String(units.filter(unit=>!unit.heroes).length);canvas.dataset.frame=String(nativeFrame);
  };
  const pointer=(event:PointerEvent):void=>{
   const box=canvas.getBoundingClientRect(),transform=view||{zoom:1,x:0,y:0},camera=api.camera();
   const x=((event.clientX-box.left)*800/box.width-transform.x)/transform.zoom,y=((event.clientY-box.top)*500/box.height-transform.y)/transform.zoom;
   // Include the larger visible body above its ground anchor in touch picking.
-  const distance=(u:NativeUnit):number=>{const dx=x-(u.x-camera.x),dy=y-(u.y-camera.y);return Math.hypot(dx,Math.max(0,-dy-(u.heroes?90:65),dy-10))+Math.abs(dy)*0.15;};
+  const distance=(u:NativeUnit):number=>{const point=positions.get(u.id)||u,dx=x-(point.x-camera.x),dy=y-(point.y-camera.y);return Math.hypot(dx,Math.max(0,-dy-(u.heroes?90:65),dy-10))+Math.abs(dy)*0.15;};
   const nearby=units.filter(u=>distance(u)<28).sort((a,b)=>distance(a)-distance(b))[0];
   if(nearby?.owner===0){select(nearby.stackId!);return;}
   if(selected===undefined){notifySelection();return;}
