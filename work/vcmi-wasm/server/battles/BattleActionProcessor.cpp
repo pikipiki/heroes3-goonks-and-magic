@@ -36,6 +36,7 @@
 #include "../../lib/era/EraInterferenceState.h"
 #include "../../lib/era/EraHorn266.h"
 #include "../../lib/era/EraSourceAttackGate.h"
+#include "../../lib/era/EraCloneHealScope.h"
 #include "../../lib/era/EraDeathBlowChance.h"
 #include "BattleActionProcessor.h"
 #include "../era/EraOblivionRuntime.h"
@@ -2032,7 +2033,15 @@ void BattleActionProcessor::applyBattleEffects(const CBattleInfoCallback & battl
         // Amethyst selector0 jumps to440921: full min(raw damage, pre-hit
         // victim HP), including clone victims; no inherited WoG40% multiplier.
         int64_t toHeal = sourceVampire ? drainDamage : drainDamage * attackerState->valOfBonuses(BonusType::LIFE_DRAIN) / 100;
-		healInfo += attackerState->heal(toHeal, EHealLevel::RESURRECT, EHealPower::PERMANENT);
+        if(sourceVampire)
+        {
+            // Original440921 also heals CLONE attackers. A clone296 can be
+            // partially restored by rebirth; retain its fragile flag afterward.
+            ::era_bridge::CloneHealScope cloneScope(attackerState->cloned);
+            healInfo += attackerState->heal(toHeal, EHealLevel::RESURRECT, EHealPower::PERMANENT);
+        }
+        else
+            healInfo += attackerState->heal(toHeal, EHealLevel::RESURRECT, EHealPower::PERMANENT);
 	}
 
 	//soul steal handling

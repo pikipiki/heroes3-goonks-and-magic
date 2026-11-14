@@ -1,0 +1,31 @@
+{
+  "version": "0.4.168",
+  "command": "ninja -j32 html5",
+  "container": "heroes-goonk-port157-linux",
+  "changedEngineSources": {
+    "work/vcmi-wasm/lib/spells/CSpellHandler.cpp": "f2edf01b95ec72a5505d319a480cd54d46313e484fc8ba1d6534283cf342649d",
+    "work/vcmi-wasm/server/battles/BattleActionProcessor.cpp": "8988b9c42b7dcca9bd704e91373d4f21424c78e3b3d2b9bd76323c5626bf8b7e",
+    "work/vcmi-wasm/lib/battle/BattleInfo.cpp": "f7135fbb6adee79043fe491c54adc2b86b95748e821fd9eae9e09576163309fe"
+  },
+  "archive": "outputs/vcmi-wasm-goonk-0.4.168-engine.tar.gz",
+  "archiveSha256": "18a8d20e9901a6f95b5913fef9924c1d24f1dcdc71ee6d25524e9113a63f1e90",
+  "tests": {
+    "scope": "Only committed test modules plus the three new regression modules; unrelated untracked historical prototypes excluded",
+    "total": 737,
+    "pass": 704,
+    "fail": 0,
+    "skip": 33
+  },
+  "claims": "Three scoped engine fixes, with retained limits in the source audits; not certification of complete ERA compatibility.",
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "6e799ba1cae02928",
+    "wasm": "vcmiclient.c68d919a6f8933f1.wasm",
+    "sha256": "c68d919a6f8933f117a216dff04f3dffbc0b202d302ee8625260c2b61b763279",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  }
+}

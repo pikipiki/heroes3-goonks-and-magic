@@ -1,0 +1,26 @@
+{
+  "binarySha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "evidence": "static LLVM disassembly; original executable not run",
+  "spans": {
+    "clone-private-lifetime-init": {
+      "start": "0x5a7140",
+      "stop": "0x5a71ca"
+    },
+    "clone-private-lifetime-tick": {
+      "start": "0x446ec0",
+      "stop": "0x44704a"
+    },
+    "clone-death-cleanup": {
+      "start": "0x443db0",
+      "stop": "0x4441e5"
+    },
+    "clone-clear-spells": {
+      "start": "0x444230",
+      "stop": "0x4445c0"
+    },
+    "clone-rebirth-restore": {
+      "start": "0x5a7870",
+      "stop": "0x5a7b9d"
+    }
+  }
+}

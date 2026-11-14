@@ -846,11 +846,21 @@ void BattleInfo::setUnitState(uint32_t id, const JsonNode & data, int64_t health
 		}
 	}
 
+    // Original clone lifetime is the private +0x2C counter, independent of
+    // the spell slots cleared on death. Keep its native lifetime carrier for
+    // the source post-event rebirth decision, without renewing its duration.
+    const bool deferredEraClone = changedStack->isClone()
+        && era_compat::Policies::get().rebirth(changedStack->creatureId().toCreature()->getJsonKey()).has_value();
 	if(resurrected || killed)
 	{
 		//removing all spells effects
-		auto selector = [](const Bonus * b)
+		auto selector = [deferredEraClone](const Bonus * b)
 		{
+			if(deferredEraClone && b->type == BonusType::NONE
+                && b->source == BonusSource::SPELL_EFFECT
+                && b->sid == BonusSourceID(SpellID(SpellID::CLONE))
+                && b->duration == BonusDuration::N_TURNS)
+                return false;
 			//Special case: DISRUPTING_RAY is absolutely permanent
 			return b->source == BonusSource::SPELL_EFFECT && b->sid.as<SpellID>().toSpell()->isPersistent();
 		};
@@ -859,8 +869,6 @@ void BattleInfo::setUnitState(uint32_t id, const JsonNode & data, int64_t health
 
     // Preserve ownership through the ERA post-sequence decision. Successful
     // revival keeps hasClone() true; failed revival's REMOVE clears the link.
-    const bool deferredEraClone = changedStack->isClone()
-        && era_compat::Policies::get().rebirth(changedStack->creatureId().toCreature()->getJsonKey()).has_value();
 	if(!changedStack->alive() && changedStack->isClone() && !deferredEraClone)
 	{
 		for(auto & s : stacks)

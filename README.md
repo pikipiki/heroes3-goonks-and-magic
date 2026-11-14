@@ -1,6 +1,8 @@
 # Heroes Goonk
 
-Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.167, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
+Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.168, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
+
+La version 0.4.168 corrige trois interactions de combat du port WoG : la réduction magique du Triton abyssal précède les protections d’école ; un clone doté de la renaissance source conserve sa durée restante ; le drain des Squelettes rouges peut ensuite le soigner sans supprimer sa fragilité. Les règles des autres profils conservent leur branche existante. Les preuves, comparaisons avec le moteur précédent et limites de l’audit sont dans `outputs/wog-priorities-0.4.147/combat168/`. Cet audit ne certifie pas une équivalence intégrale de tout ERA.
 
 ## Jouer sur ce Mac
 

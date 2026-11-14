@@ -1,0 +1,32 @@
+# Combat168 — actions, retaliations and movement audit
+
+Read-only audit of the active 0.4.167 implementation. No runtime change and no original Windows executable execution. Source references are the local TUM3.5 tree and Amethyst2 source; saved PE disassembly is static evidence, not runtime observation.
+
+## Findings
+
+No concrete active gameplay divergence was established in this scope. Missing individual native scenarios below are proof gaps, not claims that an ability is absent.
+
+| Contract | Original evidence | Active implementation | Result |
+| --- | --- | --- | --- |
+| Actor308 finite125 retaliations | `../Third-Upgrade-Mod-Full/Data/Creatures/308.cfg:4`, `Retaliations=125`; Amethyst `tables.cpp:5051..5076` uses `MOVZX` of the BYTE type counter, then adds the slot BYTE | `scripts/era-bridge/objects/source-dwelling-services.mjs:19`: `ADDITIONAL_RETALIATION=124`; `lib/battle/CUnitState.cpp:146..166` baseline1, finite ammo and round reset | Arithmetic matches125 total, not unlimited. No independent308 causal native scenario found. |
+| Positive morale313/314/340/358 | CFG `AlwaysPositiveMorale=1`; Amethyst `tables.cpp:5013..5044` redirects original branches; saved `eighth-evidence/source-positive-morale-floor.asm`: `44AF01` raises values below1 to1, then `44AF12..44AF21` applies suppression; `source-positive-morale-order.asm`: `44ADFE` checks no-morale biology before floor | `source-dwelling-services.mjs:50`, `stage-six-banks.mjs:91..92`: `MORALE1 INDEPENDENT_MAX`; `lib/BasicTypes.cpp:74..107` handles no-morale biology before accumulated morale | Matches floor, not additive+1 or maximum morale. Per-actor negative-morale/suppression causal scenarios remain unverified. |
+| Swordmaster340 R10 extra action | `Third Upgrade Mod.erm:993..1039`: accepts WALK, WALK_AND_ATTACK, SHOOT, CATAPULT, MONSTER_CAST, TENT_HEAL; stores acting slot; clears ACTED only while counter0; next stack activation increments counter. `1000 tum - stdlib.erm:238..250` initializes0 then decrements with floor0 each round | `server/era/EraBankSwordmaster.h:67..106` exact six-action predicate, counter0/1, pending slot, forced next activation; `BattleFlowProcessor.cpp:996` after-action hook and `:453,:1238` before-activation hooks | Source structure matches; existing340 native Rush proof is separate from this ERM action rule. No new mismatch found. |
+| Rush340 / MovesTwice347 counter | Amethyst `tables.cpp:3380..3400`: failed morale consumes a nonzero BYTE, clears flags with `0xF2FFFFFF`; otherwise MovesTwice seeds1; success bypasses consumption | `lib/era/EraPrimordialMovesRule.h:61..82`, `server/era/EraPrimordialTurnRuntime.h:31..86`; shared Rush cache is distinct from Swordmaster ERM cache | Correct separation and source order in inspected code. Existing347 source/native evidence was reused, not reclassified as missing. |
+| Teleport movement333/334/360 | CFG `isTeleporter=1`; Amethyst `tables.cpp:10663..10676`, installed `:13676..13679`. Saved `work/downloads/wog-port185/replacements/teleport-7603c0.asm` at `76040F..760449` returns Devil55 identity for teleporters; `teleport-7609b0.asm` at `7609DD..7609F2` returns comparison flags. Neither saved slice includes its callers | `source-dwelling-services.mjs:45..48`: `FLYING/movementTeleporting`; `BattleActionProcessor.cpp:1066..1090` native flying movement crosses intermediate cells, landing obstacle handling shared at1263 | Source queries and native movement mapping are present. CFG Flags333=131328,334=196864,360=394240 do not themselves contain FLYING bit1; the saved function bodies alone do not prove all original caller semantics. No obstacle/closed-wall causal native scenario for these exact actors was found. Do not infer a proven bug from that limitation. |
+
+## Bounded clock/removal review
+
+`server/era/EraXpTimed184Runtime.h:258..261` delegates typed durations42/49/50/51/52/54/59/60/61/62/70/73/74 to `xp184::round`; `lib/era/EraXpTimed184Rule.h:56..61` preserves clocks for dead stacks, tactics and nonpositive durations, removes duration1 and decrements longer durations. Generic removal respects signed/nonpositive debt (`Runtime:240..255`). These are active code paths, not the old OFF prototypes. No new divergence was established here. Blind/paralyze physical wake and retaliation ordering are intentionally excluded: root audits that scope independently.
+
+## Useful causal checks if extending proof coverage
+
+1. Actor308 start125, accepted melee retaliation125→124, no response after exhaustion, next round125; Counterstrike spell adds its finite amount without converting to unlimited.
+2.313/314/340/358 under total negative morale: floor1, then suppression0; NO_MORALE biology remains0. Test both normal activation and morale-triggered extra action.
+3.333/334/360 move across a blocked intermediate hex and a closed siege wall, with occupied/invalid destination rejected and landing obstacles applied once. Compare native Devil54 control, and preserve screenshot/UI evidence separately from action results.
+4.340 R10: two distinct action opportunities after each of the six source actions, WAIT/DEFEND excluded; next round replenishes once; Rush and positive morale retain independent counters. Source-sensitive action sequencing should also be checked after save/reload.
+
+These checks are suggested evidence improvements; they are not assertions of current regressions or incomplete functionality.
+
+## Combat168 protection control correction
+
+The initial test labelled `vanillaIronGolemProtected` was incorrectly scoped. VCMI's historic keys are inverted: `core:ironGolem` is Stone Golem32 (50%), `core:stoneGolem` is Iron Golem33 (75%). Moreover, production `mod/tum-era/content/config/source-experience-magic-reduction.json:80..129` explicitly marks BOTH rank-zero innate bonuses with `source-experience-magic-reduction-v1` metadata. They already enter the source `g%` branch (`JsonBonus.cpp:231..239`, `EraExperienceMagicReductionNative.h:27..37`, `CSpellHandler.cpp:387..428`). With raw35 and real base AirProtection30,32 therefore receives `floor(floor(35*.5)*.7)=11`,33 receives `floor(floor(35*.25)*.7)=5`. These outcomes do not demonstrate a change to ordinary non-source protection ordering. The corrected test calls33 `sourceMetadataIronGolemProtected`, and uses unregistered `goonk:bobope` with its production shooter-only abilities as the ordinary school-protection control (`floor(35*.7)=24`). No innate, XP or runtime policy is overridden.

@@ -1,0 +1,16 @@
+{
+  "comparison": "Same production assets, SP1 LightningBolt35 and real ProtectionAir30 on exact actor285; authored HP/speed controls only",
+  "oldEngineSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+  "oldDamage": 6,
+  "newEngineSha256": "c68d919a6f8933f117a216dff04f3dffbc0b202d302ee8625260c2b61b763279",
+  "newDamage": 5,
+  "originalExpected": 5,
+  "oldNativeAssertionFailedAsExpected": true,
+  "newNativeAssertionPassed": true,
+  "oldCloneLifetime": {
+    "observed": true,
+    "rebirthHealth": 24,
+    "nextActivationNeverReached": true,
+    "explanation": "Clone lifetime marker was removed on death; old native fixture reached round25 with clone absent. Separate source and selector regression tests cover this defect."
+  }
+}

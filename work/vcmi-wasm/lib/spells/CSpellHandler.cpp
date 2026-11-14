@@ -13,6 +13,7 @@
 #include "../era/EraPrimalFaerie.h"
 #include "../era/EraBridgePolicies.h"
 #include "../era/EraExperienceMagicReductionNative.h"
+#include "../era/EraDwellingServices.h"
 #include "../era/EraOrbChaos238Runtime.h"
 #include "../era/EraConfluxCaster.h"
 #include "../CCreatureHandler.h"
@@ -387,11 +388,15 @@ int64_t CSpell::adjustRawDamage(const spells::Caster * caster, const battle::Uni
     const auto sourceG=isMagical()?era_compat::sourceMagicReduction(affectedCreature):std::nullopt;
     const bool orbChaos=era_compat::eraOrbChaosRawDamageActive(caster,this,affectedCreature);
     const bool sourceCaster=dynamic_cast<const era_compat::ConfluxCaster *>(caster)!=nullptr || era_compat::xpObstacleDamageCorrection;
-    if(affectedCreature && (sourceG || orbChaos || sourceCaster))
+    const bool sourceQuarter=isMagical() && affectedCreature
+        && era_compat::DwellingServices::get().actor(285,affectedCreature->creatureId().toCreature()->getJsonKey());
+    if(affectedCreature && (sourceG || orbChaos || sourceCaster || sourceQuarter))
     {
         // Source5A7C26 applies caster bonuses before MR0, innate44B180,
         // XP71E766 and finally school protections5A7EC0. This branch is only
-        // entered by explicit source metadata or an active source238 action.
+        // entered by explicit source metadata or admitted source actions/actors.
+        // Actor285's innate /4 must also precede school protection: raw35
+        // with ProtectionAir30 is trunc(trunc(35/4)*.7)=5, not6.
         ret=caster->getSpellBonus(this,rawDamage,affectedCreature);
         if(const auto amplified=era_compat::applyEraOrbChaosRawDamage(caster,this,affectedCreature,ret))ret=*amplified;
         const auto beforeInnate=ret;
