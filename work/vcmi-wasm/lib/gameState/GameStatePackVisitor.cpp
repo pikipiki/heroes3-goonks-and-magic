@@ -13,6 +13,7 @@
 #include "../era/EraBridgePolicies.h"
 #include "../era/EraConfluxPolicies.h"
 #include "../era/EraWayfarerState.h"
+#include "../era/EraCampaignChanges.h"
 #include "GameStatePackVisitor.h"
 
 #include "CGameState.h"
@@ -1636,6 +1637,11 @@ void GameStatePackVisitor::visitEntitiesChanged(EntitiesChanged & pack)
 {
 	for(const auto & change : pack.changes)
 		gs.updateEntity(change.metatype, change.entityIndex, change.data);
+}
+
+void GameStatePackVisitor::visitSourceCampaignChange(SourceCampaignChange & pack)
+{
+    era_compat::applySourceCampaignChange(gs,pack);
 }
 
 void GameStatePackVisitor::visitSetRewardableConfiguration(SetRewardableConfiguration & pack)

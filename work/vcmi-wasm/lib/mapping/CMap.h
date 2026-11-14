@@ -18,6 +18,7 @@
 #include "../mapObjects/CGObjectInstance.h"
 #include "../callback/GameCallbackHolder.h"
 #include "../networkPacks/TradeItem.h"
+#include "../json/JsonNode.h"
 
 VCMI_LIB_NAMESPACE_BEGIN
 
@@ -260,6 +261,9 @@ public:
 	std::set<ArtifactID> allowedArtifact;
 	std::set<SecondarySkill> allowedAbilities;
 	std::vector<CMapEvent> events;
+    // Source campaign identity, flags and suspended dialog continuation.
+    // The executable program remains in the hash-bound mod registry.
+    JsonNode sourceCampaignState;
 	int3 grailPos;
 	int grailRadius;
 
@@ -304,6 +308,10 @@ public:
 		h & allowedAbilities;
 		h & allowedArtifact;
 		h & events;
+        if(h.hasFeature(Handler::Version::GOONK_SOURCE_CAMPAIGNS))
+            h & sourceCampaignState;
+        else if(!h.saving)
+            sourceCampaignState = JsonNode();
 		h & grailPos;
 		h & artInstances;
 

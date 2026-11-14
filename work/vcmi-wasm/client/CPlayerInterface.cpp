@@ -1103,6 +1103,9 @@ void CPlayerInterface::showBlockingDialog(const std::string &text, const std::ve
 			intComps.push_back(std::make_shared<CComponent>(component)); //will be deleted by close in window
 
 		showYesNoDialog(text, [this, askID](){ cb->selectionMade(1, askID); }, [this, askID](){ cb->selectionMade(0, askID); }, intComps);
+		// Keep the server query identity for responsive presentations and saves.
+		if(auto window = ENGINE->windows().topWindow<CInfoWindow>())
+			window->ID = askID;
 	}
 	else if (selection)
 	{
@@ -1121,8 +1124,24 @@ void CPlayerInterface::showBlockingDialog(const std::string &text, const std::ve
 		if (pom.size() > 1)
 			charperline = 50;
 		ENGINE->windows().createAndPushWindow<CSelWindow>(text, playerID, charperline, intComps, pom, askID);
-		intComps[0]->clickPressed(ENGINE->getCursorPosition());
-		intComps[0]->clickReleased(ENGINE->getCursorPosition());
+		if(!intComps.empty())
+		{
+			intComps[0]->clickPressed(ENGINE->getCursorPosition());
+			intComps[0]->clickReleased(ENGINE->getCursorPosition());
+		}
+	}
+	else
+	{
+		// A scripted message is blocking too: acknowledge it before resuming
+		// its continuation, including when the game was saved at this prompt.
+		std::vector<std::shared_ptr<CComponent>> intComps;
+		for(const auto & component : components)
+			intComps.push_back(std::make_shared<CComponent>(component));
+		auto window = CInfoWindow::create(text, playerID, intComps);
+		window->ID = askID;
+		window->buttons.front()->addCallback([this, askID](){ cb->selectionMade(1, askID); });
+		showingDialog->setBusy();
+		ENGINE->windows().pushWindow(window);
 	}
 }
 

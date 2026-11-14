@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "programs": [
+    {
+      "id": "cave-gerfrex",
+      "enabled": false,
+      "resource": "config/era-campaigns/cave-gerfrex",
+      "programSha256": "ad5a760af435ad4178a7d0424fc190fe11f22e4c14f49139c836fa14cc9bf9b5",
+      "reason": "Native quest host is under validation; the original maps remain disabled."
+    }
+  ]
+}

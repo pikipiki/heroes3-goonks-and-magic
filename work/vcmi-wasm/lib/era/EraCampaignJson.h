@@ -81,6 +81,7 @@ inline JsonNode writeState(const era_campaign::State&state)
 {
  JsonNode node;node["schemaVersion"].Integer()=1;node["programSha256"].String()=state.programSha256;node["initialized"].Bool()=state.initialized;node["initializing"].Bool()=state.initializing;node["selectedHero"].Integer()=state.selectedHero;
  node["flags"]=writeMap<bool>(state.flags,writeBool);node["v"]=writeMap<std::int32_t>(state.v,writeInteger);node["z"]=writeMap<std::string>(state.z,writeString);
+ node["disabledBlocks"]=writeMap<bool>(state.disabledBlocks,writeBool);node["previousDisabledBlocks"]=writeMap<bool>(state.previousDisabledBlocks,writeBool);
  node["w"]=writeMap<std::map<std::int32_t,std::int32_t>>(state.w,[](const auto&values){return writeMap<std::int32_t>(values,writeInteger);});
  node["fast"].Vector();for(const auto&entry:state.fast){JsonNode item;item["name"].String()=std::string(1,entry.first);item["value"].Integer()=entry.second;node["fast"].Vector().push_back(item);}
  node["macros"].Vector();for(const auto&entry:state.macros){JsonNode item;item["name"].String()=entry.first;item["operand"]=writeOperand(entry.second);node["macros"].Vector().push_back(item);}
@@ -92,6 +93,8 @@ inline era_campaign::State readState(const JsonNode&node)
 {
  era_campaign::State state;if(node.isNull())return state;object(node);if(integer(node["schemaVersion"])!=1)throw std::runtime_error("Unknown campaign state contract");state.programSha256=string(node["programSha256"]);state.initialized=boolean(node["initialized"]);state.initializing=boolean(node["initializing"]);state.selectedHero=integer(node["selectedHero"]);
  state.flags=readMap<bool>(node["flags"],boolean);state.v=readMap<std::int32_t>(node["v"],integer);state.z=readMap<std::string>(node["z"],string);state.w=readMap<std::map<std::int32_t,std::int32_t>>(node["w"],[](const JsonNode&values){return readMap<std::int32_t>(values,integer);});
+ if(!node["disabledBlocks"].isNull())state.disabledBlocks=readMap<bool>(node["disabledBlocks"],boolean);
+ if(!node["previousDisabledBlocks"].isNull())state.previousDisabledBlocks=readMap<bool>(node["previousDisabledBlocks"],boolean);
  for(const auto&item:array(node["fast"])){object(item);const auto name=string(item["name"]);if(name.size()!=1||!state.fast.emplace(name[0],integer(item["value"])).second)throw std::runtime_error("Invalid campaign fast variable");}
  for(const auto&item:array(node["macros"]))if(!state.macros.emplace(string(object(item)["name"]),readOperand(object(item)["operand"])).second)throw std::runtime_error("Duplicate campaign macro");
  state.frames.clear();for(const auto&item:array(node["frames"])){object(item);era_campaign::Frame frame;frame.x=readMap<std::int32_t>(item["x"],integer);frame.y=readMap<std::int32_t>(item["y"],integer);state.frames.push_back(std::move(frame));}if(state.frames.empty())throw std::runtime_error("Missing campaign execution frame");

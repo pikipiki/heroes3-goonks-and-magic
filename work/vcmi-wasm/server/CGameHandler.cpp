@@ -90,6 +90,7 @@
 #include "../lib/serializer/CLoadFile.h"
 
 #include "../lib/spells/CSpellHandler.h"
+#include "era/SourceCampaignProcessor.h"
 
 #include <vstd/RNG.h>
 #include <vstd/CLoggerBase.h>
@@ -566,6 +567,7 @@ CGameHandler::CGameHandler(IGameServer & server)
 	, turnOrder(std::make_unique<TurnOrderProcessor>(this))
 	, turnTimerHandler(std::make_unique<TurnTimerHandler>(*this))
 	, newTurnProcessor(std::make_unique<NewTurnProcessor>(this))
+	, sourceCampaigns(std::make_unique<SourceCampaignProcessor>(*this))
 	, statistics(std::make_unique<StatisticDataSet>())
 	, spellEnv(std::make_unique<ServerSpellCastEnvironment>(this))
 	, playerMessages(std::make_unique<PlayerMessageProcessor>(this))
@@ -673,6 +675,7 @@ void CGameHandler::onAdvInterfaceReady(PlayerColor player)
 		return;
 
 	uiReadyForDialogs.insert(player);
+	sourceCampaigns->onReady(player);
 
 	logGlobal->trace("AdvInterfaceReady received for player %s", player);
 
@@ -3661,7 +3664,8 @@ void CGameHandler::objectVisited(const CGObjectInstance * obj, const CGHeroInsta
 		hv.starting = true;
 		sendAndApply(hv);
 
-		obj->onHeroVisit(*this, h);
+		if(!sourceCampaigns->visit(obj,h))
+			obj->onHeroVisit(*this, h);
 	};
 
 	ObjectVisitStarted::defaultExecute(serverEventBus.get(), startVisit, h->tempOwner, h->id, obj->id);

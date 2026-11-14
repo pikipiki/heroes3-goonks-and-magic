@@ -42,6 +42,7 @@
 #include "../networkPacks/PacksForServer.h"
 #include "../networkPacks/SaveLocalState.h"
 #include "../networkPacks/SetRewardableConfiguration.h"
+#include "../networkPacks/SourceCampaignChange.h"
 #include "../networkPacks/SetStackEffect.h"
 
 VCMI_LIB_NAMESPACE_BEGIN
@@ -311,6 +312,7 @@ void registerTypes(Serializer &s)
     s.template registerType<ResetStackExperience>(267);
     s.template registerType<CGMysteriousCave>(268);
     s.template registerType<CaveBuilderAction>(269);
+    s.template registerType<SourceCampaignChange>(270);
 }
 
 VCMI_LIB_NAMESPACE_END

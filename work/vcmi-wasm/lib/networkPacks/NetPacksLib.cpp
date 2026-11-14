@@ -13,6 +13,7 @@
 #include "PacksForServer.h"
 #include "SaveLocalState.h"
 #include "SetRewardableConfiguration.h"
+#include "SourceCampaignChange.h"
 #include "PacksForLobby.h"
 #include "SetStackEffect.h"
 #include "NetPackVisitor.h"
@@ -107,6 +108,11 @@ void DaysWithoutTown::visitTyped(ICPackVisitor & visitor)
 void EntitiesChanged::visitTyped(ICPackVisitor & visitor)
 {
 	visitor.visitEntitiesChanged(*this);
+}
+
+void SourceCampaignChange::visitTyped(ICPackVisitor & visitor)
+{
+    visitor.visitSourceCampaignChange(*this);
 }
 
 void SetRewardableConfiguration::visitTyped(ICPackVisitor & visitor)

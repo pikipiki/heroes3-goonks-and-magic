@@ -84,6 +84,7 @@ struct State
  std::map<std::int32_t,std::map<std::int32_t,std::int32_t>> w;
  std::map<char,std::int32_t> fast;
  std::map<std::string,Operand> macros;
+ std::map<std::int32_t,bool> disabledBlocks,previousDisabledBlocks;
  std::vector<Frame> frames{Frame{}};
  std::vector<Continuation> continuations;
  std::int32_t selectedHero=-1;

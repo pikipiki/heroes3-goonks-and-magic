@@ -15,6 +15,7 @@
 #include "PacksForLobby.h"
 #include "SaveLocalState.h"
 #include "SetRewardableConfiguration.h"
+#include "SourceCampaignChange.h"
 #include "SetStackEffect.h"
 
 VCMI_LIB_NAMESPACE_BEGIN
@@ -38,6 +39,7 @@ public:
 	virtual void visitGamePause(GamePause & pack) {}
 	virtual void visitEntitiesChanged(EntitiesChanged & pack) {}
 	virtual void visitSetRewardableConfiguration(SetRewardableConfiguration & pack) {}
+    virtual void visitSourceCampaignChange(SourceCampaignChange & pack) {}
 	virtual void visitSetResources(SetResources & pack) {}
 	virtual void visitSetPrimarySkill(SetPrimarySkill & pack) {}
 	virtual void visitSetHeroExperience(SetHeroExperience & pack) {}

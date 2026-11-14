@@ -5,6 +5,8 @@
 #include "../lib/era/EraAtmaStateNative.h"
 #include "../lib/era/EraInterferenceState.h"
 #include "MobileBridge.h"
+#include "../lib/gameState/CGameState.h"
+#include "../lib/mapping/CMap.h"
 #include "../lib/mapObjects/CGMysteriousCave.h"
 #ifdef VCMI_EMSCRIPTEN
 #include <emscripten/emscripten.h>
@@ -189,6 +191,17 @@ bool canToggleMobileAutocombat(BattleInterface & battle, bool tactics, bool canP
 }
 
 JsonNode rect(const Rect & r){JsonNode n;n["x"].Integer()=r.x;n["y"].Integer()=r.y;n["w"].Integer()=r.w;n["h"].Integer()=r.h;return n;}
+bool mobileCampaignBusy(const CPlayerInterface & player)
+{
+ const auto & state=static_cast<const IGameInfoCallback &>(*player.cb).gameState().getMap().sourceCampaignState;
+ return state.isStruct()&&state["contract"].String()=="source-campaign-state-v1"&&
+  (state["pending"].isStruct()||state["running"].Bool())&&state["player"].Integer()==player.playerID.getNum();
+}
+bool mobileCampaignPrompt(const CPlayerInterface & player)
+{
+ const auto info=ENGINE->windows().topWindow<CInfoWindow>();
+ return info&&info->ID.getNum()>=0&&mobileCampaignBusy(player);
+}
 JsonNode creature(const CCreature * c,int count){portraitIds.insert(c->getId().getNum());JsonNode n;n["shooter"].Bool()=c->hasBonusOfType(BonusType::SHOOTER);n["name"].String()=c->getNameSingularTranslated();n["id"].Integer()=c->getId().getNum();n["icon"].String()=c->largeIconName;n["key"].String()=c->getJsonKey();n["description"].String()=c->getDescriptionTranslated();n["count"].Integer()=count;n["attack"].Integer()=c->getAttack(false);n["defense"].Integer()=c->getDefense(false);n["health"].Integer()=c->getMaxHealth();n["speed"].Integer()=c->getMovementRange();n["damageMin"].Integer()=c->getMinDamage(false);n["damageMax"].Integer()=c->getMaxDamage(false);n["growth"].Integer()=c->getGrowth();n["aiValue"].Integer()=c->getAIValue();n["fightValue"].Integer()=c->getFightValue();n["shots"].Integer()=c->getBaseShots();n["nativeFlags"]["living"].Bool()=c->hasBonusOfType(BonusType::LIVING);n["nativeFlags"]["undead"].Bool()=c->hasBonusOfType(BonusType::UNDEAD);n["nativeFlags"]["nonLiving"].Bool()=c->hasBonusOfType(BonusType::NON_LIVING);n["nativeFlags"]["mindImmune"].Bool()=c->hasBonusOfType(BonusType::MIND_IMMUNITY);n["nativeFlags"]["noMorale"].Bool()=c->hasBonusOfType(BonusType::NO_MORALE);n["nativeFlags"]["flying"].Bool()=c->hasBonusOfType(BonusType::FLYING);n["nativeFlags"]["blocksRetaliation"].Bool()=c->hasBonusOfType(BonusType::BLOCKS_RETALIATION);n["nativeFlags"]["attacksAllAdjacent"].Bool()=c->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT);n["nativeFlags"]["chargeImmune"].Bool()=c->hasBonusOfType(BonusType::CHARGE_IMMUNITY);for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())n["cost"].Vector().push_back(JsonNode(double(c->getRecruitCost(resource))));return n;}
 
 void mobileSpellEffects(JsonNode & result,const CStack & stack)
@@ -1110,6 +1123,7 @@ void publishMobileState(){
   }
   presentation["title"].String()=n["dialogKind"].String()=="commander"?"Commander":level?"Level up":n["dialogKind"].String()=="commander-level-up"?"Commander level up":"Game message";
   if(auto info=ENGINE->windows().topWindow<CInfoWindow>()){
+   if(p&&p->cb&&mobileCampaignPrompt(*p))n["dialogKind"].String()="source-campaign";
    if(p&&p->cb&&mobileVisitedID!=ObjectInstanceID::NONE)
     if(const auto object=dynamic_cast<const CRewardableObject*>(p->cb->getObj(mobileVisitedID)))
      if(info->text&&info->text->label&&info->text->label->getText()==object->configuration.onSelect.toString())
@@ -1259,6 +1273,7 @@ void publishMobileState(){
   n["recruitAmount"].Integer()=recruitWindow->getRecruitAmount();n["recruitMaximum"].Integer()=recruitWindow->getRecruitMaximum();
  }
  if(p&&p->cb&&p->localState){n["day"].Integer()=p->cb->getDate(Date::DAY);
+  n["campaignPending"].Bool()=mobileCampaignBusy(*p);
   n["currentPlayer"].Integer()=p->playerID.getNum();
   n["players"].Vector();
   for(const auto & [color,player]:p->cb->getStartInfo()->playerInfos){JsonNode row;row["color"].Integer()=color.getNum();row["name"].String()=player.name;row["human"].Bool()=player.isControlledByHuman();n["players"].Vector().push_back(std::move(row));}
@@ -1266,7 +1281,7 @@ void publishMobileState(){
   n["heroMoving"].Bool()=p->mobileHeroMoving()||(adventureInt&&GAME->map().hasOngoingAnimations());n["turn"].Bool()=p->makingTurn; const auto & server=GAME->server();n["onlineGame"].Bool()=server.inLobbyRoom();
   if(p->makingTurn&&p->cb->getStartInfo()->turnTimerInfo.turnTimer>0)
    n["turnRemainingMs"].Integer()=p->cb->getPlayerTurnTime(p->playerID).valueMs();
-  n["autosaveAllowed"].Bool()=(!server.inLobbyRoom()||server.isHost())&&p->makingTurn&&!n["heroMoving"].Bool()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>());
+  n["autosaveAllowed"].Bool()=(!server.inLobbyRoom()||server.isHost())&&p->makingTurn&&!n["heroMoving"].Bool()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>()||mobileCampaignPrompt(*p));
   n["cheatsAllowed"].Bool()=p->cb->getStartInfo()->extraOptionsInfo.cheatsAllowed;
   n["cheatReady"].Bool()=p->makingTurn&&(n["mode"].String()=="map"||n["mode"].String()=="town");
   if(p->localState->getCurrentTown())n["selectedTownName"].String()=p->localState->getCurrentTown()->getNameTranslated();
@@ -2007,7 +2022,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  const auto town=townWindow?townWindow->town:ENGINE->windows().topWindow<CFortScreen>()->getMobileTown();if(town->getOwner()!=p->playerID)return;auto budget=p->cb->getResourceAmount();auto dest=town->getUpperArmy();std::set<CreatureID> types;int free=0;for(int i=0;i<7;i++){auto c=dest->getCreature(SlotID(i));if(c)types.insert(c->getId());else free++;}
  for(size_t level=0;level<town->creatures.size();level++){const auto & row=town->creatures[level];if(row.second.empty()||row.first<=0)continue;const auto id=row.second.back();if(!types.count(id)&&free==0)continue;const auto creature=id.toCreature();int count=row.first;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects()){const auto cost=creature->getRecruitCost(resource);if(cost>0)count=std::min(count,int(budget[resource]/cost));}if(count<=0)continue;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())budget[resource]-=count*creature->getRecruitCost(resource);if(!types.count(id)){types.insert(id);free--;}p->cb->recruitCreatures(town,dest,id,count,level);}
  lastPublished=0;return;}
- if(action==34){const auto & server=GAME->server();const bool online=server.inLobbyRoom();const bool allowed=(!online||server.isHost())&&p->makingTurn&&!p->mobileHeroMoving()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>());if(allowed)p->cb->save(online?"Saves/Goonk-online-auto":"Saves/Goonk-auto",false);MAIN_THREAD_ASYNC_EM_ASM({window.dispatchEvent(new CustomEvent('goonk-autosave-accepted',{detail:{id:$0,accepted:!!$1}}));},a,allowed);return;}
+ if(action==34){const auto & server=GAME->server();const bool online=server.inLobbyRoom();const bool allowed=(!online||server.isHost())&&p->makingTurn&&!p->mobileHeroMoving()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>()||mobileCampaignPrompt(*p));if(allowed)p->cb->save(online?"Saves/Goonk-online-auto":"Saves/Goonk-auto",false);MAIN_THREAD_ASYNC_EM_ASM({window.dispatchEvent(new CustomEvent('goonk-autosave-accepted',{detail:{id:$0,accepted:!!$1}}));},a,allowed);return;}
  if(action==29){
   static const std::array<std::string,8> codes={"vcmiresources 100","vcmimove","vcmimap","vcmispells","vcmibuild","vcmilevel 1","vcmiluck","vcmimorale"};
   if(a<0||a>=int(codes.size())||!p->makingTurn||!p->cb->getStartInfo()->extraOptionsInfo.cheatsAllowed)return;

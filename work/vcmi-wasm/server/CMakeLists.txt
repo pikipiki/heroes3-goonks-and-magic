@@ -18,6 +18,7 @@ set(vcmiservercommon_SRCS
 		processors/TurnOrderProcessor.cpp
 
 		CGameHandler.cpp
+		era/SourceCampaignProcessor.cpp
 		GlobalLobbyProcessor.cpp
 		ServerSpellCastEnvironment.cpp
 		CVCMIServer.cpp

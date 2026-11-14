@@ -171,7 +171,9 @@ CGameState::~CGameState()
 
 const IGameSettings & CGameState::getSettings() const
 {
-	return map->getSettings();
+	// H3M loads army slots before returning the map to CGameState. Rank
+	// limiters can already query the XP option while recalculating morale.
+	return map ? map->getSettings() : *LIBRARY->engineSettings();
 }
 
 void CGameState::preInit(Services * newServices)

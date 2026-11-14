@@ -20,6 +20,7 @@ int main()
  State state;state.programSha256="codec-program";state.initializing=true;state.selectedHero=106;
  state.flags[9]=true;state.v[500]=INT32_MIN;state.z[200]="Question;\n{important}";
  state.w[106][55]=10;state.fast['k']=42;
+ state.disabledBlocks[0]=true;state.previousDisabledBlocks[0]=false;
  Operand alias;alias.kind=Kind::Variable;alias.space='v';alias.index=std::make_shared<Operand>();alias.index->kind=Kind::Number;alias.index->number=500;
  state.macros["counter"]=alias;state.frames[0].y[1]=99;
  Frame child;child.x[16]=3;child.y[2]=4;state.frames.push_back(child);

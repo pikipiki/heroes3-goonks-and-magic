@@ -1,0 +1,367 @@
+{
+  "version": "0.4.170",
+  "status": "partial-original-campaign-port",
+  "activation": {
+    "originalCampaigns": false,
+    "originalCave": false
+  },
+  "engineSha256": "30eaa0a434421010022b7a256bf9be4c0875af9e77ae493bde999c1671b3bb89",
+  "saveVersion": 903,
+  "sources": {
+    "caveMapSha256": "3d7dbf2835db47991ee9dad4f7cdef3dde93f98086670594bf21668d2c033c50",
+    "programSha256": "ad5a760af435ad4178a7d0424fc190fe11f22e4c14f49139c836fa14cc9bf9b5",
+    "sourceEvents": 22
+  },
+  "controls": {
+    "privateRegistryEnabledForCave": true,
+    "heroCoordinatesOnly": {
+      "lever": [
+        15,
+        10,
+        0
+      ],
+      "witch": [
+        27,
+        16,
+        0
+      ],
+      "tomb": [
+        21,
+        20,
+        0
+      ]
+    },
+    "nativeCheats": [
+      "vcmimap",
+      "vcmimove"
+    ],
+    "questFlagsOrRewardsForced": false,
+    "originalWindowsBinaryExecuted": false,
+    "fullOriginalMapPlaythrough": false
+  },
+  "nativeCave": {
+    "mazeGoalCrownQuestGuardLever": {
+      "passed": true,
+      "story": [
+        {
+          "cancel": false,
+          "lines": [
+            "You pull the lever, and immediately hear a loud grinding sound coming from inside your castle."
+          ],
+          "queryId": 33,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "The lever's jammed now and it's impossible to move it again. How odd..."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Event"
+        }
+      ]
+    },
+    "pendingQueryReload": {
+      "yes": {
+        "passed": true,
+        "nativeDailyEffects": [
+          {
+            "day": 1,
+            "behemoths": null
+          },
+          {
+            "day": 2,
+            "behemoths": 1
+          },
+          {
+            "day": 3,
+            "behemoths": 13
+          }
+        ]
+      },
+      "no": {
+        "passed": true,
+        "story": [
+          {
+            "cancel": false,
+            "lines": [
+              "You study the lever, afraid to pull it, but you just can't figure out what it could be here for. Then you notice a few behemoth hairs sticking to the shaft. How odd..."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        ]
+      }
+    },
+    "witch": {
+      "give": {
+        "passed": true,
+        "goldBefore": 20500,
+        "goldAfter": 19500,
+        "armyAfter": [
+          {
+            "key": "core:goblin",
+            "count": 25
+          },
+          {
+            "key": "core:hobgoblin",
+            "count": 15
+          },
+          {
+            "key": "core:goblin",
+            "count": 28
+          },
+          {
+            "key": "core:hobgoblin",
+            "count": 17
+          },
+          {
+            "key": "core:hobgoblinWolfRider",
+            "count": 10
+          },
+          {
+            "key": "core:hobgoblinWolfRider",
+            "count": 12
+          },
+          {
+            "key": "core:hobgoblinWolfRider",
+            "count": 12
+          }
+        ]
+      },
+      "spit": {
+        "passed": true,
+        "goldBefore": 20800,
+        "goldAfter": 20800,
+        "armyAfter": [
+          {
+            "key": "core:troglodyte",
+            "count": 25
+          },
+          {
+            "key": "core:troglodyte",
+            "count": 15
+          },
+          {
+            "key": "core:goblin",
+            "count": 28
+          },
+          {
+            "key": "core:hobgoblin",
+            "count": 17
+          },
+          {
+            "key": "core:hobgoblinWolfRider",
+            "count": 10
+          },
+          {
+            "key": "core:hobgoblinWolfRider",
+            "count": 12
+          },
+          {
+            "key": "core:hobgoblinWolfRider",
+            "count": 12
+          }
+        ]
+      },
+      "kill": {
+        "passed": true,
+        "goldBefore": 20000,
+        "goldAfter": 20000,
+        "armyAfter": [
+          {
+            "key": "core:troglodyte",
+            "count": 25
+          },
+          {
+            "key": "core:troglodyte",
+            "count": 15
+          },
+          {
+            "key": "core:troglodyte",
+            "count": 28
+          },
+          {
+            "key": "core:troglodyte",
+            "count": 17
+          },
+          {
+            "key": "core:troglodyte",
+            "count": 10
+          },
+          {
+            "key": "core:troglodyte",
+            "count": 12
+          },
+          {
+            "key": "core:troglodyte",
+            "count": 12
+          }
+        ]
+      }
+    },
+    "tomb": {
+      "passed": true,
+      "positiveRound": 1,
+      "enemyZealots": 48,
+      "enemyArchangels": 1,
+      "battleOutcomeValidated": false
+    }
+  },
+  "nonRegression": {
+    "productionMaps": {
+      "passed": true,
+      "maps": [
+        {
+          "name": "003-Goonks-WoG.vmap",
+          "saveReload": true,
+          "nativeResumedTurnCycle": {
+            "passed": true,
+            "roles": [
+              {
+                "color": 0,
+                "human": true,
+                "name": "Player 1"
+              },
+              {
+                "color": 1,
+                "human": false,
+                "name": "Computer"
+              }
+            ],
+            "observations": [
+              {
+                "day": 1,
+                "currentPlayer": 0
+              },
+              {
+                "day": 2,
+                "currentPlayer": 0
+              }
+            ]
+          }
+        },
+        {
+          "name": "004-Goonks-WoG-Online.vmap",
+          "saveReload": true,
+          "nativeResumedTurnCycle": {
+            "passed": true,
+            "roles": [
+              {
+                "color": 0,
+                "human": true,
+                "name": "Player 1"
+              },
+              {
+                "color": 1,
+                "human": true,
+                "name": "Player 2"
+              }
+            ],
+            "observations": [
+              {
+                "day": 1,
+                "currentPlayer": 0
+              },
+              {
+                "day": 1,
+                "currentPlayer": 1
+              },
+              {
+                "day": 2,
+                "currentPlayer": 0
+              }
+            ]
+          }
+        }
+      ],
+      "actualBattleStart": true
+    },
+    "legacySaves": {
+      "passed": true,
+      "results": [
+        {
+          "passed": true,
+          "map": "003-Goonks-WoG.vmap",
+          "oldVersion": 901,
+          "newVersion": 903,
+          "exactStatePreserved": true,
+          "realNextTurn": true,
+          "campaignStateAbsent": true
+        },
+        {
+          "passed": true,
+          "map": "004-Goonks-WoG-Online.vmap",
+          "oldVersion": 901,
+          "newVersion": 903,
+          "exactStatePreserved": true,
+          "realNextTurn": true,
+          "campaignStateAbsent": true
+        },
+        {
+          "passed": true,
+          "map": "003-Goonks-WoG.vmap",
+          "oldVersion": 902,
+          "newVersion": 903,
+          "exactStatePreserved": true,
+          "realNextTurn": true,
+          "campaignStateAbsent": true
+        },
+        {
+          "passed": true,
+          "map": "004-Goonks-WoG-Online.vmap",
+          "oldVersion": 902,
+          "newVersion": 903,
+          "exactStatePreserved": true,
+          "realNextTurn": true,
+          "campaignStateAbsent": true
+        }
+      ],
+      "errors": []
+    },
+    "sixOptionsOnAndOff": {
+      "passed": true,
+      "reference": "work/browser-tests/wog-options169-cases.mjs"
+    }
+  },
+  "checks": {
+    "trackedNodeTests": {
+      "tests": 749,
+      "passed": 715,
+      "skipped": 34,
+      "failed": 0
+    },
+    "nativeJsonCodecLinuxAsanUbsan": {
+      "passed": true
+    },
+    "wasm": "ninja -j32 html5 passed",
+    "responsiveDialog": {
+      "browsers": [
+        "Chromium",
+        "WebKit"
+      ],
+      "sizes": [
+        "320x568",
+        "390x844",
+        "568x320",
+        "844x390",
+        "768x1024",
+        "1024x768",
+        "1180x820"
+      ],
+      "passed": true,
+      "realChromiumTouchScroll": true,
+      "singleAnswerPerQuery": true,
+      "stableDomAndScrollDuringTransitions": true
+    }
+  },
+  "remaining": [
+    "Other Cave quest branches and complete victory playthrough",
+    "Adventure, combat and timer adapters for the eleven campaign scenarios",
+    "Text input and multiple-choice dialogs for those scenarios",
+    "Campaign graph, transfers and real victories of all eleven scenarios"
+  ],
+  "publishedDiagnostics": false
+}

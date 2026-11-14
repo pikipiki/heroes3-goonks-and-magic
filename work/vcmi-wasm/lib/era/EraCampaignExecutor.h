@@ -162,7 +162,8 @@ public:
    if(!call.initializer&&call.blockCursor>=call.blocks.size()){finishFrame();continue;}
    if(!call.initializer&&call.blocks[call.blockCursor]>=program.blocks.size())throw std::runtime_error("Invalid saved campaign block");
    const auto * block=call.initializer?nullptr:&program.blocks[call.blocks[call.blockCursor]];
-   if(block&&call.command==0&&call.operation==0&&!call.commandConditionAccepted&&!accepts(block->conditions,state,context))
+   if(block&&call.command==0&&call.operation==0&&!call.commandConditionAccepted&&
+      (lookup(state.disabledBlocks,static_cast<std::int32_t>(call.blocks[call.blockCursor]))||!accepts(block->conditions,state,context)))
    {call.blockCursor++;continue;}
    const auto & commands=call.initializer?program.initializers:block->commands;
    if(call.command>=commands.size())
@@ -179,6 +180,22 @@ public:
    if(call.operation>=command.operations.size()){call.command++;call.operation=0;call.commandConditionAccepted=false;continue;}
    const auto & op=command.operations[call.operation++];
    const auto visible=call.initializer?command.visibleBlocks:call.visibleBlocks;
+   if(op.code=="Z"&&command.receiver=="LE")
+   {
+    // h3era.exe 0x740BF2: Z4/5 enable/disable every matching trigger;
+    // Z6 toggles and Z7 restores the previously stored disabled state.
+    arity(op,1);const auto mode=readNumber(op.args[0],state,context);
+    if(mode<4||mode>7)throw std::runtime_error("Unsupported campaign trigger Z mode");
+    std::vector<std::int32_t> selectors;for(const auto & value:command.selectors)selectors.push_back(readNumber(value,state,context));
+    for(const auto index:matching(command.receiver,selectors,false,allBlocks))
+    {
+     const auto key=static_cast<std::int32_t>(index);const bool old=lookup(state.disabledBlocks,key);
+     const bool previous=lookup(state.previousDisabledBlocks,key);
+     state.previousDisabledBlocks[key]=old;
+     state.disabledBlocks[key]=mode==4?false:mode==5?true:mode==6?!old:previous;
+    }
+    continue;
+   }
    if(command.receiver=="VR"){variable(command,op);continue;}
    if(command.receiver=="MC")
    {

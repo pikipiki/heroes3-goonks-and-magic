@@ -58,6 +58,7 @@ class QueriesProcessor;
 class CObjectVisitQuery;
 class NewTurnProcessor;
 class IGameServer;
+class SourceCampaignProcessor;
 
 class CGameHandler : public Environment, public IGameEventCallback
 {
@@ -70,6 +71,7 @@ public:
 	std::unique_ptr<TurnOrderProcessor> turnOrder;
 	std::unique_ptr<TurnTimerHandler> turnTimerHandler;
 	std::unique_ptr<NewTurnProcessor> newTurnProcessor;
+	std::unique_ptr<SourceCampaignProcessor> sourceCampaigns;
 	std::unique_ptr<GameRandomizer> randomizer;
 	std::unique_ptr<StatisticDataSet> statistics;
 	std::unique_ptr<SpellCastEnvironment> spellEnv;

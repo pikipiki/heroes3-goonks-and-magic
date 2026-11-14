@@ -122,3 +122,14 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle] .battle-stat-pi
  html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle] .battle-unit-sub{flex:none;font-size:9px!important;line-height:11px!important;white-space:nowrap}
  html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle] .battle-stat-pill{font-size:10px!important;line-height:11px!important;padding:0 2px!important}
 }
+
+/* Native quest text remains scrollable while its reply is being processed. */
+#mobile-app .dialog-presentation[data-kind=source-campaign]{touch-action:pan-y;top:0;bottom:0;height:auto;max-height:none;transform:none;grid-template-rows:auto minmax(0,1fr) auto}
+#mobile-app .dialog-presentation[data-kind=source-campaign] .dialog-copy{touch-action:pan-y;overscroll-behavior:contain;overflow-y:auto;max-height:none;justify-content:flex-start}
+#mobile-app .dialog-presentation[data-kind=source-campaign] .dialog-choices{display:none}
+#mobile-app .dialog-presentation[data-kind=source-campaign] footer{grid-row:3}
+#mobile-app .dialog-presentation[data-kind=source-campaign][data-waiting] button:disabled{opacity:1;cursor:wait}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .dialog-presentation[data-kind=source-campaign] .dialog-copy{grid-column:1;grid-row:1/-1;align-self:stretch;font-size:clamp(15px,2vw,20px)}
+ #mobile-app .dialog-presentation[data-kind=source-campaign] footer{grid-column:2;grid-row:3}
+}

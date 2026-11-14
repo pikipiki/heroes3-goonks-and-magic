@@ -55,6 +55,16 @@ int main()
  // IF:W-1 selects the source hero of the event for persistent w variables.
  Program hero;hero.sha256="hero-vars";hero.blocks={block("LE",{}, {cmd("IF",{},"W",{num(-1)}),cmd("VR",{var('w',55)},"S",{num(10)})})};
  State hs;Context hc;hc.currentHero=106;Executor he(hero,hs,hc,host);he.dispatch("LE");assert(he.run()&&hs.w[106][55]==10);
+ // Legacy Cave Z5 disables the matching LE trigger, without removing its
+ // native object/reward. Z4 re-enables it. Subsequent commands still execute.
+ Program toggle;toggle.sha256="trigger-enable";
+ toggle.initializers={cmd("LE",{num(1),num(2),num(0)},"Z",{num(5)})};
+ toggle.blocks={block("LE",{num(1),num(2),num(0)},{cmd("VR",{var('v',1)},"+",{num(1)})}),
+  block("LE",{num(3),num(4),num(0)},{cmd("LE",{num(1),num(2),num(0)},"Z",{num(4)})})};
+ State bs;Executor be(toggle,bs,context,host);be.initialize();assert(be.run());
+ be.dispatch("LE",{1,2,0});assert(be.run()&&bs.v[1]==0);
+ be.dispatch("LE",{3,4,0});assert(be.run());
+ be.dispatch("LE",{1,2,0});assert(be.run()&&bs.v[1]==1);
  bool rejected=false;auto corrupt=restored;corrupt.programSha256="another-map";try{Executor bad(dialog,corrupt,context,host);}catch(const std::runtime_error&){rejected=true;}assert(rejected);
  Program zero=loop;zero.sha256="zero-loop";zero.blocks[0].commands[0].selectors[3]=num(0);State zs;Executor ze(zero,zs,context,host);ze.dispatch("LE");rejected=false;try{ze.run();}catch(const std::runtime_error&){rejected=true;}assert(rejected);
 }

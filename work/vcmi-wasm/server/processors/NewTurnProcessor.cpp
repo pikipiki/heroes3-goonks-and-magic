@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/SourceCampaignProcessor.h"
 #include "NewTurnProcessor.h"
 
 #include "HeroPoolProcessor.h"
@@ -60,10 +61,12 @@ void NewTurnProcessor::handleTimeEvents(PlayerColor color)
 
 		if (!event.affectsPlayer(color, gameHandler->gameInfo().getPlayerState(color)->isHuman()))
 			continue;
+		if(gameHandler->sourceCampaigns->timedEvent(event,color))
+			continue;
 
 		InfoWindow iw;
 		iw.player = color;
-		iw.text = event.message;
+		iw.text = gameHandler->sourceCampaigns->eventMessage(event);
 
 		//give resources
 		if (!event.resources.empty())
@@ -102,7 +105,7 @@ void NewTurnProcessor::handleTownEvents(const CGTownInstance * town)
 		// dialog
 		InfoWindow iw;
 		iw.player = player;
-		iw.text = event.message;
+		iw.text = gameHandler->sourceCampaigns->eventMessage(event);
 
 		if (event.resources.nonZero())
 		{

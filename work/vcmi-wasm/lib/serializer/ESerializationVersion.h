@@ -66,7 +66,7 @@ enum class ESerializationVersion : int32_t
 	GOONK_SOURCE_CAMPAIGNS, // persisted source scenario scripts and continuations
 
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_WOG_OPTIONS,
+	CURRENT = GOONK_SOURCE_CAMPAIGNS,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

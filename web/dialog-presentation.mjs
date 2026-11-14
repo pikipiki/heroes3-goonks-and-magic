@@ -8,10 +8,12 @@ const text=value=>plainGameText(value||'');
 export function createDialogPresentation({root,command,pointer,refresh=()=>{}}){
  const progression=createProgressionChoices({root,command});
  const panel=document.createElement('section');panel.className='dialog-presentation';panel.hidden=true;panel.setAttribute('aria-labelledby','dialog-presentation-title');root.append(panel);
- let state,key,dirty=false,icons=[],classic=false,inspect=0,lastMode='',captureAfter=0,hasSnapshot=false,snapshotGeometry='',treeOpen=false,treeFilter=null;
+ let state,key,dirty=false,icons=[],classic=false,inspect=0,lastMode='',captureAfter=0,hasSnapshot=false,snapshotGeometry='',treeOpen=false,treeFilter=null,replyingTo=null,campaignExit=null;
+ function holdCampaign(){panel.dataset.waiting='true';for(const button of panel.querySelectorAll('button'))button.disabled=true;}
  window.addEventListener('goonk-language',()=>{key=undefined;if(state)update(state);});
  panel.addEventListener('click',event=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
+  if(state?.dialogKind==='source-campaign'&&(button.hasAttribute('data-dialog-confirm')||button.hasAttribute('data-dialog-cancel'))){replyingTo=state.dialogPresentation.queryId;holdCampaign();}
   if(button.hasAttribute('data-commander-tree')){treeOpen=!treeOpen;key=undefined;update(state);}
   else if(button.hasAttribute('data-dialog-classic')){classic=true;update(state);refresh();}
   else if(button.dataset.dialogInfo!==undefined){inspect=Number(button.dataset.dialogInfo);key=undefined;update(state);}
@@ -19,7 +21,18 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{}}){
   else if(button.hasAttribute('data-dialog-cancel'))command(0);
   else if(button.dataset.dialogChoice!==undefined){const choice=state.dialogPresentation.choices[Number(button.dataset.dialogChoice)];const r=choice.rect;pointer({x:Math.round(r.x+r.w/2),y:Math.round(r.y+r.h/2)},1);}
  });
- function update(next){
+ function update(next,settled=false){
+  if(campaignExit&&(next.mode!=='map'||next.campaignPending)){clearTimeout(campaignExit);campaignExit=null;}
+  // The final native reward window follows the last script-state packet. Wait
+  // briefly for it before revealing the adventure map between those packets.
+  if(!settled&&state?.dialogKind==='source-campaign'&&next.mode==='map'&&!next.campaignPending){
+   if(!campaignExit)campaignExit=setTimeout(()=>{campaignExit=null;update(next,true);},120);holdCampaign();return;
+  }
+  // Keep the current text and scroll position while the native reply travels
+  // to the server. A transient adventure frame must not flash behind a quest.
+  if(state?.dialogKind==='source-campaign'&&next.campaignPending&&
+     (next.mode!=='dialog'||(replyingTo!==null&&next.dialogPresentation?.queryId===replyingTo))){holdCampaign();return;}
+  replyingTo=null;if(panel.dataset.waiting){delete panel.dataset.waiting;for(const button of panel.querySelectorAll('button'))button.disabled=false;}
   if(progression.update(next)){state=next;panel.hidden=true;key=undefined;icons=[];root.setAttribute('data-dialog-presentation','');return;}
   if(!['commander','commander-level-up'].includes(next.dialogKind)){treeOpen=false;treeFilter=null;}
   state=next;if(next.mode!==lastMode||next.dialogKind!=='commander'){classic=false;inspect=0;}lastMode=next.mode;const data=next.mode==='dialog'&&!classic&&next.dialogPresentation;
