@@ -16,7 +16,7 @@ page.on('console',message=>fs.appendFileSync(out+'/console.log',message.type()+'
 const pageErrors=[];page.on('pageerror',e=>pageErrors.push(e.message));let hero;
 const cmd=async(...args)=>hero.evaluate(args=>Module._vcmiMobileCommand(...args),[...args,...Array(6-args.length).fill(0)]);
 try{
- await page.goto('http://127.0.0.1:8779/index.html');hero=page;
+ await page.goto(process.env.CROSSOVER_URL||'http://127.0.0.1:8779/index.html');hero=page;
  await page.waitForFunction(()=>window.goonkMobileState?.mode==='menu',null,{timeout:180000});
  assert.equal(await page.locator('#crossover-tools').count(),0);
  assert(await page.locator('#mobile-app .mobile-menu #crossover-demo').isVisible(),'Demo belongs to the Heroes home menu');
@@ -129,7 +129,7 @@ try{
  assert.deepEqual(restored.slots.map(row=>row&&[row.key,row.count]),army.slots.map(row=>row&&[row.key,row.count]));
  record({name:'Native save and reload preserve exactly the post-RTS Heroes army',saveBytes,restored:restored.slots.map(row=>row&&[row.key,row.count])});
  // A second fresh adventure exercises the product's cancellation path.
- await page.goto('http://127.0.0.1:8779/index.html');hero=page;
+ await page.goto(process.env.CROSSOVER_URL||'http://127.0.0.1:8779/index.html');hero=page;
  await page.waitForFunction(()=>window.goonkMobileState?.mode==='menu',null,{timeout:180000});
  await cmd(20,1);await hero.waitForFunction(()=>goonkMobileState.mode==='lobby'&&goonkMobileState.lobbyReady,null,{timeout:60000});await cmd(111);await hero.waitForFunction(()=>goonkMobileState.selectedMap==='Crossover - duel StarCraft'&&goonkMobileState.lobbyReady);await cmd(22);
  await hero.waitForFunction(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn,null,{timeout:120000});
