@@ -1,0 +1,306 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.178",
+  "engineSha256": "7d832f81f651727af9f27516936f7f3f50cf2c9789f256cdaf76c670cd27f569",
+  "scope": "Dormant native campaign host: source payments, signed resources and mithril, current-player and controller queries. Private controlled timer on actual Cave; no original quest or victory.",
+  "originalCampaignsEnabled": false,
+  "nativeChecks": [
+    {
+      "case": "resources-fresh",
+      "passed": true,
+      "resultSha256": "a38f1f13760c39aa9058c8103ec1941e2221959a7b34b575e73590da48858cdb",
+      "scope": "Private native scheduler: initialization/timer/global suspension, live D0 mask change, ordered source/global rewards, actual resumed turn starts and days2/3; no original quest or victory.",
+      "fixtureSha256": "821e417f685eb6e5b6ac6e2285d347906886c768f35083dd0a05197ce4318836",
+      "resources": true,
+      "identity": false,
+      "loadedPending": false,
+      "markers": [
+        {
+          "day": 1,
+          "turn": false,
+          "query": 3,
+          "text": [
+            "Native initialization pending."
+          ],
+          "gold": 20800
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 4,
+          "text": [
+            "Native weekly timer: 1; payment: 10345; uncapped: 1000000017; signed: -2; mithril: 37; player: 1; controllers: 0/1; comparison: 1"
+          ],
+          "gold": 10345
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 5,
+          "text": [
+            "Native daily timer: 12; red: 0; control: 0"
+          ],
+          "gold": 10345
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 6,
+          "text": [
+            "Native global 666: 124"
+          ],
+          "gold": 10345
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 7,
+          "text": [
+            "Native global 667: 1245"
+          ],
+          "gold": 10468
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 28,
+          "text": [
+            "Native daily timer: 12452; red: 0; control: 1"
+          ],
+          "gold": 11202
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 29,
+          "text": [
+            "Native one-time timer: 124523"
+          ],
+          "gold": 11202
+        },
+        {
+          "day": 3,
+          "turn": false,
+          "query": 34,
+          "text": [
+            "Native daily timer: 1245232; red: 0; control: 2"
+          ],
+          "gold": 11702
+        }
+      ],
+      "day1Resources": [
+        20,
+        10,
+        20,
+        10,
+        10,
+        10,
+        10702,
+        37
+      ],
+      "finalResources": [
+        20,
+        10,
+        20,
+        10,
+        10,
+        10,
+        11702,
+        37
+      ],
+      "mapFlashes": [],
+      "errors": []
+    },
+    {
+      "case": "resources-reload",
+      "passed": true,
+      "resultSha256": "fc210959fbd677aa4a267cbb93ace8ccaa8e260019c8ad14bdf1bcbe16361bd5",
+      "scope": "Private native scheduler: initialization/timer/global suspension, live D0 mask change, ordered source/global rewards, actual resumed turn starts and days2/3; no original quest or victory.",
+      "fixtureSha256": "821e417f685eb6e5b6ac6e2285d347906886c768f35083dd0a05197ce4318836",
+      "resources": true,
+      "identity": false,
+      "loadedPending": true,
+      "markers": [
+        {
+          "day": 1,
+          "turn": false,
+          "query": 8,
+          "text": [
+            "Native global 666: 124"
+          ],
+          "gold": 10345
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 9,
+          "text": [
+            "Native global 667: 1245"
+          ],
+          "gold": 10468
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 30,
+          "text": [
+            "Native daily timer: 12452; red: 0; control: 1"
+          ],
+          "gold": 11202
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 31,
+          "text": [
+            "Native one-time timer: 124523"
+          ],
+          "gold": 11202
+        },
+        {
+          "day": 3,
+          "turn": false,
+          "query": 36,
+          "text": [
+            "Native daily timer: 1245232; red: 0; control: 2"
+          ],
+          "gold": 11702
+        }
+      ],
+      "day1Resources": [
+        20,
+        10,
+        20,
+        10,
+        10,
+        10,
+        10702,
+        37
+      ],
+      "finalResources": [
+        20,
+        10,
+        20,
+        10,
+        10,
+        10,
+        11702,
+        37
+      ],
+      "mapFlashes": [],
+      "errors": []
+    },
+    {
+      "case": "old-identity",
+      "passed": true,
+      "resultSha256": "d79a8d3dcd1945cf0f0edf751df421f878c57c0c3147875731c874cf04cb602c",
+      "scope": "Private native scheduler: initialization/timer/global suspension, live D0 mask change, ordered source/global rewards, actual resumed turn starts and days2/3; no original quest or victory.",
+      "fixtureSha256": "cba44179e77c1c7167de04c14fc5c0a270cab156731a70fadc1e97c1d8f9a961",
+      "resources": false,
+      "identity": true,
+      "loadedPending": true,
+      "markers": [
+        {
+          "day": 1,
+          "turn": false,
+          "query": 8,
+          "text": [
+            "Native global 666: 124"
+          ],
+          "gold": 20000
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 9,
+          "text": [
+            "Native global 667: 1245"
+          ],
+          "gold": 20123
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 32,
+          "text": [
+            "Native daily timer: 12452; red: 0; control: 1; hero: Native Voyager; id: 106; sex: 1; bio: A voyager from the original campaign name form."
+          ],
+          "gold": 20857
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 33,
+          "text": [
+            "Native one-time timer: 124523"
+          ],
+          "gold": 20857
+        },
+        {
+          "day": 3,
+          "turn": false,
+          "query": 38,
+          "text": [
+            "Native daily timer: 1245232; red: 0; control: 2; hero: Native Voyager; id: 106; sex: 1; bio: A voyager from the original campaign name form."
+          ],
+          "gold": 21357
+        }
+      ],
+      "day1Resources": [
+        20,
+        10,
+        20,
+        10,
+        10,
+        10,
+        20357,
+        0
+      ],
+      "finalResources": [
+        20,
+        10,
+        20,
+        10,
+        10,
+        10,
+        21357,
+        0
+      ],
+      "mapFlashes": [],
+      "errors": []
+    },
+    {
+      "case": "production",
+      "passed": true,
+      "resultSha256": "25c4b6193d027d819501dbac8a1f45ab0b779b1b95bb091a3fe8b81d6e6569f8",
+      "scope": "Actual production manifest/assets, both adventure maps, native save/reload, names/roles and real solo/hotseat turn transitions plus003 BattleStart policy parsing; no private overlay or installed asset write.",
+      "fixtureSha256": null,
+      "resources": null,
+      "identity": null,
+      "loadedPending": null,
+      "markers": null,
+      "day1Resources": null,
+      "finalResources": null,
+      "mapFlashes": null,
+      "errors": []
+    }
+  ],
+  "checks": {
+    "ninjaHtml5": true,
+    "unitTests": {
+      "total": 761,
+      "passed": 727,
+      "skipped": 34,
+      "failed": 0
+    },
+    "siteBuildAndVerification": true,
+    "unchangedSaveVersion": 903,
+    "previous177PublicStartupCspAndWasmVerified": true
+  },
+  "limitations": [
+    "Only dormant Cave program admission.",
+    "I controller mutations and other OW receivers remain unimplemented.",
+    "No original quest victory or campaign carryover validated.",
+    "Extreme signed writes are controlled in one timer and restored before normal next-turn processing; this does not establish original Windows behavior for every later native operation on such values."
+  ]
+}

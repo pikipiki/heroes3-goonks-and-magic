@@ -1,6 +1,6 @@
 # Port natif des campagnes originales : état réel
 
-Le port complet de la priorité 6 n’est pas terminé. Les quatre campagnes, leurs onze scénarios et Cave of Gerfrex restent désactivés. La version 0.4.170 ajoute un premier raccordement natif à Cave ; la 0.4.171 ajoute les formulaires natifs avec saisie et choix multiples, et la 0.4.172 raccorde une première forme de combat scripté, et la 0.4.173 une récompense en créatures avec répartition d’armée. La 0.4.174 restaure les illustrations et corrige les prérequis de zc1 depuis les archives H3C originales. Ces étapes ne constituent pas le port intégral des campagnes.
+Le port complet de la priorité 6 n’est pas terminé. Les quatre campagnes, leurs onze scénarios et Cave of Gerfrex restent désactivés. Les versions 0.4.170 à 0.4.178 raccordent progressivement l’hôte Cave, les formulaires et illustrations, une forme de combat scripté, les échanges de troupes, les visites d’objets, les minuteries, les textes de héros et les ressources. Chaque section distingue les contrôles natifs des quêtes et victoires originales encore à valider.
 
 ## Ce qui est implémenté
 
@@ -133,3 +133,13 @@ La compilation `ninja -j32 html5`, 727 tests réussis (34 ignorés, aucun échec
 Les mutations passent par le paquet répliqué de campagne. Les textes utilisent le catalogue localisé de la carte, enregistré dans la sauvegarde existante 903, plutôt qu’un remplacement global des définitions de héros. Le quatrième choix de portrait reste une réponse du formulaire : l’application des fichiers de portraits personnalisés via `HE:L5` n’est pas encore raccordée au portrait du héros.
 
 Un contrôle privé reprend le formulaire original de zc1 et cible le vrai héros 106 de Cave. Le nom saisi devient son nom affiché dans l’état mobile. Les lectures natives de son nom, numéro, sexe et biographie sont répétées les jours suivants et après chargement d’une sauvegarde prise pendant un événement global. Les récompenses ne sont pas répétées et les transitions ne produisent pas de panneau vide. Ce contrôle de propriétés ne valide pas une quête ni une victoire originale. Les empreintes et vérifications figurent dans [le relevé natif](../outputs/wog-priorities-0.4.147/campaign-runtime/native-hero-text-177.json).
+
+## Paiements et ressources en 0.4.178
+
+`OW:R` lit, compare, fixe ou fait varier les huit ressources source. Le joueur `-1` désigne le joueur du contexte de tour sérialisé. Le mithril est résolu par son identifiant de mod, sans supposer qu’il occupe une position fixe après les ressources de base. Les autres ressources et les ressources ajoutées par des mods restent intactes. `OW:C` lit ou compare le joueur courant ; `OW:I` lit ou compare le contrôleur et, dans sa forme à trois arguments, le statut vivant/mort. Le changement de contrôleur reste refusé.
+
+Le rapprochement statique du receiver et des fonctions d’accès montre une écriture directe du mot de 32 bits. La branche mithril utilise sa propre table. Pour les sept ressources classiques, le getter traite la valeur `-1` comme son signal d’erreur. Ces détails et les limites de l’analyse figurent dans [le contrat source](../outputs/wog-priorities-0.4.147/campaign-runtime/resource-source-contract-178.json), avec la documentation [OW](https://h3era.github.io/ERM-Help/Rec/OW.htm).
+
+Le paquet de campagne réplique la mutation d’une seule ressource et notifie le compteur natif. Il évite `SetResources`, qui plafonne l’ensemble des réserves et supprime leurs valeurs négatives. La sauvegarde garde son format 903. Les commandes `OW:D`, `A`, `K` et les autres branches ne sont pas encore raccordées ; aucune campagne originale n’est activée.
+
+Le contrôle privé fixe l’or à 12 345, prélève 2 000, lit et compare 10 345, puis vérifie le mithril à 37. Il lit également une valeur de bois de 1 000 000 017 et une valeur de minerai de -2, avant de rétablir ces deux réserves. Le chargement pendant un événement global ne répète pas le paiement ; le mithril reste présent aux tours suivants. Les tests des propriétés de héros, des cartes Goonk solo/en ligne, des sauvegardes, des rôles et d’un premier round de combat passent aussi. [Le relevé natif](../outputs/wog-priorities-0.4.147/campaign-runtime/native-resources-178.json) conserve les limites de cette preuve.

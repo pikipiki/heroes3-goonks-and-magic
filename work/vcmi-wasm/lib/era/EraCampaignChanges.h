@@ -1,6 +1,7 @@
 /* Closed replicated mutations used by the pinned original campaign adapters. */
 #pragma once
 #include "../gameState/CGameState.h"
+#include "../CPlayerState.h"
 #include "EraCampaignJson.h"
 #include "../mapping/CMap.h"
 #include "../mapObjects/CGHeroInstance.h"
@@ -13,8 +14,10 @@
 #include "../bonuses/BonusParameters.h"
 #include "../mapping/CCastleEvent.h"
 #include "../networkPacks/SourceCampaignChange.h"
+#include "../entities/ResourceTypeHandler.h"
 #include <stdexcept>
 #include <set>
+#include <algorithm>
 VCMI_LIB_NAMESPACE_BEGIN
 namespace era_compat
 {
@@ -39,6 +42,17 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
  for(const auto & change:packet.changes.Vector())
  {
   const auto & kind=change["kind"].String();
+  if(kind=="playerResource")
+  {
+   const PlayerColor color(campaignInteger(change["player"]));
+   if(!color.isValidPlayer())throw std::runtime_error("Invalid original resource owner");
+   auto * player=gs.getPlayerState(color,false);const GameResID resource(campaignInteger(change["resource"]));
+   const auto & resources=LIBRARY->resourceTypeHandler->getAllObjects();
+   if(!player||std::find(resources.begin(),resources.end(),resource)==resources.end())throw std::runtime_error("Invalid original player resource mutation");
+   // WoG writes the signed word directly; SetResources clamps its whole set.
+   player->resources[resource]=campaignInteger(change["amount"]);
+   continue;
+  }
   const auto id=ObjectInstanceID(campaignInteger(change["object"]));
   auto * object=gs.getObjInstance(id);
   if(!object)throw std::runtime_error("Original campaign mutation target missing");

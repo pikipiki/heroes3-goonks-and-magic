@@ -463,6 +463,29 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   }
   pending=std::move(prompt);return Step::Suspend;
  }
+ if(c.receiver=="OW")
+ {
+  require(c.selectors.empty(),"player receiver does not take selectors");
+  if(op.code=="C")
+  {arity(op,1);require(query(op),"current player is read-only");value(player.getNum(),args[0]);return Step::Continue;}
+  require(!args.empty()&&args[0].access==Access::Read,"player needs a color value");
+  const int selected=number(args[0]);const PlayerColor who(selected==-1?player.getNum():selected);require(who.isValidPlayer(),"player outside 0..7");
+  const auto * owner=gh.gameInfo().getPlayerState(who,false);
+  if(op.code=="I")
+  {
+   require(args.size()==2||args.size()==3,"invalid player controller arity");
+   for(std::size_t i=1;i<args.size();++i)require(args[i].access==Access::Write||args[i].access==Access::Compare,"player controller mutation not admitted");
+   value(owner&&owner->isHuman()?0:1,args[1]);if(args.size()==3)value(!owner||owner->status!=EPlayerStatus::INGAME?1:0,args[2]);return Step::Continue;
+  }
+  require(op.code=="R","unsupported player operation "+op.code);arity(op,3);require(owner!=nullptr,"resource owner missing");require(args[1].access==Access::Read,"resource needs a type value");
+  const int source=number(args[1]);require(source>=0&&source<=7,"resource outside 0..7");
+  GameResID resource(source);
+  if(source==7){const auto id=LIBRARY->identifiers()->getIdentifier(ModScope::scopeGame(),"resource","wake-of-gods.mithril:mithril",true);require(id.has_value(),"source mithril unavailable");resource=GameResID(*id);}
+  const auto old=owner->resources[resource];require(old>=INT32_MIN&&old<=INT32_MAX,"resource outside source signed word");require(source==7||old!=-1,"source resource getter returned its error sentinel");
+  const int changed=value(static_cast<int>(old),args[2]);
+  if(!query(op)){auto change=mutation("playerResource",ObjectInstanceID::NONE);change["player"].Integer()=who.getNum();change["resource"].Integer()=resource.getNum();change["amount"].Integer()=changed;persist(change);}
+  return Step::Continue;
+ }
  if(c.receiver=="HE")
  {
   require(c.selectors.size()==1,"Cave hero selector");const auto * h=hero(number(c.selectors[0]));

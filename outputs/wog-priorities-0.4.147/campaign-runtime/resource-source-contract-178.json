@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.178",
+  "source": "WoG 3.58f official distribution linked by Acid Cave",
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "analysis": "Static Hopper dossiers plus bounded LLVM objdump of the unrecognized switch arm; Windows binary was not executed.",
+  "sourceContract": "https://h3era.github.io/ERM-Help/Rec/OW.htm",
+  "evidence": {
+    "strings": "ev_87cc0d7257d6f0d435ccb7d810866a3ddf4ff0d97c8867451450cd3b1b06c648",
+    "receiver": "ev_e0a9341c642d428886a1e37e6059574594fab68285d82cf4154806d829edfb6e",
+    "resourceGetter": "ev_f1edb4e6f751c26aa9111cb852154276e0ca33e1b63956d313d5d227a29975af",
+    "resourceSetter": "ev_e174721c05bac521a3282d639c1fff978920fa1cd373ed7339d6ed397d061d90",
+    "currentPlayer": "ev_8dd411df4384ed95ef675f5dc4f4c2b9a139851e41d80c7d17874abd3d3578b5",
+    "refresh": "ev_032c6d3e1a59cd20be331af33cb98f2a1a44e5ef222473f6528605b3a6efded8"
+  },
+  "observations": [
+    {
+      "address": "0x733d0f",
+      "fact": "R requires three parameters; -1 owner uses current-player helper 0x7104f0; resulting owner must be 0..7."
+    },
+    {
+      "address": "0x733d87",
+      "fact": "Resource7 uses the separate dword table at 0x27e9354 indexed by player."
+    },
+    {
+      "address": "0x733dcd",
+      "fact": "Resources0..6 treat getter result -1 as an error sentinel before invoking the generic operand operation."
+    },
+    {
+      "address": "0x70f5a0",
+      "fact": "Setter writes the full dword through the resolved resource pointer, then refreshes. No clamp is present in this setter."
+    }
+  ],
+  "derivedImplementation": [
+    "Source resource7 binds by mithril identifier rather than an assumed native index.",
+    "Closed replicated mutation preserves the signed source word without SetResources clamping other resources.",
+    "Native interface receives the ordinary resource-change notification."
+  ],
+  "boundedAssemblySha256": "b036ba01b58847db46ea20881484e9409410f58d7fc6e4ec9889033a04c615db",
+  "limitations": [
+    "Hopper did not associate the R switch arm with its dispatcher body; the address-bounded objdump listing supplements those dossiers.",
+    "This does not establish original runtime behavior for every operation or every invalid input.",
+    "OW:D/A/K, mutations of I, and other OW operations are not implemented in this lot."
+  ]
+}

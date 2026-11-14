@@ -125,6 +125,14 @@ void ApplyClientNetPackVisitor::visitSetResources(SetResources & pack)
 	callInterfaceIfPresent(cl, pack.player, &IGameEventsReceiver::receivedResource);
 }
 
+void ApplyClientNetPackVisitor::visitSourceCampaignChange(SourceCampaignChange & pack)
+{
+ std::set<PlayerColor> changed;
+ for(const auto & item:pack.changes.Vector())
+  if(item["kind"].String()=="playerResource")changed.insert(PlayerColor(item["player"].Integer()));
+ for(const auto color:changed)callInterfaceIfPresent(cl,color,&IGameEventsReceiver::receivedResource);
+}
+
 void ApplyClientNetPackVisitor::visitSetHeroExperience(SetHeroExperience & pack)
 {
 	const CGHeroInstance * h = cl.gameInfo().getHero(pack.id);
