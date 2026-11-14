@@ -60,7 +60,7 @@ export function renderPage(root){
  const modSettingsPath='/home/web_user/.config/vcmi/modSettings.json';let modSettings;
  try{modSettings=JSON.parse(FS.readFile(modSettingsPath,{encoding:'utf8'}));}catch{modSettings={activePreset:'default',presets:{default:{mods:['core','vcmi'],settings:{}}}};}
  const preset=modSettings.activePreset||'default';modSettings.presets ||= {};modSettings.presets[preset] ||= {mods:['core','vcmi'],settings:{}};
- modSettings.presets[preset].mods=Array.from(new Set([...(modSettings.presets[preset].mods||[]).filter(id=>id!=='wog'),'goonk','wake-of-gods','third-upgrades','tum-era']));
+ modSettings.presets[preset].mods=Array.from(new Set([...(modSettings.presets[preset].mods||[]).filter(id=>id!=='wog'),'goonk','wake-of-gods','third-upgrades','tum-era'${process.env.GOONK_CROSSOVER==='1'?",'heroes-starcraft'":''}]));
  modSettings.presets[preset].settings ||= {};
  // Preserve existing presets: old saves may still require the archived hero-paths mod.
  modSettings.presets[preset].settings['wake-of-gods'] ||= {};

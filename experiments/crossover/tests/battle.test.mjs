@@ -7,3 +7,5 @@ test('accepts only a completed battle with exact original cohort counts',()=>{
  assert.deepEqual(battleResult(plan,state),[[0,8],[1,0]]);
  for(const modified of [{...state,battleId:18},{...state,finished:false},{...state,groups:[state.groups[0],state.groups[0]]},{...state,groups:state.groups.map(row=>({...row,survivors:1}))},{...state,groups:state.groups.map(row=>({...row,initial:row.initial+1}))}])assert.throws(()=>battleResult(plan,modified));
 });
+
+test('Heroes remain Heroes while the registered Marine is a genuine StarCraft cohort',()=>{const input=initial();input.stacks[1]={...input.stacks[1],creature:'heroes-starcraft:marine',name:'Marines',shooter:true,health:40};const plan=battlePlan(input);assert.equal(plan.stacks[0].heroes,true);assert.equal(plan.stacks[0].creature,'core:archer');assert.equal(plan.stacks[0].health,10);assert.equal(plan.stacks[1].heroes,false);assert.equal(plan.stacks[1].unit,0);});

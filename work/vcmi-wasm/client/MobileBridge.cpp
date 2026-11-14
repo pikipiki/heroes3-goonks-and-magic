@@ -584,8 +584,51 @@ void publishMobileSiegeAtlas(BattleInterface & battle){
  MAIN_THREAD_ASYNC_EM_ASM({const ptr=$0;const n=$1;const w=$2;const h=$3;try{window.goonkSiegePieces=Array.from({length:n},(_,i)=>{const row=Array.from(HEAP32.subarray(ptr/4+i*5,ptr/4+i*5+5));return {index:row[0],x:row[1],y:row[2],w:row[3],h:row[4]};});const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+n*20,ptr+n*20+w*h*4)),w,h),0,0);window.goonkSiegeAtlas=c;}finally{_free(ptr);}},packet,geometry.size()/5,width,height);}
  SDL_FreeSurface(rgba);
 }
+// Reuse original Heroes DEF frames in the shared real-time battlefield.
+void publishCrossoverArt(const BattleInfo & battle){
+ static int previous=-1;if(previous==battle.battleID.getNum())return;
+ std::vector<const CStack*> units;for(const auto & stack:battle.stacks)if(!stack->unitType()->getJsonKey().starts_with("heroes-starcraft:"))units.push_back(stack.get());
+ constexpr int cell=128,columns=8,frames=8,poses=3;
+ const int width=columns*cell,height=std::max(1,int(units.size()))*poses*cell;
+ auto surface=SDL_CreateRGBSurfaceWithFormat(0,width,height,32,SDL_PIXELFORMAT_ARGB8888);if(!surface)return;SDL_FillRect(surface,nullptr,0);
+ JsonNode metadata;bool ready=true;
+ {auto canvas=Canvas::createFromSurface(surface,CanvasScalingPolicy::IGNORE);
+ for(size_t i=0;i<units.size();i++){
+  const auto animation=ENGINE->renderHandler().loadAnimation(units[i]->unitType()->animDefName,EImageBlitMode::SIMPLE);
+  JsonNode row;row["id"].Integer()=units[i]->unitId();row["row"].Integer()=i*poses;
+  const int groups[3]={2,0,units[i]->hasBonusOfType(BonusType::SHOOTER)?15:12};
+  for(int pose=0;pose<poses;pose++){
+   int group=animation->size(groups[pose])?groups[pose]:2;const auto count=animation->size(group);
+   for(int frame=0;frame<frames;frame++){
+    const auto image=count?animation->getImage(frame*count/frames,group):nullptr;if(!image){ready=false;continue;}
+    const auto rect=image->contentRect();
+    // Preserve each frame's original alignment, with feet at cell centre-bottom.
+    const auto dimensions=image->dimensions();
+    canvas.draw(image,Point(frame*cell+(cell-rect.w)/2,(int(i)*poses+pose)*cell+cell-rect.h),rect);
+   }
+  }
+  metadata.Vector().push_back(row);
+ }}
+ auto rgba=SDL_ConvertSurfaceFormat(surface,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(surface);if(!rgba)return;
+ const int bytes=width*height*4;auto packet=malloc(bytes);if(packet){memcpy(packet,rgba->pixels,bytes);auto text=strdup(metadata.toCompactString().c_str());
+ MAIN_THREAD_ASYNC_EM_ASM({try{const c=document.createElement('canvas');c.width=$1;c.height=$2;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice($0,$0+$1*$2*4)),$1,$2),0,0);window.goonkCrossoverArt=({battleId:$4,canvas:c,rows:JSON.parse(UTF8ToString($3))});}finally{_free($0);_free($3);}},packet,width,height,text,battle.battleID.getNum());
+ if(ready)previous=battle.battleID.getNum();}
+ // Keep a dedicated backdrop: the normal mobile battle listener clears its
+ // own plane cache on entry, after the first native render notification.
+ if(CPlayerInterface::battleInt){
+  auto bg=SDL_CreateRGBSurfaceWithFormat(0,800,600,32,SDL_PIXELFORMAT_ARGB8888);
+  if(bg){SDL_FillRect(bg,nullptr,0);{auto canvas=Canvas::createFromSurface(bg,CanvasScalingPolicy::IGNORE);CPlayerInterface::battleInt->fieldController->renderMobileBackground(canvas);}
+   auto color=SDL_ConvertSurfaceFormat(bg,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(bg);
+   if(color){auto copy=malloc(800*600*4);if(copy){memcpy(copy,color->pixels,800*600*4);
+    MAIN_THREAD_ASYNC_EM_ASM({try{const c=document.createElement('canvas');c.width=800;c.height=600;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice($0,$0+800*600*4)),800,600),0,0);window.goonkCrossoverBackground=({battleId:$1,canvas:c});}finally{_free($0);}},copy,battle.battleID.getNum());}
+   SDL_FreeSurface(color);}
+  }
+ }
+ SDL_FreeSurface(rgba);
+}
 void publishMobileVerticalPlanes(BattleInterface & battle){
- if(!mobileVerticalBattle)return;
+ const auto crossover=dynamic_cast<const BattleInfo*>(battle.getBattle()->getBattle());
+ if(!mobileVerticalBattle && !(crossover && crossover->crossover))return;
  publishMobileSiegeAtlas(battle);
  constexpr int width=400,height=300;
  static SDL_Surface * scratch=SDL_CreateRGBSurfaceWithFormat(0,800,600,32,SDL_PIXELFORMAT_ARGB8888);
@@ -1498,11 +1541,12 @@ void publishMobileState(){
  if(p && battleWindow && CPlayerInterface::battleInt){
   const auto info=dynamic_cast<const BattleInfo*>(CPlayerInterface::battleInt->getBattle()->getBattle());
   if(info && info->crossover && info->battleID.getNum()!=mobileCrossoverSuppressed){
+   publishCrossoverArt(*info);
    auto & data=n["crossover"];data["battleId"].Integer()=info->battleID.getNum();
    for(const auto & stack:info->stacks){
     JsonNode row;row["id"].Integer()=stack->unitId();row["side"].Integer()=stack->unitSide()==BattleSide::ATTACKER?0:1;
     row["creature"].String()=stack->unitType()->getJsonKey();row["name"].String()=stack->unitType()->getNamePluralTranslated();
-    row["count"].Integer()=stack->getCount();row["shooter"].Bool()=stack->hasBonusOfType(BonusType::SHOOTER);row["health"].Integer()=stack->getMaxHealth();
+    row["count"].Integer()=stack->getCount();row["shooter"].Bool()=stack->hasBonusOfType(BonusType::SHOOTER);row["health"].Integer()=stack->getMaxHealth();row["damageMin"].Integer()=stack->getMinDamage(stack->hasBonusOfType(BonusType::SHOOTER));row["damageMax"].Integer()=stack->getMaxDamage(stack->hasBonusOfType(BonusType::SHOOTER));row["attack"].Integer()=stack->getAttack(false);row["defense"].Integer()=stack->getDefense(false);row["speed"].Integer()=stack->getMovementRange();
     data["stacks"].Vector().push_back(std::move(row));
    }
   }
@@ -1905,6 +1949,17 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==23){if(GAME&&!GAME->interface()){mobileLocalSaveSelection.reset();CMainMenu::openLobby(ESelectionScreen::loadGame,true,{"Goonk"},ELoadMode::SINGLE,false);}return;}
  auto p=GAME?GAME->interface():nullptr;if(!p||!p->cb||!p->localState)return;
  const auto hero=p->localState->getCurrentHero();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battle= CPlayerInterface::battleInt;
+ if(action==113){
+  const bool allowed=p->makingTurn && !battle && !p->mobileHeroMoving() && !GAME->server().inLobbyRoom() && bool(ENGINE->windows().topWindow<AdventureMapInterface>());
+  if(allowed)p->cb->save("Saves/Avant-demo-StarCraft",false);
+  MAIN_THREAD_ASYNC_EM_ASM({window.dispatchEvent(new CustomEvent('goonk-crossover-checkpoint',{detail:({accepted:!!$0})}));},allowed);
+  return;
+ }
+ if(action==112){
+  if(!hero || !p->makingTurn || battle || GAME->server().inLobbyRoom() || !GAME->server().si || GAME->server().si->mapname.find("005-Crossover-StarCraft")==std::string::npos)return;
+  if(ENGINE->windows().topWindow<AdventureMapInterface>() && p->localState->setPath(hero,int3(10,11,0)))p->moveHero(hero,p->localState->getPath(hero));
+  lastPublished=0;return;
+ }
  // Match the adventure UI's animation lock. Hiding the map during a fade or
  // movement can strand the client thread waiting for that animation to finish.
  if((action==5||action==55||action==3||action==7)&&ENGINE->windows().topWindow<AdventureMapInterface>()&&

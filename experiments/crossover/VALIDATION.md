@@ -2,14 +2,14 @@
 
 ## Bataille depuis Heroes
 
-`tests/heroes-rts-browser.mjs` lance le scénario publié par le bouton du produit, attaque le garde avec le héros natif et attend le vrai résultat des deux moteurs. Aucun PV ni résultat de simulation n’est injecté. Le scénario de départ contient 12 archers, 6 piquiers et le commandant WoG du héros, face à 20 gardes répartis par VCMI.
+`tests/heroes-rts-browser.mjs` lance le scénario par le bouton situé directement dans Heroes, attaque le garde avec le héros natif et attend le vrai résultat des deux moteurs. Aucun PV ni résultat de simulation n’est injecté. Le scénario de départ contient 12 archers, 6 piquiers et le commandant WoG du héros, face à 3 Marines ayant leur propre identité dans VCMI.
 
 | Contrôle | Résultat |
 | --- | --- |
-| Nouvelle partie de test | Carte native sélectionnée et démarrée, mode crossover activé |
+| Bouton Démo dans Heroes | Carte native sélectionnée et démarrée, mode crossover activé |
 | Attaque Heroes | Bataille suspendue ; identités et effectifs initiaux transmis à OpenBW |
 | Préparation | Frame 0 jusqu’au clic « Commencer le combat » |
-| Combat StarCraft | Vraies unités opposées, ordres AttackMove natifs, pertes réelles |
+| Combat mixte | Unités Heroes originales et Marines StarCraft sur une vue unique ; PV Heroes conservés, ordres natifs et pertes réelles |
 | Retour Heroes | Bilan natif ; chaque effectif de l’armée correspond exactement aux survivants RTS |
 | Sauvegarde et rechargement | Sauvegarde native sérialisée, puis chargée par le menu VCMI ; effectifs identiques |
 | Annulation | Reprise d’une vraie bataille Heroes jusqu’à sa fin, sans soumission de pertes RTS |
@@ -18,11 +18,15 @@ Preuve : [evidence/heroes-rts.json](./evidence/heroes-rts.json). Le test utilise
 
 `tests/rts-battle-browser.mjs` vérifie séparément un affrontement OpenBW de 38 unités, depuis la frame 0 jusqu’à l’élimination d’un camp : [evidence/rts-battle.json](./evidence/rts-battle.json). Les résultats peuvent varier selon les commandes et leur frame ; aucun nombre de survivants prédéterminé n’est imposé.
 
+La version actuelle passe **10 cas de parcours réel**, dont le lancement depuis une aventure existante avec sa sauvegarde dédiée, la sélection/déplacement au format 844×390 et le défilement de la colonne de commandes. Ce contrôle est effectué dans Chromium avec une petite fenêtre ; il ne remplace pas un test matériel iPhone/Safari.
+
+Capture du champ mixte : [evidence/mixed-field-landscape.png](./evidence/mixed-field-landscape.png).
+
 ## Constructions et régressions
 
 - VCMI expérimental recompilé avec Emscripten 4.0.23 : `ninja -j32 html5`, réussite. Archive séparée utilisée uniquement par la configuration crossover.
 - OpenBW compilé avec WASI SDK 33.0 ; empreintes et exports : [engine-build.json](./public/starcraft/engine-build.json).
-- 16 tests du laboratoire réussis : contrats, mapping, validation de résultat, MPQ, recensement, absence de capacités réseau/processus dans le WASM, véritable ABI native.
+- 17 tests du laboratoire réussis : contrats, mapping, validation de résultat, MPQ, recensement, absence de capacités réseau/processus dans le WASM, véritable ABI native.
 - Tests Heroes : 737 au total, 691 réussis, 46 ignorés, aucun échec.
 - Compilation TypeScript stricte, packaging et `verify:web` réussis.
 - Le scénario indépendant `tests/real-game-browser.mjs` vérifie également la production terminée d’un SCV, son déplacement, une perte réelle, les messages natifs entre moteurs et la sérialisation de sauvegarde/replay. Preuve : [evidence/real-game.json](./evidence/real-game.json).

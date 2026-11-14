@@ -1,5 +1,5 @@
 export function battlePlan(value) {
-    const plan = { version: 1, battleId: value.battleId, stacks: value.stacks.map(row => ({ ...row, unit: row.shooter ? 0 : row.health >= 35 ? 32 : 37 })) };
+    const plan = { version: 1, battleId: value.battleId, stacks: value.stacks.map(row => ({ ...row, heroes: !row.creature.startsWith("heroes-starcraft:"), unit: row.creature === "heroes-starcraft:zergling" ? 37 : row.creature.startsWith("heroes-starcraft:") ? 0 : row.shooter ? 0 : 37 })) };
     validateBattlePlan(plan);
     return plan;
 }
@@ -10,6 +10,8 @@ export function validateBattlePlan(value) {
     for (const row of value.stacks) {
         if (!Number.isSafeInteger(row.id) || row.id < 0 || ids.has(row.id) || ![0, 1].includes(row.side) || !Number.isSafeInteger(row.count) || row.count < 1 || row.count > 128 || ![0, 32, 37].includes(row.unit))
             throw Error('Troupe Heroes invalide.');
+        if (row.heroes && (!Number.isSafeInteger(row.health) || row.health < 1 || row.health > 10000))
+            throw Error('Points de vie Heroes invalides.');
         ids.add(row.id);
         totals[row.side] += row.count;
     }

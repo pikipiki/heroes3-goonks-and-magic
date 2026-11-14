@@ -2,11 +2,7 @@
   "scope": "Published trial map, native Heroes attack, real OpenBW combat, native Heroes casualty application; no injected game state",
   "cases": [
     {
-      "name": "One click launches the published trial map inside Heroes with crossover mode enabled",
-      "state": {
-        "heroId": 1,
-        "day": 1
-      }
+      "name": "Demo button inside Heroes launches the published trial and a real native Heroes attack"
     },
     {
       "name": "Real Heroes attack is suspended and its exact armies initialize native StarCraft",
@@ -14,76 +10,88 @@
         "battleId": 0,
         "stacks": [
           {
-            "count": 4,
-            "creature": "core:pikeman",
-            "health": 10,
+            "attack": 6,
+            "count": 1,
+            "creature": "heroes-starcraft:marine",
+            "damageMax": 6,
+            "damageMin": 6,
+            "defense": 0,
+            "health": 40,
             "id": 2,
-            "name": "Pikemen",
-            "shooter": false,
-            "side": 1
+            "name": "Marines",
+            "shooter": true,
+            "side": 1,
+            "speed": 6
           },
           {
-            "count": 4,
-            "creature": "core:pikeman",
-            "health": 10,
+            "attack": 6,
+            "count": 1,
+            "creature": "heroes-starcraft:marine",
+            "damageMax": 6,
+            "damageMin": 6,
+            "defense": 0,
+            "health": 40,
             "id": 3,
-            "name": "Pikemen",
-            "shooter": false,
-            "side": 1
+            "name": "Marines",
+            "shooter": true,
+            "side": 1,
+            "speed": 6
           },
           {
-            "count": 4,
-            "creature": "core:halberdier",
-            "health": 10,
+            "attack": 6,
+            "count": 1,
+            "creature": "heroes-starcraft:marine",
+            "damageMax": 6,
+            "damageMin": 6,
+            "defense": 0,
+            "health": 40,
             "id": 4,
-            "name": "Halberdiers",
-            "shooter": false,
-            "side": 1
+            "name": "Marines",
+            "shooter": true,
+            "side": 1,
+            "speed": 6
           },
           {
-            "count": 4,
-            "creature": "core:pikeman",
-            "health": 10,
-            "id": 5,
-            "name": "Pikemen",
-            "shooter": false,
-            "side": 1
-          },
-          {
-            "count": 4,
-            "creature": "core:pikeman",
-            "health": 10,
-            "id": 6,
-            "name": "Pikemen",
-            "shooter": false,
-            "side": 1
-          },
-          {
+            "attack": 8,
             "count": 1,
             "creature": "wake-of-gods.commanders:paladin1",
+            "damageMax": 12,
+            "damageMin": 6,
+            "defense": 8,
             "health": 40,
-            "id": 7,
+            "id": 5,
             "name": "Paladins",
             "shooter": false,
-            "side": 0
+            "side": 0,
+            "speed": 5
           },
           {
+            "attack": 9,
             "count": 12,
             "creature": "core:archer",
+            "damageMax": 3,
+            "damageMin": 2,
+            "defense": 6,
             "health": 10,
             "id": 0,
             "name": "Archers",
             "shooter": true,
-            "side": 0
+            "side": 0,
+            "speed": 5
           },
           {
+            "attack": 7,
             "count": 6,
             "creature": "core:pikeman",
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 8,
             "health": 10,
             "id": 1,
             "name": "Pikemen",
             "shooter": false,
-            "side": 0
+            "side": 0,
+            "speed": 5
           }
         ]
       },
@@ -94,35 +102,23 @@
           {
             "id": 2,
             "side": 1,
-            "initial": 4,
-            "survivors": 4
+            "initial": 1,
+            "survivors": 1
           },
           {
             "id": 3,
             "side": 1,
-            "initial": 4,
-            "survivors": 4
+            "initial": 1,
+            "survivors": 1
           },
           {
             "id": 4,
             "side": 1,
-            "initial": 4,
-            "survivors": 4
+            "initial": 1,
+            "survivors": 1
           },
           {
             "id": 5,
-            "side": 1,
-            "initial": 4,
-            "survivors": 4
-          },
-          {
-            "id": 6,
-            "side": 1,
-            "initial": 4,
-            "survivors": 4
-          },
-          {
-            "id": 7,
             "side": 0,
             "initial": 1,
             "survivors": 1
@@ -144,14 +140,342 @@
       }
     },
     {
+      "name": "Phone landscape 844×390 keeps exact battlefield proportions and the right command panel scrolls"
+    },
+    {
+      "name": "One visible Heroes battlefield contains original Heroes troops and native StarCraft Marines; Heroes HP are preserved",
+      "census": {
+        "frame": 0,
+        "view": {
+          "x": 713,
+          "y": 0,
+          "width": 1030,
+          "height": 760
+        },
+        "units": [
+          {
+            "stackId": 1,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3638,
+            "type": 37,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 1032,
+            "y": 296
+          },
+          {
+            "stackId": 1,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3639,
+            "type": 37,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 1032,
+            "y": 280
+          },
+          {
+            "stackId": 1,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3640,
+            "type": 37,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 1048,
+            "y": 280
+          },
+          {
+            "stackId": 1,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3641,
+            "type": 37,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 888,
+            "y": 232
+          },
+          {
+            "stackId": 1,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3642,
+            "type": 37,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 912,
+            "y": 232
+          },
+          {
+            "stackId": 1,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3643,
+            "type": 37,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 936,
+            "y": 232
+          },
+          {
+            "stackId": 0,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3644,
+            "type": 0,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 960,
+            "y": 232
+          },
+          {
+            "stackId": 0,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3645,
+            "type": 0,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 984,
+            "y": 232
+          },
+          {
+            "stackId": 0,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3646,
+            "type": 0,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 960,
+            "y": 288
+          },
+          {
+            "stackId": 0,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3647,
+            "type": 0,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 984,
+            "y": 288
+          },
+          {
+            "stackId": 0,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3648,
+            "type": 0,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 1008,
+            "y": 288
+          },
+          {
+            "stackId": 0,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3649,
+            "type": 0,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 832,
+            "y": 256
+          },
+          {
+            "stackId": 0,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3650,
+            "type": 0,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 912,
+            "y": 208
+          },
+          {
+            "stackId": 0,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3651,
+            "type": 0,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 936,
+            "y": 208
+          },
+          {
+            "stackId": 0,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3652,
+            "type": 0,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 960,
+            "y": 208
+          },
+          {
+            "stackId": 0,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3653,
+            "type": 0,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 984,
+            "y": 208
+          },
+          {
+            "stackId": 0,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3654,
+            "type": 0,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 960,
+            "y": 264
+          },
+          {
+            "stackId": 0,
+            "heroes": true,
+            "maxHp": 10,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3655,
+            "type": 0,
+            "owner": 0,
+            "completed": true,
+            "hp": 10,
+            "x": 984,
+            "y": 264
+          },
+          {
+            "stackId": 5,
+            "heroes": true,
+            "maxHp": 40,
+            "order": 2,
+            "cooldown": 0,
+            "id": 3656,
+            "type": 37,
+            "owner": 0,
+            "completed": true,
+            "hp": 40,
+            "x": 1104,
+            "y": 256
+          },
+          {
+            "stackId": 4,
+            "heroes": false,
+            "maxHp": 40,
+            "order": 14,
+            "cooldown": 0,
+            "id": 3657,
+            "type": 0,
+            "owner": 1,
+            "completed": true,
+            "hp": 40,
+            "x": 588,
+            "y": 208
+          },
+          {
+            "stackId": 3,
+            "heroes": false,
+            "maxHp": 40,
+            "order": 14,
+            "cooldown": 0,
+            "id": 3658,
+            "type": 0,
+            "owner": 1,
+            "completed": true,
+            "hp": 40,
+            "x": 612,
+            "y": 208
+          },
+          {
+            "stackId": 2,
+            "heroes": false,
+            "maxHp": 40,
+            "order": 14,
+            "cooldown": 0,
+            "id": 3659,
+            "type": 0,
+            "owner": 1,
+            "completed": true,
+            "hp": 40,
+            "x": 636,
+            "y": 208
+          }
+        ]
+      }
+    },
+    {
+      "name": "Touch selection and ground order reach the native OpenBW Move command for a Heroes troop"
+    },
+    {
       "name": "Actual RTS result reaches the native Heroes battle summary",
       "result": {
-        "description": "A glorious victory!\n\nFor valor in combat, Christian receives 200 experience",
+        "description": "A glorious victory!\n\nFor valor in combat, Christian receives 120 experience",
         "sides": [
           {
             "losses": [
               {
-                "count": 6,
+                "count": 3,
                 "icon": "",
                 "id": 0,
                 "name": "Pikeman"
@@ -161,6 +485,12 @@
                 "icon": "",
                 "id": 2,
                 "name": "Archer"
+              },
+              {
+                "count": 1,
+                "icon": "commanders/CPrL174n",
+                "id": 241,
+                "name": "Paladin"
               }
             ],
             "name": "Christian",
@@ -175,19 +505,13 @@
           {
             "losses": [
               {
-                "count": 16,
-                "icon": "",
-                "id": 0,
-                "name": "Pikeman"
-              },
-              {
-                "count": 4,
-                "icon": "",
-                "id": 1,
-                "name": "Halberdier"
+                "count": 3,
+                "icon": "crossover/marine.png",
+                "id": 150,
+                "name": "Marine"
               }
             ],
-            "name": "Halberdiers",
+            "name": "Marines",
             "portrait": [
               557,
               58,
@@ -225,8 +549,8 @@
             "damageMin": 2,
             "defense": 3,
             "description": "",
-            "experience": 2000,
-            "experiencePerUnit": 200,
+            "experience": 600,
+            "experiencePerUnit": 60,
             "experienceRank": 0,
             "fightValue": 115,
             "growth": 9,
@@ -250,7 +574,49 @@
             "shots": 12,
             "speed": 4
           },
-          null,
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 3,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "experience": 180,
+            "experiencePerUnit": 60,
+            "experienceRank": 0,
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 4
+          },
           null,
           null,
           null,
@@ -261,13 +627,16 @@
     },
     {
       "name": "Native save and reload preserve exactly the post-RTS Heroes army",
-      "saveBytes": 125250,
+      "saveBytes": 125377,
       "restored": [
         [
           "core:archer",
           10
         ],
-        null,
+        [
+          "core:pikeman",
+          3
+        ],
         null,
         null,
         null,
@@ -275,82 +644,417 @@
         null
       ]
     },
+    {
+      "name": "Launching the demo from an existing Heroes adventure first writes its dedicated native checkpoint"
+    },
     "Cancellation resumes a real native Heroes fight through completion without submitting any RTS casualties"
   ],
   "initial": {
     "battleId": 0,
     "stacks": [
       {
-        "count": 4,
-        "creature": "core:pikeman",
-        "health": 10,
+        "attack": 6,
+        "count": 1,
+        "creature": "heroes-starcraft:marine",
+        "damageMax": 6,
+        "damageMin": 6,
+        "defense": 0,
+        "health": 40,
         "id": 2,
-        "name": "Pikemen",
-        "shooter": false,
-        "side": 1
+        "name": "Marines",
+        "shooter": true,
+        "side": 1,
+        "speed": 6
       },
       {
-        "count": 4,
-        "creature": "core:pikeman",
-        "health": 10,
+        "attack": 6,
+        "count": 1,
+        "creature": "heroes-starcraft:marine",
+        "damageMax": 6,
+        "damageMin": 6,
+        "defense": 0,
+        "health": 40,
         "id": 3,
-        "name": "Pikemen",
-        "shooter": false,
-        "side": 1
+        "name": "Marines",
+        "shooter": true,
+        "side": 1,
+        "speed": 6
       },
       {
-        "count": 4,
-        "creature": "core:halberdier",
-        "health": 10,
+        "attack": 6,
+        "count": 1,
+        "creature": "heroes-starcraft:marine",
+        "damageMax": 6,
+        "damageMin": 6,
+        "defense": 0,
+        "health": 40,
         "id": 4,
-        "name": "Halberdiers",
-        "shooter": false,
-        "side": 1
+        "name": "Marines",
+        "shooter": true,
+        "side": 1,
+        "speed": 6
       },
       {
-        "count": 4,
-        "creature": "core:pikeman",
-        "health": 10,
-        "id": 5,
-        "name": "Pikemen",
-        "shooter": false,
-        "side": 1
-      },
-      {
-        "count": 4,
-        "creature": "core:pikeman",
-        "health": 10,
-        "id": 6,
-        "name": "Pikemen",
-        "shooter": false,
-        "side": 1
-      },
-      {
+        "attack": 8,
         "count": 1,
         "creature": "wake-of-gods.commanders:paladin1",
+        "damageMax": 12,
+        "damageMin": 6,
+        "defense": 8,
         "health": 40,
-        "id": 7,
+        "id": 5,
         "name": "Paladins",
         "shooter": false,
-        "side": 0
+        "side": 0,
+        "speed": 5
       },
       {
+        "attack": 9,
         "count": 12,
         "creature": "core:archer",
+        "damageMax": 3,
+        "damageMin": 2,
+        "defense": 6,
         "health": 10,
         "id": 0,
         "name": "Archers",
         "shooter": true,
-        "side": 0
+        "side": 0,
+        "speed": 5
       },
       {
+        "attack": 7,
         "count": 6,
         "creature": "core:pikeman",
+        "damageMax": 3,
+        "damageMin": 1,
+        "defense": 8,
         "health": 10,
         "id": 1,
         "name": "Pikemen",
         "shooter": false,
-        "side": 0
+        "side": 0,
+        "speed": 5
+      }
+    ]
+  },
+  "selection": "Pikemen",
+  "afterMove": {
+    "frame": 1,
+    "view": {
+      "x": 713,
+      "y": 0,
+      "width": 694,
+      "height": 390
+    },
+    "units": [
+      {
+        "stackId": 1,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 6,
+        "cooldown": 0,
+        "id": 3638,
+        "type": 37,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 1032,
+        "y": 296
+      },
+      {
+        "stackId": 1,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 6,
+        "cooldown": 0,
+        "id": 3639,
+        "type": 37,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 1032,
+        "y": 280
+      },
+      {
+        "stackId": 1,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 6,
+        "cooldown": 0,
+        "id": 3640,
+        "type": 37,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 1048,
+        "y": 280
+      },
+      {
+        "stackId": 1,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 6,
+        "cooldown": 0,
+        "id": 3641,
+        "type": 37,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 888,
+        "y": 232
+      },
+      {
+        "stackId": 1,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 6,
+        "cooldown": 0,
+        "id": 3642,
+        "type": 37,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 912,
+        "y": 232
+      },
+      {
+        "stackId": 1,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 6,
+        "cooldown": 0,
+        "id": 3643,
+        "type": 37,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 936,
+        "y": 232
+      },
+      {
+        "stackId": 0,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 14,
+        "cooldown": 0,
+        "id": 3644,
+        "type": 0,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 960,
+        "y": 232
+      },
+      {
+        "stackId": 0,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 14,
+        "cooldown": 0,
+        "id": 3645,
+        "type": 0,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 984,
+        "y": 232
+      },
+      {
+        "stackId": 0,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 14,
+        "cooldown": 0,
+        "id": 3646,
+        "type": 0,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 960,
+        "y": 288
+      },
+      {
+        "stackId": 0,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 14,
+        "cooldown": 0,
+        "id": 3647,
+        "type": 0,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 984,
+        "y": 288
+      },
+      {
+        "stackId": 0,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 14,
+        "cooldown": 0,
+        "id": 3648,
+        "type": 0,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 1008,
+        "y": 288
+      },
+      {
+        "stackId": 0,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 14,
+        "cooldown": 0,
+        "id": 3649,
+        "type": 0,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 832,
+        "y": 256
+      },
+      {
+        "stackId": 0,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 14,
+        "cooldown": 0,
+        "id": 3650,
+        "type": 0,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 912,
+        "y": 208
+      },
+      {
+        "stackId": 0,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 14,
+        "cooldown": 0,
+        "id": 3651,
+        "type": 0,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 936,
+        "y": 208
+      },
+      {
+        "stackId": 0,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 14,
+        "cooldown": 0,
+        "id": 3652,
+        "type": 0,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 960,
+        "y": 208
+      },
+      {
+        "stackId": 0,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 14,
+        "cooldown": 0,
+        "id": 3653,
+        "type": 0,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 984,
+        "y": 208
+      },
+      {
+        "stackId": 0,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 14,
+        "cooldown": 0,
+        "id": 3654,
+        "type": 0,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 960,
+        "y": 264
+      },
+      {
+        "stackId": 0,
+        "heroes": true,
+        "maxHp": 10,
+        "order": 14,
+        "cooldown": 0,
+        "id": 3655,
+        "type": 0,
+        "owner": 0,
+        "completed": true,
+        "hp": 10,
+        "x": 984,
+        "y": 264
+      },
+      {
+        "stackId": 5,
+        "heroes": true,
+        "maxHp": 40,
+        "order": 14,
+        "cooldown": 0,
+        "id": 3656,
+        "type": 37,
+        "owner": 0,
+        "completed": true,
+        "hp": 40,
+        "x": 1104,
+        "y": 256
+      },
+      {
+        "stackId": 4,
+        "heroes": false,
+        "maxHp": 40,
+        "order": 14,
+        "cooldown": 0,
+        "id": 3657,
+        "type": 0,
+        "owner": 1,
+        "completed": true,
+        "hp": 40,
+        "x": 588,
+        "y": 208
+      },
+      {
+        "stackId": 3,
+        "heroes": false,
+        "maxHp": 40,
+        "order": 14,
+        "cooldown": 0,
+        "id": 3658,
+        "type": 0,
+        "owner": 1,
+        "completed": true,
+        "hp": 40,
+        "x": 612,
+        "y": 208
+      },
+      {
+        "stackId": 2,
+        "heroes": false,
+        "maxHp": 40,
+        "order": 14,
+        "cooldown": 0,
+        "id": 3659,
+        "type": 0,
+        "owner": 1,
+        "completed": true,
+        "hp": 40,
+        "x": 636,
+        "y": 208
       }
     ]
   },
@@ -361,126 +1065,130 @@
       "battleId": 0,
       "stacks": [
         {
-          "count": 4,
-          "creature": "core:pikeman",
-          "health": 10,
+          "attack": 6,
+          "count": 1,
+          "creature": "heroes-starcraft:marine",
+          "damageMax": 6,
+          "damageMin": 6,
+          "defense": 0,
+          "health": 40,
           "id": 2,
-          "name": "Pikemen",
-          "shooter": false,
+          "name": "Marines",
+          "shooter": true,
           "side": 1,
-          "unit": 37
+          "speed": 6,
+          "heroes": false,
+          "unit": 0
         },
         {
-          "count": 4,
-          "creature": "core:pikeman",
-          "health": 10,
+          "attack": 6,
+          "count": 1,
+          "creature": "heroes-starcraft:marine",
+          "damageMax": 6,
+          "damageMin": 6,
+          "defense": 0,
+          "health": 40,
           "id": 3,
-          "name": "Pikemen",
-          "shooter": false,
+          "name": "Marines",
+          "shooter": true,
           "side": 1,
-          "unit": 37
+          "speed": 6,
+          "heroes": false,
+          "unit": 0
         },
         {
-          "count": 4,
-          "creature": "core:halberdier",
-          "health": 10,
+          "attack": 6,
+          "count": 1,
+          "creature": "heroes-starcraft:marine",
+          "damageMax": 6,
+          "damageMin": 6,
+          "defense": 0,
+          "health": 40,
           "id": 4,
-          "name": "Halberdiers",
-          "shooter": false,
+          "name": "Marines",
+          "shooter": true,
           "side": 1,
-          "unit": 37
+          "speed": 6,
+          "heroes": false,
+          "unit": 0
         },
         {
-          "count": 4,
-          "creature": "core:pikeman",
-          "health": 10,
-          "id": 5,
-          "name": "Pikemen",
-          "shooter": false,
-          "side": 1,
-          "unit": 37
-        },
-        {
-          "count": 4,
-          "creature": "core:pikeman",
-          "health": 10,
-          "id": 6,
-          "name": "Pikemen",
-          "shooter": false,
-          "side": 1,
-          "unit": 37
-        },
-        {
+          "attack": 8,
           "count": 1,
           "creature": "wake-of-gods.commanders:paladin1",
+          "damageMax": 12,
+          "damageMin": 6,
+          "defense": 8,
           "health": 40,
-          "id": 7,
+          "id": 5,
           "name": "Paladins",
           "shooter": false,
           "side": 0,
-          "unit": 32
+          "speed": 5,
+          "heroes": true,
+          "unit": 37
         },
         {
+          "attack": 9,
           "count": 12,
           "creature": "core:archer",
+          "damageMax": 3,
+          "damageMin": 2,
+          "defense": 6,
           "health": 10,
           "id": 0,
           "name": "Archers",
           "shooter": true,
           "side": 0,
+          "speed": 5,
+          "heroes": true,
           "unit": 0
         },
         {
+          "attack": 7,
           "count": 6,
           "creature": "core:pikeman",
+          "damageMax": 3,
+          "damageMin": 1,
+          "defense": 8,
           "health": 10,
           "id": 1,
           "name": "Pikemen",
           "shooter": false,
           "side": 0,
+          "speed": 5,
+          "heroes": true,
           "unit": 37
         }
       ]
     },
     "result": {
       "battleId": 0,
-      "frame": 221,
+      "frame": 196,
       "groups": [
         {
           "id": 2,
           "side": 1,
-          "initial": 4,
+          "initial": 1,
           "survivors": 0
         },
         {
           "id": 3,
           "side": 1,
-          "initial": 4,
+          "initial": 1,
           "survivors": 0
         },
         {
           "id": 4,
           "side": 1,
-          "initial": 4,
+          "initial": 1,
           "survivors": 0
         },
         {
           "id": 5,
-          "side": 1,
-          "initial": 4,
-          "survivors": 0
-        },
-        {
-          "id": 6,
-          "side": 1,
-          "initial": 4,
-          "survivors": 0
-        },
-        {
-          "id": 7,
           "side": 0,
           "initial": 1,
-          "survivors": 1
+          "survivors": 0
         },
         {
           "id": 0,
@@ -492,7 +1200,7 @@
           "id": 1,
           "side": 0,
           "initial": 6,
-          "survivors": 0
+          "survivors": 3
         }
       ],
       "finished": true
