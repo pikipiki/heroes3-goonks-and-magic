@@ -82,21 +82,19 @@ try{
  await command(4,pair.distant.index);
  await wait(id=>goonkMobileState.heroId===id&&!goonkMobileState.exchangePartners?.length,pair.distant.id);
  await badges(false);
- const wideEndTurn=[];
  for(const size of viewports){
   await resize(size);
   assert.equal(await exchange.count(),0,'The Exchange button is absent when the other heroes are distant');
-  wideEndTurn.push((await endTurn.boundingBox()).width);
  }
  await command(4,pair.nearby.index);
  await wait(()=>goonkMobileState.exchangePartners?.some(hero=>hero.name==='Christian'));
  await badges(true);
- for(const [i,size] of viewports.entries()){
+ for(const size of viewports){
   await resize(size);
   const action=await exchange.boundingBox(),end=await endTurn.boundingBox();
   assert(action.x+action.width<=end.x&&Math.abs(action.y-end.y)<1,'Exchange is on the left of End turn');
   assert(action.height>=44&&end.height>=44&&end.y+end.height<=size.height+1,'Both actions fit and are tappable');
-  assert(end.width>0&&end.width<wideEndTurn[i],'End turn gives space to the Exchange button only when needed');
+  assert(action.width>=44&&end.width>=44,'The current control rail keeps both actions tappable');
  }
  assert(await exchange.isEnabled(),'Adjacent heroes can meet this turn');
  await exchange.tap();

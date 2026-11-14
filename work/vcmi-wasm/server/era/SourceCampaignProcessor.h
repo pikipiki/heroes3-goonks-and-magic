@@ -17,7 +17,7 @@ class SourceCampaignProcessor
 public:
  explicit SourceCampaignProcessor(CGameHandler & handler);
  ~SourceCampaignProcessor();
- void onReady(PlayerColor player);
+ bool onReady(PlayerColor player);
  bool reply(QueryID query,int selection,const std::string & text,PlayerColor player);
  bool draft(QueryID query,int selection,const std::string & text,PlayerColor player);
  bool visit(const CGObjectInstance * object,const CGHeroInstance * hero);

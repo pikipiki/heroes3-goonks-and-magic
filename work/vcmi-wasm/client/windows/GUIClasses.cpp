@@ -1212,7 +1212,7 @@ CGarrisonWindow::CGarrisonWindow(const CArmedInstance * up, const CGHeroInstance
 	}
 	title = std::make_shared<CLabel>(275, 30, FONT_BIG, ETextAlignment::CENTER, Colors::YELLOW, titleText);
 
-	banner = std::make_shared<CAnimImage>(AnimationPath::builtin("CREST58"), up->getOwner().getNum(), 0, 28, 124);
+	banner = std::make_shared<CAnimImage>(AnimationPath::builtin("CREST58"), up->getOwner().isValidPlayer()?up->getOwner().getNum():8, 0, 28, 124);
 	portrait = std::make_shared<CAnimImage>(AnimationPath::builtin("PortraitsLarge"), down->getIconIndex(), 0, 29, 222);
 }
 
@@ -1225,6 +1225,9 @@ bool CGarrisonWindow::holdsGarrison(const CArmedInstance * army)
 {
 	return garr->upperArmy() == army || garr->lowerArmy() == army;
 }
+const CArmedInstance * CGarrisonWindow::getMobileArmy(int side)const
+{return side==0?garr->upperArmy():garr->lowerArmy();}
+Rect CGarrisonWindow::getMobilePortrait()const{return portrait->pos;}
 
 CHillFortWindow::CHillFortWindow(const CGHeroInstance * visitor, const CGObjectInstance * object)
 	: CWindowObject(PLAYER_COLORED, ImagePath::builtin("APHLFTBK")),

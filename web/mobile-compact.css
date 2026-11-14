@@ -152,3 +152,10 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle] .battle-stat-pi
 #mobile-app .campaign-dialog-form[data-kind=pictures] fieldset label>input{grid-column:1;grid-row:1/3}
 #mobile-app .campaign-dialog-form[data-kind=pictures] fieldset label>span{grid-column:2;grid-row:1}
 #mobile-app .campaign-dialog-form[data-kind=pictures] fieldset label>canvas{grid-column:2;grid-row:2;max-width:100%;height:auto}
+/* Source rewards use the existing army transfer UI without an equipment tab. */
+#mobile-app .hero-exchange-page[data-troops-only=true]{grid-template-rows:auto minmax(0,1fr) auto}
+#mobile-app .hero-exchange-page[data-troops-only=true] [data-exchange-close]{font-size:14px}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .hero-exchange-page[data-troops-only=true]{grid-template-rows:auto minmax(0,1fr)}
+ #mobile-app .hero-exchange-page[data-troops-only=true] .exchange-detail{grid-row:2}
+}

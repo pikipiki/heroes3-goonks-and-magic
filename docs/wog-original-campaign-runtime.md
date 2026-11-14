@@ -1,6 +1,6 @@
 # Port natif des campagnes originales : état réel
 
-Le port complet de la priorité 6 n’est pas terminé. Les quatre campagnes, leurs onze scénarios et Cave of Gerfrex restent désactivés. La version 0.4.170 ajoute un premier raccordement natif à Cave ; la 0.4.171 ajoute les formulaires natifs avec saisie et choix multiples, et la 0.4.172 raccorde une première forme de combat scripté. Ces étapes ne constituent pas le port intégral des campagnes.
+Le port complet de la priorité 6 n’est pas terminé. Les quatre campagnes, leurs onze scénarios et Cave of Gerfrex restent désactivés. La version 0.4.170 ajoute un premier raccordement natif à Cave ; la 0.4.171 ajoute les formulaires natifs avec saisie et choix multiples, et la 0.4.172 raccorde une première forme de combat scripté, et la 0.4.173 une récompense en créatures avec répartition d’armée. Ces étapes ne constituent pas le port intégral des campagnes.
 
 ## Ce qui est implémenté
 
@@ -62,6 +62,18 @@ Le test privé exécute sans réécriture `HE-1:T26/27/0/7/10` et sa condition `
 Le [relevé 172](../outputs/wog-priorities-0.4.147/campaign-runtime/native-battles-172.json) conserve les empreintes, contrôles et limites. La présence d’un événement temporaire résiduel est également exclue dans les vraies sauvegardes après les deux issues. Le moteur vérifié a l’empreinte `4952b2ebbd6b4e119c74cb9e1f8ab5a3ba3954dc29de1bb6f62673d2af7148dd` ; la compilation WebAssembly et les 751 tests passent (717 réussis, 34 ignorés). Les deux cartes Goonk et la sauvegarde de la question du levier de 170 passent leurs non-régressions.
 
 Les autres formes de combat, les receivers de bataille et leurs modifications spécifiques restent à raccorder. La distribution originale des adversaires entre plusieurs groupes n’a pas été rapprochée de toutes les variantes du binaire Windows. Les campagnes restent désactivées ; le fait qu’une instruction de bataille fonctionne ne valide pas l’ensemble de ses quêtes.
+
+## Répartition des créatures en 0.4.173
+
+La forme `HE:C` à quatorze arguments ouvre maintenant un échange natif entre les sept groupes proposés et l’armée du héros. Elle apparaît à sept endroits dans les sources. Les créatures peuvent être transférées par quantité, fusionnées ou déplacées au sein d’une armée ; le dernier groupe obligatoire du héros reste protégé. Les groupes laissés du côté proposé sont conservés dans les valeurs de retour de la commande, puis le port retire son objet temporaire.
+
+La fonction originale `FU31` de `wog_camp2a` est exécutée dans une fixture privée de Cave, avec toutes ses instructions conservées pour la branche de réponse correcte. La bonne réponse produit réellement trois dragons de rouille. L’armée de Cave étant pleine, le test fusionne ses deux groupes de hobgobelins pour libérer une place. Les effectifs d’origine restent exactement 53 gobelins, 32 hobgobelins et 34 chevaucheurs ; les trois dragons s’ajoutent à cette armée. La branche native de combat de cette fonction n’est pas couverte par ce test.
+
+Une sauvegarde prise avec un dragon déjà reçu et deux encore proposés se recharge dans une autre session. Elle retrouve la fenêtre, les deux armées et la continuation ; la réception se termine sans perte ni doublon. Ce contrôle a révélé une fermeture implicite de l’échange au signal « interface prête ». Le serveur saute désormais ce réveil générique lorsque l’adaptateur vient de restaurer lui-même une requête de source. Les armées proposées prennent le propriétaire du héros, afin que les règles natives autorisent aussi les transferts partiels.
+
+L’interface tactile réutilise l’écran d’échange, avec une vue limitée aux troupes. Le titre et les commandes restent à droite en paysage. Le défilement vertical, la quantité saisie, les doubles validations et les transitions sont vérifiés sur sept tailles Chromium/WebKit ; le portrait reste figé pendant le transit. L’échange ordinaire entre héros conserve le don d’objet et le partage d’une troupe.
+
+Le [relevé 173](../outputs/wog-priorities-0.4.147/campaign-runtime/native-army-exchange-173.json) distingue la fonction testée des six autres occurrences seulement inventoriées. Le moteur vérifié est `bd27a4cb6401c0cdca23212539945c82592f3deba1707df51403c56711a105bb`. La compilation WebAssembly, les 751 tests (717 réussis, 34 ignorés), les deux cartes Goonk et l’ancienne sauvegarde du levier passent. Le format 903 est conservé. Cette étape ne valide pas les onze scénarios et ne les active pas.
 
 ## Ce qui empêche encore l’activation
 

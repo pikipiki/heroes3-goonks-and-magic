@@ -1,0 +1,282 @@
+{
+  "version": "0.4.173",
+  "status": "partial-original-campaign-port",
+  "activation": {
+    "originalCampaigns": false,
+    "originalCave": false
+  },
+  "engineSha256": "bd27a4cb6401c0cdca23212539945c82592f3deba1707df51403c56711a105bb",
+  "saveVersion": 903,
+  "scope": "Native fourteen-argument HE:C army exchange; mobile quantities and within-army merges; save/load during partial reward; preserve new source queries on adventure readiness.",
+  "references": {
+    "wogSourceCommit": "04331ca2bf9e895703c0cf5854a14a754f671bc6",
+    "dispatch": "T1/erm.cpp:6842",
+    "originalExchange": "T1/common.cpp:3519",
+    "sourceOccurrences": 7,
+    "fullyExecutedSourceBody": "zc4 wog_camp2a FU31 correct-answer branch"
+  },
+  "checks": {
+    "wasm": "ninja -j32 html5 passed",
+    "trackedTests": {
+      "total": 751,
+      "passed": 717,
+      "skipped": 34,
+      "failed": 0
+    },
+    "mobile": {
+      "browsers": [
+        "Chromium",
+        "WebKit"
+      ],
+      "sizes": [
+        [
+          320,
+          568
+        ],
+        [
+          390,
+          844
+        ],
+        [
+          568,
+          320
+        ],
+        [
+          844,
+          390
+        ],
+        [
+          768,
+          1024
+        ],
+        [
+          1024,
+          768
+        ],
+        [
+          1180,
+          820
+        ]
+      ],
+      "touchScroll": true,
+      "stableQuantityAndFocus": true,
+      "withinArmyMerge": true,
+      "oneTransferAndFinish": true,
+      "noTransientMapOrPortraitFlash": true
+    }
+  },
+  "sourceFiles": {
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "accecfd7d8f188a970fbd1fe31b5e2197b7e9069fe49e179b42b1a8c467cd8c6",
+    "work/vcmi-wasm/server/CGameHandler.cpp": "c5811fcd09ea08713fc43c6523a23c3e73f2381578da88e4c8f6d34ce5cfcfe3",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "abae926f2d33d4dafe3843ca84a39269718a33e33c6769b8d202efa073848c1d"
+  },
+  "rewardCases": {
+    "fullArmyReward": {
+      "passed": true,
+      "scope": "Complete original FU31 riddle instructions, including the real three-rust-dragon reward, at a private Cave event. No original scenario victory.",
+      "fixtureSha256": "fd66883d6107dd1799c1519f8b9f5fc43148419d09b499ce38f6c0854666a4dc",
+      "sourceArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
+      "loadedPartialReward": false,
+      "offeredBefore": {
+        "core:rustDragon": 3
+      },
+      "heroBefore": {
+        "core:goblin": 53,
+        "core:hobgoblin": 32,
+        "core:hobgoblinWolfRider": 34
+      },
+      "heroAfter": {
+        "core:goblin": 53,
+        "core:hobgoblin": 32,
+        "core:rustDragon": 3,
+        "core:hobgoblinWolfRider": 34
+      },
+      "originalUnitsPreserved": true,
+      "continuation": [
+        "Native quest reward completed: 1/1"
+      ],
+      "errors": []
+    },
+    "partialRewardReload": {
+      "passed": true,
+      "scope": "Complete original FU31 riddle instructions, including the real three-rust-dragon reward, at a private Cave event. No original scenario victory.",
+      "fixtureSha256": "fd66883d6107dd1799c1519f8b9f5fc43148419d09b499ce38f6c0854666a4dc",
+      "sourceArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
+      "loadedPartialReward": true,
+      "offeredBefore": {
+        "core:rustDragon": 2
+      },
+      "heroBefore": {
+        "core:goblin": 53,
+        "core:hobgoblin": 32,
+        "core:rustDragon": 1,
+        "core:hobgoblinWolfRider": 34
+      },
+      "heroAfter": {
+        "core:goblin": 53,
+        "core:hobgoblin": 32,
+        "core:rustDragon": 3,
+        "core:hobgoblinWolfRider": 34
+      },
+      "originalUnitsPreserved": true,
+      "continuation": [
+        "Native quest reward completed: 1/1"
+      ],
+      "errors": []
+    }
+  },
+  "heroExchangeNonRegression": {
+    "passed": true,
+    "nativeAllyMeeting": true,
+    "artifactGift": true,
+    "troopSplit": true,
+    "sourceHeroKeepsOneCreature": true,
+    "queryReleasedOnClose": true,
+    "legacyTestUpdate": "The former End-turn width-ratio assertion also failed on unchanged0.4.172. Both actions must now remain visible, reachable and at least44px wide/high; the functional exchange assertions remain."
+  },
+  "productionNonRegressions": {
+    "passed": true,
+    "scope": "Actual production manifest/assets, both adventure maps, native save/reload, names/roles and real solo/hotseat turn transitions plus003 BattleStart policy parsing; no private overlay or installed asset write.",
+    "mapSaveReloadValidated": true,
+    "playerRolesPreserved": true,
+    "actualResumedTurnTransitionsValidated": true,
+    "trackedProductionAssetsUnchanged": true,
+    "nativePolicyParsingAtBattleStartValidated": true,
+    "errors": [],
+    "maps": [
+      {
+        "name": "003-Goonks-WoG.vmap",
+        "passed": true,
+        "hotseat": false
+      },
+      {
+        "name": "004-Goonks-WoG-Online.vmap",
+        "passed": true,
+        "hotseat": true
+      }
+    ]
+  },
+  "old170PendingCaveReload": {
+    "passed": true,
+    "scope": "Real native pending-query save/reload and selected Cave lever continuation",
+    "cases": {
+      "lever": {
+        "question": {
+          "cancel": true,
+          "lines": [
+            "You see a strange lever set into the mountainside. Do you pull it?"
+          ],
+          "queryId": 34,
+          "title": "Game message"
+        },
+        "answer": 1,
+        "story": [
+          {
+            "cancel": false,
+            "lines": [
+              "You pull the lever, and immediately hear a loud grinding sound coming from inside your castle."
+            ],
+            "queryId": 35,
+            "title": "Game message"
+          },
+          {
+            "cancel": false,
+            "lines": [
+              "The lever's jammed now and it's impossible to move it again. How odd..."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          },
+          {
+            "cancel": false,
+            "lines": [
+              "You recall hearing about a very wise old mystic who lives the other side of an invisible maze. If anyone can figure out a way to deal with the vampires, surely it will be him."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          },
+          {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "The Behemoth Lair allows you to recruit Behemoths.",
+                "label": "Behemoth Lair",
+                "rect": {
+                  "h": 32,
+                  "w": 32,
+                  "x": 384,
+                  "y": 321
+                }
+              }
+            ],
+            "lines": [
+              "That grinding noise you heard was the sound of huge boulders being rolled away to reveal a behemoth cave! "
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          },
+          {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "The Behemoth Lair allows you to recruit Behemoths.",
+                "label": "Behemoth Lair",
+                "rect": {
+                  "h": 32,
+                  "w": 32,
+                  "x": 384,
+                  "y": 321
+                }
+              }
+            ],
+            "lines": [
+              "That grinding noise you heard was the sound of huge boulders being rolled away to reveal a behemoth cave! "
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          },
+          {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "12 Behemoths",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 305
+                }
+              }
+            ],
+            "lines": [
+              "You hear a great thundering rumble and dust fills the air. As you watch, amazed, a dozen huge and hairy behemoths stampede past you and into the town of Battlement to take up residence in their new lair."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        ],
+        "days": [
+          {
+            "day": 1,
+            "behemoths": null
+          },
+          {
+            "day": 2,
+            "behemoths": 1
+          },
+          {
+            "day": 3,
+            "behemoths": 13
+          }
+        ]
+      }
+    },
+    "errors": []
+  },
+  "limitations": [
+    "Correct-answer function body validated in a controlled Cave event, not a full original scenario",
+    "Other six fourteen-argument source sites inventoried, not each natively replayed",
+    "Other adventure/timer/battle receivers, campaign media and full native victories still incomplete"
+  ]
+}

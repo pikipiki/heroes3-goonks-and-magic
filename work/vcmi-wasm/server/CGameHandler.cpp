@@ -675,7 +675,9 @@ void CGameHandler::onAdvInterfaceReady(PlayerColor player)
 		return;
 
 	uiReadyForDialogs.insert(player);
-	sourceCampaigns->onReady(player);
+ // Restored source queries have already been shown. Kicking a new garrison
+ // query here would treat readiness as its answer and discard unclaimed units.
+ if(sourceCampaigns->onReady(player))return;
 
 	logGlobal->trace("AdvInterfaceReady received for player %s", player);
 

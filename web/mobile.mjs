@@ -241,6 +241,7 @@ function mount(){
   wogOptions.observe(next);
   if(!refresh&&lobbyOptions.observe(next))return;
   if(feedback.starting&&next.mode==='menu')return;feedback.observe(next);launch.observe(next);
+  if(heroExchange.hold(next))return;
   if(!['battle','dialog'].includes(next.mode)&&!(next.mode==='spellbook'&&next.spellbook?.inCombat))battleSession=false;
   if(next.mode!=='lobby'){lobbyDefaultRequested=false;pendingFaction=null;pendingDifficulty=null;}else{if(next.selectedFaction===pendingFaction)pendingFaction=null;if(next.difficulty===pendingDifficulty)pendingDifficulty=null;}
   if(['town','fort'].includes(next.mode)){

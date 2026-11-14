@@ -465,6 +465,8 @@ public:
 
 	void updateGarrisons() override;
 	bool holdsGarrison(const CArmedInstance * army) override;
+ const CArmedInstance * getMobileArmy(int side)const;
+ Rect getMobilePortrait()const;
 };
 
 /// Hill fort is the building where you can upgrade units

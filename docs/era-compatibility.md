@@ -1,6 +1,6 @@
 # Inventaire de compatibilité WoG / ERA
 
-Référence : **TUM 3.5.0 fourni**, port WoG VCMI **9.1.82**, jeu **0.4.172**.
+Référence : **TUM 3.5.0 fourni**, port WoG VCMI **9.1.82**, jeu **0.4.173**.
 
 Cet inventaire couvre toutes les déclarations des fichiers source recensés. Il ne certifie pas la compatibilité intégrale ERA. « À rapprocher » indique l’absence d’un lien de preuve sémantique précis dans cet inventaire ; cela ne signifie pas que la fonctionnalité est absente du jeu.
 

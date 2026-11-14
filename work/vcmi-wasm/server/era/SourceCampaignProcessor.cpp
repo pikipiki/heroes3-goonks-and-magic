@@ -4,6 +4,7 @@
 #include "../CGameHandler.h"
 #include "../queries/CQuery.h"
 #include "../queries/BattleQueries.h"
+#include "../queries/MapQueries.h"
 #include "../queries/QueriesProcessor.h"
 #include "../queries/VisitQueries.h"
 #include "../../lib/era/EraCampaignExecutor.h"
@@ -55,6 +56,16 @@ public:
   won=battle->result->winner==BattleSide::ATTACKER;owner->popQuery(*this);
  }
  void onRemoval(PlayerColor)override{continuation(won);}
+};
+class CampaignArmyQuery final:public CQuery
+{
+ std::function<void()> continuation;
+public:
+ CampaignArmyQuery(CGameHandler & game,PlayerColor player,std::function<void()> done):CQuery(&game),continuation(std::move(done)){addPlayer(player);}
+ bool blocksPack(const CPackForServer *)const override{return true;}
+ void onExposure(QueryPtr previous)override
+ {require(std::dynamic_pointer_cast<CGarrisonDialogQuery>(previous)!=nullptr,"army exchange ended without its query");owner->popQuery(*this);}
+ void onRemoval(PlayerColor)override{continuation();}
 };
 }
 struct SourceCampaignProcessor::Impl final:Host
@@ -193,6 +204,34 @@ struct SourceCampaignProcessor::Impl final:Host
  {
   require(pending.isStruct(),"suspension without a dialog");
   if(shown)return;
+  if(pending["kind"].String()=="army-exchange")
+  {
+   const auto * h=gh.gameState().getHero(ObjectInstanceID(pending["hero"].Integer()));require(h!=nullptr,"army exchange hero missing");
+   const CGEvent * army=nullptr;
+   if(pending["army"].isNumber())
+   {
+    army=dynamic_cast<const CGEvent *>(gh.gameState().getObj(ObjectInstanceID(pending["army"].Integer())));
+    require(army!=nullptr,"saved army exchange carrier missing");
+   }
+   else
+   {
+    auto created=std::dynamic_pointer_cast<CGEvent>(gh.createNewObject(h->visitablePos(),Obj::EVENT,MapObjectSubID(0)));require(created!=nullptr,"army exchange carrier is not armed");
+    gh.newObject(created,player);army=created.get();gh.setOwner(army,h->getOwner());
+    const auto & values=pending["stacks"].Vector();require(values.size()==14,"invalid army exchange stacks");
+    for(int slot=0;slot<7;++slot)if(values[slot*2].Integer()>=0&&values[slot*2+1].Integer()>0)
+     gh.insertNewStack({army->id,SlotID(slot)},creature(values[slot*2].Integer()).toCreature(),values[slot*2+1].Integer());
+    pending["army"].Integer()=army->id.getNum();persist();
+   }
+   auto barrier=std::make_shared<CampaignArmyQuery>(gh,h->getOwner(),[this]()
+   {
+    const auto * remaining=dynamic_cast<const CGEvent *>(gh.gameState().getObj(ObjectInstanceID(pending["army"].Integer())));require(remaining!=nullptr,"army exchange carrier disappeared");
+    auto & values=state["armyExchange"].Vector();values.clear();
+    for(int slot=0;slot<7;++slot)
+    {const auto * stack=remaining->getStackPtr(SlotID(slot));values.push_back(JsonNode(stack?sourceCreature(stack->getId()):-1));values.push_back(JsonNode(stack?stack->getCount():0));}
+    gh.removeObject(remaining,player);shown.reset();pending=JsonNode();run();
+   });
+   shown=barrier->queryID;gh.queries->addQuery(barrier);gh.showGarrisonDialog(army->id,h->id,true);return;
+  }
   if(pending["kind"].String()=="battle")
   {
    const auto * h=gh.gameState().getHero(ObjectInstanceID(pending["hero"].Integer()));require(h!=nullptr,"scripted battle hero missing");
@@ -231,9 +270,9 @@ struct SourceCampaignProcessor::Impl final:Host
   }
   gh.sendAndApply(packet);
  }
- void onReady(PlayerColor who)
+ bool onReady(PlayerColor who)
  {
-  bind();if(!active)return;
+  bind();if(!active)return false;
   if(!vm.initialized&&!vm.initializing)
   {
    player=who;updateContext();Executor executor(program,vm,context,*this);executor.initialize();run();
@@ -244,6 +283,9 @@ struct SourceCampaignProcessor::Impl final:Host
    if(obj&&h)gh.queries->addQuery(std::make_shared<MapObjectVisitQuery>(&gh,obj,h));
    show();
   }
+  if(!shown)return false;
+  const auto * h=pending["hero"].isNumber()?gh.gameState().getHero(ObjectInstanceID(pending["hero"].Integer())):nullptr;
+  return who==player||(h&&h->getOwner()==who);
  }
  bool visit(const CGObjectInstance * obj,const CGHeroInstance * h)
  {
@@ -322,6 +364,14 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   }
   else if(op.code=="C")
   {
+   if(args.size()==14)
+   {
+    auto & values=state["armyExchange"].Vector();if(values.empty())values.resize(14,JsonNode(0));require(values.size()==14,"invalid previous army exchange result");
+    for(int i=0;i<14;++i)values[i].Integer()=value(values[i].Integer(),args[i]);
+    if(query(op)){persist();return Step::Continue;}
+    for(int slot=0;slot<7;++slot)if(values[slot*2].Integer()>=0&&values[slot*2+1].Integer()>0)creature(values[slot*2].Integer());
+    pending["kind"].String()="army-exchange";pending["hero"].Integer()=h->id.getNum();pending["stacks"].Vector()=values;return Step::Suspend;
+   }
    arity(op,4);const int mode=number(args[0]),selector=number(args[1]);require(mode==0||mode==1,"unsupported Cave army mode");
    std::vector<SlotID> slots;
    if(mode==0){require(selector>=0&&selector<7,"invalid army slot");slots.push_back(SlotID(selector));}
@@ -454,7 +504,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
 }
 SourceCampaignProcessor::SourceCampaignProcessor(CGameHandler & game):impl(std::make_unique<Impl>(game)){}
 SourceCampaignProcessor::~SourceCampaignProcessor()=default;
-void SourceCampaignProcessor::onReady(PlayerColor player){impl->onReady(player);}
+bool SourceCampaignProcessor::onReady(PlayerColor player){return impl->onReady(player);}
 bool SourceCampaignProcessor::draft(QueryID query,int selection,const std::string & text,PlayerColor player)
 {
  impl->bind();
