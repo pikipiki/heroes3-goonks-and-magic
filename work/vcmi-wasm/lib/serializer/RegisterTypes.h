@@ -311,6 +311,7 @@ void registerTypes(Serializer &s)
     s.template registerType<ResetStackExperience>(267);
     s.template registerType<CGMysteriousCave>(268);
     s.template registerType<CaveBuilderAction>(269);
+    s.template registerType<CrossoverBattleCommand>(270);
 }
 
 VCMI_LIB_NAMESPACE_END

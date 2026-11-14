@@ -50,6 +50,8 @@ CBattleQuery::CBattleQuery(CGameHandler * owner):
 
 bool CBattleQuery::blocksPack(const CPackForServer * pack) const
 {
+ if(const auto crossover=dynamic_cast<const CrossoverBattleCommand*>(pack))
+  return crossover->battleID!=battleID || (crossover->operation!=1 && crossover->operation!=2);
 	if(dynamic_cast<const MakeAction*>(pack) != nullptr)
 		return false;
 

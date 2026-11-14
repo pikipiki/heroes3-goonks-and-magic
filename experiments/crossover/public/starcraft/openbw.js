@@ -1,5 +1,5 @@
 import {loadArchives, installArchiveImport} from '../local-assets.js';
-import {installNativeBridge} from '../native-bridge.js';
+import {installNativeBridge, setupNativeBattle} from '../native-bridge.js';
 // web/openbw.js — browser host for the OpenBW sandbox wasm module.
 //
 // Local adaptation: player-owned archives from IndexedDB; no remote game data.
@@ -638,6 +638,7 @@ async function boot(session) {
   } else {
     x.openbw_init(...winSize(), slots[0].race, slots[0].slot);
   }
+  if(session.crossover)setupNativeBattle(x,memory,session.crossover);
   hb('boot:engine-ready');
   // Attach the BWAPI read-view so the bot can drive its slot (vs-Computer only).
   if (session.bot) { hb('boot:bot-attach'); x.openbw_bot_attach(session.bot.slot); hb('boot:bot-attached'); }
@@ -862,7 +863,7 @@ async function boot(session) {
   // backlog — while letting the interval change on the fly for the speed control. rAF is
   // paused while hidden, so we simply don't render then. Pausing just skips the step;
   // rendering and input keep running, so you can still look around and give orders.
-  let paused = false, waiting = false, stepMs = 42;   // 42 ms ≈ 24 Hz "fastest" game speed
+  let paused = !!session.crossover, waiting = false, stepMs = 42;   // 42 ms ≈ 24 Hz "fastest" game speed
   try { stepMs = +localStorage.getItem('openbw-speed') || 42; } catch {}
 
   // Local input is serialised to BW command bytes rather than applied directly; the
@@ -873,7 +874,7 @@ async function boot(session) {
   const { Lockstep } = await import('./net.js?v=' + BUILD);
   const lockstep = new Lockstep({
     x, memory,
-    slots: slots.map((s) => s.slot),
+    slots: session.crossover ? [mySlot] : slots.map((s) => s.slot),
     localSlot: mySlot,
     delay,
     send: (msg) => { if (link && msg.t === 'turn') link.sendTurn(msg.f, msg.d); },
@@ -1087,6 +1088,7 @@ async function boot(session) {
     pauseBtn.title = paused ? 'Resume' : 'Pause';
     updateBanner();
   };
+  crossoverApi.start = () => { paused=false;stepClock=performance.now();applyPause();x.openbw_set_paused?.(0); };
   pauseBtn.onclick = () => {
     paused = !paused;
     // On resume, forget the wall-clock debt from the pause so the step loop doesn't
@@ -1605,4 +1607,5 @@ async function runLocalGame(session) {
   }
 }
 
-installArchiveImport();
+const archivesReady=installArchiveImport();
+window.openbwLaunchCrossover=async(plan)=>{await archivesReady;await loadArchives();document.getElementById('controls').style.display='none';document.getElementById('opt-resign').hidden=true;await runLocalGame({slots:[{slot:0,race:1},{slot:1,race:1}],mySlot:0,delay:0,mapFile:MAP_LOCAL,crossover:plan});if(!window.openbwCrossover)throw Error(document.getElementById('msg').textContent);};

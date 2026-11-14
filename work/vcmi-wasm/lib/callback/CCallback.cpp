@@ -23,6 +23,12 @@
 
 VCMI_LIB_NAMESPACE_BEGIN
 
+void CCallback::crossoverCommand(int operation,BattleID battleID,const std::vector<std::pair<uint32_t,int32_t>> & survivors)
+{
+ if(!getPlayerID())return;
+ CrossoverBattleCommand pack;pack.player=*getPlayerID();pack.operation=operation;pack.battleID=battleID;pack.survivors=survivors;sendRequest(pack);
+}
+
 bool CCallback::teleportHero(const CGHeroInstance *who, const CGTownInstance *where)
 {
 	CastleTeleportHero pack(who->id, where->id, 1);

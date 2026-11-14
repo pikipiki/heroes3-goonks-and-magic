@@ -43,6 +43,7 @@ class BattleProcessor : boost::noncopyable
 	std::unique_ptr<BattleFlowProcessor> flowProcessor;
 	std::unique_ptr<BattleResultProcessor> resultProcessor;
 
+ std::set<PlayerColor> crossoverPlayers;
 	void updateGateState(const CBattleInfoCallback & battle);
 	void engageIntoBattle(PlayerColor player);
 
@@ -54,6 +55,7 @@ class BattleProcessor : boost::noncopyable
 	void setBattleResult(const CBattleInfoCallback & battle, EBattleResult resultType, BattleSide victoriusSide);
 
 public:
+ bool crossoverCommand(PlayerColor player,int operation,BattleID battleID,const std::vector<std::pair<uint32_t,int32_t>> & survivors);
 	explicit BattleProcessor(CGameHandler * gameHandler);
 	~BattleProcessor();
 

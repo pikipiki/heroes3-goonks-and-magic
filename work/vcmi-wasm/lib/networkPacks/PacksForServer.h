@@ -270,6 +270,17 @@ struct DLL_LINKAGE BuildStructure : public CPackForServer
 	}
 };
 
+// Solo crossover: configure, resolve or cancel a delegated battle.
+struct DLL_LINKAGE CrossoverBattleCommand : public CPackForServer
+{
+ int32_t operation=0;
+ BattleID battleID=BattleID::NONE;
+ std::vector<std::pair<uint32_t,int32_t>> survivors;
+ void visitTyped(ICPackVisitor & visitor) override;
+ template<typename Handler> void serialize(Handler & h)
+ { h & static_cast<CPackForServer &>(*this);h & operation;h & battleID;h & survivors; }
+};
+
 struct DLL_LINKAGE CaveBuilderAction : public CPackForServer
 {
  ObjectInstanceID hero;

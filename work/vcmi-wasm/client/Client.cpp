@@ -426,7 +426,7 @@ void CClient::battleStarted(const BattleID & battleID)
 		def = std::dynamic_pointer_cast<CPlayerInterface>(playerint[rightSide.color]);
 	
 	//Remove player interfaces for auto battle (quickCombat option)
-	if((att && att->isAutoFightOn) || (def && def->isAutoFightOn))
+	if(!info->crossover && ((att && att->isAutoFightOn) || (def && def->isAutoFightOn)))
 	{
 		auto endTacticPhaseIfEligible = [info](const CPlayerInterface * interface)
 		{

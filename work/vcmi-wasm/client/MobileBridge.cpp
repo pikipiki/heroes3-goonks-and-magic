@@ -84,6 +84,7 @@
 #include "../lib/GameLibrary.h"
 #include "../lib/entities/ResourceTypeHandler.h"
 #include "../lib/CStack.h"
+#include "../lib/battle/BattleInfo.h"
 #include "../lib/gameState/UpgradeInfo.h"
 #include "../lib/gameState/SThievesGuildInfo.h"
 #include "../lib/spells/CSpellHandler.h"
@@ -812,6 +813,29 @@ void publishMobilePreviewAtlas()
 }
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePreviewAtlasAck(){previewAtlasPending.store(false);}
 
+namespace { bool mobileCrossoverEnabled=false; int mobileCrossoverSuppressed=-1; }
+extern "C" void EMSCRIPTEN_KEEPALIVE vcmiCrossoverCommand(int operation,int battleID,const int32_t * rows,int count)
+{
+ if(!ENGINE || count<0 || count>32 || (count&&!rows) || operation<0 || operation>2)return;
+ std::vector<std::pair<uint32_t,int32_t>> survivors;
+ for(int i=0;i<count;i++){if(rows[i*2]<0 || rows[i*2+1]<0)return;survivors.emplace_back(rows[i*2],rows[i*2+1]);}
+ ENGINE->dispatchMainThread([operation,battleID,survivors](){
+  const auto player=GAME?GAME->interface():nullptr;
+  if(!player || GAME->server().inLobbyRoom())return;
+  if(operation==0){
+   if(!player->makingTurn || !ENGINE->windows().topWindow<AdventureMapInterface>() || (battleID!=0&&battleID!=1))return;
+   mobileCrossoverEnabled=battleID!=0;
+  }else if(!CPlayerInterface::battleInt)return;
+  if(operation==2){
+   const auto active=dynamic_cast<const BattleInfo*>(CPlayerInterface::battleInt->getBattle()->getBattle());
+   if(!active || active->battleID.getNum()!=battleID || !active->crossover)return;
+   // Presentation flag only. Authoritative combat resumes after the server accepts cancellation.
+   const_cast<BattleInfo*>(active)->crossover=false;mobileCrossoverSuppressed=battleID;
+  }
+  player->cb->crossoverCommand(operation,BattleID(battleID),survivors);lastPublished=0;
+ });
+}
+
 void publishMobileState(){
  if(ENGINE&&GAME){
   const auto player=GAME->interface();
@@ -1469,6 +1493,20 @@ void publishMobileState(){
    for(int row=0;row<11;row++)for(int col=1;col<16;col++){const BattleHex hex(col+17*row);const auto center=b->fieldController->hexPositionAbsolute(hex).center();JsonNode cell;cell["hex"].Integer()=hex.toInt();cell["x"].Integer()=center.x;cell["y"].Integer()=center.y;cell["kind"].Integer()=int(accessibility[hex.toInt()]);if(b->siegeController){const auto part=b->getBattle()->battleHexToWallPart(hex);if(part!=EWallPart::INVALID){cell["siegeWall"].Bool()=true;cell["wallPart"].Integer()=int(part);cell["wallState"].Integer()=int(part)<0?2:int(b->getBattle()->battleGetWallState(part));}}if(active&&active->hasBonusOfType(BonusType::CATAPULT)&&b->siegeController&&b->siegeController->isAttackableByCatapult(hex)){cell["siegeTarget"].Bool()=true;}cell["reachable"].Bool()=active&&reachable.contains(hex);if(previewSpellTargets)cell["spellTarget"].Bool()=b->actionsController->canTargetSpellHex(hex);if(manualControl&&!tactics&&!targeting&&b->makingTurn()&&!b->hasAnimations())cell["actionLabel"].String()=b->actionsController->mobileActionLabel(hex);n["battleCells"].Vector().push_back(cell);}
    const auto hovered=b->fieldController->getHoveredStack();if(hovered)n["targetUnit"]=creature(hovered->unitType(),hovered->getCount());if(active)for(auto & unit:n["battleUnits"].Vector()){const BattleHex position(unit["occupied"].Vector().empty()?0:unit["occupied"].Vector()[0].Integer());unit["canShootAt"].Bool()=b->getBattle()->battleCanShoot(active,position);unit["canMeleeAt"].Bool()=b->getBattle()->battleCanAttackHex(reachable,active,position);}}
  }
+ if(!p)mobileCrossoverEnabled=false;
+ n["crossoverEnabled"].Bool()=mobileCrossoverEnabled;
+ if(p && battleWindow && CPlayerInterface::battleInt){
+  const auto info=dynamic_cast<const BattleInfo*>(CPlayerInterface::battleInt->getBattle()->getBattle());
+  if(info && info->crossover && info->battleID.getNum()!=mobileCrossoverSuppressed){
+   auto & data=n["crossover"];data["battleId"].Integer()=info->battleID.getNum();
+   for(const auto & stack:info->stacks){
+    JsonNode row;row["id"].Integer()=stack->unitId();row["side"].Integer()=stack->unitSide()==BattleSide::ATTACKER?0:1;
+    row["creature"].String()=stack->unitType()->getJsonKey();row["name"].String()=stack->unitType()->getNamePluralTranslated();
+    row["count"].Integer()=stack->getCount();row["shooter"].Bool()=stack->hasBonusOfType(BonusType::SHOOTER);row["health"].Integer()=stack->getMaxHealth();
+    data["stacks"].Vector().push_back(std::move(row));
+   }
+  }
+ }
  publishPortraits();publishArtifactIcons();const auto text=n.toCompactString();
  if(!openTownHall&&text==lastSnapshot&&SDL_GetTicks()-lastSent<1000)return;
  auto * snapshot=static_cast<char *>(malloc(text.size()+1));if(!snapshot)return;
@@ -1857,6 +1895,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   return;
  }
  if(action==20){if(GAME&&!GAME->interface()){std::vector<std::string> names;for(int i=0;i<std::clamp(a,1,8);i++)names.push_back("Player "+std::to_string(i+1));CMainMenu::openLobby(ESelectionScreen::newGame,true,names,ELoadMode::NONE,false);}return;}
+ if(action==111){if(GAME&&GAME->server().getState()==EClientState::LOBBY){auto info=std::make_shared<CMapInfo>();info->mapInit("MAPS/005-Crossover-StarCraft");pendingDefaultMap.clear();GAME->server().setMapInfo(info);}return;}
  if(action==21){if(GAME&&GAME->server().getState()==EClientState::LOBBY){auto info=std::make_shared<CMapInfo>();info->mapInit("MAPS/001-Goonks");pendingDefaultMap="Goonks";GAME->server().setMapInfo(info);}return;}
  if(action==22){if(GAME&&GAME->server().getState()==EClientState::LOBBY){auto & server=GAME->server();restoreMobileLocalSaveRoles(server,mobileLocalSaveSelection?mobileLocalSaveSelection.get():server.mi.get());server.sendStartGame();}return;}
  if(action==24){if(GAME&&!GAME->server().inLobbyRoom()&&GAME->server().getState()==EClientState::LOBBY&&a>=0&&a<int(mobileMaps.size())){auto info=std::make_shared<CMapInfo>();info->mapInit(mobileMaps[a].file);pendingDefaultMap=info->getNameForList()=="Goonks"?"Goonks":"";GAME->server().setMapInfo(info);}return;}

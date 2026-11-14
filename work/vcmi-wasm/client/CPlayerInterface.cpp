@@ -75,6 +75,7 @@
 #include "../lib/CPlayerState.h"
 #include "../lib/CRandomGenerator.h"
 #include "../lib/CStack.h"
+#include "../lib/battle/BattleInfo.h"
 #include "../lib/CStopWatch.h"
 #include "../lib/CThreadHelper.h"
 #include "../lib/GameConstants.h"
@@ -678,8 +679,10 @@ void CPlayerInterface::battleStart(const BattleID & battleID, const CCreatureSet
 {
 	EVENT_HANDLER_CALLED_BY_CLIENT;
 
-	bool useQuickCombat = settings["adventure"]["quickCombat"].Bool() || GAME->map().getMap()->battleOnly;
-	bool forceQuickCombat = settings["adventure"]["forceQuickCombat"].Bool();
+	const auto crossoverInfo=dynamic_cast<const BattleInfo*>(cb->getBattle(battleID)->getBattle());
+ const bool crossover=crossoverInfo&&crossoverInfo->crossover;
+ bool useQuickCombat = !crossover && (settings["adventure"]["quickCombat"].Bool() || GAME->map().getMap()->battleOnly);
+	bool forceQuickCombat = !crossover && settings["adventure"]["forceQuickCombat"].Bool();
 
 	if ((replayAllowed && useQuickCombat) || forceQuickCombat)
 	{
@@ -695,6 +698,9 @@ void CPlayerInterface::battleUnitsChanged(const BattleID & battleID, const std::
 {
 	EVENT_HANDLER_CALLED_BY_CLIENT;
 	BATTLE_EVENT_POSSIBLE_RETURN;
+ // Delegated combat already rendered in OpenBW; dead stacks need no Heroes reset animation.
+ const auto delegated=dynamic_cast<const BattleInfo*>(cb->getBattle(battleID)->getBattle());
+ if(delegated && delegated->crossover)return;
 
 	for(auto & info : units)
 	{

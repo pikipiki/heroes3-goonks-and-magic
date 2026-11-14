@@ -64,6 +64,7 @@ public:
 	void manageHeroCostume(ObjectInstanceID hero, size_t costumeIdx, bool saveCostume) override;
 	void eraseArtifactByClient(const ArtifactLocation & al) override;
 	bool buildBuilding(const CGTownInstance *town, BuildingID buildingID) override;
+ void crossoverCommand(int operation,BattleID battleID,const std::vector<std::pair<uint32_t,int32_t>> & survivors);
  bool caveBuilderAction(ObjectInstanceID hero,ObjectInstanceID town,int operation,int selection,bool option);
 	bool visitTownBuilding(const CGTownInstance *town, BuildingID buildingID) override;
 	void recruitCreatures(const CGDwelling * obj, const CArmedInstance * dst, CreatureID ID, ui32 amount, si32 level=-1) override;

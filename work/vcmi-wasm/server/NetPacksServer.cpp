@@ -147,6 +147,12 @@ void ApplyGhNetPackVisitor::visitDisbandCreature(DisbandCreature & pack)
 	result = gh.disbandCreature(pack.id, pack.pos);
 }
 
+void ApplyGhNetPackVisitor::visitCrossoverBattleCommand(CrossoverBattleCommand & pack)
+{
+ gh.throwIfWrongPlayer(connection,&pack);
+ result=gh.battles->crossoverCommand(pack.player,pack.operation,pack.battleID,pack.survivors);
+}
+
 void ApplyGhNetPackVisitor::visitCaveBuilderAction(CaveBuilderAction & pack)
 {
  gh.throwIfWrongOwner(connection,&pack,pack.hero);

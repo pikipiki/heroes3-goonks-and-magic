@@ -15,6 +15,7 @@ GOONK_PUSH_PUBLIC_KEY = "BMD5-Kd8GqFEHRPyDR3f-jj2TVgqRSgKtajdx6mXk_W50cn6-HlKpQA
   command = "npm run prepare:web && npm run build:web && npm run verify:web && npm ci --prefix experiments/crossover && npm run build --prefix experiments/crossover && node experiments/crossover/package.mjs && node experiments/crossover/scripts/build-standalone.mjs"
   publish = "dist-heroes-starcraft"
 [context."codex/heroes-starcraft-crossover".environment]
+  GOONK_ENGINE_ARCHIVE = "outputs/vcmi-wasm-heroes-starcraft-engine.tar.gz"
   GOONK_LOBBY_RELAY = ""
   GOONK_HOSTED_POOL_ENDPOINT = ""
   GOONK_HOSTED_ENDPOINT = ""

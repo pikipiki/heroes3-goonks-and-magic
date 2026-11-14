@@ -149,7 +149,7 @@ export class Lockstep {
     }
     this.turns.delete(this.frame);
 
-    this.x.openbw_step();
+    this.x.openbw_crossover_ai_tick?.(); this.x.openbw_step();
     if (this.shadow) this.shadow.x.openbw_step();
     this.frame++;
     return true;

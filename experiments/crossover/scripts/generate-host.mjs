@@ -15,6 +15,10 @@ const oppStart=js.indexOf('const OPPONENTS = {'),oppEnd=js.indexOf('const slotsB
 js=js.slice(0,oppStart)+"const OPPONENTS = {};\nconst DEFAULT_OPP = 'none';\n"+js.slice(oppEnd);
 replace('if (DEV) window.__bw = { x, memory, lockstep, link };   // dev-only debugging handle','const crossoverApi = installNativeBridge(x, memory);');
 replace('if (DEV) window.__bw = null;','crossoverApi.close();');
+replace("  hb('boot:engine-ready');", "  if(session.crossover)setupNativeBattle(x,memory,session.crossover);\n  hb('boot:engine-ready');");
+replace('slots: slots.map((s) => s.slot),','slots: session.crossover ? [mySlot] : slots.map((s) => s.slot),');
+replace('let paused = false, waiting = false, stepMs = 42;', 'let paused = !!session.crossover, waiting = false, stepMs = 42;');
+replace('  pauseBtn.onclick = () => {', '  crossoverApi.start = () => { paused=false;stepClock=performance.now();applyPause();x.openbw_set_paused?.(0); };\n  pauseBtn.onclick = () => {');
 replace("if (location.hash.startsWith('#i=')) {",'if (false) { // P2P not enabled in this milestone.');
 replace("if (/(\\?|&)relay\\b/.test(location.search)) {",'if (false) { // Relay not enabled in this milestone.');
 const multiplayerStart=js.indexOf('// --- multiplayer: 1v1');
@@ -32,7 +36,7 @@ replace("const isDebug = /(\\?|&)debug\\b/.test(location.search);", 'const isDeb
 js=js.replace(/  const CHEATS = \{[\s\S]*?\n  \};/, '  const CHEATS = {};');
 js=js.replaceAll('__BUILD__','openbw-469d2037-crossover-2');
 js=js.replace(/\/\/ Responsibilities:[\s\S]*?(?=\/\/ Build id)/, '// Local adaptation: player-owned archives from IndexedDB; no remote game data.\n\n');
-js=`import {loadArchives, installArchiveImport} from '../local-assets.js';\nimport {installNativeBridge} from '../native-bridge.js';\n`+js+`\ninstallArchiveImport();\n`;
+js=`import {loadArchives, installArchiveImport} from '../local-assets.js';\nimport {installNativeBridge, setupNativeBattle} from '../native-bridge.js';\n`+js+`\nconst archivesReady=installArchiveImport();\nwindow.openbwLaunchCrossover=async(plan)=>{await archivesReady;await loadArchives();document.getElementById('controls').style.display='none';document.getElementById('opt-resign').hidden=true;await runLocalGame({slots:[{slot:0,race:1},{slot:1,race:1}],mySlot:0,delay:0,mapFile:MAP_LOCAL,crossover:plan});if(!window.openbwCrossover)throw Error(document.getElementById('msg').textContent);};\n`;
 if(js.includes('https://archive.org')||js.includes('https://raw.githubusercontent.com'))throw Error('Unexpected remote data source');
 fs.mkdirSync(root+'public/starcraft/maps',{recursive:true});
 const data=fileURLToPath(new URL('../../../game-data/starcraft/',import.meta.url));
@@ -42,7 +46,7 @@ fs.writeFileSync(root+'public/starcraft/openbw.js',js.replace(/[ \t]+$/gm,''));
 const net=fs.readFileSync(root+'vendor/openbw/web/net.js','utf8');
 const lockstep=net.indexOf('export class Lockstep');
 if(lockstep<0)throw Error('Lockstep section changed');
-fs.writeFileSync(root+'public/starcraft/net.js','// Solo command scheduling; no WebRTC, STUN or relay transport.\nconst EMPTY = new Uint8Array(0);\nconst BOT_LATENCY = 3;\n'+net.slice(lockstep));
+fs.writeFileSync(root+'public/starcraft/net.js','// Solo command scheduling; no WebRTC, STUN or relay transport.\nconst EMPTY = new Uint8Array(0);\nconst BOT_LATENCY = 3;\n'+net.slice(lockstep).replace('this.x.openbw_step();','this.x.openbw_crossover_ai_tick?.(); this.x.openbw_step();'));
 for(const name of ['Weave_v1.scx'])fs.copyFileSync(root+'vendor/openbw/web/maps/'+name,root+'public/starcraft/maps/'+name);
 fs.writeFileSync(root+'public/starcraft/maps/ATTRIBUTION.md',fs.readFileSync(root+'vendor/openbw/web/maps/ATTRIBUTION.md','utf8').split('\nThe Blizzard')[0]+'\nOnly Weave is configured in this crossover build. No remote map downloads.\n');
 let html=fs.readFileSync(root+'vendor/openbw/web/index.html','utf8');

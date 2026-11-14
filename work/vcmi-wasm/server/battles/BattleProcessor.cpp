@@ -18,6 +18,7 @@
 #include "../queries/QueriesProcessor.h"
 #include "../queries/BattleQueries.h"
 
+#include "../../lib/CStack.h"
 #include "../../lib/CPlayerState.h"
 #include "../../lib/TerrainHandler.h"
 #include "../../lib/battle/CBattleInfoCallback.h"
@@ -137,7 +138,7 @@ void BattleProcessor::startBattle(const CArmedInstance *army1, const CArmedInsta
 		gameHandler->queries->addQuery(newBattleQuery);
 	}
 
-	flowProcessor->onBattleStarted(*battle);
+	if(!battle->crossover)flowProcessor->onBattleStarted(*battle);
 }
 
 void BattleProcessor::startBattle(const CArmedInstance *army1, const CArmedInstance *army2)
@@ -185,7 +186,20 @@ BattleID BattleProcessor::setupBattle(int3 tile, BattleSideArray<const CArmedIns
 	bool onlyOnePlayerHuman = isDefenderHuman != isAttackerHuman;
 	bs.info->replayAllowed = lastBattleQuery == nullptr && onlyOnePlayerHuman;
 
-	gameHandler->sendAndApply(bs);
+ // Only field battles against a non-human defender, with one StarCraft unit per creature.
+ // Unsupported large armies, summons and town sieges keep native Heroes combat.
+#ifdef __EMSCRIPTEN__
+ bool eligible=crossoverPlayers.count(armies[BattleSide::ATTACKER]->getOwner()) && !town && !isDefenderHuman && isAttackerHuman;
+ int totals[2]={0,0};
+ for(const auto & stack:bs.info->stacks){
+  const int side=stack->unitSide()==BattleSide::ATTACKER?0:1;
+  if(stack->isTurret() || stack->summoned)eligible=false;
+  totals[side]+=stack->getCount();
+ }
+ bs.crossover=eligible && bs.info->stacks.size()<=32 && totals[0]>0 && totals[1]>0 && totals[0]<=128 && totals[1]<=128;
+ if(bs.crossover){bs.info->tacticDistance=0;bs.info->replayAllowed=false;}
+#endif
+ gameHandler->sendAndApply(bs);
 
 	return bs.battleID;
 }
@@ -273,10 +287,54 @@ bool BattleProcessor::makePlayerBattleAction(const BattleID & battleID, PlayerCo
 	if (!battle)
 		return false;
 
+	if(battle->crossover)return false;
 	bool result = actionsProcessor->makePlayerBattleAction(*battle, player, ba);
 	if (gameHandler->gameState().getBattle(battleID) != nullptr && !resultProcessor->battleIsEnding(*battle))
 		flowProcessor->onActionMade(*battle, ba);
 	return result;
+}
+
+bool BattleProcessor::crossoverCommand(PlayerColor player,int operation,BattleID battleID,const std::vector<std::pair<uint32_t,int32_t>> & survivors)
+{
+#ifndef __EMSCRIPTEN__
+ return false;
+#else
+ const auto state=gameHandler->gameInfo().getPlayerState(player,false);
+ if(!state || !state->isHuman())return false;
+ if(operation==0){
+  // Configure only outside combat; never enable for multiplayer/hotseat teams.
+  if(gameHandler->gameState().getBattle(player) || !survivors.empty())return false;
+  int humans=0;for(int i=0;i<8;i++){const auto p=gameHandler->gameInfo().getPlayerState(PlayerColor(i),false);if(p&&p->isHuman())++humans;}
+  if(humans!=1)return false;
+  if(battleID.getNum()==1)crossoverPlayers.insert(player);else if(battleID.getNum()==0)crossoverPlayers.erase(player);else return false;
+  return true;
+ }
+ auto battle=const_cast<BattleInfo*>(gameHandler->gameState().getBattle(battleID));
+ if(!battle || !battle->crossover || battle->getSide(BattleSide::ATTACKER).color!=player)return false;
+ if(operation==2 && survivors.empty()){
+  battle->crossover=false;flowProcessor->onBattleStarted(*battle);return true;
+ }
+ if(operation!=1 || survivors.size()!=battle->stacks.size() || survivors.size()>32)return false;
+ std::map<uint32_t,int32_t> counts;
+ for(const auto & row:survivors)if(row.second<0 || !counts.emplace(row).second)return false;
+ int totals[2]={0,0};
+ for(const auto & stack:battle->stacks){
+  const auto found=counts.find(stack->unitId());
+  if(found==counts.end() || found->second>stack->getCount())return false;
+  totals[stack->unitSide()==BattleSide::ATTACKER?0:1]+=found->second;
+ }
+ if(totals[0]>0 && totals[1]>0)return false; // No fabricated mid-battle resolution.
+ BattleUnitsChanged changes;changes.battleID=battleID;
+ for(const auto & stack:battle->stacks){
+  auto next=stack->acquireState();int64_t damage=int64_t(stack->getCount()-counts.at(stack->unitId()))*stack->getMaxHealth();
+  next->damage(damage);
+  UnitChanges change(stack->unitId(),UnitChanges::EOperation::RESET_STATE);next->save(change.data);change.healthDelta=-damage;changes.changedStacks.push_back(std::move(change));
+ }
+ gameHandler->sendAndApply(changes);
+ battle->crossover=false;
+ setBattleResult(*battle,EBattleResult::NORMAL,totals[0]>0?BattleSide::ATTACKER:totals[1]>0?BattleSide::DEFENDER:BattleSide::NONE);
+ return true;
+#endif
 }
 
 void BattleProcessor::setBattleResult(const CBattleInfoCallback & battle, EBattleResult resultType, BattleSide victoriusSide)

@@ -1,5 +1,6 @@
 import {HeroesObserver, ReadonlyBridge, StarCraftObserver} from './bridge.js';
 import type {HeroesObservation} from './native-bridge.js';
+import {installAdventure} from './adventure.js';
 const status = document.querySelector<HTMLElement>('#status')!;
 const detail = document.querySelector<HTMLElement>('#detail')!;
 const scStatus = document.querySelector<HTMLElement>('#sc-status')!;
@@ -12,7 +13,9 @@ const launch = document.querySelector<HTMLButtonElement>('#observe')!;
 const holder = document.querySelector<HTMLElement>('#engine')!;
 let bridge: ReadonlyBridge | undefined;
 let frames: HTMLIFrameElement[] = [];
+let adventureDispose:(()=>void)|undefined;
 function stop(): void {
+  adventureDispose?.();adventureDispose=undefined;
   bridge?.dispose(); bridge = undefined;
   for (const frame of frames) frame.remove(); frames = [];
   holder.hidden = true;
@@ -93,3 +96,12 @@ document.querySelector('#stop')!.addEventListener('click', stop);
 window.addEventListener('pagehide', stop);
 
 prepare.addEventListener('click', () => requestPreparation?.());
+function adventure(trial:boolean):void {
+ stop();holder.hidden=false;launch.disabled=true;
+ const frame=document.createElement('iframe');frame.title='Heroes — combats StarCraft';frame.src='../game.html?mobile=1';
+ frame.style.cssText='position:fixed;inset:0;width:100%;height:100dvh;z-index:100;border:0;background:#080d17';
+ frames.push(frame);document.querySelector('#heroes-frame')!.append(frame);
+ frame.addEventListener('load',()=>{if(frames.includes(frame))adventureDispose=installAdventure(frame.contentWindow!,new URL('./',import.meta.url),stop,trial);});
+}
+document.querySelector('#adventure')!.addEventListener('click',()=>adventure(false));
+document.querySelector('#trial')!.addEventListener('click',()=>adventure(true));

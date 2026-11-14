@@ -1,4 +1,5 @@
 import { HeroesObserver, ReadonlyBridge, StarCraftObserver } from './bridge.js';
+import { installAdventure } from './adventure.js';
 const status = document.querySelector('#status');
 const detail = document.querySelector('#detail');
 const scStatus = document.querySelector('#sc-status');
@@ -11,7 +12,10 @@ const launch = document.querySelector('#observe');
 const holder = document.querySelector('#engine');
 let bridge;
 let frames = [];
+let adventureDispose;
 function stop() {
+    adventureDispose?.();
+    adventureDispose = undefined;
     bridge?.dispose();
     bridge = undefined;
     for (const frame of frames)
@@ -118,3 +122,18 @@ launch.addEventListener('click', () => {
 document.querySelector('#stop').addEventListener('click', stop);
 window.addEventListener('pagehide', stop);
 prepare.addEventListener('click', () => requestPreparation?.());
+function adventure(trial) {
+    stop();
+    holder.hidden = false;
+    launch.disabled = true;
+    const frame = document.createElement('iframe');
+    frame.title = 'Heroes — combats StarCraft';
+    frame.src = '../game.html?mobile=1';
+    frame.style.cssText = 'position:fixed;inset:0;width:100%;height:100dvh;z-index:100;border:0;background:#080d17';
+    frames.push(frame);
+    document.querySelector('#heroes-frame').append(frame);
+    frame.addEventListener('load', () => { if (frames.includes(frame))
+        adventureDispose = installAdventure(frame.contentWindow, new URL('./', import.meta.url), stop, trial); });
+}
+document.querySelector('#adventure').addEventListener('click', () => adventure(false));
+document.querySelector('#trial').addEventListener('click', () => adventure(true));
