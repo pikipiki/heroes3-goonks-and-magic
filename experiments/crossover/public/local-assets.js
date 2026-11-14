@@ -31,34 +31,77 @@ export function hostedManifest() {
         return rows;
     })();
 }
+let downloading;
+const listeners = new Set();
 export async function downloadArchives(progress) {
-    const manifest = await hostedManifest();
-    if (!manifest)
-        return;
-    const cached = await readArchives();
-    const files = [];
-    for (const [i, row] of manifest.entries()) {
-        if (cached[i])
-            continue;
-        const bytes = new Uint8Array(row.size);
-        let offset = 0;
-        for (const chunk of row.chunks) {
-            progress('Téléchargement de ' + row.name + ' : ' + Math.round(offset / row.size * 100) + ' %');
-            const response = await fetch(new URL(chunk.url, MANIFEST_URL), { credentials: 'omit' });
-            if (!response.ok)
-                throw Error('Téléchargement interrompu : ' + row.name + '. Recharge pour réessayer.');
-            const part = await response.arrayBuffer();
-            if (part.byteLength !== chunk.size || await digest(part) !== chunk.sha256)
-                throw Error('Morceau altéré : ' + row.name);
-            bytes.set(new Uint8Array(part), offset);
-            offset += part.byteLength;
-        }
-        if (await digest(bytes.buffer) !== row.sha256)
-            throw Error('Archive téléchargée altérée : ' + row.name);
-        files.push(new File([bytes], row.name));
+    listeners.add(progress);
+    try {
+        downloading ??= (async () => {
+            const manifest = await hostedManifest();
+            if (!manifest)
+                return;
+            const cached = await readArchives(), total = manifest.reduce((sum, row) => sum + row.size, 0);
+            let loaded = manifest.reduce((sum, row, i) => sum + (cached[i] ? row.size : 0), 0);
+            const notify = () => { for (const listener of listeners)
+                listener('Préparation de StarCraft : ' + Math.floor(loaded / total * 100) + ' %', loaded, total); };
+            notify();
+            // Completed chunks survive an interrupted first installation. Cache failure
+            // only disables resume; every byte is still SHA-256 checked before import.
+            const chunks = typeof caches === 'undefined' ? undefined : await caches.open('heroes-starcraft-verified-chunks-v1').catch(() => undefined);
+            for (const [i, row] of manifest.entries()) {
+                if (cached[i])
+                    continue;
+                const bytes = new Uint8Array(row.size);
+                const offsets = [];
+                let offset = 0;
+                for (const chunk of row.chunks) {
+                    offsets.push(offset);
+                    offset += chunk.size;
+                }
+                let next = 0;
+                const abort = new AbortController();
+                const workers = await Promise.allSettled(Array.from({ length: Math.min(3, row.chunks.length) }, async () => {
+                    try {
+                        for (;;) {
+                            abort.signal.throwIfAborted();
+                            const index = next++;
+                            if (index >= row.chunks.length)
+                                return;
+                            const chunk = row.chunks[index], url = new URL(chunk.url, MANIFEST_URL).href;
+                            let part = await chunks?.match(url).then(response => response?.arrayBuffer()).catch(() => undefined);
+                            if (!part || part.byteLength !== chunk.size || await digest(part) !== chunk.sha256) {
+                                const response = await fetch(url, { credentials: 'omit', signal: abort.signal });
+                                if (!response.ok)
+                                    throw Error('Téléchargement interrompu : ' + row.name + '. Réessaie pour reprendre.');
+                                part = await response.arrayBuffer();
+                                if (part.byteLength !== chunk.size || await digest(part) !== chunk.sha256)
+                                    throw Error('Morceau altéré : ' + row.name);
+                                await chunks?.put(url, new Response(part)).catch(() => { });
+                            }
+                            bytes.set(new Uint8Array(part), offsets[index]);
+                            loaded += part.byteLength;
+                            notify();
+                        }
+                    }
+                    catch (error) {
+                        abort.abort(error);
+                        throw error;
+                    }
+                }));
+                const failed = workers.find((row) => row.status === 'rejected');
+                if (failed)
+                    throw failed.reason;
+                if (await digest(bytes.buffer) !== row.sha256)
+                    throw Error('Archive téléchargée altérée : ' + row.name);
+                await importArchives([new File([bytes], row.name)]);
+                await Promise.all(row.chunks.map(chunk => chunks?.delete(new URL(chunk.url, MANIFEST_URL).href).catch(() => { })));
+            }
+        })().finally(() => { downloading = undefined; });
+        await downloading;
     }
-    if (files.length)
-        await importArchives(files);
+    finally {
+        listeners.delete(progress);
+    }
 }
 export function archiveName(name) {
     const normalized = name.toLowerCase();

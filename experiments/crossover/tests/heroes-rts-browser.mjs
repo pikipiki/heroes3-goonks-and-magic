@@ -18,6 +18,7 @@ const cmd=async(...args)=>hero.evaluate(args=>Module._vcmiMobileCommand(...args)
 try{
  await page.goto(process.env.CROSSOVER_URL||'http://127.0.0.1:8779/index.html');hero=page;
  await page.waitForFunction(()=>window.goonkMobileState?.mode==='menu',null,{timeout:180000});
+ await page.locator('#mobile-app .mobile-menu #crossover-demo').waitFor();
  assert.equal(await page.locator('#crossover-tools').count(),0);
  assert(await page.locator('#mobile-app .mobile-menu #crossover-demo').isVisible(),'Demo belongs to the Heroes home menu');
  assert(await page.locator('#mobile-app .mobile-menu #game-menu-toggle').isVisible(),'Options belongs to the same menu');
@@ -39,7 +40,7 @@ try{
  const initial=await hero.evaluate(()=>structuredClone(goonkMobileState.crossover));report.initial=initial;save();
  await hero.locator('#crossover-arena').waitFor();
  const sc=page.frames().find(frame=>frame.url().includes('/starcraft/index.html'));assert(sc);
- assert.equal(await hero.locator('#crossover-arena iframe').evaluate(el=>getComputedStyle(el).opacity),'0');
+ assert.equal(await hero.locator('iframe[data-crossover-engine]').evaluate(el=>getComputedStyle(el).opacity),'0');
  await sc.waitForFunction(()=>!!window.openbwCrossover?.battle(),null,{timeout:180000});
  assert.equal(await sc.evaluate(()=>window.openbwCrossover.battle().frame),0,'RTS waits for the player before fighting');
  record({name:'Real Heroes attack is suspended and its exact armies initialize native StarCraft',heroes:initial,starcraft:await sc.evaluate(()=>window.openbwCrossover.battle())});

@@ -29,7 +29,46 @@ export function installAdventure(target, base, onExit, trial = false) {
         status.textContent = text; };
     const closeMenu = () => { doc.querySelector('#game-menu')?.close(); };
     let enabled = true, configured = false, disposed = false, plan, frame, panel, timer, sent = false, starting = false, selected = false, autoAttack = false, isDemo = trial, latestMode = '', checkpoint = false, sceneDispose;
-    let settingsButton;
+    let settingsButton, latestOnline = false, latestTurn = false;
+    let warmFrame, warmPromise, assetsReady = false;
+    const prepareEngine = () => {
+        if (warmPromise)
+            return warmPromise;
+        assetsReady = false;
+        hint('Préparation de StarCraft…');
+        warmFrame = doc.createElement('iframe');
+        warmFrame.dataset.crossoverEngine = '';
+        warmFrame.title = 'Moteur de combat';
+        warmFrame.setAttribute('aria-hidden', 'true');
+        warmFrame.tabIndex = -1;
+        warmFrame.style.cssText = 'position:fixed;width:min(100vw,800px);height:min(100vh,500px);left:0;top:0;opacity:0;pointer-events:none;border:0;z-index:-1';
+        const preparedFrame = warmFrame;
+        warmPromise = new Promise((resolve, reject) => {
+            preparedFrame.addEventListener('load', async () => {
+                try {
+                    const sc = preparedFrame.contentWindow;
+                    if (!sc.openbwPrepareCrossover)
+                        throw Error('Préparation du moteur StarCraft indisponible.');
+                    await sc.openbwPrepareCrossover();
+                    if (disposed)
+                        return;
+                    assetsReady = true;
+                    hint('');
+                    demo.disabled = latestOnline || latestMode !== 'menu' || trial;
+                    menuDemo.disabled = latestOnline || checkpoint || !latestTurn;
+                    configured = false;
+                    resolve(sc);
+                }
+                catch (error) {
+                    hint(String(error));
+                    reject(error);
+                }
+            }, { once: true });
+            preparedFrame.src = new URL('starcraft/index.html', base).href;
+            doc.body.append(preparedFrame);
+        });
+        return warmPromise;
+    };
     const cancelled = new Set();
     const mountControls = () => {
         const home = doc.querySelector('#mobile-app .mobile-menu[data-kind="menu"]');
@@ -76,7 +115,8 @@ export function installAdventure(target, base, onExit, trial = false) {
         }
     };
     const closePanel = () => { sceneDispose?.(); sceneDispose = undefined; if (timer !== undefined)
-        win.clearInterval(timer); timer = undefined; frame?.remove(); frame = undefined; panel?.remove(); panel = undefined; plan = undefined; sent = false; };
+        win.clearInterval(timer); timer = undefined; frame?.remove(); frame = undefined; panel?.remove(); panel = undefined; plan = undefined; sent = false; if (!disposed)
+        void prepareEngine().catch(() => { }); };
     const begin = (value) => {
         if (plan?.battleId === value.battleId || cancelled.has(value.battleId))
             return;
@@ -88,9 +128,13 @@ export function installAdventure(target, base, onExit, trial = false) {
         panel.setAttribute('translate', 'no');
         panel.setAttribute('aria-label', 'Combat Heroes × StarCraft');
         panel.innerHTML = '<div class="field"><iframe title="Moteur de combat" aria-hidden="true" tabindex="-1"></iframe><canvas id="crossover-field"></canvas></div><header class="battle-heading"><div class="heading-label"><span class="eyebrow">HEROES GOONK</span><h2>Combat en temps réel</h2></div><button id="crossover-cancel" aria-label="Reprendre le combat Heroes classique">↩ Classique</button><p id="crossover-battle-status" role="status">Préparation du combat…</p><progress aria-label="Préparation des données du combat"></progress></header><aside aria-label="Commandes du combat"><div class="battle-actions"><button id="crossover-start" disabled>Commencer le combat</button><button id="crossover-attack" aria-pressed="false" disabled>Attaquer</button><button id="crossover-stop" disabled>Arrêter</button><button id="crossover-select-all" disabled>Tout sélectionner</button></div><p id="crossover-selection" class="battle-selection" role="status">Sélectionne une troupe pour lui donner un ordre.</p><section aria-label="Armées"><h3>Les combattants</h3><div id="crossover-roster"></div></section><details><summary>Comment jouer</summary><p>Choisis une troupe, puis touche le terrain pour la déplacer ou un ennemi pour l’attaquer. « Attaquer » prépare une attaque vers le prochain point choisi. « Arrêter » annule ses ordres. Tes troupes restent inactives sans ordre.</p></details></aside>';
+        panel.hidden = true;
         doc.body.append(panel);
-        frame = panel.querySelector('iframe');
-        frame.src = new URL('starcraft/index.html', base).href;
+        panel.querySelector('iframe').remove();
+        const prepared = prepareEngine();
+        frame = warmFrame;
+        warmFrame = undefined;
+        warmPromise = undefined;
         const activePanel = panel, activeFrame = frame, activePlan = plan, canvas = panel.querySelector('#crossover-field');
         const status = panel.querySelector('#crossover-battle-status'), start = panel.querySelector('#crossover-start'), attack = panel.querySelector('#crossover-attack'), stop = panel.querySelector('#crossover-stop'), all = panel.querySelector('#crossover-select-all'), progress = panel.querySelector('progress'), selection = panel.querySelector('#crossover-selection');
         const roster = panel.querySelector('#crossover-roster'), cards = new Map();
@@ -132,16 +176,11 @@ export function installAdventure(target, base, onExit, trial = false) {
             status.textContent = String(e);
         } };
         panel.querySelector('#crossover-cancel').onclick = () => { cancelled.add(activePlan.battleId); command(2, activePlan.battleId); closePanel(); hint('Combat repris dans Heroes, sans appliquer les pertes du test annulé.'); };
-        frame.addEventListener('load', async () => {
+        void (async () => {
             try {
-                const sc = activeFrame.contentWindow;
+                const sc = await prepared;
                 if (!sc.openbwLaunchCrossover)
                     throw Error('Chargement de StarCraft incomplet.');
-                timer = win.setInterval(() => { const text = sc.document.querySelector('#archive-status')?.textContent || ''; const percent = text.match(/(\d+)\s*%/); if (percent) {
-                    progress.max = 100;
-                    progress.value = Number(percent[1]);
-                    status.textContent = 'Téléchargement des données : ' + percent[1] + ' %';
-                } }, 200);
                 await sc.openbwLaunchCrossover(activePlan);
                 if (disposed || panel !== activePanel || frame !== activeFrame || plan !== activePlan)
                     return;
@@ -154,6 +193,10 @@ export function installAdventure(target, base, onExit, trial = false) {
                 for (const { button } of cards.values())
                     button.disabled = false;
                 sceneDispose = sharedField(win, canvas, sc.openbwCrossover, activePlan);
+                await new Promise(resolve => win.requestAnimationFrame(() => win.requestAnimationFrame(() => resolve())));
+                if (panel !== activePanel)
+                    return;
+                panel.hidden = false;
                 timer = win.setInterval(() => {
                     try {
                         const native = sc.openbwCrossover?.battle();
@@ -191,20 +234,23 @@ export function installAdventure(target, base, onExit, trial = false) {
                 }, 200);
             }
             catch (e) {
+                activePanel.hidden = false;
                 progress.hidden = true;
                 status.textContent = String(e) + ' Tu peux reprendre le combat classique.';
             }
-        });
+        })();
     };
     const observe = (event) => {
         const state = event.detail;
         if (!state || disposed)
             return;
         latestMode = state.mode;
+        latestOnline = !!state.onlineGame;
+        latestTurn = !!state.turn;
         mountControls();
-        demo.disabled = !!state.onlineGame || trial || state.mode !== 'menu';
+        demo.disabled = !assetsReady || !!state.onlineGame || trial || state.mode !== 'menu';
         menuDemo.hidden = toggle.hidden = state.mode !== 'map';
-        menuDemo.disabled = !!state.onlineGame || checkpoint || !state.turn;
+        menuDemo.disabled = !assetsReady || !!state.onlineGame || checkpoint || !state.turn;
         toggle.disabled = !!state.onlineGame || !state.turn;
         menuDemo.textContent = isDemo ? 'Rejouer la démo' : 'Démo Heroes × StarCraft';
         if (state.mode === 'menu') {
@@ -269,7 +315,10 @@ export function installAdventure(target, base, onExit, trial = false) {
         checkpoint = false;
         hint('Attends la fin du déplacement, puis relance la démo.');
     } };
-    const demoAction = () => { if (!latestMode || latestMode === 'menu')
+    const demoAction = () => { if (!assetsReady) {
+        hint('StarCraft se prépare avant la partie…');
+        return;
+    } if (!latestMode || latestMode === 'menu')
         startDemo();
     else if (latestMode === 'map' && !checkpoint) {
         if (isDemo) {
@@ -298,7 +347,8 @@ export function installAdventure(target, base, onExit, trial = false) {
     win.addEventListener('goonk-crossover-demo', demoAction);
     win.addEventListener('goonk-state', observe);
     mountControls();
-    return () => { disposed = true; delete win.goonkCrossoverInstalled; doc.removeEventListener('click', click, true); win.removeEventListener('goonk-mobile-mounted', mountControls); win.removeEventListener('goonk-save-persisted', persisted); win.removeEventListener('goonk-crossover-checkpoint', checkpointReply); win.removeEventListener('goonk-crossover-demo', demoAction); win.removeEventListener('goonk-state', observe); closePanel(); if (settingsButton)
+    void prepareEngine().catch(() => { });
+    return () => { disposed = true; delete win.goonkCrossoverInstalled; doc.removeEventListener('click', click, true); win.removeEventListener('goonk-mobile-mounted', mountControls); win.removeEventListener('goonk-save-persisted', persisted); win.removeEventListener('goonk-crossover-checkpoint', checkpointReply); win.removeEventListener('goonk-crossover-demo', demoAction); win.removeEventListener('goonk-state', observe); closePanel(); warmFrame?.remove(); if (settingsButton)
         doc.querySelector('#mobile-app .mobile-top')?.prepend(settingsButton); for (const node of [demo, menuDemo, toggle, mainStatus, menuStatus, style])
         node.remove(); };
 }

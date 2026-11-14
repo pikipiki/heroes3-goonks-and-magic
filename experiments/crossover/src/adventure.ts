@@ -2,7 +2,7 @@ import {sharedField} from './shared-field.js';
 import {battlePlan,battleResult,type BattlePlan,type BattleState,type HeroesStack} from './battle.js';
 import type {NativeBridge} from './native-bridge.js';
 type HeroWindow = Window & {Module?: {_vcmiCrossoverCommand?(op:number,id:number,ptr:number,count:number):void;_vcmiMobileCommand?(...args:number[]):void;_malloc(n:number):number;_free(n:number):void;HEAPU8:Uint8Array};goonkCrossoverInstalled?:boolean;goonkMobileState?: Record<string,unknown>};
-type StarWindow = Window & {openbwLaunchCrossover?(plan:BattlePlan):Promise<void>;openbwCrossover?:NativeBridge};
+type StarWindow = Window & {openbwPrepareCrossover?():Promise<unknown>;openbwLaunchCrossover?(plan:BattlePlan):Promise<void>;openbwCrossover?:NativeBridge};
 export function installAdventure(target:Window,base:URL,onExit:()=>void,trial=false):()=>void {
  const win=target as HeroWindow,doc=win.document;
  if(win.goonkCrossoverInstalled){if(trial)win.dispatchEvent(new Event('goonk-crossover-demo'));return()=>{};}win.goonkCrossoverInstalled=true;
@@ -15,7 +15,25 @@ export function installAdventure(target:Window,base:URL,onExit:()=>void,trial=fa
  const hint=(text:string):void=>{for(const status of [mainStatus,menuStatus])status.textContent=text;};
  const closeMenu=():void=>{doc.querySelector<HTMLDialogElement>('#game-menu')?.close();};
  let enabled=true,configured=false,disposed=false,plan:BattlePlan|undefined,frame:HTMLIFrameElement|undefined,panel:HTMLElement|undefined,timer:number|undefined,sent=false,starting=false,selected=false,autoAttack=false,isDemo=trial,latestMode='',checkpoint=false,sceneDispose:(()=>void)|undefined;
- let settingsButton:HTMLButtonElement|undefined;
+ let settingsButton:HTMLButtonElement|undefined,latestOnline=false,latestTurn=false;
+ let warmFrame:HTMLIFrameElement|undefined,warmPromise:Promise<StarWindow>|undefined,assetsReady=false;
+ const prepareEngine=():Promise<StarWindow>=>{
+  if(warmPromise)return warmPromise;
+  assetsReady=false;hint('Préparation de StarCraft…');
+  warmFrame=doc.createElement('iframe');warmFrame.dataset.crossoverEngine='';warmFrame.title='Moteur de combat';warmFrame.setAttribute('aria-hidden','true');warmFrame.tabIndex=-1;
+  warmFrame.style.cssText='position:fixed;width:min(100vw,800px);height:min(100vh,500px);left:0;top:0;opacity:0;pointer-events:none;border:0;z-index:-1';
+  const preparedFrame=warmFrame;
+  warmPromise=new Promise<StarWindow>((resolve,reject)=>{
+   preparedFrame.addEventListener('load',async()=>{try{
+    const sc=preparedFrame.contentWindow as StarWindow;if(!sc.openbwPrepareCrossover)throw Error('Préparation du moteur StarCraft indisponible.');
+    await sc.openbwPrepareCrossover();if(disposed)return;
+    assetsReady=true;hint('');demo.disabled=latestOnline||latestMode!=='menu'||trial;menuDemo.disabled=latestOnline||checkpoint||!latestTurn;
+    configured=false;resolve(sc);
+   }catch(error){hint(String(error));reject(error);}},{once:true});
+   preparedFrame.src=new URL('starcraft/index.html',base).href;doc.body.append(preparedFrame);
+  });
+  return warmPromise;
+ };
  const cancelled=new Set<number>();
  const mountControls=():void=>{
   const home=doc.querySelector('#mobile-app .mobile-menu[data-kind="menu"]');
@@ -33,13 +51,14 @@ export function installAdventure(target:Window,base:URL,onExit:()=>void,trial=fa
   const bytes=new Int32Array(rows.flat()),pointer=rows.length?m._malloc(bytes.byteLength):0;
   try{if(rows.length)m.HEAPU8.set(new Uint8Array(bytes.buffer),pointer);m._vcmiCrossoverCommand(op,id,pointer,rows.length);}finally{if(pointer)m._free(pointer);}
  };
- const closePanel=():void=>{sceneDispose?.();sceneDispose=undefined;if(timer!==undefined)win.clearInterval(timer);timer=undefined;frame?.remove();frame=undefined;panel?.remove();panel=undefined;plan=undefined;sent=false;};
+ const closePanel=():void=>{sceneDispose?.();sceneDispose=undefined;if(timer!==undefined)win.clearInterval(timer);timer=undefined;frame?.remove();frame=undefined;panel?.remove();panel=undefined;plan=undefined;sent=false;if(!disposed)void prepareEngine().catch(()=>{});};
  const begin=(value:{battleId:number;stacks:HeroesStack[]}):void=>{
   if(plan?.battleId===value.battleId||cancelled.has(value.battleId))return;
   closePanel();closeMenu();plan=battlePlan(value);
   panel=doc.createElement('section');panel.id='crossover-arena';panel.setAttribute('translate','no');panel.setAttribute('aria-label','Combat Heroes × StarCraft');
   panel.innerHTML='<div class="field"><iframe title="Moteur de combat" aria-hidden="true" tabindex="-1"></iframe><canvas id="crossover-field"></canvas></div><header class="battle-heading"><div class="heading-label"><span class="eyebrow">HEROES GOONK</span><h2>Combat en temps réel</h2></div><button id="crossover-cancel" aria-label="Reprendre le combat Heroes classique">↩ Classique</button><p id="crossover-battle-status" role="status">Préparation du combat…</p><progress aria-label="Préparation des données du combat"></progress></header><aside aria-label="Commandes du combat"><div class="battle-actions"><button id="crossover-start" disabled>Commencer le combat</button><button id="crossover-attack" aria-pressed="false" disabled>Attaquer</button><button id="crossover-stop" disabled>Arrêter</button><button id="crossover-select-all" disabled>Tout sélectionner</button></div><p id="crossover-selection" class="battle-selection" role="status">Sélectionne une troupe pour lui donner un ordre.</p><section aria-label="Armées"><h3>Les combattants</h3><div id="crossover-roster"></div></section><details><summary>Comment jouer</summary><p>Choisis une troupe, puis touche le terrain pour la déplacer ou un ennemi pour l’attaquer. « Attaquer » prépare une attaque vers le prochain point choisi. « Arrêter » annule ses ordres. Tes troupes restent inactives sans ordre.</p></details></aside>';
-  doc.body.append(panel);frame=panel.querySelector('iframe')!;frame.src=new URL('starcraft/index.html',base).href;
+  panel.hidden=true;doc.body.append(panel);panel.querySelector('iframe')!.remove();
+  const prepared=prepareEngine();frame=warmFrame!;warmFrame=undefined;warmPromise=undefined;
   const activePanel=panel,activeFrame=frame,activePlan=plan,canvas=panel.querySelector<HTMLCanvasElement>('#crossover-field')!;
   const status=panel.querySelector<HTMLElement>('#crossover-battle-status')!,start=panel.querySelector<HTMLButtonElement>('#crossover-start')!,attack=panel.querySelector<HTMLButtonElement>('#crossover-attack')!,stop=panel.querySelector<HTMLButtonElement>('#crossover-stop')!,all=panel.querySelector<HTMLButtonElement>('#crossover-select-all')!,progress=panel.querySelector<HTMLProgressElement>('progress')!,selection=panel.querySelector<HTMLElement>('#crossover-selection')!;
   const roster=panel.querySelector<HTMLElement>('#crossover-roster')!,cards=new Map<number,{button:HTMLButtonElement;count:HTMLElement}>();
@@ -58,15 +77,16 @@ export function installAdventure(target:Window,base:URL,onExit:()=>void,trial=fa
   stop.onclick=()=>canvas.dispatchEvent(new Event('crossover-stop-selection'));
   start.onclick=()=>{try{(frame!.contentWindow as StarWindow).openbwCrossover!.start();start.hidden=true;}catch(e){status.textContent=String(e);}};
   panel.querySelector<HTMLButtonElement>('#crossover-cancel')!.onclick=()=>{cancelled.add(activePlan.battleId);command(2,activePlan.battleId);closePanel();hint('Combat repris dans Heroes, sans appliquer les pertes du test annulé.');};
-  frame.addEventListener('load',async()=>{
+  void (async()=>{
    try{
-    const sc=activeFrame.contentWindow as StarWindow;if(!sc.openbwLaunchCrossover)throw Error('Chargement de StarCraft incomplet.');
-    timer=win.setInterval(()=>{const text=sc.document.querySelector('#archive-status')?.textContent||'';const percent=text.match(/(\d+)\s*%/);if(percent){progress.max=100;progress.value=Number(percent[1]);status.textContent='Téléchargement des données : '+percent[1]+' %';}},200);
+    const sc=await prepared;if(!sc.openbwLaunchCrossover)throw Error('Chargement de StarCraft incomplet.');
     await sc.openbwLaunchCrossover(activePlan);
     if(disposed||panel!==activePanel||frame!==activeFrame||plan!==activePlan)return;
     if(timer!==undefined)win.clearInterval(timer);progress.hidden=true;status.textContent='Prêt · contrôle manuel';ready=true;start.disabled=all.disabled=false;
     for(const {button} of cards.values())button.disabled=false;
     sceneDispose=sharedField(win,canvas,sc.openbwCrossover!,activePlan);
+    await new Promise<void>(resolve=>win.requestAnimationFrame(()=>win.requestAnimationFrame(()=>resolve())));
+    if(panel!==activePanel)return;panel.hidden=false;
     timer=win.setInterval(()=>{
      try{
       const native=sc.openbwCrossover?.battle();if(!native)return;
@@ -77,13 +97,13 @@ export function installAdventure(target:Window,base:URL,onExit:()=>void,trial=fa
       if(native.finished&&!sent){const rows=battleResult(activePlan,native as BattleState);sent=true;command(1,activePlan.battleId,rows);win.dispatchEvent(new CustomEvent('goonk-crossover-submitted',{detail:{version:1,plan:structuredClone(activePlan),result:structuredClone(native)}}));}
      }catch(e){status.textContent=String(e);}
     },200);
-   }catch(e){progress.hidden=true;status.textContent=String(e)+' Tu peux reprendre le combat classique.';}
-  });
+   }catch(e){activePanel.hidden=false;progress.hidden=true;status.textContent=String(e)+' Tu peux reprendre le combat classique.';}
+  })();
  };
  const observe=(event:Event):void=>{
-  const state=(event as CustomEvent).detail;if(!state||disposed)return;latestMode=state.mode;mountControls();
-  demo.disabled=!!state.onlineGame||trial||state.mode!=='menu';
-  menuDemo.hidden=toggle.hidden=state.mode!=='map';menuDemo.disabled=!!state.onlineGame||checkpoint||!state.turn;
+  const state=(event as CustomEvent).detail;if(!state||disposed)return;latestMode=state.mode;latestOnline=!!state.onlineGame;latestTurn=!!state.turn;mountControls();
+  demo.disabled=!assetsReady||!!state.onlineGame||trial||state.mode!=='menu';
+  menuDemo.hidden=toggle.hidden=state.mode!=='map';menuDemo.disabled=!assetsReady||!!state.onlineGame||checkpoint||!state.turn;
   toggle.disabled=!!state.onlineGame||!state.turn;menuDemo.textContent=isDemo?'Rejouer la démo':'Démo Heroes × StarCraft';
   if(state.mode==='menu'){configured=false;cancelled.clear();if(!trial)isDemo=false;}
   if(state.mode==='load')isDemo=false;
@@ -98,8 +118,8 @@ export function installAdventure(target:Window,base:URL,onExit:()=>void,trial=fa
  const startDemo=():void=>{closeMenu();trial=true;isDemo=true;starting=false;selected=false;hint('Ouverture de la démo…');};
  const persisted=(event:Event):void=>{const detail=(event as CustomEvent).detail;if(!checkpoint||!String(detail?.path).toLowerCase().endsWith('/avant-demo-starcraft.vsgm1'))return;checkpoint=false;if(detail.ok){startDemo();win.Module?._vcmiMobileCommand?.(71,0,0,0,0,0);}else hint('Sauvegarde impossible : ton aventure reste ouverte.');};
  const checkpointReply=(event:Event):void=>{if(checkpoint&&!(event as CustomEvent).detail.accepted){checkpoint=false;hint('Attends la fin du déplacement, puis relance la démo.');}};
- const demoAction=():void=>{if(!latestMode||latestMode==='menu')startDemo();else if(latestMode==='map'&&!checkpoint){if(isDemo){startDemo();win.Module?._vcmiMobileCommand?.(71,0,0,0,0,0);}else{checkpoint=true;hint('Sauvegarde de ton aventure avant la démo…');win.Module?._vcmiMobileCommand?.(113,0,0,0,0,0);}}};
+ const demoAction=():void=>{if(!assetsReady){hint('StarCraft se prépare avant la partie…');return;}if(!latestMode||latestMode==='menu')startDemo();else if(latestMode==='map'&&!checkpoint){if(isDemo){startDemo();win.Module?._vcmiMobileCommand?.(71,0,0,0,0,0);}else{checkpoint=true;hint('Sauvegarde de ton aventure avant la démo…');win.Module?._vcmiMobileCommand?.(113,0,0,0,0,0);}}};
  const click=(event:Event):void=>{const button=(event.target as Element).closest?.<HTMLButtonElement>('button[data-crossover-action]');if(!button||button.disabled)return;event.preventDefault();event.stopImmediatePropagation();if(button.dataset.crossoverAction==='demo')demoAction();else{enabled=!enabled;command(0,enabled?1:0);toggle.textContent=`Combats en temps réel : ${enabled?'activés':'désactivés'}`;toggle.setAttribute('aria-pressed',String(enabled));}};
- doc.addEventListener('click',click,true);win.addEventListener('goonk-mobile-mounted',mountControls);win.addEventListener('goonk-save-persisted',persisted);win.addEventListener('goonk-crossover-checkpoint',checkpointReply);win.addEventListener('goonk-crossover-demo',demoAction);win.addEventListener('goonk-state',observe);mountControls();
- return()=>{disposed=true;delete win.goonkCrossoverInstalled;doc.removeEventListener('click',click,true);win.removeEventListener('goonk-mobile-mounted',mountControls);win.removeEventListener('goonk-save-persisted',persisted);win.removeEventListener('goonk-crossover-checkpoint',checkpointReply);win.removeEventListener('goonk-crossover-demo',demoAction);win.removeEventListener('goonk-state',observe);closePanel();if(settingsButton)doc.querySelector('#mobile-app .mobile-top')?.prepend(settingsButton);for(const node of [demo,menuDemo,toggle,mainStatus,menuStatus,style])node.remove();};
+ doc.addEventListener('click',click,true);win.addEventListener('goonk-mobile-mounted',mountControls);win.addEventListener('goonk-save-persisted',persisted);win.addEventListener('goonk-crossover-checkpoint',checkpointReply);win.addEventListener('goonk-crossover-demo',demoAction);win.addEventListener('goonk-state',observe);mountControls();void prepareEngine().catch(()=>{});
+ return()=>{disposed=true;delete win.goonkCrossoverInstalled;doc.removeEventListener('click',click,true);win.removeEventListener('goonk-mobile-mounted',mountControls);win.removeEventListener('goonk-save-persisted',persisted);win.removeEventListener('goonk-crossover-checkpoint',checkpointReply);win.removeEventListener('goonk-crossover-demo',demoAction);win.removeEventListener('goonk-state',observe);closePanel();warmFrame?.remove();if(settingsButton)doc.querySelector('#mobile-app .mobile-top')?.prepend(settingsButton);for(const node of [demo,menuDemo,toggle,mainStatus,menuStatus,style])node.remove();};
 }

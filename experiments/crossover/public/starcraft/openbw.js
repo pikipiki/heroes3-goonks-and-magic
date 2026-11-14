@@ -516,7 +516,7 @@ async function boot(session) {
   const hb = (stage) => { try { localStorage.setItem('openbw-heartbeat', stage + ' @' + new Date().toISOString()); } catch {} };
   hb('boot:start');
 
-  const assets = await loadAssets(session.mapFile || MAP_LOCAL);
+  const assets = session.crossover ? (await prepareCrossover()).assets : await loadAssets(session.mapFile || MAP_LOCAL);
   hb('boot:assets-loaded');
 
   let memory;
@@ -613,7 +613,8 @@ async function boot(session) {
   hb('boot:wasm-fetch');
   let instance;
   try {
-    ({ instance } = await WebAssembly.instantiateStreaming(wasmReq(), imports));
+    if(session.crossover) instance=await WebAssembly.instantiate((await prepareCrossover()).module,imports);
+    else ({ instance } = await WebAssembly.instantiateStreaming(wasmReq(), imports));
   } catch (e) {
     // dev servers may not send application/wasm — fall back to plain instantiate
     const bytes = await (await wasmReq()).arrayBuffer();
@@ -1608,4 +1609,7 @@ async function runLocalGame(session) {
 }
 
 const archivesReady=installArchiveImport();
-window.openbwLaunchCrossover=async(plan)=>{await archivesReady;await loadArchives();document.getElementById('controls').style.display='none';document.getElementById('opt-resign').hidden=true;await runLocalGame({slots:[{slot:0,race:1},{slot:1,race:1}],mySlot:0,delay:0,mapFile:MAP_LOCAL,crossover:plan});if(!window.openbwCrossover)throw Error(document.getElementById('msg').textContent);};
+let prepared;
+function prepareCrossover(){return prepared??=(async()=>{await archivesReady;const assets=await loadAssets(MAP_LOCAL);const response=await fetch('./openbw.wasm?v='+BUILD);if(!response.ok)throw Error('Moteur StarCraft indisponible.');const module=await WebAssembly.compileStreaming(response);return {assets,module};})().catch(error=>{prepared=undefined;throw error;});}
+window.openbwPrepareCrossover=prepareCrossover;
+window.openbwLaunchCrossover=async(plan)=>{await prepareCrossover();document.getElementById('controls').style.display='none';document.getElementById('opt-resign').hidden=true;await runLocalGame({slots:[{slot:0,race:1},{slot:1,race:1}],mySlot:0,delay:0,mapFile:MAP_LOCAL,crossover:plan});if(!window.openbwCrossover)throw Error(document.getElementById('msg').textContent);};

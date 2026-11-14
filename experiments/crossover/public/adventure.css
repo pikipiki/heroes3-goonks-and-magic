@@ -85,3 +85,5 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=menu]>.mobile-play { gr
  #mobile-app[data-mode=menu] .mobile-menu #game-menu-toggle { grid-column:2;grid-row:5;width:100%!important; }
  #mobile-app[data-mode=menu] .mobile-menu[data-kind=menu]>.crossover-menu-status { grid-column:2;grid-row:6; }
 }
+#crossover-arena[hidden]{display:none!important}
+@media(orientation:landscape){#mobile-app[data-mode=menu] .mobile-menu>.crossover-menu-status{grid-row:6}}

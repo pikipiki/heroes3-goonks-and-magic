@@ -72,7 +72,7 @@ self.addEventListener('message', event => {
   if (release?.lazy && event.data?.type === 'crossover.activate-launch') {
     event.waitUntil((async () => {
       const source = event.source?.url && new URL(event.source.url);
-      if (!source || !['index.html', 'launch.html', 'start.html', ''].some(file => fileURL(file).pathname === source.pathname)) return;
+      if (!source || !['index.html', 'launch.html', 'start.html', 'play.html', ''].some(file => fileURL(file).pathname === source.pathname)) return;
       const windows = await self.clients.matchAll({type: 'window', includeUncontrolled: true});
       if (windows.some(client => client.id !== event.source.id && new URL(client.url).pathname === fileURL('game.html').pathname)) return;
       await self.skipWaiting();
@@ -140,7 +140,7 @@ self.addEventListener('fetch', event => {
 
   const file = url.pathname.slice(resourceScope.pathname.length) || 'index.html';
   // A separate launch scope can recover while an older root installation is stuck.
-  if (release?.lazy && ['launch.html', 'start.html'].some(name => scope.pathname.endsWith('/' + name)) && url.pathname === scope.pathname && url.searchParams.get('play') === '1' && request.mode === 'navigate') {
+  if (release?.lazy && ['launch.html', 'start.html', 'play.html'].some(name => scope.pathname.endsWith('/' + name)) && url.pathname === scope.pathname && url.searchParams.get('play') === '1' && request.mode === 'navigate') {
     event.respondWith(fetch(fileURL('game.html'), {integrity: 'sha256-' + shell.get('game.html')}).then(isolated));
     return;
   }
