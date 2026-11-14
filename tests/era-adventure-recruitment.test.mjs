@@ -1,8 +1,12 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';
-import{readJsonc,createProductionObjectResolvers}from'../scripts/era-bridge/objects/production-resolvers.mjs';
+import{readJsonc}from'../scripts/era-bridge/objects/production-resolvers.mjs';
 import{DWELLING_CLOSURE}from'../scripts/era-bridge/objects/stage-dwelling-closure.mjs';
 test('Both adventures make all44 new dwelling actors reachable through real recruitment and declared upgrades',()=>{
- const project=process.cwd(),union=process.env.DWELLING185_UNION,resolver=createProductionObjectResolvers({projectRoot:project,sourceRoot:'../Third-Upgrade-Mod-Full'}),manifest=readJsonc('mod/tum-era/mod.json'),objects=new Map();
+ const project=process.cwd(),union=process.env.DWELLING185_UNION,resolver={byNative:new Map()},manifest=readJsonc('mod/tum-era/mod.json'),objects=new Map();
+ // Reachability depends on registered native definitions, not the optional original ERM/archive tree.
+ const creatures=(entries,scope)=>{for(const[key,value]of Object.entries(entries)){const native=key.includes(':')?key:scope+':'+key;resolver.byNative.set(native,{...(resolver.byNative.get(native)??{}),...value});}};
+ for(const name of fs.readdirSync('work/vcmi-wasm/config/creatures').filter(n=>n.endsWith('.json')))creatures(readJsonc('work/vcmi-wasm/config/creatures/'+name),'core');
+ for(const[root,scope]of [['mod/wake-of-gods/Mods/level8Units','wake-of-gods.level8units'],['mod/wake-of-gods/Mods/creatures','wake-of-gods.creatures'],['mod/wake-of-gods/Mods/messengersAndEmissaries','wake-of-gods.messengersandemissaries'],['mod/third-upgrades','third-upgrades'],['mod/tum-era','tum-era']])for(const file of readJsonc(root+'/mod.json').creatures??[])creatures(readJsonc(path.join(root,'content',path.extname(file)?file:file+'.json')),scope);
  const load=(document,scope)=>{for(const[group,value]of Object.entries(document))for(const[key,definition]of Object.entries(value.types??{}))objects.set((group.includes(':')?group:scope+':'+group)+'|'+(key.includes(':')?key:scope+':'+key),{definition,scope});};
  for(const name of fs.readdirSync('work/vcmi-wasm/config/objects').filter(n=>n.endsWith('.json')))load(readJsonc('work/vcmi-wasm/config/objects/'+name),'core');
  for(const file of manifest.objects)load(readJsonc('mod/tum-era/content/'+file),'tum-era');

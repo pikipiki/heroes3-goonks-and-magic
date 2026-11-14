@@ -2,7 +2,7 @@ import test from 'node:test';import assert from 'node:assert/strict';import fs f
 import{compileDwellingXpRows,dwellingXpHeader}from'../scripts/era-bridge/creatures/source-dwelling-xp.mjs';
 const fixture=JSON.parse(fs.readFileSync('tests/fixtures/tum/dwelling-xp17.json'));
 test('dwelling XP keeps exact source slots and distinct intrinsic/XP stone/paralysis ownership',()=>{assert.equal(fs.readFileSync('work/vcmi-wasm/lib/era/EraSourceDwellingXpRows.h','utf8'),dwellingXpHeader(fixture));assert.equal(fixture.rows.length,17);assert.deepEqual(fixture.rows.filter(r=>r.existingSourceOwner),[]);assert.deepEqual(fixture.rows.filter(r=>r.spell===70||r.spell===74).map(r=>[r.sourceId,r.spell]),[[285,74],[312,70],[312,74]]);});
-test('dwelling XP header regenerates from pinned original archive',()=>assert.deepEqual(compileDwellingXpRows('../Third-Upgrade-Mod-Full'),fixture));
+test('dwelling XP header regenerates from pinned original archive',{skip:!fs.existsSync('../Third-Upgrade-Mod-Full/Data/AmeCre.pac')},()=>assert.deepEqual(compileDwellingXpRows('../Third-Upgrade-Mod-Full'),fixture));
 test('production earthquake law preserves original allocation asymmetry and bounded RNG under UBSan',()=>{const dir=fs.mkdtempSync(path.join(os.tmpdir(),'xp-quake-'));try{fs.writeFileSync(path.join(dir,'test.cpp'),`
 #include "EraSourceXpEarthquakeRule.h"
 #include <cassert>
