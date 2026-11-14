@@ -151,13 +151,19 @@ export async function readArchives() {
             const row = records[i];
             if (!row)
                 return null;
-            if (!(row.bytes instanceof ArrayBuffer))
-                throw Error('Stockage MPQ invalide : ' + name);
             const expected = manifest?.[i];
+            if (!(row.bytes instanceof ArrayBuffer)) {
+                if (expected)
+                    return null;
+                throw Error('Stockage MPQ invalide : ' + name);
+            }
             if (expected && (row.sha256 !== expected.sha256 || row.bytes.byteLength !== expected.size))
                 return null;
-            if (row.name !== name || await digest(row.bytes) !== row.sha256)
+            if (row.name !== name || await digest(row.bytes) !== row.sha256) {
+                if (expected)
+                    return null; // Automatic download replaces only the damaged archive.
                 throw Error('Archive altérée : ' + name + '. Réimporte ce fichier.');
+            }
             const bytes = new Uint8Array(row.bytes);
             validateArchive(bytes);
             return bytes;

@@ -26,7 +26,7 @@ ClamAV a analysé le ZIP complet et les trois MPQ extraits : **4 fichiers, zéro
 
 ## Protection de l’application et essais
 
-Le navigateur télécharge uniquement les morceaux de même origine, vérifie chaque taille/SHA-256 puis l’archive complète avant stockage. Les données conservées sont revérifiées au chargement. L’ancien IndexedDB StarCraft est supprimé ; les sauvegardes Heroes restent séparées. Un morceau altéré bloque le lancement. Aucun fichier de jeu n’est téléversé.
+Le navigateur télécharge uniquement les morceaux de même origine, vérifie chaque taille/SHA-256 puis l’archive complète avant stockage. Les données conservées sont revérifiées au chargement. L’ancien IndexedDB StarCraft est supprimé ; les sauvegardes Heroes restent séparées. Un morceau téléchargé altéré bloque le lancement. Une archive endommagée dans le cache est rejetée puis téléchargée à nouveau automatiquement. Aucun fichier de jeu n’est téléversé.
 
 Le bundle Netlify séparé restreint les connexions à sa propre origine et interdit caméra, microphone et géolocalisation. Le manifeste est revalidé à chaque chargement ; les morceaux sont adressés par empreinte. Les éléments de diagnostic restent dans les tests et ne sont pas ajoutés au produit.
 

@@ -20,6 +20,12 @@ try{
  requests.length=0;await page.reload();await page.waitForFunction(()=>!document.querySelector('#start-game').disabled);
  assert(!requests.some(r=>r.url.includes('/chunks/')));report.cases.push('Reload rechecks cached MPQs and downloads no chunks; legacy cache absent');
  const databases=await page.evaluate(()=>indexedDB.databases());assert(!databases.some(db=>db.name==='heroes-starcraft-local-assets'));
+ await page.evaluate(async()=>{
+  const db=await new Promise(resolve=>{const r=indexedDB.open('heroes-starcraft-audited-assets-v2',1);r.onsuccess=()=>resolve(r.result);});
+  await new Promise((resolve,reject)=>{const tx=db.transaction('archives','readwrite'),store=tx.objectStore('archives'),r=store.get('stardat.mpq');r.onsuccess=()=>{const row=r.result;new Uint8Array(row.bytes)[0]^=255;store.put(row);};tx.oncomplete=resolve;tx.onabort=()=>reject(tx.error);});db.close();
+ });
+ requests.length=0;await page.reload();await page.waitForFunction(()=>!document.querySelector('#start-game').disabled,null,{timeout:180000});
+ assert(requests.some(r=>r.url.includes('/chunks/')));report.cases.push('Corrupted cached MPQ is rejected and downloaded again automatically without a file picker');
  for(const viewport of [{width:844,height:390},{width:1024,height:768}]){await page.setViewportSize(viewport);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.locator('#start-game').scrollIntoViewIfNeeded();}
  assert(requests.every(r=>new URL(r.url).origin===new URL(url).origin));assert(!requests.some(r=>r.method==='POST'));assert.deepEqual(errors,[]);
  const bad=await browser.newPage();await silenceTestAudio(bad);
