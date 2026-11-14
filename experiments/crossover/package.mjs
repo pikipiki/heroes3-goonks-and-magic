@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
 const dist = fileURLToPath(new URL('../../dist/', import.meta.url));
 if (!fs.existsSync(dist + 'game.html')) throw Error('Run npm run build:web first');
+fs.rmSync(dist+'crossover',{recursive:true,force:true});
 fs.cpSync(new URL('./public/', import.meta.url), dist + 'crossover', {recursive:true});
 const headers = dist + '_headers';
 const marker = '# crossover experiment';

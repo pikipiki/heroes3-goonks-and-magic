@@ -12,6 +12,7 @@ try{
   page.on('request',r=>requests.push({url:r.url(),method:r.method()}));page.on('pageerror',e=>errors.push(e.message));
   const url=process.env.STARCRAFT_URL||'http://127.0.0.1:8778/crossover/starcraft/index.html';
   const origin=new URL(url).origin;
+  await page.route('**/starcraft/data/manifest.json',route=>route.fulfill({status:404,body:'Development import test: no hosted manifest'}));
   await page.goto(url);
   await page.waitForFunction(()=>document.querySelector('#archive-status').textContent.includes('À importer'));
   assert.equal(await page.locator('#start-game').isDisabled(),true);
@@ -39,7 +40,7 @@ try{
   assert.equal(await page.locator('#start-game').isEnabled(),true);
   result.cases.push('Rejected import preserves all previous archives and playable gate');
   await page.evaluate(async()=>{
-    const db=await new Promise((resolve,reject)=>{const r=indexedDB.open('heroes-starcraft-local-assets',1);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});
+    const db=await new Promise((resolve,reject)=>{const r=indexedDB.open('heroes-starcraft-audited-assets-v2',1);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});
     await new Promise((resolve,reject)=>{const tx=db.transaction('archives','readwrite'),store=tx.objectStore('archives'),r=store.get('stardat.mpq');r.onsuccess=()=>{const row=r.result;new Uint8Array(row.bytes)[0]=0;store.put(row);};tx.oncomplete=()=>resolve();tx.onabort=()=>reject(tx.error);});db.close();
   });
   await page.reload();

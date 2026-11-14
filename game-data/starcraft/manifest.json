@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "archives": [
+    {
+      "name": "stardat.mpq",
+      "size": 66927148,
+      "sha256": "8845fd871b4f8f242cc5c2b6f6b8b319d86bbbd02bc836356b51f81b5ba8203f",
+      "source": "http://download.blizzard.com/pub/starcraft/StarEdit/StarEdit.zip",
+      "chunks": [
+        {
+          "url": "chunks/ffc56ee5d773b8b2b4572120368679d81fcbf5036bd9eeb58fb48753df92b487.bin",
+          "size": 4194304,
+          "sha256": "ffc56ee5d773b8b2b4572120368679d81fcbf5036bd9eeb58fb48753df92b487"
+        },
+        {
+          "url": "chunks/21032ccdcd131f560fb7587b4da7fbe75d95a936ceebd397b19cec526dd5ed96.bin",
+          "size": 4194304,
+          "sha256": "21032ccdcd131f560fb7587b4da7fbe75d95a936ceebd397b19cec526dd5ed96"
+        },
+        {
+          "url": "chunks/a8c60856d6a08f96562283ebd9529172ca2160e74a731c01dd48e594632ed203.bin",
+          "size": 4194304,
+          "sha256": "a8c60856d6a08f96562283ebd9529172ca2160e74a731c01dd48e594632ed203"
+        },
+        {
+          "url": "chunks/5c06fc9125d1de552f51c38ef0497c2b47219c221fa5d939dee8ff94fb5cdadf.bin",
+          "size": 4194304,
+          "sha256": "5c06fc9125d1de552f51c38ef0497c2b47219c221fa5d939dee8ff94fb5cdadf"
+        },
+        {
+          "url": "chunks/b4cc96902c520651ba8df95e1c8952017c77f084c765152329e64261c22d8272.bin",
+          "size": 4194304,
+          "sha256": "b4cc96902c520651ba8df95e1c8952017c77f084c765152329e64261c22d8272"
+        },
+        {
+          "url": "chunks/1e01f81b80dee068da1146592ae5fac74fa90b93189904681dd4e8f19fc63a3d.bin",
+          "size": 4194304,
+          "sha256": "1e01f81b80dee068da1146592ae5fac74fa90b93189904681dd4e8f19fc63a3d"
+        },
+        {
+          "url": "chunks/4d6a9b8a8e1e68a547495d3b4eedf6072b9838d9b68bdc688899044d04c080cf.bin",
+          "size": 4194304,
+          "sha256": "4d6a9b8a8e1e68a547495d3b4eedf6072b9838d9b68bdc688899044d04c080cf"
+        },
+        {
+          "url": "chunks/ff65ddaabb528b411a51a05bc0f54c22f5c1edd23e89f869182327249d801f3e.bin",
+          "size": 4194304,
+          "sha256": "ff65ddaabb528b411a51a05bc0f54c22f5c1edd23e89f869182327249d801f3e"
+        },
+        {
+          "url": "chunks/3aa2100aa1004b91d9a907769b5578e27c7802d7fa18f068089c4fbba5a921ba.bin",
+          "size": 4194304,
+          "sha256": "3aa2100aa1004b91d9a907769b5578e27c7802d7fa18f068089c4fbba5a921ba"
+        },
+        {
+          "url": "chunks/9a310d5ee524ee746c8736d5bc2d26446ebf61a39992262ca45d529653c93627.bin",
+          "size": 4194304,
+          "sha256": "9a310d5ee524ee746c8736d5bc2d26446ebf61a39992262ca45d529653c93627"
+        },
+        {
+          "url": "chunks/2079280bc4d6d72883dfa00110db4625b76b22c8a9c3d14c7d2135fb9ec9bf80.bin",
+          "size": 4194304,
+          "sha256": "2079280bc4d6d72883dfa00110db4625b76b22c8a9c3d14c7d2135fb9ec9bf80"
+        },
+        {
+          "url": "chunks/8007a9fd912dcf3b466f05fb3a43d50f0567a36b3155f1a73ec41fc6f9a24988.bin",
+          "size": 4194304,
+          "sha256": "8007a9fd912dcf3b466f05fb3a43d50f0567a36b3155f1a73ec41fc6f9a24988"
+        },
+        {
+          "url": "chunks/e8dc69d9381994eee5665141bf480a26608a89725407252d6c8714cae409560e.bin",
+          "size": 4194304,
+          "sha256": "e8dc69d9381994eee5665141bf480a26608a89725407252d6c8714cae409560e"
+        },
+        {
+          "url": "chunks/27f9e1012ce17b15499f7a11e27fe910e7d0b6653defb5786dd61f7791a7cf21.bin",
+          "size": 4194304,
+          "sha256": "27f9e1012ce17b15499f7a11e27fe910e7d0b6653defb5786dd61f7791a7cf21"
+        },
+        {
+          "url": "chunks/32302ff28b094f73f8f2d7d0041783a384dfd46fe972a42272b565d76364173a.bin",
+          "size": 4194304,
+          "sha256": "32302ff28b094f73f8f2d7d0041783a384dfd46fe972a42272b565d76364173a"
+        },
+        {
+          "url": "chunks/303a3540c6f6a2b36892f34e93cbc8128078f9a8a4dab0f17e6e81a2e7cb75b5.bin",
+          "size": 4012588,
+          "sha256": "303a3540c6f6a2b36892f34e93cbc8128078f9a8a4dab0f17e6e81a2e7cb75b5"
+        }
+      ]
+    },
+    {
+      "name": "broodat.mpq",
+      "size": 21786162,
+      "sha256": "c6d810981e24b947b36d531ab047e143fec0284a581fdaad6fc431e1e75e21df",
+      "source": "http://download.blizzard.com/pub/starcraft/StarEdit/StarEdit.zip",
+      "chunks": [
+        {
+          "url": "chunks/3c74b60ca31fbdc62eaf99ee57229ed7de3b5a22e66d06fabb0d40bf7acbe81a.bin",
+          "size": 4194304,
+          "sha256": "3c74b60ca31fbdc62eaf99ee57229ed7de3b5a22e66d06fabb0d40bf7acbe81a"
+        },
+        {
+          "url": "chunks/80868ea115046090dd74a566bf5faa297cffdbcc7e3cb31d9c86280cf2d5bae8.bin",
+          "size": 4194304,
+          "sha256": "80868ea115046090dd74a566bf5faa297cffdbcc7e3cb31d9c86280cf2d5bae8"
+        },
+        {
+          "url": "chunks/03fa827de436c3e61b9e892b992cf7bd9b0116c01c6301face7e6f23be5f8b1e.bin",
+          "size": 4194304,
+          "sha256": "03fa827de436c3e61b9e892b992cf7bd9b0116c01c6301face7e6f23be5f8b1e"
+        },
+        {
+          "url": "chunks/72ce4a98e4aa30cd58400d998028470b8823045740c3ad34eb5455740e59e1a5.bin",
+          "size": 4194304,
+          "sha256": "72ce4a98e4aa30cd58400d998028470b8823045740c3ad34eb5455740e59e1a5"
+        },
+        {
+          "url": "chunks/e8667ab3847ca85adb50e173116b49d25dc0ffca47861bf39d270f9488fb9334.bin",
+          "size": 4194304,
+          "sha256": "e8667ab3847ca85adb50e173116b49d25dc0ffca47861bf39d270f9488fb9334"
+        },
+        {
+          "url": "chunks/c338e38df7cdfea68d8e63e41844e9c74033194e8c2685293cb808d69af3fc63.bin",
+          "size": 814642,
+          "sha256": "c338e38df7cdfea68d8e63e41844e9c74033194e8c2685293cb808d69af3fc63"
+        }
+      ]
+    },
+    {
+      "name": "patch_rt.mpq",
+      "size": 1803889,
+      "sha256": "a063f069f1abe202b142b08a9dab878eba8ba033bf13a818024a72631c4452be",
+      "source": "http://download.blizzard.com/pub/starcraft/StarEdit/StarEdit.zip",
+      "chunks": [
+        {
+          "url": "chunks/a063f069f1abe202b142b08a9dab878eba8ba033bf13a818024a72631c4452be.bin",
+          "size": 1803889,
+          "sha256": "a063f069f1abe202b142b08a9dab878eba8ba033bf13a818024a72631c4452be"
+        }
+      ]
+    }
+  ]
+}

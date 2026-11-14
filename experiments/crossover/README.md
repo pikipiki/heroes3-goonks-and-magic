@@ -14,7 +14,7 @@ Depuis la racine du checkout indépendant :
 PORT=8778 node work/browser-tests/static-server.mjs
 ```
 
-Ouvrir http://127.0.0.1:8778/crossover/index.html. « Jouer à StarCraft » ouvre son moteur indépendant. « Lancer les deux moteurs » ouvre VCMI et OpenBW dans deux iframes de même origine. Dans StarCraft, importer `StarDat.mpq`, `BrooDat.mpq`, `Patch_rt.mpq`, puis lancer la partie. Les trois fichiers restent dans IndexedDB, sans upload et sans téléchargement de données propriétaires. Ils sont réutilisés après rechargement. La carte Weave, CC BY 4.0, est fournie ; une carte locale peut aussi être choisie.
+Ouvrir http://127.0.0.1:8778/crossover/index.html. « Jouer à StarCraft » ouvre son moteur indépendant. « Lancer les deux moteurs » ouvre VCMI et OpenBW dans deux iframes de même origine. Dans StarCraft, les trois MPQ fournis directement par Blizzard se téléchargent automatiquement depuis ce site, avec contrôle SHA-256, puis restent dans IndexedDB sans upload. Aucune sélection de fichier n’est nécessaire sur téléphone. Les anciens caches StarCraft sont supprimés. La carte Weave, CC BY 4.0, est fournie ; une carte locale peut aussi être choisie.
 
 La validation d’import vérifie les noms, bornes des en-têtes MPQ et empreintes SHA-256 du stockage. Le moteur vérifie ensuite le contenu dont il a besoin : un en-tête valide ne prouve pas que toutes les ressources StarCraft sont présentes. Si le stockage est indisponible ou plein, l’interface affiche l’erreur. Un import rejeté préserve les archives précédentes ; une archive altérée est bloquée jusqu’à sa réimportation.
 
@@ -67,7 +67,7 @@ Le premier test utilise VCMI réel et charge également l’interface StarCraft.
 STARCRAFT_DATA_DIR=work/game-data/starcraft-classic node experiments/crossover/tests/real-game-browser.mjs
 ```
 
-Ce dernier exige les vrais fichiers et ne les remplace jamais. Il vérifie les frames natives, l’événement réel VCMI vers le journal C++ OpenBW et le retour d’état, une transition native VCMI vers le lobby, la production d’un SCV via les commandes du jeu et la sérialisation native d’un replay. **Exécuté avec succès avec les trois archives locales.** Il attend réellement la fin de l’entraînement, vérifie le drapeau natif de complétion et teste aussi une attaque forcée sur une unité du même camp, sans injection de PV. Ses lectures de contrôle restent dans le contexte de test, sans poignée de diagnostic dans le produit.
+Ce dernier exige les vrais fichiers et ne les remplace jamais. Il vérifie les frames natives, l’événement réel VCMI vers le journal C++ OpenBW et le retour d’état, une transition native VCMI vers le lobby, la production d’un SCV via les commandes du jeu et la sérialisation native d’un replay. **Exécuté avec succès avec les trois MPQ Blizzard téléchargés automatiquement.** Il attend réellement la fin de l’entraînement, vérifie le drapeau natif de complétion et teste aussi une attaque forcée sur une unité du même camp, sans injection de PV. Ses lectures de contrôle restent dans le contexte de test, sans poignée de diagnostic dans le produit.
 
 ## Contrat et limites
 
@@ -78,3 +78,17 @@ Le signal de préparation agit sur l’interface native VCMI ; **il n’applique
 La licence générale d’OpenBW reste non spécifiée. Le développement continue sur l’hypothèse demandée explicitement par le propriétaire ; aucune licence amont n’est déclarée acquise. Provenance, sources originales et attribution de la carte sont conservées.
 
 Voir [AUDIT.md](./AUDIT.md) et [VALIDATION.md](./VALIDATION.md).
+
+## Projet Netlify séparé
+
+Le code reste dans ce dépôt sur `codex/heroes-starcraft-crossover`. Le projet Netlify `heroes-starcraft` est créé mais doit encore être connecté et déployé. Choisir ce dépôt GitHub et cette branche comme **production branch** du nouveau projet ; la configuration de branche de `netlify.toml` construit le crossover dans `dist-heroes-starcraft`. Le projet Heroes Goonk existant et la branche `main` ne sont pas modifiés. Ne pas créer un deuxième projet si `heroes-starcraft` est utilisé.
+
+Pour préparer le même dossier de publication localement, après les builds ci-dessus :
+
+```sh
+node experiments/crossover/scripts/build-standalone.mjs
+```
+
+Le téléchargement initial StarCraft représente environ 86 Mio ; les fichiers sont déjà versionnés par morceaux dans `game-data/starcraft/`. Pour les renouveler depuis un dossier de MPQ scannés accompagné de `provenance.json`, utiliser `STARCRAFT_DATA_DIR=... node experiments/crossover/scripts/package-data.mjs`, puis reconstruire l’hôte et retester une vraie partie. Les ZIP/CD de travail ne sont jamais publiés.
+
+Voir [SECURITY-REVIEW.md](./SECURITY-REVIEW.md) pour les sources, analyses antivirus et limites. Les scans négatifs ne constituent pas une garantie absolue.

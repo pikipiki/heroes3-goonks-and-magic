@@ -1,0 +1,9 @@
+{
+  "scope": "Actual published MPQ chunks; automatic mobile download, cache integrity and rejection of tampering",
+  "cases": [
+    "Fresh phone browser downloads real MPQ chunks automatically, verifies hashes, enables Start without file selection",
+    "Reload rechecks cached MPQs and downloads no chunks; legacy cache absent",
+    "Tampered chunk rejected before persistence or engine launch"
+  ],
+  "passed": true
+}

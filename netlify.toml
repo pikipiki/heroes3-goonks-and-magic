@@ -9,3 +9,13 @@
 GOONK_HOSTED_POOL_ENDPOINT = "https://heroes-goonk-hosted-matches-krve.onrender.com/hosted/turn-notifications"
 GOONK_HOSTED_ENDPOINT = "https://heroes-goonk-dedicated-jrre.onrender.com/hosted/turn-notifications"
 GOONK_PUSH_PUBLIC_KEY = "BMD5-Kd8GqFEHRPyDR3f-jj2TVgqRSgKtajdx6mXk_W50cn6-HlKpQAfKsPaf3yOphLezEUaqxOH_399B3ux2zY"
+
+# Dedicated Netlify project: production branch = codex/heroes-starcraft-crossover.
+[context."codex/heroes-starcraft-crossover"]
+  command = "npm run prepare:web && npm run build:web && npm run verify:web && npm ci --prefix experiments/crossover && npm run build --prefix experiments/crossover && node experiments/crossover/package.mjs && node experiments/crossover/scripts/build-standalone.mjs"
+  publish = "dist-heroes-starcraft"
+[context."codex/heroes-starcraft-crossover".environment]
+  GOONK_LOBBY_RELAY = ""
+  GOONK_HOSTED_POOL_ENDPOINT = ""
+  GOONK_HOSTED_ENDPOINT = ""
+  GOONK_PUSH_PUBLIC_KEY = ""
