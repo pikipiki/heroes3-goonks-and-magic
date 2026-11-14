@@ -14,7 +14,7 @@ export function installAdventure(target, base, onExit, trial = false) {
     doc.head.append(style);
     const makeButton = (id, label, action) => { const button = doc.createElement('button'); button.id = id; button.type = 'button'; button.textContent = label; button.dataset.crossoverAction = action; button.setAttribute('translate', 'no'); return button; };
     const demo = makeButton('crossover-demo', 'Démo Heroes × StarCraft', 'demo');
-    demo.innerHTML = '<span>Démo Heroes × StarCraft</span><small>Archers, piquiers et Marines</small>';
+    demo.innerHTML = '<span>Démo Heroes × StarCraft</span><small>Archers, piquiers, Goonk et Marines</small>';
     demo.disabled = true;
     const menuDemo = makeButton('crossover-demo-menu', 'Démo Heroes × StarCraft', 'demo');
     const toggle = makeButton('crossover-toggle', 'Combats en temps réel : activés', 'toggle');
@@ -127,7 +127,7 @@ export function installAdventure(target, base, onExit, trial = false) {
         panel.id = 'crossover-arena';
         panel.setAttribute('translate', 'no');
         panel.setAttribute('aria-label', 'Combat Heroes × StarCraft');
-        panel.innerHTML = '<div class="field"><iframe title="Moteur de combat" aria-hidden="true" tabindex="-1"></iframe><canvas id="crossover-field"></canvas></div><header class="battle-heading"><div class="heading-label"><span class="eyebrow">HEROES GOONK</span><h2>Combat en temps réel</h2></div><button id="crossover-cancel" aria-label="Reprendre le combat Heroes classique">↩ Classique</button><p id="crossover-battle-status" role="status">Préparation du combat…</p><progress aria-label="Préparation des données du combat"></progress></header><aside aria-label="Commandes du combat"><div class="battle-actions"><button id="crossover-start" disabled>Commencer le combat</button><button id="crossover-attack" aria-pressed="false" disabled>Avancer et attaquer</button><button id="crossover-stop" disabled>Arrêter</button><button id="crossover-select-all" disabled>Tout sélectionner</button><button id="crossover-sound" disabled aria-pressed="true">Son activé</button></div><p id="crossover-selection" class="battle-selection" role="status">Sélectionne une troupe, puis touche un ennemi pour attaquer.</p><section aria-label="Armées"><h3>Les combattants</h3><div id="crossover-roster"></div></section><details><summary>Comment jouer</summary><p>Choisis une troupe, puis touche le terrain pour la déplacer ou un ennemi pour l’attaquer. Touche directement un ennemi pour attaquer : aucun bouton supplémentaire. Le premier ordre démarre le combat. « Avancer et attaquer » sert uniquement à avancer vers un point en engageant les ennemis rencontrés. « Arrêter » annule ses ordres. Tes troupes restent inactives sans ordre.</p></details></aside>';
+        panel.innerHTML = '<div class="field"><iframe title="Moteur de combat" aria-hidden="true" tabindex="-1"></iframe><canvas id="crossover-field"></canvas></div><header class="battle-heading"><div class="heading-label"><span class="eyebrow">HEROES GOONK</span><h2>Combat en temps réel</h2></div><button id="crossover-cancel" aria-label="Reprendre le combat Heroes classique">↩ Classique</button><p id="crossover-battle-status" role="status">Préparation du combat…</p><progress aria-label="Préparation des données du combat"></progress></header><aside aria-label="Commandes du combat"><div class="battle-actions"><button id="crossover-start" disabled>Commencer le combat</button><button id="crossover-attack" aria-pressed="false" disabled>Avancer et attaquer</button><button id="crossover-stop" disabled>Arrêter</button><button id="crossover-select-all" disabled>Tout sélectionner</button><button id="crossover-spells" disabled>Sorts</button><button id="crossover-sound" disabled aria-pressed="true">Son activé</button></div><p id="crossover-selection" class="battle-selection" role="status">Sélectionne une troupe, puis touche un ennemi pour attaquer.</p><section id="crossover-spell-picker" hidden aria-label="Choix du sort"><h3>Combat en pause</h3><p>Choisis un sort, puis sa cible sur le terrain.</p><div id="crossover-spell-options"></div><button id="crossover-spell-cancel">Annuler le sort</button></section><section aria-label="Armées"><h3>Les combattants</h3><div id="crossover-roster"></div></section><details><summary>Comment jouer</summary><p>Choisis une troupe, puis touche le terrain pour la déplacer ou un ennemi pour l’attaquer. Touche directement un ennemi pour attaquer : aucun bouton supplémentaire. Le premier ordre démarre le combat. « Avancer et attaquer » sert uniquement à avancer vers un point en engageant les ennemis rencontrés. « Arrêter » annule ses ordres. Tes troupes restent inactives sans ordre. « Sorts » met le combat en pause : choisis le sort d’un Goonk, puis touche sa cible pour le lancer et reprendre le combat. Les sorts de zone touchent aussi les alliés sensibles à la magie.</p></details></aside>';
         panel.hidden = true;
         doc.body.append(panel);
         panel.querySelector('iframe').remove();
@@ -166,8 +166,66 @@ export function installAdventure(target, base, onExit, trial = false) {
         enemyName.textContent = 'Ennemis · ' + [...new Set(plan.stacks.filter(row => row.side === 1).map(row => row.name))].join(', ');
         enemy.append(enemyCount, enemyName);
         roster.append(enemy);
-        const updateSelection = () => { for (const [id, { button }] of cards)
-            button.setAttribute('aria-pressed', String(chosen !== undefined && (chosen < 0 || chosen === id))); attack.disabled = stop.disabled = !ready || chosen === undefined; };
+        const spellButton = panel.querySelector('#crossover-spells'), picker = panel.querySelector('#crossover-spell-picker'), options = panel.querySelector('#crossover-spell-options');
+        let choosingSpell = false, wasPaused = true, armedSpell, effectUntil = 0;
+        const api = () => activeFrame.contentWindow.openbwCrossover;
+        const available = () => { const state = api()?.battle(); return activePlan.stacks.filter(row => row.side === 0 && (chosen === undefined || chosen < 0 || chosen === row.id)).flatMap(row => (row.spells || []).map(spell => ({ stack: row.id, name: row.name, spell, group: state?.groups.find(g => g.id === row.id) }))).filter(item => item.group && item.group.survivors > 0 && (item.group.casts ?? 0) > 0 && (item.group.spellReady ?? 0) <= (state?.frame ?? 0)); };
+        const finishChoice = (cast) => { choosingSpell = false; armedSpell = undefined; picker.hidden = true; delete canvas.dataset.spellMode; if (cast || !wasPaused) {
+            api().start();
+            start.hidden = true;
+        } updateSelection(); };
+        spellButton.onclick = () => {
+            const spells = available();
+            if (!spells.length)
+                return;
+            wasPaused = api().isPaused();
+            api().pause();
+            choosingSpell = true;
+            canvas.dataset.spellMode = 'choose';
+            picker.hidden = false;
+            options.replaceChildren();
+            armedSpell = undefined;
+            for (const item of spells) {
+                const button = doc.createElement('button');
+                button.textContent = `${item.name} · ${item.spell.name} (${item.group.casts})`;
+                button.dataset.spellId = String(item.spell.id);
+                button.onclick = () => { armedSpell = item; canvas.dataset.spellMode = 'target'; for (const child of options.querySelectorAll('button'))
+                    child.setAttribute('aria-pressed', String(child === button)); selection.textContent = `Pause · ${item.spell.name} : touche une cible (zone, alliés inclus).`; };
+                options.append(button);
+            }
+            selection.textContent = 'Combat en pause · choisis un sort.';
+            updateSelection();
+        };
+        panel.querySelector('#crossover-spell-cancel').onclick = () => { finishChoice(false); selection.textContent = 'Sort annulé.'; };
+        canvas.addEventListener('crossover-spell-target', event => {
+            if (!choosingSpell || !armedSpell)
+                return;
+            const { x, y } = event.detail, { stack, spell } = armedSpell;
+            if (!api().cast(stack, spell.id, x, y)) {
+                selection.textContent = 'Pause · aucune cible sensible ici. Choisis une autre cible.';
+                return;
+            }
+            api().playCreatureSound?.(stack, `spell:${spell.id}`);
+            canvas.dispatchEvent(new CustomEvent('crossover-spell-effect', { detail: { x, y, radius: spell.radius } }));
+            effectUntil = win.performance.now() + 700;
+            finishChoice(true);
+            selection.dataset.feedback = 'confirmed';
+            selection.textContent = `${spell.name} lancé · combat repris.`;
+        });
+        const updateSelection = () => {
+            spellButton.disabled = !ready || choosingSpell || !available().length;
+            start.disabled = all.disabled = !ready || choosingSpell;
+            for (const { button } of cards.values())
+                if (choosingSpell)
+                    button.disabled = true;
+                else {
+                    const g = api()?.battle()?.groups.find(g => g.id === Number(button.dataset.crossoverGroup));
+                    button.disabled = !ready || !g?.survivors;
+                }
+            for (const [id, { button }] of cards)
+                button.setAttribute('aria-pressed', String(chosen !== undefined && (chosen < 0 || chosen === id)));
+            attack.disabled = stop.disabled = !ready || choosingSpell || chosen === undefined;
+        };
         canvas.addEventListener('crossover-selection', event => { const data = event.detail; chosen = data.id; selection.dataset.feedback = attack.getAttribute('aria-pressed') === 'true' ? 'armed' : ''; selection.textContent = data.name + (attack.getAttribute('aria-pressed') === 'true' ? ' · choisis une cible.' : ''); updateSelection(); });
         canvas.addEventListener('crossover-order-issued', event => { attack.setAttribute('aria-pressed', 'false'); attack.textContent = 'Avancer et attaquer'; selection.dataset.feedback = 'confirmed'; const kind = canvas.dataset.orderFeedback; if (!start.hidden && (kind === 'attack' || kind === 'move')) {
             audio();
@@ -218,7 +276,7 @@ export function installAdventure(target, base, onExit, trial = false) {
                         start.disabled = all.disabled = native.finished;
                         ready = !native.finished;
                         updateSelection();
-                        const message = native.finished ? 'Résultat transmis à Heroes…' : native.frame === 0 ? 'Prêt · contrôle manuel' : `Combat en cours · ${Math.floor(native.frame * 0.042)} s`;
+                        const message = choosingSpell ? 'Combat en pause · choix du sort et de la cible' : native.finished ? 'Résultat transmis à Heroes…' : native.frame === 0 ? 'Prêt · contrôle manuel' : `Combat en cours · ${Math.floor(native.frame * 0.042)} s`;
                         if (status.textContent !== message)
                             status.textContent = message;
                         let opponents = 0;
@@ -227,14 +285,14 @@ export function installAdventure(target, base, onExit, trial = false) {
                             if (card) {
                                 if (card.count.textContent !== String(group.survivors))
                                     card.count.textContent = String(group.survivors);
-                                card.button.disabled = group.survivors === 0 || native.finished;
+                                card.button.disabled = choosingSpell || group.survivors === 0 || native.finished;
                             }
                             else if (group.side === 1)
                                 opponents += group.survivors;
                         }
                         if (enemyCount.textContent !== String(opponents))
                             enemyCount.textContent = String(opponents);
-                        if (native.finished && !sent) {
+                        if (native.finished && !sent && win.performance.now() >= effectUntil) {
                             const rows = battleResult(activePlan, native);
                             sent = true;
                             command(1, activePlan.battleId, rows);

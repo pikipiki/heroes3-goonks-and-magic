@@ -103,6 +103,8 @@
 #include "../lib/gameState/UpgradeInfo.h"
 #include "../lib/gameState/SThievesGuildInfo.h"
 #include "../lib/spells/CSpellHandler.h"
+#include "../lib/spells/ProxyCaster.h"
+#include "../lib/spells/ISpellMechanics.h"
 #include "../lib/battle/CPlayerBattleCallback.h"
 #include "../lib/callback/CCallback.h"
 #include "../lib/mapObjects/CGHeroInstance.h"
@@ -658,6 +660,35 @@ void publishMobileSiegeAtlas(BattleInterface & battle){
  MAIN_THREAD_ASYNC_EM_ASM({const ptr=$0;const n=$1;const w=$2;const h=$3;try{window.goonkSiegePieces=Array.from({length:n},(_,i)=>{const row=Array.from(HEAP32.subarray(ptr/4+i*5,ptr/4+i*5+5));return {index:row[0],x:row[1],y:row[2],w:row[3],h:row[4]};});const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+n*20,ptr+n*20+w*h*4)),w,h),0,0);window.goonkSiegeAtlas=c;}finally{_free(ptr);}},packet,geometry.size()/5,width,height);}
  SDL_FreeSurface(rgba);
 }
+struct CrossoverCreatureCaster : spells::ProxyCaster {
+ const CStack * stack;int count;
+ CrossoverCreatureCaster(const CStack * source,int live):ProxyCaster(source),stack(source),count(live){}
+ int32_t getEffectPower(const spells::Spell *)const override{return stack->valOfBonuses(BonusType::CREATURE_SPELL_POWER)*count/100;}
+ int64_t getEffectValue(const spells::Spell * spell)const override{return int64_t(count)*stack->valOfBonuses(BonusType::SPECIFIC_SPELL_POWER,BonusSubtypeID(spell->getId()));}
+};
+std::map<int,JsonNode> crossoverSpellCache;int crossoverSpellBattle=-1;
+JsonNode crossoverCreatureSpells(const BattleInfo & battle,const CStack * stack,const CBattleInfoCallback * callback){
+ if(crossoverSpellBattle!=battle.battleID.getNum()){crossoverSpellBattle=battle.battleID.getNum();crossoverSpellCache.clear();}
+ if(const auto found=crossoverSpellCache.find(stack->unitId());found!=crossoverSpellCache.end())return found->second;
+ JsonNode result;result.Vector();
+ if(stack->unitType()->getJsonKey().starts_with("goonk:")&&stack->casts.available()>0){
+  for(const auto & bonus:*stack->getBonusesOfType(BonusType::SPELLCASTER)){
+   const auto id=bonus->subtype.as<SpellID>();if(id!=SpellID::FIREBALL&&id!=SpellID::INFERNO)continue;
+   const auto spell=id.toSpell();JsonNode item;item["id"].Integer()=id.getNum();item["name"].String()=spell->getNameTranslated();item["key"].String()=spell->getJsonKey();item["casts"].Integer()=stack->casts.available();item["radius"].Integer()=id==SpellID::FIREBALL?64:112;
+   for(const auto & target:battle.stacks){
+    JsonNode row;row["id"].Integer()=target->unitId();row["resistance"].Integer()=target->magicResistance();row["damage"].Vector().push_back(JsonNode(0.0));
+    for(int live=1;live<=stack->getCount();live++){
+     CrossoverCreatureCaster caster(stack,live);spells::BattleCast event(callback,&caster,spells::Mode::CREATURE_ACTIVE,spell);const auto mechanics=spell->battleMechanics(&event);
+     const int64_t damage=mechanics->isReceptive(target.get())?mechanics->adjustEffectValue(target.get()):0;
+     row["damage"].Vector().push_back(JsonNode(double(std::clamp<int64_t>(damage,0,1000000))));
+    }
+    item["targets"].Vector().push_back(row);
+   }
+   result.Vector().push_back(item);
+  }
+ }
+ crossoverSpellCache[stack->unitId()]=result;return result;
+}
 // Share the original creature attack/shoot samples already installed in VCMI.
 // The RTS host decodes these before revealing the battlefield, so combat needs
 // no extra network requests and follows each creature/mod's own sound definition.
@@ -672,7 +703,8 @@ void publishCrossoverSounds(const BattleInfo & battle){
   auto attack=stack->hasBonusOfType(BonusType::SHOOTER)?creature->sounds.shoot:creature->sounds.attack;if(attack.empty())attack=creature->sounds.attack;
   auto hit=creature->sounds.wince;if(hit.empty())hit=creature->sounds.defend;
   auto death=creature->sounds.killed;if(death.empty())death=hit;
-  const std::array<std::pair<const char*,AudioPath>,3> clips={{{"attack",attack},{"hit",hit},{"death",death}}};
+  std::vector<std::pair<std::string,AudioPath>> clips={{"attack",attack},{"hit",hit},{"death",death}};
+  for(const auto & bonus:*stack->getBonusesOfType(BonusType::SPELLCASTER)){const auto id=bonus->subtype.as<SpellID>();if(id==SpellID::FIREBALL||id==SpellID::INFERNO)clips.emplace_back("spell:"+std::to_string(id.getNum()),id.toSpell()->getCastSound());}
   for(const auto & clip:clips){const auto & sound=clip.second;if(sound.empty())continue;
   try{
    const auto stream=CResourceHandler::get()->load(sound.addPrefix("SOUNDS/"));
@@ -680,17 +712,17 @@ void publishCrossoverSounds(const BattleInfo & battle){
    auto data=stream->readAll();SDL_AudioSpec spec{};Uint8 * decoded=nullptr;Uint32 length=0;
    if(!SDL_LoadWAV_RW(SDL_RWFromConstMem(data.first.get(),static_cast<int>(data.second)),1,&spec,&decoded,&length))throw std::runtime_error(SDL_GetError());
    if(!length||length>4*1024*1024){SDL_FreeWAV(decoded);continue;}
-   const int size=44+length;auto packet=static_cast<uint8_t*>(malloc(size));if(!packet){SDL_FreeWAV(decoded);continue;}
+   const int size=44+length;auto packet=static_cast<uint8_t*>(malloc(size+clip.first.size()+1));if(!packet){SDL_FreeWAV(decoded);continue;}
    const int bits=SDL_AUDIO_BITSIZE(spec.format),sampleBytes=bits/8;
    memcpy(packet,"RIFF",4);memcpy(packet+8,"WAVEfmt ",8);memcpy(packet+36,"data",4);
    const auto put16=[&](int offset,uint16_t value){packet[offset]=value&255;packet[offset+1]=value>>8;};
    const auto put32=[&](int offset,uint32_t value){for(int i=0;i<4;i++)packet[offset+i]=(value>>(i*8))&255;};
    put32(4,size-8);put32(16,16);put16(20,SDL_AUDIO_ISFLOAT(spec.format)?3:1);put16(22,spec.channels);put32(24,spec.freq);put32(28,spec.freq*spec.channels*sampleBytes);put16(32,spec.channels*sampleBytes);put16(34,bits);put32(40,length);
-   memcpy(packet+44,decoded,length);SDL_FreeWAV(decoded);
+   memcpy(packet+44,decoded,length);SDL_FreeWAV(decoded);memcpy(packet+size,clip.first.c_str(),clip.first.size()+1);
    if(SDL_AUDIO_ISBIGENDIAN(spec.format))for(unsigned offset=44;offset+sampleBytes<=unsigned(size);offset+=sampleBytes)std::reverse(packet+offset,packet+offset+sampleBytes);
    if(!SDL_AUDIO_ISFLOAT(spec.format)){if(bits==8&&SDL_AUDIO_ISSIGNED(spec.format))for(int offset=44;offset<size;offset++)packet[offset]^=0x80;
     else if(bits>8&&!SDL_AUDIO_ISSIGNED(spec.format))for(int offset=44+sampleBytes-1;offset<size;offset+=sampleBytes)packet[offset]^=0x80;}
-   MAIN_THREAD_ASYNC_EM_ASM({try{if(window.goonkCrossoverSounds?.battleId===$2)window.goonkCrossoverSounds.rows.push({id:$3,kind:UTF8ToString($4),bytes:new Uint8Array(HEAPU8.slice($0,$0+$1))});}finally{_free($0);}},packet,size,battle.battleID.getNum(),stack->unitId(),clip.first);
+   MAIN_THREAD_ASYNC_EM_ASM({try{if(window.goonkCrossoverSounds?.battleId===$2)window.goonkCrossoverSounds.rows.push({id:$3,kind:UTF8ToString($0+$1),bytes:new Uint8Array(HEAPU8.slice($0,$0+$1))});}finally{_free($0);}},packet,size,battle.battleID.getNum(),stack->unitId());
   }catch(const std::exception & error){logGlobal->warn("Crossover creature sound %s: %s",sound.getOriginalName(),error.what());}
   }
  }
@@ -1746,13 +1778,14 @@ void publishMobileState(){
    publishCrossoverArt(*info);
    auto & data=n["crossover"];data["battleId"].Integer()=info->battleID.getNum();
    for(const auto & stack:info->stacks){
-    JsonNode row;row["id"].Integer()=stack->unitId();row["side"].Integer()=stack->unitSide()==BattleSide::ATTACKER?0:1;
+    JsonNode row;row["spells"]=crossoverCreatureSpells(*info,stack.get(),CPlayerInterface::battleInt->getBattle().get());row["id"].Integer()=stack->unitId();row["side"].Integer()=stack->unitSide()==BattleSide::ATTACKER?0:1;
     row["creature"].String()=stack->unitType()->getJsonKey();row["name"].String()=stack->unitType()->getNamePluralTranslated();
     row["count"].Integer()=stack->getCount();row["shooter"].Bool()=stack->hasBonusOfType(BonusType::SHOOTER);row["health"].Integer()=stack->getMaxHealth();row["damageMin"].Integer()=stack->getMinDamage(stack->hasBonusOfType(BonusType::SHOOTER));row["damageMax"].Integer()=stack->getMaxDamage(stack->hasBonusOfType(BonusType::SHOOTER));row["attack"].Integer()=stack->getAttack(false);row["defense"].Integer()=stack->getDefense(false);row["speed"].Integer()=stack->getMovementRange();
     data["stacks"].Vector().push_back(std::move(row));
    }
   }
  }
+ if(n["crossover"].isNull()){crossoverSpellCache.clear();crossoverSpellBattle=-1;}
  publishPortraits();publishArtifactIcons();const auto text=n.toCompactString();
  if(!openTownHall&&text==lastSnapshot&&SDL_GetTicks()-lastSent<1000)return;
  auto * snapshot=static_cast<char *>(malloc(text.size()+1));if(!snapshot)return;

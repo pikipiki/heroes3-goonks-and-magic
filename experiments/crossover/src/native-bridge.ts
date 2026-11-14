@@ -1,6 +1,6 @@
 /** Stable product API over the real OpenBW exports, installed only after native init. */
 import {validateBattlePlan, type BattlePlan, type BattleState} from './battle.js';
-export type CreatureSoundKind='attack'|'hit'|'death';
+export type CreatureSoundKind='attack'|'hit'|'death'|`spell:${number}`;
 export type NativeUnit = {id: number; type: number; owner: number; completed: boolean; hp: number; stackId?:number;heroes?:boolean;maxHp?:number;order?:number;cooldown?:number; x: number; y: number};
 export type NativeCensus = {frame: number; view: {x: number; y: number; width: number; height: number}; units: NativeUnit[]};
 export type NativeCohort = {initial: number; present: number; missing: number; missingIds: number[]};
@@ -16,6 +16,9 @@ export type NativeBridge = {
   battle(): BattleState | null;
   attack(): void;
   start(): void;
+  pause():void;
+  isPaused():boolean;
+  cast(stack:number,spell:number,x:number,y:number):boolean;
   enableAudio?():Promise<void>;
   prepareCreatureSounds?(rows:{id:number;bytes:Uint8Array;kind?:CreatureSoundKind}[]):Promise<void>;
   playCreatureAttack?(stack:number):boolean;
@@ -32,6 +35,8 @@ export type NativeBridge = {
 };
 export type CrossoverWindow = Window & {openbwCrossover?: NativeBridge};
 type NativeExports = {
+  openbw_crossover_spell_setup?(stack:number,spell:number,charges:number,radius:number):number;
+  openbw_crossover_cast?(stack:number,spell:number,x:number,y:number):number;
   openbw_crossover_stop?(stack:number):void;
   openbw_crossover_target?(stack:number,id:number):void;
   openbw_crossover_sprite?(id:number):number;
@@ -52,6 +57,11 @@ export function setupNativeBattle(x: NativeExports,memory: WebAssembly.Memory,pl
  const pointer=x.openbw_in_ptr(rows.byteLength);
  new Uint8Array(memory.buffer,pointer,rows.byteLength).set(new Uint8Array(rows.buffer));
  if(x.openbw_crossover_setup(plan.battleId,plan.stacks.length)!==1)throw Error('Placement des armées StarCraft impossible. Reprends le combat Heroes.');
+ for(const row of plan.stacks.filter(r=>r.side===0))for(const spell of row.spells||[]){
+  const data=new Int32Array(plan.stacks.flatMap(target=>{const table=spell.targets.find(t=>t.id===target.id);if(!table||table.damage.length!==row.count+1)throw Error('Dégâts du sort incomplets.');return [target.id,table.resistance,...table.damage];}));
+  const ptr=x.openbw_in_ptr(data.byteLength);new Int32Array(memory.buffer,ptr,data.length).set(data);
+  if(x.openbw_crossover_spell_setup?.(row.id,spell.id,spell.casts,spell.radius)!==1)throw Error('Sort natif indisponible.');
+ }
 }
 export function validateHeroes(value: unknown): asserts value is HeroesObservation {
   if (!value || typeof value !== 'object') throw Error('Événement Heroes invalide.');
@@ -110,6 +120,9 @@ export function installNativeBridge(x: NativeExports, memory: WebAssembly.Memory
       return {pixels:new Uint8ClampedArray(memory.buffer,pointer,800*500*4).slice(),x:x.openbw_crossover_camera_x!(),y:x.openbw_crossover_camera_y!(),width:800,height:500};
     },
     order(stack,px,py,attack){if(closed||!x.openbw_crossover_order)throw Error('Ordre indisponible.');x.openbw_crossover_order(stack,Math.round(px),Math.round(py),attack?1:0);},
+    pause(){throw Error("Pause indisponible.");},
+    isPaused(){return true;},
+    cast(stack,spell,px,py){return !closed&&x.openbw_crossover_cast?.(stack,spell,Math.round(px),Math.round(py))===1;},
     start() { if(closed)throw Error('Moteur StarCraft fermé.'); },
     battle() {
       if(closed || !x.openbw_crossover_battle_state)return null;

@@ -32,6 +32,9 @@ export function sharedField(win, canvas, api, plan) {
     const heroContext = heroBlend.getContext('2d');
     const marineBlend = makeSprite(), marineContext = marineBlend.getContext('2d');
     let request = 0, closed = false, selected, attackMode = false, units = [], nativeFrame = -1, view;
+    let spellEffect;
+    const spellFx = (event) => { spellEffect = { ...event.detail, at: win.performance.now() }; };
+    canvas.addEventListener("crossover-spell-effect", spellFx);
     let camera = { x: 0, y: 0 }, marker;
     const draw = (now) => {
         if (closed)
@@ -186,6 +189,19 @@ export function sharedField(win, canvas, api, plan) {
             context.stroke();
             context.globalAlpha = 1;
         }
+        const effect = spellEffect;
+        if (effect && now - effect.at < 700) {
+            const age = (now - effect.at) / 700;
+            context.globalAlpha = 1 - age;
+            context.fillStyle = '#ffad36';
+            context.strokeStyle = '#fff0a1';
+            context.lineWidth = 4;
+            context.beginPath();
+            context.arc(effect.x, effect.y, effect.radius * (.2 + age * .8), 0, Math.PI * 2);
+            context.fill();
+            context.stroke();
+            context.globalAlpha = 1;
+        }
         context.setTransform(1, 0, 0, 1, 0, 0);
         canvas.dataset.heroesUnits = String(units.filter(unit => unit.heroes).length);
         canvas.dataset.starcraftUnits = String(units.filter(unit => !unit.heroes).length);
@@ -195,6 +211,13 @@ export function sharedField(win, canvas, api, plan) {
         const box = canvas.getBoundingClientRect(), transform = view || { zoom: 1, x: 0, y: 0 }, camera = api.camera();
         const x = ((event.clientX - box.left) * 800 / box.width - transform.x) / transform.zoom, y = ((event.clientY - box.top) * 500 / box.height - transform.y) / transform.zoom;
         const nearby = battlePick(units, positions, { x, y }, camera, selected !== undefined);
+        if (canvas.dataset.spellMode) {
+            if (canvas.dataset.spellMode === 'target') {
+                const at = nearby ? (positions.get(nearby.id) || nearby) : undefined;
+                canvas.dispatchEvent(new CustomEvent('crossover-spell-target', { detail: { x: at ? at.x - camera.x : x, y: at ? at.y - camera.y : y } }));
+            }
+            return;
+        }
         if (nearby?.owner === 0) {
             select(nearby.stackId);
             return;
@@ -232,5 +255,5 @@ export function sharedField(win, canvas, api, plan) {
     canvas.addEventListener('crossover-stop-selection', stop);
     canvas.addEventListener('pointerdown', pointer);
     request = win.requestAnimationFrame(draw);
-    return () => { closed = true; win.cancelAnimationFrame(request); canvas.removeEventListener('pointerdown', pointer); canvas.removeEventListener('crossover-select-all', selectAll); canvas.removeEventListener('crossover-select-group', selectGroup); canvas.removeEventListener('crossover-command-mode', mode); canvas.removeEventListener('crossover-stop-selection', stop); };
+    return () => { canvas.removeEventListener("crossover-spell-effect", spellFx); closed = true; win.cancelAnimationFrame(request); canvas.removeEventListener('pointerdown', pointer); canvas.removeEventListener('crossover-select-all', selectAll); canvas.removeEventListener('crossover-select-group', selectGroup); canvas.removeEventListener('crossover-command-mode', mode); canvas.removeEventListener('crossover-stop-selection', stop); };
 }

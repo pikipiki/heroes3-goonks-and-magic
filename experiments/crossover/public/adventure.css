@@ -92,3 +92,5 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=menu]>.mobile-play { gr
 #crossover-arena .battle-selection[data-feedback=armed]{color:#ffd1a3;font-weight:700}
 #crossover-arena .battle-selection[data-feedback=confirmed]{color:#b4eeb9;font-weight:700}
 #crossover-arena #crossover-sound{grid-column:1/-1;min-height:44px}
+
+#crossover-arena [hidden]{display:none!important}#crossover-spell-picker{padding:12px;border:1px solid #c7a258;border-radius:12px;background:#322919}#crossover-spell-options{display:grid;gap:8px;margin:10px 0}#crossover-spell-options [aria-pressed="true"]{outline:2px solid #f1cc75}#crossover-arena canvas[data-spell-mode="target"]{cursor:crosshair}

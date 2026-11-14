@@ -1,6 +1,7 @@
-export type HeroesStack = {id: number; side: number; count: number; name: string; creature: string; shooter: boolean; health: number; damageMin?:number;damageMax?:number;defense?:number;attack?:number;speed?:number};
+export type CreatureSpell={id:number;key:string;name:string;casts:number;radius:number;targets:{id:number;resistance:number;damage:number[]}[]};
+export type HeroesStack = {id: number; side: number; count: number; name: string; creature: string; shooter: boolean; spells?:CreatureSpell[]; health: number; damageMin?:number;damageMax?:number;defense?:number;attack?:number;speed?:number};
 export type BattlePlan = {version: 1; battleId: number; stacks: (HeroesStack & {unit: number; heroes?:boolean})[]};
-export type BattleState = {battleId: number; frame: number; finished: boolean; groups: {id: number; side: number; initial: number; survivors: number}[]};
+export type BattleState = {battleId: number; frame: number; finished: boolean; groups: {id: number; side: number; initial: number; survivors: number;casts?:number;spellReady?:number}[]};
 export function battlePlan(value: {battleId: number; stacks: HeroesStack[]}): BattlePlan {
  const plan: BattlePlan = {version:1,battleId:value.battleId,stacks:value.stacks.map(row=>({...row,heroes:!row.creature.startsWith("heroes-starcraft:"),unit:row.creature==="heroes-starcraft:zergling"?37:row.creature.startsWith("heroes-starcraft:")?0:row.shooter?0:37}))};
  validateBattlePlan(plan);return plan;

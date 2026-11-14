@@ -9,6 +9,15 @@ export function setupNativeBattle(x, memory, plan) {
     new Uint8Array(memory.buffer, pointer, rows.byteLength).set(new Uint8Array(rows.buffer));
     if (x.openbw_crossover_setup(plan.battleId, plan.stacks.length) !== 1)
         throw Error('Placement des armées StarCraft impossible. Reprends le combat Heroes.');
+    for (const row of plan.stacks.filter(r => r.side === 0))
+        for (const spell of row.spells || []) {
+            const data = new Int32Array(plan.stacks.flatMap(target => { const table = spell.targets.find(t => t.id === target.id); if (!table || table.damage.length !== row.count + 1)
+                throw Error('Dégâts du sort incomplets.'); return [target.id, table.resistance, ...table.damage]; }));
+            const ptr = x.openbw_in_ptr(data.byteLength);
+            new Int32Array(memory.buffer, ptr, data.length).set(data);
+            if (x.openbw_crossover_spell_setup?.(row.id, spell.id, spell.casts, spell.radius) !== 1)
+                throw Error('Sort natif indisponible.');
+        }
 }
 export function validateHeroes(value) {
     if (!value || typeof value !== 'object')
@@ -83,6 +92,9 @@ export function installNativeBridge(x, memory, target = window) {
         },
         order(stack, px, py, attack) { if (closed || !x.openbw_crossover_order)
             throw Error('Ordre indisponible.'); x.openbw_crossover_order(stack, Math.round(px), Math.round(py), attack ? 1 : 0); },
+        pause() { throw Error("Pause indisponible."); },
+        isPaused() { return true; },
+        cast(stack, spell, px, py) { return !closed && x.openbw_crossover_cast?.(stack, spell, Math.round(px), Math.round(py)) === 1; },
         start() { if (closed)
             throw Error('Moteur StarCraft fermé.'); },
         battle() {

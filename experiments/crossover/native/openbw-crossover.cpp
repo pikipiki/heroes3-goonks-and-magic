@@ -23,6 +23,8 @@ bwgame::a_vector<CrossoverGroup> crossover_groups;
 struct SoundOrigin { bwgame::xy position;bool heroes; };
 bwgame::a_vector<SoundOrigin> crossover_sound_origins;
 void remember_crossover_sounds(){crossover_sound_origins.clear();if(!g_ui)return;for(const auto & group:crossover_groups)for(auto id:group.ids){const auto unit=g_ui->get_unit(id);if(unit&&unit->sprite)crossover_sound_origins.push_back({unit->sprite->position,group.heroes});}}
+struct CrossoverSpell {int stack,id,charges,radius,ready=0; bwgame::a_vector<int32_t> rows;};
+bwgame::a_vector<CrossoverSpell> crossover_spells;
 int crossover_battle=-1;
 bwgame::a_string crossover_result;
 std::array<bwgame::unit_type_t,32> crossover_types;
@@ -74,7 +76,7 @@ OPENBW_EXPORT(openbw_crossover_setup) int openbw_crossover_setup(int battle,int 
   // Scenario setup: a field battle has no base-elimination melee triggers.
   for(auto& triggers:g_ui->st.running_triggers)triggers.clear();
   g_ui->st.alliances[0][1]=0;g_ui->st.alliances[1][0]=0;
-  crossover_groups.clear();crossover_battle=battle;g_ui->competitive=false;g_ui->rep_on=false;
+  crossover_groups.clear();crossover_spells.clear();crossover_battle=battle;g_ui->competitive=false;g_ui->rep_on=false;
   const auto origin=g_ui->game_st.start_locations[0];
   const int direction=origin.x<int(g_ui->game_st.map_width)/2?1:-1;
   crossover_camera=origin+bwgame::xy(direction>0?-120:-620,-150);
@@ -114,6 +116,34 @@ OPENBW_EXPORT(openbw_crossover_setup) int openbw_crossover_setup(int battle,int 
   remember_crossover_sounds();crossover_attack_owner(1);
   return 1;
 }
+// VCMI provides damage at each live caster count, including target immunities.
+OPENBW_EXPORT(openbw_crossover_spell_setup) int openbw_crossover_spell_setup(int stack,int spell,int charges,int radius) {
+ if(!g_ui||crossover_battle<0||(spell!=21&&spell!=22)||charges<1||charges>32||radius<1||radius>128)return 0;
+ const CrossoverGroup* caster=nullptr;for(const auto& g:crossover_groups)if(g.stack==stack&&g.heroes&&g.owner==0)caster=&g;
+ if(!caster)return 0;
+ for(const auto& s:crossover_spells)if(s.stack==stack&&s.id==spell)return 0;
+ const size_t stride=caster->ids.size()+3;
+ if(g_inbuf.size()!=stride*crossover_groups.size()*4)return 0;
+ const auto* rows=reinterpret_cast<const int32_t*>(g_inbuf.data());
+ for(size_t i=0;i<crossover_groups.size();++i){if(rows[i*stride]!=crossover_groups[i].stack||rows[i*stride+1]<0||rows[i*stride+1]>100)return 0;for(size_t n=2;n<stride;++n)if(rows[i*stride+n]<0||rows[i*stride+n]>1000000)return 0;}
+ CrossoverSpell value;value.stack=stack;value.id=spell;value.charges=charges;value.radius=radius;value.rows.assign(rows,rows+stride*crossover_groups.size());crossover_spells.push_back(std::move(value));return 1;
+}
+OPENBW_EXPORT(openbw_crossover_cast) int openbw_crossover_cast(int stack,int spell,int x,int y) {
+ if(!g_ui||x<0||x>799||y<0||y>499)return 0;
+ CrossoverSpell* config=nullptr;for(auto& s:crossover_spells)if(s.stack==stack&&s.id==spell)config=&s;
+ if(!config||config->charges<1||int(g_ui->st.current_frame)<config->ready)return 0;
+ const CrossoverGroup* caster=nullptr;int alive=0;bwgame::unit_t* source=nullptr;
+ int totals[2]={0,0};for(const auto& g:crossover_groups){for(auto id:g.ids)if(crossover_live(id,g.owner)){++totals[g.owner];if(g.stack==stack){++alive;source=g_ui->get_unit(id);}}if(g.stack==stack)caster=&g;}
+ if(!caster||!source||!totals[0]||!totals[1])return 0;
+ const bwgame::xy point=crossover_camera+bwgame::xy(x,y);const size_t stride=caster->ids.size()+3;
+ struct Hit {bwgame::unit_t* unit;int damage,resistance;};bwgame::a_vector<Hit> hits;
+ for(size_t i=0;i<crossover_groups.size();++i){const auto& g=crossover_groups[i];const int damage=config->rows[i*stride+2+alive];if(!damage)continue;for(auto id:g.ids)if(crossover_live(id,g.owner)){auto* unit=g_ui->get_unit(id);const auto delta=unit->sprite->position-point;if(delta.x*delta.x+delta.y*delta.y<=config->radius*config->radius)hits.push_back({unit,damage,config->rows[i*stride+1]});}}
+ if(hits.empty())return 0;
+ --config->charges;config->ready=int(g_ui->st.current_frame)+24;
+ for(auto id:caster->ids)if(crossover_live(id,caster->owner))g_ui->issue_order(g_ui->get_unit(id),false,g_ui->get_order_type(bwgame::Orders::Nothing),{});
+ for(const auto& hit:hits)if(!hit.resistance||int(g_ui->lcg_rand(0)%100)>=hit.resistance)g_ui->unit_deal_damage(hit.unit,bwgame::fp8::integer(hit.damage),source,caster->owner);
+ return 1;
+}
 OPENBW_EXPORT(openbw_crossover_ai_tick) void openbw_crossover_ai_tick() {
   remember_crossover_sounds();
   if(g_ui && crossover_battle>=0 && g_ui->st.current_frame%96==0)crossover_attack_owner(1);
@@ -127,7 +157,8 @@ OPENBW_EXPORT(openbw_crossover_battle_state) const char* openbw_crossover_battle
     int alive=0;for(auto id:group.ids)if(crossover_live(id,group.owner))++alive;
     totals[group.owner]+=alive;
     if(comma)out+=',';comma=true;
-    out+=bwgame::format("{\"id\":%d,\"side\":%d,\"initial\":%d,\"survivors\":%d}",group.stack,group.owner,int(group.ids.size()),alive);
+    int casts=0,ready=0;for(const auto& spell:crossover_spells)if(spell.stack==group.stack){casts=spell.charges;ready=spell.ready;break;}
+    out+=bwgame::format("{\"id\":%d,\"side\":%d,\"initial\":%d,\"survivors\":%d,\"casts\":%d,\"spellReady\":%d}",group.stack,group.owner,int(group.ids.size()),alive,casts,ready);
   }
   out+=bwgame::format("],\"finished\":%s}",totals[0]==0||totals[1]==0?"true":"false");
   return out.c_str();

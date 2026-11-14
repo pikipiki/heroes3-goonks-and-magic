@@ -32,6 +32,8 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
  const heroBlend=win.document.createElement('canvas');heroBlend.width=heroBlend.height=128;const heroContext=heroBlend.getContext('2d')!;
  const marineBlend=makeSprite(),marineContext=marineBlend.getContext('2d')!;
  let request=0,closed=false,selected:number|undefined,attackMode=false,units:NativeUnit[]=[],nativeFrame=-1,view:ReturnType<typeof battleView>|undefined;
+ let spellEffect:{x:number;y:number;radius:number;at:number}|undefined;
+ const spellFx=(event:Event):void=>{spellEffect={...(event as CustomEvent).detail,at:win.performance.now()};};canvas.addEventListener("crossover-spell-effect",spellFx);
  let camera={x:0,y:0},marker:{x:number;y:number;target?:number;attack:boolean;at:number}|undefined;
  const draw=(now:number):void=>{
   if(closed)return;request=win.requestAnimationFrame(draw);if(!clock.due(now))return;
@@ -98,6 +100,8 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
    const target=marker.target===undefined?undefined:positions.get(marker.target),mx=target?target.x-camera.x:marker.x,my=target?target.y-camera.y-30:marker.y;
    const age=(now-marker.at)/1000,r=14+Math.sin(age*Math.PI*4)*4;context.globalAlpha=1-age*.7;context.strokeStyle=marker.attack?'#ff735f':'#9feeab';context.lineWidth=3;context.beginPath();context.arc(mx,my,r,0,Math.PI*2);context.moveTo(mx-r-8,my);context.lineTo(mx-5,my);context.moveTo(mx+5,my);context.lineTo(mx+r+8,my);context.moveTo(mx,my-r-8);context.lineTo(mx,my-5);context.moveTo(mx,my+5);context.lineTo(mx,my+r+8);context.stroke();context.globalAlpha=1;
   }
+  const effect=spellEffect;
+  if(effect&&now-effect.at<700){const age=(now-effect.at)/700;context.globalAlpha=1-age;context.fillStyle='#ffad36';context.strokeStyle='#fff0a1';context.lineWidth=4;context.beginPath();context.arc(effect.x,effect.y,effect.radius*(.2+age*.8),0,Math.PI*2);context.fill();context.stroke();context.globalAlpha=1;}
   context.setTransform(1,0,0,1,0,0);
   canvas.dataset.heroesUnits=String(units.filter(unit=>unit.heroes).length);canvas.dataset.starcraftUnits=String(units.filter(unit=>!unit.heroes).length);canvas.dataset.frame=String(nativeFrame);
  };
@@ -105,6 +109,9 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
   const box=canvas.getBoundingClientRect(),transform=view||{zoom:1,x:0,y:0},camera=api.camera();
   const x=((event.clientX-box.left)*800/box.width-transform.x)/transform.zoom,y=((event.clientY-box.top)*500/box.height-transform.y)/transform.zoom;
   const nearby=battlePick(units,positions,{x,y},camera,selected!==undefined);
+  if(canvas.dataset.spellMode){
+   if(canvas.dataset.spellMode==='target'){const at=nearby?(positions.get(nearby.id)||nearby):undefined;canvas.dispatchEvent(new CustomEvent('crossover-spell-target',{detail:{x:at?at.x-camera.x:x,y:at?at.y-camera.y:y}}));}return;
+  }
   if(nearby?.owner===0){select(nearby.stackId!);return;}
   if(selected===undefined){notifySelection();return;}
   if(nearby?.owner===1)api.target(selected,nearby.id);
@@ -121,5 +128,5 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
  const mode=(event:Event):void=>{attackMode=(event as CustomEvent).detail==='attack';canvas.dataset.attackMode=attackMode?'armed':'';if(attackMode)api.acknowledge?.('armed');};
  const stop=():void=>{if(selected===undefined)return;api.stop(selected);attackMode=false;marker=undefined;canvas.dataset.attackMode='';canvas.dataset.orderFeedback='stop';api.acknowledge?.('stop');canvas.dispatchEvent(new CustomEvent('crossover-order-issued',{detail:'Ordres annulés. La sélection reste inactive.'}));};
  canvas.addEventListener('crossover-select-all',selectAll);canvas.addEventListener('crossover-select-group',selectGroup);canvas.addEventListener('crossover-command-mode',mode);canvas.addEventListener('crossover-stop-selection',stop);canvas.addEventListener('pointerdown',pointer);request=win.requestAnimationFrame(draw);
- return()=>{closed=true;win.cancelAnimationFrame(request);canvas.removeEventListener('pointerdown',pointer);canvas.removeEventListener('crossover-select-all',selectAll);canvas.removeEventListener('crossover-select-group',selectGroup);canvas.removeEventListener('crossover-command-mode',mode);canvas.removeEventListener('crossover-stop-selection',stop);};
+ return()=>{canvas.removeEventListener("crossover-spell-effect",spellFx);closed=true;win.cancelAnimationFrame(request);canvas.removeEventListener('pointerdown',pointer);canvas.removeEventListener('crossover-select-all',selectAll);canvas.removeEventListener('crossover-select-group',selectGroup);canvas.removeEventListener('crossover-command-mode',mode);canvas.removeEventListener('crossover-stop-selection',stop);};
 }
