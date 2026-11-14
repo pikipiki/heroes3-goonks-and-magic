@@ -5,8 +5,8 @@
     "verification": "ninja -j32 html5, Emscripten 4.0.23"
   },
   "openbw": {
-    "sha256": "68a7ab102694d1d2ceb307e6cd2f7371472c48d5b99a2a9d1e1eade050cbfc31",
-    "adapterSha256": "ab5b94d93ed93d29409fbee31a11497bbe110ef0e0461792ebc55b4ec78b804c",
+    "sha256": "3d674ade0e3592709410d4a055b4ac9ee5ec204695d470e5d79c56df251c0de4",
+    "adapterSha256": "1fad68ac5837edbe27a477c120191f3e2248973f2dd5dc7b7012e92a2992e4cf",
     "sdk": "wasi-sdk-33.0"
   }
 }

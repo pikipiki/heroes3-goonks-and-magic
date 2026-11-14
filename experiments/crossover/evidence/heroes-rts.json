@@ -2,6 +2,9 @@
   "scope": "Published trial map, native Heroes attack, real OpenBW combat, native Heroes casualty application; no injected game state",
   "cases": [
     {
+      "name": "Demo is integrated in the Heroes home menu in portrait and landscape, with no floating overlay"
+    },
+    {
       "name": "Demo button inside Heroes launches the published trial and a real native Heroes attack"
     },
     {
@@ -140,24 +143,27 @@
       }
     },
     {
-      "name": "Phone landscape 844×390 keeps exact battlefield proportions and the right command panel scrolls"
+      "name": "Portrait uses lower controls; landscape right rail supports real touch scrolling with a visible exit"
+    },
+    {
+      "name": "Tablet portrait 768×1024 and landscape 1024×768 preserve the same responsive command placement"
     },
     {
       "name": "One visible Heroes battlefield contains original Heroes troops and native StarCraft Marines; Heroes HP are preserved",
       "census": {
         "frame": 0,
         "view": {
-          "x": 713,
-          "y": 0,
-          "width": 1030,
-          "height": 760
+          "x": 926,
+          "y": 127,
+          "width": 390,
+          "height": 244
         },
         "units": [
           {
             "stackId": 1,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3638,
             "type": 37,
@@ -171,7 +177,7 @@
             "stackId": 1,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3639,
             "type": 37,
@@ -185,7 +191,7 @@
             "stackId": 1,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3640,
             "type": 37,
@@ -199,7 +205,7 @@
             "stackId": 1,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3641,
             "type": 37,
@@ -213,7 +219,7 @@
             "stackId": 1,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3642,
             "type": 37,
@@ -227,7 +233,7 @@
             "stackId": 1,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3643,
             "type": 37,
@@ -241,7 +247,7 @@
             "stackId": 0,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3644,
             "type": 0,
@@ -255,7 +261,7 @@
             "stackId": 0,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3645,
             "type": 0,
@@ -269,7 +275,7 @@
             "stackId": 0,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3646,
             "type": 0,
@@ -283,7 +289,7 @@
             "stackId": 0,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3647,
             "type": 0,
@@ -297,7 +303,7 @@
             "stackId": 0,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3648,
             "type": 0,
@@ -311,7 +317,7 @@
             "stackId": 0,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3649,
             "type": 0,
@@ -325,7 +331,7 @@
             "stackId": 0,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3650,
             "type": 0,
@@ -339,7 +345,7 @@
             "stackId": 0,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3651,
             "type": 0,
@@ -353,7 +359,7 @@
             "stackId": 0,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3652,
             "type": 0,
@@ -367,7 +373,7 @@
             "stackId": 0,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3653,
             "type": 0,
@@ -381,7 +387,7 @@
             "stackId": 0,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3654,
             "type": 0,
@@ -395,7 +401,7 @@
             "stackId": 0,
             "heroes": true,
             "maxHp": 10,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3655,
             "type": 0,
@@ -409,7 +415,7 @@
             "stackId": 5,
             "heroes": true,
             "maxHp": 40,
-            "order": 2,
+            "order": 23,
             "cooldown": 0,
             "id": 3656,
             "type": 37,
@@ -465,7 +471,13 @@
       }
     },
     {
-      "name": "Touch selection and ground order reach the native OpenBW Move command for a Heroes troop"
+      "name": "Starting only advances time: Heroes stay idle even under enemy fire; Marines retain their AI"
+    },
+    {
+      "name": "Manual touch movement and Stop reach native orders and return the troop to passive stance"
+    },
+    {
+      "name": "Clicking a Marine issues an explicit native attack on that enemy"
     },
     {
       "name": "Actual RTS result reaches the native Heroes battle summary",
@@ -475,22 +487,16 @@
           {
             "losses": [
               {
-                "count": 3,
+                "count": 4,
                 "icon": "",
                 "id": 0,
                 "name": "Pikeman"
               },
               {
-                "count": 2,
+                "count": 4,
                 "icon": "",
                 "id": 2,
                 "name": "Archer"
-              },
-              {
-                "count": 1,
-                "icon": "commanders/CPrL174n",
-                "id": 241,
-                "name": "Paladin"
               }
             ],
             "name": "Christian",
@@ -544,12 +550,12 @@
               100,
               0
             ],
-            "count": 10,
+            "count": 8,
             "damageMax": 3,
             "damageMin": 2,
             "defense": 3,
             "description": "",
-            "experience": 600,
+            "experience": 480,
             "experiencePerUnit": 60,
             "experienceRank": 0,
             "fightValue": 115,
@@ -587,12 +593,12 @@
               60,
               0
             ],
-            "count": 3,
+            "count": 2,
             "damageMax": 3,
             "damageMin": 1,
             "defense": 5,
             "description": "",
-            "experience": 180,
+            "experience": 120,
             "experiencePerUnit": 60,
             "experienceRank": 0,
             "fightValue": 100,
@@ -627,15 +633,15 @@
     },
     {
       "name": "Native save and reload preserve exactly the post-RTS Heroes army",
-      "saveBytes": 125336,
+      "saveBytes": 125562,
       "restored": [
         [
           "core:archer",
-          10
+          8
         ],
         [
           "core:pikeman",
-          3
+          2
         ],
         null,
         null,
@@ -735,326 +741,6 @@
         "shooter": false,
         "side": 0,
         "speed": 5
-      }
-    ]
-  },
-  "selection": "Pikemen",
-  "afterMove": {
-    "frame": 1,
-    "view": {
-      "x": 713,
-      "y": 0,
-      "width": 694,
-      "height": 390
-    },
-    "units": [
-      {
-        "stackId": 1,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 6,
-        "cooldown": 0,
-        "id": 3638,
-        "type": 37,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 1032,
-        "y": 296
-      },
-      {
-        "stackId": 1,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 6,
-        "cooldown": 0,
-        "id": 3639,
-        "type": 37,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 1032,
-        "y": 280
-      },
-      {
-        "stackId": 1,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 6,
-        "cooldown": 0,
-        "id": 3640,
-        "type": 37,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 1048,
-        "y": 280
-      },
-      {
-        "stackId": 1,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 6,
-        "cooldown": 0,
-        "id": 3641,
-        "type": 37,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 888,
-        "y": 232
-      },
-      {
-        "stackId": 1,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 6,
-        "cooldown": 0,
-        "id": 3642,
-        "type": 37,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 912,
-        "y": 232
-      },
-      {
-        "stackId": 1,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 6,
-        "cooldown": 0,
-        "id": 3643,
-        "type": 37,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 936,
-        "y": 232
-      },
-      {
-        "stackId": 0,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 14,
-        "cooldown": 0,
-        "id": 3644,
-        "type": 0,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 960,
-        "y": 232
-      },
-      {
-        "stackId": 0,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 14,
-        "cooldown": 0,
-        "id": 3645,
-        "type": 0,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 984,
-        "y": 232
-      },
-      {
-        "stackId": 0,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 14,
-        "cooldown": 0,
-        "id": 3646,
-        "type": 0,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 960,
-        "y": 288
-      },
-      {
-        "stackId": 0,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 14,
-        "cooldown": 0,
-        "id": 3647,
-        "type": 0,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 984,
-        "y": 288
-      },
-      {
-        "stackId": 0,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 14,
-        "cooldown": 0,
-        "id": 3648,
-        "type": 0,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 1008,
-        "y": 288
-      },
-      {
-        "stackId": 0,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 14,
-        "cooldown": 0,
-        "id": 3649,
-        "type": 0,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 832,
-        "y": 256
-      },
-      {
-        "stackId": 0,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 14,
-        "cooldown": 0,
-        "id": 3650,
-        "type": 0,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 912,
-        "y": 208
-      },
-      {
-        "stackId": 0,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 14,
-        "cooldown": 0,
-        "id": 3651,
-        "type": 0,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 936,
-        "y": 208
-      },
-      {
-        "stackId": 0,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 14,
-        "cooldown": 0,
-        "id": 3652,
-        "type": 0,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 960,
-        "y": 208
-      },
-      {
-        "stackId": 0,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 14,
-        "cooldown": 0,
-        "id": 3653,
-        "type": 0,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 984,
-        "y": 208
-      },
-      {
-        "stackId": 0,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 14,
-        "cooldown": 0,
-        "id": 3654,
-        "type": 0,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 960,
-        "y": 264
-      },
-      {
-        "stackId": 0,
-        "heroes": true,
-        "maxHp": 10,
-        "order": 14,
-        "cooldown": 0,
-        "id": 3655,
-        "type": 0,
-        "owner": 0,
-        "completed": true,
-        "hp": 10,
-        "x": 984,
-        "y": 264
-      },
-      {
-        "stackId": 5,
-        "heroes": true,
-        "maxHp": 40,
-        "order": 14,
-        "cooldown": 0,
-        "id": 3656,
-        "type": 37,
-        "owner": 0,
-        "completed": true,
-        "hp": 40,
-        "x": 1104,
-        "y": 256
-      },
-      {
-        "stackId": 4,
-        "heroes": false,
-        "maxHp": 40,
-        "order": 14,
-        "cooldown": 0,
-        "id": 3657,
-        "type": 0,
-        "owner": 1,
-        "completed": true,
-        "hp": 40,
-        "x": 588,
-        "y": 208
-      },
-      {
-        "stackId": 3,
-        "heroes": false,
-        "maxHp": 40,
-        "order": 14,
-        "cooldown": 0,
-        "id": 3658,
-        "type": 0,
-        "owner": 1,
-        "completed": true,
-        "hp": 40,
-        "x": 612,
-        "y": 208
-      },
-      {
-        "stackId": 2,
-        "heroes": false,
-        "maxHp": 40,
-        "order": 14,
-        "cooldown": 0,
-        "id": 3659,
-        "type": 0,
-        "owner": 1,
-        "completed": true,
-        "hp": 40,
-        "x": 636,
-        "y": 208
       }
     ]
   },
@@ -1164,7 +850,7 @@
     },
     "result": {
       "battleId": 0,
-      "frame": 197,
+      "frame": 229,
       "groups": [
         {
           "id": 2,
@@ -1188,19 +874,19 @@
           "id": 5,
           "side": 0,
           "initial": 1,
-          "survivors": 0
+          "survivors": 1
         },
         {
           "id": 0,
           "side": 0,
           "initial": 12,
-          "survivors": 10
+          "survivors": 8
         },
         {
           "id": 1,
           "side": 0,
           "initial": 6,
-          "survivors": 3
+          "survivors": 2
         }
       ],
       "finished": true

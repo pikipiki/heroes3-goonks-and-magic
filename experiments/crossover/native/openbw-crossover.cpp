@@ -53,16 +53,22 @@ OPENBW_EXPORT(openbw_crossover_setup) int openbw_crossover_setup(int battle,int 
   for(int i=0;i<count;i++){
     const auto* row=rows+i*stride;CrossoverGroup group{row[0],row[1],stride==12 && row[4]!=0,{}};
     const bwgame::unit_type_t* definition=g_ui->get_unit_type(bwgame::UnitTypes(row[2]));
-    if(group.heroes){
-      // Heroes keep their own HP/damage. OpenBW executes combat using a private
-      // per-cohort definition; original StarCraft definitions are never changed.
+    if(group.heroes || group.owner==0){
       auto& type=crossover_types[i];type=*definition;
-      auto& weapon=crossover_weapons[i];weapon=*definition->ground_weapon;
-      type.hitpoints=bwgame::fp8::integer(row[5]);type.has_shield=false;type.flags=bwgame::unit_type_t::flags_t(uint32_t(type.flags)&~uint32_t(bwgame::unit_type_t::flag_regens_hp));type.armor=row[8]/4;
-      weapon.damage_amount=(row[6]+row[7]+1)/2;weapon.damage_bonus=0;
-      weapon.damage_type=bwgame::weapon_type_t::damage_type_normal;
-      weapon.cooldown=std::max(12,std::min(48,160/row[9]));
-      type.ground_weapon=&weapon;type.air_weapon=row[10]?&weapon:nullptr;
+      if(group.heroes){
+        // Private definitions preserve Heroes stats without editing SC types.
+        auto& weapon=crossover_weapons[i];weapon=*definition->ground_weapon;
+        type.hitpoints=bwgame::fp8::integer(row[5]);type.has_shield=false;type.flags=bwgame::unit_type_t::flags_t(uint32_t(type.flags)&~uint32_t(bwgame::unit_type_t::flag_regens_hp));type.armor=row[8]/4;
+        weapon.damage_amount=(row[6]+row[7]+1)/2;weapon.damage_bonus=0;
+        weapon.damage_type=bwgame::weapon_type_t::damage_type_normal;
+        weapon.cooldown=std::max(12,std::min(48,160/row[9]));
+        type.ground_weapon=&weapon;type.air_weapon=row[10]?&weapon:nullptr;
+      }
+      if(group.owner==0){
+        // Manual stance: no acquisition or retaliation while idle. Move returns
+        // here when complete; attacks happen only after an explicit player order.
+        type.human_ai_idle=type.computer_ai_idle=type.return_to_idle=g_ui->get_order_type(bwgame::Orders::Nothing);
+      }
       definition=&type;
     }
     for(int j=0;j<row[3];j++){
@@ -70,6 +76,7 @@ OPENBW_EXPORT(openbw_crossover_setup) int openbw_crossover_setup(int battle,int 
       const bwgame::xy at=origin+bwgame::xy(direction*(row[1]*420+(index%8)*24),(index/8)*24);
       auto* unit=g_ui->trigger_create_unit(definition,at,row[1]);
       if(!unit){crossover_battle=-1;return 0;}
+      if(group.owner==0)g_ui->issue_order(unit,false,g_ui->get_order_type(bwgame::Orders::Nothing),{});
       group.ids.push_back(g_ui->get_unit_id(unit));
     }
     crossover_groups.push_back(std::move(group));
@@ -165,4 +172,23 @@ OPENBW_EXPORT(openbw_crossover_sprite) const uint8_t* openbw_crossover_sprite(in
   const auto color=indexed[i];for(int channel=0;channel<3;channel++)pixels[i*4+channel]=g_ui->tileset_img.wpe[color*4+channel];pixels[i*4+3]=color?255:0;
  }
  return pixels.data();
+}
+
+OPENBW_EXPORT(openbw_crossover_stop) void openbw_crossover_stop(int stack) {
+ if(!g_ui || crossover_battle<0)return;
+ for(const auto& group:crossover_groups)if(group.owner==0 && (stack<0 || group.stack==stack))for(auto id:group.ids){
+  auto* u=g_ui->get_unit(id);if(!u || g_ui->unit_dying(u))continue;
+  bwgame::a_vector<uint8_t> bytes;bwgame::bw_cmd cmd(bytes);uint16_t selected=id.raw_value;cmd.select(&selected,1);
+  cmd.order(bwgame::Orders::Stop,u->sprite->position,0,false);g_ui->apply_commands(0,bytes.data(),bytes.size());
+ }
+}
+OPENBW_EXPORT(openbw_crossover_target) void openbw_crossover_target(int stack,int requested) {
+ if(!g_ui || crossover_battle<0 || requested<1 || requested>65535)return;
+ auto* target=g_ui->get_unit(bwgame::unit_id(uint16_t(requested)));
+ if(!target || target->owner!=1 || g_ui->unit_dying(target))return;
+ for(const auto& group:crossover_groups)if(group.owner==0 && (stack<0 || group.stack==stack))for(auto id:group.ids){
+  auto* u=g_ui->get_unit(id);if(!u || g_ui->unit_dying(u))continue;
+  bwgame::a_vector<uint8_t> bytes;bwgame::bw_cmd cmd(bytes);uint16_t selected=id.raw_value;cmd.select(&selected,1);
+  cmd.order(bwgame::Orders::AttackDefault,target->sprite->position,uint16_t(requested),false);g_ui->apply_commands(0,bytes.data(),bytes.size());
+ }
 }

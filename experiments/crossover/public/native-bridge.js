@@ -57,6 +57,10 @@ export function installNativeBridge(x, memory, target = window) {
         return state;
     };
     const api = {
+        stop(stack) { if (closed || !x.openbw_crossover_stop)
+            throw Error('Arrêt indisponible.'); x.openbw_crossover_stop(stack); },
+        target(stack, id) { if (closed || !x.openbw_crossover_target || !Number.isSafeInteger(id) || id < 1 || id > 65535)
+            throw Error('Cible indisponible.'); x.openbw_crossover_target(stack, id); },
         camera() { if (closed || !x.openbw_crossover_camera_x || !x.openbw_crossover_camera_y)
             throw Error('Caméra indisponible.'); return { x: x.openbw_crossover_camera_x(), y: x.openbw_crossover_camera_y() }; },
         sprite(id) {

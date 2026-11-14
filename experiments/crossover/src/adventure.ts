@@ -6,13 +6,28 @@ type StarWindow = Window & {openbwLaunchCrossover?(plan:BattlePlan):Promise<void
 export function installAdventure(target:Window,base:URL,onExit:()=>void,trial=false):()=>void {
  const win=target as HeroWindow,doc=win.document;
  if(win.goonkCrossoverInstalled){if(trial)win.dispatchEvent(new Event('goonk-crossover-demo'));return()=>{};}win.goonkCrossoverInstalled=true;
- const style=doc.createElement('style');style.textContent=`#crossover-tools{position:fixed;right:8px;top:54px;z-index:11000;display:flex;flex-direction:column;gap:6px;max-width:155px}#crossover-tools button,#crossover-arena button{min-height:44px;padding:8px;border:1px solid #64748b;border-radius:6px;background:#392b1b;color:#f1dda5;font:14px system-ui}#crossover-tools p{margin:0;padding:6px;background:#392b1b;color:#f1dda5;font:12px system-ui}#crossover-arena{position:fixed;inset:0;z-index:12000;background:#241b12;display:grid;grid-template-columns:minmax(0,1fr) 150px;height:100dvh;color:white;font:14px system-ui}#crossover-arena .field{position:relative;min-width:0;min-height:0;display:flex;align-items:center;justify-content:center;background:#17130e}#crossover-arena canvas{position:relative;width:min(100%,160dvh);height:auto;max-height:100%;aspect-ratio:8/5;object-fit:contain;touch-action:none}#crossover-arena iframe{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none;border:0}#crossover-arena aside{padding:8px;overflow-y:auto;display:flex;flex-direction:column;gap:8px}#crossover-arena h2{font-size:17px;margin:0}#crossover-arena p{margin:0}#crossover-arena[hidden]{display:none}`;
- doc.head.append(style);
- const tools=doc.createElement('section');tools.id='crossover-tools';tools.setAttribute('translate','no');tools.innerHTML='<button id="crossover-demo">Démo : Heroes × StarCraft</button><button id="crossover-toggle">Combats en temps réel : activés</button><p id="crossover-hint">Archers et piquiers contre Marines, dans Heroes.</p>';
- doc.body.append(tools);
- const toggle=tools.querySelector<HTMLButtonElement>('#crossover-toggle')!,hint=tools.querySelector<HTMLElement>('#crossover-hint')!;
- let enabled=true,configured=false,disposed=false,plan:BattlePlan|undefined,frame:HTMLIFrameElement|undefined,panel:HTMLElement|undefined,timer:number|undefined,sent=false,starting=false,selected=false,autoAttack=false,isDemo=trial,latestMode="",checkpoint=false,sceneDispose:(()=>void)|undefined;
+ const style=doc.createElement('link');style.rel='stylesheet';style.href=new URL('adventure.css',base).href;doc.head.append(style);
+ const makeButton=(id:string,label:string,action:string):HTMLButtonElement=>{const button=doc.createElement('button');button.id=id;button.type='button';button.textContent=label;button.dataset.crossoverAction=action;button.setAttribute('translate','no');return button;};
+ const demo=makeButton('crossover-demo','Démo Heroes × StarCraft','demo');demo.innerHTML='<span>Démo Heroes × StarCraft</span><small>Archers, piquiers et Marines</small>';demo.disabled=true;
+ const menuDemo=makeButton('crossover-demo-menu','Démo Heroes × StarCraft','demo');
+ const toggle=makeButton('crossover-toggle','Combats en temps réel : activés','toggle');toggle.setAttribute('aria-pressed','true');
+ const mainStatus=doc.createElement('p'),menuStatus=doc.createElement('p');for(const status of [mainStatus,menuStatus]){status.className='crossover-menu-status';status.setAttribute('translate','no');status.setAttribute('role','status');}
+ const hint=(text:string):void=>{for(const status of [mainStatus,menuStatus])status.textContent=text;};
+ const closeMenu=():void=>{doc.querySelector<HTMLDialogElement>('#game-menu')?.close();};
+ let enabled=true,configured=false,disposed=false,plan:BattlePlan|undefined,frame:HTMLIFrameElement|undefined,panel:HTMLElement|undefined,timer:number|undefined,sent=false,starting=false,selected=false,autoAttack=false,isDemo=trial,latestMode='',checkpoint=false,sceneDispose:(()=>void)|undefined;
+ let settingsButton:HTMLButtonElement|undefined;
  const cancelled=new Set<number>();
+ const mountControls=():void=>{
+  const home=doc.querySelector('#mobile-app .mobile-menu[data-kind="menu"]');
+  if(home&&!home.contains(demo)){const first=home.querySelector('[data-action="20"]');if(first)first.after(demo);else home.append(demo);home.append(mainStatus);}
+  settingsButton ||= doc.querySelector<HTMLButtonElement>('#game-menu-toggle')||undefined;
+  const top=doc.querySelector('#mobile-app .mobile-top');
+  if(settingsButton){
+   if(latestMode==='menu'&&home&&!home.contains(settingsButton)){home.append(settingsButton);settingsButton.textContent='Options';settingsButton.setAttribute('aria-label','Options du jeu');}
+   else if(latestMode!=='menu'&&top&&!top.contains(settingsButton)){top.prepend(settingsButton);settingsButton.textContent='☰';settingsButton.setAttribute('aria-label','Menu du jeu');}
+  }
+  const nav=doc.querySelector('#game-menu nav');if(nav&&!nav.contains(menuDemo)){nav.append(menuDemo,toggle,menuStatus);}
+ };
  const command=(op:number,id:number,rows:[number,number][]=[]):void=>{
   const m=win.Module;if(!m?._vcmiCrossoverCommand)throw Error('Moteur Heroes sans passerelle de combat.');
   const bytes=new Int32Array(rows.flat()),pointer=rows.length?m._malloc(bytes.byteLength):0;
@@ -21,64 +36,70 @@ export function installAdventure(target:Window,base:URL,onExit:()=>void,trial=fa
  const closePanel=():void=>{sceneDispose?.();sceneDispose=undefined;if(timer!==undefined)win.clearInterval(timer);timer=undefined;frame?.remove();frame=undefined;panel?.remove();panel=undefined;plan=undefined;sent=false;};
  const begin=(value:{battleId:number;stacks:HeroesStack[]}):void=>{
   if(plan?.battleId===value.battleId||cancelled.has(value.battleId))return;
-  closePanel();plan=battlePlan(value);
-  panel=doc.createElement('section');panel.id='crossover-arena';panel.setAttribute('translate','no');panel.innerHTML='<div class="field"><iframe title="Moteur de combat" aria-hidden="true" tabindex="-1"></iframe><canvas id="crossover-field"></canvas></div><aside><h2>Heroes III</h2><p>Combat mixte · temps réel</p><p id="crossover-battle-status">Préparation du combat…</p><button id="crossover-attack">Commencer le combat</button><button id="crossover-select-all">Toute l’armée</button><button id="crossover-cancel">Reprendre le combat classique</button><p>Touche une troupe pour la sélectionner, puis le terrain pour déplacer ou un ennemi pour attaquer.</p><p id="crossover-counts"></p><p>Les survivants restent dans ton armée.</p></aside>';
+  closePanel();closeMenu();plan=battlePlan(value);
+  panel=doc.createElement('section');panel.id='crossover-arena';panel.setAttribute('translate','no');panel.setAttribute('aria-label','Combat Heroes × StarCraft');
+  panel.innerHTML='<div class="field"><iframe title="Moteur de combat" aria-hidden="true" tabindex="-1"></iframe><canvas id="crossover-field"></canvas></div><header class="battle-heading"><div class="heading-label"><span class="eyebrow">HEROES GOONK</span><h2>Combat en temps réel</h2></div><button id="crossover-cancel" aria-label="Reprendre le combat Heroes classique">↩ Classique</button><p id="crossover-battle-status" role="status">Préparation du combat…</p><progress aria-label="Préparation des données du combat"></progress></header><aside aria-label="Commandes du combat"><div class="battle-actions"><button id="crossover-start" disabled>Commencer le combat</button><button id="crossover-attack" aria-pressed="false" disabled>Attaquer</button><button id="crossover-stop" disabled>Arrêter</button><button id="crossover-select-all" disabled>Tout sélectionner</button></div><p id="crossover-selection" class="battle-selection" role="status">Sélectionne une troupe pour lui donner un ordre.</p><section aria-label="Armées"><h3>Les combattants</h3><div id="crossover-roster"></div></section><details><summary>Comment jouer</summary><p>Choisis une troupe, puis touche le terrain pour la déplacer ou un ennemi pour l’attaquer. « Attaquer » prépare une attaque vers le prochain point choisi. « Arrêter » annule ses ordres. Tes troupes restent inactives sans ordre.</p></details></aside>';
   doc.body.append(panel);frame=panel.querySelector('iframe')!;frame.src=new URL('starcraft/index.html',base).href;
-  const activeFrame=frame,activePlan=plan;
-  const status=panel.querySelector<HTMLElement>('#crossover-battle-status')!,attack=panel.querySelector<HTMLButtonElement>('#crossover-attack')!;
-  panel.querySelector<HTMLElement>('#crossover-counts')!.textContent=plan.stacks.map(row=>`${row.side?'Ennemi':'Toi'} : ${row.count} ${row.name}`).join(' · ');
-  attack.disabled=true;panel.querySelector<HTMLButtonElement>('#crossover-select-all')!.onclick=()=>panel?.querySelector('canvas')?.dispatchEvent(new Event('crossover-select-all'));
-  attack.onclick=()=>{try{const api=(frame!.contentWindow as StarWindow).openbwCrossover!;api.start();api.attack();attack.textContent='Attaquer avec l’armée';}catch(e){status.textContent=String(e);}};
-  panel.querySelector<HTMLButtonElement>('#crossover-cancel')!.onclick=()=>{cancelled.add(plan!.battleId);command(2,plan!.battleId);closePanel();hint.textContent='Combat repris dans Heroes, sans appliquer les pertes du test annulé.';};
+  const activePanel=panel,activeFrame=frame,activePlan=plan,canvas=panel.querySelector<HTMLCanvasElement>('#crossover-field')!;
+  const status=panel.querySelector<HTMLElement>('#crossover-battle-status')!,start=panel.querySelector<HTMLButtonElement>('#crossover-start')!,attack=panel.querySelector<HTMLButtonElement>('#crossover-attack')!,stop=panel.querySelector<HTMLButtonElement>('#crossover-stop')!,all=panel.querySelector<HTMLButtonElement>('#crossover-select-all')!,progress=panel.querySelector<HTMLProgressElement>('progress')!,selection=panel.querySelector<HTMLElement>('#crossover-selection')!;
+  const roster=panel.querySelector<HTMLElement>('#crossover-roster')!,cards=new Map<number,{button:HTMLButtonElement;count:HTMLElement}>();
+  let ready=false,chosen:number|undefined;
+  for(const row of plan.stacks.filter(row=>row.side===0)){
+   const button=doc.createElement('button');button.className='army-card';button.dataset.crossoverGroup=String(row.id);button.type='button';button.disabled=true;button.setAttribute('aria-pressed','false');
+   const count=doc.createElement('strong'),name=doc.createElement('span');count.textContent=String(row.count);name.textContent=row.name;button.append(count,name);roster.append(button);cards.set(row.id,{button,count});
+   button.onclick=()=>canvas.dispatchEvent(new CustomEvent('crossover-select-group',{detail:row.id}));
+  }
+  const enemy=doc.createElement('div');enemy.className='army-card enemy';const enemyCount=doc.createElement('strong'),enemyName=doc.createElement('span');enemyCount.textContent=String(plan.stacks.filter(row=>row.side===1).reduce((sum,row)=>sum+row.count,0));enemyName.textContent='Ennemis · '+[...new Set(plan.stacks.filter(row=>row.side===1).map(row=>row.name))].join(', ');enemy.append(enemyCount,enemyName);roster.append(enemy);
+  const updateSelection=():void=>{for(const [id,{button}] of cards)button.setAttribute('aria-pressed',String(chosen!==undefined&&(chosen<0||chosen===id)));attack.disabled=stop.disabled=!ready||chosen===undefined;};
+  canvas.addEventListener('crossover-selection',event=>{const data=(event as CustomEvent).detail;chosen=data.id;selection.textContent=data.name;updateSelection();});
+  canvas.addEventListener('crossover-order-issued',event=>{attack.setAttribute('aria-pressed','false');selection.textContent=(event as CustomEvent).detail;});
+  all.onclick=()=>canvas.dispatchEvent(new Event('crossover-select-all'));
+  attack.onclick=()=>{const active=attack.getAttribute('aria-pressed')!=='true';attack.setAttribute('aria-pressed',String(active));canvas.dispatchEvent(new CustomEvent('crossover-command-mode',{detail:active?'attack':'move'}));selection.textContent=active?'Choisis un ennemi ou un point à attaquer.':'Choisis un point où déplacer la sélection.';};
+  stop.onclick=()=>canvas.dispatchEvent(new Event('crossover-stop-selection'));
+  start.onclick=()=>{try{(frame!.contentWindow as StarWindow).openbwCrossover!.start();start.hidden=true;}catch(e){status.textContent=String(e);}};
+  panel.querySelector<HTMLButtonElement>('#crossover-cancel')!.onclick=()=>{cancelled.add(activePlan.battleId);command(2,activePlan.battleId);closePanel();hint('Combat repris dans Heroes, sans appliquer les pertes du test annulé.');};
   frame.addEventListener('load',async()=>{
    try{
-    const sc=frame!.contentWindow as StarWindow;
-    if(!sc.openbwLaunchCrossover)throw Error('Chargement de StarCraft incomplet.');
+    const sc=activeFrame.contentWindow as StarWindow;if(!sc.openbwLaunchCrossover)throw Error('Chargement de StarCraft incomplet.');
+    timer=win.setInterval(()=>{const text=sc.document.querySelector('#archive-status')?.textContent||'';const percent=text.match(/(\d+)\s*%/);if(percent){progress.max=100;progress.value=Number(percent[1]);status.textContent='Téléchargement des données : '+percent[1]+' %';}},200);
     await sc.openbwLaunchCrossover(activePlan);
-    if(disposed||!panel||frame!==activeFrame||plan!==activePlan)return;
-    sceneDispose=sharedField(win,panel.querySelector<HTMLCanvasElement>('#crossover-field')!,sc.openbwCrossover!,activePlan);
+    if(disposed||panel!==activePanel||frame!==activeFrame||plan!==activePlan)return;
+    if(timer!==undefined)win.clearInterval(timer);progress.hidden=true;status.textContent='Prêt · contrôle manuel';ready=true;start.disabled=all.disabled=false;
+    for(const {button} of cards.values())button.disabled=false;
+    sceneDispose=sharedField(win,canvas,sc.openbwCrossover!,activePlan);
     timer=win.setInterval(()=>{
      try{
       const native=sc.openbwCrossover?.battle();if(!native)return;
-      attack.disabled=native.finished;
-      status.textContent=native.finished?'Résultat transmis à Heroes…':native.frame===0?'Prêt. Appuie sur « Commencer le combat ».':`Combat en cours · ${Math.floor(native.frame*0.042)} s`;
-      if(native.finished&&!sent){const rows=battleResult(plan!,native as BattleState);sent=true;command(1,plan!.battleId,rows);win.dispatchEvent(new CustomEvent('goonk-crossover-submitted',{detail:{version:1,plan:structuredClone(plan),result:structuredClone(native)}}));}
+      start.disabled=all.disabled=native.finished;ready=!native.finished;updateSelection();
+      const message=native.finished?'Résultat transmis à Heroes…':native.frame===0?'Prêt · contrôle manuel':`Combat en cours · ${Math.floor(native.frame*0.042)} s`;if(status.textContent!==message)status.textContent=message;
+      let opponents=0;for(const group of native.groups){const card=cards.get(group.id);if(card){if(card.count.textContent!==String(group.survivors))card.count.textContent=String(group.survivors);card.button.disabled=group.survivors===0||native.finished;}else if(group.side===1)opponents+=group.survivors;}
+      if(enemyCount.textContent!==String(opponents))enemyCount.textContent=String(opponents);
+      if(native.finished&&!sent){const rows=battleResult(activePlan,native as BattleState);sent=true;command(1,activePlan.battleId,rows);win.dispatchEvent(new CustomEvent('goonk-crossover-submitted',{detail:{version:1,plan:structuredClone(activePlan),result:structuredClone(native)}}));}
      }catch(e){status.textContent=String(e);}
     },200);
-   }catch(e){status.textContent=String(e)+' Tu peux reprendre le combat Heroes.';}
+   }catch(e){progress.hidden=true;status.textContent=String(e)+' Tu peux reprendre le combat classique.';}
   });
  };
  const observe=(event:Event):void=>{
-  const state=(event as CustomEvent).detail;if(!state||disposed)return;
-  latestMode=state.mode;
-  const demo=tools.querySelector<HTMLButtonElement>('#crossover-demo')!;demo.disabled=!!state.onlineGame||checkpoint||(state.mode!=='menu'&&!(state.mode==='map'&&state.turn));
-  if(state.mode==='menu'){configured=false;cancelled.clear();}
+  const state=(event as CustomEvent).detail;if(!state||disposed)return;latestMode=state.mode;mountControls();
+  demo.disabled=!!state.onlineGame||trial||state.mode!=='menu';
+  menuDemo.hidden=toggle.hidden=state.mode!=='map';menuDemo.disabled=!!state.onlineGame||checkpoint||!state.turn;
+  toggle.disabled=!!state.onlineGame||!state.turn;menuDemo.textContent=isDemo?'Rejouer la démo':'Démo Heroes × StarCraft';
+  if(state.mode==='menu'){configured=false;cancelled.clear();if(!trial)isDemo=false;}
+  if(state.mode==='load')isDemo=false;
   if(trial&&state.mode==='menu'&&!starting){starting=true;win.Module?._vcmiMobileCommand?.(20,1,0,0,0,0);}
-  // Run after the normal lobby listener has selected its default scenario.
   if(trial&&state.mode==='lobby'&&state.lobbyReady&&!selected){selected=true;win.setTimeout(()=>{if(!disposed)win.Module?._vcmiMobileCommand?.(111,0,0,0,0,0);},0);}
   if(trial&&selected&&state.mode==='lobby'&&state.selectedMap==='Crossover - duel StarCraft'&&state.lobbyReady){selected=false;trial=false;autoAttack=true;win.Module?._vcmiMobileCommand?.(22,0,0,0,0,0);}
-  if(state.mode==='map'&&state.turn&&!configured){try{command(0,enabled?1:0);configured=true;}catch(e){hint.textContent=String(e);}}
+  if(state.mode==='map'&&state.turn&&!configured){try{command(0,enabled?1:0);configured=true;}catch(e){hint(String(e));}}
   if(autoAttack&&state.mode==='map'&&state.turn&&state.crossoverEnabled){autoAttack=false;win.Module?._vcmiMobileCommand?.(112,0,0,0,0,0);}
-  toggle.disabled=state.mode!=='map'||!state.turn;
-  if(state.crossover){try{begin(state.crossover);}catch(e){hint.textContent=String(e);}}
-  else if(plan&&(state.dialogKind==='battle-result'||state.mode==='map'||state.mode==='dialog')){
-   if(sent)hint.textContent='Résultat StarCraft reçu par Heroes. Confirme le bilan pour reprendre l’aventure.';
-   closePanel();
-  }
+  if(state.crossover){try{begin(state.crossover);}catch(e){hint(String(e));}}
+  else if(plan&&(state.dialogKind==='battle-result'||state.mode==='map'||state.mode==='dialog')){if(sent)hint('Bilan du combat reçu. Confirme-le pour reprendre l’aventure.');closePanel();}
  };
- toggle.onclick=()=>{enabled=!enabled;command(0,enabled?1:0);toggle.textContent=`Combats en temps réel : ${enabled?'activés':'désactivés'}`;};
- const startDemo=():void=>{trial=true;isDemo=true;starting=false;selected=false;};
- const persisted=(event:Event):void=>{const detail=(event as CustomEvent).detail;if(!checkpoint||!String(detail?.path).toLowerCase().endsWith('/avant-demo-starcraft.vsgm1'))return;checkpoint=false;if(detail.ok){startDemo();win.Module?._vcmiMobileCommand?.(71,0,0,0,0,0);}else hint.textContent='Sauvegarde impossible : ton aventure reste ouverte.';};
- const checkpointReply=(event:Event):void=>{if(checkpoint&&!(event as CustomEvent).detail.accepted){checkpoint=false;hint.textContent='Attends la fin du déplacement, puis relance la démo.';}};
- const demoAction=():void=>{
-  if(latestMode==='menu')startDemo();
-  else if(latestMode==='map'&&!checkpoint){
-   if(isDemo)win.Module?._vcmiMobileCommand?.(112,0,0,0,0,0);
-   else{checkpoint=true;hint.textContent='Sauvegarde de ton aventure avant la démo…';win.Module?._vcmiMobileCommand?.(113,0,0,0,0,0);}
-  }
- };
- win.addEventListener('goonk-save-persisted',persisted);win.addEventListener('goonk-crossover-checkpoint',checkpointReply);
- tools.querySelector<HTMLButtonElement>('#crossover-demo')!.onclick=demoAction;win.addEventListener('goonk-crossover-demo',demoAction);
- win.addEventListener('goonk-state',observe);
- return ()=>{disposed=true;delete win.goonkCrossoverInstalled;win.removeEventListener('goonk-save-persisted',persisted);win.removeEventListener('goonk-crossover-checkpoint',checkpointReply);win.removeEventListener('goonk-crossover-demo',demoAction);win.removeEventListener('goonk-state',observe);closePanel();tools.remove();style.remove();};
+ const startDemo=():void=>{closeMenu();trial=true;isDemo=true;starting=false;selected=false;hint('Ouverture de la démo…');};
+ const persisted=(event:Event):void=>{const detail=(event as CustomEvent).detail;if(!checkpoint||!String(detail?.path).toLowerCase().endsWith('/avant-demo-starcraft.vsgm1'))return;checkpoint=false;if(detail.ok){startDemo();win.Module?._vcmiMobileCommand?.(71,0,0,0,0,0);}else hint('Sauvegarde impossible : ton aventure reste ouverte.');};
+ const checkpointReply=(event:Event):void=>{if(checkpoint&&!(event as CustomEvent).detail.accepted){checkpoint=false;hint('Attends la fin du déplacement, puis relance la démo.');}};
+ const demoAction=():void=>{if(!latestMode||latestMode==='menu')startDemo();else if(latestMode==='map'&&!checkpoint){if(isDemo){startDemo();win.Module?._vcmiMobileCommand?.(71,0,0,0,0,0);}else{checkpoint=true;hint('Sauvegarde de ton aventure avant la démo…');win.Module?._vcmiMobileCommand?.(113,0,0,0,0,0);}}};
+ const click=(event:Event):void=>{const button=(event.target as Element).closest?.<HTMLButtonElement>('button[data-crossover-action]');if(!button||button.disabled)return;event.preventDefault();event.stopImmediatePropagation();if(button.dataset.crossoverAction==='demo')demoAction();else{enabled=!enabled;command(0,enabled?1:0);toggle.textContent=`Combats en temps réel : ${enabled?'activés':'désactivés'}`;toggle.setAttribute('aria-pressed',String(enabled));}};
+ doc.addEventListener('click',click,true);win.addEventListener('goonk-mobile-mounted',mountControls);win.addEventListener('goonk-save-persisted',persisted);win.addEventListener('goonk-crossover-checkpoint',checkpointReply);win.addEventListener('goonk-crossover-demo',demoAction);win.addEventListener('goonk-state',observe);mountControls();
+ return()=>{disposed=true;delete win.goonkCrossoverInstalled;doc.removeEventListener('click',click,true);win.removeEventListener('goonk-mobile-mounted',mountControls);win.removeEventListener('goonk-save-persisted',persisted);win.removeEventListener('goonk-crossover-checkpoint',checkpointReply);win.removeEventListener('goonk-crossover-demo',demoAction);win.removeEventListener('goonk-state',observe);closePanel();if(settingsButton)doc.querySelector('#mobile-app .mobile-top')?.prepend(settingsButton);for(const node of [demo,menuDemo,toggle,mainStatus,menuStatus,style])node.remove();};
 }
