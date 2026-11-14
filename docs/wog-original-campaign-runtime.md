@@ -1,6 +1,6 @@
 # Port natif des campagnes originales : état réel
 
-Le port complet de la priorité 6 n’est pas terminé. Les quatre campagnes, leurs onze scénarios et Cave of Gerfrex restent désactivés. Les versions 0.4.170 à 0.4.178 raccordent progressivement l’hôte Cave, les formulaires et illustrations, une forme de combat scripté, les échanges de troupes, les visites d’objets, les minuteries, les textes de héros et les ressources. Chaque section distingue les contrôles natifs des quêtes et victoires originales encore à valider.
+Le port complet de la priorité 6 n’est pas terminé. Les quatre campagnes, leurs onze scénarios et Cave of Gerfrex restent désactivés. Les versions 0.4.170 à 0.4.179 raccordent progressivement l’hôte Cave, les formulaires et illustrations, une forme de combat scripté, les échanges de troupes, les visites d’objets, les minuteries, les textes de héros, les ressources et les clés de gardiens. Chaque section distingue les contrôles natifs des quêtes et victoires originales encore à valider.
 
 ## Ce qui est implémenté
 
@@ -143,3 +143,11 @@ Le rapprochement statique du receiver et des fonctions d’accès montre une éc
 Le paquet de campagne réplique la mutation d’une seule ressource et notifie le compteur natif. Il évite `SetResources`, qui plafonne l’ensemble des réserves et supprime leurs valeurs négatives. La sauvegarde garde son format 903. Les commandes `OW:D`, `A`, `K` et les autres branches ne sont pas encore raccordées ; aucune campagne originale n’est activée.
 
 Le contrôle privé fixe l’or à 12 345, prélève 2 000, lit et compare 10 345, puis vérifie le mithril à 37. Il lit également une valeur de bois de 1 000 000 017 et une valeur de minerai de -2, avant de rétablir ces deux réserves. Le chargement pendant un événement global ne répète pas le paiement ; le mithril reste présent aux tours suivants. Les tests des propriétés de héros, des cartes Goonk solo/en ligne, des sauvegardes, des rôles et d’un premier round de combat passent aussi. [Le relevé natif](../outputs/wog-priorities-0.4.147/campaign-runtime/native-resources-178.json) conserve les limites de cette preuve.
+
+## Clés et portes natives en 0.4.179
+
+`OW:K` lit, compare, accorde ou retire la clé d’une couleur pour un joueur. Le joueur `-1` désigne le contexte courant ; les couleurs admises sont 0 à 7 et les valeurs sont 0/1. La mutation utilise exactement le même ensemble de visites globales que les tentes natives. Les chemins sont invalidés après un changement afin qu’une porte déjà examinée adopte immédiatement le nouvel état. Les drapeaux sont répliqués et sauvegardés dans le format 903 existant.
+
+Le contrôle privé conserve deux villes d’une copie de la carte Goonk source, crée un terrain neutre de 72 × 72 et place les modèles d’origine de porte et de tente bleu foncé de zc4. Le héros ne peut pas entrer sur la case de la porte sans clé. Après l’octroi scripté, sa position réelle est lue en 19/18/0 au tour suivant. Après retrait, il reste à l’extérieur, en 20/19/0. Une visite ordinaire de la tente rend ensuite l’accès, sans nouveau don par script. Le drapeau de l’autre joueur reste nul. Le parcours complet passe aussi après rechargement du dialogue suspendu d’octroi.
+
+Les 727 tests réussissent (34 ignorés, aucun échec), la compilation WebAssembly et la vérification du site passent, ainsi que les cartes Goonk solo/en ligne, sauvegardes, rôles, tours et premier round de combat. [Le relevé natif](../outputs/wog-priorities-0.4.147/campaign-runtime/native-keys-179.json) précise la carte de contrôle et ses limites. Il ne constitue pas une victoire d’un scénario original. Les campagnes originales restent désactivées.

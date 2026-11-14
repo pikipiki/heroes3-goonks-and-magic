@@ -42,6 +42,15 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
  for(const auto & change:packet.changes.Vector())
  {
   const auto & kind=change["kind"].String();
+  if(kind=="playerKey")
+  {
+   const PlayerColor color(campaignInteger(change["player"]));const int key=campaignInteger(change["color"]);
+   if(!color.isValidPlayer()||key<0||key>=8||!change["visited"].isBool())throw std::runtime_error("Invalid original key mutation");
+   auto * player=gs.getPlayerState(color,false);if(!player)throw std::runtime_error("Original key owner missing");
+   if(change["visited"].Bool())player->visitedObjectsGlobal.insert({Obj::KEYMASTER,MapObjectSubID(key)});
+   else player->visitedObjectsGlobal.erase({Obj::KEYMASTER,MapObjectSubID(key)});
+   continue;
+  }
   if(kind=="playerResource")
   {
    const PlayerColor color(campaignInteger(change["player"]));

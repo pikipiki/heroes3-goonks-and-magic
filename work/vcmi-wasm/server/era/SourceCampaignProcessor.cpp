@@ -477,6 +477,14 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    for(std::size_t i=1;i<args.size();++i)require(args[i].access==Access::Write||args[i].access==Access::Compare,"player controller mutation not admitted");
    value(owner&&owner->isHuman()?0:1,args[1]);if(args.size()==3)value(!owner||owner->status!=EPlayerStatus::INGAME?1:0,args[2]);return Step::Continue;
   }
+  if(op.code=="K")
+  {
+   arity(op,3);require(owner!=nullptr&&args[1].access==Access::Read,"key needs an owner and a color value");
+   const int color=number(args[1]);require(color>=0&&color<8,"key color outside 0..7");
+   const int changed=value(owner->visitedObjectsGlobal.count({Obj::KEYMASTER,MapObjectSubID(color)})?1:0,args[2]);
+   if(!query(op)){require(changed==0||changed==1,"key state must be 0 or 1");auto change=mutation("playerKey",ObjectInstanceID::NONE);change["player"].Integer()=who.getNum();change["color"].Integer()=color;change["visited"].Bool()=changed!=0;persist(change);}
+   return Step::Continue;
+  }
   require(op.code=="R","unsupported player operation "+op.code);arity(op,3);require(owner!=nullptr,"resource owner missing");require(args[1].access==Access::Read,"resource needs a type value");
   const int source=number(args[1]);require(source>=0&&source<=7,"resource outside 0..7");
   GameResID resource(source);

@@ -128,9 +128,14 @@ void ApplyClientNetPackVisitor::visitSetResources(SetResources & pack)
 void ApplyClientNetPackVisitor::visitSourceCampaignChange(SourceCampaignChange & pack)
 {
  std::set<PlayerColor> changed;
+ bool pathsChanged=false;
  for(const auto & item:pack.changes.Vector())
+ {
   if(item["kind"].String()=="playerResource")changed.insert(PlayerColor(item["player"].Integer()));
+  if(item["kind"].String()=="playerKey")pathsChanged=true;
+ }
  for(const auto color:changed)callInterfaceIfPresent(cl,color,&IGameEventsReceiver::receivedResource);
+ if(pathsChanged)callAllInterfaces(cl,&CGameInterface::invalidatePaths);
 }
 
 void ApplyClientNetPackVisitor::visitSetHeroExperience(SetHeroExperience & pack)

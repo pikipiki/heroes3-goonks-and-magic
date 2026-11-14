@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.179",
+  "engineSha256": "bcf92727cf3943aac8161c142e5b2a31ea07553f437fbeee91fb0b50b921cf1b",
+  "originalCampaignsEnabled": false,
+  "scope": "Dormant native OW:K host. Controlled private 72x72 map derived from the authored Goonk003 map, with original zc4 dark-blue gate/tent templates; no original quest or campaign victory.",
+  "sourceContract": "https://h3era.github.io/ERM-Help/Rec/OW.htm",
+  "controls": {
+    "authoredGoonk003Sha256": "7d4505207d2b0c3203b11a6592ab7d8587377e415a33fa0130bb6113193c345b",
+    "convertedZc4TemplateArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
+    "humanPlayer": 0,
+    "otherPlayer": 1,
+    "keyColor": 3,
+    "gateVisitablePosition": [
+      19,
+      18,
+      0
+    ],
+    "grantPile": [
+      19,
+      20,
+      0
+    ],
+    "revokePile": [
+      21,
+      20,
+      0
+    ],
+    "nativeTent": [
+      24,
+      20,
+      0
+    ],
+    "pendingSaveVersion": 903,
+    "pendingSaveSha256": "f35e560bddae853248c92edb2e6a4528b6c9cc35d6ec29390da6f92d099729a1"
+  },
+  "nativeChecks": [
+    {
+      "case": "keys-fresh-r6",
+      "passed": true,
+      "resultSha256": "8e3b934fb6bd752ea591a2997ffca9168e01a57b9e13eeab340f68234e1a17a2",
+      "scope": "Private Goonk-derived map with original gate/tent templates: native blocked and open tile, scripted grant/revoke, isolated player flags, save/reload and native tent interoperability. No original quest or victory.",
+      "fixtureSha256": "e2febe4203eaacb5bc7fd929a00866689f16afdd76e7db1eba5c66bebc3eae4f",
+      "mapSha256": "3a552bb8003bc8dac0205ce5bbb25ecabcda9703276f2f626e868f18bf5ed413",
+      "loadedPending": false,
+      "errors": [],
+      "firstBlocked": {
+        "day": 1,
+        "player": 0,
+        "lines": [
+          "\"No one told me of your coming,\" says the Border Guard.  \"I cannot let you pass.  Perhaps you should first seek a Keymaster's Tent.\""
+        ]
+      },
+      "granted": {
+        "day": 1,
+        "player": 0,
+        "lines": [
+          "Native key granted: 1/0"
+        ]
+      },
+      "openedGate": {
+        "day": 2,
+        "player": 0,
+        "lines": [
+          "Native key position: 19/18/0; key: 1/0"
+        ]
+      },
+      "revokedBlocked": {
+        "day": 2,
+        "player": 0,
+        "lines": [
+          "\"No one told me of your coming,\" says the Border Guard.  \"I cannot let you pass.  Perhaps you should first seek a Keymaster's Tent.\""
+        ]
+      },
+      "outside": {
+        "day": 3,
+        "player": 0,
+        "lines": [
+          "Native key position: 20/19/0; key: 0/0"
+        ]
+      },
+      "nativeTent": {
+        "day": 3,
+        "player": 0,
+        "lines": [
+          "The caretaker of this Keymaster's Tent seems happy to see you.  \"Ah, finally someone worthy,\" he says.  \"I shall send word immediately to the Border Guard that you be allowed to pass.\""
+        ]
+      },
+      "restored": {
+        "day": 4,
+        "player": 0,
+        "lines": [
+          "Native key position: 19/18/0; key: 1/0"
+        ]
+      }
+    },
+    {
+      "case": "keys-reload-r6",
+      "passed": true,
+      "resultSha256": "2ffd9d5a4187d656b09611e0e099c12e892fbfcbdcf4ff65a56f68099ed9e4be",
+      "scope": "Private Goonk-derived map with original gate/tent templates: native blocked and open tile, scripted grant/revoke, isolated player flags, save/reload and native tent interoperability. No original quest or victory.",
+      "fixtureSha256": "e2febe4203eaacb5bc7fd929a00866689f16afdd76e7db1eba5c66bebc3eae4f",
+      "mapSha256": "3a552bb8003bc8dac0205ce5bbb25ecabcda9703276f2f626e868f18bf5ed413",
+      "loadedPending": true,
+      "errors": [],
+      "granted": {
+        "day": 1,
+        "player": 0,
+        "lines": [
+          "Native key granted: 1/0"
+        ]
+      },
+      "openedGate": {
+        "day": 2,
+        "player": 0,
+        "lines": [
+          "Native key position: 19/18/0; key: 1/0"
+        ]
+      },
+      "revokedBlocked": {
+        "day": 2,
+        "player": 0,
+        "lines": [
+          "\"No one told me of your coming,\" says the Border Guard.  \"I cannot let you pass.  Perhaps you should first seek a Keymaster's Tent.\""
+        ]
+      },
+      "outside": {
+        "day": 3,
+        "player": 0,
+        "lines": [
+          "Native key position: 20/19/0; key: 0/0"
+        ]
+      },
+      "nativeTent": {
+        "day": 3,
+        "player": 0,
+        "lines": [
+          "The caretaker of this Keymaster's Tent seems happy to see you.  \"Ah, finally someone worthy,\" he says.  \"I shall send word immediately to the Border Guard that you be allowed to pass.\""
+        ]
+      },
+      "restored": {
+        "day": 4,
+        "player": 0,
+        "lines": [
+          "Native key position: 19/18/0; key: 1/0"
+        ]
+      }
+    },
+    {
+      "case": "old-resources",
+      "passed": true,
+      "resultSha256": "74e50f9a66534cb7bcc8f41f47869808e986ad8e58868daf0231f5d965365533",
+      "scope": "Private native scheduler: initialization/timer/global suspension, live D0 mask change, ordered source/global rewards, actual resumed turn starts and days2/3; no original quest or victory.",
+      "fixtureSha256": "821e417f685eb6e5b6ac6e2285d347906886c768f35083dd0a05197ce4318836",
+      "mapSha256": null,
+      "loadedPending": true,
+      "errors": []
+    },
+    {
+      "case": "production",
+      "passed": true,
+      "resultSha256": "b7ea684aafb9842e80e39324fcb713569297f6c95177f1800a56d1d04ddd605c",
+      "scope": "Actual production manifest/assets, both adventure maps, native save/reload, names/roles and real solo/hotseat turn transitions plus003 BattleStart policy parsing; no private overlay or installed asset write.",
+      "fixtureSha256": null,
+      "mapSha256": null,
+      "loadedPending": null,
+      "errors": []
+    }
+  ],
+  "implementation": {
+    "sharedNativeKeyFlag": "PlayerState.visitedObjectsGlobal {Obj::KEYMASTER, color}",
+    "pathInvalidation": "All client interfaces after a source key mutation",
+    "ordinaryNativeTentWritesSameFlag": true
+  },
+  "checks": {
+    "ninjaHtml5": true,
+    "unitTests": {
+      "total": 761,
+      "passed": 727,
+      "skipped": 34,
+      "failed": 0
+    },
+    "siteBuildAndVerification": true
+  },
+  "limitations": [
+    "Native gate/tent control covers key color3; bounds0..7 and the other IDs use the same native field mapping.",
+    "OW:D/A and other unsupported player operations remain incomplete.",
+    "Original quest, scenario victories and campaign carryover remain unvalidated."
+  ]
+}
