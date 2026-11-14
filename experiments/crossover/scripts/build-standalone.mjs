@@ -9,7 +9,8 @@ fs.rmSync(output,{recursive:true,force:true});fs.cpSync(input,output,{recursive:
 fs.cpSync(input+'/crossover',output,{recursive:true});fs.rmSync(output+'/crossover',{recursive:true,force:true});
 const base=fs.readFileSync(output+'/game.html','utf8').match(/http-equiv="Content-Security-Policy" content="([^"]+)"/)[1];
 const scripts=base.split(';')[0].replace(/https?:\/\/[^\s;]+/g,'')+" 'self'";
-const policy="default-src 'self'; "+scripts+"; worker-src 'self' blob:; connect-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'";
+// OPFS lazy assets read app-created blob URLs through synchronous XHR.
+const policy="default-src 'self'; "+scripts+"; worker-src 'self' blob:; connect-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'";
 for(const file of ['game.html','storage.html']){
  const filename=output+'/'+file;fs.writeFileSync(filename,fs.readFileSync(filename,'utf8').replace(/http-equiv="Content-Security-Policy" content="[^"]+"/,`http-equiv="Content-Security-Policy" content="${policy}"`));
 }

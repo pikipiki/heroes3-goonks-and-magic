@@ -28,7 +28,7 @@ ClamAV a analysé le ZIP complet et les trois MPQ extraits : **4 fichiers, zéro
 
 Le navigateur télécharge uniquement les morceaux de même origine, vérifie chaque taille/SHA-256 puis l’archive complète avant stockage. Les données conservées sont revérifiées au chargement. L’ancien IndexedDB StarCraft est supprimé ; les sauvegardes Heroes restent séparées. Un morceau téléchargé altéré bloque le lancement. Une archive endommagée dans le cache est rejetée puis téléchargée à nouveau automatiquement. Aucun fichier de jeu n’est téléversé.
 
-Le bundle Netlify séparé restreint les connexions à sa propre origine et interdit caméra, microphone et géolocalisation. Le manifeste est revalidé à chaque chargement ; les morceaux sont adressés par empreinte. Les éléments de diagnostic restent dans les tests et ne sont pas ajoutés au produit.
+Le bundle Netlify séparé restreint les connexions réseau à sa propre origine et autorise les URL blob internes pour les lectures OPFS de Heroes ; il interdit caméra, microphone et géolocalisation. Le démarrage réel avec OPFS a été vérifié dans le navigateur, jusqu’au menu VCMI et aux échanges avec StarCraft. Le manifeste est revalidé à chaque chargement ; les morceaux sont adressés par empreinte. Les éléments de diagnostic restent dans les tests et ne sont pas ajoutés au produit.
 
 Les tests Chromium vérifient le téléchargement automatique sur téléphone, le cache après rechargement, la suppression effective de l’ancienne base et le refus d’un morceau modifié. Une vraie partie a aussi été exécutée avec ces MPQ Blizzard : les deux moteurs démarrent, les événements traversent la passerelle, un SCV est produit, déplacé puis une perte réelle est observée. Le transfert de cette perte vers une armée VCMI reste non implémenté.
 
