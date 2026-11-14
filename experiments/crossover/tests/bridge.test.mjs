@@ -50,3 +50,16 @@ test('registration is explicit and ambiguous replacements are refused', () => {
   assert.throws(() => bridge.request(request()), /Unknown target/);
   bridge.dispose();
 });
+test('StarCraft preparation signal requires a real observed Heroes menu and invokes the native command once',()=>{
+  const target=new EventTarget(),calls=[];
+  target.Module={_vcmiMobileCommand:(...args)=>calls.push(args)};
+  const observer=new HeroesObserver();observer.attach(target);
+  const sample={frame:24,checksum:1234,outcome:0};
+  assert.throws(()=>observer.prepareFromStarCraft(sample),/menu Heroes/);
+  target.dispatchEvent(new CustomEvent('goonk-state',{detail:{mode:'menu'}}));
+  assert.throws(()=>observer.prepareFromStarCraft({...sample,frame:0}),/invalide/);
+  assert.equal(observer.prepareFromStarCraft(sample),true);
+  assert.equal(observer.prepareFromStarCraft(sample),false);
+  assert.deepEqual(calls,[[20,1,0,0,0,0]]);
+  observer.dispose();
+});

@@ -21,6 +21,7 @@ try {
   assert.equal(await page.getByRole('link',{name:'Jouer à StarCraft'}).getAttribute('href'),'./starcraft/index.html');
   assert.equal(await page.getByRole('link',{name:'Jouer à Heroes Goonk'}).getAttribute('href'),'../game.html');
   assert.equal(await page.locator('iframe').count(),0);
+  assert.equal(await page.locator('#prepare-heroes').isDisabled(),true);
   for(const viewport of [{width:390,height:844},{width:844,height:390},{width:1280,height:900}]){
     await page.setViewportSize(viewport);
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
@@ -37,6 +38,7 @@ try {
   assert(frame);
   const engine=await frame.evaluate(()=>({wasm:!!window.Module?._vcmiMobileCommand,mode:window.goonkMobileState?.mode}));
   assert.equal(engine.wasm,true);
+  assert.equal(await page.locator('#prepare-heroes').isDisabled(),true,'No StarCraft simulation: reverse command remains disabled');
   result.cases.push({name:'Actual native WASM event observed in same-origin iframe',detail:first,engine});
   await frame.waitForFunction(()=>window.goonkMobileState?.mode==='menu',null,{timeout:60000});
   await frame.evaluate(()=>window.Module._vcmiMobileCommand(20,1,0,0,0,0));

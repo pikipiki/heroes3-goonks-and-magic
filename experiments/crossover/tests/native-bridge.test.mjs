@@ -47,3 +47,22 @@ test('replacing a bridge closes the previous lifetime and removes stale handlers
   try{assert.throws(()=>old.sample(),/fermé/);assert.deepEqual(current.sample(),{frame:24,checksum:123456,outcome:0});}
   finally{current.close();}
 });
+test('native census returns typed copied data and rejects malformed native records',()=>{
+  const f=fixture();
+  let state={frame:24,view:{x:0,y:0,width:800,height:600},units:[{id:1,type:7,owner:0,completed:true,hp:60,x:320,y:240}]};
+  f.exports.openbw_crossover_census=()=>{
+    const bytes=new TextEncoder().encode(JSON.stringify(state)+'\0');new Uint8Array(f.memory.buffer,256,bytes.length).set(bytes);return 256;
+  };
+  const api=installNativeBridge(f.exports,f.memory,f.target);
+  try{
+    const snapshot=api.census();assert.deepEqual(snapshot,state);
+    snapshot.units[0].hp=0;assert.equal(api.census().units[0].hp,60);
+    const original=state;
+    state={...state,units:[{...state.units[0],id:2}]};
+    assert.deepEqual(api.sample().cohort,{initial:1,present:0,missing:1,missingIds:[1]},'A newly created unit does not conceal an initial loss');
+    state=original;
+    state={...state,units:[{...state.units[0],owner:9}]};assert.throws(()=>api.census(),/invalide/);
+    state={...original,view:{width:800,height:600}};assert.throws(()=>api.census(),/invalide/);
+    state=null;assert.throws(()=>api.census(),/invalide/);
+  }finally{api.close();}
+});

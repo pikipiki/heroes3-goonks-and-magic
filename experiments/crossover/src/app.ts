@@ -5,6 +5,9 @@ const detail = document.querySelector<HTMLElement>('#detail')!;
 const scStatus = document.querySelector<HTMLElement>('#sc-status')!;
 const scDetail = document.querySelector<HTMLElement>('#sc-detail')!;
 const transfer = document.querySelector<HTMLElement>('#transfer')!;
+const prepare = document.querySelector<HTMLButtonElement>('#prepare-heroes')!;
+const prepareResult = document.querySelector<HTMLElement>('#prepare-result')!;
+let requestPreparation: (() => void) | undefined;
 const launch = document.querySelector<HTMLButtonElement>('#observe')!;
 const holder = document.querySelector<HTMLElement>('#engine')!;
 let bridge: ReadonlyBridge | undefined;
@@ -17,12 +20,17 @@ function stop(): void {
   detail.textContent = 'Les armées restent gérées par VCMI.';
   scStatus.textContent = 'StarCraft arrêté.'; scDetail.textContent = '';
   transfer.textContent = 'Aucun échange en cours.';
-  launch.disabled = false;
+  launch.disabled = false; prepare.disabled = true;
+  requestPreparation = undefined; prepareResult.textContent = '';
 }
 launch.addEventListener('click', () => {
   stop(); launch.disabled = true;
   const session = crypto.randomUUID();
   bridge = new ReadonlyBridge(session);
+  let preparationRequested = false;
+  const updatePreparation = (): void => {
+    prepare.disabled = preparationRequested || heroes.status().observation?.mode !== 'menu' || !(starcraft.status().native?.frame);
+  };
   let pending: HeroesObservation | undefined, lastSent = 0, transferSequence = 0;
   const forward = (): void => {
     if (!pending || pending.sequence <= lastSent || starcraft.status().state !== 'observed') return;
@@ -38,7 +46,11 @@ launch.addEventListener('click', () => {
   const starcraft = new StarCraftObserver(snapshot => {
     scStatus.textContent = snapshot.reason;
     scDetail.textContent = `Frame ${snapshot.native!.frame} · empreinte ${snapshot.native!.checksum} · résultat ${snapshot.native!.outcome} (0 : partie en cours)`;
-    forward();
+    if (snapshot.native!.cohort) {
+      const cohort = snapshot.native!.cohort;
+      scDetail.textContent += ` · cohorte initiale : ${cohort.present}/${cohort.initial} présentes, ${cohort.missing} absente(s)`;
+    }
+    forward(); updatePreparation();
   });
   const heroes = new HeroesObserver(snapshot => {
     status.textContent = snapshot.reason;
@@ -46,8 +58,18 @@ launch.addEventListener('click', () => {
     detail.textContent = `État ${observation.sequence} · mode ${observation.mode} · ${new Date(observation.receivedAt).toLocaleTimeString('fr-FR')}`;
     // Publish meaningful mode transitions, not VCMI's repeated heartbeat snapshots.
     if (pending?.mode !== observation.mode) pending = {version: 1, session, sequence: ++transferSequence, mode: observation.mode};
-    forward();
+    forward(); updatePreparation();
+    if (preparationRequested && observation.mode === 'lobby') prepareResult.textContent = 'VCMI a confirmé l’ouverture de la préparation de partie.';
   });
+  requestPreparation = (): void => {
+    try {
+      const native = starcraft.status().native;
+      if (!native) throw Error('StarCraft doit démarrer avant l’envoi.');
+      preparationRequested = heroes.prepareFromStarCraft(native);
+      prepareResult.textContent = `Signal StarCraft frame ${native.frame} envoyé au moteur VCMI…`;
+      updatePreparation();
+    } catch (e) { prepareResult.textContent = String(e); }
+  };
   bridge.register(heroes); bridge.register(starcraft);
   status.textContent = 'Chargement de Heroes Goonk…';
   detail.textContent = 'En attente du premier événement natif.';
@@ -69,3 +91,5 @@ launch.addEventListener('click', () => {
 });
 document.querySelector('#stop')!.addEventListener('click', stop);
 window.addEventListener('pagehide', stop);
+
+prepare.addEventListener('click', () => requestPreparation?.());

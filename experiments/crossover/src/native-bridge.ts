@@ -1,13 +1,18 @@
 /** Stable product API over the real OpenBW exports, installed only after native init. */
-export type NativeSample = {frame: number; checksum: number; outcome: number};
+export type NativeUnit = {id: number; type: number; owner: number; completed: boolean; hp: number; x: number; y: number};
+export type NativeCensus = {frame: number; view: {x: number; y: number; width: number; height: number}; units: NativeUnit[]};
+export type NativeCohort = {initial: number; present: number; missing: number; missingIds: number[]};
+export type NativeSample = {frame: number; checksum: number; outcome: number; cohort?: NativeCohort};
 export type HeroesObservation = {version: 1; session: string; sequence: number; mode: string};
 export type NativeBridge = {
   sample(): NativeSample;
+  census(): NativeCensus;
   receiveHeroes(observation: HeroesObservation): NativeSample;
   close(): void;
 };
 export type CrossoverWindow = Window & {openbwCrossover?: NativeBridge};
 type NativeExports = {
+  openbw_crossover_census?(): number;
   openbw_frame(): number; openbw_checksum(): number; openbw_outcome(): number;
   openbw_in_ptr(length: number): number; openbw_post_message(length: number): void;
 };
@@ -22,9 +27,30 @@ export function validateHeroes(value: unknown): asserts value is HeroesObservati
 export function installNativeBridge(x: NativeExports, memory: WebAssembly.Memory, target: CrossoverWindow = window): NativeBridge {
   let closed = false, session: string | undefined, lastSequence = 0;
   target.openbwCrossover?.close();
+  const census = (): NativeCensus => {
+  if (closed || !x.openbw_crossover_census) throw Error('Recensement natif indisponible.');
+  const pointer = x.openbw_crossover_census(), bytes = new Uint8Array(memory.buffer);
+  let end = pointer;
+  while (end < bytes.length && end - pointer < 2 * 1024 * 1024 && bytes[end]) end++;
+  if (end === bytes.length || bytes[end] !== 0) throw Error('Recensement natif invalide.');
+  const value = JSON.parse(new TextDecoder().decode(bytes.subarray(pointer, end))) as NativeCensus | null;
+  if (!value || !Number.isSafeInteger(value.frame) || value.frame < 0 || !value.view ||
+      !['x', 'y', 'width', 'height'].every(key => Number.isSafeInteger(value.view[key as keyof NativeCensus['view']])) || value.view.width < 1 || value.view.height < 1 ||
+      !Array.isArray(value.units) || value.units.length > 10000 || value.units.some(unit =>
+        !unit || !['id', 'type', 'owner', 'hp', 'x', 'y'].every(key => Number.isSafeInteger(unit[key as keyof NativeUnit])) ||
+        typeof unit.completed !== 'boolean' || unit.id < 1 || unit.owner < 0 || unit.owner > 7)) throw Error('Recensement natif invalide.');
+  return value;
+};
+  const initialCohort = x.openbw_crossover_census ? new Set(census().units.filter(unit => unit.hp > 0).map(unit => unit.id)) : undefined;
   const sample = (): NativeSample => {
     if (closed) throw Error('Moteur StarCraft fermé.');
-    return {frame: x.openbw_frame(), checksum: x.openbw_checksum() >>> 0, outcome: x.openbw_outcome()};
+    const state: NativeSample = {frame: x.openbw_frame(), checksum: x.openbw_checksum() >>> 0, outcome: x.openbw_outcome()};
+    if (initialCohort) {
+      const presentIds = new Set(census().units.filter(unit => unit.hp > 0).map(unit => unit.id));
+      const missingIds = [...initialCohort].filter(id => !presentIds.has(id));
+      state.cohort = {initial: initialCohort.size, present: initialCohort.size - missingIds.length, missing: missingIds.length, missingIds};
+    }
+    return state;
   };
   const publish = (kind: string, extra: Record<string, unknown> = {}): NativeSample => {
     const state = sample();
@@ -33,6 +59,7 @@ export function installNativeBridge(x: NativeExports, memory: WebAssembly.Memory
   };
   const api: NativeBridge = {
     sample,
+    census,
     receiveHeroes(input) {
       validateHeroes(input);
       if (closed) throw Error('Moteur StarCraft fermé.');
