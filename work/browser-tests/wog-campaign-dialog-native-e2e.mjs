@@ -1,5 +1,6 @@
-/** Private transport proof. Actual campaign IF instructions are embedded at
- * Cave's maze goal; no original scenario playthrough or rewards are claimed. */
+/** Private instruction proof at Cave's maze goal. Dialog modes isolate IF;
+ * battle mode runs an actual HE:T with controlled context and hero army.
+ * No full original quest, scenario or campaign victory is claimed. */
 import {chromium} from 'playwright-core';import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import zlib from 'node:zlib';import assert from 'node:assert/strict';
 import {compileNativeCampaign} from '../../scripts/era-bridge/campaigns/native-compiler.mjs';
 import {silenceTestAudio} from './silent-audio.mjs';
@@ -7,7 +8,7 @@ const mode=process.env.CAMPAIGN_DIALOG_CASE||'input',origin=process.env.GOONK_TE
 const n=value=>({kind:'number',access:'read',number:value}),v=(space,index)=>({kind:'variable',access:'read',space,index:n(index)}),literal=text=>({kind:'string',access:'read',text});
 const set=(target,value)=>({receiver:'VR',selectors:[target],conditions:[],operations:[{code:'S',args:[typeof value==='number'?n(value):literal(value)]}]}),message=text=>({receiver:'IF',selectors:[],conditions:[],operations:[{code:'M',args:[literal(text)]}]});
 const campaign=compileNativeCampaign('mod/wake-of-gods/Mods/maps/content/maps/zc4.vcmp'),scenario=campaign.scenarios.find(s=>s.member==='wog_camp2a.vmap');
-const commands=[...scenario.program.initializers,...scenario.program.blocks.flatMap(b=>b.commands)];let initializers=[],fixtureCommands=[],expected;
+const commands=[...scenario.program.initializers,...scenario.program.blocks.flatMap(b=>b.commands)];let initializers=[],fixtureCommands=[],expected,sourceArchiveSha256=campaign.sourceArchiveSha256;
 if(mode==='input'){
  const riddle=scenario.program.blocks.find(b=>b.receiver==='FU'&&b.selectors[0]?.number===31);assert(riddle);
  initializers=scenario.program.initializers.filter(c=>c.receiver==='VR'&&c.selectors[0]?.space==='z'&&[311,312,314].includes(c.selectors[0].index.number));assert.equal(initializers.length,3);
@@ -23,8 +24,13 @@ if(mode==='input'){
 }else if(mode==='pictures'){
  const command=commands.find(c=>c.receiver==='IF'&&c.operations.some(o=>o.code==='Q'&&o.args.at(-2)?.number===7));assert(command);
  fixtureCommands=[set(v('y',1),6),set(v('y',2),7),set(v('y',5),3),set(v('z',161),'First artifact'),set(v('z',162),'Second artifact'),command,message('Native picture answer: %F162')];expected=/Native picture answer: 0/;
+}else if(mode==='battle'){
+ const archive=compileNativeCampaign('mod/wake-of-gods/Mods/maps/content/maps/zc1.vcmp');sourceArchiveSha256=archive.sourceArchiveSha256;const source=archive.scenarios.find(s=>s.member==='z_-~-_01e.vmap');
+ const battle=source.program.blocks.flatMap(b=>b.commands).find(c=>c.receiver==='HE'&&c.selectors[0]?.number===-1&&c.operations.some(o=>o.code==='T'&&o.args[0]?.number===26));assert(battle);
+ const army=(slot,type,count)=>({receiver:'HE',selectors:[n(-1)],conditions:[],operations:[{code:'C',args:[n(0),n(slot),n(type),n(count)]}]});
+ initializers=[set(v('v',500),2)];fixtureCommands=[message('Begin the native scripted battle.'),army(0,process.env.CAMPAIGN_BATTLE_LOSE?84:83,process.env.CAMPAIGN_BATTLE_LOSE?1:100),...Array.from({length:6},(_,i)=>army(i+1,-1,0)),battle,message('Native scripted battle completed: %F1')];expected=process.env.CAMPAIGN_BATTLE_LOSE?/Native scripted battle completed: 0/:/Native scripted battle completed: 1/;
 }else throw Error('Unknown dialog fixture');
-const fixture={mode,sourceArchiveSha256:campaign.sourceArchiveSha256,initializers,commands:fixtureCommands,scope:'Campaign dialog instructions only; native reward/combat actions removed from the riddle; explicit display context for isolated choice forms.'};
+const fixture={mode,sourceArchiveSha256,initializers,commands:fixtureCommands,scope:mode==='battle'?'Actual source HE-1:T26/27/0/7/10 and condition v500>1, with private hero army and v500 context. No original quest/campaign victory.':'Campaign dialog instructions only; native reward/combat actions removed from the riddle; explicit display context for isolated choice forms.'};
 fixture.sha256=crypto.createHash('sha256').update(JSON.stringify(fixture)).digest('hex');fs.writeFileSync(path.join(out,'fixture.json'),JSON.stringify(fixture,null,2));
 let bytes=fs.readFileSync('mod/wake-of-gods/Mods/maps/content/maps/Cave of Gerfrex.h3m');assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),'3d7dbf2835db47991ee9dad4f7cdef3dde93f98086670594bf21668d2c033c50');
 const raw=zlib.gunzipSync(bytes),marker=Buffer.from([11,26,0,15,1,0,0,0,0,0,0,0,94,42,153,225,1,106,1,7,0,0,0]),at=raw.indexOf(marker);assert.equal(at,62486);raw[at]=16;raw[at+1]=10;bytes=zlib.gzipSync(raw); // Hero's visitable position15/10, directly below the real goal event.
@@ -61,6 +67,37 @@ try{
   await page.evaluate(({x,y})=>Module._vcmiMobilePointer(x,y,5),{x:Math.round(mini.rect.x+15*mini.rect.w/36),y:Math.round(mini.rect.y+9*mini.rect.h/36)});await page.waitForTimeout(200);const view=(await state()).mapOverview.view;
   await page.evaluate(({x,y})=>Module._vcmiMobilePointer(x,y,1),{x:Math.round(view.x+view.w/2),y:Math.round(view.y+view.h/2)});await wait(()=>goonkMobileState.hasPath);await cmd(2);
  }
+ if(process.env.CAMPAIGN_AFTER_BATTLE_SAVE){
+  await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn&&!goonkMobileState.campaignPending);const before=await state();await cmd(3);
+  for(let step=0;step<900;step++){const s=await state();if(s.mode==='dialog')await cmd(1);else if(s.mode==='map'&&s.turn&&s.day>before.day)break;await page.waitForTimeout(100);}
+  const after=await state();assert.equal(after.mode,'map');assert(after.turn&&after.day>before.day&&!after.campaignPending);assert.deepEqual(errors,[]);
+  fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,mode,scope:'Native post-battle save reload and real next turn; completed source battle is not replayed.',fixtureSha256:fixture.sha256,engine,before,after,errors},null,2));
+ }else if(mode==='battle'){
+  let originalEvents;
+  const eventNames=()=>new Set(fs.readFileSync(path.join(out,'pending-dialog.vsgm1')).toString('latin1').match(/\bevent_\d+/g)||[]);
+  for(let n=0;n<8;n++){await wait(()=>['battle','dialog'].includes(goonkMobileState.mode),null,60000);if((await state()).mode==='battle')break;if(!originalEvents){await savePending();originalEvents=eventNames();}await cmd(1);await page.waitForTimeout(200);}
+  await wait(()=>goonkMobileState.mode==='battle',null,60000);const battle=await state();assert(battle.campaignPending);assert(!battle.autosaveAllowed);assert.equal(await page.locator('.dialog-presentation').isVisible(),false,'Battle replaces the previous source message');
+  assert(battle.battleUnits.some(u=>u.enemy&&u.key==='core:crusader'&&u.count===10),'Original source7 defenders are present');await page.screenshot({path:path.join(out,'native-scripted-battle.png')});
+  await cmd(15);if(battle.canEndTactics)await cmd(35);
+  let result;const answeredWindows=new Set();
+  for(let step=0;step<1500;step++){
+   const s=await state();if(step%20===0)fs.writeFileSync(path.join(out,'progress.json'),JSON.stringify(s,null,2));if(s.mode==='dialog'&&expected.test(JSON.stringify(s.dialogPresentation))){result=s;break;}
+   if(s.mode==='dialog'){
+    const id=s.dialogPresentation?.queryId,token=id>=0?'query:'+id:'window:'+s.windowToken+':'+JSON.stringify(s.dialogPresentation?.lines);
+    if(answeredWindows.has(token)){await page.waitForTimeout(100);continue;}answeredWindows.add(token);
+    const choice=s.dialogPresentation?.choices?.find(c=>c.selectable);
+    if(choice?.rect)await page.evaluate(r=>Module._vcmiMobilePointer(Math.round(r.x+r.w/2),Math.round(r.y+r.h/2),1),choice.rect);
+    await cmd(1);
+   }else if(s.mode==='battle'){if(s.canEndTactics)await cmd(35);else if(!s.autoCombat&&s.canAutoCombat)await cmd(44,1);}
+   await page.waitForTimeout(100);
+  }
+  assert(result,'VM resumes with the native battle outcome');assert.deepEqual(errors,[]);await page.screenshot({path:path.join(out,'native-battle-continuation.png')});
+  await savePending();await cmd(1);
+  for(let step=0;step<30;step++){const s=await state();if(s.mode==='map'&&!s.campaignPending)break;if(s.mode==='dialog')await cmd(1);await page.waitForTimeout(100);}
+  await wait(()=>goonkMobileState.mode==='map'&&!goonkMobileState.campaignPending);const after=await state();await savePending();
+  const leftoverEvents=[...eventNames()].filter(name=>!originalEvents.has(name));assert.deepEqual(leftoverEvents,[],'Temporary battle carrier is absent from the real post-battle save');
+  fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,mode,scope:fixture.scope,fixtureSha256:fixture.sha256,sourceArchiveSha256,engine,battle,result,after,temporaryEventAbsentFromSave:true,errors},null,2));
+ }else{
  for(let n=0;n<8;n++){await wait(()=>goonkMobileState.mode==='dialog',null,60000);const s=await state();if(s.dialogPresentation?.scriptDialog)break;await cmd(1);await page.waitForTimeout(200);}
  await wait(()=>!!goonkMobileState.dialogPresentation?.scriptDialog);const pending=await state();assert.equal(pending.dialogKind,'source-campaign');assert(pending.autosaveAllowed);await savePending();
  if(process.env.CAMPAIGN_EXPECT_SELECTION!==undefined){
@@ -81,4 +118,5 @@ try{
  await page.locator('[data-dialog-confirm]').tap();await wait(pattern=>goonkMobileState.mode==='dialog'&&new RegExp(pattern,'i').test(JSON.stringify(goonkMobileState.dialogPresentation)),expected.source);
  const result=await state();assert.deepEqual(errors,[]);await page.screenshot({path:path.join(out,'native-dialog-result.png')});
  fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,mode,fixtureSha256:fixture.sha256,sourceArchiveSha256:fixture.sourceArchiveSha256,scope:fixture.scope,controls:{originalMapHeroPosition:[15,10,0],privateProgramReplacement:'Maze goal commands and required literal definitions only',nativeRewardsAndBattlesValidated:false},loadedPendingQuery:!!process.env.CAMPAIGN_LOAD_SAVE,engine,pending,result,errors},null,2));
+ }
 }catch(error){console.error(error);fs.writeFileSync(path.join(out,'failure-state.json'),JSON.stringify(await state().catch(()=>null),null,2));await page.screenshot({path:path.join(out,'failure.png')}).catch(()=>{});process.exitCode=1;}finally{await browser.close();}

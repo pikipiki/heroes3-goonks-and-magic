@@ -3,6 +3,7 @@
 #include "SourceCampaignProcessor.h"
 #include "../CGameHandler.h"
 #include "../queries/CQuery.h"
+#include "../queries/BattleQueries.h"
 #include "../queries/QueriesProcessor.h"
 #include "../queries/VisitQueries.h"
 #include "../../lib/era/EraCampaignExecutor.h"
@@ -31,12 +32,30 @@
 #include "../../lib/modding/IdentifierStorage.h"
 #include "../../lib/modding/ModScope.h"
 #include "../../lib/bonuses/Bonus.h"
+#include "../../lib/battle/BattleLayout.h"
 
 using namespace era_campaign;
 namespace
 {
 void require(bool test,const std::string & message){if(!test)throw std::runtime_error("Original campaign: "+message);}
 void arity(const Operation & op,std::size_t n){require(op.args.size()==n,"invalid "+op.code+" arity");}
+// Keeps the original map visit below a scripted battle. Its completion must
+// resume the VM before the visited object's ordinary reward is processed.
+class CampaignBattleQuery final:public CQuery
+{
+ std::function<void(bool)> continuation;
+ bool won=false;
+public:
+ CampaignBattleQuery(CGameHandler & game,PlayerColor player,std::function<void(bool)> done):CQuery(&game),continuation(std::move(done)){addPlayer(player);}
+ bool blocksPack(const CPackForServer *)const override{return true;}
+ void onExposure(QueryPtr previous)override
+ {
+  const auto battle=std::dynamic_pointer_cast<CBattleQuery>(previous);
+  require(battle&&battle->result.has_value(),"scripted battle ended without a result");
+  won=battle->result->winner==BattleSide::ATTACKER;owner->popQuery(*this);
+ }
+ void onRemoval(PlayerColor)override{continuation(won);}
+};
 }
 struct SourceCampaignProcessor::Impl final:Host
 {
@@ -174,6 +193,26 @@ struct SourceCampaignProcessor::Impl final:Host
  {
   require(pending.isStruct(),"suspension without a dialog");
   if(shown)return;
+  if(pending["kind"].String()=="battle")
+  {
+   const auto * h=gh.gameState().getHero(ObjectInstanceID(pending["hero"].Integer()));require(h!=nullptr,"scripted battle hero missing");
+   const int3 position(pending["x"].Integer(),pending["y"].Integer(),pending["z"].Integer());
+   // A separate invisible event carries the temporary defenders. The visited
+   // object's guards, resources and reward configuration remain intact.
+   auto created=gh.createNewObject(position,Obj::EVENT,MapObjectSubID(0));
+   auto army=std::dynamic_pointer_cast<CGEvent>(created);require(army!=nullptr,"scripted battle carrier is not armed");
+   gh.newObject(army,player);
+   gh.insertNewStack({army->id,SlotID(0)},creature(pending["creature"].Integer()).toCreature(),pending["count"].Integer());
+   pending["army"].Integer()=army->id.getNum();persist();
+   auto barrier=std::make_shared<CampaignBattleQuery>(gh,h->getOwner(),[this](bool won)
+   {
+    const auto id=ObjectInstanceID(pending["army"].Integer());
+    if(const auto * temporary=gh.gameState().getObj(id))gh.removeObject(temporary,player);
+    shown.reset();writeFlag(1,vm,won);pending=JsonNode();run();
+   });
+   shown=barrier->queryID;gh.queries->addQuery(barrier);
+   gh.startBattle(h,army.get(),position,h,nullptr,BattleLayout::createDefaultLayout(gh.gameInfo(),h,army.get()),nullptr);return;
+  }
   auto dialog=std::make_shared<CGenericQuery>(&gh,player,[this](std::optional<int32_t> answer)
   {
    shown.reset();
@@ -296,6 +335,15 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
     else if(!stack)gh.insertNewStack({h->id,slot},creature(type).toCreature(),count);
     else {gh.changeStackType({h->id,slot},creature(type).toCreature());gh.changeStackCount({h->id,slot},count,ChangeValueMode::ABSOLUTE);}
    }
+  }
+  else if(op.code=="T")
+  {
+   arity(op,5);require(!query(op),"scripted battle arguments must be values");
+   const int3 position(number(args[0]),number(args[1]),number(args[2]));
+   require(gh.gameState().getMap().isInTheMap(position),"scripted battle location outside map");
+   const int source=number(args[3]),count=number(args[4]);creature(source);require(count>0,"scripted battle needs defenders");
+   pending["kind"].String()="battle";pending["hero"].Integer()=h->id.getNum();pending["x"].Integer()=position.x;pending["y"].Integer()=position.y;pending["z"].Integer()=position.z;
+   pending["creature"].Integer()=source;pending["count"].Integer()=count;return Step::Suspend;
   }
   else throw std::runtime_error("Original campaign: unsupported Cave hero operation "+op.code);
   return Step::Continue;

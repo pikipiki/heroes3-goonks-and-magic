@@ -38,7 +38,7 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{},sc
   // Keep the current text and scroll position while the native reply travels
   // to the server. A transient adventure frame must not flash behind a quest.
   if(state?.dialogKind==='source-campaign'&&next.campaignPending&&
-     (next.mode!=='dialog'||(replyingTo!==null&&next.dialogPresentation?.queryId===replyingTo))){holdCampaign();return;}
+     (next.mode==='map'||(replyingTo!==null&&next.mode==='dialog'&&next.dialogPresentation?.queryId===replyingTo))){holdCampaign();return;}
   replyingTo=null;if(panel.dataset.waiting){delete panel.dataset.waiting;for(const button of panel.querySelectorAll('button,input'))button.disabled=false;}
   if(progression.update(next)){state=next;panel.hidden=true;key=undefined;icons=[];root.setAttribute('data-dialog-presentation','');return;}
   if(!['commander','commander-level-up'].includes(next.dialogKind)){treeOpen=false;treeFilter=null;}

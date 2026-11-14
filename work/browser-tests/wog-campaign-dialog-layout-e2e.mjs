@@ -41,6 +41,7 @@ for(const [name,engine]of Object.entries({chromium,webkit})){
   await page.evaluate(async()=>{for(let i=0;i<9;i++){dialog.update({mode:'map',campaignPending:false});await new Promise(r=>setTimeout(r,20));}});assert.equal(await panel.isVisible(),false,'Repeated idle frames must not defer exit indefinitely');
   // A temporary suspension without a sent answer must restore the same buttons.
   await page.evaluate(s=>{dialog.update(s);dialog.update({mode:'map',campaignPending:true});dialog.update(s);},state);assert.equal(await confirm.isDisabled(),false);
+  await page.evaluate(()=>dialog.update({mode:'battle',campaignPending:true}));assert.equal(await panel.isVisible(),false,'A real scripted battle replaces the quest panel');
   await page.evaluate(()=>dialog.update({mode:'map',campaignPending:false}));await page.waitForTimeout(160);
  }
  console.log('PASS',name,'seven sizes, real Chromium touch scroll, stable quest transitions, one answer per query');

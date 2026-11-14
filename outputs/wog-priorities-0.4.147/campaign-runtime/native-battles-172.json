@@ -1,0 +1,297 @@
+{
+  "version": "0.4.172",
+  "status": "partial-original-campaign-port",
+  "activation": {
+    "originalCampaigns": false,
+    "originalCave": false
+  },
+  "engineSha256": "4952b2ebbd6b4e119c74cb9e1f8ab5a3ba3954dc29de1bb6f62673d2af7148dd",
+  "saveVersion": 903,
+  "networkReplyPacket": 271,
+  "scope": "Native five-argument HE:T, script suspension around the real battle/result/level-up queries, temporary defender cleanup and VM continuation. Eleven original scenario programs remain unadmitted.",
+  "references": {
+    "wogSourceCommit": "04331ca2bf9e895703c0cf5854a14a754f671bc6",
+    "dispatch": "T1/erm.cpp:7421",
+    "nativeCall": "T1/common.cpp:3261 DoBattle",
+    "coordinates": "https://h3era.github.io/ERM-Help/Rec/HE.htm"
+  },
+  "sourceFiles": {
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "046d02fa7b2b485961d1319df308b869848608bfdc4adf0d1b8954158be0ccc4",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "83567c826fcd0451f57f248165ca217255e2731fd381b49fec56aac2c2c1adde"
+  },
+  "checks": {
+    "wasm": "ninja -j32 html5 passed",
+    "trackedTests": {
+      "total": 751,
+      "passed": 717,
+      "skipped": 34,
+      "failed": 0
+    },
+    "mobileDialogTransition": {
+      "passed": true,
+      "browsers": [
+        "Chromium",
+        "WebKit"
+      ],
+      "sizes": [
+        [
+          320,
+          568
+        ],
+        [
+          390,
+          844
+        ],
+        [
+          568,
+          320
+        ],
+        [
+          844,
+          390
+        ],
+        [
+          768,
+          1024
+        ],
+        [
+          1024,
+          768
+        ],
+        [
+          1180,
+          820
+        ]
+      ],
+      "realChromiumTouchScroll": true,
+      "battleReplacesSourcePanel": true,
+      "singleReplyAndStableScroll": true
+    }
+  },
+  "nativeOutcomes": {
+    "victory": {
+      "passed": true,
+      "scope": "Actual source HE-1:T26/27/0/7/10 and condition v500>1, with private hero army and v500 context. No original quest/campaign victory.",
+      "fixtureSha256": "58d347ed205fce37e5d7a4f164a16ed798339fb17f4ed35b2124039376eece2f",
+      "sourceArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "originalInstruction": "HE-1:T26/27/0/7/10",
+      "originalCondition": "v500>1",
+      "controlledContext": {
+        "v500": 2,
+        "heroArmy": "100 black dragons",
+        "otherHeroSlots": "empty",
+        "nativeCommander": "unchanged"
+      },
+      "defenders": [
+        {
+          "key": "core:crusader",
+          "count": 10
+        }
+      ],
+      "autosaveAllowedDuringBattle": false,
+      "nativeContinuation": [
+        "Native scripted battle completed: 1"
+      ],
+      "returnedToMap": true,
+      "temporaryEventAbsentFromRealSave": true,
+      "postBattleSaveReload": {
+        "passed": true,
+        "nextDay": 2,
+        "battleNotReplayed": true
+      },
+      "errors": []
+    },
+    "defeat": {
+      "passed": true,
+      "scope": "Actual source HE-1:T26/27/0/7/10 and condition v500>1, with private hero army and v500 context. No original quest/campaign victory.",
+      "fixtureSha256": "f1afd8e50b1d7e622efcabaa6c12c5170b39116f1fcd279730352494a5f0a8e4",
+      "sourceArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "originalInstruction": "HE-1:T26/27/0/7/10",
+      "originalCondition": "v500>1",
+      "controlledContext": {
+        "v500": 2,
+        "heroArmy": "1 goblin",
+        "otherHeroSlots": "empty",
+        "nativeCommander": "unchanged"
+      },
+      "defenders": [
+        {
+          "key": "core:crusader",
+          "count": 10
+        }
+      ],
+      "autosaveAllowedDuringBattle": false,
+      "nativeContinuation": [
+        "Native scripted battle completed: 0"
+      ],
+      "returnedToMap": true,
+      "temporaryEventAbsentFromRealSave": true,
+      "postBattleSaveReload": {
+        "passed": true,
+        "nextDay": 2,
+        "battleNotReplayed": true
+      },
+      "errors": []
+    }
+  },
+  "productionNonRegressions": {
+    "passed": true,
+    "scope": "Actual production manifest/assets, both adventure maps, native save/reload, names/roles and real solo/hotseat turn transitions plus003 BattleStart policy parsing; no private overlay or installed asset write.",
+    "productionOnly": true,
+    "actualFetchedWasmSha256": "4952b2ebbd6b4e119c74cb9e1f8ab5a3ba3954dc29de1bb6f62673d2af7148dd",
+    "manifestSha256": "4487ad9d0c5211422ab308b827073afb3256e9275f2df6cf7426c4926917aa92",
+    "mapSaveReloadValidated": true,
+    "playerRolesPreserved": true,
+    "actualResumedTurnTransitionsValidated": true,
+    "trackedProductionAssetsUnchanged": true,
+    "nativePolicyParsingAtBattleStartValidated": true,
+    "errors": [],
+    "maps": [
+      {
+        "name": "003-Goonks-WoG.vmap",
+        "passed": true,
+        "nativeHotseat": false,
+        "saveReloadValidated": true,
+        "saveSha256": "2f46d1ac92b4363496ee13c1c39a106301ff9605a681e4d31480879f2742f322"
+      },
+      {
+        "name": "004-Goonks-WoG-Online.vmap",
+        "passed": true,
+        "nativeHotseat": true,
+        "saveReloadValidated": true,
+        "saveSha256": "c82d0e8ec57d99f1c47e8f005e1d1bbf3ec979cad52c3e1d2be27a76e67b3f1d"
+      }
+    ],
+    "combat": {
+      "passed": true,
+      "observedRound": 1,
+      "battleOutcomeValidated": false,
+      "installedAssetWrites": false,
+      "scope": "Actual delivered map/army and positive native battle round demonstrate successful BattleStart through initializeSourceXpAdmission, which loads all three production XP policies before checking participating actors. No victory, new54 ability, or new54 admission-enrollment claim. The battle is closed after the positive-round snapshot."
+    }
+  },
+  "old170PendingCaveReload": {
+    "passed": true,
+    "scope": "Real native pending-query save/reload and selected Cave lever continuation",
+    "cases": {
+      "lever": {
+        "question": {
+          "cancel": true,
+          "lines": [
+            "You see a strange lever set into the mountainside. Do you pull it?"
+          ],
+          "queryId": 34,
+          "title": "Game message"
+        },
+        "answer": 1,
+        "story": [
+          {
+            "cancel": false,
+            "lines": [
+              "You pull the lever, and immediately hear a loud grinding sound coming from inside your castle."
+            ],
+            "queryId": 35,
+            "title": "Game message"
+          },
+          {
+            "cancel": false,
+            "lines": [
+              "The lever's jammed now and it's impossible to move it again. How odd..."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          },
+          {
+            "cancel": false,
+            "lines": [
+              "You recall hearing about a very wise old mystic who lives the other side of an invisible maze. If anyone can figure out a way to deal with the vampires, surely it will be him."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          },
+          {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "The Behemoth Lair allows you to recruit Behemoths.",
+                "label": "Behemoth Lair",
+                "rect": {
+                  "h": 32,
+                  "w": 32,
+                  "x": 384,
+                  "y": 321
+                }
+              }
+            ],
+            "lines": [
+              "That grinding noise you heard was the sound of huge boulders being rolled away to reveal a behemoth cave! "
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          },
+          {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "The Behemoth Lair allows you to recruit Behemoths.",
+                "label": "Behemoth Lair",
+                "rect": {
+                  "h": 32,
+                  "w": 32,
+                  "x": 384,
+                  "y": 321
+                }
+              }
+            ],
+            "lines": [
+              "That grinding noise you heard was the sound of huge boulders being rolled away to reveal a behemoth cave! "
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          },
+          {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "12 Behemoths",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 305
+                }
+              }
+            ],
+            "lines": [
+              "You hear a great thundering rumble and dust fills the air. As you watch, amazed, a dozen huge and hairy behemoths stampede past you and into the town of Battlement to take up residence in their new lair."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        ],
+        "days": [
+          {
+            "day": 1,
+            "behemoths": null
+          },
+          {
+            "day": 2,
+            "behemoths": 1
+          },
+          {
+            "day": 3,
+            "behemoths": 13
+          }
+        ]
+      }
+    },
+    "errors": []
+  },
+  "limitations": [
+    "Controlled source-instruction battle tests, not complete original quest or scenario victories",
+    "Other battle receivers, timer/adventure adapters, external media and campaign transitions remain incomplete",
+    "Original Windows stack-distribution variants not fully compared",
+    "Mid-battle saving remains blocked; only post-battle saves were resumed"
+  ]
+}
